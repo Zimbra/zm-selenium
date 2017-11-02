@@ -65,8 +65,7 @@ public class TreeCalendar extends AbsTree {
 
 		tracer.trace("processing " + folder.getName());
 
-		String actionLocator = String.format("css=div[id='zti__main_Calendar__%s'] td[id$='_textCell']",
-				folder.getId());
+		String actionLocator = String.format("css=div[id='zti__main_Calendar__%s'] td[id$='_textCell']", folder.getId());
 		String optionLocator = null;
 		AbsPage page = null;
 
@@ -91,7 +90,6 @@ public class TreeCalendar extends AbsTree {
 
 				return (page);
 			}
-
 		}
 
 		// After clicking REFRESH, sometimes the links don't appear right away
@@ -367,13 +365,6 @@ public class TreeCalendar extends AbsTree {
 
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see
-	 * com.zimbra.qa.selenium.framework.ui.AbsTree#zPressButton(com.zimbra.qa.
-	 * selenium.framework.ui.Button)
-	 */
 	@Override
 	public AbsPage zPressButton(Button button) throws HarnessException {
 
@@ -460,12 +451,6 @@ public class TreeCalendar extends AbsTree {
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see framework.ui.AbsTree#zTreeItem(framework.ui.Action,
-	 * framework.items.FolderItem)
-	 */
 	public AbsPage zTreeItem(Action action, IItem folder) throws HarnessException {
 
 		tracer.trace("Click " + action + " on folder " + folder.getName());

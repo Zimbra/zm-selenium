@@ -25,16 +25,17 @@ import com.zimbra.qa.selenium.framework.items.MailItem;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail;
 
-public class CreateMeeting extends CalendarWorkWeekTest {
+public class CreateMeeting extends AjaxCommonTest {
 
 	public CreateMeeting() {
 		logger.info("New "+ CreateMeeting.class.getCanonicalName());
 		super.startingPage = app.zPageCalendar;
 	}
+
 
 	@Bugs(ids = "95899,95900,46442")
 	@Test( description = "Create basic meeting invite with one attendee",
@@ -46,15 +47,15 @@ public class CreateMeeting extends CalendarWorkWeekTest {
 		AppointmentItem appt = new AppointmentItem();
 
 		String apptSubject, apptAttendee1, apptContent;
-		Calendar now = this.calendarWeekDayUTC;
+		Calendar now = Calendar.getInstance();
 		apptSubject = ConfigProperties.getUniqueString();
 		apptAttendee1 = ZimbraAccount.AccountA().EmailAddress;
 		apptContent = ConfigProperties.getUniqueString();
 
 		appt.setSubject(apptSubject);
 		appt.setAttendees(apptAttendee1);
-		appt.setStartTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 1, 0, 0));
-		appt.setEndTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 2, 0, 0));
+		appt.setStartTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 11, 0, 0));
+		appt.setEndTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0));
 		appt.setContent(apptContent);
 
 		// Send invite
@@ -93,7 +94,6 @@ public class CreateMeeting extends CalendarWorkWeekTest {
 		MailItem invite = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "subject:("+ appt.getSubject() +")");
 		ZAssert.assertNotNull(invite, "Verify the invite is received");
 		ZAssert.assertEquals(invite.dSubject, appt.getSubject(), "Subject: Verify the appointment data");
-
 	}
 
 
@@ -112,15 +112,15 @@ public class CreateMeeting extends CalendarWorkWeekTest {
 
 		AppointmentItem appt = new AppointmentItem();
 		String apptSubject, apptAttendee1, apptContent;
-		Calendar now = this.calendarWeekDayUTC;
+		Calendar now = Calendar.getInstance();
 		apptSubject = ConfigProperties.getUniqueString();
 		apptAttendee1 = ZimbraAccount.AccountA().EmailAddress;
 		apptContent = ConfigProperties.getUniqueString();
 
 		appt.setSubject(apptSubject);
 		appt.setAttendees(apptAttendee1);
-		appt.setStartTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 11, 0, 0));
-		appt.setEndTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0));
+		appt.setStartTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0));
+		appt.setEndTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 13, 0, 0));
 		appt.setContent(apptContent);
 
 		// Verify Compose appointment format obeys the mail compose format and send it to invitee
@@ -145,7 +145,7 @@ public class CreateMeeting extends CalendarWorkWeekTest {
 		AppointmentItem appt = new AppointmentItem();
 
 		String apptSubject, apptAttendee1, apptOptional1, apptContent;
-		Calendar now = this.calendarWeekDayUTC;
+		Calendar now = Calendar.getInstance();
 		apptSubject = ConfigProperties.getUniqueString();
 		apptAttendee1 = ZimbraAccount.AccountA().EmailAddress;
 		apptOptional1 = ZimbraAccount.AccountB().EmailAddress;
@@ -154,8 +154,8 @@ public class CreateMeeting extends CalendarWorkWeekTest {
 		appt.setSubject(apptSubject);
 		appt.setAttendees(apptAttendee1);
 		appt.setOptional(apptOptional1);
-		appt.setStartTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 2, 0, 0));
-		appt.setEndTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 3, 0, 0));
+		appt.setStartTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 13, 0, 0));
+		appt.setEndTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0));
 		appt.setContent(apptContent);
 
 		// Send invite

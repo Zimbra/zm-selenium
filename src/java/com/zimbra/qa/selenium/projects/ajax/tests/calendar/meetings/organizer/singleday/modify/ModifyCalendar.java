@@ -24,15 +24,16 @@ import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
 
-public class ModifyCalendar extends CalendarWorkWeekTest {
+public class ModifyCalendar extends AjaxCommonTest {
 
 	public ModifyCalendar() {
 		logger.info("New "+ ModifyCalendar.class.getCanonicalName());
 		super.startingPage = app.zPageCalendar;
 	}
+
 
 	@Bugs(ids = "102771")
 	@Test( description = "Modify meeting calendar",
@@ -47,11 +48,11 @@ public class ModifyCalendar extends CalendarWorkWeekTest {
 		apptBody = ConfigProperties.getUniqueString();
 		apptAttendee = ZimbraAccount.AccountA().EmailAddress;
 		apptCalendar = ConfigProperties.getUniqueString();
-		
+
 		// Absolute dates in UTC zone
-		Calendar now = this.calendarWeekDayUTC;
+		Calendar now = Calendar.getInstance();
 		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
-		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 13, 0, 0);
 
 		// Create new calendar folder
 		FolderItem root = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.UserRoot);
@@ -60,7 +61,7 @@ public class ModifyCalendar extends CalendarWorkWeekTest {
                 	"<folder name='"+ apptCalendar +"' l='"+ root.getId() +"' view='appointment'/>" +
                 "</CreateFolderRequest>");
 		FolderItem apptCal = FolderItem.importFromSOAP(app.zGetActiveAccount(), apptCalendar);
-		
+
 		// Refresh the view
         app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
 

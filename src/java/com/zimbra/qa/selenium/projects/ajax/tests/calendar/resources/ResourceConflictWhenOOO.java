@@ -22,22 +22,23 @@ import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.DialogWarningConflictingResources;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew.Locators;
 
-public class ResourceConflictWhenOOO extends CalendarWorkWeekTest {	
-	
+public class ResourceConflictWhenOOO extends AjaxCommonTest {
+
 	public ResourceConflictWhenOOO() {
 		logger.info("New "+ ResourceConflictWhenOOO.class.getCanonicalName());
 		super.startingPage = app.zPageCalendar;
 	}
-	
+
+
 	@Bugs(ids = "102271")
 	@Test( description = "Verify if OOO status of Location causes double booking",
 			groups = { "functional", "L5" })
-	
+
 	public void LocationConflictWhenOOO_01() throws HarnessException {
 
 		// Creating object for meeting data
@@ -57,7 +58,7 @@ public class ResourceConflictWhenOOO extends CalendarWorkWeekTest {
 		apptSubject2 = ConfigProperties.getUniqueString();
 
 		// Absolute dates in UTC zone
-		Calendar now = this.calendarWeekDayUTC;
+		Calendar now = Calendar.getInstance();
 		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 9, 0, 0);
 		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 18, 0, 0);
 
@@ -109,17 +110,17 @@ public class ResourceConflictWhenOOO extends CalendarWorkWeekTest {
 		FormApptNew apptForm = (FormApptNew) app.zPageCalendar.zToolbarPressButton(Button.B_NEW);
 		apptForm.zFill(appt);
 		SleepUtil.sleepMedium();
-		
+
 		// Verify the compose page shows note below resource about conflicting resources
 		ZAssert.assertTrue(app.zPageCalendar.sIsElementPresent(Locators.ConflictResourceNote),  "Verify that the conflicting resource note appears on appt compose page");
-		
+
 		// Send invite
 		DialogWarningConflictingResources dialog = (DialogWarningConflictingResources) app.zPageCalendar.zToolbarPressButton(Button.B_SEND_WITH_CONFLICT);
 		String dialogContent = dialog.zGetResourceConflictWarningDialogText();
 		ZAssert.assertTrue(dialogContent.contains("The selected resources/location cannot be scheduled for the following instances"), "Verify that the dialog shows expected text");
 		ZAssert.assertTrue(dialogContent.contains(apptLocation + " (Busy)"), "Verify that the dialog shows location name on conflict warning");
 
-		// Save appt with location conflict 
+		// Save appt with location conflict
 		dialog.zClickButton(Button.B_SAVE_WITH_CONFLICT);
 
 		// Verify that location with conflict and subject are present in the appointment

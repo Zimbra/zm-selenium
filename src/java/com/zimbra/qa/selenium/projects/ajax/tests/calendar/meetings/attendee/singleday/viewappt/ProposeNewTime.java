@@ -25,27 +25,26 @@ import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.*;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
 
-public class ProposeNewTime extends CalendarWorkWeekTest {
+public class ProposeNewTime extends AjaxCommonTest {
 
 	public ProposeNewTime() {
 		logger.info("New "+ ProposeNewTime.class.getCanonicalName());
 		super.startingPage =  app.zPageCalendar;
-		
 	}
-	
-	@Test( description = "View meeting invite by opening it and propose new time to organizer", 
+
+	@Test( description = "View meeting invite by opening it and propose new time to organizer",
 			groups = { "functional", "L2" })
-			
+
 	public void MeetingProposeNewTime_01() throws HarnessException {
 
 		// ------------------------ Test data ------------------------------------
 
 		String organizerEmailAddress, apptAttendee1EmailAddress, apptAttendee2EmailAddress;
-		ZimbraAccount organizer, apptAttendee1, apptAttendee2; 
+		ZimbraAccount organizer, apptAttendee1, apptAttendee2;
 		String apptSubject = ConfigProperties.getUniqueString();
 		String apptBody = ConfigProperties.getUniqueString();
 		String modifiedBody = ConfigProperties.getUniqueString();
-		
+
 		apptAttendee1 = app.zGetActiveAccount();
 		apptAttendee1EmailAddress = app.zGetActiveAccount().EmailAddress;
 		organizer = ZimbraAccount.AccountA();
@@ -53,13 +52,13 @@ public class ProposeNewTime extends CalendarWorkWeekTest {
 		apptAttendee2 = ZimbraAccount.AccountB();
 		apptAttendee2EmailAddress = ZimbraAccount.AccountB().EmailAddress;
 
-		Calendar now = this.calendarWeekDayUTC;
+		Calendar now = Calendar.getInstance();
 		AppointmentItem appt = new AppointmentItem();
 		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 10, 0, 0);
 		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 11, 0, 0);
 		ZDate modifiedStartUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 11, 0, 0);
 		ZDate modifiedEndUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
-		
+
 		// --------------- Creating invitation (apptAttendee1) ----------------------------
 		organizer.soapSend(
 				"<CreateAppointmentRequest xmlns='urn:zimbraMail'>"
@@ -78,16 +77,16 @@ public class ProposeNewTime extends CalendarWorkWeekTest {
 				+				"<content>" + apptBody + "</content>"
 				+			"</mp>"
 				+		"</m>"
-				+	"</CreateAppointmentRequest>");        
-		
+				+	"</CreateAppointmentRequest>");
+
 		// Verify appointment exists in current view
         ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
-		
+
 		// --------------- Login to attendee & propose new time ----------------------------------------------------
 
 		// Modify body content and propose new time
 		FormApptNew apptForm = (FormApptNew)app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, Button.O_PROPOSE_NEW_TIME_MENU, apptSubject);;
-		
+
 		apptForm.zVerifyDisabledControlInProposeNewTimeUI();
 		appt.setStartTime(modifiedStartUTC);
 		appt.setEndTime(modifiedEndUTC);
@@ -95,18 +94,18 @@ public class ProposeNewTime extends CalendarWorkWeekTest {
 		apptForm.zFill(appt);
 		apptForm.zSubmit();
 		app.zPageCalendar.zToolbarPressButton(Button.B_CLOSE);
-		
+
 		// ------ Organizer ------
-		
+
 		// Original invite body shouldn't be changed for organizer
 		organizer.soapSend(
 				"<SearchRequest xmlns='urn:zimbraMail' types='appointment' calExpandInstStart='"+ startUTC.addDays(-10).toMillis() +"' calExpandInstEnd='"+ endUTC.addDays(10).toMillis() +"'>"
 			+		"<query>" + "subject:(" + apptSubject + ")" + " " + "content:(" + apptBody +")" + "</query>"
 			+	"</SearchRequest>");
-	
+
 		String organizerInvId = organizer.soapSelectValue("//mail:appt", "invId");
 		ZAssert.assertNotNull(organizerInvId, "Original invite body shouldn't be changed for apptAttendee1");
-		
+
 		// Verify organizer gets email notification using modified date & content
 		String inboxId = FolderItem.importFromSOAP(organizer, FolderItem.SystemFolder.Inbox).getId();
 		organizer.soapSend(
@@ -115,37 +114,37 @@ public class ProposeNewTime extends CalendarWorkWeekTest {
 				+	"</SearchRequest>");
 		String messageId = organizer.soapSelectValue("//mail:m", "id");
 		ZAssert.assertNotNull(messageId, "Verify organizer gets email notification using modified date & content");
-		
+
 		// ------ Attendee1 ------
-		
+
 		// Verify that the attendee status still shows as 'NEEDS ACTION'
 		apptAttendee1.soapSend(
 					"<SearchRequest xmlns='urn:zimbraMail' types='appointment' calExpandInstStart='"+ startUTC.addDays(-10).toMillis() +"' calExpandInstEnd='"+ endUTC.addDays(10).toMillis() +"'>"
 				+		"<query>" + "subject:(" + apptSubject + ")" + " " + "content:(" + apptBody +")" + "</query>"
 				+	"</SearchRequest>");
-		
+
 		String apptAttendee1InvId= apptAttendee1.soapSelectValue("//mail:appt", "invId");
 		ZAssert.assertNotNull(apptAttendee1InvId, "Original invite body shouldn't be changed for attendee");
-		
+
 		apptAttendee1.soapSend(
 				"<GetAppointmentRequest  xmlns='urn:zimbraMail' id='"+ apptAttendee1InvId +"'/>");
 		String attendee1Status = apptAttendee1.soapSelectValue("//mail:at[@a='"+ app.zGetActiveAccount().EmailAddress +"']", "ptst");
 		ZAssert.assertEquals(attendee1Status, "NE", "Verify that the attendee status still shows as 'NEEDS ACTION'");
-	
-		
+
+
 		// ------ Attendee2 ------
-		
+
 		// Attendee2 shouldn't receive any mail if Attendee1 proposes new time to Organizer
 		apptAttendee2.soapSend(
 				"<SearchRequest xmlns='urn:zimbraMail' types='message'>"
 			+		"<query>" + "subject:(" + apptSubject + ")" + "</query>"
 			+	"</SearchRequest>");
-	
+
 		String proposeNewTimeMsg = apptAttendee2.soapSelectValue("//mail:appt", "invId");
 		ZAssert.assertNull(proposeNewTimeMsg, "Attendee2 shouldn't receive any mail if Attendee1 proposes new time to Organizer");
-		
+
 		// Logout to attendee and login as organizer to accept proposed new time
-		
+
 		// Logout to organizer and login as attendee to accept new time
 
 		// All these verification are already covered in :
@@ -155,5 +154,5 @@ public class ProposeNewTime extends CalendarWorkWeekTest {
 		// com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.attendee.singleday.invitations.message
 
 	}
-	
+
 }

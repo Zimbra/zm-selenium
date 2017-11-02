@@ -68,6 +68,9 @@ public class AjaxCommonTest {
 	protected Map<String, String> startingUserPreferences = null;
 	protected Map<String, String> startingUserZimletPreferences = null;
 
+	public static boolean organizerTest = false;
+	public static boolean allDayTest = false;
+
 	WebElement we = null;
 	private WebDriver webDriver = ClientSessionFactory.session().webDriver();
 	protected static Logger logger = LogManager.getLogger(AjaxCommonTest.class);
@@ -160,13 +163,11 @@ public class AjaxCommonTest {
 			}
 		}
 
-		// If test account preferences are defined, then make sure the test
-		// account uses those preferences
-		if ((startingAccountPreferences != null) && (!startingAccountPreferences.isEmpty())) {
+		// If test account preferences are defined, then make sure the test account uses those preferences
+		if (startingAccountPreferences != null && !startingAccountPreferences.isEmpty()) {
 			logger.info("BeforeMethod: startingAccountPreferences are defined");
 
-			// If the current test accounts preferences match, then the account
-			// can be used
+			// If the current test accounts preferences match, then the account can be used
 			if (!ZimbraAccount.AccountZCS().compareAccountPreferences(startingAccountPreferences)) {
 
 				logger.info("BeforeMethod: startingAccountPreferences do not match active account");
@@ -179,16 +180,13 @@ public class AjaxCommonTest {
 				ZimbraAccount.AccountZCS().modifyAccountPreferences(startingAccountPreferences);
 				ZimbraAccount.AccountZCS().modifyUserZimletPreferences(startingUserZimletPreferences);
 			}
-
 		}
 
-		// If test account zimlet preferences are defined, then make sure the
-		// test account uses those zimlet preferences
-		if ((startingUserZimletPreferences != null) && (!startingUserZimletPreferences.isEmpty())) {
+		// If test account zimlet preferences are defined, then make sure the test account uses those zimlet preferences
+		if (startingUserZimletPreferences != null && !startingUserZimletPreferences.isEmpty()) {
 			logger.info("BeforeMethod: startingAccountZimletPreferences are defined");
 
-			// If the current test accounts preferences match, then the account
-			// can be used
+			// If the current test accounts preferences match, then the account can be used
 			if (!ZimbraAccount.AccountZCS().compareUserZimletPreferences(startingUserZimletPreferences)) {
 
 				logger.info("BeforeMethod: startingAccountZimletPreferences do not match active account");
@@ -221,7 +219,7 @@ public class AjaxCommonTest {
 
 		// If a startingPage is defined, then make sure we are on that page
 		if (startingPage != null) {
-			logger.info("BeforeMethod: startingPage is defined");
+			logger.info("BeforeMethod: startingPage is defined -> " + startingPage.myPageName());
 
 			// If the starting page is not active, navigate to it
 			if (!startingPage.zIsActive()) {
@@ -233,7 +231,7 @@ public class AjaxCommonTest {
 				throw new HarnessException("Unable to navigate to " + startingPage.myPageName());
 			}
 
-			logger.info("BeforeMethod: startingPage navigation done");
+			logger.info("BeforeMethod: startingPage navigation done -> " + startingPage.myPageName());
 		}
 
 		// Handle open dialogs and tabs
@@ -462,11 +460,8 @@ public class AjaxCommonTest {
 
 		}
 
-		if(testResult.getStatus() == ITestResult.FAILURE){
-			ZimbraAccount currentAccount = app.zGetActiveAccount();
-			if (currentAccount != null && currentAccount.accountIsDirty && currentAccount == ZimbraAccount.AccountZCS()) {
-				ZimbraAccount.ResetAccountZCS();
-			}
+		if (testResult.getStatus() == ITestResult.FAILURE){
+			ZimbraAccount.ResetAccountZCS();
 		}
 
 		logger.info("AfterMethod: finish");

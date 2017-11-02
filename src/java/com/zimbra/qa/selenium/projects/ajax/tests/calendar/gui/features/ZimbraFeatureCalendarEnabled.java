@@ -23,10 +23,10 @@ import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.core.Bugs;
 
 import com.zimbra.qa.selenium.framework.util.HarnessException;
-import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 
 
-public class ZimbraFeatureCalendarEnabled extends CalendarWorkWeekTest {
+public class ZimbraFeatureCalendarEnabled extends AjaxCommonTest {
 
 	
 	@SuppressWarnings("serial")

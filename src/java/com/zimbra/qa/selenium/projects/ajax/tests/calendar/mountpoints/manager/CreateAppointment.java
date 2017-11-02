@@ -17,46 +17,45 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.mountpoints.manager;
 
 import java.util.Calendar;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.FolderMountpointItem;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew.Field;
 
-public class CreateAppointment extends CalendarWorkWeekTest {
+public class CreateAppointment extends AjaxCommonTest {
 
 	public CreateAppointment() {
 		logger.info("New " + CreateAppointment.class.getCanonicalName());
 		super.startingPage = app.zPageCalendar;
 	}
 
-	@Test( description = "Create a basic meeting with attendee and location on shared mailbox", 
+
+	@Test( description = "Create a basic meeting with attendee and location on shared mailbox",
 			groups = { "smoke", "L1" })
-	
+
 	public void CreateAppointment_01() throws HarnessException {
 
 		ZimbraResource location = new ZimbraResource(ZimbraResource.Type.LOCATION);
-		
+
 		// Create appointment data
 		AppointmentItem appt = new AppointmentItem();
-		
+
 		String apptSubject, apptLocation, apptAttendee1, apptContent, mountPointName;
 		apptSubject = ConfigProperties.getUniqueString();
 		apptLocation = location.EmailAddress;
 		apptAttendee1 = ZimbraAccount.Account1().EmailAddress;
 		apptContent = ConfigProperties.getUniqueString();
 		mountPointName = ConfigProperties.getUniqueString();
-		
+
 		// Absolute dates in UTC zone
-		Calendar now = this.calendarWeekDayUTC;
-		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 01, 0, 0);
-		ZDate endUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 02, 0, 0);
+		Calendar now = Calendar.getInstance();
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 9, 0, 0);
+		ZDate endUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 10, 0, 0);
 
 		appt.setSubject(apptSubject);
 		appt.setLocation(apptLocation);
@@ -64,7 +63,7 @@ public class CreateAppointment extends CalendarWorkWeekTest {
 		appt.setStartTime(startUTC);
 		appt.setEndTime(endUTC);
 		appt.setContent(apptContent);
-		
+
 		// Use system calendar folder
 		FolderItem folder = FolderItem.importFromSOAP(ZimbraAccount.Account2(),	FolderItem.SystemFolder.Calendar);
 
@@ -76,10 +75,10 @@ public class CreateAppointment extends CalendarWorkWeekTest {
 		// Mount it
 		app.zGetActiveAccount().soapSend("<CreateMountpointRequest xmlns='urn:zimbraMail'>" + "<link l='1' name='" + mountPointName + "'  rid='"
 						+ folder.getId() + "' zid='" + ZimbraAccount.Account2().ZimbraId + "' view='appointment' color='4'/>" + "</CreateMountpointRequest>");
-		
+
 		FolderMountpointItem mountpoint = FolderMountpointItem.importFromSOAP(app.zGetActiveAccount(), mountPointName);
 		ZAssert.assertNotNull(mountpoint, "Verify mount point is created");
-		
+
 		app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
 
 		// Compose appointment on shared mailbox
@@ -113,10 +112,10 @@ public class CreateAppointment extends CalendarWorkWeekTest {
 		ZAssert.assertStringContains(actual.getLocation(), appt.getLocation(),"Location: Verify the appointment data");
 		ZAssert.assertStringContains(actual.getAttendees(), apptAttendee1,"Attendees: Verify the appointment data");
 		ZAssert.assertEquals(actual.getContent(), appt.getContent(),"Content: Verify the appointment data");
-		
+
 		actual = AppointmentItem.importFromSOAP(location, "subject:(" + appt.getSubject() + ")", appt.getStartTime().addDays(-7), appt.getEndTime().addDays(7));
 		ZAssert.assertNotNull(actual, "Verify location is booked");
-		
+
 		// Verify appointment exists in UI
 		app.zTreeCalendar.zMarkOnOffCalendarFolder("Calendar");
 		app.zTreeCalendar.zMarkOnOffCalendarFolder(mountPointName);

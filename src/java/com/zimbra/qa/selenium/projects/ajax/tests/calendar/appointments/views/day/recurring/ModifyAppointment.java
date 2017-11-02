@@ -18,9 +18,7 @@ package com.zimbra.qa.selenium.projects.ajax.tests.calendar.appointments.views.d
 
 import java.util.Calendar;
 import java.util.HashMap;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
@@ -38,20 +36,18 @@ public class ModifyAppointment extends AjaxCommonTest {
 	public ModifyAppointment() {
 		logger.info("New " + ModifyAppointment.class.getCanonicalName());
 
-		// All tests start at the Calendar page
 		super.startingPage = app.zPageCalendar;
-
-		// Make sure we are using an account with day view
 		super.startingAccountPreferences = new HashMap<String, String>() {
-			private static final long serialVersionUID = -2913827779459595178L;
-		{
-		    put("zimbraPrefCalendarInitialView", "day");
-		}};
+			private static final long serialVersionUID = -2913827779459595178L; {
+				put("zimbraPrefCalendarInitialView", "day");
+			}
+		};
 	}
 
-	@Test(
-			description = "Modify appointment with subject & body and verify it in day view", 
+
+	@Test (	description = "Modify appointment with subject & body and verify it in day view",
 			groups = { "smoke", "L1" })
+
 	public void ModifyAppointment_01() throws HarnessException {
 
 		// Creating object for appointment data
@@ -62,12 +58,12 @@ public class ModifyAppointment extends AjaxCommonTest {
 		apptBody = ConfigProperties.getUniqueString();
 		editApptSubject = ConfigProperties.getUniqueString();
         editApptBody = ConfigProperties.getUniqueString();
-		
+
 		// Absolute dates in UTC zone
         Calendar now = Calendar.getInstance();
-		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 13, 0, 0);
 		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
-		
+
         app.zGetActiveAccount().soapSend(
                           "<CreateAppointmentRequest xmlns='urn:zimbraMail'>" +
                                "<m>"+
@@ -84,9 +80,6 @@ public class ModifyAppointment extends AjaxCommonTest {
                          "</CreateAppointmentRequest>");
 
         String apptId = app.zGetActiveAccount().soapSelectValue("//mail:CreateAppointmentResponse", "apptId");
-    
-        // Switch to day view
-        app.zPageCalendar.zToolbarPressPulldown(Button.B_LISTVIEW, Button.O_LISTVIEW_DAY);
 
         // Verify appointment exists in current view
         ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
@@ -99,12 +92,10 @@ public class ModifyAppointment extends AjaxCommonTest {
         appt.setContent(editApptBody);
         apptForm.zFill(appt);
         apptForm.zToolbarPressButton(Button.B_SAVEANDCLOSE);
-        
+
         // Use GetAppointmentRequest to verify the changes are saved
         app.zGetActiveAccount().soapSend("<GetAppointmentRequest  xmlns='urn:zimbraMail' id='"+ apptId +"'/>");
         app.zGetActiveAccount().soapMatch("//mail:GetAppointmentResponse//mail:comp", "name", editApptSubject);
-        app.zGetActiveAccount().soapMatch(
-				"//mail:GetAppointmentResponse//mail:content", null,
-				editApptBody);
+        app.zGetActiveAccount().soapMatch("//mail:GetAppointmentResponse//mail:content", null, editApptBody);
 	}
 }

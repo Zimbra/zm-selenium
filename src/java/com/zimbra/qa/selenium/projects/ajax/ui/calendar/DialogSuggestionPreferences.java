@@ -26,50 +26,44 @@ public class DialogSuggestionPreferences extends DialogWarning {
 
 	// The ID for the main Dialog DIV
 	public static final String LocatorDivID = "SUGGESTION_PREFERENCES";
-		
+
 	public DialogSuggestionPreferences(AbsApplication application, AbsTab page) {
 		super(new DialogWarningID(LocatorDivID), application, page);
-				
+
 		logger.info("new " + DialogSuggestionPreferences.class.getCanonicalName());
 	}
 
 	@Override
 	public AbsPage zClickButton(Button button) throws HarnessException {
 		logger.info(myPageName() + " zClickButton(" + button + ")");
-		
+
 		tracer.trace("Click dialog button " + button);
 		if ( button == null )
 			throw new HarnessException("button cannot be null");
-	
+
 		String locator = null;
 		AbsPage page = null;
 
 		if (button == Button.B_ONLY_INCLUDE_MY_WORKING_HOURS) {
-
 			locator = Locators.OnlyIncludeMyWorkingHoursCheckBox;
 			page = null;
 
 		} else if (button == Button.B_ONLY_INCLUDE_OTHER_ATTENDEES_WORKING_HOURS) {
-
 			locator = Locators.OnlyIncludeOtherAttendeeCheckBox;
 			page = null;
-		
-		} else if (button == Button.B_OK) {
 
+		} else if (button == Button.B_OK) {
 			locator = Locators.OKButtonSuggestionPreferencesDialog;
 			page = null;
-		
-		} else if (button == Button.B_CANCEL) {
 
+		} else if (button == Button.B_CANCEL) {
 			locator = Locators.CancelButtonSuggestionPreferencesDialog;
 			page = null;
-			                              
-		} else {
-			
-			return ( super.zClickButton(button) );
 
+		} else {
+			return ( super.zClickButton(button) );
 		}
-		
+
 		// Make sure the locator was set
 		if (locator == null) {
 			throw new HarnessException("Button " + button + " not implemented");
@@ -78,23 +72,23 @@ public class DialogSuggestionPreferences extends DialogWarning {
 		if (!this.sIsElementPresent(locator)) {
 			throw new HarnessException("Button " + button + " locator " + locator + " not present!");
 		}
-		
+
 		this.sClickAt(locator, "");
 		this.zWaitForBusyOverlay();
 		SleepUtil.sleepSmall();
-		
+
 		return (page);
 	}
-	
+
 	public AbsPage zType(Button editField, String editFieldValue) throws HarnessException {
-		
+
 		logger.info(myPageName() + " zType(" + editField + ")");
 
 		tracer.trace("Type value in " + editField);
-		
+
 		if ( editField == null )
 			throw new HarnessException("Edit field cannot be null");
-	
+
 		String locator = null;
 		AbsPage page = null;
 
@@ -102,9 +96,9 @@ public class DialogSuggestionPreferences extends DialogWarning {
 
 			locator = Locators.NameLocationPreferencesField;
 			page = null;
-               
+
 		} else {
-			
+
 			throw new HarnessException("Edit field " + editField + " not implemented");
 
 		}
@@ -112,12 +106,10 @@ public class DialogSuggestionPreferences extends DialogWarning {
 		if (!this.sIsElementPresent(locator)) {
 			throw new HarnessException("Edit field " + editField + " locator " + locator + " not present!");
 		}
-		
+
 		this.sType(locator, editFieldValue);
 		this.zWaitForBusyOverlay();
 
 		return (page);
 	}
-
 }
-

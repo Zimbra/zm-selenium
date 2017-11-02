@@ -31,14 +31,12 @@ public class UnTagAppointment extends AjaxCommonTest {
 	public UnTagAppointment() {
 		logger.info("New "+ UnTagAppointment.class.getCanonicalName());
 
-		// All tests start at the Calendar page
 		super.startingPage = app.zPageCalendar;
-
 		super.startingAccountPreferences = new HashMap<String, String>() {
-			private static final long serialVersionUID = -2913827779459595178L;
-		{
-		    put("zimbraPrefCalendarInitialView", "day");
-		}};
+			private static final long serialVersionUID = -2913827779459595178L; {
+				put("zimbraPrefCalendarInitialView", "day");
+			}
+		};
 	}
 
 
@@ -91,7 +89,7 @@ public class UnTagAppointment extends AjaxCommonTest {
 		tag1 = ConfigProperties.getUniqueString();
 		apptSubject = ConfigProperties.getUniqueString();
 		apptBody = ConfigProperties.getUniqueString();
-		ZDate startDate = new ZDate(Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH) + 1, Calendar.getInstance().get(Calendar.DAY_OF_MONTH), 12, 0, 0);
+		ZDate startDate = new ZDate(Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH) + 1, Calendar.getInstance().get(Calendar.DAY_OF_MONTH), 11, 0, 0);
 
 		// Create new appointment
 		AppointmentItem appt = AppointmentItem.createAppointmentSingleDay(app.zGetActiveAccount(), startDate, 60, null, apptSubject, apptBody, null, null);

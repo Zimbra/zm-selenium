@@ -18,9 +18,11 @@ package com.zimbra.qa.selenium.projects.ajax.ui.calendar;
 
 import java.awt.event.KeyEvent;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import org.apache.commons.lang.StringUtils;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -67,8 +69,7 @@ public class FormApptNew extends AbsForm {
 		public static final String SuggestAtimeLink = "css=div[id$='_suggest_time']:contains('Suggest a time')";
 		public static final String SuggestATime10AM = "css=div[id$='_suggest_view'] td:contains(10:00 AM)";
 		public static final String SuggestALocationLink = "css=div[id$='_suggest_location']:contains('Suggest a location')";
-		public static String SuggestedLocations = "css=div[id='zv__CSLP'] div[class$='ZmLocationSuggestion']:contains('"
-				+ locatorValue + "')";
+		public static String SuggestedLocations = "css=div[id='zv__CSLP'] div[class$='ZmLocationSuggestion']:contains('" + locatorValue + "')";
 		public static final String ShowSchedulerLink = "css=div[id$='_scheduleButton']:contains('Show')";
 		public static final String HideSchedulerLink = "css=div[id$='_scheduleButton']:contains('Hide')";
 		public static final String SelectFirstFreeTimeFromSuggestTimePane = "css=div[id$='_suggest_view'] table:nth-child(2) tbody tr td:nth-child(2)";
@@ -158,7 +159,7 @@ public class FormApptNew extends AbsForm {
 		public static final String LocationField = "css=input[id$='_location_input']";
 		public static final String EquipmentField = "css=input[id$='_resourcesData_input']";
 		public static final String SMSCheckBox = "css=input[id$='_reminderDeviceEmailCheckbox']";
-		
+
 		public static final String zBoldButton = "css=i[class='mce-ico mce-i-bold']";
 		public static final String zItalicButton = "css=i[class='mce-ico mce-i-italic']";
 		public static final String zTextColorDropdown = "css=div[class='mce-widget mce-btn mce-btn-small mce-colorbutton mce-first'] [class='mce-open']";
@@ -168,7 +169,6 @@ public class FormApptNew extends AbsForm {
 		public static final String zTextBackgroundColorGreen = "css=div[class='mce-container mce-panel mce-floatpanel mce-popover mce-bottom mce-start']:not([style*='display']) [data-mce-color='#008000']";
 		public static final String zTextBackgroundColorTransparent = "css=div[class='mce-container mce-panel mce-floatpanel mce-popover mce-bottom mce-start']:not([style*='display']) [data-mce-color='transparent']";
 		public static final String zPlainTextBodyField = "css=div[class='ZmHtmlEditor'] [class='ZmHtmlEditorTextArea']";
-
 	}
 
 	public static class Field {
@@ -818,7 +818,7 @@ public class FormApptNew extends AbsForm {
 		this.zWaitForBusyOverlay();
 
 	}
-	
+
 	public void zFillField(Field field, String value) throws HarnessException {
 
 		tracer.trace("Set " + field + " to " + value);
@@ -837,7 +837,7 @@ public class FormApptNew extends AbsForm {
 			return;
 
 		} else if (field == Field.To) {
-			
+
 			if (ConfigProperties.getStringProperty("browser").contains("edge")) {
 				locator = "css=textarea[id$='_to_control_input']";
 			} else {
@@ -999,10 +999,8 @@ public class FormApptNew extends AbsForm {
 
 			if (field == Field.StartDate || field == Field.EndDate || field == Field.StartTime
 					|| field == Field.EndTime) {
-				if (ConfigProperties.getStringProperty("browser").contains("chrome")) {
-					this.sMouseDownAt(locator, "");
-				}
-				
+					this.sClickAt(locator, "");
+
 				this.zKeyboard.zSelectAll();
 				/*String clearField = "";
 				for(char c : value.toCharArray()){
@@ -1122,7 +1120,6 @@ public class FormApptNew extends AbsForm {
 			this.sUncheck(locator);
 			this.zWaitForBusyOverlay();
 		}
-
 	}
 
 	private void zRepeatCore(Button recurringType, Button repeat, String repeatOption1, Button end, String endOption1)
@@ -1162,8 +1159,7 @@ public class FormApptNew extends AbsForm {
 					this.sClickAt(Locators.EveryXRadioButton, "");
 					if (!repeatOption1.equals("")) {
 						this.sClickAt("css=td[id^='WEEKLY_SELECT'] td[id$='_title']", "");
-						this.sClickAt("css=div[id^='POPUP_DWT'] td[id$='_title']:contains('" + repeatOption1 + "')",
-								"");
+						this.sClickAt("css=div[id^='POPUP_DWT'] td[id$='_title']:contains('" + repeatOption1 + "')", "");
 					}
 
 				} else if (repeat.equals(Button.B_EVERY_X_WEEKS_ON_RADIO_BUTTON)) {
@@ -1205,7 +1201,7 @@ public class FormApptNew extends AbsForm {
 				} else if (repeat.equals(Button.B_THE_X_Y_OF_EVERY_Z_MONTHS_RADIO_BUTTON)) {
 					this.sClickAt(Locators.TheXYofEveryZmonthsRadioButton, "");
 					this.sClickAt("css=td[id^='MONTHLY_WEEKDAY_SELECT'] td[id$='_title']", "");
-					this.sClickAt("css=div[id*='Menu_'] td[id$='_title']:contains('Monday')", "");
+					this.sClickAt("css=div[id*='Menu_'] td[id$='_title']:contains('" + StringUtils.capitalize(LocalDate.now().plusDays(1).getDayOfWeek().toString().toLowerCase()) + "')", "");
 				}
 
 			} else if (recurringType.equals(Button.O_EVERY_YEAR_MENU)) {
@@ -1243,13 +1239,11 @@ public class FormApptNew extends AbsForm {
 
 	public void zRepeat(Button recurringType, Button repeat, Button end) throws HarnessException {
 		zRepeatCore(recurringType, repeat, "", end, "");
-
 	}
 
 	public void zRepeat(Button recurringType, Button repeat, String repeatOption1, Button end, String endOption1)
 			throws HarnessException {
 		zRepeatCore(recurringType, repeat, repeatOption1, end, endOption1);
-
 	}
 
 	@Override
@@ -1447,7 +1441,6 @@ public class FormApptNew extends AbsForm {
 			items.add(parseAutocompleteEntry(containerLocator + " tr[id$='_acRow_" + i + "']"));
 
 		}
-
 		return (items);
 	}
 
@@ -1457,18 +1450,17 @@ public class FormApptNew extends AbsForm {
 		// Click on the address
 		this.sClick(entry.getLocator() + " td + td");
 		this.zWaitForBusyOverlay();
-
 	}
-	
+
 	public void zSelectStartDateFromDatePicker(String Day) throws HarnessException {
 		this.sClick("css=td[id$='_startMiniCalBtn'] div[class='ImgSelectPullDownArrow']");
 		this.sClick("//div[@class='DwtMenu' and contains(@style,'display: block;')]/descendant::td[text()='" + Day + "' and not(contains(@class,'DwtCalendarDay-grey'))]");
-		
+
 	}
-	
+
 	public void zSelectEndDateFromDatePicker(String Day) throws HarnessException {
 		this.sClick("td[id$='_endMiniCalBtn'] div[class='ImgSelectPullDownArrow']");
 		this.sClick("//div[@class='DwtMenu' and contains(@style,'display: block;')]/descendant::td[text()='" + Day +"' and not(contains(@class,'DwtCalendarDay-grey'))]");
-		
+
 	}
 }

@@ -28,7 +28,7 @@ import com.zimbra.qa.selenium.framework.util.staf.Stafpostqueue;
 public class DialogCustomRepeat extends AbsDialog {
 
 	public static class DialogWarningID {
-		
+
 		public static final DialogWarningID DialogCustomRepeat = new DialogWarningID("DwtDialog");
 
 		protected String Id;
@@ -36,29 +36,26 @@ public class DialogCustomRepeat extends AbsDialog {
 			Id = id;
 		}
 	}
-	
+
 	protected String MyDivId = null;
-	
-	
+
+
 	public DialogCustomRepeat(DialogWarningID dialogId, AbsApplication application, AbsTab tab) {
 		super(application, tab);
-	
 		MyDivId = dialogId.Id;
-		
 		logger.info("new " + DialogCustomRepeat.class.getCanonicalName());
-
 	}
-	
+
 	public String zGetWarningTitle() throws HarnessException {
 		String locator = "css=div[id='"+ MyDivId +"'] td[id='"+ MyDivId +"_title']";
 		return (zGetDisplayedText(locator));
 	}
-	
-	public String zGetWarningContent() throws HarnessException {	
+
+	public String zGetWarningContent() throws HarnessException {
 		String locator = "css=td[id^='MessageDialog'][class='DwtMsgArea']";
 		return (zGetDisplayedText(locator));
 	}
-	
+
 	@Override
 	public String myPageName() {
 		return (this.getClass().getName());
@@ -70,14 +67,13 @@ public class DialogCustomRepeat extends AbsDialog {
 			throw new HarnessException("button cannot be null");
 
 		String locator = null;
-		AbsPage page = null; 
-		
+		AbsPage page = null;
+
 		String buttonsTableLocator = "css=div[class='"+ MyDivId +"']";
-		
+
 		if (button == Button.B_OK) {
-			
 			locator = buttonsTableLocator + " td[id$='_button2_title']:contains('OK')";
-			
+
 		} else if (button == Button.B_CANCEL) {
 
 			locator = buttonsTableLocator + " td[id$='_button1_title']:contains('Cancel')";
@@ -92,10 +88,11 @@ public class DialogCustomRepeat extends AbsDialog {
 		// If the app is busy, wait for it to become active
 		zWaitForBusyOverlay();
 
-		// This dialog might send message(s), so wait for the queue
-		Stafpostqueue sp = new Stafpostqueue();
-		sp.waitForPostqueue();
-		
+		if (button == Button.B_OK) {
+			Stafpostqueue sp = new Stafpostqueue();
+			sp.waitForPostqueue();
+		}
+
 		SleepUtil.sleepMedium();
 
 		return (page);
@@ -105,24 +102,22 @@ public class DialogCustomRepeat extends AbsDialog {
 	public String zGetDisplayedText(String locator) throws HarnessException {
 		if ( locator == null )
 			throw new HarnessException("locator cannot be null");
-		
+
 		if ( !this.sIsElementPresent(locator) )
 			throw new HarnessException("locator cannot be found");
-		
+
 		return (this.sGetText(locator));
-		
+
 	}
 
 	@Override
 	public boolean zIsActive() throws HarnessException {
-		
 		if ( !this.sIsElementPresent(MyDivId) )
 			return (false);
-	
+
 		if ( !this.zIsVisiblePerPosition(MyDivId, 0, 0) )
 			return (false);
-		
+
 		return (true);
 	}
-
 }

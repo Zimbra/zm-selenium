@@ -20,9 +20,7 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.ui.Button;
@@ -32,9 +30,7 @@ import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 
-
 public class MultipleDayAppointment extends AjaxCommonTest {
-
 
 	@SuppressWarnings("serial")
 	public MultipleDayAppointment() {
@@ -49,15 +45,16 @@ public class MultipleDayAppointment extends AjaxCommonTest {
 		}};
 	}
 
-	@Bugs(ids = "107583, 69132, ZCS-725")
-	@Test( description = "Verify the display of a multi-day all-day appointment in the month view",
-	groups = { "functional", "L2" })
+	@Bugs (ids = "107583, 69132, ZCS-725")
+	@Test ( description = "Verify the display of a multi-day all-day appointment in the month view",
+			groups = { "functional", "L2" })
+
 	public void MultipleDayAppointment_01() throws HarnessException {
-		
+
 		// Appointment subject
 		String subject = ConfigProperties.getUniqueString();
 		int noOfDays =5;
-		
+
 		// Start Date is 2 days ahead if current date is less than or equal to 21 else 8 days behind
 		Calendar now = Calendar.getInstance();
 		if(now.get(Calendar.DAY_OF_MONTH) <= 21) {
@@ -82,7 +79,7 @@ public class MultipleDayAppointment extends AjaxCommonTest {
 		// Refresh the calendar
 		app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
 
-		//Verify that multi-day appointments are displayed correctly in month view 
+		//Verify that multi-day appointments are displayed correctly in month view
 		boolean displayed = app.zPageCalendar.zVerifyMultidayAllDayAppointmentInMonthView(now,noOfDays,subject);
 		ZAssert.assertTrue(displayed, "Multi-day all-day appointments are not created and displayed correctlly in month view");
 	}

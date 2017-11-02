@@ -21,41 +21,43 @@ import org.testng.annotations.*;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.DialogFindAttendees;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;;
 
-public class CreateMeetingBySelectAddresses extends CalendarWorkWeekTest {	
-	
+public class CreateMeetingBySelectAddresses extends AjaxCommonTest {
+
 	public CreateMeetingBySelectAddresses() {
 		logger.info("New "+ CreateMeetingBySelectAddresses.class.getCanonicalName());
 		super.startingPage =  app.zPageCalendar;
 	}
-	
+
+
 	@Test( description = "Compose appointment by selecting attendees using 'Select Addresses' dialog and send the appointment",
 			groups = { "functional", "L2" })
+
 	public void CreateMeetingBySelectAttendees_01() throws HarnessException {
-		
+
 		// Create appointment data
 		AppointmentItem appt = new AppointmentItem();
-		
+
 		String apptSubject, apptAttendee1, apptContent;
-		Calendar now = this.calendarWeekDayUTC;
+		Calendar now = Calendar.getInstance();
 		apptSubject = ConfigProperties.getUniqueString();
 		apptAttendee1 = ZimbraAccount.AccountA().EmailAddress;
-		
+
 		apptContent = ConfigProperties.getUniqueString();
 		appt.setSubject(apptSubject);
-		appt.setStartTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0));
-		appt.setEndTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0));
+		appt.setStartTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 8, 0, 0));
+		appt.setEndTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 9, 0, 0));
 		appt.setContent(apptContent);
-	
+
 		// Compose appointment and select attendees using "Select Addresses" dialog
 		FormApptNew apptForm = (FormApptNew) app.zPageCalendar.zToolbarPressButton(Button.B_NEW);
-		apptForm.zFill(appt); 
+		apptForm.zFill(appt);
         apptForm.zToolbarPressButton(Button.B_TO);
         DialogFindAttendees dialogFindAttendees = (DialogFindAttendees) new DialogFindAttendees(app, app.zPageCalendar);
-   
+
         // Search any attendee and select it
         AppointmentItem apptSearchForm = new AppointmentItem();
         apptSearchForm.setAttendeeName(apptAttendee1);
@@ -73,15 +75,15 @@ public class CreateMeetingBySelectAddresses extends CalendarWorkWeekTest {
 			+	"</SearchRequest>");
 		String id = ZimbraAccount.AccountA().soapSelectValue("//mail:m", "id");
 		ZAssert.assertNotNull(id, "Verify new invitation appears in the attendee1's inbox");
-		
+
 		// Verify attendee1 present in the appointment
         AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ apptSubject +")");
 		ZAssert.assertEquals(actual.getSubject(), apptSubject, "Subject: Verify the appointment data");
 		ZAssert.assertStringContains(actual.getAttendees(), apptAttendee1, "Attendees: Verify the appointment data");
-		
+
 		// Verify appointment is present in attendee1's calendar
 		AppointmentItem addeddAttendee = AppointmentItem.importFromSOAP(ZimbraAccount.AccountA(), "subject:("+ apptSubject +")");
 		ZAssert.assertNotNull(addeddAttendee, "Verify meeting invite is present in attendee1's calendar");
-	
+
 	}
 }

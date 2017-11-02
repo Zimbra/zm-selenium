@@ -17,39 +17,37 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.attendee.recurring.series;
 
 import java.util.*;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.*;
 
-public class Accept extends CalendarWorkWeekTest {
+public class Accept extends AjaxCommonTest {
 
 	public Accept() {
 		logger.info("New "+ Accept.class.getCanonicalName());
 		super.startingPage =  app.zPageCalendar;
-		
 	}
-	
-	@Bugs(ids = "95961")	
-	@Test( description = "Rt-click to appointment from the calendar app and Accept the meeting invite (Series)", 
+
+
+	@Bugs(ids = "95961")
+	@Test( description = "Rt-click to appointment from the calendar app and Accept the meeting invite (Series)",
 			groups = { "smoke", "L1" })
-	
+
 	public void AcceptMeeting_01() throws HarnessException {
 
 		// ------------------------ Test data ------------------------------------
 
-		Calendar now = this.calendarWeekDayUTC;
+		Calendar now = Calendar.getInstance();
 		String tz = ZTimeZone.getLocalTimeZone().getID();
-		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 13, 0, 0);
 		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
-		
+
 		String apptSubject = ConfigProperties.getUniqueString();
 		String apptBody = "body" + ConfigProperties.getUniqueString();
-		
+
 		// --------------- Creating invitation (organizer) ----------------------------
 
 		ZimbraAccount.AccountA().soapSend(
@@ -75,16 +73,16 @@ public class Accept extends CalendarWorkWeekTest {
 						"<su>"+ apptSubject +"</su>" +
 					"</m>" +
 				"</CreateAppointmentRequest>");
-		
+
 		// Verify appointment exists in current view
         ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
-		
-		
+
+
 		// --------------- Login to attendee & accept invitation ----------------------------------------------------
 
 		app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_SERIES_MENU, Button.O_ACCEPT_MENU, apptSubject);
 
-		// ---------------- Verification at organizer & invitee side both -------------------------------------       
+		// ---------------- Verification at organizer & invitee side both -------------------------------------
 
 
 		// --- Check that the organizer shows the attendee as "ACCEPT" ---
@@ -94,13 +92,13 @@ public class Accept extends CalendarWorkWeekTest {
 					"<SearchRequest xmlns='urn:zimbraMail' types='appointment' calExpandInstStart='"+ startUTC.addDays(-10).toMillis() +"' calExpandInstEnd='"+ endUTC.addDays(10).toMillis() +"'>"
 				+		"<query>"+ apptSubject +"</query>"
 				+	"</SearchRequest>");
-		
+
 		String organizerInvId = ZimbraAccount.AccountA().soapSelectValue("//mail:appt", "invId");
 
 		// Get the appointment details
 		ZimbraAccount.AccountA().soapSend(
 					"<GetAppointmentRequest  xmlns='urn:zimbraMail' id='"+ organizerInvId +"'/>");
-		
+
 		String attendeeStatus = ZimbraAccount.AccountA().soapSelectValue("//mail:at[@a='"+ app.zGetActiveAccount().EmailAddress +"']", "ptst");
 
 		// Verify attendee status shows as ptst=AC
@@ -114,29 +112,27 @@ public class Accept extends CalendarWorkWeekTest {
 					"<SearchRequest xmlns='urn:zimbraMail' types='appointment' calExpandInstStart='"+ startUTC.addDays(-10).toMillis() +"' calExpandInstEnd='"+ endUTC.addDays(10).toMillis() +"'>"
 				+		"<query>"+ apptSubject +"</query>"
 				+	"</SearchRequest>");
-		
+
 		String attendeeInvId = app.zGetActiveAccount().soapSelectValue("//mail:appt", "invId");
 
 		// Get the appointment details
 		app.zGetActiveAccount().soapSend(
 					"<GetAppointmentRequest  xmlns='urn:zimbraMail' id='"+ attendeeInvId +"'/>");
-		
+
 		String myStatus = app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ app.zGetActiveAccount().EmailAddress +"']", "ptst");
 
 		// Verify attendee status shows as ptst=AC
 		ZAssert.assertEquals(myStatus, "AC", "Verify that the attendee shows as 'ACCEPTED'");
-		
+
 		// Organizer: Search for the appointment response
 		String inboxId = FolderItem.importFromSOAP(ZimbraAccount.AccountA(), FolderItem.SystemFolder.Inbox).getId();
-		
+
 		ZimbraAccount.AccountA().soapSend(
 					"<SearchRequest xmlns='urn:zimbraMail' types='message'>"
 				+		"<query>inid:"+ inboxId +" subject:("+ apptSubject +")</query>"
 				+	"</SearchRequest>");
-		
+
 		String messageId = ZimbraAccount.AccountA().soapSelectValue("//mail:m", "id");
 		ZAssert.assertNotNull(messageId, "Verify organizer gets email notification");
-
 	}
-	
 }

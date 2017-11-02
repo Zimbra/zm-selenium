@@ -18,48 +18,48 @@ package com.zimbra.qa.selenium.projects.ajax.tests.calendar.resources;
 
 import java.util.Calendar;
 import java.util.List;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.AutocompleteEntry;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew.Field;
 
-public class CreateMeetingWithEquipment extends CalendarWorkWeekTest {
+public class CreateMeetingWithEquipment extends AjaxCommonTest {
 
 	public CreateMeetingWithEquipment() {
 		logger.info("New "+ CreateMeetingWithEquipment.class.getCanonicalName());
 		super.startingPage = app.zPageCalendar;
 	}
-	
+
+
 	@Bugs(ids = "69132")
-	@Test( description = "Create simple meeting with equipment",	groups = { "smoke", "L1" })
-	
+	@Test( description = "Create simple meeting with equipment",
+			groups = { "smoke", "L1" })
+
 	public void CreateMeetingWithEquipment_01() throws HarnessException {
-		
+
 		// Create appointment data
 		AppointmentItem appt = new AppointmentItem();
-		Calendar now = this.calendarWeekDayUTC;
+		Calendar now = Calendar.getInstance();
 		ZimbraResource equipment1 = new ZimbraResource(ZimbraResource.Type.EQUIPMENT);
-		
+
 		String apptSubject, apptAttendee1, apptEquipment1, apptContent;
 		apptSubject = ConfigProperties.getUniqueString();
 		apptAttendee1 = ZimbraAccount.AccountA().EmailAddress;
 		apptEquipment1 = equipment1.EmailAddress;
 		apptContent = ConfigProperties.getUniqueString();
-		
+
 		appt.setSubject(apptSubject);
 		appt.setAttendees(apptAttendee1);
 		appt.setEquipment(apptEquipment1);
-		appt.setStartTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 15, 0, 0));
-		appt.setEndTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 16, 0, 0));
+		appt.setStartTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 9, 0, 0));
+		appt.setEndTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 10, 0, 0));
 		appt.setContent(apptContent);
-	
+
 		// Compose appointment and send it to invitee
 		FormApptNew apptForm = (FormApptNew) app.zPageCalendar.zToolbarPressButton(Button.B_NEW);
 		apptForm.zFill(appt);
@@ -75,7 +75,7 @@ public class CreateMeetingWithEquipment extends CalendarWorkWeekTest {
 		apptForm.zAutocompleteSelectItem(found);
         ZAssert.assertTrue(apptForm.zVerifyEquipment(apptEquipment1), "Verify appointment equipment");
         apptForm.zSubmitWithResources();
-		
+
 		// Verify appointment exists on the server
 		AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ appt.getSubject() +")", appt.getStartTime().addDays(-7), appt.getEndTime().addDays(7));
 		ZAssert.assertNotNull(actual, "Verify the new appointment is created");
@@ -83,11 +83,11 @@ public class CreateMeetingWithEquipment extends CalendarWorkWeekTest {
 		ZAssert.assertEquals(actual.getAttendees(), appt.getAttendees(), "Attendees: Verify the appointment data");
 		ZAssert.assertStringContains(actual.getEquipment(), appt.getEquipment(), "Equipment: Verify the appointment data");
 		ZAssert.assertEquals(actual.getContent(), appt.getContent(), "Content: Verify the appointment data");
-		
-		// Verify equipment free/busy status shows as psts=AC	
+
+		// Verify equipment free/busy status shows as psts=AC
 		String equipmentStatus = app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ apptEquipment1 +"']", "ptst");
 		ZAssert.assertEquals(equipmentStatus, "AC", "Verify that the equipment status shows as 'ACCEPTED'");
-		
+
 	}
 
 }

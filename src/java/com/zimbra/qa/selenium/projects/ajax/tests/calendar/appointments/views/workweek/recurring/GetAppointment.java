@@ -21,33 +21,34 @@ import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 
-public class GetAppointment extends CalendarWorkWeekTest {
-	
+public class GetAppointment extends AjaxCommonTest {
+
 	public GetAppointment() {
 		logger.info("New "+ GetAppointment.class.getCanonicalName());
 		super.startingPage = app.zPageCalendar;
-		
 	}
-	
+
+
 	@Bugs(ids = "69132")
 	@Test( description = "View a basic appointment in the work week view",
 			groups = { "smoke", "L0" })
+
 	public void GetAppointment_01() throws HarnessException {
-		
+
 		// Create the appointment on the server
 		// Create the message data to be sent
 		String apptSubject = ConfigProperties.getUniqueString();
 		String location = "location" + ConfigProperties.getUniqueString();
 		String content = "content" + ConfigProperties.getUniqueString();
-		
-		
+
+
 		// Absolute dates in UTC zone
-		Calendar now = this.calendarWeekDayUTC;
-		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
-		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
-		
+		Calendar now = Calendar.getInstance();
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 8, 0, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 9, 0, 0);
+
 		// Get local timezone value
 		String tz = ZTimeZone.getLocalTimeZone().getID();
 
@@ -70,7 +71,7 @@ public class GetAppointment extends CalendarWorkWeekTest {
 							"</mp>" +
 						"</m>" +
 					"</CreateAppointmentRequest>");
-		
+
 		AppointmentItem appt = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ apptSubject +")", startUTC.addDays(-7), endUTC.addDays(7));
 		ZAssert.assertNotNull(appt, "Verify the new appointment is created");
 

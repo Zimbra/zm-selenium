@@ -23,16 +23,17 @@ import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
 
-public class AddOptionalAttendee extends CalendarWorkWeekTest {	
-	
+public class AddOptionalAttendee extends AjaxCommonTest {
+
 	public AddOptionalAttendee() {
 		logger.info("New "+ AddOptionalAttendee.class.getCanonicalName());
 		super.startingPage = app.zPageCalendar;
 	}
-	
+
+
 	@Bugs(ids = "77711,48196")
 	@DataProvider(name = "DataProviderShortcutKeys")
 	public Object[][] DataProviderShortcutKeys() {
@@ -41,21 +42,23 @@ public class AddOptionalAttendee extends CalendarWorkWeekTest {
 	//			new Object[] { "VK_TAB", KeyEvent.VK_TAB },
 		};
 	}
+
 	@Test( description = "Add optional attendee from scheduler pane using keyboard Enter and Tab key",
 			groups = { "functional", "L5"},
 			dataProvider = "DataProviderShortcutKeys")
+
 	public void AddOptionalAttendee_01(String name, int keyEvent) throws HarnessException {
-		
+
 		// Create a meeting
 		String tz = ZTimeZone.getLocalTimeZone().getID();
 		String apptSubject = ConfigProperties.getUniqueString();
 		String apptAttendee = ZimbraAccount.AccountA().EmailAddress;
-		
+
 		// Absolute dates in UTC zone
-		Calendar now = this.calendarWeekDayUTC;
+		Calendar now = Calendar.getInstance();
 		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
-		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
-		
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 13, 0, 0);
+
 		app.zGetActiveAccount().soapSend(
                 "<CreateAppointmentRequest xmlns='urn:zimbraMail'>" +
                      "<m>"+
@@ -71,25 +74,25 @@ public class AddOptionalAttendee extends CalendarWorkWeekTest {
                      "<su>"+ apptSubject +"</su>" +
                      "</m>" +
                "</CreateAppointmentRequest>");
-        
+
 		// Verify appointment exists in current view
         ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
-        
+
         // Add optional attendee using scheduler and send the appointment
         FormApptNew apptForm = (FormApptNew)app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, apptSubject);
         apptForm.zAddOptionalAttendeeFromScheduler(apptAttendee, keyEvent);
         ZAssert.assertTrue(apptForm.zVerifyOptionalAttendee(apptAttendee), "Verify email address bubble after adding attendee from scheduler");
         apptForm.zSubmit();
- 
+
         // Verify that attendee present in the appointment
         AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ apptSubject +")");
 		ZAssert.assertEquals(actual.getSubject(), apptSubject, "Subject: Verify the appointment data");
 		ZAssert.assertStringContains(actual.getAttendees(), apptAttendee, "Attendees: Verify the appointment data");
-		
+
 		// Verify attendee free/busy status
 		String attendeeStatus = app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ apptAttendee +"']", "ptst");
 		ZAssert.assertEquals(attendeeStatus, "NE", "Verify attendee free/busy status");
-		
+
 		// Verify attendee receives meeting invitation message
 		ZimbraAccount.AccountA().soapSend(
 				"<SearchRequest xmlns='urn:zimbraMail' types='message'>"
@@ -97,7 +100,6 @@ public class AddOptionalAttendee extends CalendarWorkWeekTest {
 			+	"</SearchRequest>");
 		String id = ZimbraAccount.AccountA().soapSelectValue("//mail:m", "id");
 		ZAssert.assertNotNull(id, "Verify attendee receives meeting invitation message");
-		
+
 	}
-	
 }

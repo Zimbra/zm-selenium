@@ -18,25 +18,25 @@ package com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.organizer.s
 
 import java.util.Calendar;
 import org.testng.annotations.*;
-
 import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.PageCalendar.Locators;
 
-public class MoveMeeting extends CalendarWorkWeekTest {	
-	
+public class MoveMeeting extends AjaxCommonTest {
+
 	public MoveMeeting() {
 		logger.info("New "+ MoveMeeting.class.getCanonicalName());
 		super.startingPage = app.zPageCalendar;
 	}
 
+
 	@Test( description = "Move meeting invite using toolbar menu as organizer",
 			groups = { "functional", "L2"})
-			
+
 	public void MoveMeeting_01() throws HarnessException {
 
 		//-- Data setup
@@ -45,13 +45,13 @@ public class MoveMeeting extends CalendarWorkWeekTest {
 		String apptSubject,apptAttendee1;
 		apptSubject = ConfigProperties.getUniqueString();
 		apptAttendee1 = ZimbraAccount.AccountA().EmailAddress;
-		
+
 		// Absolute dates in UTC zone
-		Calendar now = this.calendarWeekDayUTC;
-		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
-		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
+		Calendar now = Calendar.getInstance();
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 8, 0, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 9, 0, 0);
 		String tz = ZTimeZone.getLocalTimeZone().getID();
-		
+
 		// create folder data to move appt to
 		FolderItem root = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.UserRoot);
 		String name1 = "folder" + ConfigProperties.getUniqueString();
@@ -63,7 +63,7 @@ public class MoveMeeting extends CalendarWorkWeekTest {
 		FolderItem subfolder1 = FolderItem.importFromSOAP(app.zGetActiveAccount(), name1);
 		ZAssert.assertNotNull(subfolder1, "Verify the first subfolder is available");
 		app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
-		
+
 		// Create a meeting request from AccountA to the test account
 		app.zGetActiveAccount().soapSend(
                 "<CreateAppointmentRequest xmlns='urn:zimbraMail'>" +
@@ -72,7 +72,7 @@ public class MoveMeeting extends CalendarWorkWeekTest {
                      		"<s d='"+ startUTC.toTimeZone(tz).toYYYYMMDDTHHMMSS() +"' tz='"+ tz +"'/>" +
                      		"<e d='"+ endUTC.toTimeZone(tz).toYYYYMMDDTHHMMSS() +"' tz='"+ tz +"'/>" +
                      		"<or a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
-                     		"<at role='REQ' ptst='NE' rsvp='1' a='" + apptAttendee1 + "' d='2'/>" + 
+                     		"<at role='REQ' ptst='NE' rsvp='1' a='" + apptAttendee1 + "' d='2'/>" +
                      	"</inv>" +
                      	"<e a='"+ ZimbraAccount.AccountA().EmailAddress +"' t='t'/>" +
                      	"<mp content-type='text/plain'>" +
@@ -84,15 +84,15 @@ public class MoveMeeting extends CalendarWorkWeekTest {
 
 		// Verify appointment exists in current view
         ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
-        
+
         // Select the appointment
         app.zPageCalendar.zListItem(Action.A_LEFTCLICK, apptSubject);
-        
+
         // Move appt from toolbar menu
         app.zPageCalendar.zToolbarPressButton(Button.O_MOVE_MENU);
         app.zPageCalendar.zClickAt(Locators.MoveFolderOption + name1 + "')" , "");
         app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
-		
+
 		//-- Server verification
 		AppointmentItem newAppointment = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ apptSubject +")");
 		ZAssert.assertEquals(newAppointment.getFolder(), subfolder1.getId(), "Verify the appointment moved folders");

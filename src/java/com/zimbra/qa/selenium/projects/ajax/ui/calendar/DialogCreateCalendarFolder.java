@@ -14,9 +14,7 @@
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-/**
- *
- */
+
 package com.zimbra.qa.selenium.projects.ajax.ui.calendar;
 
 import com.zimbra.qa.selenium.framework.ui.*;

@@ -23,20 +23,21 @@ import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew.Field;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.DialogAddAttendees;
 
-public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
+public class CreateMeetingUsingMessage extends AjaxCommonTest {
 
 	public CreateMeetingUsingMessage() {
 		logger.info("New "+ CreateMeetingUsingMessage.class.getCanonicalName());
 		super.startingPage = app.zPageMail;
 	}
 
+
 	@Test( description = "Create a meeting invite by right clicking to HTML formatted message by setting zimbraPrefComposeFormat=text & zimbraPrefForwardReplyInOriginalFormat=TRUE",
-			groups = { "functional", "L2" })
+			groups = { "smoke", "L1" })
 
 	public void CreateMeetingUsingMessage_01() throws HarnessException {
 
@@ -53,7 +54,7 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 		final String content = "Bold and Italics";
 
 		// Absolute dates in UTC zone
-		Calendar now = this.calendarWeekDayUTC;
+		Calendar now = Calendar.getInstance();
 		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 8, 0, 0);
 		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 9, 0, 0);
 
@@ -92,8 +93,8 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 		app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, subject);
 		ZAssert.assertStringContains(apptForm.zGetApptBodyHtml(), content, "Open created appointment again and verify body text");
 		apptForm.zToolbarPressButton(Button.B_CLOSE);
-
 	}
+
 
 	@Bugs(ids = "80922")
 	@Test( description = "Create a meeting invite by right clicking to HTML formatted message by setting zimbraPrefComposeFormat=text & zimbraPrefForwardReplyInOriginalFormat=FALSE",
@@ -114,7 +115,7 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 		final String content = "Bold and Italics";
 
 		// Absolute dates in UTC zone
-		Calendar now = this.calendarWeekDayUTC;
+		Calendar now = Calendar.getInstance();
 		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 9, 0, 0);
 		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 10, 0, 0);
 
@@ -152,8 +153,8 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 		app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, subject);
 		ZAssert.assertStringContains(apptForm.zGetApptBodyHtml(), content, "Open created appointment again and verify body text");
 		apptForm.zToolbarPressButton(Button.B_CLOSE);
-
 	}
+
 
 	@Test( description = "Create a meeting invite by right clicking to plain text formatted message by setting zimbraPrefComposeFormat=text & zimbraPrefForwardReplyInOriginalFormat=FALSE",
 			groups = { "functional", "L2" })
@@ -174,7 +175,7 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 		final String fullContent = "The Ming Dynasty, also Empire of the Great Ming, was the ruling dynasty of China from 1368 to 1644.";
 
 		// Absolute dates in UTC zone
-		Calendar now = this.calendarWeekDayUTC;
+		Calendar now = Calendar.getInstance();
 		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 10, 0, 0);
 		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 11, 0, 0);
 
@@ -212,8 +213,8 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 		app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, subject);
 		ZAssert.assertStringContains(apptForm.zGetApptBodyValue(), fullContent, "Open created appointment again and verify body text");
 		apptForm.zToolbarPressButton(Button.B_CLOSE);
-
 	}
+
 
 	@Test( description = "Create a meeting invite by right clicking to plain text formatted message by setting zimbraPrefComposeFormat=text & zimbraPrefForwardReplyInOriginalFormat=TRUE",
 			groups = { "functional", "L2" })
@@ -234,7 +235,7 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 		final String fullContent = "The Ming Dynasty, also Empire of the Great Ming, was the ruling dynasty of China from 1368 to 1644.";
 
 		// Absolute dates in UTC zone
-		Calendar now = this.calendarWeekDayUTC;
+		Calendar now = Calendar.getInstance();
 		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 11, 0, 0);
 		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
 
@@ -272,8 +273,8 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 		app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, subject);
 		ZAssert.assertStringContains(apptForm.zGetApptBodyValue(), fullContent, "Open created appointment again and verify body text");
 		apptForm.zToolbarPressButton(Button.B_CLOSE);
-
 	}
+
 
 	@Test( description = "Create a meeting invite by right clicking to HTML formatted message by setting zimbraPrefComposeFormat=html & zimbraPrefForwardReplyInOriginalFormat=TRUE",
 			groups = { "functional", "L2" })
@@ -293,7 +294,7 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 		final String content = "Bold and Italics";
 
 		// Absolute dates in UTC zone
-		Calendar now = this.calendarWeekDayUTC;
+		Calendar now = Calendar.getInstance();
 		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
 		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 13, 0, 0);
 
@@ -331,8 +332,8 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 		app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, subject);
 		ZAssert.assertStringContains(apptForm.zGetApptBodyHtml(), content, "Open created appointment again and verify body text");
 		apptForm.zToolbarPressButton(Button.B_CLOSE);
-
 	}
+
 
 	@Test( description = "Create a meeting invite by right clicking to HTML formatted message by setting zimbraPrefComposeFormat=html & zimbraPrefForwardReplyInOriginalFormat=FALSE",
 			groups = { "functional", "L2" })
@@ -352,7 +353,7 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 		final String content = "Bold and Italics";
 
 		// Absolute dates in UTC zone
-		Calendar now = this.calendarWeekDayUTC;
+		Calendar now = Calendar.getInstance();
 		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 13, 0, 0);
 		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
 
@@ -390,8 +391,8 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 		app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, subject);
 		ZAssert.assertStringContains(apptForm.zGetApptBodyHtml(), content, "Open created appointment again and verify body text");
 		apptForm.zToolbarPressButton(Button.B_CLOSE);
-
 	}
+
 
 	@Test( description = "Create a meeting invite by right clicking to plain text formatted message by setting zimbraPrefComposeFormat=html & zimbraPrefForwardReplyInOriginalFormat=TRUE",
 			groups = { "functional", "L2" })
@@ -412,7 +413,7 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 		final String fullContent = "The Ming Dynasty, also Empire of the Great Ming, was the ruling dynasty of China from 1368 to 1644.";
 
 		// Absolute dates in UTC zone
-		Calendar now = this.calendarWeekDayUTC;
+		Calendar now = Calendar.getInstance();
 		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
 		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 15, 0, 0);
 
@@ -449,8 +450,8 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 		app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, subject);
 		ZAssert.assertStringContains(apptForm.zGetApptBodyValue(), fullContent, "Open created appointment again and verify body text");
 		apptForm.zToolbarPressButton(Button.B_CLOSE);
-
 	}
+
 
 	@Bugs(ids = "80922")
 	@Test( description = "Create a meeting invite by right clicking to plain text formatted message by setting zimbraPrefComposeFormat=html & zimbraPrefForwardReplyInOriginalFormat=FALSE",
@@ -472,7 +473,7 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 		final String fullContent = "The Ming Dynasty, also Empire of the Great Ming, was the ruling dynasty of China from 1368 to 1644.";
 
 		// Absolute dates in UTC zone
-		Calendar now = this.calendarWeekDayUTC;
+		Calendar now = Calendar.getInstance();
 		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 15, 0, 0);
 		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 16, 0, 0);
 
@@ -510,8 +511,8 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 		app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, subject);
 		ZAssert.assertStringContains(apptForm.zGetApptBodyValue(), fullContent, "Open created appointment again and verify body text");
 		apptForm.zToolbarPressButton(Button.B_CLOSE);
-
 	}
+
 
 	@Bugs(ids = "76043")
 	@Test( description = "Create a meeting invite by right clicking to plain text formatted message by setting zimbraPrefComposeFormat=html & zimbraPrefForwardReplyInOriginalFormat=TRUE",
@@ -531,7 +532,7 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 		final String subject = "ZCS 8 triage";
 		final String content = "Dev is aggressively";
 		// Absolute dates in UTC zone
-		Calendar now = this.calendarWeekDayUTC;
+		Calendar now = Calendar.getInstance();
 		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 16, 0, 0);
 		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 17, 0, 0);
 
@@ -569,7 +570,5 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 		app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, subject);
 		ZAssert.assertStringContains(apptForm.zGetApptBodyHtml(), content, "Open created appointment again and verify body text");
 		apptForm.zToolbarPressButton(Button.B_CLOSE);
-
 	}
-
 }

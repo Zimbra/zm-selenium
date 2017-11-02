@@ -148,8 +148,6 @@ public class SaveModifiedAppointment extends CalendarWorkWeekTest {
 
         String apptId = app.zGetActiveAccount().soapSelectValue("//mail:CreateAppointmentResponse", "apptId");
     
-        // Switch to work week view
-        app.zPageCalendar.zToolbarPressPulldown(Button.B_LISTVIEW, Button.O_LISTVIEW_WORKWEEK);
         app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
         
         // Open appointment & modify subject, remove attendee &  Save it

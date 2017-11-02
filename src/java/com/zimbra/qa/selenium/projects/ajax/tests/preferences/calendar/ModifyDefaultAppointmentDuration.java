@@ -26,7 +26,7 @@ import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZDate;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.preferences.TreePreferences.TreeItem;
 
@@ -35,7 +35,7 @@ import java.util.Calendar;
 
 import org.testng.annotations.Test;
 
-public class ModifyDefaultAppointmentDuration extends CalendarWorkWeekTest {
+public class ModifyDefaultAppointmentDuration extends AjaxCommonTest {
 
 	 public ModifyDefaultAppointmentDuration() {
 	    logger.info("New " + ModifyDefaultAppointmentDuration.class.getCanonicalName());
@@ -46,7 +46,7 @@ public class ModifyDefaultAppointmentDuration extends CalendarWorkWeekTest {
 	
 	 public void ModifyDefaultAppointmentDuration_01() throws HarnessException  {
 		 
-		 Calendar now = this.calendarWeekDayUTC;
+		 Calendar now = Calendar.getInstance();
 		 String apptSubject = ConfigProperties.getUniqueString();
 		 ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 10, 0, 0);
 		 

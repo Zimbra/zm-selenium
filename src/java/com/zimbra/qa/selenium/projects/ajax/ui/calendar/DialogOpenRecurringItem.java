@@ -25,7 +25,7 @@ public class DialogOpenRecurringItem extends AbsDialog {
 	public static enum Confirmation {
 		OPENRECURRINGITEM
 	}
-	
+
 	public static class Locators {
 		public static final String zDialogClass = "DwtDialog";
 		public static final String zDialogButtonsClass = "DwtDialogButtonBar";
@@ -34,7 +34,7 @@ public class DialogOpenRecurringItem extends AbsDialog {
 
 	public DialogOpenRecurringItem(Confirmation confirmation, AbsApplication application, AbsTab tab) {
 		super(application, tab);
-		
+
 		logger.info("new " + DialogOpenRecurringItem.class.getCanonicalName());
 	}
 
@@ -50,21 +50,21 @@ public class DialogOpenRecurringItem extends AbsDialog {
 		tracer.trace("Click dialog button " + button);
 		if ( button == null )
 			throw new HarnessException("button cannot be null");
-	
+
 		String locator = null;
-		AbsPage page = null; 
+		AbsPage page = null;
 
 		if (button == Button.B_OPEN_THIS_INSTANCE) {
 			locator = "css=label:contains('Open this instance')";
-			
+
 		} else if (button == Button.B_OPEN_THE_SERIES) {
 			locator = "css=label:contains('Open the series')";
-				
+
 		} else if (button == Button.B_OK) {
 			locator = "css=div[class='" + Locators.zDialogClass + "'] "
 					+ "div[class='" + Locators.zDialogButtonsClass
 					+ "'] td[class=ZWidgetTitle]:contains(OK)";
-			
+
 		} else if (button == Button.B_CANCEL) {
 			locator = "css=div[class='" + Locators.zDialogClass + "'] "
 					+ "div[class='" + Locators.zDialogButtonsClass
@@ -75,16 +75,15 @@ public class DialogOpenRecurringItem extends AbsDialog {
 
 		// Make sure the locator exists
 		if (!this.sIsElementPresent(locator)) {
-			throw new HarnessException("Button " + button + " locator "
-					+ locator + " not present!");
+			throw new HarnessException("Button " + button + " locator " + locator + " not present!");
 		}
 
 		this.sClickAt(locator,"0,0");
 		SleepUtil.sleepMedium();
-		
+
 		// If the app is busy, wait for it to become active
 		this.zWaitForBusyOverlay();
-		
+
 		return (page);
 	}
 
@@ -97,7 +96,7 @@ public class DialogOpenRecurringItem extends AbsDialog {
 
 		return (this.sGetText(locator));
 	}
-	
+
 	@Override
 	public boolean zIsActive() throws HarnessException {
 		logger.info(myPageName() + " zIsActive()");
@@ -117,4 +116,3 @@ public class DialogOpenRecurringItem extends AbsDialog {
 
 	}
 }
-

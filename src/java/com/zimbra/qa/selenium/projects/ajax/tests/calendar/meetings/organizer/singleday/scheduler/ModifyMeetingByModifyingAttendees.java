@@ -21,35 +21,36 @@ import org.testng.annotations.*;
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew.Field;
 
-public class ModifyMeetingByModifyingAttendees extends CalendarWorkWeekTest {	
-	
+public class ModifyMeetingByModifyingAttendees extends AjaxCommonTest {
+
 	public ModifyMeetingByModifyingAttendees() {
 		logger.info("New "+ ModifyMeetingByModifyingAttendees.class.getCanonicalName());
 		super.startingPage = app.zPageCalendar;
 	}
-	
+
+
 	@Bugs(ids = "58104, 100809")
 	@Test( description = "Blank row added in f/b scheduler after removing and adding attendee back from attendees field",
 			groups = { "functional", "L2"})
-			
+
 	public void ModifyMeetingByModifyingAttendees_01() throws HarnessException {
-		
-		// Create a meeting			
+
+		// Create a meeting
 		String tz = ZTimeZone.getLocalTimeZone().getID();
 		String apptSubject = ConfigProperties.getUniqueString();
 		String apptAttendee1 = ZimbraAccount.AccountA().EmailAddress;
-		String apptAttendee2 = ZimbraAccount.AccountB().EmailAddress;		
-		String apptAttendee3 = ZimbraAccount.AccountC().EmailAddress;		
-		
+		String apptAttendee2 = ZimbraAccount.AccountB().EmailAddress;
+		String apptAttendee3 = ZimbraAccount.AccountC().EmailAddress;
+
 		// Absolute dates in UTC zone
-		Calendar now = this.calendarWeekDayUTC;
-		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
-		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
-		
+		Calendar now = Calendar.getInstance();
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 15, 0, 0);
+
 		app.zGetActiveAccount().soapSend(
                 "<CreateAppointmentRequest xmlns='urn:zimbraMail'>" +
                      "<m>"+
@@ -68,7 +69,7 @@ public class ModifyMeetingByModifyingAttendees extends CalendarWorkWeekTest {
                      "</m>" +
                "</CreateAppointmentRequest>");
         app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
-        
+
         // Remove attendee2 and resend the appointment
         FormApptNew apptForm = (FormApptNew)app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, apptSubject);
         apptForm.zRemoveAttendee(apptAttendee1);
@@ -78,6 +79,6 @@ public class ModifyMeetingByModifyingAttendees extends CalendarWorkWeekTest {
         //ZAssert.assertEquals(apptForm.zGetAttendeeFromScheduler(), apptAttendee3, "Verify that row is not blank");
 
         apptForm.zSubmit();
-		
-	}	
+
+	}
 }

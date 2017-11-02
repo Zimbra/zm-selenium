@@ -22,10 +22,10 @@ import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.PageCalendar.Locators;
 
-public class CheckForwardingMeetingDoesntSendInvite extends CalendarWorkWeekTest {
+public class CheckForwardingMeetingDoesntSendInvite extends AjaxCommonTest {
 
 	public CheckForwardingMeetingDoesntSendInvite() {
 		logger.info("New "+ CheckForwardingMeetingDoesntSendInvite.class.getCanonicalName());
@@ -48,9 +48,9 @@ public class CheckForwardingMeetingDoesntSendInvite extends CalendarWorkWeekTest
 		String apptLocation = location.EmailAddress;
 
 		// Absolute dates in UTC zone
-		Calendar now = this.calendarWeekDayUTC;
-		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
-		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
+		Calendar now = Calendar.getInstance();
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 16, 0, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 17, 0, 0);
 
 		app.zGetActiveAccount().soapSend(
                 "<CreateAppointmentRequest xmlns='urn:zimbraMail'>" +
@@ -118,5 +118,4 @@ public class CheckForwardingMeetingDoesntSendInvite extends CalendarWorkWeekTest
 		ZAssert.assertNull(id, "Verify meeting invite is not present to first attendee");
 
 	}
-
 }

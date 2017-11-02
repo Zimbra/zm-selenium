@@ -15,10 +15,6 @@
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.ui.calendar;
-/**
- * 
- */
-
 
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
@@ -29,7 +25,7 @@ import com.zimbra.qa.selenium.projects.ajax.ui.calendar.DialogConfirmDeleteRecur
 /**
  * Represents a "Delete Meeting Request" dialog box,
  * from the viewpoint of the attendee.
- * 
+ *
  * Adds two buttons for processing:
  * - Notify organizer
  * - Don't notify organizer
@@ -40,11 +36,11 @@ public class DialogConfirmDeleteAttendee extends DialogWarning {
 	// The ID for the main Dialog DIV
 	public static final String LocatorDivID = "CONFIRM_DELETE_APPT_DIALOG";
 
-	
-	
+
+
 	public DialogConfirmDeleteAttendee(AbsApplication application, AbsTab page) {
 		super(new DialogWarningID(LocatorDivID), application, page);
-				
+
 		logger.info("new " + DialogConfirmDeleteAttendee.class.getCanonicalName());
 	}
 
@@ -55,29 +51,29 @@ public class DialogConfirmDeleteAttendee extends DialogWarning {
 		tracer.trace("Click dialog button " + button);
 		if ( button == null )
 			throw new HarnessException("button cannot be null");
-	
+
 		String locator = null;
 		AbsPage page = null;
 		boolean waitForPostfix = false;
 
 		if (button == Button.B_NOTIFY_ORGANIZER) {
-			
+
 			// Weird ID string for send cancellation
 			// td[id='No_DWT392'] == Send Cancellation
 			//
 			locator = "css=div[id='"+ this.MyDivId +"'] td[id^='TODO'] td[id$='_title']";
 			page = null;
 			waitForPostfix = true;
-			
+
 		} else if (button == Button.B_DONT_NOTIFY_ORGANIZER) {
-			
+
 			locator = "css=div[id='"+ this.MyDivId +"'] td[id^='TODO'] td[id$='_title']";
 			page = null;
 			waitForPostfix = false;
 
 		} else if (button == Button.B_DELETE_THE_SERIES) {
 
-			//** 
+			//**
 			// The application can return this dialog
 			// even when the appointment is owned by
 			// the organizer (instead of attendee).  So
@@ -86,31 +82,31 @@ public class DialogConfirmDeleteAttendee extends DialogWarning {
 			// Button.B_DELETE_THE_SERIES
 			// Button.B_DELETE_THIS_INSTANCE
 			//**
-			
+
 			locator = Locators.DeleteTheSeriesRadioButton;
 			page = null;
 
 			sClick(locator);
 			this.zWaitForBusyOverlay();
-			
+
 			return (page);
 
 		} else if (button == Button.B_DELETE_THIS_INSTANCE) {
 
-			//** 
+			//**
 			// See note above for Button.B_DELETE_THE_SERIES
 			//**
-			
+
 			locator = Locators.DeleteThisInstanceRadioButton;
 			page = null;
 
 			sClick(locator);
 			this.zWaitForBusyOverlay();
-			
+
 			return (page);
 
 		} else {
-			
+
 			return ( super.zClickButton(button) );
 
 		}
@@ -125,7 +121,7 @@ public class DialogConfirmDeleteAttendee extends DialogWarning {
 
 		// If the app is busy, wait for it to become active
 		this.zWaitForBusyOverlay();
-		
+
 		// This dialog could send messages, so wait for the queue
 		if ( waitForPostfix ) {
 			Stafpostqueue sp = new Stafpostqueue();

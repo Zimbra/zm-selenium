@@ -15,10 +15,6 @@
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.ui.calendar;
-/**
- * 
- */
-
 
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
@@ -27,11 +23,11 @@ import com.zimbra.qa.selenium.projects.ajax.ui.DialogWarning;
 /**
  * Represents a "Delete Recurring Item(s)" dialog box,
  * for an appointment without attendees.
- * 
+ *
  * Two new options
  * - Delete This Instance
  * - Delete The Series
- * 
+ *
  * No new buttons on this dialog, just OK and Cancel
  * <p>
  */
@@ -61,7 +57,7 @@ public class DialogConfirmDeleteSeries extends DialogWarning {
 
 		tracer.trace("Check the radio " + button + " button");
 
-		
+
 		String locator = null;
 		AbsPage page = null;
 

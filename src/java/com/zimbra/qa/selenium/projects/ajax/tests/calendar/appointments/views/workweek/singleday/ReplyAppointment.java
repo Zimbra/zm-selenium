@@ -20,15 +20,16 @@ import java.util.Calendar;
 import org.testng.annotations.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.PageCalendar.*;
 
-public class ReplyAppointment extends CalendarWorkWeekTest {	
-	
+public class ReplyAppointment extends AjaxCommonTest {
+
 	public ReplyAppointment() {
 		logger.info("New "+ ReplyAppointment.class.getCanonicalName());
-		
+		super.startingPage = app.zPageCalendar;
 	}
+
 	
 	@DataProvider(name = "DataProviderReply")
 	public Object[][] DataProviderReply() {
@@ -37,24 +38,24 @@ public class ReplyAppointment extends CalendarWorkWeekTest {
 				new Object[] { Locators.ReplyToAllMenu },
 		};
 	}
-	
+
 	@Test( description = "Verify Reply & ReplyAll context menu option for saved appt",
 			groups = { "functional", "L2" },
 			dataProvider = "DataProviderReply")
-			
+
 	public void ReplyAppointment_01(String menuName) throws HarnessException {
-		
+
 		// Creating object for meeting data
 		String tz, apptSubject, apptBody;
 		tz = ZTimeZone.getLocalTimeZone().getID();
 		apptSubject = ConfigProperties.getUniqueString();
 		apptBody = ConfigProperties.getUniqueString();
-		
+
 		// Absolute dates in UTC zone
-		Calendar now = this.calendarWeekDayUTC;
-		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
-		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
-		
+		Calendar now = Calendar.getInstance();
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 8, 0, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 9, 0, 0);
+
 		app.zGetActiveAccount().soapSend(
                 "<CreateAppointmentRequest xmlns='urn:zimbraMail'>" +
                      "<m>"+
@@ -68,18 +69,16 @@ public class ReplyAppointment extends CalendarWorkWeekTest {
                      "<su>"+ apptSubject +"</su>" +
                      "</m>" +
                "</CreateAppointmentRequest>");
-		
+
 		// Verify appointment exists in current view
         ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
-        
+
         // Select the appointment
         app.zPageCalendar.zListItem(Action.A_LEFTCLICK, apptSubject);
-        
-        // Right Click to appt -> check Reply and ReplyAll context menu       
+
+        // Right Click to appt -> check Reply and ReplyAll context menu
         app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, apptSubject);
         ZAssert.assertEquals(app.zPageCalendar.zIsElementDisabled(menuName), false, "Verify Reply and ReplyAll menu remains disabled");
 
 	}
-	
-	
 }

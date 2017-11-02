@@ -37,6 +37,13 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZDate;
 import com.zimbra.qa.selenium.framework.util.staf.Stafpostqueue;
+import com.zimbra.qa.selenium.projects.ajax.ui.AppAjaxClient;
+import com.zimbra.qa.selenium.projects.ajax.ui.calendar.DialogConfirmDeleteAppointment;
+import com.zimbra.qa.selenium.projects.ajax.ui.calendar.DialogConfirmDeleteAttendee;
+import com.zimbra.qa.selenium.projects.ajax.ui.calendar.DialogConfirmDeleteOrganizer;
+import com.zimbra.qa.selenium.projects.ajax.ui.calendar.DialogConfirmDeleteRecurringAppointment;
+import com.zimbra.qa.selenium.projects.ajax.ui.calendar.DialogWarningConflictingResources;
+import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
 import com.zimbra.qa.selenium.projects.universal.ui.AppUniversalClient;
 import com.zimbra.qa.selenium.projects.universal.ui.DialogAssistant;
 import com.zimbra.qa.selenium.projects.universal.ui.DialogInformational;
@@ -1953,7 +1960,6 @@ public class PageCalendar extends AbsTab {
 
 	}
 
-	@Override
 	public AbsPage zToolbarPressButton(Button button) throws HarnessException {
 		logger.info(myPageName() + " zToolbarPressButton(" + button + ")");
 
@@ -1966,7 +1972,7 @@ public class PageCalendar extends AbsTab {
 		AbsPage page = null;
 
 		if (button == Button.B_REFRESH) {
-			return (((AppUniversalClient)this.MyApplication).zPageMain.zToolbarPressButton(Button.B_REFRESH));
+			return (((AppAjaxClient)this.MyApplication).zPageMain.zToolbarPressButton(Button.B_REFRESH));
 
 		} else if (button == Button.B_NEW) {
 			locator = "css=td#zb__NEW_MENU_title";
@@ -2007,24 +2013,24 @@ public class PageCalendar extends AbsTab {
 			sp.waitForPostqueue();
 
 			// If the organizer deletes an appointment, you get "Send Cancellation" dialog
-			page = new DialogConfirmDeleteOrganizer(MyApplication, ((AppUniversalClient) MyApplication).zPageCalendar);
+			page = new DialogConfirmDeleteOrganizer(MyApplication, ((AppAjaxClient) MyApplication).zPageCalendar);
 			if ( page.zIsActive() ) {
 				return (page);
 			}
 
 			// If an attendee deletes an appointment, you get a "Confirm Delete / Notify Organizer" dialog
-			page = new DialogConfirmDeleteAttendee(MyApplication, ((AppUniversalClient) MyApplication).zPageCalendar);
+			page = new DialogConfirmDeleteAttendee(MyApplication, ((AppAjaxClient) MyApplication).zPageCalendar);
 			if ( page.zIsActive() ) {
 				return (page);
 			}
 
 			// If an organizer deletes an appointment (no attendees), you get a "Confirm Delete" dialog
-			page = new DialogConfirmDeleteAppointment(MyApplication, ((AppUniversalClient) MyApplication).zPageCalendar);
+			page = new DialogConfirmDeleteAppointment(MyApplication, ((AppAjaxClient) MyApplication).zPageCalendar);
 			if ( page.zIsActive() ) {
 				return (page);
 			}
 
-			page = new DialogConfirmDeleteRecurringAppointment(MyApplication, ((AppUniversalClient) MyApplication).zPageCalendar);
+			page = new DialogConfirmDeleteRecurringAppointment(MyApplication, ((AppAjaxClient) MyApplication).zPageCalendar);
 			if ( page.zIsActive() ) {
 				return (page);
 			}
@@ -2039,7 +2045,7 @@ public class PageCalendar extends AbsTab {
 			Stafpostqueue sp = new Stafpostqueue();
 			sp.waitForPostqueue();
 			SleepUtil.sleepMedium();
-			page = new DialogWarningConflictingResources(MyApplication, ((AppUniversalClient) MyApplication).zPageCalendar);
+			page = new DialogWarningConflictingResources(MyApplication, ((AppAjaxClient) MyApplication).zPageCalendar);
 			return (page);
 
 		} else if (button == Button.B_SAVE_WITH_CONFLICT) {
@@ -2049,8 +2055,43 @@ public class PageCalendar extends AbsTab {
 			Stafpostqueue sp = new Stafpostqueue();
 			sp.waitForPostqueue();
 			SleepUtil.sleepMedium();
-			page = new DialogWarningConflictingResources(MyApplication, ((AppUniversalClient) MyApplication).zPageCalendar);			
+			page = new DialogWarningConflictingResources(MyApplication, ((AppAjaxClient) MyApplication).zPageCalendar);
 			return (page);
+			
+		} else if (button == Button.B_DAY_VIEW) {
+
+			locator = "css=div[id='ztb__CLD'] div[id='zb__CLD__DAY_VIEW'] td[id$='_title']";
+			page = null;
+
+		} else if (button == Button.B_WEEK_VIEW) {
+
+			locator = "css=div[id='ztb__CLD'] div[id='zb__CLD__WEEK_VIEW'] td[id$='_title']";
+			page = null;
+
+		} else if (button == Button.B_WORKWEEK_VIEW) {
+
+			locator = "css=div[id='ztb__CLD'] div[id='zb__CLD__WORK_WEEK_VIEW'] td[id$='_title']";
+			page = null;
+
+		} else if (button == Button.B_LIST_VIEW) {
+
+			locator = "css=div[id='ztb__CLD'] div[id='zb__CLD__CAL_LIST_VIEW'] td[id$='_title']";
+			page = null;
+
+		} else if (button == Button.B_MONTH_VIEW) {
+
+			locator = "css=div[id='ztb__CLD'] div[id='zb__CLD__MONTH_VIEW'] td[id$='_title']";
+			page = null;
+
+		} else if (button == Button.B_FREEBUSY_VIEW) {
+
+			locator = "css=div[id='ztb__CLD'] div[id='zb__CLD__FB_VIEW'] td[id$='_title']";
+			page = null;
+
+		} else if (button == Button.B_TODAY) {
+
+			locator = Locators.TodayButton;
+			page = null;
 
 		} else if (button == Button.B_MONTH) {
 
@@ -2080,36 +2121,6 @@ public class PageCalendar extends AbsTab {
 		} else if (button == Button.O_LISTVIEW_REMOVETAG) {
 
 			locator = "id=calendar_removetag_title";
-			page = null;
-
-		} else if (button == Button.O_LISTVIEW_DAY) {
-
-			locator = "css=div[id='ztb__CLD'] div[id='zb__CLD__DAY_VIEW'] td[id$='_title']";
-			page = null;
-
-		} else if (button == Button.O_LISTVIEW_WEEK) {
-
-			locator = "css=div[id='ztb__CLD'] div[id='zb__CLD__WEEK_VIEW'] td[id$='_title']";
-			page = null;
-
-		} else if (button == Button.O_LISTVIEW_WORKWEEK) {
-
-			locator = "css=div[id='ztb__CLD'] div[id='zb__CLD__WORK_WEEK_VIEW'] td[id$='_title']";
-			page = new ApptWorkWeekView(MyApplication);
-
-		} else if (button == Button.O_LISTVIEW_LIST) {
-
-			locator = "css=div[id='ztb__CLD'] div[id='zb__CLD__CAL_LIST_VIEW'] td[id$='_title']";
-			page = null;
-
-		} else if (button == Button.O_LISTVIEW_MONTH) {
-
-			locator = "css=div[id='ztb__CLD'] div[id='zb__CLD__MONTH_VIEW'] td[id$='_title']";
-			page = null;
-
-		} else if (button == Button.O_LISTVIEW_FREEBUSY) {
-
-			locator = "css=div[id='ztb__CLD'] div[id='zb__CLD__FB_VIEW'] td[id$='_title']";
 			page = null;
 
 		} else if (button == Button.B_OPEN_THE_SERIES) {

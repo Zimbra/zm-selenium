@@ -20,41 +20,39 @@ import java.util.*;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 
-public class GetAppointment extends CalendarWorkWeekTest {
+public class GetAppointment extends AjaxCommonTest {
 
-	
 	public GetAppointment() {
 		logger.info("New "+ GetAppointment.class.getCanonicalName());
-		
-		// All tests start at the Calendar page
-		super.startingPage = app.zPageCalendar;
 
-		// Make sure we are using an account with week view
+		super.startingPage = app.zPageCalendar;
 		super.startingAccountPreferences = new HashMap<String, String>() {
-			private static final long serialVersionUID = -2913827779459595178L;
-		{
-		    put("zimbraPrefCalendarInitialView", "week");
-		}};
+			private static final long serialVersionUID = -2913827779459595178L; {
+				put("zimbraPrefCalendarInitialView", "week");
+			}
+		};
 	}
-	
+
+
 	@Bugs(ids = "69132")
 	@Test( description = "View a basic appointment in week view",
 			groups = { "smoke", "L3" })
+
 	public void GetAppointment_01() throws HarnessException {
-		
+
 		// Create the appointment on the server
 		// Create the message data to be sent
 		String apptSubject = ConfigProperties.getUniqueString();
 		String location = "location" + ConfigProperties.getUniqueString();
 		String content = "content" + ConfigProperties.getUniqueString();
-		
+
 		// Absolute dates in UTC zone
-		Calendar now = this.calendarWeekDayUTC;
-		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
-		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
-		
+		Calendar now = Calendar.getInstance();
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 9, 0, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 10, 0, 0);
+
 		// Get local timezone value
 		String tz = ZTimeZone.getLocalTimeZone().getID();
 
@@ -75,11 +73,8 @@ public class GetAppointment extends CalendarWorkWeekTest {
 				+			"</mp>"
 				+		"</m>"
 				+	"</CreateAppointmentRequest>");
-		
+
 		// Verify appointment exists in current view
         ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
-	    
 	}
-
-
 }

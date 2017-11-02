@@ -18,27 +18,27 @@ package com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.organizer.s
 
 import java.util.Calendar;
 import org.testng.annotations.*;
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
 
-public class BookLocationBySuggestingTime extends CalendarWorkWeekTest {	
-	
+public class BookLocationBySuggestingTime extends AjaxCommonTest {
+
 	public BookLocationBySuggestingTime() {
 		logger.info("New "+ BookLocationBySuggestingTime.class.getCanonicalName());
 		super.startingPage = app.zPageCalendar;
 	}
-	
+
+
 	@Bugs(ids = "73966,88287")
 	@Test( description = "Suggest a free time and book location for selected time while creating new appointment",
 			groups = { "smoke", "L1"})
-	
+
 	public void BookLocationBySuggestingTime_01() throws HarnessException {
-		
+
 		// Create a meeting
 		ZimbraResource location = new ZimbraResource(ZimbraResource.Type.LOCATION);
 
@@ -46,12 +46,12 @@ public class BookLocationBySuggestingTime extends CalendarWorkWeekTest {
 		String apptSubject = ConfigProperties.getUniqueString();
 		String apptAttendee = ZimbraAccount.AccountC().EmailAddress;
 		String apptLocation = location.EmailAddress;
-		
+
 		// Absolute dates in UTC zone
-		Calendar now = this.calendarWeekDayUTC;
+		Calendar now = Calendar.getInstance();
 		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 10, 0, 0);
 		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 11, 0, 0);
-		
+
 		app.zGetActiveAccount().soapSend(
                 "<CreateAppointmentRequest xmlns='urn:zimbraMail'>" +
                      "<m>"+
@@ -68,10 +68,10 @@ public class BookLocationBySuggestingTime extends CalendarWorkWeekTest {
                      "<su>"+ apptSubject +"</su>" +
                      "</m>" +
                "</CreateAppointmentRequest>");
-        
+
 		// Verify appointment exists in current view
         ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
-        
+
         // Suggest a time, pickup the time and send the appointment
         FormApptNew apptForm = (FormApptNew)app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, apptSubject);
         apptForm.zToolbarPressButton(Button.B_SUGGESTATIME);
@@ -83,11 +83,11 @@ public class BookLocationBySuggestingTime extends CalendarWorkWeekTest {
         AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ apptSubject +")");
 		ZAssert.assertEquals(actual.getSubject(), apptSubject, "Subject: Verify the appointment data");
 		ZAssert.assertStringContains(actual.getLocation(), apptLocation, "Location: Verify the appointment data");
-		
+
 		// Verify location free/busy status
 		String locationStatus = app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ apptLocation +"']", "ptst");
 		ZAssert.assertEquals(locationStatus, "AC", "Verify location free/busy status");
-		
+
 	}
-	
+
 }

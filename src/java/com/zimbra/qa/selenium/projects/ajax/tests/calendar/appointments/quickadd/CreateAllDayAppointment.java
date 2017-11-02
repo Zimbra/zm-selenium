@@ -17,53 +17,45 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.appointments.quickadd;
 
 import java.util.Calendar;
-import java.util.HashMap;
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.QuickAddAppointment;
 
-public class CreateAllDayAppointment extends CalendarWorkWeekTest {
+public class CreateAllDayAppointment extends AjaxCommonTest {
 
 	public CreateAllDayAppointment() {
 		logger.info("New "+ CreateAllDayAppointment.class.getCanonicalName());
-
 		super.startingPage = app.zPageCalendar;
-		super.startingAccountPreferences = new HashMap<String, String>() {
-			private static final long serialVersionUID = -2913827779459595178L;
-		{
-		    put("zimbraPrefCalendarInitialView", "workWeek");
-		}};
 	}
-	
+
+
 	@Bugs(ids = "107050")
 	@Test( description = "Create all day appointment using quick add dialog",
 			groups = { "smoke", "L0" } )
-	
+
 	public void CreateAllDayAppointment_01() throws HarnessException {
-		
+
 		allDayTest = true;
-		
+
 		// Create appointment
 		AppointmentItem appt = new AppointmentItem();
-		Calendar now = this.calendarWeekDayUTC;
+		Calendar now = Calendar.getInstance();
 		appt.setSubject(ConfigProperties.getUniqueString());
-		appt.setStartTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0));
-		appt.setEndTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0));
-	
+		appt.setStartTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 8, 0, 0));
+		appt.setEndTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 9, 0, 0));
+
 		// Quick add appointment dialog
 		QuickAddAppointment quickAddAppt = new QuickAddAppointment(app) ;
 		quickAddAppt.zNewAllDayAppointment();
 		quickAddAppt.zFill(appt);
 		quickAddAppt.zSubmit();
-		
+
 		// Verify the new appointment exists on the server
 		AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ appt.getSubject() +")", appt.getStartTime().addDays(-7), appt.getEndTime().addDays(7));
 		ZAssert.assertNotNull(actual, "Verify the new appointment is created");
 		ZAssert.assertEquals(actual.getSubject(), appt.getSubject(), "Subject: Verify the appointment data");
 	}
-
 }

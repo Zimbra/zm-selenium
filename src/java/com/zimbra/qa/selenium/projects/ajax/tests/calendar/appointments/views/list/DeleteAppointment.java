@@ -20,10 +20,8 @@ import java.awt.event.KeyEvent;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
-
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-
 import com.zimbra.common.soap.Element;
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.*;
@@ -44,33 +42,24 @@ public class DeleteAppointment extends AjaxCommonTest {
 	public DeleteAppointment() {
 		logger.info("New "+ DeleteAppointment.class.getCanonicalName());
 
-		// All tests start at the Calendar page
 		super.startingPage = app.zPageCalendar;
-
-		// Make sure we are using an account with list view
 		super.startingAccountPreferences = new HashMap<String, String>() {
-			private static final long serialVersionUID = -5268509108302506830L;
-		{
-			put("zimbraPrefCalendarInitialView", "list");
-			put("zimbraPrefShowSelectionCheckbox", "TRUE");
-		}};
-
-
+			private static final long serialVersionUID = -2913827779459595178L; {
+				put("zimbraPrefCalendarInitialView", "list");
+				put("zimbraPrefShowSelectionCheckbox", "TRUE");
+			}
+		};
 	}
+
 
 	@Bugs(ids = "69132")
 	@Test( description = "Delete an appointment in the list view - Toolbar Delete",
 			groups = { "functional", "L2" })
-	
+
 	public void DeleteAppointment_01() throws HarnessException {
 
-		//-- Data setup
-		
-		
 		// Create the appointment on the server
-		// Create the message data to be sent
 		String subject = ConfigProperties.getUniqueString();
-
 
 		// Absolute dates in UTC zone
 		Calendar now = Calendar.getInstance();
@@ -98,11 +87,6 @@ public class DeleteAppointment extends AjaxCommonTest {
 				+		"</m>"
 				+	"</CreateAppointmentRequest>");
 
-
-		
-		//-- GUI Actions
-		
-		
 		// Refresh the calendar
 		app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
 
@@ -116,25 +100,17 @@ public class DeleteAppointment extends AjaxCommonTest {
 		// Click Yes on the confirmation
 		dialog.zClickButton(Button.B_YES);
 
-		
-		
-		//-- Verification
-		
-		
 		// On the server, verify the appointment is in the trash
 		app.zGetActiveAccount().soapSend(
 				"<SearchRequest xmlns='urn:zimbraMail' types='appointment' calExpandInstStart='"+ startUTC.addDays(-7).toMillis() +"' calExpandInstEnd='"+ startUTC.addDays(7).toMillis() +"'>"
 			+		"<query>is:anywhere "+ subject +"</query>"
 			+	"</SearchRequest>");
 
-		
-		
 		String folderID = app.zGetActiveAccount().soapSelectValue("//mail:appt", "l");
 		ZAssert.assertEquals(
 				folderID,
 				FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Trash).getId(),
 				"Verify appointment is in the trash folder");
-
 
 		// On the GUI app, verify the appointment is gone from the list
 		AppointmentItem found = null;
@@ -147,20 +123,17 @@ public class DeleteAppointment extends AjaxCommonTest {
 		}
 
 		ZAssert.assertNull(found, "Verify the appointment is no longer in the list");
-
-
 	}
+
 
 	@Bugs(ids = "69132")
 	@Test( description = "Delete an appt using checkbox and toolbar delete button",
 			groups = { "functional", "L2" })
-	
+
 	public void DeleteAppointment_02() throws HarnessException {
 
 		// Create the appointment on the server
-		// Create the message data to be sent
 		String subject = ConfigProperties.getUniqueString();
-
 
 		// Absolute dates in UTC zone
 		Calendar now = Calendar.getInstance();
@@ -188,8 +161,6 @@ public class DeleteAppointment extends AjaxCommonTest {
 				+		"</m>"
 				+	"</CreateAppointmentRequest>");
 
-
-
 		// Refresh the calendar
 		app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
 
@@ -203,15 +174,13 @@ public class DeleteAppointment extends AjaxCommonTest {
 		// Click Yes on the confirmation
 		dialog.zClickButton(Button.B_YES);
 
-
 		// On the server, verify the appointment is in the trash
 		app.zGetActiveAccount().soapSend(
 				"<SearchRequest xmlns='urn:zimbraMail' types='appointment' calExpandInstStart='"+ startUTC.addDays(-7).toMillis() +"' calExpandInstEnd='"+ startUTC.addDays(7).toMillis() +"'>"
 			+		"<query>is:anywhere "+ subject +"</query>"
 			+	"</SearchRequest>");
 
-		
-		
+
 		String folderID = app.zGetActiveAccount().soapSelectValue("//mail:appt", "l");
 		ZAssert.assertEquals(
 				folderID,
@@ -229,9 +198,8 @@ public class DeleteAppointment extends AjaxCommonTest {
 		}
 
 		ZAssert.assertNull(found, "Verify the appointment is no longer in the list");
-
-
 	}
+
 
 	@DataProvider(name = "DataProviderDeleteKeys")
 	public Object[][] DataProviderDeleteKeys() {
@@ -245,14 +213,11 @@ public class DeleteAppointment extends AjaxCommonTest {
 	@Test( description = "Delete a appt by selecting and typing 'delete' keyboard",
 			groups = { "functional", "L2" },
 			dataProvider = "DataProviderDeleteKeys")
-	
+
 	public void DeleteAppointment_03(String name, int keyEvent) throws HarnessException {
 
-
 		// Create the appointment on the server
-		// Create the message data to be sent
 		String subject = ConfigProperties.getUniqueString();
-
 
 		// Absolute dates in UTC zone
 		Calendar now = Calendar.getInstance();
@@ -280,8 +245,6 @@ public class DeleteAppointment extends AjaxCommonTest {
 				+		"</m>"
 				+	"</CreateAppointmentRequest>");
 
-
-
 		// Refresh the calendar
 		app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
 
@@ -296,22 +259,18 @@ public class DeleteAppointment extends AjaxCommonTest {
 		// Click Yes on the confirmation
 		dialog.zClickButton(Button.B_YES);
 
-
 		// On the server, verify the appointment is in the trash
 		app.zGetActiveAccount().soapSend(
 				"<SearchRequest xmlns='urn:zimbraMail' types='appointment' calExpandInstStart='"+ startUTC.addDays(-7).toMillis() +"' calExpandInstEnd='"+ startUTC.addDays(7).toMillis() +"'>"
 			+		"<query>is:anywhere "+ subject +"</query>"
 			+	"</SearchRequest>");
 
-		
-		
 		String folderID = app.zGetActiveAccount().soapSelectValue("//mail:appt", "l");
 		ZAssert.assertEquals(
 				folderID,
 				FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Trash).getId(),
 				"Verify appointment is in the trash folder");
 
-		
 		// Verify the appointment is gone
 		AppointmentItem found = null;
 		List<AppointmentItem> appts = app.zPageCalendar.zListGetAppointments();
@@ -323,19 +282,17 @@ public class DeleteAppointment extends AjaxCommonTest {
 		}
 
 		ZAssert.assertNull(found, "Verify the appointment is no longer in the list");
-
 	}
+
 
 	@Bugs(ids = "72444")
 	@Test( description = "Delete a appt by selecting and typing '.t' shortcut",
 			groups = { "functional", "L5" } )
-	
+
 	public void DeleteAppointment_04() throws HarnessException {
 
 		// Create the appointment on the server
-		// Create the message data to be sent
 		String subject = ConfigProperties.getUniqueString();
-
 
 		// Absolute dates in UTC zone
 		Calendar now = Calendar.getInstance();
@@ -363,8 +320,6 @@ public class DeleteAppointment extends AjaxCommonTest {
 				+		"</m>"
 				+	"</CreateAppointmentRequest>");
 
-
-
 		// Refresh the calendar
 		app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
 
@@ -378,22 +333,18 @@ public class DeleteAppointment extends AjaxCommonTest {
 		// Click Yes on the confirmation
 		dialog.zClickButton(Button.B_YES);
 
-
 		// On the server, verify the appointment is in the trash
 		app.zGetActiveAccount().soapSend(
 				"<SearchRequest xmlns='urn:zimbraMail' types='appointment' calExpandInstStart='"+ startUTC.addDays(-7).toMillis() +"' calExpandInstEnd='"+ startUTC.addDays(7).toMillis() +"'>"
 			+		"<query>is:anywhere "+ subject +"</query>"
 			+	"</SearchRequest>");
 
-		
-		
 		String folderID = app.zGetActiveAccount().soapSelectValue("//mail:appt", "l");
 		ZAssert.assertEquals(
 				folderID,
 				FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Trash).getId(),
 				"Verify appointment is in the trash folder");
 
-		
 		// Verify the appointment is gone
 		AppointmentItem found = null;
 		List<AppointmentItem> appts = app.zPageCalendar.zListGetAppointments();
@@ -405,14 +356,13 @@ public class DeleteAppointment extends AjaxCommonTest {
 		}
 
 		ZAssert.assertNull(found, "Verify the appointment is no longer in the list");
-
-
 	}
-	
+
+
 	@Bugs(ids = "69132,79524")
 	@Test( description = "Delete multiple appts (3) by select and toolbar delete",
 			groups = { "functional", "L2" } )
-	
+
 	public void DeleteAppointment_05() throws HarnessException {
 
 		// Create three appointments on the server
@@ -497,10 +447,9 @@ public class DeleteAppointment extends AjaxCommonTest {
 		// Click delete
 		DialogConfirmDeleteAppointment dialog = (DialogConfirmDeleteAppointment)app.zPageCalendar.zToolbarPressButton(Button.B_DELETE);
 		ZAssert.assertNotNull(dialog, "Verify the dialog appears correctly");
-		
+
 		// Click Yes on the confirmation
 		dialog.zClickButton(Button.B_YES);
-
 
 		// On the server, verify the appointment is in the trash
 		app.zGetActiveAccount().soapSend(
@@ -508,45 +457,36 @@ public class DeleteAppointment extends AjaxCommonTest {
 			+		"<query>is:anywhere "+ subject1 +"</query>"
 			+	"</SearchRequest>");
 
-		
-		
 		String folderID = app.zGetActiveAccount().soapSelectValue("//mail:appt", "l");
 		ZAssert.assertEquals(
 				folderID,
 				FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Trash).getId(),
 				"Verify appointment is in the trash folder");
 
-		
 		// On the server, verify the appointment is in the trash
 		app.zGetActiveAccount().soapSend(
 				"<SearchRequest xmlns='urn:zimbraMail' types='appointment' calExpandInstStart='"+ startUTC.addDays(-7).toMillis() +"' calExpandInstEnd='"+ startUTC.addDays(7).toMillis() +"'>"
 			+		"<query>is:anywhere "+ subject2 +"</query>"
 			+	"</SearchRequest>");
 
-		
-		
 		folderID = app.zGetActiveAccount().soapSelectValue("//mail:appt", "l");
 		ZAssert.assertEquals(
 				folderID,
 				FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Trash).getId(),
 				"Verify appointment is in the trash folder");
 
-		
 		// On the server, verify the appointment is in the trash
 		app.zGetActiveAccount().soapSend(
 				"<SearchRequest xmlns='urn:zimbraMail' types='appointment' calExpandInstStart='"+ startUTC.addDays(-7).toMillis() +"' calExpandInstEnd='"+ startUTC.addDays(7).toMillis() +"'>"
 			+		"<query>is:anywhere "+ subject3 +"</query>"
 			+	"</SearchRequest>");
 
-		
-		
 		folderID = app.zGetActiveAccount().soapSelectValue("//mail:appt", "l");
 		ZAssert.assertEquals(
 				folderID,
 				FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Trash).getId(),
 				"Verify appointment is in the trash folder");
 
-		
 		// Verify the appointment is gone
 		AppointmentItem found1 = null;
 		AppointmentItem found2 = null;
@@ -567,21 +507,17 @@ public class DeleteAppointment extends AjaxCommonTest {
 		ZAssert.assertNull(found1, "Verify the appointment "+ subject1 +" no longer exists");
 		ZAssert.assertNull(found2, "Verify the appointment "+ subject2 +" no longer exists");
 		ZAssert.assertNull(found3, "Verify the appointment "+ subject3 +" no longer exists");
-
-
 	}
+
 
 	@Bugs(ids = "69132")
 	@Test( description = "Delete a appt using context menu delete button",
 			groups = { "functional", "L2" })
-	
+
 	public void DeleteAppointment_06() throws HarnessException {
 
-
 		// Create the appointment on the server
-		// Create the message data to be sent
 		String subject = ConfigProperties.getUniqueString();
-
 
 		// Absolute dates in UTC zone
 		Calendar now = Calendar.getInstance();
@@ -609,10 +545,9 @@ public class DeleteAppointment extends AjaxCommonTest {
 				+		"</m>"
 				+	"</CreateAppointmentRequest>");
 
-
 		// Refresh the calendar
 		app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
-		
+
 		// Work around
 		app.zPageMain.sRefresh();
 		app.zPageCalendar.zNavigateTo();
@@ -620,9 +555,7 @@ public class DeleteAppointment extends AjaxCommonTest {
 		// Right click the item, select delete
 		DialogConfirmDeleteAppointment dialog = (DialogConfirmDeleteAppointment)app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_DELETE, subject);
 		ZAssert.assertNotNull(dialog, "Verify the dialog appears correctly");
-
 		dialog.zClickButton(Button.B_YES);
-
 
 		// On the server, verify the appointment is in the trash
 		app.zGetActiveAccount().soapSend(
@@ -630,15 +563,12 @@ public class DeleteAppointment extends AjaxCommonTest {
 			+		"<query>is:anywhere "+ subject +"</query>"
 			+	"</SearchRequest>");
 
-		
-		
 		String folderID = app.zGetActiveAccount().soapSelectValue("//mail:appt", "l");
 		ZAssert.assertEquals(
 				folderID,
 				FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Trash).getId(),
 				"Verify appointment is in the trash folder");
 
-		
 		// Verify the appointment is gone
 		AppointmentItem found = null;
 		List<AppointmentItem> appts = app.zPageCalendar.zListGetAppointments();
@@ -650,19 +580,17 @@ public class DeleteAppointment extends AjaxCommonTest {
 		}
 
 		ZAssert.assertNull(found, "Verify the appointment is no longer in the list");
-
 	}
+
 
 	@Bugs(ids = "102051")
 	@Test( description = "Hard-delete a appt by selecting and typing 'shift-del' shortcut",
 			groups = { "functional", "L5" } )
-	
+
 	public void HardDeleteAppointment_01() throws HarnessException {
 
 		// Create the appointment on the server
-		// Create the message data to be sent
 		String subject = ConfigProperties.getUniqueString();
-
 
 		// Absolute dates in UTC zone
 		Calendar now = Calendar.getInstance();
@@ -690,20 +618,16 @@ public class DeleteAppointment extends AjaxCommonTest {
 				+		"</m>"
 				+	"</CreateAppointmentRequest>");
 
-
 		// Refresh the calendar
 		app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
 
 		// Select the item
 		app.zPageCalendar.zListItem(Action.A_LEFTCLICK, subject);
 
-
 		// Type shift-delete
 		DialogConfirmDeleteAppointment dialog = (DialogConfirmDeleteAppointment)app.zPageCalendar.zKeyboardShortcut(Shortcut.S_MAIL_HARDELETE);
 		ZAssert.assertNotNull(dialog, "Verify the dialog appears correctly");
-
 		dialog.zClickButton(Button.B_YES);
-
 
 		// Verify the appointment is gone
 		AppointmentItem found = null;
@@ -726,13 +650,13 @@ public class DeleteAppointment extends AjaxCommonTest {
 
 		Element[] nodes = app.zGetActiveAccount().soapSelectNodes("//mail:appt");
 		ZAssert.assertEquals(nodes.length, 0, "Verify the appointment is not in the calendar or trash (trash folder l='3')");
-
 	}
+
 
 	@Bugs(ids = "102051")
 	@Test( description = "Hard-delete multiple appts (3) by selecting and typing 'shift-del' shortcut",
 			groups = { "functional", "L5" })
-	
+
 	public void HardDeleteAppointment_02() throws HarnessException {
 
 		// Create three appointments on the server
@@ -804,7 +728,6 @@ public class DeleteAppointment extends AjaxCommonTest {
 				+		"</m>"
 				+	"</CreateAppointmentRequest>");
 
-		
 		// Refresh the calendar
 		app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
 
@@ -816,9 +739,7 @@ public class DeleteAppointment extends AjaxCommonTest {
 		// Click delete
 		DialogConfirmDeleteAppointment dialog = (DialogConfirmDeleteAppointment)app.zPageCalendar.zKeyboardShortcut(Shortcut.S_MAIL_HARDELETE);
 		ZAssert.assertNotNull(dialog, "Verify the dialog appears correctly");
-
 		dialog.zClickButton(Button.B_YES);
-
 
 		// Verify the appointment is gone
 		AppointmentItem found1 = null;

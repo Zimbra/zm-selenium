@@ -18,9 +18,7 @@ package com.zimbra.qa.selenium.projects.ajax.tests.calendar.appointments.views.m
 
 import java.util.Calendar;
 import java.util.HashMap;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.ui.Button;
@@ -48,7 +46,7 @@ public class NonAllDayMultiDayAppointment extends AjaxCommonTest {
 	@Bugs(ids = "69132")
 	@Test( description = "Verify the display of a non-all-day-multiday appointment in the month view",
 			groups = { "functional", "L2" })
-	
+
 	public void NonAllDayMultiDayAppointment_01() throws HarnessException {
 
 		// Appointment data

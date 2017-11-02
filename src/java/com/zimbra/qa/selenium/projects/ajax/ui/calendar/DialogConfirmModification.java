@@ -24,18 +24,20 @@ public class DialogConfirmModification extends DialogWarning {
 
 	// The ID for the main Dialog DIV
 	public static final String LocatorDivID = "SEND_UPDATES_DIALOG";
+
 	public static class Locators {
-	public static final String SaveAndSendUpdates = "css= div[class='DwtDialog WindowOuterContainer'] label:contains('Save changes and send updates.')";
-	public static final String DontSaveAndKeepOpen = "css= div[class='DwtDialog WindowOuterContainer'] label:contains('Don't save but keep the meeting open.')";
-	public static final String DiscardAndClose = "css= div[class='DwtDialog WindowOuterContainer'] label:contains('Discard changes and close.')";
-	public static final String Ok_changes = "css=td[id='YesNoCancel_button5_title']";
-	public static final String Cancel_changes =  "css=td[id='YesNoCancel_button4_title']";
-	public static final String Save_modifications = "css=td[id='CHNG_DLG_ORG_1_button2_title']";
-	public static final String Cancel_modifications =  "css=td[id='CHNG_DLG_ORG_1_button1_title']";
+		public static final String SaveAndSendUpdates = "css= div[class='DwtDialog WindowOuterContainer'] label:contains('Save changes and send updates.')";
+		public static final String DontSaveAndKeepOpen = "css= div[class='DwtDialog WindowOuterContainer'] label:contains('Don't save but keep the meeting open.')";
+		public static final String DiscardAndClose = "css= div[class='DwtDialog WindowOuterContainer'] label:contains('Discard changes and close.')";
+		public static final String Ok_changes = "css=td[id='YesNoCancel_button5_title']";
+		public static final String Cancel_changes =  "css=td[id='YesNoCancel_button4_title']";
+		public static final String Save_modifications = "css=td[id='CHNG_DLG_ORG_1_button2_title']";
+		public static final String Cancel_modifications =  "css=td[id='CHNG_DLG_ORG_1_button1_title']";
 	}
+
 	public DialogConfirmModification(AbsApplication application, AbsTab page) {
 		super(new DialogWarningID(LocatorDivID), application, page);
-				
+
 		logger.info("new " + DialogConfirmModification.class.getCanonicalName());
 	}
 
@@ -46,7 +48,7 @@ public class DialogConfirmModification extends DialogWarning {
 		tracer.trace("Click dialog button " + button);
 		if ( button == null )
 			throw new HarnessException("button cannot be null");
-	
+
 		String locator = null;
 		AbsPage page = null;
 		boolean waitForPostfix = false;
@@ -60,12 +62,12 @@ public class DialogConfirmModification extends DialogWarning {
 
 			locator = Locators.DontSaveAndKeepOpen;
 			page = null;
-		
+
 		} else if (button == Button.B_DISCARD_CLOSE) {
 
 			locator = Locators.DiscardAndClose;
 			page = null;
-		
+
 		} else if (button == Button.B_OK) {
 			locator = Locators.Ok_changes;
 			page = null;
@@ -74,7 +76,7 @@ public class DialogConfirmModification extends DialogWarning {
 
 			locator =Locators.Cancel_changes;
 			page = null;
-			                              
+
 		}  else if (button == Button.B_SAVE_MODIFICATION) {
 			locator = Locators.Save_modifications;
 			page = null;
@@ -83,13 +85,13 @@ public class DialogConfirmModification extends DialogWarning {
 
 			locator =Locators.Cancel_modifications;
 			page = null;
-			                              
+
 		} else {
-			
+
 			return ( super.zClickButton(button) );
 
 		}
-		
+
 		// Make sure the locator was set
 		if (locator == null) {
 			throw new HarnessException("Button " + button + " not implemented");

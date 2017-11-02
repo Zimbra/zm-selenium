@@ -80,41 +80,34 @@ public class DialogFindAttendees extends DialogWarning {
 		boolean waitForPostfix = false;
 
 		if (button == Button.B_SEARCH) {
-
 			locator = Locators.ContactPickerSerachButton;
 			page = null;
 
 		} else if (button == Button.B_SELECT_LOCATION) {
-
 			locator = Locators.SelectLocationFromPicker;
 			page = null;
 
 		} else if (button == Button.B_OK) {
-
 			locator = Locators.AddContactFromPicker;
 			page = null;
 
 		} else if (button == Button.B_CANCEL) {
-
 			locator = "css=div[class='DwtDialog'] td[id$='_button1_title']";
 			page = null;
 
 		} else if (button == Button.B_CHOOSE_CONTACT_FROM_PICKER) {
-
 			this.zClick(Locators.ContactPickerFirstContact);
 			locator = Locators.SelectContactFromPicker;
 			page = null;
 
 		} else if (button == Button.B_SELECT_FIRST_CONTACT) {
-
 			locator = Locators.ContactPickerFirstContact;
 			page = null;
 
 		} else {
-
 			return (super.zClickButton(button));
 		}
-		
+
 		// Make sure the locator was set
 		if (locator == null) {
 			throw new HarnessException("Button " + button + " not implemented");
@@ -164,10 +157,10 @@ public class DialogFindAttendees extends DialogWarning {
 
 		if (field == Field.ContactPickerSerachField) {
 			locator = Locators.ContactPickerSerachField;
-			
+
 		} else if (field == Field.Department) {
 			locator = "css=input[id$='_searchDepartmentField']";
-			
+
 		} else {
 			throw new HarnessException("not implemented for field " + field);
 		}

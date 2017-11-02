@@ -20,43 +20,44 @@ import java.util.Calendar;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 
-public class VerifyNestedState extends CalendarWorkWeekTest {
+public class VerifyNestedState extends AjaxCommonTest {
 
 	public VerifyNestedState() {
 		logger.info("New "+ VerifyNestedState.class.getCanonicalName());
 		super.startingPage = app.zPageCalendar;
 	}
-	
+
+
 	@Test( description = "Grantee opens appointment from grantor's calendar and close it without making any changes",
 			groups = { "functional", "L2" })
-			
+
 	public void VerifyNestedState_01() throws HarnessException {
-		
+
 		String apptSubject = ConfigProperties.getUniqueString();
 		String apptContent = ConfigProperties.getUniqueString();
 		String foldername1 = "folder" + ConfigProperties.getUniqueString();
 		String foldername2 = "folder" + ConfigProperties.getUniqueString();
-		
-		Calendar now = this.calendarWeekDayUTC;
-		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
-		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
-				
+
+		Calendar now = Calendar.getInstance();
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 16, 0, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 17, 0, 0);
+
 		app.zGetActiveAccount().soapSend(
 				"<CreateFolderRequest xmlns='urn:zimbraMail'>"
 			+		"<folder name='" + foldername1 + "' l='1' view='appointment'/>"
 			+	"</CreateFolderRequest>");
-	
+
 	    FolderItem folder1 = FolderItem.importFromSOAP(app.zGetActiveAccount(), foldername1);
-				
+
 		app.zGetActiveAccount().soapSend(
 				"<CreateFolderRequest xmlns='urn:zimbraMail'>"
 			+		"<folder name='" + foldername2 + "' l='" + folder1.getId() + "' view='appointment'/>"
 			+	"</CreateFolderRequest>");
-	
+
 	    FolderItem folder2 = FolderItem.importFromSOAP(app.zGetActiveAccount(), foldername2);
-	    
+
 		// Create appointment
 		app.zGetActiveAccount().soapSend(
 				"<CreateAppointmentRequest xmlns='urn:zimbraMail'>"
@@ -74,14 +75,14 @@ public class VerifyNestedState extends CalendarWorkWeekTest {
 			+			"</mp>"
 			+		"</m>"
 			+	"</CreateAppointmentRequest>");
-	
+
 		// Mark ON to mounted calendar folder and select the appointment
 		app.zTreeCalendar.zMarkOnOffCalendarFolder("Calendar");
 		app.zTreeCalendar.zMarkOnOffCalendarFolder(foldername2);
-		
+
 		// Verify appointment exists in current view
         ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
-        
+
 	    // Refresh UI
 		app.zPageMain.sRefresh();
 		app.zPageCalendar.zNavigateTo();
@@ -90,7 +91,5 @@ public class VerifyNestedState extends CalendarWorkWeekTest {
 	    app.zTreeCalendar.zVerifyCalendarChecked(true, folder1.getId());
 	    SleepUtil.sleepLong();
 	    app.zTreeCalendar.zVerifyCalendarChecked(true, folder2.getId());
-		       
 	}
-
 }

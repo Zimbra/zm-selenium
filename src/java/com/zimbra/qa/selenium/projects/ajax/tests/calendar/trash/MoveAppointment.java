@@ -29,16 +29,15 @@ import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZDate;
 import com.zimbra.qa.selenium.framework.util.ZTimeZone;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
-import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 
-public class MoveAppointment extends CalendarWorkWeekTest {
+public class MoveAppointment extends AjaxCommonTest {
 
 	public MoveAppointment() {
 		logger.info("New "+ MoveAppointment.class.getCanonicalName());
-
-		// All tests start at the Calendar page
 		super.startingPage = app.zPageCalendar;
 	}
+
 
 	@Test( description = "Verify the move of an appointment from trash to Calendar",
 			groups = { "sanity", "L1" })
@@ -51,9 +50,9 @@ public class MoveAppointment extends CalendarWorkWeekTest {
 		String content = "content" + ConfigProperties.getUniqueString();
 
 		// Absolute dates in UTC zone
-		Calendar now = this.calendarWeekDayUTC;
-		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
-		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
+		Calendar now = Calendar.getInstance();
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 8, 0, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 9, 0, 0);
 
 		// Get local timezone value
 		String tz = ZTimeZone.getLocalTimeZone().getID();
@@ -108,7 +107,5 @@ public class MoveAppointment extends CalendarWorkWeekTest {
 
 		// Verify the presence of appointment in Trash
 		ZAssert.assertFalse(app.zPageCalendar.zIsAppointmentPresentInTrash(apptSubject), "Verify appointment is not present in Trash!");
-
 	}
-
 }

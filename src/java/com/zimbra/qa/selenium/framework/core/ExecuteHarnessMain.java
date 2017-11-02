@@ -1444,9 +1444,9 @@ public class ExecuteHarnessMain {
 					Files.write(pHarnessLogFilePath, Arrays.asList(logInfo), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
 					System.exit(0);
 				}
-			}
+
 			// Single node settings
-			else {
+			} else {
 				storeServers = new ArrayList<String>();
 				storeServers.add(ConfigProperties.getStringProperty("server.host"));
 			}

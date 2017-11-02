@@ -19,9 +19,7 @@ package com.zimbra.qa.selenium.projects.ajax.tests.calendar.appointments.views.d
 import java.awt.event.KeyEvent;
 import java.util.Calendar;
 import java.util.HashMap;
-
 import org.testng.annotations.*;
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
@@ -34,34 +32,32 @@ public class DeleteSeries extends AjaxCommonTest {
 	public DeleteSeries() {
 		logger.info("New "+ DeleteSeries.class.getCanonicalName());
 
-		// All tests start at the Calendar page
 		super.startingPage = app.zPageCalendar;
-
-		// Make sure we are using an account with day view
 		super.startingAccountPreferences = new HashMap<String, String>() {
-			private static final long serialVersionUID = -2913827779459595178L;
-		{
-		    put("zimbraPrefCalendarInitialView", "day");
-		}};
+			private static final long serialVersionUID = -2913827779459595178L; {
+				put("zimbraPrefCalendarInitialView", "day");
+			}
+		};
 	}
+
 	
 	@Bugs(ids = "69132")
-	@Test(
-			description = "Delete entire series of recurring appointment (every day) using toolbar button in day view", 
+	@Test(description = "Delete entire series of recurring appointment (every day) using toolbar button in day view",
 			groups = { "smoke", "L1" } )
+	
 	public void DeleteSeries_01() throws HarnessException {
-		
+
 		// Appointment data
 		String tz, apptSubject, apptBody;
 		tz = ZTimeZone.getLocalTimeZone().getID();
 		apptSubject = ConfigProperties.getUniqueString();
 		apptBody = "body" + ConfigProperties.getUniqueString();
-		
+
 		// Absolute dates in UTC zone
 		Calendar now = Calendar.getInstance();
 		ZDate startTime = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 8, 0, 0);
 		ZDate endTime   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 9, 0, 0);
-		
+
 		app.zGetActiveAccount().soapSend(
 				"<CreateAppointmentRequest xmlns='urn:zimbraMail'>" +
 					"<m>"+
@@ -86,10 +82,10 @@ public class DeleteSeries extends AjaxCommonTest {
 
 		// Verify appointment exists in current view
         ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
-		
+
         app.zPageCalendar.zListItem(Action.A_LEFTCLICK, apptSubject);
-        
-        
+
+
         // If you select an instance and click delete button, you
         // get two dialogs:
         // First: do you want to delete the instance or series?
@@ -106,11 +102,11 @@ public class DeleteSeries extends AjaxCommonTest {
         }
         // confirmDelete.zClickButton(Button.B_DELETE_ALL_OCCURRENCES);
         confirmDelete.zClickButton(Button.B_YES);
-        
-        
-        
+
+
+
         //-- Verification
-        
+
         // On the server, verify the appointment is in the trash
         app.zGetActiveAccount().soapSend(
         			"<SearchRequest xmlns='urn:zimbraMail' types='appointment' calExpandInstStart='"+ startTime.addDays(-7).toMillis() +"' calExpandInstEnd='"+ endTime.addDays(7).toMillis() +"'>"
@@ -128,27 +124,26 @@ public class DeleteSeries extends AjaxCommonTest {
         ZAssert.assertEquals(app.zPageCalendar.zIsAppointmentExists(apptSubject), false, "Verify instance is deleted from the calendar");
         //boolean deleted = app.zPageCalendar.zWaitForElementDeleted(app.zPageCalendar.zGetApptLocator(apptSubject), "10000");
         //ZAssert.assertEquals(deleted, true, "Verify instance is deleted from the calendar");
-
-        
 	}
+
 	
 	@Bugs(ids = "69132")
-	@Test(
-			description = "Delete entire series of recurring appointment (every week) using context menu in day view", 
+	@Test(description = "Delete entire series of recurring appointment (every week) using context menu in day view",
 			groups = { "smoke", "L1" } )
+	
 	public void DeleteSeries_02() throws HarnessException {
-		
+
 		// Appointment data
 		String tz, apptSubject, apptBody;
 		tz = ZTimeZone.getLocalTimeZone().getID();
 		apptSubject = ConfigProperties.getUniqueString();
 		apptBody = "body" + ConfigProperties.getUniqueString();
-		
+
 		// Absolute dates in UTC zone
 		Calendar now = Calendar.getInstance();
 		ZDate startTime = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 9, 0, 0);
 		ZDate endTime   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 10, 0, 0);
-		
+
 		app.zGetActiveAccount().soapSend(
 				"<CreateAppointmentRequest xmlns='urn:zimbraMail'>" +
 					"<m>"+
@@ -173,9 +168,9 @@ public class DeleteSeries extends AjaxCommonTest {
 
 		// Verify appointment exists in current view
         ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
-		
+
         app.zPageCalendar.zListItem(Action.A_LEFTCLICK, apptSubject);
-        
+
         // If you right-click an instance and select delete from the context menu, you
         // get one dialog:
         // First: do you want to delete all occurrences or this instance and all future instances
@@ -188,11 +183,11 @@ public class DeleteSeries extends AjaxCommonTest {
         }
         // confirmDelete.zClickButton(Button.B_DELETE_ALL_OCCURRENCES);
         confirmDelete.zClickButton(Button.B_YES);
-        
-        
-        
+
+
+
         //-- Verification
-        
+
         // On the server, verify the appointment is in the trash
         app.zGetActiveAccount().soapSend(
         			"<SearchRequest xmlns='urn:zimbraMail' types='appointment' calExpandInstStart='"+ startTime.addDays(-7).toMillis() +"' calExpandInstEnd='"+ endTime.addDays(7).toMillis() +"'>"
@@ -210,9 +205,8 @@ public class DeleteSeries extends AjaxCommonTest {
         ZAssert.assertEquals(app.zPageCalendar.zIsAppointmentExists(apptSubject), false, "Verify instance is deleted from the calendar");
         //boolean deleted = app.zPageCalendar.zWaitForElementDeleted(app.zPageCalendar.zGetApptLocator(apptSubject), "10000");
         //ZAssert.assertEquals(deleted, true, "Verify instance is deleted from the calendar");
-
-        
 	}
+
 	
 	@DataProvider(name = "DataProviderShortcutKeys")
 	public Object[][] DataProviderShortcutKeys() {
@@ -226,20 +220,20 @@ public class DeleteSeries extends AjaxCommonTest {
 	@Test( description = "Delete entire series appointment (every week) using keyboard shortcuts Del & Backspace in day view",
 			groups = { "functional", "L3" },
 			dataProvider = "DataProviderShortcutKeys")
-			
+
 	public void DeleteSeries_03(String name, int keyEvent) throws HarnessException {
-		
+
 		// Appointment data
 		String tz, apptSubject, apptBody;
 		tz = ZTimeZone.getLocalTimeZone().getID();
 		apptSubject = ConfigProperties.getUniqueString();
 		apptBody = "body" + ConfigProperties.getUniqueString();
-		
+
 		// Absolute dates in UTC zone
 		Calendar now = Calendar.getInstance();
 		ZDate startTime = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 10, 0, 0);
 		ZDate endTime   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 11, 0, 0);
-		
+
 		app.zGetActiveAccount().soapSend(
 				"<CreateAppointmentRequest xmlns='urn:zimbraMail'>" +
 					"<m>"+
@@ -264,9 +258,9 @@ public class DeleteSeries extends AjaxCommonTest {
 
 		// Verify appointment exists in current view
         ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
-		
+
         app.zPageCalendar.zListItem(Action.A_LEFTCLICK, apptSubject);
-        
+
         DialogWarning deleteRecurringItems = (DialogWarning)app.zPageCalendar.zKeyboardKeyEvent(keyEvent);
         if (deleteRecurringItems == null) {
         	throw new HarnessException("The 'Delete Recurring Items' dialog never appeared.");
@@ -278,11 +272,11 @@ public class DeleteSeries extends AjaxCommonTest {
         }
         // confirmDelete.zClickButton(Button.B_DELETE_ALL_OCCURRENCES);
         confirmDelete.zClickButton(Button.B_YES);
-        
-        
-        
+
+
+
         //-- Verification
-        
+
         // On the server, verify the appointment is in the trash
         app.zGetActiveAccount().soapSend(
         			"<SearchRequest xmlns='urn:zimbraMail' types='appointment' calExpandInstStart='"+ startTime.addDays(-7).toMillis() +"' calExpandInstEnd='"+ endTime.addDays(7).toMillis() +"'>"
@@ -300,12 +294,5 @@ public class DeleteSeries extends AjaxCommonTest {
         ZAssert.assertEquals(app.zPageCalendar.zIsAppointmentExists(apptSubject), false, "Verify instance is deleted from the calendar");
         //boolean deleted = app.zPageCalendar.zWaitForElementDeleted(app.zPageCalendar.zGetApptLocator(apptSubject), "10000");
         //ZAssert.assertEquals(deleted, true, "Verify instance is deleted from the calendar");
-
-        
-
-        
-        
 	}
-	
-	
 }

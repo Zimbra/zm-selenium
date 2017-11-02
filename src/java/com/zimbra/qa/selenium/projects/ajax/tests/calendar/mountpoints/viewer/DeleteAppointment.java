@@ -18,45 +18,45 @@ package com.zimbra.qa.selenium.projects.ajax.tests.calendar.mountpoints.viewer;
 
 import java.awt.event.KeyEvent;
 import java.util.Calendar;
-
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.DialogError;
 
-public class DeleteAppointment extends CalendarWorkWeekTest {
+public class DeleteAppointment extends AjaxCommonTest {
 
 	public DeleteAppointment() {
 		logger.info("New "+ DeleteAppointment.class.getCanonicalName());
 		super.startingPage = app.zPageCalendar;
 	}
-	
+
+
 	@Test( description = "Verify Delete button is disabled and non-functional on mountpoint appointment (read-only share)",
 			groups = { "functional", "L2" })
-			
+
 	public void DeleteAppointment_01() throws HarnessException {
-		
+
 		String apptSubject = ConfigProperties.getUniqueString();
 		String apptBody = ConfigProperties.getUniqueString();
 		String foldername = "folder" + ConfigProperties.getUniqueString();
 		String mountpointname = "mountpoint" + ConfigProperties.getUniqueString();
-		
-		Calendar now = this.calendarWeekDayUTC;
-		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
-		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
-		
+
+		Calendar now = Calendar.getInstance();
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 10, 0, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 11, 0, 0);
+
 		FolderItem calendarFolder = FolderItem.importFromSOAP(ZimbraAccount.Account2(), FolderItem.SystemFolder.Calendar);
-		
+
 		// Create a folder to share
 		ZimbraAccount.Account2().soapSend(
 					"<CreateFolderRequest xmlns='urn:zimbraMail'>"
 				+		"<folder name='" + foldername + "' l='" + calendarFolder.getId() + "' view='appointment'/>"
 				+	"</CreateFolderRequest>");
-		
+
 		FolderItem folder = FolderItem.importFromSOAP(ZimbraAccount.Account2(), foldername);
-		
+
 		// Share it
 		ZimbraAccount.Account2().soapSend(
 					"<FolderActionRequest xmlns='urn:zimbraMail'>"
@@ -64,13 +64,13 @@ public class DeleteAppointment extends CalendarWorkWeekTest {
 				+			"<grant d='"+ app.zGetActiveAccount().EmailAddress +"' gt='usr' perm='r' view='appointment'/>"
 				+		"</action>"
 				+	"</FolderActionRequest>");
-		
+
 		// Mount it
 		app.zGetActiveAccount().soapSend(
 					"<CreateMountpointRequest xmlns='urn:zimbraMail'>"
 				+		"<link l='1' name='"+ mountpointname +"'  rid='"+ folder.getId() +"' zid='"+ ZimbraAccount.Account2().ZimbraId +"' view='appointment' color='3'/>"
 				+	"</CreateMountpointRequest>");
-		
+
 		// Create appointment
 		ZimbraAccount.Account2().soapSend(
 				"<CreateAppointmentRequest xmlns='urn:zimbraMail'>"
@@ -88,18 +88,18 @@ public class DeleteAppointment extends CalendarWorkWeekTest {
 				+			"</mp>"
 				+		"</m>"
 				+	"</CreateAppointmentRequest>");
-		
+
 		// Mark ON/OFF to calendar folders
 		app.zTreeCalendar.zMarkOnOffCalendarFolder("Calendar");
 		app.zTreeCalendar.zMarkOnOffCalendarFolder(mountpointname);
-				
+
 		// Verify appointment exists in current view
         ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
 		app.zPageCalendar.zListItem(Action.A_LEFTCLICK, apptSubject);
-		
+
 		// Verify delete toolbar button is disabled
 		ZAssert.assertTrue(app.zPageCalendar.zVerifyDisabledControl(Button.B_DELETE_DISABLED), "Verify Delete button is disabled");
-		
+
 		// Delete the item
 		app.zPageCalendar.zToolbarPressButton(Button.B_DELETE);
 
@@ -107,37 +107,37 @@ public class DeleteAppointment extends CalendarWorkWeekTest {
 		DialogError dialog = app.zPageMain.zGetErrorDialog(DialogError.DialogErrorID.Zimbra);
 		ZAssert.assertNotNull(dialog, "Verify the PERM DENIED Error Dialog is not created");
 		ZAssert.assertFalse(dialog.zIsActive(), "Verify the PERM DENIED Error Dialog is not appear");
-		
+
 		// Mark ON/OFF to calendar folders
 		app.zTreeCalendar.zMarkOnOffCalendarFolder("Calendar");
 		app.zTreeCalendar.zMarkOnOffCalendarFolder(mountpointname);
 	}
 
-	
+
 	@Test( description = "Verify Delete keyboard shortcut is non-functional on mountpoint appointment (read-only share)",
 			groups = { "functional", "L2" })
-			
+
 	public void DeleteAppointment_02() throws HarnessException {
-		
+
 		String apptSubject = ConfigProperties.getUniqueString();
 		String apptBody = ConfigProperties.getUniqueString();
 		String foldername = "folder" + ConfigProperties.getUniqueString();
 		String mountpointname = "mountpoint" + ConfigProperties.getUniqueString();
-		
-		Calendar now = this.calendarWeekDayUTC;
-		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 03, 0, 0);
-		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 04, 0, 0);
-		
+
+		Calendar now = Calendar.getInstance();
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 11, 0, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
+
 		FolderItem calendarFolder = FolderItem.importFromSOAP(ZimbraAccount.Account2(), FolderItem.SystemFolder.Calendar);
-		
+
 		// Create a folder to share
 		ZimbraAccount.Account2().soapSend(
 					"<CreateFolderRequest xmlns='urn:zimbraMail'>"
 				+		"<folder name='" + foldername + "' l='" + calendarFolder.getId() + "' view='appointment'/>"
 				+	"</CreateFolderRequest>");
-		
+
 		FolderItem folder = FolderItem.importFromSOAP(ZimbraAccount.Account2(), foldername);
-		
+
 		// Share it
 		ZimbraAccount.Account2().soapSend(
 					"<FolderActionRequest xmlns='urn:zimbraMail'>"
@@ -145,13 +145,13 @@ public class DeleteAppointment extends CalendarWorkWeekTest {
 				+			"<grant d='"+ app.zGetActiveAccount().EmailAddress +"' gt='usr' perm='r' view='appointment'/>"
 				+		"</action>"
 				+	"</FolderActionRequest>");
-		
+
 		// Mount it
 		app.zGetActiveAccount().soapSend(
 					"<CreateMountpointRequest xmlns='urn:zimbraMail'>"
 				+		"<link l='1' name='"+ mountpointname +"'  rid='"+ folder.getId() +"' zid='"+ ZimbraAccount.Account2().ZimbraId +"' view='appointment' color='4'/>"
 				+	"</CreateMountpointRequest>");
-		
+
 		// Create appointment
 		ZimbraAccount.Account2().soapSend(
 				"<CreateAppointmentRequest xmlns='urn:zimbraMail'>"
@@ -169,18 +169,18 @@ public class DeleteAppointment extends CalendarWorkWeekTest {
 				+			"</mp>"
 				+		"</m>"
 				+	"</CreateAppointmentRequest>");
-		
+
 		// Mark ON/OFF to calendar folders
 		app.zTreeCalendar.zMarkOnOffCalendarFolder("Calendar");
 		app.zTreeCalendar.zMarkOnOffCalendarFolder(mountpointname);
-		
+
 		// Verify appointment exists in current view
         ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
 		app.zPageCalendar.zListItem(Action.A_LEFTCLICK, apptSubject);
-		
+
 		// Verify delete toolbar button is disabled
 		ZAssert.assertTrue(app.zPageCalendar.zVerifyDisabledControl(Button.B_DELETE_DISABLED), "Verify Delete button is disabled");
-		
+
 		// Delete the item
 		app.zPageMail.zKeyboardKeyEvent(KeyEvent.VK_DELETE);
 

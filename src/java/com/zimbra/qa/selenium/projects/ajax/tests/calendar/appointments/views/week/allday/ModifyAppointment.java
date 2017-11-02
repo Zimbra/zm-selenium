@@ -22,31 +22,28 @@ import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew.Field;
 
-public class ModifyAppointment extends CalendarWorkWeekTest {
+public class ModifyAppointment extends AjaxCommonTest {
 
 	public ModifyAppointment() {
 		logger.info("New " + ModifyAppointment.class.getCanonicalName());
-		
-		// All tests start at the Calendar page
+
 		super.startingPage = app.zPageCalendar;
-
-		// Make sure we are using an account with week view
 		super.startingAccountPreferences = new HashMap<String, String>() {
-			private static final long serialVersionUID = -2913827779459595178L;
-		{
-		    put("zimbraPrefCalendarInitialView", "week");
-		}};
-
+			private static final long serialVersionUID = -2913827779459595178L; {
+				put("zimbraPrefCalendarInitialView", "week");
+			}
+		};
 	}
 
-	@Bugs(ids = "69132")
-	@Test(
-			description = "Modify all-day appointment with subject & body and verify it in week view", 
+
+	@Bugs (ids = "69132")
+	@Test (	description = "Modify all-day appointment with subject & body and verify it in week view",
 			groups = { "functional", "L3" })
+
 	public void ModifyAllDayAppointment_01() throws HarnessException {
 
 		// Creating object for appointment data
@@ -56,12 +53,12 @@ public class ModifyAppointment extends CalendarWorkWeekTest {
 		apptBody = ConfigProperties.getUniqueString();
 		editApptSubject = ConfigProperties.getUniqueString();
         editApptBody = ConfigProperties.getUniqueString();
-		
+
 		// Absolute dates in UTC zone
-		Calendar now = this.calendarWeekDayUTC;
-		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
-		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
-		
+		Calendar now = Calendar.getInstance();
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 18, 0, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 19, 0, 0);
+
         app.zGetActiveAccount().soapSend(
                           "<CreateAppointmentRequest xmlns='urn:zimbraMail'>" +
                                "<m>"+
@@ -78,23 +75,18 @@ public class ModifyAppointment extends CalendarWorkWeekTest {
                          "</CreateAppointmentRequest>");
 
         String apptId = app.zGetActiveAccount().soapSelectValue("//mail:CreateAppointmentResponse", "apptId");
-    
-        // Switch to week view
-        app.zPageCalendar.zToolbarPressPulldown(Button.B_LISTVIEW, Button.O_LISTVIEW_WEEK);
 
-       // Verify appointment exists in current view
+        // Verify appointment exists in current view
         ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
 
         // Open appointment & modify subject, body and save it
         FormApptNew form = (FormApptNew)app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, apptSubject);
-        SleepUtil.sleepMedium();
         ZAssert.assertNotNull(form, "Verify the appointment form opens correctly");
 
         form.zFillField(Field.Subject, editApptSubject);
         form.zFillField(Field.Body, editApptBody);
         form.zToolbarPressButton(Button.B_SAVEANDCLOSE);
-        SleepUtil.sleepMedium();
-        
+
         // Use GetAppointmentRequest to verify the changes are saved
         app.zGetActiveAccount().soapSend("<GetAppointmentRequest  xmlns='urn:zimbraMail' id='"+ apptId +"'/>");
         ZAssert.assertEquals(app.zGetActiveAccount().soapSelectValue("//mail:GetAppointmentResponse//mail:comp", "name"), editApptSubject, "Verify the new appointment name matches");

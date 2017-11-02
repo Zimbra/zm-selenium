@@ -19,10 +19,10 @@ package com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.organizer.s
 import java.util.HashMap;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.QuickAddAppointment;
 
-public class WeekView extends CalendarWorkWeekTest {
+public class WeekView extends AjaxCommonTest {
 
 	public WeekView() {
 		logger.info("New "+ WeekView.class.getCanonicalName());

@@ -79,9 +79,6 @@ public class GetAppointment extends UniversalCommonTest {
 		// Refresh view
         app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
 		
-		// Go to F/B view
-		app.zPageCalendar.zToolbarPressPulldown(Button.B_LISTVIEW, Button.O_LISTVIEW_FREEBUSY);
-
 		// Verify the appointment appears on the page
 		SleepUtil.sleepLong(); //test fails without sleep because calendar view rendering takes time 
 		ZAssert.assertTrue(app.zPageCalendar.zGetApptLocatorFreeBusyView(app.zGetActiveAccount().EmailAddress, apptSubject), "Verify attendee free/busy row exists");

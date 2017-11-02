@@ -79,7 +79,7 @@ public class ZimbraAccount {
 	protected String MyAuthToken = null;
 	protected String MyClientAuthToken = null;
 	public final static String clientAccountName = "local@host.local";
-	
+
 	// Account Attributes
 	// These attributes are set per each test class
 	protected Map<String, String> startingAccountPreferences = new HashMap<String, String>();
@@ -337,9 +337,13 @@ public class ZimbraAccount {
 				put("zimbraPrefTimeZoneId", "America/Chicago");
 			}
 
-			// The following settings are specific to the test harness and
-			// deviate from the default settings to work around
-			// Test harness issues/limitations
+			if (Calendar.getInstance().get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY ||
+				Calendar.getInstance().get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) {
+				put("zimbraPrefCalendarInitialView", "week");
+			}
+
+			/* The following settings are specific to the test harness and deviate from the default settings to work around
+			 * Test harness issues/limitations */
 			put("zimbraPrefLocale", ConfigProperties.getStringProperty("locale"));
 			put("zimbraPrefClientType", "advanced");
 			put("zimbraFeatureTouchClientEnabled", "TRUE");

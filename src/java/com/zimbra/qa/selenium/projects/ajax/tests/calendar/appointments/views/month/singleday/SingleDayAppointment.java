@@ -18,9 +18,7 @@ package com.zimbra.qa.selenium.projects.ajax.tests.calendar.appointments.views.m
 
 import java.util.Calendar;
 import java.util.HashMap;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.ui.Button;
@@ -43,8 +41,9 @@ public class SingleDayAppointment extends AjaxCommonTest {
 		super.startingAccountPreferences = new HashMap<String, String>() {{
 			put("zimbraPrefCalendarInitialView", "month");
 		}};
-
 	}
+	
+	
 	@Bugs(ids = "69132")
 	@Test( description = "Verify the display of a basic appointment in the month view",
 			groups = { "sanity", "L1" })
@@ -72,9 +71,6 @@ public class SingleDayAppointment extends AjaxCommonTest {
 
 		//Verify that the appointments is displayed correctly in month view 
 		boolean displayed = app.zPageCalendar.zVerifyAppointmentInMonthView(startDate,subject);
-		ZAssert.assertTrue(displayed, "The appointment is not created and displayed correctlly in month view");
-
+		ZAssert.assertTrue(displayed, "Verify appointment is displayed correctly in month view");
 	}
-
-
 }

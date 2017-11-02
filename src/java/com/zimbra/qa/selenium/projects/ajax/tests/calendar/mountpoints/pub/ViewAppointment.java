@@ -22,14 +22,15 @@ import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.core.ExecuteHarnessMain;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 
-public class ViewAppointment extends CalendarWorkWeekTest {
+public class ViewAppointment extends AjaxCommonTest {
 
 	public ViewAppointment() {
 		logger.info("New "+ ViewAppointment.class.getCanonicalName());
 		super.startingPage = app.zPageCalendar;
 	}
+
 
 	@Bugs(ids = "47629")
 	@Test( description = "HTML view of public shared calendar not showing appointments",
@@ -43,9 +44,9 @@ public class ViewAppointment extends CalendarWorkWeekTest {
 			String apptContent = ConfigProperties.getUniqueString();
 			String foldername = "folder" + ConfigProperties.getUniqueString();
 
-			Calendar now = this.calendarWeekDayUTC;
-			ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 02, 0, 0);
-			ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 03, 0, 0);
+			Calendar now = Calendar.getInstance();
+			ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 9, 0, 0);
+			ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 10, 0, 0);
 
 			FolderItem calendarFolder = FolderItem.importFromSOAP(ZimbraAccount.Account1(), FolderItem.SystemFolder.Calendar);
 
@@ -92,7 +93,7 @@ public class ViewAppointment extends CalendarWorkWeekTest {
 			} else {
 				port = ExecuteHarnessMain.serverPort;
 			}
-			
+
 			app.zPageCalendar.sOpen(ConfigProperties.getStringProperty("server.scheme") + "://"
 					+ ConfigProperties.getStringProperty("server.host") + ":" + port + "/home/"
 					+ ZimbraAccount.Account1().EmailAddress + "/Calendar/" + foldername + ".html");

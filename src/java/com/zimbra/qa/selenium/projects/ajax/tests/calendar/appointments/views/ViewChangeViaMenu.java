@@ -20,10 +20,10 @@ import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.PageCalendar.Locators;
 
-public class ViewChangeViaMenu extends CalendarWorkWeekTest {
+public class ViewChangeViaMenu extends AjaxCommonTest {
 	
 	public ViewChangeViaMenu() {
 		logger.info("New "+ ViewChangeViaMenu.class.getCanonicalName());

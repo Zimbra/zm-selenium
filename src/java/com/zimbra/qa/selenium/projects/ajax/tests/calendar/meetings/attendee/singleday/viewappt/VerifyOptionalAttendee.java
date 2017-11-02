@@ -17,34 +17,32 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.attendee.singleday.viewappt;
 
 import java.util.*;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.*;
 import com.zimbra.qa.selenium.projects.ajax.ui.DialogWarning;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
 
-public class VerifyOptionalAttendee extends CalendarWorkWeekTest {
+public class VerifyOptionalAttendee extends AjaxCommonTest {
 
 	public VerifyOptionalAttendee() {
 		logger.info("New "+ Edit.class.getCanonicalName());
 		super.startingPage =  app.zPageCalendar;
-		
 	}
-	
-	@Test( description = "View meeting invite by opening it, Edit the invitation and locally save it", 
+
+
+	@Test( description = "View meeting invite by opening it, Edit the invitation and locally save it",
 			groups = { "functional", "L2" })
-			
+
 	public void VerifyOptionalAttendee_01() throws HarnessException {
 
 		// ------------------------ Test data ------------------------------------
-		
+
 		String apptSubject = ConfigProperties.getUniqueString();
 		String apptBody = ConfigProperties.getUniqueString();
-		
-		Calendar now = this.calendarWeekDayUTC;
+
+		Calendar now = Calendar.getInstance();
 		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 8, 0, 0);
 		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 9, 0, 0);
 
@@ -67,17 +65,17 @@ public class VerifyOptionalAttendee extends CalendarWorkWeekTest {
 				+			"</mp>"
 				+		"</m>"
 				+	"</CreateAppointmentRequest>");
-		
+
 		// Verify appointment exists in current view
         ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
-		
+
 		// --------------- Login to attendee & open the invitation ----------------------------------------------------
 		DialogWarning dialog = (DialogWarning)app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, Button.O_EDIT, apptSubject);
 		dialog.zClickButton(Button.B_OK);
-		
+
 		FormApptNew form = new FormApptNew(app);
 		form.zVerifyOptionalAttendee(ZimbraAccount.AccountB().EmailAddress);
-		
+
 	}
-	
+
 }

@@ -28,7 +28,7 @@ import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.SeparateWindowDisplayMail;
 
-public class AcceptProposeNewTime extends CalendarWorkWeekTest {
+public class AcceptProposeNewTime extends AjaxCommonTest {
 
 	public AcceptProposeNewTime() {
 		logger.info("New "+ AcceptProposeNewTime.class.getCanonicalName());
@@ -63,7 +63,7 @@ public class AcceptProposeNewTime extends CalendarWorkWeekTest {
 		organizerEmailAddress = ZimbraAccount.AccountA().EmailAddress;
 		apptAttendee2EmailAddress = ZimbraAccount.AccountB().EmailAddress;
 
-		Calendar now = this.calendarWeekDayUTC;
+		Calendar now = Calendar.getInstance();
 		AppointmentItem appt = new AppointmentItem();
 		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
 		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 13, 0, 0);

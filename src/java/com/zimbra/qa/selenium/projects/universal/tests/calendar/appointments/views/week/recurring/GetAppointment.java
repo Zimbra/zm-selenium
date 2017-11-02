@@ -22,10 +22,8 @@ import org.testng.annotations.Test;
 
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.AppointmentItem;
-import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.universal.core.CalendarWorkWeekTest;
-import com.zimbra.qa.selenium.projects.universal.ui.calendar.ApptWorkWeekView;
 
 public class GetAppointment extends CalendarWorkWeekTest {
 	
@@ -90,13 +88,6 @@ public class GetAppointment extends CalendarWorkWeekTest {
 		// Verify appointment exists in current view
         ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
 		
-	    //verify appt displayed in workweek view
-		ApptWorkWeekView view = (ApptWorkWeekView) app.zPageCalendar.zToolbarPressPulldown(Button.B_LISTVIEW, Button.O_LISTVIEW_WORKWEEK);
-		
-		//wait for the appointment displayed in the view
-		app.zPageCalendar.zWaitForElementPresent("css=div[id*=zli__CLWW__]");
-		
-		ZAssert.assertTrue(view.isApptExist(appt), "Verify appt gets displayed in week view");
 	    
 	}
 }

@@ -21,40 +21,41 @@ import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 
-public class ViewAppointment extends CalendarWorkWeekTest {
+public class ViewAppointment extends AjaxCommonTest {
 
 	public ViewAppointment() {
 		logger.info("New "+ ViewAppointment.class.getCanonicalName());
 		super.startingPage = app.zPageCalendar;
 	}
-	
+
+
 	@Bugs(ids = "46416")
 	@Test( description = "Shared root and Calendar: appointment visibility issues",
 			groups = { "smoke", "L1" })
-			
+
 	public void ViewAppointment_01() throws HarnessException {
-		
+
 		String apptSubject = ConfigProperties.getUniqueString();
 		String apptContent = ConfigProperties.getUniqueString();
 		String foldername = "folder" + ConfigProperties.getUniqueString();
 		String mountpointname = "mountpoint" + ConfigProperties.getUniqueString();
-		
-		Calendar now = this.calendarWeekDayUTC;
-		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 05, 0, 0);
-		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 06, 0, 0);
-		
+
+		Calendar now = Calendar.getInstance();
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 13, 0, 0);
+
 		FolderItem calendarFolder = FolderItem.importFromSOAP(ZimbraAccount.Account8(), FolderItem.SystemFolder.Calendar);
-		
+
 		// Create a folder to share
 		ZimbraAccount.Account8().soapSend(
 					"<CreateFolderRequest xmlns='urn:zimbraMail'>"
 				+		"<folder name='" + foldername + "' l='" + calendarFolder.getId() + "' view='appointment'/>"
 				+	"</CreateFolderRequest>");
-		
+
 		FolderItem folder = FolderItem.importFromSOAP(ZimbraAccount.Account8(), foldername);
-		
+
 		// Share it
 		ZimbraAccount.Account8().soapSend(
 					"<FolderActionRequest xmlns='urn:zimbraMail'>"
@@ -62,13 +63,13 @@ public class ViewAppointment extends CalendarWorkWeekTest {
 				+			"<grant d='"+ app.zGetActiveAccount().EmailAddress +"' gt='usr' perm='rwidx' view='appointment'/>"
 				+		"</action>"
 				+	"</FolderActionRequest>");
-		
+
 		// Mount it
 		app.zGetActiveAccount().soapSend(
 					"<CreateMountpointRequest xmlns='urn:zimbraMail'>"
 				+		"<link l='1' name='"+ mountpointname +"'  rid='"+ folder.getId() +"' zid='"+ ZimbraAccount.Account8().ZimbraId +"' view='appointment' color='5'/>"
 				+	"</CreateMountpointRequest>");
-		
+
 		// Create appointment
 		ZimbraAccount.Account8().soapSend(
 				"<CreateAppointmentRequest xmlns='urn:zimbraMail'>"
@@ -86,7 +87,7 @@ public class ViewAppointment extends CalendarWorkWeekTest {
 				+			"</mp>"
 				+		"</m>"
 				+	"</CreateAppointmentRequest>");
-		
+
 		// Mark ON to mounted calendar folder and select the appointment
 		app.zTreeCalendar.zMarkOnOffCalendarFolder("Calendar");
 		app.zTreeCalendar.zMarkOnOffCalendarFolder(mountpointname);
@@ -96,5 +97,4 @@ public class ViewAppointment extends CalendarWorkWeekTest {
 		ZAssert.assertEquals(app.zPageCalendar.zIsAppointmentExists(apptSubject), false, "Verify that appointment does not exsit in the calendar");
 
 	}
-
 }

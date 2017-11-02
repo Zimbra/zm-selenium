@@ -25,7 +25,7 @@ import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
 /**
  * Represents a "Delete Meeting Request" dialog box,
  * from the viewpoint of the organizer.
- * 
+ *
  * Adds two buttons for processing:
  * - Send Cancellation
  * - Edit Cancellation
@@ -36,10 +36,8 @@ public class DialogConfirmDeleteOrganizer extends DialogWarning {
 	// The ID for the main Dialog DIV
 	public static final String LocatorDivID = "CNF_DEL_SENDEDIT";
 
-	
 	public DialogConfirmDeleteOrganizer(AbsApplication application, AbsTab page) {
 		super(new DialogWarningID(LocatorDivID), application, page);
-				
 		logger.info("new " + DialogConfirmDeleteOrganizer.class.getCanonicalName());
 	}
 
@@ -50,60 +48,42 @@ public class DialogConfirmDeleteOrganizer extends DialogWarning {
 		tracer.trace("Click dialog button " + button);
 		if ( button == null )
 			throw new HarnessException("button cannot be null");
-	
+
 		String locator = null;
 		AbsPage page = null;
 		boolean waitForPostfix = false;
 
 		if (button == Button.B_SEND_CANCELLATION) {
-			
-			// Weird ID string for send cancellation
-			// td[id='No_DWT392'] == Send Cancellation
-			//
 			locator = "css=div[id='"+ this.MyDivId +"'] div[id$='_buttons'] td[id^='No_'] td[id$='_title']";
 			page = null;
 			waitForPostfix = true;
-			
+
 		} else if (button == Button.B_EDIT_CANCELLATION) {
-			
 			locator = "css=div[id='"+ this.MyDivId +"'] div[id$='_buttons'] td[id^='Edit Message'] td[id$='_title']";
 			page = new FormMailNew(this.MyApplication);
 			waitForPostfix = false;
 
 		} else {
-			
 			return ( super.zClickButton(button) );
-
 		}
 
-		// Make sure the locator exists
 		if (!this.sIsElementPresent(locator)) {
 			throw new HarnessException("Button " + button + " locator "
 					+ locator + " not present!");
 		}
 
 		this.zClickAt(locator,"0,0");
-
-		// If the app is busy, wait for it to become active
 		this.zWaitForBusyOverlay();
-		
-		// If page was specified, make sure it is active
+
 		if ( page != null ) {
-			
-			// This function (default) throws an exception if never active
 			page.zWaitForActive();
-			
 		}
 
-		// This dialog could send messages, so wait for the queue
 		if ( waitForPostfix ) {
 			Stafpostqueue sp = new Stafpostqueue();
 			sp.waitForPostqueue();
 		}
 
-
 		return (page);
 	}
-
 }
-

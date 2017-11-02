@@ -15,10 +15,6 @@
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.ui.calendar;
-/**
- * 
- */
-
 
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -27,11 +23,11 @@ import com.zimbra.qa.selenium.projects.ajax.ui.*;
 /**
  * Represents a "Delete Recurring Item(s)" dialog box,
  * for an appointment without attendees.
- * 
+ *
  * Two new options
  * - Delete This Instance
  * - Delete The Series
- * 
+ *
  * No new buttons on this dialog, just OK and Cancel
  * <p>
  */
@@ -56,14 +52,14 @@ public class DialogConfirmDeleteRecurringAppointment extends DialogWarning {
 
 
 
-	
+
 	public AbsPage zClickButton(Button button) throws HarnessException {
 		logger.info(myPageName() + " zClickButton(" + button + ")");
-		
-		
+
+
 		AbsPage page = null;
 		String locator = null;
-		
+
 		// Default behavior is ok for the actions
 		if (button == Button.B_DELETE_THIS_INSTANCE) {
 
@@ -72,7 +68,7 @@ public class DialogConfirmDeleteRecurringAppointment extends DialogWarning {
 
 			sClick(locator);
 			this.zWaitForBusyOverlay();
-			
+
 			return (page);
 
 		} else if (button == Button.B_DELETE_THE_SERIES) {
@@ -82,23 +78,23 @@ public class DialogConfirmDeleteRecurringAppointment extends DialogWarning {
 
 			sClick(locator);
 			this.zWaitForBusyOverlay();
-			
+
 			return (page);
 
 		} else if ( button == Button.B_OK ) {
-			
+
 			// Execute the super steps
 			super.zClickButton(button);
-			
+
 			// Since we won't use zWaitForActive(), pause
 			// for a while to make sure the dialog pops up.
 			SleepUtil.sleepMedium();
-			
+
 			page = new DialogConfirmDeleteSeries(MyApplication, ((AppAjaxClient) MyApplication).zPageCalendar);
 			if (page.zIsActive()) {
 				return (page);
 			}
-			
+
 			page = new DialogConfirmDeleteAppointment(MyApplication, ((AppAjaxClient) MyApplication).zPageCalendar);
 			if (page.zIsActive()) {
 				return (page);
@@ -115,7 +111,7 @@ public class DialogConfirmDeleteRecurringAppointment extends DialogWarning {
 
 		return ( super.zClickButton(button) );
 
-		
+
 	}
 
 }

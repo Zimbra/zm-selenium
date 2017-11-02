@@ -18,37 +18,36 @@ package com.zimbra.qa.selenium.projects.ajax.tests.calendar.appointments.views.w
 
 import java.util.Calendar;
 import java.util.List;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.AutocompleteEntry;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew.Field;
 
-public class CreateAppointment extends CalendarWorkWeekTest {
-	
+public class CreateAppointment extends AjaxCommonTest {
+
 	public CreateAppointment() {
 		logger.info("New "+ CreateAppointment.class.getCanonicalName());
 		super.startingPage = app.zPageCalendar;
 	}
-		
+
+
 	@Test( description = "Create a basic appointment without an attendee",
 			groups = { "sanity", "L0" } )
-	
+
 	public void CreateAppointment_01() throws HarnessException {
-		
+
 		// Create appointment
 		AppointmentItem appt = new AppointmentItem();
-		Calendar now = this.calendarWeekDayUTC;
+		Calendar now = Calendar.getInstance();
 		appt.setSubject(ConfigProperties.getUniqueString());
 		appt.setStartTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 8, 0, 0));
 		appt.setEndTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 9, 0, 0));
 		appt.setContent("content" + ConfigProperties.getUniqueString());
-		
+
 		// Open the new mail form
 		FormApptNew apptForm = (FormApptNew) app.zPageCalendar.zToolbarPressButton(Button.B_NEW);
 		ZAssert.assertNotNull(apptForm, "Verify the new form opened");
@@ -58,33 +57,34 @@ public class CreateAppointment extends CalendarWorkWeekTest {
 
 		// Send the message
 		apptForm.zSubmit();
-			
+
 		// Verify the new appointment exists on the server
 		AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ appt.getSubject() +")", appt.getStartTime().addDays(-7), appt.getEndTime().addDays(7));
 		ZAssert.assertNotNull(actual, "Verify the new appointment is created");
 		ZAssert.assertEquals(actual.getSubject(), appt.getSubject(), "Subject: Verify the appointment data");
 	}
-	
+
+
 	@Test( description = "Create appointment with all the fields and verify it",
 			groups = { "smoke", "L1" } )
-	
+
 	public void CreateAppointment_02() throws HarnessException {
-		
+
 		// Create appointment data
 		ZimbraResource location = new ZimbraResource(ZimbraResource.Type.LOCATION);
 		ZimbraResource equipment = new ZimbraResource(ZimbraResource.Type.EQUIPMENT);
-		
+
 		AppointmentItem appt = new AppointmentItem();
-		
+
 		String apptSubject, apptAttendee1, apptOptional1, apptLocation1, apptEquipment1, apptContent;
-		Calendar now = this.calendarWeekDayUTC;
+		Calendar now = Calendar.getInstance();
 		apptSubject = ConfigProperties.getUniqueString();
 		apptAttendee1 = ZimbraAccount.AccountA().EmailAddress;
 		apptOptional1 = ZimbraAccount.AccountB().EmailAddress;
 		apptLocation1 = location.EmailAddress;
 		apptEquipment1 = equipment.EmailAddress;
 		apptContent = ConfigProperties.getUniqueString();
-		
+
 		appt.setSubject(apptSubject);
 		appt.setAttendees(apptAttendee1);
 		appt.setOptional(apptOptional1);
@@ -93,7 +93,7 @@ public class CreateAppointment extends CalendarWorkWeekTest {
 		appt.setStartTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 9, 0, 0));
 		appt.setEndTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 10, 0, 0));
 		appt.setContent(apptContent);
-	
+
 		// Compose appointment and send it to invitee
 		FormApptNew apptForm = (FormApptNew) app.zPageCalendar.zToolbarPressButton(Button.B_NEW);
 		apptForm.zFill(appt);
@@ -109,7 +109,7 @@ public class CreateAppointment extends CalendarWorkWeekTest {
 		apptForm.zAutocompleteSelectItem(found);
         ZAssert.assertTrue(apptForm.zVerifyEquipment(apptEquipment1), "Verify appointment equipment");
 		apptForm.zSubmit();
-			
+
 		// Verify appointment exists on the server
 		AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ appt.getSubject() +")", appt.getStartTime().addDays(-7), appt.getEndTime().addDays(7));
 		ZAssert.assertNotNull(actual, "Verify the new appointment is created");
@@ -120,25 +120,26 @@ public class CreateAppointment extends CalendarWorkWeekTest {
 		ZAssert.assertStringContains(actual.getEquipment(), appt.getEquipment(), "Equipment: Verify the appointment data");
 		ZAssert.assertEquals(actual.getContent(), appt.getContent(), "Content: Verify the appointment data");
 	}
-		
+
+
 	@Test( description = "Create private appointment",
 			groups = { "functional", "L2"} )
-	
+
 	public void CreatePrivateAppointment_03() throws HarnessException {
-		
+
 		// Create appointment
 		String apptSubject;
-		Calendar now = this.calendarWeekDayUTC;
+		Calendar now = Calendar.getInstance();
 		apptSubject = ConfigProperties.getUniqueString();
 		AppointmentItem appt = new AppointmentItem();
-		
+
 		appt.setSubject(apptSubject);
 		appt.setContent("content" + ConfigProperties.getUniqueString());
 		appt.setAttendees(ZimbraAccount.AccountA().EmailAddress);
 		appt.setStartTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 10, 0, 0));
 		appt.setEndTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 11, 0, 0));
 		appt.setIsPrivate(true);
-	
+
 		// Open the new mail form
 		FormApptNew apptForm = (FormApptNew) app.zPageCalendar.zToolbarPressButton(Button.B_NEW);
 		ZAssert.assertNotNull(apptForm, "Verify the new form opened");
@@ -146,7 +147,7 @@ public class CreateAppointment extends CalendarWorkWeekTest {
 		// Fill the data and submit it
 		apptForm.zFill(appt);
 		apptForm.zSubmit();
-			
+
 		// Verify private appointment exists on the server
 		AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ appt.getSubject() +")");
 		ZAssert.assertNotNull(actual, "Verify the new appointment is created");
@@ -154,19 +155,20 @@ public class CreateAppointment extends CalendarWorkWeekTest {
 		ZAssert.assertEquals(app.zGetActiveAccount().soapMatch("//mail:GetAppointmentResponse//mail:comp", "class", "PRI"), true, "");
 	}
 
+
 	@Test( description = "Create a basic appointment without an attendee in the past ",
 			groups = { "smoke", "L1" } )
-	
+
 	public void CreateAppointment_04() throws HarnessException {
-		
+
 		// Create appointment
 		AppointmentItem appt = new AppointmentItem();
-		Calendar now = this.calendarWeekDayUTC;
+		Calendar now = Calendar.getInstance();
 		appt.setSubject(ConfigProperties.getUniqueString());
-		appt.setStartTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH) - 4, 8, 0, 0));
-		appt.setEndTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH) - 4, 9, 0, 0));
+		appt.setStartTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH) - 4, 11, 0, 0));
+		appt.setEndTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH) - 4, 12, 0, 0));
 		appt.setContent("content" + ConfigProperties.getUniqueString());
-		
+
 		// Open the new mail form
 		FormApptNew apptForm = (FormApptNew) app.zPageCalendar.zToolbarPressButton(Button.B_NEW);
 		ZAssert.assertNotNull(apptForm, "Verify the new form opened");
@@ -174,14 +176,13 @@ public class CreateAppointment extends CalendarWorkWeekTest {
 		// Fill out the form with the data
 		apptForm.zFill(appt);
         ZAssert.assertTrue(apptForm.zVerifyMeetingInPastWarning(), "Verify meeting in past warning appears");
-		
+
 		// Send the message
 		apptForm.zSubmit();
-			
+
 		// Verify the new appointment exists on the server
 		AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ appt.getSubject() +")", appt.getStartTime().addDays(-7), appt.getEndTime().addDays(7));
 		ZAssert.assertNotNull(actual, "Verify the new appointment is created");
 		ZAssert.assertEquals(actual.getSubject(), appt.getSubject(), "Subject: Verify the appointment data");
 	}
-
 }

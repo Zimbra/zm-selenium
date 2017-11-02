@@ -25,12 +25,12 @@ import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.DialogWarning;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
 
-public class ModifyByChangingOrganiser extends CalendarWorkWeekTest {	
-	
+public class ModifyByChangingOrganiser extends AjaxCommonTest {
+
 	public ModifyByChangingOrganiser() {
 		logger.info("New "+ ModifyByChangingOrganiser.class.getCanonicalName());
 		super.startingPage = app.zPageCalendar;
@@ -41,25 +41,25 @@ public class ModifyByChangingOrganiser extends CalendarWorkWeekTest {
 		}};
 
 	}
-	
+
 	@Bugs(ids = "77105")
 	@Test( description = " Changing organizer of an imported appointment is not allowed",
 			groups = { "functional", "L2" })
-			
+
 	public void ModifyByChangingOrganiser_01() throws HarnessException {
 		String foldername = "folder" + ConfigProperties.getUniqueString();
 		String mountPointName = "mountpoint" + ConfigProperties.getUniqueString();
 		String subject = "Meeting scheduled: The Performance Hour";
 		FolderItem calendarFolder = FolderItem.importFromSOAP(ZimbraAccount.Account6(), FolderItem.SystemFolder.Calendar);
-		
+
 		// Create a folder to share
 		ZimbraAccount.Account6().soapSend(
 					"<CreateFolderRequest xmlns='urn:zimbraMail'>"
 				+		"<folder name='" + foldername + "' l='" + calendarFolder.getId() + "' view='appointment'/>"
 				+	"</CreateFolderRequest>");
-		
+
 		FolderItem folder = FolderItem.importFromSOAP(ZimbraAccount.Account6(), foldername);
-		
+
 		// Share it
 		ZimbraAccount.Account6().soapSend(
 					"<FolderActionRequest xmlns='urn:zimbraMail'>"
@@ -67,7 +67,7 @@ public class ModifyByChangingOrganiser extends CalendarWorkWeekTest {
 				+			"<grant d='"+ app.zGetActiveAccount().EmailAddress +"' gt='usr' perm='rwidx' view='appointment'/>"
 				+		"</action>"
 				+	"</FolderActionRequest>");
-		
+
 		// Mount it
 		app.zGetActiveAccount().soapSend(
 					"<CreateMountpointRequest xmlns='urn:zimbraMail'>"
@@ -76,9 +76,9 @@ public class ModifyByChangingOrganiser extends CalendarWorkWeekTest {
 
 		app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
 		SleepUtil.sleepMedium();
-		Calendar today = this.calendarWeekDayUTC;
+		Calendar today = Calendar.getInstance();
 
-		// Import Calendar.ics 
+		// Import Calendar.ics
 		String filename = ConfigProperties.getBaseDirectory() + "/data/public/ics/calendar06/Calendar.ics";
 		File file = null;
 
@@ -91,32 +91,32 @@ public class ModifyByChangingOrganiser extends CalendarWorkWeekTest {
 		rest.setQueryParameter("fmt", "ics");
 		rest.setUploadFile(file);
 		rest.doPost();
-		
+
 		app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
 		SleepUtil.sleepMedium();
 
 		DialogWarning dialog = (DialogWarning)app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, Button.B_OPEN_THE_SERIES, Button.O_EDIT, subject);
 		dialog.zClickButton(Button.B_OK);
-		
+
 		FormApptNew apptForm = new FormApptNew(app);
         String locator = "css=td[id$='_folderSelect'] td[id$='_select_container']";
-        apptForm.sClickAt(locator, "");            
+        apptForm.sClickAt(locator, "");
 
-        locator = "//div[@id='z_shell']/div[contains(@id,'_Menu_') and contains(@class, 'DwtMenu')]";   
-        int count = apptForm.sGetXpathCount(locator);           
+        locator = "//div[@id='z_shell']/div[contains(@id,'_Menu_') and contains(@class, 'DwtMenu')]";
+        int count = apptForm.sGetXpathCount(locator);
         for (int  i = 1; i <= count; i++) {
         	String calPullDown = locator + "[position()=" + i + "]//tr//*[contains(text(),'" + mountPointName + "')]";
         	if (apptForm.zIsVisiblePerPosition(calPullDown, 0, 0)) {
         	    apptForm.sClickAt(calPullDown, "");
         	    break;
-        	}        	
+        	}
         }
         apptForm.zSubmit();
-        
-		Calendar now = this.calendarWeekDayUTC;
+
+		Calendar now = Calendar.getInstance();
 		ZDate start = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, 24, 8, 0, 0);
         SleepUtil.sleepLong();
-      
+
         String search = "Meeting Scheduled";
         // Verify calendar value
 		app.zGetActiveAccount().soapSend(
@@ -125,8 +125,8 @@ public class ModifyByChangingOrganiser extends CalendarWorkWeekTest {
 					+	"</SearchRequest>");
 		String id = app.zGetActiveAccount().soapSelectValue("//mail:appt", "id");
 		ZAssert.assertNotNull(id, "Verify that the appointment was moved to the mountpoint");
-		
-		
-		
+
+
+
 	}
 }

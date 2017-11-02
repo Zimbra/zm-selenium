@@ -20,24 +20,25 @@ import java.awt.event.KeyEvent;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.DialogWarning;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew.Field;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew.Locators;
 
-public class CreateMeetingWithMultilineBody extends CalendarWorkWeekTest {
+public class CreateMeetingWithMultilineBody extends AjaxCommonTest {
 
 	public CreateMeetingWithMultilineBody() {
 		logger.info("New "+ CreateMeetingWithMultilineBody.class.getCanonicalName());
 		super.startingPage = app.zPageCalendar;
 	}
-	
-	@Test( description = "Send a meeting invite by entering multiline body content with HTML compose preferences", 
+
+
+	@Test( description = "Send a meeting invite by entering multiline body content with HTML compose preferences",
 			groups = { "sanity", "L0" })
-	
+
 	public void CreateMeetingWithMultilineHtmlBody_01() throws HarnessException {
-				
+
 		// Create the message data to be sent
 		final String attendees = ZimbraAccount.AccountC().EmailAddress;
 		final String dSubject = "subject" + ConfigProperties.getUniqueString();
@@ -45,18 +46,18 @@ public class CreateMeetingWithMultilineBody extends CalendarWorkWeekTest {
 		final String dBodyHtmlItalic = "<br></div><div><span id=\"_mce_caret\"><em>ItalicString</em>";
 		final String dBodyHtmlRedColorText = "</span></span><br></div><div><span id=\"_mce_caret\"><span style=\"color: rgb(255, 0, 0);\">RedColorText</span><span id=\"_mce_caret\"></span></span>";
 		final String dBodyHtmlGreenBackgroundText = "<br></div><div><span id=\"_mce_caret\"><span style=\"background-color: rgb(0, 128, 0);\">GreenBackgroundText</span><span id=\"_mce_caret\"></span></span>";
-		
+
 		// Open the new appointment form
 		FormApptNew apptForm = (FormApptNew) app.zPageMail.zToolbarPressPulldown(Button.B_NEW, Button.O_NEW_APPOINTMENT);
 		ZAssert.assertNotNull(apptForm, "Verify the new form opened");
-		
+
 		// Fill out the form with the data
 		apptForm.zFillField(Field.Subject, dSubject);
 		apptForm.zFillField(Field.Attendees, attendees);
-		
-		// Scroll down in view so that font and background color selection fully visible on screen 
+
+		// Scroll down in view so that font and background color selection fully visible on screen
 		apptForm.sGetEval("document.getElementsByClassName('mce-ico mce-i-bold')[0].scrollIntoView(true)") ;
-		
+
 		// Enter multiline body HTML text
 		apptForm.sClick(Locators.zBoldButton);
 		apptForm.zKeyboard.zTypeCharacters("BoldString");
@@ -78,7 +79,7 @@ public class CreateMeetingWithMultilineBody extends CalendarWorkWeekTest {
 		apptForm.sClick(Locators.zTextBackgroundColorDropdown);
 		apptForm.sClick(Locators.zTextBackgroundColorTransparent);
 		apptForm.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
-		
+
 		// Send the message
 		apptForm.zSubmit();
 
@@ -87,7 +88,7 @@ public class CreateMeetingWithMultilineBody extends CalendarWorkWeekTest {
 			+			"<query>subject:("+ dSubject +")</query>"
 			+		"</SearchRequest>");
 		String id = ZimbraAccount.AccountC().soapSelectValue("//mail:m", "id");
-		
+
 		ZimbraAccount.AccountC().soapSend(
 					"<GetMsgRequest xmlns='urn:zimbraMail'>"
 			+			"<m id='"+ id +"' html='1'/>"
@@ -97,7 +98,7 @@ public class CreateMeetingWithMultilineBody extends CalendarWorkWeekTest {
 		String to = ZimbraAccount.AccountC().soapSelectValue("//mail:e[@t='t']", "a");
 		String subject = ZimbraAccount.AccountC().soapSelectValue("//mail:su", null);
 		String html = ZimbraAccount.AccountC().soapSelectValue("//mail:mp[@ct='text/html']//mail:content", null).replace("\uFEFF", "");;
-		
+
 		// Verification
 		ZAssert.assertEquals(from, app.zGetActiveAccount().EmailAddress, "Verify the from field is correct");
 		ZAssert.assertEquals(to, ZimbraAccount.AccountC().EmailAddress, "Verify the to field is correct");
@@ -107,29 +108,30 @@ public class CreateMeetingWithMultilineBody extends CalendarWorkWeekTest {
 		ZAssert.assertStringContains(html, dBodyHtmlRedColorText, "Verify the html content");
 		ZAssert.assertStringContains(html, dBodyHtmlGreenBackgroundText, "Verify the html content");
 	}
-	
-	@Test( description = "Send a meeting invite by entering multiline body content with Plain text compose preferences", 
+
+
+	@Test( description = "Send a meeting invite by entering multiline body content with Plain text compose preferences",
 			groups = { "sanity", "L0" })
-	
+
 	public void CreateMeetingWithMultilinePlainTextBody_02() throws HarnessException {
-				
+
 		// Create the message data to be sent
 		final String attendees = ZimbraAccount.AccountC().EmailAddress;
 		final String dSubject = "subject" + ConfigProperties.getUniqueString();
 		final String dPlainTextBody = "Plain text line 1" + '\n' + "Plain text line two" + '\n' + "Plain text line 3";
-		
+
 		// Open the new appointment form
 		FormApptNew apptForm = (FormApptNew) app.zPageMail.zToolbarPressPulldown(Button.B_NEW, Button.O_NEW_APPOINTMENT);
 		ZAssert.assertNotNull(apptForm, "Verify the new form opened");
-		
-		// change compose preference 
+
+		// change compose preference
 		DialogWarning dialog = (DialogWarning)apptForm.zToolbarPressPulldown(Button.B_OPTIONS, Button.O_FORMAT_AS_PLAIN_TEXT);
 		dialog.zClickButton(Button.B_OK);
-		
+
 		// Fill out the form with the data
 		apptForm.zFillField(Field.Subject, dSubject);
 		apptForm.zFillField(Field.Attendees, attendees);
-				
+
 		// Enter multiline body plain text
 		apptForm.sFocus(Locators.zPlainTextBodyField);
 		apptForm.zKeyboard.zTypeCharacters("Plain text line 1");
@@ -137,7 +139,7 @@ public class CreateMeetingWithMultilineBody extends CalendarWorkWeekTest {
 		apptForm.zKeyboard.zTypeCharacters("Plain text line two");
 		apptForm.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
 		apptForm.zKeyboard.zTypeCharacters("Plain text line 3");
-		
+
 		// Send the message
 		apptForm.zSubmit();
 
@@ -146,7 +148,7 @@ public class CreateMeetingWithMultilineBody extends CalendarWorkWeekTest {
 			+			"<query>subject:("+ dSubject +")</query>"
 			+		"</SearchRequest>");
 		String id = ZimbraAccount.AccountC().soapSelectValue("//mail:m", "id");
-		
+
 		ZimbraAccount.AccountC().soapSend(
 					"<GetMsgRequest xmlns='urn:zimbraMail'>"
 			+			"<m id='"+ id +"' html='1'/>"
@@ -156,13 +158,11 @@ public class CreateMeetingWithMultilineBody extends CalendarWorkWeekTest {
 		String to = ZimbraAccount.AccountC().soapSelectValue("//mail:e[@t='t']", "a");
 		String subject = ZimbraAccount.AccountC().soapSelectValue("//mail:su", null);
 		String bodyText = ZimbraAccount.AccountC().soapSelectValue("//mail:mp[@ct='text/plain']//mail:content", null);
-		
+
 		// Verification
 		ZAssert.assertEquals(from, app.zGetActiveAccount().EmailAddress, "Verify the from field is correct");
 		ZAssert.assertEquals(to, ZimbraAccount.AccountC().EmailAddress, "Verify the to field is correct");
 		ZAssert.assertEquals(subject, dSubject, "Verify the subject field is correct");
 		ZAssert.assertStringContains(bodyText, dPlainTextBody, "Verify the subject field is correct");
-		
 	}
-	
 }

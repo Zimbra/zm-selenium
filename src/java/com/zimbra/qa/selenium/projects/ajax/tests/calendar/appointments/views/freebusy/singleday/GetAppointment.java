@@ -24,10 +24,10 @@ import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 
 public class GetAppointment extends AjaxCommonTest {
-	
+
 	public GetAppointment() {
 		logger.info("New "+ GetAppointment.class.getCanonicalName());
-		
+
 		// All tests start at the Calendar page
 		super.startingPage = app.zPageCalendar;
 
@@ -37,24 +37,24 @@ public class GetAppointment extends AjaxCommonTest {
 		{
 		    put("zimbraFeatureFreeBusyViewEnabled", "TRUE");
 		}};
-
-
 	}
+
 	
 	@Bugs(ids = "69132")
 	@Test( description = "View a basic appointment in the free busy view",
 			groups = { "functional", "L2" })
+	
 	public void GetAppointment_01() throws HarnessException {
-		
+
 		// Create the appointment on the server
 		// Create the message data to be sent
 		String apptSubject = ConfigProperties.getUniqueString();
-		
+
 		// Absolute dates in UTC zone
 		Calendar now = Calendar.getInstance();
-		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
-		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
-		
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 15, 0, 0);
+
 		// Get local timezone value
 		String tz = ZTimeZone.getLocalTimeZone().getID();
 
@@ -75,16 +75,16 @@ public class GetAppointment extends AjaxCommonTest {
 				+			"</mp>"
 				+		"</m>"
 				+	"</CreateAppointmentRequest>");
-		
+
 		// Refresh view
         app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
-		
+
 		// Go to F/B view
-		app.zPageCalendar.zToolbarPressPulldown(Button.B_LISTVIEW, Button.O_LISTVIEW_FREEBUSY);
+        app.zPageCalendar.zToolbarPressButton(Button.B_FREEBUSY_VIEW);
 
 		// Verify the appointment appears on the page
-		SleepUtil.sleepLong(); //test fails without sleep because calendar view rendering takes time 
+		SleepUtil.sleepLong(); //test fails without sleep because calendar view rendering takes time
 		ZAssert.assertTrue(app.zPageCalendar.zGetApptLocatorFreeBusyView(app.zGetActiveAccount().EmailAddress, apptSubject), "Verify attendee free/busy row exists");
-	    
+
 	}
 }

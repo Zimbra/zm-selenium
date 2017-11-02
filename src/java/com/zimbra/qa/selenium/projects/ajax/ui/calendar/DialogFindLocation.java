@@ -25,10 +25,10 @@ public class DialogFindLocation extends DialogWarning {
 
 	// The ID for the main Dialog DIV
 	public static final String LocatorDivID = "SEND_UPDATES_DIALOG";
-		
+
 	public DialogFindLocation(AbsApplication application, AbsTab page) {
 		super(new DialogWarningID(LocatorDivID), application, page);
-				
+
 		logger.info("new " + DialogFindLocation.class.getCanonicalName());
 	}
 	public static class Locators {
@@ -45,37 +45,31 @@ public class DialogFindLocation extends DialogWarning {
 		tracer.trace("Click dialog button " + button);
 		if ( button == null )
 			throw new HarnessException("button cannot be null");
-	
+
 		String locator = null;
 		AbsPage page = null;
 		boolean waitForPostfix = false;
 
 		if (button == Button.B_SEARCH_LOCATION) {
-
 			locator = Locators.LocationPickerSerach;
 			page = null;
 
 		} else if (button == Button.B_SELECT_LOCATION) {
-
 			locator = Locators.SelectLocationFromPicker;
 			page = null;
-		
-		} else if (button == Button.B_OK) {
 
+		} else if (button == Button.B_OK) {
 			locator= Locators.AddLocationFromPicker;
 			page = null;
-		
-		} else if (button == Button.B_CANCEL) {
 
+		} else if (button == Button.B_CANCEL) {
 			locator = "css=div[class='DwtDialog'] td[id$='_button1_title']";
 			page = null;
-			                              
-		} else {
-			
-			return ( super.zClickButton(button) );
 
+		} else {
+			return ( super.zClickButton(button) );
 		}
-		
+
 		// Make sure the locator was set
 		if (locator == null) {
 			throw new HarnessException("Button " + button + " not implemented");
@@ -91,7 +85,7 @@ public class DialogFindLocation extends DialogWarning {
 		this.sClickAt(locator, "10,10");
 		this.zWaitForBusyOverlay();
 		SleepUtil.sleepMedium();
-		
+
 		// This dialog could send messages, so wait for the queue
 		if ( waitForPostfix ) {
 			Stafpostqueue sp = new Stafpostqueue();
@@ -100,6 +94,4 @@ public class DialogFindLocation extends DialogWarning {
 
 		return (page);
 	}
-
 }
-

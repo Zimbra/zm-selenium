@@ -27,27 +27,24 @@ import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
 
-public class CreateAppointment extends AjaxCommonTest{
+public class CreateAppointment extends AjaxCommonTest {
 
 	public CreateAppointment() {
 		logger.info("New "+ CreateAppointment.class.getCanonicalName());
 		
-		// All tests start at the Calendar page
 		super.startingPage = app.zPageCalendar;
-
-		// Make sure we are using an account with day view
 		super.startingAccountPreferences = new HashMap<String, String>() {
-			private static final long serialVersionUID = -2913827779459595178L;
-		{
-		    put("zimbraPrefCalendarInitialView", "day");
-		}};
-
+			private static final long serialVersionUID = -2913827779459595178L; {
+				put("zimbraPrefCalendarInitialView", "day");
+			}
+		};
 	}
 
+	
 	@Bugs(ids = "69132")
 	@Test( description = "Create simple all day appointment in day view",
-			groups = { "smoke", "L1" }
-	)
+			groups = { "smoke", "L1" } )
+	
 	public void CreateAllDayAppointment_01() throws HarnessException {
 		
 		// Create appointment

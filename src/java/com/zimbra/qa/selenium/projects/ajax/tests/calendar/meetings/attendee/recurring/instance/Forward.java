@@ -21,33 +21,33 @@ import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew.Field;
 
-public class Forward extends CalendarWorkWeekTest {	
-	
+public class Forward extends AjaxCommonTest {
+
 	public Forward() {
 		logger.info("New "+ Forward.class.getCanonicalName());
 		super.startingPage = app.zPageCalendar;
 	}
-	
+
 	@Test( description = "Forward particular instance by changing content",
 			groups = { "smoke", "L1" })
-			
+
 	public void ForwardMeeting_01() throws HarnessException {
-				
+
 		// Creating a meeting
-		Calendar now = this.calendarWeekDayUTC;
+		Calendar now = Calendar.getInstance();
 		String tz = ZTimeZone.getLocalTimeZone().getID();
-		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 5, 0, 0);
-		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 7, 0, 0);
-		
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 13, 0, 0);
+
 		String apptSubject = ConfigProperties.getUniqueString();
 		String apptBody = "body" + ConfigProperties.getUniqueString();
 		String ForwardContent = ConfigProperties.getUniqueString();
 		String attendee2 = ZimbraAccount.AccountB().EmailAddress;
-		
+
 		ZimbraAccount.AccountA().soapSend(
 				"<CreateAppointmentRequest xmlns='urn:zimbraMail'>" +
 					"<m>"+
@@ -71,18 +71,18 @@ public class Forward extends CalendarWorkWeekTest {
 						"<su>"+ apptSubject +"</su>" +
 					"</m>" +
 				"</CreateAppointmentRequest>");
-        
+
 		// Verify appointment exists in current view
         ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
-        
+
         // Forward appointment to different attendee
         app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_INSTANCE_MENU, Button.O_FORWARD_MENU, apptSubject);
-        
+
         FormApptNew form = new FormApptNew(app);
         form.zFillField(Field.To, attendee2);
         form.zFillField(Field.Body, ForwardContent);
         form.zSubmit();
-		
+
 		// Verify the new invitation appears in the inbox
 		ZimbraAccount.AccountB().soapSend(
 				"<SearchRequest xmlns='urn:zimbraMail' types='message'>"
@@ -90,7 +90,7 @@ public class Forward extends CalendarWorkWeekTest {
 			+	"</SearchRequest>");
 		String id = ZimbraAccount.AccountB().soapSelectValue("//mail:m", "id");
 		ZAssert.assertNotNull(id, "Verify the new invitation appears in the attendee's inbox");
-		
+
 		ZimbraAccount.AccountB().soapSend(
 				"<GetMsgRequest  xmlns='urn:zimbraMail'>"
 			+		"<m id='"+ id +"'/>"
@@ -99,7 +99,7 @@ public class Forward extends CalendarWorkWeekTest {
 		// Verify only one appointment is in the calendar
 		AppointmentItem a = AppointmentItem.importFromSOAP(ZimbraAccount.AccountB(), "subject:("+ apptSubject +")"  + " " + "content:(" + ForwardContent +")");
 		ZAssert.assertNotNull(a, "Verify only one appointment matches in the calendar");
-		
+
 		// Verify meeting notification to organizer
 		ZimbraAccount.AccountA().soapSend(
 				"<SearchRequest xmlns='urn:zimbraMail' types='message'>"
@@ -107,15 +107,15 @@ public class Forward extends CalendarWorkWeekTest {
 			+	"</SearchRequest>");
 		id = ZimbraAccount.AccountA().soapSelectValue("//mail:m", "id");
 		ZAssert.assertNotNull(id, "Verify meeting notification to organizer");
-		
+
 		ZimbraAccount.AccountB().soapSend(
 				"<SearchRequest xmlns='urn:zimbraMail' types='appointment' calExpandInstStart='"+ startUTC.addDays(-10).toMillis() +"' calExpandInstEnd='"+ endUTC.addDays(10).toMillis() +"'>"
 			+		"<query>"+ apptSubject +"</query>"
 			+	"</SearchRequest>");
-	
+
 		String attendeeInvId = ZimbraAccount.AccountB().soapSelectValue("//mail:appt", "invId");
 		ZimbraAccount.AccountB().soapSend("<GetAppointmentRequest  xmlns='urn:zimbraMail' id='"+ attendeeInvId +"'/>");
-		
+
 		String ruleFrequency = ZimbraAccount.AccountB().soapSelectValue("//mail:appt//mail:rule", "freq");
 		String interval = ZimbraAccount.AccountB().soapSelectValue("//mail:appt//mail:interval", "ival");
 		String exceptId = ZimbraAccount.AccountB().soapSelectValue("//mail:appt//mail:exceptId", "d");
@@ -123,5 +123,4 @@ public class Forward extends CalendarWorkWeekTest {
 		ZAssert.assertNull(interval, "Repeat interval: Verify the appointment data");
 		ZAssert.assertEquals(exceptId, startUTC.toyyyyMMddTHHmmss(), "Verify that particular instance is forwarded properly");
 	}
-	
 }

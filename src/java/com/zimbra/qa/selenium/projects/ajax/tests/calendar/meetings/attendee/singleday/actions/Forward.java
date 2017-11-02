@@ -26,38 +26,39 @@ import com.zimbra.qa.selenium.framework.items.MailItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew.Field;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
 
 @SuppressWarnings("unused")
-public class Forward extends CalendarWorkWeekTest {	
-	
+public class Forward extends AjaxCommonTest {
+
 	public Forward() {
 		logger.info("New "+ Forward.class.getCanonicalName());
 		super.startingPage = app.zPageCalendar;
 	}
-	
+
+
 	@Test( description = "Forward a meeting invite by changing content",
 			groups = { "smoke", "L1" })
-			
+
 	public void ForwardMeeting_01() throws HarnessException {
-				
+
 		// Creating a meeting
 		String apptSubject = ConfigProperties.getUniqueString();
 		String apptContent = ConfigProperties.getUniqueString();
-		
+
 		String ForwardContent = ConfigProperties.getUniqueString();
 		String attendee1 = ZimbraAccount.AccountA().EmailAddress;
 		String attendee2 = ZimbraAccount.AccountB().EmailAddress;
-		
+
 		// Absolute dates in UTC zone
-		Calendar now = this.calendarWeekDayUTC;
-		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
-		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
-		
+		Calendar now = Calendar.getInstance();
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 10, 0, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 11, 0, 0);
+
 		ZimbraAccount.AccountA().soapSend(
 				"<CreateAppointmentRequest xmlns='urn:zimbraMail'>"
 				+		"<m>"
@@ -74,12 +75,12 @@ public class Forward extends CalendarWorkWeekTest {
 				+			"</mp>"
 				+		"</m>"
 				+	"</CreateAppointmentRequest>");
-		
+
 		// Verify appointment exists in current view
         ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
-        
+
         // Forward appointment to different attendee
-        app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_FORWARD_MENU, apptSubject);    
+        app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_FORWARD_MENU, apptSubject);
         FormApptNew form = new FormApptNew(app);
         form.zFillField(Field.To, attendee2);
         form.zFillField(Field.Body, ForwardContent);
@@ -91,7 +92,7 @@ public class Forward extends CalendarWorkWeekTest {
 			+	"</SearchRequest>");
 		String id = ZimbraAccount.AccountB().soapSelectValue("//mail:m", "id");
 		ZAssert.assertNotNull(id, "Verify the new invitation appears in the attendee's inbox");
-		
+
 		ZimbraAccount.AccountB().soapSend(
 				"<GetMsgRequest  xmlns='urn:zimbraMail'>"
 			+		"<m id='"+ id +"'/>"
@@ -100,7 +101,7 @@ public class Forward extends CalendarWorkWeekTest {
 		// Verify only one appointment is in the calendar
 		AppointmentItem a = AppointmentItem.importFromSOAP(ZimbraAccount.AccountB(), "subject:("+ apptSubject +")"  + " " + "content:(" + ForwardContent +")");
 		ZAssert.assertNotNull(a, "Verify only one appointment matches in the calendar");
-		
+
 		// Verify meeting notification to organizer
 		ZimbraAccount.AccountA().soapSend(
 				"<SearchRequest xmlns='urn:zimbraMail' types='message'>"
@@ -110,38 +111,38 @@ public class Forward extends CalendarWorkWeekTest {
 		ZAssert.assertNotNull(id, "Verify meeting notification to organizer");
 
 	}
-	
-	
+
+
 	@Bugs(ids="50663")
 	@Test( description = "Forward a meeting invite after accepting it",
 			groups = { "functional", "L2" })
-			
+
 	public void ForwardMeeting_02() throws HarnessException {
-				
+
 		// Creating a meeting
 		String apptSubject = ConfigProperties.getUniqueString();
 		String apptContent = ConfigProperties.getUniqueString();
-		
+
 		String attendee1 = ZimbraAccount.AccountA().EmailAddress;
 		String attendee2 = ZimbraAccount.AccountB().EmailAddress;
-		
+
 		// Absolute dates in UTC zone
-		Calendar now = this.calendarWeekDayUTC;
-		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
-		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
+		Calendar now = Calendar.getInstance();
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 11, 0, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
 
 	    ZimbraAdminAccount.GlobalAdmin().soapSend(
-	    	      "<ModifyAccountRequest xmlns='urn:zimbraAdmin'><id>" + 
-	    	      ZimbraAccount.AccountA().ZimbraId + "</id>" + 
-	    	      "<a n='zimbraPrefGroupMailBy'>message</a>" + 
+	    	      "<ModifyAccountRequest xmlns='urn:zimbraAdmin'><id>" +
+	    	      ZimbraAccount.AccountA().ZimbraId + "</id>" +
+	    	      "<a n='zimbraPrefGroupMailBy'>message</a>" +
 	    	      "</ModifyAccountRequest>");
-	    
+
 	    ZimbraAdminAccount.GlobalAdmin().soapSend(
-	    	      "<ModifyAccountRequest xmlns='urn:zimbraAdmin'><id>" + 
-	    	      ZimbraAccount.AccountB().ZimbraId + "</id>" + 
-	    	      "<a n='zimbraPrefGroupMailBy'>message</a>" + 
+	    	      "<ModifyAccountRequest xmlns='urn:zimbraAdmin'><id>" +
+	    	      ZimbraAccount.AccountB().ZimbraId + "</id>" +
+	    	      "<a n='zimbraPrefGroupMailBy'>message</a>" +
 	    	      "</ModifyAccountRequest>");
-		
+
 		ZimbraAccount.AccountA().soapSend(
 				"<CreateAppointmentRequest xmlns='urn:zimbraMail'>"
 				+		"<m>"
@@ -158,52 +159,52 @@ public class Forward extends CalendarWorkWeekTest {
 				+			"</mp>"
 				+		"</m>"
 				+	"</CreateAppointmentRequest>");
-        
+
 		// Verify appointment exists in current view
         ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
-        
+
 		// --------------- Login to attendee & accept invitation ----------------------------------------------------
 
 		app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_ACCEPT_MENU, apptSubject);
-		
+
 		app.zPageMain.zLogout();
 		app.zPageLogin.zLogin(ZimbraAccount.AccountA());
-		
+
 		// Refresh the view
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
-		
+
 		//Go to sent folder and forward
 		FolderItem sent = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Sent);
 		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK,sent);
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);
-		
+
 		// Forward the item
 		FormMailNew mailForm = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_FORWARD);
-		
+
 		// Fill out the form with the data
 		FormApptNew apptForm = new FormApptNew(app);
 		apptForm.zFillField(Field.To, attendee2);
 		apptForm.zSubmit();
-		
+
 		//Logout and login as AccountB
 		app.zPageMain.zLogout();
 		app.zPageLogin.zLogin(ZimbraAccount.AccountB());
-		
+
 		// Refresh the view
 		app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
 
 		// Select the invitation and verify Accept/decline/Tentative buttons are present
 		DisplayMail display = (DisplayMail)app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);
 		ZAssert.assertTrue(display.zHasADTButtons(), "Verify A/D/T buttons");
-
 	}
+
 
 	@Bugs(ids="100340")
 	@Test( description = "forwarding invite shows html source in meeting notes section",
 			groups = { "functional", "L2" })
-			
+
 	public void ForwardMeeting_03() throws HarnessException {
-		
+
 		app.zPageMain.zLogout();
 		ZimbraAccount.AccountZCS().soapSend(
 				"<ModifyPrefsRequest xmlns='urn:zimbraAccount'>"
@@ -211,24 +212,24 @@ public class Forward extends CalendarWorkWeekTest {
 			+		"<pref name='zimbraPrefForwardReplyInOriginalFormat'>"+ "FALSE" +"</pref>"
 			+	"</ModifyPrefsRequest>");
 		app.zPageLogin.zLogin(ZimbraAccount.AccountZCS());
-		
+
 		String attendee2 = ZimbraAccount.Account2().EmailAddress;
-		
+
 		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug100340/bug100340.txt";
 		final String apptSubject = "Schedule for Generic Training";
 		final String apptContent = "<div>";
 
 		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
-		
+
 		// Verify mail exists
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(apptSubject), "Verify message displayed in current view");
-		
+
 		// Forward invite
 		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
 		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK,inbox);
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);
 		FormMailNew mailForm = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_FORWARD);
-		
+
 		// Fill out the form with the data
 		FormApptNew apptForm = new FormApptNew(app);
 		ZAssert.assertStringDoesNotContain(apptForm.zGetApptBodyHtml(), "<div>", "Verify populated appointment does not contain <div> tag");
@@ -236,21 +237,22 @@ public class Forward extends CalendarWorkWeekTest {
 		ZAssert.assertStringDoesNotContain(apptForm.zGetApptBodyHtml(), "<td>", "Verify populated appointment does not contain <td> tag");
 		apptForm.zFillField(Field.To, attendee2);
 		apptForm.zSubmit();
-		
+
 		// Logout and login as AccountB
 		app.zPageMain.zLogout();
 		app.zPageLogin.zLogin(ZimbraAccount.Account2());
-		
+
 		// Verify mail exists
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists("Fwd: " + apptSubject), "Verify message displayed in current view");
 	}
-	
+
+
 	@Bugs(ids="100340")
 	@Test( description = "forwarding invite shows html source in meeting notes section",
 			groups = { "functional", "L2" })
-			
+
 	public void ForwardMeeting_04() throws HarnessException {
-		
+
 		app.zPageMain.zLogout();
 		ZimbraAccount.AccountZCS().soapSend(
 				"<ModifyPrefsRequest xmlns='urn:zimbraAccount'>"
@@ -258,23 +260,23 @@ public class Forward extends CalendarWorkWeekTest {
 			+		"<pref name='zimbraPrefForwardReplyInOriginalFormat'>"+ "FALSE" +"</pref>"
 			+	"</ModifyPrefsRequest>");
 		app.zPageLogin.zLogin(ZimbraAccount.AccountZCS());
-		
+
 		String attendee2 = ZimbraAccount.Account3().EmailAddress;
-		
+
 		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug106342/bug106342.txt";
 		final String apptSubject = "Group photo with Steve";
 
 		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
-		
+
 		// Verify mail exists
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(apptSubject), "Verify message displayed in current view");
-		
+
 		// Forward invite
 		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
 		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK,inbox);
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);
 		FormMailNew mailForm = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_FORWARD);
-		
+
 		// Fill out the form with the data
 		FormApptNew apptForm = new FormApptNew(app);
 		ZAssert.assertStringDoesNotContain(apptForm.zGetApptBodyValue(), "<div>", "Verify populated appointment does not contain <div> tag");
@@ -285,7 +287,7 @@ public class Forward extends CalendarWorkWeekTest {
 		ZAssert.assertStringDoesNotContain(apptForm.zGetApptBodyValue(), "</html>", "Verify populated appointment does not contain </html> tag");
 		apptForm.zFillField(Field.To, attendee2);
 		apptForm.zSubmit();
-		
+
 		// Verify the attendee receives the invitation
 		MailItem invite = MailItem.importFromSOAP(ZimbraAccount.Account3(), "subject:("+ apptSubject +")");
 		ZAssert.assertNotNull(invite, "Verify the invite is received");

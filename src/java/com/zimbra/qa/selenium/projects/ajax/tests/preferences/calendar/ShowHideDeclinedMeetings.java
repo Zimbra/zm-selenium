@@ -29,12 +29,12 @@ import com.zimbra.qa.selenium.framework.util.ZTimeZone;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.DialogConfirmationDeclineAppointment;
 import java.util.Calendar;
 import org.testng.annotations.Test;
 
-public class ShowHideDeclinedMeetings extends CalendarWorkWeekTest {
+public class ShowHideDeclinedMeetings extends AjaxCommonTest {
 
   public ShowHideDeclinedMeetings()
   {
@@ -50,7 +50,7 @@ public class ShowHideDeclinedMeetings extends CalendarWorkWeekTest {
 	  
     String apptSubject = ConfigProperties.getUniqueString();
     
-    Calendar now = this.calendarWeekDayUTC;
+    Calendar now = Calendar.getInstance();
     ZDate startUTC = new ZDate(now.get(1), now.get(2) + 1, now.get(5), 12, 0, 0);
     ZDate endUTC = new ZDate(now.get(1), now.get(2) + 1, now.get(5), 14, 0, 0);
 

@@ -20,26 +20,27 @@ import java.util.Calendar;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 
-public class Open extends CalendarWorkWeekTest {
+public class Open extends AjaxCommonTest {
 
 	public Open() {
 		logger.info("New "+ Open.class.getCanonicalName());
 		super.startingPage =  app.zPageCalendar;
-		
 	}
-	
+
+
 	@Test( description = "Rt-click to invite and open it",
 			groups = { "smoke", "L1" })
+
 	public void OpenMeeting_01() throws HarnessException {
-		
+
 		organizerTest = false;
 		String apptSubject = ConfigProperties.getUniqueString();
 		String apptBody = ConfigProperties.getUniqueString();
 
-		Calendar now = this.calendarWeekDayUTC;
-		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
+		Calendar now = Calendar.getInstance();
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 13, 0, 0);
 		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
 
 		ZimbraAccount.AccountA().soapSend(
@@ -57,7 +58,7 @@ public class Open extends CalendarWorkWeekTest {
 				+				"<content>" + apptBody + "</content>"
 				+			"</mp>"
 				+		"</m>"
-				+	"</CreateAppointmentRequest>");        
+				+	"</CreateAppointmentRequest>");
 
 		// Verify appointment exists in current view
         ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
@@ -65,8 +66,5 @@ public class Open extends CalendarWorkWeekTest {
         app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_OPEN_MENU, apptSubject);
         ZAssert.assertEquals(app.zPageCalendar.zGetApptSubjectFromReadOnlyAppt(), apptSubject, "Verify appointment subject from read only appointment UI");
         ZAssert.assertEquals(app.zPageCalendar.zGetApptBodyFromReadOnlyAppt(), apptBody, "Verify appointment body from read only appointment UI");
-        
-        
 	}
-	
 }

@@ -18,56 +18,55 @@ package com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.organizer.s
 
 import java.util.Calendar;
 import org.testng.annotations.*;
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.QuickAddAppointment;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew.Field;
-	
-public class SuggestALocation extends CalendarWorkWeekTest {	
-	
+
+public class SuggestALocation extends AjaxCommonTest {
+
 	public SuggestALocation() {
 		logger.info("New "+ SuggestALocation.class.getCanonicalName());
 		super.startingPage = app.zPageCalendar;
 	}
-	
-	
+
+
 	@Bugs(ids = "107050")
 	@Test( description = "Suggest a free location while creating appointment from quick add dialog",
 			groups = { "functional", "L2" })
-	
+
 	public void SuggestALocation_01() throws HarnessException {
-		
+
 		AppointmentItem appt = new AppointmentItem();
-		Calendar now = this.calendarWeekDayUTC;
+		Calendar now = Calendar.getInstance();
 		ZimbraResource location = new ZimbraResource(ZimbraResource.Type.LOCATION);
-		
+
 		String apptSubject, apptAttendee, apptLocation, apptContent;
 		apptSubject = ConfigProperties.getUniqueString();
 		apptAttendee = ZimbraAccount.AccountA().EmailAddress;
 		apptLocation = location.EmailAddress;
 		apptContent = ConfigProperties.getUniqueString();
-		
+
 		appt.setSubject(apptSubject);
-		appt.setStartTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 8, 0, 0));
+		appt.setStartTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 9, 0, 0));
 		appt.setEndTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 10, 0, 0));
 		appt.setLocation(apptLocation);
-	
+
 		// Quick add appointment dialog
 		QuickAddAppointment quickAddAppt = new QuickAddAppointment(app) ;
 		quickAddAppt.zNewAppointmentUsingMiniCal();
 		quickAddAppt.zFill(appt);
 		quickAddAppt.zMoreDetails();
-		
+
 		// Add attendees and body from main form
 		FormApptNew apptForm = new FormApptNew(app);
         apptForm.zFillField(Field.Attendees, apptAttendee);
         apptForm.zFillField(Field.Body, apptContent);
 		apptForm.zSubmitWithResources();
-		
+
 		// Verify appointment exists on the server
 		AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ apptSubject +")", appt.getStartTime().addDays(-7), appt.getEndTime().addDays(7));
 		ZAssert.assertNotNull(actual, "Verify the new appointment is created");
@@ -87,10 +86,10 @@ public class SuggestALocation extends CalendarWorkWeekTest {
 		MailItem invite = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "subject:("+ apptSubject +")");
 		ZAssert.assertNotNull(invite, "Verify the invite is received");
 		ZAssert.assertEquals(invite.dSubject, apptSubject, "Subject: Verify the appointment data");
-		
-		// Verify location free/busy status shows as ptst=AC	
+
+		// Verify location free/busy status shows as ptst=AC
 		String locationStatus = app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ apptLocation +"']", "ptst");
 		ZAssert.assertEquals(locationStatus, "AC", "Verify that the location status shows as 'ACCEPTED'");
 	}
-	
+
 }

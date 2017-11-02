@@ -27,36 +27,34 @@ import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 
 public class GetAppointment extends AjaxCommonTest {
-	
-	@SuppressWarnings("serial")
+
 	public GetAppointment() {
 		logger.info("New "+ GetAppointment.class.getCanonicalName());
-		
-		// All tests start at the Calendar page
+
 		super.startingPage = app.zPageCalendar;
-
-		// Make sure we are using an account with list view
-		super.startingAccountPreferences = new HashMap<String, String>() {{
-		    put("zimbraPrefCalendarInitialView", "list");
-		}};
-
+		super.startingAccountPreferences = new HashMap<String, String>() {
+			private static final long serialVersionUID = -2913827779459595178L; {
+				put("zimbraPrefCalendarInitialView", "list");
+			}
+		};
 	}
-	
+
+
 	@Bugs(ids = "69132")
 	@Test( description = "View a basic appointment in the list view",
 			groups = { "functional", "L2" })
+	
 	public void GetAppointment_01() throws HarnessException {
-		
+
 		// Create the appointment on the server
 		// Create the message data to be sent
 		String subject = ConfigProperties.getUniqueString();
-		
-		
+
 		// Absolute dates in UTC zone
 		Calendar now = Calendar.getInstance();
-		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
-		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
-		
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 15, 0, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 16, 0, 0);
+
 		// Get local timezone value
 		String tz = ZTimeZone.getLocalTimeZone().getID();
 
@@ -77,11 +75,11 @@ public class GetAppointment extends AjaxCommonTest {
 				+			"</mp>"
 				+		"</m>"
 				+	"</CreateAppointmentRequest>");
-		
+
 		app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
-		
+
 		SleepUtil.sleep(5000);
-		
+
 		AppointmentItem found = null;
 		List<AppointmentItem> appts = app.zPageCalendar.zListGetAppointments();
 		for (AppointmentItem item : appts) {
@@ -90,28 +88,27 @@ public class GetAppointment extends AjaxCommonTest {
 				break;
 			}
 		}
-		
+
 		ZAssert.assertNotNull(found, "Verify the appointment is in the list");
-		
-	    
 	}
+
 
 	@Test( description = "Verify all fields show up in List View",
 			groups = { "functional", "L2" })
+
 	public void GetAppointment_02() throws HarnessException {
-		
+
 		// Create the appointment on the server
 		// Create the message data to be sent
 		String subject = ConfigProperties.getUniqueString();
 		String location = "location" + ConfigProperties.getUniqueString();
 		String content = "content" + ConfigProperties.getUniqueString();
-		
-		
+
 		// Absolute dates in UTC zone
 		Calendar now = Calendar.getInstance();
-		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
-		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
-		
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 16, 0, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 17, 0, 0);
+
 		// Get local timezone value
 		String tz = ZTimeZone.getLocalTimeZone().getID();
 
@@ -132,11 +129,11 @@ public class GetAppointment extends AjaxCommonTest {
 				+			"</mp>"
 				+		"</m>"
 				+	"</CreateAppointmentRequest>");
-		
+
 		app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
-		
+
 		SleepUtil.sleep(5000);
-		
+
 		AppointmentItem found = null;
 		List<AppointmentItem> appts = app.zPageCalendar.zListGetAppointments();
 		for (AppointmentItem item : appts) {
@@ -145,16 +142,13 @@ public class GetAppointment extends AjaxCommonTest {
 				break;
 			}
 		}
-		
+
 		ZAssert.assertNotNull(found, "Verify the appointment is in the list");
-		
+
 	    ZAssert.assertEquals(found.getGSubject(), subject, "Verify the appointment subject");
 	    ZAssert.assertStringContains(found.getGFragment(), content, "Verify the appointment fragment");
 	    ZAssert.assertEquals(found.getGLocation(), location, "Verify the appointment location");
 	    // TODO: need to determine how to convert the date to locale
 	    // ZAssert.assertEquals(found.getGStartDate(), subject, "Verify the appointment subject");
-
-
 	}
-
 }

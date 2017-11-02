@@ -27,19 +27,21 @@ import com.zimbra.qa.selenium.framework.util.ZDate;
 import com.zimbra.qa.selenium.framework.util.ZTimeZone;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.PageCalendar.Locators;
 
-public class ModifyMeetingPrivateToPublic extends CalendarWorkWeekTest {
-	
+public class ModifyMeetingPrivateToPublic extends AjaxCommonTest {
+
 	public ModifyMeetingPrivateToPublic() {
 		logger.info("New " + ModifyMeetingPrivateToPublic.class.getCanonicalName());
 		super.startingPage = app.zPageCalendar;
 	}
-	
-	@Test( description = "Modify Meeting class from Private to Public", 
+
+
+	@Test( description = "Modify Meeting class from Private to Public",
 			groups = { "functional", "L2" })
+
 	public void ModifyMeetingPrivateToPublic_01() throws HarnessException {
 
 		// Creating object for meeting data
@@ -47,12 +49,12 @@ public class ModifyMeetingPrivateToPublic extends CalendarWorkWeekTest {
 		String apptSubject = ConfigProperties.getUniqueString();
 		String apptAttendee1 = ZimbraAccount.AccountA().EmailAddress;
 		AppointmentItem appt = new AppointmentItem();
-		
+
 		// Absolute dates in UTC zone
-		Calendar now = this.calendarWeekDayUTC;
-		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 9, 0, 0);
-		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 10, 0, 0);
-		
+		Calendar now = Calendar.getInstance();
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 13, 0, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
+
 		app.zGetActiveAccount().soapSend(
                 "<CreateAppointmentRequest xmlns='urn:zimbraMail'>" +
                      "<m>"+
@@ -69,10 +71,10 @@ public class ModifyMeetingPrivateToPublic extends CalendarWorkWeekTest {
                      "<su>"+ apptSubject +"</su>" +
                      "</m>" +
                "</CreateAppointmentRequest>");
-        
+
 		// Verify appointment exists in current view
         ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
-        
+
         // Verify the Original Meeting is a Private Meeting and has Private icon
         ZimbraAccount.AccountA().soapSend(
 				"<SearchRequest xmlns='urn:zimbraMail' types='message'>"
@@ -80,13 +82,13 @@ public class ModifyMeetingPrivateToPublic extends CalendarWorkWeekTest {
 			+	"</SearchRequest>");
 		ZAssert.assertEquals(ZimbraAccount.AccountA().soapSelectValue("//mail:comp", "class"), "PRI", "");
 		ZAssert.assertTrue(app.zPageCalendar.sIsElementPresent(Locators.ImgPrivateAppt), "Private Image is present on the meeting");
-		
+
         // Open Meeting change the class from Private to Public and Send it
         FormApptNew apptForm = (FormApptNew)app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_OPEN, apptSubject);
         appt.setIsPrivate(false);
         apptForm.zFill(appt);
         apptForm.zSubmit();
-        
+
         // Verify the Meeting is now a Public Meeting and does not have Private icon
         ZimbraAccount.AccountA().soapSend(
 				"<SearchRequest xmlns='urn:zimbraMail' types='message'>"
@@ -95,9 +97,11 @@ public class ModifyMeetingPrivateToPublic extends CalendarWorkWeekTest {
 		ZAssert.assertEquals(ZimbraAccount.AccountA().soapSelectValue("//mail:comp", "class"), "PUB", "");
 		ZAssert.assertFalse(app.zPageCalendar.sIsElementPresent(Locators.ImgPrivateAppt), "Private Image is Not present");
 	}
-	
-	@Test( description = "Modify Meeting class from Public to Private", 
+
+
+	@Test( description = "Modify Meeting class from Public to Private",
 			groups = { "functional", "L2" })
+
 	public void ModifyMeetingPublicToPrivate_02() throws HarnessException {
 
 		// Creating object for meeting data
@@ -105,12 +109,12 @@ public class ModifyMeetingPrivateToPublic extends CalendarWorkWeekTest {
 		String apptSubject = ConfigProperties.getUniqueString();
 		String apptAttendee1 = ZimbraAccount.AccountA().EmailAddress;
 		AppointmentItem appt = new AppointmentItem();
-		
+
 		// Absolute dates in UTC zone
-		Calendar now = this.calendarWeekDayUTC;
-		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 10, 0, 0);
-		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 11, 0, 0);
-		
+		Calendar now = Calendar.getInstance();
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 13, 0, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
+
 		app.zGetActiveAccount().soapSend(
                 "<CreateAppointmentRequest xmlns='urn:zimbraMail'>" +
                      "<m>"+
@@ -127,10 +131,10 @@ public class ModifyMeetingPrivateToPublic extends CalendarWorkWeekTest {
                      "<su>"+ apptSubject +"</su>" +
                      "</m>" +
                "</CreateAppointmentRequest>");
-        
+
 		// Verify appointment exists in current view
         ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
-        
+
         // Verify the Original Meeting is a public Meeting and does not have Private icon on appt
         ZimbraAccount.AccountA().soapSend(
 				"<SearchRequest xmlns='urn:zimbraMail' types='message'>"
@@ -138,14 +142,14 @@ public class ModifyMeetingPrivateToPublic extends CalendarWorkWeekTest {
 			+	"</SearchRequest>");
 		ZAssert.assertEquals(ZimbraAccount.AccountA().soapSelectValue("//mail:comp", "class"), "PUB", "");
 		ZAssert.assertFalse(app.zPageCalendar.sIsElementPresent(Locators.ImgPrivateAppt), "Private Image is Not present");
-		
-		
+
+
         // Open Meeting change the class from Public to Private and save it
         FormApptNew apptForm = (FormApptNew)app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_OPEN, apptSubject);
         appt.setIsPrivate(true);
         apptForm.zFill(appt);
         apptForm.zSubmit();
-           
+
         // Verify the Meeting is now a private Meeting and has Private icon
         ZimbraAccount.AccountA().soapSend(
 				"<SearchRequest xmlns='urn:zimbraMail' types='message'>"
@@ -154,5 +158,5 @@ public class ModifyMeetingPrivateToPublic extends CalendarWorkWeekTest {
 		ZAssert.assertEquals(ZimbraAccount.AccountA().soapSelectValue("//mail:comp", "class"), "PRI", "");
 		ZAssert.assertTrue(app.zPageCalendar.sIsElementPresent(Locators.ImgPrivateAppt), "Private Image is present");
 	}
-	
+
 }

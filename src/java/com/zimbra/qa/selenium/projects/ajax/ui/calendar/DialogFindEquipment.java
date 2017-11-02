@@ -25,10 +25,10 @@ public class DialogFindEquipment extends DialogWarning {
 
 	// The ID for the main Dialog DIV
 	public static final String LocatorDivID = "SEND_UPDATES_DIALOG";
-		
+
 	public DialogFindEquipment(AbsApplication application, AbsTab page) {
 		super(new DialogWarningID(LocatorDivID), application, page);
-				
+
 		logger.info("new " + DialogFindEquipment.class.getCanonicalName());
 	}
 	public static class Locators {
@@ -44,35 +44,30 @@ public class DialogFindEquipment extends DialogWarning {
 		tracer.trace("Click dialog button " + button);
 		if ( button == null )
 			throw new HarnessException("button cannot be null");
-	
+
 		String locator = null;
 		AbsPage page = null;
 
 		if (button == Button.B_SEARCH_EQUIPMENT) {
-
 			locator = Locators.EquipmentPickerSerach;
 			page = null;
 
 		} else if (button == Button.B_SELECT_EQUIPMENT) {
-
 			locator = Locators.SelectEquipmentFromPicker;
 			page = null;
-		
-		} else if (button == Button.B_OK) {
 
+		} else if (button == Button.B_OK) {
 			locator= Locators.AddEquipmentFromPicker;
 			page = null;
-		
-		} else if (button == Button.B_CANCEL) {
 
+		} else if (button == Button.B_CANCEL) {
 			locator = "css=div[class='DwtDialog'] td[id$='_button1_title']";
 			page = null;
-			                              
+
 		} else {
-			
 			return ( super.zClickButton(button) );
 		}
-		
+
 		// Make sure the locator was set
 		if (locator == null) {
 			throw new HarnessException("Button " + button + " not implemented");

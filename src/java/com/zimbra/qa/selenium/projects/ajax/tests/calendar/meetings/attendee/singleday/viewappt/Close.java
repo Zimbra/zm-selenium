@@ -22,27 +22,27 @@ import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.*;
 
-public class Close extends CalendarWorkWeekTest {
+public class Close extends AjaxCommonTest {
 
 	public Close() {
 		logger.info("New "+ Close.class.getCanonicalName());
 		super.startingPage =  app.zPageCalendar;
-		
 	}
-	
-	@Test( description = "View meeting invite by opening it and close it", 
+
+
+	@Test( description = "View meeting invite by opening it and close it",
 			groups = { "functional", "L2" })
-			
+
 	public void CloseMeeting_01() throws HarnessException {
 
 		// ------------------------ Test data ------------------------------------
-		
+
 		organizerTest = false;
 		String apptSubject = ConfigProperties.getUniqueString();
 
-		Calendar now = this.calendarWeekDayUTC;
-		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 2, 0, 0);
-		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 3, 0, 0);
+		Calendar now = Calendar.getInstance();
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 15, 0, 0);
 
 
 		// --------------- Creating invitation (organizer) ----------------------------
@@ -62,19 +62,18 @@ public class Close extends CalendarWorkWeekTest {
 				+				"<content>content</content>"
 				+			"</mp>"
 				+		"</m>"
-				+	"</CreateAppointmentRequest>");        
-		
+				+	"</CreateAppointmentRequest>");
+
 		// Verify appointment exists in current view
         ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
-		
+
 		// --------------- Login to attendee & accept invitation ----------------------------------------------------
 		app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_OPEN_MENU, apptSubject);
 		app.zPageCalendar.zToolbarPressButton(Button.B_CLOSE);
-		
+
 		// Make sure there is no warning or any other dialog (below code should fail if any)
 		app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_OPEN_MENU, apptSubject);
 		app.zPageCalendar.zToolbarPressButton(Button.B_CLOSE);
 
 	}
-	
 }

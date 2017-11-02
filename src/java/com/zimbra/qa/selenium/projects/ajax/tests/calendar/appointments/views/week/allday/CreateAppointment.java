@@ -22,26 +22,23 @@ import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
 
-public class CreateAppointment extends CalendarWorkWeekTest {
+public class CreateAppointment extends AjaxCommonTest {
 
 	public CreateAppointment() {
 		logger.info("New "+ CreateAppointment.class.getCanonicalName());
 
-		// All tests start at the Calendar page
 		super.startingPage = app.zPageCalendar;
-
-		// Make sure we are using an account with week view
 		super.startingAccountPreferences = new HashMap<String, String>() {
-			private static final long serialVersionUID = -2913827779459595178L;
-		{
-		    put("zimbraPrefCalendarInitialView", "week");
-		}};
-			
+			private static final long serialVersionUID = -2913827779459595178L; {
+				put("zimbraPrefCalendarInitialView", "week");
+			}
+		};			
 	}
 
+	
 	@Bugs(ids = "69132")
 	@Test( description = "Create simple all day appointment in week view",
 			groups = { "smoke", "L3" } )
@@ -71,7 +68,5 @@ public class CreateAppointment extends CalendarWorkWeekTest {
 		
 		// Verify appointment exists in current view
         ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
-
 	}
-	
 }

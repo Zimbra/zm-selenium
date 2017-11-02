@@ -27,10 +27,10 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.DialogShareFind;
 
-public class FindShares extends CalendarWorkWeekTest {
+public class FindShares extends AjaxCommonTest {
 	
 	public FindShares() {
 		logger.info("New "+ FindShares.class.getCanonicalName());

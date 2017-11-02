@@ -23,19 +23,19 @@ import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 
-public class VerifySplitView extends CalendarWorkWeekTest {
+public class VerifySplitView extends AjaxCommonTest {
 
 	public VerifySplitView() {
 		logger.info("New "+ VerifySplitView.class.getCanonicalName());
+		
 		super.startingPage = app.zPageCalendar;
-		// Make sure we are using an account with day view
 		super.startingAccountPreferences = new HashMap<String, String>() {
-			private static final long serialVersionUID = -2913827779459595178L;
-		{
-		    put("zimbraPrefCalendarInitialView", "day");
-		}};
+			private static final long serialVersionUID = -2913827779459595178L; {
+				put("zimbraPrefCalendarInitialView", "day");
+			}
+		};
 	}
 
 
@@ -105,7 +105,5 @@ public class VerifySplitView extends CalendarWorkWeekTest {
         ZAssert.assertTrue(app.zPageCalendar.sIsElementPresent("css=div[class='ZmCalDayTab ZmCalDayMerged']:contains('" + folder4 + "')"), "Fourth folder is present");
         ZAssert.assertTrue(app.zPageCalendar.sIsElementPresent("css=div[class='ZmCalDayTab ZmCalDayMerged']:contains('" + folder5 + "')"), "Fifth folder is present");
         ZAssert.assertTrue(app.zPageCalendar.sIsElementPresent("css=div[class='ZmCalDayTab ZmCalDayMerged']:contains('Calendar')"), "Default calendar folder is present");
-
-
 	}
 }

@@ -29,37 +29,39 @@ import com.zimbra.qa.selenium.framework.util.ZTimeZone;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ZimbraResource;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.DialogWarningConflictingResources;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew.Locators;
 import java.util.Calendar;
 import org.testng.annotations.Test;
 
-public class SaveCancelledConflicts extends CalendarWorkWeekTest {
+public class SaveCancelledConflicts extends AjaxCommonTest {
 
-  public SaveCancelledConflicts() {
-    logger.info("New " + SaveCancelledConflicts.class.getCanonicalName());
-    this.startingPage = this.app.zPageCalendar;
-  }
-  
-  @Bugs(ids = "77991,75434")
-  @Test( description = "Unable to save when cancelling conflicts", groups = {"functional", "L2"} )
-  
-  public void SaveCancelledConflicts_01() throws HarnessException  {
-	  
-		ZimbraResource location = new ZimbraResource(ZimbraResource.Type.LOCATION);	  
+	public SaveCancelledConflicts() {
+		logger.info("New " + SaveCancelledConflicts.class.getCanonicalName());
+		this.startingPage = this.app.zPageCalendar;
+	}
+
+
+	@Bugs(ids = "77991,75434")
+	@Test( description = "Unable to save when cancelling conflicts", 
+			groups = {"functional", "L2"} )
+
+	public void SaveCancelledConflicts_01() throws HarnessException  {
+
+		ZimbraResource location = new ZimbraResource(ZimbraResource.Type.LOCATION);
 		String apptLocation = location.EmailAddress;
 		String apptAttendeeEmail1 = ZimbraAccount.AccountA().EmailAddress;
 		String apptAttendeeEmail2 = ZimbraAccount.AccountA().EmailAddress;
 		String apptContent = ConfigProperties.getUniqueString();
-		
+
 		AppointmentItem appt = new AppointmentItem();
 		String apptSubject1 = ConfigProperties.getUniqueString();
 		String apptSubject2 = ConfigProperties.getUniqueString();
-			
+
 		// Absolute dates in UTC zone
-		Calendar now = this.calendarWeekDayUTC;
+		Calendar now = Calendar.getInstance();
 		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 10, 0, 0);
 		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 15, 0, 0);
 
@@ -67,24 +69,19 @@ public class SaveCancelledConflicts extends CalendarWorkWeekTest {
 		String tz = ZTimeZone.getLocalTimeZone().getID();
 
 		app.zGetActiveAccount().soapSend(
-				"<CreateAppointmentRequest xmlns='urn:zimbraMail'>" +
-				"<m>"+
-				"<inv method='REQUEST' type='event' status='CONF' draft='0' class='PUB' fb='O' transp='O' allDay='0' name='"+ apptSubject1 +"' loc='"+ apptLocation+"'>" +
-				"<s d='"+ startUTC.toTimeZone(tz).toYYYYMMDDTHHMMSS() +"' tz='"+ tz +"'/>" +
-				"<e d='"+ endUTC.toTimeZone(tz).toYYYYMMDDTHHMMSS() +"' tz='"+ tz +"'/>" +
-				"<or a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
-				"<at role='REQ' ptst='NE' rsvp='1' a='" + apptAttendeeEmail1 + "' d='2'/>" +
-				"<at cutype='RES' a='" + apptLocation + "' rsvp='1' role='REQ' url='" + apptLocation + "' ptst='NE' fb='O' fba='O'/>" +
-				"</inv>" +
-				"<e a='"+ apptLocation +"' t='t'/>" +
-				"<mp content-type='text/plain'>" +
-				"<content>"+ ConfigProperties.getUniqueString() +"</content>" +
-				"</mp>" +
-				"<su>"+ apptSubject1 +"</su>" +
-				"</m>" +
-		"</CreateAppointmentRequest>");
+				"<CreateAppointmentRequest xmlns='urn:zimbraMail'>" + "<m>"
+						+ "<inv method='REQUEST' type='event' status='CONF' draft='0' class='PUB' fb='O' transp='O' allDay='0' name='"
+						+ apptSubject1 + "' loc='" + apptLocation + "'>" + "<s d='"
+						+ startUTC.toTimeZone(tz).toYYYYMMDDTHHMMSS() + "' tz='" + tz + "'/>" + "<e d='"
+						+ endUTC.toTimeZone(tz).toYYYYMMDDTHHMMSS() + "' tz='" + tz + "'/>" + "<or a='"
+						+ app.zGetActiveAccount().EmailAddress + "'/>" + "<at role='REQ' ptst='NE' rsvp='1' a='"
+						+ apptAttendeeEmail1 + "' d='2'/>" + "<at cutype='RES' a='" + apptLocation
+						+ "' rsvp='1' role='REQ' url='" + apptLocation + "' ptst='NE' fb='O' fba='O'/>" + "</inv>"
+						+ "<e a='" + apptLocation + "' t='t'/>" + "<mp content-type='text/plain'>" + "<content>"
+						+ ConfigProperties.getUniqueString() + "</content>" + "</mp>" + "<su>" + apptSubject1 + "</su>"
+						+ "</m>" + "</CreateAppointmentRequest>");
 		app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
-		
+
 		appt.setSubject(apptSubject2);
 		appt.setStartTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 10, 0, 0));
 		appt.setEndTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 15, 0, 0));
@@ -92,15 +89,15 @@ public class SaveCancelledConflicts extends CalendarWorkWeekTest {
 		appt.setLocation(apptLocation);
 		appt.setAttendeeName(apptAttendeeEmail2);
 		appt.setRecurring("EVERYDAY", "");
-		
+
 		// Create series appointment
 		FormApptNew apptForm = (FormApptNew) app.zPageCalendar.zToolbarPressButton(Button.B_NEW);
 		apptForm.zFill(appt);
 		SleepUtil.sleepMedium();
-		
-	    // Verify the compose page shows note below resource about conflicting resources
+
+		// Verify the compose page shows note below resource about conflicting resources
 		ZAssert.assertTrue(app.zPageCalendar.sIsElementPresent(Locators.ConflictResourceNote),  "Verify that the conflicting resource note appears on appt compose page");
-		
+
 		// Send invite
 		DialogWarningConflictingResources  dialog = (DialogWarningConflictingResources) app.zPageCalendar.zToolbarPressButton(Button.B_SEND_WITH_CONFLICT);
 		String dialogContent = dialog.zGetResourceConflictWarningDialogText();
@@ -108,13 +105,13 @@ public class SaveCancelledConflicts extends CalendarWorkWeekTest {
 		ZAssert.assertTrue(dialogContent.contains(apptLocation + " (Busy)"), "Verify that the dialog shows location name on conflict warning");
 		dialog.zPressButton(Button.B_CANCEL_INSTANCE_LINK);
 		dialog.zClickButton(Button.B_SAVE_WITH_CONFLICT);
-        
-        // Verify that the appointment is saved
+
+		// Verify that the appointment is saved
 		AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ apptSubject2 +")");
 		ZAssert.assertEquals(actual.getSubject(), apptSubject2, "Subject: Verify the appointment data");
-		
+
 		String instance = app.zGetActiveAccount().soapSelectValue("//mail:inst[@ex='1']", "id");
 		ZAssert.assertEquals(instance, null, "Verify that exception is not created");
-		
-  	}
+
+	}
 }

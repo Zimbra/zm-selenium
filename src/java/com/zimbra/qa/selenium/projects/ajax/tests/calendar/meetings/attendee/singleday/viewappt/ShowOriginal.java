@@ -20,27 +20,27 @@ import java.util.Calendar;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.SeparateWindow;
 
-public class ShowOriginal extends CalendarWorkWeekTest {
+public class ShowOriginal extends AjaxCommonTest {
 
 	public ShowOriginal() {
 		logger.info("New "+ ShowOriginal.class.getCanonicalName());
 		super.startingPage = app.zPageCalendar;
-		
+
 	}
-	
-	@Test( description = "View meeting invite by opening it and view meeting show original", 
+
+	@Test( description = "View meeting invite by opening it and view meeting show original",
 			groups = { "functional", "L2" })
-			
+
 	public void MeetingShowOriginal_01() throws HarnessException {
-		
+
 		String apptSubject = ConfigProperties.getUniqueString();
 		String apptBody = ConfigProperties.getUniqueString();
 		String windowUrl = "service/home/~/";
 
-		Calendar now = this.calendarWeekDayUTC;
+		Calendar now = Calendar.getInstance();
 		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
 		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 15, 0, 0);
 
@@ -59,14 +59,14 @@ public class ShowOriginal extends CalendarWorkWeekTest {
 				+				"<content>" + apptBody + "</content>"
 				+			"</mp>"
 				+		"</m>"
-				+	"</CreateAppointmentRequest>");     
-		
+				+	"</CreateAppointmentRequest>");
+
 		// Verify appointment exists in current view
         ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
-		
+
 		// Select Actions -> Show original
 		SeparateWindow window = (SeparateWindow)app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, Button.O_SHOW_ORIGINAL_MENU, apptSubject);
-		
+
 		try {
 			window.zSetWindowTitle(windowUrl);
 			ZAssert.assertTrue(window.zIsWindowOpen(windowUrl),"Verify the window is opened and switch to it");
@@ -78,13 +78,13 @@ public class ShowOriginal extends CalendarWorkWeekTest {
 			ZAssert.assertStringContains(body, "BEGIN:VCALENDAR", "Verify 'BEGIN' header in show original");
 			ZAssert.assertStringContains(body, "END:VCALENDAR", "Verify 'END' header in show original");
 			ZAssert.assertStringContains(body, "ORGANIZER:mailto:" + ZimbraAccount.AccountA().EmailAddress,	"Verify organizer email address in show original");
-			
+
 		} finally {
 			app.zPageMain.zCloseWindow(window, windowUrl, app);
 		}
 
-		
+
 		app.zPageCalendar.zToolbarPressButton(Button.B_CLOSE);
 	}
-	
+
 }

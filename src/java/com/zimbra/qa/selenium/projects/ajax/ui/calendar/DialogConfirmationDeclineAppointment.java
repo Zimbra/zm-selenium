@@ -38,21 +38,20 @@ public class DialogConfirmationDeclineAppointment extends DialogWarning {
 		logger.info("new " + DialogConfirmationDeclineAppointment.class.getCanonicalName());
 	}
 
-	
+
 	public AbsPage zClickButton(Button button) throws HarnessException {
 		logger.info(myPageName() + " zClickButton(" + button + ")");
-		
-		
+
 		AbsPage page = null;
 		String locator = null;
-		
+
 		if (button == Button.B_DONT_NOTIFY_ORGANIZER) {
 
 			locator = Locators.DontNotifyOrganizerRadioButton;
 
 			sClickAt(locator,"0,0");
 			this.zWaitForBusyOverlay();
-			
+
 			return (page);
 
 		} else if (button == Button.B_NOTIFY_ORGANIZER) {
@@ -61,14 +60,11 @@ public class DialogConfirmationDeclineAppointment extends DialogWarning {
 
 			sClickAt(locator,"0,0");
 			this.zWaitForBusyOverlay();
-			
+
 			return (page);
-		
+
 		}
-		
+
 		return ( super.zClickButton(button) );
-		
 	}
-
 }
-

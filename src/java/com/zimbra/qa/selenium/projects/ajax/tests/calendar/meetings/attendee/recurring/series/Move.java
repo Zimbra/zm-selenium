@@ -17,39 +17,38 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.attendee.recurring.series;
 
 import java.util.Calendar;
-
 import org.testng.annotations.*;
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.DialogMove;
 
-public class Move extends CalendarWorkWeekTest {	
-	
+public class Move extends AjaxCommonTest {
+
 	public Move() {
 		logger.info("New "+ Move.class.getCanonicalName());
 		super.startingPage = app.zPageCalendar;
 	}
 
+
 	@Bugs(ids = "95961")
 	@Test( description = "Move entire series to different calendar folder",
 			groups = { "smoke", "L1" })
-			
+
 	public void MoveMeeting_01() throws HarnessException {
-		
-		Calendar now = this.calendarWeekDayUTC;
+
+		Calendar now = Calendar.getInstance();
 		String tz = ZTimeZone.getLocalTimeZone().getID();
-		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 10, 0, 0);
-		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
-		
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 8, 0, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 9, 0, 0);
+
 		String apptSubject = ConfigProperties.getUniqueString();
 		String apptBody = "body" + ConfigProperties.getUniqueString();
-		
+
 		// create folder to move item to
 		FolderItem root = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.UserRoot);
 		String name1 = "folder" + ConfigProperties.getUniqueString();
@@ -61,7 +60,7 @@ public class Move extends CalendarWorkWeekTest {
 
 		FolderItem subfolder1 = FolderItem.importFromSOAP(app.zGetActiveAccount(), name1);
 		ZAssert.assertNotNull(subfolder1, "Verify the first subfolder is available");
-		
+
         ZimbraAccount.AccountA().soapSend(
 				"<CreateAppointmentRequest xmlns='urn:zimbraMail'>" +
 					"<m>"+
@@ -85,15 +84,15 @@ public class Move extends CalendarWorkWeekTest {
 						"<su>"+ apptSubject +"</su>" +
 					"</m>" +
 				"</CreateAppointmentRequest>");
-        
+
 		// Verify appointment exists in current view
         ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
-       
+
         // Select the appointment
         DialogMove dialog = (DialogMove) app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_SERIES_MENU, Button.O_MOVE_MENU, apptSubject);
 		dialog.zClickTreeFolder(subfolder1);
 		dialog.zClickButton(Button.B_OK);
-			
+
 		//-- Server verification
 		AppointmentItem newAppointment = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ apptSubject +")");
 		ZAssert.assertEquals(newAppointment.getFolder(), subfolder1.getId(), "Verify the appointment moved folders");

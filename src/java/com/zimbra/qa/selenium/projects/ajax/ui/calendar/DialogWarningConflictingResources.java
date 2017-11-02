@@ -15,26 +15,11 @@
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.ui.calendar;
-/**
- * 
- */
-
 
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.ui.*;
 
-/**
- * Represents a "Delete Recurring Item(s)" dialog box,
- * for an appointment without attendees.
- * 
- * Two new options
- * - Delete This Instance
- * - Delete The Series
- * 
- * No new buttons on this dialog, just OK and Cancel
- * <p>
- */
 public class DialogWarningConflictingResources extends DialogWarning {
 
 	public static class Locators {
@@ -42,7 +27,7 @@ public class DialogWarningConflictingResources extends DialogWarning {
 		// The ID for the main Dialog DIV
 		public static final String LocatorDivID = "RESC_CONFLICT_DLG";
 		public static final String CancelInstanceLink = "css=div[class='ZmResourceConflictDialog'] div[class='ResourceConflictResolver'] span span";
-		
+
 	}
 
 	public DialogWarningConflictingResources(AbsApplication application, AbsTab page) {
@@ -52,18 +37,18 @@ public class DialogWarningConflictingResources extends DialogWarning {
 	}
 
 	public String zGetResourceConflictWarningDialogText() throws HarnessException {
-		String text = null;	
+		String text = null;
 		SleepUtil.sleepMedium();
 		text = this.zGetDisplayedText("css=div[id='RESC_CONFLICT_DLG']");
 		return text;
 	}
-	
+
 	public void zPressButton(Button button) throws HarnessException {
 		logger.info(myPageName() + " zClickButton(" + button + ")");
 		//AbsPage page = null;
 		//String text = null;
 		String locator = null;
-		
+
 		if (button == Button.B_CANCEL_INSTANCE_LINK) {
 
 			locator = Locators.CancelInstanceLink;
@@ -71,7 +56,6 @@ public class DialogWarningConflictingResources extends DialogWarning {
 			sClick(locator);
 			this.zWaitForBusyOverlay();
 			}
-		 // return text;  
+		 // return text;
 	}
 }
-

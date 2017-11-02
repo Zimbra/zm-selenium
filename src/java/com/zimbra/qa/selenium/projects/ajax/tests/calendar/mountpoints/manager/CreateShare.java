@@ -20,11 +20,11 @@ import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.DialogShare;
 import com.zimbra.qa.selenium.projects.ajax.ui.DialogShare.ShareRole;
 
-public class CreateShare extends CalendarWorkWeekTest  {
+public class CreateShare extends AjaxCommonTest  {
 
 	public CreateShare() {
 		logger.info("New "+ CreateShare.class.getCanonicalName());

@@ -18,9 +18,7 @@ package com.zimbra.qa.selenium.projects.ajax.tests.calendar.mountpoints.viewer.a
 
 import java.util.Calendar;
 import java.util.Locale;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
@@ -34,32 +32,33 @@ import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZDate;
 import com.zimbra.qa.selenium.framework.util.ZTimeZone;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
-import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.SeparateWindow;
 import com.zimbra.qa.selenium.projects.ajax.ui.SeparateWindow.Locators;
 
-public class LaunchInSeparateWindow extends CalendarWorkWeekTest {
+public class LaunchInSeparateWindow extends AjaxCommonTest {
 
 	public LaunchInSeparateWindow() {
 		logger.info("New "+ LaunchInSeparateWindow.class.getCanonicalName());
 		super.startingPage = app.zPageCalendar;
 	}
-	
+
+
 	// remove this test case and move below testcase to L2 from L5 once bug #106999 is resolved
 	@Test( description = "Grantee with view rights launches grantor's calendar with appt in the new window and clicks on the appt",
 			groups = { "functional", "L2" })
-	
+
 	public void LaunchInSeparateWindow_01() throws HarnessException {
 
 		String apptSubject = "Test";
 		String apptContent = ConfigProperties.getUniqueString();
 		String foldername = "folder" + ConfigProperties.getUniqueString();
 		String mountpointname = "mountpoint" + ConfigProperties.getUniqueString();
-		Calendar now = this.calendarWeekDayUTC;
-		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 06, 0, 0);
-		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 07, 0, 0);
+		Calendar now = Calendar.getInstance();
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 15, 0, 0);
 		String windowTitle = foldername + ": " + now.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault()) + " " + now.get(Calendar.YEAR);
-		
+
 		// Create a folder to share
 		FolderItem root = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.UserRoot);
 		ZAssert.assertNotNull(root, "Verify the inbox is available");
@@ -72,8 +71,8 @@ public class LaunchInSeparateWindow extends CalendarWorkWeekTest {
 				+		"<folder name='" + foldername + "' l='" + calendarFolder.getId() + "' view='appointment'/>"
 				+	"</CreateFolderRequest>");
 		FolderItem folder = FolderItem.importFromSOAP(ZimbraAccount.Account10(), foldername);
-		
-		// Share the folder 
+
+		// Share the folder
 		ZimbraAccount.Account10().soapSend(
 				"<FolderActionRequest xmlns='urn:zimbraMail'>"
 				+		"<action id='"+ folder.getId() +"' op='grant'>"
@@ -106,28 +105,28 @@ public class LaunchInSeparateWindow extends CalendarWorkWeekTest {
 				+			"</mp>"
 				+		"</m>"
 				+	"</CreateAppointmentRequest>");
-		
+
 		// Verify appointment exists in current view
         ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
 
 		// Launch shared folder in separate window through context menu
 		SeparateWindow window = (SeparateWindow)app.zTreeCalendar.zTreeItem(Action.A_RIGHTCLICK, Button.B_LAUNCH_IN_SEPARATE_WINDOW, mountpoint);
 
-		try { 
-			
+		try {
+
 			window.zSetWindowTitle(windowTitle);
 			ZAssert.assertTrue(window.zIsWindowOpen(windowTitle),"Verify the window is opened and switch to it");
-			
+
 			String body = window.sGetBodyText();
 
 			// Verify launched calender in new windows shows all calender data correctly
 			ZAssert.assertStringContains(body, "Day Work Week Week Month" , "Verify calender views are shown in new window");
 			ZAssert.assertStringContains(body, "Sunday Monday Tuesday Wednesday Thursday Friday Saturday" , "Verify weekday names are shown in new window");
-			 
+
 			// Verify aapointment on launched calender in new windows is clickable and shows appointment details correctly
 			window.sClickAt(Locators.openApptOnLaunchedWindow, "0,0");
 			SleepUtil.sleepMedium();
-			
+
 			String bodyOfAppt = window.sGetBodyText();
 			ZAssert.assertStringContains(bodyOfAppt , "Close" , "Verify appt shows Close label");
 			ZAssert.assertStringContains(bodyOfAppt , "Subject :" , "Verify appt shows subject header");
@@ -139,16 +138,17 @@ public class LaunchInSeparateWindow extends CalendarWorkWeekTest {
 			app.zPageMain.zCloseWindow(window, "Zimbra", app);
 		}
 	}
-	
+
+
 	@Bugs(ids = "106999")
 	@Test( description = "Grantee with view rights launches grantor's calendar in the new window",
 			groups = { "functional", "L5" })
-			
+
 	public void LaunchInSeparateWindow_02() throws HarnessException {
-		
+
 		String body = null;
 		ZimbraAccount Owner = (new ZimbraAccount()).provision().authenticate();
-		Calendar now = this.calendarWeekDayUTC;
+		Calendar now = Calendar.getInstance();
 
 		// Owner creates a folder, shares it with current user with viewer rights
 		String ownerFoldername = "ownerfolder"+ ConfigProperties.getUniqueString();
@@ -157,17 +157,17 @@ public class LaunchInSeparateWindow extends CalendarWorkWeekTest {
 					"<CreateFolderRequest xmlns='urn:zimbraMail'>"
 				+		"<folder name='" + ownerFoldername +"' l='1' view='appointment'/>"
 				+	"</CreateFolderRequest>");
-		
+
 		FolderItem ownerFolder = FolderItem.importFromSOAP(Owner, ownerFoldername);
 		ZAssert.assertNotNull(ownerFolder, "Verify the new owner folder exists");
-		
+
 		Owner.soapSend(
 					"<FolderActionRequest xmlns='urn:zimbraMail'>"
 				+		"<action id='"+ ownerFolder.getId() +"' op='grant'>"
 				+			"<grant d='" + app.zGetActiveAccount().EmailAddress + "' gt='usr' perm='r'/>"
 				+		"</action>"
 				+	"</FolderActionRequest>");
-		
+
 
 		// Current user creates the mountpoint that points to the share
 		String mountpointFoldername = "mountpoint"+ ConfigProperties.getUniqueString();
@@ -175,14 +175,14 @@ public class LaunchInSeparateWindow extends CalendarWorkWeekTest {
 					"<CreateMountpointRequest xmlns='urn:zimbraMail'>"
 				+		"<link l='1' name='"+ mountpointFoldername +"' view='appointment' rid='"+ ownerFolder.getId() +"' zid='"+ Owner.ZimbraId +"'/>"
 				+	"</CreateMountpointRequest>");
-		
+
 		FolderMountpointItem mountpoint = FolderMountpointItem.importFromSOAP(app.zGetActiveAccount(), mountpointFoldername);
 		ZAssert.assertNotNull(mountpoint, "Verify the subfolder is available");
 
-		// Click to Refresh button to load the mounted shared calender 
+		// Click to Refresh button to load the mounted shared calender
 		app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
 		SeparateWindow window = null;
-		
+
 		try {
 			// Launch shared folder in separate window through context menu
 			window = (SeparateWindow)app.zTreeCalendar.zTreeItem(Action.A_RIGHTCLICK, Button.B_LAUNCH_IN_SEPARATE_WINDOW, mountpoint);
@@ -199,7 +199,7 @@ public class LaunchInSeparateWindow extends CalendarWorkWeekTest {
 		}
 	}
 
-	
+
 	@Bugs(ids = "106999")
 	@Test( description = "Grantee with view rights launches grantor's calendar with appt in the new window and clicks on the appt",
 			groups = { "functional", "L5" })
@@ -210,9 +210,9 @@ public class LaunchInSeparateWindow extends CalendarWorkWeekTest {
 		String apptContent = ConfigProperties.getUniqueString();
 		String foldername = "folder" + ConfigProperties.getUniqueString();
 		String mountpointname = "mountpoint" + ConfigProperties.getUniqueString();
-		Calendar now = this.calendarWeekDayUTC;
-		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 06, 0, 0);
-		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 07, 0, 0);
+		Calendar now = Calendar.getInstance();
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 15, 0, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 16, 0, 0);
 		String windowTitle = foldername + ": " + now.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault()) + " " + now.get(Calendar.YEAR);
 
 		// Create a folder to share
@@ -227,8 +227,8 @@ public class LaunchInSeparateWindow extends CalendarWorkWeekTest {
 				+		"<folder name='" + foldername + "' l='" + calendarFolder.getId() + "' view='appointment'/>"
 				+	"</CreateFolderRequest>");
 		FolderItem folder = FolderItem.importFromSOAP(ZimbraAccount.Account10(), foldername);
-		
-		// Share the folder 
+
+		// Share the folder
 		ZimbraAccount.Account10().soapSend(
 				"<FolderActionRequest xmlns='urn:zimbraMail'>"
 				+		"<action id='"+ folder.getId() +"' op='grant'>"
@@ -261,14 +261,14 @@ public class LaunchInSeparateWindow extends CalendarWorkWeekTest {
 				+			"</mp>"
 				+		"</m>"
 				+	"</CreateAppointmentRequest>");
-		
+
 		// Verify appointment exists in current view
         ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
 
 		// Launch shared folder in separate window through context menu
 		SeparateWindow window = (SeparateWindow)app.zTreeCalendar.zTreeItem(Action.A_RIGHTCLICK, Button.B_LAUNCH_IN_SEPARATE_WINDOW, mountpoint);
 
-		try { 
+		try {
 			window.zSetWindowTitle(windowTitle);
 			ZAssert.assertTrue(window.zIsWindowOpen(windowTitle),"Verify the window is opened and switch to it");
 			String body = window.sGetBodyText();
@@ -277,11 +277,11 @@ public class LaunchInSeparateWindow extends CalendarWorkWeekTest {
 			ZAssert.assertStringContains(body, "Day Work Week Week Month" , "Verify calender views are shown in new window");
 			ZAssert.assertStringContains(body, "Sunday Monday Tuesday Wednesday Thursday Friday Saturday" , "Verify weekday names are shown in new window");
 			ZAssert.assertStringContains(body, foldername, "Verify owners calender name is displayed in new window");
-			 
+
 			// Verify aapointment on launched calender in new windows is clickable and shows appointment details correctly
 			window.sClickAt(Locators.openApptOnLaunchedWindow, "0,0");
 			SleepUtil.sleepMedium();
-			
+
 			String bodyOfAppt = window.sGetBodyText();
 			ZAssert.assertStringContains(bodyOfAppt , "Close" , "Verify appt shows Close label");
 			ZAssert.assertStringContains(bodyOfAppt , "Subject :" , "Verify appt shows subject header");
@@ -293,5 +293,5 @@ public class LaunchInSeparateWindow extends CalendarWorkWeekTest {
 			app.zPageMain.zCloseWindow(window, "Zimbra", app);
 		}
 	}
-	
+
 }

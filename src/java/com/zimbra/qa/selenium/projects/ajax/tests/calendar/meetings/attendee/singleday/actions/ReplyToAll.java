@@ -18,32 +18,32 @@ package com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.attendee.si
 
 import java.util.Calendar;
 import org.testng.annotations.*;
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew.Field;
 
-public class ReplyToAll extends CalendarWorkWeekTest {	
-	
+public class ReplyToAll extends AjaxCommonTest {
+
 	public ReplyToAll() {
 		logger.info("New "+ ReplyToAll.class.getCanonicalName());
 	    super.startingPage =  app.zPageCalendar;
-	    
 	}
+
 
 	@Bugs(ids = "102475")
 	@Test( description = "Verify organizer and rest of the attendee receives message while one of the attendee replies to all",
 			groups = { "functional", "L2" })
+
 	public void ReplyToAll_01() throws HarnessException {
-		
+
 		String apptSubject = ConfigProperties.getUniqueString();
 
-		Calendar now = this.calendarWeekDayUTC;
-		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
-		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
+		Calendar now = Calendar.getInstance();
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 15, 0, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 16, 0, 0);
 
 		// Get meeting invite where it has 2 attendees
 		ZimbraAccount.AccountA().soapSend(
@@ -64,34 +64,34 @@ public class ReplyToAll extends CalendarWorkWeekTest {
 				+			"</mp>"
 				+		"</m>"
 				+	"</CreateAppointmentRequest>");
-		
+
 		// Verify appointment exists in current view
         ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
-        
+
         // When the form opens, add some text and then Submit
         String replyText= "ReplyAllByAttendee";
         FormMailNew mailComposeForm = (FormMailNew)app.zPageCalendar.zListItem(Action.A_RIGHTCLICK,Button.O_REPLY_TO_ALL_MENU, apptSubject);
-        mailComposeForm.zFillField(Field.Body, " " + replyText);		
+        mailComposeForm.zFillField(Field.Body, " " + replyText);
 		mailComposeForm.zSubmit();
-		
+
 		// Verify the reply appears in the inbox at organizer
-        String idA = ZimbraAccount.AccountA().soapSelectValue("//mail:m", "id"); 
+        String idA = ZimbraAccount.AccountA().soapSelectValue("//mail:m", "id");
 		ZimbraAccount.AccountA().soapSend(
 				"<SearchRequest xmlns='urn:zimbraMail' types='message'>"
-			+		"<query>subject:("+ apptSubject +") content:("+ replyText +")</query>"			
+			+		"<query>subject:("+ apptSubject +") content:("+ replyText +")</query>"
 			+	"</SearchRequest>");
 		idA = ZimbraAccount.AccountA().soapSelectValue("//mail:m", "id");
 		ZAssert.assertNotNull(idA, "Verify the replyall to meeting appears in the organizer's inbox");
-		
+
 		// Verify the reply appears in the inbox at attendee 2
-		String idB = ZimbraAccount.AccountB().soapSelectValue("//mail:m", "id"); 
+		String idB = ZimbraAccount.AccountB().soapSelectValue("//mail:m", "id");
 		ZimbraAccount.AccountB().soapSend(
 				"<SearchRequest xmlns='urn:zimbraMail' types='message'>"
-			+		"<query>subject:("+ apptSubject +") content:("+ replyText +")</query>"			
+			+		"<query>subject:("+ apptSubject +") content:("+ replyText +")</query>"
 			+	"</SearchRequest>");
 
 		idB = ZimbraAccount.AccountB().soapSelectValue("//mail:m", "id");
 		ZAssert.assertNotNull(idB, "Verify the replyall to meeting appears in the attendee 2's inbox");
-			
+
 	}
 }

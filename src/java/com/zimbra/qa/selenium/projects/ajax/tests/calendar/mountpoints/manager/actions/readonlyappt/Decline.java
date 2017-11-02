@@ -22,33 +22,34 @@ import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.DialogConfirmationDeclineAppointment;
 
-public class Decline extends CalendarWorkWeekTest {
+public class Decline extends AjaxCommonTest {
 
 	public Decline() {
 		logger.info("New "+ Decline.class.getCanonicalName());
 		super.startingPage = app.zPageCalendar;
 	}
-	
+
+
 	@Bugs(ids = "81647")
 	@Test( description = "Assistant right clicks to calendar invite from shared calendar and declines the invite OBO boss (Don't notify organizer)",
 			groups = { "smoke", "L1" })
-			
+
 	public void Decline_01() throws HarnessException {
-		
+
 		String apptSubject = ConfigProperties.getUniqueString();
 		String apptBody = "body" + ConfigProperties.getUniqueString();
 		String mountPointName = "mountpoint" + ConfigProperties.getUniqueString();
-		
-		Calendar now = this.calendarWeekDayUTC;
-		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
-		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
-	
+
+		Calendar now = Calendar.getInstance();
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 16, 0, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 17, 0, 0);
+
 		// Use system calendar folder
 		FolderItem folder = FolderItem.importFromSOAP(ZimbraAccount.Account5(), FolderItem.SystemFolder.Calendar);
-		
+
 		// Share it
 		ZimbraAccount.Account5().soapSend(
 					"<FolderActionRequest xmlns='urn:zimbraMail'>"
@@ -56,13 +57,13 @@ public class Decline extends CalendarWorkWeekTest {
 				+			"<grant d='"+ app.zGetActiveAccount().EmailAddress +"' gt='usr' perm='rwidx' view='appointment'/>"
 				+		"</action>"
 				+	"</FolderActionRequest>");
-		
+
 		// Mount it
 		app.zGetActiveAccount().soapSend(
 					"<CreateMountpointRequest xmlns='urn:zimbraMail'>"
 				+		"<link l='1' name='"+ mountPointName +"'  rid='"+ folder.getId() +"' zid='"+ ZimbraAccount.Account5().ZimbraId +"' view='appointment' color='4'/>"
 				+	"</CreateMountpointRequest>");
-		
+
 		// Create invite
 		ZimbraAccount.Account6().soapSend(
 				"<CreateAppointmentRequest xmlns='urn:zimbraMail'>"
@@ -80,65 +81,65 @@ public class Decline extends CalendarWorkWeekTest {
 				+			"</mp>"
 				+		"</m>"
 				+	"</CreateAppointmentRequest>");
-				
+
 		// Mark ON to mounted calendar folder and select the appointment
 		app.zTreeCalendar.zMarkOnOffCalendarFolder("Calendar");
 		app.zTreeCalendar.zMarkOnOffCalendarFolder(mountPointName);
-		
+
 		// Verify appointment exists in current view
         ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
 		app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_DECLINE_MENU, apptSubject);
-		
+
 		DialogConfirmationDeclineAppointment declineAppt = (DialogConfirmationDeclineAppointment) new DialogConfirmationDeclineAppointment(app, app.zPageCalendar);
 		declineAppt.zClickButton(Button.B_DONT_NOTIFY_ORGANIZER);
 		declineAppt.zClickButton(Button.B_YES);
-		
-		
+
+
 		// -------------- Verification at organizer side --------------
-		
+
 		String inboxId = FolderItem.importFromSOAP(ZimbraAccount.Account6(), FolderItem.SystemFolder.Inbox).getId();
-		
+
 		ZimbraAccount.Account6().soapSend(
 				"<SearchRequest xmlns='urn:zimbraMail' types='message'>"
 				+		"<query>inid:"+ inboxId +" subject:("+ apptSubject +")</query>"
 				+	"</SearchRequest>");
 		String messageId = ZimbraAccount.Account6().soapSelectValue("//mail:m", "id");
 		ZAssert.assertNull(messageId, "Verify organizer doesn't get email notification");
-		
+
 		ZimbraAccount.Account6().soapSend(
 				"<SearchRequest xmlns='urn:zimbraMail' types='appointment' calExpandInstStart='"+ startUTC.addDays(-10).toMillis() +"' calExpandInstEnd='"+ endUTC.addDays(10).toMillis() +"'>"
 			+		"<query>"+ apptSubject +"</query>"
 			+	"</SearchRequest>");
-	
+
 		String organizerInvId = ZimbraAccount.Account6().soapSelectValue("//mail:appt", "invId");
-	
+
 		// Get the appointment details
 		ZimbraAccount.Account6().soapSend(
 					"<GetAppointmentRequest  xmlns='urn:zimbraMail' id='"+ organizerInvId +"'/>");
-		
+
 		String attendeeStatus = ZimbraAccount.Account6().soapSelectValue("//mail:at[@a='"+ ZimbraAccount.Account5().EmailAddress +"']", "ptst");
-	
+
 		// Verify attendee status shows as ptst=NE
 		ZAssert.assertEquals(attendeeStatus, "NE", "Verify that the attendee status shows as 'NEEDS ACTION' instead of 'DECLINED'");
 
-		
+
 		// -------------- Verification at attendee side --------------
 
 		ZimbraAccount.Account5().soapSend(
 					"<SearchRequest xmlns='urn:zimbraMail' types='appointment' calExpandInstStart='"+ startUTC.addDays(-10).toMillis() +"' calExpandInstEnd='"+ endUTC.addDays(10).toMillis() +"'>"
 				+		"<query>"+ apptSubject +"</query>"
 				+	"</SearchRequest>");
-		
+
 		String attendeeInvId = ZimbraAccount.Account5().soapSelectValue("//mail:appt", "invId");
 
 		ZimbraAccount.Account5().soapSend(
 					"<GetAppointmentRequest  xmlns='urn:zimbraMail' id='"+ attendeeInvId +"'/>");
-		
+
 		String myStatus = ZimbraAccount.Account5().soapSelectValue("//mail:at[@a='"+ ZimbraAccount.Account5().EmailAddress +"']", "ptst");
 
 		// Verify attendee status shows as ptst=DE
 		ZAssert.assertEquals(myStatus, "DE", "Verify that the attendee shows as 'DECLINED'");
-		
+
 		// Verify sent mail not present for declined appointment notification (action performed by assistant)
 		ZimbraAccount.Account5().soapSend(
 				"<SearchRequest xmlns='urn:zimbraMail' types='message'>"
@@ -146,25 +147,25 @@ public class Decline extends CalendarWorkWeekTest {
 				+	"</SearchRequest>");
 		messageId = ZimbraAccount.Account5().soapSelectValue("//mail:m", "id");
 		ZAssert.assertNull(messageId, "Verify sent mail not present for declined appointment notification (action performed by assistant)");
-		
+
 	}
-	
+
 	@Test( description = "Assistant right clicks to calendar invite from shared calendar and declines the invite OBO boss (Notify organizer)",
 			groups = { "smoke", "L1" })
-			
+
 	public void Decline_02() throws HarnessException {
-		
+
 		String apptSubject = ConfigProperties.getUniqueString();
 		String apptBody = "body" + ConfigProperties.getUniqueString();
 		String mountPointName = "mountpoint" + ConfigProperties.getUniqueString();
-		
-		Calendar now = this.calendarWeekDayUTC;
-		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 11, 0, 0);
-		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
-	
+
+		Calendar now = Calendar.getInstance();
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 17, 0, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 18, 0, 0);
+
 		// Use system calendar folder
 		FolderItem folder = FolderItem.importFromSOAP(ZimbraAccount.Account5(), FolderItem.SystemFolder.Calendar);
-		
+
 		// Share it
 		ZimbraAccount.Account5().soapSend(
 					"<FolderActionRequest xmlns='urn:zimbraMail'>"
@@ -172,13 +173,13 @@ public class Decline extends CalendarWorkWeekTest {
 				+			"<grant d='"+ app.zGetActiveAccount().EmailAddress +"' gt='usr' perm='rwidx' view='appointment'/>"
 				+		"</action>"
 				+	"</FolderActionRequest>");
-		
+
 		// Mount it
 		app.zGetActiveAccount().soapSend(
 					"<CreateMountpointRequest xmlns='urn:zimbraMail'>"
 				+		"<link l='1' name='"+ mountPointName +"'  rid='"+ folder.getId() +"' zid='"+ ZimbraAccount.Account5().ZimbraId +"' view='appointment' color='4'/>"
 				+	"</CreateMountpointRequest>");
-		
+
 		// Create invite
 		ZimbraAccount.Account6().soapSend(
 				"<CreateAppointmentRequest xmlns='urn:zimbraMail'>"
@@ -196,79 +197,79 @@ public class Decline extends CalendarWorkWeekTest {
 				+			"</mp>"
 				+		"</m>"
 				+	"</CreateAppointmentRequest>");
-		
+
 		// Mark ON to mounted calendar folder and select the appointment
 		app.zTreeCalendar.zMarkOnOffCalendarFolder("Calendar");
 		app.zTreeCalendar.zMarkOnOffCalendarFolder(mountPointName);
-		
+
 		// Verify appointment exists in current view
         ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
 		app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_DECLINE_MENU, apptSubject);
-		
+
 		DialogConfirmationDeclineAppointment declineAppt = (DialogConfirmationDeclineAppointment) new DialogConfirmationDeclineAppointment(app, app.zPageCalendar);
 		declineAppt.zClickButton(Button.B_NOTIFY_ORGANIZER);
 		declineAppt.zClickButton(Button.B_YES);
-		
-		
+
+
 		// -------------- Verification at organizer side --------------
-		
+
 		String inboxId = FolderItem.importFromSOAP(ZimbraAccount.Account6(), FolderItem.SystemFolder.Inbox).getId();
-		
+
 		ZimbraAccount.Account6().soapSend(
 				"<SearchRequest xmlns='urn:zimbraMail' types='message'>"
 				+		"<query>inid:"+ inboxId +" subject:("+ apptSubject +")</query>"
 				+	"</SearchRequest>");
 		String messageId = ZimbraAccount.Account6().soapSelectValue("//mail:m", "id");
 		ZAssert.assertNotNull(messageId, "Verify organizer gets email notification");
-		
+
 		String attendeeStatus = ZimbraAccount.Account6().soapSelectValue("//mail:at[@a='"+ ZimbraAccount.Account5().EmailAddress +"']", "ptst");
 
 		// Verify attendee status shows as ptst=DE
 		ZAssert.assertEquals(attendeeStatus, "DE", "Verify that the attendee status shows as 'DECLINED'");
-		
-		// Verify from and sender address in accept invitation message		
+
+		// Verify from and sender address in accept invitation message
 		ZimbraAccount.Account6().soapSend(
 				"<GetMsgRequest  xmlns='urn:zimbraMail'>"
 			+		"<m id='"+ messageId +"'/>"
 			+	"</GetMsgRequest>");
-		
+
 		ZAssert.assertEquals(ZimbraAccount.Account6().soapSelectValue("//mail:e[@t='f']", "a"), ZimbraAccount.Account5().EmailAddress, "Verify From address in decline invitation message");
 		ZAssert.assertEquals(ZimbraAccount.Account6().soapSelectValue("//mail:e[@t='s']", "a"), app.zGetActiveAccount().EmailAddress, "Verify Sender address in decline invitation message");
-		
+
 		ZimbraAccount.Account6().soapSend(
 				"<SearchRequest xmlns='urn:zimbraMail' types='appointment' calExpandInstStart='"+ startUTC.addDays(-10).toMillis() +"' calExpandInstEnd='"+ endUTC.addDays(10).toMillis() +"'>"
 			+		"<query>"+ apptSubject +"</query>"
 			+	"</SearchRequest>");
-	
+
 		String organizerInvId = ZimbraAccount.Account6().soapSelectValue("//mail:appt", "invId");
-	
+
 		// Get the appointment details
 		ZimbraAccount.Account6().soapSend(
 					"<GetAppointmentRequest  xmlns='urn:zimbraMail' id='"+ organizerInvId +"'/>");
-		
+
 		attendeeStatus = ZimbraAccount.Account6().soapSelectValue("//mail:at[@a='"+ ZimbraAccount.Account5().EmailAddress +"']", "ptst");
-	
+
 		// Verify attendee status shows as ptst=DE
 		ZAssert.assertEquals(attendeeStatus, "DE", "Verify that the attendee status shows as 'DECLINED'");
 
-		
+
 		// -------------- Verification at attendee side --------------
 
 		ZimbraAccount.Account5().soapSend(
 					"<SearchRequest xmlns='urn:zimbraMail' types='appointment' calExpandInstStart='"+ startUTC.addDays(-10).toMillis() +"' calExpandInstEnd='"+ endUTC.addDays(10).toMillis() +"'>"
 				+		"<query>"+ apptSubject +"</query>"
 				+	"</SearchRequest>");
-		
+
 		String attendeeInvId = ZimbraAccount.Account5().soapSelectValue("//mail:appt", "invId");
 
 		ZimbraAccount.Account5().soapSend(
 					"<GetAppointmentRequest  xmlns='urn:zimbraMail' id='"+ attendeeInvId +"'/>");
-		
+
 		String myStatus = ZimbraAccount.Account5().soapSelectValue("//mail:at[@a='"+ ZimbraAccount.Account5().EmailAddress +"']", "ptst");
 
 		// Verify attendee status shows as ptst=DE
 		ZAssert.assertEquals(myStatus, "DE", "Verify that the attendee shows as 'DECLINED'");
-		
+
 		// Verify sent mail for declined appointment notification (action performed by assistant)
 		ZimbraAccount.Account5().soapSend(
 				"<SearchRequest xmlns='urn:zimbraMail' types='message'>"
@@ -276,15 +277,15 @@ public class Decline extends CalendarWorkWeekTest {
 				+	"</SearchRequest>");
 		messageId = ZimbraAccount.Account5().soapSelectValue("//mail:m", "id");
 		ZAssert.assertNotNull(messageId, "Verify sent mail for declined appointment notification (action performed by assistant)");
-		
-		// Verify from and sender address in decline invitation message		
+
+		// Verify from and sender address in decline invitation message
 		ZimbraAccount.Account5().soapSend(
 				"<GetMsgRequest  xmlns='urn:zimbraMail'>"
 			+		"<m id='"+ messageId +"'/>"
 			+	"</GetMsgRequest>");
-		
+
 		ZAssert.assertEquals(ZimbraAccount.Account5().soapSelectValue("//mail:e[@t='f']", "a"), ZimbraAccount.Account5().EmailAddress, "Verify From address in decline invitation message");
 		ZAssert.assertEquals(ZimbraAccount.Account5().soapSelectValue("//mail:e[@t='s']", "a"), app.zGetActiveAccount().EmailAddress, "Verify Sender address in decline invitation message");
-		
+
 	}
 }

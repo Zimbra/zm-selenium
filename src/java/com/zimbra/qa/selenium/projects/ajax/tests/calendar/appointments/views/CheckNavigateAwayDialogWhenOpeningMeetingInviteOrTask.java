@@ -17,10 +17,7 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.appointments.views;
 
 import java.util.Calendar;
-import java.util.HashMap;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
@@ -28,27 +25,20 @@ import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZDate;
 import com.zimbra.qa.selenium.framework.util.ZTimeZone;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 
-public class CheckNavigateAwayDialogWhenOpeningMeetingInviteOrTask extends CalendarWorkWeekTest {
+public class CheckNavigateAwayDialogWhenOpeningMeetingInviteOrTask extends AjaxCommonTest {
 
 	public CheckNavigateAwayDialogWhenOpeningMeetingInviteOrTask() {
 		logger.info("New " + CheckNavigateAwayDialogWhenOpeningMeetingInviteOrTask.class.getCanonicalName());
-		
-		// All tests start at the Calendar page
 		super.startingPage = app.zPageCalendar;
-		
-		super.startingAccountPreferences = new HashMap<String, String>() {
-			private static final long serialVersionUID = -2913827779459595178L;
-		{
-		    put("zimbraPrefCalendarInitialView", "workWeek");
-		}};
 	}
-	
+
+
 	@Bugs(ids="50432")
-	@Test( description = "Bug 50432 - Unwanted navigate away dialog after opening appointment/task", 
+	@Test( description = "Bug 50432 - Unwanted navigate away dialog after opening appointment/task",
 			groups = { "functional", "L2" })
-	
+
 	public void CheckNavigateAwayDialogWhenOpeningMeetingInviteOrTask_01() throws HarnessException {
 
 		// Creating object for appointment data
@@ -56,12 +46,12 @@ public class CheckNavigateAwayDialogWhenOpeningMeetingInviteOrTask extends Calen
 		tz = ZTimeZone.getLocalTimeZone().getID();
 		apptSubject = ConfigProperties.getUniqueString();
 		apptBody = ConfigProperties.getUniqueString();
-		
+
 		// Absolute dates in UTC zone
-		Calendar now = this.calendarWeekDayUTC;
-		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
-		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
-		
+		Calendar now = Calendar.getInstance();
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 15, 0, 0);
+
         app.zGetActiveAccount().soapSend(
               "<CreateAppointmentRequest xmlns='urn:zimbraMail'>" +
                    "<m>"+
@@ -82,6 +72,7 @@ public class CheckNavigateAwayDialogWhenOpeningMeetingInviteOrTask extends Calen
 
         // Open appointment & close it
         app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, apptSubject);
+
 		// if logout stucks then assume that browser dialog appeared
 		app.zPageMain.zLogout();
 	}

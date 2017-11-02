@@ -79,9 +79,6 @@ public class ModifyAppointment extends CalendarWorkWeekTest {
         // Verify appointment exists in current view
         ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
     
-        // Switch to work week view
-        app.zPageCalendar.zToolbarPressPulldown(Button.B_LISTVIEW, Button.O_LISTVIEW_WORKWEEK);
-
         // Open appointment & modify subject, body and save it
         app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, apptSubject);
         SleepUtil.sleepMedium();

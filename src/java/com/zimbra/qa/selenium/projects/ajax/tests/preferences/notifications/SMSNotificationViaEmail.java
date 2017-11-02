@@ -19,9 +19,7 @@ package com.zimbra.qa.selenium.projects.ajax.tests.preferences.notifications;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.items.MailItem;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
@@ -30,7 +28,7 @@ import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.DialogInformational;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew.Field;
@@ -38,26 +36,23 @@ import com.zimbra.qa.selenium.projects.ajax.ui.calendar.PageCalendar;
 import com.zimbra.qa.selenium.projects.ajax.ui.preferences.PagePreferences.Locators;
 import com.zimbra.qa.selenium.projects.ajax.ui.preferences.TreePreferences.TreeItem;
 
-public class SMSNotificationViaEmail extends CalendarWorkWeekTest {
+public class SMSNotificationViaEmail extends AjaxCommonTest {
 
 	public SMSNotificationViaEmail() {
-
 		super.startingPage = app.zPagePreferences;
 		super.startingAccountPreferences = new HashMap<String, String>() {
 			private static final long serialVersionUID = 8123430160111682678L;
 			{
 				put("zimbraFeatureCalendarReminderDeviceEmailEnabled", "TRUE");
 				put("zimbraPrefCalendarApptReminderWarningTime", "2");
-				put("zimbraPrefCalendarInitialView", "workWeek");
 			}
 		};
 	}
 
 
-	@Test(
-			description = "Verify SMS notification via Email for appointment reminder.",
-			groups = { "functional", "L2" }
-			)
+	@Test( description = "Verify SMS notification via Email for appointment reminder.",
+			groups = { "functional", "L2" } )
+
 	public void SMSNotificationViaEmail_01() throws HarnessException {
 
 		try {
@@ -101,10 +96,8 @@ public class SMSNotificationViaEmail extends CalendarWorkWeekTest {
 			// Click on Validate code button
 			app.zPagePreferences.zPressButton(Button.B_VALIDATE_CODE);
 
-
 			// Go to calendar tab
 			app.zPageCalendar.zNavigateTo();
-
 
 			// Open the new appointment form
 			FormApptNew apptForm = (FormApptNew) app.zPageCalendar.zToolbarPressButton(Button.B_NEW);
@@ -135,7 +128,7 @@ public class SMSNotificationViaEmail extends CalendarWorkWeekTest {
 			// Submit the appointment
 			apptForm.zSubmit();
 
-			// Wait for the Appointment reminder dialog to appear			
+			// Wait for the Appointment reminder dialog to appear
 			logger.info("zWaitForElementVisible(" + PageCalendar.Locators.zAppointmentReminderDialog + ")");
 		    for (int i = 0; i < 120; i++) {
 				if (app.zPageCalendar.sIsVisible(PageCalendar.Locators.zAppointmentReminderDialog)) {
@@ -146,14 +139,12 @@ public class SMSNotificationViaEmail extends CalendarWorkWeekTest {
 
 			// Look for notification mail in the other user's mailbox
 			for (int i = 0; i < 40; i++) {
-				
 				received = MailItem.importFromSOAP(ZimbraAccount.Account3(), "in:inbox content:("+ subject +")");
 				if (received != null) {
 					found = true;
 					break;
 
 				} else {
-
 					SleepUtil.sleepVeryVeryLong();
 				}
 			}
@@ -166,7 +157,5 @@ public class SMSNotificationViaEmail extends CalendarWorkWeekTest {
 			zFreshLogin();
 			logger.info(app.zGetActiveAccount().EmailAddress);
 		}
-
 	}
-
 }

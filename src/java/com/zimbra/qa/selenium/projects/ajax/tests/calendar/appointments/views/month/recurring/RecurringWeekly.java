@@ -19,9 +19,7 @@ package com.zimbra.qa.selenium.projects.ajax.tests.calendar.appointments.views.m
 import java.text.ParseException;
 import java.util.Calendar;
 import java.util.HashMap;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
@@ -29,47 +27,46 @@ import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZDate;
 import com.zimbra.qa.selenium.framework.util.ZTimeZone;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
-import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 
-public class RecurringWeekly extends CalendarWorkWeekTest {
+public class RecurringWeekly extends AjaxCommonTest {
 
 	public RecurringWeekly() {
 		logger.info("New "+ RecurringWeekly.class.getCanonicalName());
-		super.startingPage = app.zPageCalendar;
-		// Make sure we are using an account with month view
-		super.startingAccountPreferences = new HashMap<String, String>() {
-			private static final long serialVersionUID = 3028486541122343959L;
 
-			{
+		super.startingPage = app.zPageCalendar;
+		super.startingAccountPreferences = new HashMap<String, String>() {
+			private static final long serialVersionUID = 3028486541122343959L; {
 				put("zimbraPrefCalendarInitialView", "month");
-			}};
+			}
+		};
 	}
-	
+
 	@Test( description = "Verify the display of a weekly recurring appointment in month view.",
 			groups = { "functional", "L2" })
-			
+
 	public void RecurringWeekly_01() throws HarnessException, ParseException {
-		
+
 		// ------------------------ Test data ------------------------------------
 
-		Calendar now = this.calendarWeekDayUTC;
+		Calendar now = Calendar.getInstance();
 		String tz = ZTimeZone.getLocalTimeZone().getID();
-		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
-		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 16, 0, 0);
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 16, 0, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 17, 0, 0);
 		String apptSubject = ConfigProperties.getUniqueString();
 		String apptBody = ConfigProperties.getUniqueString();
 		int noOfApptInSeries = 6;
 		ZDate temp = startUTC;
-		
-		//Making sure that appointment is not created on the first day of month as the date cell has month number mentioned in it.
+
+		// Make sure that appointment is not created on the first day of month as the date cell has month number mentioned in it.
 		for(int i=1; i <= noOfApptInSeries; i++) {
 			if(temp.toDD().equals("01")) {
 				startUTC.addDays(1);
 				break;
 			}
-			temp = temp.addDays(7);  //Incrementing date by a week 
+			temp = temp.addDays(7);  //Incrementing date by a week
 		}
-		
+
 		// --------------- Creating invitation (organizer) ----------------------------
 
 		app.zGetActiveAccount().soapSend(
@@ -96,14 +93,11 @@ public class RecurringWeekly extends CalendarWorkWeekTest {
 						"<su>"+ apptSubject +"</su>" +
 					"</m>" +
 				"</CreateAppointmentRequest>");
-		
 
 		app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
-		
-		//Verifying that the appointments are displayed correctly in month view  
-		boolean displayed = app.zPageCalendar.zVerifyWeeklyAppointmentInMonthView(startUTC, noOfApptInSeries, apptSubject);
-		ZAssert.assertTrue(displayed, "Weekly recurring appointments are not displayed correctly in month view!");	
-		
-	}
 
+		// Verify that the appointments are displayed correctly in month view
+		boolean displayed = app.zPageCalendar.zVerifyWeeklyAppointmentInMonthView(startUTC, noOfApptInSeries, apptSubject);
+		ZAssert.assertTrue(displayed, "Weekly recurring appointments are not displayed correctly in month view!");
+	}
 }

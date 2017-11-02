@@ -511,14 +511,15 @@
 		public static final Button B_REPEAT_DROPDOWN_DISABLED = new Button("B_REPEAT_DROPDOWN_DISABLED");
 		public static final Button B_REPEAT_DESCRIPTION_DISABLED = new Button("B_REPEAT_DESCRIPTION_DISABLED");
 
-		public static final Button B_VIEW = new Button("B_VIEWTOOLBAR");
-		public static final Button O_LISTVIEW_DAY = new Button("O_LISTVIEW_DAY");
-		public static final Button O_LISTVIEW_WORKWEEK = new Button("O_LISTVIEW_WORKWEEK");
-		public static final Button O_LISTVIEW_WEEK = new Button("O_LISTVIEW_WEEK");
-		public static final Button O_LISTVIEW_MONTH = new Button("O_LISTVIEW_MONTH");
-		public static final Button O_LISTVIEW_LIST = new Button("O_LISTVIEW_LIST");
-		public static final Button O_LISTVIEW_SCHEDULE = new Button("O_LISTVIEW_SCHEDULE");
-		public static final Button O_LISTVIEW_FREEBUSY = new Button("O_LISTVIEW_FREEBUSY");
+		public static final Button B_VIEW = new Button("B_VIEW");
+		public static final Button B_DAY_VIEW = new Button("B_DAY_VIEW");
+		public static final Button B_WORKWEEK_VIEW = new Button("B_WORKWEEK_VIEW");
+		public static final Button B_WEEK_VIEW = new Button("B_WEEK_VIEW");
+		public static final Button B_MONTH_VIEW = new Button("B_MONTH_VIEW");
+		public static final Button B_LIST_VIEW = new Button("B_LIST_VIEW");
+		public static final Button B_SCHEDULE_VIEW = new Button("B_SCHEDULE_VIEW");
+		public static final Button B_FREEBUSY_VIEW = new Button("B_FREEBUSY_VIEW");
+
 		public static final Button O_LISTVIEW_TAG = new Button("O_LISTVIEW_TAG");
 		public static final Button O_LISTVIEW_NEWTAG = new Button("O_LISTVIEW_NEWTAG");
 		public static final Button O_LISTVIEW_REMOVETAG = new Button("O_LISTVIEW_REMOVETAG");

@@ -26,20 +26,19 @@ import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZDate;
 import com.zimbra.qa.selenium.framework.util.ZTimeZone;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
-import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 
-public class OpenAppointment extends CalendarWorkWeekTest {
+public class OpenAppointment extends AjaxCommonTest {
 
 	public OpenAppointment() {
 		logger.info("New "+ OpenAppointment.class.getCanonicalName());
-
-		// All tests start at the Calendar page
 		super.startingPage = app.zPageCalendar;
 	}
 
+
 	@Test( description = "Open an appointment in trash and verify its details.",
 			groups = { "sanity", "L1" })
-	
+
 	public void OpenAppointment_01() throws HarnessException {
 
 		// Create the appointment on the server
@@ -49,9 +48,9 @@ public class OpenAppointment extends CalendarWorkWeekTest {
 		String content = "content" + ConfigProperties.getUniqueString();
 
 		// Absolute dates in UTC zone
-		Calendar now = this.calendarWeekDayUTC;
-		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
-		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
+		Calendar now = Calendar.getInstance();
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 9, 0, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 10, 0, 0);
 
 		// Get local timezone value
 		String tz = ZTimeZone.getLocalTimeZone().getID();
@@ -74,9 +73,9 @@ public class OpenAppointment extends CalendarWorkWeekTest {
 						+			"</mp>"
 						+		"</m>"
 						+	"</CreateAppointmentRequest>");
-		
+
 		String invId = app.zGetActiveAccount().soapSelectValue("//mail:CreateAppointmentResponse", "invId");
-		
+
 		app.zGetActiveAccount().soapSend(
 				"<CancelAppointmentRequest xmlns='urn:zimbraMail' id='" + invId +"' comp='0'>"
 						+       "<m>"
@@ -89,23 +88,21 @@ public class OpenAppointment extends CalendarWorkWeekTest {
 
 		// Enable trash
 		app.zPageCalendar.zCheckboxSet(Checkbox.C_TRASH, true);
-		
+
 		// Verify the presence of appointment in Trash
 		ZAssert.assertTrue(app.zPageCalendar.zIsAppointmentPresentInTrash(apptSubject), "Verify appointment is present in Trash!");
-		
+
 		// Double-click to open the appointment
 		app.zPageCalendar.zListItemTrashView(Action.A_DOUBLECLICK, apptSubject);
-		
+
 		// Verify subject
 		ZAssert.assertEquals(app.zPageCalendar.zGetApptSubjectFromReadOnlyAppt(), apptSubject, "Verify the subject after opening an appointment is trash!");
-		
+
 		// Verify body
 		ZAssert.assertEquals(app.zPageCalendar.zGetApptBodyFromReadOnlyAppt(), content, "Verify the content after opening an appointment is trash!");
-		
+
 		// Verify date
 		ZAssert.assertStringContains(app.zPageCalendar.zGetApptDateFromReadOnlyAppt(), startUTC.toMMM_dd_yyyy_A_hCmm_a().split("@")[0], "Verify the content after opening an appointment is trash!");
 		ZAssert.assertStringContains(app.zPageCalendar.zGetApptDateFromReadOnlyAppt(), startUTC.toMMM_dd_yyyy_A_hCmm_a().split("@")[1], "Verify the content after opening an appointment is trash!");
-		
 	}
-
 }

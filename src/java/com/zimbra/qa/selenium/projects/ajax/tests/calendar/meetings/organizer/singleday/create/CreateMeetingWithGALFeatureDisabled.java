@@ -17,17 +17,15 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.organizer.singleday.create;
 
 import java.util.Calendar;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
 
-public class CreateMeetingWithGALFeatureDisabled extends CalendarWorkWeekTest {
+public class CreateMeetingWithGALFeatureDisabled extends AjaxCommonTest {
 
 	public CreateMeetingWithGALFeatureDisabled() {
 		logger.info("New "+ CreateMeetingWithGALFeatureDisabled.class.getCanonicalName());
@@ -36,11 +34,11 @@ public class CreateMeetingWithGALFeatureDisabled extends CalendarWorkWeekTest {
 	}
 
 	@Bugs(ids = "99777,65926")
-	@Test( description = "Create a basic appointment this zimbraFeatureGalEnabled=FALSE", 
+	@Test( description = "Create a basic appointment this zimbraFeatureGalEnabled=FALSE",
 			groups = { "smoke", "L1" } )
-	
+
 	public void CreateMeetingWithGALFeatureDisabled_01() throws HarnessException {
-		
+
 		// Modify the test account to disable GAL
 		ZimbraAdminAccount.GlobalAdmin().soapSend(
 				"<ModifyAccountRequest xmlns='urn:zimbraAdmin'>"
@@ -54,12 +52,12 @@ public class CreateMeetingWithGALFeatureDisabled extends CalendarWorkWeekTest {
 
 		// Create appointment
 		AppointmentItem appt = new AppointmentItem();
-		Calendar now = this.calendarWeekDayUTC;
+		Calendar now = Calendar.getInstance();
 		appt.setSubject(ConfigProperties.getUniqueString());
 		appt.setContent("content" + ConfigProperties.getUniqueString());
-		appt.setStartTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0));
-		appt.setEndTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0));
-	
+		appt.setStartTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0));
+		appt.setEndTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 15, 0, 0));
+
 		// Open the new mail form
 		FormApptNew apptForm = (FormApptNew) app.zPageCalendar.zToolbarPressButton(Button.B_NEW);
 		ZAssert.assertNotNull(apptForm, "Verify the new form opened");
@@ -69,20 +67,20 @@ public class CreateMeetingWithGALFeatureDisabled extends CalendarWorkWeekTest {
 
 		// Send the message
 		apptForm.zSubmit();
-			
+
 		// Verify the new appointment exists on the server
 		AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ appt.getSubject() +")", appt.getStartTime().addDays(-7), appt.getEndTime().addDays(7));
 		ZAssert.assertNotNull(actual, "Verify the new appointment is created");
 		ZAssert.assertEquals(actual.getSubject(), appt.getSubject(), "Subject: Verify the appointment data");
 	}
-	
-	
+
+
 	@Bugs(ids = "99777,65926")
-	@Test( description = "Create a basic appointment this GAL features disabled", 
+	@Test( description = "Create a basic appointment this GAL features disabled",
 			groups = { "functional", "L2" } )
-	
+
 	public void CreateMeetingWithGALFeatureDisabled_02() throws HarnessException {
-		
+
 		// Modify the test account to disable GAL
 		ZimbraAdminAccount.GlobalAdmin().soapSend(
 				"<ModifyAccountRequest xmlns='urn:zimbraAdmin'>"
@@ -98,12 +96,12 @@ public class CreateMeetingWithGALFeatureDisabled extends CalendarWorkWeekTest {
 
 		// Create appointment
 		AppointmentItem appt = new AppointmentItem();
-		Calendar now = this.calendarWeekDayUTC;
+		Calendar now = Calendar.getInstance();
 		appt.setSubject(ConfigProperties.getUniqueString());
 		appt.setContent("content" + ConfigProperties.getUniqueString());
-		appt.setStartTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0));
-		appt.setEndTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0));
-	
+		appt.setStartTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 15, 0, 0));
+		appt.setEndTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 16, 0, 0));
+
 		// Open the new mail form
 		FormApptNew apptForm = (FormApptNew) app.zPageCalendar.zToolbarPressButton(Button.B_NEW);
 		ZAssert.assertNotNull(apptForm, "Verify the new form opened");
@@ -113,12 +111,10 @@ public class CreateMeetingWithGALFeatureDisabled extends CalendarWorkWeekTest {
 
 		// Send the message
 		apptForm.zSubmit();
-			
+
 		// Verify the new appointment exists on the server
 		AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ appt.getSubject() +")", appt.getStartTime().addDays(-7), appt.getEndTime().addDays(7));
 		ZAssert.assertNotNull(actual, "Verify the new appointment is created");
 		ZAssert.assertEquals(actual.getSubject(), appt.getSubject(), "Subject: Verify the appointment data");
 	}
-	
-	
 }

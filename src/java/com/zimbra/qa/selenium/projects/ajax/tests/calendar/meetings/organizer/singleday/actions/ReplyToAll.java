@@ -18,7 +18,6 @@ package com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.organizer.s
 
 import java.util.Calendar;
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
@@ -28,24 +27,22 @@ import com.zimbra.qa.selenium.framework.util.ZDate;
 import com.zimbra.qa.selenium.framework.util.ZTimeZone;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew.Field;
 
-public class ReplyToAll extends CalendarWorkWeekTest {	
-	
+public class ReplyToAll extends AjaxCommonTest {
+
 	public ReplyToAll() {
 		logger.info("New "+ ReplyToAll.class.getCanonicalName());
 	    super.startingPage =  app.zPageCalendar;
-	    
 	}
-	
+
+
 	@Test( description = "Check when attendees get the reply when organizer ReplyAll to a meeting",
 			groups = { "functional", "L2" })
-	public void ReplyToAll_01() throws HarnessException {
-		
 
-		//-- Data Setup
+	public void ReplyToAll_01() throws HarnessException {
 
 		// Creating object for meeting data
 		String tz, apptSubject, apptBody, apptAttendee1;
@@ -54,10 +51,10 @@ public class ReplyToAll extends CalendarWorkWeekTest {
 		apptBody = ConfigProperties.getUniqueString();
 		apptAttendee1 = ZimbraAccount.AccountA().EmailAddress;
 		// Absolute dates in UTC zone
-		Calendar now = this.calendarWeekDayUTC;
-		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
-		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
-		
+		Calendar now = Calendar.getInstance();
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 8, 0, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 9, 0, 0);
+
 		app.zGetActiveAccount().soapSend(
                 "<CreateAppointmentRequest xmlns='urn:zimbraMail'>" +
                      "<m>"+
@@ -65,7 +62,7 @@ public class ReplyToAll extends CalendarWorkWeekTest {
                      "<s d='"+ startUTC.toTimeZone(tz).toYYYYMMDDTHHMMSS() +"' tz='"+ tz +"'/>" +
                      "<e d='"+ endUTC.toTimeZone(tz).toYYYYMMDDTHHMMSS() +"' tz='"+ tz +"'/>" +
                      "<or a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
-                     "<at role='REQ' ptst='NE' rsvp='1' a='" + apptAttendee1 + "' d='2'/>" + 
+                     "<at role='REQ' ptst='NE' rsvp='1' a='" + apptAttendee1 + "' d='2'/>" +
                      "</inv>" +
                      "<e a='"+ apptAttendee1 +"' t='t'/>" +
                      "<mp content-type='text/plain'>" +
@@ -74,35 +71,33 @@ public class ReplyToAll extends CalendarWorkWeekTest {
                      "<su>"+ apptSubject +"</su>" +
                      "</m>" +
                "</CreateAppointmentRequest>");
-		
+
 		// Verify appointment exists in current view
         ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
 
         // When the form opens, add some text and then Submit
         String replyText= "ReplyBodyByOrganizer";
         FormMailNew mailComposeForm = (FormMailNew)app.zPageCalendar.zListItem(Action.A_RIGHTCLICK,Button.O_REPLY_TO_ALL_MENU, apptSubject);
-        mailComposeForm.zFillField(Field.Body, replyText);		
+        mailComposeForm.zFillField(Field.Body, replyText);
 		mailComposeForm.zSubmit();
-        
+
 		// Verify the new invitation appears in the inbox
-        String id = ZimbraAccount.AccountA().soapSelectValue("//mail:m", "id"); 
+        String id = ZimbraAccount.AccountA().soapSelectValue("//mail:m", "id");
 		ZimbraAccount.AccountA().soapSend(
 				"<SearchRequest xmlns='urn:zimbraMail' types='message'>"
-			+		"<query>subject:("+ apptSubject +") content:("+ replyText +")</query>"			
+			+		"<query>subject:("+ apptSubject +") content:("+ replyText +")</query>"
 			+	"</SearchRequest>");
-		
+
 		id = ZimbraAccount.AccountA().soapSelectValue("//mail:m", "id");
-		ZAssert.assertNotNull(id, "Verify the replyall to meeting appears in the attendee's inbox");	
+		ZAssert.assertNotNull(id, "Verify the replyall to meeting appears in the attendee's inbox");
 	}
-	
-	
+
+
 	@Bugs(ids = "57418")
 	@Test( description = "Verify if optional attendees appear as CC contact in the mail when organizer replies all to meeting",
 			groups = { "functional", "L2" })
-	public void ReplyToAll_02() throws HarnessException {
-		
 
-		//-- Data Setup
+	public void ReplyToAll_02() throws HarnessException {
 
 		// Creating object for meeting data
 		String tz, apptSubject, apptAttendee1,apptAttendee2;
@@ -110,11 +105,11 @@ public class ReplyToAll extends CalendarWorkWeekTest {
 		apptSubject = "appt" + ConfigProperties.getUniqueString();
 		apptAttendee1 = ZimbraAccount.AccountA().EmailAddress;
 		apptAttendee2 = ZimbraAccount.AccountB().EmailAddress;
-		
+
 		// Absolute dates in UTC zone
-		Calendar now = this.calendarWeekDayUTC;
-		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
-		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
+		Calendar now = Calendar.getInstance();
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 9, 0, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 10, 0, 0);
 		app.zGetActiveAccount().soapSend(
                 "<CreateAppointmentRequest xmlns='urn:zimbraMail'>" +
                      "<m>"+
@@ -132,15 +127,15 @@ public class ReplyToAll extends CalendarWorkWeekTest {
                      "<su>"+ apptSubject +"</su>" +
                      "</m>" +
                "</CreateAppointmentRequest>");
-		
-		
+
+
 		// Verify appointment exists in current view
         ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
-   
-        // Verify if Optional attendee appears in the CC feild when organizer replies all to meeting  
+
+        // Verify if Optional attendee appears in the CC feild when organizer replies all to meeting
         FormMailNew mailComposeForm = (FormMailNew)app.zPageCalendar.zListItem(Action.A_RIGHTCLICK,Button.O_REPLY_TO_ALL_MENU, apptSubject);
         String userInCcField = mailComposeForm.zGetFieldValue(Field.Cc);
 		ZAssert.assertStringContains(apptAttendee2, userInCcField, "Verify the optional attendee appears in the CC field");
-		
+
 	}
 }

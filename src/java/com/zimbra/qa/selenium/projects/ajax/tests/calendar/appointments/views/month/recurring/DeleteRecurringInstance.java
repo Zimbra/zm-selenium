@@ -18,16 +18,14 @@ package com.zimbra.qa.selenium.projects.ajax.tests.calendar.appointments.views.m
 
 import java.util.Calendar;
 import java.util.HashMap;
-
 import org.testng.annotations.*;
-
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.DialogWarning;
 
-public class DeleteRecurringInstance extends CalendarWorkWeekTest {
-	
+public class DeleteRecurringInstance extends AjaxCommonTest {
+
 	public DeleteRecurringInstance() {
 		logger.info("New "+ DeleteRecurringInstance.class.getCanonicalName());
 
@@ -43,10 +41,10 @@ public class DeleteRecurringInstance extends CalendarWorkWeekTest {
 			}};
 	}
 
-	
+
 	@Test( description = "Verify if deleting a later instance from recurring appt does not causes Wrong/first instace of Appointment being deleted in a monthly view",
 			groups = { "functional", "L2" })
-	
+
 	public void DeleteRecurringInstance_01() throws HarnessException {
 
 		// Appointment data
@@ -56,9 +54,9 @@ public class DeleteRecurringInstance extends CalendarWorkWeekTest {
 		apptBody = "body" + ConfigProperties.getUniqueString();
 
 		// Absolute dates in UTC zone
-		Calendar now = this.calendarWeekDayUTC;
-		ZDate startTime = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
-		ZDate endTime   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
+		Calendar now = Calendar.getInstance();
+		ZDate startTime = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
+		ZDate endTime   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 15, 0, 0);
 
 		app.zGetActiveAccount().soapSend(
 				"<CreateAppointmentRequest xmlns='urn:zimbraMail'>" +
@@ -84,8 +82,8 @@ public class DeleteRecurringInstance extends CalendarWorkWeekTest {
 
 		app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
 
-		// Get baseCount of total appts present in the current month view 
-		int baseCount = app.zPageCalendar.zGetApptCountMonthView(apptSubject);
+		// Get baseCount of total appts present in the current month view
+		int baseCount = app.zPageCalendar.zGetAppointmentCountMonthView(apptSubject);
 
 		// Move to current Month + 2 and delete an instance
 		app.zPageCalendar.zToolbarPressButton(Button.B_NEXT_MONTH);
@@ -98,12 +96,12 @@ public class DeleteRecurringInstance extends CalendarWorkWeekTest {
 		confirmDelete.zClickButton(Button.B_YES);
 
 		// Verify correct no. of recurring instances are present in calendar view after deleting an instance
-		ZAssert.assertGreaterThanEqualTo(app.zPageCalendar.zGetApptCountMonthView(apptSubject), 5, "Verify correct no. of recurring instances are present in calendar view after deleting an instance");
+		ZAssert.assertGreaterThanEqualTo(app.zPageCalendar.zGetAppointmentCountMonthView(apptSubject), 5, "Verify correct no. of recurring instances are present in calendar view after deleting an instance");
 
 		// Go to next month and verify correct number of recurring instance
 		app.zPageCalendar.zToolbarPressButton(Button.B_NEXT_PAGE);
 		SleepUtil.sleepMedium(); //Let UI draw first and important for calendar testcases reliability
-		ZAssert.assertGreaterThanEqualTo(app.zPageCalendar.zGetApptCountMonthView(apptSubject), 6, "Verify all 6 appts are present in other months of recurring appt in calendar view");
+		ZAssert.assertGreaterThanEqualTo(app.zPageCalendar.zGetAppointmentCountMonthView(apptSubject), 6, "Verify all 6 appts are present in other months of recurring appt in calendar view");
 
 		// Navigate back and forth and verify correct number of recurring instance
 		app.zPageCalendar.zToolbarPressButton(Button.B_NEXT_PAGE);
@@ -112,12 +110,12 @@ public class DeleteRecurringInstance extends CalendarWorkWeekTest {
 
 		// Come back the month which has an istance deleted and check if instance count is correct
 		SleepUtil.sleepMedium(); //Let UI draw first and important for calendar testcases reliability
-		ZAssert.assertEquals(app.zPageCalendar.zGetApptCountMonthView(apptSubject), 5, "Verify correct no. of recurring instances are present in calendar viewafter deleting an instance after navigating back to month which has deleted instance");
+		ZAssert.assertEquals(app.zPageCalendar.zGetAppointmentCountMonthView(apptSubject), 5, "Verify correct no. of recurring instances are present in calendar viewafter deleting an instance after navigating back to month which has deleted instance");
 
 		// Verify correct no. of recurring instances are present in start month and no instance is deleted from that month
 		app.zPageCalendar.zToolbarPressButton(Button.B_PREVIOUS_PAGE);
 		app.zPageCalendar.zToolbarPressButton(Button.B_PREVIOUS_PAGE); // navigate back to current month
-		ZAssert.assertEquals(app.zPageCalendar.zGetApptCountMonthView(apptSubject), baseCount, "Verify correct no. of recurring instances are present in start month and no instance is deleted");
+		ZAssert.assertEquals(app.zPageCalendar.zGetAppointmentCountMonthView(apptSubject), baseCount, "Verify correct no. of recurring instances are present in start month and no instance is deleted");
 
 	}
 

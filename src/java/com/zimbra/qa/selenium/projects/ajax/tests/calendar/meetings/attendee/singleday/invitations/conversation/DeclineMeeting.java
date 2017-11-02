@@ -17,7 +17,6 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.attendee.singleday.invitations.conversation;
 
 import java.util.*;
-
 import org.testng.annotations.Test;
 import com.zimbra.common.soap.Element;
 import com.zimbra.qa.selenium.framework.core.Bugs;
@@ -29,7 +28,7 @@ import com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew.Field;
 
-public class DeclineMeeting extends CalendarWorkWeekTest {
+public class DeclineMeeting extends AjaxCommonTest {
 
 	public DeclineMeeting() {
 		logger.info("New "+ DeclineMeeting.class.getCanonicalName());
@@ -41,10 +40,10 @@ public class DeclineMeeting extends CalendarWorkWeekTest {
 	 * with subject and start time
 	 * @param subject
 	 * @param start
-	 * @throws HarnessException 
+	 * @throws HarnessException
 	 */
 	private void SendCreateAppointmentRequest(String subject, ZDate start) throws HarnessException {
-				
+
 		ZimbraAccount.AccountA().soapSend(
 				"<CreateAppointmentRequest xmlns='urn:zimbraMail'>"
 				+		"<m>"
@@ -60,25 +59,23 @@ public class DeclineMeeting extends CalendarWorkWeekTest {
 				+				"<content>content</content>"
 				+			"</mp>"
 				+		"</m>"
-				+	"</CreateAppointmentRequest>");        
-
+				+	"</CreateAppointmentRequest>");
 	}
-	
-	@Bugs(ids = "69132")
-	@Test(
-			description = "Decline a meeting using Decline button from invitation message", 
+
+
+	@Bugs (ids = "69132")
+	@Test (description = "Decline a meeting using Decline button from invitation message",
 			groups = { "smoke", "L1" })
+
 	public void DeclineMeeting_01() throws HarnessException {
-
-
 
 		// ------------------------ Test data ------------------------------------
 
 		String apptSubject = ConfigProperties.getUniqueString();
 
-		Calendar now = this.calendarWeekDayUTC;
-		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
-		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
+		Calendar now = Calendar.getInstance();
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 8, 0, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 9, 0, 0);
 
 
 
@@ -99,7 +96,7 @@ public class DeclineMeeting extends CalendarWorkWeekTest {
 				+				"<content>content</content>"
 				+			"</mp>"
 				+		"</m>"
-				+	"</CreateAppointmentRequest>");        
+				+	"</CreateAppointmentRequest>");
 
 
 
@@ -116,7 +113,7 @@ public class DeclineMeeting extends CalendarWorkWeekTest {
 
 
 
-		// ---------------- Verification at organizer & invitee side both -------------------------------------       
+		// ---------------- Verification at organizer & invitee side both -------------------------------------
 
 
 		// --- Check that the organizer shows the attendee as "DECLINE" ---
@@ -126,13 +123,13 @@ public class DeclineMeeting extends CalendarWorkWeekTest {
 					"<SearchRequest xmlns='urn:zimbraMail' types='appointment' calExpandInstStart='"+ startUTC.addDays(-10).toMillis() +"' calExpandInstEnd='"+ endUTC.addDays(10).toMillis() +"'>"
 				+		"<query>"+ apptSubject +"</query>"
 				+	"</SearchRequest>");
-		
+
 		String organizerInvId = ZimbraAccount.AccountA().soapSelectValue("//mail:appt", "invId");
 
 		// Get the appointment details
 		ZimbraAccount.AccountA().soapSend(
 					"<GetAppointmentRequest  xmlns='urn:zimbraMail' id='"+ organizerInvId +"'/>");
-		
+
 		String attendeeStatus = ZimbraAccount.AccountA().soapSelectValue("//mail:at[@a='"+ app.zGetActiveAccount().EmailAddress +"']", "ptst");
 
 		// Verify attendee status shows as ptst=DE
@@ -146,13 +143,13 @@ public class DeclineMeeting extends CalendarWorkWeekTest {
 					"<SearchRequest xmlns='urn:zimbraMail' types='appointment' calExpandInstStart='"+ startUTC.addDays(-10).toMillis() +"' calExpandInstEnd='"+ endUTC.addDays(10).toMillis() +"'>"
 				+		"<query>"+ apptSubject +"</query>"
 				+	"</SearchRequest>");
-		
+
 		String attendeeInvId = app.zGetActiveAccount().soapSelectValue("//mail:appt", "invId");
 
 		// Get the appointment details
 		app.zGetActiveAccount().soapSend(
 					"<GetAppointmentRequest  xmlns='urn:zimbraMail' id='"+ attendeeInvId +"'/>");
-		
+
 		String myStatus = app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ app.zGetActiveAccount().EmailAddress +"']", "ptst");
 
 		// Verify attendee status shows as ptst=DE
@@ -160,10 +157,11 @@ public class DeclineMeeting extends CalendarWorkWeekTest {
 
 	}
 
-	@Bugs(ids = "69132")
-	@Test(
-			description = "Decline meeting - Verify organizer gets notification message", 
+
+	@Bugs (ids = "69132")
+	@Test (description = "Decline meeting - Verify organizer gets notification message",
 			groups = { "functional", "L2" })
+
 	public void DeclineMeeting_02() throws HarnessException {
 
 
@@ -172,8 +170,8 @@ public class DeclineMeeting extends CalendarWorkWeekTest {
 
 		String apptSubject = ConfigProperties.getUniqueString();
 
-		Calendar now = this.calendarWeekDayUTC;
-		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
+		Calendar now = Calendar.getInstance();
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 10, 0, 0);
 
 
 
@@ -196,19 +194,19 @@ public class DeclineMeeting extends CalendarWorkWeekTest {
 
 
 
-		// ---------------- Verification at organizer & invitee side both -------------------------------------       
+		// ---------------- Verification at organizer & invitee side both -------------------------------------
 
 
 		// --- Check that the organizer shows the attendee as "DECLINE" ---
 
 		// Organizer: Search for the appointment response
 		String inboxId = FolderItem.importFromSOAP(ZimbraAccount.AccountA(), FolderItem.SystemFolder.Inbox).getId();
-		
+
 		ZimbraAccount.AccountA().soapSend(
 					"<SearchRequest xmlns='urn:zimbraMail' types='message'>"
 				+		"<query>inid:"+ inboxId +" subject:("+ apptSubject +")</query>"
 				+	"</SearchRequest>");
-		
+
 		String messageId = ZimbraAccount.AccountA().soapSelectValue("//mail:m", "id");
 
 		// Get the appointment details
@@ -219,18 +217,19 @@ public class DeclineMeeting extends CalendarWorkWeekTest {
 
 	}
 
-	@Bugs(ids = "69132")
-	@Test(
-			description = "Decline meeting using 'Decline -> Notify Organizer'", 
+
+	@Bugs (ids = "69132")
+	@Test (description = "Decline meeting using 'Decline -> Notify Organizer'",
 			groups = { "functional", "L2" })
+
 	public void DeclineMeeting_03() throws HarnessException {
 
 		// ------------------------ Test data ------------------------------------
 
 		String apptSubject = ConfigProperties.getUniqueString();
 
-		Calendar now = this.calendarWeekDayUTC;
-		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 10, 0, 0);
+		Calendar now = Calendar.getInstance();
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 11, 0, 0);
 		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
 
 
@@ -251,7 +250,7 @@ public class DeclineMeeting extends CalendarWorkWeekTest {
 				+				"<content>content</content>"
 				+			"</mp>"
 				+		"</m>"
-				+	"</CreateAppointmentRequest>");        
+				+	"</CreateAppointmentRequest>");
 
 
 
@@ -266,7 +265,7 @@ public class DeclineMeeting extends CalendarWorkWeekTest {
 		// Click Decline > Notify Organizer
 		display.zPressButtonPulldown(Button.B_DECLINE, Button.O_DECLINE_NOTIFY_ORGANIZER);
 
-		// ---------------- Verification at organizer & invitee side both -------------------------------------       
+		// ---------------- Verification at organizer & invitee side both -------------------------------------
 
 
 		// --- Check that the organizer shows the attendee as "DECLINE" ---
@@ -276,13 +275,13 @@ public class DeclineMeeting extends CalendarWorkWeekTest {
 					"<SearchRequest xmlns='urn:zimbraMail' types='appointment' calExpandInstStart='"+ startUTC.addDays(-10).toMillis() +"' calExpandInstEnd='"+ endUTC.addDays(10).toMillis() +"'>"
 				+		"<query>"+ apptSubject +"</query>"
 				+	"</SearchRequest>");
-		
+
 		String organizerInvId = ZimbraAccount.AccountA().soapSelectValue("//mail:appt", "invId");
 
 		// Get the appointment details
 		ZimbraAccount.AccountA().soapSend(
 					"<GetAppointmentRequest  xmlns='urn:zimbraMail' id='"+ organizerInvId +"'/>");
-		
+
 		String attendeeStatus = ZimbraAccount.AccountA().soapSelectValue("//mail:at[@a='"+ app.zGetActiveAccount().EmailAddress +"']", "ptst");
 
 		// Verify attendee status shows as ptst=DE
@@ -296,13 +295,13 @@ public class DeclineMeeting extends CalendarWorkWeekTest {
 					"<SearchRequest xmlns='urn:zimbraMail' types='appointment' calExpandInstStart='"+ startUTC.addDays(-10).toMillis() +"' calExpandInstEnd='"+ endUTC.addDays(10).toMillis() +"'>"
 				+		"<query>"+ apptSubject +"</query>"
 				+	"</SearchRequest>");
-		
+
 		String attendeeInvId = app.zGetActiveAccount().soapSelectValue("//mail:appt", "invId");
 
 		// Get the appointment details
 		app.zGetActiveAccount().soapSend(
 					"<GetAppointmentRequest  xmlns='urn:zimbraMail' id='"+ attendeeInvId +"'/>");
-		
+
 		String myStatus = app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ app.zGetActiveAccount().EmailAddress +"']", "ptst");
 
 		// Verify attendee status shows as ptst=DE
@@ -310,12 +309,12 @@ public class DeclineMeeting extends CalendarWorkWeekTest {
 
 		// Organizer: Search for the appointment response
 		String inboxId = FolderItem.importFromSOAP(ZimbraAccount.AccountA(), FolderItem.SystemFolder.Inbox).getId();
-		
+
 		ZimbraAccount.AccountA().soapSend(
 					"<SearchRequest xmlns='urn:zimbraMail' types='message'>"
 				+		"<query>inid:"+ inboxId +" subject:("+ apptSubject +")</query>"
 				+	"</SearchRequest>");
-		
+
 		String messageId = ZimbraAccount.AccountA().soapSelectValue("//mail:m", "id");
 
 		// Get the appointment details
@@ -323,13 +322,14 @@ public class DeclineMeeting extends CalendarWorkWeekTest {
 					"<GetMsgRequest  xmlns='urn:zimbraMail'>"
 				+		"<m id='"+ messageId +"'/>"
 				+	"</GetMsgRequest>");
-		
+
 	}
-	
-	@Bugs(ids = "69132")
-	@Test(
-			description = "Decline meeting using 'Decline -> Edit Reply' and verify modified content", 
+
+
+	@Bugs (ids = "69132")
+	@Test (description = "Decline meeting using 'Decline -> Edit Reply' and verify modified content",
 			groups = { "functional", "L2" })
+
 	public void DeclineMeeting_04() throws HarnessException {
 
 		// ------------------------ Test data ------------------------------------
@@ -337,9 +337,9 @@ public class DeclineMeeting extends CalendarWorkWeekTest {
 		String apptSubject = ConfigProperties.getUniqueString();
 		String modifiedBody = "modified" + ConfigProperties.getUniqueString();
 
-		Calendar now = this.calendarWeekDayUTC;
-		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 8, 0, 0);
-		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 9, 0, 0);
+		Calendar now = Calendar.getInstance();
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 13, 0, 0);
 
 
 		// --------------- Creating invitation (organizer) ----------------------------
@@ -359,7 +359,7 @@ public class DeclineMeeting extends CalendarWorkWeekTest {
 				+				"<content>content</content>"
 				+			"</mp>"
 				+		"</m>"
-				+	"</CreateAppointmentRequest>");        
+				+	"</CreateAppointmentRequest>");
 
 
 
@@ -367,7 +367,7 @@ public class DeclineMeeting extends CalendarWorkWeekTest {
 
 		// Refresh current view
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(apptSubject), "Verify message displayed in current view");
-		
+
 		// Select the mail
 		DisplayMail display = (DisplayMail)app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);
 
@@ -375,8 +375,8 @@ public class DeclineMeeting extends CalendarWorkWeekTest {
 		FormMailNew editReply = (FormMailNew)display.zPressButtonPulldown(Button.B_DECLINE, Button.O_DECLINE_EDIT_REPLY);
         editReply.zFillField(Field.Body, modifiedBody);
         editReply.zSubmit();
-		
-		// ---------------- Verification at organizer & invitee side both -------------------------------------       
+
+		// ---------------- Verification at organizer & invitee side both -------------------------------------
 
 
 		// --- Check that the organizer shows the attendee as "DECLINE" ---
@@ -386,13 +386,13 @@ public class DeclineMeeting extends CalendarWorkWeekTest {
 					"<SearchRequest xmlns='urn:zimbraMail' types='appointment' calExpandInstStart='"+ startUTC.addDays(-10).toMillis() +"' calExpandInstEnd='"+ endUTC.addDays(10).toMillis() +"'>"
 				+		"<query>"+ apptSubject +"</query>"
 				+	"</SearchRequest>");
-		
+
 		String organizerInvId = ZimbraAccount.AccountA().soapSelectValue("//mail:appt", "invId");
 
 		// Get the appointment details
 		ZimbraAccount.AccountA().soapSend(
 					"<GetAppointmentRequest  xmlns='urn:zimbraMail' id='"+ organizerInvId +"'/>");
-		
+
 		String attendeeStatus = ZimbraAccount.AccountA().soapSelectValue("//mail:at[@a='"+ app.zGetActiveAccount().EmailAddress +"']", "ptst");
 
 		// Verify attendee status shows as ptst=DE
@@ -406,13 +406,13 @@ public class DeclineMeeting extends CalendarWorkWeekTest {
 					"<SearchRequest xmlns='urn:zimbraMail' types='appointment' calExpandInstStart='"+ startUTC.addDays(-10).toMillis() +"' calExpandInstEnd='"+ endUTC.addDays(10).toMillis() +"'>"
 				+		"<query>"+ apptSubject +"</query>"
 				+	"</SearchRequest>");
-		
+
 		String attendeeInvId = app.zGetActiveAccount().soapSelectValue("//mail:appt", "invId");
 
 		// Get the appointment details
 		app.zGetActiveAccount().soapSend(
 					"<GetAppointmentRequest  xmlns='urn:zimbraMail' id='"+ attendeeInvId +"'/>");
-		
+
 		String myStatus = app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ app.zGetActiveAccount().EmailAddress +"']", "ptst");
 
 		// Verify attendee status shows as ptst=DE
@@ -420,31 +420,32 @@ public class DeclineMeeting extends CalendarWorkWeekTest {
 
 		// Organizer: Search for the appointment response
 		String inboxId = FolderItem.importFromSOAP(ZimbraAccount.AccountA(), FolderItem.SystemFolder.Inbox).getId();
-		
+
 		ZimbraAccount.AccountA().soapSend(
 					"<SearchRequest xmlns='urn:zimbraMail' types='message'>"
 				+		"<query>inid:"+ inboxId +" subject:("+ apptSubject +")</query>"
 				+	"</SearchRequest>");
-		
+
 		// Verify message body content
 		String body = ZimbraAccount.AccountA().soapSelectValue("//mail:m//mail:desc", null);
 		ZAssert.assertStringContains(body, modifiedBody, "Verify modified body value");
-		
+
 	}
-	
-	@Bugs(ids = "69132,65356")
-	@Test(
-			description = "Decline meeting using 'Decline -> Don't Notify Organizer'", 
+
+
+	@Bugs (ids = "69132,65356")
+	@Test (description = "Decline meeting using 'Decline -> Don't Notify Organizer'",
 			groups = { "functional", "L2" })
+
 	public void DeclineMeeting_05() throws HarnessException {
 
 		// ------------------------ Test data ------------------------------------
 
 		String apptSubject = ConfigProperties.getUniqueString();
 
-		Calendar now = this.calendarWeekDayUTC;
-		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 7, 0, 0);
-		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 8, 0, 0);
+		Calendar now = Calendar.getInstance();
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 13, 0, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
 
 
 		// --------------- Creating invitation (organizer) ----------------------------
@@ -464,7 +465,7 @@ public class DeclineMeeting extends CalendarWorkWeekTest {
 				+				"<content>content</content>"
 				+			"</mp>"
 				+		"</m>"
-				+	"</CreateAppointmentRequest>");        
+				+	"</CreateAppointmentRequest>");
 
 
 
@@ -479,7 +480,7 @@ public class DeclineMeeting extends CalendarWorkWeekTest {
 		// Click Decline > Don't Notify Organizer
 		display.zPressButtonPulldown(Button.B_DECLINE, Button.O_DECLINE_DONT_NOTIFY_ORGANIZER);
 
-		// ---------------- Verification at organizer & invitee side both -------------------------------------       
+		// ---------------- Verification at organizer & invitee side both -------------------------------------
 
 
 		// --- Check that the organizer shows the attendee as "DECLINE" ---
@@ -489,13 +490,13 @@ public class DeclineMeeting extends CalendarWorkWeekTest {
 					"<SearchRequest xmlns='urn:zimbraMail' types='appointment' calExpandInstStart='"+ startUTC.addDays(-10).toMillis() +"' calExpandInstEnd='"+ endUTC.addDays(10).toMillis() +"'>"
 				+		"<query>"+ apptSubject +"</query>"
 				+	"</SearchRequest>");
-		
+
 		String organizerInvId = ZimbraAccount.AccountA().soapSelectValue("//mail:appt", "invId");
 
 		// Get the appointment details
 		ZimbraAccount.AccountA().soapSend(
 					"<GetAppointmentRequest  xmlns='urn:zimbraMail' id='"+ organizerInvId +"'/>");
-		
+
 		String attendeeStatus = ZimbraAccount.AccountA().soapSelectValue("//mail:at[@a='"+ app.zGetActiveAccount().EmailAddress +"']", "ptst");
 
 		// Verify attendee status shows as ptst=NE (bug 65356)
@@ -509,13 +510,13 @@ public class DeclineMeeting extends CalendarWorkWeekTest {
 					"<SearchRequest xmlns='urn:zimbraMail' types='appointment' calExpandInstStart='"+ startUTC.addDays(-10).toMillis() +"' calExpandInstEnd='"+ endUTC.addDays(10).toMillis() +"'>"
 				+		"<query>"+ apptSubject +"</query>"
 				+	"</SearchRequest>");
-		
+
 		String attendeeInvId = app.zGetActiveAccount().soapSelectValue("//mail:appt", "invId");
 
 		// Get the appointment details
 		app.zGetActiveAccount().soapSend(
 					"<GetAppointmentRequest  xmlns='urn:zimbraMail' id='"+ attendeeInvId +"'/>");
-		
+
 		String myStatus = app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ app.zGetActiveAccount().EmailAddress +"']", "ptst");
 
 		// Verify attendee status shows as ptst=DE
@@ -523,12 +524,12 @@ public class DeclineMeeting extends CalendarWorkWeekTest {
 
 		// Organizer: Search for the appointment response
 		String inboxId = FolderItem.importFromSOAP(ZimbraAccount.AccountA(), FolderItem.SystemFolder.Inbox).getId();
-		
+
 		ZimbraAccount.AccountA().soapSend(
 					"<SearchRequest xmlns='urn:zimbraMail' types='message'>"
 				+		"<query>inid:"+ inboxId +" subject:("+ apptSubject +")</query>"
 				+	"</SearchRequest>");
-		
+
 		app.zGetActiveAccount().soapSend(
 				"<SearchRequest xmlns='urn:zimbraMail' types='message'>"
 			+		"<query>inid:"+ inboxId +" subject:("+ apptSubject +")</query>"
@@ -536,7 +537,6 @@ public class DeclineMeeting extends CalendarWorkWeekTest {
 
 		Element[] nodes = app.zGetActiveAccount().soapSelectNodes("//mail:m");
 		ZAssert.assertEquals(nodes.length, 0, "Verify appointment notification message is not present");
-		
-	}
 
+	}
 }

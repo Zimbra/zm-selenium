@@ -23,60 +23,62 @@ import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.items.MailItem;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
 
-public class DailyEveryXdaysEndAfterYoccurrences extends CalendarWorkWeekTest {
+public class DailyEveryXdaysEndAfterYoccurrences extends AjaxCommonTest {
 
 	public DailyEveryXdaysEndAfterYoccurrences() {
 		logger.info("New "+ DailyEveryXdaysEndAfterYoccurrences.class.getCanonicalName());
 		super.startingPage = app.zPageCalendar;
 	}
-	
+
+
 	@Bugs(ids = "96566")
 	@Test( description = "Create daily recurring invite with attendee and location with particular week day & end after particular instances",
-			groups = { "smoke", "L1" })
-			
+			groups = { "sanity", "L0" })
+
 	public void DailyEveryXdaysEndAfterYoccurrences_01() throws HarnessException {
-		
+
 		// Create appointment data
 		AppointmentItem appt = new AppointmentItem();
 		String tz = ZTimeZone.getLocalTimeZone().getID();
 		String apptSubject, apptAttendee, apptContent, apptLocation;
+		int noOfInstances = 10;
 		ZimbraResource location = new ZimbraResource(ZimbraResource.Type.LOCATION);
-		
+
 		apptSubject = ConfigProperties.getUniqueString();
 		apptAttendee = ZimbraAccount.AccountA().EmailAddress;
 		apptContent = ConfigProperties.getUniqueString();
 		apptLocation = location.EmailAddress;
-		
+
 		// Absolute dates in UTC zone
-		Calendar now = this.calendarWeekDayUTC;
-		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 10, 0, 0);
-		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
-		
+		Calendar now = Calendar.getInstance();
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 8, 0, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 9, 0, 0);
+
 		appt.setSubject(apptSubject);
 		appt.setAttendees(apptAttendee);
 		appt.setStartTime(startUTC);
 		appt.setEndTime(endUTC);
 		appt.setLocation(apptLocation);
 		appt.setContent(apptContent);
-	
+
 		// Compose appointment and send it to invitee
 		FormApptNew apptForm = (FormApptNew) app.zPageCalendar.zToolbarPressButton(Button.B_NEW);
 		apptForm.zFill(appt);
-		apptForm.zRepeat(Button.O_EVERY_DAY_MENU, Button.B_EVERY_DAY_RADIO_BUTTON, "", Button.B_END_AFTER_X_OCCURRENCES_RADIO_BUTTON, "10");
-		ZAssert.assertEquals(app.zPageCalendar.zGetRecurringLink(), "Every day. End after 10 occurrence(s). Effective " + startUTC.toTimeZone(tz).toMMM_dC_yyyy(), "Recurring link: Verify the appointment data");
+		apptForm.zRepeat(Button.O_EVERY_DAY_MENU, Button.B_EVERY_DAY_RADIO_BUTTON, "", Button.B_END_AFTER_X_OCCURRENCES_RADIO_BUTTON, String.valueOf(noOfInstances));
+		ZAssert.assertEquals(app.zPageCalendar.zGetRecurringLink(), "Every day. End after " + noOfInstances + " occurrence(s). Effective " + startUTC.toTimeZone(tz).toMMM_dC_yyyy(), "Recurring link: Verify the appointment data");
 		apptForm.zSubmitWithResources();
-		
+
 		app.zGetActiveAccount().soapSend(
 				"<SearchRequest xmlns='urn:zimbraMail' types='appointment' calExpandInstStart='"+ startUTC.addDays(-10).toMillis() +"' calExpandInstEnd='"+ endUTC.addDays(10).toMillis() +"'>"
 			+		"<query>"+ apptSubject +"</query>"
 			+	"</SearchRequest>");
-	
+
 		String attendeeInvId = app.zGetActiveAccount().soapSelectValue("//mail:appt", "invId");
 		app.zGetActiveAccount().soapSend("<GetAppointmentRequest  xmlns='urn:zimbraMail' id='"+ attendeeInvId +"'/>");
-		
+
 		String ruleFrequency = app.zGetActiveAccount().soapSelectValue("//mail:appt//mail:rule", "freq");
 		String countNumber = app.zGetActiveAccount().soapSelectValue("//mail:appt//mail:count", "num");
 		String interval = app.zGetActiveAccount().soapSelectValue("//mail:appt//mail:interval", "ival");
@@ -88,22 +90,22 @@ public class DailyEveryXdaysEndAfterYoccurrences extends CalendarWorkWeekTest {
 		ZAssert.assertEquals(actual.getAttendees(), apptAttendee, "Attendees: Verify the appointment data");
 		ZAssert.assertTrue(actual.getLocation().contains(apptLocation), "Location: Verify the appointment data");
 		ZAssert.assertEquals(ruleFrequency, "DAI", "Repeat frequency: Verify the appointment data");
-		ZAssert.assertEquals(countNumber, "10", "Count number: Verify the appointment data");
+		ZAssert.assertEquals(countNumber, String.valueOf(noOfInstances), "Count number: Verify the appointment data");
 		ZAssert.assertEquals(interval, "1", "Repeat interval: Verify the appointment data");
 		ZAssert.assertEquals(actual.getContent(), appt.getContent(), "Content: Verify the appointment data");
-		
+
 		// Verify location free/busy status shows as ptst=AC
 		String locationStatus = app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ apptLocation +"']", "ptst");
 		ZAssert.assertEquals(locationStatus, "AC", "Verify that the location status shows as 'ACCEPTED'");
-		
+
 		ZimbraAccount.AccountA().soapSend(
 				"<SearchRequest xmlns='urn:zimbraMail' types='appointment' calExpandInstStart='"+ startUTC.addDays(-10).toMillis() +"' calExpandInstEnd='"+ endUTC.addDays(10).toMillis() +"'>"
 			+		"<query>"+ apptSubject +"</query>"
 			+	"</SearchRequest>");
-	
+
 		attendeeInvId = ZimbraAccount.AccountA().soapSelectValue("//mail:appt", "invId");
 		ZimbraAccount.AccountA().soapSend("<GetAppointmentRequest  xmlns='urn:zimbraMail' id='"+ attendeeInvId +"'/>");
-		
+
 		ruleFrequency = ZimbraAccount.AccountA().soapSelectValue("//mail:appt//mail:rule", "freq");
 		countNumber = ZimbraAccount.AccountA().soapSelectValue("//mail:appt//mail:count", "num");
 		interval = ZimbraAccount.AccountA().soapSelectValue("//mail:appt//mail:interval", "ival");
@@ -115,7 +117,7 @@ public class DailyEveryXdaysEndAfterYoccurrences extends CalendarWorkWeekTest {
 		ZAssert.assertEquals(received.getAttendees(), apptAttendee, "Attendees: Verify the appointment data");
 		ZAssert.assertTrue(received.getLocation().contains(apptLocation), "Location: Verify the appointment data");
 		ZAssert.assertEquals(ruleFrequency, "DAI", "Repeat frequency: Verify the appointment data");
-		ZAssert.assertEquals(countNumber, "10", "Count number: Verify the appointment data");
+		ZAssert.assertEquals(countNumber, String.valueOf(noOfInstances), "Count number: Verify the appointment data");
 		ZAssert.assertEquals(interval, "1", "Repeat interval: Verify the appointment data");
 		ZAssert.assertEquals(received.getContent(), appt.getContent(), "Content: Verify the appointment data");
 
@@ -123,19 +125,22 @@ public class DailyEveryXdaysEndAfterYoccurrences extends CalendarWorkWeekTest {
 		MailItem invite = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "subject:("+ appt.getSubject() +")");
 		ZAssert.assertNotNull(invite, "Verify the invite is received");
 		ZAssert.assertEquals(invite.dSubject, appt.getSubject(), "Subject: Verify the appointment data");
-		
+
 		// UI verification
 		ZAssert.assertEquals(app.zPageCalendar.zIsAppointmentExists(apptSubject), true, "Verify meeting invite is present in current calendar view");
-		
-		// Go to next/previous week and verify correct number of recurring instances
-		app.zPageCalendar.zToolbarPressButton(Button.B_NEXT_PAGE);
-		SleepUtil.sleepMedium(); //Let UI draw first and important for calendar testcases reliability
-		ZAssert.assertGreaterThanEqualTo(app.zPageCalendar.zGetApptCountWorkWeekView(), 8, "Verify correct no. of recurring instances are present in calendar view");
 
-		app.zPageCalendar.zToolbarPressButton(Button.B_NEXT_PAGE);
-		SleepUtil.sleepMedium(); //Let UI draw first and important for calendar testcases reliability
-		ZAssert.assertEquals(app.zPageCalendar.zGetApptCountWorkWeekView(), 0, "Verify correct no. of recurring instances are present in calendar view");
+		// Switch to week view and verify correct number of recurring instances
+		app.zPageCalendar.zToolbarPressButton(Button.B_WEEK_VIEW);
 		
+		// Count no. of instances
+		int getNoOfInstances = 0;
+		for (int i = 1; i <= 3; i++) {
+			getNoOfInstances = app.zPageCalendar.zGetAppointmentCountWeekView(apptSubject) + getNoOfInstances;
+			app.zPageCalendar.zToolbarPressButton(Button.B_NEXT_PAGE);
+		}
+		ZAssert.assertEquals(getNoOfInstances, noOfInstances, "Verify correct no. of recurring instances are present in calendar week view");
+		
+		app.zPageCalendar.zToolbarPressButton(Button.B_NEXT_PAGE);
+		ZAssert.assertEquals(app.zPageCalendar.zGetAppointmentCountWeekView(apptSubject), 0, "Verify correct no. of recurring instances are present in calendar view");
 	}
-
 }

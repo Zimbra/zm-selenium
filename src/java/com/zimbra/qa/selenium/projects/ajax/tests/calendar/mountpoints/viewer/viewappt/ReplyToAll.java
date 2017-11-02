@@ -21,44 +21,45 @@ import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.DialogWarning;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew.Field;
 
-public class ReplyToAll extends CalendarWorkWeekTest {
+public class ReplyToAll extends AjaxCommonTest {
 
 	public ReplyToAll() {
 		logger.info("New "+ ReplyToAll.class.getCanonicalName());
 		super.startingPage = app.zPageCalendar;
 	}
-	
+
+
 	@Test( description = "Grantee replies all to appointment from grantor's calendar (Actions -> Reply to All)",
 			groups = { "functional", "L2" })
-			
+
 	public void ReplyToAll_01() throws HarnessException {
-		
+
 		String apptSubject = ConfigProperties.getUniqueString();
 		String apptContent = ConfigProperties.getUniqueString();
 		String replyContent = ConfigProperties.getUniqueString();
-		
+
 		String foldername = "folder" + ConfigProperties.getUniqueString();
 		String mountpointname = "mountpoint" + ConfigProperties.getUniqueString();
-		
-		Calendar now = this.calendarWeekDayUTC;
-		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 15, 0, 0);
-		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 16, 0, 0);
-		
+
+		Calendar now = Calendar.getInstance();
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 16, 0, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 17, 0, 0);
+
 		FolderItem calendarFolder = FolderItem.importFromSOAP(ZimbraAccount.Account9(), FolderItem.SystemFolder.Calendar);
-		
+
 		// Create a folder to share
 		ZimbraAccount.Account9().soapSend(
 					"<CreateFolderRequest xmlns='urn:zimbraMail'>"
 				+		"<folder name='" + foldername + "' l='" + calendarFolder.getId() + "' view='appointment'/>"
 				+	"</CreateFolderRequest>");
-		
+
 		FolderItem folder = FolderItem.importFromSOAP(ZimbraAccount.Account9(), foldername);
-		
+
 		// Share it
 		ZimbraAccount.Account9().soapSend(
 					"<FolderActionRequest xmlns='urn:zimbraMail'>"
@@ -66,13 +67,13 @@ public class ReplyToAll extends CalendarWorkWeekTest {
 				+			"<grant d='"+ app.zGetActiveAccount().EmailAddress +"' gt='usr' perm='r' view='appointment'/>"
 				+		"</action>"
 				+	"</FolderActionRequest>");
-		
+
 		// Mount it
 		app.zGetActiveAccount().soapSend(
 					"<CreateMountpointRequest xmlns='urn:zimbraMail'>"
 				+		"<link l='1' name='"+ mountpointname +"'  rid='"+ folder.getId() +"' zid='"+ ZimbraAccount.Account9().ZimbraId +"' view='appointment' color='5'/>"
 				+	"</CreateMountpointRequest>");
-		
+
 		// Create appointment
 		ZimbraAccount.Account9().soapSend(
 				"<CreateAppointmentRequest xmlns='urn:zimbraMail'>"
@@ -92,21 +93,21 @@ public class ReplyToAll extends CalendarWorkWeekTest {
 				+			"</mp>"
 				+		"</m>"
 				+	"</CreateAppointmentRequest>");
-		
+
 		// Verify appointment exists in current view
         ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
-		
+
 		// Mark ON to mounted calendar folder and select the appointment
 		app.zTreeCalendar.zMarkOnOffCalendarFolder("Calendar");
 		app.zTreeCalendar.zMarkOnOffCalendarFolder(mountpointname);
-		
+
 		// Reply all to appointment
         FormMailNew mailComposeForm = (FormMailNew)app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, Button.O_REPLY_TO_ALL_MENU, apptSubject);
         mailComposeForm.zFillField(Field.Body, replyContent);
         mailComposeForm.zToolbarPressButton(Button.B_CANCEL);
         DialogWarning dlgWarning = (DialogWarning) new DialogWarning(DialogWarning.DialogWarningID.SaveChanges, app, this.startingPage);
 		dlgWarning.zClickButton(Button.B_NO);
-		
+
 		// Clicking to Yes is already covered in viewer -> actions -> ReplyToAll.java
 
 	}

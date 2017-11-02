@@ -26,44 +26,41 @@ import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.CalendarWorkWeekTest;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.*;
 
-public class DeleteAppointment extends CalendarWorkWeekTest {
+public class DeleteAppointment extends AjaxCommonTest {
 
 	public DeleteAppointment() {
 		logger.info("New "+ DeleteAppointment.class.getCanonicalName());
-		
-		// All tests start at the Calendar page
+
 		super.startingPage = app.zPageCalendar;
-
-		// Make sure we are using an account with week view
 		super.startingAccountPreferences = new HashMap<String, String>() {
-			private static final long serialVersionUID = -2913827779459595178L;
-		{
-		    put("zimbraPrefCalendarInitialView", "week");
-		}};
-		
-
+			private static final long serialVersionUID = -2913827779459595178L; {
+				put("zimbraPrefCalendarInitialView", "week");
+			}
+		};
 	}
-	
+
+
 	@Bugs(ids = "69132")
 	@Test( description = "Delete all-day appointment using Delete toolbar button in week view",
 			groups = { "smoke", "L3" })
+
 	public void DeleteAllDayAppointment_01() throws HarnessException {
-		
+
 		//-- Data Setup
 		// Creating objects for appointment data
 		String tz, apptSubject, apptBody;
 		tz = ZTimeZone.getLocalTimeZone().getID();
 		apptSubject = ConfigProperties.getUniqueString();
 		apptBody = "body" + ConfigProperties.getUniqueString();
-		
+
 		// Absolute dates in UTC zone
-		Calendar now = this.calendarWeekDayUTC;
-		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
-		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
-		
+		Calendar now = Calendar.getInstance();
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 16, 0, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 17, 0, 0);
+
         app.zGetActiveAccount().soapSend(
               "<CreateAppointmentRequest xmlns='urn:zimbraMail'>" +
                    "<m>"+
@@ -78,40 +75,42 @@ public class DeleteAppointment extends CalendarWorkWeekTest {
                    "<su>"+ apptSubject +"</su>" +
                    "</m>" +
              "</CreateAppointmentRequest>");
-        
+
         // Verify appointment exists in current view
         ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
-        
+
         // Select the appointment
         app.zPageCalendar.zListItem(Action.A_LEFTCLICK, apptSubject);
-        
+
         // Press the delete button
         DialogConfirmDeleteAppointment dlgConfirm = (DialogConfirmDeleteAppointment)app.zPageCalendar.zToolbarPressButton(Button.B_DELETE);
 		dlgConfirm.zClickButton(Button.B_YES);
 		dlgConfirm.zWaitForClose();
-		
-		
+
+
 		//-- Verification
 		SleepUtil.sleepMedium(); //testcase failing due to timing issue so added sleep
 		ZAssert.assertEquals(app.zPageCalendar.sIsElementPresent(app.zPageCalendar.zGetAllDayApptLocator(apptSubject)), false, "Verify all-day appointment is deleted");
 	}
-	
+
+
 	@Bugs(ids = "69132")
 	@Test( description = "Delete all-day appointment using context menu in week view",
 			groups = { "smoke", "L3" })
+
 	public void DeleteAllDayAppointment_02() throws HarnessException {
-		
+
 		// Creating objects for appointment data
 		String tz, apptSubject, apptBody;
 		tz = ZTimeZone.getLocalTimeZone().getID();
 		apptSubject = ConfigProperties.getUniqueString();
 		apptBody = ConfigProperties.getUniqueString();
-		
+
 		// Absolute dates in UTC zone
-		Calendar now = this.calendarWeekDayUTC;
-		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
-		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
-		
+		Calendar now = Calendar.getInstance();
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 17, 0, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 18, 0, 0);
+
         app.zGetActiveAccount().soapSend(
 	          "<CreateAppointmentRequest xmlns='urn:zimbraMail'>" +
 	               "<m>"+
@@ -126,20 +125,21 @@ public class DeleteAppointment extends CalendarWorkWeekTest {
 	               "<su>"+ apptSubject +"</su>" +
 	               "</m>" +
 	         "</CreateAppointmentRequest>");
-        
+
         // Verify appointment exists in current view
         ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
-        
+
         // Right click -> Delete
         DialogConfirmDeleteAppointment dlgConfirm = (DialogConfirmDeleteAppointment)app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_DELETE, apptSubject);
 		dlgConfirm.zClickButton(Button.B_YES);
 		dlgConfirm.zWaitForClose();
-		
+
 		//-- Verification
 		SleepUtil.sleepMedium(); //testcase failing due to timing issue so added sleep
 		ZAssert.assertEquals(app.zPageCalendar.sIsElementPresent(app.zPageCalendar.zGetAllDayApptLocator(apptSubject)), false, "Verify all-day appointment is deleted");
 	}
-	
+
+
 	@DataProvider(name = "DataProviderShortcutKeys")
 	public Object[][] DataProviderShortcutKeys() {
 		return new Object[][] {
@@ -152,21 +152,22 @@ public class DeleteAppointment extends CalendarWorkWeekTest {
 	@Test( description = "Delete all-day appointment using keyboard shortcuts (Del & Backspace) in week view",
 			groups = { "functional", "L3" },
 			dataProvider = "DataProviderShortcutKeys")
+
 	public void DeleteAllDayAppointment_03(String name, int keyEvent) throws HarnessException {
-		
+
 		//-- Data Setup
-		
+
 		// Creating objects for appointment data
 		String tz, apptSubject, apptBody;
 		tz = ZTimeZone.getLocalTimeZone().getID();
 		apptSubject = ConfigProperties.getUniqueString();
 		apptBody = ConfigProperties.getUniqueString();
-		
+
 		// Absolute dates in UTC zone
-		Calendar now = this.calendarWeekDayUTC;
-		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
-		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
-		
+		Calendar now = Calendar.getInstance();
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 18, 0, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 19, 0, 0);
+
         app.zGetActiveAccount().soapSend(
 	          "<CreateAppointmentRequest xmlns='urn:zimbraMail'>" +
 	               "<m>"+
@@ -180,19 +181,19 @@ public class DeleteAppointment extends CalendarWorkWeekTest {
 	               "</mp>" +
 	               "<su>"+ apptSubject +"</su>" +
 	               "</m>" +
-	         "</CreateAppointmentRequest>");        
-        
+	         "</CreateAppointmentRequest>");
+
         // Verify appointment exists in current view
         ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
-        
+
         // Select the appointment
         app.zPageCalendar.zListItem(Action.A_LEFTCLICK, apptSubject);
-        
+
         // Delete appointment using keyboard Del and Backspace key
         DialogConfirmDeleteAppointment dlgConfirm = (DialogConfirmDeleteAppointment)app.zPageCalendar.zKeyboardKeyEvent(keyEvent);
 		dlgConfirm.zClickButton(Button.B_YES);
-		
-		
+
+
 		//-- Verification
 		app.zGetActiveAccount().soapSend(
 					"<SearchRequest xmlns='urn:zimbraMail' types='appointment' calExpandInstStart='"+ startUTC.addDays(-7).toMillis() +"' calExpandInstEnd='"+ startUTC.addDays(7).toMillis() +"'>"
