@@ -33,6 +33,7 @@ public class ZimbraHelpAdminURLModification extends AdminCommonTest {
 		logger.info("New "+ ZimbraHelpAdminURLModification.class.getCanonicalName());
 	}
 
+
 	@Bugs(ids="101023")
 	@Test( description = "Verify that zimbra admin help page is opened as per the value set in attribute ZimbraHelpAdminURL",
 			groups = { "functional", "L2" })
@@ -85,9 +86,10 @@ public class ZimbraHelpAdminURLModification extends AdminCommonTest {
 					app.zPageMain.zSeparateWindowClose(app.zPageMain.sGetTitle());
 					break;
 				} else if (!(app.zPageMain.sGetTitle().contains("Zimbra Administration"))) {
-							app.zPageMain.zSeparateWindowClose(app.zPageMain.sGetTitle());					
+							app.zPageMain.zSeparateWindowClose(app.zPageMain.sGetTitle());
 				}
 			}
+
 			if (!found) {
 
 				tempURL=app.zPageMain.sGetLocation();
@@ -105,7 +107,5 @@ public class ZimbraHelpAdminURLModification extends AdminCommonTest {
 						+	"</ModifyDomainRequest>");
 		// Check the URL
 		ZAssert.assertTrue(tempURL.contains("/zimbraAdmin/helpUrl/help/admin/adminhelp.html"),"Admin Help URL is not as set in zimbraHelpAdminURL");
-
 	}
-
 }

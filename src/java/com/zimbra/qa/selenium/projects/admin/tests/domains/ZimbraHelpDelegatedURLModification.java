@@ -33,7 +33,8 @@ public class ZimbraHelpDelegatedURLModification extends AdminCommonTest {
 		logger.info("New "+ ZimbraHelpDelegatedURLModification.class.getCanonicalName());
 	}
 
-	@Bugs(ids="105789")
+
+	@Bugs(ids="ZCS-3526,105789")
 	@Test( description = "Verify that zimbra delegated admin help page is opened as per the value set in attribute zimbraHelpDelegatedURL",
 			groups = { "functional", "L3" })
 
@@ -48,7 +49,7 @@ public class ZimbraHelpDelegatedURLModification extends AdminCommonTest {
 			// Login using a delegated admin account
 			app.provisionAuthenticateDA();
 
-			//To get domain id
+			// To get domain id
 			String targetDomain = ConfigProperties.getStringProperty("testdomain");
 			ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 					"<GetDomainRequest xmlns='urn:zimbraAdmin'>"
@@ -78,14 +79,14 @@ public class ZimbraHelpDelegatedURLModification extends AdminCommonTest {
 			app.zPageMain.sClickAt(PageMain.Locators.zHelpCenterOption,"0,0");
 			SleepUtil.sleepSmall();
 
-			//Zimbra admin help page opens in separate window
+			// Zimbra admin help page opens in separate window
 			List<String> windowIds=app.zPageMain.sGetAllWindowIds();
 
 			if (windowIds.size() > 1) {
 
 				for(String id: windowIds) {
 
-				app.zPageMain.sSelectWindow(id);
+					app.zPageMain.sSelectWindow(id);
 					if (app.zPageMain.sGetTitle().contains("Not Found") || app.zPageMain.sGetTitle().contains("Help")) {
 						//Get the opened URL
 						tempURL=app.zPageMain.sGetLocation();
@@ -93,11 +94,11 @@ public class ZimbraHelpDelegatedURLModification extends AdminCommonTest {
 						app.zPageMain.zSeparateWindowClose(app.zPageMain.sGetTitle());
 						break;
 					} else if (!(app.zPageMain.sGetTitle().contains("Zimbra Administration"))) {
-						app.zPageMain.zSeparateWindowClose(app.zPageMain.sGetTitle());					
-			}
+						app.zPageMain.zSeparateWindowClose(app.zPageMain.sGetTitle());
+					}
 				}
-				if (!found) {
 
+				if (!found) {
 					tempURL=app.zPageMain.sGetLocation();
 				}
 
