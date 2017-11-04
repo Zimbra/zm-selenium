@@ -30,7 +30,7 @@ import com.zimbra.qa.selenium.projects.ajax.ui.preferences.TreePreferences.TreeI
 public class ZimbraPrefCalendarFirstDayOfWeek extends AjaxCommonTest {
 
 	public ZimbraPrefCalendarFirstDayOfWeek() {
-		logger.info("New " + zimbraPrefCalendarFirstDayOfWeek.class.getCanonicalName());
+		logger.info("New " + ZimbraPrefCalendarFirstDayOfWeek.class.getCanonicalName());
 		super.startingPage = app.zPagePreferences;
 	}
 
