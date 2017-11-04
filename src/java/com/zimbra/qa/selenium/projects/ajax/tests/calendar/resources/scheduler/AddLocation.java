@@ -33,6 +33,7 @@ public class AddLocation extends AjaxCommonTest {
 		super.startingPage = app.zPageCalendar;
 	}
 
+
 	@Bugs(ids = "77711")
 	@DataProvider(name = "DataProviderShortcutKeys")
 	public Object[][] DataProviderShortcutKeys() {

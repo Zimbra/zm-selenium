@@ -17,9 +17,7 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.appointments.views.day.allday;
 
 import java.util.HashMap;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.ui.Button;
@@ -31,7 +29,7 @@ public class CreateAppointment extends AjaxCommonTest {
 
 	public CreateAppointment() {
 		logger.info("New "+ CreateAppointment.class.getCanonicalName());
-		
+
 		super.startingPage = app.zPageCalendar;
 		super.startingAccountPreferences = new HashMap<String, String>() {
 			private static final long serialVersionUID = -2913827779459595178L; {
@@ -40,40 +38,40 @@ public class CreateAppointment extends AjaxCommonTest {
 		};
 	}
 
-	
+
 	@Bugs(ids = "69132")
 	@Test( description = "Create simple all day appointment in day view",
 			groups = { "smoke", "L1" } )
-	
+
 	public void CreateAllDayAppointment_01() throws HarnessException {
-		
+
 		// Create appointment
 		String apptSubject;
 		apptSubject = ConfigProperties.getUniqueString();
 		AppointmentItem appt = new AppointmentItem();
-		
+
 		appt.setSubject(apptSubject);
 		appt.setContent("content" + ConfigProperties.getUniqueString());
 		appt.setAttendees(ZimbraAccount.AccountA().EmailAddress);
 		appt.setIsAllDay(true);
-	
+
 		// Open the new mail form
 		FormApptNew apptForm = (FormApptNew) app.zPageCalendar.zToolbarPressButton(Button.B_NEW);
 		ZAssert.assertNotNull(apptForm, "Verify the new form opened");
 		apptForm.zFill(appt);
 		apptForm.zSubmit();
-			
+
 		// Verify the new appointment exists on the server
 		AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ appt.getSubject() +")");
 		ZAssert.assertNotNull(actual, "Verify the new appointment is created");
 		ZAssert.assertEquals(actual.getSubject(), appt.getSubject(), "Subject: Verify the appointment data");
 		ZAssert.assertEquals(app.zGetActiveAccount().soapMatch("//mail:GetAppointmentResponse//mail:comp", "allDay", "1"), true, "");
-		
+
 		// Verify appointment exists in current view
 		if (!app.zPageCalendar.zVerifyAppointmentExists(apptSubject)) {
 			app.zPageCalendar.zToolbarPressButton(Button.B_NEXT_PAGE);
 		}
-		
+
 		ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
 	}
 }

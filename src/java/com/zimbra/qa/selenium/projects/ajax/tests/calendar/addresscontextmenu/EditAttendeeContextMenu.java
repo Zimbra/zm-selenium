@@ -19,9 +19,7 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.addresscontextmenu;
 
 import java.awt.event.KeyEvent;
-
 import org.testng.annotations.*;
-
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -36,9 +34,10 @@ public class EditAttendeeContextMenu extends PrefGroupMailByMessageTest {
 		super.startingPage = app.zPageCalendar;
 	}
 
-	@Test( description = "Right click To attendee bubble address>>Verify Edit menus", 
-				groups = { "smoke", "L1" })
-	
+
+	@Test( description = "Right click To attendee bubble address>>Verify Edit menus",
+			groups = { "smoke", "L1" })
+
 	public void EditAttendeesContextMenu_01() throws HarnessException {
 
 		String apptAttendee1;
@@ -56,7 +55,7 @@ public class EditAttendeeContextMenu extends PrefGroupMailByMessageTest {
 		app.zPageCalendar.zClick(FormApptNew.Locators.AttendeeField);
 		app.zPageCalendar.zType(FormApptNew.Locators.AttendeeField,"test@test.com");
 		app.zPageCalendar.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
-		
+
 		SleepUtil.sleepMedium();
 		ZAssert.assertEquals(app.zPageCalendar.sGetText(Locators.AttendeeBubbleAddr), "test@test.com", "Edited address should present");
 	}

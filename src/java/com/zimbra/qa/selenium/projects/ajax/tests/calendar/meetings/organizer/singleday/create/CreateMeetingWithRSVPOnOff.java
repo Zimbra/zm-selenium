@@ -34,6 +34,7 @@ public class CreateMeetingWithRSVPOnOff extends AjaxCommonTest {
 		super.startingPage =  app.zPageCalendar;
 	}
 
+
 	@Bugs(ids = "101999")
 	@Test( description = "Verify organizer does not recieve email notification when attendee responds to the meeting invite while 'Request Response' remains OFF",
 			groups = { "smoke", "L1" })

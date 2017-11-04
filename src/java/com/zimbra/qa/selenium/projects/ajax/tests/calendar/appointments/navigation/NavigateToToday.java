@@ -32,6 +32,7 @@ public class NavigateToToday extends AjaxCommonTest {
 		super.startingPage = app.zPageCalendar;
 	}
 
+
 	@Bugs(ids = "78821")
 	@Test( description = "Verify clicking on Today button highlights today when moved to next week",
 			groups = { "smoke", "L1" })
@@ -90,6 +91,7 @@ public class NavigateToToday extends AjaxCommonTest {
        ZAssert.assertEquals(today, mydate , "Today's date is presnt in the view");
 	}
 
+
 	@Test( description = "Verify clicking on Today button highlights today",
 			groups = { "smoke", "L1" })
 
@@ -133,8 +135,7 @@ public class NavigateToToday extends AjaxCommonTest {
         Date d = new Date();
         String mydate = d.toString().substring(0,10);
 
-       if (d.toString().charAt(8) == '0')
-       {
+       if (d.toString().charAt(8) == '0') {
     	   String ad = d.toString().substring(8, 9);
     	   if (ad.charAt(0)== '0') {
     		   mydate = d.toString().substring(0,7) + " " + d.toString().charAt(9);

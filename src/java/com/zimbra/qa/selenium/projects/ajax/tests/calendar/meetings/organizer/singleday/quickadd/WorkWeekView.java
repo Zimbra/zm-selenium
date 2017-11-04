@@ -27,20 +27,21 @@ public class WorkWeekView extends AjaxCommonTest {
 		logger.info("New "+ WorkWeekView.class.getCanonicalName());
 		super.startingPage = app.zPageCalendar;
 	}
-	
+
+
 	@Test( description = "Verify quick add dialog opens after hitting new appointment in work week view",
 			groups = { "functional", "L2" } )
-	
+
 	public void WorkWeekView_01() throws HarnessException {
-			
+
 		// Verify quick add dialog opened
 		QuickAddAppointment quickAddAppt = new QuickAddAppointment(app) ;
 		quickAddAppt.zNewAppointment();
 		quickAddAppt.zVerifyQuickAddDialog(true);
-		
+
 		/* Meeting invite full verification is already covered by meetings.organizer.singleday.minicalendar testcases so
 		 not validating over here and avoiding duplication */
-		
+
 		/* If we find out something else in the future then will add verification accordingly */
 	}
 }

@@ -18,7 +18,6 @@ package com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.attendee.si
 
 import java.util.*;
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -30,8 +29,8 @@ public class Tag extends AjaxCommonTest {
 	public Tag() {
 		logger.info("New "+ Tag.class.getCanonicalName());
 		super.startingPage =  app.zPageCalendar;
-
 	}
+
 
 	@Bugs(ids = "63455,79016")
 	@Test( description = "View meeting invite by opening it and apply tag to the appointment",

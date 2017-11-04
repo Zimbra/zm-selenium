@@ -28,8 +28,8 @@ public class ShowOriginal extends AjaxCommonTest {
 	public ShowOriginal() {
 		logger.info("New "+ ShowOriginal.class.getCanonicalName());
 		super.startingPage = app.zPageCalendar;
-
 	}
+
 
 	@Test( description = "View meeting invite by opening it and view meeting show original",
 			groups = { "functional", "L2" })

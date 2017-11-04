@@ -31,6 +31,7 @@ public class CreateACopy extends AjaxCommonTest {
 		super.startingPage = app.zPageCalendar;
 	}
 
+
 	@Test( description = "Grantee copies appointment from grantor's calendar and creates new invite (Actions -> Create a Copy)",
 			groups = { "functional", "L2" })
 

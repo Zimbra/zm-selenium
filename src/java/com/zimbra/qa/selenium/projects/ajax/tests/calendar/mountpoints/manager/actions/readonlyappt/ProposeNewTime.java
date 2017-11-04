@@ -33,9 +33,10 @@ public class ProposeNewTime extends AjaxCommonTest {
 		super.startingPage = app.zPageCalendar;
 	}
 
+
 	@Bugs(ids = "80559")
 	@Test( description = "Assistant right clicks to calendar invite from shared calendar and proposes new time OBO boss",
-			groups = { "functional", "application-bug" })
+			groups = { "functional-skip", "application-bug" })
 
 	public void ProposeNewTime_01() throws HarnessException {
 

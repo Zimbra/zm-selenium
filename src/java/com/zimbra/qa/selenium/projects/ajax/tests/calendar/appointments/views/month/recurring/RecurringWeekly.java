@@ -42,6 +42,7 @@ public class RecurringWeekly extends AjaxCommonTest {
 		};
 	}
 
+
 	@Test( description = "Verify the display of a weekly recurring appointment in month view.",
 			groups = { "functional", "L2" })
 

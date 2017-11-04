@@ -36,7 +36,7 @@ public class ResetStatusAfterModifyingCalendar extends AjaxCommonTest {
 
 	@Bugs(ids = "98476,49881")
 	@Test( description = "Check reset status of meeting after modifying calendar",
-			groups = { "functional", "application-bug"})
+			groups = { "functional-skip", "application-bug"})
 
 	public void ResetStatusAfterModifyingCalendar_01() throws HarnessException {
 

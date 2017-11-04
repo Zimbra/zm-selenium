@@ -14,7 +14,7 @@
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-package com.zimbra.qa.selenium.projects.universal.tests.preferences.calendar;
+package com.zimbra.qa.selenium.projects.ajax.tests.preferences.calendar;
 
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
@@ -22,30 +22,27 @@ import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
-import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
-import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
-import com.zimbra.qa.selenium.projects.universal.ui.DialogWarning;
-import com.zimbra.qa.selenium.projects.universal.ui.preferences.TreePreferences.TreeItem;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.ajax.ui.DialogWarning;
+import com.zimbra.qa.selenium.projects.ajax.ui.preferences.TreePreferences.TreeItem;
 
-public class zimbraPrefCalendarFirstDayOfWeek extends UniversalCommonTest {
+public class ZimbraPrefCalendarFirstDayOfWeek extends AjaxCommonTest {
 
-	public zimbraPrefCalendarFirstDayOfWeek() {
+	public ZimbraPrefCalendarFirstDayOfWeek() {
 		logger.info("New " + zimbraPrefCalendarFirstDayOfWeek.class.getCanonicalName());
 		super.startingPage = app.zPagePreferences;
 	}
 
-	// Need to skip this test completely till bug 77465 get fixed otherwise automation may stuck at browser navigate away dialog 
+	
 	@Bugs(ids = "101729,103862")
-	@Test(
-			description = "Set First day of the week and verify that first day is set correctly", 
+	@Test(description = "Set First day of the week and verify that first day is set correctly", 
 			groups = { "functional", "L2" })
 	
-	public void zimbraPrefCalendarFirstDayOfWeek_01() throws HarnessException {
+	public void ZimbraPrefCalendarFirstDayOfWeek_01() throws HarnessException {
 		
 		// Navigate to preferences -> calendar
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.Calendar);
-		SleepUtil.sleepMedium();
 
 		// Set Start week on day to something other than Sunday
 		app.zPagePreferences.zToolbarPressPulldown(Button.O_START_WEEK_ON, Button.O_START_WEEK_ON_TUESDAY);
@@ -58,7 +55,6 @@ public class zimbraPrefCalendarFirstDayOfWeek extends UniversalCommonTest {
 		
 		// Navigate to preferences -> calendar
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.Calendar);
-		SleepUtil.sleepMedium();
 
 		// Change the default appointment duration
 		app.zPagePreferences.zToolbarPressPulldown(Button.O_DEFAULT_APPOINTMENT_DURATION, Button.O_APPOINTMENT_DURATION_90);
@@ -70,11 +66,11 @@ public class zimbraPrefCalendarFirstDayOfWeek extends UniversalCommonTest {
 		dialog.zClickButton(Button.B_YES);
 		
 		app.zPageCalendar.zNavigateTo();
-		ZAssert.assertStringContains(app.zPageCalendar.zReturnDayOfWorkWeek(1), "Tue", "First day matched");
-		ZAssert.assertStringContains(app.zPageCalendar.zReturnDayOfWorkWeek(2), "Wed", "Second day matched");
-		ZAssert.assertStringContains(app.zPageCalendar.zReturnDayOfWorkWeek(3), "Thu", "Third day matched");
-		ZAssert.assertStringContains(app.zPageCalendar.zReturnDayOfWorkWeek(4), "Fri", "Fourth day matched");
-		ZAssert.assertStringContains(app.zPageCalendar.zReturnDayOfWorkWeek(6), "Mon", "Fifth day matched");
+		ZAssert.assertStringContains(app.zPageCalendar.zReturnDayWeek(1), "Tue", "First day matched");
+		ZAssert.assertStringContains(app.zPageCalendar.zReturnDayWeek(2), "Wed", "Second day matched");
+		ZAssert.assertStringContains(app.zPageCalendar.zReturnDayWeek(3), "Thu", "Third day matched");
+		ZAssert.assertStringContains(app.zPageCalendar.zReturnDayWeek(4), "Fri", "Fourth day matched");
+		ZAssert.assertStringContains(app.zPageCalendar.zReturnDayWeek(6), "Mon", "Fifth day matched");
 	}
 	
 	@AfterMethod(groups={"always"})
@@ -82,6 +78,4 @@ public class zimbraPrefCalendarFirstDayOfWeek extends UniversalCommonTest {
 		zFreshLogin();
 		logger.info(app.zGetActiveAccount().EmailAddress);
 	}
-	
-	
 }

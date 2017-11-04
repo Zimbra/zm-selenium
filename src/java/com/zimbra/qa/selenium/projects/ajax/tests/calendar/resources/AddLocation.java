@@ -38,7 +38,7 @@ public class AddLocation extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Search Location and add into existing meeting invite", 
+	@Test( description = "Search Location and add into existing meeting invite",
 			groups = { "smoke", "L1" })
 
 	public void AddLocation_01() throws HarnessException {
@@ -99,7 +99,7 @@ public class AddLocation extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Add location to existing appointment and verify F/B", 
+	@Test( description = "Add location to existing appointment and verify F/B",
 			groups = { "smoke", "L1" })
 
 	public void AddLocation_02() throws HarnessException {
@@ -155,7 +155,7 @@ public class AddLocation extends AjaxCommonTest {
 
 
 	@Bugs(ids = "60789")
-	@Test( description = "Name lost when using autocomplete to enter location", 
+	@Test( description = "Name lost when using autocomplete to enter location",
 			groups = { "smoke", "L1" } )
 
 	public void AddLocation_03() throws HarnessException {

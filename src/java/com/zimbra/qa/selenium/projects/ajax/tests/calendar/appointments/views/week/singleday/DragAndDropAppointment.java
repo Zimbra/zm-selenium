@@ -38,10 +38,10 @@ public class DragAndDropAppointment extends AjaxCommonTest {
 		};
 	}
 
-	
+
 	@Test( description = "Drag and Drop a appointment from calendar to different calendar in week view",
-			groups = { "smoke", "L3" })
-	
+			groups = { "functional", "L3" })
+
 	public void DragAndDropAppointment_01() throws HarnessException {
 
 		String foldername = "folder"+ ConfigProperties.getUniqueString();
@@ -86,20 +86,20 @@ public class DragAndDropAppointment extends AjaxCommonTest {
         // Verify appointment exists in current view
         ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
 
-		// Select the item
+		// Drag and drop the item
 		app.zPageCalendar.zDragAndDrop(
-					"css=div[id^='zli__CLW__"+ apptId +"'] td.appt_name", // <div id="zli__CLWW__263_DWT114" .../>
-					"css=td[id='zti__main_Calendar__"+ subcalendarFolder.getId() + "_textCell']"); // <div id="zti__main_Calendar__273_textCell" .../>
+					"css=div[id^='zli__CLW__"+ apptId +"'] td.appt_name",
+					"css=td[id='zti__main_Calendar__"+ subcalendarFolder.getId() + "_textCell']");
 
-		// Server verification
+		// Verification
 		AppointmentItem newAppointment = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ apptSubject +")");
 		ZAssert.assertEquals(newAppointment.getFolder(), subcalendarFolder.getId(), "Verify the appointment moved folders");
 	}
 
-	
+
 	@Test( description = "Drag and Drop a appointment from one time to a different time in week view",
-			groups = { "smoke", "L3" })
-	
+			groups = { "functional", "L3" })
+
 	public void DragAndDropAppointment_02() throws HarnessException {
 
 		// We need to create two appointments to make a locator to drag and drop to.
@@ -138,15 +138,15 @@ public class DragAndDropAppointment extends AjaxCommonTest {
         // Verify appointment exists in current view
         ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
 
-        app.zGetActiveAccount().soapSend(
-        		"<GetAppointmentRequest id='"+ apptId + "' xmlns='urn:zimbraMail'/>");
+        app.zGetActiveAccount().soapSend("<GetAppointmentRequest id='"+ apptId + "' xmlns='urn:zimbraMail'/>");
         String s = app.zGetActiveAccount().soapSelectValue("//mail:s", "d");
         String e = app.zGetActiveAccount().soapSelectValue("//mail:e", "d");
 
 		String otherSubject = ConfigProperties.getUniqueString();
 		ZDate otherStartUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
 		ZDate otherEndUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 15, 0, 0);
-        app.zGetActiveAccount().soapSend(
+
+		app.zGetActiveAccount().soapSend(
     			"<CreateAppointmentRequest xmlns='urn:zimbraMail'>"
     		+		"<m>"
     		+			"<inv method='REQUEST' type='event' fb='B' transp='O' allDay='0' name='"+ otherSubject +"'>"
@@ -164,19 +164,13 @@ public class DragAndDropAppointment extends AjaxCommonTest {
 
         // Verify appointment exists in current view
         ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
-		SleepUtil.sleepMedium();
 
 		// Drag and drop the item
 		String sourceLocator = "css=div[id^='zli__CLW__"+ apptId +"'] td.appt_name";
 		String destinationLocator = "css=div[id^='zli__CLW__"+ otherApptId +"'] td.appt_name";
-		
-		app.zPageCalendar.zDragAndDropBy(sourceLocator,destinationLocator,0,10);
+		app.zPageCalendar.zDragAndDropBy(sourceLocator, destinationLocator, 0, 10);
 
-		// Server verification
-
-		// Make sure the time has changed
-		// (It is difficult to know for certain what time is correct.  For
-		// now, just make sure it was moved somewhere.)
+		// It is difficult to know for certain what time is correct. For now, just make sure it was moved somewhere
         app.zGetActiveAccount().soapSend("<GetAppointmentRequest id='"+ apptId + "' xmlns='urn:zimbraMail'/>");
         String s1 = app.zGetActiveAccount().soapSelectValue("//mail:s", "d");
         String e2 = app.zGetActiveAccount().soapSelectValue("//mail:e", "d");

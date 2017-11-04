@@ -55,7 +55,7 @@ public class AutoCompleteForget extends PrefGroupMailByMessageTest {
 	
 	@Bugs(ids = "102053")
 	@Test( description = "Forget an autocomplete address - invalid email",
-			groups = { "functional", "application-bug" })
+			groups = { "functional-skip", "application-bug" })
 	
 	public void AutoCompleteForget_01() throws HarnessException {
 		

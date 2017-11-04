@@ -37,6 +37,7 @@ public class CreateMeetingWithAttachment extends AjaxCommonTest {
 		super.startingPage = app.zPageCalendar;
 	}
 
+
 	@Bugs(ids = "104231")
 	@Test( description = "Create invite by attaching file",
 		groups = { "sanity", "L0" })
@@ -111,16 +112,14 @@ public class CreateMeetingWithAttachment extends AjaxCommonTest {
 				// Verify appointment exists in current view
 				ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
 
-				// open the appt
+				// Open the appt
 				app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_OPEN, apptSubject);
 
 				// Verify the new appointment has an attachment
 				ZAssert.assertTrue(app.zPageCalendar.zVerifyAttachmentExistsInAppointment(fileName), "Verify attachment exists in the appointment");
 
 			} finally {
-
 				app.zPageMain.zKeyboardKeyEvent(KeyEvent.VK_ESCAPE);
-
 			}
 
 		} else {

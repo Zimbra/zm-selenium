@@ -34,10 +34,7 @@ public class SingleDayAppointment extends AjaxCommonTest {
 	public SingleDayAppointment() {
 		logger.info("New "+ SingleDayAppointment.class.getCanonicalName());
 
-		// All tests start at the Calendar page
 		super.startingPage = app.zPageCalendar;
-
-		// Make sure we are using an account with month view
 		super.startingAccountPreferences = new HashMap<String, String>() {{
 		    put("zimbraPrefCalendarInitialView", "month");
 		}};

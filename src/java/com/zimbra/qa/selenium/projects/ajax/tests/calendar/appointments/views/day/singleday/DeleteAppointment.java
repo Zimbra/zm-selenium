@@ -19,9 +19,7 @@ package com.zimbra.qa.selenium.projects.ajax.tests.calendar.appointments.views.d
 import java.awt.event.KeyEvent;
 import java.util.Calendar;
 import java.util.HashMap;
-
 import org.testng.annotations.*;
-
 import com.zimbra.common.soap.Element;
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.ui.*;
@@ -42,11 +40,11 @@ public class DeleteAppointment extends AjaxCommonTest {
 		};
 	}
 
-	
+
 	@Bugs(ids = "69132")
 	@Test( description = "Delete an appointment using Delete toolbar button in day view",
 			groups = { "smoke", "L1" })
-	
+
 	public void DeleteAppointment_01() throws HarnessException {
 
 		// Creating objects for appointment data
@@ -87,11 +85,11 @@ public class DeleteAppointment extends AjaxCommonTest {
 		ZAssert.assertEquals(app.zPageCalendar.zIsAppointmentExists(apptSubject), false, "Verify appointment is deleted");
 	}
 
-	
+
 	@Bugs(ids = "69132")
 	@Test( description = "Delete an appointment using context menu in day view",
 			groups = { "functional", "L2" })
-	
+
 	public void DeleteAppointment_02() throws HarnessException {
 
 		// Creating objects for appointment data
@@ -131,7 +129,7 @@ public class DeleteAppointment extends AjaxCommonTest {
 		ZAssert.assertEquals(app.zPageCalendar.zIsAppointmentExists(apptSubject), false, "Verify appointment is deleted");
 	}
 
-	
+
 	@DataProvider(name = "DataProviderShortcutKeys")
 	public Object[][] DataProviderShortcutKeys() {
 		return new Object[][] {
@@ -144,7 +142,7 @@ public class DeleteAppointment extends AjaxCommonTest {
 	@Test( description = "Delete an appointment using keyboard shortcuts (Del & Backspace) in day view",
 			groups = { "functional", "L2" },
 			dataProvider = "DataProviderShortcutKeys")
-	
+
 	public void DeleteAppointment_03(String name, int keyEvent) throws HarnessException {
 
 		// Creating objects for appointment data

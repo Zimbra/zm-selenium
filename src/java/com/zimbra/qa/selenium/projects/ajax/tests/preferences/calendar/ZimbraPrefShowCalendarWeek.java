@@ -14,41 +14,38 @@
  * If not, see <http://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-package com.zimbra.qa.selenium.projects.universal.tests.preferences.calendar;
+package com.zimbra.qa.selenium.projects.ajax.tests.preferences.calendar;
 
 import java.util.HashMap;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
-import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
-import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
-import com.zimbra.qa.selenium.projects.universal.ui.preferences.TreePreferences.TreeItem;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.ajax.ui.preferences.TreePreferences.TreeItem;
 
-public class zimbraPrefShowCalendarWeek extends UniversalCommonTest {
+public class ZimbraPrefShowCalendarWeek extends AjaxCommonTest {
 
-	public zimbraPrefShowCalendarWeek() {
-		logger.info("New " + zimbraPrefShowCalendarWeek.class.getCanonicalName());
+	public ZimbraPrefShowCalendarWeek() {
+		logger.info("New " + ZimbraPrefShowCalendarWeek.class.getCanonicalName());
+		
 		super.startingPage = app.zPagePreferences;
 		super.startingAccountPreferences = new HashMap<String, String>() {
-			private static final long serialVersionUID = 3028486541122343959L;
-
-		{
-		    put("zimbraPrefCalendarInitialView", "month");
-		}};
-		
+			private static final long serialVersionUID = 3028486541122343959L; {
+				put("zimbraPrefCalendarInitialView", "month");
+			}
+		};
 	}
 
-	@Test(
-			description = "Set 'Show Calendars with week numbers' and verify accordingly", 
+	
+	@Test( description = "Set 'Show Calendars with week numbers' and verify accordingly", 
 			groups = { "functional", "L2" })
 	
-	public void zimbraPrefShowCalendarWeek_01() throws HarnessException {
+	public void ZimbraPrefShowCalendarWeek_01() throws HarnessException {
 
 		// Navigate to preferences -> calendar
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.Calendar);
-		SleepUtil.sleepMedium();
 
 		// Select custom work hours for e.g. Tuesday to Friday
 		app.zPagePreferences.zCheckboxSet(Button.C_SHOW_CALENDAR_WEEK_NUMBERS, true);
@@ -71,5 +68,4 @@ public class zimbraPrefShowCalendarWeek extends UniversalCommonTest {
 		// if logout stucks then assume that browser dialog appeared
 		app.zPageMain.zLogout();
 	}
-	
 }

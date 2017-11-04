@@ -32,6 +32,7 @@ public class ReplyToAll extends AjaxCommonTest {
 		super.startingPage =  app.zPageCalendar;
 	}
 
+
 	@Bugs(ids = "106759,102475")
 	@Test( description = "View meeting invite by opening it and reply to all by sending message",
 			groups = { "functional", "L2" })
@@ -91,7 +92,5 @@ public class ReplyToAll extends AjaxCommonTest {
 
 		id = ZimbraAccount.AccountB().soapSelectValue("//mail:m", "id");
 		ZAssert.assertNotNull(id, "Verify meeting reply present in attendee's inbox");
-
 	}
-
 }

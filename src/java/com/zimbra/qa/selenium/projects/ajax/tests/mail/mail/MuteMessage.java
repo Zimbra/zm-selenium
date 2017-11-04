@@ -32,7 +32,7 @@ public class MuteMessage extends PrefGroupMailByMessageTest {
 	
 	@Bugs(ids = "38449")
 	@Test( description = "Mute a message (conversation) using Actions -> Mute",
-			groups = { "smoke", "application-bug" })
+			groups = { "smoke-skip", "application-bug" })
 
 	public void MuteMessage_01() throws HarnessException {
 		

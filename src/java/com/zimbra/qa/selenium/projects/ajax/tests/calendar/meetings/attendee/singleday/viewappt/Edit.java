@@ -32,6 +32,7 @@ public class Edit extends AjaxCommonTest {
 		super.startingPage =  app.zPageCalendar;
 	}
 
+
 	@Test( description = "View meeting invite by opening it, Edit the invitation and locally save it",
 			groups = { "functional", "L2" })
 
@@ -104,7 +105,5 @@ public class Edit extends AjaxCommonTest {
 		// Verify organizer for the locally saved appointment
 		organizer = app.zGetActiveAccount().soapSelectValue("//mail:appt/mail:or", "a");
 		ZAssert.assertEquals(organizer, attendee1EmailAddress, "Verify organizer for the saved appointment");
-
 	}
-
 }

@@ -33,6 +33,7 @@ public class CreateACopy extends AjaxCommonTest {
 		super.startingPage =  app.zPageCalendar;
 	}
 
+
 	@Bugs(ids = "95961")
 	@Test( description = "Create a copy of meeting invite (Series)",
 			groups = { "functional", "L2" })

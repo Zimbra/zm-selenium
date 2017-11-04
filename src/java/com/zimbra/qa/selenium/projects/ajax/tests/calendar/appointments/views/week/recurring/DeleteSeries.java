@@ -40,10 +40,11 @@ public class DeleteSeries extends AjaxCommonTest {
 		};
 	}
 
+
 	@Bugs (ids = "69132")
 	@Test (description = "Delete entire series of recurring appointment (every day) using toolbar button in week view",
 			groups = { "smoke", "L3" } )
-	
+
 	public void DeleteSeries_01() throws HarnessException {
 
 		// Appointment data
@@ -84,11 +85,6 @@ public class DeleteSeries extends AjaxCommonTest {
 
         app.zPageCalendar.zListItem(Action.A_LEFTCLICK, apptSubject);
 
-        // If you select an instance and click delete button, you
-        // get two dialogs:
-        // First: do you want to delete the instance or series?
-        // Second: do you want to delete all occurrences or this instance and all future instances
-        //
         DialogWarning deleteRecurringItems = (DialogWarning)app.zPageCalendar.zToolbarPressButton(Button.B_DELETE);
         if (deleteRecurringItems == null) {
         	throw new HarnessException("The 'Delete Recurring Items' dialog never appeared.");
@@ -118,11 +114,11 @@ public class DeleteSeries extends AjaxCommonTest {
         //ZAssert.assertEquals(deleted, true, "Verify instance is deleted from the calendar");
 	}
 
-	
+
 	@Bugs (ids = "69132")
 	@Test (description = "Delete entire series of recurring appointment (every week) using context menu in week view",
 			groups = { "smoke", "L3" } )
-	
+
 	public void DeleteSeries_02() throws HarnessException {
 
 		// Appointment data
@@ -162,13 +158,6 @@ public class DeleteSeries extends AjaxCommonTest {
         ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
 
         app.zPageCalendar.zListItem(Action.A_LEFTCLICK, apptSubject);
-
-        // If you right-click an instance and select delete from the context menu, you
-        // get one dialog:
-        // First: do you want to delete all occurrences or this instance and all future instances
-        //
-        // This is different from the "select an instance and click delete button" usage
-        //
         DialogWarning confirmDelete = (DialogWarning)app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_SERIES_MENU, Button.O_DELETE_MENU, apptSubject);
         if (confirmDelete == null) {
         	throw new HarnessException("The 'Confirm Delete' dialog never appeared.");
@@ -193,7 +182,7 @@ public class DeleteSeries extends AjaxCommonTest {
         //ZAssert.assertEquals(deleted, true, "Verify instance is deleted from the calendar");
 	}
 
-	
+
 	@DataProvider(name = "DataProviderShortcutKeys")
 	public Object[][] DataProviderShortcutKeys() {
 		return new Object[][] {

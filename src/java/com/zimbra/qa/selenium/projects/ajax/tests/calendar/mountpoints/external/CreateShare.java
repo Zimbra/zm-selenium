@@ -35,9 +35,11 @@ public class CreateShare extends AjaxCommonTest {
 		super.startingPage = app.zPageCalendar;
 	}
 
+
 	@Bugs(ids = "46674")
-	@Test(description = "Share folder with external rights and add note to it", 
+	@Test(description = "Share folder with external rights and add note to it",
 			groups = { "functional", "L2" })
+
 	public void CreateShare_01() throws HarnessException {
 
 		FolderItem root = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.UserRoot);
@@ -76,5 +78,4 @@ public class CreateShare extends AjaxCommonTest {
 		ZAssert.assertStringContains(received.dBodyText, message, "Verify the body field is correct");
 
 	}
-
 }

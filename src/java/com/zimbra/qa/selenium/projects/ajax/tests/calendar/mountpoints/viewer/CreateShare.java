@@ -33,7 +33,7 @@ public class CreateShare extends AjaxCommonTest {
 	}
 
 
-	@Test(description = "Share calendar folder with viewer rights", 
+	@Test(description = "Share calendar folder with viewer rights",
 			groups = { "smoke", "L1" })
 
 	public void CreateShare_01() throws HarnessException {
@@ -80,8 +80,8 @@ public class CreateShare extends AjaxCommonTest {
 	}
 
 
-	@Test(description = "Share folder with viewer rights and Do not send mail about the share", groups = {
-			"functional", "L2" })
+	@Test(description = "Share folder with viewer rights and Do not send mail about the share",
+			groups = { "functional", "L2" })
 
 	public void CreateShare_02() throws HarnessException {
 
@@ -112,14 +112,14 @@ public class CreateShare extends AjaxCommonTest {
 	}
 
 
-	@Test(description = "Share folder with viewer rights and add a multiline note to it", 
+	@Test(description = "Share folder with viewer rights and add a multiline note to it",
 			groups = { "functional", "L2" })
 
 	public void CreateShare_03() throws HarnessException {
 
 		app.zPageMain.sRefresh();
 		app.zPageCalendar.zNavigateTo();
-		
+
 		// Create a folder
 		String firstLine = "First Line " + ConfigProperties.getUniqueString();
 		String secondLine = "Second Line " + ConfigProperties.getUniqueString();

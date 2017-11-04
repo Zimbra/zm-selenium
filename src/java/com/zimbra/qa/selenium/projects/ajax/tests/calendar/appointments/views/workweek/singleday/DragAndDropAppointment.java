@@ -49,7 +49,7 @@ public class DragAndDropAppointment extends AjaxCommonTest {
 					"</CreateFolderRequest>");
 		FolderItem subcalendarFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), foldername);
 
-		//Refresh view after folder creation
+		// Refresh view after folder creation
 		app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
 
 		// Creating objects for appointment data
@@ -81,16 +81,21 @@ public class DragAndDropAppointment extends AjaxCommonTest {
         // Verify appointment exists in current view
         ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
 
-        SleepUtil.sleepMedium();
+        // Drag and drop the item
+        String locator;
+        if (app.zPageCalendar.zIsWeekend()) {
+        	locator = "css=div[id^='zli__CLWW__";
+        } else {
+        	locator = "css=div[id^='zli__CLW__";
+        }
 
 		// Select the item
 		app.zPageCalendar.zDragAndDrop(
-					"css=div[id^='zli__CLWW__"+ apptId +"'] td.appt_name", // <div id="zli__CLWW__263_DWT114" .../>
-					"css=td[id='zti__main_Calendar__"+ subcalendarFolder.getId() + "_textCell']"); // <div id="zti__main_Calendar__273_textCell" .../>
+					locator + apptId + "'] td.appt_name",
+					"css=td[id='zti__main_Calendar__" + subcalendarFolder.getId() + "_textCell']");
 
-		// Server verification
+		// Verification
 		AppointmentItem newAppointment = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ apptSubject +")");
-
 		ZAssert.assertEquals(newAppointment.getFolder(), subcalendarFolder.getId(), "Verify the appointment moved folders");
 	}
 
@@ -133,8 +138,7 @@ public class DragAndDropAppointment extends AjaxCommonTest {
     		+	"</CreateAppointmentRequest>");
         String apptId = app.zGetActiveAccount().soapSelectValue("//mail:CreateAppointmentResponse", "apptId");
 
-        app.zGetActiveAccount().soapSend(
-        		"<GetAppointmentRequest id='"+ apptId + "' xmlns='urn:zimbraMail'/>");
+        app.zGetActiveAccount().soapSend("<GetAppointmentRequest id='"+ apptId + "' xmlns='urn:zimbraMail'/>");
         String s = app.zGetActiveAccount().soapSelectValue("//mail:s", "d");
         String e = app.zGetActiveAccount().soapSelectValue("//mail:e", "d");
 
@@ -144,7 +148,8 @@ public class DragAndDropAppointment extends AjaxCommonTest {
 		String otherSubject = ConfigProperties.getUniqueString();
 		ZDate otherStartUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 17, 0, 0);
 		ZDate otherEndUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 18, 0, 0);
-        app.zGetActiveAccount().soapSend(
+
+		app.zGetActiveAccount().soapSend(
     			"<CreateAppointmentRequest xmlns='urn:zimbraMail'>"
     		+		"<m>"
     		+			"<inv method='REQUEST' type='event' fb='B' transp='O' allDay='0' name='"+ otherSubject +"'>"
@@ -163,19 +168,20 @@ public class DragAndDropAppointment extends AjaxCommonTest {
         // Verify appointment exists in current view
         ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(otherSubject), "Verify appointment displayed in current view");
 
-        SleepUtil.sleepMedium();
+        // Drag and drop the item
+        String locator;
+        if (app.zPageCalendar.zIsWeekend()) {
+        	locator = "css=div[id^='zli__CLW__";
+        } else {
+        	locator = "css=div[id^='zli__CLWW__";
+        }
 
-		// Drag and drop the item
-    	String sourceLocator = "css=div[id^='zli__CLWW__"+ apptId +"'] td.appt_name";
-    	String destinationLocator = "css=div[id^='zli__CLWW__"+ otherApptId +"'] td.appt_name";
+    	String sourceLocator = locator + apptId + "'] td.appt_name";
+    	String destinationLocator = locator + otherApptId + "'] td.appt_name";
+    	app.zPageCalendar.zDragAndDropBy(sourceLocator, destinationLocator, 0, 10);
 
-    	app.zPageCalendar.zDragAndDropBy(sourceLocator,destinationLocator,0,10);
-
-		// Make sure the time has changed
-		// (It is difficult to know for certain what time is correct.  For
-		// now, just make sure it was moved somewhere.)
-        app.zGetActiveAccount().soapSend(
-        		"<GetAppointmentRequest id='"+ apptId + "' xmlns='urn:zimbraMail'/>");
+    	// It is difficult to know for certain what time is correct. For now, just make sure it was moved somewhere
+        app.zGetActiveAccount().soapSend("<GetAppointmentRequest id='"+ apptId + "' xmlns='urn:zimbraMail'/>");
         String s1 = app.zGetActiveAccount().soapSelectValue("//mail:s", "d");
         String e2 = app.zGetActiveAccount().soapSelectValue("//mail:e", "d");
 

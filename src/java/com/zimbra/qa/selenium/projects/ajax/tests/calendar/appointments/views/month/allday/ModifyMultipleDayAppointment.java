@@ -39,17 +39,14 @@ public class ModifyMultipleDayAppointment extends AjaxCommonTest {
 	public ModifyMultipleDayAppointment() {
 		logger.info("New " + ModifyMultipleDayAppointment.class.getCanonicalName());
 
-		// All tests start at the Calendar page
 		super.startingPage = app.zPageCalendar;
-
-		// Make sure we are using an account with week view
 		super.startingAccountPreferences = new HashMap<String, String>() {
-			private static final long serialVersionUID = -2913827779459595178L;
-		{
-		    put("zimbraPrefCalendarInitialView", "month");
-		}};
-
+			private static final long serialVersionUID = -2913827779459595178L; {
+				put("zimbraPrefCalendarInitialView", "month");
+			}
+		};
 	}
+
 
 	@Test( description = "Modify multiple-day all-day appointment (Date) and verify its display in month view.",
 			groups = { "functional", "L3" })
@@ -105,7 +102,7 @@ public class ModifyMultipleDayAppointment extends AjaxCommonTest {
 		ZAssert.assertTrue(displayed, "Multi-day all-day appointments are not created and displayed correctly in month view");
 	}
 
-	
+
 	@Test( description = "Modify multiple-day all-day appointment (Add attendee) and verify its display in month view.",
 			groups = { "functional", "L3" })
 

@@ -28,8 +28,8 @@ public class Accept extends AjaxCommonTest {
 	public Accept() {
 		logger.info("New "+ Accept.class.getCanonicalName());
 		super.startingPage =  app.zPageCalendar;
-
 	}
+
 
 	@Test( description = "Rt-click to appointment from the calendar app and Accept the meeting invite",
 			groups = { "smoke", "L1" })

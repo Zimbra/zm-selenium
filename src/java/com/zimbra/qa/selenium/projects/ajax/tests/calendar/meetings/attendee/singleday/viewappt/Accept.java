@@ -31,6 +31,7 @@ public class Accept extends AjaxCommonTest {
 		super.startingPage =  app.zPageCalendar;
 	}
 
+
 	@Test( description = "View meeting invite by opening it and Accept the invitation",
 			groups = { "smoke", "L1" })
 

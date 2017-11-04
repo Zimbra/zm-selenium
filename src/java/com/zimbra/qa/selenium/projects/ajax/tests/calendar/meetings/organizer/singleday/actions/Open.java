@@ -38,7 +38,7 @@ public class Open extends AjaxCommonTest {
 
 	@Bugs(ids = "103056")
 	@Test( description = "Rt-click to invite and open it",
-			groups = { "smoke", "application-bug" })
+			groups = { "smoke-skip", "application-bug" })
 
 	public void OpenMeeting_01() throws HarnessException, ParseException {
 

@@ -29,8 +29,8 @@ public class Tentative extends AjaxCommonTest {
 	public Tentative() {
 		logger.info("New "+ Tentative.class.getCanonicalName());
 		super.startingPage =  app.zPageCalendar;
-
 	}
+
 
 	@Test( description = "View meeting invite by opening it and mark as Tentative",
 			groups = { "smoke", "L1" })

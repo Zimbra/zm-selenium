@@ -44,7 +44,7 @@ public class AddOptionalAttendee extends AjaxCommonTest {
 	}
 
 	@Test( description = "Add optional attendee from scheduler pane using keyboard Enter and Tab key",
-			groups = { "functional", "application-bug"},
+			groups = { "functional-skip", "application-bug"},
 			dataProvider = "DataProviderShortcutKeys")
 
 	public void AddOptionalAttendee_01(String name, int keyEvent) throws HarnessException {

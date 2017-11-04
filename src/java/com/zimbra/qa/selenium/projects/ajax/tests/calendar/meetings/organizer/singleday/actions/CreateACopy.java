@@ -32,6 +32,7 @@ public class CreateACopy extends AjaxCommonTest {
 		super.startingPage =  app.zPageCalendar;
 	}
 
+
 	@Test( description = "Copy meeting invite and verify content",
 			groups = { "smoke", "L1" })
 

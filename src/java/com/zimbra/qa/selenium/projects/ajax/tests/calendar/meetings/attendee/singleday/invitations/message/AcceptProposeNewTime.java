@@ -31,6 +31,7 @@ public class AcceptProposeNewTime extends AjaxCommonTest {
 
 	public AcceptProposeNewTime() {
 		logger.info("New "+ AcceptProposeNewTime.class.getCanonicalName());
+
 		super.startingPage =  app.zPageMail;
 		super.startingAccountPreferences = new HashMap<String, String>() {
 			private static final long serialVersionUID = 1L; {

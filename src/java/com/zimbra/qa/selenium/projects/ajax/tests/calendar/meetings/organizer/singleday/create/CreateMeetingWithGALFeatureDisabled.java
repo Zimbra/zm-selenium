@@ -33,6 +33,7 @@ public class CreateMeetingWithGALFeatureDisabled extends AjaxCommonTest {
 		this.startingAccountPreferences.put("zimbraFeatureGalEnabled", "FALSE");
 	}
 
+
 	@Bugs(ids = "99777,65926")
 	@Test( description = "Create a basic appointment this zimbraFeatureGalEnabled=FALSE",
 			groups = { "smoke", "L1" } )

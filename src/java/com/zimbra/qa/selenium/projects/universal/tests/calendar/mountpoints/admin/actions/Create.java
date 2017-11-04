@@ -14,32 +14,35 @@
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-package com.zimbra.qa.selenium.projects.ajax.tests.calendar.mountpoints.admin.actions;
+package com.zimbra.qa.selenium.projects.universal.tests.calendar.mountpoints.admin.actions;
 
 import java.util.Calendar;
+
 import org.testng.annotations.Test;
+
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew.Field;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.universal.ui.calendar.FormApptNew;
+import com.zimbra.qa.selenium.projects.universal.ui.calendar.FormApptNew.Field;
+import com.zimbra.qa.selenium.projects.universal.core.CalendarWorkWeekTest;
 
-public class create extends AjaxCommonTest {
+public class Create extends CalendarWorkWeekTest {
 
-	public create() {
+	public Create() {		
 		super.startingPage = app.zPageCalendar;
+				
 	}
 
 	@Bugs(ids = "75771")
-	@Test( description = "Verify sending invite using OBO although user2 granted OBO rights to user1",
+	@Test( description = "Verify sending invite using OBO although user2 granted OBO rights to user1", 
 			groups = { "functional","L2" })
-
-	public void create_01() throws HarnessException {
-
+	
+	public void Create_01() throws HarnessException {
+		
 		String mountPointName = "mountpoint" + ConfigProperties.getUniqueString();
 		FolderItem folder = FolderItem.importFromSOAP(ZimbraAccount.Account3(), SystemFolder.Calendar);
 
@@ -50,28 +53,28 @@ public class create extends AjaxCommonTest {
 				+			"<grant d='"+ app.zGetActiveAccount().EmailAddress +"' gt='usr' perm='rwidx' view='appointment'/>"
 				+		"</action>"
 				+	"</FolderActionRequest>");
-
+		
 		// Mount it
 		app.zGetActiveAccount().soapSend(
 					"<CreateMountpointRequest xmlns='urn:zimbraMail'>"
 				+		"<link l='1' name='"+ mountPointName +"'  rid='"+ folder.getId() +"' zid='"+ ZimbraAccount.Account3().ZimbraId +"' view='appointment' color='3'/>"
 				+	"</CreateMountpointRequest>");
-
+		
 
 		ZimbraAccount.Account3().soapSend(
 	      "<GrantRightsRequest xmlns='urn:zimbraAccount'>"
 	      + " <ace d='" + app.zGetActiveAccount().EmailAddress + "' right='sendAs' gt='usr'/>"
 	      + " <ace d='" + app.zGetActiveAccount().EmailAddress + "' right='sendOnBehalfOf' gt='usr'/>"
 	      + "</GrantRightsRequest>");
-
+		
 		String persona = ConfigProperties.getUniqueString();
 		AppointmentItem appt = new AppointmentItem();
 		String apptSubject, apptAttendee1, apptContent;
-		Calendar now = Calendar.getInstance();
+		Calendar now = this.calendarWeekDayUTC;
 		apptSubject = ConfigProperties.getUniqueString();
 		apptAttendee1 = ZimbraAccount.Account2().EmailAddress;
 		apptContent = ConfigProperties.getUniqueString();
-
+		
 		//Create persona
 		app.zGetActiveAccount().soapSend(
 				" <CreateIdentityRequest xmlns='urn:zimbraAccount'>"
@@ -92,31 +95,31 @@ public class create extends AjaxCommonTest {
 		// Refresh UI
 		app.zPageMain.sRefresh();
 		app.zPageCalendar.zNavigateTo();
-
+		
 		appt.setSubject(apptSubject);
 		appt.setAttendees(apptAttendee1);
-		appt.setStartTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 8, 0, 0));
-		appt.setEndTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 9, 0, 0));
+		appt.setStartTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 01, 0, 0));
+		appt.setEndTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 02, 0, 0));
 		appt.setContent(apptContent);
-
+	
 		// Compose appointment and send it to invitee
 		FormApptNew apptForm = (FormApptNew) app.zPageCalendar.zToolbarPressButton(Button.B_NEW);
 		apptForm.zFill(appt);
 		apptForm.zFillField(Field.From, persona);
         String locator = "css=td[id$='_folderSelect'] td[id$='_select_container']";
-        apptForm.sClickAt(locator, "");
+        apptForm.sClickAt(locator, "");            
 
-        locator = "//div[@id='z_shell']/div[contains(@id,'_Menu_') and contains(@class, 'DwtMenu')]";
-        int count = apptForm.sGetXpathCount(locator);
+        locator = "//div[@id='z_shell']/div[contains(@id,'_Menu_') and contains(@class, 'DwtMenu')]";   
+        int count = apptForm.sGetXpathCount(locator);           
         for  (int  i = 1; i <= count; i++) {
         	String calPullDown = locator + "[position()=" + i + "]//tr//*[contains(text(),'" + mountPointName + "')]";
         	if (apptForm.zIsVisiblePerPosition(calPullDown, 0, 0)) {
         	    apptForm.sClickAt(calPullDown, "");
         	    break;
-        	}
+        	}        	
         }
 		apptForm.zSubmit();
-
+		
 		// Verify appointment exists on the server
 		AppointmentItem actual = AppointmentItem.importFromSOAP(ZimbraAccount.Account3(), "subject:("+ appt.getSubject() +")", appt.getStartTime().addDays(-7), appt.getEndTime().addDays(7));
 		ZAssert.assertNotNull(actual, "Verify the new appointment is created");
@@ -130,7 +133,7 @@ public class create extends AjaxCommonTest {
 		ZAssert.assertEquals(received.getSubject(), appt.getSubject(), "Subject: Verify the appointment data");
 		ZAssert.assertEquals(received.getAttendees(), apptAttendee1, "Attendees: Verify the appointment data");
 		ZAssert.assertEquals(received.getContent(), appt.getContent(), "Content: Verify the appointment data");
-
-
-	}
+		
+		
+	}	
 }

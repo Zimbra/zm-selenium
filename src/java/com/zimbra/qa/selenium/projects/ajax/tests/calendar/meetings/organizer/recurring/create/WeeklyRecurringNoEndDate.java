@@ -127,9 +127,12 @@ public class WeeklyRecurringNoEndDate extends AjaxCommonTest {
 		// Go to next week and verify correct number of recurring instances
 		int getNoOfInstances = 0;
 		for (int i = 1; i <= 3; i++) {
+			if (app.zPageCalendar.zIsWeekend()) {
+				app.zPageCalendar.zToolbarPressButton(Button.B_NEXT_PAGE);
+			}
 			getNoOfInstances = app.zPageCalendar.zGetAppointmentCountWeekView(apptSubject);
-			app.zPageCalendar.zToolbarPressButton(Button.B_NEXT_PAGE);
 			ZAssert.assertEquals(getNoOfInstances, 1, "Verify correct no. of recurring instances are present in calendar week view");
+			app.zPageCalendar.zToolbarPressButton(Button.B_NEXT_PAGE);
 		}
 	}
 

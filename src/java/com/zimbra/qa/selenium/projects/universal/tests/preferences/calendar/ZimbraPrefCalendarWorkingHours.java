@@ -27,10 +27,10 @@ import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
 import com.zimbra.qa.selenium.projects.universal.ui.DialogWarning;
 import com.zimbra.qa.selenium.projects.universal.ui.preferences.TreePreferences.TreeItem;
 
-public class zimbraPrefCalendarWorkingHours extends UniversalCommonTest {
+public class ZimbraPrefCalendarWorkingHours extends UniversalCommonTest {
 
-	public zimbraPrefCalendarWorkingHours() {
-		logger.info("New " + zimbraPrefCalendarWorkingHours.class.getCanonicalName());
+	public ZimbraPrefCalendarWorkingHours() {
+		logger.info("New " + ZimbraPrefCalendarWorkingHours.class.getCanonicalName());
 		super.startingPage = app.zPagePreferences;
 	}
 
@@ -40,7 +40,7 @@ public class zimbraPrefCalendarWorkingHours extends UniversalCommonTest {
 			description = "Set calendar custom working hours and verify accordingly", 
 			groups = { "functional", "L2" })
 	
-	public void zimbraPrefCalendarWorkingHours_01() throws HarnessException {
+	public void ZimbraPrefCalendarWorkingHours_01() throws HarnessException {
 
 		// Navigate to preferences -> calendar
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.Calendar);
@@ -74,7 +74,7 @@ public class zimbraPrefCalendarWorkingHours extends UniversalCommonTest {
 	@Test( description = "Verify that modifying 'Work Week:' preference prompts for UI refresh", 
 			groups = { "functional", "L2" })
 	
-	public void zimbraPrefCalendarWorkingHours_02() throws HarnessException {
+	public void ZimbraPrefCalendarWorkingHours_02() throws HarnessException {
 		
 		// Navigate to preferences -> calendar
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.Calendar);

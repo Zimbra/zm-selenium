@@ -45,7 +45,7 @@ public class WeeklyEveryXdayEndByY extends AjaxCommonTest {
 		String apptSubject, apptAttendee, apptContent, apptLocation;
 		String getShortTomorrowDayOfWeek = LocalDate.now().plusDays(1).getDayOfWeek().toString();
 		String getTomorrowDayOfWeek = StringUtils.capitalize(getShortTomorrowDayOfWeek.toLowerCase());
-		
+
 		ZimbraResource location = new ZimbraResource(ZimbraResource.Type.LOCATION);
 
 		apptSubject = ConfigProperties.getUniqueString();
@@ -123,8 +123,7 @@ public class WeeklyEveryXdayEndByY extends AjaxCommonTest {
 		ZAssert.assertEquals(ruleFrequency, "WEE", "Repeat frequency: Verify the appointment data");
 		ZAssert.assertStringContains(until, "202001", "Recurrence until: Verify the appointment data");
 		ZAssert.assertEquals(interval, "1", "Repeat interval: Verify the appointment data");
-		ZAssert.assertEquals(weekday, getShortTomorrowDayOfWeek.subSequence(0, 2)
-				, "Weekday: Verify the appointment data");
+		ZAssert.assertEquals(weekday, getShortTomorrowDayOfWeek.subSequence(0, 2), "Weekday: Verify the appointment data");
 		ZAssert.assertEquals(received.getContent(), appt.getContent(), "Content: Verify the appointment data");
 
 		// Verify the attendee receives the invitation
@@ -135,9 +134,12 @@ public class WeeklyEveryXdayEndByY extends AjaxCommonTest {
 		// Go to next week and verify correct number of recurring instances
 		int getNoOfInstances = 0;
 		for (int i = 1; i <= 3; i++) {
+			if (app.zPageCalendar.zIsWeekend()) {
+				app.zPageCalendar.zToolbarPressButton(Button.B_NEXT_PAGE);
+			}
 			getNoOfInstances = app.zPageCalendar.zGetAppointmentCountWeekView(apptSubject);
-			app.zPageCalendar.zToolbarPressButton(Button.B_NEXT_PAGE);
 			ZAssert.assertEquals(getNoOfInstances, 1, "Verify correct no. of recurring instances are present in calendar view");
+			app.zPageCalendar.zToolbarPressButton(Button.B_NEXT_PAGE);
 		}
 	}
 }

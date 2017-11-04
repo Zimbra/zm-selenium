@@ -19,7 +19,6 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.addresscontextmenu;
 
 import org.testng.annotations.*;
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
@@ -35,10 +34,12 @@ public class AddToContactsAttendeeContextMenu extends PrefGroupMailByMessageTest
 		logger.info("New " + AddToContactsAttendeeContextMenu.class.getCanonicalName());
 		super.startingPage = app.zPageCalendar;
 	}
-	
+
+
 	@Bugs(ids = "102204")
-	@Test( description = "Right click To attendee bubble address>>Verify AddToContact", 
+	@Test( description = "Right click To attendee bubble address>>Verify AddToContact",
 			groups = { "smoke", "L1" })
+
 	public void AddToContactAttendeeContextMenu_01() throws HarnessException {
 
 		String apptAttendee1;
@@ -81,7 +82,5 @@ public class AddToContactsAttendeeContextMenu extends PrefGroupMailByMessageTest
 		ZAssert.assertStringContains(firstname, contactFirst,"Verify the first name was saved correctly");
 		ZAssert.assertStringContains(email, OriginalEmailAddr,"Verify the email was saved correctly");
 
-
 	}
-
 }

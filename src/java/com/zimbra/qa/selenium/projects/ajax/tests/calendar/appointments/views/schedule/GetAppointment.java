@@ -17,34 +17,20 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.appointments.views.schedule;
 
 import java.util.Calendar;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 
-
 public class GetAppointment extends AjaxCommonTest {
-
 
 	public GetAppointment() {
 		logger.info("New "+ GetAppointment.class.getCanonicalName());
-
-		// All tests start at the Calendar page
 		super.startingPage = app.zPageCalendar;
-
-		// BUG 68610: remove schedule view
-//		// Make sure we are using an account with message view
-//		super.startingAccountPreferences = new HashMap<String, String>() {{
-//		    put("zimbraPrefCalendarInitialView", "schedule");
-//		}};
-
-
 	}
 
-	// BUG 68610: remove schedule view
+
 	@Bugs(ids = "69132,68610")
 	@Test( description = "View a basic appointment in the schedule view",
 			groups = { "deprecated" })
@@ -83,8 +69,6 @@ public class GetAppointment extends AjaxCommonTest {
 		app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
 
 		SleepUtil.sleep(5000);
-
 		throw new HarnessException("add verification that the appointment appears");
-
 	}
 }

@@ -17,7 +17,6 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.folders.external;
 
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.ui.Button;
@@ -28,29 +27,25 @@ import com.zimbra.qa.selenium.projects.ajax.ui.calendar.*;
 
 public class CreateExternalCalendarOther extends AjaxCommonTest {
 
-
 	public CreateExternalCalendarOther() {
 		logger.info("New " + CreateExternalCalendarOther.class.getCanonicalName());
-
-		// All tests start at the login page
 		super.startingPage = app.zPageCalendar;
-		
 	}
 
+
 	@Bugs(ids = "66576")
-	@Test( description = "Create a new external calendar (type=other) by clicking 'Gear' -> 'new folder' on folder tree", 
+	@Test( description = "Create a new external calendar (type=other) by clicking 'Gear' -> 'new folder' on folder tree",
 			groups = { "functional", "L2" })
+
 	public void CreateExternalCalendarOther_01() throws HarnessException {
 
 		ZimbraAccount icalAccount = new ZimbraAccount();
 		icalAccount.provision();
 		icalAccount.authenticate();
-		
-		
+
 		// Set the new calendar name
 		String calendarname = "calendar" + ConfigProperties.getUniqueString();
 
-		
 		// Click on the "New Calendar" button in the calendar tree
 		DialogAddExternalCalendar dialog = (DialogAddExternalCalendar) app.zTreeCalendar.zPressPulldown(Button.B_TREE_FOLDERS_OPTIONS, Button.B_TREE_NEW_EXTERNAL_CALENDAR);
 
@@ -63,25 +58,24 @@ public class CreateExternalCalendarOther extends AjaxCommonTest {
 		dialog.zSetSourcePassword(icalAccount.Password);
 		dialog.zSetSourceServer(icalAccount.zGetAccountStoreHost());
 		dialog.zClickButton(Button.B_NEXT);
-		
+
 		DialogCreateCalendarFolder dailog2 = new DialogCreateCalendarFolder(app, ((AppAjaxClient) app).zPageCalendar);
 		dailog2.zWaitForActive();
 		dailog2.zEnterFolderName(calendarname);
 		dailog2.zClickButton(Button.B_OK);
-		
-		
+
+
 		// Make sure the folder was created on the ZCS server
 		FolderItem folder = FolderItem.importFromSOAP(app.zGetActiveAccount(), calendarname);
 		ZAssert.assertNotNull(folder, "Verify the new folder is found");
 		ZAssert.assertEquals(folder.getName(), calendarname, "Verify the server and client folder names match");
-		
 	}
 
-//	@Test( description = "Create a new external calendar (type=other) using keyboard shortcuts", 
+//	@Test( description = "Create a new external calendar (type=other) using keyboard shortcuts",
 //			groups = { "functional" })
 //	public void CreateExternalCalendarOther_02() throws HarnessException {
 //
-//		
+//
 //		// Set the new calendar name
 //		String calendarname = "calendar" + ConfigProperties.getUniqueString();
 //
@@ -93,7 +87,7 @@ public class CreateExternalCalendarOther extends AjaxCommonTest {
 //		dialog.zEnterFolderName(calendarname);
 //		dialog.zClickButton(Button.B_OK);
 //
-//		
+//
 //		// Make sure the folder was created on the ZCS server
 //		FolderItem folder = FolderItem.importFromSOAP(app.zGetActiveAccount(), calendarname);
 //		ZAssert.assertNotNull(folder, "Verify the new folder is found");
@@ -101,7 +95,7 @@ public class CreateExternalCalendarOther extends AjaxCommonTest {
 //
 //	}
 //
-//	@Test( description = "Create a new external calendar (type=other)  using context menu from root folder", 
+//	@Test( description = "Create a new external calendar (type=other)  using context menu from root folder",
 //			groups = { "functional" })
 //	public void CreateCalendar_03() throws HarnessException {
 //
@@ -110,8 +104,8 @@ public class CreateExternalCalendarOther extends AjaxCommonTest {
 //
 //		// Determine the calendar folder
 //		FolderItem root = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.UserRoot);
-//		
-//		
+//
+//
 //		// Click on the "New Calendar" button in the calendar tree
 //		DialogCreateFolder dialog = (DialogCreateFolder) app.zTreeCalendar.zTreeItem(Action.A_RIGHTCLICK, Button.O_NEW_CALENDAR, root);
 //
@@ -119,15 +113,15 @@ public class CreateExternalCalendarOther extends AjaxCommonTest {
 //		dialog.zEnterFolderName(calendarname);
 //		dialog.zClickButton(Button.B_OK);
 //
-//		
+//
 //		// Make sure the folder was created on the ZCS server
 //		FolderItem folder = FolderItem.importFromSOAP(app.zGetActiveAccount(), calendarname);
 //		ZAssert.assertNotNull(folder, "Verify the new folder is found");
 //		ZAssert.assertEquals(folder.getName(), calendarname, "Verify the server and client folder names match");
-//		
+//
 //	}
 //
-//	@Test( description = "Create a new external calendar (type=other)  using  mail app New -> New Folder", 
+//	@Test( description = "Create a new external calendar (type=other)  using  mail app New -> New Folder",
 //			groups = { "functional" })
 //	public void CreateCalendar_04() throws HarnessException {
 //
@@ -143,7 +137,7 @@ public class CreateExternalCalendarOther extends AjaxCommonTest {
 //		dialog.zEnterFolderName(calendarname);
 //		dialog.zClickButton(Button.B_OK);
 //
-//		
+//
 //		// Make sure the folder was created on the ZCS server
 //		FolderItem folder = FolderItem.importFromSOAP(app.zGetActiveAccount(), calendarname);
 //		ZAssert.assertNotNull(folder, "Verify the new folder is found");

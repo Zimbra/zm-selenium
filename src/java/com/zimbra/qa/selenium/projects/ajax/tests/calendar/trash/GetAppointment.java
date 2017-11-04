@@ -37,6 +37,7 @@ public class GetAppointment extends AjaxCommonTest {
 		super.startingPage = app.zPageCalendar;
 	}
 
+
 	@Test( description = "Verify the presence of appointment in Trash after deletion",
 			groups = { "smoke", "L0" })
 
@@ -101,5 +102,4 @@ public class GetAppointment extends AjaxCommonTest {
 		// Verify the presence of appointment in Trash
 		ZAssert.assertTrue(app.zPageCalendar.zIsAppointmentPresentInTrash(apptSubject), "Verify appointment is present in Trash!");
 	}
-
 }

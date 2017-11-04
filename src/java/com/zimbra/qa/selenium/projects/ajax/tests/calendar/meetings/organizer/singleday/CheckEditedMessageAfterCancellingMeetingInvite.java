@@ -36,8 +36,9 @@ public class CheckEditedMessageAfterCancellingMeetingInvite extends AjaxCommonTe
 		super.startingPage = app.zPageCalendar;
 	}
 
+
 	@Bugs(ids = "77548,35365")
-	@Test( description = "Text entered before cancellation message of a cancelled appointment ignored", 
+	@Test( description = "Text entered before cancellation message of a cancelled appointment ignored",
 				groups = { "functional", "L2"} )
 
 	public void CheckEditedMessageAfterCancellingMeetingInvite_01() throws HarnessException {
@@ -90,5 +91,4 @@ public class CheckEditedMessageAfterCancellingMeetingInvite extends AjaxCommonTe
 		AppointmentItem canceledAppt = AppointmentItem.importFromSOAP(ZimbraAccount.AccountA(), "subject:("+ apptSubject +")");
 		ZAssert.assertNull(canceledAppt, "Verify meeting is deleted from attendee's calendar");
 	}
-
 }

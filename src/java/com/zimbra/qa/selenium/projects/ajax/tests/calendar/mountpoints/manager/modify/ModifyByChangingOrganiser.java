@@ -33,14 +33,15 @@ public class ModifyByChangingOrganiser extends AjaxCommonTest {
 
 	public ModifyByChangingOrganiser() {
 		logger.info("New "+ ModifyByChangingOrganiser.class.getCanonicalName());
+
 		super.startingPage = app.zPageCalendar;
 		super.startingAccountPreferences = new HashMap<String, String>() {
-		private static final long serialVersionUID = 1L;
-		{
-		    put("zimbraPrefCalendarInitialView", "month");
-		}};
-
+			private static final long serialVersionUID = 1L; {
+				put("zimbraPrefCalendarInitialView", "month");
+			}
+		};
 	}
+
 
 	@Bugs(ids = "77105")
 	@Test( description = " Changing organizer of an imported appointment is not allowed",
@@ -125,8 +126,5 @@ public class ModifyByChangingOrganiser extends AjaxCommonTest {
 					+	"</SearchRequest>");
 		String id = app.zGetActiveAccount().soapSelectValue("//mail:appt", "id");
 		ZAssert.assertNotNull(id, "Verify that the appointment was moved to the mountpoint");
-
-
-
 	}
 }

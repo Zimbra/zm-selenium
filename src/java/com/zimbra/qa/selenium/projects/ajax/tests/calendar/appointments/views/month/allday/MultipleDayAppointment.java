@@ -36,14 +36,12 @@ public class MultipleDayAppointment extends AjaxCommonTest {
 	public MultipleDayAppointment() {
 		logger.info("New "+ MultipleDayAppointment.class.getCanonicalName());
 
-		// All tests start at the Calendar page
 		super.startingPage = app.zPageCalendar;
-
-		// Make sure we are using an account with month view
 		super.startingAccountPreferences = new HashMap<String, String>() {{
 			put("zimbraPrefCalendarInitialView", "month");
 		}};
 	}
+
 
 	@Bugs (ids = "107583, 69132, ZCS-725")
 	@Test ( description = "Verify the display of a multi-day all-day appointment in the month view",

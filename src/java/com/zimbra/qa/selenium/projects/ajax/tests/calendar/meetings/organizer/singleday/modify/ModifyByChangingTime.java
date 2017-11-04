@@ -32,12 +32,13 @@ public class ModifyByChangingTime extends AjaxCommonTest {
 		super.startingPage = app.zPageCalendar;
 	}
 
+
 	@Bugs(ids = "102759")
 	@Test( description = "Rescheduled appointments do not show the correct time in the summary",
 			groups = { "functional", "L2" })
 
 	public void ModifyByChangingTime_01() throws HarnessException {
-		
+
 		super.startingAccountPreferences.put("zimbraPrefGroupMailBy", "message");
 		ZimbraAccount.Account1().modifyAccountPreferences(startingAccountPreferences);
 

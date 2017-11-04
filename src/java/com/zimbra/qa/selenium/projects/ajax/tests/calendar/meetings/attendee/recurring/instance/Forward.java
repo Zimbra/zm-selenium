@@ -32,6 +32,7 @@ public class Forward extends AjaxCommonTest {
 		super.startingPage = app.zPageCalendar;
 	}
 
+
 	@Test( description = "Forward particular instance by changing content",
 			groups = { "smoke", "L1" })
 

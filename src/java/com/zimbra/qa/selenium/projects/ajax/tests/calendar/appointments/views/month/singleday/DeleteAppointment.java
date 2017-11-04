@@ -27,17 +27,15 @@ import com.zimbra.qa.selenium.projects.ajax.ui.calendar.*;
 
 public class DeleteAppointment extends AjaxCommonTest {
 
-	@SuppressWarnings("serial")
 	public DeleteAppointment() {
 		logger.info("New "+ DeleteAppointment.class.getCanonicalName());
 
-		// All tests start at the Calendar page
 		super.startingPage = app.zPageCalendar;
-
-		// Make sure we are using an account with month view
-		super.startingAccountPreferences = new HashMap<String, String>() {{
-		    put("zimbraPrefCalendarInitialView", "month");
-		}};
+		super.startingAccountPreferences = new HashMap<String, String>() {
+			private static final long serialVersionUID = -2913827779459595178L; {
+				put("zimbraPrefCalendarInitialView", "month");
+			}
+		};
 	}
 
 

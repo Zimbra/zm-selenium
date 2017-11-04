@@ -30,6 +30,7 @@ public class Tentative extends AjaxCommonTest {
 		super.startingPage =  app.zPageCalendar;
 	}
 
+
 	@Test( description = "Rt-click to appointment from the calendar app and mark as Tentative",
 			groups = { "smoke", "L1" })
 

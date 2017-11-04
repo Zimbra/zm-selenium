@@ -32,6 +32,7 @@ public class ProposeNewTime extends AjaxCommonTest {
 		super.startingPage =  app.zPageCalendar;
 	}
 
+
 	@Test( description = "View meeting invite by opening it and propose new time to organizer",
 			groups = { "functional", "L2" })
 

@@ -34,6 +34,7 @@ public class CreateMeetingWithGroupCalendarFeatureDisabled extends AjaxCommonTes
 		this.startingAccountPreferences.put("zimbraFeatureGroupCalendarEnabled", "FALSE");
 	}
 
+
 	@Bugs(ids = "68726,71103")
 	@Test( description = "Appointment creation broken if 'Group Calendar' feature is disabled for calendar (zimbraFeatureGroupCalendarEnabled)",
 			groups = { "functional", "L2" } )

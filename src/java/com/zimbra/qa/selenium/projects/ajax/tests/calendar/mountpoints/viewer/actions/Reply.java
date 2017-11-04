@@ -36,7 +36,7 @@ public class Reply extends AjaxCommonTest {
 
 	@Bugs(ids = "82558")
 	@Test( description = "Grantee replies to appointment from grantor's calendar",
-			groups = { "functional", "application-bug" })
+			groups = { "functional-skip", "application-bug" })
 
 	public void Reply_01() throws HarnessException {
 

@@ -34,15 +34,13 @@ public class NonAllDayMultiDayAppointment extends AjaxCommonTest {
 	public NonAllDayMultiDayAppointment() {
 		logger.info("New "+ NonAllDayMultiDayAppointment.class.getCanonicalName());
 
-		// All tests start at the Calendar page
 		super.startingPage = app.zPageCalendar;
-
-		// Make sure we are using an account with month view
 		super.startingAccountPreferences = new HashMap<String, String>() {{
 			put("zimbraPrefCalendarInitialView", "month");
 		}};
-
 	}
+
+
 	@Bugs(ids = "69132")
 	@Test( description = "Verify the display of a non-all-day-multiday appointment in the month view",
 			groups = { "functional", "L2" })
@@ -55,7 +53,7 @@ public class NonAllDayMultiDayAppointment extends AjaxCommonTest {
 
 		// Start Date is 2 days ahead if current date is less than or equal to 21 else 8 days behind
 		Calendar now = Calendar.getInstance();
-		if(now.get(Calendar.DAY_OF_MONTH) <= 21) {
+		if (now.get(Calendar.DAY_OF_MONTH) <= 21) {
 			now.set(Calendar.DAY_OF_MONTH, now.get(Calendar.DAY_OF_MONTH) + 2 );
 		} else {
 			now.set(Calendar.DAY_OF_MONTH, now.get(Calendar.DAY_OF_MONTH) - 8 );
@@ -73,7 +71,6 @@ public class NonAllDayMultiDayAppointment extends AjaxCommonTest {
 				"content" + ConfigProperties.getUniqueString(),
 				"location" + ConfigProperties.getUniqueString(),
 				null);
-
 
 		// Refresh the calendar
 		app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);

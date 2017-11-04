@@ -19,35 +19,29 @@ package com.zimbra.qa.selenium.projects.ajax.tests.calendar.performance;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.*;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.framework.util.performance.*;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 
-
 public class ZmCalendarApp_ViewDay_Appointment1 extends AjaxCommonTest {
-
 
 	public ZmCalendarApp_ViewDay_Appointment1() throws HarnessException {
 		logger.info("New "+ ZmCalendarApp_ViewDay_Appointment1.class.getCanonicalName());
 
 		super.startingPage = app.zPageMail;
-
 		super.startingAccountPreferences = new HashMap<String, String>() {
-			private static final long serialVersionUID = 3038458962443347843L;
-			{
+			private static final long serialVersionUID = 3038458962443347843L; {
 				put("zimbraPrefCalendarInitialView", "day");
-			}};
-
-
+			}
+		};
 	}
 
 
 	@Test( description = "Measure the time to load the Calendar, day view, initial load",
 			groups = { "performance", "deprecated" })
+
 	public void ZmCalendarApp_01() throws HarnessException {
 		ZDate startDate = new ZDate(Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH) + 1, Calendar.getInstance().get(Calendar.DAY_OF_MONTH), Calendar.getInstance().get(Calendar.HOUR_OF_DAY), 0, 0);
 
@@ -63,23 +57,22 @@ public class ZmCalendarApp_ViewDay_Appointment1 extends AjaxCommonTest {
 				"location" + ConfigProperties.getUniqueString(),
 				null);
 
-
 		// Start the perf token
 		PerfToken token = PerfMetrics.startTimestamp(PerfKey.ZmCalendarApp, "Load the calendar app, day view, initial load");
 
 		// Go to calendar
-		//app.zPageCalendar.zNavigateTo();
 		app.zPageCalendar.zClickAt("css=td[id='zb__App__Calendar_title']","");
 
 		PerfMetrics.waitTimestamp(token);
 
 		// Wait for the app to load
 		app.zPageCalendar.zWaitForActive();
-
 	}
+
 
 	@Test( description = "Measure the time to load the Calendar, day view, 1 appointment",
 			groups = { "performance", "deprecated" })
+
 	public void ZmCalendarApp_02() throws HarnessException {
 		ZDate startDate = new ZDate(Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH) + 1, Calendar.getInstance().get(Calendar.DAY_OF_MONTH), Calendar.getInstance().get(Calendar.HOUR_OF_DAY), 0, 0);
 
@@ -95,22 +88,21 @@ public class ZmCalendarApp_ViewDay_Appointment1 extends AjaxCommonTest {
 				"location" + ConfigProperties.getUniqueString(),
 				null);
 
-
 		// Start the perf token
 		PerfToken token = PerfMetrics.startTimestamp(PerfKey.ZmCalendarApp, "Load the calendar app, day view, 1 appointment");
 
 		// Go to calendar
-		//app.zPageCalendar.zNavigateTo();
 		app.zPageCalendar.zClickAt("css=td[id='zb__App__Calendar_title']","");
 		PerfMetrics.waitTimestamp(token);
 
 		// Wait for the app to load
 		app.zPageCalendar.zWaitForActive();
-
 	}
+
 
 	@Test( description = "Measure the time to load the Calendar, day view, 100 appointment",
 			groups = { "performance", "deprecated" })
+
 	public void ZmCalendarApp_03() throws HarnessException {
 
 		// What is today?
@@ -137,15 +129,11 @@ public class ZmCalendarApp_ViewDay_Appointment1 extends AjaxCommonTest {
 		PerfToken token = PerfMetrics.startTimestamp(PerfKey.ZmCalendarApp, "Load the calendar app, day view, 100 appointments");
 
 		// Go to calendar
-	//	app.zPageCalendar.zNavigateTo();
 		app.zPageCalendar.zClickAt("css=td[id='zb__App__Calendar_title']","");
 
 		PerfMetrics.waitTimestamp(token);
 
 		// Wait for the app to load
 		app.zPageCalendar.zWaitForActive();
-
 	}
-
-
 }

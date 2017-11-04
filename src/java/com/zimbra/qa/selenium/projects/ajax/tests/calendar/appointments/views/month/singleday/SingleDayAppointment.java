@@ -34,20 +34,17 @@ public class SingleDayAppointment extends AjaxCommonTest {
 	public SingleDayAppointment() {
 		logger.info("New "+ SingleDayAppointment.class.getCanonicalName());
 
-		// All tests start at the Calendar page
 		super.startingPage = app.zPageCalendar;
-
-		// Make sure we are using an account with month view
 		super.startingAccountPreferences = new HashMap<String, String>() {{
 			put("zimbraPrefCalendarInitialView", "month");
 		}};
 	}
-	
-	
+
+
 	@Bugs(ids = "69132")
 	@Test( description = "Verify the display of a basic appointment in the month view",
 			groups = { "sanity", "L1" })
-	
+
 	public void SingleDayAppointment_01() throws HarnessException {
 
 		// Appointment data
@@ -69,7 +66,7 @@ public class SingleDayAppointment extends AjaxCommonTest {
 		// Refresh the calendar
 		app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
 
-		//Verify that the appointments is displayed correctly in month view 
+		//Verify that the appointments is displayed correctly in month view
 		boolean displayed = app.zPageCalendar.zVerifyAppointmentInMonthView(startDate,subject);
 		ZAssert.assertTrue(displayed, "Verify appointment is displayed correctly in month view");
 	}

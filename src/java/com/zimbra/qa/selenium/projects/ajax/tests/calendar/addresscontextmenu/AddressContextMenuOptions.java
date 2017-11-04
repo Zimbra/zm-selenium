@@ -32,19 +32,20 @@ public class AddressContextMenuOptions extends PrefGroupMailByMessageTest {
 		super.startingPage = app.zPageCalendar;
 	}
 
-	@Test( description = "Right click To address bubble and verify Delete, Copy, Edit, Expand and Add to Contacts menus", 
+
+	@Test( description = "Right click To address bubble and verify Delete, Copy, Edit, Expand and Add to Contacts menus",
 			groups = { "sanity", "L0" })
-	
+
 	public void VerifyAttendeesContextMenuOptions_01() throws HarnessException {
 
 		String apptAttendee1;
 		AppointmentItem appt = new AppointmentItem();
 		apptAttendee1 = ZimbraAccount.AccountA().EmailAddress;
 		appt.setAttendees(apptAttendee1);
-		
+
 		FormApptNew apptForm = (FormApptNew) app.zPageCalendar.zToolbarPressButton(Button.B_NEW);
 		apptForm.zFill(appt);
-		
+
 		app.zPageCalendar.zRightClickAddressBubble();
 
 		logger.info(app.zPageMail.zVerifyAllAddressContextMenu("calendar"));

@@ -30,16 +30,12 @@ public class DeleteAppointment extends AjaxCommonTest {
 	public DeleteAppointment() {
 		logger.info("New "+ DeleteAppointment.class.getCanonicalName());
 
-		// All tests start at the Calendar page
 		super.startingPage = app.zPageCalendar;
-
-		// Make sure we are using an account with month view
 		super.startingAccountPreferences = new HashMap<String, String>() {
-			private static final long serialVersionUID = 3028486541122343959L;
-
-		{
-		    put("zimbraPrefCalendarInitialView", "month");
-		}};
+			private static final long serialVersionUID = 3028486541122343959L; {
+				put("zimbraPrefCalendarInitialView", "month");
+			}
+		};
 	}
 
 

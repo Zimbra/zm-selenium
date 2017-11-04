@@ -462,7 +462,7 @@ public class ModifySeries extends AjaxCommonTest {
 
 	@Bugs(ids = "101610")
 	@Test( description = "Modifying daily custom series doesn't update new selection in custom repeat dialog ",
-			groups = { "functional", "application-bug" })
+			groups = { "functional-skip", "application-bug" })
 
 	public void ModifySeries_05() throws HarnessException {
 

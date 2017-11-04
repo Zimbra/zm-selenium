@@ -30,26 +30,20 @@ import com.zimbra.qa.selenium.projects.ajax.ui.mail.DialogCreateFolder;
 
 public class CreateCalendar extends AjaxCommonTest {
 
-
 	public CreateCalendar() {
 		logger.info("New " + CreateCalendar.class.getCanonicalName());
-
-		// All tests start at the login page
 		super.startingPage = app.zPageCalendar;
-		
 	}
 
 
-	@Test( description = "Create a new calendar by clicking 'new folder' on folder tree", 
+	@Test( description = "Create a new calendar by clicking 'new folder' on folder tree",
 			groups = { "sanity", "L0" })
-	
+
 	public void CreateCalendar_01() throws HarnessException {
 
-		
 		// Set the new calendar name
 		String calendarname = "calendar" + ConfigProperties.getUniqueString();
 
-		
 		// Click on the "New Calendar" button in the calendar tree
 		DialogCreateFolder dialog = (DialogCreateFolder) app.zTreeCalendar.zPressButton(Button.B_TREE_NEWFOLDER);
 
@@ -57,22 +51,20 @@ public class CreateCalendar extends AjaxCommonTest {
 		dialog.zEnterFolderName(calendarname);
 		dialog.zClickButton(Button.B_OK);
 
-		
 		// Make sure the folder was created on the ZCS server
 		FolderItem folder = FolderItem.importFromSOAP(app.zGetActiveAccount(), calendarname);
 		ZAssert.assertNotNull(folder, "Verify the new folder is found");
 		ZAssert.assertEquals(folder.getName(), calendarname, "Verify the server and client folder names match");
-		
 	}
 
-	@Test( description = "Create a new calendar using keyboard shortcuts", 
+
+	@Test( description = "Create a new calendar using keyboard shortcuts",
 			groups = { "functional", "L2" })
+
 	public void CreateCalendar_02() throws HarnessException {
 
-		
 		// Set the new calendar name
 		String calendarname = "calendar" + ConfigProperties.getUniqueString();
-
 
 		// Click on the "New Calendar" button in the calendar tree
 		DialogCreateFolder dialog = (DialogCreateFolder) app.zPageCalendar.zKeyboardShortcut(Shortcut.S_NEWCALENDAR);
@@ -81,16 +73,17 @@ public class CreateCalendar extends AjaxCommonTest {
 		dialog.zEnterFolderName(calendarname);
 		dialog.zClickButton(Button.B_OK);
 
-		
+
 		// Make sure the folder was created on the ZCS server
 		FolderItem folder = FolderItem.importFromSOAP(app.zGetActiveAccount(), calendarname);
 		ZAssert.assertNotNull(folder, "Verify the new folder is found");
 		ZAssert.assertEquals(folder.getName(), calendarname, "Verify the server and client folder names match");
-
 	}
 
-	@Test( description = "Create a new folder using context menu from root folder", 
+
+	@Test( description = "Create a new folder using context menu from root folder",
 			groups = { "functional", "L2" })
+
 	public void CreateCalendar_03() throws HarnessException {
 
 		// Set the new calendar name
@@ -98,8 +91,7 @@ public class CreateCalendar extends AjaxCommonTest {
 
 		// Determine the calendar folder
 		FolderItem root = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.UserRoot);
-		
-		
+
 		// Click on the "New Calendar" button in the calendar tree
 		DialogCreateFolder dialog = (DialogCreateFolder) app.zTreeCalendar.zTreeItem(Action.A_RIGHTCLICK, Button.O_NEW_CALENDAR, root);
 
@@ -107,16 +99,16 @@ public class CreateCalendar extends AjaxCommonTest {
 		dialog.zEnterFolderName(calendarname);
 		dialog.zClickButton(Button.B_OK);
 
-		
 		// Make sure the folder was created on the ZCS server
 		FolderItem folder = FolderItem.importFromSOAP(app.zGetActiveAccount(), calendarname);
 		ZAssert.assertNotNull(folder, "Verify the new folder is found");
 		ZAssert.assertEquals(folder.getName(), calendarname, "Verify the server and client folder names match");
-		
 	}
 
-	@Test( description = "Create a new folder using mail app New -> New Folder", 
+
+	@Test( description = "Create a new folder using mail app New -> New Folder",
 			groups = { "functional", "L2" })
+
 	public void CreateCalendar_04() throws HarnessException {
 
 		// Set the new calendar name
@@ -131,13 +123,9 @@ public class CreateCalendar extends AjaxCommonTest {
 		dialog.zEnterFolderName(calendarname);
 		dialog.zClickButton(Button.B_OK);
 
-		
 		// Make sure the folder was created on the ZCS server
 		FolderItem folder = FolderItem.importFromSOAP(app.zGetActiveAccount(), calendarname);
 		ZAssert.assertNotNull(folder, "Verify the new folder is found");
 		ZAssert.assertEquals(folder.getName(), calendarname, "Verify the server and client folder names match");
-
 	}
-
-
 }

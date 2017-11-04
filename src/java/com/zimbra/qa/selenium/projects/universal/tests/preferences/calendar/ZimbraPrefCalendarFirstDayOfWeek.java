@@ -14,7 +14,7 @@
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-package com.zimbra.qa.selenium.projects.ajax.tests.preferences.calendar;
+package com.zimbra.qa.selenium.projects.universal.tests.preferences.calendar;
 
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
@@ -24,14 +24,14 @@ import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.DialogWarning;
-import com.zimbra.qa.selenium.projects.ajax.ui.preferences.TreePreferences.TreeItem;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
+import com.zimbra.qa.selenium.projects.universal.ui.DialogWarning;
+import com.zimbra.qa.selenium.projects.universal.ui.preferences.TreePreferences.TreeItem;
 
-public class zimbraPrefCalendarFirstDayOfWeek extends AjaxCommonTest {
+public class ZimbraPrefCalendarFirstDayOfWeek extends UniversalCommonTest {
 
-	public zimbraPrefCalendarFirstDayOfWeek() {
-		logger.info("New " + zimbraPrefCalendarFirstDayOfWeek.class.getCanonicalName());
+	public ZimbraPrefCalendarFirstDayOfWeek() {
+		logger.info("New " + ZimbraPrefCalendarFirstDayOfWeek.class.getCanonicalName());
 		super.startingPage = app.zPagePreferences;
 	}
 
@@ -41,7 +41,7 @@ public class zimbraPrefCalendarFirstDayOfWeek extends AjaxCommonTest {
 			description = "Set First day of the week and verify that first day is set correctly", 
 			groups = { "functional", "L2" })
 	
-	public void zimbraPrefCalendarFirstDayOfWeek_01() throws HarnessException {
+	public void ZimbraPrefCalendarFirstDayOfWeek_01() throws HarnessException {
 		
 		// Navigate to preferences -> calendar
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.Calendar);

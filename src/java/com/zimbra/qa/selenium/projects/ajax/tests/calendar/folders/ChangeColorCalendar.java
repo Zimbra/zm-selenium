@@ -31,15 +31,13 @@ public class ChangeColorCalendar extends AjaxCommonTest {
 
 	public ChangeColorCalendar() {
 		logger.info("New " + ChangeColorCalendar.class.getCanonicalName());
-
-		// All tests start at the login page
 		super.startingPage = app.zPageCalendar;
-		
-
 	}
 
-	@Test( description = "Edit a Calendar, change the color (Context menu -> Edit)", 
+
+	@Test( description = "Edit a Calendar, change the color (Context menu -> Edit)",
 			groups = { "functional", "L2" })
+
 	public void ChangeColorCalendar_01() throws HarnessException {
 
 		FolderItem root = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.UserRoot);
@@ -76,5 +74,4 @@ public class ChangeColorCalendar extends AjaxCommonTest {
 		String color = app.zGetActiveAccount().soapSelectValue("//mail:folder[@name='" + calendar.getName() + "']", "color");
 		ZAssert.assertEquals(color, "3", "Verify the color of the folder is set to gray (8)");
 	}
-
 }

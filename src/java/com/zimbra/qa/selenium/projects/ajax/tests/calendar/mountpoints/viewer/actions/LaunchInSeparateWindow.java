@@ -142,7 +142,7 @@ public class LaunchInSeparateWindow extends AjaxCommonTest {
 
 	@Bugs(ids = "106999")
 	@Test( description = "Grantee with view rights launches grantor's calendar in the new window",
-			groups = { "functional", "application-bug" })
+			groups = { "functional-skip", "application-bug" })
 
 	public void LaunchInSeparateWindow_02() throws HarnessException {
 
@@ -202,7 +202,7 @@ public class LaunchInSeparateWindow extends AjaxCommonTest {
 
 	@Bugs(ids = "106999")
 	@Test( description = "Grantee with view rights launches grantor's calendar with appt in the new window and clicks on the appt",
-			groups = { "functional", "application-bug" })
+			groups = { "functional-skip", "application-bug" })
 
 	public void LaunchInSeparateWindow_03() throws HarnessException {
 

@@ -21,30 +21,27 @@ import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
-import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.DialogWarning;
 import com.zimbra.qa.selenium.projects.ajax.ui.preferences.TreePreferences.TreeItem;
 
-public class zimbraPrefCalendarWorkingHours extends AjaxCommonTest {
+public class ZimbraPrefCalendarWorkingHours extends AjaxCommonTest {
 
-	public zimbraPrefCalendarWorkingHours() {
-		logger.info("New " + zimbraPrefCalendarWorkingHours.class.getCanonicalName());
+	public ZimbraPrefCalendarWorkingHours() {
+		logger.info("New " + ZimbraPrefCalendarWorkingHours.class.getCanonicalName());
 		super.startingPage = app.zPagePreferences;
 	}
 
-	// Need to skip this test completely till bug 77465 get fixed otherwise automation may stuck at browser navigate away dialog 
+
 	@Bugs(ids = "77465")
-	@Test(
-			description = "Set calendar custom working hours and verify accordingly", 
+	@Test(description = "Set calendar custom working hours and verify accordingly", 
 			groups = { "functional", "L2" })
 	
-	public void zimbraPrefCalendarWorkingHours_01() throws HarnessException {
+	public void ZimbraPrefCalendarWorkingHours_01() throws HarnessException {
 
 		// Navigate to preferences -> calendar
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.Calendar);
-		SleepUtil.sleepMedium();
 
 		// Select custom work hours for e.g. Tuesday to Friday
 		app.zPagePreferences.zSelectRadioButton(Button.R_CUSTOM_WORK_HOURS);
@@ -54,7 +51,6 @@ public class zimbraPrefCalendarWorkingHours extends AjaxCommonTest {
 		
 		// Save preferences
 		app.zPagePreferences.zToolbarPressButton(Button.B_SAVE);
-		//DialogWarning dlgWarning = (DialogWarning) new DialogWarning(null, app, null).zClickButton(Button.B_NO);
 		app.zPagePreferences.zPressButton(Button.B_NO);
  
 		// Verify the preference value
@@ -70,15 +66,15 @@ public class zimbraPrefCalendarWorkingHours extends AjaxCommonTest {
 		app.zPageMain.zLogout();
 	}
 
+	
 	@Bugs(ids = "103862")
 	@Test( description = "Verify that modifying 'Work Week:' preference prompts for UI refresh", 
 			groups = { "functional", "L2" })
 	
-	public void zimbraPrefCalendarWorkingHours_02() throws HarnessException {
+	public void ZimbraPrefCalendarWorkingHours_02() throws HarnessException {
 		
 		// Navigate to preferences -> calendar
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.Calendar);
-		SleepUtil.sleepMedium();
 
 		// Set Start week on day to something other than Sunday
 		app.zPagePreferences.zCheckboxSet(Button.C_MONDAY_WORK_WEEK, false);
@@ -88,6 +84,7 @@ public class zimbraPrefCalendarWorkingHours extends AjaxCommonTest {
 		DialogWarning dialog = (DialogWarning) new DialogWarning(DialogWarning.DialogWarningID.ReloadApplication, app, app.zPagePreferences);
 		ZAssert.assertNotNull(dialog, "Dialog is present");
 		dialog.zClickButton(Button.B_YES);
+		
 		// Verify the preference value
 		app.zGetActiveAccount().soapSend(
 						"<GetPrefsRequest xmlns='urn:zimbraAccount'>"

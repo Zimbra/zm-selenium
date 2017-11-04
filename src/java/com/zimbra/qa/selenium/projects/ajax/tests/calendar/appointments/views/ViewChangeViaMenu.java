@@ -24,29 +24,27 @@ import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.PageCalendar.Locators;
 
 public class ViewChangeViaMenu extends AjaxCommonTest {
-	
+
 	public ViewChangeViaMenu() {
 		logger.info("New "+ ViewChangeViaMenu.class.getCanonicalName());
 		super.startingPage = app.zPageCalendar;
 	}
 
-	
+
 	@Test( description = "Verify changing view via right click view change options",
 			groups = { "sanity", "L0" } )
-	
+
 	public void ViewChangeViaMenu_01() throws HarnessException {
-		
-		SleepUtil.sleepMedium();
-		
+
 		app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_VIEW_MENU, Button.O_VIEW_DAY_SUB_MENU, "Day");
         ZAssert.assertTrue(app.zPageCalendar.sIsElementPresent(Locators.CalendarViewDayCSS), "Changed to day view");
-        
+
 		app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_VIEW_MENU, Button.O_VIEW_WORK_WEEK_SUB_MENU, "WorkWeek");
         ZAssert.assertTrue(app.zPageCalendar.sIsElementPresent(Locators.CalendarViewWorkWeekCSS), "Changed to WorkWeek view");
 
 		app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_VIEW_MENU, Button.O_VIEW_WEEK_SUB_MENU, "Week");
         ZAssert.assertTrue(app.zPageCalendar.sIsElementPresent(Locators.CalendarViewWeekCSS), "Changed to week view");
-        
+
         // Context menu hidden after switching views so applying work around
         app.zPageMain.sRefresh();
         app.zPageCalendar.zNavigateTo();

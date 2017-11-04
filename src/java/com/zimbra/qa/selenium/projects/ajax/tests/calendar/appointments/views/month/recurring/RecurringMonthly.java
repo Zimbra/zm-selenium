@@ -34,15 +34,15 @@ public class RecurringMonthly extends AjaxCommonTest {
 
 	public RecurringMonthly() {
 		logger.info("New "+ RecurringMonthly.class.getCanonicalName());
-		super.startingPage = app.zPageCalendar;
-		// Make sure we are using an account with month view
-		super.startingAccountPreferences = new HashMap<String, String>() {
-			private static final long serialVersionUID = 3028486541122343959L;
 
-			{
+		super.startingPage = app.zPageCalendar;
+		super.startingAccountPreferences = new HashMap<String, String>() {
+			private static final long serialVersionUID = 3028486541122343959L; {
 				put("zimbraPrefCalendarInitialView", "month");
-			}};
+			}
+		};
 	}
+
 
 	@Bugs (ids = "103157")
 	@Test ( description = "Create Monthly recurring appointment and verify that start date and other details appear correct after opening",

@@ -73,7 +73,6 @@ public class TreePreferences extends AbsTree {
 		sClickAt(locator, "");
 		SleepUtil.sleepLong();
 		zWaitForBusyOverlay();
-
 	}
 
 	/**
