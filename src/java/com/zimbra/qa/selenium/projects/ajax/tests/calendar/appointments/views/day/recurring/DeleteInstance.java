@@ -41,9 +41,8 @@ public class DeleteInstance extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "69132")
-	@Test(
-			description = "Delete instance of recurring appointment (every month) using toolbar button in day view",
+	@Bugs (ids = "69132")
+	@Test (description = "Delete instance of recurring appointment (every month) using toolbar button in day view",
 			groups = { "functional", "L3" } )
 	
 	public void DeleteInstance_01() throws HarnessException {
@@ -89,10 +88,6 @@ public class DeleteInstance extends AjaxCommonTest {
         DialogWarning dialogSeriesOrInstance = (DialogWarning)app.zPageCalendar.zToolbarPressButton(Button.B_DELETE);
         DialogWarning confirmDelete = (DialogWarning)dialogSeriesOrInstance.zClickButton(Button.B_OK);
         confirmDelete.zClickButton(Button.B_YES);
-
-
-
-        //-- Verification
 
 		// On the server, verify the appointment is in the trash
 		app.zGetActiveAccount().soapSend(
@@ -166,10 +161,6 @@ public class DeleteInstance extends AjaxCommonTest {
 
         DialogWarning dialogSeriesOrInstance = (DialogWarning)app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_INSTANCE_MENU, Button.O_DELETE_MENU, apptSubject);;
         dialogSeriesOrInstance.zClickButton(Button.B_YES);
-
-
-
-        //-- Verification
 
 		// On the server, verify the appointment is in the trash
 		app.zGetActiveAccount().soapSend(
@@ -255,10 +246,6 @@ public class DeleteInstance extends AjaxCommonTest {
         DialogWarning confirmDelete = (DialogWarning)dialogSeriesOrInstance.zClickButton(Button.B_OK);
         confirmDelete.zClickButton(Button.B_YES);
 
-
-
-        //-- Verification
-
 		// On the server, verify the appointment is in the trash
 		app.zGetActiveAccount().soapSend(
 				"<SearchRequest xmlns='urn:zimbraMail' types='appointment' calExpandInstStart='"+ startTime.addDays(-7).toMillis() +"' calExpandInstEnd='"+ endTime.addDays(7).toMillis() +"'>"
@@ -282,8 +269,5 @@ public class DeleteInstance extends AjaxCommonTest {
 		ZAssert.assertEquals(app.zPageCalendar.zIsAppointmentExists(apptSubject), false, "Verify instance is deleted from the calendar");
 		//boolean deleted = app.zPageCalendar.zWaitForElementDeleted(app.zPageCalendar.zGetApptLocator(apptSubject), "10000");
 		//ZAssert.assertEquals(deleted, true, "Verify instance is deleted from the calendar");
-
-
 	}
-
 }

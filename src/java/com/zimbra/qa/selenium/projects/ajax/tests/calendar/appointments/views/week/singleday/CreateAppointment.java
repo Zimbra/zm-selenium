@@ -62,7 +62,7 @@ public class CreateAppointment extends AjaxCommonTest {
 		// Fill out the form with the data
 		apptForm.zFill(appt);
 
-		// Send the message
+		// Send invite
 		apptForm.zSubmit();
 
 		// Verify the new appointment exists on the server
@@ -78,10 +78,9 @@ public class CreateAppointment extends AjaxCommonTest {
 	public void CreateAppointment_02() throws HarnessException {
 
 		// Create appointment data
+		AppointmentItem appt = new AppointmentItem();
 		ZimbraResource location = new ZimbraResource(ZimbraResource.Type.LOCATION);
 		ZimbraResource equipment = new ZimbraResource(ZimbraResource.Type.EQUIPMENT);
-
-		AppointmentItem appt = new AppointmentItem();
 
 		String apptSubject, apptAttendee1, apptOptional1, apptLocation1, apptEquipment1, apptContent;
 		Calendar now = Calendar.getInstance();
@@ -158,5 +157,4 @@ public class CreateAppointment extends AjaxCommonTest {
 		ZAssert.assertEquals(actual.getSubject(), appt.getSubject(), "Subject: Verify the appointment data");
 		ZAssert.assertEquals(app.zGetActiveAccount().soapMatch("//mail:GetAppointmentResponse//mail:comp", "class", "PRI"), true, "");
 	}
-
 }

@@ -196,7 +196,7 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 
 	}
 
-	@Test(description = "Send a mail with BCC", groups = { "deprecated", "L4" })
+	@Test(description = "Send a mail with BCC", groups = { "deprecated" })
 	public void CreateMailText_04() throws HarnessException {
 
 		// Create the message data to be sent

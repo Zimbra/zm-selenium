@@ -65,7 +65,7 @@ public class CreateMeetingWithGALFeatureDisabled extends AjaxCommonTest {
 		// Fill out the form with the data
 		apptForm.zFill(appt);
 
-		// Send the message
+		// Send invite
 		apptForm.zSubmit();
 
 		// Verify the new appointment exists on the server
@@ -109,7 +109,7 @@ public class CreateMeetingWithGALFeatureDisabled extends AjaxCommonTest {
 		// Fill out the form with the data
 		apptForm.zFill(appt);
 
-		// Send the message
+		// Send invite
 		apptForm.zSubmit();
 
 		// Verify the new appointment exists on the server

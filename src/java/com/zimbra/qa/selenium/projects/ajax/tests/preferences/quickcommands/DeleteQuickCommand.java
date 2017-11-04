@@ -39,7 +39,7 @@ public class DeleteQuickCommand extends AjaxQuickCommandTest {
 	@Bugs(ids = "71389")	// Hold off on GUI implementation of Quick Commands in 8.X
 	@Test(
 			description = "Delete a Quick Command",
-			groups = { "deprecated", "L4" }
+			groups = { "deprecated" }
 			)
 	public void DeleteQuickCommand_01() throws HarnessException {
 		

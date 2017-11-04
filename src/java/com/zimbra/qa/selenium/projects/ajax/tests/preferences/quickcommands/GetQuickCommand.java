@@ -40,7 +40,7 @@ public class GetQuickCommand extends AjaxQuickCommandTest {
 	@Bugs(ids = "71389")	// Hold off on GUI implementation of Quick Commands in 8.X
 	@Test(
 			description = "Get a list of basic Quick Commands",
-			groups = { "deprecated", "L4" }
+			groups = { "deprecated" }
 	)
 	public void GetQuickCommand_01() throws HarnessException {
 
@@ -56,7 +56,7 @@ public class GetQuickCommand extends AjaxQuickCommandTest {
 	@Bugs(ids = "71389")	// Hold off on GUI implementation of Quick Commands in 8.X
 	@Test(
 			description = "Verify the Quick Command data in the list",
-			groups = { "deprecated", "L4" }
+			groups = { "deprecated" }
 	)
 	public void GetQuickCommand_02() throws HarnessException {
 

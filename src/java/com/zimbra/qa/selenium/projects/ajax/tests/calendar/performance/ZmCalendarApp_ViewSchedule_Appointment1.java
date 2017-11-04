@@ -47,7 +47,7 @@ public class ZmCalendarApp_ViewSchedule_Appointment1 extends AjaxCommonTest {
 
 
 	@Test( description = "Measure the time to load the Calendar, schedule view, initial load",
-			groups = { "performance", "L4" })
+			groups = { "performance", "deprecated" })
 	public void ZmCalendarApp_01() throws HarnessException {
 		ZDate startDate = new ZDate(Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH) + 1, Calendar.getInstance().get(Calendar.DAY_OF_MONTH), Calendar.getInstance().get(Calendar.HOUR_OF_DAY), 0, 0);
 
@@ -81,7 +81,7 @@ public class ZmCalendarApp_ViewSchedule_Appointment1 extends AjaxCommonTest {
 	}
 
 	@Test( description = "Measure the time to load the Calendar, schedule view, 1 appointment",
-			groups = { "performance", "L4" })
+			groups = { "performance", "deprecated" })
 	public void ZmCalendarApp_02() throws HarnessException {
 		ZDate startDate = new ZDate(Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH) + 1, Calendar.getInstance().get(Calendar.DAY_OF_MONTH), Calendar.getInstance().get(Calendar.HOUR_OF_DAY), 0, 0);
 
@@ -115,7 +115,7 @@ public class ZmCalendarApp_ViewSchedule_Appointment1 extends AjaxCommonTest {
 
 
 	@Test( description = "Measure the time to load the Calendar, schedule view, 100 appointment",
-			groups = { "performance", "L4" })
+			groups = { "performance", "deprecated" })
 	public void ZmCalendarApp_03() throws HarnessException {
 
 		// What is today?

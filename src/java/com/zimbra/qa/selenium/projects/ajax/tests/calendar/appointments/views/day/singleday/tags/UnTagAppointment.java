@@ -116,6 +116,5 @@ public class UnTagAppointment extends AjaxCommonTest {
         // Verify appointment is not tagged
         app.zGetActiveAccount().soapSend("<GetAppointmentRequest xmlns='urn:zimbraMail' id='" + apptId + "'/>");
         ZAssert.assertEquals(app.zGetActiveAccount().soapSelectValue("//mail:appt", "t"), null, "Verify appointment is not tagged");
-
 	}
 }

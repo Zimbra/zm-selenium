@@ -32,6 +32,7 @@ public class CreateShare extends AjaxCommonTest {
 		super.startingPage = app.zPageCalendar;
 	}
 
+
 	@Test(description = "Share calendar folder with viewer rights", 
 			groups = { "smoke", "L1" })
 
@@ -78,8 +79,10 @@ public class CreateShare extends AjaxCommonTest {
 
 	}
 
+
 	@Test(description = "Share folder with viewer rights and Do not send mail about the share", groups = {
 			"functional", "L2" })
+
 	public void CreateShare_02() throws HarnessException {
 
 		String calendarname = "calendar" + ConfigProperties.getUniqueString();
@@ -108,7 +111,10 @@ public class CreateShare extends AjaxCommonTest {
 		ZAssert.assertNull(received, "Verify no mail is received");
 	}
 
-	@Test(description = "Share folder with viewer rights and add a multiline note to it", groups = { "functional", "L2" })
+
+	@Test(description = "Share folder with viewer rights and add a multiline note to it", 
+			groups = { "functional", "L2" })
+
 	public void CreateShare_03() throws HarnessException {
 
 		app.zPageMain.sRefresh();
@@ -151,5 +157,4 @@ public class CreateShare extends AjaxCommonTest {
 		ZAssert.assertStringContains(received.dBodyText, firstLine + "\n" + secondLine + "\n" + thirdLine,
 				"Verify the body field is correct");
 	}
-
 }

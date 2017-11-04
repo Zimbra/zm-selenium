@@ -49,7 +49,7 @@ public class ZmMailItem extends AjaxCommonTest {
 	
 	
 	@Test( description = "Measure the performance for preview pane, text message, initial load",
-			groups = { "performance", "L4" })
+			groups = { "performance", "deprecated" })
 	public void ZmMailItem_01() throws HarnessException {
 		
 		String mime = ConfigProperties.getBaseDirectory() + "/data/public/mime/email02/mime01.txt";
@@ -73,7 +73,7 @@ public class ZmMailItem extends AjaxCommonTest {
 	}
 
 	@Test( description = "Measure the performance for preview pane, text message, 1 message",
-			groups = { "performance", "L4" })
+			groups = { "performance", "deprecated" })
 	public void ZmMailItem_02() throws HarnessException {
 		
 		String mime = ConfigProperties.getBaseDirectory() + "/data/public/mime/email02/mime01.txt";
@@ -97,7 +97,7 @@ public class ZmMailItem extends AjaxCommonTest {
 	}
 	
 	@Test( description = "Measure the performance for preview pane,  message with 1 attachment",
-			groups = { "performance", "L4" })
+			groups = { "performance", "deprecated" })
 	public void ZmMailItem_03() throws HarnessException {
 		
 		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email05/mime01.txt";
@@ -118,7 +118,7 @@ public class ZmMailItem extends AjaxCommonTest {
 	
 	
 	@Test( description = "Measure the performance for preview pane,  message with 3 attachment",
-			groups = { "performance", "L4" })
+			groups = { "performance", "deprecated" })
 	public void ZmMailItem_04() throws HarnessException {
 		
 		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email05/mime02.txt";

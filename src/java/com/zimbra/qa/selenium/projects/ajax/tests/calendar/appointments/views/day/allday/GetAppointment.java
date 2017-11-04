@@ -81,6 +81,5 @@ public class GetAppointment extends AjaxCommonTest {
 
 		// Verify appointment exists in current view
         ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
-
 	}
 }

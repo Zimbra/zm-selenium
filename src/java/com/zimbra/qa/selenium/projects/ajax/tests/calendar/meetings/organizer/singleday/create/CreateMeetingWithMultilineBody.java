@@ -39,7 +39,7 @@ public class CreateMeetingWithMultilineBody extends AjaxCommonTest {
 
 	public void CreateMeetingWithMultilineHtmlBody_01() throws HarnessException {
 
-		// Create the message data to be sent
+		// Appointment data
 		final String attendees = ZimbraAccount.AccountC().EmailAddress;
 		final String dSubject = "subject" + ConfigProperties.getUniqueString();
 		final String dBodyHtmlBold = "<strong>BoldString</strong>";
@@ -80,7 +80,7 @@ public class CreateMeetingWithMultilineBody extends AjaxCommonTest {
 		apptForm.sClick(Locators.zTextBackgroundColorTransparent);
 		apptForm.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
 
-		// Send the message
+		// Send invite
 		apptForm.zSubmit();
 
 		ZimbraAccount.AccountC().soapSend(
@@ -115,7 +115,7 @@ public class CreateMeetingWithMultilineBody extends AjaxCommonTest {
 
 	public void CreateMeetingWithMultilinePlainTextBody_02() throws HarnessException {
 
-		// Create the message data to be sent
+		// Appointment data
 		final String attendees = ZimbraAccount.AccountC().EmailAddress;
 		final String dSubject = "subject" + ConfigProperties.getUniqueString();
 		final String dPlainTextBody = "Plain text line 1" + '\n' + "Plain text line two" + '\n' + "Plain text line 3";
@@ -140,7 +140,7 @@ public class CreateMeetingWithMultilineBody extends AjaxCommonTest {
 		apptForm.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
 		apptForm.zKeyboard.zTypeCharacters("Plain text line 3");
 
-		// Send the message
+		// Send invite
 		apptForm.zSubmit();
 
 		ZimbraAccount.AccountC().soapSend(

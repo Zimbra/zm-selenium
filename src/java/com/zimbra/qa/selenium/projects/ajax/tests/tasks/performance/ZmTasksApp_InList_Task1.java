@@ -50,7 +50,7 @@ public class ZmTasksApp_InList_Task1 extends AjaxCommonTest {
    }
 
    @Test( description = "Measure the time to load Tasks page with 1 task",
-         groups = {"performance", "L4"}, dataProvider = "DataProvider_LoadingApp_1Task")
+         groups = {"performance", "deprecated"}, dataProvider = "DataProvider_LoadingApp_1Task")
    public void ZmTasksApp_01(String logMessage) throws HarnessException {
 
       String subject = "task"+ ConfigProperties.getUniqueString();
@@ -83,7 +83,7 @@ public class ZmTasksApp_InList_Task1 extends AjaxCommonTest {
    }
 
    @Test( description="Measure the time to load Tasks page with 100 tasks",
-         groups={"performance", "L4"})
+         groups={"performance", "deprecated"})
    public void ZmTasksApp_02() throws HarnessException {
 
       // Import 100 appointments using Tasks.ics and REST to speed up the setup

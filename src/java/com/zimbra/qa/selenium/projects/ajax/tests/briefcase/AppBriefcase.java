@@ -35,20 +35,19 @@ public class AppBriefcase extends FeatureBriefcaseTest {
 
 	public AppBriefcase() {
 		logger.info("New " + AppBriefcase.class.getCanonicalName());
-
 		super.startingPage = app.zPageBriefcase;
-		
 		super.startingAccountPreferences.put("zimbraPrefBriefcaseReadingPaneLocation", "bottom");
 		super.startingAccountPreferences.put("zimbraPrefShowSelectionCheckbox","TRUE");
 	}
 
-	@Test( description = "?app=briefcase in url", 
+
+	@Test( description = "?app=briefcase in url",
 			groups = { "smoke", "L1" })
+
 	public void AppBriefcase_01() throws HarnessException {
-		
-		//Go to AB tab
-				app.zPageContacts.zNavigateTo();				
-				SleepUtil.sleepMedium();
+
+		// Go to briefcase app
+		app.zPageContacts.zNavigateTo();
 		ZimbraAccount account = app.zGetActiveAccount();
 
 		FolderItem briefcaseFolder = FolderItem.importFromSOAP(account,	SystemFolder.Briefcase);
@@ -74,24 +73,18 @@ public class AppBriefcase extends FeatureBriefcaseTest {
 						+ "</content>"
 						+ "</doc>"
 						+ "</SaveDocumentRequest>");
-		
-		
+
 		// Reload the application, with app=tasks query parameter
 		ZimbraURI uri = new ZimbraURI(ZimbraURI.getBaseURI());
 		uri.addQuery("app", "briefcase");
 		app.zPageMail.sOpen(uri.toString());
-		SleepUtil.sleepMedium();	
+		SleepUtil.sleepMedium();
 
-		// refresh briefcase page
+		// Select briefcase folder
 		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseFolder, true);
 
 		// Verify document is created
-		// String name = app.zPageBriefcase.getText(docName);
-		// ZAssert.assertEquals(name, docName,
-		// "Verify document name through GUI");
 		boolean present = app.zPageBriefcase.waitForPresentInListView(docName);
 		ZAssert.assertTrue(present, "Verify document name through GUI");
-
 	}
 }
-

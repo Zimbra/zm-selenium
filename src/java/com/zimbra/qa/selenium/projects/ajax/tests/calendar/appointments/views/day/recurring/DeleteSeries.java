@@ -85,7 +85,6 @@ public class DeleteSeries extends AjaxCommonTest {
 
         app.zPageCalendar.zListItem(Action.A_LEFTCLICK, apptSubject);
 
-
         // If you select an instance and click delete button, you
         // get two dialogs:
         // First: do you want to delete the instance or series?
@@ -100,12 +99,7 @@ public class DeleteSeries extends AjaxCommonTest {
         if (confirmDelete == null) {
         	throw new HarnessException("The 'Confirm Delete' dialog never appeared.");
         }
-        // confirmDelete.zClickButton(Button.B_DELETE_ALL_OCCURRENCES);
         confirmDelete.zClickButton(Button.B_YES);
-
-
-
-        //-- Verification
 
         // On the server, verify the appointment is in the trash
         app.zGetActiveAccount().soapSend(
@@ -181,12 +175,7 @@ public class DeleteSeries extends AjaxCommonTest {
         if (confirmDelete == null) {
         	throw new HarnessException("The 'Confirm Delete' dialog never appeared.");
         }
-        // confirmDelete.zClickButton(Button.B_DELETE_ALL_OCCURRENCES);
         confirmDelete.zClickButton(Button.B_YES);
-
-
-
-        //-- Verification
 
         // On the server, verify the appointment is in the trash
         app.zGetActiveAccount().soapSend(
@@ -199,7 +188,6 @@ public class DeleteSeries extends AjaxCommonTest {
         		folderID,
         		FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Trash).getId(),
         		"Verify appointment is in the trash folder");
-
 
         // Verify the appointment is not in the GUI view
         ZAssert.assertEquals(app.zPageCalendar.zIsAppointmentExists(apptSubject), false, "Verify instance is deleted from the calendar");
@@ -270,12 +258,7 @@ public class DeleteSeries extends AjaxCommonTest {
         if (confirmDelete == null) {
         	throw new HarnessException("The 'Confirm Delete' dialog never appeared.");
         }
-        // confirmDelete.zClickButton(Button.B_DELETE_ALL_OCCURRENCES);
         confirmDelete.zClickButton(Button.B_YES);
-
-
-
-        //-- Verification
 
         // On the server, verify the appointment is in the trash
         app.zGetActiveAccount().soapSend(
@@ -288,7 +271,6 @@ public class DeleteSeries extends AjaxCommonTest {
         		folderID,
         		FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Trash).getId(),
         		"Verify appointment is in the trash folder");
-
 
         // Verify the appointment is not in the GUI view
         ZAssert.assertEquals(app.zPageCalendar.zIsAppointmentExists(apptSubject), false, "Verify instance is deleted from the calendar");

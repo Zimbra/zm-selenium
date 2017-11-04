@@ -46,7 +46,7 @@ public class HomePageLinks extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Navigate to Install License",
-			groups = { "obsolete", "L4" })
+			groups = { "functional-skip", "L3-skip" })
 			public void NavigateHomePageLinks_01() throws HarnessException {
 		
 		// click on Install license Link on Home page and check if it redirects to proper page

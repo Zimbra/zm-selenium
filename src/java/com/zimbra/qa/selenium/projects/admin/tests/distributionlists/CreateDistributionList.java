@@ -44,7 +44,7 @@ public class CreateDistributionList extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Create a basic DL",
-			groups = { "obsolete", "L4" })
+			groups = { "functional-skip", "L3-skip" })
 			public void CreateDistributionList_01() throws HarnessException {
 
 		// Create a new dl in the Admin Console

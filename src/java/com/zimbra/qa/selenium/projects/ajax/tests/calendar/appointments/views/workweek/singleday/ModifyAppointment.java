@@ -37,6 +37,7 @@ public class ModifyAppointment extends AjaxCommonTest {
 		super.startingPage = app.zPageCalendar;
 	}
 
+	
 	@Bugs (ids = "69132")
 	@Test (description = "Modify appointment with subject & body and verify it",
 			groups = { "smoke", "L1" })

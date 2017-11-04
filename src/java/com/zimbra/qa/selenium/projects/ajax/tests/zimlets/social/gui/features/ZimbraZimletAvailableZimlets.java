@@ -59,7 +59,7 @@ import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 	 */
 	@Bugs(ids = "50123")
 	@Test( description = "Load the client with just Social enabled",
-			groups = { "deprecated", "L4" })
+			groups = { "deprecated" })
 	public void ZimbraZimletAvailableZimlets_01() throws HarnessException {
 		
 		ZAssert.assertTrue(app.zPageSocial.zIsActive(), "Verify the social page is active");

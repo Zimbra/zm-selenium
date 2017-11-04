@@ -45,7 +45,7 @@ public class ReplyMailWithInlineImageBodyHtmlToText extends PrefGroupMailByMessa
 
 	@Bugs(ids = "104342,106133")
 	@Test( description = "Verify that in reply compose screen, inline attachment shows as an attachment when changing format to from HTML to Plain Text",
-			groups = { "functional", "L5" })
+			groups = { "functional", "application-bug" })
 
 	public void ReplyMailWithInlineImageBodyHtmlToText_01() throws HarnessException {
 

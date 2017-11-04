@@ -49,7 +49,7 @@ public class ZmMailAppFolders extends AjaxCommonTest {
 	}
 	
 	@Test( description = "Measure the time to load the mail app, message view, 1 folder",
-			groups = { "performance", "L4" })
+			groups = { "performance", "deprecated" })
 	public void ZmMailAppFolder_01() throws HarnessException {
 
 		// Create a folder
@@ -78,7 +78,7 @@ public class ZmMailAppFolders extends AjaxCommonTest {
 	}
 
 	@Test( description = "Measure the time to load the mail app, message view, 100 folders",
-			groups = { "performance", "L4" })
+			groups = { "performance", "deprecated" })
 	public void ZmMailAppFolder_02() throws HarnessException {
 
 		// Create 100 folders

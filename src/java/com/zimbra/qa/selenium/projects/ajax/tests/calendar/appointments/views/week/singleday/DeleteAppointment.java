@@ -40,6 +40,7 @@ public class DeleteAppointment extends AjaxCommonTest {
 		};
 	}
 
+	
 	@Bugs(ids = "69132")
 	@Test( description = "Delete an appointment using Delete toolbar button in week view",
 			groups = { "smoke", "L3" })

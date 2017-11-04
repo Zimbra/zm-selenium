@@ -32,15 +32,15 @@ public class PreviewFile extends FeatureBriefcaseTest {
 
 	public PreviewFile() {
 		logger.info("New " + PreviewFile.class.getCanonicalName());
-		super.startingPage = app.zPageBriefcase;		
+		super.startingPage = app.zPageBriefcase;
 	}
 
-	
-	@Test( description = "Verify JPEG fiew preview in reading pane", 
+
+	@Test( description = "Verify JPEG fiew preview in reading pane",
 			groups = { "smoke", "L1" })
-	
+
 	public void PreviewJPEGFile_01() throws HarnessException {
-		
+
 		ZimbraAccount account = app.zGetActiveAccount();
 
 		FolderItem briefcaseFolder = FolderItem.importFromSOAP(account,	SystemFolder.Briefcase);
@@ -54,31 +54,31 @@ public class PreviewFile extends FeatureBriefcaseTest {
 		String attachmentId = account.uploadFile(filePath);
 
 		// Save uploaded file to briefcase through SOAP
-		account.soapSend("<SaveDocumentRequest xmlns='urn:zimbraMail'>"	+ "<doc l='" + briefcaseFolder.getId() + "'><upload id='" + attachmentId + "'/></doc></SaveDocumentRequest>");
+		account.soapSend("<SaveDocumentRequest xmlns='urn:zimbraMail'>" + "<doc l='" + briefcaseFolder.getId()
+				+ "'><upload id='" + attachmentId + "'/></doc></SaveDocumentRequest>");
 
-		// Refresh briefcase page
+		// Select briefcase folder
 		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseFolder, true);
 
 		// Verify document is created
 		String name = app.zPageBriefcase.getItemNameFromListView(fileName);
 		ZAssert.assertStringContains(name, fileName, "Verify file name through GUI");
-		
-		app.zPageBriefcase.zListItem(Action.A_LEFTCLICK, file);	
-		SleepUtil.sleepLong();
-		
-		ZAssert.assertTrue(app.zPageBriefcase.zVerifyImageFilePreviewContents("css=img[src*='" + fileName + "']"), "Verify that image is present in the preview pane");
 
+		app.zPageBriefcase.zListItem(Action.A_LEFTCLICK, file);
+		SleepUtil.sleepLong();
+
+		ZAssert.assertTrue(app.zPageBriefcase.zVerifyImageFilePreviewContents("css=img[src*='" + fileName + "']"), "Verify that image is present in the preview pane");
 	}
 
-	
-	@Test( description = "Verify text fiew preview in reading pane", 
+
+	@Test( description = "Verify text fiew preview in reading pane",
 			groups = { "smoke", "L1" })
-	
+
 	public void PreviewTextFile_02() throws HarnessException {
-		
+
 		ZimbraAccount account = app.zGetActiveAccount();
 
-		FolderItem briefcaseFolder = FolderItem.importFromSOAP(account,	SystemFolder.Briefcase);
+		FolderItem briefcaseFolder = FolderItem.importFromSOAP(account, SystemFolder.Briefcase);
 
 		// Create file item
 		String filePath = ConfigProperties.getBaseDirectory() + "/data/public/other/testtextfile.txt";
@@ -90,30 +90,30 @@ public class PreviewFile extends FeatureBriefcaseTest {
 		String attachmentId = account.uploadFile(filePath);
 
 		// Save uploaded file to briefcase through SOAP
-		account.soapSend("<SaveDocumentRequest xmlns='urn:zimbraMail'>"	+ "<doc l='" + briefcaseFolder.getId() + "'><upload id='" + attachmentId + "'/></doc></SaveDocumentRequest>");
+		account.soapSend("<SaveDocumentRequest xmlns='urn:zimbraMail'>" + "<doc l='" + briefcaseFolder.getId()
+				+ "'><upload id='" + attachmentId + "'/></doc></SaveDocumentRequest>");
 
-		// Refresh briefcase page
+		// Select briefcase folder
 		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseFolder, true);
 
 		// Verify document is created
 		String name = app.zPageBriefcase.getItemNameFromListView(fileName);
 		ZAssert.assertStringContains(name, fileName, "Verify file name through GUI");
-		
-		app.zPageBriefcase.zListItem(Action.A_LEFTCLICK, file);	
+
+		app.zPageBriefcase.zListItem(Action.A_LEFTCLICK, file);
 		SleepUtil.sleepLong();
 		ZAssert.assertTrue(app.zPageBriefcase.zVerifyTextFilePreviewContents(fileContent), "Verify that text file can be viewed correctly in preview pane");
-
 	}
 
-	
-	@Test( description = "Verify PDF fiew preview in reading pane", 
+
+	@Test( description = "Verify PDF fiew preview in reading pane",
 			groups = { "smoke", "L1" })
-	
+
 	public void PreviewPDFFile_03() throws HarnessException {
-		
+
 		ZimbraAccount account = app.zGetActiveAccount();
 
-		FolderItem briefcaseFolder = FolderItem.importFromSOAP(account,	SystemFolder.Briefcase);
+		FolderItem briefcaseFolder = FolderItem.importFromSOAP(account, SystemFolder.Briefcase);
 
 		// Create file item
 		String filePath = ConfigProperties.getBaseDirectory() + "/data/public/other/testpdffile.pdf";
@@ -125,30 +125,30 @@ public class PreviewFile extends FeatureBriefcaseTest {
 		String attachmentId = account.uploadFile(filePath);
 
 		// Save uploaded file to briefcase through SOAP
-		account.soapSend("<SaveDocumentRequest xmlns='urn:zimbraMail'>"	+ "<doc l='" + briefcaseFolder.getId() + "'><upload id='" + attachmentId + "'/></doc></SaveDocumentRequest>");
+		account.soapSend("<SaveDocumentRequest xmlns='urn:zimbraMail'>" + "<doc l='" + briefcaseFolder.getId()
+				+ "'><upload id='" + attachmentId + "'/></doc></SaveDocumentRequest>");
 
-		// Refresh briefcase page
+		// Select briefcase folder
 		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseFolder, true);
 
 		// Verify document is created
 		String name = app.zPageBriefcase.getItemNameFromListView(fileName);
 		ZAssert.assertStringContains(name, fileName, "Verify file name through GUI");
-		
-		app.zPageBriefcase.zListItem(Action.A_LEFTCLICK, file);	
+
+		app.zPageBriefcase.zListItem(Action.A_LEFTCLICK, file);
 		SleepUtil.sleepLong();
 		ZAssert.assertTrue(app.zPageBriefcase.zVerifyPdfFilePreviewContents(fileContent), "Verify content using PDF file preview elements");
-
 	}
 
-	
-	@Test( description = "Verify word fiew preview in reading pane", 
+
+	@Test( description = "Verify word fiew preview in reading pane",
 			groups = { "smoke", "L1" })
-	
+
 	public void PreviewWordFile_04() throws HarnessException {
-		
+
 		ZimbraAccount account = app.zGetActiveAccount();
 
-		FolderItem briefcaseFolder = FolderItem.importFromSOAP(account,	SystemFolder.Briefcase);
+		FolderItem briefcaseFolder = FolderItem.importFromSOAP(account, SystemFolder.Briefcase);
 
 		// Create file item
 		String filePath = ConfigProperties.getBaseDirectory() + "/data/public/other/testwordfile.doc";
@@ -160,30 +160,30 @@ public class PreviewFile extends FeatureBriefcaseTest {
 		String attachmentId = account.uploadFile(filePath);
 
 		// Save uploaded file to briefcase through SOAP
-		account.soapSend("<SaveDocumentRequest xmlns='urn:zimbraMail'>"	+ "<doc l='" + briefcaseFolder.getId() + "'><upload id='" + attachmentId + "'/></doc></SaveDocumentRequest>");
+		account.soapSend("<SaveDocumentRequest xmlns='urn:zimbraMail'>" + "<doc l='" + briefcaseFolder.getId()
+				+ "'><upload id='" + attachmentId + "'/></doc></SaveDocumentRequest>");
 
-		// Refresh briefcase page
+		// Select briefcase folder
 		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseFolder, true);
 
 		// Verify document is created
 		String name = app.zPageBriefcase.getItemNameFromListView(fileName);
 		ZAssert.assertStringContains(name, fileName, "Verify file name through GUI");
-		
-		app.zPageBriefcase.zListItem(Action.A_LEFTCLICK, file);	
+
+		app.zPageBriefcase.zListItem(Action.A_LEFTCLICK, file);
 		SleepUtil.sleepLong();
 		ZAssert.assertTrue(app.zPageBriefcase.zVerifyPdfFilePreviewContents(fileContent), "Verify content using PDF file preview elements");
-
 	}
 
-	
-	@Test( description = "Verify excel fiew preview in reading pane", 
+
+	@Test( description = "Verify excel fiew preview in reading pane",
 			groups = { "smoke", "L1" })
-	
+
 	public void PreviewXlsFile_05() throws HarnessException {
-		
+
 		ZimbraAccount account = app.zGetActiveAccount();
 
-		FolderItem briefcaseFolder = FolderItem.importFromSOAP(account,	SystemFolder.Briefcase);
+		FolderItem briefcaseFolder = FolderItem.importFromSOAP(account, SystemFolder.Briefcase);
 
 		// Create file item
 		String filePath = ConfigProperties.getBaseDirectory() + "/data/public/other/testexcelfile.xls";
@@ -195,29 +195,30 @@ public class PreviewFile extends FeatureBriefcaseTest {
 		String attachmentId = account.uploadFile(filePath);
 
 		// Save uploaded file to briefcase through SOAP
-		account.soapSend("<SaveDocumentRequest xmlns='urn:zimbraMail'>"	+ "<doc l='" + briefcaseFolder.getId() + "'><upload id='" + attachmentId + "'/></doc></SaveDocumentRequest>");
+		account.soapSend("<SaveDocumentRequest xmlns='urn:zimbraMail'>" + "<doc l='" + briefcaseFolder.getId()
+				+ "'><upload id='" + attachmentId + "'/></doc></SaveDocumentRequest>");
 
-		// Refresh briefcase page
+		// Select briefcase folder
 		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseFolder, true);
 
 		// Verify document is created
 		String name = app.zPageBriefcase.getItemNameFromListView(fileName);
 		ZAssert.assertStringContains(name, fileName, "Verify file name through GUI");
-		
-		app.zPageBriefcase.zListItem(Action.A_LEFTCLICK, file);	
+
+		app.zPageBriefcase.zListItem(Action.A_LEFTCLICK, file);
 		SleepUtil.sleepLong();
 		ZAssert.assertTrue(app.zPageBriefcase.zVerifyPdfFilePreviewContents(fileContent), "Verify content using PDF file preview elements");
 	}
-	
-	
-	@Test( description = "Verify power point fiew preview in reading pane", 
+
+
+	@Test( description = "Verify power point fiew preview in reading pane",
 			groups = { "smoke", "L1" })
-	
+
 	public void PreviewPptFile_06() throws HarnessException {
-		
+
 		ZimbraAccount account = app.zGetActiveAccount();
 
-		FolderItem briefcaseFolder = FolderItem.importFromSOAP(account,	SystemFolder.Briefcase);
+		FolderItem briefcaseFolder = FolderItem.importFromSOAP(account, SystemFolder.Briefcase);
 
 		// Create file item
 		String filePath = ConfigProperties.getBaseDirectory() + "/data/public/other/testpptfile.ppt";
@@ -229,16 +230,17 @@ public class PreviewFile extends FeatureBriefcaseTest {
 		String attachmentId = account.uploadFile(filePath);
 
 		// Save uploaded file to briefcase through SOAP
-		account.soapSend("<SaveDocumentRequest xmlns='urn:zimbraMail'>"	+ "<doc l='" + briefcaseFolder.getId() + "'><upload id='" + attachmentId + "'/></doc></SaveDocumentRequest>");
+		account.soapSend("<SaveDocumentRequest xmlns='urn:zimbraMail'>" + "<doc l='" + briefcaseFolder.getId()
+				+ "'><upload id='" + attachmentId + "'/></doc></SaveDocumentRequest>");
 
-		// Refresh briefcase page
+		// Select briefcase folder
 		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseFolder, true);
 
 		// Verify document is created
 		String name = app.zPageBriefcase.getItemNameFromListView(fileName);
 		ZAssert.assertStringContains(name, fileName, "Verify file name through GUI");
-		
-		app.zPageBriefcase.zListItem(Action.A_LEFTCLICK, file);	
+
+		app.zPageBriefcase.zListItem(Action.A_LEFTCLICK, file);
 		SleepUtil.sleepLong();
 		ZAssert.assertTrue(app.zPageBriefcase.zVerifyPdfFilePreviewContents(fileContent), "Verify content using PDF file preview elements");
 	}

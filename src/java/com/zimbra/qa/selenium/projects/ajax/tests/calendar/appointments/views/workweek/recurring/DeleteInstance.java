@@ -83,10 +83,6 @@ public class DeleteInstance extends AjaxCommonTest {
         DialogWarning confirmDelete = (DialogWarning)dialogSeriesOrInstance.zClickButton(Button.B_OK);
         confirmDelete.zClickButton(Button.B_YES);
 
-
-
-        //-- Verification
-
 		// On the server, verify the appointment is in the trash
 		app.zGetActiveAccount().soapSend(
 				"<SearchRequest xmlns='urn:zimbraMail' types='appointment' calExpandInstStart='"+ startTime.addDays(-7).toMillis() +"' calExpandInstEnd='"+ endTime.addDays(7).toMillis() +"'>"
@@ -160,10 +156,6 @@ public class DeleteInstance extends AjaxCommonTest {
         DialogWarning dialogSeriesOrInstance = (DialogWarning)app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_INSTANCE_MENU, Button.O_DELETE_MENU, apptSubject);;
         dialogSeriesOrInstance.zClickButton(Button.B_YES);
 
-
-
-        //-- Verification
-
 		// On the server, verify the appointment is in the trash
 		app.zGetActiveAccount().soapSend(
 				"<SearchRequest xmlns='urn:zimbraMail' types='appointment' calExpandInstStart='"+ startTime.addDays(-7).toMillis() +"' calExpandInstEnd='"+ endTime.addDays(7).toMillis() +"'>"
@@ -187,9 +179,9 @@ public class DeleteInstance extends AjaxCommonTest {
 		ZAssert.assertEquals(app.zPageCalendar.zIsAppointmentExists(apptSubject), false, "Verify instance is deleted from the calendar");
 		//boolean deleted = app.zPageCalendar.zWaitForElementDeleted(app.zPageCalendar.zGetApptLocator(apptSubject), "10000");
 		//ZAssert.assertEquals(deleted, true, "Verify instance is deleted from the calendar");
-
 	}
 
+	
 	@DataProvider(name = "DataProviderShortcutKeys")
 	public Object[][] DataProviderShortcutKeys() {
 		return new Object[][] {
@@ -197,7 +189,6 @@ public class DeleteInstance extends AjaxCommonTest {
 				new Object[] { "VK_BACK_SPACE", KeyEvent.VK_BACK_SPACE },
 		};
 	}
-
 
 	@Bugs (ids = "69132")
 	@Test (description = "Delete instance of series appointment (every week) using keyboard shortcuts Del & Backspace",
@@ -249,10 +240,6 @@ public class DeleteInstance extends AjaxCommonTest {
         DialogWarning confirmDelete = (DialogWarning)dialogSeriesOrInstance.zClickButton(Button.B_OK);
         confirmDelete.zClickButton(Button.B_YES);
 
-
-
-        //-- Verification
-
 		// On the server, verify the appointment is in the trash
 		app.zGetActiveAccount().soapSend(
 				"<SearchRequest xmlns='urn:zimbraMail' types='appointment' calExpandInstStart='"+ startTime.addDays(-7).toMillis() +"' calExpandInstEnd='"+ endTime.addDays(7).toMillis() +"'>"
@@ -276,7 +263,5 @@ public class DeleteInstance extends AjaxCommonTest {
 		ZAssert.assertEquals(app.zPageCalendar.zIsAppointmentExists(apptSubject), false, "Verify instance is deleted from the calendar");
 		//boolean deleted = app.zPageCalendar.zWaitForElementDeleted(app.zPageCalendar.zGetApptLocator(apptSubject), "10000");
 		//ZAssert.assertEquals(deleted, true, "Verify instance is deleted from the calendar");
-
 	}
-
 }

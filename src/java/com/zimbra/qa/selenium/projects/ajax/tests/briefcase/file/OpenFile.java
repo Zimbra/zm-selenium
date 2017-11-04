@@ -25,7 +25,6 @@ import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
-import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
@@ -37,71 +36,45 @@ public class OpenFile extends FeatureBriefcaseTest {
 
 	public OpenFile() throws HarnessException {
 		logger.info("New " + OpenFile.class.getCanonicalName());
-
 		super.startingPage = app.zPageBriefcase;
-
-		//if (ConfigProperties.zimbraGetVersionString().contains("FOSS")) {
-		    super.startingAccountPreferences.put("zimbraPrefShowSelectionCheckbox","TRUE");
-		//}
-		
+		super.startingAccountPreferences.put("zimbraPrefShowSelectionCheckbox","TRUE");
 		super.startingAccountPreferences.put("zimbraPrefBriefcaseReadingPaneLocation", "bottom");			
 	}
 
+	
 	@Test( description = "Upload file through RestUtil - open & verify through GUI", 
 			groups = { "smoke", "L0" })
+	
 	public void OpenFile_01() throws HarnessException {
+		
 		ZimbraAccount account = app.zGetActiveAccount();
 
-		FolderItem briefcaseFolder = FolderItem.importFromSOAP(account,
-				SystemFolder.Briefcase);
+		FolderItem briefcaseFolder = FolderItem.importFromSOAP(account, SystemFolder.Briefcase);
 
 		// Create file item
-		String filePath = ConfigProperties.getBaseDirectory()
-				+ "/data/public/other/testtextfile.txt";
-
+		String filePath = ConfigProperties.getBaseDirectory() + "/data/public/other/testtextfile.txt";
 		FileItem fileItem = new FileItem(filePath);
-
 		String fileName = fileItem.getName();
-
 		final String fileText = "test";
 
 		// Upload file to server through RestUtil
 		String attachmentId = account.uploadFile(filePath);
 
 		// Save uploaded file to briefcase through SOAP
-		account.soapSend("<SaveDocumentRequest xmlns='urn:zimbraMail'>"
-				+ "<doc l='" + briefcaseFolder.getId() + "'><upload id='"
-				+ attachmentId + "'/></doc></SaveDocumentRequest>");
+		account.soapSend("<SaveDocumentRequest xmlns='urn:zimbraMail'>" + "<doc l='" + briefcaseFolder.getId()
+				+ "'><upload id='" + attachmentId + "'/></doc></SaveDocumentRequest>");
 
-		// refresh briefcase page
+		// Select briefcase folder
 		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseFolder, true);
-
-		SleepUtil.sleepSmall();
 
 		// Click on created file
 		app.zPageBriefcase.zListItem(Action.A_BRIEFCASE_CHECKBOX, fileItem);
-		/*
-		if (ConfigProperties.zimbraGetVersionString().contains(
-    			"FOSS")) {
-		    app.zPageBriefcase.zListItem(Action.A_BRIEFCASE_CHECKBOX, fileItem);
 
-		} else {
-		    app.zPageBriefcase.zListItem(Action.A_LEFTCLICK, fileItem);
-		}
-		*/
 		// Click on open in a separate window icon in toolbar
-	
-		DocumentBriefcaseOpen file;
-		
-		if (ConfigProperties.zimbraGetVersionString().contains("7.1."))
-			file = (DocumentBriefcaseOpen)app.zPageBriefcase
-					.zToolbarPressButton(Button.B_OPEN_IN_SEPARATE_WINDOW,
-							fileItem);
-		else
-			file = (DocumentBriefcaseOpen)app.zPageBriefcase
-					.zToolbarPressPulldown(Button.B_ACTIONS,
-							Button.B_LAUNCH_IN_SEPARATE_WINDOW,fileItem);
 
+		DocumentBriefcaseOpen file;
+		file = (DocumentBriefcaseOpen) app.zPageBriefcase.zToolbarPressPulldown(Button.B_ACTIONS,
+					Button.B_LAUNCH_IN_SEPARATE_WINDOW, fileItem);
 		app.zPageBriefcase.isOpenFileLoaded(fileName, fileText);
 
 		String text = "";
@@ -120,10 +93,9 @@ public class OpenFile extends FeatureBriefcaseTest {
 			app.zPageBriefcase.zSelectWindow("Zimbra: Briefcase");
 		}
 
-		ZAssert.assertStringContains(text, fileText,
-				"Verify document text through GUI");
+		ZAssert.assertStringContains(text, fileText, "Verify document text through GUI");
 
-		// delete file upon test completion
+		// Delete file upon test completion
 		app.zPageBriefcase.deleteFileByName(fileItem.getName());
 	}
 

@@ -30,43 +30,35 @@ import com.zimbra.qa.selenium.projects.ajax.core.FeatureBriefcaseTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.briefcase.DialogFindShares;
 
 public class FindSharesWithFeatureDisabled extends FeatureBriefcaseTest {
-	String url;
 
 	public FindSharesWithFeatureDisabled() {
-		logger.info("New "
-				+ FindSharesWithFeatureDisabled.class.getCanonicalName());
-
-		// test starts in the Briefcase tab
+		logger.info("New " + FindSharesWithFeatureDisabled.class.getCanonicalName());
 		super.startingPage = app.zPageBriefcase;
-
-		// use an account with some of the Features disabled
 		super.startingAccountPreferences.put("zimbraFeatureCalendarEnabled", "FALSE");
-		// super.startingAccountPreferences.put("zimbraFeatureTasksEnabled", "FALSE");
-	}	
+	}
+
 
 	@Bugs(ids = "60854")
-	@Test( description = "Click on Find Shares link when some of the Features are disabled - Verify Find Shares dialog is displayed", 
+	@Test( description = "Click on Find Shares link when some of the Features are disabled - Verify Find Shares dialog is displayed",
 			groups = { "functional", "L3" })
-	
+
 	public void FindSharesWithFeatureDisabled_01() throws HarnessException {
+
 		ZimbraAccount account = app.zGetActiveAccount();
 
-		FolderItem briefcaseFolder = FolderItem.importFromSOAP(account,
-				SystemFolder.Briefcase);
+		FolderItem briefcaseFolder = FolderItem.importFromSOAP(account, SystemFolder.Briefcase);
 
 		new LinkItem();
 
-		// refresh briefcase page
-		app.zTreeBriefcase
-				.zTreeItem(Action.A_LEFTCLICK, briefcaseFolder, false);
+		// Select briefcase folder
+		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseFolder, false);
 
 		// Click on Find shares link
-		DialogFindShares dialog = (DialogFindShares)app.zTreeBriefcase
-				.zPressPulldown(Button.B_TREE_FOLDERS_OPTIONS, Button.B_TREE_FIND_SHARES);
+		DialogFindShares dialog = (DialogFindShares) app.zTreeBriefcase.zPressPulldown(Button.B_TREE_FOLDERS_OPTIONS,
+				Button.B_TREE_FIND_SHARES);
 
 		// Verify Find Shares dialog is opened
-		ZAssert.assertTrue(dialog.zIsActive(),
-				"Verify Find Shares dialog is opened");
+		ZAssert.assertTrue(dialog.zIsActive(), "Verify Find Shares dialog is opened");
 
 		// Dismiss the dialog
 		dialog.zClickButton(Button.B_CANCEL);

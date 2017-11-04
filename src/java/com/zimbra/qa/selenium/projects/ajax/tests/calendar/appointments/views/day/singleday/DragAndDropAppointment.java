@@ -47,7 +47,6 @@ public class DragAndDropAppointment extends AjaxCommonTest {
 		String foldername = "folder"+ ConfigProperties.getUniqueString();
 
 		// Create a calendar to move the appointment into
-		//
 		FolderItem rootFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.UserRoot);
 
 		app.zGetActiveAccount().soapSend(
@@ -93,9 +92,8 @@ public class DragAndDropAppointment extends AjaxCommonTest {
 					"css=div[id^='zli__CLD__"+ apptId +"'] td.appt_name", // <div id="zli__CLWW__263_DWT114" .../>
 					"css=td[id='zti__main_Calendar__"+ subcalendarFolder.getId() + "_textCell']"); // <div id="zti__main_Calendar__273_textCell" .../>
 
-		//-- Server verification
+		// Verification
 		AppointmentItem newAppointment = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ apptSubject +")");
-
 		ZAssert.assertEquals(newAppointment.getFolder(), subcalendarFolder.getId(), "Verify the appointment moved folders");
 	}
 
@@ -174,13 +172,11 @@ public class DragAndDropAppointment extends AjaxCommonTest {
 
     	app.zPageCalendar.zDragAndDropBy(sourceLocator,destinationLocator,0,5);
 
-		//-- Server verification
+		// Verification
 
 		// Make sure the time has changed
-		// (It is difficult to know for certain what time is correct.  For
-		// now, just make sure it was moved somewhere.)
-        app.zGetActiveAccount().soapSend(
-        		"<GetAppointmentRequest id='"+ apptId + "' xmlns='urn:zimbraMail'/>");
+		// (It is difficult to know for certain what time is correct. For now, just make sure it was moved somewhere.)
+        app.zGetActiveAccount().soapSend("<GetAppointmentRequest id='"+ apptId + "' xmlns='urn:zimbraMail'/>");
         String s1 = app.zGetActiveAccount().soapSelectValue("//mail:s", "d");
         String e2 = app.zGetActiveAccount().soapSelectValue("//mail:e", "d");
 

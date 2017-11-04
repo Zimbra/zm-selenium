@@ -407,6 +407,9 @@ public class PageCalendar extends AbsTab {
 	}
 
 	public int zGetAppointmentCountWeekView(String subject) throws HarnessException {
+		// Switch to week view and verify correct number of recurring instances
+		zToolbarPressButton(Button.B_WEEK_VIEW);
+		
 		return sGetXpathCount("//div[@class='calendar_body']//div[contains(@id, 'zli__CLW__')]//td[contains(text(), '" + subject + "')]");
 		//return sGetCssCount("css=div[class='calendar_body'] div[id^='zli__CLW'] td[class='appt_name']:contains('" + subject + "')");
 	}

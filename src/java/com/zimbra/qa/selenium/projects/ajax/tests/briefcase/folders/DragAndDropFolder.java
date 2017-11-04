@@ -29,19 +29,20 @@ public class DragAndDropFolder extends FeatureBriefcaseTest {
 		logger.info("New " + DragAndDropFolder.class.getCanonicalName());
 		super.startingPage = app.zPageBriefcase;
 	}
-	
-	@Test(description = "Drag one briefcase sub-folder and Drop into other", 
+
+
+	@Test(description = "Drag one briefcase sub-folder and Drop into other",
 			groups = { "functional", "L2" })
-	
+
 	public void DragAndDropFolder_01() throws HarnessException {
+
 		ZimbraAccount account = app.zGetActiveAccount();
 
 		FolderItem briefcaseRootFolder = FolderItem.importFromSOAP(account, SystemFolder.Briefcase);
 
 		ZAssert.assertNotNull(briefcaseRootFolder, "Verify the Briefcase root folder is available");
 
-		// Create two briefcase sub-folders:One folder to Drag & Another folder
-		// to drop into
+		// Create two briefcase sub-folders:One folder to Drag & Another folder to drop into
 		String briefcaseSubFolderName1 = "folder1" + ConfigProperties.getUniqueString();
 		String briefcaseSubFolderName2 = "folder2" + ConfigProperties.getUniqueString();
 
@@ -57,7 +58,7 @@ public class DragAndDropFolder extends FeatureBriefcaseTest {
 		FolderItem briefcaseSubFolder2 = FolderItem.importFromSOAP(account, briefcaseSubFolderName2);
 		ZAssert.assertNotNull(briefcaseSubFolder2, "Verify the second subfolder is available");
 
-		// refresh the Briefcase tree folder list
+		// Select briefcase folder
 		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseRootFolder, false);
 
 		// Perform DND action

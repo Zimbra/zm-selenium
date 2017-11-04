@@ -45,7 +45,7 @@ public class ZmMailApp extends AjaxCommonTest {
 	}
 	
 	@Test( description = "Measure the time to load the mail app, message view, initial load",
-			groups = { "performance", "L4" })
+			groups = { "performance", "deprecated" })
 	public void ZmMailApp_01() throws HarnessException {
 		
 		// Fill out the login page
@@ -66,7 +66,7 @@ public class ZmMailApp extends AjaxCommonTest {
 	}
 
 	@Test( description = "Measure the time to load the mail app, message view, 1 message",
-			groups = { "performance", "L4" })
+			groups = { "performance", "deprecated" })
 	public void ZmMailApp_02() throws HarnessException {
 		
 		String mime = ConfigProperties.getBaseDirectory() + "/data/public/mime/email02/mime01.txt";
@@ -90,7 +90,7 @@ public class ZmMailApp extends AjaxCommonTest {
 	}
 
 	@Test( description = "Measure the time to load the mail app, message view, 100 messages",
-			groups = { "performance", "L4" })
+			groups = { "performance", "deprecated" })
 	public void ZmMailApp_03() throws HarnessException {
 		
 		String mime = ConfigProperties.getBaseDirectory() + "/data/public/mime/email03";

@@ -74,28 +74,28 @@ public class ViewInviteWithDisplayMailPreference extends AjaxCommonTest {
 		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 9, 0, 0);
 		String tz = ZTimeZone.getLocalTimeZone().getID();
 
-		// Send the message from AccountB to the current login user
-				ZimbraAccount.AccountB().soapSend(
-		                "<CreateAppointmentRequest xmlns='urn:zimbraMail'>" +
-		                     "<m>"+
-		                     	"<inv><comp method='REQUEST' type='event' status='CONF' draft='0' class='PUB' fb='B' loc='' transp='O' allDay='0' name='"+ subject +"'>"+
-		                     	"<or a='"+ ZimbraAccount.AccountB().EmailAddress +"'/>" +
-		                     	"<at a='"+ app.zGetActiveAccount().EmailAddress + "' role='REQ'  ptst='NE'  rsvp='1'/>"+
-		                     	"<s d='"+ startUTC.toTimeZone(tz).toYYYYMMDDTHHMMSS() + "' tz='"+ tz +"'/>" +
-		                     	"<e d='"+ endUTC.toTimeZone(tz).toYYYYMMDDTHHMMSS() +"' tz='"+ tz +"'/>" +
-		                     "</comp></inv>" +
-		                     "<e a='"+ app.zGetActiveAccount().EmailAddress +"' t='t'/>" +
-		                     "<mp ct='multipart/alternative'>" +
-		                     	"<mp ct='text/plain'>" +
-		                     	"<content>"+ plainTextContentForSOAP +"</content>" +
-		                     	"</mp>" +
-		                     	"<mp ct='text/html'>" +
-		                     	"<content>"+ htmlContentForSOAP +"</content>" +
-		                     	"</mp>" +
-		                     "</mp>" +
-		                     "<su>"+ subject +"</su>" +
-		                     "</m>" +
-		               "</CreateAppointmentRequest>");
+		// Create invite from AccountB to the current login user
+		ZimbraAccount.AccountB().soapSend(
+				"<CreateAppointmentRequest xmlns='urn:zimbraMail'>" +
+					 "<m>"+
+						"<inv><comp method='REQUEST' type='event' status='CONF' draft='0' class='PUB' fb='B' loc='' transp='O' allDay='0' name='"+ subject +"'>"+
+						"<or a='"+ ZimbraAccount.AccountB().EmailAddress +"'/>" +
+						"<at a='"+ app.zGetActiveAccount().EmailAddress + "' role='REQ'  ptst='NE'  rsvp='1'/>"+
+						"<s d='"+ startUTC.toTimeZone(tz).toYYYYMMDDTHHMMSS() + "' tz='"+ tz +"'/>" +
+						"<e d='"+ endUTC.toTimeZone(tz).toYYYYMMDDTHHMMSS() +"' tz='"+ tz +"'/>" +
+					 "</comp></inv>" +
+					 "<e a='"+ app.zGetActiveAccount().EmailAddress +"' t='t'/>" +
+					 "<mp ct='multipart/alternative'>" +
+						"<mp ct='text/plain'>" +
+						"<content>"+ plainTextContentForSOAP +"</content>" +
+						"</mp>" +
+						"<mp ct='text/html'>" +
+						"<content>"+ htmlContentForSOAP +"</content>" +
+						"</mp>" +
+					 "</mp>" +
+					 "<su>"+ subject +"</su>" +
+					 "</m>" +
+			   "</CreateAppointmentRequest>");
 
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify appointment displayed in current view");
 
@@ -214,7 +214,7 @@ public class ViewInviteWithDisplayMailPreference extends AjaxCommonTest {
 		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 10, 0, 0);
 		String tz = ZTimeZone.getLocalTimeZone().getID();
 
-		// Send the message from AccountB to the current login user
+		// Create invite from AccountB to the current login user
 		ZimbraAccount.AccountB().soapSend(
                 "<CreateAppointmentRequest xmlns='urn:zimbraMail'>" +
                      "<m>"+

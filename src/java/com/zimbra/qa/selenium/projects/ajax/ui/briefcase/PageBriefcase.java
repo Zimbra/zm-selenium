@@ -270,6 +270,7 @@ public class PageBriefcase extends AbsTab {
 			throw new HarnessException("Button is not present locator=" + locator + " button=" + button);
 
 		this.zClickAt(locator, "0,0");
+		SleepUtil.sleepMedium();
 
 		// If the app is busy, wait for it to become active
 		zWaitForBusyOverlay();
@@ -289,7 +290,6 @@ public class PageBriefcase extends AbsTab {
 		if (option == null)
 			throw new HarnessException("Option cannot be null!");
 
-		
 		String pulldownLocator = null;
 		String optionLocator = null;
 		AbsPage page = null;
@@ -327,6 +327,7 @@ public class PageBriefcase extends AbsTab {
 			} else {
 				throw new HarnessException("no logic defined for pulldown/option " + pulldown + "/" + option);
 			}
+			
 		} else if (pulldown == Button.B_TAG) {
 			if (option == Button.O_TAG_NEWTAG) {
 
@@ -349,6 +350,7 @@ public class PageBriefcase extends AbsTab {
 			} else {
 				throw new HarnessException("no logic defined for pulldown/option " + pulldown + "/" + option);
 			}
+			
 		} else if (pulldown == Button.B_SEND) {
 			if (option == Button.O_SEND_AS_ATTACHMENT) {
 
@@ -369,6 +371,7 @@ public class PageBriefcase extends AbsTab {
 			} else {
 				throw new HarnessException("no logic defined for pulldown/option " + pulldown + "/" + option);
 			}
+			
 		} else if (pulldown == Button.B_ACTIONS) {
 
 			pulldownLocator = "css=td[id=zb__BDLV-main__ACTIONS_MENU_dropdown]>div[class='ImgSelectPullDownArrow']";
@@ -396,6 +399,7 @@ public class PageBriefcase extends AbsTab {
 			} else {
 				throw new HarnessException("no logic defined for pulldown/option " + pulldown + "/" + option);
 			}
+			
 		} else if (pulldown == Button.B_MOVE) {
 
 			if (option == Button.O_NEW_FOLDER) {
@@ -430,11 +434,9 @@ public class PageBriefcase extends AbsTab {
 			}
 
 			this.zClick(optionLocator);
-
-			// If the app is busy, wait for it to become active
 			zWaitForBusyOverlay();
-
-			page.zWaitForActive();
+			page.zWaitForActive();			
+			SleepUtil.sleepSmall();
 
 			return (page);
 
@@ -513,7 +515,8 @@ public class PageBriefcase extends AbsTab {
 					page.zWaitForActive();
 			}
 		}
-		// Return the specified page, or null if not set
+
+		SleepUtil.sleepSmall();
 		return (page);
 	}
 

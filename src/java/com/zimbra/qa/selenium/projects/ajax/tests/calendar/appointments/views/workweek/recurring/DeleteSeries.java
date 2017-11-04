@@ -93,12 +93,7 @@ public class DeleteSeries extends AjaxCommonTest {
         if (confirmDelete == null) {
         	throw new HarnessException("The 'Confirm Delete' dialog never appeared.");
         }
-        // confirmDelete.zClickButton(Button.B_DELETE_ALL_OCCURRENCES);
         confirmDelete.zClickButton(Button.B_YES);
-
-
-
-        //-- Verification
 
         // On the server, verify the appointment is in the trash
         app.zGetActiveAccount().soapSend(
@@ -176,12 +171,7 @@ public class DeleteSeries extends AjaxCommonTest {
         if (confirmDelete == null) {
         	throw new HarnessException("The 'Confirm Delete' dialog never appeared.");
         }
-        // confirmDelete.zClickButton(Button.B_DELETE_ALL_OCCURRENCES);
         confirmDelete.zClickButton(Button.B_YES);
-
-
-
-        //-- Verification
 
         // On the server, verify the appointment is in the trash
         app.zGetActiveAccount().soapSend(
@@ -266,12 +256,7 @@ public class DeleteSeries extends AjaxCommonTest {
         if (confirmDelete == null) {
         	throw new HarnessException("The 'Confirm Delete' dialog never appeared.");
         }
-        // confirmDelete.zClickButton(Button.B_DELETE_ALL_OCCURRENCES);
         confirmDelete.zClickButton(Button.B_YES);
-
-
-
-        //-- Verification
 
         // On the server, verify the appointment is in the trash
         app.zGetActiveAccount().soapSend(
@@ -290,8 +275,5 @@ public class DeleteSeries extends AjaxCommonTest {
         ZAssert.assertEquals(app.zPageCalendar.zIsAppointmentExists(apptSubject), false, "Verify instance is deleted from the calendar");
 		//boolean deleted = app.zPageCalendar.zWaitForElementDeleted(app.zPageCalendar.zGetApptLocator(apptSubject), "10000");
 		//ZAssert.assertEquals(deleted, true, "Verify instance is deleted from the calendar");
-
 	}
-
-
 }

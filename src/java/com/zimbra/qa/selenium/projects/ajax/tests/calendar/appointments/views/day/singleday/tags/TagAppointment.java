@@ -181,6 +181,5 @@ public class TagAppointment extends AjaxCommonTest {
 		// Verify applied tag for appointment
 		app.zGetActiveAccount().soapSend("<GetAppointmentRequest xmlns='urn:zimbraMail' id='" + apptId + "'/>");
         ZAssert.assertEquals(app.zGetActiveAccount().soapSelectValue("//mail:appt", "t"), tagID, "Verify the appointment is tagged with the correct tag");
-
 	}
 }

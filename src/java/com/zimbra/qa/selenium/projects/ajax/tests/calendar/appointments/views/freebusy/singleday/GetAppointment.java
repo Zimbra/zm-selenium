@@ -46,8 +46,7 @@ public class GetAppointment extends AjaxCommonTest {
 	
 	public void GetAppointment_01() throws HarnessException {
 
-		// Create the appointment on the server
-		// Create the message data to be sent
+		// Appointment data
 		String apptSubject = ConfigProperties.getUniqueString();
 
 		// Absolute dates in UTC zone
@@ -85,6 +84,5 @@ public class GetAppointment extends AjaxCommonTest {
 		// Verify the appointment appears on the page
 		SleepUtil.sleepLong(); //test fails without sleep because calendar view rendering takes time
 		ZAssert.assertTrue(app.zPageCalendar.zGetApptLocatorFreeBusyView(app.zGetActiveAccount().EmailAddress, apptSubject), "Verify attendee free/busy row exists");
-
 	}
 }

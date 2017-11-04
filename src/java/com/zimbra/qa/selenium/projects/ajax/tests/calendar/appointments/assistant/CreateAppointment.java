@@ -37,20 +37,20 @@ public class CreateAppointment extends AjaxCommonTest {
 
 
 	@Test( description = "Create a basic appointment using the Zimbra Assistant",
-			groups = { "deprecated", "L4" })
+			groups = { "deprecated" })
 
 	public void CreateAppointment_01() throws HarnessException {
+
+		// Appointment data
+		String subject = "subject" + ConfigProperties.getUniqueString();
+		String location = "location" + ConfigProperties.getUniqueString();
+		String notes = "notes" + ConfigProperties.getUniqueString();
+		String command = "appointment \"" + subject + "\" ["+ location +"] ("+ notes +")";
 
 		Calendar start = Calendar.getInstance();
 		start.add(Calendar.DATE, -7);
 		Calendar finish = Calendar.getInstance();
 		finish.add(Calendar.DATE, +7);
-
-		// Create the message data to be sent
-		String subject = "subject" + ConfigProperties.getUniqueString();
-		String location = "location" + ConfigProperties.getUniqueString();
-		String notes = "notes" + ConfigProperties.getUniqueString();
-		String command = "appointment \"" + subject + "\" ["+ location +"] ("+ notes +")";
 
 		// Click Get Mail button
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
@@ -77,20 +77,20 @@ public class CreateAppointment extends AjaxCommonTest {
 
 	@Bugs(ids = "53005")
 	@Test( description = "Verify location is saved when using assistant",
-			groups = { "deprecated", "L4" })
+			groups = { "deprecated" })
 
 	public void CreateAppointment_02() throws HarnessException {
+
+		// Appointment data
+		String subject = "subject" + ConfigProperties.getUniqueString();
+		String location = "location" + ConfigProperties.getUniqueString();
+		String notes = "notes" + ConfigProperties.getUniqueString();
+		String command = "appointment \"" + subject + "\" ["+ location +"] ("+ notes +")";
 
 		Calendar start = Calendar.getInstance();
 		start.add(Calendar.DATE, -7);
 		Calendar finish = Calendar.getInstance();
 		finish.add(Calendar.DATE, +7);
-
-		// Create the message data to be sent
-		String subject = "subject" + ConfigProperties.getUniqueString();
-		String location = "location" + ConfigProperties.getUniqueString();
-		String notes = "notes" + ConfigProperties.getUniqueString();
-		String command = "appointment \"" + subject + "\" ["+ location +"] ("+ notes +")";
 
 		// Click Get Mail button
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);

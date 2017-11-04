@@ -48,7 +48,7 @@ public class ZmConv extends AjaxCommonTest {
 	
 	
 	@Test( description = "Measure the performance for conversation view, preview pane, text message, initial load",
-			groups = { "performance","L4" })
+			groups = { "performance","deprecated" })
 	public void ZmMailItem_01() throws HarnessException {
 		
 		String mime = ConfigProperties.getBaseDirectory() + "/data/public/mime/conversation02";

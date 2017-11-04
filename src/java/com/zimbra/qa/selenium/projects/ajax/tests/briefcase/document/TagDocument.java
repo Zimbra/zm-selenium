@@ -28,17 +28,16 @@ public class TagDocument extends FeatureBriefcaseTest {
 
 	public TagDocument() {
 		logger.info("New " + TagDocument.class.getCanonicalName());
-
-		// All tests start at the Briefcase page
 		super.startingPage = app.zPageBriefcase;
-
 		super.startingAccountPreferences.put("zimbraPrefBriefcaseReadingPaneLocation", "bottom");
 	}
-	
-	@Test(description = "Tag a Document using Toolbar -> Tag -> New Tag", 
+
+
+	@Test(description = "Tag a Document using Toolbar -> Tag -> New Tag",
 			groups = { "smoke", "L1" })
 
 	public void TagDocument_01() throws HarnessException {
+
 		ZimbraAccount account = app.zGetActiveAccount();
 
 		FolderItem briefcaseFolder = FolderItem.importFromSOAP(account, SystemFolder.Briefcase);
@@ -56,13 +55,10 @@ public class TagDocument extends FeatureBriefcaseTest {
 				+ "' l='" + briefcaseFolder.getId() + "' ct='application/x-zimbra-doc'>" + "<content>" + contentHTML
 				+ "</content>" + "</doc>" + "</SaveDocumentRequest>");
 
-		// refresh briefcase page
+		// Select briefcase folder
 		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseFolder, true);
 
-		SleepUtil.sleepVerySmall();
-
 		// Click on created document
-
 		app.zPageBriefcase.zListItem(Action.A_LEFTCLICK, docItem);
 
 		// Create a tag using GUI
@@ -72,7 +68,6 @@ public class TagDocument extends FeatureBriefcaseTest {
 		DialogTag dialogTag = (DialogTag) app.zPageBriefcase.zToolbarPressPulldown(Button.B_TAG, Button.O_TAG_NEWTAG,
 				null);
 
-		SleepUtil.sleepSmall();
 		dialogTag.zSetTagName(tagName);
 		dialogTag.zClickButton(Button.B_OK);
 
@@ -86,34 +81,24 @@ public class TagDocument extends FeatureBriefcaseTest {
 				+ "</query>" + "</SearchRequest>");
 
 		String name = account.soapSelectValue("//mail:SearchResponse//mail:doc", "name");
-
 		ZAssert.assertEquals(name, docName, "Verify tagged document name");
-
-		// Make sure the tag was applied to the document
-		// account.soapSend("<SearchRequest xmlns='urn:zimbraMail'
-		// types='document'>"
-		// + "<query>in:briefcase</query></SearchRequest>");
-
-		// String id = account.soapSelectValue(
-		// "//mail:SearchResponse//mail:doc[@name='" + docName + "']", "t");
-
 		account.soapSend("<SearchRequest xmlns='urn:zimbraMail' types='document'>" + "<query>" + docName + "</query>"
 				+ "</SearchRequest>");
 
 		String id = account.soapSelectValue("//mail:SearchResponse//mail:doc", "t");
-
 		ZAssert.assertNotNull(id, "Verify the search response returns the document tag id");
-
 		ZAssert.assertEquals(id, tagId, "Verify the tag was attached to the document");
 
-		// delete Document upon test completion
+		// Delete Document upon test completion
 		app.zPageBriefcase.deleteFileByName(docName);
 	}
-	
-	@Test(description = "Tag a Document using pre-existing Tag", 
+
+
+	@Test(description = "Tag a Document using pre-existing Tag",
 			groups = { "functional", "L2" })
 
 	public void TagDocument_02() throws HarnessException {
+
 		ZimbraAccount account = app.zGetActiveAccount();
 
 		FolderItem briefcaseFolder = FolderItem.importFromSOAP(account, SystemFolder.Briefcase);
@@ -141,13 +126,10 @@ public class TagDocument extends FeatureBriefcaseTest {
 		TagItem tag = TagItem.importFromSOAP(app.zGetActiveAccount(), tagName);
 		ZAssert.assertNotNull(tag, "Verify the new tag was created");
 
-		// refresh briefcase page
+		// Select briefcase folder
 		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseFolder, true);
 
-		SleepUtil.sleepVerySmall();
-
 		// Click on created document
-
 		app.zPageBriefcase.zListItem(Action.A_LEFTCLICK, docItem);
 
 		// Tag document selecting pre-existing tag from Toolbar drop down list
@@ -158,19 +140,19 @@ public class TagDocument extends FeatureBriefcaseTest {
 				+ "</SearchRequest>");
 
 		String id = account.soapSelectValue("//mail:SearchResponse//mail:doc", "t");
-
 		ZAssert.assertNotNull(id, "Verify the search response returns the document tag id");
-
 		ZAssert.assertEquals(id, tag.getId(), "Verify the tag was attached to the document");
 
-		// delete Document upon test completion
+		// Delete Document upon test completion
 		app.zPageBriefcase.deleteFileByName(docName);
 	}
 
-	@Test(description = "Tag a Document using Right Click context menu", 
+
+	@Test(description = "Tag a Document using Right Click context menu",
 			groups = { "functional", "L2" })
 
 	public void TagDocument_03() throws HarnessException {
+
 		ZimbraAccount account = app.zGetActiveAccount();
 
 		FolderItem briefcaseFolder = FolderItem.importFromSOAP(account, SystemFolder.Briefcase);
@@ -198,10 +180,8 @@ public class TagDocument extends FeatureBriefcaseTest {
 		TagItem tagItem = TagItem.importFromSOAP(app.zGetActiveAccount(), tagName);
 		ZAssert.assertNotNull(tagItem, "Verify the new tag was created");
 
-		// refresh briefcase page
+		// Select briefcase folder
 		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseFolder, true);
-
-		SleepUtil.sleepVerySmall();
 
 		// Click on created document
 		app.zPageBriefcase.zListItem(Action.A_LEFTCLICK, docItem);
@@ -214,12 +194,10 @@ public class TagDocument extends FeatureBriefcaseTest {
 				+ "</SearchRequest>");
 
 		String id = account.soapSelectValue("//mail:SearchResponse//mail:doc", "t");
-
 		ZAssert.assertNotNull(id, "Verify the search response returns the document tag id");
-
 		ZAssert.assertEquals(id, tagItem.getId(), "Verify the tag was attached to the document");
 
-		// delete Document upon test completion
+		// Delete Document upon test completion
 		app.zPageBriefcase.deleteFileByName(docName);
 	}
 }

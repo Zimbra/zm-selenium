@@ -36,7 +36,7 @@ public class CreateAppointment extends AjaxCommonTest {
 	
 	public void Toaster_CreateAppointment_01() throws HarnessException {
 		
-		// Create the message data to be sent
+		// Appointment data
 		AppointmentItem appt = new AppointmentItem();
 		appt.setSubject(ConfigProperties.getUniqueString());
 

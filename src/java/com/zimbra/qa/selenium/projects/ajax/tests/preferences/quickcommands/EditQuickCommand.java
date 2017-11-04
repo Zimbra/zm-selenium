@@ -41,7 +41,7 @@ public class EditQuickCommand extends AjaxQuickCommandTest {
 	@Bugs(ids = "71389")	// Hold off on GUI implementation of Quick Commands in 8.X
 	@Test(
 			description = "Edit a basic Quick Command",
-			groups = { "deprecated", "L4" }
+			groups = { "deprecated" }
 			)
 	public void EditQuickCommand_01() throws HarnessException {
 		

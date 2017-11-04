@@ -50,7 +50,6 @@ public class DeleteAppointment extends AjaxCommonTest {
 	
 	public void DeleteAllDayAppointment_01() throws HarnessException {
 
-		//-- Data Setup
 		// Creating objects for appointment data
 		String tz, apptSubject, apptBody;
 		tz = ZTimeZone.getLocalTimeZone().getID();
@@ -103,9 +102,6 @@ public class DeleteAppointment extends AjaxCommonTest {
 			groups = { "functional", "L3" })
 	
 	public void DeleteAllDayAppointment_02() throws HarnessException {
-
-
-		//-- Data Setup
 
 		// Creating objects for appointment data
 		String tz, apptSubject, apptBody;
@@ -162,8 +158,6 @@ public class DeleteAppointment extends AjaxCommonTest {
 	
 	public void DeleteAllDayAppointment_03(String name, int keyEvent) throws HarnessException {
 
-		//-- Data Setup
-
 		// Creating objects for appointment data
 		String tz, apptSubject, apptBody;
 		tz = ZTimeZone.getLocalTimeZone().getID();
@@ -200,8 +194,7 @@ public class DeleteAppointment extends AjaxCommonTest {
         DialogConfirmDeleteAppointment dlgConfirm = (DialogConfirmDeleteAppointment)app.zPageCalendar.zKeyboardKeyEvent(keyEvent);
 		dlgConfirm.zClickButton(Button.B_YES);
 
-
-		//-- Verification
+		// Verification
 		app.zGetActiveAccount().soapSend(
 					"<SearchRequest xmlns='urn:zimbraMail' types='appointment' calExpandInstStart='"+ startUTC.addDays(-7).toMillis() +"' calExpandInstEnd='"+ startUTC.addDays(7).toMillis() +"'>"
 				+	"<query>subject:("+ apptSubject +")</query>"

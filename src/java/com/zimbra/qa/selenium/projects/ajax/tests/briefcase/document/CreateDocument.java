@@ -33,7 +33,6 @@ import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.ui.Shortcut;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
-import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.projects.ajax.core.FeatureBriefcaseTest;
@@ -45,17 +44,18 @@ public class CreateDocument extends FeatureBriefcaseTest {
 
 	public CreateDocument() {
 		logger.info("New " + CreateDocument.class.getCanonicalName());
-
 		super.startingPage = app.zPageBriefcase;
 		super.startingAccountPreferences.put("zimbraPrefBriefcaseReadingPaneLocation", "bottom");
 		super.startingAccountPreferences.put("zimbraPrefShowSelectionCheckbox", "TRUE");
 	}
 
+
 	@Bugs(ids = "97124")
-	@Test( description = "Create document through GUI - verify through GUI", 
+	@Test( description = "Create document through GUI - verify through GUI",
 		groups = { "sanity", "L0" })
-	
+
 	public void CreateDocument_01() throws HarnessException {
+
 		ZimbraAccount account = app.zGetActiveAccount();
 
 		FolderItem briefcaseFolder = FolderItem.importFromSOAP(account, SystemFolder.Briefcase);
@@ -78,12 +78,13 @@ public class CreateDocument extends FeatureBriefcaseTest {
 			documentBriefcaseNew.zFillField(DocumentBriefcaseNew.Field.Body, docText);
 
 			documentBriefcaseNew.zSubmit();
+
 		} finally {
 			app.zPageBriefcase.sSelectWindow(null);
 			app.zPageBriefcase.sWindowFocus();
 		}
 
-		// Refresh briefcase page
+		// Select briefcase folder
 		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseFolder, true);
 
 		// Click on created document
@@ -118,11 +119,13 @@ public class CreateDocument extends FeatureBriefcaseTest {
 		ZAssert.assertStringContains(name, docName,	"Verify document name through GUI");
 		ZAssert.assertStringContains(text, docText,	"Verify document text through GUI");
 	}
-	
-	@Test( description = "Create document using keyboard shortcut - verify through SOAP & RestUtil", 
+
+
+	@Test( description = "Create document using keyboard shortcut - verify through SOAP & RestUtil",
 			groups = { "functional", "L3" })
-	
+
 	public void CreateDocument_02() throws HarnessException {
+
 		ZimbraAccount account = app.zGetActiveAccount();
 
 		FolderItem briefcaseFolder = FolderItem.importFromSOAP(account, SystemFolder.Briefcase);
@@ -156,7 +159,7 @@ public class CreateDocument extends FeatureBriefcaseTest {
 
 		app.zPageBriefcase.zWaitForWindowClosed(DocumentBriefcaseNew.pageTitle);
 
-		// Refresh briefcase page
+		// Select briefcase folder
 		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseFolder, true);
 
 		// Display file through RestUtil
@@ -173,7 +176,6 @@ public class CreateDocument extends FeatureBriefcaseTest {
 		account.soapSend("<SearchRequest xmlns='urn:zimbraMail' types='document'>" + "<query>" + docName + "</query>" + "</SearchRequest>");
 
 		String name = account.soapSelectValue("//mail:SearchResponse//mail:doc", "name");
-
 		ZAssert.assertNotNull(name, "Verify the search response returns the document name");
 		ZAssert.assertStringContains(name, docName, "Verify document name through SOAP");
 
@@ -182,19 +184,20 @@ public class CreateDocument extends FeatureBriefcaseTest {
 
 		ZAssert.assertStringContains(response.get(PageBriefcase.Response.ResponsePart.BODY), docText, "Verify document content through GUI");
 
-		// delete file upon test completion
+		// Delete file upon test completion
 		app.zPageBriefcase.deleteFileByName(docName);
 	}
-	
+
+
 	@Bugs(ids="81299")
-	@Test( description = "Create document using New menu pulldown menu - verify through SOAP & RestUtil", 
+	@Test( description = "Create document using New menu pulldown menu - verify through SOAP & RestUtil",
 			groups = { "smoke", "L1" })
-	
+
 	public void CreateDocument_03() throws HarnessException {
+
 		ZimbraAccount account = app.zGetActiveAccount();
 
-		FolderItem briefcaseFolder = FolderItem.importFromSOAP(account,
-				SystemFolder.Briefcase);
+		FolderItem briefcaseFolder = FolderItem.importFromSOAP(account, SystemFolder.Briefcase);
 
 		// Create document item
 		DocumentItem document = new DocumentItem();
@@ -202,11 +205,8 @@ public class CreateDocument extends FeatureBriefcaseTest {
 		String docName = document.getName();
 		String docText = document.getDocText();
 
-		// Refresh briefcase page before creating a new document
-		app.zTreeBriefcase
-				.zTreeItem(Action.A_LEFTCLICK, briefcaseFolder, false);
-
-		SleepUtil.sleepVerySmall();
+		// Select briefcase folder before creating a new document
+		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseFolder, false);
 
 		// Create a new document using New pull down menu
 		DocumentBriefcaseNew documentBriefcaseNew = (DocumentBriefcaseNew) app.zPageBriefcase.zToolbarPressPulldown(Button.B_NEW, Button.O_NEW_DOCUMENT, document);
@@ -227,7 +227,7 @@ public class CreateDocument extends FeatureBriefcaseTest {
 
 		app.zPageBriefcase.zWaitForWindowClosed(DocumentBriefcaseNew.pageTitle);
 
-		// Refresh briefcase page
+		// Select briefcase folder
 		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseFolder, true);
 
 		// Search for created document
@@ -242,9 +242,10 @@ public class CreateDocument extends FeatureBriefcaseTest {
 		ZAssert.assertStringContains(docName, name, "Verify document name through SOAP");
 		ZAssert.assertEquals(dateFormat.format(modDate), dateFormat.format(date), "modified date is displayed correctly");
 
-		// delete file upon test completion
+		// Delete file upon test completion
 		app.zPageBriefcase.deleteFileByName(docName);
 	}
+
 
 	@AfterMethod(groups = { "always" })
 	public void afterMethod() throws HarnessException {

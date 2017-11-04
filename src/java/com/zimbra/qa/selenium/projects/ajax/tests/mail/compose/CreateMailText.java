@@ -275,7 +275,7 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 	}
 	
 	@Test( description = "Send a mail to 100 recipients",
-			groups = { "deprecated", "L4" } ) // The harness doesn't handle the postqueue for such a large message
+			groups = { "deprecated" } ) // The harness doesn't handle the postqueue for such a large message
 
 	public void CreateMailText_07() throws HarnessException {
 		

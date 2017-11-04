@@ -23,11 +23,9 @@ import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
-import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.XmlStringUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
-import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.FeatureBriefcaseTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.DialogWarning;
 import com.zimbra.qa.selenium.projects.ajax.ui.briefcase.PageBriefcase;
@@ -37,19 +35,19 @@ public class SendDocAttachment extends FeatureBriefcaseTest {
 
 	public SendDocAttachment() {
 		logger.info("New " + SendDocAttachment.class.getCanonicalName());
-
 		super.startingPage = app.zPageBriefcase;
-
 		super.startingAccountPreferences.put("zimbraPrefBriefcaseReadingPaneLocation", "bottom");
 	}
 
-	@Test( description = "Create document through SOAP - click Send as attachment, Cancel & verify through GUI", 
+
+	@Test( description = "Create document through SOAP - click Send as attachment, Cancel & verify through GUI",
 			groups = { "functional", "L2" })
+
 	public void SendDocAttachment_01() throws HarnessException {
+
 		ZimbraAccount account = app.zGetActiveAccount();
 
-		FolderItem briefcaseFolder = FolderItem.importFromSOAP(account,
-				SystemFolder.Briefcase);
+		FolderItem briefcaseFolder = FolderItem.importFromSOAP(account, SystemFolder.Briefcase);
 
 		// Create document item
 		DocumentItem docItem = new DocumentItem();
@@ -58,11 +56,9 @@ public class SendDocAttachment extends FeatureBriefcaseTest {
 		String docText = docItem.getDocText();
 
 		// Create document using SOAP
-		String contentHTML = XmlStringUtil.escapeXml("<html>" + "<body>"
-				+ docText + "</body>" + "</html>");
+		String contentHTML = XmlStringUtil.escapeXml("<html>" + "<body>" + docText + "</body>" + "</html>");
 
-		account
-				.soapSend("<SaveDocumentRequest requestId='0' xmlns='urn:zimbraMail'>"
+		account.soapSend("<SaveDocumentRequest requestId='0' xmlns='urn:zimbraMail'>"
 						+ "<doc name='"
 						+ docName
 						+ "' l='"
@@ -74,21 +70,15 @@ public class SendDocAttachment extends FeatureBriefcaseTest {
 						+ "</doc>"
 						+ "</SaveDocumentRequest>");
 
-		// refresh briefcase page
+		// Select briefcase folder
 		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseFolder, true);
-
-		SleepUtil.sleepVerySmall();
 
 		// Click on created document
 		app.zPageBriefcase.zListItem(Action.A_LEFTCLICK, docItem);
 
 		// Click on Send as attachment
 		FormMailNew mailform;
-		if (ConfigProperties.zimbraGetVersionString().contains("7.1."))
-			mailform = (FormMailNew) app.zPageBriefcase.zToolbarPressPulldown(
-					Button.B_SEND, Button.O_SEND_AS_ATTACHMENT, docItem);
-		else
-			mailform = (FormMailNew) app.zPageBriefcase.zToolbarPressPulldown(
+		mailform = (FormMailNew) app.zPageBriefcase.zToolbarPressPulldown(
 					Button.B_ACTIONS, Button.O_SEND_AS_ATTACHMENT, docItem);
 
 		// Verify the new mail form has attachment
@@ -104,7 +94,7 @@ public class SendDocAttachment extends FeatureBriefcaseTest {
 		ZAssert.assertNotNull(warningDlg, "Verify the dialog is returned");
 
 		// Dismiss the dialog
-		//warningDlg.zClickButton(Button.B_NO);		
+		//warningDlg.zClickButton(Button.B_NO);
 		// Click No on warning dialog
 		app.zPageBriefcase.zClick("//div[@id='YesNoCancel']//td[contains(@id,'No_')]//td[contains(@id,'_title')]");
 
@@ -112,17 +102,19 @@ public class SendDocAttachment extends FeatureBriefcaseTest {
 		// Make sure the dialog is dismissed
 		warningDlg.zWaitForClose();
 
-		// delete document upon test completion
+		// Delete document upon test completion
 		app.zPageBriefcase.deleteFileByName(docItem.getName());
 	}
 
-	@Test( description = "Send document as attachment using Right Click Context Menu & verify through GUI", 
+
+	@Test( description = "Send document as attachment using Right Click Context Menu & verify through GUI",
 			groups = { "functional", "L2" })
+
 	public void SendDocAttachment_02() throws HarnessException {
+
 		ZimbraAccount account = app.zGetActiveAccount();
 
-		FolderItem briefcaseFolder = FolderItem.importFromSOAP(account,
-				SystemFolder.Briefcase);
+		FolderItem briefcaseFolder = FolderItem.importFromSOAP(account, SystemFolder.Briefcase);
 
 		// Create document item
 		DocumentItem docItem = new DocumentItem();
@@ -131,11 +123,9 @@ public class SendDocAttachment extends FeatureBriefcaseTest {
 		String docText = docItem.getDocText();
 
 		// Create document using SOAP
-		String contentHTML = XmlStringUtil.escapeXml("<html>" + "<body>"
-				+ docText + "</body>" + "</html>");
+		String contentHTML = XmlStringUtil.escapeXml("<html>" + "<body>" + docText + "</body>" + "</html>");
 
-		account
-				.soapSend("<SaveDocumentRequest requestId='0' xmlns='urn:zimbraMail'>"
+		account.soapSend("<SaveDocumentRequest requestId='0' xmlns='urn:zimbraMail'>"
 						+ "<doc name='"
 						+ docName
 						+ "' l='"
@@ -147,12 +137,8 @@ public class SendDocAttachment extends FeatureBriefcaseTest {
 						+ "</doc>"
 						+ "</SaveDocumentRequest>");
 
-		// SleepUtil.sleepVerySmall();
-
-		// refresh briefcase page
+		// Select briefcase folder
 		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseFolder, true);
-
-		SleepUtil.sleepVerySmall();
 
 		// Click on created document
 		app.zPageBriefcase.zListItem(Action.A_LEFTCLICK, docItem);
@@ -168,20 +154,18 @@ public class SendDocAttachment extends FeatureBriefcaseTest {
 
 		// Cancel the message
 		// A warning dialog should appear regarding losing changes
-		DialogWarning warningDlg = (DialogWarning) mailform
-				.zToolbarPressButton(Button.B_CANCEL);
+		DialogWarning warningDlg = (DialogWarning) mailform.zToolbarPressButton(Button.B_CANCEL);
 
 		ZAssert.assertNotNull(warningDlg, "Verify the dialog is returned");
 
 		// Dismiss the dialog
-		//warningDlg.zClickButton(Button.B_NO);		
+		//warningDlg.zClickButton(Button.B_NO);
 		// Click No on warning dialog
 		app.zPageBriefcase.zClick("//div[@id='YesNoCancel']//td[contains(@id,'No_')]//td[contains(@id,'_title')]");
 
-
 		warningDlg.zWaitForClose(); // Make sure the dialog is dismissed
 
-		// delete document upon test completion
+		// Delete document upon test completion
 		app.zPageBriefcase.deleteFileByName(docItem.getName());
 	}
 }

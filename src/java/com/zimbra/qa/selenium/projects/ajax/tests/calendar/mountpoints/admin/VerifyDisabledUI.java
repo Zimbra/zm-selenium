@@ -34,7 +34,7 @@ public class VerifyDisabledUI extends AjaxCommonTest {
 
 	@Bugs(ids = "82558")
 	@Test( description = "Verify 'Share Calendar' menu & 'Reply' menu remains enabled on mountpoint appointment (admin share)",
-			groups = { "functional","L5" })
+			groups = { "functional","application-bug" })
 
 	public void VerifyDisabledUI_01() throws HarnessException {
 

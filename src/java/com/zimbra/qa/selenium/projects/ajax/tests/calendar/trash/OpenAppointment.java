@@ -41,8 +41,7 @@ public class OpenAppointment extends AjaxCommonTest {
 
 	public void OpenAppointment_01() throws HarnessException {
 
-		// Create the appointment on the server
-		// Create the message data to be sent
+		// Appointment data
 		String apptSubject = ConfigProperties.getUniqueString();
 		String location = "location" + ConfigProperties.getUniqueString();
 		String content = "content" + ConfigProperties.getUniqueString();

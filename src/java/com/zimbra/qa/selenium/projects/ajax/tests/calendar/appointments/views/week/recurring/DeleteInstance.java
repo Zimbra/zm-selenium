@@ -47,8 +47,6 @@ public class DeleteInstance extends AjaxCommonTest {
 
 	public void DeleteInstance_01() throws HarnessException {
 
-		//-- Data Setup
-
 		// Appointment data
 		String tz, apptSubject, apptBody;
 		tz = ZTimeZone.getLocalTimeZone().getID();
@@ -92,8 +90,6 @@ public class DeleteInstance extends AjaxCommonTest {
         DialogWarning confirmDelete = (DialogWarning)dialogSeriesOrInstance.zClickButton(Button.B_OK);
         confirmDelete.zClickButton(Button.B_YES);
 
-        //-- Verification
-
 		// On the server, verify the appointment is in the trash
 		app.zGetActiveAccount().soapSend(
 				"<SearchRequest xmlns='urn:zimbraMail' types='appointment' calExpandInstStart='"+ startTime.addDays(-7).toMillis() +"' calExpandInstEnd='"+ endTime.addDays(7).toMillis() +"'>"
@@ -125,8 +121,6 @@ public class DeleteInstance extends AjaxCommonTest {
 			groups = { "functional", "L3" } )
 
 	public void DeleteInstance_02() throws HarnessException {
-
-		//-- Data Setup
 
 		// Appointment data
 		String tz, apptSubject, apptBody;
@@ -168,8 +162,6 @@ public class DeleteInstance extends AjaxCommonTest {
 
         DialogWarning dialogSeriesOrInstance = (DialogWarning)app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_INSTANCE_MENU, Button.O_DELETE_MENU, apptSubject);;
         dialogSeriesOrInstance.zClickButton(Button.B_YES);
-
-        //-- Verification
 
 		// On the server, verify the appointment is in the trash
 		app.zGetActiveAccount().soapSend(
@@ -213,8 +205,6 @@ public class DeleteInstance extends AjaxCommonTest {
 
 	public void DeleteInstance_03(String name, int keyEvent) throws HarnessException {
 
-		//-- Data Setup
-
 		// Appointment data
 		String tz, apptSubject, apptBody;
 		tz = ZTimeZone.getLocalTimeZone().getID();
@@ -257,8 +247,6 @@ public class DeleteInstance extends AjaxCommonTest {
         dialogSeriesOrInstance.zClickButton(Button.B_DELETE_THIS_INSTANCE);
         DialogWarning confirmDelete = (DialogWarning)dialogSeriesOrInstance.zClickButton(Button.B_OK);
         confirmDelete.zClickButton(Button.B_YES);
-
-        //-- Verification
 
 		// On the server, verify the appointment is in the trash
 		app.zGetActiveAccount().soapSend(

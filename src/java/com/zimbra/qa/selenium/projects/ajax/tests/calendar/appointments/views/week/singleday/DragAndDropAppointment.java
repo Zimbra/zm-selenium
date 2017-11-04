@@ -27,23 +27,21 @@ import com.zimbra.qa.selenium.projects.ajax.core.*;
 
 public class DragAndDropAppointment extends AjaxCommonTest {
 
-
 	public DragAndDropAppointment() {
 		logger.info("New "+ DragAndDropAppointment.class.getCanonicalName());
 
-		// All tests start at the Calendar page
 		super.startingPage = app.zPageCalendar;
-
-		// Make sure we are using an account with week view
 		super.startingAccountPreferences = new HashMap<String, String>() {
-			private static final long serialVersionUID = -2913827779459595178L;
-		{
-		    put("zimbraPrefCalendarInitialView", "week");
-		}};
+			private static final long serialVersionUID = -2913827779459595178L; {
+				put("zimbraPrefCalendarInitialView", "week");
+			}
+		};
 	}
 
+	
 	@Test( description = "Drag and Drop a appointment from calendar to different calendar in week view",
 			groups = { "smoke", "L3" })
+	
 	public void DragAndDropAppointment_01() throws HarnessException {
 
 		String foldername = "folder"+ ConfigProperties.getUniqueString();
@@ -93,20 +91,16 @@ public class DragAndDropAppointment extends AjaxCommonTest {
 					"css=div[id^='zli__CLW__"+ apptId +"'] td.appt_name", // <div id="zli__CLWW__263_DWT114" .../>
 					"css=td[id='zti__main_Calendar__"+ subcalendarFolder.getId() + "_textCell']"); // <div id="zti__main_Calendar__273_textCell" .../>
 
-
-
-
-		//-- Server verification
+		// Server verification
 		AppointmentItem newAppointment = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ apptSubject +")");
-
 		ZAssert.assertEquals(newAppointment.getFolder(), subcalendarFolder.getId(), "Verify the appointment moved folders");
-
 	}
 
+	
 	@Test( description = "Drag and Drop a appointment from one time to a different time in week view",
 			groups = { "smoke", "L3" })
+	
 	public void DragAndDropAppointment_02() throws HarnessException {
-
 
 		// We need to create two appointments to make a locator to drag and drop to.
 		// Steps:
@@ -170,29 +164,24 @@ public class DragAndDropAppointment extends AjaxCommonTest {
 
         // Verify appointment exists in current view
         ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
-
 		SleepUtil.sleepMedium();
 
+		// Drag and drop the item
+		String sourceLocator = "css=div[id^='zli__CLW__"+ apptId +"'] td.appt_name";
+		String destinationLocator = "css=div[id^='zli__CLW__"+ otherApptId +"'] td.appt_name";
+		
+		app.zPageCalendar.zDragAndDropBy(sourceLocator,destinationLocator,0,10);
 
-		// drag and drop the item
-        	String sourceLocator = "css=div[id^='zli__CLW__"+ apptId +"'] td.appt_name";
-        	String destinationLocator = "css=div[id^='zli__CLW__"+ otherApptId +"'] td.appt_name";
-
-        	app.zPageCalendar.zDragAndDropBy(sourceLocator,destinationLocator,0,10);
-
-		//-- Server verification
+		// Server verification
 
 		// Make sure the time has changed
 		// (It is difficult to know for certain what time is correct.  For
 		// now, just make sure it was moved somewhere.)
-        app.zGetActiveAccount().soapSend(
-        		"<GetAppointmentRequest id='"+ apptId + "' xmlns='urn:zimbraMail'/>");
+        app.zGetActiveAccount().soapSend("<GetAppointmentRequest id='"+ apptId + "' xmlns='urn:zimbraMail'/>");
         String s1 = app.zGetActiveAccount().soapSelectValue("//mail:s", "d");
         String e2 = app.zGetActiveAccount().soapSelectValue("//mail:e", "d");
 
 		ZAssert.assertStringDoesNotContain(s1, s, "Verify the start time changed");
 		ZAssert.assertStringDoesNotContain(e2, e, "Verify the end time changed");
-
 	}
-
 }

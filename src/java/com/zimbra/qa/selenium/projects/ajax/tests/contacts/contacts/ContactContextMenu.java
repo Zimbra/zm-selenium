@@ -131,7 +131,7 @@ public class ContactContextMenu extends AjaxCommonTest {
 	}
 
 	@Test(description = "Right click then click Advanced Search", 
-			groups = { "deprecated", "L4"})
+			groups = { "deprecated"})
 	public void AdvancedSearch_03() throws HarnessException {
 
 		ContactItem contactItem = createSelectARandomContactItem();
@@ -148,7 +148,7 @@ public class ContactContextMenu extends AjaxCommonTest {
 	}
 
 	@Test(description = "Right click then click Print", 
-			groups = { "smoke-skip", "L4" })
+			groups = { "smoke-skip", "L3-skip" })
 	public void Print_04() throws HarnessException {
 		ContactItem contactItem = createSelectARandomContactItem();
 

@@ -133,7 +133,8 @@ public class DeleteFolder extends AjaxCommonTest {
 
 	@Bugs(ids = "103601")
 	@Test(description = "Delete an addressbook folder- Use shortcut Del", 
-	groups = { "functional", "L5"})
+			groups = { "functional", "application-bug"})
+
 	public void UseShortcutDel_04() throws HarnessException {
 
 		// -- Data

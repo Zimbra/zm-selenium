@@ -46,7 +46,7 @@ public class CreateResource extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Create a basic resource",
-			groups = { "obsolete", "L4" })
+			groups = { "functional-skip", "L3-skip" })
 			public void CreateResource_01() throws HarnessException {
 
 		// Create a new resource in the Admin Console
@@ -80,7 +80,7 @@ public class CreateResource extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Create a basic resource using Manage Accounts --> Resources --> Gear box --> New",
-			groups = { "obsolete", "L4" })
+			groups = { "functional-skip", "L3-skip" })
 			public void CreateResource_02() throws HarnessException {
 
 		// Create a new resource in the Admin Console

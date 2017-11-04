@@ -141,7 +141,7 @@ public class DeleteCos extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Verify delete cos operation -- Search list view",
-			groups = { "obsolete", "L4" })
+			groups = { "functional-skip", "L3-skip" })
 			public void functional() throws HarnessException {
 
 		// Create a new cos in the Admin Console using SOAP
@@ -196,7 +196,7 @@ public class DeleteCos extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test( description = "Verify delete cos in -- Search list view/Right click menu",
-			groups = { "obsolete", "L4" })
+			groups = { "functional-skip", "L3-skip" })
 			public void DeleteCos_04() throws HarnessException {
 
 		// Create a new cos in the Admin Console using SOAP

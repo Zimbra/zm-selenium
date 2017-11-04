@@ -56,7 +56,7 @@ public class CreateTask extends AjaxCommonTest {
  * @throws HarnessException
  */
 	@Test( description = "Create Task using assistant", 
-			groups = { "deprecated", "L4"})
+			groups = { "deprecated"})
 	public void CreateTask_01() throws HarnessException {
 		String subject = "subject" + ConfigProperties.getUniqueString();
 		String command = "task \"" + subject + "\" Notes(hello)";
@@ -87,7 +87,7 @@ public class CreateTask extends AjaxCommonTest {
 	 */
 		@Bugs(ids="63199")
 		@Test( description = "Create Task using assistant and save it", 
-			groups = { "deprecated", "L4"})
+			groups = { "deprecated"})
 		public void CreateTask_02() throws HarnessException {
 			String subject = "subject" + ConfigProperties.getUniqueString();
 			String command = "task \"" + subject + "\" Notes(hello)";

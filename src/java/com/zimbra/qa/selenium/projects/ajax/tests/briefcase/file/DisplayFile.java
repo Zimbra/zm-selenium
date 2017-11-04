@@ -17,7 +17,6 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.briefcase.file;
 
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.FileItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
@@ -33,23 +32,23 @@ public class DisplayFile extends FeatureBriefcaseTest {
 
 	public DisplayFile() {
 		logger.info("New " + DisplayFile.class.getCanonicalName());
-
-		super.startingPage = app.zPageBriefcase;		
+		super.startingPage = app.zPageBriefcase;
 		super.startingAccountPreferences.put("zimbraPrefBriefcaseReadingPaneLocation", "bottom");
 		super.startingAccountPreferences.put("zimbraPrefShowSelectionCheckbox","TRUE");
 	}
 
-	@Test( description = "Upload file through RestUtil - verify through GUI", 
+
+	@Test( description = "Upload file through RestUtil - verify through GUI",
 			groups = { "smoke", "L0" })
+
 	public void DisplayFile_01() throws HarnessException {
+
 		ZimbraAccount account = app.zGetActiveAccount();
 
-		FolderItem briefcaseFolder = FolderItem.importFromSOAP(account,
-				SystemFolder.Briefcase);
+		FolderItem briefcaseFolder = FolderItem.importFromSOAP(account, SystemFolder.Briefcase);
 
 		// Create file item
-		String filePath = ConfigProperties.getBaseDirectory()
-				+ "/data/public/other/testtextfile.txt";
+		String filePath = ConfigProperties.getBaseDirectory() + "/data/public/other/testtextfile.txt";
 
 		FileItem file = new FileItem(filePath);
 
@@ -63,51 +62,42 @@ public class DisplayFile extends FeatureBriefcaseTest {
 				+ "<doc l='" + briefcaseFolder.getId() + "'><upload id='"
 				+ attachmentId + "'/></doc></SaveDocumentRequest>");
 
-		// refresh briefcase page
+		// Select briefcase folder
 		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseFolder, true);
 
 		// Verify document is created
 		String name = app.zPageBriefcase.getItemNameFromListView(fileName);
 		ZAssert.assertStringContains(name, fileName, "Verify file name through GUI");
-
-		// boolean present = app.zPageBriefcase.isPresent(docName);
-		// ZAssert.assertTrue(present, "Verify document name through GUI");
-
 	}
 
+
 	@Bugs(ids = "79994")
-	@Test( description = " german umlauts breaks briefcase", 
-	groups = { "deprecate", "L4" })
+	@Test( description = " german umlauts breaks briefcase",
+			groups = { "functional-skip", "L3-skip" })
+
 	public void DisplayFile_02() throws HarnessException {
+
 		ZimbraAccount account = app.zGetActiveAccount();
 
-		FolderItem briefcaseFolder = FolderItem.importFromSOAP(account,
-				SystemFolder.Briefcase);
+		FolderItem briefcaseFolder = FolderItem.importFromSOAP(account, SystemFolder.Briefcase);
 
 		// Create file item
-		String filePath = ConfigProperties.getBaseDirectory()
-				+ "/data/public/other/testäöütest.txt";
-
+		String filePath = ConfigProperties.getBaseDirectory() + "/data/public/other/testäöütest.txt";
 		String subject = "test???test.txt";
 
 		// Upload file to server through RestUtil
 		String attachmentId = account.uploadFile(filePath);
 
 		// Save uploaded file to briefcase through SOAP
-		account.soapSend("<SaveDocumentRequest xmlns='urn:zimbraMail'>"
-				+ "<doc l='" + briefcaseFolder.getId() + "'><upload id='"
-				+ attachmentId + "'/></doc></SaveDocumentRequest>");
+		account.soapSend("<SaveDocumentRequest xmlns='urn:zimbraMail'>" + "<doc l='" + briefcaseFolder.getId()
+				+ "'><upload id='" + attachmentId + "'/></doc></SaveDocumentRequest>");
 
-		// refresh briefcase page
+		// Select briefcase folder
 		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseFolder, true);
 
 		// Verify document is created
 		String name = app.zPageBriefcase.getItemNameFromListView(subject);
 		ZAssert.assertStringContains(name, subject, "Verify file name through GUI");
 		app.zPageBriefcase.zListItem(Action.A_BRIEFCASE_CHECKBOX, subject);
-		
-		
-
 	}
-	
 }

@@ -26,7 +26,6 @@ import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.OperatingSystem;
-import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
@@ -41,10 +40,12 @@ public class UploadFile extends FeatureBriefcaseTest {
 		super.startingAccountPreferences.put("zimbraPrefShowSelectionCheckbox","TRUE");
 	}
 
-	@Test( description = "Upload file through RestUtil - verify through GUI", 
+
+	@Test( description = "Upload file through RestUtil - verify through GUI",
 			groups = { "sanity", "L0" })
-	
+
 	public void UploadFile_01() throws HarnessException {
+
 		ZimbraAccount account = app.zGetActiveAccount();
 
 		FolderItem briefcaseFolder = FolderItem.importFromSOAP(account,	SystemFolder.Briefcase);
@@ -64,20 +65,21 @@ public class UploadFile extends FeatureBriefcaseTest {
 				+ "<doc l='" + briefcaseFolder.getId() + "'><upload id='"
 				+ attachmentId + "'/></doc></SaveDocumentRequest>");
 
-		// refresh briefcase page
+		// Select briefcase folder
 		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseFolder, true);
 
 		// Verify document is created
 		String name = app.zPageBriefcase.getItemNameFromListView(fileName);
 		ZAssert.assertStringContains(name, fileName, "Verify file name through GUI");
 
-		// delete file upon test completion
+		// Delete file upon test completion
 		app.zPageBriefcase.deleteFileByName(fileItem.getName());
 	}
 
-	@Test( description = "Upload file through GUI - verify through GUI", 
+
+	@Test( description = "Upload file through GUI - verify through GUI",
 			groups = { "sanity", "L0" })
-	
+
 	public void UploadFile_02() throws HarnessException {
 
 		if (OperatingSystem.isWindows() == true && !ConfigProperties.getStringProperty("browser").contains("edge")) {
@@ -91,16 +93,14 @@ public class UploadFile extends FeatureBriefcaseTest {
 				// Create file item
 				final String fileName = "testtextfile.txt";
 				final String filePath = ConfigProperties.getBaseDirectory() + "\\data\\public\\other\\" + fileName;
-
 				FileItem fileItem = new FileItem(filePath);
 
-				// refresh briefcase page
+				// Select briefcase folder
 				app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseFolder, false);
 
 				// Click on Upload File button in the Toolbar
 				DialogUploadFile dlg = (DialogUploadFile) app.zPageBriefcase.zToolbarPressButton(Button.B_UPLOAD_FILE, fileItem);
 
-				SleepUtil.sleepMedium();
 				app.zPageBriefcase.sClickAt("css=div[class='ZmUploadDialog'] input[name='uploadFile']", "10,10");
 
 				zUpload(filePath);
@@ -115,29 +115,27 @@ public class UploadFile extends FeatureBriefcaseTest {
 				ZAssert.assertStringContains(name, fileName, "Verify file name through GUI");
 
 			} finally {
-
 				app.zPageMain.zKeyboardKeyEvent(KeyEvent.VK_ESCAPE);
-
 			}
 
 		} else {
 			throw new SkipException("File upload operation is allowed only for Windows OS (Skipping upload tests on MS Edge for now due to intermittancy and major control issue), skipping this test...");
 		}
-
 	}
 
-	@Test( description = "Upload file through RestUtil - verify through SOAP", 
+
+	@Test( description = "Upload file through RestUtil - verify through SOAP",
 			groups = { "smoke", "L1" })
+
 	public void UploadFile_03() throws HarnessException {
+
 		ZimbraAccount account = app.zGetActiveAccount();
 
 		FolderItem briefcaseFolder = FolderItem.importFromSOAP(account, SystemFolder.Briefcase);
 
 		// Create file item
 		String filePath = ConfigProperties.getBaseDirectory() + "/data/public/other/testtextfile.txt";
-
 		FileItem file = new FileItem(filePath);
-
 		String fileName = file.getName();
 
 		// Upload file to server through RestUtil
@@ -145,20 +143,14 @@ public class UploadFile extends FeatureBriefcaseTest {
 
 		// Save uploaded file to briefcase through SOAP
 		account.soapSend(
-
-		"<SaveDocumentRequest xmlns='urn:zimbraMail'>" +
-
-		"<doc l='" + briefcaseFolder.getId() + "'>" +
-
-		"<upload id='" + attachmentId + "'/>" +
-
-		"</doc>" +
-
-		"</SaveDocumentRequest>");
+				"<SaveDocumentRequest xmlns='urn:zimbraMail'>" +
+					"<doc l='" + briefcaseFolder.getId() + "'>" +
+					"<upload id='" + attachmentId + "'/></doc>" +
+				"</SaveDocumentRequest>");
 
 		account.soapSelectNode("//mail:SaveDocumentResponse", 1);
 
-		// search the uploaded file
+		// Search the uploaded file
 		app.zGetActiveAccount().soapSend(
 				"<SearchRequest xmlns='urn:zimbraMail' types='document'>"
 						+ "<query>" + fileName + "</query>"
@@ -168,9 +160,8 @@ public class UploadFile extends FeatureBriefcaseTest {
 		String name = account.soapSelectValue("//mail:doc", "name");
 		ZAssert.assertEquals(name, fileName, "Verify file name through SOAP");
 
-		//delete file upon test completion
+		// Delete file upon test completion
 		String id = account.soapSelectValue("//mail:doc", "id");
 		app.zPageBriefcase.deleteFileById(id);
 	}
-
 }

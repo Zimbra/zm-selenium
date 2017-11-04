@@ -37,7 +37,7 @@ public class CreateMeetingWithLocationConflict extends AjaxCommonTest {
 
 	@Bugs(ids = "102271")
 	@Test( description = "Verify sending appt invite when Location resource has conflicts shows conflict dialog",
-			groups = { "functional", "L5"})
+			groups = { "functional", "application-bug"})
 
 	public void CreateMeetingWithLocationConflict_01() throws HarnessException {
 

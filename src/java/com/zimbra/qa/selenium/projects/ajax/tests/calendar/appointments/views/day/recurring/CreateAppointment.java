@@ -44,8 +44,6 @@ public class CreateAppointment extends AjaxCommonTest {
 
 	public void CreateRecurringAppointment_01() throws HarnessException {
 
-		//-- Data Setup
-
 		// Appointment data
 		ZDate startTime, endTime;
 		AppointmentItem appt = new AppointmentItem();
@@ -61,13 +59,10 @@ public class CreateAppointment extends AjaxCommonTest {
 		appt.setEndTime(endTime);
 		appt.setRecurring("EVERYDAY", "");
 
-
 		// Create series appointment
 		FormApptNew apptForm = (FormApptNew) app.zPageCalendar.zToolbarPressButton(Button.B_NEW);
 		apptForm.zFill(appt);
 		apptForm.zSubmit();
-
-		//-- Data Verification
 
 		// Verify the new appointment exists on the server
 		AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ appt.getSubject() +")", appt.getStartTime().addDays(-7), appt.getEndTime().addDays(7));

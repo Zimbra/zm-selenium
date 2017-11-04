@@ -21,9 +21,7 @@ import com.zimbra.qa.selenium.framework.items.DocumentItem;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.ui.Shortcut;
-
 import com.zimbra.qa.selenium.framework.util.HarnessException;
-import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.XmlStringUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
@@ -42,9 +40,12 @@ public class MoveDocument extends FeatureBriefcaseTest {
 		super.startingAccountPreferences.put("zimbraPrefBriefcaseReadingPaneLocation", "bottom");
 	}
 
-	@Test(description = "Create document through SOAP - move & verify through GUI", 
+
+	@Test(description = "Create document through SOAP - move & verify through GUI",
 			groups = { "smoke", "L0" })
+
 	public void MoveDocument_01() throws HarnessException {
+
 		ZimbraAccount account = app.zGetActiveAccount();
 
 		FolderItem briefcaseFolder = FolderItem.importFromSOAP(account, SystemFolder.Briefcase);
@@ -59,10 +60,10 @@ public class MoveDocument extends FeatureBriefcaseTest {
 
 		FolderItem subFolderItem = FolderItem.importFromSOAP(account, name);
 
-		// refresh briefcase page
+		// Select briefcase folder
 		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseFolder, true);
 
-		// double click on created subfolder
+		// Double Click on created subfolder
 		app.zPageBriefcase.zListItem(Action.A_DOUBLECLICK, subFolderItem);
 
 		// Create document item
@@ -78,40 +79,23 @@ public class MoveDocument extends FeatureBriefcaseTest {
 
 		// document.importFromSOAP(account, document.getDocName());
 
-		// refresh briefcase page
+		// Select briefcase folder
 		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseFolder, true);
-
-		SleepUtil.sleepVerySmall();
 
 		// Click on created document
 		app.zPageBriefcase.zListItem(Action.A_LEFTCLICK, docItem);
 
-		// Click on 'Move selected item' icon in toolbar
-		if (ConfigProperties.zimbraGetVersionString().contains("7.2.")) {
-			DialogMove chooseFolder = (DialogMove) app.zPageBriefcase.zToolbarPressButton(Button.B_MOVE, docItem);
+		// Click move -> subfolder
+		app.zPageBriefcase.zToolbarPressPulldown(Button.B_MOVE, subFolderItem);
 
-			// Choose folder on Confirmation dialog
-			chooseFolder.zClickTreeFolder(subFolderItem);
-
-			// Click OK on Confirmation dialog
-			app.zPageBriefcase.zClick(
-					"//div[@id='ChooseFolderDialog_buttons']//td[contains(@id,'OK_')]//td[contains(@id,'_title')]");
-		} else {
-			// Click move -> subfolder
-			app.zPageBriefcase.zToolbarPressPulldown(Button.B_MOVE, subFolderItem);
-
-		}
-
-		// refresh briefcase page
+		// Select briefcase folder
 		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseFolder, false);
 
 		// Verify document was moved from the folder
 		ZAssert.assertFalse(app.zPageBriefcase.isPresentInListView(docItem.getName()),
 				"Verify document was moved from the folder");
 
-		SleepUtil.sleepVerySmall();
-
-		// click on subfolder in tree view
+		// Click on subfolder in tree view
 		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, subFolderItem, true);
 
 		// Verify document was moved to the selected folder
@@ -119,9 +103,12 @@ public class MoveDocument extends FeatureBriefcaseTest {
 				"Verify document was moved to the selected folder");
 	}
 
-	@Test(description = "Move Document using 'm' keyboard shortcut", 
+
+	@Test(description = "Move Document using 'm' keyboard shortcut",
 			groups = { "functional", "L3" })
+
 	public void MoveDocument_02() throws HarnessException {
+
 		ZimbraAccount account = app.zGetActiveAccount();
 
 		FolderItem briefcaseRootFolder = FolderItem.importFromSOAP(account, SystemFolder.Briefcase);
@@ -143,7 +130,7 @@ public class MoveDocument extends FeatureBriefcaseTest {
 			subFolders[i] = FolderItem.importFromSOAP(account, subFolderNames[i]);
 		}
 
-		// refresh briefcase page
+		// Select briefcase folder
 		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseRootFolder, true);
 
 		// Create document item
@@ -157,17 +144,11 @@ public class MoveDocument extends FeatureBriefcaseTest {
 				+ docItem.getName() + "' l='" + subFolders[0].getId() + "' ct='application/x-zimbra-doc'>" + "<content>"
 				+ contentHTML + "</content>" + "</doc>" + "</SaveDocumentRequest>");
 
-		// refresh briefcase page
+		// Select briefcase folder
 		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseRootFolder, true);
 
-		// double-click on sub-folder1 in list view
+		// Double click on sub-folder1 in list view
 		app.zPageBriefcase.zListItem(Action.A_DOUBLECLICK, subFolders[0]);
-
-		// click on sub-folder1 in tree view to refresh view
-		// app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, subFolders[0],
-		// true);
-
-		SleepUtil.sleepVerySmall();
 
 		// Click on created document in list view
 		app.zPageBriefcase.zListItem(Action.A_LEFTCLICK, docItem);
@@ -184,21 +165,17 @@ public class MoveDocument extends FeatureBriefcaseTest {
 
 		// app.zPageBriefcase.zClickAt("css=div[id=ChooseFolderDialog_button2]","0,0");
 
-		// refresh briefcase page
+		// Select briefcase folder
 		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseRootFolder, true);
 
-		SleepUtil.sleepVerySmall();
-
-		// click on sub-folder1 in tree view
+		// Click on sub-folder1 in tree view
 		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, subFolders[0], false);
 
 		// Verify document is no longer in the sub-folder1
 		ZAssert.assertFalse(app.zPageBriefcase.isPresentInListView(docItem.getName()),
 				"Verify document is no longer in the folder: " + subFolders[0].getName());
 
-		SleepUtil.sleepVerySmall();
-
-		// click on sub-folder2 in tree view
+		// Click on sub-folder2 in tree view
 		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, subFolders[1], true);
 
 		// Verify document was moved to sub-folder2
@@ -206,10 +183,12 @@ public class MoveDocument extends FeatureBriefcaseTest {
 				"Verify document was moved to the folder: " + subFolders[1].getName());
 	}
 
-	@Test(description = "Create document through SOAP - move using Right Click Context Menu & verify through GUI", 
+
+	@Test(description = "Create document through SOAP - move using Right Click Context Menu & verify through GUI",
 			groups = {"functional", "L3" })
 
 	public void MoveDocument_03() throws HarnessException {
+
 		ZimbraAccount account = app.zGetActiveAccount();
 
 		FolderItem briefcaseFolder = FolderItem.importFromSOAP(account, SystemFolder.Briefcase);
@@ -224,10 +203,10 @@ public class MoveDocument extends FeatureBriefcaseTest {
 
 		FolderItem subFolderItem = FolderItem.importFromSOAP(account, name);
 
-		// refresh briefcase page
+		// Select briefcase folder
 		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseFolder, true);
 
-		// double click on created subfolder
+		// Double Click on created subfolder
 		app.zPageBriefcase.zListItem(Action.A_DOUBLECLICK, subFolderItem);
 
 		// Create document item
@@ -241,12 +220,8 @@ public class MoveDocument extends FeatureBriefcaseTest {
 				+ docItem.getName() + "' l='" + briefcaseFolderId + "' ct='application/x-zimbra-doc'>" + "<content>"
 				+ contentHTML + "</content>" + "</doc>" + "</SaveDocumentRequest>");
 
-		// document.importFromSOAP(account, document.getDocName());
-
-		// refresh briefcase page
+		// Select briefcase folder
 		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseFolder, true);
-
-		SleepUtil.sleepVerySmall();
 
 		// Click on created document
 		app.zPageBriefcase.zListItem(Action.A_LEFTCLICK, docItem);
@@ -262,16 +237,14 @@ public class MoveDocument extends FeatureBriefcaseTest {
 		app.zPageBriefcase
 				.zClick("//div[@id='ChooseFolderDialog_buttons']//td[contains(@id,'OK_')]//td[contains(@id,'_title')]");
 
-		// refresh briefcase page
+		// Select briefcase folder
 		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseFolder, false);
 
 		// Verify document was moved from the folder
 		ZAssert.assertFalse(app.zPageBriefcase.isPresentInListView(docItem.getName()),
 				"Verify document was moved from the folder");
 
-		SleepUtil.sleepVerySmall();
-
-		// click on subfolder in tree view
+		// Click on subfolder in tree view
 		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, subFolderItem, true);
 
 		// Verify document was moved to the selected folder

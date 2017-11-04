@@ -131,9 +131,6 @@ public class WeeklyEveryXdayEndByY extends AjaxCommonTest {
 		MailItem invite = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "subject:("+ appt.getSubject() +")");
 		ZAssert.assertNotNull(invite, "Verify the invite is received");
 		ZAssert.assertEquals(invite.dSubject, appt.getSubject(), "Subject: Verify the appointment data");
-		
-		// Switch to week view and verify correct number of recurring instances
-		app.zPageCalendar.zToolbarPressButton(Button.B_WEEK_VIEW);
 
 		// Go to next week and verify correct number of recurring instances
 		int getNoOfInstances = 0;

@@ -17,7 +17,6 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.briefcase.tags;
 
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.*;
@@ -32,11 +31,12 @@ public class CreateTag extends FeatureBriefcaseTest {
 		super.startingPage = app.zPageBriefcase;
 	}
 
-	
-	@Test(description = "Create a new tag by clicking 'new tag' on folder tree", 
+
+	@Test(description = "Create a new tag by clicking 'new tag' on folder tree",
 			groups = { "functional", "L2" })
 
 	public void CreateTag_01() throws HarnessException {
+
 		ZimbraAccount account = app.zGetActiveAccount();
 
 		// Set the new tag name
@@ -57,11 +57,12 @@ public class CreateTag extends FeatureBriefcaseTest {
 		ZAssert.assertEquals(tag.getName(), name, "Verify the server and client tag names match");
 	}
 
-	
-	@Test(description = "Create a new tag using keyboard shortcuts", 
+
+	@Test(description = "Create a new tag using keyboard shortcuts",
 			groups = { "functional", "L3" })
 
 	public void CreateTag_02() throws HarnessException {
+
 		ZimbraAccount account = app.zGetActiveAccount();
 
 		FolderItem briefcaseFolder = FolderItem.importFromSOAP(account, SystemFolder.Briefcase);
@@ -71,7 +72,7 @@ public class CreateTag extends FeatureBriefcaseTest {
 		// Set the new tag name
 		String name = "tag" + ConfigProperties.getUniqueString();
 
-		// refresh briefcase page tags section before creating a new tag
+		// Select briefcase folder tags section before creating a new tag
 		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseFolder, false);
 
 		DialogTag dialog = (DialogTag) app.zPageBriefcase.zKeyboardShortcut(shortcut);
@@ -80,12 +81,9 @@ public class CreateTag extends FeatureBriefcaseTest {
 		SleepUtil.sleepMedium();
 		// Fill out the input field
 		dialog.zSetTagName(name);
-
-		SleepUtil.sleepVerySmall();
-
 		dialog.zClickButton(Button.B_OK);
 
-		// refresh briefcase page tags section after creating a new tag
+		// Select briefcase folder tags section after creating a new tag
 		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseFolder, false);
 
 		// Make sure the tag was created on the server
@@ -98,11 +96,12 @@ public class CreateTag extends FeatureBriefcaseTest {
 		ZAssert.assertEquals(tag.getName(), name, "Verify the server and client tag names match");
 	}
 
-	
-	@Test(description = "Create a new tag using context menu on a tag", 
+
+	@Test(description = "Create a new tag using context menu on a tag",
 			groups = { "functional", "L3" })
 
 	public void CreateTag_03() throws HarnessException {
+
 		ZimbraAccount account = app.zGetActiveAccount();
 
 		FolderItem briefcaseFolder = FolderItem.importFromSOAP(account, SystemFolder.Briefcase);
@@ -118,7 +117,7 @@ public class CreateTag extends FeatureBriefcaseTest {
 		// Get the tag
 		TagItem tag1 = TagItem.importFromSOAP(account, name1);
 
-		// refresh briefcase page tags section before creating a new tag
+		// Select briefcase folder tags section before creating a new tag
 		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseFolder, false);
 
 		// Create a new tag using the context menu + New Tag
@@ -130,7 +129,7 @@ public class CreateTag extends FeatureBriefcaseTest {
 		dialog.zSetTagName(name2);
 		dialog.zClickButton(Button.B_OK);
 
-		// refresh briefcase page tags section after creating a new tag
+		// Select briefcase folder tags section after creating a new tag
 		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseFolder, false);
 
 		// Make sure the tag was created on the server
@@ -140,11 +139,12 @@ public class CreateTag extends FeatureBriefcaseTest {
 		ZAssert.assertEquals(tag2.getName(), name2, "Verify the server and client tag names match");
 	}
 
-	
-	@Test(description = "Create a new tag using briefcase app New -> New Tag", 
+
+	@Test(description = "Create a new tag using briefcase app New -> New Tag",
 			groups = { "functional", "L3" })
 
 	public void CreateTag_04() throws HarnessException {
+
 		ZimbraAccount account = app.zGetActiveAccount();
 
 		FolderItem briefcaseFolder = FolderItem.importFromSOAP(account, SystemFolder.Briefcase);
@@ -152,9 +152,8 @@ public class CreateTag extends FeatureBriefcaseTest {
 		// Set the new tag name
 		String name = "tag" + ConfigProperties.getUniqueString();
 
-		// refresh briefcase page tags section before creating a new tag
+		// Select briefcase folder tags section before creating a new tag
 		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseFolder, false);
-		SleepUtil.sleepVerySmall();
 
 		// Create a new tag in the Briefcase using the New pull down menu + Tag
 		DialogTag dialog = (DialogTag) app.zPageBriefcase.zToolbarPressPulldown(Button.B_NEW, Button.O_NEW_TAG, null);
@@ -165,7 +164,7 @@ public class CreateTag extends FeatureBriefcaseTest {
 		dialog.zSetTagName(name);
 		dialog.zClickButton(Button.B_OK);
 
-		// refresh briefcase page tags section after creating a new tag
+		// Select briefcase folder tags section after creating a new tag
 		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseFolder, false);
 
 		// Make sure the tag was created on the server

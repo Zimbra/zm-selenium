@@ -120,7 +120,6 @@ public class DeleteAppointment extends AjaxCommonTest {
 		dlgConfirm.zWaitForClose();
 
 		ZAssert.assertEquals(app.zPageCalendar.zIsAppointmentExists(apptSubject), false, "Verify appointment is deleted");
-
 	}
 
 
@@ -173,7 +172,7 @@ public class DeleteAppointment extends AjaxCommonTest {
         DialogConfirmDeleteAppointment dlgConfirm = (DialogConfirmDeleteAppointment)app.zPageCalendar.zKeyboardKeyEvent(keyEvent);
 		dlgConfirm.zClickButton(Button.B_YES);
 
-		//-- Verification
+		// Verification
 		app.zGetActiveAccount().soapSend(
 					"<SearchRequest xmlns='urn:zimbraMail' types='appointment' calExpandInstStart='"+ startUTC.addDays(-7).toMillis() +"' calExpandInstEnd='"+ startUTC.addDays(7).toMillis() +"'>"
 				+	"<query>subject:("+ apptSubject +")</query>"

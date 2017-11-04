@@ -46,8 +46,7 @@ public class GetAppointment extends AjaxCommonTest {
 	
 	public void GetAppointment_01() throws HarnessException {
 
-		// Create the appointment on the server
-		// Create the message data to be sent
+		// Appointment data
 		String subject = ConfigProperties.getUniqueString();
 
 		// Absolute dates in UTC zone
@@ -98,8 +97,7 @@ public class GetAppointment extends AjaxCommonTest {
 
 	public void GetAppointment_02() throws HarnessException {
 
-		// Create the appointment on the server
-		// Create the message data to be sent
+		// Appointment data
 		String subject = ConfigProperties.getUniqueString();
 		String location = "location" + ConfigProperties.getUniqueString();
 		String content = "content" + ConfigProperties.getUniqueString();
@@ -144,7 +142,6 @@ public class GetAppointment extends AjaxCommonTest {
 		}
 
 		ZAssert.assertNotNull(found, "Verify the appointment is in the list");
-
 	    ZAssert.assertEquals(found.getGSubject(), subject, "Verify the appointment subject");
 	    ZAssert.assertStringContains(found.getGFragment(), content, "Verify the appointment fragment");
 	    ZAssert.assertEquals(found.getGLocation(), location, "Verify the appointment location");

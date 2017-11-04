@@ -31,28 +31,23 @@ public class TagFile extends FeatureBriefcaseTest {
 
 	public TagFile() throws HarnessException {
 		logger.info("New " + TagFile.class.getCanonicalName());
-
-		// All tests start at the Briefcase page
 		super.startingPage = app.zPageBriefcase;
-
-		//if (ConfigProperties.zimbraGetVersionString().contains("FOSS")) {
-		    super.startingAccountPreferences.put("zimbraPrefShowSelectionCheckbox","TRUE");
-		//}
-			    
+		super.startingAccountPreferences.put("zimbraPrefShowSelectionCheckbox", "TRUE");
 		super.startingAccountPreferences.put("zimbraPrefBriefcaseReadingPaneLocation", "bottom");
 	}
 
-	@Test( description = "Tag a File using Toolbar -> Tag -> New Tag", 
+
+	@Test(description = "Tag a File using Toolbar -> Tag -> New Tag",
 			groups = { "smoke", "L0" })
+
 	public void TagFile_01() throws HarnessException {
+
 		ZimbraAccount account = app.zGetActiveAccount();
 
-		FolderItem briefcaseFolder = FolderItem.importFromSOAP(account,
-				SystemFolder.Briefcase);
+		FolderItem briefcaseFolder = FolderItem.importFromSOAP(account, SystemFolder.Briefcase);
 
 		// Create file item
-		String filePath = ConfigProperties.getBaseDirectory()
-				+ "/data/public/other/testtextfile.txt";
+		String filePath = ConfigProperties.getBaseDirectory() + "/data/public/other/testtextfile.txt";
 
 		FileItem fileItem = new FileItem(filePath);
 
@@ -62,103 +57,64 @@ public class TagFile extends FeatureBriefcaseTest {
 		String attachmentId = account.uploadFile(filePath);
 
 		// Save uploaded file to briefcase through SOAP
-		account.soapSend("<SaveDocumentRequest xmlns='urn:zimbraMail'>"
-				+ "<doc l='" + briefcaseFolder.getId() + "'><upload id='"
-				+ attachmentId + "'/></doc></SaveDocumentRequest>");
+		account.soapSend("<SaveDocumentRequest xmlns='urn:zimbraMail'>" + "<doc l='" + briefcaseFolder.getId()
+				+ "'><upload id='" + attachmentId + "'/></doc></SaveDocumentRequest>");
 
-		// refresh briefcase page
+		// Select briefcase folder
 		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseFolder, true);
 
 		SleepUtil.sleepSmall();
 
 		// Click on created File
 		app.zPageBriefcase.zListItem(Action.A_BRIEFCASE_CHECKBOX, fileItem);
-		/*
-		if (ConfigProperties.zimbraGetVersionString().contains(
-    			"FOSS")) {
-		    app.zPageBriefcase.zListItem(Action.A_BRIEFCASE_CHECKBOX, fileItem);
-
-		} else {
-		    app.zPageBriefcase.zListItem(Action.A_LEFTCLICK, fileItem);
-		}
-		*/
-		// Click on header check box
-		// app.zPageBriefcase.zHeader(Action.A_BRIEFCASE_HEADER_CHECKBOX);
 
 		// Create a tag using GUI
 		String tagName = "tag" + ConfigProperties.getUniqueString();
 
 		// Click on New Tag
-		DialogTag dialogTag = (DialogTag) app.zPageBriefcase
-				.zToolbarPressPulldown(Button.B_TAG, Button.O_TAG_NEWTAG, null);
+		DialogTag dialogTag = (DialogTag) app.zPageBriefcase.zToolbarPressPulldown(Button.B_TAG, Button.O_TAG_NEWTAG,
+				null);
 
 		SleepUtil.sleepSmall();
 		dialogTag.zSetTagName(tagName);
 		dialogTag.zClickButton(Button.B_OK);
 
-		
-
 		// Make sure the tag was created on the server (get the tag ID)
 		account.soapSend("<GetTagRequest xmlns='urn:zimbraMail'/>");
 
-		String tagId = account.soapSelectValue(
-				"//mail:GetTagResponse//mail:tag[@name='" + tagName + "']",
-				"id");
+		String tagId = account.soapSelectValue("//mail:GetTagResponse//mail:tag[@name='" + tagName + "']", "id");
 
 		// Verify tagged File name
-		account
-				.soapSend("<SearchRequest xmlns='urn:zimbraMail' types='document'>"
-						+ "<query>tag:"
-						+ tagName
-						+ "</query>"
-						+ "</SearchRequest>");
+		account.soapSend("<SearchRequest xmlns='urn:zimbraMail' types='document'>" + "<query>tag:" + tagName
+				+ "</query>" + "</SearchRequest>");
 
-		String name = account.soapSelectValue(
-				"//mail:SearchResponse//mail:doc", "name");
-
-		ZAssert.assertNotNull(name,
-				"Verify the search response returns the document name");
-
+		String name = account.soapSelectValue("//mail:SearchResponse//mail:doc", "name");
+		ZAssert.assertNotNull(name, "Verify the search response returns the document name");
 		ZAssert.assertEquals(name, fileName, "Verify tagged File name");
 
-		// Make sure the tag was applied to the File
-		// account.soapSend("<SearchRequest xmlns='urn:zimbraMail' types='document'>"
-		// + "<query>in:briefcase</query></SearchRequest>");
+		account.soapSend("<SearchRequest xmlns='urn:zimbraMail' types='document'>" + "<query>" + fileName + "</query>"
+				+ "</SearchRequest>");
 
-		// String id = account.soapSelectValue(
-		// "//mail:SearchResponse//mail:doc[@name='" + docName + "']", "t");
+		String id = account.soapSelectValue("//mail:SearchResponse//mail:doc", "t");
+		ZAssert.assertNotNull(id, "Verify the search response returns the document tag id");
+		ZAssert.assertEquals(id, tagId, "Verify the tag was attached to the File");
 
-		account
-				.soapSend("<SearchRequest xmlns='urn:zimbraMail' types='document'>"
-						+ "<query>"
-						+ fileName
-						+ "</query>"
-						+ "</SearchRequest>");
-
-		String id = account.soapSelectValue("//mail:SearchResponse//mail:doc",
-				"t");
-
-		ZAssert.assertNotNull(id,
-				"Verify the search response returns the document tag id");
-
-		ZAssert.assertEquals(id, tagId,
-				"Verify the tag was attached to the File");
-
-		// delete file upon test completion
+		// Delete file upon test completion
 		app.zPageBriefcase.deleteFileByName(fileName);
 	}
 
-	@Test( description = "Tag uploaded File using pre-existing Tag", 
+
+	@Test(description = "Tag uploaded File using pre-existing Tag",
 			groups = { "smoke", "L1" })
+
 	public void TagFile_02() throws HarnessException {
+
 		ZimbraAccount account = app.zGetActiveAccount();
 
-		FolderItem briefcaseFolder = FolderItem.importFromSOAP(account,
-				SystemFolder.Briefcase);
+		FolderItem briefcaseFolder = FolderItem.importFromSOAP(account, SystemFolder.Briefcase);
 
 		// Create file item
-		String filePath = ConfigProperties.getBaseDirectory()
-				+ "/data/public/other/testtextfile.txt";
+		String filePath = ConfigProperties.getBaseDirectory() + "/data/public/other/testtextfile.txt";
 
 		FileItem fileItem = new FileItem(filePath);
 
@@ -168,15 +124,13 @@ public class TagFile extends FeatureBriefcaseTest {
 		String attachmentId = account.uploadFile(filePath);
 
 		// Save uploaded file to briefcase through SOAP
-		account.soapSend("<SaveDocumentRequest xmlns='urn:zimbraMail'>"
-				+ "<doc l='" + briefcaseFolder.getId() + "'><upload id='"
-				+ attachmentId + "'/></doc></SaveDocumentRequest>");
+		account.soapSend("<SaveDocumentRequest xmlns='urn:zimbraMail'>" + "<doc l='" + briefcaseFolder.getId()
+				+ "'><upload id='" + attachmentId + "'/></doc></SaveDocumentRequest>");
 
 		// Create a tag
 		String tagName = "tag" + ConfigProperties.getUniqueString();
 
-		account.soapSend("<CreateTagRequest xmlns='urn:zimbraMail'>"
-				+ "<tag name='" + tagName + "' color='1' />"
+		account.soapSend("<CreateTagRequest xmlns='urn:zimbraMail'>" + "<tag name='" + tagName + "' color='1' />"
 				+ "</CreateTagRequest>");
 
 		// Make sure the tag was created on the server
@@ -184,128 +138,82 @@ public class TagFile extends FeatureBriefcaseTest {
 
 		ZAssert.assertNotNull(tag, "Verify the new tag was created");
 
-		// refresh briefcase page
+		// Select briefcase folder
 		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseFolder, true);
 
 		SleepUtil.sleepSmall();
 
 		// Click on uploaded file
 		app.zPageBriefcase.zListItem(Action.A_BRIEFCASE_CHECKBOX, fileItem);
-		/*
-		if (ConfigProperties.zimbraGetVersionString().contains(
-    			"FOSS")) {
-		    app.zPageBriefcase.zListItem(Action.A_BRIEFCASE_CHECKBOX, fileItem);
-
-		} else {
-		    app.zPageBriefcase.zListItem(Action.A_LEFTCLICK, fileItem);
-		}
-		*/
-		// Click on header check box
-		// app.zPageBriefcase.zHeader(Action.A_BRIEFCASE_HEADER_CHECKBOX);
 
 		// Tag file selecting pre-existing tag from Toolbar drop down list
 		app.zPageBriefcase.zToolbarPressPulldown(Button.B_TAG, tag.getName());
 
 		// Make sure the tag was applied to the File
-		account
-				.soapSend("<SearchRequest xmlns='urn:zimbraMail' types='document'>"
-						+ "<query>"
-						+ fileName
-						+ "</query>"
-						+ "</SearchRequest>");
+		account.soapSend("<SearchRequest xmlns='urn:zimbraMail' types='document'>" + "<query>" + fileName + "</query>"
+				+ "</SearchRequest>");
 
-		String id = account.soapSelectValue("//mail:SearchResponse//mail:doc",
-				"t");
+		String id = account.soapSelectValue("//mail:SearchResponse//mail:doc", "t");
+		ZAssert.assertNotNull(id, "Verify the search response returns the document tag id");
+		ZAssert.assertStringContains(id, tag.getId(), "Verify the tag was attached to the File");
 
-		ZAssert.assertNotNull(id,
-				"Verify the search response returns the document tag id");
-
-		ZAssert.assertStringContains(id, tag.getId(),
-				"Verify the tag was attached to the File");
-
-		// delete file upon test completion
+		// Delete file upon test completion
 		app.zPageBriefcase.deleteFileByName(fileName);
 	}
 
-	@Test( description = "Tag uploaded File using Right Click context menu", 
+
+	@Test(description = "Tag uploaded File using Right Click context menu",
 			groups = { "functional", "L2" })
+
 	public void TagFile_03() throws HarnessException {
+
 		ZimbraAccount account = app.zGetActiveAccount();
 
-		FolderItem briefcaseFolder = FolderItem.importFromSOAP(account,
-				SystemFolder.Briefcase);
+		FolderItem briefcaseFolder = FolderItem.importFromSOAP(account, SystemFolder.Briefcase);
 
 		// Create file item
-		String filePath = ConfigProperties.getBaseDirectory()
-				+ "/data/public/other/testtextfile.txt";
-
+		String filePath = ConfigProperties.getBaseDirectory() + "/data/public/other/testtextfile.txt";
 		FileItem fileItem = new FileItem(filePath);
-
 		String fileName = fileItem.getName();
 
 		// Upload file to server through RestUtil
 		String attachmentId = account.uploadFile(filePath);
 
 		// Save uploaded file to briefcase through SOAP
-		account.soapSend("<SaveDocumentRequest xmlns='urn:zimbraMail'>"
-				+ "<doc l='" + briefcaseFolder.getId() + "'><upload id='"
-				+ attachmentId + "'/></doc></SaveDocumentRequest>");
+		account.soapSend("<SaveDocumentRequest xmlns='urn:zimbraMail'>" + "<doc l='" + briefcaseFolder.getId()
+				+ "'><upload id='" + attachmentId + "'/></doc></SaveDocumentRequest>");
 
 		// Create a tag
 		String tagName = "tag" + ConfigProperties.getUniqueString();
 
-		account.soapSend("<CreateTagRequest xmlns='urn:zimbraMail'>"
-				+ "<tag name='" + tagName + "' color='1' />"
+		account.soapSend("<CreateTagRequest xmlns='urn:zimbraMail'>" + "<tag name='" + tagName + "' color='1' />"
 				+ "</CreateTagRequest>");
 
 		// Make sure the tag was created on the server
-		TagItem tagItem = TagItem.importFromSOAP(app.zGetActiveAccount(),
-				tagName);
+		TagItem tagItem = TagItem.importFromSOAP(app.zGetActiveAccount(), tagName);
 
 		ZAssert.assertNotNull(tagItem, "Verify the new tag was created");
 
-		// refresh briefcase page
+		// Select briefcase folder
 		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseFolder, true);
 
 		SleepUtil.sleepSmall();
 
 		// Click on uploaded file
 		app.zPageBriefcase.zListItem(Action.A_BRIEFCASE_CHECKBOX, fileItem);
-		/*
-		if (ConfigProperties.zimbraGetVersionString().contains(
-    			"FOSS")) {
-		    app.zPageBriefcase.zListItem(Action.A_BRIEFCASE_CHECKBOX, fileItem);
-
-		} else {
-		    app.zPageBriefcase.zListItem(Action.A_LEFTCLICK, fileItem);
-		}
-		*/
-
-		// Click on header check box
-		// app.zPageBriefcase.zHeader(Action.A_BRIEFCASE_HEADER_CHECKBOX);
 
 		// Tag File using Right Click context menu
-		app.zPageBriefcase.zListItem(Action.A_RIGHTCLICK, Button.O_TAG_FILE,
-				tagItem.getName(), fileItem);
+		app.zPageBriefcase.zListItem(Action.A_RIGHTCLICK, Button.O_TAG_FILE, tagItem.getName(), fileItem);
 
 		// Make sure the tag was applied to the File
-		account
-				.soapSend("<SearchRequest xmlns='urn:zimbraMail' types='document'>"
-						+ "<query>"
-						+ fileName
-						+ "</query>"
-						+ "</SearchRequest>");
+		account.soapSend("<SearchRequest xmlns='urn:zimbraMail' types='document'>" + "<query>" + fileName + "</query>"
+				+ "</SearchRequest>");
 
-		String id = account.soapSelectValue("//mail:SearchResponse//mail:doc",
-				"t");
+		String id = account.soapSelectValue("//mail:SearchResponse//mail:doc", "t");
+		ZAssert.assertNotNull(id, "Verify the search response returns the document tag id");
+		ZAssert.assertStringContains(id, tagItem.getId(), "Verify the tag was attached to the File");
 
-		ZAssert.assertNotNull(id,
-				"Verify the search response returns the document tag id");
-
-		ZAssert.assertStringContains(id, tagItem.getId(),
-				"Verify the tag was attached to the File");
-
-		// delete file upon test completion
+		// Delete file upon test completion
 		app.zPageBriefcase.deleteFileByName(fileName);
 	}
 
@@ -316,10 +224,8 @@ public class TagFile extends FeatureBriefcaseTest {
 		// Check if the window is still open
 		List<String> windows = app.zPageBriefcase.sGetAllWindowNames();
 		for (String window : windows) {
-			if (!window.isEmpty() && !window.contains("null")
-					&& !window.contains(PageBriefcase.pageTitle)
-					&& !window.contains("main_app_window")
-					&& !window.contains("undefined")) {
+			if (!window.isEmpty() && !window.contains("null") && !window.contains(PageBriefcase.pageTitle)
+					&& !window.contains("main_app_window") && !window.contains("undefined")) {
 				logger.warn(window + " window was still active. Closing ...");
 				app.zPageBriefcase.zSelectWindow(window);
 				app.zPageBriefcase.closeWindow();

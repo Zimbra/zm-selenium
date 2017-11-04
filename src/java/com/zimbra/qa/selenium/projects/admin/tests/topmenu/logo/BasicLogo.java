@@ -29,7 +29,7 @@ public class BasicLogo extends AdminCommonTest {
 	}
 	
 	@Test( description = "Verify the Top Menu displays the Logo image correctly",
-			groups = { "skip", "L4" })
+			groups = { "functional-skip", "L3-skip" })
 	public void TopMenu_BasicLogo_01() throws HarnessException {
 		throw new HarnessException("Implement me!");
 	}

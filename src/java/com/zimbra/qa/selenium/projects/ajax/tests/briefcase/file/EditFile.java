@@ -29,7 +29,6 @@ import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.HtmlElement;
-import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
@@ -45,19 +44,18 @@ public class EditFile extends FeatureBriefcaseTest {
 		super.startingAccountPreferences.put("zimbraPrefShowSelectionCheckbox","TRUE");
 	}
 
-	@Test( description = "Upload file, edit name - verify the content remains the same", 
+
+	@Test( description = "Upload file, edit name - verify the content remains the same",
 			groups = { "smoke", "L1" })
-	
+
 	public void EditFile_01() throws HarnessException {
+
 		ZimbraAccount account = app.zGetActiveAccount();
 
-		FolderItem briefcaseFolder = FolderItem.importFromSOAP(account,
-				SystemFolder.Briefcase);
+		FolderItem briefcaseFolder = FolderItem.importFromSOAP(account, SystemFolder.Briefcase);
 
 		// Create file item
-		String filePath = ConfigProperties.getBaseDirectory()
-				+ "/data/public/other/testtextfile.txt";
-
+		String filePath = ConfigProperties.getBaseDirectory() + "/data/public/other/testtextfile.txt";
 		FileItem fileItem = new FileItem(filePath);
 
 		// Upload file to server through RestUtil
@@ -68,7 +66,7 @@ public class EditFile extends FeatureBriefcaseTest {
 				+ "<doc l='" + briefcaseFolder.getId() + "'><upload id='"
 				+ attachmentId + "'/>" + "</doc></SaveDocumentRequest>");
 
-		// refresh briefcase page
+		// Select briefcase folder
 		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseFolder, true);
 
 		// Retrieve file text through RestUtil
@@ -79,45 +77,40 @@ public class EditFile extends FeatureBriefcaseTest {
 				.get(PageBriefcase.Response.ResponsePart.BODY);
 
 		// Right click on File, select Rename
-		app.zPageBriefcase.zListItem(Action.A_RIGHTCLICK, Button.B_RENAME,
-				fileItem);
+		app.zPageBriefcase.zListItem(Action.A_RIGHTCLICK, Button.B_RENAME, fileItem);
 
-		String fileName2 = "renameFile"
-				+ ConfigProperties.getUniqueString();
+		String fileName2 = "renameFile" + ConfigProperties.getUniqueString();
 
 		app.zPageBriefcase.rename(fileName2);
-		app.zPageBriefcase.zClick("css=div[id='zl__BDLV-main__rows']");	
+		app.zPageBriefcase.zClick("css=div[id='zl__BDLV-main__rows']");
+
 		// Verify document name through GUI
 		ZAssert.assertTrue(app.zPageBriefcase
 				.waitForPresentInListView(fileName2),
 				"Verify new file name through GUI");
 
 		// Display file through RestUtil
-		EnumMap<PageBriefcase.Response.ResponsePart, String> response = app.zPageBriefcase
-				.displayFile(fileName2, hm);
+		EnumMap<PageBriefcase.Response.ResponsePart, String> response = app.zPageBriefcase.displayFile(fileName2, hm);
 
-		HtmlElement element = HtmlElement.clean(response
-				.get(PageBriefcase.Response.ResponsePart.BODY));
-		HtmlElement.evaluate(element, "//body", null, Pattern.compile(".*"
-				+ text + ".*"), 1);
+		HtmlElement element = HtmlElement.clean(response.get(PageBriefcase.Response.ResponsePart.BODY));
+		HtmlElement.evaluate(element, "//body", null, Pattern.compile(".*" + text + ".*"), 1);
 
-		ZAssert.assertEquals(response
-				.get(PageBriefcase.Response.ResponsePart.BODY), text,
+		ZAssert.assertEquals(response.get(PageBriefcase.Response.ResponsePart.BODY), text,
 				"Verify document content through GUI");
 	}
-	
+
+
 	@Test( description = "Upload file through RestUtil - Verify 'Edit' toolbar button is disabled",
 			groups = { "functional", "L2" })
-	
+
 	public void EditFile_03() throws HarnessException {
+
 		ZimbraAccount account = app.zGetActiveAccount();
 
-		FolderItem briefcaseFolder = FolderItem.importFromSOAP(account,
-				SystemFolder.Briefcase);
+		FolderItem briefcaseFolder = FolderItem.importFromSOAP(account, SystemFolder.Briefcase);
 
 		// Create file item
-		String filePath = ConfigProperties.getBaseDirectory()
-				+ "/data/public/other/testtextfile.txt";
+		String filePath = ConfigProperties.getBaseDirectory() + "/data/public/other/testtextfile.txt";
 
 		IItem fileItem = new FileItem(filePath);
 
@@ -125,56 +118,34 @@ public class EditFile extends FeatureBriefcaseTest {
 		String attachmentId = account.uploadFile(filePath);
 
 		// Save uploaded file to briefcase through SOAP
-		account.soapSend(
+		account.soapSend("<SaveDocumentRequest xmlns='urn:zimbraMail'>" + "<doc l='" + briefcaseFolder.getId() + "'>"
+				+ "<upload id='" + attachmentId + "'/>" + "</doc>" + "</SaveDocumentRequest>");
 
-		"<SaveDocumentRequest xmlns='urn:zimbraMail'>" +
-
-		"<doc l='" + briefcaseFolder.getId() + "'>" +
-
-		"<upload id='" + attachmentId + "'/>" +
-
-		"</doc>" +
-
-		"</SaveDocumentRequest>");
-
-		
-
-		// refresh briefcase page
+		// Select briefcase folder
 		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseFolder, true);
 
-		SleepUtil.sleepSmall();
-		
 		app.zPageBriefcase.zListItem(Action.A_BRIEFCASE_CHECKBOX, fileItem);
-		/*
-		if (ConfigProperties.zimbraGetVersionString().contains(
-    			"FOSS")) {
-		    app.zPageBriefcase.zListItem(Action.A_BRIEFCASE_CHECKBOX, fileItem);
 
-		} else {
-		    app.zPageBriefcase.zListItem(Action.A_LEFTCLICK, fileItem);
-		}
-		*/
 		// Verify 'Edit' tool-bar button is disabled
-		ZAssert.assertTrue(app.zPageBriefcase
-				.isToolbarButtonDisabled(PageBriefcase.Locators.zEditFileBtn),
+		ZAssert.assertTrue(app.zPageBriefcase.isToolbarButtonDisabled(PageBriefcase.Locators.zEditFileBtn),
 				"Verify 'Edit' toolbar button is disabled");
 
-		// delete file upon test completion
+		// Delete file upon test completion
 		app.zPageBriefcase.deleteFileByName(fileItem.getName());
 	}
-	
-	@Test( description = "Upload file through RestUtil - Verify 'Edit' context menu is disabled", 
+
+
+	@Test( description = "Upload file through RestUtil - Verify 'Edit' context menu is disabled",
 			groups = { "functional", "L2" })
-	
+
 	public void EditFile_04() throws HarnessException {
+
 		ZimbraAccount account = app.zGetActiveAccount();
 
-		FolderItem briefcaseFolder = FolderItem.importFromSOAP(account,
-				SystemFolder.Briefcase);
+		FolderItem briefcaseFolder = FolderItem.importFromSOAP(account, SystemFolder.Briefcase);
 
 		// Create file item
-		String filePath = ConfigProperties.getBaseDirectory()
-				+ "/data/public/other/testtextfile.txt";
+		String filePath = ConfigProperties.getBaseDirectory() + "/data/public/other/testtextfile.txt";
 
 		IItem fileItem = new FileItem(filePath);
 
@@ -182,50 +153,36 @@ public class EditFile extends FeatureBriefcaseTest {
 		String attachmentId = account.uploadFile(filePath);
 
 		// Save uploaded file to briefcase through SOAP
-		account.soapSend(
+		account.soapSend("<SaveDocumentRequest xmlns='urn:zimbraMail'>" + "<doc l='" + briefcaseFolder.getId() + "'>"
+				+ "<upload id='" + attachmentId + "'/>" + "</doc>" + "</SaveDocumentRequest>");
 
-		"<SaveDocumentRequest xmlns='urn:zimbraMail'>" +
-
-		"<doc l='" + briefcaseFolder.getId() + "'>" +
-
-		"<upload id='" + attachmentId + "'/>" +
-
-		"</doc>" +
-
-		"</SaveDocumentRequest>");
-
-		
-
-		// refresh briefcase page
+		// Select briefcase folder
 		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseFolder, true);
-		
-		SleepUtil.sleepVerySmall();
 
 		// Right Click on created File
 		app.zPageBriefcase.zListItem(Action.A_RIGHTCLICK, fileItem);
 
 		// Verify 'Edit' context menu is disabled
-		ZAssert.assertTrue(app.zPageBriefcase
-				.isOptionDisabled(PageBriefcase.Locators.zEditMenuDisabled),
+		ZAssert.assertTrue(app.zPageBriefcase.isOptionDisabled(PageBriefcase.Locators.zEditMenuDisabled),
 				"Verify 'Edit' context menu is disabled");
 
-		// delete file upon test completion
+		// Delete file upon test completion
 		app.zPageBriefcase.deleteFileByName(fileItem.getName());
 	}
-	
+
+
 	@Bugs(ids = "54706")
-	@Test( description = "'Restore As Current Version' does not restore notes", 
+	@Test( description = "'Restore As Current Version' does not restore notes",
 		groups = { "functional", "L3" })
-	
+
 	public void EditFile_05() throws HarnessException {
+
 		ZimbraAccount account = app.zGetActiveAccount();
 
-		FolderItem briefcaseFolder = FolderItem.importFromSOAP(account,
-				SystemFolder.Briefcase);
+		FolderItem briefcaseFolder = FolderItem.importFromSOAP(account, SystemFolder.Briefcase);
 
 		// Create file item
-		String file1Path = ConfigProperties.getBaseDirectory()
-				+ "/data/public/other/restoreversion.txt";
+		String file1Path = ConfigProperties.getBaseDirectory() + "/data/public/other/restoreversion.txt";
 		IItem fileItem = new FileItem(file1Path);
 
 		String notesV1 = "notesVersion1" + ConfigProperties.getUniqueString();
@@ -233,65 +190,64 @@ public class EditFile extends FeatureBriefcaseTest {
 		String nodeCollapsed = "css=div[id^=zlif__BDLV-main__] div[class='ImgNodeCollapsed']";
 		String nodeExpanded = "css=div[id^=zlif__BDLV-main__] div[class='ImgNodeExpanded']";
 		String locator = "css=tr[id^='zlif__BDLV-main__'] div[id^='zlif__BDLV-main__']:contains('#1:')";
+
 		// Upload file to server through RestUtil
 		String attachment1Id = account.uploadFile(file1Path);
 		String attachment2Id = account.uploadFile(file1Path);
 
 		// Save uploaded file to briefcase through SOAP
-		account.soapSend(
-				"<SaveDocumentRequest xmlns='urn:zimbraMail'>" +
-				"<doc desc='" + notesV1 + "' l='" + briefcaseFolder.getId() + "'>" +
-				"<upload id='" + attachment1Id + "'/>" + 
-				"</doc></SaveDocumentRequest>");
+		account.soapSend("<SaveDocumentRequest xmlns='urn:zimbraMail'>" + "<doc desc='" + notesV1 + "' l='"
+				+ briefcaseFolder.getId() + "'>" + "<upload id='" + attachment1Id + "'/></doc>"
+				+ "</SaveDocumentRequest>");
 		String file1Id = account.soapSelectValue("//mail:doc", "id");
 
-		account.soapSend(
-				"<SaveDocumentRequest xmlns='urn:zimbraMail'>" +
-				"<doc desc='" + notesV2 + "' ver='1' l='" + briefcaseFolder.getId() + "' id='" + file1Id + "'>" +
-				"<upload id='" + attachment2Id + "'/>" +
-				"</doc>" +
-				"</SaveDocumentRequest>");
+		account.soapSend("<SaveDocumentRequest xmlns='urn:zimbraMail'>" + "<doc desc='" + notesV2 + "' ver='1' l='"
+				+ briefcaseFolder.getId() + "' id='" + file1Id + "'>" + "<upload id='" + attachment2Id + "'/>"
+				+ "</doc>" + "</SaveDocumentRequest>");
 
-		// refresh briefcase page
+		// Select briefcase folder
 		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseFolder, true);
-		
+
 		if (!app.zPageBriefcase.sIsElementPresent(nodeExpanded)) {
 			app.zPageBriefcase.zClickAt(nodeCollapsed, "");
 		}
-		
+
 		app.zPageBriefcase.zListItem(Action.A_RIGHTCLICK, Button.O_RESTORE_AS_CURRENT_VERSION, locator);
 		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseFolder, true);
-		
+
 		if (!app.zPageBriefcase.sIsElementPresent(nodeExpanded)) {
 			app.zPageBriefcase.zClickAt(nodeCollapsed, "");
 		}
 
-        ZAssert.assertTrue(app.zPageCalendar.sIsElementPresent("css=tr[id^='zlif__BDLV-main__'] div[id^='zlif__BDLV-main__']:contains('#3: " + notesV1 + "')"), "'Notes' is restored");
-        
-        // delete file upon test completion
-        app.zPageBriefcase.deleteFileByName(fileItem.getName());
+		ZAssert.assertTrue(
+				app.zPageCalendar.sIsElementPresent(
+						"css=tr[id^='zlif__BDLV-main__'] div[id^='zlif__BDLV-main__']:contains('#3: " + notesV1 + "')"),
+				"'Notes' is restored");
 
+		// Delete file upon test completion
+		app.zPageBriefcase.deleteFileByName(fileItem.getName());
 	}
-	
+
+
 	@Bugs(ids = "74644")
-	@Test( description = "Cannot rename the file's latest version", 
+	@Test( description = "Cannot rename the file's latest version",
 		groups = { "functional", "L3" })
-	
+
 	public void EditFile_06() throws HarnessException {
+
 		ZimbraAccount account = app.zGetActiveAccount();
 
-		FolderItem briefcaseFolder = FolderItem.importFromSOAP(account,
-				SystemFolder.Briefcase);
+		FolderItem briefcaseFolder = FolderItem.importFromSOAP(account, SystemFolder.Briefcase);
 
 		// Create file item
-		String file1Path = ConfigProperties.getBaseDirectory()
-				+ "/data/public/other/filerename.txt";
+		String file1Path = ConfigProperties.getBaseDirectory() + "/data/public/other/filerename.txt";
 
 		String notesV1 = "notesVersion1" + ConfigProperties.getUniqueString();
 		String notesV2 = "notesVersion2" + ConfigProperties.getUniqueString();
 		String nodeCollapsed = "css=div[id^=zlif__BDLV-main__] div[class='ImgNodeCollapsed']";
 		String nodeExpanded = "css=div[id^=zlif__BDLV-main__] div[class='ImgNodeExpanded']";
 		String locator = "css=tr[id^='zlif__BDLV-main__'] div[id^='zlif__BDLV-main__']:contains('#2:')";
+
 		// Upload file to server through RestUtil
 		String attachment1Id = account.uploadFile(file1Path);
 		String attachment2Id = account.uploadFile(file1Path);
@@ -299,39 +255,34 @@ public class EditFile extends FeatureBriefcaseTest {
 		// Save uploaded file to briefcase through SOAP
 		account.soapSend(
 				"<SaveDocumentRequest xmlns='urn:zimbraMail'>" +
-				"<doc desc='" + notesV1 + "' l='" + briefcaseFolder.getId() + "'>" +
-				"<upload id='" + attachment1Id + "'/>" + 
-				"</doc></SaveDocumentRequest>");
+					"<doc desc='" + notesV1 + "' l='" + briefcaseFolder.getId() + "'>" +
+					"<upload id='" + attachment1Id + "'/></doc>" +
+				"</SaveDocumentRequest>");
 		String file1Id = account.soapSelectValue("//mail:doc", "id");
 
 		account.soapSend(
 				"<SaveDocumentRequest xmlns='urn:zimbraMail'>" +
-				"<doc desc='" + notesV2 + "' ver='1' l='" + briefcaseFolder.getId() + "' id='" + file1Id + "'>" +
-				"<upload id='" + attachment2Id + "'/>" +
-				"</doc>" +
+					"<doc desc='" + notesV2 + "' ver='1' l='" + briefcaseFolder.getId() + "' id='" + file1Id + "'>" +
+					"<upload id='" + attachment2Id + "'/>" +
+					"</doc>" +
 				"</SaveDocumentRequest>");
 
-		// refresh briefcase page
+		// Select briefcase folder
 		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseFolder, true);
-		
+
 		if (!app.zPageBriefcase.sIsElementPresent(nodeExpanded)) {
 			app.zPageBriefcase.zClickAt(nodeCollapsed, "");
 		}
-		
+
 		// Right click on File, select Rename
 		app.zPageBriefcase.zListItem(Action.A_RIGHTCLICK, Button.B_RENAME, locator);
 
-		String fileName2 = "renameFile"
-				+ ConfigProperties.getUniqueString();
+		String fileName2 = "renameFile" + ConfigProperties.getUniqueString();
 
 		app.zPageBriefcase.rename(fileName2);
-		app.zPageBriefcase.sClick("css=div[id='zl__BDLV-main__rows']");	
+		app.zPageBriefcase.sClick("css=div[id='zl__BDLV-main__rows']");
 
 		// Verify document name through GUI
-		ZAssert.assertTrue(app.zPageBriefcase.waitForPresentInListView(fileName2),
-				"Verify new file name through GUI");
-
-
+		ZAssert.assertTrue(app.zPageBriefcase.waitForPresentInListView(fileName2), "Verify new file name through GUI");
 	}
-
 }

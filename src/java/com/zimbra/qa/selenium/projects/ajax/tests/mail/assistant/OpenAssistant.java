@@ -36,7 +36,7 @@ public class OpenAssistant extends PrefGroupMailByMessageTest {
 	}
 	
 	@Test( description = "Open the assistant",
-			groups = { "deprecated", "L4" })
+			groups = { "deprecated" })
 	public void OpenAssistant_01() throws HarnessException {
 		
 		// Refresh current view

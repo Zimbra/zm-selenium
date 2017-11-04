@@ -44,8 +44,7 @@ public class GetAppointment extends AjaxCommonTest {
 
 	public void GetAppointment_01() throws HarnessException {
 
-		// Create the appointment on the server
-		// Create the message data to be sent
+		// Appointment data
 		String apptSubject = ConfigProperties.getUniqueString();
 		String location = "location" + ConfigProperties.getUniqueString();
 		String content = "content" + ConfigProperties.getUniqueString();
@@ -87,9 +86,11 @@ public class GetAppointment extends AjaxCommonTest {
 		// Verify appointment exists in current view
         ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
 
-	    // Verify appt displayed in workweek view
-        app.zPageCalendar.zToolbarPressButton(Button.B_WORKWEEK_VIEW);
-		app.zPageCalendar.zWaitForElementPresent("css=div[id*=zli__CLWW__]");
-		ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
+        // Verify appt displayed in workweek view
+        if (Calendar.getInstance().get(Calendar.DAY_OF_WEEK) != Calendar.SATURDAY && Calendar.getInstance().get(Calendar.DAY_OF_WEEK) != Calendar.SUNDAY) {
+            app.zPageCalendar.zToolbarPressButton(Button.B_WORKWEEK_VIEW);
+    		app.zPageCalendar.zWaitForElementPresent("css=div[id*=zli__CLWW__]");
+    		ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
+		}
 	}
 }

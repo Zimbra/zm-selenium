@@ -31,10 +31,9 @@ public class ArchiveMessage extends ArchiveZimletByMessageTest {
 		logger.info("New "+ ArchiveMessage.class.getCanonicalName());
 	}
 	
-	//TODO: Update the LX group appropriately when the feature is implemented 
 	@Bugs(ids = "80238")
 	@Test( description = "Archive a message from new window",
-			groups = { "smoke", "L5" })
+			groups = { "smoke-skip", "application-bug" })
 	
 	public void ArchiveMessage_01() throws HarnessException {
 		

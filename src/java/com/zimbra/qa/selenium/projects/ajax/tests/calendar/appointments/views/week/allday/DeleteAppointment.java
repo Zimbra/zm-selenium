@@ -87,7 +87,6 @@ public class DeleteAppointment extends AjaxCommonTest {
 		dlgConfirm.zClickButton(Button.B_YES);
 		dlgConfirm.zWaitForClose();
 
-
 		//-- Verification
 		SleepUtil.sleepMedium(); //testcase failing due to timing issue so added sleep
 		ZAssert.assertEquals(app.zPageCalendar.sIsElementPresent(app.zPageCalendar.zGetAllDayApptLocator(apptSubject)), false, "Verify all-day appointment is deleted");
@@ -192,7 +191,6 @@ public class DeleteAppointment extends AjaxCommonTest {
         // Delete appointment using keyboard Del and Backspace key
         DialogConfirmDeleteAppointment dlgConfirm = (DialogConfirmDeleteAppointment)app.zPageCalendar.zKeyboardKeyEvent(keyEvent);
 		dlgConfirm.zClickButton(Button.B_YES);
-
 
 		//-- Verification
 		app.zGetActiveAccount().soapSend(

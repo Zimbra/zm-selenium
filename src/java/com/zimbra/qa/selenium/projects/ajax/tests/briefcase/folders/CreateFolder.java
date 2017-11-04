@@ -32,18 +32,16 @@ public class CreateFolder extends FeatureBriefcaseTest {
 
 	public CreateFolder() {
 		logger.info("New " + CreateFolder.class.getCanonicalName());
-
-		// test starts at the briefcase tab
 		super.startingPage = app.zPageBriefcase;
-		
 		super.startingAccountPreferences.put("zimbraPrefBriefcaseReadingPaneLocation", "bottom");
 	}
 
-	@Test( description = "Create a new folder by clicking 'Create a new briefcase' on folders tree", 
+
+	@Test( description = "Create a new folder by clicking 'Create a new briefcase' on folders tree",
 			groups = { "sanity", "L0" })
-	
+
 	public void CreateFolder_01() throws HarnessException {
-		
+
 		ZimbraAccount account = app.zGetActiveAccount();
 
 		FolderItem briefcaseRootFolder = FolderItem.importFromSOAP(account,	SystemFolder.Briefcase);
@@ -59,9 +57,7 @@ public class CreateFolder extends FeatureBriefcaseTest {
 
 		_folderIsCreated = true;
 
-		SleepUtil.sleepVerySmall();
-
-		// refresh briefcase page
+		// Select briefcase folder
 		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseRootFolder, false);
 
 		// Make sure the folder was created on the ZCS server
@@ -70,15 +66,17 @@ public class CreateFolder extends FeatureBriefcaseTest {
 
 		ZAssert.assertEquals(folder.getName(), _folderName, "Verify the server and client folder names match");
 	}
-	
+
+
 	@Bugs(ids = "67061")
-	@Test( description = "According to Comment#1 in the bug 67061 Create a new folder using 'nf' keyboard shortcut is for mail only", 
-	groups = { "functional-skip", "L4" })
+	@Test(description = "According to Comment#1 in the bug 67061 Create a new folder using 'nf' keyboard shortcut is for mail only",
+			groups = { "functional-skip", "L3-skip" })
+
 	public void CreateFolder_02() throws HarnessException {
+
 		ZimbraAccount account = app.zGetActiveAccount();
 
-		FolderItem briefcaseRootFolder = FolderItem.importFromSOAP(account,
-				SystemFolder.Briefcase);
+		FolderItem briefcaseRootFolder = FolderItem.importFromSOAP(account, SystemFolder.Briefcase);
 
 		Shortcut shortcut = Shortcut.S_NEWFOLDER;
 
@@ -90,8 +88,7 @@ public class CreateFolder extends FeatureBriefcaseTest {
 		DialogCreateBriefcaseFolder createFolderDialog = (DialogCreateBriefcaseFolder) app.zPageBriefcase
 				.zKeyboardShortcut(shortcut);
 
-		ZAssert.assertNotNull(createFolderDialog,
-				"Verify the new dialog opened");
+		ZAssert.assertNotNull(createFolderDialog, "Verify the new dialog opened");
 
 		// Fill out the form with the basic details
 		createFolderDialog.zEnterFolderName(_folderName);
@@ -99,68 +96,63 @@ public class CreateFolder extends FeatureBriefcaseTest {
 
 		_folderIsCreated = true;
 
-		SleepUtil.sleepVerySmall();
-
-		// refresh briefcase page
-		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseRootFolder,
-				false);
+		// Select briefcase folder
+		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseRootFolder, false);
 
 		// Make sure the folder was created on the server
 		FolderItem folder = FolderItem.importFromSOAP(account, _folderName);
 		ZAssert.assertNotNull(folder, "Verify the new folder was created");
 
-		ZAssert.assertEquals(folder.getName(), _folderName,
-				"Verify the server and client folder names match");
+		ZAssert.assertEquals(folder.getName(), _folderName, "Verify the server and client folder names match");
 	}
 
-	@Test( description = "Create a new folder using context menu from root folder", 
+
+	@Test( description = "Create a new folder using context menu from root folder",
 			groups = { "functional", "L2" })
+
 	public void CreateFolder_03() throws HarnessException {
+
 		ZimbraAccount account = app.zGetActiveAccount();
 
-		FolderItem briefcaseRootFolder = FolderItem.importFromSOAP(account,
-				SystemFolder.Briefcase);
+		FolderItem briefcaseRootFolder = FolderItem.importFromSOAP(account, SystemFolder.Briefcase);
 
 		// Set the new folder name
 		_folderName = "folder" + ConfigProperties.getUniqueString();
 
 		DialogCreateBriefcaseFolder createFolderDialog = (DialogCreateBriefcaseFolder) app.zTreeBriefcase
-				.zTreeItem(Action.A_RIGHTCLICK, Button.B_TREE_NEWFOLDER,
-						briefcaseRootFolder);
+				.zTreeItem(Action.A_RIGHTCLICK, Button.B_TREE_NEWFOLDER, briefcaseRootFolder);
 
 		createFolderDialog.zEnterFolderName(_folderName);
 		createFolderDialog.zClickButton(Button.B_OK);
 
 		_folderIsCreated = true;
 
-		SleepUtil.sleepVerySmall();
-
-		// refresh briefcase page
-		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseRootFolder,
-				false);
+		// Select briefcase folder
+		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseRootFolder, false);
 
 		// Make sure the folder was created on the ZCS server
 		FolderItem folder = FolderItem.importFromSOAP(account, _folderName);
 		ZAssert.assertNotNull(folder, "Verify the new form opened");
 
-		ZAssert.assertEquals(folder.getName(), _folderName,
-				"Verify the server and client folder names match");
+		ZAssert.assertEquals(folder.getName(), _folderName, "Verify the server and client folder names match");
 	}
 
-	@Test( description = "Create a new Briefcase folder using Briefcase app toolbar pulldown: New -> New Briefcase", 
+
+	@Test( description = "Create a new Briefcase folder using Briefcase app toolbar pulldown: New -> New Briefcase",
 			groups = { "functional", "L2" })
+
 	public void CreateFolder_04() throws HarnessException {
+
 		ZimbraAccount account = app.zGetActiveAccount();
 
-		FolderItem briefcaseRootFolder = FolderItem.importFromSOAP(account,
-				SystemFolder.Briefcase);
+		FolderItem briefcaseRootFolder = FolderItem.importFromSOAP(account, SystemFolder.Briefcase);
 
 		// Set the new folder name
 		_folderName = "folder" + ConfigProperties.getUniqueString();
 
-		// refresh briefcase page
-		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseRootFolder,false);
-				
+		// Select briefcase folder
+		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseRootFolder, false);
+
 		// Create a new briefcase folder using right click context menu + New Briefcase
 		DialogCreateBriefcaseFolder dialog = (DialogCreateBriefcaseFolder) app.zPageBriefcase
 				.zToolbarPressPulldown(Button.B_NEW, Button.O_NEW_BRIEFCASE, null);
@@ -172,19 +164,17 @@ public class CreateFolder extends FeatureBriefcaseTest {
 		dialog.zClickButton(Button.B_OK);
 
 		_folderIsCreated = true;
-		
+
 		SleepUtil.sleepVerySmall();
 
-		// refresh briefcase page
-		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseRootFolder,
-				false);
-		
+		// Select briefcase folder
+		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseRootFolder, false);
+
 		// Make sure the folder was created on the server
 		FolderItem folder = FolderItem.importFromSOAP(account, _folderName);
 		ZAssert.assertNotNull(folder, "Verify the new folder was created");
 
-		ZAssert.assertEquals(folder.getName(), _folderName,
-				"Verify the server and client folder names match");
+		ZAssert.assertEquals(folder.getName(), _folderName, "Verify the server and client folder names match");
 	}
 
 	@AfterMethod(groups = { "always" })

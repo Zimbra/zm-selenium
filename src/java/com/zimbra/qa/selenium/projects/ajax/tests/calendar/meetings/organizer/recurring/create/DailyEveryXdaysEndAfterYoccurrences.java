@@ -128,9 +128,6 @@ public class DailyEveryXdaysEndAfterYoccurrences extends AjaxCommonTest {
 
 		// UI verification
 		ZAssert.assertEquals(app.zPageCalendar.zIsAppointmentExists(apptSubject), true, "Verify meeting invite is present in current calendar view");
-
-		// Switch to week view and verify correct number of recurring instances
-		app.zPageCalendar.zToolbarPressButton(Button.B_WEEK_VIEW);
 		
 		// Count no. of instances
 		int getNoOfInstances = 0;

@@ -165,13 +165,11 @@ public class DragAndDropAppointment extends AjaxCommonTest {
 
         SleepUtil.sleepMedium();
 
-		// drag and drop the item
-        	String sourceLocator = "css=div[id^='zli__CLWW__"+ apptId +"'] td.appt_name";
-        	String destinationLocator = "css=div[id^='zli__CLWW__"+ otherApptId +"'] td.appt_name";
+		// Drag and drop the item
+    	String sourceLocator = "css=div[id^='zli__CLWW__"+ apptId +"'] td.appt_name";
+    	String destinationLocator = "css=div[id^='zli__CLWW__"+ otherApptId +"'] td.appt_name";
 
-        	app.zPageCalendar.zDragAndDropBy(sourceLocator,destinationLocator,0,10);
-
-		// Server verification
+    	app.zPageCalendar.zDragAndDropBy(sourceLocator,destinationLocator,0,10);
 
 		// Make sure the time has changed
 		// (It is difficult to know for certain what time is correct.  For

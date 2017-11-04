@@ -66,8 +66,6 @@ public class AddToContactsAttendeeContextMenu extends PrefGroupMailByMessageTest
 		app.zPageMail.sClickAt(FormContactNew.Toolbar.SAVE, "");
 		SleepUtil.sleepMedium();
 
-		// -- Data Verification
-
 		app.zGetActiveAccount().soapSend(
 				"<SearchRequest xmlns='urn:zimbraMail' types='contact'>"
 						+ "<query>#firstname:" + contactFirst + "</query>"

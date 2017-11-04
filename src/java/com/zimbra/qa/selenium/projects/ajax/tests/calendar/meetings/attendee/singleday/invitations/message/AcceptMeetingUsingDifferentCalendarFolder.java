@@ -492,7 +492,7 @@ public class AcceptMeetingUsingDifferentCalendarFolder extends AjaxCommonTest {
 
 	@Bugs (ids = "69132,65356,80407,96556")
 	@Test (description = "Accept meeting using 'Accept -> Don't Notify Organizer'",
-			groups = { "functional", "L5" })
+			groups = { "functional", "application-bug" })
 
 	public void AcceptMeeting_05() throws HarnessException {
 

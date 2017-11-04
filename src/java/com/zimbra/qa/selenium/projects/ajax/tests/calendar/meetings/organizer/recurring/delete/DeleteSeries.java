@@ -37,7 +37,7 @@ public class DeleteSeries extends AjaxCommonTest {
 	}
 
 
-	// remove this test case and move below testcase to L2 from L5 once bug #75559 is resolved
+	@Bugs(ids = "69920,75559")
 	@Test( description = "Delete series from third instance and onwards",
 			groups = { "functional", "L2" })
 	public void DeleteSeries_01() throws HarnessException {
@@ -106,7 +106,7 @@ public class DeleteSeries extends AjaxCommonTest {
 
 	@Bugs(ids = "69920,75559")
 	@Test( description = "Delete series from third instance and onwards",
-			groups = { "functional", "L5" })
+			groups = { "functional", "application-bug" })
 
 	public void DeleteSeries_02() throws HarnessException {
 

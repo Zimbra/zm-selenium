@@ -55,7 +55,7 @@ public class CreateAppointment extends AjaxCommonTest {
 		// Fill out the form with the data
 		apptForm.zFill(appt);
 
-		// Send the message
+		// Send invite
 		apptForm.zSubmit();
 
 		// Verify the new appointment exists on the server
@@ -177,7 +177,7 @@ public class CreateAppointment extends AjaxCommonTest {
 		apptForm.zFill(appt);
         ZAssert.assertTrue(apptForm.zVerifyMeetingInPastWarning(), "Verify meeting in past warning appears");
 
-		// Send the message
+		// Send invite
 		apptForm.zSubmit();
 
 		// Verify the new appointment exists on the server

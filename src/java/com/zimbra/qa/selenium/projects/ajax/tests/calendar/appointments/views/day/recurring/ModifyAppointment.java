@@ -23,7 +23,6 @@ import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
-import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZDate;
 import com.zimbra.qa.selenium.framework.util.ZTimeZone;
@@ -86,7 +85,6 @@ public class ModifyAppointment extends AjaxCommonTest {
 
         // Open appointment & modify subject, body and save it
         app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, apptSubject);
-        SleepUtil.sleepMedium();
         FormApptNew apptForm = new FormApptNew(app);
         appt.setSubject(editApptSubject);
         appt.setContent(editApptBody);

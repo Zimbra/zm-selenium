@@ -49,7 +49,7 @@ public class ZmMailAppReplyCompose extends AjaxCommonTest {
 
 	}
 
-	@Test( description = "Measure the time to load reply-compose  window for simple message", groups = { "performance", "L4" })
+	@Test( description = "Measure the time to load reply-compose  window for simple message", groups = { "performance", "deprecated" })
 	public void ZmMailAppReplyCompose_01() throws HarnessException {
 
 		String mime = ConfigProperties.getBaseDirectory() + "/data/public/mime/email02/mime01.txt";
@@ -73,7 +73,7 @@ public class ZmMailAppReplyCompose extends AjaxCommonTest {
 	}
 	
 	
-	@Test( description = "Measure the time to load reply-compose  window for large conversation", groups = { "performance", "L4" })
+	@Test( description = "Measure the time to load reply-compose  window for large conversation", groups = { "performance", "deprecated" })
 	public void ZmMailAppReplyCompose_02() throws HarnessException {
 
 		String mime = ConfigProperties.getBaseDirectory() + "/data/public/mime/largeconversation_mime.txt";
@@ -95,7 +95,7 @@ public class ZmMailAppReplyCompose extends AjaxCommonTest {
 		PerfMetrics.waitTimestamp(token);
 	}
 
-	@Test( description = "Measure the time to load reply-compose window for invite conversation", groups = { "performance", "L4" })
+	@Test( description = "Measure the time to load reply-compose window for invite conversation", groups = { "performance", "deprecated" })
 	public void ZmMailAppReplyCompose_03() throws HarnessException {
 
 		String mime = ConfigProperties.getBaseDirectory() + "/data/public/mime/Invite_Message.txt";
@@ -118,7 +118,7 @@ public class ZmMailAppReplyCompose extends AjaxCommonTest {
 		PerfMetrics.waitTimestamp(token);
 	}
 	
-	@Test( description = "Measure the time to load reply-compose window for invite conversation with 7mb attachment", groups = { "performance", "L4" })
+	@Test( description = "Measure the time to load reply-compose window for invite conversation with 7mb attachment", groups = { "performance", "deprecated" })
 	public void ZmMailAppReplyCompose_04() throws HarnessException {
 
 		String mime = ConfigProperties.getBaseDirectory() + "/data/public/mime/inviteMessageWith7MBAttachment.txt";

@@ -47,14 +47,12 @@ public class GetAppointment extends AjaxCommonTest {
 	// BUG 68610: remove schedule view
 	@Bugs(ids = "69132,68610")
 	@Test( description = "View a basic appointment in the schedule view",
-			groups = { "deprecated", "L4" })
+			groups = { "deprecated" })
 
 	public void GetAppointment_01() throws HarnessException {
 
-		// Create the appointment on the server
-		// Create the message data to be sent
+		// Appointment data
 		String subject = ConfigProperties.getUniqueString();
-
 
 		// Absolute dates in UTC zone
 		Calendar now = Calendar.getInstance();
