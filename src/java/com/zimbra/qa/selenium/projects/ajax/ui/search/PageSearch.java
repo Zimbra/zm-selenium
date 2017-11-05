@@ -731,6 +731,8 @@ public class PageSearch extends AbsTab {
 
 	public List<MailItem> zListGetMessages() throws HarnessException {
 
+		SleepUtil.sleepMedium();
+
 		List<MailItem> items = new ArrayList<MailItem>();
 
 		String listLocator = null, listLocator1 = null, listLocator2 = null, rowLocator = null, rowLocator1 = null,

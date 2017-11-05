@@ -173,7 +173,7 @@ public class PageMain extends AbsTab {
 	}
 
 	public void zHandleDialogs() throws HarnessException {
-		sRefresh();
+		zRefreshMainUI();
 	}
 
 		/*// Opened dialogs

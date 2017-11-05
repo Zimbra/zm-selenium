@@ -101,7 +101,7 @@ public class ReplyMail extends PrefGroupMailByMessageTest {
 		//-- GUI
 		
 		// Refresh UI
-		app.zPageMain.sRefresh();
+		app.zPageMain.zRefreshMainUI();
 
 		try {
 			
@@ -196,7 +196,7 @@ public class ReplyMail extends PrefGroupMailByMessageTest {
 		//-- GUI
 		
 		// Refresh UI
-		app.zPageMain.sRefresh();
+		app.zPageMain.zRefreshMainUI();
 
 		try {
 			

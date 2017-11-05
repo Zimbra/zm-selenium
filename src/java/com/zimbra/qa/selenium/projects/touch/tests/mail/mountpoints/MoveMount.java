@@ -83,7 +83,7 @@ public class MoveMount extends PrefGroupMailByMessageTest {
 				"</CreateFolderRequest>");
 		FolderItem folder = FolderItem.importFromSOAP(app.zGetActiveAccount(), folderName);
 		ZAssert.assertNotNull(folderName, "Verify the subfolder is available");
-		app.zPageMain.sRefresh();	
+		app.zPageMain.zRefreshMainUI();	
 
 		// Select the mount folder from the list
 		PageCreateFolder createFolderPage = new PageCreateFolder(app, startingPage);
@@ -96,7 +96,7 @@ public class MoveMount extends PrefGroupMailByMessageTest {
 		createFolderPage.zClickButton(Button.B_SAVE);
 
 		// Click Get Mail button
-		app.zPageMain.sRefresh();	
+		app.zPageMain.zRefreshMainUI();	
 
 		// SOAP Verify the folder is in the other Subfolder
 		mountpoint = FolderMountpointItem.importFromSOAP(app.zGetActiveAccount(), mountpointname);

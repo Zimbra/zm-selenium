@@ -105,7 +105,7 @@ public class PageLogin extends AbsTab {
 	public void zLogin(ZimbraAccount account) throws HarnessException {
 		logger.debug("login(ZimbraAccount account)" + account.EmailAddress);
 
-		tracer.trace("Login to the "+ MyApplication.myApplicationName() +" using user/password "+ account.EmailAddress +"/"+ account.Password);
+		tracer.trace("Login to the " + MyApplication.myApplicationName() + " using user/password " + account.EmailAddress + "/" + account.Password);
 
 		zNavigateTo();
 
@@ -113,28 +113,13 @@ public class PageLogin extends AbsTab {
 
 		try {
 
+			((AppAjaxClient)MyApplication).zPageMain.zRefreshUITillElementPresent(Locators.zBtnLogin);
+
 			zSetLoginName(account.EmailAddress);
 			zSetLoginPassword(account.Password);
 			sClick(Locators.zBtnLogin);
 			SleepUtil.sleepLong();
 			zWaitForBusyOverlay();
-
-			// 1st login retry (sometime account creation remains fast and entire execution stuck due to non-existence of the account)
-			if (zIsVisiblePerPosition(Locators.zBtnLogin, 0, 0) == true || zIsVisiblePerPosition("css=div[id='ZLoginErrorPanel'] td:contains('The username or password is incorrect')", 0, 0) == true) {
-				logger.error("1st login failed or account not created successfully, retried using " + account.EmailAddress);
-				ZimbraAccount.ResetAccountZCS();
-				account = ZimbraAccount.AccountZCS();
-				zSetLoginName(account.EmailAddress);
-				SleepUtil.sleepVerySmall();
-				zSetLoginPassword(account.Password);
-				SleepUtil.sleepSmall();
-				sClick(Locators.zBtnLogin);
-				SleepUtil.sleepLong();
-				zWaitForBusyOverlay();
-
-			} else {
-				logger.info("1st login retry - successfully logged in using " + account.EmailAddress);
-			}
 
 			((AppAjaxClient)MyApplication).zPageMain.zWaitForActive(100000);
 			((AppAjaxClient)MyApplication).zSetActiveAccount(account);

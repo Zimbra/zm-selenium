@@ -460,12 +460,12 @@ public class PageCalendar extends AbsTab {
 
 	public String zReturnDayWeek(int number) throws HarnessException {
 		String locator;
-        if (zIsWeekend()) {
-        	locator = "css=div[id^='zv__CLW";
-        } else {
-        	locator = "css=div[id^='zv__CLWW";
-        }
-		return sGetText(locator + " div[class='calendar_heading'] div[class^='calendar_heading_day']:nth-child(" + number + ")");
+		if (zIsWeekend()) {
+			locator = "css=div[id^='zv__CLW'] ";
+		} else {
+			locator = "css=div[id^='zv__CLWW'] ";
+		}
+		return sGetText(locator + "div[class='calendar_heading'] div[class^='calendar_heading_day']:nth-child(" + number + ")");
 	}
 
 	public String zGetRecurringLink() throws HarnessException {

@@ -91,7 +91,7 @@ public class ChangeGALConfiguration extends AdminCommonTest {
 		//Verification through IU
 
 		//Refresh the admin console
-		app.zPageManageDomains.sRefresh();
+		app.zPageManageDomains.zRefreshMainUI();
 		app.zPageMain.zWaitTillElementPresent(Locators.zLogoffDropDownArrow);
 		app.zPageManageDomains.zNavigateTo();
 
@@ -191,7 +191,7 @@ public class ChangeGALConfiguration extends AdminCommonTest {
 		//Verification through IU
 
 		//Refresh the admin console
-		app.zPageManageDomains.sRefresh();
+		app.zPageManageDomains.zRefreshMainUI();
 		app.zPageMain.zWaitTillElementPresent(Locators.zLogoffDropDownArrow);
 		app.zPageManageDomains.zNavigateTo();
 

@@ -53,7 +53,7 @@ public class DelegateSendAsSaveCopyOfMessage extends PrefGroupMailByMessageTest 
 				+ "<pref name='zimbraPrefDelegatedSendSaveTarget'>owner</pref>" + "</ModifyPrefsRequest>");
 
 		// Refresh UI
-		app.zPageMain.sRefresh();
+		app.zPageMain.zRefreshMainUI();
 
 		// -- GUI Steps
 
@@ -101,7 +101,7 @@ public class DelegateSendAsSaveCopyOfMessage extends PrefGroupMailByMessageTest 
 				+ "<pref name='zimbraPrefDelegatedSendSaveTarget'>sender</pref>" + "</ModifyPrefsRequest>");
 
 		// Refresh UI
-		app.zPageMain.sRefresh();
+		app.zPageMain.zRefreshMainUI();
 
 		// -- GUI Steps
 
@@ -150,7 +150,7 @@ public class DelegateSendAsSaveCopyOfMessage extends PrefGroupMailByMessageTest 
 				+ "<pref name='zimbraPrefDelegatedSendSaveTarget'>both</pref>" + "</ModifyPrefsRequest>");
 
 		// Refresh UI
-		app.zPageMain.sRefresh();
+		app.zPageMain.zRefreshMainUI();
 
 		// -- GUI Steps
 
@@ -198,7 +198,7 @@ public class DelegateSendAsSaveCopyOfMessage extends PrefGroupMailByMessageTest 
 				+ "<pref name='zimbraPrefDelegatedSendSaveTarget'>none</pref>" + "</ModifyPrefsRequest>");
 
 		// Refresh UI
-		app.zPageMain.sRefresh();
+		app.zPageMain.zRefreshMainUI();
 
 		// -- GUI Steps
 

@@ -67,11 +67,12 @@ public class OpenAttachment extends PrefGroupMailByMessageTest {
 			
 			// Left click on the attachment
 			window = (SeparateWindowOpenAttachment)display.zListAttachmentItem(Action.A_LEFTCLICK, item);
-			window.zWaitForActive();
-			ZAssert.assertTrue(window.zIsActive(), "Verify the attachment is open");
+
+			for (String winHandle : webDriver.getWindowHandles()) {
+				webDriver.switchTo().window(winHandle);
+			}
 			
 			//Verify show original window with proper content
-			SleepUtil.sleepMedium();
 			String content = window.sGetBodyText();
 			ZAssert.assertStringContains(content, attachmentcontent, "Verify the content in the attachment");
 			

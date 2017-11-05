@@ -54,9 +54,6 @@ import com.zimbra.qa.selenium.framework.core.ClientSessionFactory;
 import com.zimbra.qa.selenium.framework.core.ExecuteHarnessMain;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
-import com.zimbra.qa.selenium.projects.admin.ui.PageLogin;
-import com.zimbra.qa.selenium.projects.admin.ui.PageMain;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.PageMail;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import org.openqa.selenium.interactions.Mouse;
 import org.openqa.selenium.interactions.HasInputDevices;
@@ -864,32 +861,60 @@ public abstract class AbsSeleniumObject {
 	}
 
 
-	public void sRefresh() throws HarnessException {
-		logger.info("Refreshing UI");
+	// Refreshes UI without considering anything else
+	public void zRefreshUI() throws HarnessException {
+		logger.info("Refresh UI");
+		webDriver().navigate().refresh();
+		SleepUtil.sleepLongMedium();
+	}
+
+
+	// Refreshes UI till loading completes successfully
+	public void zRefreshMainUI() throws HarnessException {
+		logger.info("Refresh UI of logged in user");
 		webDriver().navigate().refresh();
 
 		if (ConfigProperties.getAppType().toString().equals("AJAX")) {
 			if (ConfigProperties.getStringProperty("server.host").contains("zimbra.com")) {
-				zWaitTillElementPresent(PageMail.Locators.zMailZimletsPane);
+				zWaitTillElementPresent(com.zimbra.qa.selenium.projects.ajax.ui.mail.PageMail.Locators.zMailZimletsPane);
 			} else {
-				zWaitTillElementPresent(PageMail.Locators.zMailTagsPane);
+				zWaitTillElementPresent(com.zimbra.qa.selenium.projects.ajax.ui.mail.PageMail.Locators.zMailTagsPane);
+			}
+
+		} else if (ConfigProperties.getAppType().toString().equals("UNIVERSAL")) {
+			if (ConfigProperties.getStringProperty("server.host").contains("zimbra.com")) {
+				zWaitTillElementPresent(com.zimbra.qa.selenium.projects.universal.ui.mail.PageMail.Locators.zMailZimletsPane);
+			} else {
+				zWaitTillElementPresent(com.zimbra.qa.selenium.projects.universal.ui.mail.PageMail.Locators.zMailTagsPane);
 			}
 
 		} else if (ConfigProperties.getAppType().name().equals("ADMIN")) {
-			try {
-				zWaitTillElementPresent(PageMain.Locators.zHelpButton);
-			} catch(HarnessException e) {
-				zWaitTillElementPresent(PageLogin.Locators.zLoginButtonContainer);
-			}
+			zWaitTillElementPresent(com.zimbra.qa.selenium.projects.admin.ui.PageMain.Locators.zHelpButton);
 		}
 		SleepUtil.sleepMedium();
 	}
 
-	public void sRefreshPage() throws HarnessException {
-		logger.info("Refreshing page");
-		webDriver().navigate().refresh();
-		SleepUtil.sleepLongMedium();
+
+	// Refreshes UI till specified element gets visible 
+	public Boolean zRefreshUITillElementPresent(String locator) throws HarnessException {
+		boolean present = false;
+		for (int i=1; i<=3; i++) {
+			present = zIsVisiblePerPosition(locator, 10, 10);
+			if (present == true) {
+				logger.info(locator + " locator found successfully");
+				return true;
+			} else {
+				logger.info(locator + " locator not found, refreshing UI..");
+				webDriver().navigate().refresh();
+				SleepUtil.sleepLong();
+			}
+		}
+		if (present == false) {
+			throw new HarnessException(locator + " not found in the UI");
+		}
+		return present;
 	}
+
 
 	public int sGetXpathCount(String xpath) throws HarnessException {
 		int count = 0;

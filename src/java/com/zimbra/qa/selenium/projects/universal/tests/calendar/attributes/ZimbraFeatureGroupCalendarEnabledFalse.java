@@ -57,7 +57,7 @@ public class ZimbraFeatureGroupCalendarEnabledFalse extends CalendarWorkWeekTest
 			+	"</ModifyAccountRequest>");
 
 		// Refresh UI
-		app.zPageMain.sRefresh();
+		app.zPageMain.zRefreshMainUI();
 		app.zPageCalendar.zNavigateTo();
 		
 		// Creating object for appointment data
@@ -127,7 +127,7 @@ public class ZimbraFeatureGroupCalendarEnabledFalse extends CalendarWorkWeekTest
 			+	"</ModifyAccountRequest>");
 
 		// Refresh UI
-		app.zPageMain.sRefresh();
+		app.zPageMain.zRefreshMainUI();
 		app.zPageCalendar.zNavigateTo();
 	
 		// Compose appointment and send it to invitee

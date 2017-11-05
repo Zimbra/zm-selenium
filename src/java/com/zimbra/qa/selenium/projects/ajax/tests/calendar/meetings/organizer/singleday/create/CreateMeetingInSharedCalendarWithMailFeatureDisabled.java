@@ -95,8 +95,7 @@ public class CreateMeetingInSharedCalendarWithMailFeatureDisabled extends AjaxCo
 			  "</ModifyAccountRequest>");
 
 			// Refresh UI
-			app.zPageMain.sRefreshPage();
-			app.zPageMain.zWaitTillElementPresent(PageMail.Locators.zCalendarZimletsPane);
+			app.zPageMain.zRefreshUITillElementPresent(PageMail.Locators.zCalendarZimletsPane);
 
 			// Compose appointment on shared mailbox
 			FormApptNew apptForm = (FormApptNew) app.zPageCalendar.zToolbarPressButton(Button.B_NEW);

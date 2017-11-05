@@ -102,7 +102,7 @@ public class SearchAppointment extends AjaxCommonTest {
 				null);		
 
 		// Refresh the UI (work around due to active dialogs found when running as a second test and directly using app.zPageCalendar.zNavigateTo();)
-		app.zPageMain.sRefresh();
+		app.zPageMain.zRefreshMainUI();
 		app.zPageCalendar.zNavigateTo();
 		
 		app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_VIEW_MENU, Button.O_VIEW_LIST_SUB_MENU, "List");

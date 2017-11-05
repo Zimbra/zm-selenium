@@ -385,7 +385,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 			}
 		
 		// Refresh current view
-		app.zPageMain.sRefresh();
+		app.zPageMain.zRefreshMainUI();
 		
 		//Refreshing it twice as single refresh does not work sometimes
 		app.zPageMail.zVerifyMailExists(subject[52]);

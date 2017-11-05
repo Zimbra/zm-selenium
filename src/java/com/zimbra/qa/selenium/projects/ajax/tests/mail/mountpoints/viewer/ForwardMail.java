@@ -100,7 +100,7 @@ public class ForwardMail extends PrefGroupMailByMessageTest {
 		//-- GUI
 		
 		// Refresh UI
-		app.zPageMain.sRefresh();
+		app.zPageMain.zRefreshMainUI();
 
 		try {
 			
@@ -194,7 +194,7 @@ public class ForwardMail extends PrefGroupMailByMessageTest {
 		//-- GUI
 		
 		// Refresh UI
-		app.zPageMain.sRefresh();
+		app.zPageMain.zRefreshMainUI();
 
 		try {
 			

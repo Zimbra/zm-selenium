@@ -100,7 +100,7 @@ public class AddDirectMemberOfDistributionList extends AdminCommonTest {
 		
 		ZAssert.assertEquals(dlMember.getText(), dl1.getEmailAddress(), "Verify that " + dl1.getEmailAddress() + "is a member of " + dl2.getEmailAddress());
 		
-		app.zPageManageDistributionList.sRefresh();
+		app.zPageManageDistributionList.zRefreshMainUI();
 		
 		startingPage.zNavigateTo();
 		

@@ -93,7 +93,7 @@ public class Create extends CalendarWorkWeekTest {
 			+	"</CreateIdentityRequest>");
 
 		// Refresh UI
-		app.zPageMain.sRefresh();
+		app.zPageMain.zRefreshMainUI();
 		app.zPageCalendar.zNavigateTo();
 		
 		appt.setSubject(apptSubject);

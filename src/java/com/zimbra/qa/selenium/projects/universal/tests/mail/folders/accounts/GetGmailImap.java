@@ -80,7 +80,7 @@ public class GetGmailImap extends PrefGroupMailByMessageTest {
 					+			"fromDisplay='Foo Bar' fromAddress='"+ app.zGetActiveAccount().EmailAddress +"' />"
 					+	"</CreateDataSourceRequest>");
 
-		app.zPageMain.sRefresh();
+		app.zPageMain.zRefreshMainUI();
 
 		// If the datasource has never been synced, then an empty title bar appears
 		app.zTreeMail.zRightClickAt("css=div[id='zov__main_Mail'] td[id$='_textCell']:contains("+ foldername +")", "");

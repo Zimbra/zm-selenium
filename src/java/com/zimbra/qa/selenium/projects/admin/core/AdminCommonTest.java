@@ -200,7 +200,7 @@ public class AdminCommonTest {
 				for (int i = 0; i <= 10; i++) {
 					if (ClientSessionFactory.session().webDriver()
 							.findElement(By.cssSelector("css=div[id='ztih__AppAdmin__Home_textCell']")) != null) {
-						app.zPageLogin.sRefresh();
+						app.zPageLogin.zRefreshMainUI();
 						SleepUtil.sleepVeryVeryLong();
 						SleepUtil.sleepVeryVeryLong();
 						if (ClientSessionFactory.session().webDriver()

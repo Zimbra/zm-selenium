@@ -72,7 +72,7 @@ public class CreateAppointmentFromExternalIMAP extends CalendarWorkWeekTest {
 			+	"</CreateDataSourceRequest>");
 
 		// Refresh UI
-		app.zPageMain.sRefresh();
+		app.zPageMain.zRefreshMainUI();
 		app.zPageCalendar.zNavigateTo();
 		
 		// Create appointment data

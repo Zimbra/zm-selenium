@@ -61,7 +61,7 @@ public class ShowHideDeclinedMeetings extends AjaxCommonTest {
 	  "</ModifyAccountRequest>");
 
 	// Refresh UI
-	app.zPageMain.sRefresh();
+	app.zPageMain.zRefreshMainUI();
 	app.zPageCalendar.zNavigateTo();
 
 	ZimbraAccount.AccountA().soapSend(

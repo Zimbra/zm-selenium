@@ -76,12 +76,13 @@ public class DialogSendUpdatetoAttendees extends DialogWarning {
 
 		this.sClickAt(locator, "");
 		this.zWaitForBusyOverlay();
+		SleepUtil.sleepSmall();
 
 		if (button == Button.B_OK) {
 			Stafpostqueue sp = new Stafpostqueue();
 			sp.waitForPostqueue();
 		}
-		SleepUtil.sleepMedium();
+		SleepUtil.sleepLong();
 
 		return (page);
 	}

@@ -67,7 +67,7 @@ public class FromAllowAddress extends PrefGroupMailByMessageTest {
 			+	"</CreateIdentityRequest>");
 		
 		// Refresh UI
-		app.zPageMain.sRefresh();
+		app.zPageMain.zRefreshMainUI();
 		
 	}
 

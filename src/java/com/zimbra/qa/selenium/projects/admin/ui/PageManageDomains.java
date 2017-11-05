@@ -125,7 +125,7 @@ public class PageManageDomains extends AbsTab {
 
 		//Refresh the page if page is not the main page
 		if(!sIsElementPresent(Locators.CONFIGURE_ICON)) {
-			sRefresh();
+			zRefreshMainUI();
 		}
 		sClick(Locators.CONFIGURE_ICON);
 		zWaitForWorkInProgressDialogInVisible();

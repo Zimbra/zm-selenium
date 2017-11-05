@@ -113,7 +113,7 @@ public class SortByDateGroupByDateAscending extends PrefGroupMailByMessageTest {
 							+	"</SetMailboxMetadataRequest>");
 
 			// Refresh web-client to load the changes done. It is required as the next soap request overwrites the changes done by previous request if done without refresh. 
-			app.zPageMain.sRefresh();
+			app.zPageMain.zRefreshMainUI();
 
 			// Sort by Date in ascending order
 			app.zGetActiveAccount().soapSend(
@@ -122,7 +122,7 @@ public class SortByDateGroupByDateAscending extends PrefGroupMailByMessageTest {
 							+ 	"</ModifyPrefsRequest>");
 
 			// Refresh web-client to load the changes done
-			app.zPageMain.sRefresh();
+			app.zPageMain.zRefreshMainUI();
 
 			// Click on Inbox
 			app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, inbox);

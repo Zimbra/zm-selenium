@@ -94,7 +94,7 @@ public class ReplyFromSentFolderWithReplyToHeader extends PrefGroupMailByMessage
 		//-- GUI
 		
 		// Refresh UI
-		app.zPageMain.sRefresh();
+		app.zPageMain.zRefreshMainUI();
 
 		// Refresh current view
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
@@ -210,7 +210,7 @@ public class ReplyFromSentFolderWithReplyToHeader extends PrefGroupMailByMessage
 		//-- GUI
 		
 		// Refresh UI
-		app.zPageMain.sRefresh();
+		app.zPageMain.zRefreshMainUI();
 
 		// Click in sent
 		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Sent));

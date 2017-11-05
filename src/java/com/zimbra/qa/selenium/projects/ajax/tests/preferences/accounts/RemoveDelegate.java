@@ -63,7 +63,7 @@ public class RemoveDelegate extends AjaxCommonTest {
 		//-- GUI Steps
 
 		// Refresh UI
-		app.zPageMain.sRefresh();
+		app.zPageMain.zRefreshMainUI();
 		this.startingPage.zNavigateTo();
 
 		AbsDialog errorDialog = app.zPageMain.zGetErrorDialog(DialogErrorID.Zimbra);

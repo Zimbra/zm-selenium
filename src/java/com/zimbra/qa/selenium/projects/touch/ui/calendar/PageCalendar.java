@@ -191,7 +191,7 @@ public class PageCalendar extends AbsTab {
 		String locator = "css=div[class='x-dock x-dock-vertical x-sized'] div[class='zcs-menu-label']:contains('" + folderName + "')";
 		
 		if ( folderName != "Calendar") {
-			this.sRefresh();
+			this.zRefreshMainUI();
 			SleepUtil.sleepVeryLong();
 			SleepUtil.sleepLong();
 		}

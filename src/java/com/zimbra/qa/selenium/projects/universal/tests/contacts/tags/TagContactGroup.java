@@ -59,7 +59,7 @@ public class TagContactGroup extends UniversalCommonTest  {
 		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 		
 		// Work around
-		app.zPageMain.sRefresh();
+		app.zPageMain.zRefreshMainUI();
 		app.zPageContacts.zNavigateTo();
 		
 		// Select the contact

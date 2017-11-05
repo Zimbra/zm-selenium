@@ -64,7 +64,7 @@ public class ZimbraHelpAdvancedURL extends UniversalCommonTest {
 							+ "<a n='zimbraVirtualHostname'>" + ConfigProperties.getStringProperty("server.host")
 							+ "</a>" + "</ModifyDomainRequest>");
 			
-			app.zPageMain.sRefresh();
+			app.zPageMain.zRefreshMainUI();
 			app.zPageMain.zToolbarPressPulldown(Button.B_ACCOUNT, Button.O_PRODUCT_HELP);
 			SleepUtil.sleepMedium();
 			
@@ -111,7 +111,7 @@ public class ZimbraHelpAdvancedURL extends UniversalCommonTest {
 
 			SleepUtil.sleepVeryLong();
 			for (int i = 0; i <= 10; i++) {
-				app.zPageLogin.sRefresh();
+				app.zPageLogin.zRefreshMainUI();
 				if (app.zPageLogin.sIsElementPresent("css=input[class^='ZLoginButton']") == true || 
 						app.zPageLogin.sIsElementPresent("css=div[id$='parent-ZIMLET'] td[id$='ZIMLET_textCell']") == true) {
 					break;

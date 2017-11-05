@@ -56,7 +56,7 @@ public class FwdReplyHtmlSignatureAboveIncludeMsg extends UniversalCommonTest {
 						+ "</CreateSignatureRequest>");
 
 		// Refresh UI
-		app.zPageMain.sRefresh();
+		app.zPageMain.zRefreshMainUI();
 
 		logger.info("CreateSignature: finish");
 	}

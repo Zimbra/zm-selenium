@@ -66,7 +66,7 @@ public class FromExternalIMAP extends PrefGroupMailByMessageTest {
 			+	"</CreateDataSourceRequest>");
 
 		// Refresh UI
-		app.zPageMain.sRefresh();
+		app.zPageMain.zRefreshMainUI();
 		
 		// Create the message data to be sent
 		String subject = "subject" + ConfigProperties.getUniqueString();

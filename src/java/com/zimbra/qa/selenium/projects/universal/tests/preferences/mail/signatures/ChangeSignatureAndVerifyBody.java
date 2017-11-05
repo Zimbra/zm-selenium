@@ -71,7 +71,7 @@ public class ChangeSignatureAndVerifyBody extends UniversalCommonTest {
 						+ "</CreateSignatureRequest>");
 
 		// Refresh UI
-		app.zPageMain.sRefresh();
+		app.zPageMain.zRefreshMainUI();
 
 		// Open the new mail form
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
@@ -138,7 +138,7 @@ public class ChangeSignatureAndVerifyBody extends UniversalCommonTest {
 
 
 		// Refresh UI
-		app.zPageMain.sRefresh();
+		app.zPageMain.zRefreshMainUI();
 
 		// Open the new mail form
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);

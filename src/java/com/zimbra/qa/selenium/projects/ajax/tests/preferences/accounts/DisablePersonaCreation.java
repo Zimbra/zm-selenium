@@ -51,7 +51,7 @@ public class DisablePersonaCreation extends AjaxCommonTest {
 						+	"</ModifyAccountRequest>");
 
 		// Refresh Web-client
-		app.zPageMail.sRefresh();
+		app.zPageMail.zRefreshMainUI();
 
 		// Navigate to Preferences-->Accounts
 		startingPage.zNavigateTo();
@@ -69,7 +69,7 @@ public class DisablePersonaCreation extends AjaxCommonTest {
 						+	"</ModifyAccountRequest>");
 
 		// Refresh Web-client
-		app.zPageMail.sRefresh();
+		app.zPageMail.zRefreshMainUI();
 
 		// Navigate to Preferences-->Accounts
 		startingPage.zNavigateTo();

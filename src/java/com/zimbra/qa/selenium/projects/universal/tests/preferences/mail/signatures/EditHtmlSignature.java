@@ -57,7 +57,7 @@ public class EditHtmlSignature extends UniversalCommonTest {
 						+ "</CreateSignatureRequest>");
 
 		// Refresh UI
-		app.zPageMain.sRefresh();
+		app.zPageMain.zRefreshMainUI();
 		this.app.zPagePreferences.zNavigateTo();
 
 		logger.info("CreateSignature: finish");

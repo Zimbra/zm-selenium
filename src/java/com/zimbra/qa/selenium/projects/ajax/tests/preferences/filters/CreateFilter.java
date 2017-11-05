@@ -87,7 +87,7 @@ public class CreateFilter extends AjaxCommonTest {
 	public void CreateFilter_02() throws HarnessException {
     	
     	// Work around
-    	app.zPageMain.sRefresh();
+    	app.zPageMain.zRefreshMainUI();
     	app.zPagePreferences.zNavigateTo();
 
 		String filterName = "Outfilter";

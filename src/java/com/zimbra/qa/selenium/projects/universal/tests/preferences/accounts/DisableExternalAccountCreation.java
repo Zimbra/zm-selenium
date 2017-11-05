@@ -53,7 +53,7 @@ public class DisableExternalAccountCreation extends UniversalCommonTest {
 						+	"</ModifyAccountRequest>");
 
 		// Refresh Web-client
-		app.zPageMail.sRefresh();
+		app.zPageMail.zRefreshMainUI();
 
 		// Navigate to Preferences-->Accounts
 		startingPage.zNavigateTo();
@@ -72,7 +72,7 @@ public class DisableExternalAccountCreation extends UniversalCommonTest {
 						+	"</ModifyAccountRequest>");
 
 		// Refresh Web-client
-		app.zPageMail.sRefresh();
+		app.zPageMail.zRefreshMainUI();
 
 		// Navigate to Preferences-->Accounts
 		startingPage.zNavigateTo();
@@ -90,7 +90,7 @@ public class DisableExternalAccountCreation extends UniversalCommonTest {
 						+	"</ModifyAccountRequest>");
 
 		// Refresh Web-client
-		app.zPageMail.sRefresh();
+		app.zPageMail.zRefreshMainUI();
 
 		// Navigate to Preferences-->Accounts
 		startingPage.zNavigateTo();

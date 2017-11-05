@@ -50,7 +50,7 @@ public class SendOnBehalfOfDistList extends PrefGroupMailByMessageTest {
 		list.grantRight(app.zGetActiveAccount(), "sendOnBehalfOfDistList");
 
 		// Refresh UI
-		app.zPageMain.sRefresh();
+		app.zPageMain.zRefreshMainUI();
 		
 		//-- GUI Steps
 		

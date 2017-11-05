@@ -83,7 +83,7 @@ public class VerifyNestedState extends CalendarWorkWeekTest {
         ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
         
 	    // Refresh UI
-		app.zPageMain.sRefresh();
+		app.zPageMain.zRefreshMainUI();
 		app.zPageCalendar.zNavigateTo();
 
 	    SleepUtil.sleepLong();

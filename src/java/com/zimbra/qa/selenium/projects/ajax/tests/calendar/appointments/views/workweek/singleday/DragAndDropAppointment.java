@@ -83,11 +83,11 @@ public class DragAndDropAppointment extends AjaxCommonTest {
 
         // Drag and drop the item
         String locator;
-        if (app.zPageCalendar.zIsWeekend()) {
-        	locator = "css=div[id^='zli__CLWW__";
-        } else {
-        	locator = "css=div[id^='zli__CLW__";
-        }
+		if (app.zPageCalendar.zIsWeekend()) {
+			locator = "css=div[id^='zli__CLW__";
+		} else {
+			locator = "css=div[id^='zli__CLWW__";
+		}
 
 		// Select the item
 		app.zPageCalendar.zDragAndDrop(
@@ -170,11 +170,11 @@ public class DragAndDropAppointment extends AjaxCommonTest {
 
         // Drag and drop the item
         String locator;
-        if (app.zPageCalendar.zIsWeekend()) {
-        	locator = "css=div[id^='zli__CLW__";
-        } else {
-        	locator = "css=div[id^='zli__CLWW__";
-        }
+		if (app.zPageCalendar.zIsWeekend()) {
+			locator = "css=div[id^='zli__CLW__";
+		} else {
+			locator = "css=div[id^='zli__CLWW__";
+		}
 
     	String sourceLocator = locator + apptId + "'] td.appt_name";
     	String destinationLocator = locator + otherApptId + "'] td.appt_name";

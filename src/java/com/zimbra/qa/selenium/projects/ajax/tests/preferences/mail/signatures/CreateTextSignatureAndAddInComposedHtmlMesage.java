@@ -47,7 +47,7 @@ public class CreateTextSignatureAndAddInComposedHtmlMesage extends AjaxCommonTes
 						+ "</CreateSignatureRequest>");
 
 		// Refresh UI
-		app.zPageMain.sRefresh();
+		app.zPageMain.zRefreshMainUI();
 
 		logger.info("CreateSignature: finish");
 	}

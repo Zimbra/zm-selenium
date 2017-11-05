@@ -164,7 +164,7 @@ public class ModifyInstanceModifySeries extends AjaxCommonTest {
 		String modifiedSecondInstanceBody = ConfigProperties.getUniqueString();
 		String modifiedSixthInstanceBody = ConfigProperties.getUniqueString();
 
-		app.zPageMain.sRefresh();
+		app.zPageMain.zRefreshMainUI();
 		app.zPageCalendar.zNavigateTo();
 		app.zPageCalendar.zToolbarPressButton(Button.B_TODAY);
 

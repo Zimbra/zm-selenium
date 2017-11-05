@@ -56,9 +56,6 @@ public class ZimbraPrefCalendarFirstDayOfWeek extends AjaxCommonTest {
 		// Navigate to preferences -> calendar
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.Calendar);
 
-		// Change the default appointment duration
-		app.zPagePreferences.zToolbarPressPulldown(Button.O_DEFAULT_APPOINTMENT_DURATION, Button.O_APPOINTMENT_DURATION_90);
-		
 		// Save preferences
 		app.zPagePreferences.zToolbarPressButton(Button.B_SAVE);
 		DialogWarning dialog = (DialogWarning) new DialogWarning(DialogWarning.DialogWarningID.ReloadApplication, app, app.zPagePreferences);
@@ -70,7 +67,13 @@ public class ZimbraPrefCalendarFirstDayOfWeek extends AjaxCommonTest {
 		ZAssert.assertStringContains(app.zPageCalendar.zReturnDayWeek(2), "Wed", "Second day matched");
 		ZAssert.assertStringContains(app.zPageCalendar.zReturnDayWeek(3), "Thu", "Third day matched");
 		ZAssert.assertStringContains(app.zPageCalendar.zReturnDayWeek(4), "Fri", "Fourth day matched");
-		ZAssert.assertStringContains(app.zPageCalendar.zReturnDayWeek(6), "Mon", "Fifth day matched");
+		if (app.zPageCalendar.zIsWeekend()) {
+			ZAssert.assertStringContains(app.zPageCalendar.zReturnDayWeek(5), "Sat", "Fifth day matched");
+			ZAssert.assertStringContains(app.zPageCalendar.zReturnDayWeek(6), "Sun", "Sixth day matched");
+			ZAssert.assertStringContains(app.zPageCalendar.zReturnDayWeek(7), "Mon", "Seventh day matched");
+        } else {
+			ZAssert.assertStringContains(app.zPageCalendar.zReturnDayWeek(5), "Mon", "Fifth day matched");
+        }
 	}
 	
 	@AfterMethod(groups={"always"})

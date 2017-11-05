@@ -56,7 +56,7 @@ public class FwdReplyTextSignatureAboveIncludeMsg extends AjaxCommonTest {
 						+ "</CreateSignatureRequest>");
 
 		// Refresh UI
-		app.zPageMain.sRefresh();
+		app.zPageMain.zRefreshMainUI();
 
 		logger.info("CreateSignature: finish");
 	}

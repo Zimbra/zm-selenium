@@ -46,7 +46,7 @@ public class TagContact extends ContactsPrefShowSelectionCheckbox {
 	public void ClickPulldownMenuTagNewTag_01() throws HarnessException {
 
 		// Work around due to duplicate dialog ids
-		app.zPageMain.sRefresh();
+		app.zPageMain.zRefreshMainUI();
 		app.zPageContacts.zNavigateTo();
 
 		// -- Data
