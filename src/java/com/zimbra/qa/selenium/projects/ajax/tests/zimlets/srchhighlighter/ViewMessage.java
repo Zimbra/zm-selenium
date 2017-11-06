@@ -24,34 +24,29 @@ import com.zimbra.qa.selenium.projects.ajax.core.*;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail.Field;
 import com.zimbra.qa.selenium.projects.ajax.ui.search.*;
 
-	public class ViewMessage extends AjaxCommonTest {
-	
+public class ViewMessage extends AjaxCommonTest {
+
 	public ViewMessage() {
 		logger.info("New "+ ViewMessage.class.getCanonicalName());
-		
-		// All tests start at the login page
+
 		super.startingPage = app.zPageMail;
-
-		// Basic settings
 		super.startingAccountPreferences = new HashMap<String, String>() {
-			private static final long serialVersionUID = -2077258660517383691L;
-		{
-		    put("zimbraPrefGroupMailBy", "message");
-		}};
-
+			private static final long serialVersionUID = -2077258660517383691L; {
+				put("zimbraPrefGroupMailBy", "message");
+			}
+		};
 	}
-	
+
+
 	@Test( description = "Search for mail content.  Verify search terms are highlighted.",
 			groups = { "functional", "L2" })
-	
+
 	public void ViewMessage_01() throws HarnessException {
-		
-		//-- DATA
-		
+
 		// Create the message data to be sent
 		String subject = "subject" + ConfigProperties.getUniqueString();
 		String term = "search" + ConfigProperties.getUniqueString();
-		
+
 		// Send the message from AccountA to the ZCS user
 		ZimbraAccount.AccountA().soapSend(
 					"<SendMsgRequest xmlns='urn:zimbraMail'>" +
@@ -67,16 +62,15 @@ import com.zimbra.qa.selenium.projects.ajax.ui.search.*;
 		// Refresh current view
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 
-		// Remember to close the search view
 		try {
-			
+
 			// Search for the message
 			app.zPageSearch.zAddSearchQuery("content:("+ term +")");
 			app.zPageSearch.zToolbarPressButton(Button.B_SEARCH);
-			
+
 			// Select the result
 			app.zPageSearch.zListItem(Action.A_LEFTCLICK, subject);
-			
+
 			// Wait for a bit so the zimlet can take affect
 			SleepUtil.sleep(5000);
 
@@ -88,21 +82,13 @@ import com.zimbra.qa.selenium.projects.ajax.ui.search.*;
 			SleepUtil.sleep(5000);
 
 			// Verify the term is highlighted
-			
 			HtmlElement body = display.zGetMailPropertyAsHtml(Field.Body);
-			
-			// See http://bugzilla.zimbra.com/show_bug.cgi?id=82607 ... the DOM
-			// has a bug in it.  Once that bug is fixed, the xpath may need rework.
-			// 
 
 			// Verify the first term is located in a search highlight
 			HtmlElement.evaluate(body, "//span/span[@class='ZmSearchResult']", null, term, 1);
-			
+
 		} finally {
-			// Remember to close the search view
 			app.zPageSearch.zClose();
 		}
-
 	}
-
 }

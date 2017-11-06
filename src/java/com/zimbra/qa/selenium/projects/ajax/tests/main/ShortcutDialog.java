@@ -30,9 +30,9 @@ public class ShortcutDialog extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Open the 'Shortcut' dialog >> Verify contents and Close Link", 
+	@Test( description = "Open the 'Shortcut' dialog >> Verify contents and Close Link",
 		groups = { "functional", "L3"})
-	
+
 	public void Shortcutdialog_Close_01() throws HarnessException {
 
 		// Click the Account -> Shortcut menu
@@ -43,14 +43,14 @@ public class ShortcutDialog extends AjaxCommonTest {
 		ZAssert.assertStringContains(dialog.sGetShortcutsDialogBody("css=div[class='ZmShortcutsPanel']"), "Zimbra Keyboard Shortcuts", "Verify Zimbra Keyboard Shortcuts in New window view");
 		ZAssert.assertStringContains(dialog.sGetShortcutsDialogBody("css=div[class='ZmShortcutsPanel']"), "Conversation List View", "Verify Conversation List View Shortcuts in New window view");
 		ZAssert.assertStringContains(dialog.sGetShortcutsDialogBody("css=div[class='ZmShortcutsPanel']"), "Previous button", "Verify Previous button Shortcut in New window view");
-		
+
 		dialog.zClickButton(Button.B_CLOSE);
 	}
-	
 
-	@Test( description = "Open the 'Shortcut' dialog >> Verify in New Window link and contents", 
+
+	@Test( description = "Open the 'Shortcut' dialog >> Verify in New Window link and contents",
 		groups = { "functional", "L3" })
-	
+
 	public void Shortcutdialog_NewWindow_02() throws HarnessException {
 
 		// Click the Account -> Shortcut menu
@@ -58,7 +58,7 @@ public class ShortcutDialog extends AjaxCommonTest {
 
 		SeparateWindow window = null;
 		String windowTitle = "Zimbra";
-		
+
 		try {
 			window = (SeparateWindow) dialog.zClickButton(Button.B_NEWWINDOW);
 			window.zWaitForActive();
@@ -70,7 +70,7 @@ public class ShortcutDialog extends AjaxCommonTest {
 			dialog.sClickAt("css=div[class='ZmShortcutsWindow'] span[class='link']:contains('Close')", "");
 
 		} finally {
-			
+
 			if (window != null) {
 				app.zPageMain.sSelectWindow(null);
 				window.sSelectWindow(null);

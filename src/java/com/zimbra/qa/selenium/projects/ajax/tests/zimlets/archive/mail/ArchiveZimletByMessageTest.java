@@ -17,10 +17,8 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.zimlets.archive.mail;
 
 import java.lang.reflect.*;
-
 import org.testng.*;
 import org.testng.annotations.*;
-
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.*;
@@ -28,14 +26,15 @@ import com.zimbra.qa.selenium.projects.ajax.core.*;
 public class ArchiveZimletByMessageTest extends PrefGroupMailByMessageTest {
 
 	protected FolderItem MyArchiveFolder = null;
-	
+
 	public ArchiveZimletByMessageTest() {
 		super();
 		logger.info("New "+ this.getClass().getCanonicalName());
 	}
 
+
 	public void initializeArchiveFolder() throws HarnessException {
-		
+
 		String foldername = "archive" + ConfigProperties.getUniqueString();
 		FolderItem root = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.UserRoot);
 
@@ -54,21 +53,22 @@ public class ArchiveZimletByMessageTest extends PrefGroupMailByMessageTest {
 					"</meta>" +
 			"</SetMailboxMetadataRequest>");
 	}
-	
+
 	@BeforeMethod( groups = { "always" } )
 	public void archiveZimletTestBeforeMethod(Method method, ITestContext testContext) throws HarnessException {
+
 		logger.info("archiveZimletTestBeforeMethod: start");
-		
+
 		if ( MyArchiveFolder == null ) {
 
 			// Create and set the archive folder
 			initializeArchiveFolder();
-			
+
 			// To refresh the zimlet settings: Logout/Login
 			app.zPageMain.zRefreshMainUI();
 			app.zPageMail.zNavigateTo();
 		}
-		
+
 		logger.info("archiveZimletTestBeforeMethod: finish");
 	}
 }

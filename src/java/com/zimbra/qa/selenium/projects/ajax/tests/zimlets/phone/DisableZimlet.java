@@ -35,19 +35,16 @@ public class DisableZimlet extends AjaxCommonTest {
    public DisableZimlet() {
       logger.info("New "+ DisableZimlet.class.getCanonicalName());
 
-      // All tests start at the login page
-      super.startingPage = app.zPageMail;
-
-      // Make sure we are using an account with message view
+	  super.startingPage = app.zPageMail;
       super.startingAccountPreferences = new HashMap<String, String>() {{
     	  put("zimbraPrefGroupMailBy", "message");
     	  put("zimbraPrefMessageViewHtmlPreferred", "TRUE");
       }};
-
       super.startingUserZimletPreferences = new HashMap<String, String>() {{
     	  put("com_zimbra_phone", "disabled");
       }};
    }
+
 
    @Test( description = "Receive a text mail - verify numeric mail contents is not converted into phone number hyperlink",
          groups = { "functional", "L2" })
@@ -90,8 +87,8 @@ public class DisableZimlet extends AjaxCommonTest {
       // do a contains, rather than equals.
       ZAssert.assertStringContains(actual.zGetMailProperty(Field.Body), mail.dBodyText, "Verify the body matches");
       ZAssert.assertStringDoesNotContain(actual.zGetMailProperty(Field.Body), "<span", "Ensure that the body doesn't contain <span from phone zimlet");
-
    }
+
 
    @Test(   description = "Receive an html mail - verify numeric mail contents is not converted into phone number hyperlink",
          groups = { "functional", "L3" })

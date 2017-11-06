@@ -17,7 +17,6 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.main;
 
 import org.testng.annotations.*;
-
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.*;
@@ -30,18 +29,16 @@ public class ProductHelp extends AjaxCommonTest {
 		super.startingPage = app.zPageMail;
 	}
 
-	
+
 	@Test( description = "Open 'Product Help'",
 			groups = { "smoke", "L0" })
-	
+
 	public void ProductHelp_01() throws HarnessException {
 
 		SeparateWindow window = null;
 		String windowTitle = "ZWC Help";
 
 		try {
-
-			// Click the Account -> Product Help
 			window = (SeparateWindow)app.zPageMain.zToolbarPressPulldown(Button.B_ACCOUNT, Button.O_PRODUCT_HELP);
 
 			SleepUtil.sleepLong();
@@ -54,7 +51,7 @@ public class ProductHelp extends AjaxCommonTest {
 				} else if (title.contains(windowTitle)) {
 					logger.info("zIsActive() = true ... title = " + title);
 					break;
-					
+
 				} else {
 					throw new HarnessException("Window never became active!");
 				}
@@ -64,7 +61,6 @@ public class ProductHelp extends AjaxCommonTest {
 			app.zPageMain.sSelectWindow(null);
 
 		} finally {
-
 			app.zPageMain.zSeparateWindowClose(windowTitle);
 			app.zPageMain.sSelectWindow(null);
 			window.sSelectWindow(null);

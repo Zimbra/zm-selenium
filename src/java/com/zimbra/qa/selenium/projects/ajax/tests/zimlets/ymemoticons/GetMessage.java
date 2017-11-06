@@ -24,37 +24,35 @@ import com.zimbra.qa.selenium.projects.ajax.core.*;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.*;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail.*;
 
-
 public class GetMessage extends AjaxCommonTest {
 
 	public static final class Emoticons {
 		public static final String HAPPY = ":)";
 		public static final String SAD = ":(";
-		// TODO: add all the emoticons
 	}
-	
+
 	public GetMessage() {
 		logger.info("New "+ GetMessage.class.getCanonicalName());
-		
-		// All tests start at the login page
+
 		super.startingPage = app.zPageMail;
 
-		// Basic settings
 		super.startingAccountPreferences = new HashMap<String, String>() {
-			private static final long serialVersionUID = 2239204417855001627L;
-		{
-		    put("zimbraPrefGroupMailBy", "message");
-		}};
+			private static final long serialVersionUID = 2239204417855001627L; {
+				put("zimbraPrefGroupMailBy", "message");
+			}
+		};
 	}
-	
+
+
 	@Test( description = "Receive a mail with a basic emoticon",
 			groups = { "functional", "L2" })
+
 	public void GetMessage_01() throws HarnessException {
-		
+
 		// Create the message data to be sent
 		String subject = "subject" + ConfigProperties.getUniqueString();
 		String body = "text " + Emoticons.HAPPY + " text";
-		
+
 		// Send the message from AccountA to the ZCS user
 		ZimbraAccount.AccountA().soapSend(
 			"<SendMsgRequest xmlns='urn:zimbraMail'>" +
@@ -66,25 +64,20 @@ public class GetMessage extends AjaxCommonTest {
 					"</mp>" +
 				"</m>" +
 			"</SendMsgRequest>");
-		
+
 		// Refresh current view
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 
 		// Get all the messages in the inbox
 		DisplayMail display = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
-		
+
 		// Wait for a bit so the zimlet can take affect
 		SleepUtil.sleep(5000);
-		
-		
-		//-- VERIFICATION
-		
-		
+
 		// Get the HTML of the body
 		HtmlElement bodyElement = display.zGetMailPropertyAsHtml(Field.Body);
-		
+
 		ZAssert.assertStringContains(bodyElement.prettyPrint(), "com_zimbra_ymemoticons", "Verify the ymemoticons zimlet is applied to the body");
 		ZAssert.assertStringContains(bodyElement.prettyPrint(), "1.gif", "Verify the 'happy' emoticon is displayed");
-		
 	}
 }

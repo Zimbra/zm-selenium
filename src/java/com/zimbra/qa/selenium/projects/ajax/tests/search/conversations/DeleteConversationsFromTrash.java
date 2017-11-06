@@ -14,7 +14,7 @@
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-package com.zimbra.qa.selenium.projects.ajax.tests.search.search;
+package com.zimbra.qa.selenium.projects.ajax.tests.search.conversations;
 
 import java.util.List;
 import org.testng.annotations.Test;
@@ -31,22 +31,23 @@ import com.zimbra.qa.selenium.projects.ajax.core.*;
 import com.zimbra.qa.selenium.projects.ajax.ui.AppAjaxClient;
 import com.zimbra.qa.selenium.projects.ajax.ui.DialogWarning;
 
-public class DeleteMessagesAfterSearchingIt extends PrefGroupMailByMessageTest {
+public class DeleteConversationsFromTrash extends PrefGroupMailByMessageTest {
 
-	public DeleteMessagesAfterSearchingIt() {
-		logger.info("New "+ DeleteMessagesAfterSearchingIt.class.getCanonicalName());
+	public DeleteConversationsFromTrash() {
+		logger.info("New "+ DeleteConversationsFromTrash.class.getCanonicalName());
 		super.startingAccountPreferences.put("zimbraPrefShowSelectionCheckbox", "TRUE");
 	}
-	
+
+
 	@Bugs( ids = "44826")
-	@Test( description = " Search in Trash and delete, does not delete", 
+	@Test( description = " Search in Trash and delete, does not delete",
 			groups = { "functional","L2" })
-	
-	public void DeleteMessagesAfterSearchingIt_01() throws HarnessException {
-		
+
+	public void DeleteConversationsFromTrash_01() throws HarnessException {
+
 		// Create a message in trash to move
 		FolderItem trash = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Trash);
-		
+
 		String subject1 = "subject1" + ConfigProperties.getUniqueString();
 		app.zGetActiveAccount().soapSend(
 				"<AddMsgRequest xmlns='urn:zimbraMail'>"
@@ -62,7 +63,7 @@ public class DeleteMessagesAfterSearchingIt extends PrefGroupMailByMessageTest {
         	+			"</content>"
         	+		"</m>"
 			+	"</AddMsgRequest>");
-		
+
 		// Create a message in trash to move
 		String subject2 = "subject2" + ConfigProperties.getUniqueString();
 		app.zGetActiveAccount().soapSend(
@@ -89,30 +90,29 @@ public class DeleteMessagesAfterSearchingIt extends PrefGroupMailByMessageTest {
 
 		// Remember to close the search view
 		try {
-			
+
 			// Search for the message
 			app.zPageSearch.zAddSearchQuery("in:trash from:foo@foo.com");
 			app.zPageSearch.zToolbarPressButton(Button.B_SEARCH);
-			
+
 			// Select all
 			app.zPageSearch.zToolbarPressButton(Button.B_SELECT_ALL);
 
 			// Click delete
 			app.zPageSearch.zToolbarPressButton(Button.B_DELETE);
-			
+
 			// Warning dialog will appear
 			DialogWarning dialog = new DialogWarning(DialogWarning.DialogWarningID.PermanentlyDeleteTheItem, app, ((AppAjaxClient) app).zPageSearch);
 			ZAssert.assertTrue(dialog.zIsActive(), "Verify the warning dialog opens");
 			dialog.zClickButton(Button.B_OK);
-			
+
 		} finally {
 			// Remember to close the search view
 			app.zPageSearch.zClose();
 			// Select the trash
 			app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Trash));
 		}
-	
-		//-- VERIFICATION 		
+
 		List<MailItem> messages = app.zPageMail.zListGetMessages();
 		ZAssert.assertNotNull(messages, "Verify the message list exists");
 
@@ -129,14 +129,15 @@ public class DeleteMessagesAfterSearchingIt extends PrefGroupMailByMessageTest {
 		}
 		ZAssert.assertNull(found1, "Verify the message "+ mail1.dSubject +" is no longer in the Trash");
 		ZAssert.assertNull(found2, "Verify the message "+ mail2.dSubject +" is no longer in the Trash");
-		
 	}
-	
+
+
 	@Bugs( ids = "44826")
-	@Test( description = " Search in Trash and delete, does not delete", 
+	@Test( description = " Search in Trash and delete, does not delete",
 			groups = { "functional","L2" })
-	
-	public void DeleteMessagesAfterSearchingIt_02() throws HarnessException {
+
+	public void DeleteConversationsFromTrash_02() throws HarnessException {
+
 		FolderItem inboxFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(),SystemFolder.Inbox);
 		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, inboxFolder);
 
@@ -157,7 +158,7 @@ public class DeleteMessagesAfterSearchingIt extends PrefGroupMailByMessageTest {
         	+			"</content>"
         	+		"</m>"
 			+	"</AddMsgRequest>");
-		
+
 		// Create a message in trash to move
 		String subject2 = "subject2" + ConfigProperties.getUniqueString();
 		app.zGetActiveAccount().soapSend(
@@ -184,34 +185,28 @@ public class DeleteMessagesAfterSearchingIt extends PrefGroupMailByMessageTest {
 
 		// Remember to close the search view
 		try {
-			
+
 			// Search for the message
 			app.zPageSearch.zAddSearchQuery("in:trash from:foo@foo.com");
 			app.zPageSearch.zToolbarPressButton(Button.B_SEARCH);
-		
+
 			// Select all
 			app.zPageSearch.zToolbarPressButton(Button.B_SELECT_ALL);
-		
+
 			// Click delete
 			app.zPageSearch.zToolbarPressButton(Button.B_DELETE);
-			
+
 			// Warning dialog will appear
 			DialogWarning dialog = new DialogWarning(DialogWarning.DialogWarningID.PermanentlyDeleteTheItem,
-											app,
-											((AppAjaxClient) app).zPageSearch);
+											app, ((AppAjaxClient) app).zPageSearch);
 			ZAssert.assertTrue(dialog.zIsActive(), "Verify the warning dialog opens");
 			dialog.zClickButton(Button.B_OK);
-			
+
 		} finally {
-			// Remember to close the search view
 			app.zPageSearch.zClose();
-			// Select the trash
 			app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Trash));
 		}
-	
-		//-- VERIFICATION 
-		//
-		
+
 		List<MailItem> messages = app.zPageMail.zListGetMessages();
 		ZAssert.assertNotNull(messages, "Verify the message list exists");
 
@@ -228,7 +223,5 @@ public class DeleteMessagesAfterSearchingIt extends PrefGroupMailByMessageTest {
 		}
 		ZAssert.assertNull(found1, "Verify the message "+ mail1.dSubject +" is no longer in the Trash");
 		ZAssert.assertNull(found2, "Verify the message "+ mail2.dSubject +" is no longer in the Trash");
-		
 	}
-
 }

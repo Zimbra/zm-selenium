@@ -17,27 +17,27 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.main.login;
 
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 
 public class BasicLogin extends AjaxCommonTest {
-	
+
 	public BasicLogin() {
 		logger.info("New "+ BasicLogin.class.getCanonicalName());
 		super.startingPage = app.zPageLogin;
 	}
-	
+
+
 	@Test( description = "Login to the Ajax Client",
-			groups = { "sanity", "L0"})
-	
+			groups = { "sanity", "L0" })
+
 	public void BasicLogin01() throws HarnessException {
-		
+
 		// Login
 		app.zPageLogin.zLogin(ZimbraAccount.AccountZCS());
-		
+
 		// Verify main page becomes active
 		ZAssert.assertTrue(app.zPageMain.zIsActive(), "Verify that the account is logged in");
 	}

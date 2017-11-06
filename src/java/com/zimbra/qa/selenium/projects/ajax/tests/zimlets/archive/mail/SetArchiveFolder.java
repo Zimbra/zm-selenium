@@ -28,17 +28,19 @@ public class SetArchiveFolder extends PrefGroupMailByMessageTest {
 	public SetArchiveFolder() {
 		logger.info("New "+ SetArchiveFolder.class.getCanonicalName());
 	}
-	
+
+
 	@Test( description = "On clicking 'Archive', client should prompt to set the archive folder",
 			groups = { "functional", "L3" })
+
 	public void SetArchiveFolder_01() throws HarnessException {
-		
+
 		// Create the message data to be sent
 		String subject = "subject" + ConfigProperties.getUniqueString();
 		String foldername = "archive" + ConfigProperties.getUniqueString();
 		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Inbox);
 		FolderItem root = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.UserRoot);
-		
+
 		// Add a message to the inbox
 		app.zGetActiveAccount().soapSend(
 				"<AddMsgRequest xmlns='urn:zimbraMail'>"
@@ -67,10 +69,10 @@ public class SetArchiveFolder extends PrefGroupMailByMessageTest {
 
 		// Select the message
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
-		
+
 		// Click Archive
 		app.zPageMail.zToolbarPressButton(Button.B_ARCHIVE);
-		
+
 		// A choose folder dialog will pop up
 		DialogMove dialog = new DialogMove(app, ((AppAjaxClient)app).zPageMail);
 		dialog.zWaitForActive();
@@ -83,8 +85,7 @@ public class SetArchiveFolder extends PrefGroupMailByMessageTest {
 				"</GetMailboxMetadataRequest>");
 
 		String id = app.zGetActiveAccount().soapSelectValue("//mail:GetMailboxMetadataResponse//mail:a[@n='archivedFolder']", null);
-		
+
 		ZAssert.assertEquals(id, subfolder.getId(), "Verify the archive folder ID was set correctly");
 	}
-
 }

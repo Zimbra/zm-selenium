@@ -17,7 +17,6 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.zimlets.archive.mail.newwindow;
 
 import org.testng.annotations.*;
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
@@ -30,17 +29,18 @@ public class ArchiveMessage extends ArchiveZimletByMessageTest {
 	public ArchiveMessage() {
 		logger.info("New "+ ArchiveMessage.class.getCanonicalName());
 	}
-	
+
+
 	@Bugs(ids = "80238")
 	@Test( description = "Archive a message from new window",
 			groups = { "smoke-skip", "application-bug" })
-	
+
 	public void ArchiveMessage_01() throws HarnessException {
-		
+
 		// Create the message data to be sent
 		String subject = "subject" + ConfigProperties.getUniqueString();
 		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Inbox);
-		
+
 		// Add a message to the inbox
 		app.zGetActiveAccount().soapSend(
 				"<AddMsgRequest xmlns='urn:zimbraMail'>"
@@ -62,40 +62,39 @@ public class ArchiveMessage extends ArchiveZimletByMessageTest {
 
 		// Select the message
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
-		
+
 		SeparateWindowDisplayMail window = null;
 		String windowTitle = "Zimbra: " + subject;
-		
+
 		try {
-			
+
 			// Choose Actions -> Launch in Window
 			window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
-			
+
 			window.zSetWindowTitle(windowTitle);
 			ZAssert.assertTrue(window.zIsWindowOpen(windowTitle),"Verify the window is opened and switch to it");
-			
+
 			window.zToolbarPressButton(Button.B_ARCHIVE);
-			
+
 		} finally {
 			app.zPageMain.zCloseWindow(window, windowTitle, app);
 		}
-		
+
 		MailItem message = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
 		ZAssert.assertNotNull(message, "Verify the archived message still exists in the mailbox");
 		ZAssert.assertEquals(message.dFolderId, this.MyArchiveFolder.getId(), "Verify the archived message is moved to the archive folder");
-		
-
 	}
-	
+
+
 	@Test( description = "Verify the 'archive' button is not present in separate window",
 			groups = { "functional", "L3" })
-	
+
 	public void ArchiveMessage_02() throws HarnessException {
-		
+
 		// Create the message data to be sent
 		String subject = "subject" + ConfigProperties.getUniqueString();
 		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Inbox);
-		
+
 		// Add a message to the inbox
 		app.zGetActiveAccount().soapSend(
 				"<AddMsgRequest xmlns='urn:zimbraMail'>"
@@ -111,31 +110,29 @@ public class ArchiveMessage extends ArchiveZimletByMessageTest {
             	+			"</content>"
             	+		"</m>"
 				+	"</AddMsgRequest>");
-		
+
 		// Refresh current view
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 
 		// Select the message
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
-		
+
 		SeparateWindowDisplayMail window = null;
 		String windowTitle = "Zimbra: " + subject;
-		
+
 		try {
 			window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
-			
+
 			window.zSetWindowTitle(windowTitle);
 			ZAssert.assertTrue(window.zIsWindowOpen(windowTitle),"Verify the window is opened and switch to it");
-			
+
 			String locator = "css=div[id^='ztb__MSG'] div[id*='ARCHIVE'] td[id$='_title']";
 			boolean present = window.sIsElementPresent(locator);
-			
+
 			ZAssert.assertFalse(present, "Verify the 'archive' button is not present");
 
 		} finally {
 			app.zPageMain.zCloseWindow(window, windowTitle, app);
 		}
-		
 	}
-
 }

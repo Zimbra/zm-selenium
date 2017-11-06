@@ -17,43 +17,35 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.search.savedsearch;
 
 import java.util.*;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-
-//TODO: add more in ContactItem.java
 
 public class RunSavedSearch extends AjaxCommonTest  {
 
 	@SuppressWarnings("serial")
 	public RunSavedSearch() {
 		logger.info("New "+ RunSavedSearch.class.getCanonicalName());
-		
-		// All tests start at the Address page
-		super.startingPage = app.zPageMail;
 
-		// Make sure we are using an account with conversation view
+		super.startingPage = app.zPageMail;
 		super.startingAccountPreferences = new HashMap<String, String>() {{
 			put("zimbraPrefGroupMailBy", "message");
 		}};
-		
 	}
-	
+
+
 	@Test( description = "Run a saved search",
 			groups = { "smoke","L0" })
-	public void RunSavedSearch_01() throws HarnessException {				
-				
-			
+
+	public void RunSavedSearch_01() throws HarnessException {
+
 		// Create the message data to be sent
 		String name = "search" + ConfigProperties.getUniqueString();
 		String subject1 = "subject" + ConfigProperties.getUniqueString();
 		String subject2 = "subject" + ConfigProperties.getUniqueString();
 		String query = "subject:(" + subject1 + ")";
-		
 
 		// Send two messages with different subjects to the account
 		ZimbraAccount.AccountA().soapSend(
@@ -66,7 +58,7 @@ public class RunSavedSearch extends AjaxCommonTest  {
 						"</mp>" +
 					"</m>" +
 				"</SendMsgRequest>");
-		
+
 		ZimbraAccount.AccountA().soapSend(
 				"<SendMsgRequest xmlns='urn:zimbraMail'>" +
 					"<m>" +
@@ -77,7 +69,7 @@ public class RunSavedSearch extends AjaxCommonTest  {
 						"</mp>" +
 					"</m>" +
 				"</SendMsgRequest>");
-		
+
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
 		// Create the saved search
@@ -85,17 +77,16 @@ public class RunSavedSearch extends AjaxCommonTest  {
 				"<CreateSearchFolderRequest xmlns='urn:zimbraMail'>" +
 					"<search name='"+ name +"' query='"+ query +"' l='1' types='message'/>" +
 				"</CreateSearchFolderRequest>");
-		
+
 		// Get the item
 		SavedSearchFolderItem item = SavedSearchFolderItem.importFromSOAP(app.zGetActiveAccount(), name);
-		
+
 		// Refresh the folder list
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
-		
+
 		// Left click on the search
 		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, item);
-		
-		
+
 		// Verify the correct messages appear
 		List<MailItem> messages = app.zPageMail.zListGetMessages();
 		ZAssert.assertNotNull(messages, "Verify the message list exists");
@@ -116,6 +107,5 @@ public class RunSavedSearch extends AjaxCommonTest  {
 		}
 		ZAssert.assertNotNull(found1, "Verify the matched message exists in the inbox");
 		ZAssert.assertNull(found2, "Verify the un-match message does not exist in the inbox");
-
 	}
 }

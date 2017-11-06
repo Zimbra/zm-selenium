@@ -32,21 +32,18 @@ public class SearchContactGroup extends AjaxCommonTest {
 		super.startingPage = app.zPageContacts;
 	}
 
-	@Test(description = "Search for an existing contact group", 
+
+	@Test(description = "Search for an existing contact group",
 			groups = { "functional","L2" })
+
 	public void SearchContactGroup_01() throws HarnessException {
 
-		// -- Data
-
-		// Create a contact group via Soap
+		// Create a contact group
 		ContactGroupItem group = ContactGroupItem.createContactGroupItem(app.zGetActiveAccount());
-
-		// -- GUI
 
 		// Refresh
 		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 
-		// Remember to close the search view
 		try {
 
 			// search for group name
@@ -55,35 +52,29 @@ public class SearchContactGroup extends AjaxCommonTest {
 			app.zPageSearch.zToolbarPressButton(Button.B_SEARCH);
 
 			List<ContactItem> contacts = app.zPageSearch.zListGetContacts();
-
 			ZAssert.assertTrue(contacts.size() == 1, "Verify only 1 contact group displayed");
 			ZAssert.assertEquals(contacts.get(0).fileAs, group.groupName,
 					"Verify contact group (" + group.groupName + ") is displayed");
 
 		} finally {
-			// Remember to close the search view
 			app.zPageSearch.zClose();
 		}
-
 	}
+
 
 	@Bugs(ids = "77950")
 	@Test(description = "Search for an existing contact group, by member",
 			groups = { "functional-skip","L3-skip" })
+
 	public void SearchContactGroup_02() throws HarnessException {
 
-		// -- Data
-
-		// Create a contact group via Soap
+		// Create a contact group
 		ContactGroupItem group = ContactGroupItem.createContactGroupItem(app.zGetActiveAccount());
 		MemberItem member = group.getMemberList().get(0);
-
-		// -- GUI
 
 		// Refresh
 		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 
-		// Remember to close the search view
 		try {
 
 			// search for group name
@@ -98,10 +89,7 @@ public class SearchContactGroup extends AjaxCommonTest {
 					"Verify contact group (" + group.groupName + ") is displayed");
 
 		} finally {
-			// Remember to close the search view
 			app.zPageSearch.zClose();
 		}
-
 	}
-
 }

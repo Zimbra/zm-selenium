@@ -34,12 +34,11 @@ public class AttachBriefcaseFileAndSendMail extends PrefGroupMailByMessageTest {
 		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "text");
 	}
 
-	@Test(description = "Attach an briefcase file to a mail", 
+
+	@Test(description = "Attach an briefcase file to a mail",
 			groups = { "functional", "L2" })
 
 	public void AttachBriefcaseFileAndSendMail_01() throws HarnessException {
-
-		// -- DATA
 
 		ZimbraAccount account = app.zGetActiveAccount();
 
@@ -63,8 +62,6 @@ public class AttachBriefcaseFileAndSendMail extends PrefGroupMailByMessageTest {
 		mail.dToRecipients.add(new RecipientItem(ZimbraAccount.AccountA()));
 		mail.dSubject = "subject" + ConfigProperties.getUniqueString();
 		mail.dBodyText = "body" + ConfigProperties.getUniqueString();
-
-		// -- GUI
 
 		// Click Get Mail button to get the new contact
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
@@ -90,18 +87,12 @@ public class AttachBriefcaseFileAndSendMail extends PrefGroupMailByMessageTest {
 		SleepUtil.sleepLong();
 		mailform.zSubmit();
 
-		// -- Verification
-
 		// From the receiving end, verify the message details
 		MailItem received = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "subject:(" + mail.dSubject + ")");
 		ZAssert.assertNotNull(received, "Verify the message is received correctly");
-		ZimbraAccount.AccountA().soapSend(
-				"<GetMsgRequest xmlns='urn:zimbraMail'>" + "<m id='" + received.getId() + "'/>" + "</GetMsgRequest>");
+		ZimbraAccount.AccountA().soapSend("<GetMsgRequest xmlns='urn:zimbraMail'>" + "<m id='" + received.getId() + "'/>" + "</GetMsgRequest>");
 
 		String filename = ZimbraAccount.AccountA().soapSelectValue("//mail:mp[@cd='attachment']", "filename");
-
 		ZAssert.assertEquals(filename, docName, "Verify the attached file exist");
-
 	}
-
 }

@@ -17,27 +17,20 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.main.login.mountpoints.folders;
 
 import org.testng.annotations.*;
-
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 
-
-
 public class OwnerAccountLocked extends AjaxCommonTest {
-	
+
 	protected ZimbraAccount Owner = null;
-	
+
 	public OwnerAccountLocked() {
 		logger.info("New "+ OwnerAccountLocked.class.getCanonicalName());
-		
-		// Test starts in the mail app
 		super.startingPage = app.zPageMail;
-		
-		
 	}
-	
+
 	@BeforeMethod( description = "Make sure the Owner account exists",
 					groups = { "always" } )
 	public void CreateOwner() throws HarnessException {
@@ -45,28 +38,27 @@ public class OwnerAccountLocked extends AjaxCommonTest {
 		Owner.provision();
 		Owner.authenticate();
 	}
-	
-	
+
+
 	@Test( description = "Login to the Ajax Client - with a mountpoint to a 'locked' account",
 			groups = { "functional", "L3"})
+
 	public void OwnerAccountLocked01() throws HarnessException {
-		
-		// Data setup
-		
+
 		String subject = "subject" + ConfigProperties.getUniqueString();
 		String foldername = "folder" + ConfigProperties.getUniqueString();
 		String mountpointname = "mountpoint" + ConfigProperties.getUniqueString();
-		
+
 		FolderItem inbox = FolderItem.importFromSOAP(Owner, FolderItem.SystemFolder.Inbox);
-		
+
 		// Create a folder to share
 		Owner.soapSend(
 					"<CreateFolderRequest xmlns='urn:zimbraMail'>"
 				+		"<folder name='" + foldername + "' l='" + inbox.getId() + "'/>"
 				+	"</CreateFolderRequest>");
-		
+
 		FolderItem folder = FolderItem.importFromSOAP(Owner, foldername);
-		
+
 		Owner.soapSend(
 				"<AddMsgRequest xmlns='urn:zimbraMail'>"
     		+		"<m l='"+ folder.getId() +"' f='u'>"
@@ -89,46 +81,37 @@ public class OwnerAccountLocked extends AjaxCommonTest {
 				+			"<grant d='"+ app.zGetActiveAccount().EmailAddress +"' gt='usr' perm='rwidxa'/>"
 				+		"</action>"
 				+	"</FolderActionRequest>");
-		
-		
+
 		// Mount it
 		app.zGetActiveAccount().soapSend(
 					"<CreateMountpointRequest xmlns='urn:zimbraMail'>"
 				+		"<link l='1' name='"+ mountpointname +"'  rid='"+ folder.getId() +"' zid='"+ Owner.ZimbraId +"'/>"
 				+	"</CreateMountpointRequest>");
-		
+
 		FolderMountpointItem mountpoint = FolderMountpointItem.importFromSOAP(app.zGetActiveAccount(), mountpointname);
 		ZAssert.assertNotNull(mountpoint, "Verify the mountpoint was created");
-		
-		
-		
+
 		// Click Get Mail button
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
 		// View the folder
 		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, mountpoint);
-		
+
 		// Logout
 		ZimbraAccount account = app.zGetActiveAccount();
 		app.zPageMain.zLogout();
-		
+
 		// Make the owner account in maintenance
 		ZimbraAdminAccount.GlobalAdmin().soapSend(
 					"<ModifyAccountRequest xmlns='urn:zimbraAdmin'>"
 				+		"<id>"+ Owner.ZimbraId + "</id>"
 				+		"<a n='zimbraAccountStatus'>locked</a>"
 				+	"</ModifyAccountRequest>");
-		
-		
+
 		// Login
 		app.zPageLogin.zLogin(account);
-		
-		
+
 		// View the folder
 		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, mountpoint);
-		
-
 	}
-
-
 }

@@ -14,7 +14,7 @@
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-package com.zimbra.qa.selenium.projects.universal.tests.search.search;
+package com.zimbra.qa.selenium.projects.universal.tests.search.conversations;
 
 import java.util.List;
 import org.testng.annotations.Test;
@@ -31,10 +31,10 @@ import com.zimbra.qa.selenium.projects.universal.core.*;
 import com.zimbra.qa.selenium.projects.universal.ui.AppUniversalClient;
 import com.zimbra.qa.selenium.projects.universal.ui.DialogWarning;
 
-public class DeleteMessagesAfterSearchingIt extends PrefGroupMailByMessageTest {
+public class DeleteConversationsFromTrash extends PrefGroupMailByMessageTest {
 
-	public DeleteMessagesAfterSearchingIt() {
-		logger.info("New "+ DeleteMessagesAfterSearchingIt.class.getCanonicalName());
+	public DeleteConversationsFromTrash() {
+		logger.info("New "+ DeleteConversationsFromTrash.class.getCanonicalName());
 		super.startingAccountPreferences.put("zimbraPrefShowSelectionCheckbox", "TRUE");
 	}
 	
@@ -42,7 +42,7 @@ public class DeleteMessagesAfterSearchingIt extends PrefGroupMailByMessageTest {
 	@Test( description = " Search in Trash and delete, does not delete", 
 			groups = { "functional","L2" })
 	
-	public void DeleteMessagesAfterSearchingIt_01() throws HarnessException {
+	public void DeleteConversationsFromTrash_01() throws HarnessException {
 		
 		// Create a message in trash to move
 		FolderItem trash = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Trash);
@@ -136,7 +136,7 @@ public class DeleteMessagesAfterSearchingIt extends PrefGroupMailByMessageTest {
 	@Test( description = " Search in Trash and delete, does not delete", 
 			groups = { "functional","L2" })
 	
-	public void DeleteMessagesAfterSearchingIt_02() throws HarnessException {
+	public void DeleteConversationsFromTrash_02() throws HarnessException {
 		FolderItem inboxFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(),SystemFolder.Inbox);
 		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, inboxFolder);
 

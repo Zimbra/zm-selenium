@@ -33,12 +33,11 @@ public class AttachContactAndSendMail extends PrefGroupMailByMessageTest {
 		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "text");
 	}
 
-	@Test(description = "Attach a contact to a mail", 
+
+	@Test(description = "Attach a contact to a mail",
 			groups = { "functional", "L2" })
 
 	public void AttachContactAndSendMail_01() throws HarnessException {
-
-		// -- DATA
 
 		// Create a contact item
 		ContactItem contact = new ContactItem();
@@ -57,15 +56,12 @@ public class AttachContactAndSendMail extends PrefGroupMailByMessageTest {
 		mail.dSubject = "subject" + ConfigProperties.getUniqueString();
 		mail.dBodyText = "body" + ConfigProperties.getUniqueString();
 
-		// -- GUI
-
 		// Click Get Mail button to get the new contact
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
 		// Open the new mail form
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
 		ZAssert.assertNotNull(mailform, "Verify the new form opened");
-
 		mailform.zFill(mail);
 
 		// Click attach drop down and select Contact
@@ -83,18 +79,12 @@ public class AttachContactAndSendMail extends PrefGroupMailByMessageTest {
 		SleepUtil.sleepMedium();
 		mailform.zSubmit();
 
-		// -- Verification
-
 		// From the receiving end, verify the message details
 		MailItem received = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "subject:(" + mail.dSubject + ")");
 		ZAssert.assertNotNull(received, "Verify the message is received correctly");
-		ZimbraAccount.AccountA().soapSend(
-				"<GetMsgRequest xmlns='urn:zimbraMail'>" + "<m id='" + received.getId() + "'/>" + "</GetMsgRequest>");
+		ZimbraAccount.AccountA().soapSend("<GetMsgRequest xmlns='urn:zimbraMail'>" + "<m id='" + received.getId() + "'/>" + "</GetMsgRequest>");
 
 		String filename = ZimbraAccount.AccountA().soapSelectValue("//mail:mp[@cd='attachment']", "filename");
-
 		ZAssert.assertStringContains(filename, contact.firstName, "Verify the attached contacts exist");
-
 	}
-
 }

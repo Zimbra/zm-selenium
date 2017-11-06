@@ -34,12 +34,11 @@ public class AttachAndSendMail extends PrefGroupMailByMessageTest {
 		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "text");
 	}
 
+
 	@Test( description = "Attach an email to a mail",
 			groups = { "functional", "L2" })
-	
-	public void AttachAndSendMail_01() throws HarnessException {
 
-		//-- DATA
+	public void AttachAndSendMail_01() throws HarnessException {
 
 		// Create an email to attach
 		final FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
@@ -80,8 +79,7 @@ public class AttachAndSendMail extends PrefGroupMailByMessageTest {
 		// Click on Inbox folder
 		dialog.zClick(Locators.zAttachInboxFolder);
 		SleepUtil.sleepMedium();
-		dialog.sClick(
-				"css=div[id='zv__BCI'] tr[id^='zlif__BCI__'] div[class='AttachMailRowDiv'] span[class='AttachMailSubject']");
+		dialog.sClick("css=div[id='zv__BCI'] tr[id^='zlif__BCI__'] div[class='AttachMailRowDiv'] span[class='AttachMailSubject']");
 		dialog.zClickButton(Button.B_ATTACH);
 		SleepUtil.sleepMedium();
 		mailform.zSubmit();
@@ -95,7 +93,5 @@ public class AttachAndSendMail extends PrefGroupMailByMessageTest {
 		String filename = ZimbraAccount.AccountA().soapSelectValue("//mail:mp[@cd='attachment']", "filename");
 
 		ZAssert.assertEquals(filename, subject, "Verify the attached mail exist");
-
 	}
-
 }

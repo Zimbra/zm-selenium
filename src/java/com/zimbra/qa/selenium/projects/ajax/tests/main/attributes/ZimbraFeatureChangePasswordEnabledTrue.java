@@ -17,9 +17,7 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.main.attributes;
 
 import java.util.HashMap;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
@@ -32,20 +30,17 @@ public class ZimbraFeatureChangePasswordEnabledTrue extends AjaxCommonTest {
 		super.startingPage = app.zPageMail;
 
 		super.startingAccountPreferences = new HashMap<String, String>() {
-			private static final long serialVersionUID = 6992909181069185672L;
-			{
-
+			private static final long serialVersionUID = 6992909181069185672L; {
 				put("zimbraFeatureChangePasswordEnabled", "TRUE");
-
 			}
 		};
-
 	}
 
+
 	@Bugs(ids = "81522")
-	@Test(description = "Verify the 'Change Password' option is present in main -> account -> Change Password", 
-		groups = { "functional", "L2"})
-	
+	@Test(description = "Verify the 'Change Password' option is present in main -> account -> Change Password",
+			groups = { "functional", "L2"})
+
 	public void ZimbraFeatureChangePasswordEnabledFalse_01() throws HarnessException {
 
 		// Click the account pulldown to see the menu

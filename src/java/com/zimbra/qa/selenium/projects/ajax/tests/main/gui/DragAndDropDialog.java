@@ -16,9 +16,7 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.main.gui;
 
-
 import org.testng.annotations.*;
-
 import com.zimbra.qa.selenium.framework.core.*;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.items.FolderItem.*;
@@ -27,58 +25,36 @@ import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.*;
 import com.zimbra.qa.selenium.projects.ajax.ui.*;
 
-
 public class DragAndDropDialog extends AjaxCommonTest {
 
 	public DragAndDropDialog() {
 		logger.info("New "+ DragAndDropDialog.class.getCanonicalName());
-		
 		super.startingPage = app.zPageMail;
-		
-
-		
 	}
-	
-	
+
+
 	@Bugs( ids = "60492")
 	@Test( description = "Pop up any dialog and move it (use the 'About' dialog)",
 			groups = { "functional", "L3"})
+
 	public void DragAndDropDialog_01() throws HarnessException {
-		
-		
-		
-		//-- DATA
-		
-		
+
 		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
 
-		
-		
-		
-		//-- GUI
-		
-		
 		// Click the Account -> About menu
 		DialogInformational dialog = (DialogInformational)app.zPageMain.zToolbarPressPulldown(Button.B_ACCOUNT, Button.O_ABOUT);
 
-		// Grab the 'Account' title
-		// and drag to 
-		// the 'Inbox' folder (for lack of any better destination)
-		//
 		String locatorSource = "css=div[id^='ZmMsgDialog'] tr[id$='_handle'] td[id$='_title']";
 		String locatorDestination = "css=td[id='zti__main_Mail__" + inbox.getId() + "_textCell']";
-		
+
 		app.zPageMain.zDragAndDrop(locatorSource, locatorDestination);
 
 		// Close the dialog
 		dialog.zClickButton(Button.B_OK);
 
-		
 		//-- VERIFICATION
-		
+
 		// No verification, since the purpose of the test case is to move a dialog
-		
+
 	}
-
-
 }

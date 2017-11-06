@@ -1,7 +1,3 @@
-package com.zimbra.qa.selenium.projects.ajax.tests.search.search;
-
-import java.awt.event.KeyEvent;
-
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
@@ -18,8 +14,10 @@ import java.awt.event.KeyEvent;
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-import org.testng.annotations.Test;
+package com.zimbra.qa.selenium.projects.ajax.tests.search.search;
 
+import org.testng.annotations.Test;
+import java.awt.event.KeyEvent;
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
@@ -34,25 +32,24 @@ public class TypingInSearchOpensSearchMenu extends PrefGroupMailByMessageTest {
 		logger.info("New " + TypingInSearchOpensSearchMenu.class.getCanonicalName());
 		super.startingAccountPreferences.put("zimbraPrefShowSelectionCheckbox",	"TRUE");
 	}
-	
+
+
 	@Bugs( ids = "102600" )
-	@Test( description = "Typing in: in search input and pressing down arrow >> it opens Search menu list as well", 
+	@Test( description = "Typing in: in search input and pressing down arrow >> it opens Search menu list as well",
 			groups = { "functional","L1" })
-	
+
 	public void TypingInSearchOpensSearchMenu_01() throws HarnessException {
 
 		// Type In: in search input
 		app.zPageSearch.zAddSearchQuery("in:");
 		SleepUtil.sleepMedium();
-		
-		//Press Down arrow
+
+		// Press Down arrow
 		app.zPageSearch.sFocus(Locators.zSearchInput);
 		app.zPageSearch.zKeyboard.zTypeKeyEvent(KeyEvent.VK_DOWN);
 
-		//Verify only Search input menu should open and Search drop down should not open
+		// Verify only Search input menu should open and Search drop down should not open
 		ZAssert.assertTrue(app.zPageSearch.sIsElementPresent(PageSearch.Locators.zSearchInputMenu),"In:menu should open");
 		ZAssert.assertFalse(app.zPageSearch.sIsElementPresent(PageSearch.Locators.zSearchDropDownMenu),"Search menu should not open");
-
 	}
-
 }

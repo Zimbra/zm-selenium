@@ -17,9 +17,7 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.search.savedsearch;
 
 import java.util.List;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.items.SavedSearchFolderItem;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
@@ -28,54 +26,42 @@ import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.search.DialogSaveSearch;
 
-//TODO: add more in ContactItem.java
-
 public class CreateSavedSearch extends AjaxCommonTest  {
 
 	public CreateSavedSearch() {
 		logger.info("New "+ CreateSavedSearch.class.getCanonicalName());
-		
-		// All tests start at the Address page
 		super.startingPage = app.zPageMail;
-
-		// Make sure we are using an account with conversation view
-		
 	}
-	
+
+
 	@Test( description = "Create a basic saved search",
 			groups = { "sanity","L0" })
-	
-	public void CreateSavedSearch_01() throws HarnessException {				
-				
-			
+
+	public void CreateSavedSearch_01() throws HarnessException {
+
 		// Create the message data to be sent
 		String name = "search" + ConfigProperties.getUniqueString();
 		String query = "subject:(" + ConfigProperties.getUniqueString() + ")";
 
-		// Remember to close the search window after saving
 		try {
 
 			// Search for the message
 			app.zPageSearch.zAddSearchQuery(query);
 			app.zPageSearch.zToolbarPressButton(Button.B_SEARCH);
 			DialogSaveSearch dialog = (DialogSaveSearch)app.zPageSearch.zToolbarPressButton(Button.B_SAVE);
-			
+
 			// Save the search
 			dialog.zEnterFolderName(name);
 			dialog.zClickButton(Button.B_OK);
-		
+
 		} finally {
-			
-			// Remember to close the search window after saving
 			app.zPageSearch.zClose();
-			
 		}
 
-		
-		//Verify the saved search exists in the server
+		// Verify the saved search exists in the server
 		SavedSearchFolderItem item = SavedSearchFolderItem.importFromSOAP(app.zGetActiveAccount(), name);
 		ZAssert.assertNotNull(item, "Verify the saved search was created correctly");
-		
+
 		// Verify the saved search exists in the folder tree
 		List<SavedSearchFolderItem> searches = app.zTreeMail.zListGetSavedSearches();
 		ZAssert.assertNotNull(searches, "Verify the saved search list exists");
@@ -90,6 +76,5 @@ public class CreateSavedSearch extends AjaxCommonTest  {
 			}
 		}
 		ZAssert.assertNotNull(found, "Verify the saved search is in the folder tree");
-
 	}
 }

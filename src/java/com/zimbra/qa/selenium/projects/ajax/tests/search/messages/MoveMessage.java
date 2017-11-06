@@ -17,7 +17,6 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.search.messages;
 
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
@@ -29,20 +28,16 @@ public class MoveMessage extends PrefGroupMailByMessageTest {
 
 	public MoveMessage() {
 		logger.info("New "+ MoveMessage.class.getCanonicalName());
-	
 	}
-	
+
+
 	@Test( description = "From serch: Move a message to a subfolder",
 			groups = { "functional","L2" })
+
 	public void MoveConversation01() throws HarnessException {
-		
-		//-- DATA
-		
+
 		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
 
-		// Create a subfolder to move the message into
-		// i.e. Inbox/subfolder
-		//
 		String foldername = "folder"+ ConfigProperties.getUniqueString();
 		app.zGetActiveAccount().soapSend(
 					"<CreateFolderRequest xmlns='urn:zimbraMail'>" +
@@ -66,51 +61,41 @@ public class MoveMessage extends PrefGroupMailByMessageTest {
 			    	+			"</content>"
 			    	+		"</m>"
 					+	"</AddMsgRequest>");
-		
-		//-- GUI
-		
+
 		// Click Get Mail button
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
-		
-		// Remember to close the search view
+
 		try {
-			
+
 			// Search for the message
 			app.zPageSearch.zAddSearchQuery("subject:("+ subject +")");
 			app.zPageSearch.zToolbarPressButton(Button.B_SEARCH);
-			
+
 			// Select the item
 			app.zPageSearch.zListItem(Action.A_LEFTCLICK, subject);
 
 			// Click move -> subfolder
 			app.zPageSearch.zToolbarPressPulldown(Button.B_MOVE, subfolder);
-		
+
 		} finally {
-			// Remember to close the search view
 			app.zPageSearch.zClose();
 		}
 
-		//-- Verification
-		
 		MailItem message = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
 		ZAssert.assertNotNull(message, "Verify the message still exists in the mailbox");
 		ZAssert.assertEquals(message.dFolderId, subfolder.getId(), "Verify the message exists in the correct folder");
-		
 	}
+
 
 	@Bugs(ids = "77217")
 	@Test( description = "From search: Move a message in Trash to a subfolder",
 			groups = { "functional","L2" })
+
 	public void MoveConversation02() throws HarnessException {
-		
-		//-- DATA
-		
+
 		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
 		FolderItem trash = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Trash);
 
-		// Create a subfolder to move the message into
-		// i.e. Inbox/subfolder
-		//
 		String foldername = "folder"+ ConfigProperties.getUniqueString();
 		app.zGetActiveAccount().soapSend(
 					"<CreateFolderRequest xmlns='urn:zimbraMail'>" +
@@ -135,53 +120,39 @@ public class MoveMessage extends PrefGroupMailByMessageTest {
         	+		"</m>"
 			+	"</AddMsgRequest>");
 
-		
-		
-		//-- GUI
-		
 		// Click Get Mail button
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
-		
-		// Remember to close the search view
+
 		try {
-			
+
 			// Search for the message
 			app.zPageSearch.zAddSearchQuery("is:anywhere subject:("+ subject +")");
 			app.zPageSearch.zToolbarPressButton(Button.B_SEARCH);
-			
+
 			// Select the item
 			app.zPageSearch.zListItem(Action.A_LEFTCLICK, subject);
 
 			// Click move -> subfolder
 			app.zPageSearch.zToolbarPressPulldown(Button.B_MOVE, subfolder);
-		
+
 		} finally {
-			// Remember to close the search view
 			app.zPageSearch.zClose();
 		}
 
-
-		
-		//-- Verification
-		
 		MailItem message = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
 		ZAssert.assertNotNull(message, "Verify the message still exists in the mailbox");
 		ZAssert.assertEquals(message.dFolderId, subfolder.getId(), "Verify the message exists in the correct folder");
-		
 	}
-	
+
+
 	@Bugs(ids = "80611")
 	@Test( description = "From search: Move a message in Sent to a subfolder",
 			groups = { "functional","L2" })
+
 	public void MoveConversation03() throws HarnessException {
-		
-		//-- DATA
-		
+
 		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
 
-		// Create a subfolder to move the message into
-		// i.e. Inbox/subfolder
-		//
 		String foldername = "folder"+ ConfigProperties.getUniqueString();
 		app.zGetActiveAccount().soapSend(
 					"<CreateFolderRequest xmlns='urn:zimbraMail'>" +
@@ -202,39 +173,27 @@ public class MoveMessage extends PrefGroupMailByMessageTest {
 				"</m>" +
 			"</SendMsgRequest>");
 
-		
-		
-		//-- GUI
-		
 		// Click Get Mail button
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
-		
-		// Remember to close the search view
+
 		try {
-			
+
 			// Search for the message
 			app.zPageSearch.zAddSearchQuery("subject:("+ subject +")");
 			app.zPageSearch.zToolbarPressButton(Button.B_SEARCH);
-			
+
 			// Select the item
 			app.zPageSearch.zListItem(Action.A_LEFTCLICK, subject);
 
 			// Click move -> subfolder
 			app.zPageSearch.zToolbarPressPulldown(Button.B_MOVE, subfolder);
-		
+
 		} finally {
-			// Remember to close the search view
 			app.zPageSearch.zClose();
 		}
 
-
-		
-		//-- Verification
-		
 		MailItem message = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
 		ZAssert.assertNotNull(message, "Verify the message still exists in the mailbox");
 		ZAssert.assertEquals(message.dFolderId, subfolder.getId(), "Verify the message exists in the correct folder");
-		
 	}
-
 }

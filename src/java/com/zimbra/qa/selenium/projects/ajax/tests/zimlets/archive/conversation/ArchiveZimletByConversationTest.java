@@ -26,14 +26,15 @@ import com.zimbra.qa.selenium.projects.ajax.core.*;
 public class ArchiveZimletByConversationTest extends PrefGroupMailByConversationTest {
 
 	protected FolderItem MyArchiveFolder = null;
-	
+
 	public ArchiveZimletByConversationTest() {
 		super();
 		logger.info("New "+ this.getClass().getCanonicalName());
 	}
 
+
 	public void initializeArchiveFolder() throws HarnessException {
-		
+
 		String foldername = "archive" + ConfigProperties.getUniqueString();
 		FolderItem root = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.UserRoot);
 
@@ -52,22 +53,17 @@ public class ArchiveZimletByConversationTest extends PrefGroupMailByConversation
 					"</meta>" +
 			"</SetMailboxMetadataRequest>");
 	}
-	
+
 
 	@BeforeMethod( groups = { "always" } )
 	public void archiveZimletTestBeforeMethod(Method method, ITestContext testContext) throws HarnessException {
 		logger.info("archiveZimletTestBeforeMethod: start");
-		
+
 		if ( MyArchiveFolder == null ) {
-
-			// Create and set the archive folder
 			initializeArchiveFolder();
-
-			// Refresh UI
 			app.zPageMain.zRefreshMainUI();
-
 		}
-		
+
 		logger.info("archiveZimletTestBeforeMethod: finish");
 	}
 }

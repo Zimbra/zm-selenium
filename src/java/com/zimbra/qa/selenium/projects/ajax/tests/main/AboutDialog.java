@@ -17,7 +17,6 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.main;
 
 import org.testng.annotations.*;
-
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.*;
@@ -29,24 +28,19 @@ public class AboutDialog extends AjaxCommonTest {
 		logger.info("New "+ AboutDialog.class.getCanonicalName());
 		super.startingPage = app.zPageMail;
 	}
-	
-	
+
+
 	@Test( description = "Open the 'About' dialog",
 			groups = { "smoke", "L0" })
-	
+
 	public void AboutDialog_01() throws HarnessException {
-		
-		//-- GUI
-		
+
 		// Click the Account -> About menu
 		DialogInformational dialog = (DialogInformational)app.zPageMain.zToolbarPressPulldown(Button.B_ACCOUNT, Button.O_ABOUT);
 
 		//-- VERIFICATION
 		ZAssert.assertTrue(dialog.zIsActive(), "Verify the About dialog opens");
-		
+
 		dialog.zClickButton(Button.B_OK);
-
 	}
-
-
 }

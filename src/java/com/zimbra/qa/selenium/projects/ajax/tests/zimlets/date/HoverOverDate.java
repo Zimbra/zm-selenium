@@ -25,17 +25,17 @@ import com.zimbra.qa.selenium.projects.ajax.core.*;
 import com.zimbra.qa.selenium.projects.ajax.ui.*;
 
 public class HoverOverDate extends PrefGroupMailByMessageTest {
-	
+
 	public HoverOverDate() throws HarnessException {
 		logger.info("New "+ HoverOverDate.class.getCanonicalName());
 	}
-	
+
+
 	@Test( description = "Hover over a date in a message body",
 			groups = { "functional","L2" })
-	
+
 	public void HoverOverDate_01() throws HarnessException {
 
-		//-- DATA Setup
 		final String date = "12/25/2016";
 		final String subject = "subject" + ConfigProperties.getUniqueString();
 
@@ -65,24 +65,23 @@ public class HoverOverDate extends PrefGroupMailByMessageTest {
 		// Hover over the email address
 		String locator = "css=span[id$='_com_zimbra_date']:contains("+ date + ")";
 		app.zPageMail.zDisplayMailHoverOver(locator);
-		
-		//-- VERIFICATION
+
 		TooltipContact tooltip = new TooltipContact(app);
 		tooltip.zWaitForActive();
-		
+
 		ZAssert.assertTrue(tooltip.zIsActive(), "Verify the tooltip shows");
 	}
-	
+
+
 	@Test( description = "Hovor over a date string in the body, such as today, tomorrow, last night, etc.",
 			groups = { "functional", "L2" })
-	
-	public void HoverOverDate_02() throws HarnessException {
-		
-		String newline = String.format("%n");
 
-		String[] values = { "today", "tonight", "this morning", "tomorrow night", "tomorrow morning", "tomorrow", "last night", 
+	public void HoverOverDate_02() throws HarnessException {
+
+		String newline = String.format("%n");
+		String[] values = { "today", "tonight", "this morning", "tomorrow night", "tomorrow morning", "tomorrow", "last night",
 							"yesterday morning", "yesterday", "this Monday", "next Monday", "Last Monday", "first Monday in April", "third Monday" };
-		
+
 		// Create the message content, with one term on each line
 		StringBuffer content = new StringBuffer(ConfigProperties.getUniqueString()).append(newline);
 		for (String s : values) {
@@ -101,29 +100,26 @@ public class HoverOverDate extends PrefGroupMailByMessageTest {
 							"</mp>" +
 						"</m>" +
 					"</SendMsgRequest>");
-		
+
 		// GUI Actions
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 
-		// VERIFICATION
 		for (int i=0; i<=values.length-1; i++) {
-			
 			System.out.println("Verify " + values[i] + " hover tooltip shows");
 
 			// Hover over the email address
 			String locator = "body div span:nth-of-type(" + (i+1) + ")";
 			app.zPageMail.zDisplayMailHoverOver(locator);
-			
+
 			// Verify the contact tool tip opens
 			TooltipContact tooltip = new TooltipContact(app);
 			tooltip.zWaitForActive();
-			
+
 			ZAssert.assertTrue(tooltip.zIsActive(), "Verify the tooltip shows");
-		
+
 			// Clear the tooltip
 			app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
-			
 		}
 	}
 }

@@ -23,45 +23,45 @@ import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 
 public class Login extends AjaxCommonTest {
-	
+
 	public Login() {
 		logger.info("New "+ Login.class.getCanonicalName());
 		super.startingPage = app.zPageLogin;
-		
-	}
-	
-	@Test( description = "Login to the Ajax Client", 
-			groups = { "sanity", "L0"})
-	
-	public void Login01() throws HarnessException {
-		
-		// Login
-		app.zPageLogin.zLogin(ZimbraAccount.AccountZCS());
-		
-		// Verify main page becomes active
-		ZAssert.assertTrue(app.zPageMain.zIsActive(), "Verify that the account is logged in");
-		
+
 	}
 
-	
+	@Test( description = "Login to the Ajax Client",
+			groups = { "sanity", "L0"})
+
+	public void Login01() throws HarnessException {
+
+		// Login
+		app.zPageLogin.zLogin(ZimbraAccount.AccountZCS());
+
+		// Verify main page becomes active
+		ZAssert.assertTrue(app.zPageMain.zIsActive(), "Verify that the account is logged in");
+
+	}
+
+
 	@Test( description = "Login to the Ajax Client, with a mounted folder",
 			groups = { "functional", "L3" })
-	
+
 	public void Login02() throws HarnessException {
-		
+
 		String foldername = "folder" + ConfigProperties.getUniqueString();
 		String subject = "subject" + ConfigProperties.getUniqueString();
 		String mountpointname = "mountpoint" + ConfigProperties.getUniqueString();
-		
+
 		FolderItem inbox = FolderItem.importFromSOAP(ZimbraAccount.AccountA(), FolderItem.SystemFolder.Inbox);
 		ZAssert.assertNotNull(inbox, "Verify other account's inbox exists");
-		
+
 		// Create a folder to share
 		ZimbraAccount.AccountA().soapSend(
 					"<CreateFolderRequest xmlns='urn:zimbraMail'>"
 				+		"<folder name='" + foldername + "' l='" + inbox.getId() + "'/>"
 				+	"</CreateFolderRequest>");
-		
+
 		FolderItem folder = FolderItem.importFromSOAP(ZimbraAccount.AccountA(), foldername);
 		ZAssert.assertNotNull(folder, "Verify other account's folder is created");
 
@@ -72,15 +72,7 @@ public class Login extends AjaxCommonTest {
 				+			"<grant d='"+ ZimbraAccount.AccountZCS().EmailAddress +"' gt='usr' perm='r'/>"
 				+		"</action>"
 				+	"</FolderActionRequest>");
-		
-		
 
-		
-		////
-		// For some reason, the message doesn't appear if we use AddMsgRequest, so
-		// instead use SendMsgRequest from AccountB() and move the message.
-		////
-		
 		// Add a message to it
 		ZimbraAccount.AccountB().soapSend(
 					"<SendMsgRequest xmlns='urn:zimbraMail'>"
@@ -92,58 +84,58 @@ public class Login extends AjaxCommonTest {
 				+			"</mp>"
 				+		"</m>"
 				+	"</SendMsgRequest>");
-		
+
 		MailItem mail = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "subject:("+ subject +")");
 		ZAssert.assertNotNull(mail, "Verify other account's mail is created");
 
 		ZimbraAccount.AccountA().soapSend(
-						"<MsgActionRequest xmlns='urn:zimbraMail'>" 
+						"<MsgActionRequest xmlns='urn:zimbraMail'>"
 					+		"<action id='"+ mail.getId() +"' op='move' l='"+ folder.getId() +"'/>"
 					+	"</MsgActionRequest>");
-		
+
 		// Mount it
 		ZimbraAccount.AccountZCS().soapSend(
 					"<CreateMountpointRequest xmlns='urn:zimbraMail'>"
 				+		"<link l='1' name='"+ mountpointname +"'  rid='"+ folder.getId() +"' zid='"+ ZimbraAccount.AccountA().ZimbraId +"'/>"
 				+	"</CreateMountpointRequest>");
-		
+
 		FolderMountpointItem mountpoint = FolderMountpointItem.importFromSOAP(ZimbraAccount.AccountZCS(), mountpointname);
 		ZAssert.assertNotNull(mountpoint, "Verify active account's mountpoint is created");
-		
+
 		// Login
 		app.zPageLogin.zLogin(ZimbraAccount.AccountZCS());
-		
+
 		// Verify main page becomes active
 		ZAssert.assertTrue(app.zPageMain.zIsActive(), "Verify that the account is logged in");
-		
+
 	}
 
-	
+
 	@Bugs( ids = "59847")
 	@Test( description = "Login to the Ajax Client, with a mounted folder of a deleted account",
 			groups = { "functional", "L3" })
-	
+
 	public void Login03() throws HarnessException {
-		
+
 		// Create Account2
 		ZimbraAccount account = new ZimbraAccount();
 		account.provision();
 		account.authenticate();
-		
-		
+
+
 		String foldername = "folder" + ConfigProperties.getUniqueString();
 		String subject = "subject" + ConfigProperties.getUniqueString();
 		String mountpointname = "mountpoint" + ConfigProperties.getUniqueString();
-		
+
 		FolderItem inbox = FolderItem.importFromSOAP(account, FolderItem.SystemFolder.Inbox);
 		ZAssert.assertNotNull(inbox, "Verify other account's inbox exists");
-		
+
 		// Create a folder to share
 		account.soapSend(
 					"<CreateFolderRequest xmlns='urn:zimbraMail'>"
 				+		"<folder name='" + foldername + "' l='" + inbox.getId() + "'/>"
 				+	"</CreateFolderRequest>");
-		
+
 		FolderItem folder = FolderItem.importFromSOAP(account, foldername);
 		ZAssert.assertNotNull(folder, "Verify other account's folder is created");
 
@@ -154,9 +146,7 @@ public class Login extends AjaxCommonTest {
 				+			"<grant d='"+ ZimbraAccount.AccountZCS().EmailAddress +"' gt='usr' perm='r'/>"
 				+		"</action>"
 				+	"</FolderActionRequest>");
-		
 
-		
 		// Add a message to it
 		account.soapSend(
 					"<AddMsgRequest xmlns='urn:zimbraMail'>"
@@ -172,35 +162,32 @@ public class Login extends AjaxCommonTest {
             	+			"</content>"
             	+		"</m>"
 				+	"</AddMsgRequest>");
-		
+
 		MailItem mail = MailItem.importFromSOAP(account, "subject:("+ subject +")");
 		ZAssert.assertNotNull(mail, "Verify other account's mail is created");
 
-		
 		// Mount it
 		ZimbraAccount.AccountZCS().soapSend(
 					"<CreateMountpointRequest xmlns='urn:zimbraMail'>"
 				+		"<link l='1' name='"+ mountpointname +"'  rid='"+ folder.getId() +"' zid='"+ account.ZimbraId +"'/>"
 				+	"</CreateMountpointRequest>");
-		
+
 		FolderMountpointItem mountpoint = FolderMountpointItem.importFromSOAP(ZimbraAccount.AccountZCS(), mountpointname);
 		ZAssert.assertNotNull(mountpoint, "Verify active account's mountpoint is created");
-		
+
 		// Delete other account
 		ZimbraAdminAccount.GlobalAdmin().soapSend(
 					"<DeleteAccountRequest xmlns='urn:zimbraAdmin'>"
 				+		"<id>"+ account.ZimbraId +"</id>"
 				+	"</DeleteAccountRequest>");
-		
-		
+
 		// Login
 		app.zPageLogin.zLogin(ZimbraAccount.AccountZCS());
-		
+
 		// Verify main page becomes active
 		ZAssert.assertTrue(app.zPageMain.zIsActive(), "Verify that the account is logged in");
-		
-		
 	}
+
 
 	@DataProvider(name = "DataProvider_zimbraMailURL")
 	public Object[][] DataProvider_zimbraMailURL() {
@@ -213,24 +200,23 @@ public class Login extends AjaxCommonTest {
 		}
 
 	@Bugs( ids = "66788")
-	@Test( description = "Change the zimbraMailURL and login", priority=5, 
+	@Test( description = "Change the zimbraMailURL and login", priority=5,
 			groups = { "functional-skip", "L3-skip" },
 			dataProvider = "DataProvider_zimbraMailURL")
-	
+
 	public void Login04(String zimbraMailURLtemp, String notused) throws HarnessException {
-		
+
 		String zimbraMailURL = null;
 
-		// Need to do a try/finally to make sure the old setting works
 		try {
-			
+
 			// Get the original zimbraMailURL value
 			ZimbraAdminAccount.GlobalAdmin().soapSend(
 						"<GetConfigRequest xmlns='urn:zimbraAdmin'>"
 					+		"<a n='zimbraMailURL'/>"
 					+	"</GetConfigRequest>");
 			zimbraMailURL = ZimbraAdminAccount.GlobalAdmin().soapSelectValue("//admin:a[@n='zimbraMailURL']", null);
-			
+
 			// Change to the new zimbraMailURL temp value
 			ZimbraAdminAccount.GlobalAdmin().soapSend(
 					"<ModifyConfigRequest xmlns='urn:zimbraAdmin'>"
@@ -241,38 +227,37 @@ public class Login extends AjaxCommonTest {
 
 			// Wait for the service to come up
 			SleepUtil.sleep(60000);
-			
+
 			staf.execute("zmcontrol status");
-			
+
 			// Open the login page
-			// (use the base URL, since leftovers from the previous test may affect the URL)
 			app.zPageLogin.sOpen(ConfigProperties.getBaseURL());
-			
+
 			// Login
-			app.zPageLogin.zLogin(ZimbraAccount.AccountZCS());		
-			
+			app.zPageLogin.zLogin(ZimbraAccount.AccountZCS());
+
 			// Verify main page becomes active
 			ZAssert.assertTrue(app.zPageMain.zIsActive(), "Verify that the account is logged in");
 
 		} finally {
-			
+
 			if ( zimbraMailURL != null ) {
-				
+
 				// Delete any authToken/SessionID
 				app.zPageLogin.sDeleteAllVisibleCookies();
-				
+
 				// Change the URL back to the original
 				ZimbraAdminAccount.GlobalAdmin().soapSend(
 						"<ModifyConfigRequest xmlns='urn:zimbraAdmin'>"
 					+		"<a n='zimbraMailURL'>"+ zimbraMailURL + "</a>"
 					+	"</ModifyConfigRequest>");
-				
+
 				staf.execute("zmmailboxdctl restart");
 
 				SleepUtil.sleepVeryLong();
 				for (int i = 0; i <= 10; i++) {
 					app.zPageLogin.zRefreshMainUI();
-					if (app.zPageLogin.sIsElementPresent("css=input[class^='ZLoginButton']") == true || 
+					if (app.zPageLogin.sIsElementPresent("css=input[class^='ZLoginButton']") == true ||
 							app.zPageLogin.sIsElementPresent("css=div[id$='parent-ZIMLET'] td[id$='ZIMLET_textCell']") == true) {
 						break;
 					} else {
@@ -285,7 +270,6 @@ public class Login extends AjaxCommonTest {
 					}
 				}
 			}
-
 		}
 	}
 }

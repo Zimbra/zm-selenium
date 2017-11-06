@@ -25,26 +25,24 @@ import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.*;
 
 public class SelectTag extends PrefGroupMailByMessageTest {
-	
+
 	public SelectTag() {
 		logger.info("New "+ SelectTag.class.getCanonicalName());
-		
-		// All tests start at the login page
+
 		super.startingPage = app.zPageMail;
-
-		// Make sure we are using an account with message view
 		super.startingAccountPreferences = new HashMap<String, String>() {
-		private static final long serialVersionUID = 3685575017990609879L;
-		{
-			put("zimbraPrefGroupMailBy", "message");
-		}};
-
+			private static final long serialVersionUID = 3685575017990609879L; {
+				put("zimbraPrefGroupMailBy", "message");
+			}
+		};
 	}
-	
+
+
 	@Test( description = "Left click on tag - verify tagged messages are shown",
 			groups = { "functional","L2" })
+
 	public void SelectTag_01() throws HarnessException {
-		
+
 		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
 		String subject1 = "tagged" + ConfigProperties.getUniqueString();
 		String subject2 = "untagged" + ConfigProperties.getUniqueString();
@@ -55,31 +53,31 @@ public class SelectTag extends PrefGroupMailByMessageTest {
 
 		// Create a message (tagged)
 		app.zGetActiveAccount().soapSend(
-				"<AddMsgRequest xmlns='urn:zimbraMail'>" + 
+				"<AddMsgRequest xmlns='urn:zimbraMail'>" +
 					"<m t='"+ tag.getId() +"' l='"+ inbox.getId() + "'>" +
 						"<content>MIME-Version: 1.0 \n" +
 							"From: foo@foo.com\n" +
 							"To: foo@foo.com \n" +
-							"Subject: " + subject1 + "\n" + 
+							"Subject: " + subject1 + "\n" +
 							"Content-Type: text/plain; charset=utf-8 \n" +
 							"Content-Transfer-Encoding: 7bit\n" + "\n" +
-							"simple text string in the body\n" + 
+							"simple text string in the body\n" +
 						"</content>" +
 					"</m>" + "</AddMsgRequest>");
 
 		// Tag it
-		
+
 		// Create another message (un-tagged)
 		app.zGetActiveAccount().soapSend(
-				"<AddMsgRequest xmlns='urn:zimbraMail'>" + 
+				"<AddMsgRequest xmlns='urn:zimbraMail'>" +
 					"<m l='"+ inbox.getId() + "'>" +
 						"<content>MIME-Version: 1.0 \n" +
 							"From: foo@foo.com\n" +
 							"To: foo@foo.com \n" +
-							"Subject: " + subject2 + "\n" + 
+							"Subject: " + subject2 + "\n" +
 							"Content-Type: text/plain; charset=utf-8 \n" +
 							"Content-Transfer-Encoding: 7bit\n" + "\n" +
-							"simple text string in the body\n" + 
+							"simple text string in the body\n" +
 						"</content>" +
 					"</m>" + "</AddMsgRequest>");
 
@@ -88,12 +86,10 @@ public class SelectTag extends PrefGroupMailByMessageTest {
 
 		// Click on the tag from the tree
 		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, tag);
-		
-		//-- VERIFICATION
 
 		boolean found = false;
 		List<MailItem> messages = app.zPageMail.zListGetMessages();
-		
+
 		// Verify the tagged message shows
 		for (MailItem m : messages) {
 			if ( subject1.equals(m.gSubject) ) {
@@ -102,7 +98,7 @@ public class SelectTag extends PrefGroupMailByMessageTest {
 			}
 		}
 		ZAssert.assertTrue(found, "Verify the tagged message appears");
-		
+
 		// Verify the un-tagged message does not show
 		found = false;
 		for (MailItem m : messages) {
@@ -112,8 +108,5 @@ public class SelectTag extends PrefGroupMailByMessageTest {
 			}
 		}
 		ZAssert.assertFalse(found, "Verify the un-tagged message does not appear");
-
 	}
-
-
 }

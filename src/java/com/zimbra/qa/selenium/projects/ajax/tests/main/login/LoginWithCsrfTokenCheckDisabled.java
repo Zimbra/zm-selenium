@@ -31,8 +31,8 @@ public class LoginWithCsrfTokenCheckDisabled extends AjaxCommonTest {
 		super.startingPage = app.zPageLogin;
 	}
 
-	
-	@Test( description = "Login to the webclient after disabling csrf check", priority=5, 
+
+	@Test( description = "Login to the webclient after disabling csrf check", priority=5,
 			groups = { "smoke", "L0"})
 
 	public void LoginWithCsrfTokenCheckDisabled_01() throws HarnessException {
@@ -49,10 +49,10 @@ public class LoginWithCsrfTokenCheckDisabled extends AjaxCommonTest {
 			// Restart zimbra services
 			staf.execute("zmmailboxdctl restart");
 			SleepUtil.sleepVeryLong();
-			
+
 			for (int i=0; i<=5; i++) {
 				app.zPageMain.zRefreshUI();
-				if (app.zPageLogin.sIsElementPresent("css=input[class^='ZLoginButton']") == true || 
+				if (app.zPageLogin.sIsElementPresent("css=input[class^='ZLoginButton']") == true ||
 						app.zPageLogin.sIsElementPresent("css=div[id$='parent-ZIMLET'] td[id$='ZIMLET_textCell']") == true) {
 					break;
 				} else {
@@ -87,7 +87,7 @@ public class LoginWithCsrfTokenCheckDisabled extends AjaxCommonTest {
 
 			for (int i=0; i<=5; i++) {
 				app.zPageMain.zRefreshUI();
-				if (app.zPageLogin.sIsElementPresent("css=input[class^='ZLoginButton']") == true || 
+				if (app.zPageLogin.sIsElementPresent("css=input[class^='ZLoginButton']") == true ||
 						app.zPageLogin.sIsElementPresent("css=div[id$='parent-ZIMLET'] td[id$='ZIMLET_textCell']") == true) {
 					break;
 				} else {
@@ -100,6 +100,5 @@ public class LoginWithCsrfTokenCheckDisabled extends AjaxCommonTest {
 				}
 			}
 		}
-
 	}
 }

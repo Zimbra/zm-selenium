@@ -18,9 +18,7 @@ package com.zimbra.qa.selenium.projects.ajax.tests.search.search;
 
 import java.util.Calendar;
 import java.util.List;
-
 import org.testng.annotations.*;
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
@@ -31,18 +29,19 @@ import com.zimbra.qa.selenium.projects.ajax.ui.calendar.PageCalendar.Locators;
 public class SearchAppointment extends AjaxCommonTest {
 
 	int pollIntervalSeconds = 60;
-	
+
 	public SearchAppointment() {
 		logger.info("New "+ SearchAppointment.class.getCanonicalName());
-		
 	}
-	
+
+
 	@Test( description = "Search for an appointment by subject",
 			groups = { "functional","L2" })
-	
+
 	public void SearchAppointment_01() throws HarnessException {
+
 		ZDate startDate = new ZDate(Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH) + 1, Calendar.getInstance().get(Calendar.DAY_OF_MONTH), Calendar.getInstance().get(Calendar.HOUR_OF_DAY), 0, 0);
-		
+
 		// Create a meeting
 		String subject = "appointment" + ConfigProperties.getUniqueString();
 		AppointmentItem.createAppointmentSingleDay(
@@ -57,20 +56,20 @@ public class SearchAppointment extends AjaxCommonTest {
 
 		// Refresh the pane
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
-		
-		// Verify appointment exists on the server 
+
+		// Verify appointment exists on the server
         AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject + ")");
 		ZAssert.assertNotNull(actual, "Verify the new appointment is created");
-		
+
 		// Search for the appointment
 		app.zPageSearch.zToolbarPressPulldown(Button.B_SEARCHTYPE, Button.O_SEARCHTYPE_APPOINTMENTS);
 		app.zPageSearch.zAddSearchQuery("subject:("+ subject +")");
 		app.zPageSearch.zToolbarPressButton(Button.B_SEARCH);
-		
+
 		// Get all the appointment in the default calendar
 		List<AppointmentItem> items = app.zPageCalendar.zListGetAppointments();
 		ZAssert.assertNotNull(items, "Get the list of appointments");
-		
+
 		// Verify the appointment is in the search result on UI
 		AppointmentItem found = null;
 		for(AppointmentItem item : items) {
@@ -82,13 +81,15 @@ public class SearchAppointment extends AjaxCommonTest {
 		ZAssert.assertNotNull(found, "Verify the appt list exists");
 	}
 
+
 	@Bugs(ids = "49386")
-	@Test( description = "Script error when searching in calendar list view", 
+	@Test( description = "Script error when searching in calendar list view",
 			groups = { "functional","L2" })
-	
+
 	public void SearchAppointment_02() throws HarnessException {
+
 		ZDate startDate = new ZDate(Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH) + 1, Calendar.getInstance().get(Calendar.DAY_OF_MONTH), Calendar.getInstance().get(Calendar.HOUR_OF_DAY), 0, 0);
-		
+
 		// Create a meeting
 		String subject = "appointment" + ConfigProperties.getUniqueString();
 		AppointmentItem.createAppointmentSingleDay(
@@ -99,25 +100,23 @@ public class SearchAppointment extends AjaxCommonTest {
 				subject,
 				"content" + ConfigProperties.getUniqueString(),
 				"location" + ConfigProperties.getUniqueString(),
-				null);		
+				null);
 
 		// Refresh the UI (work around due to active dialogs found when running as a second test and directly using app.zPageCalendar.zNavigateTo();)
 		app.zPageMain.zRefreshMainUI();
 		app.zPageCalendar.zNavigateTo();
-		
+
 		app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_VIEW_MENU, Button.O_VIEW_LIST_SUB_MENU, "List");
         ZAssert.assertTrue(app.zPageCalendar.sIsElementPresent(Locators.CalendarViewListCSS), "Changed to list view");
         ZAssert.assertTrue(app.zPageCalendar.zIsAppointmentVisible(subject), "Verify the appt list exists");
-		
-		// Verify appointment exists on the server 
+
+		// Verify appointment exists on the server
         AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject + ")");
 		ZAssert.assertNotNull(actual, "Verify the new appointment is created");
-		
+
 		// Search for the appointment
 		app.zPageSearch.zAddSearchQuery("subject:("+ subject +")");
 		app.zPageSearch.zToolbarPressButton(Button.B_SEARCH);
 		ZAssert.assertTrue(app.zPageCalendar.zIsAppointmentVisible(subject), "Verify the appt list exists");
-
 	}
-
 }

@@ -30,10 +30,11 @@ public class HoverOverEmail extends PrefGroupMailByMessageTest {
 	public HoverOverEmail() throws HarnessException {
 		logger.info("New "+ HoverOverEmail.class.getCanonicalName());
 	}
-	
+
+
 	@Test( description = "Hover over a contact in a message body",
 			groups = { "functional", "L2" })
-	
+
 	public void HoverOverEmail_01() throws HarnessException {
 
 		final String email = "email" + ConfigProperties.getUniqueString() + "@foo.com";
@@ -74,22 +75,23 @@ public class HoverOverEmail extends PrefGroupMailByMessageTest {
 		// Hover over the email address
 		String locator = "css=span[id$='_ZmEmailObjectHandler']:contains("+ email +")";
 		app.zPageMail.zDisplayMailHoverOver(locator);
-		
+
 		// Verify the contact tool tip opens
 		TooltipContact tooltip = new TooltipContact(app);
 		tooltip.zWaitForActive();
-		
+
 		ZAssert.assertTrue(tooltip.zIsActive(), "Verify the tooltip shows");
 	}
-	
+
+
 	@Test( description = "Hover over a GAL contact in a message body",
 			groups = { "functional", "L2" })
-	
+
 	public void HoverOverEmail_02() throws HarnessException {
-		
+
 		// Create a contact in the GAL
 		ZimbraAccount contactGAL = (new ZimbraAccount()).provision().authenticate();
-		
+
 		final String subject = "subject" + ConfigProperties.getUniqueString();
 
 		app.zGetActiveAccount().soapSend(
@@ -118,17 +120,18 @@ public class HoverOverEmail extends PrefGroupMailByMessageTest {
 		// Hover over the email address
 		String locator = "css=span[id$='_ZmEmailObjectHandler']:contains("+ contactGAL.EmailAddress +")";
 		app.zPageMail.zDisplayMailHoverOver(locator);
-		
+
 		// Verify the contact tool tip opens
 		TooltipContact tooltip = new TooltipContact(app);
 		tooltip.zWaitForActive();
-		
+
 		ZAssert.assertTrue(tooltip.zIsActive(), "Verify the tooltip shows");
 	}
-	
+
+
 	@Test( description = "Hover over a contact group in a message body",
 			groups = { "functional", "L2" })
-	
+
 	public void HoverOverEmail_03() throws HarnessException {
 
 		String groupName = "group" + ConfigProperties.getUniqueString();
@@ -170,15 +173,16 @@ public class HoverOverEmail extends PrefGroupMailByMessageTest {
 
 		// Hover over the email address
 		String locator = "css=span[id$='_com_zimbra_email']:contains("+ groupName +")";
-		
+
 		// Verify the contact group is not converted to the email zimlet link
 		boolean present = app.zPageMail.sIsElementPresent(locator);
 		ZAssert.assertFalse(present, "Verify the contact group name is not highlighted");
 	}
-	
+
+
 	@Test( description = "Hover over an unknown email address",
 			groups = { "functional", "L2" })
-	
+
 	public void HoverOverEmail_04() throws HarnessException {
 
 		final String email = "email" + ConfigProperties.getUniqueString() + "@foo.com";
@@ -210,17 +214,18 @@ public class HoverOverEmail extends PrefGroupMailByMessageTest {
 		// Hover over the email address
 		String locator = "css=span[id$='_ZmEmailObjectHandler']:contains("+ email +")";
 		app.zPageMail.zDisplayMailHoverOver(locator);
-		
+
 		// Verify the contact tool tip opens
 		TooltipContact tooltip = new TooltipContact(app);
 		tooltip.zWaitForActive();
-		
+
 		ZAssert.assertTrue(tooltip.zIsActive(), "Verify the tooltip shows");
 	}
-	
+
+
 	@Test( description = "Hover over a contact in a message body (zimbraFeatureGalEnabled=FALSE)",
 			groups = { "functional", "L2" })
-	
+
 	public void HoverOverEmail_05() throws HarnessException {
 
 		final String email = "email" + ConfigProperties.getUniqueString() + "@foo.com";
@@ -261,23 +266,24 @@ public class HoverOverEmail extends PrefGroupMailByMessageTest {
 		// Hover over the email address
 		String locator = "css=span[id$='_ZmEmailObjectHandler']:contains("+ email +")";
 		app.zPageMail.zDisplayMailHoverOver(locator);
-		
+
 		// Verify the contact tool tip opens
 		TooltipContact tooltip = new TooltipContact(app);
 		tooltip.zWaitForActive();
-		
+
 		ZAssert.assertTrue(tooltip.zIsActive(), "Verify the tooltip shows");
 	}
-	
+
+
 	@Bugs( ids = "80286" )
 	@Test( description = "Hover over a GAL contact in a message body (zimbraFeatureGalEnabled=FALSE)",
 			groups = { "functional", "L2" })
-	
+
 	public void HoverOverEmail_06() throws HarnessException {
 
 		// Create a contact in the GAL
 		ZimbraAccount contactGAL = (new ZimbraAccount()).provision().authenticate();
-		
+
 		final String subject = "subject" + ConfigProperties.getUniqueString();
 
 		app.zGetActiveAccount().soapSend(
@@ -306,17 +312,18 @@ public class HoverOverEmail extends PrefGroupMailByMessageTest {
 		// Hover over the email address
 		String locator = "css=span[id$='_ZmEmailObjectHandler']:contains("+ contactGAL.EmailAddress +")";
 		app.zPageMail.zDisplayMailHoverOver(locator);
-		
+
 		// Verify the contact tool tip opens
 		TooltipContact tooltip = new TooltipContact(app);
 		tooltip.zWaitForActive();
-		
+
 		ZAssert.assertTrue(tooltip.zIsActive(), "Verify the tooltip shows");
 	}
-	
+
+
 	@Test( description = "Hover over a contact group in a message body (zimbraFeatureGalEnabled=FALSE)",
 			groups = { "functional", "L2" })
-	
+
 	public void HoverOverEmail_07() throws HarnessException {
 
 		String groupName = "group" + ConfigProperties.getUniqueString();
@@ -358,16 +365,17 @@ public class HoverOverEmail extends PrefGroupMailByMessageTest {
 
 		// Hover over the email address
 		String locator = "css=span[id$='_com_zimbra_email']:contains("+ groupName +")";
-		
+
 		// Verify the contact group is not converted to the email zimlet link
 		boolean present = app.zPageMail.sIsElementPresent(locator);
 		ZAssert.assertFalse(present, "Verify the contact group name is not highlighted");
 	}
-	
+
+
 	@Bugs( ids = "80286" )
 	@Test( description = "Hover over an unknown email address (zimbraFeatureGalEnabled=FALSE)",
 			groups = { "functional", "L2" })
-	
+
 	public void HoverOverEmail_08() throws HarnessException {
 
 		final String email = "email" + ConfigProperties.getUniqueString() + "@foo.com";
@@ -389,7 +397,7 @@ public class HoverOverEmail extends PrefGroupMailByMessageTest {
         	+			"</content>"
         	+		"</m>"
 			+	"</AddMsgRequest>");
-		
+
 		// Refresh current view
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 
@@ -399,12 +407,11 @@ public class HoverOverEmail extends PrefGroupMailByMessageTest {
 		// Hover over the email address
 		String locator = "css=span[id$='_ZmEmailObjectHandler']:contains("+ email +")";
 		app.zPageMail.zDisplayMailHoverOver(locator);
-		
+
 		// Verify the contact tool tip opens
 		TooltipContact tooltip = new TooltipContact(app);
 		tooltip.zWaitForActive();
-		
+
 		ZAssert.assertTrue(tooltip.zIsActive(), "Verify the tooltip shows");
 	}
-
 }

@@ -17,9 +17,7 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.search.search;
 
 import java.util.*;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.items.ContactItem;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -32,11 +30,11 @@ public class SearchGAL extends AjaxCommonTest {
 		super.startingPage = app.zPageContacts;
 	}
 
-	@Test(description = "Search for a GAL contact", 
-			groups = { "functional","L2" })
-	public void SearchGAL_01() throws HarnessException {
 
-		// -- Data
+	@Test(description = "Search for a GAL contact",
+			groups = { "functional","L2" })
+
+	public void SearchGAL_01() throws HarnessException {
 
 		// Create a GAL Account
 		final String first = "first" + ConfigProperties.getUniqueString();
@@ -54,15 +52,12 @@ public class SearchGAL extends AjaxCommonTest {
 		accountGAL.provision();
 		accountGAL.authenticate();
 
-		// -- GUI
-
 		// Refresh
 		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 
-		// Remember to close the search view
 		try {
 
-			// search for firstname
+			// Search for firstname
 			app.zPageSearch.zToolbarPressPulldown(Button.B_SEARCHTYPE, Button.O_SEARCHTYPE_GAL);
 			app.zPageSearch.zAddSearchQuery(first);
 			app.zPageSearch.zToolbarPressButton(Button.B_SEARCH);
@@ -75,31 +70,26 @@ public class SearchGAL extends AjaxCommonTest {
 					"Verify the contact is shown in the results");
 
 		} finally {
-			// Remember to close the search view
 			app.zPageSearch.zClose();
 		}
-
 	}
 
-	@Test(description = "Search for a non-existing GAL contact", 
+
+	@Test(description = "Search for a non-existing GAL contact",
 			groups = { "functional","L2"})
+
 	public void SearchGAL_02() throws HarnessException {
 
-		// -- Data
-
-		String doesnotexist = "contact" + ConfigProperties.getUniqueString();
-
-		// -- GUI
+		String nonExistContact = "contact" + ConfigProperties.getUniqueString();
 
 		// Refresh
 		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 
-		// Remember to close the search view
 		try {
 
-			// search for firstname
+			// Search for firstname
 			app.zPageSearch.zToolbarPressPulldown(Button.B_SEARCHTYPE, Button.O_SEARCHTYPE_GAL);
-			app.zPageSearch.zAddSearchQuery(doesnotexist);
+			app.zPageSearch.zAddSearchQuery(nonExistContact);
 			app.zPageSearch.zToolbarPressButton(Button.B_SEARCH);
 
 			List<ContactItem> contacts = app.zPageSearch.zListGetContacts();
@@ -108,10 +98,7 @@ public class SearchGAL extends AjaxCommonTest {
 			ZAssert.assertEquals(contacts.size(), 0, "Verify no results");
 
 		} finally {
-			// Remember to close the search view
 			app.zPageSearch.zClose();
 		}
-
 	}
-
 }

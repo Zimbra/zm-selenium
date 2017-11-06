@@ -30,21 +30,18 @@ public class SearchContact extends AjaxCommonTest {
 		super.startingPage = app.zPageContacts;
 	}
 
-	@Test(description = "Search for a contact", 
+
+	@Test(description = "Search for a contact",
 			groups = { "functional","L2" })
+
 	public void SearchContact_01() throws HarnessException {
 
-		// -- Data
-
-		// Create a contact via soap
+		// Create a contact
 		ContactItem contactItem = ContactItem.createContactItem(app.zGetActiveAccount());
-
-		// -- GUI
 
 		// Refresh
 		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 
-		// Remember to close the search view
 		try {
 
 			// search for firstname
@@ -60,25 +57,19 @@ public class SearchContact extends AjaxCommonTest {
 					"Verify the contact is shown in the results");
 
 		} finally {
-			// Remember to close the search view
 			app.zPageSearch.zClose();
 		}
-
 	}
 
-	@Test(description = "Search for a non-existing contact", 
-			groups = { "functional","L3" })
-	public void SearchContact_02() throws HarnessException {
 
-		// -- Data
+	@Test(description = "Search for a non-existing contact",
+			groups = { "functional","L3" })
+
+	public void SearchContact_02() throws HarnessException {
 
 		String doesnotexist = "contact" + ConfigProperties.getUniqueString();
 
-		// -- GUI
-
-		// Remember to close the search view
 		try {
-
 			// search for firstname
 			app.zPageSearch.zToolbarPressPulldown(Button.B_SEARCHTYPE, Button.O_SEARCHTYPE_CONTACTS);
 			app.zPageSearch.zAddSearchQuery(doesnotexist);
@@ -86,14 +77,10 @@ public class SearchContact extends AjaxCommonTest {
 
 			List<ContactItem> contacts = app.zPageSearch.zListGetContacts();
 			ZAssert.assertNotNull(contacts, "Verify the message list exists");
-
 			ZAssert.assertEquals(contacts.size(), 0, "Verify no results");
 
 		} finally {
-			// Remember to close the search view
 			app.zPageSearch.zClose();
 		}
-
 	}
-
 }

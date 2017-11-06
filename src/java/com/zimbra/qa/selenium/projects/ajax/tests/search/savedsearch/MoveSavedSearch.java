@@ -28,13 +28,14 @@ public class MoveSavedSearch extends AjaxCommonTest  {
 
 	public MoveSavedSearch() {
 		logger.info("New "+ MoveSavedSearch.class.getCanonicalName());
-		super.startingPage = app.zPageMail;		
+		super.startingPage = app.zPageMail;
 	}
-	
+
+
 	@Bugs( ids = "102547")
 	@Test( description = "Move a saved search",
 			groups = { "smoke","L0" })
-	
+
 	public void MoveSavedSearch_01() throws HarnessException {
 
 		// Create the message data to be moved
@@ -65,7 +66,5 @@ public class MoveSavedSearch extends AjaxCommonTest  {
 		// Verify the saved search exists under the other saved search
 		item1 = SavedSearchFolderItem.importFromSOAP(app.zGetActiveAccount(), name1);
 		ZAssert.assertEquals(item1.getParentId(), item2.getId(), "Verify the saved search's parent folder is the other saved search");
-
-
 	}
 }
