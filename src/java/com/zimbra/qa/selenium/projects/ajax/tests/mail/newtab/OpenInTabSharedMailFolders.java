@@ -24,7 +24,6 @@ import com.zimbra.qa.selenium.framework.items.MailItem;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
-import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
@@ -170,14 +169,10 @@ public class OpenInTabSharedMailFolders extends PrefGroupMailByMessageTest {
 		app.zTreeMail.zTreeItem(Action.A_TREE_EXPAND, mountpoint);
 		
 		//Click on subfolder
-		SleepUtil.sleep(5000);
 		app.zTreeMail.zRightClickAt(locator,"");
 		
 		//Click on Open in tab option
 		app.zTreeMail.zClickAt(OpenInTab, "");
-				
-		// Wait for the page
-		SleepUtil.sleep(5000);
 		
 		// Remember to close the search view
 		try {

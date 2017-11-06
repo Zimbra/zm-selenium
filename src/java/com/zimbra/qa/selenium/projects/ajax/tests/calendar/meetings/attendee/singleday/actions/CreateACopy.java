@@ -72,7 +72,7 @@ public class CreateACopy extends AjaxCommonTest {
 				+	"</CreateAppointmentRequest>");
 
 		// Refresh UI
-		app.zPageMain.sRefresh();
+		app.zPageMain.zRefreshMainUI();
 		app.zPageCalendar.zNavigateTo();
 
 		// Verify appointment exists in current view

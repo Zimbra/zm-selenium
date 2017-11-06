@@ -51,7 +51,7 @@ public class SendAsDistList extends PrefGroupMailByMessageTest {
 		list.grantRight(app.zGetActiveAccount(), "sendAsDistList");
 
 		// Refresh UI
-		app.zPageMain.sRefresh();
+		app.zPageMain.zRefreshMainUI();
 	
 		// Open the new mail form
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);

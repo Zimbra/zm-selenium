@@ -54,9 +54,12 @@ public class OpenAttachmentFromEMLAttachedInMessage extends PrefGroupMailByMessa
 
 			// Select eml attachment in mail			
 			window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressButton(Button.B_EML_ATTACHEMENT);
-			SleepUtil.sleepMedium();
+			SleepUtil.sleepLongMedium();
 			window.zSetWindowTitle(subjecteml);
-			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
+
+			for (String winHandle : webDriver.getWindowHandles()) {
+				webDriver.switchTo().window(winHandle);
+			}
 
 			//Verify that doc file attachment is present under eml file attached in a mail
 			ZAssert.assertTrue(window.sIsElementPresent("css=td a[id='zv__MSG__MSG-1_attLinks_2.1_main']:contains('fileconvE5cNFS.doc')"), "Verify .doc  present as attachment");

@@ -52,7 +52,7 @@ public class ChangeSignatureWhenzimbraFeatureHtmlComposeEnabledIsFalse extends U
 						+ "</id>" + "<a n='zimbraFeatureHtmlComposeEnabled'>FALSE</a>" + "</ModifyAccountRequest>");
 
 		// Refresh UI
-		app.zPageMain.sRefresh();
+		app.zPageMain.zRefreshMainUI();
 
 		logger.info("CreateSignature: finish");
 	}

@@ -117,7 +117,7 @@ public class CreateShare extends AjaxCommonTest {
 
 	public void CreateShare_03() throws HarnessException {
 
-		app.zPageMain.sRefresh();
+		app.zPageMain.zRefreshMainUI();
 		app.zPageCalendar.zNavigateTo();
 
 		// Create a folder

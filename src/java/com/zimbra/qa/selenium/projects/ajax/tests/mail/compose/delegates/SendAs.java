@@ -56,7 +56,7 @@ public class SendAs extends PrefGroupMailByMessageTest {
 			+	"</GrantRightsRequest>");
 
 		// Refresh UI
-		app.zPageMain.sRefresh();
+		app.zPageMain.zRefreshMainUI();
 		
 		// Open the new mail form
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
@@ -113,7 +113,7 @@ public class SendAs extends PrefGroupMailByMessageTest {
 			+	"</GrantRightsRequest>");
 
 		// Refresh UI
-		app.zPageMain.sRefresh();
+		app.zPageMain.zRefreshMainUI();
 		
 		//-- DATA
 		final String subject = "subject13977785775182543";

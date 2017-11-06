@@ -92,7 +92,7 @@ public class CreateMeetingInSharedCalendarWithMailFeatureDisabled extends Calend
 	    	      "</ModifyAccountRequest>");
 	    
 	    // Refresh UI
-		app.zPageMain.sRefresh();
+		app.zPageMain.zRefreshMainUI();
 		app.zPageCalendar.zNavigateTo();
 	    
 		// Compose appointment on shared mailbox

@@ -97,7 +97,7 @@ public class FromAlias extends PrefGroupMailByConversationTest {
 		
 		
 		// Refresh UI
-		app.zPageMain.sRefresh();
+		app.zPageMain.zRefreshMainUI();
 
 		// Refresh current view
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");

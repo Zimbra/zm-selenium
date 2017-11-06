@@ -319,7 +319,7 @@ public class PageMain extends AbsTab {
 			if (!zIndex.equals("auto") && !zIndex.equals("") && !zIndex.equals(null)
 					&& Integer.parseInt(zIndex) >= 700) {
 				logger.info("##### Found active dialog #####");
-				sRefresh();
+				zRefreshMainUI();
 				dialogLocators = webDriver().findElements(By.cssSelector("div[class^='Dwt'][class$='Dialog']"));
 				totalDialogs = dialogLocators.size();
 				for (int j = totalDialogs - 1; j >= 0; j--) {
@@ -548,7 +548,7 @@ public class PageMain extends AbsTab {
 		// Navigate to app
 		if (!appTab.zIsActive()) {
 
-			sRefresh();
+			zRefreshMainUI();
 			appTab.zNavigateTo();
 
 			// Check UI loading

@@ -72,7 +72,7 @@ public class AjaxCommonTest {
 	public static boolean allDayTest = false;
 
 	WebElement we = null;
-	private WebDriver webDriver = ClientSessionFactory.session().webDriver();
+	protected WebDriver webDriver = ClientSessionFactory.session().webDriver();
 	protected static Logger logger = LogManager.getLogger(AjaxCommonTest.class);
 
 	protected StafServicePROCESS staf = new StafServicePROCESS();

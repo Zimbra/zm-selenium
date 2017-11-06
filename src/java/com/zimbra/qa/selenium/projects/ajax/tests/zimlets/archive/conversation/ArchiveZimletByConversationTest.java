@@ -64,7 +64,7 @@ public class ArchiveZimletByConversationTest extends PrefGroupMailByConversation
 			initializeArchiveFolder();
 
 			// Refresh UI
-			app.zPageMain.sRefresh();
+			app.zPageMain.zRefreshMainUI();
 
 		}
 		

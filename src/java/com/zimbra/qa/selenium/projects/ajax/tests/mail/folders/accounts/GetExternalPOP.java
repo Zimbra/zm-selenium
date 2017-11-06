@@ -98,7 +98,7 @@ public class GetExternalPOP extends PrefGroupMailByMessageTest {
 			+			"fromDisplay='Foo Bar' fromAddress='"+ app.zGetActiveAccount().EmailAddress +"' />"
 			+	"</CreateDataSourceRequest>");
 
-		app.zPageMain.sRefresh();
+		app.zPageMain.zRefreshMainUI();
 
 		// Click on the folder and select Sync
 		app.zTreeMail.zTreeItem(Action.A_RIGHTCLICK, Button.B_TREE_FOLDER_GET_EXTERNAL, folder);
@@ -203,7 +203,7 @@ public class GetExternalPOP extends PrefGroupMailByMessageTest {
 			+			"fromDisplay='Foo Bar' fromAddress='"+ app.zGetActiveAccount().EmailAddress +"' />"
 			+	"</CreateDataSourceRequest>");
 
-		app.zPageMain.sRefresh();
+		app.zPageMain.zRefreshMainUI();
 
 		// Click on the folder and select Sync
 		app.zTreeMail.zTreeItem(Action.A_RIGHTCLICK, Button.B_TREE_FOLDER_GET_EXTERNAL, folder);
@@ -319,7 +319,7 @@ public class GetExternalPOP extends PrefGroupMailByMessageTest {
 			+			"fromDisplay='Foo Bar' fromAddress='"+ app.zGetActiveAccount().EmailAddress +"' />"
 			+	"</CreateDataSourceRequest>");
 
-		app.zPageMain.sRefresh();
+		app.zPageMain.zRefreshMainUI();
 
 		// Click on the folder and select Sync
 		app.zTreeMail.zTreeItem(Action.A_RIGHTCLICK, Button.B_TREE_FOLDER_GET_EXTERNAL, folder);

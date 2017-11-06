@@ -87,7 +87,7 @@ public class MoveContact extends TouchCommonTest  {
 		FolderMountpointItem mountpoint = FolderMountpointItem.importFromSOAP(app.zGetActiveAccount(), mountpointname);
 		ZAssert.assertNotNull(mountpoint, "Verify the subfolder is available");
 
-		app.zPageMain.sRefresh();
+		app.zPageMain.zRefreshMainUI();
 
 		// Select the contact from contact list in mount folder
 		PageCreateFolder createFolderPage = new PageCreateFolder(app, startingPage);

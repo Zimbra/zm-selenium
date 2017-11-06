@@ -45,7 +45,7 @@ public class CreateMeetingByChangingBodyTextFormat extends AjaxCommonTest {
 		ZimbraAccount.AccountZCS().modifyAccountPreferences(startingAccountPreferences);
 
 		// Refresh UI
-		app.zPageMain.sRefresh();
+		app.zPageMain.zRefreshMainUI();
 		app.zPageCalendar.zNavigateTo();
 
 		// Create appointment data
@@ -90,7 +90,7 @@ public class CreateMeetingByChangingBodyTextFormat extends AjaxCommonTest {
 		ZimbraAccount.AccountZCS().modifyAccountPreferences(startingAccountPreferences);
 
 		// Refresh UI
-		app.zPageMain.sRefresh();
+		app.zPageMain.zRefreshMainUI();
 		app.zPageCalendar.zNavigateTo();
 
 		// Create appointment data
@@ -136,7 +136,7 @@ public class CreateMeetingByChangingBodyTextFormat extends AjaxCommonTest {
 		ZimbraAccount.AccountZCS().modifyAccountPreferences(startingAccountPreferences);
 
 		// Refresh UI
-		app.zPageMain.sRefresh();
+		app.zPageMain.zRefreshMainUI();
 		app.zPageCalendar.zNavigateTo();
 
 		// Create appointment data

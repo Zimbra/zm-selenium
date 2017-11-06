@@ -460,12 +460,12 @@ public class PageCalendar extends AbsTab {
 
 	public String zReturnDayWeek(int number) throws HarnessException {
 		String locator;
-        if (zIsWeekend()) {
-        	locator = "css=div[id^='zv__CLW";
-        } else {
-        	locator = "css=div[id^='zv__CLWW";
-        }
-		return sGetText(locator + " div[class='calendar_heading'] div[class^='calendar_heading_day']:nth-child(" + number + ")");
+		if (zIsWeekend()) {
+			locator = "css=div[id^='zv__CLW'] ";
+		} else {
+			locator = "css=div[id^='zv__CLWW'] ";
+		}
+		return sGetText(locator + "div[class='calendar_heading'] div[class^='calendar_heading_day']:nth-child(" + number + ")");
 	}
 
 	public String zGetRecurringLink() throws HarnessException {
@@ -2197,13 +2197,13 @@ public class PageCalendar extends AbsTab {
 			FolderItem folder = (FolderItem) dynamic;
 
 			pulldownLocator = "css=td#zb__CLD__MOVE_MENU_dropdown>div";
-			
-	        if (zIsWeekend()) {
+
+			if (zIsWeekend()) {
 				optionLocator = "css=td#zti__ZmFolderChooser_CalendarCLW__" + folder.getId() + "_textCell";
-	        } else {
-	        	optionLocator = "css=td#zti__ZmFolderChooser_CalendarCLWW__" + folder.getId() + "_textCell";
-	        }
-	        
+			} else {
+				optionLocator = "css=td#zti__ZmFolderChooser_CalendarCLWW__" + folder.getId() + "_textCell";
+			}
+
 			page = null;
 
 		} else {

@@ -53,7 +53,7 @@ public class ZimbraPrefOutOfOfficeReplyEnabledFalse extends AjaxCommonTest {
 						+ "<a n='zimbraPrefOutOfOfficeReply'>" + autoReplyMessage + "</a>"
 						+ "<a n='zimbraPrefOutOfOfficeStatusAlertOnLogin'>TRUE</a>" + "</ModifyAccountRequest>");
 		
-		app.zPageMain.sRefreshPage();
+		app.zPageMain.zRefreshUI();
 
 		// Client must display out of office dialog, wait for some time and take an action on it
 		SleepUtil.sleepLong();

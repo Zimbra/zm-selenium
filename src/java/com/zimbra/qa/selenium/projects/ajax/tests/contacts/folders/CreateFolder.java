@@ -89,7 +89,7 @@ public class CreateFolder extends AjaxCommonTest {
 		String folderName = "folder" + ConfigProperties.getUniqueString();
 		
 		// Work around
-		app.zPageMain.sRefresh();
+		app.zPageMain.zRefreshMainUI();
 		app.zPageContacts.zNavigateTo();
 
 		// Right click on Contacts -> New Addressbook

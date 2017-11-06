@@ -86,7 +86,7 @@ public class Delete extends TouchCommonTest  {
 		FolderMountpointItem mountpoint = FolderMountpointItem.importFromSOAP(app.zGetActiveAccount(), mountpointname);
 		ZAssert.assertNotNull(mountpoint, "Verify the subfolder is available");
 
-		app.zPageMain.sRefresh();
+		app.zPageMain.zRefreshMainUI();
 
 		// Select the contact from contact list
 		PageCreateFolder createFolderPage = new PageCreateFolder(app, startingPage);

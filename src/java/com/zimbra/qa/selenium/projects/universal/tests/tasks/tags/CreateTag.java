@@ -111,7 +111,7 @@ public class CreateTag extends UniversalCommonTest {
 		app.zPageTasks.zToolbarPressButton(Button.B_REFRESH);
 		
 		// Work around
-		app.zPageMain.sRefresh();
+		app.zPageMain.zRefreshMainUI();
 		app.zPageTasks.zNavigateTo();
 
 		// Create a new tag using the context menu + New Tag

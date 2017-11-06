@@ -82,7 +82,7 @@ public class InstallSelfSignedCertificate extends AdminCommonTest {
 
 			// Restart zimbra services
 			staf.execute("zmmailboxdctl restart");
-			app.zPageMain.sRefresh();
+			app.zPageMain.zRefreshMainUI();
 
 			ZimbraAdminAccount.AdminConsoleAdmin().provision();
 			ZimbraAdminAccount.AdminConsoleAdmin().authenticate();

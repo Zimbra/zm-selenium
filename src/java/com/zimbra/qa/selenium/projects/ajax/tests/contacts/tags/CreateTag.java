@@ -88,7 +88,7 @@ public class CreateTag extends PrefGroupMailByMessageTest {
 	public void CreateTag_03() throws HarnessException {
 		
 		// Work around due to duplicate dialog ids
-		app.zPageMain.sRefresh();
+		app.zPageMain.zRefreshMainUI();
 		app.zPageContacts.zNavigateTo();
 		
 		// Set the new tag name

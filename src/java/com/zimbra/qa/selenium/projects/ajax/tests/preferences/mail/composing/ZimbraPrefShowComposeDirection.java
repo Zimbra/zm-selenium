@@ -37,7 +37,7 @@ public class ZimbraPrefShowComposeDirection extends AjaxCommonTest {
 		super.startingPage = app.zPageMail;
 		super.startingAccountPreferences.put("zimbraPrefShowComposeDirection", "FALSE");
 	}
-	@Bugs(ids = "103002")
+	@Bugs(ids = "ZCS-3528")
 	@Test(description = "Verify the presence and working of direction buttons in compose mail screen",
 			groups = { "functional", "L3" })
 

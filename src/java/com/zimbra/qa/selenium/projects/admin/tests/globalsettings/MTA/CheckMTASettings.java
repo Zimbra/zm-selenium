@@ -108,7 +108,7 @@ public class CheckMTASettings extends AdminCommonTest {
 			app.zPageManageMTA.zToolbarPressButton(Button.B_SAVE);
 
 			//Verify through UI that the MTA configuration change made above is present  
-			app.zPageManageMTA.sRefresh();
+			app.zPageManageMTA.zRefreshMainUI();
 			app.zPageMain.zWaitForActive();
 			app.zPageManageGlobalSettings.zNavigateTo();
 			app.zPageManageMTA.zNavigateTo();		

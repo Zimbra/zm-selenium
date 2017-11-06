@@ -50,7 +50,7 @@ public class EditDelegate extends AjaxCommonTest {
 		// -- GUI Steps
 
 		// Refresh UI
-		app.zPageMain.sRefresh();
+		app.zPageMain.zRefreshMainUI();
 
 		// Navigate to preferences -> accounts
 		app.zPagePreferences.zNavigateTo();
@@ -121,7 +121,7 @@ public class EditDelegate extends AjaxCommonTest {
 		// -- GUI Steps
 
 		// Refresh UI
-		app.zPageMain.sRefresh();
+		app.zPageMain.zRefreshMainUI();
 		this.startingPage.zNavigateTo();
 
 		AbsDialog errorDialog = app.zPageMain.zGetErrorDialog(DialogErrorID.Zimbra);
@@ -204,7 +204,7 @@ public class EditDelegate extends AjaxCommonTest {
 		// -- GUI Steps
 
 		// Refresh UI
-		app.zPageMain.sRefresh();
+		app.zPageMain.zRefreshMainUI();
 		this.startingPage.zNavigateTo();
 
 		// Navigate to preferences -> notifications
@@ -269,7 +269,7 @@ public class EditDelegate extends AjaxCommonTest {
 		// -- GUI Steps
 
 		// Refresh UI
-		app.zPageMain.sRefresh();
+		app.zPageMain.zRefreshMainUI();
 		this.startingPage.zNavigateTo();
 
 		// Navigate to preferences -> notifications
@@ -334,7 +334,7 @@ public class EditDelegate extends AjaxCommonTest {
 		// -- GUI Steps
 
 		// Refresh UI
-		app.zPageMain.sRefresh();
+		app.zPageMain.zRefreshMainUI();
 		this.startingPage.zNavigateTo();
 
 		AbsDialog errorDialog = app.zPageMain.zGetErrorDialog(DialogErrorID.Zimbra);
@@ -410,7 +410,7 @@ public class EditDelegate extends AjaxCommonTest {
 		// -- GUI Steps
 
 		// Refresh UI
-		app.zPageMain.sRefresh();
+		app.zPageMain.zRefreshMainUI();
 		this.startingPage.zNavigateTo();
 
 		// Navigate to preferences -> notifications

@@ -80,7 +80,7 @@ public class MarkUnReadMail extends PrefGroupMailByMessageTest{
 						+		"<link l='1' name='"+ mountpointname +"'  rid='"+ folder.getId() +"' zid='"+ ZimbraAccount.AccountA().ZimbraId +"'/>"
 						+	"</CreateMountpointRequest>");
 
-		app.zPageMain.sRefresh();	
+		app.zPageMain.zRefreshMainUI();	
 
 		//Mark mail as unread then read
 		PageCreateFolder createFolderPage = new PageCreateFolder(app, startingPage);

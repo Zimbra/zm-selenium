@@ -60,7 +60,7 @@ public class DelegateSendOnBehalfOfSaveCopyOfMessage extends PrefGroupMailByMess
 			+	"</ModifyPrefsRequest>");
 		
 		// Refresh UI
-		app.zPageMain.sRefresh();
+		app.zPageMain.zRefreshMainUI();
 		
 		//-- GUI Steps
 
@@ -113,7 +113,7 @@ public class DelegateSendOnBehalfOfSaveCopyOfMessage extends PrefGroupMailByMess
 
 		
 		// Refresh UI
-		app.zPageMain.sRefresh();
+		app.zPageMain.zRefreshMainUI();
 		
 		//-- GUI Steps
 
@@ -168,7 +168,7 @@ public class DelegateSendOnBehalfOfSaveCopyOfMessage extends PrefGroupMailByMess
 
 		
 		// Refresh UI
-		app.zPageMain.sRefresh();
+		app.zPageMain.zRefreshMainUI();
 		
 		//-- GUI Steps
 
@@ -221,7 +221,7 @@ public class DelegateSendOnBehalfOfSaveCopyOfMessage extends PrefGroupMailByMess
 
 		
 		// Refresh UI
-		app.zPageMain.sRefresh();
+		app.zPageMain.zRefreshMainUI();
 		
 		//-- GUI Steps
 

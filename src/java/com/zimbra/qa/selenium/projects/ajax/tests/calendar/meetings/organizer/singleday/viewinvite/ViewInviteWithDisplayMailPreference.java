@@ -126,7 +126,7 @@ public class ViewInviteWithDisplayMailPreference extends AjaxCommonTest {
 		}
 
 		// Work around for getting correct body locator
-		app.zPageMain.sRefresh();
+		app.zPageMain.zRefreshMainUI();
 
 		// Navigate to preference -> Mail and set display mail pref to Text and verify
 		app.zPagePreferences.zNavigateTo();
@@ -207,7 +207,7 @@ public class ViewInviteWithDisplayMailPreference extends AjaxCommonTest {
 		String multilineTextContentForSOAP = "line 1\nline two\n\n\nline 3";
 
 		// Work around for getting correct body locator
-		app.zPageMain.sRefresh();
+		app.zPageMain.zRefreshMainUI();
 
 		Calendar now = Calendar.getInstance();
 		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 9, 0, 0);
@@ -257,7 +257,7 @@ public class ViewInviteWithDisplayMailPreference extends AjaxCommonTest {
 		}
 
 		// Work around for getting correct body locator
-		app.zPageMain.sRefresh();
+		app.zPageMain.zRefreshMainUI();
 
 		app.zGetActiveAccount().soapSend(
 				"<GetPrefsRequest xmlns='urn:zimbraAccount'>"

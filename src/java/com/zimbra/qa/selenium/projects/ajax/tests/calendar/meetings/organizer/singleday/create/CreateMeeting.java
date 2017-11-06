@@ -107,7 +107,7 @@ public class CreateMeeting extends AjaxCommonTest {
 		ZimbraAccount.AccountZCS().modifyAccountPreferences(startingAccountPreferences);
 
 		// Refresh UI
-		app.zPageMain.sRefresh();
+		app.zPageMain.zRefreshMainUI();
 		app.zPageCalendar.zNavigateTo();
 
 		AppointmentItem appt = new AppointmentItem();

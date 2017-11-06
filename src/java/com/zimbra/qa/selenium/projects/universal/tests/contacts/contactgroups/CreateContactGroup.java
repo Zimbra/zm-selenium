@@ -260,7 +260,7 @@ public class CreateContactGroup extends UniversalCommonTest  {
 		String email=ZimbraAccount.AccountA().EmailAddress.substring(0,ZimbraAccount.AccountA().EmailAddress.indexOf('@'));
 		
 		// Work around
-		app.zPageMain.sRefresh();
+		app.zPageMain.zRefreshMainUI();
 		app.zPageContacts.zNavigateTo();
 
 		// search for a GAL

@@ -68,7 +68,7 @@ public class ZimbraCalResLocationDisplayName extends AjaxCommonTest {
 		}
 
 		// Refresh UI
-		app.zPageMain.sRefresh();
+		app.zPageMain.zRefreshMainUI();
 		app.zPageCalendar.zNavigateTo();
 
 		String tz = ZTimeZone.getLocalTimeZone().getID();

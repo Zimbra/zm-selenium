@@ -65,7 +65,7 @@ public class ArchiveZimletByMessageTest extends PrefGroupMailByMessageTest {
 			initializeArchiveFolder();
 			
 			// To refresh the zimlet settings: Logout/Login
-			app.zPageMain.sRefresh();
+			app.zPageMain.zRefreshMainUI();
 			app.zPageMail.zNavigateTo();
 		}
 		

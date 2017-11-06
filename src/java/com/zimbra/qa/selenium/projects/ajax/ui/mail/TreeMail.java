@@ -366,6 +366,10 @@ public class TreeMail extends AbsTree {
 			this.sMouseDown(locator);
 			this.zWaitForBusyOverlay();
 
+			// Work around for discarding zimbra tooltip
+			this.sMouseOver(Locators.ztih__main_Mail__ZIMLET_ID);
+			SleepUtil.sleepVerySmall();
+
 			// No page to return
 			return (null);
 
@@ -379,6 +383,10 @@ public class TreeMail extends AbsTree {
 
 			this.sMouseDown(locator);
 			this.zWaitForBusyOverlay();
+
+			// Work around for discarding zimbra tooltip
+			this.sMouseOver(Locators.ztih__main_Mail__ZIMLET_ID);
+			SleepUtil.sleepVerySmall();
 
 			// No page to return
 			return (null);
@@ -459,6 +467,10 @@ public class TreeMail extends AbsTree {
 			this.zWaitForBusyOverlay();
 			SleepUtil.sleepSmall();
 
+			// Work around for discarding zimbra tooltip
+			this.sMouseOver(Locators.ztih__main_Mail__ZIMLET_ID);
+			SleepUtil.sleepVerySmall();
+
 			// No page to return
 			return (null);
 
@@ -473,6 +485,10 @@ public class TreeMail extends AbsTree {
 			this.sClickAt(locator,"");
 			this.zWaitForBusyOverlay();
 			SleepUtil.sleepSmall();
+
+			// Work around for discarding zimbra tooltip
+			this.sMouseOver(Locators.ztih__main_Mail__ZIMLET_ID);
+			SleepUtil.sleepVerySmall();
 
 			// No page to return
 			return (null);

@@ -271,7 +271,7 @@ public class Login extends UniversalCommonTest {
 
 				SleepUtil.sleepVeryLong();
 				for (int i = 0; i <= 10; i++) {
-					app.zPageLogin.sRefresh();
+					app.zPageLogin.zRefreshMainUI();
 					if (app.zPageLogin.sIsElementPresent("css=input[class^='ZLoginButton']") == true || 
 							app.zPageLogin.sIsElementPresent("css=div[id$='parent-ZIMLET'] td[id$='ZIMLET_textCell']") == true) {
 						break;

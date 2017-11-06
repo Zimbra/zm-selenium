@@ -81,7 +81,7 @@ public class TagMail extends PrefGroupMailByMessageTest{
 		// Create a tag
 		TagItem tagItem = TagItem.CreateUsingSoap(app.zGetActiveAccount());
 		String tagName = tagItem.getName();
-		app.zPageMain.sRefresh();
+		app.zPageMain.zRefreshMainUI();
 
 		// Flag the email in the mount folder
 		PageCreateFolder createFolderPage = new PageCreateFolder(app, startingPage);

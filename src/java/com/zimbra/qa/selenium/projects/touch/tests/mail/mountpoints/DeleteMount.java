@@ -65,7 +65,7 @@ public class DeleteMount extends PrefGroupMailByMessageTest{
 						+		"<link l='1' name='"+ mountpointname +"'  rid='"+ folder.getId() +"' zid='"+ ZimbraAccount.AccountA().ZimbraId +"'/>"
 						+	"</CreateMountpointRequest>");
 
-		app.zPageMain.sRefresh();	
+		app.zPageMain.zRefreshMainUI();	
 
 		// Delete the mount folder
 		PageCreateFolder createFolderPage = new PageCreateFolder(app, startingPage);

@@ -97,7 +97,7 @@ public class ReplyMsgWithTwoThreeLineTextSignature extends AjaxCommonTest {
 						+ "</ModifyIdentityRequest>");
 
 		// Refresh UI
-		app.zPageMain.sRefresh();
+		app.zPageMain.zRefreshMainUI();
 
 		FolderItem inboxFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
 		// Signature is created

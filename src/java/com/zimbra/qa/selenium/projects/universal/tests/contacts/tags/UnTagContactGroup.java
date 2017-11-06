@@ -257,7 +257,7 @@ public class UnTagContactGroup extends UniversalCommonTest  {
 	public void UnTagContactGroup_06() throws HarnessException {			
 		
 		// Work around due to duplicate dialog ids
-		app.zPageMain.sRefresh();
+		app.zPageMain.zRefreshMainUI();
 		app.zPageContacts.zNavigateTo();
 		
 		//-- Data

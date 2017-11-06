@@ -78,7 +78,7 @@ public class ReplyToMsgWithSignatureContainingImage extends AjaxCommonTest {
 				+ "</CreateSignatureRequest>");
 
 		// Refresh UI so that signature get loaded
-		app.zPageMain.sRefresh();
+		app.zPageMain.zRefreshMainUI();
 
 		logger.info("CreateSignature: finish");
 

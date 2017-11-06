@@ -48,7 +48,7 @@ public class ViewChangeViaMenu extends CalendarWorkWeekTest {
         ZAssert.assertTrue(app.zPageCalendar.sIsElementPresent(Locators.CalendarViewWeekCSS), "Changed to week view");
         
         // Context menu hidden after switching views so applying work around
-        app.zPageMain.sRefresh();
+        app.zPageMain.zRefreshMainUI();
         app.zPageCalendar.zNavigateTo();
 
 		app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_VIEW_MENU, Button.O_VIEW_MONTH_SUB_MENU, "Month");

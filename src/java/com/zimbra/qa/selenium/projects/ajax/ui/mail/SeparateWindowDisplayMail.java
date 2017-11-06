@@ -1013,6 +1013,8 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 		this.sClick(optionLocator);
 		zWaitForBusyOverlay();
 
+		SleepUtil.sleepMedium();
+
 		if (doPostfixCheck) {
 			// Make sure the response is delivered before proceeding
 			Stafpostqueue sp = new Stafpostqueue();

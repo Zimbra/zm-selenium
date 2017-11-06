@@ -118,8 +118,8 @@ public class ChangeCustomColorWithExcludeFB extends AjaxCommonTest {
 		AppointmentItem appt1 = new AppointmentItem();
 		appt1.setSubject(apptSubject1);
 		appt1.setAttendees(organizer.EmailAddress);
-		appt1.setStartTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 11, 0, 0));
-		appt1.setEndTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0));
+		appt1.setStartTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 10, 0, 0));
+		appt1.setEndTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 11, 0, 0));
 		appt1.setContent(apptContent1);
 
 		// Create meeting with attendee who was organizer of the earlier appt and does have conflicing appt
@@ -217,8 +217,8 @@ public class ChangeCustomColorWithExcludeFB extends AjaxCommonTest {
 		AppointmentItem appt1 = new AppointmentItem();
 		appt1.setSubject(apptSubject1);
 		appt1.setAttendees(organizer.EmailAddress);
-		appt1.setStartTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 13, 0, 0));
-		appt1.setEndTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0));
+		appt1.setStartTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0));
+		appt1.setEndTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 13, 0, 0));
 		appt1.setContent(apptContent1);
 
 		// Create meeting with attendee who was organizer of the earlier appt and does have conflicing appt

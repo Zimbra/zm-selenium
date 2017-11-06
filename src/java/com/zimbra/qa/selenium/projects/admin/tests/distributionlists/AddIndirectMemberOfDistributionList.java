@@ -114,7 +114,7 @@ public class AddIndirectMemberOfDistributionList extends AdminCommonTest {
 		
 		
 		// Refresh to get the changes
-		app.zPageManageDistributionList.sRefresh();
+		app.zPageManageDistributionList.zRefreshMainUI();
 		
 		startingPage.zNavigateTo();
 		

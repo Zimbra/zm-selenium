@@ -110,7 +110,7 @@ public class Cancel extends AjaxCommonTest {
 	    	      "</ModifyAccountRequest>");
 
 		// Refresh UI
-		app.zPageMain.sRefresh();
+		app.zPageMain.zRefreshMainUI();
 		app.zPageCalendar.zNavigateTo();
 
 		// Absolute dates in UTC zone

@@ -95,10 +95,13 @@ public class CheckFreeBusyURLLink extends AjaxCommonTest {
         SleepUtil.sleepMedium();
 		ZAssert.assertStringContains(app.zPageCalendar.sGetLocation(), viewName,  "URL for "+ label +" view is open");
 
-		if (label != "Day") {
-			// Verify if all views show free busy status
-			String body = app.zPageCalendar.sGetBodyText();
-			ZAssert.assertStringContains( body, "Busy" , "Verify free busy view is visible and no error is thrown");
+		if (label.equals("Work Week") && app.zPageCalendar.zIsWeekend()) {
+			app.zPageCalendar.sClickAt(Locators.WeekViewOnFBLink, "");
+			SleepUtil.sleepMedium();
 		}
+
+		// Verify if all views show free busy status
+		String body = app.zPageCalendar.sGetBodyText();
+		ZAssert.assertStringContains( body, "Busy" , "Verify free busy view is visible and no error is thrown");
 	}
 }
