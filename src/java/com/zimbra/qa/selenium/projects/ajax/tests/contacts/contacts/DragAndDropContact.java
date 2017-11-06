@@ -24,26 +24,24 @@ import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 
 public class DragAndDropContact extends AjaxCommonTest  {
-	
+
 	public DragAndDropContact() {
 		logger.info("New "+ DragAndDropContact.class.getCanonicalName());
 		super.startingPage = app.zPageContacts;
-		
 	}
-	
+
+
 	@Test( description = "Move a contact item to sub-addressbook",
 			groups = { "smoke", "L0"})
-	
+
 	public void DragAndDropContact_01() throws HarnessException {
-		
-		//-- Data
-		
+
         // The Addressbook folder
 		FolderItem root = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.UserRoot);
 
 		// The addressbook
 		String foldername = "ab"+ ConfigProperties.getUniqueString();
-		
+
 		app.zGetActiveAccount().soapSend(
 					"<CreateFolderRequest xmlns='urn:zimbraMail'>" +
 						"<folder name='" + foldername +"' l='"+ root.getId() +"' view='contact'/>" +
@@ -63,32 +61,29 @@ public class DragAndDropContact extends AjaxCommonTest  {
 	                			"<a n='email'>" + email + "</a>" +
                 			"</cn>" +
 	                "</CreateContactRequest>");
-		
+
 		ContactItem contact = ContactItem.importFromSOAP(app.zGetActiveAccount(), "#firstname:" + firstName);
 
 		// Refresh
 		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
-		
+
 		// DND
 		app.zPageContacts.zDragAndDrop(
 				"css=div#zlif__CNS-main__" + contact.getId() + "__fileas:contains("+ contact.fileAs + ")",
 				"css=td#zti__main_Contacts__" + folder.getId() + "_textCell:contains("+ folder.getName() + ")");
-       
-        //-- Verification
-        
-        //verify contact deleted
+
+        // Verify contact deleted
         ContactItem actual = ContactItem.importFromSOAP(app.zGetActiveAccount(), "#firstname:"+ contact.firstName);
         ZAssert.assertNotNull(actual, "Verify the contact is deleted from the addressbook");
         ZAssert.assertEquals(actual.getFolderId(), folder.getId(), "Verify the contact is in the Trash folder");
    	}
-		
+
+
 	@Test( description = "Move a contact item to trash folder by drag and drop",
 			groups = { "functional", "L2"})
-	
+
 	public void DnDToTrash_02() throws HarnessException {
-		
-		//-- Data
-		
+
         // The Addressbook and Trash folder
 		FolderItem trash = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Trash);
 
@@ -105,22 +100,18 @@ public class DragAndDropContact extends AjaxCommonTest  {
 	                			"<a n='email'>" + email + "</a>" +
                 			"</cn>" +
 	                "</CreateContactRequest>");
-		
+
 		ContactItem contact = ContactItem.importFromSOAP(app.zGetActiveAccount(), "#firstname:" + firstName);
 
-		//-- GUI
-		
 		// Refresh
 		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
-		
+
 		// DND
 		app.zPageContacts.zDragAndDrop(
 				"css=div#zlif__CNS-main__" + contact.getId() + "__fileas:contains("+ contact.fileAs + ")",
 				"css=td#zti__main_Contacts__" + trash.getId() + "_textCell:contains("+ trash.getName() + ")");
-       
-        //-- Verification
-        
-        //verify contact deleted
+
+        // Verify contact deleted
         ContactItem actual = ContactItem.importFromSOAP(app.zGetActiveAccount(), "is:anywhere #firstname:"+ contact.firstName);
         ZAssert.assertNotNull(actual, "Verify the contact is deleted from the addressbook");
         ZAssert.assertEquals(actual.getFolderId(), trash.getId(), "Verify the contact is in the Trash folder");

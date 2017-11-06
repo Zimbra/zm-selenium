@@ -42,9 +42,10 @@ public class CreateTaskWithAttachment extends PrefGroupMailByMessageTest {
 		}};
 	}
 
+
 	@Bugs(ids = "104231")
-	@Test( description = "Create task with attachment", 
-		groups = { "sanity", "L0"})
+	@Test( description = "Create task with attachment",
+			groups = { "sanity", "L0"})
 
 	public void CreateTaskWithAttachment_01() throws HarnessException {
 
@@ -83,9 +84,7 @@ public class CreateTaskWithAttachment extends PrefGroupMailByMessageTest {
 				ZAssert.assertTrue(app.zPageMail.zVerifyAttachmentExistsInMail(fileName), "Verify attachment exists in the task");
 
 			} finally {
-
 				app.zPageMain.zKeyboardKeyEvent(KeyEvent.VK_ESCAPE);
-
 			}
 
 		} else {

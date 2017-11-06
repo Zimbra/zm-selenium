@@ -16,12 +16,9 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.performance.compose;
 
-
 import java.io.File;
 import java.util.HashMap;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
@@ -40,15 +37,16 @@ public class ZmMailAppFwdCompose extends AjaxCommonTest {
 
 		super.startingPage = app.zPageMail;
 		super.startingAccountPreferences = new HashMap<String, String>() {
-			private static final long serialVersionUID = 7525760124523255182L;
-			{
+			private static final long serialVersionUID = 7525760124523255182L; {
 				put("zimbraPrefComposeFormat", "text");
 			}
 		};
-
 	}
 
-	@Test( description = "Measure the time to load Fwd-compose  window for simple message", groups = { "performance", "deprecated" })
+
+	@Test( description = "Measure the time to load Fwd-compose  window for simple message",
+			groups = { "performance", "deprecated" })
+
 	public void ZmMailAppFwdCompose_01() throws HarnessException {
 
 		String mime = ConfigProperties.getBaseDirectory() + "/data/public/mime/email02/mime01.txt";
@@ -56,7 +54,7 @@ public class ZmMailAppFwdCompose extends AjaxCommonTest {
 
 		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mime));
 
-		
+
 		// Refresh current view
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
@@ -64,16 +62,17 @@ public class ZmMailAppFwdCompose extends AjaxCommonTest {
 
 		// Select the message so that it shows in the reading pane
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
-		
-		//Click Forward from tool bar
+
+		// Click Forward from tool bar
 		app.zPageMail.zToolbarPressButton(Button.B_FORWARD);
 
 		PerfMetrics.waitTimestamp(token);
-
 	}
-	
-	
-	@Test( description = "Measure the time to load reply-compose  window for large conversation", groups = { "performance", "deprecated" })
+
+
+	@Test( description = "Measure the time to load reply-compose  window for large conversation",
+			groups = { "performance", "deprecated" })
+
 	public void ZmMailAppFwdCompose_02() throws HarnessException {
 
 		String mime = ConfigProperties.getBaseDirectory() + "/data/public/mime/largeconversation_mime.txt";
@@ -81,23 +80,17 @@ public class ZmMailAppFwdCompose extends AjaxCommonTest {
 
 		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mime));
 
-
-		
 		// Refresh current view
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 
 		PerfToken token = PerfMetrics.startTimestamp(PerfKey.ZmMailAppCompose, "Load Forward-Compose window for large conversation");
-		
+
 		// Select the message so that it shows in the reading pane
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
-		
-		//Click Forward from tool bar
+
+		// Click Forward from tool bar
 		app.zPageMail.zToolbarPressButton(Button.B_FORWARD);
 
 		PerfMetrics.waitTimestamp(token);
 	}
-
-	
 }
-
-

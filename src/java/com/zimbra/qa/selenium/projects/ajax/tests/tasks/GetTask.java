@@ -33,27 +33,26 @@ public class GetTask extends AjaxCommonTest {
 	@SuppressWarnings("serial")
 	public GetTask() {
 		logger.info("New "+ GetTask.class.getCanonicalName());
-		
-		// All tests start at the login page
-		super.startingPage = app.zPageTasks;
 
+		super.startingPage = app.zPageTasks;
 		super.startingAccountPreferences = new HashMap<String , String>() {{
 			put("zimbraPrefShowSelectionCheckbox", "TRUE");
 			put("zimbraPrefTasksReadingPaneLocation", "bottom");
 			put("zimbraPrefComposeFormat", "text");
 		}};
 	}
-	
+
+
 	@Test( description = "View a simple task",
 			groups = { "smoke", "L0"})
 
 	public void GetTask_01() throws HarnessException {
-		
+
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
-		
+
 		// Create a basic task to delete
 		String subject = "task"+ ConfigProperties.getUniqueString();
-				
+
 		app.zGetActiveAccount().soapSend(
 				"<CreateTaskRequest xmlns='urn:zimbraMail'>" +
 					"<m >" +
@@ -71,7 +70,7 @@ public class GetTask extends AjaxCommonTest {
 
 		TaskItem task = TaskItem.importFromSOAP(app.zGetActiveAccount(), subject);
 		ZAssert.assertNotNull(task, "Verify the task is created");
-		
+
 		// Refresh the tasks view
 		app.zTreeTasks.zTreeItem(Action.A_LEFTCLICK, taskFolder);
 
@@ -88,21 +87,21 @@ public class GetTask extends AjaxCommonTest {
 			}
 		}
 		ZAssert.assertNotNull(found, "Verify the task is present");
-	
 	}
+
 
 	@Bugs(ids="72236")
 	@Test( description = "Verify Text Only Task that can display the body in the preview pane",
 			groups = { "smoke", "L0"})
 
 	public void GetTask_02() throws HarnessException {
-		
+
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
-		
+
 		// Create a basic task to delete
 		String subject = "task"+ ConfigProperties.getUniqueString();
 		String content = "content"+ ConfigProperties.getUniqueString();
-				
+
 		app.zGetActiveAccount().soapSend(
 				"<CreateTaskRequest xmlns='urn:zimbraMail'>" +
 					"<m >" +
@@ -120,7 +119,7 @@ public class GetTask extends AjaxCommonTest {
 
 		TaskItem task = TaskItem.importFromSOAP(app.zGetActiveAccount(), subject);
 		ZAssert.assertNotNull(task, "Verify the task is created");
-		
+
 		// Refresh the tasks view
 		app.zTreeTasks.zTreeItem(Action.A_LEFTCLICK, taskFolder);
 
@@ -129,19 +128,16 @@ public class GetTask extends AjaxCommonTest {
 
 		// Verify the To, From, Subject, Body
 		ZAssert.assertEquals(actual.zGetTaskProperty(Field.Subject), subject, "Verify the subject matches");
-		
-		// The body could contain HTML, even though it is only displaying text (e.g. <br> may be present)
-		// do a contains, rather than equals.
-		ZAssert.assertStringContains(actual.zGetTaskProperty(Field.Body), content, "Verify the body matches");		
+		ZAssert.assertStringContains(actual.zGetTaskProperty(Field.Body), content, "Verify the body matches");
 	}
+
 
 	@Test( description = "Verify Multipart/alternative (text and html) task that can be display the body in preview pane",
 			groups = { "smoke", "L0"})
-	
+
 	public void GetTask_03() throws HarnessException {
 
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
-		
 
 		// Create the message data to be sent
 		String subject = "subject" + ConfigProperties.getUniqueString();
@@ -183,27 +179,22 @@ public class GetTask extends AjaxCommonTest {
 		DisplayTask actual = (DisplayTask) app.zPageTasks.zListItem(Action.A_LEFTCLICK, subject);
 
 		// Verify the To, From, Subject, Body
-		ZAssert.assertEquals(actual.zGetTaskProperty(Field.Subject), subject, "Verify the subject matches");		
-		
+		ZAssert.assertEquals(actual.zGetTaskProperty(Field.Subject), subject, "Verify the subject matches");
+
 		// Verify HTML content
 		String htmlbodytext = app.zPageTasks.zGetHtmlBodyText();
 		ZAssert.assertStringContains(htmlbodytext.toLowerCase(), bodyHTML,"Verify the html content of task body");
-
-		// Verify HTML content through show original window
-	/*	String EmailAddress = app.zGetActiveAccount().EmailAddress;
-		String showOrigBody = app.zPageTasks.GetShowOrigBodyText(EmailAddress,calItemId);
-		String bodyHtml = bodyHTML.trim().replaceAll(" ", "");
-		ZAssert.assertStringContains(showOrigBody, bodyHtml,"Verify the content matches");	*/	
 	}
+
 
 	@Bugs(ids="72236")
 	@Test( description = "Get a task with all fields - verify task contents",
 			groups = { "smoke", "L0"})
 
 	public void GetTask_04() throws HarnessException {
-		
+
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
-		
+
 		// Create a basic task to delete
 		String subject = "task"+ ConfigProperties.getUniqueString();
 		String location = "location"+ ConfigProperties.getUniqueString();
@@ -211,7 +202,7 @@ public class GetTask extends AjaxCommonTest {
 		ZDate dueDate      = new ZDate(2015, 1, 17, 12, 0, 0);
 		ZDate reminderDate = new ZDate(2015, 1, 16, 12, 0, 0);
 		String content = "content"+ ConfigProperties.getUniqueString();
-				
+
 		app.zGetActiveAccount().soapSend(
 				"<CreateTaskRequest xmlns='urn:zimbraMail'>" +
 					"<m >" +
@@ -236,7 +227,7 @@ public class GetTask extends AjaxCommonTest {
 
 		TaskItem task = TaskItem.importFromSOAP(app.zGetActiveAccount(), subject);
 		ZAssert.assertNotNull(task, "Verify the task is created");
-		
+
 		// Refresh the tasks view
 		app.zTreeTasks.zTreeItem(Action.A_LEFTCLICK, taskFolder);
 
@@ -251,25 +242,22 @@ public class GetTask extends AjaxCommonTest {
 		ZAssert.assertEquals(actual.zGetTaskProperty(Field.Priority), "High", "Verify the priority matches");
 		ZAssert.assertEquals(actual.zGetTaskProperty(Field.Status), "In Progress", "Verify the status matches");
 		ZAssert.assertEquals(actual.zGetTaskProperty(Field.Percentage), "50%", "Verify the percentage matches");
-		//ZAssert.assertEquals(actual.zGetTaskProperty(Field.Reminder), dueDate.toMMM_dd_yyyy_A_hCmm_a(), "Verify the percentage matches");
 		ZAssert.assertStringContains(actual.zGetTaskProperty(Field.Reminder), reminderDate.toMMM_dC_yyyy(), "Verify the percentage matches");
-		
-		// The body could contain HTML, even though it is only displaying text (e.g. <br> may be present)
-		// do a contains, rather than equals.
 		ZAssert.assertStringContains(actual.zGetTaskProperty(Field.Body), content, "Verify the body matches");
 	}
+
 
 	@Test( description = "Click on task folder to receive any new tasks",
 			groups = { "smoke", "L1"})
 
 	public void GetTask_05() throws HarnessException {
-		
+
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
-		
+
 		// Create a basic task to delete
 		String subject = "task"+ ConfigProperties.getUniqueString();
 		String content = "content"+ ConfigProperties.getUniqueString();
-				
+
 		app.zGetActiveAccount().soapSend(
 				"<CreateTaskRequest xmlns='urn:zimbraMail'>" +
 					"<m >" +
@@ -285,11 +273,9 @@ public class GetTask extends AjaxCommonTest {
 					"</m>" +
 				"</CreateTaskRequest>");
 
-		
-
 		TaskItem task = TaskItem.importFromSOAP(app.zGetActiveAccount(), subject);
 		ZAssert.assertNotNull(task, "Verify the task is created");
-		
+
 		// Refresh the tasks view
 		app.zTreeTasks.zTreeItem(Action.A_LEFTCLICK, taskFolder);
 
@@ -308,6 +294,7 @@ public class GetTask extends AjaxCommonTest {
 		ZAssert.assertNotNull(found, "Verify the task is present");
 	}
 
+
 	/**
 	 * Test Case:- Task list view fields (Percentage) are not updated after editing
 	 * 1.Create and verify a new task through soap
@@ -319,19 +306,20 @@ public class GetTask extends AjaxCommonTest {
 	 * 7.It should show Percentage field  with 100% value.
 	 * @throws HarnessException
 	 */
+
 	@Bugs(ids="63357")
 	@Test( description = "Task list view fields (Percentage) are not updated after editing ",
 			groups = { "smoke", "L1"})
 
 	public void GetTask_06() throws HarnessException {
-		
+
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
-		
+
 		String subject = "task"+ ConfigProperties.getUniqueString();
 		String content = "content"+ ConfigProperties.getUniqueString();
 		String newsubject = "newtask"+ ConfigProperties.getUniqueString();
 		String newcontent = "content"+ ConfigProperties.getUniqueString();
-		
+
 		app.zGetActiveAccount().soapSend(
 				"<CreateTaskRequest xmlns='urn:zimbraMail'>" +
 					"<m >" +
@@ -349,41 +337,42 @@ public class GetTask extends AjaxCommonTest {
 
 		TaskItem task = TaskItem.importFromSOAP(app.zGetActiveAccount(), subject);
 		ZAssert.assertNotNull(task, "Verify the task is created");
-		
+
 		// Refresh the tasks view
 		app.zTreeTasks.zTreeItem(Action.A_LEFTCLICK, taskFolder);
 
 		// Select the message so that it shows in the reading pane
 		DisplayTask actual = (DisplayTask) app.zPageTasks.zListItem(Action.A_LEFTCLICK, subject);
-		
-		//Click on Mark As Completed button 
+
+		// Click on Mark As Completed button
 		app.zPageTasks.zToolbarPressButton(Button.B_TASK_MARKCOMPLETED);
 
 		// Verify the Subject, Body,Percentage
 		ZAssert.assertEquals(actual.zGetTaskProperty(Field.Subject), subject, "Verify the subject matches");
 		ZAssert.assertStringContains(actual.zGetTaskProperty(Field.Body), content, "Verify the body matches");
 		ZAssert.assertEquals(actual.zGetTaskProperty(Field.Percentage), "100%", "Verify the percentage matches");
-		
-		//Create new task through GUI 
+
+		// Create new task through GUI
 		FormTaskNew taskNew = (FormTaskNew) app.zPageTasks.zToolbarPressButton(Button.B_NEW);
 		SleepUtil.sleepVeryLong();
-		
+
 		// Fill out the resulting form
 		taskNew.zFillField(com.zimbra.qa.selenium.projects.ajax.ui.tasks.FormTaskNew.Field.Subject, newsubject);
 		taskNew.zFillField(com.zimbra.qa.selenium.projects.ajax.ui.tasks.FormTaskNew.Field.Body, newcontent);
 
-		//Click Save
+		// Click Save
 		app.zPageTasks.zClickAt("css=div[id^='ztb__TKE']  tr[id^='ztb__TKE'] td[id$='_title']:contains('Save')", "0,0");
 		SleepUtil.sleepMedium();
-		
-		//Verify new task
+
+		// Verify new task
 		TaskItem newtask = TaskItem.importFromSOAP(app.zGetActiveAccount(), newsubject);
-		ZAssert.assertEquals(newtask.getName(), newsubject, "Verify task subject");			
-		
-		//Select Previous task  and verify it should show  Percentage field as 100%		
+		ZAssert.assertEquals(newtask.getName(), newsubject, "Verify task subject");
+
+		// Select Previous task  and verify it should show  Percentage field as 100%
 		DisplayTask actual1 = (DisplayTask) app.zPageTasks.zListItem(Action.A_LEFTCLICK, subject);
 		ZAssert.assertEquals(actual1.zGetTaskProperty(Field.Percentage), "100%", "Verify the percentage field does present and  matches");
 	}
+
 
 	/**
 	 * Test Case:- No refresh after task is marked complete in filter to-do list
@@ -400,14 +389,13 @@ public class GetTask extends AjaxCommonTest {
 			groups = { "functional", "L3"})
 
 	public void GetTask_07() throws HarnessException {
-		
+
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
-		
-		
+
 		String subject = "atask"+ ConfigProperties.getUniqueString();
 		String content = "content"+ ConfigProperties.getUniqueString();
 		ZDate dueDate      = new ZDate(2015, 1, 17, 12, 0, 0);
-						
+
 		app.zGetActiveAccount().soapSend(
 				"<CreateTaskRequest xmlns='urn:zimbraMail'>" +
 					"<m >" +
@@ -426,25 +414,24 @@ public class GetTask extends AjaxCommonTest {
 
 		TaskItem task = TaskItem.importFromSOAP(app.zGetActiveAccount(), subject);
 		ZAssert.assertNotNull(task, "Verify the task is created");
-		
+
 		// Refresh the tasks view
 		app.zTreeTasks.zTreeItem(Action.A_LEFTCLICK, taskFolder);
 
 		// Select the message so that it shows in the reading pane
 		 app.zPageTasks.zListItem(Action.A_LEFTCLICK, subject);
-		
-		//Click on Mark As Completed button 
+
+		// Click on Mark As Completed button
 		app.zPageTasks.zToolbarPressButton(Button.B_TASK_MARKCOMPLETED);
-		
 		DisplayTask actual = (DisplayTask) app.zPageTasks.zListItem(Action.A_LEFTCLICK, subject);
-		
-		//Verify % field in list view
+
+		// Verify % field in list view
 		ZAssert.assertEquals(actual.zGetTaskListViewProperty(Field.Percentage), "100%", "Verify % field matches");
-		
-		//Click Filter By Drop down and select To-Do List menu item
+
+		// Click Filter By Drop down and select To-Do List menu item
 		app.zPageTasks.zToolbarPressPulldown(Button.B_TASK_FILTERBY, Button.O_TASK_TODOLIST);
-		
-		//Verify the task is no longer present for Mark as completed Tasks"		
+
+		// Verify the task is no longer present for Mark as completed Tasks"
 		List<TaskItem> tasks = app.zPageTasks.zGetTasks();
 		ZAssert.assertNotNull(tasks, "Verify the task list exists");
 
@@ -458,13 +445,14 @@ public class GetTask extends AjaxCommonTest {
 		}
 		ZAssert.assertNull(found, "Verify the task is no longer present for Mark as completed Tasks");
 	}
-	
+
+
 	@Bugs(ids="72236")
 	@Test( description = "Verify Html Only Task that can display the html body in the preview pane",
 			groups = { "smoke", "L1"})
 
 	public void GetTask_08() throws HarnessException {
-		
+
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
 		String subject = "subject" + ConfigProperties.getUniqueString();
 		String bodyHTML = "text<strong>bold"+ ConfigProperties.getUniqueString() +"</strong>text";
@@ -473,7 +461,7 @@ public class GetTask extends AjaxCommonTest {
 				"<head></head>" +
 				"<body>"+ bodyHTML +"</body>" +
 		"</html>");
-				
+
 		app.zGetActiveAccount().soapSend(
 				"<CreateTaskRequest xmlns='urn:zimbraMail'>" +
 					"<m >" +
@@ -488,10 +476,10 @@ public class GetTask extends AjaxCommonTest {
 			        	"</mp>" +
 					"</m>" +
 				"</CreateTaskRequest>");
-		
+
 		TaskItem task = TaskItem.importFromSOAP(app.zGetActiveAccount(), subject);
 		ZAssert.assertNotNull(task, "Verify the task is created");
-		
+
 		// Refresh the tasks view
 		app.zTreeTasks.zTreeItem(Action.A_LEFTCLICK, taskFolder);
 
@@ -501,5 +489,4 @@ public class GetTask extends AjaxCommonTest {
 		// Verify Html Only Task that can display the body in the preview pane
 		ZAssert.assertStringContains(actual.zGetTaskProperty(Field.Body), bodyHTML, "Verify Html Only Task that can display the body in the preview pane");
 	}
-
 }

@@ -34,7 +34,10 @@ public class CancelHtmlSignature extends AjaxCommonTest {
 		super.startingPage = app.zPagePreferences;
 	}
 
-	@Test(description = "Cancel text signature through GUI", groups = { "functional", "L2"  })
+
+	@Test(description = "Cancel text signature through GUI",
+		groups = { "functional", "L2"  })
+
 	public void CancelHtmlSignature_01() throws HarnessException {
 
 		String sigName = "signame" + ConfigProperties.getUniqueString();
@@ -57,7 +60,7 @@ public class CancelHtmlSignature extends AjaxCommonTest {
 		AbsDialog warning = (AbsDialog) signew.zToolbarPressButton(Button.B_CANCEL);
 		ZAssert.assertNotNull(warning, "Verify the dialog is returned");
 
-		// click on No button
+		// Click on No button
 		warning.zClickButton(Button.B_NO);
 
 		// Verify canceled html signature name from SignatureListView
@@ -68,7 +71,6 @@ public class CancelHtmlSignature extends AjaxCommonTest {
 		String SignatureListViewName = pagesig.zGetSignatureNameFromListView();
 
 		// Verify signature name doesn't exist in SignatureListView
-		ZAssert.assertStringDoesNotContain(SignatureListViewName, sigName,
-				"Verify signature does not present in signature list view");
+		ZAssert.assertStringDoesNotContain(SignatureListViewName, sigName, "Verify signature does not present in signature list view");
 	}
 }

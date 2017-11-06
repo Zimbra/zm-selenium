@@ -44,7 +44,7 @@ public class SearchContact extends AjaxCommonTest {
 
 		try {
 
-			// search for firstname
+			// Search for firstname
 			app.zPageSearch.zToolbarPressPulldown(Button.B_SEARCHTYPE, Button.O_SEARCHTYPE_CONTACTS);
 			app.zPageSearch.zAddSearchQuery(contactItem.firstName);
 			app.zPageSearch.zToolbarPressButton(Button.B_SEARCH);
@@ -70,7 +70,7 @@ public class SearchContact extends AjaxCommonTest {
 		String doesnotexist = "contact" + ConfigProperties.getUniqueString();
 
 		try {
-			// search for firstname
+			// Search for firstname
 			app.zPageSearch.zToolbarPressPulldown(Button.B_SEARCHTYPE, Button.O_SEARCHTYPE_CONTACTS);
 			app.zPageSearch.zAddSearchQuery(doesnotexist);
 			app.zPageSearch.zToolbarPressButton(Button.B_SEARCH);

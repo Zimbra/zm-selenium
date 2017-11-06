@@ -17,44 +17,38 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.group.messages;
 
 import java.util.*;
-
 import org.testng.annotations.*;
-
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.items.FolderItem.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.*;
 
-
 public class GroupBySize extends PrefGroupMailByMessageTest {
 
-	
 	public GroupBySize() {
 		logger.info("New "+ GroupBySize.class.getCanonicalName());
-		
 		super.startingAccountPreferences.put("zimbraPrefReadingPaneLocation", "bottom");
 	}
-	
-	
+
+
 	/**
 	 * Steps:
 	 * 1. Receive messages from more than 1 user
 	 * 2. Right click on the message column area -> Group By -> From
 	 * 3. Verify messages are grouped by From
-	 * @throws HarnessException
 	 */
+
 	@Test( description = "Group a list of messages by Size",
 			groups = { "functional", "L2" })
+
 	public void GroupBySize_01() throws HarnessException {
-		
-		//-- DATA
-		
+
 		String subjectA = "subjectA" + ConfigProperties.getUniqueString();
 		String subjectB = "subjectB" + ConfigProperties.getUniqueString();
 
 		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
-		
+
 		// Add the messages
 		app.zGetActiveAccount().soapSend(
 				"<AddMsgRequest xmlns='urn:zimbraMail'>"
@@ -71,7 +65,6 @@ public class GroupBySize extends PrefGroupMailByMessageTest {
         	+		"</m>"
 			+	"</AddMsgRequest>");
 
-	
 		app.zGetActiveAccount().soapSend(
 				"<AddMsgRequest xmlns='urn:zimbraMail'>"
     		+		"<m l='"+ inbox.getId() +"' >"
@@ -87,24 +80,9 @@ public class GroupBySize extends PrefGroupMailByMessageTest {
         	+		"</m>"
 			+	"</AddMsgRequest>");
 
-	
-
-		//-- GUI
-		
-		
 		// Refresh current view
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
-
-		// Right click on Subject header area -> Group By -> From
-		// Since this appears to be a very specific action, don't make a
-		// method for it.  Just reuse the Toolbar Press Button method.  Even
-		// though the action is right click -> hover -> select
 		app.zPageMail.zToolbarPressButton(Button.B_MAIL_LIST_GROUPBY_SIZE);
-		
-		
-		
-		//-- VERIFICATION
-		
 
 		// Verify the preferences are correct
 		app.zGetActiveAccount().soapSend(
@@ -113,23 +91,17 @@ public class GroupBySize extends PrefGroupMailByMessageTest {
 	    	+			"<a n='zimbraPrefGroupByList'/>"
     		+		"</meta>"
 			+	"</GetMailboxMetadataRequest>");
-		
+
 		String zimbraPrefGroupByList = app.zGetActiveAccount().soapSelectValue("//mail:a[@n='zimbraPrefGroupByList']", null);
 		ZAssert.assertStringContains(zimbraPrefGroupByList, "GROUPBY_SIZE", "Verify user preference has changed to include Group By = From");
-		
+
 		app.zGetActiveAccount().soapSend(
 				"<GetPrefsRequest xmlns='urn:zimbraAccount'>"
     		+		"<pref name='zimbraPrefSortOrder'/>"
 			+	"</GetPrefsRequest>");
-	
-		
+
 		// TODO: Verify the grouping
 		List<MailItem> messages = app.zPageMail.zListGetMessages();
 		ZAssert.assertGreaterThan(messages.size(), 0, "Verify the messages appear");
-		
-
 	}
-
-
-
 }

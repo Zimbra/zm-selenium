@@ -17,9 +17,7 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.feeds;
 
 import java.io.File;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -34,27 +32,27 @@ public class CheckFeedGeneratedMessage extends PrefGroupMailByMessageTest {
 		logger.info("New "+ CheckMailContentForSpecificMimes.class.getCanonicalName());
 	}
 
+
 	@Bugs( ids = "52121")
-	
-	@Test( description = "Verify bug 52121:  feed-generated messages do not render in AJAX client ", groups = { "functional", "L2" })
-	
+	@Test( description = "Bug 52121: Feed-generated messages do not render in AJAX client ",
+			groups = { "functional", "L2" })
+
 	public void CheckFeedGeneratedMessage_01() throws HarnessException {
-		
+
 		String subject = "\"Wear-with-all\"";
 		String bodytext = "Barbara's suggestion:";
-	
+
 		String MimeFolder = ConfigProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug52121";
 		LmtpInject.injectFile(ZimbraAccount.AccountZCS(), new File(MimeFolder));
-				
+
 		// Refresh current view
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 
 		// Select the message so that it shows in the reading pane
 		DisplayMail display = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 		String body = display.zGetMailProperty(Field.Body);
-		
-		//Verify message is rendered correctly
-		ZAssert.assertStringContains(body, bodytext, "Verify the ending text appears");
 
+		// Verify message is rendered correctly
+		ZAssert.assertStringContains(body, bodytext, "Verify the ending text appears");
 	}
 }

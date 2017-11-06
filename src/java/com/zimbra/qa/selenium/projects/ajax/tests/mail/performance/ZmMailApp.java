@@ -18,36 +18,31 @@ package com.zimbra.qa.selenium.projects.ajax.tests.mail.performance;
 
 import java.io.File;
 import java.util.HashMap;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.framework.util.performance.*;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.PageLogin.Locators;
 
-
-
 public class ZmMailApp extends AjaxCommonTest {
-	
+
 	public ZmMailApp() {
 		logger.info("New "+ ZmMailApp.class.getCanonicalName());
-		
-		
+
 		super.startingPage = app.zPageLogin;
 		super.startingAccountPreferences = new HashMap<String, String>() {
-			private static final long serialVersionUID = 7525760124523255182L;
-		{
+			private static final long serialVersionUID = 7525760124523255182L; {
 			put("zimbraPrefGroupMailBy", "message");
 			put("zimbraPrefMessageViewHtmlPreferred", "TRUE");
 		}};
-		
 	}
-	
+
+
 	@Test( description = "Measure the time to load the mail app, message view, initial load",
 			groups = { "performance", "deprecated" })
+
 	public void ZmMailApp_01() throws HarnessException {
-		
+
 		// Fill out the login page
 		app.zPageLogin.zSetLoginName(ZimbraAccount.AccountZCS().EmailAddress);
 		app.zPageLogin.zSetLoginPassword(ZimbraAccount.AccountZCS().Password);
@@ -56,19 +51,18 @@ public class ZmMailApp extends AjaxCommonTest {
 
 		// Click the Login button
 		app.zPageLogin.sClick(Locators.zBtnLogin);
-
 		PerfMetrics.waitTimestamp(token);
-				
+
 		// Wait for the app to load
 		app.zPageMain.zWaitForActive();
-		
-		
 	}
+
 
 	@Test( description = "Measure the time to load the mail app, message view, 1 message",
 			groups = { "performance", "deprecated" })
+
 	public void ZmMailApp_02() throws HarnessException {
-		
+
 		String mime = ConfigProperties.getBaseDirectory() + "/data/public/mime/email02/mime01.txt";
 		LmtpInject.injectFile(ZimbraAccount.AccountZCS(), new File(mime));
 
@@ -80,19 +74,18 @@ public class ZmMailApp extends AjaxCommonTest {
 
 		// Click the Login button
 		app.zPageLogin.sClick(Locators.zBtnLogin);
-
 		PerfMetrics.waitTimestamp(token);
-				
+
 		// Wait for the app to load
 		app.zPageMain.zWaitForActive();
-		
-		
 	}
+
 
 	@Test( description = "Measure the time to load the mail app, message view, 100 messages",
 			groups = { "performance", "deprecated" })
+
 	public void ZmMailApp_03() throws HarnessException {
-		
+
 		String mime = ConfigProperties.getBaseDirectory() + "/data/public/mime/email03";
 		LmtpInject.injectFile(ZimbraAccount.AccountZCS(), new File(mime));
 
@@ -104,14 +97,9 @@ public class ZmMailApp extends AjaxCommonTest {
 
 		// Click the Login button
 		app.zPageLogin.sClick(Locators.zBtnLogin);
-
 		PerfMetrics.waitTimestamp(token);
-				
+
 		// Wait for the app to load
 		app.zPageMain.zWaitForActive();
-		
-		
 	}
-
-
 }

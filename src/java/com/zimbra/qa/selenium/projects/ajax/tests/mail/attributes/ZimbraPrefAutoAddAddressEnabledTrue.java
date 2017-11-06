@@ -17,9 +17,7 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.attributes;
 
 import java.util.HashMap;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.MailItem;
 import com.zimbra.qa.selenium.framework.items.RecipientItem;
@@ -37,41 +35,42 @@ public class ZimbraPrefAutoAddAddressEnabledTrue extends AjaxCommonTest {
 	public ZimbraPrefAutoAddAddressEnabledTrue() {
 		super.startingPage = app.zPageMail;
 		super.startingAccountPreferences = new HashMap<String, String>() {
-			{				
+			{
 		 		put("zimbraPrefAutoAddAddressEnabled", "TRUE");
 			}
 		};
 	}
 
+
 	/**
 	 * Test case : Opt-in Add New Contacts To emailed contact
-	 * Verify receivers' addresses of out-going mails automatically added to "Emailed Contacts" folder 
-	 * @throws HarnessException
+	 * Verify receivers' addresses of out-going mails automatically added to "Emailed Contacts" folder
 	 */
-	@Test( description = " send message to 1 receiver, the address should be added into Emailed Contact", groups = { "smoke", "L1" })
-	
+
+	@Test( description = " send message to 1 receiver, the address should be added into Emailed Contact",
+			groups = { "smoke", "L1" })
+
 	public void SendEmailTo1Receiver_01() throws HarnessException {
-		
+
 		FolderItem emailedContacts = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.EmailedContacts);
 
 		ZimbraAccount receiver = new ZimbraAccount();
 		receiver.provision();
 		receiver.authenticate();
-		
+
 		// Create the message data to be sent
 		MailItem mail = new MailItem();
 		mail.dToRecipients.add(new RecipientItem(receiver));
 		mail.dSubject = "subject" + ConfigProperties.getUniqueString();
 		mail.dBodyHtml = "body" + ConfigProperties.getUniqueString();
-		
-		
+
 		// Open the new mail form
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
 		ZAssert.assertNotNull(mailform, "Verify the new form opened");
-		
+
 		// Fill out the form with the data
 		mailform.zFill(mail);
-		
+
 		// Send the message
 		mailform.zSubmit();
 
@@ -85,45 +84,43 @@ public class ZimbraPrefAutoAddAddressEnabledTrue extends AjaxCommonTest {
 
 		String folder = app.zGetActiveAccount().soapSelectValue("//mail:cn", "l");
 		ZAssert.assertEquals(folder, emailedContacts.getId(), "Verify the recipient is in the Emailed Contacts folder");
-
 	}
 
-	
+
 	/**
 	 * Test case : Opt-in Add New Contacts To emailed contact
-	 * Verify receivers' addresses of out-going mails automatically added to "Emailed Contacts" folder 
-	 * @throws HarnessException
+	 * Verify receivers' addresses of out-going mails automatically added to "Emailed Contacts" folder
 	 */
-	@Test(
-			description = " send message to 2 receiver, the addresses should be added into Emailed Contact", 
+
+	@Test(description = " send message to 2 receiver, the addresses should be added into Emailed Contact",
 			groups = { "functional", "L3" })
+
 	public void SendEmailTo2Receivers_02() throws HarnessException {
 
 		FolderItem emailedContacts = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.EmailedContacts);
-		
+
 		ZimbraAccount receiver1 = new ZimbraAccount();
 		receiver1.provision();
 		receiver1.authenticate();
-		
+
 		ZimbraAccount receiver2 = new ZimbraAccount();
 		receiver2.provision();
 		receiver2.authenticate();
-		
+
 		// Create the message data to be sent
 		MailItem mail = new MailItem();
 		mail.dToRecipients.add(new RecipientItem(receiver1));
 		mail.dToRecipients.add(new RecipientItem(receiver2));
 		mail.dSubject = "subject" + ConfigProperties.getUniqueString();
 		mail.dBodyHtml = "body" + ConfigProperties.getUniqueString();
-		
-		
+
 		// Open the new mail form
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
 		ZAssert.assertNotNull(mailform, "Verify the new form opened");
-		
+
 		// Fill out the form with the data
 		mailform.zFill(mail);
-		
+
 		// Send the message
 		mailform.zSubmit();
 
@@ -131,7 +128,7 @@ public class ZimbraPrefAutoAddAddressEnabledTrue extends AjaxCommonTest {
 				"<SearchRequest xmlns='urn:zimbraMail' types='contact'>"
 			+		"<query>"+ receiver1.EmailAddress +"</query>"
 			+	"</SearchRequest>");
-		
+
 		String email1 = app.zGetActiveAccount().soapSelectValue("//mail:cn//mail:a[@n='email']", null);
 		ZAssert.assertEquals(email1, receiver1.EmailAddress, "Verify the recipient is in the contacts folder");
 
@@ -148,9 +145,5 @@ public class ZimbraPrefAutoAddAddressEnabledTrue extends AjaxCommonTest {
 
 		String folder2 = app.zGetActiveAccount().soapSelectValue("//mail:cn", "l");
 		ZAssert.assertEquals(folder2, emailedContacts.getId(), "Verify the recipient is in the Emailed Contacts folder");
-
 	}
-	
-
-	
 }

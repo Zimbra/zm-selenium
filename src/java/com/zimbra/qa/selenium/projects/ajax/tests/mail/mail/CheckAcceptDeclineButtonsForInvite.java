@@ -17,9 +17,7 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.mail;
 
 import java.io.File;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
@@ -36,10 +34,12 @@ public class CheckAcceptDeclineButtonsForInvite extends PrefGroupMailByMessageTe
 	public CheckAcceptDeclineButtonsForInvite() {
 		logger.info("New "+ CheckAcceptDeclineButtonsForInvite.class.getCanonicalName());
 	}
-	
+
+
 	@Bugs( ids = "21013")
-	@Test( description = "Mail with ics attachment doesn't open appt (view-appt window breaks)", groups = { "functional", "L2" })
-	
+	@Test( description = "Mail with ics attachment doesn't open appt (view-appt window breaks)",
+			groups = { "functional", "L2" })
+
 	public void CheckAcceptDeclineButtonsForInvite_01 () throws HarnessException {
 
 		String subject = "all-hands";

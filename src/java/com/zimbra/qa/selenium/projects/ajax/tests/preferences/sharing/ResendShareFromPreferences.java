@@ -1,4 +1,20 @@
-package com.zimbra.qa.selenium.projects.ajax.tests.preferences.sharing;
+/*
+ * ***** BEGIN LICENSE BLOCK *****
+ * Zimbra Collaboration Suite Server
+ * Copyright (C) 2011, 2013, 2014, 2016 Synacor, Inc.
+ *
+ * This program is free software: you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License as published by the Free Software Foundation,
+ * version 2 of the License.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
+ * You should have received a copy of the GNU General Public License along with this program.
+ * If not, see <https://www.gnu.org/licenses/>.
+ * ***** END LICENSE BLOCK *****
+ */
+ package com.zimbra.qa.selenium.projects.ajax.tests.preferences.sharing;
 
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
@@ -13,7 +29,9 @@ public class ResendShareFromPreferences extends AjaxCommonTest {
 		super.startingPage = app.zPagePreferences;
 	}
 
-	@Test( description = "Resend share folder request from preferences", groups = { "functional", "L2" })
+
+	@Test( description = "Resend share folder request from preferences",
+			groups = { "functional", "L2" })
 
 	public void ResendShareFromPreferences_01() throws HarnessException {
 
@@ -59,7 +77,7 @@ public class ResendShareFromPreferences extends AjaxCommonTest {
 		String id;
 
 		for (int i=0; i < rows+2; i++) {
-			
+
 			id = app.zPagePreferences.sGetEval("return window.document.getElementById('zl__SVG__rows').children[" + i + "].children[0].children[0].children[0].children[0].id");
 			if (app.zPagePreferences.sGetText("css=td[id='" + id + "']").equals(ZimbraAccount.Account9().EmailAddress)) {
 				optionLocator = "css=div[id ='zl__SVG__rows'] a[id='" + id.replace("wi", "resend") + "']";
@@ -69,7 +87,7 @@ public class ResendShareFromPreferences extends AjaxCommonTest {
 			}
 		}
 
-		// Login to Account9
+		// Login to account
 		app.zPageLogin.zLogin(ZimbraAccount.Account9());
 
 		// Select message
@@ -88,6 +106,5 @@ public class ResendShareFromPreferences extends AjaxCommonTest {
 		ZAssert.assertTrue(mailBody.contains(body), "Verify that message body is present");
 		ZAssert.assertTrue(app.zPageMail.sIsElementPresent("css=td[id$='Shr__SHARE_ACCEPT_title']"),"Verify that Accept button is present");
 		ZAssert.assertTrue(app.zPageMail.sIsElementPresent("css=td[id$='Shr__SHARE_DECLINE_title']"),"Verify that Decline button is present");
-
 	}
 }

@@ -40,12 +40,9 @@ public class ReplyAllMsgWithTextSignature extends AjaxCommonTest {
 	@SuppressWarnings("serial")
 	public ReplyAllMsgWithTextSignature() {
 		super.startingPage = app.zPageMail;
-		super.startingAccountPreferences = new HashMap<String, String>() {
-			{
-				put("zimbraPrefComposeFormat", "text");
-
-			}
-		};
+		super.startingAccountPreferences = new HashMap<String, String>() {{
+			put("zimbraPrefComposeFormat", "text");
+		}};
 	}
 
 	@BeforeMethod(groups = { "always" })
@@ -60,21 +57,23 @@ public class ReplyAllMsgWithTextSignature extends AjaxCommonTest {
 		app.zPageMain.zRefreshMainUI();
 
 		logger.info("CreateSignature: finish");
-
 	}
+
 
 	/**
 	 * Test case : Reply All Msg with text signature and Verify signature
 	 * through soap Create signature through soap Send message with text
 	 * signature through soap Reply All same message. Verify text signature in
 	 * Replied msg through soap
-	 * 
-	 * @throws HarnessException
 	 */
-	@Test(description = " Reply AllMsg with text signature and Verify signature through soap", groups = {
-			"functional", "L3" })
+
+	@Test(description = " Reply AllMsg with text signature and Verify signature through soap",
+			groups = { "functional", "L3" })
+
 	public void ReplyAllMsgWithTextSignature_01() throws HarnessException {
+
 		FolderItem inboxFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
+
 		// Signature is created
 		SignatureItem signature = SignatureItem.importFromSOAP(app.zGetActiveAccount(), this.sigName);
 		ZAssert.assertEquals(signature.getName(), this.sigName, "verified Text Signature is created");
@@ -109,8 +108,7 @@ public class ReplyAllMsgWithTextSignature extends AjaxCommonTest {
 				+ "<query>in:inbox subject:(" + mail.dSubject + ")</query>" + "</SearchRequest>");
 
 		String id = ZimbraAccount.AccountZCS().soapSelectValue("//mail:SearchResponse/mail:m", "id");
-		ZimbraAccount.AccountZCS()
-				.soapSend("<GetMsgRequest xmlns='urn:zimbraMail'>" + "<m id='" + id + "' />" + "</GetMsgRequest>");
+		ZimbraAccount.AccountZCS().soapSend("<GetMsgRequest xmlns='urn:zimbraMail'>" + "<m id='" + id + "' />" + "</GetMsgRequest>");
 		Element getMsgResponse = ZimbraAccount.AccountZCS().soapSelectNode("//mail:GetMsgResponse", 1);
 		MailItem received = MailItem.importFromSOAP(getMsgResponse);
 
@@ -122,6 +120,5 @@ public class ReplyAllMsgWithTextSignature extends AjaxCommonTest {
 				"Verify the to field is correct");
 		ZAssert.assertStringContains(received.dBodyText, mail.dBodyText, "Verify the body content is correct");
 		ZAssert.assertStringContains(received.dBodyText, this.sigBody, "Verify the signature is correct");
-
 	}
 }

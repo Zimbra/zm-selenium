@@ -27,19 +27,15 @@ import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 
 public class PromptToTurnOffAutoreply extends AjaxCommonTest {
-	
+
 	public static final String autoReplyMessage = "OOO" + ConfigProperties.getUniqueString();
 
 	public PromptToTurnOffAutoreply() {
 		logger.info("New " + PromptToTurnOffAutoreply.class.getCanonicalName());
 
-		// test starts in the Mail tab
 		super.startingPage = app.zPageMail;
-
-		// use an account with OOO auto-reply enabled
 		super.startingAccountPreferences = new HashMap<String, String>() {
-			private static final long serialVersionUID = 1L;
-			{
+			private static final long serialVersionUID = 1L; {
 				put("zimbraPrefOutOfOfficeReplyEnabled", "TRUE");
 				put("zimbraPrefOutOfOfficeReply", autoReplyMessage);
 				put("zimbraPrefOutOfOfficeStatusAlertOnLogin", "FALSE");
@@ -47,13 +43,13 @@ public class PromptToTurnOffAutoreply extends AjaxCommonTest {
 		};
 	}
 
-	
+
 	@Bugs(ids = "51990")
-	@Test(description = "Enable auto-reply message - Verify after login  alert dialog promts to turn off auto-reply", priority = 4, groups = {
-			"functional", "L3" })
-	
+	@Test(description = "Enable auto-reply message - Verify after login  alert dialog promts to turn off auto-reply", priority = 4,
+			groups = { "functional", "L3" })
+
 	public void PromptToTurnOffAutoreply_01() throws HarnessException {
-		
+
 		ZimbraAccount account = app.zGetActiveAccount();
 
 		// Create the message data to be sent
@@ -63,7 +59,7 @@ public class PromptToTurnOffAutoreply extends AjaxCommonTest {
 		account.soapSend("<SendMsgRequest xmlns='urn:zimbraMail'>" + "<m>" + "<e t='t' a='" + account.EmailAddress
 				+ "'/>" + "<su>" + subject + "</su>" + "<mp ct='text/plain'>" + "<content>content"
 				+ ConfigProperties.getUniqueString() + "</content>" + "</mp>" + "</m>" + "</SendMsgRequest>");
-		
+
 		MailItem mailItem = MailItem.importFromSOAP(account, "in:inbox " + autoReplyMessage);
 		ZAssert.assertTrue(mailItem.dBodyText.contains(autoReplyMessage), "Verify auto-reply message is received");
 	}

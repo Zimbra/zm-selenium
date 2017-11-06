@@ -33,15 +33,16 @@ public class CheckErrorAfterRemovingAttachement extends PrefGroupMailByMessageTe
 
 	public CheckErrorAfterRemovingAttachement() throws HarnessException {
 		logger.info("New "+ CheckErrorAfterRemovingAttachement.class.getCanonicalName());
-
 	}
 
+
 	@Bugs(ids = "88160")
-	@Test( description = "Bug 88160 - Remove an attachment from a mail and then delete mail", groups = { "functional", "L2" })
+	@Test( description = "Bug 88160 - Remove an attachment from a mail and then delete mail",
+			groups = { "functional", "L2" })
 
 	public void CheckErrorAfterRemovingAttachement_01() throws HarnessException {
 
-		// Data Setup	
+		// Data Setup
 		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email05/mime01.txt";
 		final String subject = "subject151615738";
 		final String attachmentname = "file.txt";
@@ -88,7 +89,6 @@ public class CheckErrorAfterRemovingAttachement extends PrefGroupMailByMessageTe
 		DialogWarning dialog = (DialogWarning)display.zListAttachmentItem(Button.B_REMOVE, item);
 		dialog.zClickButton(Button.B_YES);
 
-		//-- Verification
 		// Verify the message no longer has an attachment
 		account.soapSend(
 				"<SearchRequest xmlns='urn:zimbraMail' types='message'>"
@@ -109,7 +109,6 @@ public class CheckErrorAfterRemovingAttachement extends PrefGroupMailByMessageTe
 				nodes = account.soapSelectNodes("//mail:mp[@cd='attachment']");
 
 			} while ( (i++ < 10) && (nodes.length > 0) );
-
 
 		} catch(Exception ex) {
 			logger.error(ex);
@@ -133,7 +132,5 @@ public class CheckErrorAfterRemovingAttachement extends PrefGroupMailByMessageTe
 			}
 		}
 		ZAssert.assertNull(found, "Verify the message is no longer in the inbox");
-
-
 	}
 }

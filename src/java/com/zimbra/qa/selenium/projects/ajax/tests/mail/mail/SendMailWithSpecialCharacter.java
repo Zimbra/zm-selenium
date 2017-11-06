@@ -32,52 +32,44 @@ public class SendMailWithSpecialCharacter extends PrefGroupMailByMessageTest {
 		logger.info("New " + SendMailWithSpecialCharacter.class.getCanonicalName());
 	}
 
+
 	@Bugs( ids = "82073")
-	@Test( description = "Send a mail with the '&' character in the subject - verify no '&amp;'", groups = { "functional", "L2" } )
-	
+	@Test( description = "Send a mail with the '&' character in the subject - verify no '&amp;'",
+			groups = { "functional", "L2" } )
+
 	public void SendMailWithSpecialCharacter_01() throws HarnessException {
 
-		//-- DATA
-		
 		String subject = ConfigProperties.getUniqueString() + " & " + ConfigProperties.getUniqueString();
 		String body = "body" + ConfigProperties.getUniqueString();
 
-		//-- GUI
-		
 		// Open the new mail form
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
 		ZAssert.assertNotNull(mailform, "Verify the new form opened");
-		
+
 		// Fill out the form with the data
 		mailform.zFillField(Field.To, ZimbraAccount.AccountA().EmailAddress);
 		mailform.zFillField(Field.Subject, subject);
 		mailform.zFillField(Field.Body, body);
-		
+
 		// Send the message
 		mailform.zSubmit();
-		
-		//-- VERIFIFICATION
-		
+
 		// Verify the retention policy on the folder
 		MailItem received = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "content:("+ body +")");
 		ZAssert.assertStringDoesNotContain(received.getSubject(), "amp", "Verify the subject does not contain '&amp;'");
-		
 	}
 
+
 	@Bugs( ids = "82073")
-	@Test( description = "Receive a mail with the '&' character in the subject - verify no '&amp;'", groups = { "functional", "L2" } )
-	
+	@Test( description = "Receive a mail with the '&' character in the subject - verify no '&amp;'",
+			groups = { "functional", "L2" } )
+
 	public void ReceiveMailWithSpecialCharacter_02() throws HarnessException {
 
-		//-- DATA
-		
 		String subject = "13680547408344 & 13680547408345";
-		
 		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug82073/mime1.txt";
+
 		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
-
-		//-- GUI
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
-
 	}
 }

@@ -1,5 +1,3 @@
-package com.zimbra.qa.selenium.projects.ajax.tests.mail.newwindow.mail;
-
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
@@ -16,33 +14,30 @@ package com.zimbra.qa.selenium.projects.ajax.tests.mail.newwindow.mail;
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-
+package com.zimbra.qa.selenium.projects.ajax.tests.mail.newwindow.mail;
 
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.items.TaskItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.SeparateWindowDisplayMail;
 
-
 public class CreateTask extends PrefGroupMailByMessageTest {
 
 	public int delaySeconds = 10;
-	
+
 	public CreateTask() {
 		logger.info("New "+ CreateTask.class.getCanonicalName());
-		
 		super.startingAccountPreferences.put("zimbraPrefMarkMsgRead", "" + delaySeconds);
-
-
 	}
-	
+
+
 	@Test( description = "Create Task from new window by action menu -> Create Task",
 			groups = { "functional", "L2" })
+
 	public void CreateTask_01() throws HarnessException {
-		
+
 		// Create the message data to be sent
 		String subject = "subject"+ ConfigProperties.getUniqueString();
 
@@ -57,41 +52,37 @@ public class CreateTask extends PrefGroupMailByMessageTest {
 					"</m>" +
 				"</SendMsgRequest>");
 
-		
 		// Refresh current view
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
-				
+
 		// Select the item
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 
-		
 		SeparateWindowDisplayMail window = null;
 		String windowTitle = "Zimbra: " + subject;
-		
+
 		try {
-			
+
 			// Choose Actions -> Launch in Window
 			window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
-			
+
 			window.zSetWindowTitle(windowTitle);
 			ZAssert.assertTrue(window.zIsWindowOpen(windowTitle),"Verify the window is opened and switch to it");
-			
+
 			window.zToolbarPressPulldown(Button.B_ACTIONS, Button.O_CREATE_TASK);
 			SleepUtil.sleepMedium();
-			
-			// Select the main window 
+
+			// Select the main window
 			window.sSelectWindow(null);
-			
+
 			app.zPageTasks.sClick("css=div[id^='ztb__TKE']  tr[id^='ztb__TKE'] td[id$='_title']:contains('Save')");
 			SleepUtil.sleepMedium();
 
 		} finally {
-			app.zPageMain.zCloseWindow(window, windowTitle, app);			
+			app.zPageMain.zCloseWindow(window, windowTitle, app);
 		}
 
 		TaskItem task = TaskItem.importFromSOAP(app.zGetActiveAccount(),subject);
 		ZAssert.assertEquals(task.getName(), subject, "Verify task subject");
-
 	}
-		
 }

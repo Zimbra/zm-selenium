@@ -112,6 +112,7 @@ public class TagAppointment extends AjaxCommonTest {
 
 	@Test( description = "Apply existing tag to appointment using context menu in day view",
 			groups = { "functional", "L2" })
+
 	public void TagAppointment_03() throws HarnessException {
 
 		// Create objects

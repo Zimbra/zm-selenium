@@ -38,21 +38,17 @@ public class CheckFromHeaderInConversationView extends AjaxCommonTest {
 	public CheckFromHeaderInConversationView() {
 		logger.info("New " + CheckFromHeaderInConversationView.class.getCanonicalName());
 
-		// All tests start at the login page
 		super.startingPage = app.zPageMail;
-
-		// Make sure we are using an account with message view
-		super.startingAccountPreferences = new HashMap<String, String>() {
-			{
+		super.startingAccountPreferences = new HashMap<String, String>() {{
 				put("zimbraPrefGroupMailBy", "conversation");
 				put("zimbraPrefMessageViewHtmlPreferred", "TRUE");
-			}
-		};
-
+		}};
 	}
 
+
 	@Bugs(ids = "67986,64067,47288,16213")
-	@Test(description = "Conversation list should show From=<blank>", groups = { "functional", "L2" })
+	@Test(description = "Conversation list should show From=<blank>",
+			groups = { "functional", "L2" })
 
 	public void CheckFromHeaderInConversationView_01() throws HarnessException {
 

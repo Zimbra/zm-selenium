@@ -17,7 +17,6 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.mountpoints.external;
 
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -30,11 +29,13 @@ public class CreateShare extends PrefGroupMailByMessageTest {
 	public CreateShare() {
 		logger.info("New "+ CreateShare.class.getCanonicalName());
 	}
-	
-	@Test( description = "Share a folder - External", groups = { "smoke", "L1" })
-	
+
+
+	@Test( description = "Share a folder - External",
+			groups = { "smoke", "L1" })
+
 	public void CreateShare_01() throws HarnessException {
-		
+
 		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Inbox);
 		String foldername = "folder" + ConfigProperties.getUniqueString();
 		String externalEmail = ConfigProperties.getStringProperty("external.yahoo.account");
@@ -46,9 +47,9 @@ public class CreateShare extends PrefGroupMailByMessageTest {
 				+	"</CreateFolderRequest>");
 		String folderid = app.zGetActiveAccount().soapSelectValue("//mail:folder", "id");
 
-		//Need to do Refresh to see folder in the list 
+		// Need to do Refresh to see folder in the list
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
-		
+
 		// Make sure the folder was created on the server
 		FolderItem subfolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), foldername);
 		ZAssert.assertNotNull(subfolder, "Verify the folder exists on the server");
@@ -60,10 +61,10 @@ public class CreateShare extends PrefGroupMailByMessageTest {
 		// Use external and set the email
 		dialog.zSetShareWith(ShareWith.ExternalGuests);
 		dialog.zSetEmailAddress(externalEmail);
-		
+
 		// Send it
 		dialog.zClickButton(Button.B_OK);
-		
+
 		// Verify the account has shared the folder
 		app.zGetActiveAccount().soapSend(
 				"<GetFolderRequest xmlns='urn:zimbraMail'>"
@@ -72,7 +73,7 @@ public class CreateShare extends PrefGroupMailByMessageTest {
 
 		String zid = app.zGetActiveAccount().soapSelectValue("//mail:grant", "zid");
 		ZAssert.assertEquals(zid, externalEmail, "Verify the zid of the shared folder is set to the external address");
-		
+
 		String gt = app.zGetActiveAccount().soapSelectValue("//mail:grant", "gt");
 		ZAssert.assertEquals(gt, "guest", "Verify the gt of the shared folder is guest");
 
@@ -81,11 +82,5 @@ public class CreateShare extends PrefGroupMailByMessageTest {
 
 		String perm = app.zGetActiveAccount().soapSelectValue("//mail:grant", "perm");
 		ZAssert.assertEquals(perm, "r", "Verify the perm of the shared folder is 'r'");
-
 	}
-
-	
-
-	
-
 }

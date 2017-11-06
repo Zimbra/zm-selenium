@@ -17,27 +17,22 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.folders;
 
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
 
-
 public class MarkAllAsReadFolder extends PrefGroupMailByMessageTest {
 
 	public MarkAllAsReadFolder() {
 		logger.info("New "+ MarkAllAsReadFolder.class.getCanonicalName());
-
-		
-		
-		
-
 	}
+
 
 	@Test( description = "Mark all messages as read in folder (context menu)",
 			groups = { "smoke", "L1" })
-			public void MarkAllAsReadFolder_01() throws HarnessException {
+
+	public void MarkAllAsReadFolder_01() throws HarnessException {
 
 		String foldername = "folder" + ConfigProperties.getUniqueString();
 		String subject = "subject" + ConfigProperties.getUniqueString();
@@ -72,15 +67,13 @@ public class MarkAllAsReadFolder extends PrefGroupMailByMessageTest {
 
 		// Click on Get Mail to refresh the folder list
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
+
 		// Right click on folder, select "Mark all as read"
 		app.zTreeMail.zTreeItem(Action.A_RIGHTCLICK, Button.B_TREE_FOLDER_MARKASREAD, subfolder);
-
 
 		// Make sure the folder was created on the server
 		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
 		ZAssert.assertNotNull(mail, "Verify the message exists");
 		ZAssert.assertStringDoesNotContain(mail.getFlags(), "u", "Verify the mail flags does not contain (u)nread");
-
 	}
-
 }

@@ -43,6 +43,7 @@ public class ReplyMailWithInlineImageBodyHtmlToText extends PrefGroupMailByMessa
 		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "html");
 	}
 
+
 	@Bugs(ids = "104342,106133")
 	@Test( description = "Verify that in reply compose screen, inline attachment shows as an attachment when changing format to from HTML to Plain Text",
 			groups = { "functional-skip", "application-bug" })
@@ -54,6 +55,7 @@ public class ReplyMailWithInlineImageBodyHtmlToText extends PrefGroupMailByMessa
 			String subject = "subject" + ConfigProperties.getUniqueString();
 
 			try {
+
 				// Send a message to the account
 				ZimbraAccount.AccountA().soapSend(
 							"<SendMsgRequest xmlns='urn:zimbraMail'>" +
@@ -70,7 +72,6 @@ public class ReplyMailWithInlineImageBodyHtmlToText extends PrefGroupMailByMessa
 				MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
 				ZAssert.assertNotNull(mail, "Verify the message is received correctly");
 
-				//-- GUI
 				// Refresh current view
 				ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 
@@ -98,19 +99,17 @@ public class ReplyMailWithInlineImageBodyHtmlToText extends PrefGroupMailByMessa
 
 				ZAssert.assertTrue(mailform.zHasAttachment(fileName),"Attachment is not present");
 
-				//Send the mail
+				// Send the mail
 				mailform.zSubmit();
 
-				//click on sent folder to verify the presence of attachment
+				// Click on sent folder to verify the presence of attachment
 				app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Sent));
 
 				app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 				ZAssert.assertTrue(app.zPageMail.zVerifyAttachmentExistsInMail(fileName), "Attachment is not present in the sent mail.");
 
 			} finally {
-
 				app.zPageMain.zKeyboardKeyEvent(KeyEvent.VK_ESCAPE);
-
 			}
 
 		} else {

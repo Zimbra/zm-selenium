@@ -17,7 +17,6 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.preferences.accounts;
 
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
@@ -30,8 +29,10 @@ public class GetPrimaryAccount extends AjaxCommonTest {
 		super.startingPage = app.zPagePreferences;
 	}
 
-	@Test(description = "View the accounts preference page shows the default primary account", groups = {
-			"functional", "L3" })
+
+	@Test(description = "View the accounts preference page shows the default primary account",
+			groups = { "functional", "L3" })
+
 	public void GetPrimaryAccount_01() throws HarnessException {
 
 		// Navigate to preferences -> notifications
@@ -50,6 +51,5 @@ public class GetPrimaryAccount extends AjaxCommonTest {
 		ZAssert.assertEquals(accountStatus, "OK", "Verify the Primary account status");
 		ZAssert.assertEquals(accountEmail, app.zGetActiveAccount().EmailAddress, "Verify the Primary account email");
 		ZAssert.assertEquals(accountType, "Primary", "Verify the Primary account type");
-
 	}
 }

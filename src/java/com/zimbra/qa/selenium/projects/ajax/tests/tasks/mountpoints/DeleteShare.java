@@ -17,9 +17,7 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.tasks.mountpoints;
 
 import java.util.HashMap;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.common.soap.Element;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
@@ -47,11 +45,12 @@ public class DeleteShare extends AjaxCommonTest {
 				put("zimbraPrefShowSelectionCheckbox", "TRUE");
 			}
 		};
-
 	}
+
 
 	@Test( description = "Share and Revoke folder ",
 			groups = { "smoke", "L1"})
+
 	public void DeleteShare_01() throws HarnessException {
 
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
@@ -59,8 +58,7 @@ public class DeleteShare extends AjaxCommonTest {
 		// Create the subTaskList
 		String name = "taskList" + ConfigProperties.getUniqueString();
 
-		app.zGetActiveAccount()
-		.soapSend(
+		app.zGetActiveAccount().soapSend(
 				"<CreateFolderRequest xmlns='urn:zimbraMail'>"
 				+ "<folder name='" + name + "' l='"
 				+ taskFolder.getId() + "'/>"
@@ -97,28 +95,27 @@ public class DeleteShare extends AjaxCommonTest {
 		ZAssert.assertEquals(rights, "r", "Verify the rights are 'read only'");
 
 		String granteeType = ZimbraAccount.AccountA().soapSelectValue("//acct:GetShareInfoResponse//acct:share[@folderPath='/Tasks/"+ name + "']", "granteeType");
-		ZAssert.assertEquals(granteeType, "usr","Verify the grantee type is 'user'");		
+		ZAssert.assertEquals(granteeType, "usr","Verify the grantee type is 'user'");
 
-		//Need to do Refresh to see folder in the list 
+		// Need to do Refresh to see folder in the list
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
-		//Edit
-		//Right click folder, click Edit Properties
+		// Right click folder, click Edit Properties
 		DialogEditFolder editdialog = (DialogEditFolder)app.zTreeTasks.zTreeItem(Action.A_RIGHTCLICK, Button.B_TREE_EDIT, subTaskList);
 		ZAssert.assertNotNull(editdialog, "Verify the sharing dialog pops up");
 
-		//Click Revoke link on Edit properties dialog
-		DialogShareRevoke sharedialog = (DialogShareRevoke)editdialog.zClickButton(Button.O_REVOKE_LINK);		
+		// Click Revoke link on Edit properties dialog
+		DialogShareRevoke sharedialog = (DialogShareRevoke)editdialog.zClickButton(Button.O_REVOKE_LINK);
 		ZAssert.assertTrue(sharedialog.zIsActive(), "Verify that the Share dialog is active ");
-		
-		//click Yes
+
+		// Click Yes
 		sharedialog.zClickButton(Button.B_YES);
-		
-		//Verify Edit properties  dialog is active
+
+		// Verify Edit properties  dialog is active
 		ZAssert.assertTrue(editdialog.zIsActive(), "Verify that the Edit Folder Properties dialog is active ");
 
-		//click ok button from edit Folder properties dialog
-		editdialog.zClickButton(Button.B_OK);		
+		// Click ok button from edit Folder properties dialog
+		editdialog.zClickButton(Button.B_OK);
 
 		ZimbraAccount.AccountA().soapSend(
 				"<GetShareInfoRequest xmlns='urn:zimbraAccount'>"
@@ -131,5 +128,4 @@ public class DeleteShare extends AjaxCommonTest {
 		ZAssert.assertEquals(nodes.length, 0, "Verify the shared folder no longer exists in the share information (no nodes returned)");
 
 	}
-
 }

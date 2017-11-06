@@ -24,31 +24,31 @@ import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByConversationTest;
 
 public class GetConversation extends PrefGroupMailByConversationTest {
-	
+
 	public GetConversation() {
 		logger.info("New "+ GetConversation.class.getCanonicalName());
 	}
-	
-	
+
+
 	@Test( description = "View a conversation in a mountpoint",
 			groups = { "functional", "L2" })
-	
+
 	public void GetConversation_01() throws HarnessException {
-		
+
 		String foldername = "folder" + ConfigProperties.getUniqueString();
 		String subject = "subject" + ConfigProperties.getUniqueString();
 		String mountpointname = "mountpoint" + ConfigProperties.getUniqueString();
-		
+
 		FolderItem inbox = FolderItem.importFromSOAP(ZimbraAccount.AccountA(), FolderItem.SystemFolder.Inbox);
-		
+
 		// Create a folder to share
 		ZimbraAccount.AccountA().soapSend(
 					"<CreateFolderRequest xmlns='urn:zimbraMail'>"
 				+		"<folder name='" + foldername + "' l='" + inbox.getId() + "'/>"
 				+	"</CreateFolderRequest>");
-		
+
 		FolderItem folder = FolderItem.importFromSOAP(ZimbraAccount.AccountA(), foldername);
-		
+
 		// Share it
 		ZimbraAccount.AccountA().soapSend(
 					"<FolderActionRequest xmlns='urn:zimbraMail'>"
@@ -56,7 +56,7 @@ public class GetConversation extends PrefGroupMailByConversationTest {
 				+			"<grant d='"+ app.zGetActiveAccount().EmailAddress +"' gt='usr' perm='r'/>"
 				+		"</action>"
 				+	"</FolderActionRequest>");
-		
+
 		// Add a message to it
 		ZimbraAccount.AccountA().soapSend(
 					"<AddMsgRequest xmlns='urn:zimbraMail'>"
@@ -72,15 +72,15 @@ public class GetConversation extends PrefGroupMailByConversationTest {
             	+			"</content>"
             	+		"</m>"
 				+	"</AddMsgRequest>");
-		
+
 		// Mount it
 		app.zGetActiveAccount().soapSend(
 					"<CreateMountpointRequest xmlns='urn:zimbraMail'>"
 				+		"<link l='1' name='"+ mountpointname +"'  rid='"+ folder.getId() +"' zid='"+ ZimbraAccount.AccountA().ZimbraId +"'/>"
 				+	"</CreateMountpointRequest>");
-		
+
 		FolderMountpointItem mountpoint = FolderMountpointItem.importFromSOAP(app.zGetActiveAccount(), mountpointname);
-		
+
 		// Refresh current view
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
@@ -102,30 +102,30 @@ public class GetConversation extends PrefGroupMailByConversationTest {
 		}
 		ZAssert.assertNotNull(found, "Verify the message is in the inbox");
 	}
-	
+
 
 	@Test( description = "View the contents of a conversation in a mountpoint",
 			groups = { "functional", "L2" })
-	
+
 	public void GetConversation_02() throws HarnessException {
-		
+
 		String foldername = "folder" + ConfigProperties.getUniqueString();
 		String subject = "subject" + ConfigProperties.getUniqueString();
 		String fragment1 = "content" + ConfigProperties.getUniqueString();
 		String fragment2 = "content" + ConfigProperties.getUniqueString();
-		
+
 		String mountpointname = "mountpoint" + ConfigProperties.getUniqueString();
-		
+
 		FolderItem inbox = FolderItem.importFromSOAP(ZimbraAccount.AccountA(), FolderItem.SystemFolder.Inbox);
-		
+
 		// Create a folder to share
 		ZimbraAccount.AccountA().soapSend(
 					"<CreateFolderRequest xmlns='urn:zimbraMail'>"
 				+		"<folder name='" + foldername + "' l='" + inbox.getId() + "'/>"
 				+	"</CreateFolderRequest>");
-		
+
 		FolderItem folder = FolderItem.importFromSOAP(ZimbraAccount.AccountA(), foldername);
-		
+
 		// Share it
 		ZimbraAccount.AccountA().soapSend(
 					"<FolderActionRequest xmlns='urn:zimbraMail'>"
@@ -133,7 +133,7 @@ public class GetConversation extends PrefGroupMailByConversationTest {
 				+			"<grant d='"+ app.zGetActiveAccount().EmailAddress +"' gt='usr' perm='r'/>"
 				+		"</action>"
 				+	"</FolderActionRequest>");
-		
+
 		// Add a message to it
 		ZimbraAccount.AccountA().soapSend(
 					"<AddMsgRequest xmlns='urn:zimbraMail'>"
@@ -173,9 +173,9 @@ public class GetConversation extends PrefGroupMailByConversationTest {
 					"<CreateMountpointRequest xmlns='urn:zimbraMail'>"
 				+		"<link l='1' name='"+ mountpointname +"'  rid='"+ folder.getId() +"' zid='"+ ZimbraAccount.AccountA().ZimbraId +"'/>"
 				+	"</CreateMountpointRequest>");
-		
+
 		FolderMountpointItem mountpoint = FolderMountpointItem.importFromSOAP(app.zGetActiveAccount(), mountpointname);
-		
+
 		// Refresh current view
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
@@ -184,12 +184,12 @@ public class GetConversation extends PrefGroupMailByConversationTest {
 
 		// Select the item
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
-		
+
 		// Expand the item
 		app.zPageMail.zListItem(Action.A_MAIL_EXPANDCONVERSATION, subject);
 
 		// Verify the list shows: 1 conversation with 2 messages
-		
+
 		List<MailItem> items = app.zPageMail.zListGetMessages();
 		ZAssert.assertNotNull(items, "Verify the conversation list exists");
 
@@ -202,7 +202,7 @@ public class GetConversation extends PrefGroupMailByConversationTest {
 			}
 		}
 		ZAssert.assertTrue(found, "Verify the conversation is in the inbox");
-		
+
 		int count = 0;
 		for (MailItem m : items) {
 			logger.info("Subject: looking for "+ fragment1 +" or "+ fragment2 +" found: "+ m.gFragment);
@@ -210,13 +210,12 @@ public class GetConversation extends PrefGroupMailByConversationTest {
 			if ( m instanceof ConversationItem ) {
 
 				ConversationItem c = (ConversationItem)m;
-				
+
 				if ( !c.gIsConvExpanded ) {
 					// Not a conversation member
 					continue;
 				}
-				
-					
+
 				if ( fragment1.equals(c.gFragment) ) {
 					logger.info("Subject: Found "+ fragment1);
 					count++;
@@ -225,9 +224,9 @@ public class GetConversation extends PrefGroupMailByConversationTest {
 					logger.info("Subject: Found "+ fragment2);
 					count++;
 				}
-				
+
 			}
-				
+
 		}
 		ZAssert.assertEquals(count, 2, "Verify two messages in the conversation");
 	}

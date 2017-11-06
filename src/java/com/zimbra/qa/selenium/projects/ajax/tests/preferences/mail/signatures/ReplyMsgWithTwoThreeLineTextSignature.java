@@ -38,57 +38,48 @@ public class ReplyMsgWithTwoThreeLineTextSignature extends AjaxCommonTest {
 	@SuppressWarnings("serial")
 	public ReplyMsgWithTwoThreeLineTextSignature() {
 		super.startingPage = app.zPageMail;
-		super.startingAccountPreferences = new HashMap<String, String>() {
-			{
-				put("zimbraPrefComposeFormat", "text");
-
-			}
-		};
+		super.startingAccountPreferences = new HashMap<String, String>() {{
+			put("zimbraPrefComposeFormat", "text");
+		}};
 	}
+
 
 	/**
 	 * Test case : Reply Msg with text signature and Verify signature through
 	 * soap Create signature through soap Send message with text signature
 	 * through soap Reply same message. Verify text signature in Replied msg
 	 * through soap
-	 * 
-	 * @throws HarnessException
 	 */
 
 	@Bugs(ids = "45490")
-	@Test(description = "Reply Msg with text signature with multiple line and Verify signature through soap", groups = {
-			"functional", "L2" })
+	@Test(description = "Reply Msg with text signature with multiple line and Verify signature through soap",
+			groups = { "functional", "L2" })
+
 	public void ReplyMsgWithTextSignature_01() throws HarnessException {
 
 		String sigName = "signame" + ConfigProperties.getUniqueString();
-		String sigBody = "Signature" + ConfigProperties.getUniqueString() + "\n" + "sign line two" + "\n"
-				+ "sign line three";
+		String sigBody = "Signature" + ConfigProperties.getUniqueString() + "\n" + "sign line two" + "\n" + "sign line three";
 
 		String sigName1 = "signame" + ConfigProperties.getUniqueString();
-		String sigBody1 = "Signature" + ConfigProperties.getUniqueString() + "\n" + "sign line two" + "\n"
-				+ "sign line three    wordAfterFourSpaces";
+		String sigBody1 = "Signature" + ConfigProperties.getUniqueString() + "\n" + "sign line two" + "\n" + "sign line three    wordAfterFourSpaces";
 
 		app.zGetActiveAccount()
 				.soapSend("<CreateSignatureRequest xmlns='urn:zimbraAccount'>" + "<signature name='" + sigName + "' >"
 						+ "<content type='text/plain'>" + sigBody + "</content>" + "</signature>"
 						+ "</CreateSignatureRequest>");
 
-		String SignatureId = ZimbraAccount.AccountZCS().soapSelectValue("//acct:CreateSignatureResponse/acct:signature",
-				"id");
+		String SignatureId = ZimbraAccount.AccountZCS().soapSelectValue("//acct:CreateSignatureResponse/acct:signature", "id");
 
 		app.zGetActiveAccount()
 				.soapSend("<CreateSignatureRequest xmlns='urn:zimbraAccount'>" + "<signature name='" + sigName1 + "' >"
 						+ "<content type='text/plain'>" + sigBody1 + "</content>" + "</signature>"
 						+ "</CreateSignatureRequest>");
 
-		String SignatureId1 = ZimbraAccount.AccountZCS()
-				.soapSelectValue("//acct:CreateSignatureResponse/acct:signature", "id");
+		String SignatureId1 = ZimbraAccount.AccountZCS().soapSelectValue("//acct:CreateSignatureResponse/acct:signature", "id");
 
-		app.zGetActiveAccount()
-				.soapSend("<GetIdentitiesRequest xmlns='urn:zimbraAccount'>" + "</GetIdentitiesRequest>");
+		app.zGetActiveAccount().soapSend("<GetIdentitiesRequest xmlns='urn:zimbraAccount'>" + "</GetIdentitiesRequest>");
 
-		String IdentityId = ZimbraAccount.AccountZCS().soapSelectValue("//acct:GetIdentitiesResponse/acct:identity",
-				"id");
+		String IdentityId = ZimbraAccount.AccountZCS().soapSelectValue("//acct:GetIdentitiesResponse/acct:identity", "id");
 
 		app.zGetActiveAccount()
 				.soapSend("<ModifyIdentityRequest xmlns='urn:zimbraAccount'>" + "<identity id='" + IdentityId + "'>"
@@ -128,10 +119,8 @@ public class ReplyMsgWithTwoThreeLineTextSignature extends AjaxCommonTest {
 		ZAssert.assertNotNull(mailform, "Verify the new form opened");
 
 		// verify signature is present
-		ZAssert.assertStringContains(mailform.zGetPlainBodyText(), sigBody,
-				"Verify compose signature is present in body");
-		ZAssert.assertStringContains(mailform.zGetPlainBodyText(), sigBody1,
-				"Verify reply signature is present in body");
+		ZAssert.assertStringContains(mailform.zGetPlainBodyText(), sigBody, "Verify compose signature is present in body");
+		ZAssert.assertStringContains(mailform.zGetPlainBodyText(), sigBody1, "Verify reply signature is present in body");
 
 		// Send the message
 		mailform.zSubmit();
@@ -140,8 +129,8 @@ public class ReplyMsgWithTwoThreeLineTextSignature extends AjaxCommonTest {
 				+ "<query>in:inbox subject:(" + mail.dSubject + ")</query>" + "</SearchRequest>");
 
 		String id = ZimbraAccount.AccountZCS().soapSelectValue("//mail:SearchResponse/mail:m", "id");
-		ZimbraAccount.AccountZCS()
-				.soapSend("<GetMsgRequest xmlns='urn:zimbraMail'>" + "<m id='" + id + "' />" + "</GetMsgRequest>");
+		ZimbraAccount.AccountZCS().soapSend("<GetMsgRequest xmlns='urn:zimbraMail'>" + "<m id='" + id + "' />" + "</GetMsgRequest>");
+
 		Element getMsgResponse = ZimbraAccount.AccountZCS().soapSelectNode("//mail:GetMsgResponse", 1);
 		MailItem received = MailItem.importFromSOAP(getMsgResponse);
 

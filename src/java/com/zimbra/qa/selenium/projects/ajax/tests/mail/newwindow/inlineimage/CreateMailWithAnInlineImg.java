@@ -14,7 +14,6 @@
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.newwindow.inlineimage;
 
 import java.awt.event.KeyEvent;
@@ -36,8 +35,10 @@ public class CreateMailWithAnInlineImg extends PrefGroupMailByMessageTest {
 		super.startingAccountPreferences.put("zimbraPrefComposeInNewWindow","TRUE");
 	}
 
-	@Test( description = "Create and send email with an inline attachment - in a separate window", groups = { "smoke", "L1" })
-	
+
+	@Test( description = "Create and send email with an inline attachment - in a separate window",
+			groups = { "smoke", "L1" })
+
 	public void CreateMailWithAnInlineImg_01() throws HarnessException {
 
 		if (OperatingSystem.isWindows() == true && !ConfigProperties.getStringProperty("browser").contains("edge")) {
@@ -73,19 +74,18 @@ public class CreateMailWithAnInlineImg extends PrefGroupMailByMessageTest {
 					window.zPressButton(Button.O_ATTACH_DROPDOWN);
 					window.zPressButton(Button.B_ATTACH_INLINE);
 					zUploadInlineImageAttachment(filePath);
-					
+
 					// Verify inline image in compose window
 					ZAssert.assertTrue(app.zPageMail.zVerifyInlineImageAttachmentExistsInComposeWindow(windowTitle, 0), "Verify inline image is present in compose window");
 
 					// Send the message
 					window.zToolbarPressButton(Button.B_SEND);
-					
+
 				} finally {
 					app.zPageMain.zCloseWindow(window, windowTitle, app);
 				}
 
 				for (int i = 0; i < 30; i++) {
-
 					ZimbraAccount.AccountA().soapSend(
 							"<SearchRequest types='message' xmlns='urn:zimbraMail'>"
 									+ "<query>subject:(" + mail.dSubject
@@ -93,12 +93,9 @@ public class CreateMailWithAnInlineImg extends PrefGroupMailByMessageTest {
 					com.zimbra.common.soap.Element node = ZimbraAccount.AccountA()
 							.soapSelectNode("//mail:m", 1);
 					if (node != null) {
-						// found the message
 						break;
 					}
-
 					SleepUtil.sleep(1000);
-
 				}
 
 				ZimbraAccount.AccountA().soapSend(
@@ -128,18 +125,16 @@ public class CreateMailWithAnInlineImg extends PrefGroupMailByMessageTest {
 				// Verify UI for attachment
 				app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, sent);
 				app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
+
 				// Verify inline image in reading pane
 				ZAssert.assertTrue(app.zPageMail.zVerifyInlineImageAttachmentExistsInMail(),"Verify inline image is present in reading pane");
 
 			} finally {
-
 				app.zPageMain.zKeyboardKeyEvent(KeyEvent.VK_ESCAPE);
-
 			}
 
 		} else {
 			throw new SkipException("File upload operation is allowed only for Windows OS (Skipping upload tests on MS Edge for now due to intermittancy and major control issue), skipping this test...");
 		}
 	}
-
 }

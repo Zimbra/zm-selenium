@@ -19,7 +19,6 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.contextmenu;
 
 import org.testng.annotations.*;
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
@@ -36,33 +35,28 @@ public class AddToContactsAddressContextMenu extends PrefGroupMailByMessageTest 
 		logger.info("New " + AddToContactsAddressContextMenu.class.getCanonicalName());
 		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "text");
 	}
-	
-	
+
+
 	@Bugs(ids = "102204")
-	@Test( description = "Right click to bubble address >> AddToContact", 
-		groups = { "smoke", "L1" })
-	
+	@Test( description = "Right click to bubble address >> AddToContact",
+			groups = { "smoke", "L1" })
+
 	public void AddToContactAddressContextMenu_01() throws HarnessException {
 
-		String contactFirst = "First"
-				+ ConfigProperties.getUniqueString();
+		String contactFirst = "First" 	+ ConfigProperties.getUniqueString();
 
 		// Create the message data to be sent
 		MailItem mail = new MailItem();
-		mail.dToRecipients.add(new RecipientItem(ZimbraAccount.AccountB(),
-				RecipientItem.RecipientType.To));
+		mail.dToRecipients.add(new RecipientItem(ZimbraAccount.AccountB(), RecipientItem.RecipientType.To));
 
 		// Open the new mail form
-		FormMailNew mailform = (FormMailNew) app.zPageMail
-				.zToolbarPressButton(Button.B_NEW);
+		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
 		ZAssert.assertNotNull(mailform, "Verify the new form opened");
 
 		// Fill out the form with the data
-
 		mailform.zFill(mail);
 		SleepUtil.sleepMedium();
-		String OriginalEmailAddr = app.zPageMail
-				.sGetText(Locators.zToAddressBubble);
+		String OriginalEmailAddr = app.zPageMail.sGetText(Locators.zToAddressBubble);
 		app.zPageMail.zRightClickAddressBubble(Field.To);
 		app.zPageMail.zAddToContactAddressContextMenu();
 		SleepUtil.sleepMedium();
@@ -71,21 +65,17 @@ public class AddToContactsAddressContextMenu extends PrefGroupMailByMessageTest 
 		app.zPageMail.zClick("css=input[id$='_FIRST_input']");
 		app.zPageMail.zKeyboard.zTypeCharacters(contactFirst);
 		SleepUtil.sleepMedium();
-		//app.zPageMail.sType("css=input[id$='_FIRST_input']", contactFirst);	
 		app.zPageMail.sClickAt(FormContactNew.Toolbar.SAVE, "");
 		SleepUtil.sleepMedium();
 
-		// -- Data Verification
-
+		// Verification
 		app.zGetActiveAccount().soapSend(
 				"<SearchRequest xmlns='urn:zimbraMail' types='contact'>"
 						+ "<query>#firstname:" + contactFirst + "</query>"
 						+ "</SearchRequest>");
-		String contactId = app.zGetActiveAccount().soapSelectValue("//mail:cn",
-				"id");
+		String contactId = app.zGetActiveAccount().soapSelectValue("//mail:cn", "id");
 
-		ZAssert.assertNotNull(contactId,
-				"Verify the contact is returned in the search");
+		ZAssert.assertNotNull(contactId, "Verify the contact is returned in the search");
 
 		app.zGetActiveAccount().soapSend(
 				"<GetContactsRequest xmlns='urn:zimbraMail'>" + "<cn id='"
@@ -97,11 +87,7 @@ public class AddToContactsAddressContextMenu extends PrefGroupMailByMessageTest 
 		String email = app.zGetActiveAccount().soapSelectValue(
 				"//mail:cn[@id='" + contactId + "']//mail:a[@n='email']", null);
 
-		ZAssert.assertEquals(firstname, contactFirst,
-				"Verify the first name was saved correctly");
-		ZAssert.assertStringContains(email, OriginalEmailAddr,
-				"Verify the email was saved correctly");
-
+		ZAssert.assertEquals(firstname, contactFirst, "Verify the first name was saved correctly");
+		ZAssert.assertStringContains(email, OriginalEmailAddr, "Verify the email was saved correctly");
 	}
-
 }

@@ -17,7 +17,6 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.preferences.mail.signatures;
 
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.SignatureItem;
 import com.zimbra.qa.selenium.framework.ui.Action;
@@ -36,14 +35,17 @@ public class SignatureBodyTextToHtml extends AjaxCommonTest {
 		super.startingPage = app.zPagePreferences;
 	}
 
+
 	@Bugs(ids="98736")
-	@Test(description = "Verify that body content of signature is not lost when changed from text to HTMl", groups = { "functional", "L3"  })
+	@Test(description = "Verify that body content of signature is not lost when changed from text to HTMl",
+			groups = { "functional", "L3"  })
+
 	public void SignatureBodyTextToHtml_01() throws HarnessException {
 
 		String sigName = "signame" + ConfigProperties.getUniqueString();
 		String sigBody = "sigbody" + ConfigProperties.getUniqueString();
 
-		// click on signature from left pane
+		// Click on signature from left pane
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.MailSignatures);
 
 		// Click on New signature button
@@ -62,6 +64,7 @@ public class SignatureBodyTextToHtml extends AjaxCommonTest {
 
 		String sigName1 = "signame" + ConfigProperties.getUniqueString();
 		String sigBody1 = "sigbody" + ConfigProperties.getUniqueString();
+
 		// Click on New signature button
 		FormSignatureNew signew1 = (FormSignatureNew) app.zPageSignature.zToolbarPressButton(Button.B_NEW);
 
@@ -73,7 +76,7 @@ public class SignatureBodyTextToHtml extends AjaxCommonTest {
 		signew1.zSelectFormat("html");
 
 		ZAssert.assertStringContains(signew1.zGetHtmlSignatureBody(), sigBody1, "Verify the HTML content signature body");
-		
+
 		signew1.zSubmit();
 
 		SignatureItem editsignature = SignatureItem.importFromSOAP(app.zGetActiveAccount(), sigName1);
@@ -81,7 +84,5 @@ public class SignatureBodyTextToHtml extends AjaxCommonTest {
 		// Verify signature name and body contents
 		ZAssert.assertEquals(editsignature.getName(), sigName1, "Verify signature name");
 		ZAssert.assertStringContains(editsignature.dBodyHtmlText, sigBody1, "Verify Html signature body");
-
 	}
-
 }

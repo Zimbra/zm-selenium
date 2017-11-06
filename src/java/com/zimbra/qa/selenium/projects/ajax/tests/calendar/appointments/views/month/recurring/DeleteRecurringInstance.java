@@ -110,7 +110,7 @@ public class DeleteRecurringInstance extends AjaxCommonTest {
 
 		// Verify correct no. of recurring instances are present in start month and no instance is deleted from that month
 		app.zPageCalendar.zToolbarPressButton(Button.B_PREVIOUS_PAGE);
-		app.zPageCalendar.zToolbarPressButton(Button.B_PREVIOUS_PAGE); // navigate back to current month
+		app.zPageCalendar.zToolbarPressButton(Button.B_PREVIOUS_PAGE); // Navigate back to current month
 		ZAssert.assertEquals(app.zPageCalendar.zGetAppointmentCountMonthView(apptSubject), baseCount, "Verify correct no. of recurring instances are present in start month and no instance is deleted");
 
 	}

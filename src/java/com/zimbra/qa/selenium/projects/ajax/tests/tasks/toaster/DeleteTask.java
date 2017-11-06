@@ -34,20 +34,18 @@ public class DeleteTask extends AjaxCommonTest {
 	public DeleteTask() {
 		logger.info("New "+ DeleteTask.class.getCanonicalName());
 
-		// All tests start at the login page
 		super.startingPage = app.zPageTasks;
-
 		super.startingAccountPreferences = new HashMap<String , String>() {{
-
 			put("zimbraPrefShowSelectionCheckbox", "TRUE");
 			put("zimbraPrefTasksReadingPaneLocation", "bottom");
 		}};
-
 	}
+
 
 	@Test( description = "Delete a task using toolbar delete button and Verify Toast message through GUI",
 			groups = { "smoke", "L1"})
-			public void DeleteTaskToastMsg_01() throws HarnessException {
+
+	public void DeleteTaskToastMsg_01() throws HarnessException {
 
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
 
@@ -86,12 +84,13 @@ public class DeleteTask extends AjaxCommonTest {
 		Toaster toast = app.zPageMain.zGetToaster();
 		String toastMsg = toast.zGetToastMessage();
 		ZAssert.assertStringContains(toastMsg, "1 task moved to Trash","Verify toast message: Task Moved to Trash");
-
 	}
+
 
 	@Test( description = "Delete a task using checkbox and toolbar delete button-Verify Toast message through GUI",
 			groups = { "smoke", "L1"})
-			public void DeleteTaskToastMsg_02() throws HarnessException {
+
+	public void DeleteTaskToastMsg_02() throws HarnessException {
 
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
 
@@ -113,8 +112,6 @@ public class DeleteTask extends AjaxCommonTest {
 				"</m>" +
 		"</CreateTaskRequest>");
 
-		
-
 		TaskItem task = TaskItem.importFromSOAP(app.zGetActiveAccount(), subject);
 		ZAssert.assertNotNull(task, "Verify the task is created");
 
@@ -125,6 +122,7 @@ public class DeleteTask extends AjaxCommonTest {
 		if (!app.zPageTasks.sIsElementPresent(PageTasks.Locators.zCheckboxenable)) {
 			app.zPageTasks.zListItem(Action.A_MAIL_CHECKBOX, subject);
 		}
+
 		// Click delete
 		app.zPageTasks.zToolbarPressButton(Button.B_DELETE);
 
@@ -132,9 +130,8 @@ public class DeleteTask extends AjaxCommonTest {
 		Toaster toast = app.zPageMain.zGetToaster();
 		String toastMsg = toast.zGetToastMessage();
 		ZAssert.assertStringContains(toastMsg, "1 task moved to Trash","Verify toast message: Task Moved to Trash");
-
-
 	}
+
 
 	@DataProvider(name = "DataProviderDeleteKeys")
 	public Object[][] DataProviderDeleteKeys() {
@@ -147,7 +144,8 @@ public class DeleteTask extends AjaxCommonTest {
 	@Test( description = "Delete a task by selecting and typing 'delete' keyboard-Verify Toast message through GUI",
 			groups = { "functional", "L3"},
 			dataProvider = "DataProviderDeleteKeys")
-			public void DeleteTaskToastMsg_03(String name, int keyEvent) throws HarnessException {
+
+	public void DeleteTaskToastMsg_03(String name, int keyEvent) throws HarnessException {
 
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
 
@@ -188,13 +186,14 @@ public class DeleteTask extends AjaxCommonTest {
 		Toaster toast = app.zPageMain.zGetToaster();
 		String toastMsg = toast.zGetToastMessage();
 		ZAssert.assertStringContains(toastMsg, "1 task moved to Trash","Verify toast message: Task Moved To trash");
-
 	}
-	
+
+
 	@Bugs(ids="56467")
 	@Test( description = "Delete a task by selecting and typing '.t' shortcut : Verify Toast message through GUI",
 			groups = { "functional", "L3"} )
-			public void DeleteTaskToastMsg_04() throws HarnessException {
+
+	public void DeleteTaskToastMsg_04() throws HarnessException {
 
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
 
@@ -234,12 +233,13 @@ public class DeleteTask extends AjaxCommonTest {
 		Toaster toast = app.zPageMain.zGetToaster();
 		String toastMsg = toast.zGetToastMessage();
 		ZAssert.assertStringContains(toastMsg, "1 task moved to Trash","Verify toast message: Task Moved to Trash");
-
 	}
+
 
 	@Test( description = "Delete multiple tasks (3) by select and toolbar delete : Verify Toast message through GUI",
 			groups = { "functional", "L3"})
-			public void DeleteTaskToastMsg_05() throws HarnessException {
+
+	public void DeleteTaskToastMsg_05() throws HarnessException {
 
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
 
@@ -293,8 +293,6 @@ public class DeleteTask extends AjaxCommonTest {
 				"</m>" +
 		"</CreateTaskRequest>");
 
-		
-
 		// Import each message into MailItem objects
 		TaskItem task1 = TaskItem.importFromSOAP(app.zGetActiveAccount(), subject1);
 		ZAssert.assertNotNull(task1, "Verify the task is created");
@@ -310,7 +308,6 @@ public class DeleteTask extends AjaxCommonTest {
 		app.zTreeTasks.zTreeItem(Action.A_LEFTCLICK, taskFolder);
 
 		// Select the items
-	//	app.zPageTasks.zListItem(Action.A_MAIL_UNCHECKBOX, subject3);
 		app.zPageTasks.zListItem(Action.A_MAIL_CHECKBOX, subject1);
 		app.zPageTasks.zListItem(Action.A_MAIL_CHECKBOX, subject2);
 		app.zPageTasks.zListItem(Action.A_MAIL_CHECKBOX, subject3);
@@ -322,13 +319,13 @@ public class DeleteTask extends AjaxCommonTest {
 		Toaster toast = app.zPageMain.zGetToaster();
 		String toastMsg = toast.zGetToastMessage();
 		ZAssert.assertStringContains(toastMsg, "3 tasks moved to Trash","Verify toast message: N Tasks Moved to Trash");
-
 	}
+
 
 	@Test( description = "Delete a task using context menu delete button:Verify Toast message through GUI",
 			groups = { "functional", "L3"})
-			public void DeleteTaskToastMsg_06() throws HarnessException {
 
+	public void DeleteTaskToastMsg_06() throws HarnessException {
 
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
 
@@ -349,8 +346,6 @@ public class DeleteTask extends AjaxCommonTest {
 				"</mp>" +
 				"</m>" +
 		"</CreateTaskRequest>");
-
-		
 
 		TaskItem task = TaskItem.importFromSOAP(app.zGetActiveAccount(), subject);
 		ZAssert.assertNotNull(task, "Verify the task is created");
@@ -363,21 +358,20 @@ public class DeleteTask extends AjaxCommonTest {
 			app.zPageTasks.zListItem(Action.A_MAIL_CHECKBOX, subject);
 		}
 
-
 		// Right click the item, select delete
 		app.zPageTasks.zListItem(Action.A_RIGHTCLICK, Button.B_DELETE, subject);
-
 
 		// Verifying the toaster message
 		Toaster toast = app.zPageMain.zGetToaster();
 		String toastMsg = toast.zGetToastMessage();
 		ZAssert.assertStringContains(toastMsg, "1 task moved to Trash","Verify toast message: Task Moved to Trash");
-
 	}
+
 
 	@Test( description = "Create task through SOAP - delete using Backspace Key & verify Toast message through GUI",
 			groups = { "functional", "L3"} )
-			public void DeleteTaskToastMsg_07() throws HarnessException {
+
+	public void DeleteTaskToastMsg_07() throws HarnessException {
 
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
 
@@ -398,8 +392,6 @@ public class DeleteTask extends AjaxCommonTest {
 				"</mp>" +
 				"</m>" +
 		"</CreateTaskRequest>");
-
-		
 
 		TaskItem task = TaskItem.importFromSOAP(app.zGetActiveAccount(), subject);
 		ZAssert.assertNotNull(task, "Verify the task is created");
@@ -419,11 +411,5 @@ public class DeleteTask extends AjaxCommonTest {
 		Toaster toast = app.zPageMain.zGetToaster();
 		String toastMsg = toast.zGetToastMessage();
 		ZAssert.assertStringContains(toastMsg, "1 task moved to Trash","Verify toast message: Task Moved to Trash");
-
-
 	}
-
-
-
 }
-

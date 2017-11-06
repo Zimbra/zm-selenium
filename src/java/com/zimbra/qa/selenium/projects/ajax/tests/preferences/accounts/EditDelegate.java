@@ -31,12 +31,11 @@ public class EditDelegate extends AjaxCommonTest {
 		super.startingPage = app.zPagePreferences;
 	}
 
-	
-	@Test(description = "Edit a 'Send As' delegate - Add 'Send On Behalf Of'", groups = { "functional", "L2" })
-	
-	public void EditDelegate_01() throws HarnessException {
 
-		// -- Data Setup
+	@Test(description = "Edit a 'Send As' delegate - Add 'Send On Behalf Of'",
+			groups = { "functional", "L2" })
+
+	public void EditDelegate_01() throws HarnessException {
 
 		// Create an account to delegate to
 		ZimbraAccount delegate = new ZimbraAccount();
@@ -46,8 +45,6 @@ public class EditDelegate extends AjaxCommonTest {
 		// Grant Send-As
 		app.zGetActiveAccount().soapSend("<GrantRightsRequest xmlns='urn:zimbraAccount'>" + "<ace gt='usr' d='"
 				+ delegate.EmailAddress + "' right='sendAs'/>" + "</GrantRightsRequest>");
-
-		// -- GUI Steps
 
 		// Refresh UI
 		app.zPageMain.zRefreshMainUI();
@@ -72,14 +69,12 @@ public class EditDelegate extends AjaxCommonTest {
 		DialogDelegate dialog = new DialogDelegate(app, app.zPagePreferences);
 		dialog.zWaitForActive();
 
-		// Send As is already checked
-		// Also, check Send On Behalf Of
+		// Send As is already checked. Also, check Send On Behalf Of
 		dialog.zCheckRight(DialogDelegate.Rights.SendOnBehalfOf);
 		dialog.zClickButton(Button.B_OK);
-
 		SleepUtil.sleepSmall();
 
-		// -- Verification
+		// Verification
 		app.zGetActiveAccount().soapSend("<GetRightsRequest xmlns='urn:zimbraAccount' >" + "<ace right='sendAs'/>"
 				+ "<ace right='sendOnBehalfOf'/>" + "</GetRightsRequest>");
 
@@ -101,13 +96,11 @@ public class EditDelegate extends AjaxCommonTest {
 		ZAssert.assertTrue(foundSendOnBehalfOf, "Verify the sendOnBehalfOf is set");
 	}
 
-	
-	@Test(description = "Edit a 'Send As' delegate - Remove 'Send As' and Add 'Send On Behalf Of'", groups = {
-			"functional", "L3" })
-	
-	public void EditDelegate_02() throws HarnessException {
 
-		// -- Data Setup
+	@Test(description = "Edit a 'Send As' delegate - Remove 'Send As' and Add 'Send On Behalf Of'",
+			groups = { "functional", "L3" })
+
+	public void EditDelegate_02() throws HarnessException {
 
 		// Create an account to delegate to
 		ZimbraAccount delegate = new ZimbraAccount();
@@ -117,8 +110,6 @@ public class EditDelegate extends AjaxCommonTest {
 		// Grant Send-As
 		app.zGetActiveAccount().soapSend("<GrantRightsRequest xmlns='urn:zimbraAccount'>" + "<ace gt='usr' d='"
 				+ delegate.EmailAddress + "' right='sendAs'/>" + "</GrantRightsRequest>");
-
-		// -- GUI Steps
 
 		// Refresh UI
 		app.zPageMain.zRefreshMainUI();
@@ -156,13 +147,11 @@ public class EditDelegate extends AjaxCommonTest {
 		app.zPagePreferences.zClickAt(buttonLocator, "");
 		dialog.zWaitForActive();
 		dialog.zUnCheckRight(DialogDelegate.Rights.SendAs);
-		// SleepUtil.sleepMedium();
 		SleepUtil.sleepLong();
 		dialog.zClickButton(Button.B_OK);
-		// SleepUtil.sleepMedium();
 		SleepUtil.sleepLong();
 
-		// -- Verification
+		// Verification
 		app.zGetActiveAccount().soapSend("<GetRightsRequest xmlns='urn:zimbraAccount' >" + "<ace right='sendAs'/>"
 				+ "<ace right='sendOnBehalfOf'/>" + "</GetRightsRequest>");
 
@@ -182,15 +171,13 @@ public class EditDelegate extends AjaxCommonTest {
 
 		ZAssert.assertFalse(foundSendAs, "Verify the sendAs is NOT set");
 		ZAssert.assertTrue(foundSendOnBehalfOf, "Verify the sendOnBehalfOf is set");
-
 	}
 
-	
-	@Test(description = "Edit a 'Send As' delegate - Remove 'Send As'", groups = { "functional", "L3" })
-	
-	public void EditDelegate_03() throws HarnessException {
 
-		// -- Data Setup
+	@Test(description = "Edit a 'Send As' delegate - Remove 'Send As'",
+			groups = { "functional", "L3" })
+
+	public void EditDelegate_03() throws HarnessException {
 
 		// Create an account to delegate to
 		ZimbraAccount delegate = new ZimbraAccount();
@@ -200,8 +187,6 @@ public class EditDelegate extends AjaxCommonTest {
 		// Grant Send-As
 		app.zGetActiveAccount().soapSend("<GrantRightsRequest xmlns='urn:zimbraAccount'>" + "<ace gt='usr' d='"
 				+ delegate.EmailAddress + "' right='sendAs'/>" + "</GrantRightsRequest>");
-
-		// -- GUI Steps
 
 		// Refresh UI
 		app.zPageMain.zRefreshMainUI();
@@ -229,7 +214,7 @@ public class EditDelegate extends AjaxCommonTest {
 		dialog.zUnCheckRight(DialogDelegate.Rights.SendAs);
 		dialog.zClickButton(Button.B_OK);
 
-		// -- Verification
+		// Verification
 		app.zGetActiveAccount().soapSend("<GetRightsRequest xmlns='urn:zimbraAccount' >" + "<ace right='sendAs'/>"
 				+ "<ace right='sendOnBehalfOf'/>" + "</GetRightsRequest>");
 
@@ -249,13 +234,13 @@ public class EditDelegate extends AjaxCommonTest {
 
 		ZAssert.assertFalse(foundSendAs, "Verify the sendAs is NOT set");
 		ZAssert.assertFalse(foundSendOnBehalfOf, "Verify the sendOnBehalfOf is NOT set");
-
 	}
 
-	@Test(description = "Edit a 'Send On Behalf Of' delegate - Add 'Send As'", groups = { "functional", "L3" })
-	public void EditDelegate_04() throws HarnessException {
 
-		// -- Data Setup
+	@Test(description = "Edit a 'Send On Behalf Of' delegate - Add 'Send As'",
+			groups = { "functional", "L3" })
+
+	public void EditDelegate_04() throws HarnessException {
 
 		// Create an account to delegate to
 		ZimbraAccount delegate = new ZimbraAccount();
@@ -265,8 +250,6 @@ public class EditDelegate extends AjaxCommonTest {
 		// Grant Send-As
 		app.zGetActiveAccount().soapSend("<GrantRightsRequest xmlns='urn:zimbraAccount'>" + "<ace gt='usr' d='"
 				+ delegate.EmailAddress + "' right='sendOnBehalfOf'/>" + "</GrantRightsRequest>");
-
-		// -- GUI Steps
 
 		// Refresh UI
 		app.zPageMain.zRefreshMainUI();
@@ -294,7 +277,7 @@ public class EditDelegate extends AjaxCommonTest {
 		dialog.zCheckRight(DialogDelegate.Rights.SendAs);
 		dialog.zClickButton(Button.B_OK);
 
-		// -- Verification
+		// Verification
 		app.zGetActiveAccount().soapSend("<GetRightsRequest xmlns='urn:zimbraAccount' >" + "<ace right='sendAs'/>"
 				+ "<ace right='sendOnBehalfOf'/>" + "</GetRightsRequest>");
 
@@ -316,11 +299,11 @@ public class EditDelegate extends AjaxCommonTest {
 		ZAssert.assertTrue(foundSendOnBehalfOf, "Verify the sendOnBehalfOf is set");
 	}
 
-	@Test(description = "Edit a 'Send On Behalf Of' delegate - Remove 'Send On Behalf Of' and Add 'Send As'", groups = {
-			"functional", "L3" })
-	public void EditDelegate_05() throws HarnessException {
 
-		// -- Data Setup
+	@Test(description = "Edit a 'Send On Behalf Of' delegate - Remove 'Send On Behalf Of' and Add 'Send As'",
+			groups = { "functional", "L3" })
+
+	public void EditDelegate_05() throws HarnessException {
 
 		// Create an account to delegate to
 		ZimbraAccount delegate = new ZimbraAccount();
@@ -330,8 +313,6 @@ public class EditDelegate extends AjaxCommonTest {
 		// Grant Send-As
 		app.zGetActiveAccount().soapSend("<GrantRightsRequest xmlns='urn:zimbraAccount'>" + "<ace gt='usr' d='"
 				+ delegate.EmailAddress + "' right='sendOnBehalfOf'/>" + "</GrantRightsRequest>");
-
-		// -- GUI Steps
 
 		// Refresh UI
 		app.zPageMain.zRefreshMainUI();
@@ -371,7 +352,7 @@ public class EditDelegate extends AjaxCommonTest {
 		dialog.zUnCheckRight(DialogDelegate.Rights.SendOnBehalfOf);
 		dialog.zClickButton(Button.B_OK);
 
-		// -- Verification
+		// Verification
 		app.zGetActiveAccount().soapSend("<GetRightsRequest xmlns='urn:zimbraAccount' >" + "<ace right='sendAs'/>"
 				+ "<ace right='sendOnBehalfOf'/>" + "</GetRightsRequest>");
 
@@ -393,10 +374,11 @@ public class EditDelegate extends AjaxCommonTest {
 		ZAssert.assertFalse(foundSendOnBehalfOf, "Verify the sendOnBehalfOf is NOT set");
 	}
 
-	@Test(description = "Edit a 'Send On Behalf Of' delegate - Remove 'Send On Behalf Of'", groups = { "functional", "L3" })
-	public void EditDelegate_06() throws HarnessException {
 
-		// -- Data Setup
+	@Test(description = "Edit a 'Send On Behalf Of' delegate - Remove 'Send On Behalf Of'",
+			groups = { "functional", "L3" })
+
+	public void EditDelegate_06() throws HarnessException {
 
 		// Create an account to delegate to
 		ZimbraAccount delegate = new ZimbraAccount();
@@ -406,8 +388,6 @@ public class EditDelegate extends AjaxCommonTest {
 		// Grant Send-As
 		app.zGetActiveAccount().soapSend("<GrantRightsRequest xmlns='urn:zimbraAccount'>" + "<ace gt='usr' d='"
 				+ delegate.EmailAddress + "' right='sendOnBehalfOf'/>" + "</GrantRightsRequest>");
-
-		// -- GUI Steps
 
 		// Refresh UI
 		app.zPageMain.zRefreshMainUI();
@@ -435,7 +415,7 @@ public class EditDelegate extends AjaxCommonTest {
 		dialog.zUnCheckRight(DialogDelegate.Rights.SendOnBehalfOf);
 		dialog.zClickButton(Button.B_OK);
 
-		// -- Verification
+		// Verification
 		app.zGetActiveAccount().soapSend("<GetRightsRequest xmlns='urn:zimbraAccount' >" + "<ace right='sendAs'/>"
 				+ "<ace right='sendOnBehalfOf'/>" + "</GetRightsRequest>");
 

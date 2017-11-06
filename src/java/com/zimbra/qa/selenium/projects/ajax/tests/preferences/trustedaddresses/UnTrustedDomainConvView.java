@@ -18,9 +18,7 @@ package com.zimbra.qa.selenium.projects.ajax.tests.preferences.trustedaddresses;
 
 import java.io.File;
 import java.util.HashMap;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.MailItem;
@@ -32,48 +30,45 @@ import com.zimbra.qa.selenium.framework.util.LmtpInject;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-//import com.zimbra.qa.selenium.projects.ajax.ui.preferences.trustedaddresses.DisplayTrustedAddress;
 
 public class UnTrustedDomainConvView extends AjaxCommonTest {
 
 	@SuppressWarnings("serial")
 	public UnTrustedDomainConvView() throws HarnessException {
 		super.startingPage = app.zPageMail;
-
-		// Make sure we are using an account with conversation view
-		super.startingAccountPreferences = new HashMap<String, String>() {
-			{
-				put("zimbraPrefGroupMailBy", "conversation");
-				put("zimbraPrefMessageViewHtmlPreferred", "TRUE");
-
-			}
-		};
+		super.startingAccountPreferences = new HashMap<String, String>() {{
+			put("zimbraPrefGroupMailBy", "conversation");
+			put("zimbraPrefMessageViewHtmlPreferred", "TRUE");
+		}};
 	}
-/**
- * TestCase : UnTrusted Domain with Conversation view
- * 1.Don't add any domain in Preference/Mail/Trusted Addresses
- * 2.In Conv View Inject mail with external image
- * 3.Verify To,From,Subject through soap
- * 4.Click on same mail
- * 5.Yellow color Warning Msg Info bar should show warning icon with 'Display Image' and Domain  link for untrusted domains.
- * 
- * @throws HarnessException
- */
+
+
+	/**
+	 * TestCase : UnTrusted Domain with Conversation view
+	 * 1.Don't add any domain in Preference/Mail/Trusted Addresses
+	 * 2.In Conv View Inject mail with external image
+	 * 3.Verify To,From,Subject through soap
+	 * 4.Click on same mail
+	 * 5.Yellow color Warning Msg Info bar should show warning icon with 'Display Image' and Domain  link for untrusted domains.
+	 */
+
 	@Bugs(ids="74691,64830")
-	@Test( description = "Verify Display Image link in UnTrusted doamin for conversation view", groups = { "sanity", "L0"  })
+	@Test( description = "Verify Display Image link in UnTrusted doamin for conversation view",
+			groups = { "sanity", "L0"  })
+
 	public void UnTrustedDomainConvView_01() throws HarnessException {
 
 		final String subject = "TestTrustedAddress";
 		final String from = "admintest@testdoamin.com";
 		final String to = "admin@testdoamin.com";
-		final String mimeFolder = ConfigProperties.getBaseDirectory()
-				+ "/data/public/mime/ExternalImg.txt";
+		final String mimeFolder = ConfigProperties.getBaseDirectory() + "/data/public/mime/ExternalImg.txt";
 		FolderItem inboxFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(),SystemFolder.Inbox);
+
 		// Inject the external image message(s)
 		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFolder));
 
 		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(),subject);
-		
+
 		ZAssert.assertNotNull(mail, "Verify message is received");
 		ZAssert.assertEquals(from, mail.dFromRecipient.dEmailAddress,"Verify the from matches");
 		ZAssert.assertEquals(to, mail.dToRecipients.get(0).dEmailAddress,"Verify the to address");
@@ -84,10 +79,8 @@ public class UnTrustedDomainConvView extends AjaxCommonTest {
 
 		// Select the message so that it shows in the reading pane
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
-		
-		//Verify Warning info bar with other links
+
+		// Verify Warning info bar with other links
 		ZAssert.assertTrue(app.zPageMail.zHasWDDLinks(),"Verify Display Image,Domain link  and warning icon are present");
-
 	}
-
 }

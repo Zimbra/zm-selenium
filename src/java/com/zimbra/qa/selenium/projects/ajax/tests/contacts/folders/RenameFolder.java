@@ -17,7 +17,6 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.contacts.folders;
 
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.*;
@@ -29,17 +28,14 @@ public class RenameFolder extends AjaxCommonTest {
 
 	public RenameFolder() {
 		logger.info("New " + RenameFolder.class.getCanonicalName());
-
-		// All tests start at the login page
 		super.startingPage = app.zPageContacts;
-
 	}
 
-	@Test(description = "Rename a folder - Context menu -> Rename", 
-			groups = { "smoke", "L1"})
-	public void SelectFolderRenameOnContextMenu_01() throws HarnessException {
 
-		// -- Data
+	@Test(description = "Rename a folder - Context menu -> Rename",
+			groups = { "smoke", "L1"})
+
+	public void SelectFolderRenameOnContextMenu_01() throws HarnessException {
 
 		// Root folder
 		FolderItem userRoot = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.UserRoot);
@@ -52,32 +48,28 @@ public class RenameFolder extends AjaxCommonTest {
 				+ "' view='contact' l='" + userRoot.getId() + "'/>" + "</CreateFolderRequest>");
 		FolderItem folderItem = FolderItem.importFromSOAP(app.zGetActiveAccount(), name);
 
-		// -- GUI
-
-		// refresh
+		// Refresh
 		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 
 		// Rename the folder using context menu
-		DialogRenameFolder dialog = (DialogRenameFolder) app.zTreeContacts.zTreeItem(Action.A_RIGHTCLICK,
-				Button.B_RENAME, folderItem);
+		DialogRenameFolder dialog = (DialogRenameFolder) app.zTreeContacts.zTreeItem(Action.A_RIGHTCLICK, Button.B_RENAME, folderItem);
 
 		dialog.zSetNewName(name2);
 		dialog.zClickButton(Button.B_OK);
 
-		// -- Verification
+		// Verification
 		FolderItem actual = FolderItem.importFromSOAP(app.zGetActiveAccount(), name);
 		ZAssert.assertNull(actual, "Verify the old folder name no longer exists");
 
 		actual = FolderItem.importFromSOAP(app.zGetActiveAccount(), name2);
 		ZAssert.assertNotNull(actual, "Verify the new folder name exists");
-
 	}
 
-	@Test(description = "Rename a sub folder - Context menu -> Rename", 
-			groups = { "functional", "L3"})
-	public void SelectSubFolderRenameOnContextMenu_02() throws HarnessException {
 
-		// -- Data
+	@Test(description = "Rename a sub folder - Context menu -> Rename",
+			groups = { "functional", "L3"})
+
+	public void SelectSubFolderRenameOnContextMenu_02() throws HarnessException {
 
 		// Contacts folder
 		FolderItem contacts = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Contacts);
@@ -90,32 +82,29 @@ public class RenameFolder extends AjaxCommonTest {
 				+ "' view='contact' l='" + contacts.getId() + "'/>" + "</CreateFolderRequest>");
 		FolderItem folderItem = FolderItem.importFromSOAP(app.zGetActiveAccount(), name);
 
-		// -- GUI
-
-		// refresh
+		// Refresh
 		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 
 		// Rename the folder using context menu
-		DialogRenameFolder dialog = (DialogRenameFolder) app.zTreeContacts.zTreeItem(Action.A_RIGHTCLICK,
-				Button.B_RENAME, folderItem);
+		DialogRenameFolder dialog = (DialogRenameFolder) app.zTreeContacts.zTreeItem(Action.A_RIGHTCLICK, Button.B_RENAME, folderItem);
 
 		dialog.zSetNewName(name2);
 		dialog.zClickButton(Button.B_OK);
 
-		// -- Verification
+		// Verification
 		FolderItem actual = FolderItem.importFromSOAP(app.zGetActiveAccount(), name);
 		ZAssert.assertNull(actual, "Verify the old folder name no longer exists");
 
 		actual = FolderItem.importFromSOAP(app.zGetActiveAccount(), name2);
 		ZAssert.assertNotNull(actual, "Verify the new folder name exists");
-
 	}
 
-	@Test(description = "Cannot rename an addressbook system folder- Right click, Rename option disabled", 
+
+	@Test(description = "Cannot rename an addressbook system folder- Right click, Rename option disabled",
 			groups = {"functional", "L3"})
+
 	public void SystemFoldersRenameButtonDisabledFromContextmenu_03() throws HarnessException {
 
-		// -- Data
 		boolean exists;
 		String locator = "css=div[id^='ZmActionMenu_contacts_ADDRBOOK'] div[id^='RENAME_FOLDER'].ZDisabled";
 
@@ -148,7 +137,5 @@ public class RenameFolder extends AjaxCommonTest {
 		// Verify Rename option is disabled
 		exists = app.zTreeContacts.sIsElementPresent(locator);
 		ZAssert.assertTrue(exists, "Verify Rename option is disabled");
-
 	}
-
 }

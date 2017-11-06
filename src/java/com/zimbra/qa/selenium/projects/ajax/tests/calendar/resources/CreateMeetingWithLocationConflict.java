@@ -248,7 +248,7 @@ public class CreateMeetingWithLocationConflict extends AjaxCommonTest {
 		// Verify the compose page shows note below resource about conflicting resources
 		ZAssert.assertTrue(app.zPageCalendar.sIsElementPresent(Locators.ConflictResourceNote),  "Verify that the conflicting resource note appears on appt compose page");
 
-		//verify the compose page shows note below resource about conflicting resources and conflicting resource dialog appears
+		// Verify the compose page shows note below resource about conflicting resources and conflicting resource dialog appears
 		DialogWarningConflictingResources  dialog = (DialogWarningConflictingResources) app.zPageCalendar.zToolbarPressButton(Button.B_SAVE_WITH_CONFLICT);
 		String dialogContent = dialog.zGetResourceConflictWarningDialogText();
 		ZAssert.assertTrue(dialogContent.contains("The selected resources/location cannot be scheduled for the following instances"), "Verify that the dialog shows expected text");

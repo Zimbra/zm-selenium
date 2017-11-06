@@ -28,12 +28,14 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 	public DeleteMail() throws HarnessException {
 		logger.info("New "+ DeleteMail.class.getCanonicalName());
 	}
-	
-	@Test( description = "Bug 77538 - Double click a mail and delete it", groups = { "functional", "L2" } )
-	
+
+
+	@Test( description = "Bug 77538 - Double click a mail and delete it",
+			groups = { "functional", "L2" } )
+
 	public void DeleteMail_01() throws HarnessException {
 
-		// Data Setup	
+		// Data Setup
 		String subject = "subject"+ ConfigProperties.getUniqueString();
 
 		ZimbraAccount.AccountA().soapSend(
@@ -56,7 +58,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 		app.zPageMail.zListItem(Action.A_DOUBLECLICK, subject);
 
 		app.zPageMail.zToolbarPressButtonFullViewPane (Button.B_DELETE_FULL_VIEW_PANE);
-		
+
 		// Verify the message no longer exist in the list
 		List<MailItem> messages = app.zPageMail.zListGetMessages();
 		ZAssert.assertNotNull(messages, "Verify the message list exists");
@@ -69,9 +71,8 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 				break;
 			}
 		}
-		
-		ZAssert.assertNull(found, "Verify the message is no longer in the inbox");
 
+		ZAssert.assertNull(found, "Verify the message is no longer in the inbox");
 		ZAssert.assertFalse(app.zPageMail.zIsVisiblePerPosition("css=div[id^='ztb__MSG'] div[id$='DELETE'] tr td[id$='DELETE_title']", 10, 10), "Verify delete button is not present");
 	}
 }

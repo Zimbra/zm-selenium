@@ -24,19 +24,19 @@ import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
 
 public class MarkUnSpamMessage extends PrefGroupMailByMessageTest {
-	
+
 	public MarkUnSpamMessage() {
 		logger.info("New "+ MarkUnSpamMessage.class.getCanonicalName());
 	}
-	
-	
+
+
 	@Test( description = "Mark a message as not spam, using 'Not Spam' toolbar button",
 			groups = { "smoke", "L1" })
-	
+
 	public void MarkUnSpamMessage_01() throws HarnessException {
-		
+
 		String subject = "subject"+ ConfigProperties.getUniqueString();
-		
+
 		// Get the junk and inbox folder
 		FolderItem junk = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Junk);
 		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
@@ -56,25 +56,23 @@ public class MarkUnSpamMessage extends PrefGroupMailByMessageTest {
 						"</content>" +
                 	"</m>" +
             	"</AddMsgRequest>");
-		
+
 		// Get the mail item for the new message
-		// Need 'is:anywhere' to include the spam folder
 		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "is:anywhere subject:("+ subject +")");
 
 		// Refresh current view
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
-				
+
 		// Go to the Junk folder
 		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, junk);
-		
+
 		// Select the item
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, mail.dSubject);
-		
+
 		// Click spam
 		app.zPageMail.zToolbarPressButton(Button.B_RESPORTNOTSPAM);
 
 		// Get the mail item for the new message
-		// Need 'is:anywhere' to include the spam folder
 		mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "is:anywhere subject:("+ subject +")");
 		ZAssert.assertNotNull(mail, "Make sure the mail is found");
 

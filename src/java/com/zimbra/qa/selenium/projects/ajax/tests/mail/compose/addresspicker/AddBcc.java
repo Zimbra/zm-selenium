@@ -16,9 +16,7 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.compose.addresspicker;
 
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.items.MailItem;
 import com.zimbra.qa.selenium.framework.items.RecipientItem;
 import com.zimbra.qa.selenium.framework.ui.Button;
@@ -30,63 +28,44 @@ import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormAddressPicker;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
 
-
 public class AddBcc extends PrefGroupMailByMessageTest {
 
 	public AddBcc() {
 		logger.info("New "+ AddBcc.class.getCanonicalName());
-		
-		
-		
 		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "text");
-
-		
 	}
-	
+
+
 	@Test( description = "Select a 'Bcc' address in the addresspicker",
 			groups = { "functional", "L2" })
+
 	public void AddBcc_01() throws HarnessException {
-		
-		// The account must exist before the picker is opened
-		// Log it to initialize it
-		logger.info("Will add the following account to the Bcc:" + ZimbraAccount.AccountB().EmailAddress);
-		
+
 		// Create the message data to be sent
 		MailItem mail = new MailItem();
 		mail.dToRecipients.add(new RecipientItem(ZimbraAccount.AccountA()));
 		mail.dSubject = "subject" + ConfigProperties.getUniqueString();
 		mail.dBodyText = "body" + ConfigProperties.getUniqueString();
-		
-		
-		
+
 		// Open the new mail form
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
 		ZAssert.assertNotNull(mailform, "Verify the new form opened");
-		
+
 		mailform.zFill(mail);
 
-		// Open the addresspicker by clicking To
-		
 		FormAddressPicker pickerform = (FormAddressPicker)mailform.zToolbarPressButton(Button.B_CC);
 		ZAssert.assertTrue(pickerform.zIsActive(), "Verify the address picker opened corectly");
-		
+
 		pickerform.zFillField(FormAddressPicker.Field.Search, ZimbraAccount.AccountB().EmailAddress);
 		pickerform.zToolbarPressButton(Button.B_SEARCH);
 		pickerform.zToolbarPressButton(Button.B_BCC);
 		pickerform.zSubmit();
-		
-		// Addresspicker should now be closed
 
 		// Send the message
 		mailform.zSubmit();
 
 		MailItem sent = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ mail.dSubject +")");
 		ZAssert.assertNotNull(sent, "Verify the message appears in the sent folder");
-		ZAssert.assertEquals(sent.dBccRecipients.get(0).dEmailAddress, ZimbraAccount.AccountB().EmailAddress, "Verify the 'cc' field is correct");		
-		
+		ZAssert.assertEquals(sent.dBccRecipients.get(0).dEmailAddress, ZimbraAccount.AccountB().EmailAddress, "Verify the 'cc' field is correct");
 	}
-
-	
-
-
 }

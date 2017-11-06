@@ -17,9 +17,7 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.preferences.general.login;
 
 import java.util.HashMap;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
@@ -29,25 +27,22 @@ import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.preferences.SeparateWindowChangePassword;
 import com.zimbra.qa.selenium.projects.ajax.ui.preferences.TreePreferences.TreeItem;
 
-
 public class ChangePassword extends AjaxCommonTest {
 
 	@SuppressWarnings("serial")
 	public ChangePassword() {
 		logger.info("New "+ ChangePassword.class.getCanonicalName());
-		
-		// All tests start at the login page
-		super.startingPage = app.zPagePreferences;
 
-		// Add a preference so the account is 'dirty' after changing password
+		super.startingPage = app.zPagePreferences;
 		super.startingAccountPreferences = new HashMap<String, String>() {{
-					put("zimbraPrefGroupMailBy", "message");
-				}};
-				
+			put("zimbraPrefGroupMailBy", "message");
+		}};
 	}
-	
+
+
 	@Test( description = "Change the account password",
 			groups = { "sanity", "L0" })
+
 	public void ChangePassword_01() throws HarnessException {
 
 		String password = "password"+ ConfigProperties.getUniqueString();
@@ -56,9 +51,8 @@ public class ChangePassword extends AjaxCommonTest {
 
 		// Go to "General"
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.General);
-		
-		try {
 
+		try {
 			window = (SeparateWindowChangePassword)app.zPagePreferences.zToolbarPressButton(Button.B_CHANGE_PASSWORD);
 			ZAssert.assertNotNull(window, "Verify the dialog was created");
 
@@ -68,15 +62,13 @@ public class ChangePassword extends AjaxCommonTest {
 			window.zSetOldPassword(app.zGetActiveAccount().Password);
 			window.zSetNewPassword(password);
 			window.zSetConfirmPassword(password);
-
 			window.zClickButton(Button.B_SAVE);
-			
+
 		} finally {
 			app.zPageMain.zCloseWindow(window, windowTitle, app);
 		}
 
-		// Confirm that the new password is in use
-		// by getting a new token
+		// Confirm that the new password is in use by getting a new token
 		app.zGetActiveAccount().Password = password;
 		app.zGetActiveAccount().soapSend(
 				"<AuthRequest xmlns='urn:zimbraAccount'>"
@@ -88,5 +80,4 @@ public class ChangePassword extends AjaxCommonTest {
 
 		app.zGetActiveAccount().authenticate();
 	}
-
 }

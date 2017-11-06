@@ -88,6 +88,5 @@ public class SuggestATime extends AjaxCommonTest {
 
 		ZAssert.assertNotNull(startDate, "Verify start time is not null");
 		ZAssert.assertNotNull(endDate, "Verify end time is not null");
-
 	}
 }

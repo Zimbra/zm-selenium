@@ -19,7 +19,6 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.contextmenu;
 
 import org.testng.annotations.*;
-
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -35,10 +34,10 @@ public class NewEmailMsgHdrContextMenu extends PrefGroupMailByMessageTest {
 		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "text");
 	}
 
-	
-	@Test( description = "Receive a  mail - Right Click From Msg Header and verify context menus >> New Emails", 
+
+	@Test( description = "Receive a  mail - Right Click From Msg Header and verify context menus >> New Emails",
 			groups = { "smoke", "L1" })
-	
+
 	public void NewEmailMessageHdrContextMenu_01() throws HarnessException {
 
 		// Create the message data to be sent
@@ -63,16 +62,13 @@ public class NewEmailMsgHdrContextMenu extends PrefGroupMailByMessageTest {
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 
 		// Select the message so that it shows in the reading pane
-		DisplayMail actual = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, mail.dSubject);		
+		DisplayMail actual = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, mail.dSubject);
 		ZAssert.assertEquals(actual.zGetMailProperty(com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail.Field.From), ZimbraAccount.AccountA().EmailAddress, "Verify the From matches");
 
 		app.zPageMail.zRightClickAddressBubble(Field.From);
 		app.zPageMail.NewEmailMsgHdrContextMenu();
 		SleepUtil.sleepMedium();
 		logger.info(ZimbraAccount.AccountA().EmailAddress );
-		ZAssert.assertEquals(app.zPageMail.sGetText(Locators.zToAddressBubble), ZimbraAccount.AccountA().EmailAddress , "Compose window opens with email address should present in To field");	
-
-
+		ZAssert.assertEquals(app.zPageMail.sGetText(Locators.zToAddressBubble), ZimbraAccount.AccountA().EmailAddress , "Compose window opens with email address should present in To field");
 	}
-
 }

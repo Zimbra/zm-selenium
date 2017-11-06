@@ -17,7 +17,6 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.readreceipt;
 
 import org.testng.annotations.Test;
-
 import com.zimbra.common.soap.Element;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -26,28 +25,26 @@ import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.DialogWarning;
 import com.zimbra.qa.selenium.projects.ajax.ui.DialogWarning.DialogWarningID;
 
-
 public class SendReadReceiptsPrompt extends PrefGroupMailByMessageTest {
-	
+
 	public SendReadReceiptsPrompt() {
 		logger.info("New "+ SendReadReceiptsPrompt.class.getCanonicalName());
-		
 		super.startingAccountPreferences.put("zimbraPrefMailSendReadReceipts", "prompt");
-
-
 	}
-	
+
+
 	@Test( description = "zimbraPrefMailSendReadReceipts=prompt - verify prompt, verify receipt is sent",
 			groups = { "functional", "L2" })
+
 	public void SendReadReceiptsPrompt_01() throws HarnessException {
-		
+
 		// Create a source account
 		ZimbraAccount sender = new ZimbraAccount();
 		sender.provision().authenticate();
-		
+
 		// Create the message data to be sent
 		String subject = "subject" + ConfigProperties.getUniqueString();
-		
+
 		// Send the message from AccountA to the ZCS user
 		sender.soapSend(
 					"<SendMsgRequest xmlns='urn:zimbraMail'>"
@@ -61,7 +58,6 @@ public class SendReadReceiptsPrompt extends PrefGroupMailByMessageTest {
 				+		"</m>"
 				+	"</SendMsgRequest>");
 
-
 		// Refresh current view
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 
@@ -70,14 +66,14 @@ public class SendReadReceiptsPrompt extends PrefGroupMailByMessageTest {
 
 		DialogWarning dialog = (DialogWarning)app.zPageMain.zGetWarningDialog(DialogWarningID.SendReadReceipt);
 		ZAssert.assertNotNull(dialog, "Verify the read receipt dialog is popped up");
-		
+
 		// Click YES to send
 		dialog.zClickButton(Button.B_YES);
 
 		// Make sure all read-receipts are delivered
 		Stafpostqueue q = new Stafpostqueue();
 		q.waitForPostqueue();
-		
+
 		// Verify the sender receives the read receipt
 		sender.soapSend(
 					"<SearchRequest xmlns='urn:zimbraMail' types='message'>"
@@ -85,21 +81,21 @@ public class SendReadReceiptsPrompt extends PrefGroupMailByMessageTest {
 				+	"</SearchRequest>");
 		Element[] nodes = sender.soapSelectNodes("//mail:m");
 		ZAssert.assertEquals(nodes.length, 1, "Verify the read receipt is received by the sender");
-
 	}
+
 
 	@Test( description = "zimbraPrefMailSendReadReceipts=prompt - verify prompt, verify receipt is not sent",
 			groups = { "functional", "L2" })
+
 	public void SendReadReceiptsPrompt_02() throws HarnessException {
 
-		
 		// Create a source account
 		ZimbraAccount sender = new ZimbraAccount();
 		sender.provision().authenticate();
-		
+
 		// Create the message data to be sent
 		String subject = "subject" + ConfigProperties.getUniqueString();
-		
+
 		// Send the message from AccountA to the ZCS user
 		sender.soapSend(
 					"<SendMsgRequest xmlns='urn:zimbraMail'>"
@@ -113,7 +109,6 @@ public class SendReadReceiptsPrompt extends PrefGroupMailByMessageTest {
 				+		"</m>"
 				+	"</SendMsgRequest>");
 
-
 		// Refresh current view
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 
@@ -122,14 +117,14 @@ public class SendReadReceiptsPrompt extends PrefGroupMailByMessageTest {
 
 		DialogWarning dialog = (DialogWarning)app.zPageMain.zGetWarningDialog(DialogWarningID.SendReadReceipt);
 		ZAssert.assertNotNull(dialog, "Verify the read receipt dialog is popped up");
-		
+
 		// Click NO to not send
 		dialog.zClickButton(Button.B_NO);
 
 		// Make sure all read-receipts are delivered
 		Stafpostqueue q = new Stafpostqueue();
 		q.waitForPostqueue();
-		
+
 		// Verify the sender receives the read receipt
 		sender.soapSend(
 					"<SearchRequest xmlns='urn:zimbraMail' types='message'>"
@@ -137,9 +132,5 @@ public class SendReadReceiptsPrompt extends PrefGroupMailByMessageTest {
 				+	"</SearchRequest>");
 		Element[] nodes = sender.soapSelectNodes("//mail:m");
 		ZAssert.assertEquals(nodes.length, 0, "Verify the read receipt is not received by the sender");
-
-
 	}
-
-
 }

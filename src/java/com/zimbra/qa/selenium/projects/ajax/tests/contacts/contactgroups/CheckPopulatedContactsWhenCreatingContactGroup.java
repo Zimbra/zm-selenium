@@ -34,38 +34,34 @@ public class CheckPopulatedContactsWhenCreatingContactGroup extends AjaxCommonTe
 		logger.info("New "+ CheckPopulatedContactsWhenCreatingContactGroup.class.getCanonicalName());
 		super.startingPage = app.zPageContacts;
 	}
-	
-	
+
+
 	@Bugs(ids = "65606,60652")
 	@Test( description = "Contacts are not populated while creating a new contact group",
 			groups = { "functional", "L2" })
-	
+
 	public void CheckPopulatedContactsWhenCreatingContactGroup_01() throws HarnessException {
-		
-		//-- Data
-		
+
 		String groupname = "group" + ConfigProperties.getUniqueString();
-		
+
 		// Create a contact
 		ContactItem contact = ContactItem.createContactItem(app.zGetActiveAccount());
-		
-		//-- GUI
-		
+
 		// Refresh
 		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
-		
-		// open contact group form
+
+		// Open contact group form
 		FormContactGroupNew formGroup = (FormContactGroupNew)app.zPageContacts.zToolbarPressPulldown(Button.B_NEW, Button.O_NEW_CONTACTGROUP);
-        
+
 		// Set the group name
 		formGroup.zFillField(Field.GroupName, groupname);
-			
+
 		// select contacts option
 		formGroup.zToolbarPressPulldown(Button.B_CONTACTGROUP_SEARCH_TYPE, Button.O_CONTACTGROUP_SEARCH_CONTACTS);
-		
+
 		// Get the displayed list
 		ArrayList<ContactItem> ciArray = formGroup.zListGetSearchResults();
-		
+
 		boolean found=false;
 		for (ContactItem ci: ciArray) {
 			if ( ci.getName().equals(contact.getName()) ) {
@@ -73,12 +69,12 @@ public class CheckPopulatedContactsWhenCreatingContactGroup extends AjaxCommonTe
 				break;
 			}
 		}
-        
+
 		ZAssert.assertTrue(found, "Verify contact " + contact.getName() + " populated");
 
 		// Try to close out the window
 		formGroup.zToolbarPressButton(Button.B_CLOSE);
-		
+
 		DialogWarning dialog =  new DialogWarning(DialogWarning.DialogWarningID.CancelCreateContact, this.app, ((AppAjaxClient)this.app).zPageContacts);
 
 		// Wait for the dialog to appear
@@ -86,7 +82,5 @@ public class CheckPopulatedContactsWhenCreatingContactGroup extends AjaxCommonTe
 
 		// Click No: Don't save changes
 		dialog.zClickButton(Button.B_NO);
-		
 	}
-	
 }

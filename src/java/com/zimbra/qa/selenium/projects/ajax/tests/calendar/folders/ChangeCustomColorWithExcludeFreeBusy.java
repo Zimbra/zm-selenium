@@ -72,7 +72,7 @@ public class ChangeCustomColorWithExcludeFreeBusy extends AjaxCommonTest {
 	    dialog = (DialogEditFolder) app.zTreeCalendar.zTreeItem(Action.A_RIGHTCLICK, Button.B_TREE_EDIT, calendar);
 		ZAssert.assertNotNull(dialog, "Verify the dialog opened");
 
-		//check the label on the properties for folder color & Verify the calendar is excluded from FB
+		// Check the label on the properties for folder color & Verify the calendar is excluded from FB
 		ZAssert.assertTrue(dialog.sIsChecked(Locators.zExcludeFB) ,"Verify the calendar is excluded from FB");
 		ZAssert.assertNotNull(Locators.zSetCustom, "Verify the color of the folder is set to Custom color");
 
@@ -171,7 +171,7 @@ public class ChangeCustomColorWithExcludeFreeBusy extends AjaxCommonTest {
 		dialog = (DialogEditFolder) app.zTreeCalendar.zTreeItem(Action.A_RIGHTCLICK, Button.B_TREE_EDIT, calendar);
 		ZAssert.assertNotNull(dialog, "Verify the dialog opened");
 
-		//check the label on the properties for folder color & Verify the calendar is excluded from FB
+		// Check the label on the properties for folder color & Verify the calendar is excluded from FB
 		ZAssert.assertFalse(dialog.sIsChecked(Locators.zExcludeFB) ,"Verify the calendar is excluded from FB");
 		ZAssert.assertNotNull(Locators.zSetCustom, "Verify the color of the folder is set to Custom color");
 

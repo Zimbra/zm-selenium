@@ -17,7 +17,6 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.contacts.dl.modify;
 
 import java.util.List;
-
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
@@ -33,8 +32,9 @@ public class ModifyDLDisplayNameAndDescription extends AjaxCommonTest  {
 		logger.info("New "+ ModifyDLDisplayNameAndDescription.class.getCanonicalName());
 		super.startingPage = app.zPageContacts;
 	}
-	
-	@Test( description = "Modify DL display name and description", 
+
+
+	@Test( description = "Modify DL display name and description",
 			groups = { "functional", "L2"})
 
 	public void ModifyDLDisplayNameAndDescription_01 () throws HarnessException {
@@ -63,9 +63,9 @@ public class ModifyDLDisplayNameAndDescription extends AjaxCommonTest  {
          	+			"<dlm>" + secondContactEmail + "</dlm>"
          	+		"</action>"
 			+	"</DistributionListActionRequest>");
-		
+
 		app.zTreeContacts.zTreeItem(Action.A_LEFTCLICK, dlFolder);
-		
+
 		FormContactDistributionListNew FormContactDistributionListNew = (FormContactDistributionListNew) app.zPageContacts.zListItem(Action.A_RIGHTCLICK, Button.O_EDIT_DISTRIBUTION_LIST, fullDLName);
 		SleepUtil.sleepMedium();
 		app.zPageContacts.zToolbarPressButton(Button.B_DISTRIBUTIONLIST_PROPERTIES);
@@ -74,7 +74,7 @@ public class ModifyDLDisplayNameAndDescription extends AjaxCommonTest  {
 		app.zPageContacts.sType("css=textarea[id$='_dlDesc']", description);
 		SleepUtil.sleepSmall();
 		FormContactDistributionListNew.zSubmit();
-		
+
 		// Verify DL
 		app.zGetActiveAccount().soapSend(
 				"<GetDistributionListRequest xmlns='urn:zimbraAccount' needOwners='1'>"
@@ -83,12 +83,12 @@ public class ModifyDLDisplayNameAndDescription extends AjaxCommonTest  {
 
 		String dlId = app.zGetActiveAccount().soapSelectValue("//acct:dl", "id");
 		ZAssert.assertNotNull(dlId, "Verify the DL is returned in result");
-		
+
 		String actualDLDisplayName = app.zGetActiveAccount().soapSelectValue("//acct:dl//acct:a[@n='displayName']", null);
 		String actualDLDescription = app.zGetActiveAccount().soapSelectValue("//acct:dl//acct:a[@n='description']", null);
 		ZAssert.assertEquals(actualDLDisplayName, displayName, "Verify DL display name");
 		ZAssert.assertEquals(actualDLDescription, description, "Verify DL description");
-		
+
 		// GAL Sync
 		ZimbraDomain domain = new ZimbraDomain(ZimbraAccount.Account1().EmailAddress.split("@")[1]);
 		domain.provision();

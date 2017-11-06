@@ -17,7 +17,6 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.gui.hover;
 
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
@@ -28,23 +27,20 @@ import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.TooltipContact;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail;
 
-
 public class Address extends PrefGroupMailByMessageTest {
 
-	
 	public Address() {
 		logger.info("New "+ Address.class.getCanonicalName());
-		
 	}
-	
+
+
 	@Test( description = "Hover over GAL address",
 			groups = { "functional", "L2" })
+
 	public void Address_01() throws HarnessException {
-		
-		//-- Data Setup
-		
+
 		String subject = "subject"+ ConfigProperties.getUniqueString();
-		
+
 		// AccountA (in the GAL) sends a message to the test account
 		ZimbraAccount.AccountA().soapSend(
 				"<SendMsgRequest xmlns='urn:zimbraMail'>" +
@@ -56,11 +52,7 @@ public class Address extends PrefGroupMailByMessageTest {
 						"</mp>" +
 					"</m>" +
 				"</SendMsgRequest>");
-		
 
-
-		//-- GUI steps
-		
 		// Refresh current view
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 
@@ -70,27 +62,21 @@ public class Address extends PrefGroupMailByMessageTest {
 		// Hover over the From field
 		display.zHoverOver(DisplayMail.Field.From);
 
-		
-		
-		//-- GUI Verification
-		
 		TooltipContact tooltip = new TooltipContact(app);
 		tooltip.zWaitForActive();
-		
+
 		ZAssert.assertTrue(tooltip.zIsActive(), "Verify the tooltip shows");
-		
-		
 	}
+
 
 	@Test( description = "Hover over External (non-GAL) address",
 			groups = { "functional", "L2" })
+
 	public void Address_02() throws HarnessException {
-		
-		//-- Data Setup
-		
+
 		String subject = "subject"+ ConfigProperties.getUniqueString();
 		FolderItem folder = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Inbox);
-		
+
 		// AccountA (in the GAL) sends a message to the test account
 		app.zGetActiveAccount().soapSend(
 				"<AddMsgRequest xmlns='urn:zimbraMail'>"
@@ -106,11 +92,7 @@ public class Address extends PrefGroupMailByMessageTest {
 		            	+			"</content>"
 		            	+		"</m>"
 						+	"</AddMsgRequest>");
-		
 
-
-		//-- GUI steps
-		
 		// Refresh current view
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 
@@ -120,16 +102,9 @@ public class Address extends PrefGroupMailByMessageTest {
 		// Hover over the From field
 		display.zHoverOver(DisplayMail.Field.From);
 
-		
-		
-		//-- GUI Verification
-		
 		TooltipContact tooltip = new TooltipContact(app);
 		tooltip.zWaitForActive();
-		
+
 		ZAssert.assertTrue(tooltip.zIsActive(), "Verify the tooltip shows");
-		
 	}
-
-
 }

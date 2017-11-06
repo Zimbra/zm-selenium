@@ -34,16 +34,15 @@ public class CreateTask extends AjaxCommonTest {
 
 		logger.info("New " + CreateTask.class.getCanonicalName());
 		super.startingPage = app.zPageTasks;
-
-		super.startingAccountPreferences = new HashMap<String, String>() {
-			{
-				put("zimbraPrefTasksReadingPaneLocation", "bottom");
-			}
-		};
+		super.startingAccountPreferences = new HashMap<String, String>() { {
+			put("zimbraPrefTasksReadingPaneLocation", "bottom");
+		} };
 	}
 
-	@Test( description = "Verify Toaster message on Create Task", 
+
+	@Test( description = "Verify Toaster message on Create Task",
 			groups = { "smoke", "L1"})
+
 	public void CreateTask_01() throws HarnessException {
 
 		String subject = "task" + ConfigProperties.getUniqueString();
@@ -54,12 +53,10 @@ public class CreateTask extends AjaxCommonTest {
 		// Fill out the resulting form
 		taskNew.zFillField(Field.Subject, subject);
 		app.zPageTasks.sClick("css=div[id^='ztb__TKE']  tr[id^='ztb__TKE'] td[id$='_title']:contains('Save')");
-		
+
 		// Verifying the toaster message
 		Toaster toast = app.zPageMain.zGetToaster();
 		String toastMsg = toast.zGetToastMessage();
 		ZAssert.assertStringContains(toastMsg, "Task Saved","Verify toast message: Task Saved");
-
 	}
-
 }

@@ -131,7 +131,7 @@ public class DisplayDocument extends FeatureBriefcaseTest {
 
 			text = documentBriefcaseOpen.retriveDocumentText();
 
-			// close
+			// Close
 			app.zPageBriefcase.zSelectWindow(docName);
 
 			app.zPageBriefcase.closeWindow();

@@ -17,7 +17,6 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.folders.retention;
 
 import org.testng.annotations.*;
-
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -30,13 +29,12 @@ public class CreateRetention extends PrefGroupMailByMessageTest {
 		logger.info("New " + CreateRetention.class.getCanonicalName());
 	}
 
-	@Test( description = "Save a new basic retention on a folder (Context menu -> Edit -> Retention)", 
+
+	@Test( description = "Save a new basic retention on a folder (Context menu -> Edit -> Retention)",
 			groups = { "smoke", "L1" } )
-	
+
 	public void CreateRetention_01() throws HarnessException {
 
-		//-- Data
-		
 		// Create the subfolder
 		String foldername = "folder" + ConfigProperties.getUniqueString();
 
@@ -48,9 +46,6 @@ public class CreateRetention extends PrefGroupMailByMessageTest {
 		FolderItem folder = FolderItem.importFromSOAP(app.zGetActiveAccount(), foldername);
 		ZAssert.assertNotNull(folder, "Verify the subfolder is available");
 
-		
-		//-- GUI
-		
 		// Click on Get Mail to refresh the folder list
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
@@ -60,16 +55,13 @@ public class CreateRetention extends PrefGroupMailByMessageTest {
 		// Set to 2 years
 		dialog.zRetentionEnable();
 		dialog.zRetentionSetRange(
-				DialogEditFolder.RetentionRangeType.Custom, 
-				DialogEditFolder.RetentionRangeUnits.Years, 
+				DialogEditFolder.RetentionRangeType.Custom,
+				DialogEditFolder.RetentionRangeUnits.Years,
 				2);
 
 		// Save
 		dialog.zClickButton(Button.B_OK);
-		
-		
-		//-- Verification
-		
+
 		// Verify the retention policy on the folder
 		app.zGetActiveAccount().soapSend(
 				"<GetFolderRequest xmlns='urn:zimbraMail'>"
@@ -77,13 +69,12 @@ public class CreateRetention extends PrefGroupMailByMessageTest {
 			+	"</GetFolderRequest>");
 		String lifetime = app.zGetActiveAccount().soapSelectValue("//mail:keep//mail:policy", "lifetime");
 		String type = app.zGetActiveAccount().soapSelectValue("//mail:keep//mail:policy", "type");
-		
+
 		ZAssert.assertEquals(lifetime, "732d", "Verify the policy lifetime is set to 2 years");
 		ZAssert.assertEquals(type, "user", "Verify the policy type is set to 'user'");
-		
 	}
 
-	
+
 	@DataProvider(name = "DataProviderRetentions")
 	public Object[][] DataProviderRetentions() {
 	  return new Object[][] {
@@ -93,14 +84,12 @@ public class CreateRetention extends PrefGroupMailByMessageTest {
 			    new Object[] { DialogEditFolder.RetentionRangeUnits.Years, "732d" },
 	  };
 	}
-	
-	@Test( description = "Create day, week, month, year retentions", 
+
+	@Test( description = "Create day, week, month, year retentions",
 			groups = { "functional", "L2" }, dataProvider = "DataProviderRetentions" )
-	
+
 	public void CreateRetention_02(DialogEditFolder.RetentionRangeUnits units, String expected) throws HarnessException {
 
-		//-- Data
-		
 		// Create the subfolder
 		String foldername = "folder" + ConfigProperties.getUniqueString();
 
@@ -112,9 +101,6 @@ public class CreateRetention extends PrefGroupMailByMessageTest {
 		FolderItem folder = FolderItem.importFromSOAP(app.zGetActiveAccount(), foldername);
 		ZAssert.assertNotNull(folder, "Verify the subfolder is available");
 
-		
-		//-- GUI
-		
 		// Click on Get Mail to refresh the folder list
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
@@ -124,25 +110,20 @@ public class CreateRetention extends PrefGroupMailByMessageTest {
 		// Set to 2 years
 		dialog.zRetentionEnable();
 		dialog.zRetentionSetRange(
-				DialogEditFolder.RetentionRangeType.Custom, 
-				units, 
+				DialogEditFolder.RetentionRangeType.Custom,
+				units,
 				2);
 
 		// Save
 		dialog.zClickButton(Button.B_OK);
-		
-		
-		//-- Verification
-		
+
 		// Verify the retention policy on the folder
 		app.zGetActiveAccount().soapSend(
 				"<GetFolderRequest xmlns='urn:zimbraMail'>"
 			+		"<folder l='" + folder.getId() + "'/>"
 			+	"</GetFolderRequest>");
 		String lifetime = app.zGetActiveAccount().soapSelectValue("//mail:keep//mail:policy", "lifetime");
-		
-		ZAssert.assertEquals(lifetime, expected, "Verify the policy lifetime is set correctly");
-		
-	}
 
+		ZAssert.assertEquals(lifetime, expected, "Verify the policy lifetime is set correctly");
+	}
 }

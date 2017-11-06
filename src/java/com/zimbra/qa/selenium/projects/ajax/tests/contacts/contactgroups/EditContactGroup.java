@@ -27,73 +27,76 @@ import com.zimbra.qa.selenium.projects.ajax.ui.contacts.*;
 import com.zimbra.qa.selenium.projects.ajax.ui.contacts.FormContactGroupNew.Field;
 
 public class EditContactGroup extends AjaxCommonTest  {
-	
+
 	public EditContactGroup() {
 		logger.info("New "+ EditContactGroup.class.getCanonicalName());
 		super.startingPage =  app.zPageContacts;
 	}
-	
-	
+
+
 	@Bugs(ids="97157")
-	@Test( description = "Edit a contact group by click Edit on Toolbar button", 
-		groups = { "smoke", "L0" })
-	
+	@Test( description = "Edit a contact group by click Edit on Toolbar button",
+			groups = { "smoke", "L0" })
+
 	public void EditContactGroup_01() throws HarnessException {
 
 		// A new group name
 		String newname = "edit" + ConfigProperties.getUniqueString();
+
 		// Create a contact group
 		ContactGroupItem group = ContactGroupItem.createContactGroupItem(app.zGetActiveAccount());
-		
-		//-Refresh
+
+		// Refresh
 		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 
 		// Select the contact group
 		app.zPageContacts.zListItem(Action.A_LEFTCLICK, group.getName());
 
-		//Click Edit on Toolbar button	
+		// Click Edit on Toolbar button
 		FormContactGroupNew formContactGroupNew = (FormContactGroupNew) app.zPageContacts.zToolbarPressButton(Button.B_EDIT);
 
-		// CHange the group name
+		// Change the group name
 		formContactGroupNew.zFillField(Field.GroupName, newname);
 		formContactGroupNew.zSubmit();
-		
-		//-- Verification
+
+		// Verification
 		ContactGroupItem actual = ContactGroupItem.importFromSOAP(app.zGetActiveAccount(), "#nickname:"+ newname);
 		ZAssert.assertNotNull(actual, "Verify the contact group with new name exists");
 	}
-	
+
+
 	@Bugs(ids="97157")
-	@Test( description = "Edit a contact group by click Edit Group on Context Menu ", 
-		groups = { "smoke", "L1" })
-	
+	@Test( description = "Edit a contact group by click Edit Group on Context Menu ",
+			groups = { "smoke", "L1" })
+
 	public void EditContactGroup_02() throws HarnessException {
 
 		// A new group name
 		String newname = "edit" + ConfigProperties.getUniqueString();
+
 		// Create a contact group
 		ContactGroupItem group = ContactGroupItem.createContactGroupItem(app.zGetActiveAccount());
-		
+
 		// Refresh
 		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 
-		// Right click -> Edit	
-		FormContactGroupNew formContactGroupNew = (FormContactGroupNew) app.zPageContacts.zListItem(Action.A_RIGHTCLICK, Button.B_EDIT, group.getName());        
+		// Right click -> Edit
+		FormContactGroupNew formContactGroupNew = (FormContactGroupNew) app.zPageContacts.zListItem(Action.A_RIGHTCLICK, Button.B_EDIT, group.getName());
 
-		// CHange the group name
+		// Change the group name
 		formContactGroupNew.zFillField(Field.GroupName, newname);
 		formContactGroupNew.zSubmit();
 
-		//-- Verification
+		// Verification
 		ContactGroupItem actual = ContactGroupItem.importFromSOAP(app.zGetActiveAccount(), "#nickname:"+ newname);
 		ZAssert.assertNotNull(actual, "Verify the contact group with new name exists");
-
 	}
-	
+
+
 	@Bugs(ids="97157")
-	@Test( description = "Edit a contact group by double click on the contact group", 
-		groups = { "smoke", "L1" })
-	
+	@Test( description = "Edit a contact group by double click on the contact group",
+			groups = { "smoke", "L1" })
+
 	public void EditContactGroup_03() throws HarnessException {
 
 		// A new group name
@@ -105,38 +108,39 @@ public class EditContactGroup extends AjaxCommonTest  {
 		// Refresh
 		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 
-		// Double click	
-		FormContactGroupNew formContactGroupNew = (FormContactGroupNew) app.zPageContacts.zListItem(Action.A_DOUBLECLICK, group.getName());        
+		// Double click
+		FormContactGroupNew formContactGroupNew = (FormContactGroupNew) app.zPageContacts.zListItem(Action.A_DOUBLECLICK, group.getName());
 
-		// CHange the group name
+		// Change the group name
 		formContactGroupNew.zFillField(Field.GroupName, newname);
 		formContactGroupNew.zSubmit();
 
-		//-- Verification
+		// Verification
 		ContactGroupItem actual = ContactGroupItem.importFromSOAP(app.zGetActiveAccount(), "#nickname:"+ newname);
 		ZAssert.assertNotNull(actual, "Verify the contact group with new name exists");
-
 	}
-	
-	@Test( description = "Cancel Editing a contact group by click Close", 
+
+
+	@Test( description = "Cancel Editing a contact group by click Close",
 			groups = { "functional", "L2" })
-	
+
 	public void EditContactGroup_04() throws HarnessException {
+
 		// Create a contact group
 		ContactGroupItem group = ContactGroupItem.createContactGroupItem(app.zGetActiveAccount());
-		
+
 		// Refresh
 		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 
 		// Select the contact group
 		app.zPageContacts.zListItem(Action.A_LEFTCLICK, group.getName());
 
-		//Click Edit on Toolbar button	
+		// Click Edit on Toolbar button
 		FormContactGroupNew formContactGroupNew = (FormContactGroupNew) app.zPageContacts.zToolbarPressButton(Button.B_EDIT);
 
-		// CHange the group name
+		// Change the group name
 		formContactGroupNew.zToolbarPressButton(Button.B_CLOSE);
-		//-- Verification
+		// Verification
 
 		// Verify the form closed
 		ZAssert.assertFalse(formContactGroupNew.zIsActive(), "Verify the form closed after clicking CLOSE");
@@ -144,15 +148,13 @@ public class EditContactGroup extends AjaxCommonTest  {
 		// Verify the contact still exists
 		ContactGroupItem actual = ContactGroupItem.importFromSOAP(app.zGetActiveAccount(), "#nickname:"+ group.getName());
 		ZAssert.assertNotNull(actual, "Verify the contact group with new name exists");
-
 	}
-	
-	@Test( description = "Cancel an edited contact group by click Close, then click No", 
-			groups = { "functional", "L3" })
-	
-	public void EditContactGroup_05() throws HarnessException {
 
-		//--  Data
+
+	@Test( description = "Cancel an edited contact group by click Close, then click No",
+			groups = { "functional", "L3" })
+
+	public void EditContactGroup_05() throws HarnessException {
 
 		// A new group name
 		String newname = "edit" + ConfigProperties.getUniqueString();
@@ -166,10 +168,10 @@ public class EditContactGroup extends AjaxCommonTest  {
 		// Select the contact group
 		app.zPageContacts.zListItem(Action.A_LEFTCLICK, group.getName());
 
-		//Click Edit on Toolbar button	
+		// Click Edit on Toolbar button
 		FormContactGroupNew formContactGroupNew = (FormContactGroupNew) app.zPageContacts.zToolbarPressButton(Button.B_EDIT);
 
-		// CHange the group name
+		// Change the group name
 		formContactGroupNew.zFillField(Field.GroupName, newname);
 		DialogWarning dialog = (DialogWarning) formContactGroupNew.zToolbarPressButton(Button.B_CLOSE);
 
@@ -178,8 +180,6 @@ public class EditContactGroup extends AjaxCommonTest  {
 
 		// Click No: Don't save changes
 		dialog.zClickButton(Button.B_NO);
-
-		//-- Verification
 
 		// Verify the form closed
 		ZAssert.assertFalse(formContactGroupNew.zIsActive(), "Verify the form closed after clicking CLOSE");
@@ -190,11 +190,12 @@ public class EditContactGroup extends AjaxCommonTest  {
 		actual = ContactGroupItem.importFromSOAP(app.zGetActiveAccount(), "#nickname:"+ newname);
 		ZAssert.assertNull(actual, "Verify the contact group with new name exists");
 	}
-		
+
+
 	@Bugs(ids="97157")
-	@Test( description = "Cancel an edited contact by click Close, then click Cancel", 
+	@Test( description = "Cancel an edited contact by click Close, then click Cancel",
 			groups = { "functional", "L2" })
-	
+
 	public void EditContactGroup_06() throws HarnessException {
 
 		// A new group name
@@ -203,17 +204,16 @@ public class EditContactGroup extends AjaxCommonTest  {
 		// Create a contact group
 		ContactGroupItem group = ContactGroupItem.createContactGroupItem(app.zGetActiveAccount());
 
-		//-- GUI
 		// Refresh
 		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 
 		// Select the contact group
 		app.zPageContacts.zListItem(Action.A_LEFTCLICK, group.getName());
 
-		//Click Edit on Toolbar button	
+		// Click Edit on Toolbar button
 		FormContactGroupNew formContactGroupNew = (FormContactGroupNew) app.zPageContacts.zToolbarPressButton(Button.B_EDIT);
 
-		// CHange the group name
+		// Change the group name
 		formContactGroupNew.zFillField(Field.GroupName, newname);
 		DialogWarning dialog = (DialogWarning) formContactGroupNew.zToolbarPressButton(Button.B_CLOSE);
 
@@ -226,25 +226,23 @@ public class EditContactGroup extends AjaxCommonTest  {
 		// Click Save
 		formContactGroupNew.zToolbarPressButton(Button.B_SAVE);
 
-		//-- Verification
+		// Verification
 		ContactGroupItem actual = ContactGroupItem.importFromSOAP(app.zGetActiveAccount(), "#nickname:"+ newname);
 		ZAssert.assertNotNull(actual, "Verify the contact group with new name exists");
 	}
-		
+
+
 	@Bugs(ids="97157")
-	@Test( description = "Cancel an edited contact by click Close, then click Yes", 
+	@Test( description = "Cancel an edited contact by click Close, then click Yes",
 		groups = { "functional", "L2" })
-	
+
 	public void EditContactGroup_07() throws HarnessException {
 
-		//--  Data
 		// A new group name
 		String newname = "edit" + ConfigProperties.getUniqueString();
 
 		// Create a contact group
 		ContactGroupItem group = ContactGroupItem.createContactGroupItem(app.zGetActiveAccount());
-
-		//-- GUI
 
 		// Refresh
 		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
@@ -252,10 +250,10 @@ public class EditContactGroup extends AjaxCommonTest  {
 		// Select the contact group
 		app.zPageContacts.zListItem(Action.A_LEFTCLICK, group.getName());
 
-		//Click Edit on Toolbar button	
+		// Click Edit on Toolbar button
 		FormContactGroupNew formContactGroupNew = (FormContactGroupNew) app.zPageContacts.zToolbarPressButton(Button.B_EDIT);
 
-		// CHange the group name
+		// Change the group name
 		formContactGroupNew.zFillField(Field.GroupName, newname);
 		DialogWarning dialog = (DialogWarning) formContactGroupNew.zToolbarPressButton(Button.B_CLOSE);
 
@@ -265,9 +263,8 @@ public class EditContactGroup extends AjaxCommonTest  {
 		// Click Yes: Don't save changes
 		dialog.zClickButton(Button.B_YES);
 
-		//-- Verification
+		// Verification
 		ContactGroupItem actual = ContactGroupItem.importFromSOAP(app.zGetActiveAccount(), "#nickname:"+ newname);
 		ZAssert.assertNotNull(actual, "Verify the contact group with new name exists");
-		}
-	} 
-
+	}
+}

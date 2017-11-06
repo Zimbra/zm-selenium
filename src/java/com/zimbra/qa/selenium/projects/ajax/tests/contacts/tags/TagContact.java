@@ -18,7 +18,6 @@ package com.zimbra.qa.selenium.projects.ajax.tests.contacts.tags;
 
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -26,12 +25,11 @@ import com.zimbra.qa.selenium.projects.ajax.core.ContactsPrefShowSelectionCheckb
 import com.zimbra.qa.selenium.projects.ajax.ui.DialogTag;
 
 public class TagContact extends ContactsPrefShowSelectionCheckbox {
+
 	public TagContact() {
 		logger.info("New " + TagContact.class.getCanonicalName());
-		// All tests start at the Address page
 		super.startingPage = app.zPageContacts;
 		super.startingAccountPreferences.put("zimbraPrefShowSelectionCheckbox", "FALSE");
-
 	}
 
 	@BeforeClass(groups = { "always" })
@@ -41,23 +39,21 @@ public class TagContact extends ContactsPrefShowSelectionCheckbox {
 		logger.info("TagContactBeforeClass: finish");
 	}
 
-	@Test(description = "Tag a contact, click pulldown menu Tag->New Tag", 
+
+	@Test(description = "Tag a contact, click pulldown menu Tag->New Tag",
 			groups = { "smoke", "L0"})
+
 	public void ClickPulldownMenuTagNewTag_01() throws HarnessException {
 
 		// Work around due to duplicate dialog ids
 		app.zPageMain.zRefreshMainUI();
 		app.zPageContacts.zNavigateTo();
 
-		// -- Data
-
 		// Tag Name
 		String tagName = "tag" + ConfigProperties.getUniqueString();
 
 		// Create a contact via Soap then select
 		ContactItem contact = ContactItem.createContactItem(app.zGetActiveAccount());
-
-		// -- GUI
 
 		// Refresh
 		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
@@ -65,27 +61,23 @@ public class TagContact extends ContactsPrefShowSelectionCheckbox {
 		// Select the contact
 		app.zPageContacts.zListItem(Action.A_LEFTCLICK, contact.firstName);
 
-		// click Tag Contact->New Tag
+		// Click Tag Contact->New Tag
 		DialogTag dialogTag = (DialogTag) app.zPageContacts.zToolbarPressPulldown(Button.B_TAG, Button.O_TAG_NEWTAG);
 		dialogTag.zSetTagName(tagName);
 		dialogTag.zClickButton(Button.B_OK);
 
-		// -- Verification
-
-		app.zGetActiveAccount().soapSend("<GetContactsRequest xmlns='urn:zimbraMail' >" + "<cn id='" + contact.getId()
-				+ "'/>" + "</GetContactsRequest>");
-
+		// Verification
+		app.zGetActiveAccount().soapSend("<GetContactsRequest xmlns='urn:zimbraMail' >" + "<cn id='" + contact.getId() + "'/>" + "</GetContactsRequest>");
 		String tn = app.zGetActiveAccount().soapSelectValue("//mail:cn", "tn");
 		ZAssert.assertNotNull(tn, "Verify the contact has tags");
 		ZAssert.assertStringContains(tn, tagName, "Verify the contact is tagged with the correct tag");
-
 	}
 
-	@Test(description = "Right click then click Tag Contact->New Tag", 
-			groups = { "smoke", "L1"})
-	public void ClickContextMenuTagContactNewTag_02() throws HarnessException {
 
-		// -- Data
+	@Test(description = "Right click then click Tag Contact->New Tag",
+			groups = { "smoke", "L1"})
+
+	public void ClickContextMenuTagContactNewTag_02() throws HarnessException {
 
 		// Tag Name
 		String tagName = "tag" + ConfigProperties.getUniqueString();
@@ -93,45 +85,37 @@ public class TagContact extends ContactsPrefShowSelectionCheckbox {
 		// Create a contact via Soap then select
 		ContactItem contact = ContactItem.createContactItem(app.zGetActiveAccount());
 
-		// -- GUI
-
 		// Refresh
 		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
-		SleepUtil.sleepMedium();
 
 		// Select the contact
 		app.zPageContacts.zListItem(Action.A_LEFTCLICK, contact.firstName);
 
-		// click Tag Contact->New Tag
+		// Click Tag Contact->New Tag
 		DialogTag dialogTag = (DialogTag) app.zPageContacts.zListItem(Action.A_RIGHTCLICK, Button.B_TAG,
 				Button.O_TAG_NEWTAG, contact.fileAs);
 		dialogTag.zSetTagName(tagName);
 		dialogTag.zClickButton(Button.B_OK);
 
-		// -- Verification
-
-		app.zGetActiveAccount().soapSend("<GetContactsRequest xmlns='urn:zimbraMail' >" + "<cn id='" + contact.getId()
-				+ "'/>" + "</GetContactsRequest>");
+		// Verification
+		app.zGetActiveAccount().soapSend("<GetContactsRequest xmlns='urn:zimbraMail' >" + "<cn id='" + contact.getId() + "'/>" + "</GetContactsRequest>");
 
 		String tn = app.zGetActiveAccount().soapSelectValue("//mail:cn", "tn");
 		ZAssert.assertNotNull(tn, "Verify the contact has tags");
 		ZAssert.assertStringContains(tn, tagName, "Verify the contact is tagged with the correct tag");
-
 	}
 
-	@Test(description = "Right click then click Tag Contact->a tag name", 
-			groups = { "functional", "L2"})
-	public void ClickContextMenuTagContactExistingTag_03() throws HarnessException {
 
-		// -- Data
+	@Test(description = "Right click then click Tag Contact->a tag name",
+			groups = { "functional", "L2"})
+
+	public void ClickContextMenuTagContactExistingTag_03() throws HarnessException {
 
 		// Create a tag
 		TagItem tagItem = TagItem.CreateUsingSoap(app.zGetActiveAccount());
 
 		// Create a contact via Soap then select
 		ContactItem contact = ContactItem.createContactItem(app.zGetActiveAccount());
-
-		// -- GUI
 
 		// Refresh
 		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
@@ -139,33 +123,28 @@ public class TagContact extends ContactsPrefShowSelectionCheckbox {
 		// Select the contact
 		app.zPageContacts.zListItem(Action.A_LEFTCLICK, contact.firstName);
 
-		// click Tag Contact->the tag name
+		// Click Tag Contact->the tag name
 		app.zPageContacts.zListItem(Action.A_RIGHTCLICK, Button.B_TAG, tagItem, contact.fileAs);
 
-		// -- Verification
-
-		app.zGetActiveAccount().soapSend("<GetContactsRequest xmlns='urn:zimbraMail' >" + "<cn id='" + contact.getId()
-				+ "'/>" + "</GetContactsRequest>");
+		// Verification
+		app.zGetActiveAccount().soapSend("<GetContactsRequest xmlns='urn:zimbraMail' >" + "<cn id='" + contact.getId() + "'/>" + "</GetContactsRequest>");
 
 		String t = app.zGetActiveAccount().soapSelectValue("//mail:cn", "t");
 		ZAssert.assertNotNull(t, "Verify the contact has tags");
 		ZAssert.assertStringContains(t, tagItem.getId(), "Verify the contact is tagged with the correct tag");
-
 	}
 
-	@Test(description = "click pulldown menu Tag->A tag name", 
-			groups = { "smoke", "L1"})
-	public void ClickPulldownMenuTagExistingTag_04() throws HarnessException {
 
-		// -- Data
+	@Test(description = "click pulldown menu Tag->A tag name",
+			groups = { "smoke", "L1"})
+
+	public void ClickPulldownMenuTagExistingTag_04() throws HarnessException {
 
 		// Create a tag
 		TagItem tagItem = TagItem.CreateUsingSoap(app.zGetActiveAccount());
 
 		// Create a contact via Soap then select
 		ContactItem contact = ContactItem.createContactItem(app.zGetActiveAccount());
-
-		// -- GUI
 
 		// Refresh
 		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
@@ -176,22 +155,19 @@ public class TagContact extends ContactsPrefShowSelectionCheckbox {
 		// select the tag
 		app.zPageContacts.zToolbarPressPulldown(Button.B_TAG, tagItem);
 
-		// -- Verification
-
-		app.zGetActiveAccount().soapSend("<GetContactsRequest xmlns='urn:zimbraMail' >" + "<cn id='" + contact.getId()
-				+ "'/>" + "</GetContactsRequest>");
+		// Verification
+		app.zGetActiveAccount().soapSend("<GetContactsRequest xmlns='urn:zimbraMail' >" + "<cn id='" + contact.getId() + "'/>" + "</GetContactsRequest>");
 
 		String t = app.zGetActiveAccount().soapSelectValue("//mail:cn", "t");
 		ZAssert.assertNotNull(t, "Verify the contact has tags");
 		ZAssert.assertStringContains(t, tagItem.getId(), "Verify the contact is tagged with the correct tag");
-
 	}
 
-	@Test(description = "Double tag a contact ", 
-			groups = { "functional", "L3"})
-	public void DoubleTag_05() throws HarnessException {
 
-		// -- Data
+	@Test(description = "Double tag a contact ",
+			groups = { "functional", "L3"})
+
+	public void DoubleTag_05() throws HarnessException {
 
 		// Create a tag
 		TagItem tag1 = TagItem.CreateUsingSoap(app.zGetActiveAccount());
@@ -199,8 +175,6 @@ public class TagContact extends ContactsPrefShowSelectionCheckbox {
 
 		// Create a contact via Soap then select
 		ContactItem contact = ContactItem.createContactItem(app.zGetActiveAccount());
-
-		// -- GUI
 
 		// Refresh
 		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
@@ -212,31 +186,26 @@ public class TagContact extends ContactsPrefShowSelectionCheckbox {
 		app.zPageContacts.zToolbarPressPulldown(Button.B_TAG, tag1);
 		app.zPageContacts.zToolbarPressPulldown(Button.B_TAG, tag2);
 
-		// -- Verification
-
-		app.zGetActiveAccount().soapSend("<GetContactsRequest xmlns='urn:zimbraMail' >" + "<cn id='" + contact.getId()
-				+ "'/>" + "</GetContactsRequest>");
+		// Verification
+		app.zGetActiveAccount().soapSend("<GetContactsRequest xmlns='urn:zimbraMail' >" + "<cn id='" + contact.getId() + "'/>" + "</GetContactsRequest>");
 
 		String t = app.zGetActiveAccount().soapSelectValue("//mail:cn", "t");
 		ZAssert.assertNotNull(t, "Verify the contact has tags");
 		ZAssert.assertStringContains(t, tag1.getId(), "Verify the contact is tagged with the correct tag");
 		ZAssert.assertStringContains(t, tag2.getId(), "Verify the contact is tagged with the correct tag");
-
 	}
 
-	@Test(description = "Tag a contact by dnd on an existing tag", 
-			groups = { "functional", "L2"})
-	public void DnDOnExistingTag_06() throws HarnessException {
 
-		// -- Data
+	@Test(description = "Tag a contact by dnd on an existing tag",
+			groups = { "functional", "L2"})
+
+	public void DnDOnExistingTag_06() throws HarnessException {
 
 		// Create a tag
 		TagItem tagItem = TagItem.CreateUsingSoap(app.zGetActiveAccount());
 
 		// Create a contact via Soap then select
 		ContactItem contact = ContactItem.createContactItem(app.zGetActiveAccount());
-
-		// -- GUI
 
 		// Refresh
 		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
@@ -247,15 +216,11 @@ public class TagContact extends ContactsPrefShowSelectionCheckbox {
 				"css=div[id=main_Contacts-parent-TAG] div[id=ztih__main_Contacts__TAG] td[id^=zti__main_Contacts__][id$=_textCell]:contains("
 						+ tagItem.getName() + ")");
 
-		// -- Verification
-
-		app.zGetActiveAccount().soapSend("<GetContactsRequest xmlns='urn:zimbraMail' >" + "<cn id='" + contact.getId()
-				+ "'/>" + "</GetContactsRequest>");
+		// Verification
+		app.zGetActiveAccount().soapSend("<GetContactsRequest xmlns='urn:zimbraMail' >" + "<cn id='" + contact.getId() + "'/>" + "</GetContactsRequest>");
 
 		String t = app.zGetActiveAccount().soapSelectValue("//mail:cn", "t");
 		ZAssert.assertNotNull(t, "Verify the contact has tags");
 		ZAssert.assertStringContains(t, tagItem.getId(), "Verify the contact is tagged with the correct tag");
-
 	}
-
 }

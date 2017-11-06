@@ -17,42 +17,32 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.gui.features;
 
 import java.util.List;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.items.MailItem;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
 
-
 public class ZimbraFeatureMailEnabled extends PrefGroupMailByMessageTest {
 
-	
 	public ZimbraFeatureMailEnabled() {
 		logger.info("New "+ ZimbraFeatureMailEnabled.class.getCanonicalName());
-		
-		
-		
 
 		super.startingAccountPreferences.put("zimbraFeatureMailEnabled", "TRUE");
 		super.startingAccountPreferences.put("zimbraFeatureContactsEnabled", "FALSE");
 		super.startingAccountPreferences.put("zimbraFeatureCalendarEnabled", "FALSE");
 		super.startingAccountPreferences.put("zimbraFeatureTasksEnabled", "FALSE");
 		super.startingAccountPreferences.put("zimbraFeatureBriefcasesEnabled", "FALSE");
-
-
 	}
-	
-	/**
-	 * @throws HarnessException
-	 */
+
+
 	@Test( description = "Load the mail tab with just Mail enabled",
 			groups = { "functional-skip", "L3-skip" })
+
 	public void ZimbraFeatureMailEnabled_01() throws HarnessException {
-		
+
 		// Create the message data to be sent
 		String subject = "subject" + ConfigProperties.getUniqueString();
-		
+
 		// Send the message from AccountA to the ZCS user
 		ZimbraAccount.AccountA().soapSend(
 					"<SendMsgRequest xmlns='urn:zimbraMail'>" +
@@ -66,7 +56,6 @@ public class ZimbraFeatureMailEnabled extends PrefGroupMailByMessageTest {
 					"</SendMsgRequest>");
 
 		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
-
 
 		// Refresh current view
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
@@ -85,9 +74,5 @@ public class ZimbraFeatureMailEnabled extends PrefGroupMailByMessageTest {
 			}
 		}
 		ZAssert.assertNotNull(found, "Verify the message is in the inbox");
-
-		
 	}
-
-
 }

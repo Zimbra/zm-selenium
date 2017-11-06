@@ -27,22 +27,18 @@ public class ReadMore extends PrefGroupMailByMessageTest {
 	public ReadMore() throws HarnessException {
 		logger.info("New "+ ReadMore.class.getCanonicalName());
 	}
-	
-	
+
+
 	@Test( description = "Use the 'Read More' button to scroll through the message content",
 			groups = { "functional", "L2" })
-	
+
 	public void ViewMail_01() throws HarnessException {
-		
-		//-- DATA
-		
+
 		final String subject = "ReadMore13674340693102";
 
 		final String mimeFolder = ConfigProperties.getBaseDirectory() + "/data/public/mime/email11";
 		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFolder));
 
-		//-- GUI
-		
 		// Refresh current view
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
@@ -51,10 +47,7 @@ public class ReadMore extends PrefGroupMailByMessageTest {
 
 		// Click on the "Read More" button
 		app.zPageMail.zToolbarPressButton(Button.B_READMORE);
-		
-		//-- VERIFICATION
-		
+
 		// TODO: not sure how to verify that the scrollbar has moved?
-		
 	}
 }

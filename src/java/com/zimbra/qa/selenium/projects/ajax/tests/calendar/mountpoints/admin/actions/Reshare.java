@@ -83,6 +83,5 @@ public class Reshare extends AjaxCommonTest {
 		// Select the invitation and verify Accept/decline/Tentative buttons are not present
 		DisplayMail display = (DisplayMail)app.zPageMail.zListItem(Action.A_LEFTCLICK, mailSubject);
 		ZAssert.assertFalse(display.zHasShareADButtons(), "Verify A/D buttons");
-
 	}
 }

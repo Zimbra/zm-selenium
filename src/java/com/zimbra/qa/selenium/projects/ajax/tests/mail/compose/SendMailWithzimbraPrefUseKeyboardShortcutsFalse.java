@@ -17,7 +17,6 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.compose;
 
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.Button;
@@ -31,23 +30,22 @@ public class SendMailWithzimbraPrefUseKeyboardShortcutsFalse extends PrefGroupMa
 		logger.info("New "+ SendMailWithzimbraPrefUseKeyboardShortcutsFalse.class.getCanonicalName());
 		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "text");
 		super.startingAccountPreferences.put("zimbraPrefUseKeyboardShortcuts", "FALSE");
-		
 	}
-	
+
 	@Bugs(ids = "76547")
 	@Test( description = "Send a mail using Text editor - zimbraPrefUseKeyboardShortcuts = FALSE",
 			groups = { "functional", "L2" })
-	
+
 	public void SendMailWithzimbraPrefUseKeyboardShortcutsFalse_01() throws HarnessException {
-		
+
 		// Create the message data to be sent
 		String subject = "subject" + ConfigProperties.getUniqueString();
-		
-		
+
+
 		// Open the new mail form
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
 		ZAssert.assertNotNull(mailform, "Verify the new form opened");
-		
+
 		// Fill out the form with the data
 		mailform.zFillField(FormMailNew.Field.Subject, subject);
 		mailform.zFillField(FormMailNew.Field.Body, "body" + ConfigProperties.getUniqueString());
@@ -56,13 +54,11 @@ public class SendMailWithzimbraPrefUseKeyboardShortcutsFalse extends PrefGroupMa
 		mailform.zClick(FormMailNew.Locators.zToField);
 		mailform.zWaitForBusyOverlay();
 		mailform.zKeyboard.zTypeCharacters(ZimbraAccount.AccountA().EmailAddress);
-		
+
 		// Send the message
 		mailform.zSubmit();
 
 		MailItem received = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "subject:("+ subject +")");
 		ZAssert.assertNotNull(received, "Verify the message is received by Account A");
-	
 	}
-
 }

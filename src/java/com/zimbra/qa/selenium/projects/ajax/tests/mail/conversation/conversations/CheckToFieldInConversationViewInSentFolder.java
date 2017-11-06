@@ -14,13 +14,10 @@
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.conversation.conversations;
 
 import java.util.HashMap;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.RecipientItem;
@@ -39,27 +36,22 @@ public class CheckToFieldInConversationViewInSentFolder extends AjaxCommonTest {
 	public CheckToFieldInConversationViewInSentFolder() {
 		logger.info("New "+ CheckToFieldInConversationViewInSentFolder.class.getCanonicalName());
 
-		// All tests start at the login page
 		super.startingPage = app.zPageMail;
-
-		// Make sure we are using an account with message view
 		super.startingAccountPreferences = new HashMap<String, String>() {{
 			put("zimbraPrefGroupMailBy", "conversation");
 		}};
 	}
 
-	
+
 	@Bugs(ids = "67986,64067,47288,16213")
 	@Test( description = "To field should not display blank in a conversation in Sent folder",
 			groups = { "functional", "L2" })
-	
+
 	public void CheckToFieldInConversationViewInSentFolder_01() throws HarnessException {
 
-		//-- DATA
-		
 		// Create the message data to be sent
 		String subject = "subject" + ConfigProperties.getUniqueString();
-				
+
 		ZimbraAccount.AccountA().soapSend(
 					"<SendMsgRequest xmlns='urn:zimbraMail'>" +
 						"<m>" +
@@ -70,22 +62,20 @@ public class CheckToFieldInConversationViewInSentFolder extends AjaxCommonTest {
 							"</mp>" +
 						"</m>" +
 					"</SendMsgRequest>");
-		
-		//-- GUI
-		
+
 		// Login
 		app.zPageLogin.zLogin(ZimbraAccount.AccountA());
-		
+
 		// Click in sent
 		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Sent));
-		
-		//Click on subject
+
+		// Click on subject
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
-		
-		// From the test account, check the sent folder 
+
+		// From the test account, check the sent folder
 		MailItem sent = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "in:sent subject:("+ subject +")");
 		ZAssert.assertNotNull(sent, "Verify the sent message in the sent folder");
-		
+
 		// To: should contain the original sender (AccountB)
 		ZAssert.assertEquals(sent.dToRecipients.size(), 1, "Verify 1 'To'");
 		boolean found1 = false;
@@ -97,7 +87,5 @@ public class CheckToFieldInConversationViewInSentFolder extends AjaxCommonTest {
 			}
 		}
 		ZAssert.assertTrue(found1, "Verify the correct 'To' address was found");
-		
 	}
-
 }

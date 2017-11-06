@@ -1,4 +1,4 @@
-/*
+ /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
  * Copyright (C) 2011, 2012, 2013, 2014, 2016 Synacor, Inc.
@@ -31,17 +31,17 @@ public class SpellCheckHtml extends PrefGroupMailByMessageTest {
 		logger.info("New "+ SpellCheckHtml.class.getCanonicalName());
 		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "html");
 	}
-	
-	
+
+
 	@Test( description = "Spell check an HTML message",
 			groups = { "functional", "L2" })
-	
+
 	public void SpellCheckHtml_01() throws HarnessException {
-				
+
 		// Open the new mail form
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
 		ZAssert.assertNotNull(mailform, "Verify the new form opened");
-		
+
 		// Fill out the form with the data
 		mailform.zFillField(Field.Body, "write mispeled words here");
 

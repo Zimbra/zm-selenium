@@ -28,18 +28,17 @@ import com.zimbra.qa.selenium.projects.ajax.ui.preferences.TreePreferences.TreeI
 public class AcceptShareFromPreferences extends AjaxCommonTest {
 
 	public AcceptShareFromPreferences() {
-
 		super.startingPage = app.zPagePreferences;
-			
 	}
 
-	@Test( description = "Accept shared folder from preferences/sharing", groups = { "functional", "L2" })
+
+	@Test( description = "Accept shared folder from preferences/sharing",
+			groups = { "functional", "L2" })
 
 	public void AcceptShare_01() throws HarnessException {
 
 		FolderItem inbox = FolderItem.importFromSOAP(ZimbraAccount.AccountB(), FolderItem.SystemFolder.Inbox);
 		String foldername = "folder" + ConfigProperties.getUniqueString();
-		
 
 		// Create a subfolder in Inbox
 		ZimbraAccount.AccountB().soapSend(
@@ -60,7 +59,7 @@ public class AcceptShareFromPreferences extends AjaxCommonTest {
 
 		// Navigate to preferences -> sharing
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.Sharing);
-		
+
 		// Add Share name to the search box
 		app.zPagePreferences.sType("css=div#Prefs_Pages_Sharing_shareForm div[id$='_owner'] input", ZimbraAccount.AccountB().EmailAddress);
 
@@ -70,11 +69,10 @@ public class AcceptShareFromPreferences extends AjaxCommonTest {
 		// Select Accept and Yes to accept the share
 		app.zPagePreferences.zWaitForBusyOverlay();
 		app.zPagePreferences.sClick("css=div[id='zl__SVP__rows'] a[id$='_accept']"); //Accept locator
-		SleepUtil.sleepSmall(); 
+		SleepUtil.sleepSmall();
 		app.zPagePreferences.sClick("css=td[id='ZmAcceptShare_button5_title']"); // 'Yes' button locator
-		SleepUtil.sleepMedium(); 
+		SleepUtil.sleepMedium();
 
-		//Soap verification
 		// Make sure that Active Account now has the share
 		app.zGetActiveAccount().soapSend(
 				"<GetShareInfoRequest xmlns='urn:zimbraAccount'>"
@@ -85,12 +83,7 @@ public class AcceptShareFromPreferences extends AjaxCommonTest {
 		String ownerEmail = app.zGetActiveAccount().soapSelectValue("//acct:GetShareInfoResponse//acct:share[@folderPath='/Inbox/"+ foldername +"']", "ownerEmail");
 		ZAssert.assertEquals(ownerEmail, ZimbraAccount.AccountB().EmailAddress, "Verify the owner of the shared folder");
 
-		//UI Verification
-		//Make sure Active user name is present under 'Folder shares with me that I have accepted'
-
-		
 		ZAssert.assertTrue(app.zPagePreferences.sIsElementPresent("css=div[id='Prefs_Pages_Sharing_mountedShares'] td[id$='_wi']:contains('" + app.zGetActiveAccount().EmailAddress + "')"), "Verify active user email id exists");
 		ZAssert.assertTrue(app.zPagePreferences.sIsElementPresent("css=div[id='Prefs_Pages_Sharing_mountedShares'] td[id$='_it']:contains('" + foldername  + "')"), "Verify shared folder name exists");
-
 	}
 }

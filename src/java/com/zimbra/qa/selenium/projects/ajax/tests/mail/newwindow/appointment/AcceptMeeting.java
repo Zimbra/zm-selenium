@@ -14,7 +14,6 @@
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.newwindow.appointment;
 
 import java.util.*;
@@ -31,22 +30,12 @@ public class AcceptMeeting extends AjaxCommonTest {
 	public AcceptMeeting() {
 		logger.info("New "+ AcceptMeeting.class.getCanonicalName());
 		super.startingPage = app.zPageMail;
-		super.startingAccountPreferences = new HashMap<String, String>()
-				{
-			private static final long serialVersionUID = 1L;
-			{
+		super.startingAccountPreferences = new HashMap<String, String>() {
+			private static final long serialVersionUID = 1L; {
 				put("zimbraPrefGroupMailBy", "message");
 			}
-				};
+		};
 	}
-
-	/**
-	 * ZimbraAccount.AccountA() sends a two-hour appointment to app.zGetActiveAccount()
-	 * with subject and start time
-	 * @param subject
-	 * @param start
-	 * @throws HarnessException 
-	 */
 
 	private void SendCreateAppointmentRequest(String subject, ZDate start) throws HarnessException {
 
@@ -65,27 +54,20 @@ public class AcceptMeeting extends AjaxCommonTest {
 						+				"<content>content</content>"
 						+			"</mp>"
 						+		"</m>"
-						+	"</CreateAppointmentRequest>");        
-
+						+	"</CreateAppointmentRequest>");
 	}
 
 
-	@Test(
-			description = "Accept a meeting using Accept button from  New window invitation message", 
+	@Test(description = "Accept a meeting using Accept button from  New window invitation message",
 			groups = { "functional", "L2" })
-	public void AcceptMeeting_01() throws HarnessException {
 
-		// ------------------------ Test data ------------------------------------
+	public void AcceptMeeting_01() throws HarnessException {
 
 		String apptSubject = "appointment" + ConfigProperties.getUniqueString();
 
 		Calendar now = Calendar.getInstance();
 		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
 		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
-
-
-
-		// --------------- Creating invitation (organizer) ----------------------------
 
 		ZimbraAccount.AccountA().soapSend(
 				"<CreateAppointmentRequest xmlns='urn:zimbraMail'>"
@@ -102,11 +84,7 @@ public class AcceptMeeting extends AjaxCommonTest {
 						+				"<content>content</content>"
 						+			"</mp>"
 						+		"</m>"
-						+	"</CreateAppointmentRequest>");        
-
-
-
-		// --------------- Login to attendee & accept invitation ----------------------------------------------------
+						+	"</CreateAppointmentRequest>");
 
 		// Refresh the view
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(apptSubject), "Verify message displayed in current view");
@@ -132,12 +110,6 @@ public class AcceptMeeting extends AjaxCommonTest {
 			app.zPageMain.zCloseWindow(window, windowTitle, app);
 		}
 
-
-		// ---------------- Verification at organizer & invitee side both -------------------------------------       
-
-
-		// --- Check that the organizer shows the attendee as "ACCEPT" ---
-
 		// Organizer: Search for the appointment (InvId)
 		ZimbraAccount.AccountA().soapSend(
 				"<SearchRequest xmlns='urn:zimbraMail' types='appointment' calExpandInstStart='"+ startUTC.addDays(-10).toMillis() +"' calExpandInstEnd='"+ endUTC.addDays(10).toMillis() +"'>"
@@ -155,9 +127,6 @@ public class AcceptMeeting extends AjaxCommonTest {
 		// Verify attendee status shows as ptst=AC
 		ZAssert.assertEquals(attendeeStatus, "AC", "Verify that the attendee shows as 'ACCEPTED'");
 
-
-		// --- Check that the attendee showing status as "ACCEPT" ---
-
 		// Attendee: Search for the appointment (InvId)
 		app.zGetActiveAccount().soapSend(
 				"<SearchRequest xmlns='urn:zimbraMail' types='appointment' calExpandInstStart='"+ startUTC.addDays(-10).toMillis() +"' calExpandInstEnd='"+ endUTC.addDays(10).toMillis() +"'>"
@@ -174,28 +143,19 @@ public class AcceptMeeting extends AjaxCommonTest {
 
 		// Verify attendee status shows as ptst=AC
 		ZAssert.assertEquals(myStatus, "AC", "Verify that the attendee shows as 'ACCEPTED'");
-
 	}
 
 
-	@Test(
-			description = "Accept meeting from New window - Verify organizer gets notification message", 
+	@Test(description = "Accept meeting from New window - Verify organizer gets notification message",
 			groups = { "functional", "L2" })
-	public void AcceptMeeting_02() throws HarnessException {
 
-		// ------------------------ Test data ------------------------------------
+	public void AcceptMeeting_02() throws HarnessException {
 
 		String apptSubject = "appointment" + ConfigProperties.getUniqueString();
 		Calendar now = Calendar.getInstance();
 		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
 
-
-		// --------------- Creating invitation (organizer) ----------------------------
-
 		this.SendCreateAppointmentRequest(apptSubject, startUTC);
-
-
-		// --------------- Login to attendee & accept invitation ----------------------------------------------------
 
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(apptSubject), "Verify message displayed in current view");
 
@@ -220,12 +180,6 @@ public class AcceptMeeting extends AjaxCommonTest {
 			app.zPageMain.zCloseWindow(window, windowTitle, app);
 		}
 
-
-		// ---------------- Verification at organizer & invitee side both -------------------------------------       
-
-
-		// --- Check that the organizer shows the attendee as "ACCEPT" ---
-
 		// Organizer: Search for the appointment response
 		String inboxId = FolderItem.importFromSOAP(ZimbraAccount.AccountA(), FolderItem.SystemFolder.Inbox).getId();
 
@@ -241,25 +195,19 @@ public class AcceptMeeting extends AjaxCommonTest {
 				"<GetMsgRequest  xmlns='urn:zimbraMail'>"
 						+		"<m id='"+ messageId +"'/>"
 						+	"</GetMsgRequest>");
-
 	}
 
 
-	@Test(
-			description = "Accept meeting using 'Accept -> Notify Organizer' from new window", 
+	@Test(description = "Accept meeting using 'Accept -> Notify Organizer' from new window",
 			groups = { "functional", "L2" })
-	public void AcceptMeeting_03() throws HarnessException {
 
-		// ------------------------ Test data ------------------------------------
+	public void AcceptMeeting_03() throws HarnessException {
 
 		String apptSubject = "appointment" + ConfigProperties.getUniqueString();
 
 		Calendar now = Calendar.getInstance();
 		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
 		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
-
-
-		// --------------- Creating invitation (organizer) ----------------------------
 
 		ZimbraAccount.AccountA().soapSend(
 				"<CreateAppointmentRequest xmlns='urn:zimbraMail'>"
@@ -276,11 +224,7 @@ public class AcceptMeeting extends AjaxCommonTest {
 						+				"<content>content</content>"
 						+			"</mp>"
 						+		"</m>"
-						+	"</CreateAppointmentRequest>");        
-
-
-
-		// --------------- Login to attendee & accept invitation ----------------------------------------------------
+						+	"</CreateAppointmentRequest>");
 
 		// Refresh the view
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(apptSubject), "Verify message displayed in current view");
@@ -304,12 +248,6 @@ public class AcceptMeeting extends AjaxCommonTest {
 			app.zPageMain.zCloseWindow(window, windowTitle, app);
 		}
 
-
-		// ---------------- Verification at organizer & invitee side both -------------------------------------       
-
-
-		// --- Check that the organizer shows the attendee as "ACCEPT" ---
-
 		// Organizer: Search for the appointment (InvId)
 		ZimbraAccount.AccountA().soapSend(
 				"<SearchRequest xmlns='urn:zimbraMail' types='appointment' calExpandInstStart='"+ startUTC.addDays(-10).toMillis() +"' calExpandInstEnd='"+ endUTC.addDays(10).toMillis() +"'>"
@@ -326,9 +264,6 @@ public class AcceptMeeting extends AjaxCommonTest {
 
 		// Verify attendee status shows as ptst=AC
 		ZAssert.assertEquals(attendeeStatus, "AC", "Verify that the attendee shows as 'ACCEPTED'");
-
-
-		// --- Check that the attendee showing status as "ACCEPT" ---
 
 		// Attendee: Search for the appointment (InvId)
 		app.zGetActiveAccount().soapSend(
@@ -362,26 +297,19 @@ public class AcceptMeeting extends AjaxCommonTest {
 				"<GetMsgRequest  xmlns='urn:zimbraMail'>"
 						+		"<m id='"+ messageId +"'/>"
 						+	"</GetMsgRequest>");
-
 	}
 
 
-
-	@Test(
-			description = "Accept meeting using 'Accept -> Don't Notify Organizer' from New window", 
+	@Test(description = "Accept meeting using 'Accept -> Don't Notify Organizer' from New window",
 			groups = { "functional", "L2" })
-	public void AcceptMeeting_04() throws HarnessException {
 
-		// ------------------------ Test data ------------------------------------
+	public void AcceptMeeting_04() throws HarnessException {
 
 		String apptSubject = "appointment" + ConfigProperties.getUniqueString();
 
 		Calendar now = Calendar.getInstance();
 		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
 		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
-
-
-		// --------------- Creating invitation (organizer) ----------------------------
 
 		ZimbraAccount.AccountA().soapSend(
 				"<CreateAppointmentRequest xmlns='urn:zimbraMail'>"
@@ -398,11 +326,7 @@ public class AcceptMeeting extends AjaxCommonTest {
 						+				"<content>content</content>"
 						+			"</mp>"
 						+		"</m>"
-						+	"</CreateAppointmentRequest>");        
-
-
-
-		// --------------- Login to attendee & accept invitation ----------------------------------------------------
+						+	"</CreateAppointmentRequest>");
 
 		// Refresh the view
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(apptSubject), "Verify message displayed in current view");
@@ -428,12 +352,6 @@ public class AcceptMeeting extends AjaxCommonTest {
 			app.zPageMain.zCloseWindow(window, windowTitle, app);
 		}
 
-
-		// ---------------- Verification at organizer & invitee side both -------------------------------------       
-
-
-		// --- Check that the organizer shows the attendee as "ACCEPT" ---
-
 		// Organizer: Search for the appointment (InvId)
 		ZimbraAccount.AccountA().soapSend(
 				"<SearchRequest xmlns='urn:zimbraMail' types='appointment' calExpandInstStart='"+ startUTC.addDays(-10).toMillis() +"' calExpandInstEnd='"+ endUTC.addDays(10).toMillis() +"'>"
@@ -450,9 +368,6 @@ public class AcceptMeeting extends AjaxCommonTest {
 
 		// Verify attendee status shows as ptst=NE (bug 65356)
 		ZAssert.assertEquals(attendeeStatus, "NE", "Verify that the attendee shows as 'ACCEPTED'");
-
-
-		// --- Check that the attendee showing status as "ACCEPT" ---
 
 		// Attendee: Search for the appointment (InvId)
 		app.zGetActiveAccount().soapSend(
@@ -486,6 +401,5 @@ public class AcceptMeeting extends AjaxCommonTest {
 
 		Element[] nodes = app.zGetActiveAccount().soapSelectNodes("//mail:m");
 		ZAssert.assertEquals(nodes.length, 0, "Verify appointment notification message is not present");
-
 	}
 }

@@ -202,7 +202,7 @@ public class GetCalendar extends AjaxCommonTest {
 
 		//-- Verification
 
-	    //verify appt displayed in workweek view
+	    // Verify appt displayed in workweek view
 		boolean found = false;
 		List<AppointmentItem> items = app.zPageCalendar.zListGetAppointments();
 		for (AppointmentItem item : items ) {

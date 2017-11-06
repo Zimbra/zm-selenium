@@ -19,7 +19,6 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.contextmenu;
 
 import org.testng.annotations.*;
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
@@ -36,11 +35,11 @@ public class AddToContactMsgHdrContextMenu extends PrefGroupMailByMessageTest {
 		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "text");
 	}
 
-	
+
 	@Bugs(ids = "102204")
-	@Test( description = "Receive a  mail - Right Click From Msg Header and verify context menus >> AddToContact", 
+	@Test( description = "Receive a  mail - Right Click From Msg Header and verify context menus >> AddToContact",
 			groups = { "smoke", "L1" })
-	
+
 	public void AddToContactMessageHdrContextMenu_01() throws HarnessException {
 
 		// Create the message data to be sent
@@ -66,7 +65,7 @@ public class AddToContactMsgHdrContextMenu extends PrefGroupMailByMessageTest {
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 
 		// Select the message so that it shows in the reading pane
-		DisplayMail actual = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, mail.dSubject);		
+		DisplayMail actual = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, mail.dSubject);
 		ZAssert.assertEquals(actual.zGetMailProperty(com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail.Field.From), ZimbraAccount.AccountA().EmailAddress, "Verify the From matches");
 
 		//	String OriginalEmailAddr = app.zPageMail.sGetText(Locators.zToAddressBubble);
@@ -79,14 +78,12 @@ public class AddToContactMsgHdrContextMenu extends PrefGroupMailByMessageTest {
 		app.zPageMail.sClickAt(FormContactNew.Toolbar.SAVE, "");
 		SleepUtil.sleepMedium();
 
-		// -- Data Verification
-
+		// Verification
 		app.zGetActiveAccount().soapSend(
 				"<SearchRequest xmlns='urn:zimbraMail' types='contact'>"
 						+ "<query>#firstname:" + contactFirst + "</query>"
 						+ "</SearchRequest>");
-		String contactId = app.zGetActiveAccount().soapSelectValue("//mail:cn",
-				"id");
+		String contactId = app.zGetActiveAccount().soapSelectValue("//mail:cn", "id");
 
 		ZAssert.assertNotNull(contactId,"Verify the contact is returned in the search");
 
@@ -102,7 +99,5 @@ public class AddToContactMsgHdrContextMenu extends PrefGroupMailByMessageTest {
 
 		ZAssert.assertEquals(firstname, contactFirst,"Verify the first name was saved correctly");
 		ZAssert.assertEquals(email, ZimbraAccount.AccountA().EmailAddress,"Verify the email was saved correctly");
-
 	}
-
 }

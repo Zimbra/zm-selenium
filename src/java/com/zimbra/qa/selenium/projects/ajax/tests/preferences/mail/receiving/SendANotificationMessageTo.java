@@ -2,11 +2,11 @@
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
  * Copyright (C) 2011, 2013, 2014 Zimbra, Inc.
- * 
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
@@ -17,7 +17,6 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.preferences.mail.receiving;
 
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.items.MailItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -28,18 +27,20 @@ public class SendANotificationMessageTo extends PrefGroupMailByMessageTest {
 
 	public SendANotificationMessageTo() {
 		logger.info("New "+ SendANotificationMessageTo.class.getCanonicalName());
-			
+
 		super.startingPage = app.zPagePreferences;
 		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "html");
 	}
-	
-	@Test( description = "Send a notification to other user after recieving a message", groups = { "functional", "L2" })
-	
+
+
+	@Test( description = "Send a notification to other user after recieving a message",
+			groups = { "functional", "L2" })
+
 	public void SendANotificationMessageTo_01() throws HarnessException {
-		
+
 		// Set notification send to email address
-		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.Mail);	
-		app.zPagePreferences.sType(("css=input[id='Prefs_Pages_MAIL_NOTIF_ADDRESS']") , ZimbraAccount.AccountB().EmailAddress);	
+		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.Mail);
+		app.zPagePreferences.sType(("css=input[id='Prefs_Pages_MAIL_NOTIF_ADDRESS']") , ZimbraAccount.AccountB().EmailAddress);
 		app.zPagePreferences.zToolbarPressButton(Button.B_SAVE);
 
 		// AccountA sends the message
@@ -68,9 +69,9 @@ public class SendANotificationMessageTo extends PrefGroupMailByMessageTest {
 					"</mp>" +
 				"</m>" +
 			"</SendMsgRequest>");
-		
+
 		// Get the mail item for the new message
-		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");	
+		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 
 		mail = MailItem.importFromSOAP(ZimbraAccount.AccountB(), "subject:("+ "New message received at " + app.zGetActiveAccount().EmailAddress +")");

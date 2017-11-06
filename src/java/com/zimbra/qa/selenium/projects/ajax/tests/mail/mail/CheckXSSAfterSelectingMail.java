@@ -1,5 +1,3 @@
-package com.zimbra.qa.selenium.projects.ajax.tests.mail.mail;
-
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
@@ -16,13 +14,10 @@ package com.zimbra.qa.selenium.projects.ajax.tests.mail.mail;
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
+package com.zimbra.qa.selenium.projects.ajax.tests.mail.mail;
 
 import java.io.File;
-
-
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -31,14 +26,16 @@ import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
 public class CheckXSSAfterSelectingMail extends PrefGroupMailByMessageTest {
 
 	boolean injected = false;
-		
+
 	public CheckXSSAfterSelectingMail() throws HarnessException {
 		logger.info("New "+ CheckXSSAfterSelectingMail.class.getCanonicalName());
 	}
-	
-	@Bugs( ids = "102637" )	
-	@Test( description = "Persistent XSS: unsafe content not filtered by defange", groups = { "functional", "L2" })
-	
+
+
+	@Bugs( ids = "102637" )
+	@Test( description = "Persistent XSS: unsafe content not filtered by defange",
+			groups = { "functional", "L2" })
+
 	public void CheckXSSAfterSelectingMail_01() throws HarnessException {
 
 		final String mimeFile = ConfigProperties.getBaseDirectory()	+ "/data/public/mime/XSS.txt";
@@ -48,32 +45,30 @@ public class CheckXSSAfterSelectingMail extends PrefGroupMailByMessageTest {
 
 		// Refresh current view
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
-		
+
 		// Select the message so that it shows in the reading pane
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 		SleepUtil.sleepMedium();
 		String Window = "Problem loading page";
-		
+
 		try {
-			//click on test link
-			
-			app.zPageMail.sClick("css=div>a[target='_blank']:contains('test')");	
+
+			// Click on test link
+			app.zPageMail.sClick("css=div>a[target='_blank']:contains('test')");
 			SleepUtil.sleepMedium();
 
 			String[] windowtitle = app.zPageMail.sGetAllWindowTitles().toString().split(",");
-			
+
 			//Veriy there is not xss alert dialog.
 			ZAssert.assertStringContains(windowtitle[1].toLowerCase(), Window.toLowerCase(), "it shows window javascript-blocked:alert'XSS");
-			
-			//Close Show Original window
+
+			// Close Show Original window
 			app.zPageMail.zSeparateWindowClose(Window);
 			app.zPageMail.sSelectWindow(null);
-			
+
 		} finally  {
-			app.zPageMail.zSeparateWindowClose(Window);				
+			app.zPageMail.zSeparateWindowClose(Window);
 			app.zPageMail.sSelectWindow(null);
-			//window.sSelectWindow(null);
 		}
-	
 	}
 }

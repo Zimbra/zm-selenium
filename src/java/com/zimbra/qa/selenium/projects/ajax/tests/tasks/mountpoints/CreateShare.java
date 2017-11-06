@@ -17,9 +17,7 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.tasks.mountpoints;
 
 import java.util.HashMap;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.Action;
@@ -39,16 +37,16 @@ public class CreateShare extends AjaxCommonTest {
 		logger.info("New " + CreateShare.class.getCanonicalName());
 
 		super.startingPage = app.zPageTasks;
-		super.startingAccountPreferences = new HashMap<String, String>() {
-			{
-				put("zimbraPrefTasksReadingPaneLocation", "bottom");
-				put("zimbraPrefShowSelectionCheckbox", "TRUE");
-			}
-		};
+		super.startingAccountPreferences = new HashMap<String, String>() {{
+			put("zimbraPrefTasksReadingPaneLocation", "bottom");
+			put("zimbraPrefShowSelectionCheckbox", "TRUE");
+		}};
 	}
 
-	@Test( description = "Share a Tasklist  - Viewer", 
+
+	@Test( description = "Share a Tasklist  - Viewer",
 			groups = { "smoke", "L1"})
+
 	public void CreateShare_01() throws HarnessException {
 
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
@@ -56,8 +54,7 @@ public class CreateShare extends AjaxCommonTest {
 		// Create the subTaskList
 		String name = "taskList" + ConfigProperties.getUniqueString();
 
-		app.zGetActiveAccount()
-		.soapSend(
+		app.zGetActiveAccount().soapSend(
 				"<CreateFolderRequest xmlns='urn:zimbraMail'>"
 				+ "<folder name='" + name + "' l='"
 				+ taskFolder.getId() + "'/>"
@@ -95,11 +92,12 @@ public class CreateShare extends AjaxCommonTest {
 
 		String granteeType = ZimbraAccount.AccountA().soapSelectValue("//acct:GetShareInfoResponse//acct:share[@folderPath='/Tasks/"+ name + "']", "granteeType");
 		ZAssert.assertEquals(granteeType, "usr","Verify the grantee type is 'user'");
-
 	}
 
-	@Test( description = "Share a task folder - Manager rights", 
+
+	@Test( description = "Share a task folder - Manager rights",
 			groups = { "smoke", "L1"})
+
 	public void CreateShare_02() throws HarnessException {
 
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
@@ -125,7 +123,6 @@ public class CreateShare extends AjaxCommonTest {
 
 		// Use defaults for all options
 		dialog.zSetEmailAddress(ZimbraAccount.AccountA().EmailAddress);
-
 		dialog.zSetRole(ShareRole.Manager);
 
 		// Send it
@@ -137,12 +134,12 @@ public class CreateShare extends AjaxCommonTest {
 				+ "<grantee type='usr'/>" + "<owner by='name'>"
 				+ app.zGetActiveAccount().EmailAddress + "</owner>"
 				+ "</GetShareInfoRequest>");
-		
+
 		String ownerEmail = ZimbraAccount.AccountA().soapSelectValue("//acct:GetShareInfoResponse//acct:share[@folderPath='/Tasks/"+ name + "']", "ownerEmail");
 		ZAssert.assertEquals(ownerEmail, app.zGetActiveAccount().EmailAddress, "Verify the owner of the shared folder");
 
 		String rights = ZimbraAccount.AccountA().soapSelectValue("//acct:GetShareInfoResponse//acct:share[@folderPath='/Tasks/"+ name + "']", "rights");
-		
+
 		// "Verify the rights are 'Manager'");
 		ZAssert.assertStringContains(rights, "r","Verify the rights are 'Manager'");
 		ZAssert.assertStringContains(rights, "w","Verify the rights are 'Manager'");
@@ -152,11 +149,12 @@ public class CreateShare extends AjaxCommonTest {
 
 		String granteeType = ZimbraAccount.AccountA().soapSelectValue("//acct:GetShareInfoResponse//acct:share[@folderPath='/Tasks/"+ name + "']", "granteeType");
 		ZAssert.assertEquals(granteeType, "usr","Verify the grantee type is 'user'");
-
 	}
-	
-	@Test( description = "Share a task folder - Admin rights", 
+
+
+	@Test( description = "Share a task folder - Admin rights",
 			groups = { "smoke", "L1"})
+
 	public void CreateShare_03() throws HarnessException {
 
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
@@ -182,7 +180,6 @@ public class CreateShare extends AjaxCommonTest {
 
 		// Use defaults for all options
 		dialog.zSetEmailAddress(ZimbraAccount.AccountA().EmailAddress);
-
 		dialog.zSetRole(ShareRole.Admin);
 
 		// Send it
@@ -194,12 +191,12 @@ public class CreateShare extends AjaxCommonTest {
 				+ "<grantee type='usr'/>" + "<owner by='name'>"
 				+ app.zGetActiveAccount().EmailAddress + "</owner>"
 				+ "</GetShareInfoRequest>");
-		
+
 		String ownerEmail = ZimbraAccount.AccountA().soapSelectValue("//acct:GetShareInfoResponse//acct:share[@folderPath='/Tasks/"+ name + "']", "ownerEmail");
 		ZAssert.assertEquals(ownerEmail, app.zGetActiveAccount().EmailAddress, "Verify the owner of the shared folder");
 
 		String rights = ZimbraAccount.AccountA().soapSelectValue("//acct:GetShareInfoResponse//acct:share[@folderPath='/Tasks/"+ name + "']", "rights");
-		
+
 		// "Verify the rights are 'Manager'");
 		ZAssert.assertStringContains(rights, "r","Verify the rights are 'Admin'");
 		ZAssert.assertStringContains(rights, "w","Verify the rights are 'Admin'");
@@ -210,7 +207,5 @@ public class CreateShare extends AjaxCommonTest {
 
 		String granteeType = ZimbraAccount.AccountA().soapSelectValue("//acct:GetShareInfoResponse//acct:share[@folderPath='/Tasks/"+ name + "']", "granteeType");
 		ZAssert.assertEquals(granteeType, "usr","Verify the grantee type is 'user'");
-
 	}
-
 }

@@ -35,54 +35,48 @@ public class CreateContactGroup extends AjaxCommonTest  {
 		logger.info("New "+ CreateContactGroup.class.getCanonicalName());
 		super.startingPage = app.zPageContacts;
 	}
-	
-	
-	@Test( description = "Create a basic contact group with 2 addresses using  New -> Contact Group", 
-			groups = { "sanity", "L0" })
-	
-	public void CreateContactGroup_01() throws HarnessException {			
 
-		//-- Data
-		
+
+	@Test( description = "Create a basic contact group with 2 addresses using  New -> Contact Group",
+			groups = { "sanity", "L0" })
+
+	public void CreateContactGroup_01() throws HarnessException {
+
 		String groupName = "group" + ConfigProperties.getUniqueString();
 		String member1 = "m" + ConfigProperties.getUniqueString() + "@example.com";
 		String member2 = "m" + ConfigProperties.getUniqueString() + "@example.com";
-		
-		//-- GUI
-		
+
 		// Refresh the addressbook
 		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
-		
-		// open contact group form
+
+		// Open contact group form
 		FormContactGroupNew form = (FormContactGroupNew)app.zPageContacts.zToolbarPressPulldown(Button.B_NEW, Button.O_NEW_CONTACTGROUP);
-    
-		// fill in group name and email addresses
+
+		// Fill in group name and email addresses
 		form.zFillField(Field.GroupName, groupName);
 		form.zFillField(Field.FreeFormAddress, member1);
 		form.zFillField(Field.FreeFormAddress, member2);
 		form.zSubmit();
-	   
-		//-- Data Verification
-		
+
 		app.zGetActiveAccount().soapSend(
 					"<SearchRequest xmlns='urn:zimbraMail' types='contact'>"
 				+		"<query>#nickname:"+ groupName +"</query>"
 				+	"</SearchRequest>");
 		String contactId = app.zGetActiveAccount().soapSelectValue("//mail:cn", "id");
-		
+
 		ZAssert.assertNotNull(contactId, "Verify the contact is returned in the search");
-		
+
 		app.zGetActiveAccount().soapSend(
 				"<GetContactsRequest xmlns='urn:zimbraMail'>"
 			+		"<cn id='"+ contactId +"'/>"
 			+	"</GetContactsRequest>");
-	
+
 		String nickname = app.zGetActiveAccount().soapSelectValue("//mail:cn//mail:a[@n='nickname']", null);
 		String type = app.zGetActiveAccount().soapSelectValue("//mail:cn//mail:a[@n='type']", null);
 
 		ZAssert.assertEquals(nickname, groupName, "Verify the group name is correct");
 		ZAssert.assertEquals(type, "group", "Verify the type is set to 'group'");
-		
+
 		boolean found1 = false;
 		boolean found2 = false;
 		Element[] members = app.zGetActiveAccount().soapSelectNodes("//mail:cn//mail:m");
@@ -99,24 +93,20 @@ public class CreateContactGroup extends AjaxCommonTest  {
 
 		ZAssert.assertTrue(found1, "Verify member 1 is in the group");
 		ZAssert.assertTrue(found2, "Verify member 2 is in the group");
-		
 	}
-		
-	@Test( description = "Create a basic contact group with 2 GAL addresses", 
+
+
+	@Test( description = "Create a basic contact group with 2 GAL addresses",
 			groups = { "smoke", "L0" })
-	
+
 	public void CreateContactGroup_02() throws HarnessException {
-		
-		//-- Data
-		
+
 		String groupName = "group" + ConfigProperties.getUniqueString();
-		
-		//-- GUI
-		
+
 		// Refresh the addressbook
 		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
-		
-		// open contact group form
+
+		// Open contact group form
 		FormContactGroupNew form = (FormContactGroupNew)app.zPageContacts.zToolbarPressPulldown(Button.B_NEW, Button.O_NEW_CONTACTGROUP);
 
 		// Add the group name
@@ -127,186 +117,173 @@ public class CreateContactGroup extends AjaxCommonTest  {
 		form.zFillField(Field.SearchField, ZimbraAccount.AccountA().EmailAddress);
 		form.zToolbarPressButton(Button.B_SEARCH);
 		form.zToolbarPressButton(Button.B_CONTACTGROUP_ADD_SEARCH_RESULT);
-		
+
 		form.zToolbarPressPulldown(Button.B_CONTACTGROUP_SEARCH_TYPE, Button.O_CONTACTGROUP_SEARCH_GAL);
 		form.zFillField(Field.SearchField, ZimbraAccount.AccountB().EmailAddress);
 		form.zToolbarPressButton(Button.B_SEARCH);
 		form.zToolbarPressButton(Button.B_CONTACTGROUP_ADD_SEARCH_RESULT);
-		
+
 		// Save the group
 		form.zSubmit();
-		
-		//-- Verification
-		
+
+		// Verification
 		ContactGroupItem actual = ContactGroupItem.importFromSOAP(app.zGetActiveAccount(), "#nickname:"+ groupName);
 		ZAssert.assertNotNull(actual, "Verify the contact group exists in the mailbox");
-		
+
 		ZAssert.assertContains(actual.getMemberList(), new ContactGroupItem.MemberItemGAL(ZimbraAccount.AccountA()), "Verify member 1 is in the group");
 		ZAssert.assertContains(actual.getMemberList(), new ContactGroupItem.MemberItemGAL(ZimbraAccount.AccountB()), "Verify member 1 is in the group");
-
 	}
-	
-	@Test( description = "Create a contact group with existing contacts", 
+
+
+	@Test( description = "Create a contact group with existing contacts",
 			groups = { "smoke", "L0" })
-	
+
 	public void CreateContactGroup_03() throws HarnessException {
-		
-		//-- Data
-		
+
 		// The contact group name
 		String groupName = "group" + ConfigProperties.getUniqueString();
-		
+
 		// Create two contacts
 		ContactItem contact1 = ContactItem.createContactItem(app.zGetActiveAccount());
 		ContactItem contact2 = ContactItem.createContactItem(app.zGetActiveAccount());
 
-		//-- GUI
-		
 		// Refresh
 		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
-		
+
 		//open contact group form
 		FormContactGroupNew form = (FormContactGroupNew)app.zPageContacts.zToolbarPressPulldown(Button.B_NEW, Button.O_NEW_CONTACTGROUP);
-        
-		// fill in group name
+
+		// Fill in group name
 		form.zFillField(Field.GroupName, groupName);
-	
+
 	    // Select Contact search
 		form.zToolbarPressPulldown(Button.B_CONTACTGROUP_SEARCH_TYPE, Button.O_CONTACTGROUP_SEARCH_CONTACTS);
 		form.zFillField(Field.SearchField, contact1.email);
 		form.zToolbarPressButton(Button.B_SEARCH);
 		form.zToolbarPressButton(Button.B_CONTACTGROUP_ADD_SEARCH_RESULT);
-		
+
 		form.zToolbarPressPulldown(Button.B_CONTACTGROUP_SEARCH_TYPE, Button.O_CONTACTGROUP_SEARCH_CONTACTS);
 		form.zFillField(Field.SearchField, contact2.email);
 		form.zToolbarPressButton(Button.B_SEARCH);
 		form.zToolbarPressButton(Button.B_CONTACTGROUP_ADD_SEARCH_RESULT);
-			
-		// click Save
+
+		// Click Save
 		form.zSubmit();
 
-		//-- Verification
-		
+		// Verification
 		ContactGroupItem actual = ContactGroupItem.importFromSOAP(app.zGetActiveAccount(), "#nickname:"+ groupName);
 		ZAssert.assertNotNull(actual, "Verify the contact group exists in the mailbox");
-		
-		ZAssert.assertContains(actual.getMemberList(), new ContactGroupItem.MemberItemContact(contact1), "Verify member 1 is in the group");
-		ZAssert.assertContains(actual.getMemberList(), new ContactGroupItem.MemberItemContact(contact1), "Verify member 1 is in the group");
 
+		ZAssert.assertContains(actual.getMemberList(), new ContactGroupItem.MemberItemContact(contact1), "Verify member 1 is in the group");
+		ZAssert.assertContains(actual.getMemberList(), new ContactGroupItem.MemberItemContact(contact1), "Verify member 1 is in the group");
 	}
 
-	@Test( description = "Create a contact group with GAL + existing contacts + new emails", 
-			groups = { "functional", "L2" })
-	
-	public void CreateContactGroup_04() throws HarnessException {			
 
-		//-- Data
-		
+	@Test( description = "Create a contact group with GAL + existing contacts + new emails",
+			groups = { "functional", "L2" })
+
+	public void CreateContactGroup_04() throws HarnessException {
+
 		// The contact group name
 		String groupName = "group" + ConfigProperties.getUniqueString();
-		
+
 		// Create a contact
 		ContactItem contact1 = ContactItem.createContactItem(app.zGetActiveAccount());
 
 		// A general email address
 		String member1 = "m" + ConfigProperties.getUniqueString() + "@example.com";
-		
-		//-- GUI
-		
+
 		// Refresh
 		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
-		
+
 		//open contact group form
 		FormContactGroupNew form = (FormContactGroupNew)app.zPageContacts.zToolbarPressPulldown(Button.B_NEW, Button.O_NEW_CONTACTGROUP);
-        
-		// fill in group name
+
+		// Fill in group name
 		form.zFillField(Field.GroupName, groupName);
-	
+
 	    // Select Contact search
 		form.zToolbarPressPulldown(Button.B_CONTACTGROUP_SEARCH_TYPE, Button.O_CONTACTGROUP_SEARCH_CONTACTS);
 		form.zFillField(Field.SearchField, contact1.email);
 		form.zToolbarPressButton(Button.B_SEARCH);
 		form.zToolbarPressButton(Button.B_CONTACTGROUP_ADD_SEARCH_RESULT);
-		
+
 	    // Select GAL search
 		form.zToolbarPressPulldown(Button.B_CONTACTGROUP_SEARCH_TYPE, Button.O_CONTACTGROUP_SEARCH_GAL);
 		form.zFillField(Field.SearchField, ZimbraAccount.AccountA().EmailAddress);
 		form.zToolbarPressButton(Button.B_SEARCH);
 		form.zToolbarPressButton(Button.B_CONTACTGROUP_ADD_SEARCH_RESULT);
-		
+
 		// Add the free-form email
 		form.zFillField(Field.FreeFormAddress, member1);
 
-		// click Save
-		form.zSubmit(); 
-		
-		//-- Verification
-		
+		// Click Save
+		form.zSubmit();
+
+		// Verification
 		ContactGroupItem actual = ContactGroupItem.importFromSOAP(app.zGetActiveAccount(), "#nickname:"+ groupName);
 		ZAssert.assertNotNull(actual, "Verify the contact group exists in the mailbox");
-		
+
 		ZAssert.assertContains(actual.getMemberList(), new ContactGroupItem.MemberItemContact(contact1), "Verify contact 1 is in the group");
 		ZAssert.assertContains(actual.getMemberList(), new ContactGroupItem.MemberItemGAL(ZimbraAccount.AccountA()), "Verify GAL 1 is in the group");
 		ZAssert.assertContains(actual.getMemberList(), new ContactGroupItem.MemberItemAddress(member1), "Verify GAL 1 is in the group");
-
 	}
-	
+
+
 	@Bugs(ids = "77968,70905,66623")
-	@Test( description="Create a new contact group from GAL search result", 
+	@Test( description="Create a new contact group from GAL search result",
 		groups= { "smoke", "L0" } )
-	
+
 	public void CreateContactGroupFromGALSearchResult_05() throws HarnessException{
-		
+
 		String email=ZimbraAccount.AccountA().EmailAddress.substring(0,ZimbraAccount.AccountA().EmailAddress.indexOf('@'));
-		
+
 		// Work around
 		app.zPageMain.zRefreshMainUI();
 		app.zPageContacts.zNavigateTo();
 
-		// search for a GAL
-		app.zPageSearch.zToolbarPressPulldown(Button.B_SEARCHTYPE, Button.O_SEARCHTYPE_GAL); 		
-		app.zPageSearch.zAddSearchQuery(email);	
-		app.zPageSearch.zToolbarPressButton(Button.B_SEARCH);		
+		// Search for a GAL
+		app.zPageSearch.zToolbarPressPulldown(Button.B_SEARCHTYPE, Button.O_SEARCHTYPE_GAL);
+		app.zPageSearch.zAddSearchQuery(email);
+		app.zPageSearch.zToolbarPressButton(Button.B_SEARCH);
 
-		//Right click and select New Contact Group
-		//Create contact group 
+		// Right click and select New Contact Group
+		// Create contact group
 		ContactGroupItem newGroup = new ContactGroupItem("group_" + ConfigProperties.getUniqueString().substring(8));
 
 		// Right click on the contact
 		DialogNewContactGroup dialog = (DialogNewContactGroup) app.zPageContacts.zListItem(
-				Action.A_RIGHTCLICK, 
-				Button.B_CONTACTGROUP, 
-				Button.O_NEW_CONTACTGROUP, 
+				Action.A_RIGHTCLICK,
+				Button.B_CONTACTGROUP,
+				Button.O_NEW_CONTACTGROUP,
 				email);
 
-		//fill in group name 
+		// Fill in group name
 		dialog.zEnterGroupName(newGroup.getName());
-		//Save
+		// Save
 		dialog.zClickButton(Button.B_OK);
 
-		//verify toast message 'group created'
+		// Verify toast message 'group created'
 		ZAssert.assertStringContains(app.zPageMain.zGetToaster().zGetToastMessage(), "Group Created" , "Verify toast message: '" + "Group Created" + "'");
-		
-		//Create a contact item
+
+		// Create a contact item
 		ContactItem contactItem = new ContactItem(email);
-		contactItem.email = ZimbraAccount.AccountA().EmailAddress;	 
+		contactItem.email = ZimbraAccount.AccountA().EmailAddress;
 
-		//Add the member to the group	 
+		//Add the member to the group
 		newGroup.addDListMember(contactItem);
-
 		app.zPageContacts.zNavigateTo();
-		
-		//click "Contacts" folder
-		FolderItem folder= FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Contacts);
 
+		// Click "Contacts" folder
+		FolderItem folder= FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Contacts);
 		app.zTreeContacts.zTreeItem(Action.A_LEFTCLICK, folder);
 
-		//verify group name is displayed		        
+		// Verify group name is displayed
 		List<ContactItem> contacts = app.zPageContacts.zListGetContacts();
 		boolean isFileAsEqual=false;
 		for (ContactItem ci : contacts) {
 			if (ci.fileAs.equals(ci.fileAs)) {
-				isFileAsEqual = true;	
+				isFileAsEqual = true;
 				break;
 			}
 		}
@@ -314,5 +291,4 @@ public class CreateContactGroup extends AjaxCommonTest  {
 		ContactGroupItem actual = ContactGroupItem.importFromSOAP(app.zGetActiveAccount(), "#nickname:"+ newGroup.getName());
 		ZAssert.assertNotNull(actual, "Verify the group stil exists");
 	}
-
 }

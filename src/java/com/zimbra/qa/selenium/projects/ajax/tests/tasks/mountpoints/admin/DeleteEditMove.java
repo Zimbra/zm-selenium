@@ -17,10 +17,7 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.tasks.mountpoints.admin;
 
 import java.util.HashMap;
-
 import org.testng.annotations.Test;
-
-
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.FolderMountpointItem;
 import com.zimbra.qa.selenium.framework.items.TaskItem;
@@ -37,6 +34,7 @@ public class DeleteEditMove extends AjaxCommonTest {
 	@SuppressWarnings("serial")
 	public DeleteEditMove() {
 		logger.info("New "+ DeleteEditMove.class.getCanonicalName());
+
 		super.startingPage = app.zPageTasks;
 		super.startingAccountPreferences = new HashMap<String, String>() {
 			{
@@ -45,13 +43,14 @@ public class DeleteEditMove extends AjaxCommonTest {
 				put("zimbraPrefGroupMailBy", "message");
 				put("zimbraPrefShowSelectionCheckbox", "TRUE");
 			}
-		};			
-
+		};
 	}
+
 
 	@Test( description = "Verify Delete Edit Move button are visible on mountpoint task (admin rights)",
 			groups = { "functional", "L3"})
-			public void DeleteEditMove_01() throws HarnessException {
+
+	public void DeleteEditMove_01() throws HarnessException {
 
 		String foldername = "tasklist" + ConfigProperties.getUniqueString();
 		String subject = "subject" + ConfigProperties.getUniqueString();
@@ -91,7 +90,6 @@ public class DeleteEditMove extends AjaxCommonTest {
 				"</m>" +
 		"</CreateTaskRequest>");
 
-
 		TaskItem task1 = TaskItem.importFromSOAP(ZimbraAccount.AccountA(), subject);
 		ZAssert.assertNotNull(task1, "Verify the task added");
 
@@ -117,7 +115,6 @@ public class DeleteEditMove extends AjaxCommonTest {
 
 		ZAssert.assertFalse(app.zPageTasks.zVerifyDisabled("DeleteButton"),"Verify Delete button is enable");
 		ZAssert.assertFalse(app.zPageTasks.zVerifyDisabled("EditButton"),"Verify Edit button is enable");
-		ZAssert.assertFalse(app.zPageTasks.zVerifyDisabled("MoveButton"),"Verify Move button is enable");	
+		ZAssert.assertFalse(app.zPageTasks.zVerifyDisabled("MoveButton"),"Verify Move button is enable");
 	}
-
 }

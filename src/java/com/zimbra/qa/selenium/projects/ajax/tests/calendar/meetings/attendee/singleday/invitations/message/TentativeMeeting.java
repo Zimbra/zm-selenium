@@ -121,7 +121,7 @@ public class TentativeMeeting extends AjaxCommonTest {
 		// ---------------- Verification at organizer & invitee side both -------------------------------------
 
 
-		// --- Check that the organizer shows the attendee as "TENTATIVE" ---
+		// Check that the organizer shows the attendee as "TENTATIVE" ---
 
 		// Organizer: Search for the appointment (InvId)
 		ZimbraAccount.AccountA().soapSend(
@@ -141,7 +141,7 @@ public class TentativeMeeting extends AjaxCommonTest {
 		ZAssert.assertEquals(attendeeStatus, "TE", "Verify that the attendee shows as 'TENTATIVE'");
 
 
-		// --- Check that the attendee showing status as "TENTATIVE" ---
+		// Check that the attendee showing status as "TENTATIVE" ---
 
 		// Attendee: Search for the appointment (InvId)
 		app.zGetActiveAccount().soapSend(
@@ -200,7 +200,7 @@ public class TentativeMeeting extends AjaxCommonTest {
 		// ---------------- Verification at organizer & invitee side both -------------------------------------
 
 
-		// --- Check that the organizer shows the attendee as "TENTATIVE" ---
+		// Check that the organizer shows the attendee as "TENTATIVE" ---
 
 		// Organizer: Search for the appointment response
 		String inboxId = FolderItem.importFromSOAP(ZimbraAccount.AccountA(), FolderItem.SystemFolder.Inbox).getId();
@@ -271,7 +271,7 @@ public class TentativeMeeting extends AjaxCommonTest {
 		// ---------------- Verification at organizer & invitee side both -------------------------------------
 
 
-		// --- Check that the organizer shows the attendee as "TENTATIVE" ---
+		// Check that the organizer shows the attendee as "TENTATIVE" ---
 
 		// Organizer: Search for the appointment (InvId)
 		ZimbraAccount.AccountA().soapSend(
@@ -291,7 +291,7 @@ public class TentativeMeeting extends AjaxCommonTest {
 		ZAssert.assertEquals(attendeeStatus, "TE", "Verify that the attendee shows as 'TENTATIVE'");
 
 
-		// --- Check that the attendee showing status as "TENTATIVE" ---
+		// Check that the attendee showing status as "TENTATIVE" ---
 
 		// Attendee: Search for the appointment (InvId)
 		app.zGetActiveAccount().soapSend(
@@ -396,13 +396,13 @@ public class TentativeMeeting extends AjaxCommonTest {
 			+	"</GetMsgRequest>");
 
 
-		// --- Check that the organizer sees the modified response ---
+		// Check that the organizer sees the modified response ---
 
 		String body = ZimbraAccount.AccountA().soapSelectValue("//mail:mp[@ct='text/plain']//mail:content", null);
 		ZAssert.assertStringContains(body, modifiedBody, "Verify modified body value");
 
 
-		// --- Check that the organizer shows the attendee as "TENTATIVE" ---
+		// Check that the organizer shows the attendee as "TENTATIVE" ---
 
 		String attendeeStatus = ZimbraAccount.AccountA().soapSelectValue("//mail:at[@a='"+ app.zGetActiveAccount().EmailAddress +"']", "ptst");
 
@@ -411,7 +411,7 @@ public class TentativeMeeting extends AjaxCommonTest {
 
 
 
-		// --- Check that the attendee showing status as "TENTATIVE" ---
+		// Check that the attendee showing status as "TENTATIVE" ---
 
 		// Attendee: Search for the appointment (InvId)
 		app.zGetActiveAccount().soapSend(
@@ -483,7 +483,7 @@ public class TentativeMeeting extends AjaxCommonTest {
 		// ---------------- Verification at organizer & invitee side both -------------------------------------
 
 
-		// --- Check that the organizer shows the attendee as "TENTATIVE" ---
+		// Check that the organizer shows the attendee as "TENTATIVE" ---
 
 		// Organizer: Search for the appointment (InvId)
 		ZimbraAccount.AccountA().soapSend(
@@ -503,7 +503,7 @@ public class TentativeMeeting extends AjaxCommonTest {
 		ZAssert.assertEquals(attendeeStatus, "NE", "Verify that the attendee shows as 'NEEDS ACTION'");
 
 
-		// --- Check that the attendee showing status as "TENTATIVE" ---
+		// Check that the attendee showing status as "TENTATIVE" ---
 
 		// Attendee: Search for the appointment (InvId)
 		app.zGetActiveAccount().soapSend(

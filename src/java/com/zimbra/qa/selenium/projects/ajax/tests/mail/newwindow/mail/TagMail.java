@@ -17,7 +17,6 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.newwindow.mail;
 
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
@@ -30,18 +29,18 @@ public class TagMail extends PrefGroupMailByMessageTest {
 
 	public TagMail() {
 		logger.info("New " + TagMail.class.getCanonicalName());
-
-
 	}
 
+
 	@Bugs(ids = "99519")
-	@Test( description = "Tag a message using Toolbar -> Tag -> Existing Tag - in a separate window", 
+	@Test( description = "Tag a message using Toolbar -> Tag -> Existing Tag - in a separate window",
 			groups = { "functional", "L3" })
+
 	public void TagMail_01() throws HarnessException {
 
 		// Create the tag to delete
 		String tagname = "tag" + ConfigProperties.getUniqueString();
-		
+
 		app.zGetActiveAccount().soapSend(
 					"<CreateTagRequest xmlns='urn:zimbraMail'>"
 				+	  	"<tag name='"+ tagname +"' color='1' />"
@@ -50,7 +49,6 @@ public class TagMail extends PrefGroupMailByMessageTest {
 		TagItem tag = TagItem.importFromSOAP(app.zGetActiveAccount(), tagname);
 		ZAssert.assertNotNull(tag, "Verify the tag was created");
 
-		
 		String subject = "subject" + ConfigProperties.getUniqueString();
 
 		// Add a message to the mailbox
@@ -66,7 +64,7 @@ public class TagMail extends PrefGroupMailByMessageTest {
 				+				"Content-Type: text/plain; charset=utf-8 \n"
 				+				"Content-Transfer-Encoding: 7bit\n"
 				+				"\n"
-				+				"simple text string in the body\n" 
+				+				"simple text string in the body\n"
 				+			"</content>"
 				+		"</m>"
 				+	"</AddMsgRequest>");
@@ -82,17 +80,17 @@ public class TagMail extends PrefGroupMailByMessageTest {
 
 		SeparateWindowDisplayMail window = null;
 		String windowTitle = "Zimbra: " + subject;
-		
+
 		try {
-			
+
 			// Choose Actions -> Launch in Window
 			window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
-			
+
 			window.zSetWindowTitle(windowTitle);
 			ZAssert.assertTrue(window.zIsWindowOpen(windowTitle),"Verify the window is opened and switch to it");
-			
+
 			window.zToolbarPressPulldown(Button.B_TAG, tagname);
-			
+
 		} finally {
 			app.zPageMain.zCloseWindow(window, windowTitle, app);
 		}
@@ -102,10 +100,8 @@ public class TagMail extends PrefGroupMailByMessageTest {
 						"<GetMsgRequest xmlns='urn:zimbraMail'>"
 				+			"<m id='" + mail.getId() + "'/>"
 				+		"</GetMsgRequest>");
+
 		String mailTags = app.zGetActiveAccount().soapSelectValue("//mail:m", "t");
-
 		ZAssert.assertEquals(mailTags, tag.getId(), "Verify the tag appears on the message");
-
 	}
-
 }

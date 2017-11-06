@@ -17,7 +17,6 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.newwindow.compose;
 
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
@@ -35,11 +34,11 @@ public class SaveDraftMailWithIncludeOriginalAsAttachment extends PrefGroupMailB
 		super.startingAccountPreferences.put("zimbraPrefComposeInNewWindow", "TRUE");
 	}
 
-	
+
 	@Bugs( ids = "104334")
 	@Test( description = "Reply to a mail with include original as attachment, format as HTML and save draft",
 			groups = { "functional", "L3" })
-	
+
 	public void SaveDraftMailWithIncludeOriginalAsAttachment_01() throws HarnessException {
 
 		// Send a message to the account
@@ -56,7 +55,7 @@ public class SaveDraftMailWithIncludeOriginalAsAttachment extends PrefGroupMailB
 							"</mp>" +
 						"</m>" +
 					"</SendMsgRequest>");
-		
+
 		// Refresh current view
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 
@@ -76,10 +75,10 @@ public class SaveDraftMailWithIncludeOriginalAsAttachment extends PrefGroupMailB
 			ZAssert.assertTrue(window.zIsWindowOpen(windowTitle1),"Verify the window is opened and switch to it");
 
 			window.zToolbarPressButton(Button.B_REPLY);
-			
+
 			window.zSetWindowTitle(windowTitle2);
 			ZAssert.assertTrue(window.zIsWindowOpen(windowTitle2),"Verify the window is opened and switch to it");
-			
+
 			window.zToolbarPressPulldown(Button.B_OPTIONS, Button.O_INCLUDE_ORIGINAL_AS_ATTACHMENT);
 			window.zFillField(DisplayMail.Field.Body, body);
 
@@ -88,12 +87,12 @@ public class SaveDraftMailWithIncludeOriginalAsAttachment extends PrefGroupMailB
 			// Save the message
 			window.zToolbarPressButton(Button.B_SAVE_DRAFT);
 			ZAssert.assertEquals(window.sGetCssCountNewWindow("css=div[id='zv__COMPOSE-1_attachments_div'] table tbody tr td div[class='attBubbleContainer'] div span[id^='zv__COMPOSE-1_']"), 1, "Attachemnt not duplicated");
-		
+
 		} finally {
 			app.zPageMain.zCloseWindow(window, windowTitle1, app);
 			app.zPageMain.zCloseWindow(window, windowTitle2, app);
 		}
-				
+
 		// Get the message from the server
 		MailItem draft = MailItem.importFromSOAP(app.zGetActiveAccount(), "in:drafts subject:(" + subject + ")");
 
@@ -101,11 +100,11 @@ public class SaveDraftMailWithIncludeOriginalAsAttachment extends PrefGroupMailB
 		ZAssert.assertStringContains(draft.dSubject, subject, "Verify the subject field is correct");
 	}
 
-	
+
 	@Bugs( ids = "104334")
 	@Test( description = "Reply to a mail with include original as attachment, format as text and save draft",
 			groups = { "functional", "L3" })
-	
+
 	public void SaveDraftMailWithIncludeOriginalAsAttachment_02() throws HarnessException {
 
 		// Send a message to the account
@@ -122,13 +121,13 @@ public class SaveDraftMailWithIncludeOriginalAsAttachment extends PrefGroupMailB
 							"</mp>" +
 						"</m>" +
 					"</SendMsgRequest>");
-		
+
 		// Refresh current view
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 
 		// Select the item
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
-		
+
 		SeparateWindowDisplayMail window = null;
 		String windowTitle1 = "Zimbra: " + subject;
 		String windowTitle2 = "Zimbra: Reply";
@@ -141,10 +140,10 @@ public class SaveDraftMailWithIncludeOriginalAsAttachment extends PrefGroupMailB
 			ZAssert.assertTrue(window.zIsWindowOpen(windowTitle1),"Verify the window is opened and switch to it");
 
 			window.zToolbarPressButton(Button.B_REPLY);
-			
+
 			window.zSetWindowTitle(windowTitle2);
 			ZAssert.assertTrue(window.zIsWindowOpen(windowTitle2),"Verify the window is opened and switch to it");
-			
+
 			window.zToolbarPressPulldown(Button.B_OPTIONS,Button.O_FORMAT_AS_HTML_MULTI_WINDOW);
 			window.zToolbarPressPulldown(Button.B_OPTIONS, Button.O_INCLUDE_ORIGINAL_AS_ATTACHMENT);
 			window.zFillField(DisplayMail.Field.Body, body);
@@ -152,7 +151,7 @@ public class SaveDraftMailWithIncludeOriginalAsAttachment extends PrefGroupMailB
 
 			window.zToolbarPressButton(Button.B_SAVE_DRAFT);
 			ZAssert.assertEquals(window.sGetCssCountNewWindow("css=div[id='zv__COMPOSE-1_attachments_div'] table tbody tr td div[class='attBubbleContainer'] div span[id^='zv__COMPOSE-1_']"), 1, "Attachemnt not duplicated");
-	
+
 		} finally {
 			app.zPageMain.zCloseWindow(window, windowTitle1, app);
 			app.zPageMain.zCloseWindow(window, windowTitle2, app);
@@ -161,9 +160,8 @@ public class SaveDraftMailWithIncludeOriginalAsAttachment extends PrefGroupMailB
 		// Get the message from the server
 		MailItem draft = MailItem.importFromSOAP(app.zGetActiveAccount(), "in:drafts subject:("+ subject +")");
 		ZAssert.assertNotNull(draft, "not null present");
-		
+
 		// Verify the draft data matches
 		ZAssert.assertStringContains(draft.dSubject, subject, "Verify the subject field is correct");
 	}
-	
 }

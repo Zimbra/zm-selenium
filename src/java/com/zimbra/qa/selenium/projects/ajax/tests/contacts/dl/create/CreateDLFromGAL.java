@@ -30,9 +30,9 @@ public class CreateDLFromGAL extends AjaxCommonTest  {
 		logger.info("New "+ CreateDLFromGAL.class.getCanonicalName());
 		super.startingPage = app.zPageContacts;
 	}
-	
 
-	@Test( description = "Create user DL with atleast 2 contacts from GAL", 
+
+	@Test( description = "Create user DL with atleast 2 contacts from GAL",
 			groups = { "sanity", "L0"})
 
 	public void CreateDLFromGAL_01 () throws HarnessException {
@@ -95,5 +95,4 @@ public class CreateDLFromGAL extends AjaxCommonTest  {
 		ZAssert.assertTrue(found1, "Verify member 1 is in the DL");
 		ZAssert.assertTrue(found2, "Verify member 2 is in the DL");
 	}
-
 }

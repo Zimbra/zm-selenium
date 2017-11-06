@@ -17,29 +17,26 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.mail;
 
 import java.util.List;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.items.MailItem;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
 
-
 public class PriorityMail extends PrefGroupMailByMessageTest {
 
-	
 	public PriorityMail() {
 		logger.info("New "+ PriorityMail.class.getCanonicalName());
-
 	}
-	
+
+
 	@Test( description = "Receive a high priority mail",
 			groups = { "functional", "L2" })
+
 	public void GetMail_01() throws HarnessException {
-		
+
 		// Create the message data to be sent
 		String subject = "subject" + ConfigProperties.getUniqueString();
-		
+
 		// Send the message from AccountA to the ZCS user
 		ZimbraAccount.AccountA().soapSend(
 					"<SendMsgRequest xmlns='urn:zimbraMail'>" +
@@ -51,7 +48,6 @@ public class PriorityMail extends PrefGroupMailByMessageTest {
 							"</mp>" +
 						"</m>" +
 					"</SendMsgRequest>");
-
 
 		// Refresh current view
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
@@ -71,17 +67,17 @@ public class PriorityMail extends PrefGroupMailByMessageTest {
 		}
 		ZAssert.assertNotNull(found, "Verify the message is in the inbox");
 		ZAssert.assertEquals(found.gPriority, MailItem.Priority.High, "Verify the message is high priority");
-
-		
 	}
+
 
 	@Test( description = "Receive a low priority mail",
 			groups = { "functional", "L2" })
+
 	public void GetMail_02() throws HarnessException {
-		
+
 		// Create the message data to be sent
 		String subject = "subject" + ConfigProperties.getUniqueString();
-		
+
 		ZimbraAccount.AccountA().soapSend(
 					"<SendMsgRequest xmlns='urn:zimbraMail'>" +
 						"<m f='?'>" +
@@ -110,20 +106,20 @@ public class PriorityMail extends PrefGroupMailByMessageTest {
 				break;
 			}
 		}
-		
+
 		ZAssert.assertNotNull(found, "Verify the message is in the inbox");
 		ZAssert.assertEquals(found.gPriority, MailItem.Priority.Low, "Verify the message is low priority");
-
 	}
+
 
 	@Test( description = "Receive a normal priority mail",
 			groups = { "functional", "L3" })
+
 	public void GetMail_03() throws HarnessException {
 
-		
 		// Create the message data to be sent
 		String subject = "subject" + ConfigProperties.getUniqueString();
-		
+
 		ZimbraAccount.AccountA().soapSend(
 					"<SendMsgRequest xmlns='urn:zimbraMail'>" +
 						"<m >" +
@@ -154,9 +150,5 @@ public class PriorityMail extends PrefGroupMailByMessageTest {
 		}
 		ZAssert.assertNotNull(found, "Verify the message is in the inbox");
 		ZAssert.assertEquals(found.gPriority, MailItem.Priority.Normal, "Verify the message is normal priority");
-		
 	}
-
-
-
 }

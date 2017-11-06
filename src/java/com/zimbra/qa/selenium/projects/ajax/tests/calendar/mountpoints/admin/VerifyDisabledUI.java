@@ -103,7 +103,5 @@ public class VerifyDisabledUI extends AjaxCommonTest {
 		// Verify Share Calendar menu is enabled
 		app.zTreeCalendar.zTreeItem(Action.A_RIGHTCLICK, mountpointname);
 		ZAssert.assertFalse(app.zPageCalendar.zVerifyDisabledControl(Button.O_SHARE_CALENDAR_DISABLED), "Verify 'Share Calendar' menu is enabled");
-
 	}
-
 }

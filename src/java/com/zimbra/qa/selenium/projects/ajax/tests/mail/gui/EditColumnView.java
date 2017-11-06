@@ -17,7 +17,6 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.gui;
 
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
@@ -35,16 +34,17 @@ public class EditColumnView extends AjaxCommonTest {
 		super.startingAccountPreferences.put("zimbraPrefReadingPaneLocation", "bottom");
 		super.startingAccountPreferences.put("zimbraPrefGroupMailBy", "message");
 	}
-	
+
+
 	@Bugs(ids="44785")
-	@Test( description = "Edit the columns to display in message view and verify that change is preserved in new session", 
+	@Test( description = "Edit the columns to display in message view and verify that change is preserved in new session",
 			groups = { "functional", "L2"})
 
 	public void EditColumnView_01() throws HarnessException {
-		
+
 		String subject = "subject "+ConfigProperties.getUniqueString();
 		ZimbraAccount account = app.zGetActiveAccount();
-		
+
 		// Send a message to the account
 		ZimbraAccount.AccountA().soapSend(
 				"<SendMsgRequest xmlns='urn:zimbraMail'>" +
@@ -56,48 +56,46 @@ public class EditColumnView extends AjaxCommonTest {
 						"</mp>" +
 						"</m>" +
 				"</SendMsgRequest>");
-		
+
 		// Refresh current view
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
-		
-		//Uncheck the Size filed to remove Size column
+
+		// Uncheck the Size filed to remove Size column
 		app.zPageMail.zEditColumnView(Action.A_UNCHECKBOX, Column.Size);
-		
-		//Check the presence of size column in mail list view
+
+		// Check the presence of size column in mail list view
 		boolean isPresent = app.zPageMail.zVerifyColumnPresent(Column.Size);
 		ZAssert.assertFalse(isPresent, "The " + Column.Size.name() + " column is still present after deselecting it!" );
-		
-		// Refresh current view
-		//app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
-		
-		//Uncheck the Flag filed to remove Flag column
+
+		// Uncheck the Flag filed to remove Flag column
 		app.zPageMail.zEditColumnView(Action.A_UNCHECKBOX, Column.Flag);
 
-		//Check the presence of Flag column in mail list view
+		// Check the presence of Flag column in mail list view
 		isPresent = app.zPageMail.zVerifyColumnPresent(Column.Flag);
 		ZAssert.assertFalse(isPresent, "The "  + Column.Flag.name() + " column is still present after deselecting it!" );
 
 		// Logout
 		app.zPageMain.zLogout();
-		
-		//Login again to check the changes done are preserved in the new session
+
+		// Login again to check the changes done are preserved in the new session
 		app.zPageLogin.zLogin(account);
 
 		isPresent = app.zPageMail.zVerifyColumnPresent(Column.Size);
 		ZAssert.assertFalse(isPresent, "The " + Column.Size.name() + " column is displayed in new session!" );
-		
+
 		isPresent = app.zPageMail.zVerifyColumnPresent(Column.Flag);
 		ZAssert.assertFalse(isPresent, "The " + Column.Flag.name() + " column is displayed in new session!" );
 	}
-	
-	@Test( description = "Edit the column to display in conversation view and verify that change is preserved in new session", 
+
+
+	@Test( description = "Edit the column to display in conversation view and verify that change is preserved in new session",
 			groups = { "functional", "L3"})
 
 	public void EditColumnView_02() throws HarnessException {
-		
+
 		String subject = "subject "+ConfigProperties.getUniqueString();
 		ZimbraAccount account = app.zGetActiveAccount();
-		
+
 		// Send a message to the account
 		ZimbraAccount.AccountA().soapSend(
 				"<SendMsgRequest xmlns='urn:zimbraMail'>" +
@@ -109,29 +107,29 @@ public class EditColumnView extends AjaxCommonTest {
 						"</mp>" +
 						"</m>" +
 				"</SendMsgRequest>");
-		
-		//Switch to conversation view
+
+		// Switch to conversation view
 		app.zPageMail.zToolbarPressButton(Button.B_MAIL_VIEW_BY_CONVERSATION);
-		
-		//check the Size filed to add Size column back in the view
+
+		// Check the Size filed to add Size column back in the view
 		app.zPageMail.zEditColumnView(Action.A_UNCHECKBOX, Column.Size);
 		boolean isPresent = app.zPageMail.zVerifyColumnPresent(Column.Size);
 		ZAssert.assertFalse(isPresent, "The " + Column.Size.name() + " column is still present after deselecting it!" );
-		
-		//Check the presence of Flag column in mail list view.
+
+		// Check the presence of Flag column in mail list view.
 		app.zPageMail.zEditColumnView(Action.A_CHECKBOX, Column.Folder);
 		isPresent = app.zPageMail.zVerifyColumnPresent(Column.Folder);
 		ZAssert.assertTrue(isPresent, "The " + Column.Folder.name() + " column is still not present after selecting it!" );
 
 		// Logout
 		app.zPageMain.zLogout();
-		
-		//Login again to check the changes done are preserved in the new session
+
+		// Login again to check the changes done are preserved in the new session
 		app.zPageLogin.zLogin(account);
 
 		isPresent = app.zPageMail.zVerifyColumnPresent(Column.Size);
 		ZAssert.assertFalse(isPresent, "The " + Column.Size.name() + " column is displayed in new session!" );
-		
+
 		isPresent = app.zPageMail.zVerifyColumnPresent(Column.Folder);
 		ZAssert.assertTrue(isPresent, "The " + Column.Folder.name() + " column is not displayed in new session!" );
 	}

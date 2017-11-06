@@ -17,7 +17,6 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.compose.drafts;
 
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.ui.Action;
@@ -35,13 +34,15 @@ import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew.Locators;
 public class ModifySavedDraftFormatAndContent extends PrefGroupMailByMessageTest {
 
 	public ModifySavedDraftFormatAndContent() {
-
 		logger.info("New " + OpenDraftMail.class.getCanonicalName());
 		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "text");
 	}
 
+
 	@Bugs(ids = "53373")
-	@Test( description = "Modify compose html draft mail and verify its format", groups = { "functional", "L2" })
+	@Test( description = "Modify compose html draft mail and verify its format",
+			groups = { "functional", "L2" })
+
 	public void ReopenAndCheckFormat_01() throws HarnessException {
 
 		// Create the message data to be entered while composing mail
@@ -51,7 +52,7 @@ public class ModifySavedDraftFormatAndContent extends PrefGroupMailByMessageTest
 		// Open the new mail form
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
 		ZAssert.assertNotNull(mailform, "Verify the new form opened");
-							
+
 		// Switch to html mode and verify it
 		mailform.zToolbarPressPulldown(Button.B_OPTIONS, Button.O_FORMAT_AS_HTML);
 		SleepUtil.sleepSmall();
@@ -67,7 +68,7 @@ public class ModifySavedDraftFormatAndContent extends PrefGroupMailByMessageTest
 		SleepUtil.sleepMedium();
 		mailform.zToolbarPressButton(Button.B_CLOSE);
 
-		// Go to draft		
+		// Go to draft
 		FolderItem drafts = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Drafts);
 		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, drafts);
 
@@ -75,12 +76,10 @@ public class ModifySavedDraftFormatAndContent extends PrefGroupMailByMessageTest
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 		mailform.zToolbarPressButton(Button.B_EDIT);
 		SleepUtil.sleepMedium();
-		
+
 		// verify format
 		ZAssert.assertTrue(mailform.sIsVisible(Locators.zBoldButton),"to verify mailform open in html format check that any(bold) button is present");
 		// verify body content
-		ZAssert.assertEquals(mailform.zGetHtmltBodyText(), body, "Verify mail content is equal");		
+		ZAssert.assertEquals(mailform.zGetHtmltBodyText(), body, "Verify mail content is equal");
 	}
-	
 }
-

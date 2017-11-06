@@ -1,5 +1,3 @@
-package com.zimbra.qa.selenium.projects.ajax.tests.mail.conversation.conversationview;
-
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
@@ -16,9 +14,9 @@ package com.zimbra.qa.selenium.projects.ajax.tests.mail.conversation.conversatio
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
+package com.zimbra.qa.selenium.projects.ajax.tests.mail.conversation.conversationview;
 
 import org.testng.annotations.*;
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
@@ -32,11 +30,12 @@ public class CheckScriptErrorWhenChangingView extends PrefGroupMailByConversatio
 		logger.info("New "+ CheckScriptErrorWhenChangingView.class.getCanonicalName());
 		super.startingAccountPreferences.put("zimbraPrefShowSelectionCheckbox", "TRUE");
 	}
-	
+
+
 	@Bugs( ids = "102767")
 	@Test( description = "Script Error: this._listView[this._currentViewId].getLimit is not a function while clicking in View >> Message View",
-	groups = { "functional", "L2" })
-	
+			groups = { "functional", "L2" })
+
 	public void CheckScriptErrorWhenChangingView_01() throws HarnessException {
 
 		// Create the message data to be sent
@@ -68,8 +67,5 @@ public class CheckScriptErrorWhenChangingView extends PrefGroupMailByConversatio
 		ZAssert.assertFalse(app.zPageMail.sIsElementPresent(Locators.zByConvViewConvID), "By Conversation view should not present");
 		ZAssert.assertFalse(app.zPageMail.sIsElementPresent(Locators.zByMsgViewConvID), "By Message view should not present");
 		ZAssert.assertTrue(app.zPageMail.sIsElementPresent(Locators.zByCONVORDERwConvID), "By Conv order should be present");
-
 	}
-
 }
-

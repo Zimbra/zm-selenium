@@ -35,17 +35,18 @@ public class GetAttachment extends PrefGroupMailByMessageTest {
 
 	public GetAttachment() throws HarnessException {
 		logger.info("New "+ GetAttachment.class.getCanonicalName());
-		
 	}
-		
+
+
 	@Test( description = "Receive a message with one attachment",
 			groups = { "smoke", "L1" })
+
 	public void GetAttachment_01() throws HarnessException {
-		
+
 		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email05/mime01.txt";
 		final String subject = "subject151615738";
 		final String attachmentname = "file.txt";
-		
+
 		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
 
 		// Refresh current view
@@ -56,7 +57,7 @@ public class GetAttachment extends PrefGroupMailByMessageTest {
 
 		List<AttachmentItem> items = display.zListGetAttachments();
 		ZAssert.assertEquals(items.size(), 1, "Verify one attachment is in the message");
-		
+
 		boolean found = false;
 		for ( AttachmentItem item : items ) {
 			if ( item.getAttachmentName().equals(attachmentname)) {
@@ -65,19 +66,20 @@ public class GetAttachment extends PrefGroupMailByMessageTest {
 			}
 		}
 		ZAssert.assertTrue(found, "Verify the attachment appears in the list (by file name)");
-		
 	}
+
 
 	@Test( description = "Receive a message with three attachments",
 			groups = { "functional", "L2" })
+
 	public void GetAttachment_02() throws HarnessException {
-		
+
 		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email05/mime02.txt";
 		final String subject = "subject151111738";
 		final String attachmentname1 = "file01.txt";
 		final String attachmentname2 = "file02.txt";
 		final String attachmentname3 = "file03.txt";
-		
+
 		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
 
 		// Refresh current view
@@ -88,7 +90,7 @@ public class GetAttachment extends PrefGroupMailByMessageTest {
 
 		List<AttachmentItem> items = display.zListGetAttachments();
 		ZAssert.assertEquals(items.size(), 3, "Verify three attachment in the message");
-		
+
 		// Verify each attachment by file name
 		boolean found1 = false;
 		boolean found2 = false;
@@ -110,18 +112,19 @@ public class GetAttachment extends PrefGroupMailByMessageTest {
 		ZAssert.assertTrue(found1, "Verify the attachments appear in the list (by file name)");
 		ZAssert.assertTrue(found2, "Verify the attachments appear in the list (by file name)");
 		ZAssert.assertTrue(found3, "Verify the attachments appear in the list (by file name)");
-		
 	}
+
 
 	@Bugs(ids = "60769")
 	@Test( description = "Receive a message with an inline attachment",
 			groups = { "smoke", "L1" })
+
 	public void GetAttachment_03() throws HarnessException {
-		
+
 		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug60769/Bug60769.txt";
 		final String subject = "FW: Christian cartoons [SEC=UNCLASSIFIED]";
 		final String fileName = "image001.gif";
-		
+
 		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
 
 		// Refresh current view
@@ -129,11 +132,9 @@ public class GetAttachment extends PrefGroupMailByMessageTest {
 
 		// Verify UI for attachment
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
-		
+
 		ZAssert.assertFalse(app.zPageMail.zVerifyExternalImageInfoBarExists(subject), "Verify External Image information bar is not displayed");
 		ZAssert.assertTrue(app.zPageMail.zVerifyInlineImageAttachmentExistsInMail(), "Verify inline attachment exists in the email");
-
-		//-- Verification
 
 		// From the receiving end, verify the message details
 		MailItem received = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:\""+subject+"\"");
@@ -149,7 +150,5 @@ public class GetAttachment extends PrefGroupMailByMessageTest {
 
 		Element[] nodes = app.zGetActiveAccount().soapSelectNodes("//mail:mp[@filename='" + fileName + "']");
 		ZAssert.assertEquals(nodes.length, 1, "Verify attachment exist in the forwarded mail");
-		
 	}
-
 }

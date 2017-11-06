@@ -17,7 +17,6 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.contacts.folders;
 
 import org.testng.annotations.*;
-
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.*;
@@ -28,39 +27,30 @@ public class ContextMenuAddressbooks extends AjaxCommonTest {
 
 	public ContextMenuAddressbooks() {
 		logger.info("New "+ ContextMenuAddressbooks.class.getCanonicalName());
-		
-		// All tests start at the login page
 		super.startingPage = app.zPageContacts;
-		
-		// Enable user preference checkboxes
-		
-		
 	}
-				
-	@Test(
-			description = "Cannot delete an addressbook system folder- Right click, Delete",
-			groups = { "functional", "L3"},
-			dataProvider = "DataProviderSystemFolders"
-			)
-	public void SystemFoldersDeleteButtonDisabledFromContextmenu_01(String name, SystemFolder systemFolder) throws HarnessException {
-		
-		FolderItem folder= FolderItem.importFromSOAP(app.zGetActiveAccount(), systemFolder);
-		ZAssert.assertNotNull(folder, "Verify can get the folder: "+ name);	
 
-		// Right click on Folder 
+
+	@Test (description = "Cannot delete an addressbook system folder- Right click, Delete",
+			groups = { "functional", "L3"},
+			dataProvider = "DataProviderSystemFolders")
+
+	public void SystemFoldersDeleteButtonDisabledFromContextmenu_01(String name, SystemFolder systemFolder) throws HarnessException {
+
+		FolderItem folder= FolderItem.importFromSOAP(app.zGetActiveAccount(), systemFolder);
+		ZAssert.assertNotNull(folder, "Verify can get the folder: "+ name);
+
+		// Right click on Folder
 		app.zTreeContacts.zTreeItem(Action.A_RIGHTCLICK, folder);
-		
-		
+
 		// Get the context menu
 		String divLocator = "css=div#ZmActionMenu_contacts_ADDRBOOK";
 		ZAssert.assertTrue(app.zTreeContacts.zIsVisiblePerPosition(divLocator, 0, 0), "Verify the context menu is visible");
-		
-		
+
 		// Determine if the Edit option is enabled
 		String editLocator = divLocator + " div#DELETE_WITHOUT_SHORTCUT.ZDisabled";
 		ZAssert.assertTrue(app.zTreeContacts.sIsElementPresent(editLocator), "Verify the Delete Folder option is disabled");
-
-	}	
+	}
 
 	// These folders can change color or share only (i.e. has an edit dialog)
 	@DataProvider(name = "DataProviderSystemFolders")
@@ -72,33 +62,26 @@ public class ContextMenuAddressbooks extends AjaxCommonTest {
 	    new Object[] { "Trash", SystemFolder.Trash },
 	  };
 	}
-	
-	@Test(
-			description = "Verify 'Rename folder' dialog is not present from right click context menu",
+
+
+	@Test ( description = "Verify 'Rename folder' dialog is not present from right click context menu",
 			groups = { "functional", "L3"},
-			dataProvider = "DataProviderSystemFolders"
-			)
+			dataProvider = "DataProviderSystemFolders" )
+
 	public void CannotRenameSystemFolders_02(String name, SystemFolder systemFolder) throws HarnessException {
 
 		FolderItem folder= FolderItem.importFromSOAP(app.zGetActiveAccount(), systemFolder);
-		ZAssert.assertNotNull(folder, "Verify can get the folder: "+ name);	
+		ZAssert.assertNotNull(folder, "Verify can get the folder: "+ name);
 
-		// Right click on Folder 
+		// Right click on Folder
 		app.zTreeContacts.zTreeItem(Action.A_RIGHTCLICK, folder);
-		
-		
+
 		// Get the context menu
 		String divLocator = "css=div#ZmActionMenu_contacts_ADDRBOOK";
 		ZAssert.assertTrue(app.zTreeContacts.zIsVisiblePerPosition(divLocator, 0, 0), "Verify the context menu is visible");
-		
-		
+
 		// Determine if the Edit option is enabled
 		String editLocator = divLocator + " div#RENAME_FOLDER.ZDisabled";
 		ZAssert.assertTrue(app.zTreeContacts.sIsElementPresent(editLocator), "Verify the Rename Folder option is disabled");
-
-		
-	}	
-
-
-
+	}
 }

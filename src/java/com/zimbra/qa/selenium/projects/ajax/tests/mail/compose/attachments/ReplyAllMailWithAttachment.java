@@ -36,6 +36,7 @@ public class ReplyAllMailWithAttachment extends PrefGroupMailByMessageTest {
 		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "html");
 	}
 
+
 	@Test( description = "Reply to a mail with attachment - Verify both attachment sent",
 			groups = { "sanity", "L0" })
 
@@ -45,7 +46,6 @@ public class ReplyAllMailWithAttachment extends PrefGroupMailByMessageTest {
 
 			try {
 
-				//-- DATA
 				final String mimeSubject = "subjectAttachment";
 				final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email17/mime.txt";
 				FolderItem sent = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Sent);
@@ -55,8 +55,6 @@ public class ReplyAllMailWithAttachment extends PrefGroupMailByMessageTest {
 
 				MailItem original = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ mimeSubject +")");
 				ZAssert.assertNotNull(original, "Verify the message is received correctly");
-
-				//-- GUI
 
 				// Refresh current view
 				ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(mimeSubject), "Verify message displayed in current view");
@@ -81,8 +79,6 @@ public class ReplyAllMailWithAttachment extends PrefGroupMailByMessageTest {
 
 				// Send the message
 				mailform.zSubmit();
-
-				//-- Verification
 
 				// From the receiving end, verify the message details
 				MailItem received = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "from:("+ app.zGetActiveAccount().EmailAddress +") subject:("+ mimeSubject +")");
@@ -133,14 +129,11 @@ public class ReplyAllMailWithAttachment extends PrefGroupMailByMessageTest {
 				ZAssert.assertTrue(app.zPageMail.zVerifyAttachmentExistsInMail(mimeAttachmentName), "Verify attachment exists in the email");
 
 			} finally {
-
 				app.zPageMain.zKeyboardKeyEvent(KeyEvent.VK_ESCAPE);
-
 			}
 
 		} else {
 			throw new SkipException("File upload operation is allowed only for Windows OS (Skipping upload tests on MS Edge for now due to intermittancy and major control issue), skipping this test...");
 		}
 	}
-
 }

@@ -38,11 +38,9 @@ public class ComposeMsgWithTextSignature extends AjaxCommonTest {
 	@SuppressWarnings("serial")
 	public ComposeMsgWithTextSignature() {
 		super.startingPage = app.zPageMail;
-		super.startingAccountPreferences = new HashMap<String, String>() {
-			{
+		super.startingAccountPreferences = new HashMap<String, String>() { {
 				put("zimbraPrefComposeFormat", "text");
-			}
-		};
+		} };
 	}
 
 	@BeforeMethod(groups = { "always" })
@@ -59,15 +57,16 @@ public class ComposeMsgWithTextSignature extends AjaxCommonTest {
 		logger.info("CreateSignature: finish");
 	}
 
+
 	/**
 	 * Test case : Create signature through soap Compose text message and add
 	 * text signature Send mail to self and verify signature through soap.
-	 * 
-	 * @throws HarnessException
 	 */
+
 	@Bugs(ids = "78085")
-	@Test(description = " Compose Msg with text signature and Verify signature thropugh soap", groups = {
-			"functional", "L3" })
+	@Test(description = " Compose Msg with text signature and Verify signature thropugh soap",
+			groups = { "functional", "L3" })
+
 	public void ComposeMsgWithTextSignature_01() throws HarnessException {
 
 		// Signature is created
@@ -86,15 +85,14 @@ public class ComposeMsgWithTextSignature extends AjaxCommonTest {
 
 		// Fill out the form with the data
 		mailform.zFill(mail);
-		
+
 		// Click Signature drop down and add signature
 		app.zPageMail.zToolbarPressPulldown(Button.B_OPTIONS, Button.O_ADD_SIGNATURE, this.sigName);
 
 		// Send the message
 		mailform.zSubmit();
 
-		MailItem received = MailItem.importFromSOAP(ZimbraAccount.AccountZCS(),
-				"in:inbox subject:(" + mail.dSubject + ")");
+		MailItem received = MailItem.importFromSOAP(ZimbraAccount.AccountZCS(), "in:inbox subject:(" + mail.dSubject + ")");
 
 		// Verify TO, Subject, Body, Signature
 		ZAssert.assertEquals(received.dFromRecipient.dEmailAddress, app.zGetActiveAccount().EmailAddress,
@@ -104,6 +102,5 @@ public class ComposeMsgWithTextSignature extends AjaxCommonTest {
 		ZAssert.assertEquals(received.dSubject, mail.dSubject, "Verify the subject field is correct");
 		ZAssert.assertStringContains(received.dBodyText, mail.dBodyText, "Verify the body content is correct");
 		ZAssert.assertStringContains(received.dBodyText, this.sigBody, "Verify the signature is correct");
-
 	}
 }

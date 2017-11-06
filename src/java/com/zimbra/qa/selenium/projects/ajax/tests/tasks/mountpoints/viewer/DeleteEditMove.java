@@ -17,10 +17,7 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.tasks.mountpoints.viewer;
 
 import java.util.HashMap;
-
 import org.testng.annotations.Test;
-
-
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.FolderMountpointItem;
 import com.zimbra.qa.selenium.framework.items.TaskItem;
@@ -33,40 +30,40 @@ import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 
 public class DeleteEditMove extends AjaxCommonTest {
-	
+
 	@SuppressWarnings("serial")
 	public DeleteEditMove() {
 		logger.info("New "+ DeleteEditMove.class.getCanonicalName());
+
 		super.startingPage = app.zPageTasks;
-		super.startingAccountPreferences = new HashMap<String, String>() {
-			{
-				put("zimbraPrefReadingPaneLocation", "bottom");
-				put("zimbraPrefTasksReadingPaneLocation", "bottom");
-				put("zimbraPrefGroupMailBy", "message");
-				put("zimbraPrefShowSelectionCheckbox", "TRUE");
-			}
-		};			
-		
+		super.startingAccountPreferences = new HashMap<String, String>() {{
+			put("zimbraPrefReadingPaneLocation", "bottom");
+			put("zimbraPrefTasksReadingPaneLocation", "bottom");
+			put("zimbraPrefGroupMailBy", "message");
+			put("zimbraPrefShowSelectionCheckbox", "TRUE");
+		}};
 	}
-	
+
+
 	@Test( description = "Verify Delete Edit Move button is disabled on mountpoint task (read-only share)",
 			groups = { "functional", "L2"})
+
 	public void DeleteEditMove_01() throws HarnessException {
-		
+
 		String foldername = "tasklist" + ConfigProperties.getUniqueString();
 		String subject = "subject" + ConfigProperties.getUniqueString();
 		String mountpointname = "mountpoint" + ConfigProperties.getUniqueString();
-		
+
 		FolderItem task = FolderItem.importFromSOAP(ZimbraAccount.AccountA(), FolderItem.SystemFolder.Tasks );
-		
+
 		// Create a folder to share
 		ZimbraAccount.AccountA().soapSend(
 					"<CreateFolderRequest xmlns='urn:zimbraMail'>"
 				+		"<folder name='" + foldername + "' l='" + task.getId() + "'/>"
 				+	"</CreateFolderRequest>");
-		
+
 		FolderItem folder = FolderItem.importFromSOAP(ZimbraAccount.AccountA(), foldername);
-		
+
 		// Share it
 		ZimbraAccount.AccountA().soapSend(
 					"<FolderActionRequest xmlns='urn:zimbraMail'>"
@@ -74,7 +71,7 @@ public class DeleteEditMove extends AjaxCommonTest {
 				+			"<grant d='"+ app.zGetActiveAccount().EmailAddress +"' gt='usr' perm='r'/>"
 				+		"</action>"
 				+	"</FolderActionRequest>");
-		
+
 		// Add a task to it
 		ZimbraAccount.AccountA().soapSend(
 				"<CreateTaskRequest xmlns='urn:zimbraMail'>" +
@@ -90,34 +87,31 @@ public class DeleteEditMove extends AjaxCommonTest {
 			        	"</mp>" +
 					"</m>" +
 				"</CreateTaskRequest>");
-		
-		
+
 		TaskItem task1 = TaskItem.importFromSOAP(ZimbraAccount.AccountA(), subject);
 		ZAssert.assertNotNull(task1, "Verify the task added");
-		
+
 		// Mount it
 		app.zGetActiveAccount().soapSend(
 					"<CreateMountpointRequest xmlns='urn:zimbraMail'>"
 				+		"<link l='1' name='"+ mountpointname +"' view='task' rid='"+ folder.getId() +"' zid='"+ ZimbraAccount.AccountA().ZimbraId +"'/>"
 				+	"</CreateMountpointRequest>");
-		
+
 		FolderMountpointItem mountpoint = FolderMountpointItem.importFromSOAP(app.zGetActiveAccount(), mountpointname);
 
 		// Refresh the tasks view
 		app.zPageTasks.zToolbarPressButton(Button.B_REFRESH);
 		app.zTreeTasks.zTreeItem(Action.A_LEFTCLICK, task);
-		
+
 		// Click on the mountpoint
 		app.zTreeTasks.zTreeItem(Action.A_LEFTCLICK, mountpoint);
 
 		// Select the item
 		app.zPageTasks.zListItem(Action.A_LEFTCLICK, subject);
-		
+
 		// Verify delete,edit,move buttons are disabled
 		ZAssert.assertTrue(app.zPageTasks.zVerifyDisabled("DeleteButton"),"Verify Delete button is disable");
 		ZAssert.assertTrue(app.zPageTasks.zVerifyDisabled("EditButton"),"Verify Edit button is disable");
-		ZAssert.assertTrue(app.zPageTasks.zVerifyDisabled("MoveButton"),"Verify Move button is disable");	
-
+		ZAssert.assertTrue(app.zPageTasks.zVerifyDisabled("MoveButton"),"Verify Move button is disable");
 	}
-
 }

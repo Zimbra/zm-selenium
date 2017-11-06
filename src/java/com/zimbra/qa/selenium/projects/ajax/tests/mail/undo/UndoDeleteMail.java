@@ -61,7 +61,6 @@ public class UndoDeleteMail extends PrefGroupMailByMessageTest {
 		MailItem message = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +") is:anywhere");
 		ZAssert.assertNotNull(message, "Verify the message was created");
 
-
 		// Refresh current view
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 

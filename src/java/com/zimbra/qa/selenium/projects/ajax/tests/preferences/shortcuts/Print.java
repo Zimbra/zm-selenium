@@ -30,9 +30,9 @@ public class Print extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Print the shortcuts preference page", 
+	@Test( description = "Print the shortcuts preference page",
 			groups = { "functional", "L3" } )
-	
+
 	public void Print_01() throws HarnessException {
 
 		// Navigate to preferences -> notifications
@@ -43,12 +43,12 @@ public class Print extends AjaxCommonTest {
 		if ( !app.zPagePreferences.sIsElementPresent(locator) ) {
 			throw new HarnessException("Print button does not exist");
 		}
-		
+
 		String windowTitle = "selenium_blank";
 		SeparateWindow window = new SeparateWindow(app);
-		
+
 		try {
-				
+
 			// Click Print, which opens a separate window
 			app.zTreePreferences.sClick(locator);
 
@@ -58,6 +58,5 @@ public class Print extends AjaxCommonTest {
 		} finally {
 			app.zPageMain.zCloseWindow(window, windowTitle, app);
 		}
-
 	}
 }

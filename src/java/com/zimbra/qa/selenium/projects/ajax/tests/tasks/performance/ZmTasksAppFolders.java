@@ -1,4 +1,4 @@
-/*
+	/*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
  * Copyright (C) 2013, 2014, 2015, 2016 Synacor, Inc.
@@ -17,7 +17,6 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.tasks.performance;
 
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -28,15 +27,13 @@ public class ZmTasksAppFolders extends AjaxCommonTest {
 
 	public ZmTasksAppFolders() {
 		logger.info("New "+ ZmTasksAppFolders.class.getCanonicalName());
-
-
 		super.startingPage = app.zPageMail;
-		
-
 	}
+
 
 	@Test( description = "Measure the time to load the tasks app, 1 task list",
 			groups = { "performance", "deprecated"})
+
 	public void ZmTasksAppFolders_01() throws HarnessException {
 
 		// Create a folder
@@ -46,27 +43,20 @@ public class ZmTasksAppFolders extends AjaxCommonTest {
 					"<folder name='task"+ ConfigProperties.getUniqueString() + "' view='task' l='"+ root.getId() +"'/>" +
 				"</CreateFolderRequest>");
 
-
 		// Sync the changes to the client (notification block)
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
-		
 		PerfToken token = PerfMetrics.startTimestamp(PerfKey.ZmTasksAppOverviewPanel, "Load the tasks app, 1 task list");
-
-		// Currently in the mail app
-		// Navigate to the addressbook
-		//app.zPageTasks.zNavigateTo();
-		 app.zPageContacts.zClickAt("css=td[id='zb__App__Tasks_title']","");
-
+		app.zPageContacts.zClickAt("css=td[id='zb__App__Tasks_title']","");
 		PerfMetrics.waitTimestamp(token);
 
 		// Wait for the app to load
 		app.zPageTasks.zWaitForActive();
-
-
 	}
+
 
 	@Test( description = "Measure the time to load the tasks app, 100 task lists",
 			groups = { "performance", "deprecated"})
+
 	public void ZmTasksAppFolders_02() throws HarnessException {
 
 		// Create 100 folders
@@ -78,22 +68,13 @@ public class ZmTasksAppFolders extends AjaxCommonTest {
 			"</CreateFolderRequest>");
 		}
 
-
 		// Sync the changes to the client (notification block)
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
-
 		PerfToken token = PerfMetrics.startTimestamp(PerfKey.ZmTasksAppOverviewPanel, "Load the tasks app, 100 task lists");
-
-		// Currently in the mail app
-		// Navigate to the addressbook
-		//app.zPageTasks.zNavigateTo();
 		app.zPageContacts.zClickAt("css=td[id='zb__App__Tasks_title']","");
-
 		PerfMetrics.waitTimestamp(token);
 
 		// Wait for the app to load
 		app.zPageTasks.zWaitForActive();
-
 	}
-
 }

@@ -29,20 +29,19 @@ public class SendMailFromAccountWithDisabledAddressBook extends PrefGroupMailByM
 
 	public SendMailFromAccountWithDisabledAddressBook() {
 		logger.info("New " + SendMailFromAccountWithDisabledAddressBook.class.getCanonicalName());
-
 		super.startingAccountPreferences.put("zimbraFeatureContactsEnabled", "FALSE");
 	}
 
+
 	@Bugs( ids = "48923")
-	@Test( description = "Send a mail from an account having Contacts disabled", groups = { "functional", "L2" } )
+	@Test( description = "Send a mail from an account having Contacts disabled",
+			groups = { "functional", "L2" } )
 
 	public void SendMailFromAccountWithNoAddressBook_01() throws HarnessException {
 
-		//Message data to be entered		
+		//Message data to be entered
 		String subject = "Subject "+ConfigProperties.getUniqueString();
 		String body = "body " + ConfigProperties.getUniqueString();
-
-		//-- GUI
 
 		// Open the new mail form
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
@@ -56,9 +55,7 @@ public class SendMailFromAccountWithDisabledAddressBook extends PrefGroupMailByM
 		// Send the message
 		mailform.zSubmit();
 
-		//-- VERIFIFICATION		
-
-		//Verification through SOAP
+		// Verification through SOAP
 		ZimbraAccount.AccountA().soapSend(
 				"<SearchRequest types='message' xmlns='urn:zimbraMail'>"
 						+			"<query>subject:("+ subject +")</query>"
@@ -80,15 +77,13 @@ public class SendMailFromAccountWithDisabledAddressBook extends PrefGroupMailByM
 		ZAssert.assertEquals(subjectSoap, subject, "Verify the subject field is correct");
 		ZAssert.assertStringContains(html,body, "Verify the body of mail is correct");
 
-		//Verification through UI
+		// Verification through UI
 
-		// Go to Sent		
+		// Go to Sent
 		FolderItem sent = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Sent);
 		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, sent);
 
-		//Verify that mail is present in Sent folder
+		// Verify that mail is present in Sent folder
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject),"Verify that mail is present in sent folder");
-
 	}
-
 }

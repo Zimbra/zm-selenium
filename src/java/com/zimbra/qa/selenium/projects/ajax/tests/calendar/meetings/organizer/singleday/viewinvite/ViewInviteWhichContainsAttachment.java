@@ -45,7 +45,7 @@ public class ViewInviteWhichContainsAttachment extends AjaxCommonTest {
 		String filename = "BasicExcel2007.xlsx";
 		String filePath = ConfigProperties.getBaseDirectory() + "/data/public/Files/Basic01/"+ filename;
 		String dAttachmentId  = account.uploadFile(filePath);
-		//create date object
+		// Create date object
 		String tz = ZTimeZone.getLocalTimeZone().getID();
 		Calendar now = Calendar.getInstance();
 		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 15, 0, 0);
@@ -72,14 +72,12 @@ public class ViewInviteWhichContainsAttachment extends AjaxCommonTest {
 		// Verify appointment exists in current view
         ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
 
-		// open the appt
+		// Open the appt
     	app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, apptSubject);
 
 		// Verify the new appointment has an attachment
 		ZAssert.assertTrue(app.zPageCalendar.sIsElementPresent(Locators.zAttachmentsLabel),"Verify Attachments: label");
 		AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ apptSubject +")");
 		ZAssert.assertStringContains(actual.getGMultipart().toString(), filename , "check if multipart has above created file name" );
-
 	}
-
 }

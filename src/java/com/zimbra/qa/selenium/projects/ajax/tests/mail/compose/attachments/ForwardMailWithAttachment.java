@@ -36,6 +36,7 @@ public class ForwardMailWithAttachment extends PrefGroupMailByMessageTest {
 		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "text");
 	}
 
+
 	@Test( description = "Forward a mail by adding attachment - Verify both attachment sent",
 			groups = { "sanity", "L0" })
 
@@ -45,7 +46,6 @@ public class ForwardMailWithAttachment extends PrefGroupMailByMessageTest {
 
 			try {
 
-				//-- DATA
 				final String subject = "subjectAttachment";
 				final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email17/mime.txt";
 				final String mimeAttachmentName = "samplejpg.jpg";
@@ -76,8 +76,6 @@ public class ForwardMailWithAttachment extends PrefGroupMailByMessageTest {
 				// Send the message
 				mailform.zSubmit();
 
-				//-- Verification
-
 				// From the receiving end, verify the message details
 				MailItem received = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "subject:("+ subject +")");
 				ZAssert.assertNotNull(received, "Verify the message is received correctly");
@@ -99,14 +97,11 @@ public class ForwardMailWithAttachment extends PrefGroupMailByMessageTest {
 				ZAssert.assertTrue(app.zPageMail.zVerifyAttachmentExistsInMail(mimeAttachmentName), "Verify attachment exists in the email");
 
 			} finally {
-
 				app.zPageMain.zKeyboardKeyEvent(KeyEvent.VK_ESCAPE);
-
 			}
 
 		} else {
 			throw new SkipException("File upload operation is allowed only for Windows OS (Skipping upload tests on MS Edge for now due to intermittancy and major control issue), skipping this test...");
 		}
 	}
-
 }

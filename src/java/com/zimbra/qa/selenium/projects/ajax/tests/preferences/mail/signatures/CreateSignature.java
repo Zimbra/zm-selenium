@@ -29,18 +29,21 @@ import com.zimbra.qa.selenium.projects.ajax.ui.preferences.signature.FormSignatu
 import com.zimbra.qa.selenium.projects.ajax.ui.preferences.signature.FormSignatureNew.Field;
 
 public class CreateSignature extends AjaxCommonTest {
+
 	public CreateSignature() {
 		super.startingPage = app.zPagePreferences;
 	}
 
-	@Test(description = "Create Simple text signature through GUI", groups = { "sanity", "L0" })
+
+	@Test(description = "Create Simple text signature through GUI",
+			groups = { "sanity", "L0" })
 
 	public void CreateBasicTextSignature_01() throws HarnessException {
 
 		String sigName = "signame" + ConfigProperties.getUniqueString();
 		String sigBody = "sigbody" + ConfigProperties.getUniqueString();
 
-		// click on signature from left pane
+		// Click on signature from left pane
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.MailSignatures);
 
 		// Click on New signature button
@@ -58,14 +61,16 @@ public class CreateSignature extends AjaxCommonTest {
 		ZAssert.assertEquals(signature.dBodyText, sigBody, "Verify text signature body");
 	}
 
-	@Test(description = "Create Simple Html signature through GUI", groups = { "sanity", "L0" })
+
+	@Test(description = "Create Simple Html signature through GUI",
+			groups = { "sanity", "L0" })
 
 	public void CreateBasicHtmlSignature_02() throws HarnessException {
 
 		String sigName = "signame" + ConfigProperties.getUniqueString();
 		String sigBody = "sigbody" + ConfigProperties.getUniqueString();
 
-		// click on signature from left pane
+		// Click on signature from left pane
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.MailSignatures);
 
 		// Click on New signature button

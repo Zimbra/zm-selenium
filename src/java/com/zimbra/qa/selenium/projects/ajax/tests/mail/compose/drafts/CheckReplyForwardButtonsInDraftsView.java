@@ -37,9 +37,11 @@ public class CheckReplyForwardButtonsInDraftsView extends PrefGroupMailByMessage
 		logger.info("New " + CheckReplyForwardButtonsInDraftsView.class.getCanonicalName());
 	}
 
+
 	@Bugs(ids = "83164")
-	@Test( description = "Verify reply/forward buttons remains disabled in Draft mode when searched using tag", groups = { "functional", "L2" })
-	
+	@Test( description = "Verify reply/forward buttons remains disabled in Draft mode when searched using tag",
+			groups = { "functional", "L2" })
+
 	public void CheckReplyForwardButtonsInDraftsView_01() throws HarnessException {
 
 		// Create the message data to be entered while composing mail
@@ -57,15 +59,15 @@ public class CheckReplyForwardButtonsInDraftsView extends PrefGroupMailByMessage
 
 		// Save the message
 		mailform.zToolbarPressButton(Button.B_SAVE_DRAFT);
-		mailform.zToolbarPressButton(Button.B_CLOSE);		
+		mailform.zToolbarPressButton(Button.B_CLOSE);
 
-		// Go to draft		
+		// Go to draft
 		FolderItem drafts = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Drafts);
 		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, drafts);
-		
-		// Select the mail 
+
+		// Select the mail
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
-				
+
 		//Tag name
 		String tagName = "tag" + ConfigProperties.getUniqueString();
 
@@ -73,19 +75,19 @@ public class CheckReplyForwardButtonsInDraftsView extends PrefGroupMailByMessage
 		DialogTag dialogTag = (DialogTag) app.zPageMail.zToolbarPressPulldown(Button.B_TAG, Button.O_TAG_NEWTAG);
 		dialogTag.zSetTagName(tagName);
 		dialogTag.zClickButton(Button.B_OK);
-		
+
 		// Refresh current view
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
-		
+
 		TagItem tag = TagItem.importFromSOAP(app.zGetActiveAccount(), tagName);
 		ZAssert.assertNotNull(tag, "Verify the tag was created");
-		
-		//Select the tag
-		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, tag);		
-		
-		// Select the mail 
+
+		// Select the tag
+		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, tag);
+
+		// Select the mail
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
-		
+
 		ZAssert.assertTrue(app.zPageMail.sIsElementPresent("css=div[id$='_REPLY'][class*='ZDisabled']"),"Verify Reply button is disabled in Draft mode");
 		ZAssert.assertTrue(app.zPageMail.sIsElementPresent("css=div[id$='_REPLY_ALL'][class*='ZDisabled']"),"Verify Reply All button is disabled in Draft mode");
 		ZAssert.assertTrue(app.zPageMail.sIsElementPresent("css=div[id$='_FORWARD'][class*='ZDisabled']"),"Verify Forward button is disabled in Draft mode");

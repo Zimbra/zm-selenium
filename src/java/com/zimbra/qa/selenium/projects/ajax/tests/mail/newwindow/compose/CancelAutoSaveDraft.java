@@ -1,4 +1,20 @@
-package com.zimbra.qa.selenium.projects.ajax.tests.mail.newwindow.compose;
+/*
+ * ***** BEGIN LICENSE BLOCK *****
+ * Zimbra Collaboration Suite Server
+ * Copyright (C) 2015, 2016 Synacor, Inc.
+ *
+ * This program is free software: you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License as published by the Free Software Foundation,
+ * version 2 of the License.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
+ * You should have received a copy of the GNU General Public License along with this program.
+ * If not, see <https://www.gnu.org/licenses/>.
+ * ***** END LICENSE BLOCK *****
+ */
+ package com.zimbra.qa.selenium.projects.ajax.tests.mail.newwindow.compose;
 
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.core.Bugs;
@@ -19,7 +35,8 @@ public class CancelAutoSaveDraft extends PrefGroupMailByMessageTest {
 
 
 	@Bugs(ids = "99875")
-	@Test( description = "Bug 99875 - 'Message gets auto saved while clicking cancel and 'Auto draft save'= No, from New window ", groups = { "functional", "L2" })
+	@Test( description = "Bug 99875 - 'Message gets auto saved while clicking cancel and 'Auto draft save'= No, from New window ",
+			groups = { "functional", "L2" })
 
 	public void CancelAutoSaveDraft_01() throws HarnessException {
 
@@ -64,10 +81,10 @@ public class CancelAutoSaveDraft extends PrefGroupMailByMessageTest {
 			window = (SeparateWindowFormMailNew) app.zPageMail.zToolbarPressButton(Button.B_DETACH_COMPOSE);
 			window.zSetWindowTitle(windowTitle);
 			ZAssert.assertTrue(window.zIsWindowOpen(windowTitle),"Verify the window is opened and switch to it");
-			
-			//Go to draft and check for draft message
+
+			// Go to draft and check for draft message
 			mailform.zToolbarPressButton(Button.B_CANCEL);
-			
+
 			// Do not save message
 			app.zPageMail.sClick("css=div[id='YesNoCancel'] div[id$='_buttons'] td[id$='_button4_title']");
 
@@ -77,7 +94,5 @@ public class CancelAutoSaveDraft extends PrefGroupMailByMessageTest {
 		} finally {
 			app.zPageMain.zCloseWindow(window, windowTitle, app);
 		}
-
 	}
-
 }

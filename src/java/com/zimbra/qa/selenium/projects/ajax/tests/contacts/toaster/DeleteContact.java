@@ -18,9 +18,7 @@ package com.zimbra.qa.selenium.projects.ajax.tests.contacts.toaster;
 
 import java.awt.event.KeyEvent;
 import java.util.HashMap;
-
 import org.testng.annotations.*;
-
 import com.zimbra.qa.selenium.framework.items.ContactItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -32,22 +30,18 @@ public class DeleteContact extends AjaxCommonTest {
 	public DeleteContact() {
 		logger.info("New " + DeleteContact.class.getCanonicalName());
 
-		// All tests start at the Address page
 		super.startingPage = app.zPageContacts;
-
-		// Enable user preference checkboxes
 		super.startingAccountPreferences = new HashMap<String, String>() {
-			private static final long serialVersionUID = -8102550098554063084L;
-
-			{
+			private static final long serialVersionUID = -8102550098554063084L; {
 				put("zimbraPrefShowSelectionCheckbox", "TRUE");
 			}
 		};
-
 	}
 
-	@Test(description = "Delete a contact item from toolbar and verify toast msg", 
+
+	@Test(description = "Delete a contact item from toolbar and verify toast msg",
 			groups = { "functional", "L2"})
+
 	public void DeleteContactToastMsg_01() throws HarnessException {
 
 		// Create a contact item
@@ -61,15 +55,13 @@ public class DeleteContact extends AjaxCommonTest {
 						+ contact.firstName + "</a>" + "<a n='lastName'>" + contact.lastName + "</a>" + "<a n='email'>"
 						+ contact.email + "</a>" + "</cn>" + "</CreateContactRequest>");
 
-		// -- GUI
-
 		// Refresh to get the contact into the client
 		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 
 		// Select the contact
 		app.zPageContacts.zListItem(Action.A_LEFTCLICK, contact.firstName);
 
-		// delete contact
+		// Delete contact
 		app.zPageContacts.zToolbarPressButton(Button.B_DELETE);
 
 		// Verifying the toaster message
@@ -79,8 +71,10 @@ public class DeleteContact extends AjaxCommonTest {
 				"Verify toast message: Contact Moved to Trash");
 	}
 
-	@Test(description = "Delete a contact item selected with checkbox and  verify toast msg", 
+
+	@Test(description = "Delete a contact item selected with checkbox and  verify toast msg",
 			groups = { "functional", "L2"})
+
 	public void DeleteContactToastMsg_02() throws HarnessException {
 
 		// Create a contact item
@@ -94,8 +88,6 @@ public class DeleteContact extends AjaxCommonTest {
 						+ contact.firstName + "</a>" + "<a n='lastName'>" + contact.lastName + "</a>" + "<a n='email'>"
 						+ contact.email + "</a>" + "</cn>" + "</CreateContactRequest>");
 
-		// -- GUI
-
 		// Refresh to get the contact into the client
 		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 
@@ -103,15 +95,15 @@ public class DeleteContact extends AjaxCommonTest {
 		// Select the contact's checkbox
 		// app.zPageContacts.zListItem(Action.A_CHECKBOX, contact.firstName);
 
-		// delete contact
+		// Delete contact
 		app.zPageContacts.zToolbarPressButton(Button.B_DELETE);
 
 		// Verifying the toaster message
 		Toaster toast = app.zPageMain.zGetToaster();
 		String toastMsg = toast.zGetToastMessage();
-		ZAssert.assertStringContains(toastMsg, "1 contact moved to Trash",
-				"Verify toast message: Contact Moved to Trash");
+		ZAssert.assertStringContains(toastMsg, "1 contact moved to Trash", "Verify toast message: Contact Moved to Trash");
 	}
+
 
 	@DataProvider(name = "DataProviderDeleteKeys")
 	public Object[][] DataProviderDeleteKeys() {
@@ -119,8 +111,9 @@ public class DeleteContact extends AjaxCommonTest {
 				new Object[] { "VK_BACK_SPACE", KeyEvent.VK_BACK_SPACE }, };
 	}
 
-	@Test(description = "Delete a contact item using keyboard short cut Del and verify toast mesg", 
+	@Test(description = "Delete a contact item using keyboard short cut Del and verify toast mesg",
 			groups = {"functional", "L2"}, dataProvider = "DataProviderDeleteKeys")
+
 	public void DeleteContactToastMsg_03(String name, int keyEvent) throws HarnessException {
 
 		// Create a contact item
@@ -133,8 +126,6 @@ public class DeleteContact extends AjaxCommonTest {
 				.soapSend("<CreateContactRequest xmlns='urn:zimbraMail'>" + "<cn >" + "<a n='firstName'>"
 						+ contact.firstName + "</a>" + "<a n='lastName'>" + contact.lastName + "</a>" + "<a n='email'>"
 						+ contact.email + "</a>" + "</cn>" + "</CreateContactRequest>");
-
-		// -- GUI
 
 		// Refresh to get the contact into the client
 		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
@@ -149,12 +140,13 @@ public class DeleteContact extends AjaxCommonTest {
 		// Verifying the toaster message
 		Toaster toast = app.zPageMain.zGetToaster();
 		String toastMsg = toast.zGetToastMessage();
-		ZAssert.assertStringContains(toastMsg, "1 contact moved to Trash",
-				"Verify toast message: Contact Moved to Trash");
+		ZAssert.assertStringContains(toastMsg, "1 contact moved to Trash", "Verify toast message: Contact Moved to Trash");
 	}
 
-	@Test(description = "Right click then click delete and verify toast msg", 
+
+	@Test(description = "Right click then click delete and verify toast msg",
 			groups = { "functional", "L2"})
+
 	public void DeleteContactToastMsg_04() throws HarnessException {
 
 		// Create a contact item
@@ -169,8 +161,6 @@ public class DeleteContact extends AjaxCommonTest {
 						+ contact.firstName + "</a>" + "<a n='lastName'>" + contact.lastName + "</a>" + "<a n='email'>"
 						+ contact.email + "</a>" + "</cn>" + "</CreateContactRequest>");
 
-		// -- GUI
-
 		// Refresh to get the contact into the client
 		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 
@@ -180,12 +170,13 @@ public class DeleteContact extends AjaxCommonTest {
 		// Verifying the toaster message
 		Toaster toast = app.zPageMain.zGetToaster();
 		String toastMsg = toast.zGetToastMessage();
-		ZAssert.assertStringContains(toastMsg, "1 contact moved to Trash",
-				"Verify toast message: Contact Moved to Trash");
+		ZAssert.assertStringContains(toastMsg, "1 contact moved to Trash", "Verify toast message: Contact Moved to Trash");
 	}
 
-	@Test(description = "Delete multiple contact items and verify toast msg", 
+
+	@Test(description = "Delete multiple contact items and verify toast msg",
 			groups = { "functional", "L2"})
+
 	public void DeleteContactToastMsg_05() throws HarnessException {
 
 		// Create a contact items
@@ -222,8 +213,6 @@ public class DeleteContact extends AjaxCommonTest {
 						+ contact3.firstName + "</a>" + "<a n='lastName'>" + contact3.lastName + "</a>"
 						+ "<a n='email'>" + contact3.email + "</a>" + "</cn>" + "</CreateContactRequest>");
 
-		// -- GUI
-
 		// Refresh to get the contact into the client
 		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 
@@ -233,14 +222,12 @@ public class DeleteContact extends AjaxCommonTest {
 		app.zPageContacts.zListItem(Action.A_CHECKBOX, contact1.fileAs);
 		app.zPageContacts.zListItem(Action.A_CHECKBOX, contact2.fileAs);
 
-		// delete 3 contacts
+		// Delete 3 contacts
 		app.zPageContacts.zToolbarPressButton(Button.B_DELETE);
 
 		// Verifying the toaster message
 		Toaster toast = app.zPageMain.zGetToaster();
 		String toastMsg = toast.zGetToastMessage();
-		ZAssert.assertStringContains(toastMsg, "3 contacts moved to Trash",
-				"Verify toast message: Contact Moved to Trash");
+		ZAssert.assertStringContains(toastMsg, "3 contacts moved to Trash", "Verify toast message: Contact Moved to Trash");
 	}
-
 }

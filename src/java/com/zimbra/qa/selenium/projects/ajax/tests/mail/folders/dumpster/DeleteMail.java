@@ -17,33 +17,30 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.folders.dumpster;
 
 import java.util.List;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
 
-
 public class DeleteMail extends PrefGroupMailByMessageTest {
 
 	public DeleteMail() {
 		logger.info("New "+ DeleteMail.class.getCanonicalName());
-		
 		super.startingAccountPreferences.put("zimbraDumpsterEnabled", "TRUE");
-	
 	}
-	
+
+
 	@Bugs( ids = "65915")
 	@Test( description = "Delete a mail with zimbraDumpsterEnabled=TRUE",
 			groups = { "smoke", "L1" })
+
 	public void DeleteMail_01() throws HarnessException {
-		
+
 		// Create the message data to be sent
 		String subject = "subject"+ ConfigProperties.getUniqueString();
-				
+
 		ZimbraAccount.AccountA().soapSend(
 					"<SendMsgRequest xmlns='urn:zimbraMail'>" +
 						"<m>" +
@@ -56,16 +53,16 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 					"</SendMsgRequest>");
 
 		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
-		
+
 		// Refresh current view
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
-				
+
 		// Select the item
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, mail.dSubject);
-		
+
 		// Click delete
 		app.zPageMail.zToolbarPressButton(Button.B_DELETE);
-		
+
 		List<MailItem> messages = app.zPageMail.zListGetMessages();
 		ZAssert.assertNotNull(messages, "Verify the message list exists");
 
@@ -78,17 +75,11 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 			}
 		}
 		ZAssert.assertNull(found, "Verify the message is no longer in the inbox");
-	
-		
+
 		MailItem deleted = MailItem.importFromSOAP(app.zGetActiveAccount(), "is:anywhere subject:("+ subject +")");
 		ZAssert.assertNotNull(deleted, "Verify the deleted message exists");
 
 		FolderItem trash = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Trash);
 		ZAssert.assertEquals(deleted.dFolderId, trash.getId(), "Verify the deleted message exists in the trash folder");
-
 	}
-
-
-
-
 }

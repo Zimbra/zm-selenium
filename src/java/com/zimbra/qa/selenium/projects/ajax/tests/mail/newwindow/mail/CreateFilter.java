@@ -14,11 +14,9 @@
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.newwindow.mail;
 
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -33,11 +31,13 @@ public class CreateFilter extends PrefGroupMailByMessageTest {
 
 	public CreateFilter() {
 		logger.info("New " + CreateFilter.class.getCanonicalName());
-		super.startingAccountPreferences.put("zimbraPrefMarkMsgRead", ""+ delaySeconds);
+		super.startingAccountPreferences.put("zimbraPrefMarkMsgRead", "" + delaySeconds);
 	}
 
 	@Bugs(ids="88916")
-	@Test( description = "Verify Add Filter dialog from new window action menu -> Create Filter", groups = { "functional", "L2" })
+	@Test( description = "Verify Add Filter dialog from new window action menu -> Create Filter",
+			groups = { "functional", "L2" })
+
 	public void CreatefilterFromNewWindow() throws HarnessException {
 
 		// Create the message data to be sent
@@ -72,8 +72,8 @@ public class CreateFilter extends PrefGroupMailByMessageTest {
 
 			window.zToolbarPressPulldown(Button.B_ACTIONS, Button.O_NEW_FILTER);
 			SleepUtil.sleepMedium();
-			
-			// Select the main window 
+
+			// Select the main window
 			window.sSelectWindow(null);
 
 			DialogEditFilter dialog = new DialogEditFilter(app,((AppAjaxClient) app).zPageMail);
@@ -82,7 +82,5 @@ public class CreateFilter extends PrefGroupMailByMessageTest {
 		} finally {
 			app.zPageMain.zCloseWindow(window, windowTitle, app);
 		}
-
 	}
-
 }

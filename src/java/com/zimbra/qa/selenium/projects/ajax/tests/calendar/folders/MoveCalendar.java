@@ -24,7 +24,6 @@ import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.DialogMove;
 
-
 public class MoveCalendar extends AjaxCommonTest {
 
 	public MoveCalendar() {

@@ -88,7 +88,7 @@ public class Delete extends AjaxCommonTest {
 		// ---------------- Verification at organizer & invitee side both -------------------------------------
 
 
-		// --- Check that the organizer shows the attendee as "NEEDS ACTION" ---
+		// Check that the organizer shows the attendee as "NEEDS ACTION" ---
 
 		// Organizer: Search for the appointment (InvId)
 		ZimbraAccount.AccountA().soapSend(
@@ -108,7 +108,7 @@ public class Delete extends AjaxCommonTest {
 		ZAssert.assertEquals(attendeeStatus, "NE", "Verify that the attendee status shows as 'NEEDS ACTION' instead of 'DECLINED'");
 
 
-		// --- Check that the attendee showing status as "NEEDS ACTION" ---
+		// Check that the attendee showing status as "NEEDS ACTION" ---
 
 		// Attendee: Search for the appointment (InvId)
 		app.zGetActiveAccount().soapSend(

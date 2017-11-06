@@ -17,9 +17,7 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.feeds;
 
 import java.net.*;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.*;
@@ -32,7 +30,9 @@ public class DeleteFeed extends PrefGroupMailByMessageTest {
 		logger.info("New "+ DeleteFeed.class.getCanonicalName());
 	}
 
-	@Test( description = "Delete a feed folder - Right click, Delete", groups = { "smoke", "L1" })
+
+	@Test( description = "Delete a feed folder - Right click, Delete",
+			groups = { "smoke", "L1" })
 
 	public void DeleteFeed_01() throws HarnessException, MalformedURLException {
 
@@ -40,7 +40,6 @@ public class DeleteFeed extends PrefGroupMailByMessageTest {
 		FolderItem root = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.UserRoot);
 
 		String feedname = "feed" + ConfigProperties.getUniqueString();
-		// feed.rss=http://server/files/Service/RSS/Basic/basic.xml
 		URL feedurl = new URL(ConfigProperties.getStringProperty("rss.sample"));
 
 		app.zGetActiveAccount().soapSend(
@@ -50,7 +49,6 @@ public class DeleteFeed extends PrefGroupMailByMessageTest {
 
 		FolderItem feed = FolderItem.importFromSOAP(app.zGetActiveAccount(), feedname);
 		ZAssert.assertNotNull(feed, "Verify the subfolder is available");
-
 
 		// Click on Get Mail to refresh the folder list
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
@@ -62,7 +60,5 @@ public class DeleteFeed extends PrefGroupMailByMessageTest {
 		feed = FolderItem.importFromSOAP(app.zGetActiveAccount(), feedname);
 		ZAssert.assertNotNull(feed, "Verify the subfolder is again available");
 		ZAssert.assertEquals(trash.getId(), feed.getParentId(), "Verify the subfolder's parent is now the trash folder ID");
-
 	}
-
 }

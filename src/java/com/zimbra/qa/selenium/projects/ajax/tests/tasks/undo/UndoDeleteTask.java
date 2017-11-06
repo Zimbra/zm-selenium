@@ -17,9 +17,7 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.tasks.undo;
 
 import java.util.HashMap;
-
 import org.testng.annotations.*;
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
@@ -34,19 +32,18 @@ public class UndoDeleteTask extends AjaxCommonTest {
 	public UndoDeleteTask() {
 		logger.info("New "+ UndoDeleteTask.class.getCanonicalName());
 
-		// All tests start at the login page
 		super.startingPage = app.zPageTasks;
-
 		super.startingAccountPreferences = new HashMap<String , String>() {{
-
 			put("zimbraPrefShowSelectionCheckbox", "TRUE");
 			put("zimbraPrefTasksReadingPaneLocation", "bottom");
 		}};
-
 	}
-	
+
+
 	@Bugs( ids = "96832")
-	@Test( description = "Undone deleted  task",groups = { "smoke", "L1"})
+	@Test( description = "Undone deleted  task",
+			groups = { "smoke", "L1"})
+
 	public void UndoDeleteTask_01() throws HarnessException {
 
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
@@ -72,8 +69,6 @@ public class UndoDeleteTask extends AjaxCommonTest {
 		TaskItem task = TaskItem.importFromSOAP(app.zGetActiveAccount(), subject);
 		ZAssert.assertNotNull(task, "Verify the task is created");
 
-		
-
 		// Refresh the tasks view
 		app.zPageTasks.zToolbarPressButton(Button.B_REFRESH);
 		app.zTreeTasks.zTreeItem(Action.A_LEFTCLICK, taskFolder);
@@ -85,11 +80,12 @@ public class UndoDeleteTask extends AjaxCommonTest {
 		app.zPageTasks.zToolbarPressButton(Button.B_DELETE);
 
 		// Click "undo"
-		Toaster toast = app.zPageMain.zGetToaster();	
+		Toaster toast = app.zPageMain.zGetToaster();
 		toast.zClickUndo();
 
 		app.zTreeTasks.zTreeItem(Action.A_LEFTCLICK, taskFolder);
-		//Verify Task come back into Task folder
+
+		// Verify Task come back into Task folder
 		TaskItem undone = TaskItem.importFromSOAP(app.zGetActiveAccount(), subject);
 		ZAssert.assertEquals(undone.getName(), subject, "Verify task subject  Bug:96832");
 

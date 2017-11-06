@@ -19,7 +19,6 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.contextmenu;
 
 import org.testng.annotations.*;
-
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -34,16 +33,15 @@ public class CopyAddressContextMenu extends PrefGroupMailByMessageTest {
 		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "text");
 	}
 
-	
-	@Test( description = "Right click BCc bubble address >> Copy", 
+
+	@Test( description = "Right click BCc bubble address >> Copy",
 			groups = { "functional", "L2" })
-	
+
 	public void CopyToAddressContextMenu() throws HarnessException {
 
 		// Create the message data to be sent
 		MailItem mail = new MailItem();
-		mail.dToRecipients.add(new RecipientItem(ZimbraAccount.AccountB(),
-				RecipientItem.RecipientType.To));
+		mail.dToRecipients.add(new RecipientItem(ZimbraAccount.AccountB(), RecipientItem.RecipientType.To));
 
 		// Open the new mail form
 		FormMailNew mailform = (FormMailNew) app.zPageMail
@@ -57,14 +55,10 @@ public class CopyAddressContextMenu extends PrefGroupMailByMessageTest {
 
 		app.zPageMail.zCopyAddressContextMenu();
 		app.zPageMail.sFocus(FormMailNew.Locators.zCcField);
-		app.zPageMail.zClick(FormMailNew.Locators.zCcField);	
+		app.zPageMail.zClick(FormMailNew.Locators.zCcField);
 
 		/* Incomplete test case.. need to find clikcable event while doing copy*/
-		//FormMailNew.Locators.CcField
 		app.zPageMail.zKeyboardShortcut(Shortcut.S_PASTE);
 		logger.info("hello");
-		
-
 	}
-
 }

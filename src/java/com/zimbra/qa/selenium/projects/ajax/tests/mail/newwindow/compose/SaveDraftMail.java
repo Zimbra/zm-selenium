@@ -35,10 +35,10 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 		super.startingAccountPreferences.put("zimbraPrefComposeInNewWindow", "TRUE");
 	}
 
-	
+
 	@Test( description = "Save a basic draft (subject only) - in a separate window",
 			groups = { "smoke", "L1" })
-	
+
 	public void SaveDraftMail_01() throws HarnessException {
 
 		// Create the message data to be sent
@@ -56,13 +56,13 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 			ZAssert.assertTrue(window.zIsWindowOpen(windowTitle),"Verify the window is opened and switch to it");
 
 			window.waitForComposeWindow();
-			
+
 			// Fill out the form with the data
 			window.zFillField(Field.Subject, subject);
-			
+
 			// Send the message
 			window.zToolbarPressButton(Button.B_SAVE_DRAFT);
-			
+
 			// Close the window
 			window.zToolbarPressButton(Button.B_CANCEL);
 
@@ -79,8 +79,8 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 		ZAssert.assertEquals(draft.dSubject, subject, "Verify the subject field is correct");
 		ZAssert.assertEquals(draft.dFolderId, draftsFolder.getId(), "Verify the draft is saved in the drafts folder");
 	}
-	
-	
+
+
 	/**
 	 * Test Case: Save draft using keyboard shortcut 'Escape''
 	 * 1.Compose Text mail
@@ -91,9 +91,9 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 	 * @throws HarnessException
 	 */
 
-	@Test( description = "Save draft using keyboard shortcut 'Escape'", 
+	@Test( description = "Save draft using keyboard shortcut 'Escape'",
 			groups = { "functional", "L2" })
-	
+
 	public void SaveDraftMail_02() throws HarnessException {
 
 		// Create the message data to be sent
@@ -110,7 +110,7 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 
 			window.zSetWindowTitle(windowTitle);
 			ZAssert.assertTrue(window.zIsWindowOpen(windowTitle),"Verify the window is opened and switch to it");
-			
+
 			window.waitForComposeWindow();
 
 			// Fill out the form with the data
@@ -133,7 +133,5 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 		// Verify the draft data matches
 		ZAssert.assertEquals(draft.dSubject, subject,"Verify the subject field is correct");
 		ZAssert.assertEquals(draft.dFolderId, draftsFolder.getId(),"Verify the draft is saved in the drafts folder");
-
 	}
-	
 }

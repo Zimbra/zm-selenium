@@ -1,5 +1,3 @@
-package com.zimbra.qa.selenium.projects.ajax.tests.mail.newwindow.inlineimage;
-
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
@@ -16,10 +14,10 @@ package com.zimbra.qa.selenium.projects.ajax.tests.mail.newwindow.inlineimage;
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
+package com.zimbra.qa.selenium.projects.ajax.tests.mail.newwindow.inlineimage;
 
 import org.testng.SkipException;
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -34,9 +32,10 @@ public class EditAsNewWithAnInlineAttachment extends PrefGroupMailByMessageTest 
 		logger.info("New "+ EditAsNewWithAnInlineAttachment.class.getCanonicalName());
 	}
 
+
 	@Test( description = "Edit as New message >> add inline Attchment from new window ",
 			groups = { "functional", "L2" })
-	
+
 	public void EditAsNewWithAnInlineAttachment_01() throws HarnessException {
 
 		if (OperatingSystem.isWindows() == true && !ConfigProperties.getStringProperty("browser").contains("edge")) {
@@ -56,13 +55,11 @@ public class EditAsNewWithAnInlineAttachment extends PrefGroupMailByMessageTest 
 							"</m>" +
 					"</SendMsgRequest>");
 
-
 			// Refresh current view
 			ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 
 			// Select the item
 			app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
-
 
 			// Create file item
 			final String fileName = "samplejpg.jpg";
@@ -72,23 +69,23 @@ public class EditAsNewWithAnInlineAttachment extends PrefGroupMailByMessageTest 
 
 			MailItem mail = new MailItem();
 			mail.dBodyHtml = "body"+ ConfigProperties.getUniqueString();
-			
+
 			String windowTitle = "Zimbra: " + subject;
 
 			try {
 
 				// Choose Actions -> Launch in Window
 				window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
-				
+
 				window.zSetWindowTitle(windowTitle);
 				ZAssert.assertTrue(window.zIsWindowOpen(windowTitle),"Verify the window is opened and switch to it");
-				
+
 				window.zToolbarPressPulldown(Button.B_ACTIONS, Button.O_EDIT_AS_NEW);
 
 				// Type in body
 				window.zFillField(Field.Body, mail.dBodyHtml);
-				
-				SleepUtil.sleepSmall();			
+
+				SleepUtil.sleepSmall();
 
 				// Click Attach>>inline image
 				window.zPressButton(Button.O_ATTACH_DROPDOWN);
@@ -104,20 +101,15 @@ public class EditAsNewWithAnInlineAttachment extends PrefGroupMailByMessageTest 
 			}
 
 			for (int i = 0; i < 30; i++) {
-
 				app.zGetActiveAccount().soapSend(
 						"<SearchRequest types='message' xmlns='urn:zimbraMail'>"
 								+ "<query>subject:(" + subject + ")</query>"
 								+ "</SearchRequest>");
-				com.zimbra.common.soap.Element node = ZimbraAccount.AccountA()
-						.soapSelectNode("//mail:m", 1);
+				com.zimbra.common.soap.Element node = ZimbraAccount.AccountA().soapSelectNode("//mail:m", 1);
 				if (node != null) {
-					// found the message
 					break;
 				}
-
 				SleepUtil.sleep(1000);
-
 			}
 
 			app.zGetActiveAccount().soapSend(
@@ -141,6 +133,5 @@ public class EditAsNewWithAnInlineAttachment extends PrefGroupMailByMessageTest 
 		} else {
 			throw new SkipException("File upload operation is allowed only for Windows OS (Skipping upload tests on MS Edge for now due to intermittancy and major control issue), skipping this test...");
 		}
-
 	}
 }

@@ -18,9 +18,7 @@ package com.zimbra.qa.selenium.projects.ajax.tests.mail.attributes;
 
 import java.io.*;
 import java.util.*;
-
 import org.testng.annotations.*;
-
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -29,43 +27,32 @@ import com.zimbra.qa.selenium.projects.ajax.ui.mail.*;
 
 public class ZimbraAttachmentsViewInHtmlOnlyTrue extends PrefGroupMailByMessageTest {
 
-	
-	
 	public ZimbraAttachmentsViewInHtmlOnlyTrue() {
-		
 		super.startingAccountPreferences.put("zimbraAttachmentsViewInHtmlOnly", "TRUE");
-		
 	}
 
-	@Test(
-			description = "Verify 'download' link does not appear when zimbraAttachmentsViewInHtmlOnly = TRUE", 
+
+	@Test(description = "Verify 'download' link does not appear when zimbraAttachmentsViewInHtmlOnly = TRUE",
 			groups = { "functional", "L2" })
+
 	public void ZimbraAttachmentsViewInHtmlOnlyTrue_01() throws HarnessException {
 
-		//-- DATA
-		
 		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email05/mime01.txt";
 		final String subject = "subject151615738";
 		final String attachmentname = "file.txt";
-		
+
 		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
-		
-		
-		//-- GUI
-		
-		
+
 		// Refresh current view
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 
 		// Select the message so that it shows in the reading pane
 		DisplayMail display = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 
-		
-		//-- VERIFICATION
-		
+		// Verification
 		List<AttachmentItem> items = display.zListGetAttachments();
 		ZAssert.assertEquals(items.size(), 1, "Verify one attachment is in the message");
-		
+
 		AttachmentItem found = null;
 		for ( AttachmentItem item : items ) {
 			if ( item.getAttachmentName().equals(attachmentname)) {
@@ -74,12 +61,8 @@ public class ZimbraAttachmentsViewInHtmlOnlyTrue extends PrefGroupMailByMessageT
 			}
 		}
 		ZAssert.assertNotNull(found, "Verify the attachment appears in the list (by file name)");
-		
+
 		String locator = found.getLocator() + " a[id$='_download']";
 		ZAssert.assertFalse(app.zPageMail.sIsElementPresent(locator), "Verify the download link is not present");
-
-
 	}
-
-	
 }

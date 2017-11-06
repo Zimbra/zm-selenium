@@ -33,16 +33,17 @@ import com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail.Field;
 public class ViewMail extends PrefGroupMailByMessageTest {
 
 	final String mimeFolder = ConfigProperties.getBaseDirectory() + "/data/public/mime/email00";
-	
+
 	public ViewMail() throws HarnessException {
 		logger.info("New "+ ViewMail.class.getCanonicalName());
 	}
-	
+
+
 	@Test( description = "Receive a mail with Sender: specified",
 			groups = { "functional", "L2" })
 
 	public void ViewMail_01() throws HarnessException {
-		
+
 		final String subject = "subject12996131112962";
 		final String from = "from12996131112962@example.com";
 		final String sender = "sender12996131112962@example.com";
@@ -53,71 +54,71 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 		ZAssert.assertNotNull(mail, "Verify message is received");
 		ZAssert.assertEquals(from, mail.dFromRecipient.dEmailAddress, "Verify the from matches");
 		ZAssert.assertEquals(sender, mail.dSenderRecipient.dEmailAddress, "Verify the sender matches");
-		
+
 		// Refresh current view
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 
 		// Select the item
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
-		
+
 		SeparateWindowDisplayMail window = null;
 		String windowTitle = "Zimbra: " + subject;
-		
+
 		try {
-			
+
 			// Choose Actions -> Launch in Window
 			window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
-			
+
 			window.zSetWindowTitle(windowTitle);
 			ZAssert.assertTrue(window.zIsWindowOpen(windowTitle),"Verify the window is opened and switch to it");
-			
+
 			// Verify the To, From, Subject, Body
 			String actualOBO = window.zGetMailProperty(Field.OnBehalfOf);
 			ZAssert.assertEquals(actualOBO, from, "Verify the On-Behalf-Of matches the 'From:' header");
-			
+
 			String actualSender = window.zGetMailProperty(Field.From);
 			ZAssert.assertEquals(actualSender, sender, "Verify the From matches the 'Sender:' header");
 
 		} finally {
-			app.zPageMain.zCloseWindow(window, windowTitle, app);			
+			app.zPageMain.zCloseWindow(window, windowTitle, app);
 		}
 	}
 
-	
+
 	@Bugs( ids = "86168")
 	@Test( description = "Receive a mail with Reply-To: specified",
 			groups = { "functional", "L2" })
 
 	public void ViewMail_02() throws HarnessException {
-		
+
 		final String subject = "subject13016959916873";
 		final String from = "from13016959916873@example.com";
 		final String replyto = "replyto13016959916873@example.com";
 
 		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFolder + "/mime_wReplyTo.txt"));
-		
+
 		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), subject);
 		ZAssert.assertNotNull(mail, "Verify message is received");
 		ZAssert.assertEquals(from, mail.dFromRecipient.dEmailAddress, "Verify the from matches");
 		ZAssert.assertEquals(replyto, mail.dReplyToRecipient.dEmailAddress, "Verify the Reply-To matches");
-		
+
 		// Refresh current view
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
-		
+
 		// Select the message so that it shows in the reading pane
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
-		
+
 		SeparateWindowDisplayMail window = null;
 		String windowTitle = "Zimbra: " + subject;
-		
+
 		try {
-			
+
 			// Choose Actions -> Launch in Window
 			window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
-			
+
 			window.zSetWindowTitle(windowTitle);
 			ZAssert.assertTrue(window.zIsWindowOpen(windowTitle),"Verify the window is opened and switch to it");
-			
+
 			// Verify the To, From, Subject, Body
 			String actualReplyto = window.zGetMailProperty(Field.ReplyTo);
 			ZAssert.assertEquals(actualReplyto, replyto, "Verify the Reply-To matches the 'Reply-To:' header");
@@ -136,7 +137,7 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 			groups = { "functional", "L3" })
 
 	public void ViewMail_03() throws HarnessException {
-		
+
 		final String subject = "subject13147509564213";
 		final String from = "from13011239916873@example.com";
 		final String resentfrom = "resentfrom13016943216873@example.com";
@@ -146,7 +147,7 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), subject);
 		ZAssert.assertNotNull(mail, "Verify message is received");
 		ZAssert.assertEquals(resentfrom, mail.dRedirectedFromRecipient.dEmailAddress, "Verify the Resent-From matches");
-		
+
 		// Refresh current view
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 
@@ -155,15 +156,15 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 
 		SeparateWindowDisplayMail window = null;
 		String windowTitle = "Zimbra: " + subject;
-		
+
 		try {
-			
+
 			// Choose Actions -> Launch in Window
 			window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
-			
+
 			window.zSetWindowTitle(windowTitle);
 			ZAssert.assertTrue(window.zIsWindowOpen(windowTitle),"Verify the window is opened and switch to it");
-			
+
 			// Verify the To, From, Subject, Body
 			String actualResentFrom = window.zGetMailProperty(Field.ResentFrom);
 			ZAssert.assertEquals(actualResentFrom, resentfrom, "Verify the Resent-From matches the 'Resent-From:' header");
@@ -172,39 +173,39 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 			ZAssert.assertEquals(actualFrom, from, "Verify the From matches the 'From:' header");
 
 		} finally {
-			app.zPageMain.zCloseWindow(window, windowTitle, app);			
+			app.zPageMain.zCloseWindow(window, windowTitle, app);
 		}
-
 	}
 
 
 	@Test( description = "Verify multipart/alternative with text and html parts",
 			groups = { "functional", "L2" })
+
 	public void ViewMail_04() throws HarnessException {
-		
+
 		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug72233";
 		final String subject = "bug72233";
 		final String htmlcontent = "html1328844621404";
-		
+
 		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
-		
+
 		// Refresh current view
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 
-		// Select the message 
+		// Select the message
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
-		
+
 		SeparateWindowDisplayMail window = null;
 		String windowTitle = "Zimbra: " + subject;
-		
+
 		try {
-			
+
 			// Choose Actions -> Launch in Window
 			window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
-			
+
 			window.zSetWindowTitle(windowTitle);
 			ZAssert.assertTrue(window.zIsWindowOpen(windowTitle),"Verify the window is opened and switch to it");
-			
+
 			String body = window.zGetMailProperty(Field.Body);
 
 			// Verify the Content shows correctly
@@ -213,7 +214,5 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 		} finally {
 			app.zPageMain.zCloseWindow(window, windowTitle, app);
 		}
-
 	}
-
 }

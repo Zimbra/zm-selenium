@@ -14,7 +14,6 @@
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.newwindow.mail;
 
 import java.util.List;
@@ -34,8 +33,10 @@ public class CreateFlag extends PrefGroupMailByMessageTest {
 		super.startingAccountPreferences.put("zimbraPrefMarkMsgRead", "" + delaySeconds);
 	}
 
-	@Test( description = "Create flag from new window from action menu -> Create Flag", groups = { "functional", "L2" })
-	
+
+	@Test( description = "Create flag from new window from action menu -> Create Flag",
+			groups = { "functional", "L2" })
+
 	public void CreateFlagFromNewWindow_01() throws HarnessException {
 
 		// Create the message data to be sent
@@ -69,7 +70,7 @@ public class CreateFlag extends PrefGroupMailByMessageTest {
 			window.zSetWindowTitle(windowTitle);
 			ZAssert.assertTrue(window.zIsWindowOpen(windowTitle),"Verify the window is opened and switch to it");
 
-			//Actin Menu --> Flag
+			// Action Menu --> Flag
 			window.zToolbarPressPulldown(Button.B_ACTIONS,Button.B_FLAG_MESSAGE);
 
 			SleepUtil.sleepMedium();
@@ -101,12 +102,12 @@ public class CreateFlag extends PrefGroupMailByMessageTest {
 		// Make sure the server shows "flagged"
 		mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject + ")");
 		ZAssert.assertStringContains(mail.getFlags(), "f","Verify the message is flagged in the server");
-
 	}
 
-	
-	@Test( description = "Create flag from new window using shortcut key 'mf'", groups = { "functional", "L3" })
-	
+
+	@Test( description = "Create flag from new window using shortcut key 'mf'",
+			groups = { "functional", "L3" })
+
 	public void CreateFlagFromNewWindow_02() throws HarnessException {
 
 		// Create the message data to be sent
@@ -139,8 +140,8 @@ public class CreateFlag extends PrefGroupMailByMessageTest {
 			window.zSetWindowTitle(windowTitle);
 			ZAssert.assertTrue(window.zIsWindowOpen(windowTitle),"Verify the window is opened and switch to it");
 
-			//Actin Menu --> Flag
-			//	Use shortcut mf			
+			// Action Menu --> Flag
+			//	Use shortcut mf
 			window.zKeyboardShortcut(Shortcut.S_MAIL_MARKFLAG);
 
 			SleepUtil.sleepMedium();
@@ -172,7 +173,5 @@ public class CreateFlag extends PrefGroupMailByMessageTest {
 		// Make sure the server shows "flagged"
 		mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject + ")");
 		ZAssert.assertStringContains(mail.getFlags(), "f","Verify the message is flagged in the server");
-
 	}
-
 }

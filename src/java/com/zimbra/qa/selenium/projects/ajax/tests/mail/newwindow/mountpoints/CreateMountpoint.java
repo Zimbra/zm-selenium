@@ -36,18 +36,19 @@ public class CreateMountpoint extends PrefGroupMailByMessageTest {
 	public CreateMountpoint() {
 		logger.info("New "+ CreateMountpoint.class.getCanonicalName());
 	}
-	
+
+
 	@Bugs( ids = "101616,106661")
 	@Test( description = "Receive an invitation to a shared folder, accept it - in a separate window",
 			groups = { "smoke", "L1" })
-	
+
 	public void CreateMountpoint_01() throws HarnessException {
-		
+
 		ZimbraAccount Owner = (new ZimbraAccount()).provision().authenticate();
 
 		// Owner creates a folder, shares it with current user, and sends invitation
 		String ownerFoldername = "ownerfolder"+ ConfigProperties.getUniqueString();
-		
+
 		FolderItem ownerInbox = FolderItem.importFromSOAP(Owner, FolderItem.SystemFolder.Inbox);
 		ZAssert.assertNotNull(ownerInbox, "Verify the new owner folder exists");
 
@@ -55,17 +56,17 @@ public class CreateMountpoint extends PrefGroupMailByMessageTest {
 					"<CreateFolderRequest xmlns='urn:zimbraMail'>"
 				+		"<folder name='" + ownerFoldername +"' l='" + ownerInbox.getId() +"'/>"
 				+	"</CreateFolderRequest>");
-		
+
 		FolderItem ownerFolder = FolderItem.importFromSOAP(Owner, ownerFoldername);
 		ZAssert.assertNotNull(ownerFolder, "Verify the new owner folder exists");
-		
+
 		Owner.soapSend(
 					"<FolderActionRequest xmlns='urn:zimbraMail'>"
 				+		"<action id='"+ ownerFolder.getId() +"' op='grant'>"
 				+			"<grant d='" + app.zGetActiveAccount().EmailAddress + "' gt='usr' perm='r'/>"
 				+		"</action>"
 				+	"</FolderActionRequest>");
-		
+
 
 		String shareMessageSubject = "shared"+ ConfigProperties.getUniqueString();
 		String shareElement = String.format(
@@ -78,7 +79,7 @@ public class CreateMountpoint extends PrefGroupMailByMessageTest {
 					app.zGetActiveAccount().ZimbraId, app.zGetActiveAccount().EmailAddress, app.zGetActiveAccount().EmailAddress,
 					Owner.ZimbraId, Owner.EmailAddress, Owner.EmailAddress,
 					ownerFolder.getId(), ownerFolder.getName());
-					
+
 		Owner.soapSend(
 					"<SendMsgRequest xmlns='urn:zimbraMail'>"
 				+		"<m>"
@@ -103,31 +104,31 @@ public class CreateMountpoint extends PrefGroupMailByMessageTest {
 
 		SeparateWindowDisplayMail window = null;
 		String windowTitle = "Zimbra: " + shareMessageSubject;
-		
+
 		try {
-			
+
 			// Choose Actions -> Launch in Window
 			window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
-			
+
 			window.zSetWindowTitle(windowTitle);
 			ZAssert.assertTrue(window.zIsWindowOpen(windowTitle),"Verify the window is opened and switch to it");
-			
+
 			// Verify that the A/D buttons are displayed
 			ZAssert.assertTrue(window.zHasShareADButtons(), "Verify that the Accept/Decline share buttons are present");
-			
+
 			// Accept the share, which opens a dialog
 			SeparateWindowDialog dialog = (SeparateWindowDialog)window.zPressButton(Button.B_ACCEPT_SHARE);
 			ZAssert.assertNotNull(dialog, "Verify that the accept share dialog opens");
-			
+
 			// Click Yes on the dialog
 			dialog.zClickButton(Button.B_YES);
 
 		} finally {
 			app.zPageMain.zCloseWindow(window, windowTitle, app);
 		}
-		
+
 		FolderItem found = null;
-		
+
 		// Verify that the new mountpoint is present
 		logger.info("Looking for mountpoint containing text: "+ ownerFoldername);
 
@@ -139,8 +140,7 @@ public class CreateMountpoint extends PrefGroupMailByMessageTest {
 				break;
 			}
 		}
-		
+
 		ZAssert.assertNotNull(found, "Verify the mountpoint is in the folder list");
 	}
-
 }

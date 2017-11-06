@@ -1,3 +1,20 @@
+/*
+
+ * ***** BEGIN LICENSE BLOCK *****
+ * Zimbra Collaboration Suite Server
+ * Copyright (C) 2011, 2013, 2014, 2016 Synacor, Inc.
+ *
+ * This program is free software: you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License as published by the Free Software Foundation,
+ * version 2 of the License.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
+ * You should have received a copy of the GNU General Public License along with this program.
+ * If not, see <https://www.gnu.org/licenses/>.
+ * ***** END LICENSE BLOCK *****
+ */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.readingpane;
 
 import org.testng.annotations.Test;
@@ -22,39 +39,43 @@ public class VerifyReadingPaneOptions extends PrefGroupMailByConversationTest {
 		logger.info("New " + OpenDraftMail.class.getCanonicalName());
 	}
 
+
 	@Bugs(ids = "91533")
-	@Test( description = "Verify reading pane options in message view (bottom, right, off)", groups = { "functional", "L2" })
+	@Test( description = "Verify reading pane options in message view (bottom, right, off)",
+			groups = { "functional", "L2" })
+
 	public void VerifyReadingPaneOptionsInMessageView_01() throws HarnessException {
-					
+
 		app.zPageMail.zToolbarPressButton(Button.B_MAIL_VIEW_BY_MESSAGE);
 		SleepUtil.sleepVerySmall();
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
-		
+
 		app.zPageMail.zToolbarPressButton(Button.B_MAIL_VIEW_READING_PANE_RIGHT);
 		SleepUtil.sleepVerySmall();
 		ZAssert.assertTrue(app.zPageMail.sIsVisible(Locators.zRightReadingPaneSeparatorBar), "Verify horizontal seperator is visible");
 		ZAssert.assertFalse(app.zPageMail.sIsVisible(Locators.zBottomReadingPaneSeparatorBar), "Verify vertical seperator is not visible");
-		
-		
+
 		app.zPageMail.zToolbarPressButton(Button.B_MAIL_VIEW_READING_PANE_BOTTOM);
 		SleepUtil.sleepVerySmall();
 		ZAssert.assertTrue(app.zPageMail.sIsVisible(Locators.zBottomReadingPaneSeparatorBar), "Verify vertical seperator is visible");
 		ZAssert.assertFalse(app.zPageMail.sIsVisible(Locators.zRightReadingPaneSeparatorBar), "Verify horizontal seperator is not visible");
-		
+
 		app.zPageMail.zToolbarPressButton(Button.B_MAIL_VIEW_READING_PANE_OFF);
 		SleepUtil.sleepVerySmall();
 		ZAssert.assertFalse(app.zPageMail.sIsVisible(Locators.zBottomReadingPaneSeparatorBar), "Verify vertical seperator is not visible");
 		ZAssert.assertFalse(app.zPageMail.sIsVisible(Locators.zRightReadingPaneSeparatorBar), "Verify horizontal seperator is not visible");
 	}
-	
-	
+
+
 	@Bugs(ids = "91533")
-	@Test( description = "Verify reading pane options in conversation view (bottom, right, off)", groups = { "functional", "L2" })
+	@Test( description = "Verify reading pane options in conversation view (bottom, right, off)",
+			groups = { "functional", "L2" })
+
 	public void VerifyReadingPaneOptionsInConversationView_02() throws HarnessException {
-		
+
 		FolderItem inboxFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(),SystemFolder.Inbox);
 		String subject = "subject"+ ConfigProperties.getUniqueString();
-		
+
 		// Send a message to the account(self)
 		ZimbraAccount.AccountZCS().soapSend(
 						"<SendMsgRequest xmlns='urn:zimbraMail'>" +
@@ -77,21 +98,20 @@ public class VerifyReadingPaneOptions extends PrefGroupMailByConversationTest {
 		// Select the item
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, mail.dSubject);
 		SleepUtil.sleepSmall();
-				
+
 		app.zPageMail.zToolbarPressButton(Button.B_MAIL_VIEW_READING_PANE_RIGHT);
 		SleepUtil.sleepVerySmall();
 		ZAssert.assertTrue(app.zPageMail.sIsVisible(Locators.zRightReadingPaneSeparatorBar), "Verify horizontal seperator is visible");
 		ZAssert.assertFalse(app.zPageMail.sIsVisible(Locators.zBottomReadingPaneSeparatorBar), "Verify vertical appsash bar is not visible");
-				
+
 		app.zPageMail.zToolbarPressButton(Button.B_MAIL_VIEW_READING_PANE_BOTTOM);
 		SleepUtil.sleepVerySmall();
 		ZAssert.assertTrue(app.zPageMail.sIsVisible(Locators.zBottomReadingPaneSeparatorBar), "Verify horizontal appSash bar is visible");
 		ZAssert.assertFalse(app.zPageMail.sIsVisible(Locators.zRightReadingPaneSeparatorBar), "Issues in Bottom reading pane");
-		
+
 		app.zPageMail.zToolbarPressButton(Button.B_MAIL_VIEW_READING_PANE_OFF);
 		SleepUtil.sleepVerySmall();
 		ZAssert.assertFalse(app.zPageMail.sIsVisible(Locators.zBottomReadingPaneSeparatorBar), "Issues in reading pane off option");
 		ZAssert.assertFalse(app.zPageMail.sIsVisible(Locators.zRightReadingPaneSeparatorBar), "Issues in reading pane off option");
 	}
-	
 }

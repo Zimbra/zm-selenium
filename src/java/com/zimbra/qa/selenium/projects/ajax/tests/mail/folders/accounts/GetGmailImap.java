@@ -40,9 +40,8 @@ public class GetGmailImap extends PrefGroupMailByMessageTest {
 	 * 3. Add external account as Gmail
 	 * 4. Right click on the folder -> Get external mail
 	 * 5. Verify the message from step 2 appears
-	 *
-	 * @throws HarnessException
 	 */
+
 
 	@Test( description = "View an external Gmail - IMAP",
 			groups = { "smoke", "L1" })
@@ -135,5 +134,4 @@ public class GetGmailImap extends PrefGroupMailByMessageTest {
 		}
 		ZAssert.assertNotNull(found, "Verify the message is in the external folder");
 	}
-
 }

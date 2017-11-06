@@ -61,7 +61,7 @@ public class NonAllDayMultiDayAppointment extends AjaxCommonTest {
 
 		ZDate startDate = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 0, 0, 0);
 
-		//Create a non-all-day-multiday appointment of duration 5 days
+		// Create a non-all-day-multiday appointment of duration 5 days
 		AppointmentItem.createAppointmentSingleDay(
 				app.zGetActiveAccount(),
 				startDate,
@@ -75,7 +75,7 @@ public class NonAllDayMultiDayAppointment extends AjaxCommonTest {
 		// Refresh the calendar
 		app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
 
-		//Verify that the appointments is displayed correctly in month view
+		// Verify that the appointments is displayed correctly in month view
 		boolean displayed = app.zPageCalendar.zVerifyNonAllDayMultiDayAppointmentInMonthView(startDate,noOfDays, subject);
 		ZAssert.assertTrue(displayed, "The appointment is not created and displayed correctlly in month view");
 	}

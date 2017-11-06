@@ -19,7 +19,6 @@ package com.zimbra.qa.selenium.projects.ajax.tests.tasks;
 import java.awt.event.KeyEvent;
 import java.util.HashMap;
 import java.util.List;
-
 import org.testng.annotations.*;
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.*;
@@ -34,20 +33,22 @@ public class DeleteHtmlTask extends AjaxCommonTest {
 	@SuppressWarnings("serial")
 	public DeleteHtmlTask() {
 		logger.info("New "+ DeleteHtmlTask.class.getCanonicalName());
+
 		super.startingPage = app.zPageTasks;
 		super.startingAccountPreferences = new HashMap<String , String>() {{
 			put("zimbraPrefTasksReadingPaneLocation", "bottom");
 			put("zimbraPrefShowSelectionCheckbox", "TRUE");
 		}};
-		
 	}
-	
+
+
 	@Test( description = "Delete a Html task using toolbar delete button",
 			groups = { "smoke", "L0"})
+
 	public void DeleteHtmlTask_01() throws HarnessException {
-		
+
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
-		
+
 		// Create a basic task to delete
 		String subject = "task"+ ConfigProperties.getUniqueString();
 		String taskHtmlbody = "task<b>bold"+ ConfigProperties.getUniqueString()+"</b>task";
@@ -75,17 +76,17 @@ public class DeleteHtmlTask extends AjaxCommonTest {
 
 		TaskItem task = TaskItem.importFromSOAP(app.zGetActiveAccount(), subject);
 		ZAssert.assertStringContains(task.getHtmlTaskBody().trim().toLowerCase(), taskHtmlbody.trim(), "Verify the html content of task body");
-		
+
 		// Refresh the tasks view
 		app.zPageTasks.zToolbarPressButton(Button.B_REFRESH);
 		app.zTreeTasks.zTreeItem(Action.A_LEFTCLICK, taskFolder);
-						
+
 		// Select the item
 		app.zPageTasks.zListItem(Action.A_LEFTCLICK, subject);
-		
+
 		// Click delete
 		app.zPageTasks.zToolbarPressButton(Button.B_DELETE);
-		
+
 		List<TaskItem> tasks = app.zPageTasks.zGetTasks();
 		ZAssert.assertNotNull(tasks, "Verify the task list exists");
 
@@ -98,18 +99,19 @@ public class DeleteHtmlTask extends AjaxCommonTest {
 			}
 		}
 		ZAssert.assertNull(found, "Verify the html task is no longer present");
-	
 	}
+
 
 	@Test( description = "Delete a Html task using checkbox and toolbar delete button",
 			groups = { "smoke", "L0"})
+
 	public void DeleteHtmlTask_02() throws HarnessException {
-		
+
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
-		
+
 		// Create a basic task to delete
 		String subject = "task"+ ConfigProperties.getUniqueString();
-				
+
 		String taskHtmlbody = "task<b>bold"+ ConfigProperties.getUniqueString()+"</b>task";
 		String contentHTML = XmlStringUtil.escapeXml("<html>"+"<body>"+"<div>"+taskHtmlbody+"</div>"+"</body>"+"</html>");
 
@@ -135,20 +137,19 @@ public class DeleteHtmlTask extends AjaxCommonTest {
 
 		TaskItem task = TaskItem.importFromSOAP(app.zGetActiveAccount(), subject);
 		ZAssert.assertStringContains(task.getHtmlTaskBody().trim().toLowerCase(), taskHtmlbody.trim(), "Verify the html content of task body");
-				
+
 		// Refresh the tasks view
 		app.zPageTasks.zToolbarPressButton(Button.B_REFRESH);
 		app.zTreeTasks.zTreeItem(Action.A_LEFTCLICK, taskFolder);
-						
+
 		// Select the item
-		
 		if (!app.zPageTasks.sIsElementPresent(PageTasks.Locators.zCheckboxenable)) {
 			app.zPageTasks.zListItem(Action.A_MAIL_CHECKBOX, subject);
 		}
-		
+
 		// Click delete
 		app.zPageTasks.zToolbarPressButton(Button.B_DELETE);
-		
+
 		List<TaskItem> tasks = app.zPageTasks.zGetTasks();
 		ZAssert.assertNotNull(tasks, "Verify the task list exists");
 
@@ -161,8 +162,8 @@ public class DeleteHtmlTask extends AjaxCommonTest {
 			}
 		}
 		ZAssert.assertNull(found, "Verify the html task is no longer present");
-	
 	}
+
 
 	@DataProvider(name = "DataProviderDeleteKeys")
 	public Object[][] DataProviderDeleteKeys() {
@@ -171,17 +172,18 @@ public class DeleteHtmlTask extends AjaxCommonTest {
 	    new Object[] { "VK_BACK_SPACE", KeyEvent.VK_BACK_SPACE },
 	  };
 	}
-	
+
 	@Test( description = "Delete a html task by selecting and typing 'delete' keyboard",
 			groups = { "smoke", "L0"},
 			dataProvider = "DataProviderDeleteKeys")
+
 	public void DeleteHtmlTask_03(String name, int keyEvent) throws HarnessException {
-		
+
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
-		
+
 		// Create a basic task to delete
 		String subject = "task"+ ConfigProperties.getUniqueString();
-				
+
 		String taskHtmlbody = "task<b>bold"+ ConfigProperties.getUniqueString()+"</b>task";
 		String contentHTML = XmlStringUtil.escapeXml("<html>"+"<body>"+"<div>"+taskHtmlbody+"</div>"+"</body>"+"</html>");
 
@@ -211,17 +213,16 @@ public class DeleteHtmlTask extends AjaxCommonTest {
 		// Refresh the tasks view
 		app.zPageTasks.zToolbarPressButton(Button.B_REFRESH);
 		app.zTreeTasks.zTreeItem(Action.A_LEFTCLICK, taskFolder);
-						
+
 		if (!app.zPageTasks.sIsElementPresent(PageTasks.Locators.zCheckboxenable)) {
 			// Select the item
 			app.zPageTasks.zListItem(Action.A_MAIL_CHECKBOX, subject);
 		}
-		
+
 		// Click delete keyboard
 		logger.info("Typing shortcut key "+ name + " KeyEvent: "+ keyEvent);
 		app.zPageMail.zKeyboardKeyEvent(keyEvent);
-		
-		
+
 		List<TaskItem> tasks = app.zPageTasks.zGetTasks();
 		ZAssert.assertNotNull(tasks, "Verify the task list exists");
 
@@ -234,19 +235,20 @@ public class DeleteHtmlTask extends AjaxCommonTest {
 			}
 		}
 		ZAssert.assertNull(found, "Verify the task is no longer present");
-	
 	}
-	
+
+
 	@Bugs(ids="56467")
 	@Test( description = "Delete a Html task by selecting and typing '.t' shortcut",
 			groups = { "functional", "L3"} )
+
 	public void DeleteHtmlTask_04() throws HarnessException {
-		
+
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
-		
+
 		// Create a basic task to delete
 		String subject = "task"+ ConfigProperties.getUniqueString();
-				
+
 		String taskHtmlbody = "task<b>bold"+ ConfigProperties.getUniqueString()+"</b>task";
 		String contentHTML = XmlStringUtil.escapeXml("<html>"+"<body>"+"<div>"+taskHtmlbody+"</div>"+"</body>"+"</html>");
 
@@ -276,17 +278,15 @@ public class DeleteHtmlTask extends AjaxCommonTest {
 		// Refresh the tasks view
 		app.zPageTasks.zToolbarPressButton(Button.B_REFRESH);
 		app.zTreeTasks.zTreeItem(Action.A_LEFTCLICK, taskFolder);
-						
+
 		if (!app.zPageTasks.sIsElementPresent(PageTasks.Locators.zCheckboxenable)) {
 			// Select the item
 			app.zPageTasks.zListItem(Action.A_MAIL_CHECKBOX, subject);
 		}
 
-		
 		// Use Delete Keyboard Shortcut
 		app.zPageTasks.zKeyboardShortcut(Shortcut.S_MAIL_MOVETOTRASH);
-		
-		
+
 		List<TaskItem> tasks = app.zPageTasks.zGetTasks();
 		ZAssert.assertNotNull(tasks, "Verify the task list exists");
 
@@ -299,20 +299,21 @@ public class DeleteHtmlTask extends AjaxCommonTest {
 			}
 		}
 		ZAssert.assertNull(found, "Verify the task is no longer present");
-	
 	}
+
 
 	@Test( description = "Delete multiple Html tasks (3) by select and toolbar delete",
 			groups = { "functional", "L3"})
+
 	public void DeleteHtmlTask_05() throws HarnessException {
-		
+
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
 
 		// Create the message data to be sent
 		String subject1 = "task1"+ ConfigProperties.getUniqueString();
 		String subject2 = "task2"+ ConfigProperties.getUniqueString();
 		String subject3 = "task3"+ ConfigProperties.getUniqueString();
-				
+
 		String taskHtmlbody1 = "task1<b>bold"+ ConfigProperties.getUniqueString()+"</b>task";
 		String taskHtmlbody2 = "task2<b>bold"+ ConfigProperties.getUniqueString()+"</b>task";
 		String taskHtmlbody3 = "task3<b>bold"+ ConfigProperties.getUniqueString()+"</b>task";
@@ -340,8 +341,6 @@ public class DeleteHtmlTask extends AjaxCommonTest {
 				"</m>" +
 				"</CreateTaskRequest>");
 
-		
-
 		app.zGetActiveAccount().soapSend(
 				"<CreateTaskRequest xmlns='urn:zimbraMail'>" +
 				"<m >" +
@@ -361,7 +360,7 @@ public class DeleteHtmlTask extends AjaxCommonTest {
 				"</mp>" +
 				"</m>" +
 				"</CreateTaskRequest>");
-		
+
 		app.zGetActiveAccount().soapSend(
 				"<CreateTaskRequest xmlns='urn:zimbraMail'>" +
 				"<m >" +
@@ -381,7 +380,6 @@ public class DeleteHtmlTask extends AjaxCommonTest {
 				"</mp>" +
 				"</m>" +
 				"</CreateTaskRequest>");
-		
 
 		// Import each message into MailItem objects
 		TaskItem task1 = TaskItem.importFromSOAP(app.zGetActiveAccount(), subject1);
@@ -396,16 +394,15 @@ public class DeleteHtmlTask extends AjaxCommonTest {
 		// Refresh the tasks view
 		app.zPageTasks.zToolbarPressButton(Button.B_REFRESH);
 		app.zTreeTasks.zTreeItem(Action.A_LEFTCLICK, taskFolder);
-						
+
 		// Select the items
-	//	app.zPageTasks.zListItem(Action.A_MAIL_UNCHECKBOX, subject3);
 		app.zPageTasks.zListItem(Action.A_MAIL_CHECKBOX, subject1);
 		app.zPageTasks.zListItem(Action.A_MAIL_CHECKBOX, subject2);
 		app.zPageTasks.zListItem(Action.A_MAIL_CHECKBOX, subject3);
-				
+
 		// Click toolbar delete button
 		app.zPageTasks.zToolbarPressButton(Button.B_DELETE);
-				
+
 		List<TaskItem> tasks = app.zPageTasks.zGetTasks();
 		ZAssert.assertNotNull(tasks, "Verify the message list exists");
 
@@ -426,20 +423,20 @@ public class DeleteHtmlTask extends AjaxCommonTest {
 		}
 		ZAssert.assertNull(found1, "Verify the Html task "+ subject1 +" is no longer in the mailbox");
 		ZAssert.assertNull(found2, "Verify the Html task "+ subject2 +" is no longer in the mailbox");
-		ZAssert.assertNull(found3, "Verify the Html task "+ subject3 +" is no longer in the mailbox");	
-
+		ZAssert.assertNull(found3, "Verify the Html task "+ subject3 +" is no longer in the mailbox");
 	}
+
 
 	@Test( description = "Delete a html task using context menu delete button",
 			groups = { "smoke", "L0"})
+
 	public void DeleteHtmlTask_06() throws HarnessException {
 
-		
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
-		
+
 		// Create a basic task to delete
 		String subject = "task"+ ConfigProperties.getUniqueString();
-				
+
 		String taskHtmlbody = "task<b>bold"+ ConfigProperties.getUniqueString()+"</b>task";
 		String contentHTML = XmlStringUtil.escapeXml("<html>"+"<body>"+"<div>"+taskHtmlbody+"</div>"+"</body>"+"</html>");
 
@@ -469,15 +466,13 @@ public class DeleteHtmlTask extends AjaxCommonTest {
 		// Refresh the tasks view
 		app.zPageTasks.zToolbarPressButton(Button.B_REFRESH);
 		app.zTreeTasks.zTreeItem(Action.A_LEFTCLICK, taskFolder);
-						
+
 		// Select the item
 		app.zPageTasks.zListItem(Action.A_MAIL_CHECKBOX, subject);
 
-		
 		// Right click the item, select delete
 		app.zPageTasks.zListItem(Action.A_RIGHTCLICK, Button.B_DELETE, subject);
-		
-		
+
 		List<TaskItem> tasks = app.zPageTasks.zGetTasks();
 		ZAssert.assertNotNull(tasks, "Verify the  task list exists");
 
@@ -490,18 +485,19 @@ public class DeleteHtmlTask extends AjaxCommonTest {
 			}
 		}
 		ZAssert.assertNull(found, "Verify the html task is no longer present");
-	
 	}
-	
+
+
 	@Test( description = "Create Html task through SOAP - delete using Backspace Key & verify through GUI",
 			groups = { "functional", "L3"} )
+
 	public void DeleteHtmlTask_07() throws HarnessException {
-		
+
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
-		
+
 		// Create a basic task to delete
 		String subject = "task"+ ConfigProperties.getUniqueString();
-				
+
 		String taskHtmlbody = "task<b>bold"+ ConfigProperties.getUniqueString()+"</b>task";
 		String contentHTML = XmlStringUtil.escapeXml("<html>"+"<body>"+"<div>"+taskHtmlbody+"</div>"+"</body>"+"</html>");
 
@@ -531,15 +527,13 @@ public class DeleteHtmlTask extends AjaxCommonTest {
 		// Refresh the tasks view
 		app.zPageTasks.zToolbarPressButton(Button.B_REFRESH);
 		app.zTreeTasks.zTreeItem(Action.A_LEFTCLICK, taskFolder);
-						
+
 		// Select the item
 		app.zPageTasks.zListItem(Action.A_MAIL_CHECKBOX, subject);
 
-		
 		// Use Backspace Keyboard Shortcut
 		app.zPageTasks.zKeyboardShortcut(Shortcut.S_BACKSPACE);
-		
-		
+
 		List<TaskItem> tasks = app.zPageTasks.zGetTasks();
 		ZAssert.assertNotNull(tasks, "Verify the task list exists");
 
@@ -552,7 +546,5 @@ public class DeleteHtmlTask extends AjaxCommonTest {
 			}
 		}
 		ZAssert.assertNull(found, "Verify the html task is no longer present");
-	
 	}
-
 }

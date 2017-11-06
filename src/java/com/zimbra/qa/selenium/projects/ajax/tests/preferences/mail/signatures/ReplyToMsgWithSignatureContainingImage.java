@@ -18,7 +18,6 @@ package com.zimbra.qa.selenium.projects.ajax.tests.preferences.mail.signatures;
 
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.items.FileItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
@@ -38,12 +37,12 @@ import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
 public class ReplyToMsgWithSignatureContainingImage extends AjaxCommonTest {
 	String sigName = "signame" + ConfigProperties.getUniqueString();
 	String sigBody = "signature<b>bold" + ConfigProperties.getUniqueString() + "</b>signature";
-	String contentHTMLSig = XmlStringUtil
-			.escapeXml("<html>" + "<head></head>" + "<body>" + sigBody + "</body>" + "</html>");
+	String contentHTMLSig = XmlStringUtil.escapeXml("<html>" + "<head></head>" + "<body>" + sigBody + "</body>" + "</html>");
 
 	public ReplyToMsgWithSignatureContainingImage() {
 		super.startingPage = app.zPageMail;
 	}
+
 
 	@BeforeMethod(groups = { "always" })
 	public void CreateSignature() throws HarnessException {
@@ -54,11 +53,9 @@ public class ReplyToMsgWithSignatureContainingImage extends AjaxCommonTest {
 				SystemFolder.Briefcase);
 
 		// Create file item
-		String filePath = ConfigProperties.getBaseDirectory()
-				+ "/data/public/other/logo_sigclub.png";
+		String filePath = ConfigProperties.getBaseDirectory() + "/data/public/other/logo_sigclub.png";
 
 		FileItem file = new FileItem(filePath);
-
 		String fileName = file.getName();
 
 		// Upload file to server through RestUtil
@@ -71,8 +68,8 @@ public class ReplyToMsgWithSignatureContainingImage extends AjaxCommonTest {
 
 		account.soapSend("<CreateSignatureRequest xmlns='urn:zimbraAccount'>" + "<signature name='" + this.sigName
 				+ "' >" + "<content type='text/html'>" + this.contentHTMLSig + "<br />"
-				+ "		<img src='/home/"+ account.EmailAddress + "/Briefcase/" + fileName 
-				+ "' width='150' dfsrc='doc:Briefcase/"+ fileName 
+				+ "		<img src='/home/"+ account.EmailAddress + "/Briefcase/" + fileName
+				+ "' width='150' dfsrc='doc:Briefcase/"+ fileName
 				+ "' data-mce-src='/home/" + account.EmailAddress + "/Briefcase/" + fileName + "' />"
 				+ "<br />" + this.contentHTMLSig +" </content>" + "</signature>"
 				+ "</CreateSignatureRequest>");
@@ -81,17 +78,18 @@ public class ReplyToMsgWithSignatureContainingImage extends AjaxCommonTest {
 		app.zPageMain.zRefreshMainUI();
 
 		logger.info("CreateSignature: finish");
-
 	}
+
 
 	/**
 	 * Test case : Create a signature having image through SOAP. Send a mail using that signature.
-	 * Open the received mail and click reply to it. 
+	 * Open the received mail and click reply to it.
 	 * Verify that the body of reply compose form contains the signature with image displayed.
-	 * 
-	 * @throws HarnessException
 	 */
-	@Test(description = " Verify the display of signature image in reply compose window!", groups = { "functional", "L2" })
+
+	@Test(description = " Verify the display of signature image in reply compose window!",
+			groups = { "functional", "L2" })
+
 	public void ReplyMsgWithHtmlSignature_01() throws HarnessException {
 
 		// Verify that the signature is created successfully
@@ -113,10 +111,10 @@ public class ReplyToMsgWithSignatureContainingImage extends AjaxCommonTest {
 		// Select the signature from Options
 		app.zPageMail.zToolbarPressPulldown(Button.B_OPTIONS,Button.O_ADD_SIGNATURE,sigName);
 
-		// Send the message 
+		// Send the message
 		mailform.zSubmit();
 
-		//Login to the recipient account
+		// Login to the recipient account
 		app.zPageLogin.zLogin(ZimbraAccount.AccountA());
 
 		// Open the mail
@@ -128,8 +126,7 @@ public class ReplyToMsgWithSignatureContainingImage extends AjaxCommonTest {
 		//Get Signature image src value
 		String imgSrc = mailform.zGetSignatueImageSrc();
 
-		//Verify that signature image src has value containing the the server URL 
+		// Verify that signature image src has value containing the the server URL
 		ZAssert.assertStringContains(imgSrc, "https://" + ConfigProperties.getStringProperty("server.host")+ "/", "Signature Image source is not correct in reply compose page!");
-
 	}
 }

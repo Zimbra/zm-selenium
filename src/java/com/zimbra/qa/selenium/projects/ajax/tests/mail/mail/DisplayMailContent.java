@@ -86,7 +86,7 @@ public class DisplayMailContent extends PrefGroupMailByMessageTest {
 			multilineTextData = "BoldString <br />ItalicString <br />Underline text <br />Red color text <br />Green background <br /><br />Number list below : <br /><br /><br />    1. point one <br />    2. point two <br />    3. point three";
 		}
 
-		//Navigate to preference -> Mail and set display mail pref to Text and verify
+		// Navigate to preference -> Mail and set display mail pref to Text and verify
 		app.zPagePreferences.zNavigateTo();
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.Mail);
 
@@ -138,6 +138,7 @@ public class DisplayMailContent extends PrefGroupMailByMessageTest {
 		String value = app.zGetActiveAccount().soapSelectValue("//acct:pref[@name='zimbraPrefMessageViewHtmlPreferred']", null);
 
 		if (value.equalsIgnoreCase("FALSE")) {
+
 			// Navigate to preference -> Mail and set display mail pref to Text and verify
 			app.zPagePreferences.zNavigateTo();
 			app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.Mail);
@@ -192,6 +193,7 @@ public class DisplayMailContent extends PrefGroupMailByMessageTest {
 		String value = app.zGetActiveAccount().soapSelectValue("//acct:pref[@name='zimbraPrefMessageViewHtmlPreferred']", null);
 
 		if (value.equals("TRUE")) {
+
 			// Navigate to preference -> Mail and set display mail pref to Text and verify
 			app.zPagePreferences.zNavigateTo();
 			app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.Mail);
@@ -215,7 +217,7 @@ public class DisplayMailContent extends PrefGroupMailByMessageTest {
 		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email19/multilineTextcontent.txt";
 		final String subject = "subject13214016777777";
 
-		// if mail already exist from previous testcases then don't inject
+		// If mail already exist from previous testcases then don't inject
 		if (!app.zPageMail.zVerifyMailExists(subject)) {
 			LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
 			ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");

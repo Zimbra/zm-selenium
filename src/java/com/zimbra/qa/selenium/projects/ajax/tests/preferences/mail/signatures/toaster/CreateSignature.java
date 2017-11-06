@@ -29,17 +29,21 @@ import com.zimbra.qa.selenium.projects.ajax.ui.preferences.signature.FormSignatu
 import com.zimbra.qa.selenium.projects.ajax.ui.preferences.signature.FormSignatureNew.Field;
 
 public class CreateSignature extends AjaxCommonTest {
+
 	public CreateSignature() {
 		super.startingPage = app.zPagePreferences;
 	}
 
-	@Test(description = "Create Simple text signature and verify Toast Msg through GUI", groups = { "functional", "L3"  })
+
+	@Test(description = "Create Simple text signature and verify Toast Msg through GUI",
+		groups = { "functional", "L3"  })
+
 	public void CreateTextSignatureToastMsg_01() throws HarnessException {
 
 		String sigName = "signame" + ConfigProperties.getUniqueString();
 		String sigBody = "sigbody" + ConfigProperties.getUniqueString();
 
-		// click on signature from left pane
+		// Click on signature from left pane
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.MailSignatures);
 
 		// Click on New signature button
@@ -54,16 +58,18 @@ public class CreateSignature extends AjaxCommonTest {
 		Toaster toast = app.zPageMain.zGetToaster();
 		String toastMsg = toast.zGetToastMessage();
 		ZAssert.assertStringContains(toastMsg, "Preferences Saved", "Verify toast message: Preferences Saved");
-
 	}
 
-	@Test(description = "Create Simple Html signature and verify Toast Msg through GUI", groups = { "functional", "L3"  })
+
+	@Test(description = "Create Simple Html signature and verify Toast Msg through GUI",
+			groups = { "functional", "L3"  })
+
 	public void CreateHtmlSignatureToastMsg_02() throws HarnessException {
 
 		String sigName = "signame" + ConfigProperties.getUniqueString();
 		String sigBody = "sigbody" + ConfigProperties.getUniqueString();
 
-		// click on signature from left pane
+		// Click on signature from left pane
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.MailSignatures);
 
 		// Click on New signature button
@@ -71,7 +77,7 @@ public class CreateSignature extends AjaxCommonTest {
 
 		// select html format from drop down
 		signew.zSelectFormat("html");
-		
+
 		// Fill Signature Name and body
 		signew.zFillField(Field.SignatureName, sigName);
 		signew.zFillField(Field.SignatureHtmlBody, sigBody);
@@ -81,6 +87,5 @@ public class CreateSignature extends AjaxCommonTest {
 		Toaster toast = app.zPageMain.zGetToaster();
 		String toastMsg = toast.zGetToastMessage();
 		ZAssert.assertStringContains(toastMsg, "Preferences Saved", "Verify toast message: Preferences Saved");
-
 	}
 }

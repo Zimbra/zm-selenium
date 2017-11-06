@@ -17,7 +17,6 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.tasks.tags;
 
 import org.testng.annotations.Test;
-
 import com.zimbra.common.soap.Element;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.TagItem;
@@ -31,18 +30,17 @@ public class RenameTag extends AjaxCommonTest {
 
 	public RenameTag() {
 		logger.info("Tasks " + RenameTag.class.getCanonicalName());
-
 		super.startingPage = app.zPageTasks;
-		
 	}
-	
-	@Test( description = "Rename a tag - Right click, Rename", 
+
+
+	@Test( description = "Rename a tag - Right click, Rename",
 			groups = { "smoke", "L1"})
-	
+
 	public void RenameTag_01() throws HarnessException {
 
-		FolderItem taskFolder = FolderItem.importFromSOAP(app
-				.zGetActiveAccount(), SystemFolder.Tasks);
+		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
+
 		// Create the tag to rename
 		String name1 = "tag" + ConfigProperties.getUniqueString();
 		String name2 = "tag" + ConfigProperties.getUniqueString();
@@ -56,7 +54,7 @@ public class RenameTag extends AjaxCommonTest {
 
 		// Click to refresh the folder list
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
-		
+
 		// Click on Task explicitly to refresh the tag list
 		app.zTreeTasks.zTreeItem(Action.A_LEFTCLICK, taskFolder);
 
@@ -76,7 +74,5 @@ public class RenameTag extends AjaxCommonTest {
 
 		Element[] eTag2 = app.zGetActiveAccount().soapSelectNodes("//mail:tag[@name='" + name2 + "']");
 		ZAssert.assertEquals(eTag2.length, 1, "Verify the new tag name exists");
-
 	}
-
 }

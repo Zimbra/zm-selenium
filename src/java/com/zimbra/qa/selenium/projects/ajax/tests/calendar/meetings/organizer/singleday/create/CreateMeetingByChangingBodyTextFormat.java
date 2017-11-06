@@ -65,7 +65,7 @@ public class CreateMeetingByChangingBodyTextFormat extends AjaxCommonTest {
 		FormApptNew apptForm = (FormApptNew) app.zPageCalendar.zToolbarPressButton(Button.B_NEW);
 		apptForm.zFill(appt);
 
-		//Change text format to HTML
+		// Change text format to HTML
 		apptForm.zToolbarPressPulldown(Button.B_OPTIONS, Button.O_FORMAT_AS_HTML);
 		ZAssert.assertStringContains(apptForm.zGetApptBodyHtml(), apptContent, "Verify content is not lost");
 
@@ -110,7 +110,7 @@ public class CreateMeetingByChangingBodyTextFormat extends AjaxCommonTest {
 		FormApptNew apptForm = (FormApptNew) app.zPageCalendar.zToolbarPressButton(Button.B_NEW);
 		apptForm.zFill(appt);
 
-		//Changed text format to plain text.
+		// Changed text format to plain text.
 		DialogWarning dialog = (DialogWarning)apptForm.zToolbarPressPulldown(Button.B_OPTIONS, Button.O_FORMAT_AS_PLAIN_TEXT);
 		dialog.zClickButton(Button.B_OK);
 
@@ -159,7 +159,7 @@ public class CreateMeetingByChangingBodyTextFormat extends AjaxCommonTest {
 		FormApptNew apptForm = (FormApptNew) app.zPageCalendar.zToolbarPressButton(Button.B_NEW);
 		apptForm.zFill(appt);
 		SleepUtil.sleepSmall();
-		//Change text format to HTML
+		// Change text format to HTML
 		apptForm.zToolbarPressPulldown(Button.B_OPTIONS, Button.O_FORMAT_AS_HTML);
 		SleepUtil.sleepSmall();
 		ZAssert.assertStringContains(apptForm.zGetApptBodyHtml(), apptContent1, "Verify content is not lost");
@@ -179,7 +179,7 @@ public class CreateMeetingByChangingBodyTextFormat extends AjaxCommonTest {
 		// Compose appointment in enter body text in plain first.
 		apptForm = (FormApptNew) app.zPageCalendar.zToolbarPressButton(Button.B_NEW);
 		apptForm.zFill(appt);
-		//Change text format to HTML
+		// Change text format to HTML
 		SleepUtil.sleepLong();
 		apptForm.zToolbarPressPulldown(Button.B_OPTIONS, Button.O_FORMAT_AS_HTML);
 		ZAssert.assertStringContains(apptForm.zGetApptBodyHtml(), apptContent2, "Verify content is not lost");

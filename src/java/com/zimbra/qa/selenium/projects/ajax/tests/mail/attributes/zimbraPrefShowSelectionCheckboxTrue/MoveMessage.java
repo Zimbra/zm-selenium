@@ -28,6 +28,13 @@ import com.zimbra.qa.selenium.projects.ajax.ui.*;
 
 public class MoveMessage extends PrefGroupMailByMessageTest {
 
+	public MoveMessage() {
+		logger.info("New "+ MoveMessage.class.getCanonicalName());
+		super.startingAccountPreferences.put("zimbraPrefShowSelectionCheckbox", "TRUE");
+		super.startingAccountPreferences.put("zimbraPrefItemsPerVirtualPage", "10");
+	}
+
+
 	@AfterMethod( groups = { "always" } )
 	public void afterMethod() throws HarnessException {
 		logger.info("Checking for the Move Dialog ...");
@@ -39,26 +46,19 @@ public class MoveMessage extends PrefGroupMailByMessageTest {
 			dialog.zClickButton(Button.B_CANCEL);
 		}
 	}
-	
-	public MoveMessage() {
-		logger.info("New "+ MoveMessage.class.getCanonicalName());		
-		super.startingAccountPreferences.put("zimbraPrefShowSelectionCheckbox", "TRUE");
-		super.startingAccountPreferences.put("zimbraPrefItemsPerVirtualPage", "10");
-	}
-	
+
 
 	@Test( description = "Move all mails by selecting 'select all', then clicking toolbar 'Move' button",
 			groups = { "functional", "L2" })
-	
+
 	public void MoveMessage_01() throws HarnessException {
 
-		//-- DATA
 		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
 		String subject = "subject"+ ConfigProperties.getUniqueString();
-		
+
 		// Create 5 emails in the inbox
 		for (int i = 0; i < 5; i++) {
-			
+
 			// Send a message to the account
 			app.zGetActiveAccount().soapSend(
 					"<AddMsgRequest xmlns='urn:zimbraMail'>"
@@ -75,33 +75,26 @@ public class MoveMessage extends PrefGroupMailByMessageTest {
 	            	+		"</m>"
 					+	"</AddMsgRequest>");
 		}
-		
-		// Create a subfolder to move the message into
-		// i.e. Inbox/subfolder
 
+		// Create a subfolder to move the message into
 		String foldername = "folder"+ ConfigProperties.getUniqueString();
 		app.zGetActiveAccount().soapSend(
 					"<CreateFolderRequest xmlns='urn:zimbraMail'>" +
 						"<folder name='" + foldername +"' l='"+ inbox.getId() +"'/>" +
 					"</CreateFolderRequest>");
 		FolderItem subfolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), foldername);
+		SleepUtil.sleepMedium();
 
-		SleepUtil.sleepMedium(); // Wait for sometime to deliver 5 mails
-
-		//-- GUI
-		
 		// Refresh current view
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK,inbox);
-		
+
 		// Select all
 		app.zPageMail.zToolbarPressButton(Button.B_SELECT_ALL);
-				
+
 		// Click move -> subfolder
 		app.zPageMail.zToolbarPressPulldown(Button.B_MOVE, subfolder);
 
-		//-- VERIFICATION
-		
 		// Verify no messages remain in the inbox
 		app.zGetActiveAccount().soapSend(
                 "<SearchRequest xmlns='urn:zimbraMail' types='message'>" +
@@ -111,20 +104,19 @@ public class MoveMessage extends PrefGroupMailByMessageTest {
 		ZAssert.assertEquals(nodes.length, 0, "Verify 0 messages remain in the inbox");
 	}
 
-	
+
 	@Bugs(ids = "106905")
 	@Test( description = "Move all mails by selecting 'shift-select all', then clicking toolbar 'Move' button",
 			groups = { "functional", "L3" })
-	
+
 	public void MoveMessage_02() throws HarnessException {
-		
-		//-- DATA
+
 		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
 		String subject = "subject"+ ConfigProperties.getUniqueString();
-		
+
 		// Create 15 emails in the inbox
 		for (int i = 0; i < 25; i++) {
-			
+
 			// Send a message to the account
 			app.zGetActiveAccount().soapSend(
 					"<AddMsgRequest xmlns='urn:zimbraMail'>"
@@ -140,12 +132,10 @@ public class MoveMessage extends PrefGroupMailByMessageTest {
 	            	+			"</content>"
 	            	+		"</m>"
 					+	"</AddMsgRequest>");
-			
-		}
-		
-		// Create a subfolder to move the message into
-		// i.e. Inbox/subfolder
 
+		}
+
+		// Create a subfolder to move the message into
 		String foldername = "folder"+ ConfigProperties.getUniqueString();
 		app.zGetActiveAccount().soapSend(
 					"<CreateFolderRequest xmlns='urn:zimbraMail'>" +
@@ -155,21 +145,17 @@ public class MoveMessage extends PrefGroupMailByMessageTest {
 
 		SleepUtil.sleepLong(); // Wait for sometime to deliver 25 mails
 
-		//-- GUI
-
 		// Refresh current view
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
-		
+
 		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK,inbox);
-		
+
 		// Select all
 		app.zPageMail.zToolbarPressButton(Button.B_SHIFT_SELECT_ALL);
-				
+
 		// Click move -> subfolder
 		app.zPageMail.zToolbarPressPulldown(Button.B_MOVE, subfolder);
-		
-		//-- VERIFICATION
-		
+
 		// Verify no messages remain in the inbox
 		app.zGetActiveAccount().soapSend(
                 "<SearchRequest xmlns='urn:zimbraMail' types='message'>" +

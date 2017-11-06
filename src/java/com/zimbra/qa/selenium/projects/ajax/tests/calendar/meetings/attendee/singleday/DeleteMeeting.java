@@ -80,7 +80,7 @@ public class DeleteMeeting extends AjaxCommonTest {
 
  		// ---------------- Verification at organizer & invitee side both -------------------------------------
 
- 		// --- Check that the organizer shows the attendee as "DECLINE" ---
+ 		// Check that the organizer shows the attendee as "DECLINE" ---
 
  		// Organizer: Search for the appointment (InvId)
  		ZimbraAccount.AccountA().soapSend(
@@ -161,7 +161,7 @@ public class DeleteMeeting extends AjaxCommonTest {
 
  		// ---------------- Verification at organizer & invitee side both -------------------------------------
 
- 		// --- Check that the organizer shows the attendee as "DECLINE" ---
+ 		// Check that the organizer shows the attendee as "DECLINE" ---
 
  		// Organizer: Search for the appointment (InvId)
  		ZimbraAccount.AccountA().soapSend(

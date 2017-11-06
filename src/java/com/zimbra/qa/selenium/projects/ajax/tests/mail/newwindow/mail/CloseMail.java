@@ -18,7 +18,6 @@ package com.zimbra.qa.selenium.projects.ajax.tests.mail.newwindow.mail;
 
 import org.apache.log4j.*;
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
@@ -29,10 +28,12 @@ public class CloseMail extends PrefGroupMailByMessageTest {
 
 	public CloseMail() throws HarnessException {
 		logger.info("New " + CloseMail.class.getCanonicalName());
-
 	}
 
-	@Test(description = "Close a separate window", groups = { "functional", "L2" })
+
+	@Test(description = "Close a separate window",
+			groups = { "functional", "L2" })
+
 	public void CloseMail_01() throws HarnessException {
 
 		final String subject = "subject13150210210153";
@@ -68,10 +69,12 @@ public class CloseMail extends PrefGroupMailByMessageTest {
 		} finally {
 			app.zPageMain.zCloseWindow(window, windowTitle, app);
 		}
-
 	}
 
-	@Test(description = "Close a separate window - press Esc", groups = { "functional", "L2" })
+
+	@Test(description = "Close a separate window - press Esc",
+			groups = { "functional", "L2" })
+
 	public void CloseMail_02() throws HarnessException {
 
 		final String subject = "subject13150210210153";
@@ -99,7 +102,7 @@ public class CloseMail extends PrefGroupMailByMessageTest {
 
 			window.zSetWindowTitle(windowTitle);
 			ZAssert.assertTrue(window.zIsWindowOpen(windowTitle),"Verify the window is opened and switch to it");
-			
+
 			window.zKeyboardShortcut(Shortcut.S_ESCAPE);
 
 			ZAssert.assertFalse(window.zIsActive(), "Verify the window is closed");
@@ -107,7 +110,5 @@ public class CloseMail extends PrefGroupMailByMessageTest {
 		} finally {
 			app.zPageMain.zCloseWindow(window, windowTitle, app);
 		}
-
 	}
-
 }

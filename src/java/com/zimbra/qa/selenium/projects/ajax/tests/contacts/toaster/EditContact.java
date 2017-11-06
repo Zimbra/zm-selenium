@@ -17,7 +17,6 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.contacts.toaster;
 
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.items.ContactItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -29,16 +28,13 @@ import com.zimbra.qa.selenium.projects.ajax.ui.contacts.FormContactNew.Field;
 public class EditContact extends AjaxCommonTest {
 	public EditContact() {
 		logger.info("New " + EditContact.class.getCanonicalName());
-
-		// All tests start at the Address page
 		super.startingPage = app.zPageContacts;
-
-		// Make sure we are using an account with conversation view
-
 	}
+
 
 	@Test(description = "Edit a contact item, click Edit on toolbar and verify toast msg",
 			groups = { "functional", "L2"})
+
 	public void EditContactToastMsg_01() throws HarnessException {
 
 		// Create a contact
@@ -61,9 +57,8 @@ public class EditContact extends AjaxCommonTest {
 
 		if (ConfigProperties.getStringProperty(ConfigProperties.getLocalHost() + ".coverage.enabled",
 				ConfigProperties.getStringProperty("coverage.enabled")).contains("true") == true) {
-			// this method won't wait for some sec after submitting data so
-			// toast message disappears and testcase fails (JS COVERAGE)
 			app.zPageContacts.zClickAt("css=div#" + form.getToolbarID() + " div[id$='__SAVE'] td[id$='_title']", "0,0");
+
 		} else {
 			form.zSubmit();
 		}
@@ -72,11 +67,12 @@ public class EditContact extends AjaxCommonTest {
 		Toaster toast = app.zPageMain.zGetToaster();
 		String toastMsg = toast.zGetToastMessage();
 		ZAssert.assertStringContains(toastMsg, "Contact Saved", "Verify toast message: Contact Saved");
-
 	}
 
-	@Test(description = "Edit a contact item, Right click then click Edit and verify toast msg", 
+
+	@Test(description = "Edit a contact item, Right click then click Edit and verify toast msg",
 			groups = {"functional", "L2"})
+
 	public void EditContactToastMsg_02() throws HarnessException {
 
 		// Create a contact
@@ -97,9 +93,8 @@ public class EditContact extends AjaxCommonTest {
 
 		if (ConfigProperties.getStringProperty(ConfigProperties.getLocalHost() + ".coverage.enabled",
 				ConfigProperties.getStringProperty("coverage.enabled")).contains("true") == true) {
-			// this method won't wait for some sec after submitting data so
-			// toast message disappears and testcase fails (JS COVERAGE)
 			app.zPageContacts.zClickAt("css=div#" + form.getToolbarID() + " div[id$='__SAVE'] td[id$='_title']", "0,0");
+
 		} else {
 			form.zSubmit();
 		}
@@ -108,11 +103,12 @@ public class EditContact extends AjaxCommonTest {
 		Toaster toast = app.zPageMain.zGetToaster();
 		String toastMsg = toast.zGetToastMessage();
 		ZAssert.assertStringContains(toastMsg, "Contact Saved", "Verify toast message: Contact Saved");
-
 	}
 
-	@Test(description = "Edit a contact item, double click the contact and verify toast msg", 
+
+	@Test(description = "Edit a contact item, double click the contact and verify toast msg",
 			groups = { "functional", "L2"})
+
 	public void EditContactToastMsg_03() throws HarnessException {
 
 		// Create a contact
@@ -132,9 +128,8 @@ public class EditContact extends AjaxCommonTest {
 
 		if (ConfigProperties.getStringProperty(ConfigProperties.getLocalHost() + ".coverage.enabled",
 				ConfigProperties.getStringProperty("coverage.enabled")).contains("true") == true) {
-			// this method won't wait for some sec after submitting data so
-			// toast message disappears and testcase fails (JS COVERAGE)
 			app.zPageContacts.zClickAt("css=div#" + form.getToolbarID() + " div[id$='__SAVE'] td[id$='_title']", "0,0");
+
 		} else {
 			form.zSubmit();
 		}

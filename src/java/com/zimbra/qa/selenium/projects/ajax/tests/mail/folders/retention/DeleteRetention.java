@@ -17,7 +17,6 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.folders.retention;
 
 import org.testng.annotations.*;
-
 import com.zimbra.common.soap.Element;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.ui.*;
@@ -29,17 +28,13 @@ public class DeleteRetention extends PrefGroupMailByMessageTest {
 
 	public DeleteRetention() {
 		logger.info("New " + DeleteRetention.class.getCanonicalName());
-
 	}
 
-	@Test(
-			description = "Delete a basic retention (Context menu -> Edit -> Retention)", 
-			groups = { "functional", "L2" }
-			)
+	@Test(description = "Delete a basic retention (Context menu -> Edit -> Retention)",
+			groups = { "functional", "L2" })
+
 	public void DeleteRetention_01() throws HarnessException {
 
-		//-- Data
-		
 		// Create the subfolder
 		String foldername = "folder" + ConfigProperties.getUniqueString();
 
@@ -63,11 +58,6 @@ public class DeleteRetention extends PrefGroupMailByMessageTest {
 			+		"</action>"
 			+	"</FolderActionRequest>");
 
-		
-		
-		
-		//-- GUI
-		
 		// Click on Get Mail to refresh the folder list
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
@@ -80,20 +70,14 @@ public class DeleteRetention extends PrefGroupMailByMessageTest {
 
 		// Save
 		dialog.zClickButton(Button.B_OK);
-		
-		
-		//-- Verification
-		
+
 		// Verify the retention policy on the folder
 		app.zGetActiveAccount().soapSend(
 				"<GetFolderRequest xmlns='urn:zimbraMail'>"
 			+		"<folder l='" + folder.getId() + "'/>"
 			+	"</GetFolderRequest>");
+
 		Element[] nodes = app.zGetActiveAccount().soapSelectNodes("//mail:retentionPolicy");
-		
 		ZAssert.assertEquals(nodes.length, 0, "Verify no retention policies are set");
-		
 	}
-
-
 }

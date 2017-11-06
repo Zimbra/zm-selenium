@@ -17,7 +17,6 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.conversation.conversations;
 
 import org.testng.annotations.*;
-
 import com.zimbra.qa.selenium.framework.core.*;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
@@ -31,18 +30,17 @@ public class ReplyToConversationWithDraft extends PrefGroupMailByConversationTes
 		logger.info("New "+ ReplyToConversationWithDraft.class.getCanonicalName());
 		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "text");
 	}
-	
+
 
 	@Bugs(ids = "97098")
-	@Test( description = "Reply to a conversation with a draft", groups = { "functional", "L2" })
-	
+	@Test( description = "Reply to a conversation with a draft",
+			groups = { "functional", "L2" })
+
 	public void ReplyToConversationWithDraft_01() throws HarnessException {
 
-		//-- DATA
-		
 		// Create a conversation
 		ConversationItem c = ConversationItem.createConversationItem(app.zGetActiveAccount());
-		
+
 		// Create a draft in the conversation
 		// First, need to determine the last message received
 		int id = 0;
@@ -69,14 +67,12 @@ public class ReplyToConversationWithDraft extends PrefGroupMailByConversationTes
 						"<action op='!read' id='"+ c.getId() +"'/>" +
 				"</ItemActionRequest>");
 
-		//-- GUI
-		
 		// Refresh current view
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(c.getSubject()), "Verify message displayed in current view");
-		
+
 		// Select the item
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, c.getSubject());
-		
+
 		// Click reply
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_REPLY);
 		ZAssert.assertNotNull(mailform, "Verify the new form opened");
@@ -84,29 +80,24 @@ public class ReplyToConversationWithDraft extends PrefGroupMailByConversationTes
 		// Send the message
 		mailform.zSubmit();
 
-
-		//-- Verification
-		
-		
 		// From the test account, check the sent folder for the reply
 		MailItem sent = MailItem.importFromSOAP(app.zGetActiveAccount(), "in:sent subject:("+ c.getSubject() +")");
 		ZAssert.assertNotNull(sent, "Verify the sent message in the sent folder");
-		
+
 		// Verify the draft body does not appear in the reply
 		ZAssert.assertStringDoesNotContain(sent.dBodyText, body, "Verify the draft body does not appear in the reply");
 	}
-	
+
 
 	@Bugs(ids = "81920")
-	@Test( description = "Reply to a conversation with a trashed message",	groups = { "functional", "L3" })
-	
+	@Test( description = "Reply to a conversation with a trashed message",
+			groups = { "functional", "L3" })
+
 	public void ReplyToConversationWithDraft_02() throws HarnessException {
 
-		//-- DATA
-				
 		// Create a conversation
 		ConversationItem c = ConversationItem.createConversationItem(app.zGetActiveAccount());
-		
+
 		// Create a draft in the conversation
 		// First, need to determine the last message received
 		int id = 0;
@@ -117,7 +108,7 @@ public class ReplyToConversationWithDraft extends PrefGroupMailByConversationTes
 				body = m.dBodyText;
 			}
 		}
-		
+
 		// Move the last message to the trash
 		app.zGetActiveAccount().soapSend(
 				"<ItemActionRequest xmlns='urn:zimbraMail'>" +
@@ -129,15 +120,13 @@ public class ReplyToConversationWithDraft extends PrefGroupMailByConversationTes
 				"<ItemActionRequest xmlns='urn:zimbraMail'>" +
 						"<action op='!read' id='"+ c.getId() +"'/>" +
 				"</ItemActionRequest>");
-		
-		//-- GUI
-		
+
 		// Refresh current view
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(c.getSubject()), "Verify message displayed in current view");
-		
+
 		// Select the item
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, c.getSubject());
-		
+
 		// Click reply
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_REPLY);
 		ZAssert.assertNotNull(mailform, "Verify the new form opened");
@@ -145,29 +134,24 @@ public class ReplyToConversationWithDraft extends PrefGroupMailByConversationTes
 		// Send the message
 		mailform.zSubmit();
 
-
-		//-- Verification
-		
-		
 		// From the test account, check the sent folder for the reply
 		MailItem sent = MailItem.importFromSOAP(app.zGetActiveAccount(), "in:sent subject:("+ c.getSubject() +")");
 		ZAssert.assertNotNull(sent, "Verify the sent message in the sent folder");
-		
+
 		// Verify the draft body does not appear in the reply
 		ZAssert.assertStringDoesNotContain(sent.dBodyText, body, "Verify the trash body does not appear in the reply");
 	}
 
-	
+
 	@Bugs(ids = "81920")
-	@Test( description = "Reply to a conversation with a spammed message",	groups = { "functional", "L3" })
-	
+	@Test( description = "Reply to a conversation with a spammed message",
+			groups = { "functional", "L3" })
+
 	public void ReplyToConversationWithDraft_03() throws HarnessException {
 
-		//-- DATA
-		
 		// Create a conversation
 		ConversationItem c = ConversationItem.createConversationItem(app.zGetActiveAccount());
-		
+
 		// Create a draft in the conversation
 		// First, need to determine the last message received
 		int id = 0;
@@ -178,7 +162,7 @@ public class ReplyToConversationWithDraft extends PrefGroupMailByConversationTes
 				body = m.dBodyText;
 			}
 		}
-		
+
 		// Move the last message to the trash
 		app.zGetActiveAccount().soapSend(
 				"<ItemActionRequest xmlns='urn:zimbraMail'>" +
@@ -191,14 +175,12 @@ public class ReplyToConversationWithDraft extends PrefGroupMailByConversationTes
 						"<action op='!read' id='"+ c.getId() +"'/>" +
 				"</ItemActionRequest>");
 
-		//-- GUI
-		
 		// Refresh current view
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(c.getSubject()), "Verify message displayed in current view");
-		
+
 		// Select the item
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, c.getSubject());
-		
+
 		// Click reply
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_REPLY);
 		ZAssert.assertNotNull(mailform, "Verify the new form opened");
@@ -206,29 +188,24 @@ public class ReplyToConversationWithDraft extends PrefGroupMailByConversationTes
 		// Send the message
 		mailform.zSubmit();
 
-
-		//-- Verification
-		
-		
 		// From the test account, check the sent folder for the reply
 		MailItem sent = MailItem.importFromSOAP(app.zGetActiveAccount(), "in:sent subject:("+ c.getSubject() +")");
 		ZAssert.assertNotNull(sent, "Verify the sent message in the sent folder");
-		
+
 		// Verify the draft body does not appear in the reply
 		ZAssert.assertStringDoesNotContain(sent.dBodyText, body, "Verify the spam body does not appear in the reply");
 	}
 
-	
+
 	@Bugs(ids = "81920")
-	@Test( description = "Reply to a conversation with a sent message", groups = { "functional", "L2" })
-	
+	@Test( description = "Reply to a conversation with a sent message",
+			groups = { "functional", "L2" })
+
 	public void ReplyToConversationWithDraft_04() throws HarnessException {
 
-		//-- DATA
-		
 		// Create a conversation
 		ConversationItem c = ConversationItem.createConversationItem(app.zGetActiveAccount());
-		
+
 		// Create a draft in the conversation
 		// First, need to determine the last message received
 		int id = 0;
@@ -237,7 +214,7 @@ public class ReplyToConversationWithDraft extends PrefGroupMailByConversationTes
 				id = Integer.parseInt(m.getId());
 			}
 		}
-		
+
 		// Reply to the last message
 		String body = "firstreply"+ ConfigProperties.getUniqueString();
 		app.zGetActiveAccount().soapSend(
@@ -257,14 +234,12 @@ public class ReplyToConversationWithDraft extends PrefGroupMailByConversationTes
 						"<action op='!read' id='"+ c.getId() +"'/>" +
 				"</ItemActionRequest>");
 
-		//-- GUI
-		
 		// Refresh current view
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(c.getSubject()), "Verify message displayed in current view");
-		
+
 		// Select the item
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, c.getSubject());
-		
+
 		// Click reply
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_REPLY);
 		ZAssert.assertNotNull(mailform, "Verify the new form opened");
@@ -272,17 +247,11 @@ public class ReplyToConversationWithDraft extends PrefGroupMailByConversationTes
 		// Send the message
 		mailform.zSubmit();
 
-		//-- Verification
-		
-		
-		// From the test account, check the sent folder for the reply		
+		// From the test account, check the sent folder for the reply
 		MailItem sent = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "not content:("+ body + ") in:sent subject:("+ c.getSubject() +") ");
-
 		ZAssert.assertNotNull(sent, "Verify the sent message in the sent folder");
-		
+
 		// Verify the draft body does not appear in the reply
 		ZAssert.assertStringDoesNotContain(sent.dBodyText, body, "Verify the spam body does not appear in the reply");
 	}
-
-
 }

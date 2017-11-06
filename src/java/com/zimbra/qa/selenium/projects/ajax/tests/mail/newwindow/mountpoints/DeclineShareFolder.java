@@ -39,10 +39,11 @@ public class DeclineShareFolder extends PrefGroupMailByMessageTest {
 		logger.info("New " + DeclineShareFolder.class.getCanonicalName());
 	}
 
+
 	@Bugs( ids = "70082")
-	@Test( description = "Receive an invitation to a shared folder, Decline it - in a separate window", 
+	@Test( description = "Receive an invitation to a shared folder, Decline it - in a separate window",
 			groups = { "functional", "L2" })
-	
+
 	public void DeclineShareFolder_01() throws HarnessException {
 
 		ZimbraAccount Owner = (new ZimbraAccount()).provision().authenticate();
@@ -67,7 +68,6 @@ public class DeclineShareFolder extends PrefGroupMailByMessageTest {
 						+			"<grant d='" + app.zGetActiveAccount().EmailAddress + "' gt='usr' perm='r'/>"
 						+		"</action>"
 						+	"</FolderActionRequest>");
-
 
 		String shareMessageSubject = "shared"+ ConfigProperties.getUniqueString();
 		String shareElement = String.format(
@@ -138,7 +138,5 @@ public class DeclineShareFolder extends PrefGroupMailByMessageTest {
 
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, messages.get(0).gSubject);
 		ZAssert.assertStringContains(messages.get(0).gSubject,"Share Declined:", "Verify the message's subject matches");
-
 	}
-
 }

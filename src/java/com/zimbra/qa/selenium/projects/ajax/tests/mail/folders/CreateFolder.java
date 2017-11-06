@@ -34,26 +34,27 @@ public class CreateFolder extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Create a new folder by clicking 'new folder' on folder tree", 
+	@Test( description = "Create a new folder by clicking 'new folder' on folder tree",
 			groups = { "sanity", "L0" })
-	
+
 	public void CreateFolder_01() throws HarnessException {
-		
-		folderName = "folder" + ConfigProperties.getUniqueString();		
+
+		folderName = "folder" + ConfigProperties.getUniqueString();
 		DialogCreateFolder createFolderDialog = (DialogCreateFolder) app.zTreeMail.zPressButton(Button.B_TREE_NEWFOLDER);
-		
+
 		createFolderDialog.zEnterFolderName(folderName);
 		createFolderDialog.zClickButton(Button.B_OK);
-		
+
 		// Make sure the folder was created on the ZCS server
 		FolderItem folder = FolderItem.importFromSOAP(app.zGetActiveAccount(),folderName);
 		ZAssert.assertNotNull(folder, "Verify the new folder was created");
-		ZAssert.assertEquals(folder.getName(), folderName,"Verify the server and client folder names match");		
+		ZAssert.assertEquals(folder.getName(), folderName,"Verify the server and client folder names match");
 	}
 
-	
-	@Test( description = "Create a new folder using keyboard shortcuts", groups = { "functional", "L2" })
-	
+
+	@Test( description = "Create a new folder using keyboard shortcuts",
+			groups = { "functional", "L2" })
+
 	public void CreateFolder_02() throws HarnessException {
 
 		Shortcut shortcut = Shortcut.S_NEWFOLDER;
@@ -66,38 +67,40 @@ public class CreateFolder extends PrefGroupMailByMessageTest {
 
 		dialog.zEnterFolderName(name);
 		dialog.zClickButton(Button.B_OK);
-		
+
 		// Make sure the folder was created on the server
 		FolderItem folder = FolderItem.importFromSOAP(app.zGetActiveAccount(),name);
 		ZAssert.assertNotNull(folder, "Verify the new folder was created");
-		ZAssert.assertEquals(folder.getName(), name, "Verify the server and client folder names match");		
+		ZAssert.assertEquals(folder.getName(), name, "Verify the server and client folder names match");
 	}
 
-	
-	@Test( description = "Create a new folder using context menu from root folder", groups = { "functional", "L2" })
-	
+
+	@Test( description = "Create a new folder using context menu from root folder",
+			groups = { "functional", "L2" })
+
 	public void CreateFolder_03() throws HarnessException {
-		
+
 		folderName = "folder" + ConfigProperties.getUniqueString();
 
 		// Get the root folder to create a subfolder in
 		FolderItem root = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.UserRoot);
-		
+
 		// Right click on the "Folders" header
 		DialogCreateFolder createFolderDialog = (DialogCreateFolder) app.zTreeMail.zTreeItem(Action.A_RIGHTCLICK, Button.O_NEW_FOLDER, root);
 
 		createFolderDialog.zEnterFolderName(folderName);
 		createFolderDialog.zClickButton(Button.B_OK);
-		
+
 		// Make sure the folder was created on the ZCS server
 		FolderItem folder = FolderItem.importFromSOAP(app.zGetActiveAccount(), folderName);
 		ZAssert.assertNotNull(folder, "Verify the new form opened");
-		ZAssert.assertEquals(folder.getName(), folderName, "Verify the server and client folder names match");		
+		ZAssert.assertEquals(folder.getName(), folderName, "Verify the server and client folder names match");
 	}
 
-	
-	@Test( description = "Create a new folder using mail app New -> New Folder",	groups = { "functional", "L2" })
-	
+
+	@Test( description = "Create a new folder using mail app New -> New Folder",
+			groups = { "functional", "L2" })
+
 	public void CreateFolder_04() throws HarnessException {
 
 		// Set the new folder name
@@ -109,16 +112,17 @@ public class CreateFolder extends PrefGroupMailByMessageTest {
 
 		dialog.zEnterFolderName(name);
 		dialog.zClickButton(Button.B_OK);
-		
+
 		// Make sure the folder was created on the server
 		FolderItem folder = FolderItem.importFromSOAP(app.zGetActiveAccount(),name);
 		ZAssert.assertNotNull(folder, "Verify the new folder was created");
 		ZAssert.assertEquals(folder.getName(), name, "Verify the server and client folder names match");
 	}
 
-	
-	@Test( description = "Create a folder with non-ASCII special characters", groups = { "functional", "L3" }, dataProvider = "DataProviderSupportedCharsets")
-	
+
+	@Test( description = "Create a folder with non-ASCII special characters",
+			groups = { "functional", "L3" }, dataProvider = "DataProviderSupportedCharsets")
+
 	public void CreateFolder_05(ZCharset charset, String foldername) throws HarnessException {
 
 		DialogCreateFolder dialog = (DialogCreateFolder) app.zPageMail.zKeyboardShortcut(Shortcut.S_NEWFOLDER);

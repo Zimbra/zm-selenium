@@ -2,11 +2,11 @@
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
  * Copyright (C) 2011, 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
- * 
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
@@ -36,11 +36,11 @@ public class OutOfOfficeCalendarAppointment extends AjaxCommonTest {
 		super.startingPage = app.zPagePreferences;
 	}
 
-	
+
 	@Bugs(ids = "78890")
-	@Test(description = "Set out of office along with calendar appointment and verify all-day appointment creation", priority = 4, groups = {
-			"functional", "L2" })
-	
+	@Test(description = "Set out of office along with calendar appointment and verify all-day appointment creation", priority = 4,
+			groups = { "functional", "L2" })
+
 	public void OutOfOfficeCalendarAppointment_01() throws HarnessException {
 
 		// Appointment data
@@ -48,7 +48,7 @@ public class OutOfOfficeCalendarAppointment extends AjaxCommonTest {
 		Calendar now = Calendar.getInstance();
 		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
 		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH) + 4, 14, 0, 0);
-		
+
 		// Navigate to preferences -> Out of office
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.MailOutOfOffice);
 
@@ -58,10 +58,10 @@ public class OutOfOfficeCalendarAppointment extends AjaxCommonTest {
 		app.zPagePreferences.zFillField(Field.StartDate, startUTC);
 		app.zPagePreferences.zFillField(Field.EndDate, endUTC);
 		app.zPagePreferences.zSelectCheckBox(Button.C_OUT_OF_OFFICE_CALENDAR_APPT);
-		
+
 		// Save preferences
 		app.zPagePreferences.zToolbarPressButton(Button.B_SAVE);
-		
+
 		// Verify the new appointment exists on the server
 		AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ apptSubject +")");
 		ZAssert.assertNotNull(actual, "Verify the new appointment is created");

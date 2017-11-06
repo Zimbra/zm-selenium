@@ -23,19 +23,19 @@ import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.*;
 
-
 public class RedirectMessage extends PrefGroupMailByMessageTest {
-	
+
 	public RedirectMessage() {
 		logger.info("New "+ RedirectMessage.class.getCanonicalName());
 	}
-	
+
+
 	@Test( description = "Redirect message, using 'Redirect' toolbar button - in separate window",
 			groups = { "smoke", "L1" })
+
 	public void RedirectMessage_01() throws HarnessException {
-		
+
 		String subject = "subject"+ ConfigProperties.getUniqueString();
-	
 
 		// Send a message to the account
 		ZimbraAccount.AccountA().soapSend(
@@ -48,30 +48,27 @@ public class RedirectMessage extends PrefGroupMailByMessageTest {
 							"</mp>" +
 						"</m>" +
 					"</SendMsgRequest>");
-		
+
 		// Get the mail item for the new message
 		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
-		
-		
 
 		// Refresh current view
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
-				
+
 		// Select the item
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, mail.dSubject);
-		
-		
+
 		SeparateWindowDisplayMail window = null;
 		String windowTitle = "Zimbra: " + subject;
-		
+
 		try {
-			
+
 			// Choose Actions -> Launch in Window
 			window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
-			
+
 			window.zSetWindowTitle(windowTitle);
 			ZAssert.assertTrue(window.zIsWindowOpen(windowTitle),"Verify the window is opened and switch to it");
-			
+
 			// Click redirect
 			SeparateWindowDialogRedirect dialog = (SeparateWindowDialogRedirect)window.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_REDIRECT);
 			dialog.zFillField(SeparateWindowDialogRedirect.Field.To, ZimbraAccount.AccountB().EmailAddress + ",");
@@ -80,14 +77,10 @@ public class RedirectMessage extends PrefGroupMailByMessageTest {
 		} finally {
 			app.zPageMain.zCloseWindow(window, windowTitle, app);
 		}
-		
+
 		// Verify the redirected message is received
 		MailItem received = MailItem.importFromSOAP(ZimbraAccount.AccountB(), "subject:("+ subject +")");
 		ZAssert.assertNotNull(received, "Verify the redirected message is received");
 		ZAssert.assertEquals(received.dRedirectedFromRecipient.dEmailAddress, app.zGetActiveAccount().EmailAddress, "Verify the message shows as redirected from the test account");
-
-
 	}
-
-
 }

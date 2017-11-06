@@ -33,6 +33,7 @@ public class OpenComposedMessageInNewWindow extends PrefGroupMailByMessageTest {
 		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "html");
 	}
 
+
 	@Bugs( ids = "89778")
 	@Test( description = "Send a mail using HTML editor - from a separate window using DETACH COMPOSE button",
 			groups = { "functional", "L2" })
@@ -50,7 +51,7 @@ public class OpenComposedMessageInNewWindow extends PrefGroupMailByMessageTest {
 		// Fill out the form with the data
 		mailform.zFillField(Field.To, ZimbraAccount.AccountA().EmailAddress);
 		mailform.zFillField(Field.Subject, subject);
-		mailform.zFillField(Field.Body, body);	
+		mailform.zFillField(Field.Body, body);
 
 		SeparateWindowFormMailNew window = null;
 		String windowTitle = "Zimbra: Compose";
@@ -61,8 +62,9 @@ public class OpenComposedMessageInNewWindow extends PrefGroupMailByMessageTest {
 
 			window.zSetWindowTitle(windowTitle);
 			ZAssert.assertTrue(window.zIsWindowOpen(windowTitle),"Verify the window is opened and switch to it");
-			
+
 			window.zWaitForElementPresent(Locators.zBubbleToField);
+
 			// Verify the data appearing in fields in New window
 			ZAssert.assertStringContains(
 					mailform.sGetText(Locators.zBubbleToField) + "@" + ConfigProperties.getStringProperty("testdomain"),

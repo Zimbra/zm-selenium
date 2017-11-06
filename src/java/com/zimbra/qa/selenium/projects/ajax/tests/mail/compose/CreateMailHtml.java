@@ -32,25 +32,26 @@ public class CreateMailHtml extends PrefGroupMailByMessageTest {
 		logger.info("New "+ CreateMailHtml.class.getCanonicalName());
 		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "html");
 	}
-	
-	@Test( description = "Send a mail using HTML editor", 
+
+
+	@Test( description = "Send a mail using HTML editor",
 			groups = { "sanity", "L0" })
-	
+
 	public void CreateMailHtml_01() throws HarnessException {
-		
+
 		// Create the message data to be sent
 		MailItem mail = new MailItem();
 		mail.dToRecipients.add(new RecipientItem(ZimbraAccount.AccountA()));
 		mail.dSubject = "subject" + ConfigProperties.getUniqueString();
 		mail.dBodyHtml = "body" + ConfigProperties.getUniqueString();
-		
+
 		// Open the new mail form
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
 		ZAssert.assertNotNull(mailform, "Verify the new form opened");
-		
+
 		// Fill out the form with the data
 		mailform.zFill(mail);
-		
+
 		// Send the message
 		mailform.zSubmit();
 
@@ -59,7 +60,7 @@ public class CreateMailHtml extends PrefGroupMailByMessageTest {
 			+			"<query>subject:("+ mail.dSubject +")</query>"
 			+		"</SearchRequest>");
 		String id = ZimbraAccount.AccountA().soapSelectValue("//mail:m", "id");
-		
+
 		ZimbraAccount.AccountA().soapSend(
 					"<GetMsgRequest xmlns='urn:zimbraMail'>"
 			+			"<m id='"+ id +"' html='1'/>"
@@ -69,18 +70,19 @@ public class CreateMailHtml extends PrefGroupMailByMessageTest {
 		String to = ZimbraAccount.AccountA().soapSelectValue("//mail:e[@t='t']", "a");
 		String subject = ZimbraAccount.AccountA().soapSelectValue("//mail:su", null);
 		String html = ZimbraAccount.AccountA().soapSelectValue("//mail:mp[@ct='text/html']//mail:content", null);
-		
+
 		ZAssert.assertEquals(from, app.zGetActiveAccount().EmailAddress, "Verify the from field is correct");
 		ZAssert.assertEquals(to, ZimbraAccount.AccountA().EmailAddress, "Verify the to field is correct");
 		ZAssert.assertEquals(subject, mail.dSubject, "Verify the subject field is correct");
 		ZAssert.assertStringContains(html, mail.dBodyHtml, "Verify the html content");
 	}
-	
-	@Test( description = "Send a mail multiline body content using HTML editor", 
+
+
+	@Test( description = "Send a mail multiline body content using HTML editor",
 			groups = { "sanity", "L0" })
-	
+
 	public void CreateMultilineContentMailHtml_02() throws HarnessException {
-		
+
 		// Create the message data to be sent
 		final String dToRecipients = ZimbraAccount.AccountA().EmailAddress;
 		final String dSubject = "subject" + ConfigProperties.getUniqueString();
@@ -88,15 +90,15 @@ public class CreateMailHtml extends PrefGroupMailByMessageTest {
 		final String dBodyHtmlItalic = "<br></div><div><span id=\"_mce_caret\"><em>ItalicString</em>";
 		final String dBodyHtmlRedColorText = "</span></span><br></div><div><span id=\"_mce_caret\"><span style=\"color: rgb(255, 0, 0);\">RedColorText</span><span id=\"_mce_caret\"></span></span>";
 		final String dBodyHtmlGreenBackgroundText = "<br></div><div><span id=\"_mce_caret\"><span style=\"background-color: rgb(0, 128, 0);\">GreenBackgroundText</span><span id=\"_mce_caret\"></span></span>";
-		
+
 		// Open the new mail form
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
 		ZAssert.assertNotNull(mailform, "Verify the new form opened");
-		
+
 		// Fill out the form with the data
 		mailform.zFillField(Field.To, dToRecipients);
 		mailform.zFillField(Field.Subject, dSubject);
-		
+
 		// Enter multiline body HTML text
 		mailform.sClick(Locators.zBoldButton);
 		mailform.zKeyboard.zTypeCharacters("BoldString");
@@ -118,7 +120,7 @@ public class CreateMailHtml extends PrefGroupMailByMessageTest {
 		mailform.sClick(Locators.zTextBackgroundColorDropdown);
 		mailform.sClick(Locators.zTextBackgroundColorTransparent);
 		mailform.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
-		
+
 		// Send the message
 		mailform.zSubmit();
 
@@ -127,7 +129,7 @@ public class CreateMailHtml extends PrefGroupMailByMessageTest {
 			+			"<query>subject:("+ dSubject +")</query>"
 			+		"</SearchRequest>");
 		String id = ZimbraAccount.AccountA().soapSelectValue("//mail:m", "id");
-		
+
 		ZimbraAccount.AccountA().soapSend(
 					"<GetMsgRequest xmlns='urn:zimbraMail'>"
 			+			"<m id='"+ id +"' html='1'/>"
@@ -137,7 +139,7 @@ public class CreateMailHtml extends PrefGroupMailByMessageTest {
 		String to = ZimbraAccount.AccountA().soapSelectValue("//mail:e[@t='t']", "a");
 		String subject = ZimbraAccount.AccountA().soapSelectValue("//mail:su", null);
 		String html = ZimbraAccount.AccountA().soapSelectValue("//mail:mp[@ct='text/html']//mail:content", null).replace("\uFEFF", "");
-		
+
 		ZAssert.assertEquals(from, app.zGetActiveAccount().EmailAddress, "Verify the from field is correct");
 		ZAssert.assertEquals(to, ZimbraAccount.AccountA().EmailAddress, "Verify the to field is correct");
 		ZAssert.assertEquals(subject, dSubject, "Verify the subject field is correct");

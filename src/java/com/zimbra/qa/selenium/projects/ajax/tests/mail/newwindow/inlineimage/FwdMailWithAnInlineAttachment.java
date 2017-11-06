@@ -1,3 +1,19 @@
+/*
+ * ***** BEGIN LICENSE BLOCK *****
+ * Zimbra Collaboration Suite Server
+ * Copyright (C) 2016 Synacor, Inc.
+ *
+ * This program is free software: you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License as published by the Free Software Foundation,
+ * version 2 of the License.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
+ * You should have received a copy of the GNU General Public License along with this program.
+ * If not, see <https://www.gnu.org/licenses/>.
+ * ***** END LICENSE BLOCK *****
+ */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.newwindow.inlineimage;
 
 import org.testng.SkipException;
@@ -24,9 +40,10 @@ public class FwdMailWithAnInlineAttachment extends PrefGroupMailByMessageTest {
 		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "html");
 	}
 
+
 	@Test( description = "Fwd a mail  with an inline attachment by pressing Forward button>>attach>>Inline - in separate window",
 			groups = { "smoke", "L1" })
-	
+
 	public void FwdMailWithAnInlineAttachment_01() throws HarnessException {
 
 		if (OperatingSystem.isWindows() == true && !ConfigProperties.getStringProperty("browser").contains("edge")) {
@@ -39,7 +56,6 @@ public class FwdMailWithAnInlineAttachment extends PrefGroupMailByMessageTest {
 							"<head></head>" +
 							"<body>"+ bodyHTML +"</body>" +
 					"</html>");
-
 
 			// Send a message to the account
 			ZimbraAccount.AccountA().soapSend(
@@ -57,8 +73,6 @@ public class FwdMailWithAnInlineAttachment extends PrefGroupMailByMessageTest {
 							"</mp>" +
 							"</m>" +
 					"</SendMsgRequest>");
-
-
 
 			// Refresh current view
 			ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
@@ -82,12 +96,12 @@ public class FwdMailWithAnInlineAttachment extends PrefGroupMailByMessageTest {
 
 				window.zSetWindowTitle(windowTitle);
 				ZAssert.assertTrue(window.zIsWindowOpen(windowTitle),"Verify the window is opened and switch to it");
-				
+
 				//Forward Mail
 				window.zToolbarPressButton(Button.B_FORWARD);
 				String locator = FormMailNew.Locators.zToField;
 				window.sType(locator, ZimbraAccount.AccountB().EmailAddress + ",");
-				
+
 				// Click Attach>>inline image
 				window.zPressButton(Button.O_ATTACH_DROPDOWN);
 				window.zPressButton(Button.B_ATTACH_INLINE);
@@ -95,9 +109,9 @@ public class FwdMailWithAnInlineAttachment extends PrefGroupMailByMessageTest {
 
 				ZAssert.assertTrue(app.zPageMail.zVerifyInlineImageAttachmentExistsInComposeWindow(windowTitle, 1),"Verify inline image is present in Fwd compose window");
 
-				//click Send
+				// Click Send
 				window.zToolbarPressButton(Button.B_SEND);
-				
+
 			} finally {
 				app.zPageMain.zCloseWindow(window, windowTitle, app);
 			}
@@ -108,7 +122,6 @@ public class FwdMailWithAnInlineAttachment extends PrefGroupMailByMessageTest {
 			ZAssert.assertTrue(app.zPageMail.zVerifyInlineImageAttachmentExistsInMail(),"Verify inline attachment exists in the email");
 
 			// From the receiving end, verify the message details
-			// Need 'in:inbox' to seprate the message from the sent message
 			MailItem received = MailItem.importFromSOAP(ZimbraAccount.AccountB(), "in:inbox subject:("+subject +")");
 
 			ZAssert.assertEquals(received.dFromRecipient.dEmailAddress, app.zGetActiveAccount().EmailAddress, "Verify the from field is correct");
@@ -119,5 +132,4 @@ public class FwdMailWithAnInlineAttachment extends PrefGroupMailByMessageTest {
 			throw new SkipException("File upload operation is allowed only for Windows OS (Skipping upload tests on MS Edge for now due to intermittancy and major control issue), skipping this test...");
 		}
 	}
-
 }

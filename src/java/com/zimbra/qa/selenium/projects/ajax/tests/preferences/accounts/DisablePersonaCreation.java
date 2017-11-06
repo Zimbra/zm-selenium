@@ -17,7 +17,6 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.preferences.accounts;
 
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
@@ -32,14 +31,15 @@ public class DisablePersonaCreation extends AjaxCommonTest {
 		super.startingPage = app.zPagePreferences;
 	}
 
-	@Test(description = "Verify the display of 'Add Persona' button when Persona creation is disabled", 
+
+	@Test(description = "Verify the display of 'Add Persona' button when Persona creation is disabled",
 			groups = { "functional", "L3" })
 
 	public void DisablePersonaCreation_01() throws HarnessException {
 
 		// Navigate to preferences -> Accounts
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.MailAccounts);
-		
+
 		// Verify the display of Add Persona button when Persona creation is allowed.
 		ZAssert.assertTrue(app.zPagePreferences.sIsElementPresent(Locators.zAddPersonaButton), "Add persona button is not present!");
 
@@ -58,7 +58,7 @@ public class DisablePersonaCreation extends AjaxCommonTest {
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.MailAccounts);
 
 		// Verify the display of Add Persona button when Persona access is disabled.
-		ZAssert.assertFalse(app.zPagePreferences.sIsElementPresent(Locators.zAddPersonaButton), 
+		ZAssert.assertFalse(app.zPagePreferences.sIsElementPresent(Locators.zAddPersonaButton),
 				"Add persona button is displayed even if the Persona access is disabled!");
 
 		// Enable Persona for the user
@@ -81,5 +81,4 @@ public class DisablePersonaCreation extends AjaxCommonTest {
 		// Verify that a Persona row has been added
 		ZAssert.assertTrue(app.zPagePreferences.sIsElementPresent(Locators.zPersonaRow1), "Persona is not getting created!");
 	}
-
 }

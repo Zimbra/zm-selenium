@@ -18,9 +18,7 @@ package com.zimbra.qa.selenium.projects.ajax.tests.mail.performance.compose;
 
 import java.io.File;
 import java.util.HashMap;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
@@ -41,61 +39,65 @@ public class ZmMailAppReplyCompose extends AjaxCommonTest {
 
 		super.startingPage = app.zPageMail;
 		super.startingAccountPreferences = new HashMap<String, String>() {
-			private static final long serialVersionUID = 7525760124523255182L;
-			{
+			private static final long serialVersionUID = 7525760124523255182L; {
 				put("zimbraPrefComposeFormat", "text");
 			}
 		};
-
 	}
 
-	@Test( description = "Measure the time to load reply-compose  window for simple message", groups = { "performance", "deprecated" })
+
+	@Test( description = "Measure the time to load reply-compose  window for simple message",
+			groups = { "performance", "deprecated" })
+
 	public void ZmMailAppReplyCompose_01() throws HarnessException {
 
 		String mime = ConfigProperties.getBaseDirectory() + "/data/public/mime/email02/mime01.txt";
 		String subject = "Subject13155016716713";
 
 		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mime));
-		
+
 		// Refresh current view
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
-
 		PerfToken token = PerfMetrics.startTimestamp(PerfKey.ZmMailAppCompose, "Load Reply-Compose window for simple conversation");
 
 		// Select the message so that it shows in the reading pane
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
-		
-		//Click Reply from tool bar
+
+		// Click Reply from tool bar
 		app.zPageMail.zToolbarPressButton(Button.B_REPLY);
 
 		PerfMetrics.waitTimestamp(token);
-
 	}
-	
-	
-	@Test( description = "Measure the time to load reply-compose  window for large conversation", groups = { "performance", "deprecated" })
+
+
+	@Test( description = "Measure the time to load reply-compose  window for large conversation",
+			groups = { "performance", "deprecated" })
+
 	public void ZmMailAppReplyCompose_02() throws HarnessException {
 
 		String mime = ConfigProperties.getBaseDirectory() + "/data/public/mime/largeconversation_mime.txt";
 		String subject = "RESOLVED BUGS";
 
 		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mime));
-		
+
 		// Refresh current view
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
 		PerfToken token = PerfMetrics.startTimestamp(PerfKey.ZmMailAppCompose, "Load Reply-Compose window for large conversation");
-		
+
 		// Select the message so that it shows in the reading pane
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
-		
-		//Click Reply from tool bar
+
+		// Click Reply from tool bar
 		app.zPageMail.zToolbarPressButton(Button.B_REPLY);
 
 		PerfMetrics.waitTimestamp(token);
 	}
 
-	@Test( description = "Measure the time to load reply-compose window for invite conversation", groups = { "performance", "deprecated" })
+
+	@Test( description = "Measure the time to load reply-compose window for invite conversation",
+			groups = { "performance", "deprecated" })
+
 	public void ZmMailAppReplyCompose_03() throws HarnessException {
 
 		String mime = ConfigProperties.getBaseDirectory() + "/data/public/mime/Invite_Message.txt";
@@ -114,11 +116,14 @@ public class ZmMailAppReplyCompose extends AjaxCommonTest {
 		// Click Accept -> Edit Reply , which will open a new reply compose
 		@SuppressWarnings("unused")
 		FormMailNew editReply = (FormMailNew)display.zPressButtonPulldown(Button.B_ACCEPT, Button.O_ACCEPT_EDIT_REPLY);
-		
+
 		PerfMetrics.waitTimestamp(token);
 	}
-	
-	@Test( description = "Measure the time to load reply-compose window for invite conversation with 7mb attachment", groups = { "performance", "deprecated" })
+
+
+	@Test( description = "Measure the time to load reply-compose window for invite conversation with 7mb attachment",
+			groups = { "performance", "deprecated" })
+
 	public void ZmMailAppReplyCompose_04() throws HarnessException {
 
 		String mime = ConfigProperties.getBaseDirectory() + "/data/public/mime/inviteMessageWith7MBAttachment.txt";
@@ -140,6 +145,4 @@ public class ZmMailAppReplyCompose extends AjaxCommonTest {
 
 		PerfMetrics.waitTimestamp(token);
 	}
-	
 }
-

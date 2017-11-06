@@ -173,7 +173,7 @@ public class Forward extends AjaxCommonTest {
 		// Refresh the view
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
-		//Go to sent folder and forward
+		// Go to sent folder and forward
 		FolderItem sent = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Sent);
 		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK,sent);
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);

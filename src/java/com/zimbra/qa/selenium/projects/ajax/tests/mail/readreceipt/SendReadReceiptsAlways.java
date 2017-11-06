@@ -17,7 +17,6 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.readreceipt;
 
 import org.testng.annotations.Test;
-
 import com.zimbra.common.soap.Element;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -26,29 +25,26 @@ import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail.Field;
 
-
 public class SendReadReceiptsAlways extends PrefGroupMailByMessageTest {
-	
+
 	public SendReadReceiptsAlways() {
 		logger.info("New "+ SendReadReceiptsAlways.class.getCanonicalName());
-		
-		
 		super.startingAccountPreferences.put("zimbraPrefMailSendReadReceipts", "always");
-
-
 	}
-	
+
+
 	@Test( description = "zimbraPrefMailSendReadReceipts=always - verify read receipt is sent",
 			groups = { "functional", "L2" })
+
 	public void SendReadReceiptsAlways_01() throws HarnessException {
-		
+
 		// Create a source account
 		ZimbraAccount sender = new ZimbraAccount();
 		sender.provision().authenticate();
-		
+
 		// Create the message data to be sent
 		String subject = "subject" + ConfigProperties.getUniqueString();
-		
+
 		// Send the message from AccountA to the ZCS user
 		sender.soapSend(
 					"<SendMsgRequest xmlns='urn:zimbraMail'>"
@@ -62,7 +58,6 @@ public class SendReadReceiptsAlways extends PrefGroupMailByMessageTest {
 				+		"</m>"
 				+	"</SendMsgRequest>");
 
-
 		// Refresh current view
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 
@@ -72,20 +67,17 @@ public class SendReadReceiptsAlways extends PrefGroupMailByMessageTest {
 		// Verify the To, From, Subject, Body
 		ZAssert.assertEquals(actual.zGetMailProperty(Field.Subject), subject, "Verify the subject displays");
 
-
 		// Make sure all read-receipts are delivered
 		Stafpostqueue q = new Stafpostqueue();
 		q.waitForPostqueue();
-		
+
 		// Verify the sender receives the read receipt
 		sender.soapSend(
 					"<SearchRequest xmlns='urn:zimbraMail' types='message'>"
 				+		"<query>subject:(Read-Receipt) subject:("+ subject +")</query>"
 				+	"</SearchRequest>");
+
 		Element[] nodes = sender.soapSelectNodes("//mail:m");
 		ZAssert.assertEquals(nodes.length, 1, "Verify the read receipt is received by the sender");
-
 	}
-
-
 }

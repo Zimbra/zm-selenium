@@ -32,22 +32,18 @@ public class ShowOriginal extends AjaxCommonTest {
 	public ShowOriginal() {
 		logger.info("New " + ShowOriginal.class.getCanonicalName());
 
-		// All tests start at the login page
 		super.startingPage = app.zPageTasks;
-
-		super.startingAccountPreferences = new HashMap<String, String>() {
-			{
-				put("zimbraPrefTasksReadingPaneLocation", "bottom");
-				put("zimbraPrefShowSelectionCheckbox", "TRUE");
-			}
-		};
-
+		super.startingAccountPreferences = new HashMap<String, String>() {{
+			put("zimbraPrefTasksReadingPaneLocation", "bottom");
+			put("zimbraPrefShowSelectionCheckbox", "TRUE");
+		}};
 	}
 
+
 	@Bugs(ids = "51017")
-	@Test( description = "Show Original Pop Up should Get Open With Proper Content", 
+	@Test( description = "Show Original Pop Up should Get Open With Proper Content",
 		groups = { "smoke", "L2"})
-	
+
 	public void ShowOriginal_01() throws HarnessException {
 
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
@@ -79,15 +75,13 @@ public class ShowOriginal extends AjaxCommonTest {
 		try {
 			window.zSetWindowTitle(windowUrl);
 			ZAssert.assertTrue(window.zIsWindowOpen(windowUrl),"Verify the window is opened and switch to it");
-			
+
 			// Verify show original window content
 			String ShowOrigBody = window.sGetBodyText();
 			ZAssert.assertStringContains(ShowOrigBody, subject,"Verify subject in show original window");
 
 		} finally {
 			app.zPageMain.zCloseWindow(window,windowUrl, app);
-
 		}
-
 	}
 }

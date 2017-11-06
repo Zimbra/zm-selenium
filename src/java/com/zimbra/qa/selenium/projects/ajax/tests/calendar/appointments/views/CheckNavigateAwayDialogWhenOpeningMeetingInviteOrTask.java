@@ -73,7 +73,7 @@ public class CheckNavigateAwayDialogWhenOpeningMeetingInviteOrTask extends AjaxC
         // Open appointment & close it
         app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, apptSubject);
 
-		// if logout stucks then assume that browser dialog appeared
+		// If logout stucks then assume that browser dialog appeared
 		app.zPageMain.zLogout();
 	}
 }

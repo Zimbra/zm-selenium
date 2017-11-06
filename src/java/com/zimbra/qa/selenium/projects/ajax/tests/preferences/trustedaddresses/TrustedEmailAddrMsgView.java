@@ -28,49 +28,43 @@ import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-//import com.zimbra.qa.selenium.projects.ajax.ui.preferences.trustedaddresses.DisplayTrustedAddress;
 
 public class TrustedEmailAddrMsgView extends AjaxCommonTest {
 
 	@SuppressWarnings("serial")
 	public TrustedEmailAddrMsgView() throws HarnessException {
 		super.startingPage = app.zPageMail;
-
-		// Make sure we are using an account with message view
-		super.startingAccountPreferences = new HashMap<String, String>() {
-			{
-				put("zimbraPrefGroupMailBy", "message");
-				put("zimbraPrefMessageViewHtmlPreferred", "TRUE");
-				put("zimbraPrefMailTrustedSenderList", "admintest@testdoamin.com");
-			}
-		};
+		super.startingAccountPreferences = new HashMap<String, String>() {{
+			put("zimbraPrefGroupMailBy", "message");
+			put("zimbraPrefMessageViewHtmlPreferred", "TRUE");
+			put("zimbraPrefMailTrustedSenderList", "admintest@testdoamin.com");
+		}};
 	}
+
 
 	/**
 	 * TestCase : Trusted Email address with message view
 	 * 1.Set Email address in Preference/Mail/Trusted Addresses
 	 * 	Verify email addr through soap- GetPrefsRequest
 	 * 2.In message View Inject mail from same email id with external image
-	 * 3.Verify To,From,Subject through soap 
+	 * 3.Verify To,From,Subject through soap
 	 * 4.Click on same mail
 	 * 5.Yellow color Warning Msg Info bar should not present for trusted eamil address.
-	 * @throws HarnessException
 	 */
-	@Test( description = "Verify Display Image link in Trusted Addresses for message view", groups = { "smoke", "L1"  })
+
+	@Test( description = "Verify Display Image link in Trusted Addresses for message view",
+			groups = { "smoke", "L1"  })
+
 	public void TrustedEmailAddrMsgView_01() throws HarnessException {
 
 		final String subject = "TestTrustedAddress";
 		final String from = "admintest@testdoamin.com";
 		final String to = "admin@testdoamin.com";
-		final String mimeFolder = ConfigProperties.getBaseDirectory()
-		+ "/data/public/mime/ExternalImg.txt";
+		final String mimeFolder = ConfigProperties.getBaseDirectory() + "/data/public/mime/ExternalImg.txt";
 
 		// Verify Email id through soap GetPrefsRequest
-		String PrefMailTrustedAddr = ZimbraAccount.AccountZCS().getPreference(
-				"zimbraPrefMailTrustedSenderList");
-		ZAssert.assertTrue(PrefMailTrustedAddr
-				.equals("admintest@testdoamin.com"),
-				"Verify Email address is present /Pref/TrustedAddr");
+		String PrefMailTrustedAddr = ZimbraAccount.AccountZCS().getPreference("zimbraPrefMailTrustedSenderList");
+		ZAssert.assertTrue(PrefMailTrustedAddr.equals("admintest@testdoamin.com"), "Verify Email address is present /Pref/TrustedAddr");
 
 		// Inject the external image message(s)
 		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFolder));
@@ -80,7 +74,7 @@ public class TrustedEmailAddrMsgView extends AjaxCommonTest {
 		ZAssert.assertNotNull(mail, "Verify message is received");
 		ZAssert.assertEquals(from, mail.dFromRecipient.dEmailAddress,"Verify the from matches");
 		ZAssert.assertEquals(to, mail.dToRecipients.get(0).dEmailAddress,"Verify the to address");
-				
+
 		// Click Get Mail button
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
@@ -88,9 +82,6 @@ public class TrustedEmailAddrMsgView extends AjaxCommonTest {
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 
 		// Verify Warning info bar with other links
-
 		ZAssert.assertFalse(app.zPageMail.zHasWDDLinks(),"Verify Warning icon ,Display Image and Domain link  does not present");
-
 	}
-
 }

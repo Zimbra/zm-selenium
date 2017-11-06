@@ -17,7 +17,6 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.contacts.toaster;
 
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.items.ContactItem;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
@@ -32,41 +31,32 @@ public class CreateContactGroup extends AjaxCommonTest {
 
 	public CreateContactGroup() {
 		logger.info("New " + CreateContactGroup.class.getCanonicalName());
-
-		// All tests start at the Address page
 		super.startingPage = app.zPageContacts;
-
-		// Make sure we are using an account with conversation view
-
 	}
 
-	@Test(description = "Create a basic contact group with 2 addresses.  New -> Contact Group and verify toast msg", 
-			groups = {"functional", "L2"})
-	public void CreateContactGroupToastMsg_01() throws HarnessException {
 
-		// -- Data
+	@Test(description = "Create a basic contact group with 2 addresses.  New -> Contact Group and verify toast msg",
+			groups = {"functional", "L2"})
+
+	public void CreateContactGroupToastMsg_01() throws HarnessException {
 
 		String groupName = "group" + ConfigProperties.getUniqueString();
 		String member1 = "m" + ConfigProperties.getUniqueString() + "@example.com";
 		String member2 = "m" + ConfigProperties.getUniqueString() + "@example.com";
 
-		// -- GUI
 		// Refresh the addressbook
 		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 
-		// open contact group form
-		FormContactGroupNew form = (FormContactGroupNew) app.zPageContacts.zToolbarPressPulldown(Button.B_NEW,
-				Button.O_NEW_CONTACTGROUP);
+		// Open contact group form
+		FormContactGroupNew form = (FormContactGroupNew) app.zPageContacts.zToolbarPressPulldown(Button.B_NEW, Button.O_NEW_CONTACTGROUP);
 
-		// fill in group name and email addresses
+		// Fill in group name and email addresses
 		form.zFillField(Field.GroupName, groupName);
 		form.zFillField(Field.FreeFormAddress, member1);
 		form.zFillField(Field.FreeFormAddress, member2);
 
 		if (ConfigProperties.getStringProperty(ConfigProperties.getLocalHost() + ".coverage.enabled",
 				ConfigProperties.getStringProperty("coverage.enabled")).contains("true") == true) {
-			// this method won't wait for some sec after submitting data so
-			// toast message disappears and testcase fails (JS COVERAGE)
 			app.zPageContacts.zClickAt("css=div#" + form.getToolbarID() + " div[id$='__SAVE'] td[id$='_title']", "0,0");
 		} else {
 			form.zSubmit();
@@ -76,11 +66,12 @@ public class CreateContactGroup extends AjaxCommonTest {
 		Toaster toast = app.zPageMain.zGetToaster();
 		String toastMsg = toast.zGetToastMessage();
 		ZAssert.assertStringContains(toastMsg, "Group Created", "Verify toast message: Group Created");
-
 	}
 
-	@Test(description = "Create a contact group with existing contacts and verify toast msg", 
+
+	@Test(description = "Create a contact group with existing contacts and verify toast msg",
 			groups = { "functional", "L2"})
+
 	public void CreateContactGroupToastMsg_02() throws HarnessException {
 
 		// The contact group name
@@ -90,15 +81,13 @@ public class CreateContactGroup extends AjaxCommonTest {
 		ContactItem contact1 = ContactItem.createContactItem(app.zGetActiveAccount());
 		ContactItem contact2 = ContactItem.createContactItem(app.zGetActiveAccount());
 
-		// -- GUI
 		// Refresh
 		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 
-		// open contact group form
-		FormContactGroupNew form = (FormContactGroupNew) app.zPageContacts.zToolbarPressPulldown(Button.B_NEW,
-				Button.O_NEW_CONTACTGROUP);
+		// Open contact group form
+		FormContactGroupNew form = (FormContactGroupNew) app.zPageContacts.zToolbarPressPulldown(Button.B_NEW, Button.O_NEW_CONTACTGROUP);
 
-		// fill in group name
+		// Fill in group name
 		form.zFillField(Field.GroupName, groupName);
 
 		// Select Contact search
@@ -114,8 +103,6 @@ public class CreateContactGroup extends AjaxCommonTest {
 
 		if (ConfigProperties.getStringProperty(ConfigProperties.getLocalHost() + ".coverage.enabled",
 				ConfigProperties.getStringProperty("coverage.enabled")).contains("true") == true) {
-			// this method won't wait for some sec after submitting data so
-			// toast message disappears and testcase fails (JS COVERAGE)
 			app.zPageContacts.zClickAt("css=div#" + form.getToolbarID() + " div[id$='__SAVE'] td[id$='_title']", "0,0");
 		} else {
 			form.zSubmit();

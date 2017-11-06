@@ -35,10 +35,10 @@ public class EditAddressContextMenu extends PrefGroupMailByMessageTest {
 		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "text");
 	}
 
-	
-	@Test( description = "Right click to bubble address >> Edit", 
+
+	@Test( description = "Right click to bubble address >> Edit",
 			groups = { "smoke", "L1" })
-	
+
 	public void EditToAddressContextMenu_01() throws HarnessException {
 
 		// Create the message data to be sent
@@ -52,14 +52,14 @@ public class EditAddressContextMenu extends PrefGroupMailByMessageTest {
 		// Fill out the form with the data
 		mailform.zFill(mail);
 
-		app.zPageMail.zRightClickAddressBubble(Field.To);		
+		app.zPageMail.zRightClickAddressBubble(Field.To);
 		app.zPageMail.zEditAddressContextMenu();
 		app.zPageMail.sFocus(FormMailNew.Locators.zToField);
-		app.zPageMail.zClick(FormMailNew.Locators.zToField);	
+		app.zPageMail.zClick(FormMailNew.Locators.zToField);
 		app.zPageMail.zType(FormMailNew.Locators.zToField, "test@test.com");
 		app.zPageMail.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
 
 		SleepUtil.sleepMedium();
-		ZAssert.assertEquals(app.zPageMail.sGetText(Locators.zToAddressBubble), "test@test.com", "Edited address should present");	
+		ZAssert.assertEquals(app.zPageMail.sGetText(Locators.zToAddressBubble), "test@test.com", "Edited address should present");
 	}
 }

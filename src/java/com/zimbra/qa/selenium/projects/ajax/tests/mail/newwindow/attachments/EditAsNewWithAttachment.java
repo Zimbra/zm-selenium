@@ -14,7 +14,6 @@
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.newwindow.attachments;
 
 import org.testng.SkipException;
@@ -33,9 +32,10 @@ public class EditAsNewWithAttachment extends PrefGroupMailByMessageTest {
 		logger.info("New "+ EditAsNewWithAttachment.class.getCanonicalName());
 	}
 
+
 	@Test( description = "Edit as New message >> add attachment from new window",
 			groups = { "functional", "L2" })
-	
+
 	public void EditAsNewWithAttachment_01() throws HarnessException {
 
 		if (OperatingSystem.isWindows() == true && !ConfigProperties.getStringProperty("browser").contains("edge")) {
@@ -62,7 +62,7 @@ public class EditAsNewWithAttachment extends PrefGroupMailByMessageTest {
 
 			SeparateWindowDisplayMail window = null;
 			String windowTitle = "Zimbra: " + subject;
-			
+
 			MailItem mail = new MailItem();
 			mail.dBodyHtml = " body"+ ConfigProperties.getUniqueString();
 
@@ -74,17 +74,17 @@ public class EditAsNewWithAttachment extends PrefGroupMailByMessageTest {
 				ZAssert.assertTrue(window.zIsWindowOpen(windowTitle),"Verify the window is opened and switch to it");
 
 				window.zToolbarPressPulldown(Button.B_ACTIONS, Button.O_EDIT_AS_NEW);
-				
+
 				// Type in body
 				window.zFillField(Field.Body, mail.dBodyHtml);
-				
+
 				// Click Attach
 				window.zPressButton(Button.B_ATTACH);
 				zUpload(filePath, window);
-				
+
 				// Send the message
 				window.zToolbarPressButton(Button.B_SEND);
-				
+
 			} finally {
 				app.zPageMain.zCloseWindow(window, windowTitle, app);
 			}
@@ -117,7 +117,5 @@ public class EditAsNewWithAttachment extends PrefGroupMailByMessageTest {
 		} else {
 			throw new SkipException("File upload operation is allowed only for Windows OS (Skipping upload tests on MS Edge for now due to intermittancy and major control issue), skipping this test...");
 		}
-
 	}
-
 }

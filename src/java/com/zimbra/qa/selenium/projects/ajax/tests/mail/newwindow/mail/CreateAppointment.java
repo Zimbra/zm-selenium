@@ -1,6 +1,3 @@
-package com.zimbra.qa.selenium.projects.ajax.tests.mail.newwindow.mail;
-
-
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
@@ -17,16 +14,14 @@ package com.zimbra.qa.selenium.projects.ajax.tests.mail.newwindow.mail;
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-
+package com.zimbra.qa.selenium.projects.ajax.tests.mail.newwindow.mail;
 
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.DialogAddAttendees;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.SeparateWindowDisplayMail;
-
 
 public class CreateAppointment extends PrefGroupMailByMessageTest {
 
@@ -34,14 +29,13 @@ public class CreateAppointment extends PrefGroupMailByMessageTest {
 
 	public CreateAppointment() {
 		logger.info("New "+ CreateAppointment.class.getCanonicalName());
-
 		super.startingAccountPreferences.put("zimbraPrefMarkMsgRead", "" + delaySeconds);
-
-
 	}
+
 
 	@Test( description = "Create Appointment from new window by action menu -> Create Appointment",
 			groups = { "functional", "L2" })
+
 	public void CreateAppointment_01() throws HarnessException {
 
 		// Create the message data to be sent
@@ -57,7 +51,6 @@ public class CreateAppointment extends PrefGroupMailByMessageTest {
 						"</mp>" +
 						"</m>" +
 				"</SendMsgRequest>");
-
 
 		// Refresh current view
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
@@ -78,7 +71,7 @@ public class CreateAppointment extends PrefGroupMailByMessageTest {
 
 			window.zToolbarPressPulldown(Button.B_ACTIONS, Button.O_CREATE_APPOINTMENT);
 			SleepUtil.sleepMedium();
-			// Select the main window 
+			// Select the main window
 			window.sSelectWindow(null);
 			app.zPageMail.sClick(DialogAddAttendees.Locators.zYesButton);
 			SleepUtil.sleepLong();
@@ -88,7 +81,7 @@ public class CreateAppointment extends PrefGroupMailByMessageTest {
 		} finally {
 			app.zPageMain.zCloseWindow(window, windowTitle, app);
 		}
-		
+
 		// Verify appointment exists on the server
 		app.zGetActiveAccount().soapSend(
 				"<SearchRequest xmlns='urn:zimbraMail' types='appointment'>"
@@ -96,10 +89,5 @@ public class CreateAppointment extends PrefGroupMailByMessageTest {
 						+	"</SearchRequest>");
 		String id = app.zGetActiveAccount().soapSelectValue("//mail:appt", "invId");
 		ZAssert.assertNotNull(id, "Verify meeting invite is not null");
-
-
 	}
-
-
-
 }

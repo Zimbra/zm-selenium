@@ -17,7 +17,6 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.contacts.performance;
 
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -29,11 +28,12 @@ public class ZmContactsAppFolders extends AjaxCommonTest {
 	public ZmContactsAppFolders() {
 		logger.info("New "+ ZmContactsAppFolders.class.getCanonicalName());
 		super.startingPage = app.zPageMail;
-
 	}
+
 
 	@Test( description = "Measure the time to load the contacts app, 1 addressbook",
 			groups = { "performance", "deprecated"})
+
 	public void ZmContactsAppFolders_01() throws HarnessException {
 
 		// Create a folder
@@ -43,27 +43,21 @@ public class ZmContactsAppFolders extends AjaxCommonTest {
 					"<folder name='ab"+ ConfigProperties.getUniqueString() + "' view='contact' l='"+ root.getId() +"'/>" +
 				"</CreateFolderRequest>");
 
-
 		// Sync the changes to the client (notification block)
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
-		
 		PerfToken token = PerfMetrics.startTimestamp(PerfKey.ZmContactsAppOverviewPanel, "Load the contacts app, 1 addressbook");
 
-		// Currently in the mail app
-		// Navigate to the addressbook
-		//app.zPageContacts.zNavigateTo();
 		app.zPageContacts.zClickAt("css=td[id='zb__App__Contacts_title']","");
-
 		PerfMetrics.waitTimestamp(token);
 
 		// Wait for the app to load
 		app.zPageContacts.zWaitForActive();
-
-
 	}
+
 
 	@Test( description = "Measure the time to load the contacts app, 100 addressbooks",
 			groups = { "performance", "deprecated"})
+
 	public void ZmContactsAppFolders_02() throws HarnessException {
 
 		// Create 100 folders
@@ -75,23 +69,14 @@ public class ZmContactsAppFolders extends AjaxCommonTest {
 					"</CreateFolderRequest>");
 		}
 
-
 		// Sync the changes to the client (notification block)
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
-
 		PerfToken token = PerfMetrics.startTimestamp(PerfKey.ZmContactsAppOverviewPanel, "Load the contacts app, 100 addressbooks");
 
-		// Currently in the mail app
-		// Navigate to the addressbook
-		//app.zPageContacts.zNavigateTo();
 		app.zPageContacts.zClickAt("css=td[id='zb__App__Contacts_title']","");
-
 		PerfMetrics.waitTimestamp(token);
 
 		// Wait for the app to load
 		app.zPageContacts.zWaitForActive();
-
-
 	}
-
 }

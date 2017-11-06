@@ -81,7 +81,7 @@ public class Tag extends AjaxCommonTest {
 		app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, Button.O_NEW_TAG, apptSubject);
 		DialogTag dialog = new DialogTag(app, startingPage);
         dialog.zSubmit(tag);
-        SleepUtil.sleepMedium(); //soapSelectValue gives wrong response without delay
+        SleepUtil.sleepMedium(); // SOAPSelectValue gives wrong response without delay
 
         app.zGetActiveAccount().soapSend("<GetTagRequest xmlns='urn:zimbraMail'/>");;
 		String tagID = app.zGetActiveAccount().soapSelectValue("//mail:GetTagResponse//mail:tag[@name='"+ tag +"']", "id");

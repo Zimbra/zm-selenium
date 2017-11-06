@@ -42,13 +42,14 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 		logger.info("New "+ SaveDraftMail.class.getCanonicalName());
 	}
 
-	@Test( description = "Save a basic draft (subject only)", groups = { "smoke", "L1" })
-	
+
+	@Test( description = "Save a basic draft (subject only)",
+			groups = { "smoke", "L1" })
+
 	public void SaveDraftMail_01() throws HarnessException {
 
 		// Create the message data to be sent
 		String subject = "subject" + ConfigProperties.getUniqueString();
-
 
 		// Open the new mail form
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
@@ -63,8 +64,7 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 		mailform.zToolbarPressButton(Button.B_CANCEL);
 
 		// Get the message from the server
-		MailItem draft = MailItem.importFromSOAP(app.zGetActiveAccount(),
-				"subject:("+ subject +")");
+		MailItem draft = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
 
 		FolderItem draftsFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Drafts);
 
@@ -72,8 +72,8 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 		ZAssert.assertEquals(draft.dSubject, subject, "Verify the subject field is correct");
 		ZAssert.assertEquals(draft.dFolderId, draftsFolder.getId(), "Verify the draft is saved in the drafts folder");
 	}
-	
-	
+
+
 	/**
 	 * Test Case: Save draft using keyboard shortcut 'Escape''
 	 * 1.Compose Text mail
@@ -84,8 +84,9 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 	 * @throws HarnessException
 	 */
 
-	@Test( description = "Save draft using keyboard shortcut 'Escape'", groups = { "functional", "L2" })
-	
+	@Test( description = "Save draft using keyboard shortcut 'Escape'",
+			groups = { "functional", "L2" })
+
 	public void SaveDraftMail_02() throws HarnessException {
 
 		Shortcut shortcut = Shortcut.S_ESCAPE;
@@ -103,8 +104,6 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 
 		DialogWarning warning = (DialogWarning) app.zPageMail.zKeyboardShortcut(shortcut);
 		ZAssert.assertNotNull(warning, "Verify the dialog is opened");
-		
-		
 
 		warning.zClickButton(Button.B_YES);
 		warning.zWaitForClose(); // Make sure the dialog is dismissed
@@ -118,10 +117,11 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 		ZAssert.assertEquals(draft.dSubject, subject,"Verify the subject field is correct");
 		ZAssert.assertEquals(draft.dFolderId, draftsFolder.getId(),"Verify the draft is saved in the drafts folder");
 	}
-	
 
-	@Test( description = "Save draft with To", groups = { "functional", "L2" })
-	
+
+	@Test( description = "Save draft with To",
+			groups = { "functional", "L2" })
+
 	public void SaveDraftMail_03() throws HarnessException {
 
 		// Create the message data to be sent
@@ -141,11 +141,10 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 		mailform.zToolbarPressButton(Button.B_SAVE_DRAFT);
 		SleepUtil.sleepMedium();
 		mailform.zToolbarPressButton(Button.B_CANCEL);
-		
+
 		if (app.zPageMail.sIsElementPresent(Locators.zSaveWarningDialog)) {
 			app.zPageMail.zClickAt("css=div[id='YesNoCancel_button5']", "");
 		}
-
 
 		// Get the message from the server
 		MailItem draft = MailItem.importFromSOAP(app.zGetActiveAccount(),"subject:(" + mail.dSubject + ")");
@@ -160,9 +159,10 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 		ZAssert.assertTrue(found, "Verify the To field contains the correct address(es)");
 	}
 
-	
-	@Test( description = "Save draft with two receipients in To field", groups = { "functional", "L3" })
-	
+
+	@Test( description = "Save draft with two receipients in To field",
+			groups = { "functional", "L3" })
+
 	public void SaveDraftMail_04() throws HarnessException {
 
 		// Create the message data to be sent
@@ -183,7 +183,7 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 		mailform.zToolbarPressButton(Button.B_SAVE_DRAFT);
 		SleepUtil.sleepMedium();
 		mailform.zToolbarPressButton(Button.B_CANCEL);
-		
+
 		if (app.zPageMail.sIsElementPresent(Locators.zSaveWarningDialog)) {
 			app.zPageMail.zClickAt("css=div[id='YesNoCancel_button5']", "");
 		}
@@ -206,8 +206,9 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 		ZAssert.assertTrue(foundB, "Verify the To field contains the second correct address(es)");
 	}
 
-	
-	@Test( description = "Save draft with Cc", groups = { "functional", "L2" })
+
+	@Test( description = "Save draft with Cc",
+			groups = { "functional", "L2" })
 
 	public void SaveDraftMail_05() throws HarnessException {
 
@@ -229,7 +230,7 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 		mailform.zToolbarPressButton(Button.B_SAVE_DRAFT);
 		SleepUtil.sleepMedium();
 		mailform.zToolbarPressButton(Button.B_CANCEL);
-		
+
 		if (app.zPageMail.sIsElementPresent(Locators.zSaveWarningDialog)) {
 			app.zPageMail.zClickAt("css=div[id='YesNoCancel_button5']", "");
 		}
@@ -248,8 +249,9 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Save draft with 2 Cc", groups = { "functional", "L2" })
-	
+	@Test( description = "Save draft with 2 Cc",
+			groups = { "functional", "L2" })
+
 	public void SaveDraftMail_06() throws HarnessException {
 
 		// Create the message data to be sent
@@ -272,11 +274,11 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 		SleepUtil.sleepMedium();
 		mailform.zToolbarPressButton(Button.B_CANCEL);
 		SleepUtil.sleepMedium();
-		
+
 		if (app.zPageMail.sIsElementPresent(Locators.zSaveWarningDialog)) {
 			app.zPageMail.zClickAt("css=div[id='YesNoCancel_button5']", "");
 		}
-		
+
 		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
 		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, inbox);
 
@@ -300,8 +302,9 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Save draft with Bcc", groups = { "functional", "L2" })
-	
+	@Test( description = "Save draft with Bcc",
+			groups = { "functional", "L2" })
+
 	public void SaveDraftMail_07() throws HarnessException {
 
 		// Create the message data to be sent
@@ -324,11 +327,10 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 		mailform.zFill(mail);
 
 		SleepUtil.sleepLong();
-		// Save the message
 		mailform.zToolbarPressButton(Button.B_SAVE_DRAFT);
 		SleepUtil.sleepLong();
 		mailform.zToolbarPressButton(Button.B_CANCEL);
-		
+
 		if (app.zPageMail.sIsElementPresent(Locators.zSaveWarningDialog)) {
 			app.zPageMail.zClickAt("css=div[id='YesNoCancel_button5']", "");
 		}
@@ -346,9 +348,10 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 		ZAssert.assertTrue(found, "Verify the Bcc field contains the correct address(es)");
 	}
 
-	
-	@Test( description = "Save draft with 2 Bcc", groups = { "functional", "L2" })
-	
+
+	@Test( description = "Save draft with 2 Bcc",
+			groups = { "functional", "L2" })
+
 	public void SaveDraftMail_08() throws HarnessException {
 
 		// Create the message data to be sent
@@ -366,7 +369,6 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 		// Fill out the form with the data
 		mailform.zFill(mail);
 		SleepUtil.sleepLong();
-		// Save the message
 		mailform.zToolbarPressButton(Button.B_SAVE_DRAFT);
 		SleepUtil.sleepLong();
 		mailform.zToolbarPressButton(Button.B_CANCEL);

@@ -17,7 +17,6 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.preferences.general.searches;
 
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.Action;
@@ -29,28 +28,26 @@ import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.preferences.PagePreferences.Locators;
 import com.zimbra.qa.selenium.projects.ajax.ui.preferences.TreePreferences.TreeItem;
 
-
 public class ZimbraPrefIncludeTrashInSearchTrue extends AjaxCommonTest {
 
 	public ZimbraPrefIncludeTrashInSearchTrue() {
 		logger.info("New "+ ZimbraPrefIncludeTrashInSearchTrue.class.getCanonicalName());
 
 		super.startingPage = app.zPageMail;
-
-		//Make sure that 'zimbraPrefIncludeTrashInSearch' is set to FALSE initially
 		super.startingAccountPreferences.put("zimbraPrefIncludeTrashInSearch", "FALSE");
 	}
 
 
 	@Test( description = "Verify that mails in trash are also included in search when 'zimbraPrefIncludeTrashInSearch' is TRUE",
 			groups = { "functional", "L2" })
+
 	public void ZimbraPrefIncludeTrashInSearchTrue_01() throws HarnessException {
 
-		//Data required to create a mail in Trash
+		// Data required to create a mail in Trash
 		FolderItem trash = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Trash);
 		String subject = "subject" + ConfigProperties.getUniqueString();
 
-		// Create a message in trash		
+		// Create a message in trash
 		app.zGetActiveAccount().soapSend(
 				"<AddMsgRequest xmlns='urn:zimbraMail'>"
 						+		"<m l='"+ trash.getId() +"' >"
@@ -66,30 +63,26 @@ public class ZimbraPrefIncludeTrashInSearchTrue extends AjaxCommonTest {
 						+		"</m>"
 						+	"</AddMsgRequest>");
 
-		// CHeck the presence of mail in Trash folder
+		// Check the presence of mail in Trash folder
 		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, trash);
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 
-		//Search the mail when 'zimbraPrefIncludeTrashInSearch' is FALSE 			
+		// Search the mail when 'zimbraPrefIncludeTrashInSearch' is FALSE
 		app.zPageSearch.zAddSearchQuery(subject );
 		app.zPageSearch.zToolbarPressButton(Button.B_SEARCH);
 
-		//Verify that the mail is not displayed in search result			
+		// Verify that the mail is not displayed in search result
 		ZAssert.assertFalse(app.zPageSearch.zVerifyMailExists(subject), "Verify that message from trash is not displayed");
 
 		// Go to "Preferences -> General -> Search
 		app.zPagePreferences.zNavigateTo();
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.General);
 
-		// Select the check box to search in trash folder		
+		// Select the check box to search in trash folder
 		app.zPagePreferences.zCheckboxSet(Locators.zSearchTrashFolder, true);
 		app.zPagePreferences.zToolbarPressButton(Button.B_SAVE);
 
-
-		//-- Verification
-
 		// Verify the account preference has been modified
-
 		app.zGetActiveAccount().soapSend(
 				"<GetPrefsRequest xmlns='urn:zimbraAccount'>"
 						+		"<pref name='zimbraPrefIncludeTrashInSearch'/>"
@@ -98,15 +91,14 @@ public class ZimbraPrefIncludeTrashInSearchTrue extends AjaxCommonTest {
 		String value = app.zGetActiveAccount().soapSelectValue("//acct:pref[@name='zimbraPrefIncludeTrashInSearch']", null);
 		ZAssert.assertEquals(value, "TRUE", "Verify the zimbraPrefIncludeTrashInSearch preference was changed to 'TRUE'");
 
-		//Search the mail when 'zimbraPrefIncludeTrashInSearch' is TRUE
+		// Search the mail when 'zimbraPrefIncludeTrashInSearch' is TRUE
 		app.zPageSearch.zAddSearchQuery(subject );
 		app.zPageSearch.zToolbarPressButton(Button.B_SEARCH);
 
-		//Verify that the mail is displayed in search result
-		ZAssert.assertTrue(app.zPageSearch.zVerifyMailExists(subject), "Verify that message from trash is not displayed");	
-		
-		//close the search view
+		// Verify that the mail is displayed in search result
+		ZAssert.assertTrue(app.zPageSearch.zVerifyMailExists(subject), "Verify that message from trash is not displayed");
+
+		// Close the search view
 		app.zPageSearch.zClose();
 	}
-
 }

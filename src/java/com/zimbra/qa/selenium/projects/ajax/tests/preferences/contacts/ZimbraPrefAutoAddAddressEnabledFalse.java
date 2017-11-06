@@ -17,9 +17,7 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.preferences.contacts;
 
 import java.util.HashMap;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
@@ -32,43 +30,29 @@ public class ZimbraPrefAutoAddAddressEnabledFalse extends AjaxCommonTest {
 	public ZimbraPrefAutoAddAddressEnabledFalse() {
 
 		super.startingPage = app.zPagePreferences;
-		
 		super.startingAccountPreferences = new HashMap<String, String>() {
-			private static final long serialVersionUID = 1275472695659221683L;
-			{				
+			private static final long serialVersionUID = 1275472695659221683L; {
 		 		put("zimbraPrefAutoAddAddressEnabled", "TRUE");
 			}
 		};
 	}
 
-	/**
-	 * Test case : Verify select checkbox works (e.g make the option changed to opt-out)
-	 * @throws HarnessException
-	 */
-	@Test(
-			description= "Select the checkbox to set zimbraPrefAutoAddAddressEnabled=false ", 
+
+	@Test(description= "Select the checkbox to set zimbraPrefAutoAddAddressEnabled=false ",
 			groups= {"functional", "L2" })
+
 	public void ZimbraPrefAutoAddAddressEnabledFalse_01() throws HarnessException {
 
-		//-- DATA Setup
-		
-		
-		
-		//-- GUI Actions
-		
 		// Navigate to preferences -> addressbook
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.AddressBook);
 
 		// Uncheck the box
 		app.zPagePreferences.zCheckboxSet("css=input[id$=_AUTO_ADD_ADDRESS]",false);
-			
+
 		// Click save
-		app.zPagePreferences.zToolbarPressButton(Button.B_SAVE);		
+		app.zPagePreferences.zToolbarPressButton(Button.B_SAVE);
 
-		
-		
-		//-- VERIFICATION
-
+		// Verification
 		app.zGetActiveAccount().soapSend(
                    "<GetPrefsRequest xmlns='urn:zimbraAccount'>"
                  +     "<pref name='zimbraPrefAutoAddAddressEnabled'/>"
@@ -76,9 +60,5 @@ public class ZimbraPrefAutoAddAddressEnabledFalse extends AjaxCommonTest {
 
 		String value = app.zGetActiveAccount().soapSelectValue("//acct:pref[@name='zimbraPrefAutoAddAddressEnabled']", null);
 		ZAssert.assertEquals(value, "FALSE", "Verify the zimbraPrefAutoAddAddressEnabled preference was changed to 'FALSE'");
-
-		
 	}
-
-	
 }

@@ -125,7 +125,7 @@ public class AcceptMeetingUsingDifferentCalendarFolder extends AjaxCommonTest {
 
 		// ---------------- Verification at organizer & invitee side both -------------------------------------
 
-		// --- Check that the organizer shows the attendee as "ACCEPT" ---
+		// Check that the organizer shows the attendee as "ACCEPT" ---
 
 		// Organizer: Search for the appointment (InvId)
 		ZimbraAccount.AccountA().soapSend(
@@ -145,7 +145,7 @@ public class AcceptMeetingUsingDifferentCalendarFolder extends AjaxCommonTest {
 		ZAssert.assertEquals(attendeeStatus, "AC", "Verify that the attendee shows as 'ACCEPTED'");
 
 
-		// --- Check that the attendee showing status as "ACCEPT" ---
+		// Check that the attendee showing status as "ACCEPT" ---
 
 		// Attendee: Search for the appointment (InvId)
 		app.zGetActiveAccount().soapSend(
@@ -215,7 +215,7 @@ public class AcceptMeetingUsingDifferentCalendarFolder extends AjaxCommonTest {
 		// ---------------- Verification at organizer & invitee side both -------------------------------------
 
 
-		// --- Check that the organizer shows the attendee as "ACCEPT" ---
+		// Check that the organizer shows the attendee as "ACCEPT" ---
 
 		// Organizer: Search for the appointment response
 		String inboxId = FolderItem.importFromSOAP(ZimbraAccount.AccountA(), FolderItem.SystemFolder.Inbox).getId();
@@ -299,7 +299,7 @@ public class AcceptMeetingUsingDifferentCalendarFolder extends AjaxCommonTest {
 		// ---------------- Verification at organizer & invitee side both -------------------------------------
 
 
-		// --- Check that the organizer shows the attendee as "ACCEPT" ---
+		// Check that the organizer shows the attendee as "ACCEPT" ---
 
 		// Organizer: Search for the appointment (InvId)
 		ZimbraAccount.AccountA().soapSend(
@@ -319,7 +319,7 @@ public class AcceptMeetingUsingDifferentCalendarFolder extends AjaxCommonTest {
 		ZAssert.assertEquals(attendeeStatus, "AC", "Verify that the attendee shows as 'ACCEPTED'");
 
 
-		// --- Check that the attendee showing status as "ACCEPT" ---
+		// Check that the attendee showing status as "ACCEPT" ---
 
 		// Attendee: Search for the appointment (InvId)
 		app.zGetActiveAccount().soapSend(
@@ -423,7 +423,7 @@ public class AcceptMeetingUsingDifferentCalendarFolder extends AjaxCommonTest {
 		// ---------------- Verification at organizer & invitee side both -------------------------------------
 
 
-		// --- Check that the organizer shows the attendee as "ACCEPT" ---
+		// Check that the organizer shows the attendee as "ACCEPT" ---
 
 		// Organizer: Search for the appointment (InvId)
 		ZimbraAccount.AccountA().soapSend(
@@ -443,7 +443,7 @@ public class AcceptMeetingUsingDifferentCalendarFolder extends AjaxCommonTest {
 		ZAssert.assertEquals(attendeeStatus, "AC", "Verify that the attendee shows as 'ACCEPTED'");
 
 
-		// --- Check that the attendee showing status as "ACCEPT" ---
+		// Check that the attendee showing status as "ACCEPT" ---
 
 		// Attendee: Search for the appointment (InvId)
 		app.zGetActiveAccount().soapSend(
@@ -541,7 +541,7 @@ public class AcceptMeetingUsingDifferentCalendarFolder extends AjaxCommonTest {
 		// ---------------- Verification at organizer & invitee side both -------------------------------------
 
 
-		// --- Check that the organizer shows the attendee as "ACCEPT" ---
+		// Check that the organizer shows the attendee as "ACCEPT" ---
 
 		// Organizer: Search for the appointment (InvId)
 		ZimbraAccount.AccountA().soapSend(
@@ -561,7 +561,7 @@ public class AcceptMeetingUsingDifferentCalendarFolder extends AjaxCommonTest {
 		ZAssert.assertEquals(attendeeStatus, "NE", "Verify that the attendee shows as 'NEEDS ACTION'");
 
 
-		// --- Check that the attendee showing status as "ACCEPT" ---
+		// Check that the attendee showing status as "ACCEPT" ---
 
 		// Attendee: Search for the appointment (InvId)
 		app.zGetActiveAccount().soapSend(

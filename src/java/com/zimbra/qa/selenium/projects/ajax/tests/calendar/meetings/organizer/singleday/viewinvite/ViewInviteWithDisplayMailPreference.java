@@ -267,7 +267,7 @@ public class ViewInviteWithDisplayMailPreference extends AjaxCommonTest {
 		String value = app.zGetActiveAccount().soapSelectValue("//acct:pref[@name='zimbraPrefMessageViewHtmlPreferred']", null);
 
 		if (value.equalsIgnoreCase("TRUE")) {
-			//Navigate to preference -> Mail and set display mail pref to Text and verify
+			// Navigate to preference -> Mail and set display mail pref to Text and verify
 			app.zPagePreferences.zNavigateTo();
 			app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.Mail);
 

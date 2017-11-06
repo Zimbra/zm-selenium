@@ -17,7 +17,6 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.compose.drafts;
 
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.ui.Action;
@@ -34,12 +33,14 @@ import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew.Field;
 public class OpenDraftMail extends PrefGroupMailByMessageTest {
 
 	public OpenDraftMail() {
-
 		logger.info("New " + OpenDraftMail.class.getCanonicalName());
 	}
 
+
 	@Bugs(ids = "49907")
-	@Test( description = "Open existing drafts in Reading Pane", groups = { "functional", "L2" })
+	@Test( description = "Open existing drafts in Reading Pane",
+			groups = { "functional", "L2" })
+
 	public void OpenDraftMail_01() throws HarnessException {
 
 		// Create the message data to be entered while composing mail
@@ -66,17 +67,17 @@ public class OpenDraftMail extends PrefGroupMailByMessageTest {
 		// Refresh current view
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
-		// Go to draft		
+		// Go to draft
 		FolderItem drafts = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Drafts);
 		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, drafts);
 
 		// Select the mail and click Edit to open it
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 		mailform.zToolbarPressButton(Button.B_EDIT);
-		SleepUtil.sleepMedium();	
+		SleepUtil.sleepMedium();
 
 		// Get the body text and verify it.
-		ZAssert.assertStringContains(mailform.zGetHtmltBodyText(), body, "Mail body is not shown correctly ");		
+		ZAssert.assertStringContains(mailform.zGetHtmltBodyText(), body, "Mail body is not shown correctly ");
 
 		// Close the opened draft
 		mailform.zToolbarPressButton(Button.B_CLOSE);
@@ -87,18 +88,17 @@ public class OpenDraftMail extends PrefGroupMailByMessageTest {
 		app.zPageMail.zToolbarPressButton(Button.B_MAIL_VIEW_READING_PANE_BOTTOM);
 
 		// Refresh current view
-		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);		
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
 		// Select the mail and click Edit to open it
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 		mailform.zToolbarPressButton(Button.B_EDIT);
 		SleepUtil.sleepMedium();
-		
+
 		// Get the body text and verify it.
-		ZAssert.assertStringContains(mailform.zGetHtmltBodyText(), body, "Mail body is not shown correctly ");		
+		ZAssert.assertStringContains(mailform.zGetHtmltBodyText(), body, "Mail body is not shown correctly ");
 
 		// Close the opened draft
 		mailform.zToolbarPressButton(Button.B_CLOSE);
 	}
-
 }

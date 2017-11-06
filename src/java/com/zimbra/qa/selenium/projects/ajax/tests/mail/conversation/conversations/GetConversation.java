@@ -22,24 +22,21 @@ import com.zimbra.qa.selenium.framework.items.MailItem;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByConversationTest;
 
-
 public class GetConversation extends PrefGroupMailByConversationTest {
 
 	public GetConversation() {
 		logger.info("New "+ GetConversation.class.getCanonicalName());
-		
-	
-		
 	}
-	
+
+
 	@Test( description = "Receive a conversation",
 			groups = { "smoke", "L1" })
+
 	public void GetConversation01() throws HarnessException {
-		
-		
+
 		// Create the message data to be sent
 		String subject = "subject" + ConfigProperties.getUniqueString();
-		
+
 		ZimbraAccount.AccountA().soapSend(
 					"<SendMsgRequest xmlns='urn:zimbraMail'>" +
 						"<m>" +
@@ -53,7 +50,7 @@ public class GetConversation extends PrefGroupMailByConversationTest {
 
 		// Refresh current view
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
-				
+
 		// Get the list of messages
 		List<MailItem> conversations = app.zPageMail.zListGetMessages();
 		ZAssert.assertNotNull(conversations, "Verify the conversation list exists");
@@ -67,9 +64,5 @@ public class GetConversation extends PrefGroupMailByConversationTest {
 			}
 		}
 		ZAssert.assertTrue(found, "Verify the conversation was received in the inbox");
-		
-
-		
 	}
-
 }

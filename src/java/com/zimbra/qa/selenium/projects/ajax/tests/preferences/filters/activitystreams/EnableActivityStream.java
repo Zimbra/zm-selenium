@@ -17,64 +17,43 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.preferences.filters.activitystreams;
 
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.preferences.DialogActivityStream;
 import com.zimbra.qa.selenium.projects.ajax.ui.preferences.TreePreferences.TreeItem;
 
-
 public class EnableActivityStream extends AjaxCommonTest {
 
 	public EnableActivityStream() {
-		
 		super.startingPage = app.zPagePreferences;
-		
-		
 	}
 
 
-	@Test(
-			description = "Enable the Activity Streams feature",
-			groups = { "functional", "L2" }
-			)
+	@Test(	description = "Enable the Activity Streams feature",
+			groups = { "functional", "L2" })
+
 	public void EnableActivityStream_01() throws HarnessException {
 
-		//-- DATA
-		
-		
-		
-		//-- GUI
-		
 		// Navigate to preferences -> mail -> composing
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.MailFilters);
 
-	
 		// Click "Activity Stream Settings"
 		DialogActivityStream dialog = (DialogActivityStream)app.zPagePreferences.zToolbarPressButton(Button.B_ACTIVITY_STREAM_SETTINGS);
-		
+
 		// Check "Enable"
 		dialog.zClickCheckbox(Button.B_ACTIVITY_STREAM_ENABLE, true);
-		
+
 		// Save
 		dialog.zClickButton(Button.B_SAVE);
-		
-				
-		
-		//-- VERIFICATION
 
-		app.zGetActiveAccount().soapSend(
-						"<GetFilterRulesRequest xmlns='urn:zimbraMail'/>");
-		
-		// TODO: need to make this I18N compatible
+		// Verification
+		app.zGetActiveAccount().soapSend("<GetFilterRulesRequest xmlns='urn:zimbraMail'/>");
+
 		com.zimbra.common.soap.Element[] nodes = app.zGetActiveAccount().soapSelectNodes("//mail:filterRule[@name='Activity Stream']");
-		
 		ZAssert.assertGreaterThan(nodes.length, 0, "Verify the activity stream filter was created");
-		
-		String active = app.zGetActiveAccount().soapSelectValue("//mail:filterRule[@name='Activity Stream']", "active");
-		
-		ZAssert.assertEquals(active, "1", "Verify the activity stream filter is active");
 
+		String active = app.zGetActiveAccount().soapSelectValue("//mail:filterRule[@name='Activity Stream']", "active");
+		ZAssert.assertEquals(active, "1", "Verify the activity stream filter is active");
 	}
 }

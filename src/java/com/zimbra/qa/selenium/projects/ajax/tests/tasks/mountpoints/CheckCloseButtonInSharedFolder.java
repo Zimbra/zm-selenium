@@ -47,11 +47,11 @@ public class CheckCloseButtonInSharedFolder extends AjaxCommonTest {
 				put("zimbraPrefShowSelectionCheckbox", "TRUE");
 			}
 		};
-
 	}
 
+
 	@Bugs( ids = "73226")
-	@Test( description = "Verify Close button on Share Task Window and its functionality",	
+	@Test( description = "Verify Close button on Share Task Window and its functionality",
 			groups = { "functional", "L2" })
 
 	public void CheckCloseButtonInSharedFolder_01() throws HarnessException {
@@ -94,7 +94,6 @@ public class CheckCloseButtonInSharedFolder extends AjaxCommonTest {
 				"</m>" +
 		"</CreateTaskRequest>");
 
-
 		TaskItem task1 = TaskItem.importFromSOAP(ZimbraAccount.AccountA(), subject);
 		ZAssert.assertNotNull(task1, "Verify the task added");
 
@@ -117,7 +116,7 @@ public class CheckCloseButtonInSharedFolder extends AjaxCommonTest {
 		app.zPageTasks.zListItem(Action.A_LEFTCLICK, subject);
 		app.zPageTasks.zListItem(Action.A_DOUBLECLICK, subject);
 		SleepUtil.sleepMedium();
-		
+
 		// Verify Full task view along with Close button
 		ZAssert.assertTrue(app.zPageTasks.sGetEval("window.appCtxt.getCurrentViewType()").equalsIgnoreCase("TKV"),"Verify Full Pane view is open");
 		ZAssert.assertTrue(app.zPageTasks.sIsElementPresent(Locators.zCloseButton), "Verify Close button is there");
@@ -125,12 +124,12 @@ public class CheckCloseButtonInSharedFolder extends AjaxCommonTest {
 		// After closing Task list view should show
 		app.zPageTasks.zToolbarPressButton(Button.B_CLOSE);
 		ZAssert.assertTrue(app.zPageTasks.sGetEval("window.appCtxt.getCurrentViewType()").equalsIgnoreCase("TKL"),"Verify List view is open");
-
 	}
 
+
 	@Bugs( ids = "75277")
-	@Test( description = "Verify Close button on Share Task Window and its functionality",	
-	groups = { "smoke", "L1"})
+	@Test( description = "Verify Close button on Share Task Window and its functionality",
+			groups = { "smoke", "L1"})
 
 	public void CheckCloseButtonInSharedFolder_02() throws HarnessException {
 
@@ -171,7 +170,6 @@ public class CheckCloseButtonInSharedFolder extends AjaxCommonTest {
 				"</mp>" +
 				"</m>" +
 		"</CreateTaskRequest>");
-
 
 		TaskItem task1 = TaskItem.importFromSOAP(ZimbraAccount.AccountA(), subject);
 		ZAssert.assertNotNull(task1, "Verify the task added");

@@ -37,17 +37,18 @@ public class EditTask extends AjaxCommonTest{
 	@SuppressWarnings("serial")
 	public EditTask() {
 		logger.info("Edit " + EditTask.class.getCanonicalName());
-		super.startingPage = app.zPageTasks;
 
+		super.startingPage = app.zPageTasks;
 		super.startingAccountPreferences = new HashMap<String , String>() {{
 			put("zimbraPrefShowSelectionCheckbox", "TRUE");
 			put("zimbraPrefTasksReadingPaneLocation", "bottom");
 		}};
 	}
 
-	@Test( description = "Unchecked Attachment from edit window and - verify Toast message", 
+
+	@Test( description = "Unchecked Attachment from edit window and - verify Toast message",
 			groups = { "smoke", "L1"})
-	
+
 	public void EditTaskToastMsg() throws HarnessException {
 
 		String subject = "task" + ConfigProperties.getUniqueString();
@@ -57,8 +58,9 @@ public class EditTask extends AjaxCommonTest{
 
 		// Create file item
 		String filePath = ConfigProperties.getBaseDirectory() + "/data/public/Files/Basic01/BasicExcel2007.xlsx";
+
 		// Upload file to server through RestUtil
-		String attachmentId = account.uploadFile(filePath);		
+		String attachmentId = account.uploadFile(filePath);
 
 		app.zGetActiveAccount().soapSend(
 				"<CreateTaskRequest xmlns='urn:zimbraMail'>" +
@@ -86,24 +88,22 @@ public class EditTask extends AjaxCommonTest{
 		// Select the item
 		app.zPageTasks.zListItem(Action.A_LEFTCLICK, subject);
 		ZAssert.assertTrue(app.zPageTasks.sIsElementPresent(Locators.zAttachmentsLabel),"Verify Attachments: label");
-		
-		//Press Edit tool bar button
+
+		// Press Edit tool bar button
 		FormTaskNew taskedit = (FormTaskNew) app.zPageTasks.zToolbarPressButton(Button.B_EDIT);
 
-		// Uncheck Attachment		
+		// Uncheck Attachment
 		app.zPageTasks.sUncheck(Locators.zEditAttachmentCheckbox);
-		
+
 		if (ConfigProperties.getStringProperty(ConfigProperties.getLocalHost() + ".coverage.enabled", ConfigProperties.getStringProperty("coverage.enabled")).contains("true") == true) {
-			// this method won't wait for some sec after submitting data so toast message disappears and testcase fails (JS COVERAGE)
 			app.zPageTasks.zClickAt("css=div[id^='ztb__TKE']  tr[id^='ztb__TKE'] td[id$='_title']:contains('Save')", "0,0");
 		} else {
 			taskedit.zSubmit();
 		}
-		
+
 		// Verifying the toaster message
 		Toaster toast = app.zPageMain.zGetToaster();
 		String toastMsg = toast.zGetToastMessage();
 		ZAssert.assertStringContains(toastMsg, "Task Saved","Verify toast message: Task Saved");
 	}
-
 }

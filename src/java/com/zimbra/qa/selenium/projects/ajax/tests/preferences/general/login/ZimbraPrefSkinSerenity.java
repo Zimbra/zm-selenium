@@ -17,9 +17,7 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.preferences.general.login;
 
 import java.util.HashMap;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
@@ -30,45 +28,36 @@ public class ZimbraPrefSkinSerenity extends AjaxCommonTest {
 	public ZimbraPrefSkinSerenity() {
 		logger.info("New "+ ZimbraPrefSkinSerenity.class.getCanonicalName());
 
-		// All tests start at the login page
 		super.startingPage = app.zPagePreferences;
-
 		super.startingAccountPreferences = new HashMap<String, String>() {
-			private static final long serialVersionUID = -1303088148746653112L;
-			{
-
+			private static final long serialVersionUID = -1303088148746653112L; {
 				put("zimbraPrefSkin", "serenity");
-
 			}
 		};
-
 	}
-	
-	@Test(
-			description = "Verify the 'zimbraPrefSkin' option can be changed", 
-			groups = { "functional", "L2" }
-			)
+
+
+	@Test ( description = "Verify the 'zimbraPrefSkin' option can be changed",
+			groups = { "functional", "L2" } )
+
 	public void ZimbraPrefSkinSerenity_01() throws HarnessException {
-				
+
 		// Go to "General"
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.General);
 		String locator = "css=td[id='Prefs_Select_SKIN_NAME_dropdown']>div";
-		
+
 		app.zPagePreferences.zClickAt(locator,"");
-		
 		String Skinlocator="css=div[id^='Prefs_Select_SKIN_NAME_Menu'] td[id$='_title']:contains('Bare')";
-	
-		ZAssert.assertTrue(
-				app.zPagePreferences.sIsElementPresent(Skinlocator), 
-				"Verify the 'Bare' theme selection is present");
-		
+
+		ZAssert.assertTrue(app.zPagePreferences.sIsElementPresent(Skinlocator), "Verify the 'Bare' theme selection is present");
+
 		// Click on the "Bare" theme
 		app.zPagePreferences.zClick(Skinlocator);
 		app.zPagePreferences.zWaitForBusyOverlay();
-		
+
 		app.zPagePreferences.zToolbarPressButton(Button.B_SAVE);
 		app.zPagePreferences.zPressButton(Button.B_NO);
-		
+
 		app.zGetActiveAccount().soapSend(
 						"<GetPrefsRequest xmlns='urn:zimbraAccount'>"
 				+			"<pref name='zimbraPrefSkin'/>"
@@ -76,6 +65,5 @@ public class ZimbraPrefSkinSerenity extends AjaxCommonTest {
 
 		String value = app.zGetActiveAccount().soapSelectValue("//acct:pref[@name='zimbraPrefSkin']", null);
 		ZAssert.assertEquals(value, "bare", "Verify the zimbraPrefSkin preference was saved");
-
 	}
 }

@@ -1,6 +1,3 @@
-package com.zimbra.qa.selenium.projects.ajax.tests.mail.newwindow.mail;
-
-
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
@@ -17,11 +14,10 @@ package com.zimbra.qa.selenium.projects.ajax.tests.mail.newwindow.mail;
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
+package com.zimbra.qa.selenium.projects.ajax.tests.mail.newwindow.mail;
 
 import java.util.List;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.MailItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
@@ -36,14 +32,13 @@ public class UnFlagMail extends PrefGroupMailByMessageTest {
 
 	public UnFlagMail() {
 		logger.info("New " + UnFlagMail.class.getCanonicalName());
-
-		super.startingAccountPreferences.put("zimbraPrefMarkMsgRead", ""
-				+ delaySeconds);
-
+		super.startingAccountPreferences.put("zimbraPrefMarkMsgRead", "" + delaySeconds);
 	}
 
 
-	@Test( description = "Unflag from new window ,action menu -> UnFlag", groups = { "functional", "L2" })
+	@Test( description = "Unflag from new window ,action menu -> UnFlag",
+			groups = { "functional", "L2" })
+
 	public void UnFlagrFromNewWindow_01() throws HarnessException {
 
 		// Create the message data to be sent
@@ -79,9 +74,9 @@ public class UnFlagMail extends PrefGroupMailByMessageTest {
 			window = (SeparateWindowDisplayMail) app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS,Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 
 			window.zSetWindowTitle(windowTitle);
-			ZAssert.assertTrue(window.zIsWindowOpen(windowTitle),"Verify the window is opened and switch to it");			
+			ZAssert.assertTrue(window.zIsWindowOpen(windowTitle),"Verify the window is opened and switch to it");
 
-			//Actin Menu --> Flag
+			// Action Menu --> Flag
 			window.zToolbarPressPulldown(Button.B_ACTIONS,Button.B_UNFLAG_MESSAGE);
 
 			SleepUtil.sleepMedium();
@@ -113,10 +108,12 @@ public class UnFlagMail extends PrefGroupMailByMessageTest {
 		// Make sure the server shows "flagged"
 		mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject + ")");
 		ZAssert.assertStringDoesNotContain(mail.getFlags(), "f","Verify the message is flagged in the server");
-
 	}
 
-	@Test( description = "Un Flag mail from new window ,using shortcut 'mf'", groups = { "functional", "L2" })
+
+	@Test( description = "Un Flag mail from new window ,using shortcut 'mf'",
+			groups = { "functional", "L2" })
+
 	public void UnFlagrFromNewWindow_02() throws HarnessException {
 
 		// Create the message data to be sent
@@ -187,6 +184,4 @@ public class UnFlagMail extends PrefGroupMailByMessageTest {
 		mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject + ")");
 		ZAssert.assertStringDoesNotContain(mail.getFlags(), "f","Verify the message is flagged in the server");
 	}
-
 }
-

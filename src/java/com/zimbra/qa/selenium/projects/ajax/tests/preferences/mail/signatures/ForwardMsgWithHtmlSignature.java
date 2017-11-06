@@ -38,17 +38,14 @@ import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew.Field;
 public class ForwardMsgWithHtmlSignature extends AjaxCommonTest {
 	String sigName = "signame" + ConfigProperties.getUniqueString();
 	String sigBody = "signature<b>bold" + ConfigProperties.getUniqueString() + "</b>signature";
-	String contentHTMLSig = XmlStringUtil
-			.escapeXml("<html>" + "<head></head>" + "<body>" + sigBody + "</body>" + "</html>");
+	String contentHTMLSig = XmlStringUtil.escapeXml("<html>" + "<head></head>" + "<body>" + sigBody + "</body>" + "</html>");
 
 	@SuppressWarnings("serial")
 	public ForwardMsgWithHtmlSignature() {
 		super.startingPage = app.zPageMail;
-		super.startingAccountPreferences = new HashMap<String, String>() {
-			{
-				put("zimbraPrefGroupMailBy", "message");
-			}
-		};
+		super.startingAccountPreferences = new HashMap<String, String>() {{
+			put("zimbraPrefGroupMailBy", "message");
+		}};
 	}
 
 	@BeforeMethod(groups = { "always" })
@@ -65,16 +62,17 @@ public class ForwardMsgWithHtmlSignature extends AjaxCommonTest {
 		logger.info("CreateSignature: finish");
 	}
 
+
 	/**
 	 * Test case : Forward Msg with html signature and Verify signature through
 	 * soap Create signature through soap Send message with html signature
 	 * through soap Fwd same message to another account say (accountB()) Verify
 	 * html signature in forwarded msg through soap
-	 * 
-	 * @throws HarnessException
 	 */
-	@Test(description = "Forward Msg with html signature and Verify html signature through soap", groups = {
-			"functional", "L2" })
+
+	@Test(description = "Forward Msg with html signature and Verify html signature through soap",
+			groups = { "functional", "L2" })
+
 	public void ForwardMsgWithHtmlSignature_01() throws HarnessException {
 
 		SignatureItem signature = SignatureItem.importFromSOAP(app.zGetActiveAccount(), this.sigName);
@@ -85,10 +83,8 @@ public class ForwardMsgWithHtmlSignature extends AjaxCommonTest {
 		String subject = "subject" + ConfigProperties.getUniqueString();
 		String bodyText = "text" + ConfigProperties.getUniqueString();
 		String bodyHTML = "text <b>bold" + ConfigProperties.getUniqueString() + "</b> text";
-		String contentHTML = XmlStringUtil
-				.escapeXml("<html>" + "<head></head>" + "<body>" + bodyHTML + "<br></br>" + "</body>" + "</html>");
-		String signatureContent = XmlStringUtil
-				.escapeXml("<html>" + "<head></head>" + "<body>" + signature.dBodyHtmlText + "</body>" + "</html>");
+		String contentHTML = XmlStringUtil.escapeXml("<html>" + "<head></head>" + "<body>" + bodyHTML + "<br></br>" + "</body>" + "</html>");
+		String signatureContent = XmlStringUtil.escapeXml("<html>" + "<head></head>" + "<body>" + signature.dBodyHtmlText + "</body>" + "</html>");
 
 		// Send a message to the account with html signature
 		ZimbraAccount.AccountZCS()
@@ -138,6 +134,5 @@ public class ForwardMsgWithHtmlSignature extends AjaxCommonTest {
 		ZAssert.assertStringContains(received.dBodyHtml.toLowerCase(), bodyHTML, "Verify html body content is correct");
 		ZAssert.assertStringContains(received.dBodyHtml.toLowerCase(), this.sigBody,
 				"Verify html signature is correct");
-
 	}
 }

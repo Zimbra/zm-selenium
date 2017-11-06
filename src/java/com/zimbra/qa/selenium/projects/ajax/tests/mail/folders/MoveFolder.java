@@ -17,7 +17,6 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.folders;
 
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.*;
@@ -25,29 +24,25 @@ import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.DialogMove;
 
-
 public class MoveFolder extends PrefGroupMailByMessageTest {
 
 	public MoveFolder() {
 		logger.info("New "+ MoveFolder.class.getCanonicalName());
 	}
-	
-	
+
+
 	@Test( description = "Move a folder - Right click, Move",
 			groups = { "smoke", "L1" })
-	
+
 	public void MoveFolder_01() throws HarnessException {
-		
+
 		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
 		ZAssert.assertNotNull(inbox, "Verify the inbox is available");
-		
-		
+
 		// Create two subfolders in the inbox
-		// One folder to move
-		// Another folder to move into
 		String name1 = "folder" + ConfigProperties.getUniqueString();
 		String name2 = "folder" + ConfigProperties.getUniqueString();
-		
+
 		app.zGetActiveAccount().soapSend(
 				"<CreateFolderRequest xmlns='urn:zimbraMail'>" +
                 	"<folder name='"+ name1 +"' l='"+ inbox.getId() +"'/>" +
@@ -55,7 +50,7 @@ public class MoveFolder extends PrefGroupMailByMessageTest {
 
 		FolderItem subfolder1 = FolderItem.importFromSOAP(app.zGetActiveAccount(), name1);
 		ZAssert.assertNotNull(subfolder1, "Verify the first subfolder is available");
-		
+
 		app.zGetActiveAccount().soapSend(
 				"<CreateFolderRequest xmlns='urn:zimbraMail'>" +
                 	"<folder name='"+ name2 +"' l='"+ inbox.getId() +"'/>" +
@@ -63,8 +58,7 @@ public class MoveFolder extends PrefGroupMailByMessageTest {
 
 		FolderItem subfolder2 = FolderItem.importFromSOAP(app.zGetActiveAccount(), name2);
 		ZAssert.assertNotNull(subfolder2, "Verify the second subfolder is available");
-		
-		
+
 		// Click on Get Mail to refresh the folder list
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
@@ -72,16 +66,10 @@ public class MoveFolder extends PrefGroupMailByMessageTest {
 		DialogMove dialog = (DialogMove)app.zTreeMail.zTreeItem(Action.A_RIGHTCLICK, Button.B_MOVE, subfolder1);
 		dialog.zClickTreeFolder(subfolder2);
 		dialog.zClickButton(Button.B_OK);
-		
+
 		// Verify the folder is now in the other subfolder
 		subfolder1 = FolderItem.importFromSOAP(app.zGetActiveAccount(), name1);
 		ZAssert.assertNotNull(subfolder1, "Verify the subfolder is again available");
 		ZAssert.assertEquals(subfolder2.getId(), subfolder1.getParentId(), "Verify the subfolder's parent is now the other subfolder");
-
-		
 	}
-
-	
-
-
 }

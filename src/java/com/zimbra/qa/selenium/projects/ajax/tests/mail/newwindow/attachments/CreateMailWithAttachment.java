@@ -14,7 +14,6 @@
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.newwindow.attachments;
 
 import java.awt.event.KeyEvent;
@@ -35,9 +34,10 @@ public class CreateMailWithAttachment extends PrefGroupMailByMessageTest {
 		super.startingAccountPreferences.put("zimbraPrefComposeInNewWindow", "TRUE");
 	}
 
+
 	@Test( description = "Send a mail with an attachment - in a separate window",
 			groups = {"sanity", "L0" })
-	
+
 	public void CreateMailWithAttachment_01() throws HarnessException {
 
 		if (OperatingSystem.isWindows() == true && !ConfigProperties.getStringProperty("browser").contains("edge")) {
@@ -67,7 +67,7 @@ public class CreateMailWithAttachment extends PrefGroupMailByMessageTest {
 
 					// Fill out the form with the data
 					window.zFill(mail);
-					
+
 					// Click Attach
 					window.zPressButton(Button.B_ATTACH);
 					zUpload(filePath, window);
@@ -80,16 +80,13 @@ public class CreateMailWithAttachment extends PrefGroupMailByMessageTest {
 				}
 
 				for (int i = 0; i < 30; i++) {
-
 					ZimbraAccount.AccountA().soapSend("<SearchRequest types='message' xmlns='urn:zimbraMail'>"
 							+ "<query>subject:(" + mail.dSubject + ")</query>" + "</SearchRequest>");
 					com.zimbra.common.soap.Element node = ZimbraAccount.AccountA().soapSelectNode("//mail:m", 1);
 					if (node != null) {
 						break;
 					}
-
 					SleepUtil.sleep(1000);
-
 				}
 
 				ZimbraAccount.AccountA().soapSend("<SearchRequest types='message' xmlns='urn:zimbraMail'>"
@@ -119,14 +116,11 @@ public class CreateMailWithAttachment extends PrefGroupMailByMessageTest {
 				ZAssert.assertTrue(app.zPageMail.zVerifyAttachmentExistsInMail(fileName),"Verify attachment exists in the email");
 
 			} finally {
-
 				app.zPageMain.zKeyboardKeyEvent(KeyEvent.VK_ESCAPE);
-
 			}
 
 		} else {
 			throw new SkipException("File upload operation is allowed only for Windows OS (Skipping upload tests on MS Edge for now due to intermittancy and major control issue), skipping this test...");
 		}
-
 	}
 }

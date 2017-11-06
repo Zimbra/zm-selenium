@@ -36,13 +36,13 @@ public class OpenInTabMailFolder extends PrefGroupMailByMessageTest {
 
 	public OpenInTabMailFolder() {
 		logger.info("New "+ OpenInTabMailFolder.class.getCanonicalName());
-
-		// All tests start at the login page
 		super.startingPage = app.zPageMail;
 	}
 
+
 	@Test( description = "Verify Open in new tab option for mail app - Inbox",
 			groups = { "smoke", "L1" })
+
 	public void OpenInTabMailFolder_01() throws HarnessException {
 
 		// Create the message data to be sent
@@ -59,7 +59,6 @@ public class OpenInTabMailFolder extends PrefGroupMailByMessageTest {
 						"</mp>" +
 						"</m>" +
 				"</SendMsgRequest>");
-
 
 		// Refresh current view
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
@@ -82,11 +81,12 @@ public class OpenInTabMailFolder extends PrefGroupMailByMessageTest {
 			// Remember to close the search view
 			app.zPageSearch.zClose();
 		}
-
 	}
+
 
 	@Test( description = "Verify Open in new tab option for mail app - Draft",
 			groups = { "functional", "L2" })
+
 	public void OpenInTabMailFolder_02() throws HarnessException {
 
 		// Create the message data to be sent
@@ -109,31 +109,30 @@ public class OpenInTabMailFolder extends PrefGroupMailByMessageTest {
 		// Get the message from the server
 		MailItem draft = MailItem.importFromSOAP(app.zGetActiveAccount(),
 				"subject:("+ subject +")");
-		
+
 		// Right click on folder, select "Open in Tab"
 		FolderItem draftsFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Drafts);
 		app.zTreeMail.zTreeItem(Action.A_RIGHTCLICK, Button.B_OPENTAB,draftsFolder);
 
-
 		// Remember to close the search view
 		try {
 
-			//Verify search window is opened
+			// Verify search window is opened
 			app.zPageSearch.zIsActive();
 
 			// Verify the draft message is exist
 			ZAssert.assertEquals(draft.dSubject, subject, "Verify the subject field is correct");
 
-
 		} finally {
 			// Remember to close the search view
 			app.zPageSearch.zClose();
 		}
-
 	}
+
 
 	@Test( description = "Verify Open in new tab option for mail app - Custom folder",
 			groups = { "functional", "L2" })
+
 	public void OpenInTabMailFolder_03() throws HarnessException {
 
 		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
@@ -149,10 +148,10 @@ public class OpenInTabMailFolder extends PrefGroupMailByMessageTest {
 
 		FolderItem subfolder1 = FolderItem.importFromSOAP(app.zGetActiveAccount(), name1);
 		ZAssert.assertNotNull(subfolder1, "Verify the subfolder is available");
-		
+
 		// Create the message data to be sent
 		String subject = "subject" + ConfigProperties.getUniqueString();
-				
+
 		// Add message to the new subfolder
 		app.zGetActiveAccount().soapSend(
 				"<AddMsgRequest xmlns='urn:zimbraMail'>" +
@@ -175,7 +174,7 @@ public class OpenInTabMailFolder extends PrefGroupMailByMessageTest {
 		// Right click on folder, select "Open in Tab"
 		app.zTreeMail.zTreeItem(Action.A_RIGHTCLICK, Button.B_OPENTAB, subfolder1);
 		ZAssert.assertTrue(app.zPageSearch.sIsElementPresent(PageSearch.Locators.zSearchTab), "Search tab should open");
-		
+
 		// Remember to close the search view
 		try {
 
@@ -190,7 +189,5 @@ public class OpenInTabMailFolder extends PrefGroupMailByMessageTest {
 			// Remember to close the search view
 			app.zPageSearch.zClose();
 		}
-
 	}
-
 }

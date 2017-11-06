@@ -31,9 +31,10 @@ public class SpellCheck extends PrefGroupMailByMessageTest {
 		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "text");
 	}
 
-	
-	@Test(description = "Spell check a single word", groups = { "functional", "L2" })
-	
+
+	@Test(description = "Spell check a single word",
+			groups = { "functional", "L2" })
+
 	public void SpellCheck_01() throws HarnessException {
 
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
@@ -53,18 +54,18 @@ public class SpellCheck extends PrefGroupMailByMessageTest {
 		// View the suggestions
 		mailform.sClick("css=span[class='ZM-SPELLCHECK-MISSPELLED']:contains(mispeled)");
 		mailform.zWaitForBusyOverlay();
-		
+
 		// Look at the list to make sure the correctly spelled word is there
 		ZAssert.assertTrue(mailform.sIsElementPresent("css=tr[id*='_sug-'] td[id$='_title']:contains(misspelled)"),
 				"Verify the misspelled word is highlighted");
-
 	}
 
-	
-	@Test(description = "Spell check multiple words", groups = { "functional", "L2" })
-	
+
+	@Test(description = "Spell check multiple words",
+			groups = { "functional", "L2" })
+
 	public void SpellCheck_02() throws HarnessException {
-		
+
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
 		ZAssert.assertNotNull(mailform, "Verify the new form opened");
 
@@ -92,6 +93,5 @@ public class SpellCheck extends PrefGroupMailByMessageTest {
 		mailform.zWaitForBusyOverlay();
 		ZAssert.assertTrue(mailform.sIsElementPresent("css=tr[id*='_sug-'] td[id$='_title']:contains('incorrect')"),
 				"Verify the misspelled word is highlighted");
-
 	}
 }

@@ -17,7 +17,6 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.folders;
 
 import org.testng.annotations.*;
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.ui.*;
@@ -32,15 +31,13 @@ public class ModifyFolderRetentionWhenSharingDisabled extends PrefGroupMailByMes
 		super.startingAccountPreferences.put("zimbraFeatureSharingEnabled", "FALSE");
 	}
 
-	//Same test as in 'ModifyFolderRetension.java'
+
 	@Bugs( ids = "97126")
-	@Test( description = "Modify a basic retention (Context menu -> Edit -> Retention) (zimbraFeatureSharingEnabled=FALSE)", 
+	@Test( description = "Modify a basic retention (Context menu -> Edit -> Retention) (zimbraFeatureSharingEnabled=FALSE)",
 			groups = { "functional", "L3" } )
-	
+
 	public void ModifyFolderRetentionWhenSharingDisabled_01() throws HarnessException {
 
-		//-- Data
-		
 		// Create the subfolder
 		String foldername = "folder" + ConfigProperties.getUniqueString();
 
@@ -64,8 +61,6 @@ public class ModifyFolderRetentionWhenSharingDisabled extends PrefGroupMailByMes
 			+		"</action>"
 			+	"</FolderActionRequest>");
 
-		//-- GUI
-		
 		// Click on Get Mail to refresh the folder list
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
@@ -78,17 +73,14 @@ public class ModifyFolderRetentionWhenSharingDisabled extends PrefGroupMailByMes
 
 		// Save
 		dialog.zClickButton(Button.B_OK);
-		
-		//-- Verification
-		
+
 		// Verify the retention policy on the folder
 		app.zGetActiveAccount().soapSend(
 				"<GetFolderRequest xmlns='urn:zimbraMail'>"
 			+		"<folder l='" + folder.getId() + "'/>"
 			+	"</GetFolderRequest>");
+
 		String lifetime = app.zGetActiveAccount().soapSelectValue("//mail:keep//mail:policy", "lifetime");
-		
 		ZAssert.assertEquals(lifetime, "6d", "Verify the policy lifetime is set to 6 days");
-		
 	}
 }

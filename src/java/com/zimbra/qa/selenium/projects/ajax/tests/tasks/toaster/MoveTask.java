@@ -31,16 +31,16 @@ public class MoveTask extends AjaxCommonTest {
 	public MoveTask() {
 		logger.info("Move " + MoveTask.class.getCanonicalName());
 
-		// All tests start at the login page
 		super.startingPage = app.zPageTasks;
-
 		super.startingAccountPreferences = new HashMap<String , String>() {{
 			put("zimbraPrefTasksReadingPaneLocation", "bottom");
 		}};
 	}
-	
-	@Test( description = "Verify Toaster message on moving Task", 
+
+
+	@Test( description = "Verify Toaster message on moving Task",
 			groups = { "functional", "L3"})
+
 	public void MoveTask_01() throws HarnessException {
 
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
@@ -57,7 +57,7 @@ public class MoveTask extends AjaxCommonTest {
 
 		FolderItem subFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), name);
 
-		// refresh task page
+		// Refresh task page
 		app.zTreeTasks.zTreeItem(Action.A_LEFTCLICK, taskFolder);
 
 		String subject = "task" + ConfigProperties.getUniqueString();
@@ -68,7 +68,7 @@ public class MoveTask extends AjaxCommonTest {
 				+			"<inv>"
 				+				"<comp name='" + subject + "'>"
 				+					"<or a='"+ app.zGetActiveAccount().EmailAddress + "'/>"
-				+				"</comp>" 
+				+				"</comp>"
 				+			"</inv>"
 				+			"<su>" + subject + "</su>"
 				+			"<mp ct='text/plain'>"
@@ -77,14 +77,12 @@ public class MoveTask extends AjaxCommonTest {
 				+		"</m>"
 				+	"</CreateTaskRequest>");
 
-		
-
 		TaskItem task = TaskItem.importFromSOAP(app.zGetActiveAccount(),subject);
 		ZAssert.assertNotNull(task, "Verify the task is created");
 
 		// Refresh the tasks view
 		app.zTreeTasks.zTreeItem(Action.A_LEFTCLICK, taskFolder);
-		
+
 		app.zPageTasks.zToolbarPressPulldown(Button.B_MOVE, subFolder);
 
 		// Verifying the toaster message

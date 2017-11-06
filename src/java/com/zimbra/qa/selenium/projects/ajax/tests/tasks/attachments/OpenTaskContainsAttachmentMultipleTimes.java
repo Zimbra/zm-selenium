@@ -17,9 +17,7 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.tasks.attachments;
 
 import java.util.HashMap;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.common.soap.Element;
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.FileItem;
@@ -47,11 +45,12 @@ public class OpenTaskContainsAttachmentMultipleTimes extends AjaxCommonTest {
 			put("zimbraPrefTasksReadingPaneLocation", "bottom");
 		}};
 	}
-	
+
+
 	@Bugs( ids = "75283")
-	@Test( description = "Same attachment keeps on adding while opening same task multiple times", 
+	@Test( description = "Same attachment keeps on adding while opening same task multiple times",
 			groups = { "smoke", "L1"})
-	
+
 	public void OpenTaskContainsAttachmentMultipleTimes_01() throws HarnessException {
 
 		String subject = "task" + ConfigProperties.getUniqueString();
@@ -65,7 +64,7 @@ public class OpenTaskContainsAttachmentMultipleTimes extends AjaxCommonTest {
 		String fileName = file.getName();
 
 		// Upload file to server through RestUtil
-		String attachmentId = account.uploadFile(filePath);		
+		String attachmentId = account.uploadFile(filePath);
 
 
 		app.zGetActiveAccount().soapSend(
@@ -87,9 +86,9 @@ public class OpenTaskContainsAttachmentMultipleTimes extends AjaxCommonTest {
 
 		TaskItem task = TaskItem.importFromSOAP(app.zGetActiveAccount(), subject);
 		ZAssert.assertNotNull(task, "Verify the task is created");
-		
-		//Verify attachment through soap
-		app.zTreeTasks.zTreeItem(Action.A_LEFTCLICK, taskFolder);		
+
+		// Verify attachment through soap
+		app.zTreeTasks.zTreeItem(Action.A_LEFTCLICK, taskFolder);
 		account.soapSend("<SearchRequest xmlns='urn:zimbraMail' types='task' >"
 				+ "<query>" + subject + "</query>" + "</SearchRequest>");
 
@@ -106,43 +105,39 @@ public class OpenTaskContainsAttachmentMultipleTimes extends AjaxCommonTest {
 		app.zPageTasks.zListItem(Action.A_LEFTCLICK, subject);
 		app.zPageTasks.zListItem(Action.A_DOUBLECLICK, subject);
 
-		SleepUtil.sleepMedium();		
+		SleepUtil.sleepMedium();
 		ZAssert.assertTrue(app.zPageTasks.sIsElementPresent(com.zimbra.qa.selenium.projects.ajax.ui.tasks.FormTaskNew.Locators.zCloseButton), "Verify Close button is there");
 
 		ZAssert.assertTrue(app.zPageTasks.sIsElementPresent("css=div[class='ZmTaskEditView'] tr[id$='_attachment_container'] div td a[class='AttLink']:contains('"+fileName+"')")," Verify only one Attachment present");
 		ZAssert.assertFalse(app.zPageTasks.sIsElementPresent("xpath=//div[contains(@class,'ZmTaskEditView')]//tr[contains(@id,'_attachment_container')]/td/fieldset/form/div/div[2]"),"Verify Duplicate attachment is not present");
 
 		app.zPageTasks.zClickAt(com.zimbra.qa.selenium.projects.ajax.ui.tasks.FormTaskNew.Locators.zCloseButton, "0,0");
-		//After closing Task list view should show.
 		ZAssert.assertTrue(app.zPageTasks.sGetEval("window.appCtxt.getCurrentViewType()").equalsIgnoreCase("TKL"),"Verify List view is open");
 
 		//2nd Attempt
-
 		app.zPageTasks.zListItem(Action.A_LEFTCLICK, subject);
 		app.zPageTasks.zListItem(Action.A_DOUBLECLICK, subject);
 
-		SleepUtil.sleepMedium();		
+		SleepUtil.sleepMedium();
 		ZAssert.assertTrue(app.zPageTasks.sIsElementPresent(com.zimbra.qa.selenium.projects.ajax.ui.tasks.FormTaskNew.Locators.zCloseButton), "Verify Close button is there");
 
 		ZAssert.assertTrue(app.zPageTasks.sIsElementPresent("css=div[class='ZmTaskEditView'] tr[id$='_attachment_container'] div td a[class='AttLink']:contains('"+fileName+"')")," Verify only one Attachment present");
 		ZAssert.assertFalse(app.zPageTasks.sIsElementPresent("xpath=//div[contains(@class,'ZmTaskEditView')]//tr[contains(@id,'_attachment_container')]/td/fieldset/form/div/div[2]"),"Verify Duplicate attachment is not present");
 
-		//Close Edit window
+		// Close Edit window
 		app.zPageTasks.zClickAt(com.zimbra.qa.selenium.projects.ajax.ui.tasks.FormTaskNew.Locators.zCloseButton, "0,0");
 
 		//After closing Task list view should show.
 		ZAssert.assertTrue(app.zPageTasks.sGetEval("window.appCtxt.getCurrentViewType()").equalsIgnoreCase("TKL"),"Verify List view is open");
 
-		//3rd Attempt		
+		//3rd Attempt
 		app.zPageTasks.zListItem(Action.A_LEFTCLICK, subject);
 		app.zPageTasks.zListItem(Action.A_DOUBLECLICK, subject);
 
-		SleepUtil.sleepMedium();		
+		SleepUtil.sleepMedium();
 		ZAssert.assertTrue(app.zPageTasks.sIsElementPresent(com.zimbra.qa.selenium.projects.ajax.ui.tasks.FormTaskNew.Locators.zCloseButton), "Verify Close button is there");
 
 		ZAssert.assertTrue(app.zPageTasks.sIsElementPresent("css=div[class='ZmTaskEditView'] tr[id$='_attachment_container'] div td a[class='AttLink']:contains('"+fileName+"')")," Verify only one Attachment present");
 		ZAssert.assertFalse(app.zPageTasks.sIsElementPresent("xpath=//div[contains(@class,'ZmTaskEditView')]//tr[contains(@id,'_attachment_container')]/td/fieldset/form/div/div[2]"),"Verify Duplicate attachment is not present");
-
-
 	}
 }
