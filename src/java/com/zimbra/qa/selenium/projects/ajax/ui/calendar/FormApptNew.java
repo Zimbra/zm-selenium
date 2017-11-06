@@ -546,7 +546,7 @@ public class FormApptNew extends AbsForm {
 			throw new HarnessException("locator was null for button " + button);
 
 		// Click it
-		this.sClick(locator);
+		this.sClickAt(locator, "");
 		this.zWaitForBusyOverlay();
 
 		if (button == Button.B_SEND || button == Button.B_SAVE || button == Button.B_SAVEANDCLOSE) {

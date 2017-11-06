@@ -2197,13 +2197,13 @@ public class PageCalendar extends AbsTab {
 			FolderItem folder = (FolderItem) dynamic;
 
 			pulldownLocator = "css=td#zb__CLD__MOVE_MENU_dropdown>div";
-			
-	        if (zIsWeekend()) {
+
+			if (zIsWeekend()) {
 				optionLocator = "css=td#zti__ZmFolderChooser_CalendarCLW__" + folder.getId() + "_textCell";
-	        } else {
-	        	optionLocator = "css=td#zti__ZmFolderChooser_CalendarCLWW__" + folder.getId() + "_textCell";
-	        }
-	        
+			} else {
+				optionLocator = "css=td#zti__ZmFolderChooser_CalendarCLWW__" + folder.getId() + "_textCell";
+			}
+
 			page = null;
 
 		} else {
