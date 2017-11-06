@@ -36,62 +36,63 @@ import org.testng.annotations.Test;
 
 public class ShowHideDeclinedMeetings extends AjaxCommonTest {
 
-  public ShowHideDeclinedMeetings()
-  {
-    logger.info("New " + ShowHideDeclinedMeetings.class.getCanonicalName());
-    this.startingPage = this.app.zPageCalendar;
-    this.startingAccountPreferences.put("zimbraFeatureGroupCalendarEnabled", "FALSE");
-  }
-  
-  @Bugs(ids="27661")
-  @Test( description="Allow declined meetings to be hidden/shown based on preference", groups={"functional", "L2"} )
-  
-  public void ShowHideDeclinedMeetings_01() throws HarnessException {
-	  
-    String apptSubject = ConfigProperties.getUniqueString();
-    
-    Calendar now = Calendar.getInstance();
-    ZDate startUTC = new ZDate(now.get(1), now.get(2) + 1, now.get(5), 12, 0, 0);
-    ZDate endUTC = new ZDate(now.get(1), now.get(2) + 1, now.get(5), 14, 0, 0);
+	public ShowHideDeclinedMeetings() {
+		logger.info("New " + ShowHideDeclinedMeetings.class.getCanonicalName());
+		this.startingPage = this.app.zPageCalendar;
+		this.startingAccountPreferences.put("zimbraFeatureGroupCalendarEnabled", "FALSE");
+	}
 
-    ZimbraAdminAccount.GlobalAdmin().soapSend(
-	  "<ModifyAccountRequest xmlns='urn:zimbraAdmin'><id>" + 
-	  this.app.zGetActiveAccount().ZimbraId + "</id>" + 
-	  "<a n='zimbraPrefCalendarShowDeclinedMeetings'>FALSE</a>" + 
-	  "</ModifyAccountRequest>");
 
-	// Refresh UI
-	app.zPageMain.zRefreshMainUI();
-	app.zPageCalendar.zNavigateTo();
+	@Bugs(ids="27661")
+	@Test(description="Allow declined meetings to be hidden/shown based on preference",
+		groups={"functional", "L2"} )
 
-	ZimbraAccount.AccountA().soapSend(
-			"<CreateAppointmentRequest xmlns='urn:zimbraMail'>"
-			+		"<m>"
-			+			"<inv method='REQUEST' type='event' status='CONF' draft='0' class='PUB' fb='B' transp='O' allDay='0' name='"+ apptSubject +"'>"
-			+				"<s d='"+ startUTC.toTimeZone(ZTimeZone.getLocalTimeZone().getID()).toYYYYMMDDTHHMMSS() +"' tz='"+ ZTimeZone.getLocalTimeZone().getID() +"'/>"
-			+				"<e d='"+ endUTC.toTimeZone(ZTimeZone.getLocalTimeZone().getID()).toYYYYMMDDTHHMMSS() +"' tz='"+ ZTimeZone.getLocalTimeZone().getID() +"'/>"
-			+				"<or a='"+ ZimbraAccount.AccountA().EmailAddress +"'/>"
-			+				"<at role='REQ' ptst='NE' rsvp='1' a='" + app.zGetActiveAccount().EmailAddress + "'/>"
-			+			"</inv>"
-			+			"<e a='"+ app.zGetActiveAccount().EmailAddress +"' t='t'/>"
-			+			"<su>"+ apptSubject +"</su>"
-			+			"<mp content-type='text/plain'>"
-			+				"<content>content</content>"
-			+			"</mp>"
-			+		"</m>"
-			+	"</CreateAppointmentRequest>");
+	public void ShowHideDeclinedMeetings_01() throws HarnessException {
 
-	// Verify appointment exists in current view
-	ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
+		String apptSubject = ConfigProperties.getUniqueString();
 
-    this.app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_DECLINE_MENU, apptSubject);
-    
-    DialogConfirmationDeclineAppointment declineAppt = new DialogConfirmationDeclineAppointment(this.app, this.app.zPageCalendar);
-    declineAppt.zClickButton(Button.B_DONT_NOTIFY_ORGANIZER);
-    declineAppt.zClickButton(Button.B_YES);
-    SleepUtil.sleepMedium();
-    
-    this.app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
-    ZAssert.assertEquals(Boolean.valueOf(this.app.zPageCalendar.zIsAppointmentExists(apptSubject)), Boolean.valueOf(false), "Verify decline meeting is hidden in current view");
-  }
+		Calendar now = Calendar.getInstance();
+		ZDate startUTC = new ZDate(now.get(1), now.get(2) + 1, now.get(5), 12, 0, 0);
+		ZDate endUTC = new ZDate(now.get(1), now.get(2) + 1, now.get(5), 14, 0, 0);
+
+		ZimbraAdminAccount.GlobalAdmin().soapSend(
+			"<ModifyAccountRequest xmlns='urn:zimbraAdmin'><id>" +
+				this.app.zGetActiveAccount().ZimbraId + "</id>" +
+				"<a n='zimbraPrefCalendarShowDeclinedMeetings'>FALSE</a>" +
+			"</ModifyAccountRequest>");
+
+		// Refresh UI
+		app.zPageMain.zRefreshMainUI();
+		app.zPageCalendar.zNavigateTo();
+
+		ZimbraAccount.AccountA().soapSend(
+				"<CreateAppointmentRequest xmlns='urn:zimbraMail'>"
+				+		"<m>"
+				+			"<inv method='REQUEST' type='event' status='CONF' draft='0' class='PUB' fb='B' transp='O' allDay='0' name='"+ apptSubject +"'>"
+				+				"<s d='"+ startUTC.toTimeZone(ZTimeZone.getLocalTimeZone().getID()).toYYYYMMDDTHHMMSS() +"' tz='"+ ZTimeZone.getLocalTimeZone().getID() +"'/>"
+				+				"<e d='"+ endUTC.toTimeZone(ZTimeZone.getLocalTimeZone().getID()).toYYYYMMDDTHHMMSS() +"' tz='"+ ZTimeZone.getLocalTimeZone().getID() +"'/>"
+				+				"<or a='"+ ZimbraAccount.AccountA().EmailAddress +"'/>"
+				+				"<at role='REQ' ptst='NE' rsvp='1' a='" + app.zGetActiveAccount().EmailAddress + "'/>"
+				+			"</inv>"
+				+			"<e a='"+ app.zGetActiveAccount().EmailAddress +"' t='t'/>"
+				+			"<su>"+ apptSubject +"</su>"
+				+			"<mp content-type='text/plain'>"
+				+				"<content>content</content>"
+				+			"</mp>"
+				+		"</m>"
+				+	"</CreateAppointmentRequest>");
+
+		// Verify appointment exists in current view
+		ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
+
+		this.app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_DECLINE_MENU, apptSubject);
+
+		DialogConfirmationDeclineAppointment declineAppt = new DialogConfirmationDeclineAppointment(this.app, this.app.zPageCalendar);
+		declineAppt.zClickButton(Button.B_DONT_NOTIFY_ORGANIZER);
+		declineAppt.zClickButton(Button.B_YES);
+		SleepUtil.sleepMedium();
+
+		this.app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
+		ZAssert.assertEquals(Boolean.valueOf(this.app.zPageCalendar.zIsAppointmentExists(apptSubject)), Boolean.valueOf(false), "Verify decline meeting is hidden in current view");
+	}
 }

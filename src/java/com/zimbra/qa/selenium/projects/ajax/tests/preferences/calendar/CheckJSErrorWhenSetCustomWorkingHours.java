@@ -32,10 +32,12 @@ public class CheckJSErrorWhenSetCustomWorkingHours extends AjaxCommonTest {
 		logger.info("New " + CheckJSErrorWhenSetCustomWorkingHours.class.getCanonicalName());
 		super.startingPage = app.zPagePreferences;
 	}
-	
+
+
 	@Bugs(ids = "102406,50479")
-	@Test( description = "When setting custom working hours, JS error", groups = { "functional", "L2" })
-	
+	@Test(description = "When setting custom working hours, JS error",
+			groups = { "functional", "L2" })
+
 	public void CheckJSErrorWhenSetCustomWorkingHours_01() throws HarnessException {
 
 		// Navigate to preferences -> calendar
@@ -46,23 +48,23 @@ public class CheckJSErrorWhenSetCustomWorkingHours extends AjaxCommonTest {
 		app.zPagePreferences.zPressButton(Button.B_CUSTOMIZE);
 		app.zPagePreferences.zSelectCheckBox(Button.B_MONDAY_CHECK_BOX);
 		app.zPagePreferences.zPressButton(Button.B_OK);
-		
+
 		// Save preferences
 		app.zPagePreferences.zToolbarPressButton(Button.B_SAVE);
 		app.zPagePreferences.zPressButton(Button.B_YES);
 		SleepUtil.sleepVeryLong();
 		SleepUtil.sleepMedium();
- 
+
 		// Verify the preference value
 		app.zGetActiveAccount().soapSend(
 						"<GetPrefsRequest xmlns='urn:zimbraAccount'>"
 				+			"<pref name='zimbraPrefCalendarWorkingHours'/>"
 				+		"</GetPrefsRequest>");
-		
+
 		String value = app.zGetActiveAccount().soapSelectValue("//acct:pref[@name='zimbraPrefCalendarWorkingHours']", null);
 		ZAssert.assertEquals(value, "1:N:0800:1700,2:N:0800:1700,3:Y:0800:1700,4:Y:0800:1700,5:Y:0800:1700,6:Y:0800:1700,7:N:0800:1700", "Verify zimbraPrefCalendarWorkingHours value (Sunday & Saturday as non-working days)'");
-		
-		// if logout stucks then assume that browser dialog appeared
+
+		// If logout stucks then assume that browser dialog appeared
 		app.zPageMain.zLogout();
 	}
 }

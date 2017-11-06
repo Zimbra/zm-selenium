@@ -39,90 +39,90 @@ public class CreateFilter extends AjaxCommonTest {
 	}
 
 	@Bugs(ids="97040")
-	@Test( description = "Create a basic Incoming Message Filter",	
+	@Test( description = "Create a basic Incoming Message Filter",
 			groups = { "sanity", "L0" } )
-    
+
 	public void CreateFilter_01() throws HarnessException {
 
 		String filterName = "filter"+ ConfigProperties.getUniqueString();
 		String conditionValue = "contains"+ ConfigProperties.getUniqueString();
-		
+
 		// Create a folder
 		String folderName = "JiraIn";
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.MailFilters);
-		
+
 		// Click "Add New"
-		DialogEditFilter dialog = (DialogEditFilter)app.zPagePreferences.zToolbarPressButton(Button.B_NEW_IN_FILTER);		
-		
+		DialogEditFilter dialog = (DialogEditFilter)app.zPagePreferences.zToolbarPressButton(Button.B_NEW_IN_FILTER);
+
 		// Give a name
 		dialog.zSetFilterName(filterName);
-		
+
 		// Give a criteria
-		dialog.zAddFilterCriteria(ConditionType.From, ConditionConstraint.MatchesWildcard, conditionValue);	
-		
+		dialog.zAddFilterCriteria(ConditionType.From, ConditionConstraint.MatchesWildcard, conditionValue);
+
 		// Give an action (if necessary)
 		dialog.zAddFilterAction(FilterAction.MoveIntoFolder,folderName);
 
 		// Save
-		dialog.zClickButton(Button.B_OK);		
-		
+		dialog.zClickButton(Button.B_OK);
+
 		// Verify the filter is created through SOAP
 		app.zGetActiveAccount().soapSend("<GetFilterRulesRequest xmlns='urn:zimbraMail'/>");
-		
+
 		Element[] rules = app.zGetActiveAccount()
 				.soapSelectNodes("//mail:GetFilterRulesResponse//mail:filterRule[@name='" + filterName + "']");
 		ZAssert.assertEquals(rules.length, 1, "Verify the Incoming filter rule exists in the server");
-		
+
 		// Verify that filter is created through UI
 		ZAssert.assertTrue(
 				app.zPagePreferences
 						.sIsElementPresent(PagePreferences.Locators.zFilterRowCss + ":contains(" + filterName + ")"),
 				"Incoming filter is not created successfully!");
-		
 	}
-    
-    
-    @Test( description = "Create a basic Outgoing Message Filter",	groups = { "smoke", "L1"  } )
-    
+
+
+    @Test( description = "Create a basic Outgoing Message Filter",
+			groups = { "smoke", "L1"  } )
+
 	public void CreateFilter_02() throws HarnessException {
-    	
+
     	// Work around
     	app.zPageMain.zRefreshMainUI();
     	app.zPagePreferences.zNavigateTo();
 
 		String filterName = "Outfilter";
 		String conditionValue = "contains"+ ConfigProperties.getUniqueString();
-		
+
 		// Create a folder
-		String folderName = "JiraOut";  //		
+		String folderName = "JiraOut";  //
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.MailFilters);
-		
-		//Go to outgoing filter tab 
+
+		// Go to outgoing filter tab
 		app.zPagePreferences.sClick(PagePreferences.Locators.zOutGoingFilterTab);
-		
+
 		// Click "Add New"
-		DialogEditFilter dialog = (DialogEditFilter)app.zPagePreferences.zToolbarPressButton(Button.B_NEW_OUT_FILTER);		
-		
+		DialogEditFilter dialog = (DialogEditFilter)app.zPagePreferences.zToolbarPressButton(Button.B_NEW_OUT_FILTER);
+
 		// Give a name
 		dialog.zSetFilterName(filterName);
-		
+
 		// Give a criteria
-		dialog.zAddFilterCriteria(ConditionType.Subject, ConditionConstraint.MatchesWildcard, conditionValue);	
-		
+		dialog.zAddFilterCriteria(ConditionType.Subject, ConditionConstraint.MatchesWildcard, conditionValue);
+
 		// Give an action (if necessary)
 		dialog.zAddFilterAction(FilterAction.TagWith,folderName);
 
 		// Save
-		dialog.zClickButton(Button.B_OK);		
-		
+		dialog.zClickButton(Button.B_OK);
+
 		// Verify the filter is created through SOAP
 		app.zGetActiveAccount().soapSend("<GetOutgoingFilterRulesRequest xmlns='urn:zimbraMail'/>");
-		
+
 		Element[] rules = app.zGetActiveAccount()
 				.soapSelectNodes("//mail:GetOutgoingFilterRulesResponse//mail:filterRule[@name='" + filterName + "']");
 		ZAssert.assertEquals(rules.length, 1, "Verify the Outgoing filter rule exists in the server");
-		
-		// Verify that filter is created through UI		
+
+		// Verify that filter is created through UI
 		ZAssert.assertTrue(
 				app.zPagePreferences
 						.sIsElementPresent(PagePreferences.Locators.zFilterRowCss + ":contains(" + filterName + ")"),

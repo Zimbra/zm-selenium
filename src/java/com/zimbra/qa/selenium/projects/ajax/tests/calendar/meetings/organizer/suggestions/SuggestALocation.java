@@ -99,7 +99,5 @@ public class SuggestALocation extends AjaxCommonTest {
 		apptForm.zFill(appt);
 		apptForm.zToolbarPressButton(Button.B_SUGGESTALOCATION);
         ZAssert.assertEquals(apptForm.zVerifyLocation(apptLocation), false, "Verify 'busy' location doesn't appear in suggested locations pane");
-
 	}
-
 }

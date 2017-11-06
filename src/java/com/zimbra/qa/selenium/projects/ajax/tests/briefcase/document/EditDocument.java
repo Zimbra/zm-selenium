@@ -178,7 +178,7 @@ public class EditDocument extends FeatureBriefcaseTest {
 			name = documentBriefcaseOpen.retriveDocumentName();
 			text = documentBriefcaseOpen.retriveDocumentText();
 
-			// close
+			// Close
 			app.zPageBriefcase.closeWindow();
 		} finally {
 			app.zPageBriefcase.zSelectWindow(PageBriefcase.pageTitle);
@@ -252,7 +252,7 @@ public class EditDocument extends FeatureBriefcaseTest {
 
 			text = documentBriefcaseOpen.retriveDocumentText();
 
-			// close
+			// Close
 			app.zPageBriefcase.closeWindow();
 		} finally {
 			app.zPageBriefcase.zSelectWindow(PageBriefcase.pageTitle);

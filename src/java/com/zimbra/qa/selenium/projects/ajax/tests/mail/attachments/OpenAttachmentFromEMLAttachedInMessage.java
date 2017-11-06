@@ -31,7 +31,9 @@ public class OpenAttachmentFromEMLAttachedInMessage extends PrefGroupMailByMessa
 		super.startingAccountPreferences.put("zimbraFeatureViewInHtmlEnabled", "TRUE");
 	}
 
-	@Test( description = "Bug 80447 - Open attachment from an eml attached in message", groups = { "functional", "L2" })
+
+	@Test( description = "Bug 80447 - Open attachment from an eml attached in message",
+			groups = { "functional", "L2" })
 
 	public void OpenAttachmentInForwardEmail_01() throws HarnessException, IOException {
 
@@ -45,14 +47,14 @@ public class OpenAttachmentFromEMLAttachedInMessage extends PrefGroupMailByMessa
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 
 		// Select the message so that it shows in the reading pane
-		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);	
+		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 
 		SeparateWindowDisplayMail window = null;
 		String windowTitle = "Zimbra: " + subject;
 
 		try {
 
-			// Select eml attachment in mail			
+			// Select eml attachment in mail
 			window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressButton(Button.B_EML_ATTACHEMENT);
 			SleepUtil.sleepLongMedium();
 			window.zSetWindowTitle(subjecteml);
@@ -61,14 +63,12 @@ public class OpenAttachmentFromEMLAttachedInMessage extends PrefGroupMailByMessa
 				webDriver.switchTo().window(winHandle);
 			}
 
-			//Verify that doc file attachment is present under eml file attached in a mail
+			// Verify that doc file attachment is present under eml file attached in a mail
 			ZAssert.assertTrue(window.sIsElementPresent("css=td a[id='zv__MSG__MSG-1_attLinks_2.1_main']:contains('fileconvE5cNFS.doc')"), "Verify .doc  present as attachment");
 			ZAssert.assertTrue(window.sIsElementPresent("css=td a[id='zv__MSG__MSG-1_attLinks_2.1_html']:contains('Preview')"), "Verify preview button exist");
 
 		} finally {
 			app.zPageMain.zCloseWindow(window, windowTitle, app);
 		}
-
 	}
-
 }

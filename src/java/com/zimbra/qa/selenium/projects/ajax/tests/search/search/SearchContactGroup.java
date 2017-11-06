@@ -46,7 +46,7 @@ public class SearchContactGroup extends AjaxCommonTest {
 
 		try {
 
-			// search for group name
+			// Search for group name
 			app.zPageSearch.zToolbarPressPulldown(Button.B_SEARCHTYPE, Button.O_SEARCHTYPE_CONTACTS);
 			app.zPageSearch.zAddSearchQuery(group.groupName);
 			app.zPageSearch.zToolbarPressButton(Button.B_SEARCH);
@@ -77,7 +77,7 @@ public class SearchContactGroup extends AjaxCommonTest {
 
 		try {
 
-			// search for group name
+			// Search for group name
 			app.zPageSearch.zToolbarPressPulldown(Button.B_SEARCHTYPE, Button.O_SEARCHTYPE_CONTACTS);
 			app.zPageSearch.zAddSearchQuery(member.getValue());
 			app.zPageSearch.zToolbarPressButton(Button.B_SEARCH);

@@ -31,11 +31,13 @@ public class ModifyDLByAddingListOwnersAndOwnerDeletesDL extends AjaxCommonTest 
 
 	public ModifyDLByAddingListOwnersAndOwnerDeletesDL() {
 		logger.info("New "+ ModifyDLByAddingListOwnersAndOwnerDeletesDL.class.getCanonicalName());
+
 		super.startingPage = app.zPageContacts;
 		super.startingAccountPreferences = null;
 	}
-	
-	@Test( description = "Modify DL by adding list owners and owner deletes DL", 
+
+
+	@Test( description = "Modify DL by adding list owners and owner deletes DL",
 			groups = { "functional", "L2"})
 
 	public void ModifyDLByAddingListOwnersAndOwnerDeletesDL_01() throws HarnessException {
@@ -43,7 +45,7 @@ public class ModifyDLByAddingListOwnersAndOwnerDeletesDL extends AjaxCommonTest 
 		String dlFolder = "Distribution Lists";
 		String dlName = "dl" + ConfigProperties.getUniqueString();
 		String fullDLName = dlName + "@" + ConfigProperties.getStringProperty("testdomain");
-		
+
 		ZimbraAccount secondContact = ZimbraAccount.Account2();
 		String firstContactEmail = ZimbraAccount.Account1().EmailAddress;
 		String secondContactEmail = secondContact.EmailAddress;
@@ -67,12 +69,12 @@ public class ModifyDLByAddingListOwnersAndOwnerDeletesDL extends AjaxCommonTest 
 		app.zPageContacts.sType("css=input[id$='_dlListOwners']", app.zGetActiveAccount().EmailAddress + ";" + secondContactEmail);
 		SleepUtil.sleepSmall();
 		FormContactDistributionListNew.zSubmit();
-		
+
 		// Logout to current account and login as DL owner
 		app.zPageMain.zLogout();
 		app.zPageLogin.zLogin(secondContact);
 		app.zPageContacts.zNavigateTo();
-		
+
 		// Delete DL
 		app.zTreeContacts.zTreeItem(Action.A_LEFTCLICK, dlFolder);
 		app.zPageContacts.zListItem(Action.A_LEFTCLICK, fullDLName);

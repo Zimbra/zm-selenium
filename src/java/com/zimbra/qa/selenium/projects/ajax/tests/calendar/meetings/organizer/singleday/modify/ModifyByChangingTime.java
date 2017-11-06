@@ -78,7 +78,7 @@ public class ModifyByChangingTime extends AjaxCommonTest {
         apptForm1.zFill(appt1);
         apptForm1.zSubmit();
 
-        //Login as attendee and verify that correct time is mentioned in summary
+        // Login as attendee and verify that correct time is mentioned in summary
         app.zPageMain.zLogout();
 		app.zPageLogin.zLogin(ZimbraAccount.Account1());
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);

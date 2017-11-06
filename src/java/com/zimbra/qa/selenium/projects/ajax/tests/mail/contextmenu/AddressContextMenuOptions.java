@@ -19,7 +19,6 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.contextmenu;
 
 import org.testng.annotations.*;
-
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -34,10 +33,10 @@ public class AddressContextMenuOptions extends PrefGroupMailByMessageTest {
 		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "text");
 	}
 
-	
-	@Test( description = "Right click To bubble and verify Delete, Copy, Edit, Expand, Add to Contact and Move To cc, bcc options", 
+
+	@Test( description = "Right click To bubble and verify Delete, Copy, Edit, Expand, Add to Contact and Move To cc, bcc options",
 			groups = { "sanity", "L0" })
-	
+
 	public void VerifyAddressContextMenuOptions_01() throws HarnessException {
 
 		// Create the message data to be sent
@@ -53,6 +52,5 @@ public class AddressContextMenuOptions extends PrefGroupMailByMessageTest {
 
 		app.zPageMail.zRightClickAddressBubble(Field.To);
 		ZAssert.assertTrue(app.zPageMail.zVerifyAllAddressContextMenu(""), "Delete, Copy, Edit, Expand, Add to Contact and Move To cc, bcc options doesn't exists");
-
 	}
 }

@@ -29,10 +29,10 @@ public class SendEmail extends AjaxCommonTest  {
 	public SendEmail() {
 		logger.info("New "+ SendEmail.class.getCanonicalName());
 		super.startingPage = app.zPageContacts;
-		
 	}
 
-	@Test( description = "Right click to DL and send email", 
+
+	@Test( description = "Right click to DL and send email",
 			groups = { "smoke", "L0"})
 
 	public void SendEmail_01 () throws HarnessException {

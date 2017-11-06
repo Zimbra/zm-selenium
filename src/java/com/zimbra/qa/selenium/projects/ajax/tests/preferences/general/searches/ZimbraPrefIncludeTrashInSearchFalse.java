@@ -17,43 +17,30 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.preferences.general.searches;
 
 import java.util.HashMap;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.preferences.TreePreferences.TreeItem;
 
-
 public class ZimbraPrefIncludeTrashInSearchFalse extends AjaxCommonTest {
 
 	public ZimbraPrefIncludeTrashInSearchFalse() {
 		logger.info("New "+ ZimbraPrefIncludeTrashInSearchFalse.class.getCanonicalName());
-		
-		// All tests start at the login page
+
 		super.startingPage = app.zPagePreferences;
-
-		// Make sure we are using an account with conversation view
 		super.startingAccountPreferences = new HashMap<String, String>() {
-			private static final long serialVersionUID = -392177078709837040L;
-		{
+			private static final long serialVersionUID = -392177078709837040L; {
 				    put("zimbraPrefIncludeTrashInSearch", "TRUE");
-				}};
-
-			
-		
+				}
+			};
 	}
-	
+
 
 	@Test( description = "Verify zimbraPrefIncludeTrashInSearch setting when set to FALSE",
 			groups = { "functional", "L2" })
+
 	public void ZimbraPrefIncludeTrashInSearchFalse_01() throws HarnessException {
-
-		//-- SETUP
-
-
-		//-- GUI
 
 		// Go to "General"
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.General);
@@ -63,11 +50,7 @@ public class ZimbraPrefIncludeTrashInSearchFalse extends AjaxCommonTest {
 		app.zPagePreferences.zCheckboxSet(locator, false);
 		app.zPagePreferences.zToolbarPressButton(Button.B_SAVE);
 
-
-		//-- Verification
-
 		// Verify the account preference has been modified
-
 		app.zGetActiveAccount().soapSend(
 					"<GetPrefsRequest xmlns='urn:zimbraAccount'>"
 				+		"<pref name='zimbraPrefIncludeTrashInSearch'/>"
@@ -75,8 +58,5 @@ public class ZimbraPrefIncludeTrashInSearchFalse extends AjaxCommonTest {
 
 		String value = app.zGetActiveAccount().soapSelectValue("//acct:pref[@name='zimbraPrefIncludeTrashInSearch']", null);
 		ZAssert.assertEquals(value, "FALSE", "Verify the zimbraPrefIncludeTrashInSearch preference was changed to 'FALSE'");
-
-
 	}
-
 }

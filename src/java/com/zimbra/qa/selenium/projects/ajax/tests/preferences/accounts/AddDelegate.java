@@ -29,19 +29,16 @@ public class AddDelegate extends AjaxCommonTest {
 		super.startingPage = app.zPagePreferences;
 	}
 
-	
-	@Test(description = "Add a 'Send As' delegate to the primary account", groups = { "functional", "L3" })
+
+	@Test(description = "Add a 'Send As' delegate to the primary account",
+			groups = { "functional", "L3" })
 
 	public void AddDelegate_01() throws HarnessException {
-
-		// -- Data Setup
 
 		// Create an account to delegate to
 		ZimbraAccount delegate = new ZimbraAccount();
 		delegate.provision();
 		delegate.authenticate();
-
-		// -- GUI Steps
 
 		// Navigate to preferences -> notifications
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.MailAccounts);
@@ -49,8 +46,7 @@ public class AddDelegate extends AjaxCommonTest {
 		// See http://bugzilla.zimbra.com/show_bug.cgi?id=74282
 		String buttonLocator = "css=div[id$='_PRIMARY'] td[id$='_title']:contains('Add Delegate')";
 
-		ZAssert.assertTrue(app.zPagePreferences.sIsElementPresent(buttonLocator),
-				"Verify the add delegate button is present");
+		ZAssert.assertTrue(app.zPagePreferences.sIsElementPresent(buttonLocator), "Verify the add delegate button is present");
 		app.zPagePreferences.zClickAt(buttonLocator, "");
 
 		// Wait for the dialog to appear
@@ -61,31 +57,27 @@ public class AddDelegate extends AjaxCommonTest {
 		dialog.zCheckRight(DialogDelegate.Rights.SendAs);
 		dialog.zClickButton(Button.B_OK);
 
-		// -- Verification
+		// Verification
 		app.zGetActiveAccount().soapSend("<GetRightsRequest xmlns='urn:zimbraAccount' >" + "<ace right='sendAs'/>"
 				+ "<ace right='sendOnBehalfOf'/>" + "</GetRightsRequest>");
 
 		String gt = app.zGetActiveAccount().soapSelectValue("//acct:ace[@d='" + delegate.EmailAddress + "']", "gt");
-		String right = app.zGetActiveAccount().soapSelectValue("//acct:ace[@d='" + delegate.EmailAddress + "']",
-				"right");
+		String right = app.zGetActiveAccount().soapSelectValue("//acct:ace[@d='" + delegate.EmailAddress + "']", "right");
 
 		ZAssert.assertEquals(gt, "usr", "Verify the user (usr) right was set correctly");
 		ZAssert.assertEquals(right, "sendAs", "Verify the sendAs (sendAs) right was set correctly");
 	}
 
-	
-	@Test(description = "Add a 'Send On Behalf Of' delegate to the primary account", groups = { "functional", "L3" })
-	
-	public void AddDelegate_02() throws HarnessException {
 
-		// -- Data Setup
+	@Test(description = "Add a 'Send On Behalf Of' delegate to the primary account",
+			groups = { "functional", "L3" })
+
+	public void AddDelegate_02() throws HarnessException {
 
 		// Create an account to delegate to
 		ZimbraAccount delegate = new ZimbraAccount();
 		delegate.provision();
 		delegate.authenticate();
-
-		// -- GUI Steps
 
 		// Navigate to preferences -> notifications
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.MailAccounts);
@@ -93,8 +85,7 @@ public class AddDelegate extends AjaxCommonTest {
 		// See http://bugzilla.zimbra.com/show_bug.cgi?id=74282
 		String buttonLocator = "css=div[id$='_PRIMARY'] td[id$='_title']:contains('Add Delegate')";
 
-		ZAssert.assertTrue(app.zPagePreferences.sIsElementPresent(buttonLocator),
-				"Verify the add delegate button is present");
+		ZAssert.assertTrue(app.zPagePreferences.sIsElementPresent(buttonLocator), "Verify the add delegate button is present");
 		app.zPagePreferences.zClickAt(buttonLocator, "");
 
 		// Wait for the dialog to appear
@@ -105,16 +96,14 @@ public class AddDelegate extends AjaxCommonTest {
 		dialog.zCheckRight(DialogDelegate.Rights.SendOnBehalfOf);
 		dialog.zClickButton(Button.B_OK);
 
-		// -- Verification
+		// Verification
 		app.zGetActiveAccount().soapSend("<GetRightsRequest xmlns='urn:zimbraAccount' >" + "<ace right='sendAs'/>"
 				+ "<ace right='sendOnBehalfOf'/>" + "</GetRightsRequest>");
 
 		String gt = app.zGetActiveAccount().soapSelectValue("//acct:ace[@d='" + delegate.EmailAddress + "']", "gt");
-		String right = app.zGetActiveAccount().soapSelectValue("//acct:ace[@d='" + delegate.EmailAddress + "']",
-				"right");
+		String right = app.zGetActiveAccount().soapSelectValue("//acct:ace[@d='" + delegate.EmailAddress + "']", "right");
 
 		ZAssert.assertEquals(gt, "usr", "Verify the user (usr) right was set correctly");
 		ZAssert.assertEquals(right, "sendOnBehalfOf", "Verify the sendAs (sendAs) right was set correctly");
 	}
-
 }

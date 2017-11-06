@@ -34,25 +34,25 @@ public class ZimbraPrefCalendarFirstDayOfWeek extends AjaxCommonTest {
 		super.startingPage = app.zPagePreferences;
 	}
 
-	
+
 	@Bugs(ids = "101729,103862")
-	@Test(description = "Set First day of the week and verify that first day is set correctly", 
+	@Test(description = "Set First day of the week and verify that first day is set correctly",
 			groups = { "functional", "L2" })
-	
+
 	public void ZimbraPrefCalendarFirstDayOfWeek_01() throws HarnessException {
-		
+
 		// Navigate to preferences -> calendar
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.Calendar);
 
 		// Set Start week on day to something other than Sunday
 		app.zPagePreferences.zToolbarPressPulldown(Button.O_START_WEEK_ON, Button.O_START_WEEK_ON_TUESDAY);
-		
+
 		// Save preferences
 		app.zPagePreferences.zToolbarPressButton(Button.B_SAVE);
 
 		app.zPageLogin.zNavigateTo();
 		this.startingPage.zNavigateTo();
-		
+
 		// Navigate to preferences -> calendar
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.Calendar);
 
@@ -61,7 +61,7 @@ public class ZimbraPrefCalendarFirstDayOfWeek extends AjaxCommonTest {
 		DialogWarning dialog = (DialogWarning) new DialogWarning(DialogWarning.DialogWarningID.ReloadApplication, app, app.zPagePreferences);
 		ZAssert.assertNotNull(dialog, "Dialog is present");
 		dialog.zClickButton(Button.B_YES);
-		
+
 		app.zPageCalendar.zNavigateTo();
 		ZAssert.assertStringContains(app.zPageCalendar.zReturnDayWeek(1), "Tue", "First day matched");
 		ZAssert.assertStringContains(app.zPageCalendar.zReturnDayWeek(2), "Wed", "Second day matched");
@@ -75,7 +75,7 @@ public class ZimbraPrefCalendarFirstDayOfWeek extends AjaxCommonTest {
 			ZAssert.assertStringContains(app.zPageCalendar.zReturnDayWeek(5), "Mon", "Fifth day matched");
         }
 	}
-	
+
 	@AfterMethod(groups={"always"})
 	public void afterMethod() throws HarnessException {
 		zFreshLogin();

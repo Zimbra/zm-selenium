@@ -59,7 +59,7 @@ public class ZimbraCalResLocationDisplayName extends AjaxCommonTest {
 		logger.info("ModifyCalendarResourceResponse is')" + ModifyCalendarResourceResponse);
 
 		if ( (ModifyCalendarResourceResponse == null) || (ModifyCalendarResourceResponse.length == 0)) {
-			Element[] soapFault = ZimbraAdminAccount.GlobalAdmin().soapSelectNodes("//soap:Fault");
+			Element[] soapFault = ZimbraAdminAccount.GlobalAdmin().soapSelectNodes("// SOAP:Fault");
 			if ( soapFault != null && soapFault.length > 0 ) {
 				String error = ZimbraAdminAccount.GlobalAdmin().soapSelectValue("//zimbra:Code", null);
 				throw new HarnessException("Unable to modify resource : "+ error);

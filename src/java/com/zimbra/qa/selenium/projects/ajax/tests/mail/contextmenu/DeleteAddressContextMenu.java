@@ -19,7 +19,6 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.contextmenu;
 
 import org.testng.annotations.*;
-
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -34,10 +33,10 @@ public class DeleteAddressContextMenu extends PrefGroupMailByMessageTest {
 		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "text");
 	}
 
-	
-	@Test( description = "Right click To bubble address >> Delete", 
+
+	@Test( description = "Right click To bubble address >> Delete",
 			groups = { "smoke", "L1" })
-	
+
 	public void DeleteToAddressContextMenu_01() throws HarnessException {
 
 		// Create the message data to be sent
@@ -56,10 +55,10 @@ public class DeleteAddressContextMenu extends PrefGroupMailByMessageTest {
 
 	}
 
-	
-	@Test( description = "Right click Cc bubble address >> Delete", 
+
+	@Test( description = "Right click Cc bubble address >> Delete",
 			groups = { "smoke", "L1" })
-	
+
 	public void DeleteCcAddressContextMenu_02() throws HarnessException {
 
 		// Create the message data to be sent
@@ -77,10 +76,10 @@ public class DeleteAddressContextMenu extends PrefGroupMailByMessageTest {
 		ZAssert.assertTrue(app.zPageMail.zHasTOCcBccEmpty(), "To/Cc/Bcc should be empty");
 	}
 
-	
-	@Test( description = "Right click BCc bubble address >> Delete", 
+
+	@Test( description = "Right click BCc bubble address >> Delete",
 			groups = { "smoke", "L1" })
-	
+
 	public void DeleteBccAddressContextMenu_03() throws HarnessException {
 
 		// Create the message data to be sent
@@ -97,5 +96,4 @@ public class DeleteAddressContextMenu extends PrefGroupMailByMessageTest {
 		app.zPageMail.zDeleteAddressContextMenu();
 		ZAssert.assertTrue(app.zPageMail.zHasTOCcBccEmpty(), "To/Cc/Bcc should be empty");
 	}
-	
 }

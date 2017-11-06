@@ -30,32 +30,28 @@ import com.zimbra.qa.selenium.projects.ajax.ui.mail.*;
 
 public class GetAttachment extends PrefGroupMailByConversationTest {
 
-	
 	public GetAttachment() throws HarnessException {
 		logger.info("New "+ GetAttachment.class.getCanonicalName());
-		
 	}
-	
-	
+
+
 	@Test( description = "Receive a conversation with one attachment",
 			groups = { "smoke", "L1" })
+
 	public void GetAttachment_01() throws HarnessException {
-		
+
 		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email05/mime01.txt";
 		final String subject = "subject151615738";
 		final String attachmentname = "file.txt";
-		
+
 		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
 
-
-		
-		
 		// Refresh current view
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 
 		// Select the message so that it shows in the reading pane
 		DisplayConversation display = (DisplayConversation)app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
-		
+
 		// Get the list of messages
 		List<DisplayConversationMessage> messages = display.zListGetMessages();
 		ZAssert.assertGreaterThan(messages.size(), 0, "Verify one message is in the conversation");
@@ -63,7 +59,7 @@ public class GetAttachment extends PrefGroupMailByConversationTest {
 		// Get the first message
 		List<AttachmentItem> items = messages.get(0).zListGetAttachments();
 		ZAssert.assertEquals(items.size(), 1, "Verify one attachment is in the message");
-		
+
 		boolean found = false;
 		for ( AttachmentItem item : items ) {
 			if ( item.getAttachmentName().equals(attachmentname)) {
@@ -72,30 +68,28 @@ public class GetAttachment extends PrefGroupMailByConversationTest {
 			}
 		}
 		ZAssert.assertTrue(found, "Verify the attachment appears in the list (by file name)");
-		
 	}
+
 
 	@Test( description = "Receive a conversation with three attachments",
 			groups = { "functional", "L2" })
+
 	public void GetAttachment_02() throws HarnessException {
-		
+
 		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email05/mime02.txt";
 		final String subject = "subject151111738";
 		final String attachmentname1 = "file01.txt";
 		final String attachmentname2 = "file02.txt";
 		final String attachmentname3 = "file03.txt";
-		
+
 		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
 
-
-		
-		
 		// Refresh current view
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 
 		// Select the message so that it shows in the reading pane
 		DisplayConversation display = (DisplayConversation)app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
-		
+
 		// Get the list of messages
 		List<DisplayConversationMessage> messages = display.zListGetMessages();
 		ZAssert.assertGreaterThan(messages.size(), 0, "Verify one message is in the conversation");
@@ -103,7 +97,7 @@ public class GetAttachment extends PrefGroupMailByConversationTest {
 		// Get the first message
 		List<AttachmentItem> items = messages.get(0).zListGetAttachments();
 		ZAssert.assertEquals(items.size(), 3, "Verify three attachment in the message");
-		
+
 		// Verify each attachment by file name
 		boolean found1 = false;
 		boolean found2 = false;
@@ -125,8 +119,5 @@ public class GetAttachment extends PrefGroupMailByConversationTest {
 		ZAssert.assertTrue(found1, "Verify the attachments appear in the list (by file name)");
 		ZAssert.assertTrue(found2, "Verify the attachments appear in the list (by file name)");
 		ZAssert.assertTrue(found3, "Verify the attachments appear in the list (by file name)");
-		
 	}
-
-
 }

@@ -107,7 +107,7 @@ public class CreateDocument extends FeatureBriefcaseTest {
 			name = documentBriefcaseOpen.retriveDocumentName();
 			text = documentBriefcaseOpen.retriveDocumentText();
 
-			// close
+			// Close
 			app.zPageBriefcase.zSelectWindow(docName);
 			app.zPageBriefcase.closeWindow();
 

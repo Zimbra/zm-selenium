@@ -17,44 +17,40 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.mountpoints.manager;
 
 import org.testng.annotations.*;
-
 import com.zimbra.qa.selenium.framework.core.*;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.*;
 
-
 public class DeleteMail extends PrefGroupMailByMessageTest {
 
-	
 	public DeleteMail() {
 		logger.info("New "+ DeleteMail.class.getCanonicalName());
-		
 		super.startingAccountPreferences.put("zimbraPrefShowSelectionCheckbox", "TRUE");
-
 	}
-	
+
+
 	@Bugs(ids = "66525, 26103")
 	@Test( description = "Delete a message from a mountpoint folder",
 			groups = { "functional", "L2" })
+
 	public void DeleteMail_01() throws HarnessException {
-		
-		
+
 		String foldername = "folder" + ConfigProperties.getUniqueString();
 		String subject = "subject" + ConfigProperties.getUniqueString();
 		String mountpointname = "mountpoint" + ConfigProperties.getUniqueString();
-		
+
 		FolderItem inbox = FolderItem.importFromSOAP(ZimbraAccount.AccountA(), FolderItem.SystemFolder.Inbox);
-		
+
 		// Create a folder to share
 		ZimbraAccount.AccountA().soapSend(
 					"<CreateFolderRequest xmlns='urn:zimbraMail'>"
 				+		"<folder name='" + foldername + "' l='" + inbox.getId() + "'/>"
 				+	"</CreateFolderRequest>");
-		
+
 		FolderItem folder = FolderItem.importFromSOAP(ZimbraAccount.AccountA(), foldername);
-		
+
 		// Share it
 		ZimbraAccount.AccountA().soapSend(
 					"<FolderActionRequest xmlns='urn:zimbraMail'>"
@@ -62,7 +58,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 				+			"<grant d='"+ app.zGetActiveAccount().EmailAddress +"' gt='usr' perm='rwidx'/>"
 				+		"</action>"
 				+	"</FolderActionRequest>");
-		
+
 		// Add a message to it
 		ZimbraAccount.AccountA().soapSend(
 					"<AddMsgRequest xmlns='urn:zimbraMail'>"
@@ -78,15 +74,15 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
             	+			"</content>"
             	+		"</m>"
 				+	"</AddMsgRequest>");
-		
+
 		// Mount it
 		app.zGetActiveAccount().soapSend(
 					"<CreateMountpointRequest xmlns='urn:zimbraMail'>"
 				+		"<link l='1' name='"+ mountpointname +"'  rid='"+ folder.getId() +"' zid='"+ ZimbraAccount.AccountA().ZimbraId +"'/>"
 				+	"</CreateMountpointRequest>");
-		
+
 		FolderMountpointItem mountpoint = FolderMountpointItem.importFromSOAP(app.zGetActiveAccount(), mountpointname);
-		
+
 		// Refresh current view
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
@@ -94,23 +90,15 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 
 			// Click on the mountpoint
 			app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, mountpoint);
-	
+
 			// Select the item
 			app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
-			
+
 			// Click delete
 			app.zPageMail.zToolbarPressButton(Button.B_DELETE);
 
-//			// A warning dialog will appear
-//			DialogWarning dialog = app.zPageMain.zGetWarningDialog(DialogWarning.DialogWarningID.EmptyFolderWarningMessage);
-//			ZAssert.assertNotNull(dialog, "Verify the dialog pops up");
-//			dialog.zClickButton(Button.B_OK);
-
 		} finally {
-			
-			// Select the inbox
 			app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Inbox));
-
 		}
 
 		// Verify the message is now in the local trash
@@ -118,37 +106,36 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +") is:anywhere");
 		ZAssert.assertNotNull(mail, "Verify the message exists in the mailbox");
 		ZAssert.assertEquals(mail.dFolderId, trash.getId(), "Verify the message exists in the local trash folder");
-		
+
 		// Verify the message is now in the ownser's trash
 		trash = FolderItem.importFromSOAP(ZimbraAccount.AccountA(), FolderItem.SystemFolder.Trash);
 		mail = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "subject:("+ subject +") is:anywhere");
 		ZAssert.assertNotNull(mail, "Verify the message exists in the mailbox");
 		ZAssert.assertEquals(mail.dFolderId, trash.getId(), "Verify the message exists in the owner's trash folder");
-
-		
 	}
+
 
 	@Bugs(ids = "66525, 26103")
 	@Test( description = "Delete multiple messages from a mountpoint folder",
 			groups = { "functional", "L2" })
+
 	public void DeleteMail_02() throws HarnessException {
-		
-		
+
 		String foldername = "folder" + ConfigProperties.getUniqueString();
 		String subject1 = "subject" + ConfigProperties.getUniqueString();
 		String subject2 = "subject" + ConfigProperties.getUniqueString();
 		String mountpointname = "mountpoint" + ConfigProperties.getUniqueString();
-		
+
 		FolderItem inbox = FolderItem.importFromSOAP(ZimbraAccount.AccountA(), FolderItem.SystemFolder.Inbox);
-		
+
 		// Create a folder to share
 		ZimbraAccount.AccountA().soapSend(
 					"<CreateFolderRequest xmlns='urn:zimbraMail'>"
 				+		"<folder name='" + foldername + "' l='" + inbox.getId() + "'/>"
 				+	"</CreateFolderRequest>");
-		
+
 		FolderItem folder = FolderItem.importFromSOAP(ZimbraAccount.AccountA(), foldername);
-		
+
 		// Share it
 		ZimbraAccount.AccountA().soapSend(
 					"<FolderActionRequest xmlns='urn:zimbraMail'>"
@@ -156,7 +143,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 				+			"<grant d='"+ app.zGetActiveAccount().EmailAddress +"' gt='usr' perm='rwidx'/>"
 				+		"</action>"
 				+	"</FolderActionRequest>");
-		
+
 		// Add a message to it
 		ZimbraAccount.AccountA().soapSend(
 				"<AddMsgRequest xmlns='urn:zimbraMail'>"
@@ -172,7 +159,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
         	+			"</content>"
         	+		"</m>"
 			+	"</AddMsgRequest>");
-	
+
 		ZimbraAccount.AccountA().soapSend(
 				"<AddMsgRequest xmlns='urn:zimbraMail'>"
     		+		"<m l='"+ folder.getId() +"' f='u'>"
@@ -187,15 +174,15 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
         	+			"</content>"
         	+		"</m>"
 			+	"</AddMsgRequest>");
-	
+
 		// Mount it
 		app.zGetActiveAccount().soapSend(
 					"<CreateMountpointRequest xmlns='urn:zimbraMail'>"
 				+		"<link l='1' name='"+ mountpointname +"'  rid='"+ folder.getId() +"' zid='"+ ZimbraAccount.AccountA().ZimbraId +"'/>"
 				+	"</CreateMountpointRequest>");
-		
+
 		FolderMountpointItem mountpoint = FolderMountpointItem.importFromSOAP(app.zGetActiveAccount(), mountpointname);
-		
+
 		// Refresh current view
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
@@ -203,24 +190,16 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 
 			// Click on the mountpoint
 			app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, mountpoint);
-	
+
 			// Select the item
 			app.zPageMail.zListItem(Action.A_MAIL_CHECKBOX, subject1);
 			app.zPageMail.zListItem(Action.A_MAIL_CHECKBOX, subject2);
-	
+
 			// Click delete
 			app.zPageMail.zToolbarPressButton(Button.B_DELETE);
 
-//			// A warning dialog will appear
-//			DialogWarning dialog = app.zPageMain.zGetWarningDialog(DialogWarning.DialogWarningID.EmptyFolderWarningMessage);
-//			ZAssert.assertNotNull(dialog, "Verify the dialog pops up");
-//			dialog.zClickButton(Button.B_OK);
-
 		} finally {
-			
-			// Select the inbox
 			app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Inbox));
-
 		}
 
 		// Verify the message is now in the local trash
@@ -231,7 +210,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 		mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject2 +") is:anywhere");
 		ZAssert.assertNotNull(mail, "Verify the message exists in the mailbox");
 		ZAssert.assertEquals(mail.dFolderId, trash.getId(), "Verify the message exists in the local trash folder");
-		
+
 		// Verify the message is now in the ownser's trash
 		trash = FolderItem.importFromSOAP(ZimbraAccount.AccountA(), FolderItem.SystemFolder.Trash);
 		mail = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "subject:("+ subject1 +") is:anywhere");
@@ -240,10 +219,5 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 		mail = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "subject:("+ subject2 +") is:anywhere");
 		ZAssert.assertNotNull(mail, "Verify the message exists in the mailbox");
 		ZAssert.assertEquals(mail.dFolderId, trash.getId(), "Verify the message exists in the owner's trash folder");
-
-		
 	}
-
-
-
 }

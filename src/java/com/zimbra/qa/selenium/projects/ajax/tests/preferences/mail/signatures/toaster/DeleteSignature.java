@@ -37,16 +37,15 @@ public class DeleteSignature extends AjaxCommonTest {
 
 	public DeleteSignature() throws HarnessException {
 		super.startingPage = app.zPagePreferences;
-
 	}
+
 
 	/**
 	 * Added @beforeClass because after logged in ,when we try to create
 	 * signature through soap, it doesn't shows in (GUI)'Pref/signatures' unless
 	 * and until we refresh browser.
-	 * 
-	 * @throws HarnessException
 	 */
+
 	@BeforeClass(groups = { "always" })
 	public void CreateSignature() throws HarnessException {
 		ZimbraAccount.AccountZCS().authenticate();
@@ -54,19 +53,17 @@ public class DeleteSignature extends AjaxCommonTest {
 				.soapSend("<CreateSignatureRequest xmlns='urn:zimbraAccount'>" + "<signature name='" + this.sigName
 						+ "' >" + "<content type='text/plain'>" + this.sigBody + "</content>" + "</signature>"
 						+ "</CreateSignatureRequest>");
-
 	}
+
 
 	/**
 	 * Test case :Delete Text signature using Delete button and verify toast msg
 	 * throguh GUI
-	 * 
-	 * @Steps: Create signature through soap Delete signature using delete
-	 *         button. Verify signature toast msg
-	 * @throws HarnessException
 	 */
-	@Test(description = " Delete Text signature using Delete button and verify toast msg throguh GUI ", groups = {
-			"functional", "L3"  })
+
+	@Test(description = " Delete Text signature using Delete button and verify toast msg throguh GUI ",
+			groups = { "functional", "L3" })
+
 	public void DeleteSignaturesToastMsg_01() throws HarnessException {
 
 		// Click on Mail/signature
@@ -84,7 +81,7 @@ public class DeleteSignature extends AjaxCommonTest {
 
 		// Click Delete button
 		app.zPageSignature.zToolbarPressButton(Button.B_DELETE);
-		
+
 		// Click Save
 		signew.zSubmit();
 
@@ -92,6 +89,5 @@ public class DeleteSignature extends AjaxCommonTest {
 		Toaster toast = app.zPageMain.zGetToaster();
 		String toastMsg = toast.zGetToastMessage();
 		ZAssert.assertStringContains(toastMsg, "Preferences Saved", "Verify toast message: Preferences Saved");
-
 	}
 }

@@ -31,7 +31,9 @@ public class DelegateSendAsSaveCopyOfMessage extends PrefGroupMailByMessageTest 
 		super.startingPage = app.zPageMail;
 	}
 
-	@Test(description = "Save a copy of sent messages to owner's Sent folder", groups = { "functional", "L3" })
+
+	@Test(description = "Save a copy of sent messages to owner's Sent folder",
+			groups = { "functional", "L3" })
 
 	public void DelegateSendAsSaveCopyOfMessage_01() throws HarnessException {
 
@@ -55,8 +57,6 @@ public class DelegateSendAsSaveCopyOfMessage extends PrefGroupMailByMessageTest 
 		// Refresh UI
 		app.zPageMain.zRefreshMainUI();
 
-		// -- GUI Steps
-
 		// Open the new mail form
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
 		ZAssert.assertNotNull(mailform, "Verify the new form opened");
@@ -68,7 +68,6 @@ public class DelegateSendAsSaveCopyOfMessage extends PrefGroupMailByMessageTest 
 		mailform.zFillField(Field.From, grantor.EmailAddress);
 		mailform.zSubmit();
 
-		// -- Data Verification
 		// Verify sent message is not present in delegate's Sent folder
 		MailItem sent = MailItem.importFromSOAP(app.zGetActiveAccount(), "in:sent subject:(" + subject + ")");
 		ZAssert.assertNull(sent, "Verify sent message is not present in Delegate's Sent folder");
@@ -76,10 +75,11 @@ public class DelegateSendAsSaveCopyOfMessage extends PrefGroupMailByMessageTest 
 		// Verify sent message is present in owner's Sent folder
 		MailItem actual = MailItem.importFromSOAP(grantor, "in:sent subject:(" + subject + ")");
 		ZAssert.assertNotNull(actual, "Verify the subject field is correct");
-
 	}
 
-	@Test(description = "Save a copy of sent messages to delegate's Sent folder", groups = { "functional", "L3" })
+
+	@Test(description = "Save a copy of sent messages to delegate's Sent folder",
+			groups = { "functional", "L3" })
 
 	public void DelegateSendAsSaveCopyOfMessage_02() throws HarnessException {
 
@@ -103,8 +103,6 @@ public class DelegateSendAsSaveCopyOfMessage extends PrefGroupMailByMessageTest 
 		// Refresh UI
 		app.zPageMain.zRefreshMainUI();
 
-		// -- GUI Steps
-
 		// Open the new mail form
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
 		ZAssert.assertNotNull(mailform, "Verify the new form opened");
@@ -116,7 +114,6 @@ public class DelegateSendAsSaveCopyOfMessage extends PrefGroupMailByMessageTest 
 		mailform.zFillField(Field.From, grantor.EmailAddress);
 		mailform.zSubmit();
 
-		// -- Data Verification
 		// Verify sent message is present in delegate's sent folder
 		MailItem sent = MailItem.importFromSOAP(app.zGetActiveAccount(), "in:sent subject:(" + subject + ")");
 		ZAssert.assertNotNull(sent, "Verify sent message is present in delegate's Sent folder");
@@ -124,11 +121,11 @@ public class DelegateSendAsSaveCopyOfMessage extends PrefGroupMailByMessageTest 
 		// Verify sent message is present in grantor's sent folder
 		MailItem actual = MailItem.importFromSOAP(grantor, "in:sent subject:(" + subject + ")");
 		ZAssert.assertNull(actual, "Verify the subject field is correct");
-
 	}
 
-	@Test(description = "Save a copy of sent messages to delegate's Sent folder and granter's Sent folder", groups = {
-			"functional", "L3" })
+
+	@Test(description = "Save a copy of sent messages to delegate's Sent folder and granter's Sent folder",
+			groups = { "functional", "L3" })
 
 	public void DelegateSendAsSaveCopyOfMessage_03() throws HarnessException {
 
@@ -141,8 +138,7 @@ public class DelegateSendAsSaveCopyOfMessage extends PrefGroupMailByMessageTest 
 		grantor.provision();
 		grantor.authenticate();
 
-		// Configure 'Delegate Send Settings' to - Save a copy of sent messages
-		// to delegate's Sent folder and my Sent folder
+		// Configure 'Delegate Send Settings' to - Save a copy of sent messages to delegate's Sent folder and my Sent folder
 		grantor.soapSend("<GrantRightsRequest xmlns='urn:zimbraAccount'>" + "<ace gt='usr' d='"
 				+ app.zGetActiveAccount().EmailAddress + "' right='sendAs'/>" + "</GrantRightsRequest>");
 
@@ -151,8 +147,6 @@ public class DelegateSendAsSaveCopyOfMessage extends PrefGroupMailByMessageTest 
 
 		// Refresh UI
 		app.zPageMain.zRefreshMainUI();
-
-		// -- GUI Steps
 
 		// Open the new mail form
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
@@ -165,7 +159,6 @@ public class DelegateSendAsSaveCopyOfMessage extends PrefGroupMailByMessageTest 
 		mailform.zFillField(Field.From, grantor.EmailAddress);
 		mailform.zSubmit();
 
-		// -- Data Verification
 		// Verify sent message is present in delegate's sent folder
 		MailItem sent = MailItem.importFromSOAP(app.zGetActiveAccount(), "in:sent subject:(" + subject + ")");
 		ZAssert.assertNotNull(sent, "Verify sent message is present in delegate's Sent folder");
@@ -173,10 +166,11 @@ public class DelegateSendAsSaveCopyOfMessage extends PrefGroupMailByMessageTest 
 		// Verify sent message is present in grantor's sent folder
 		MailItem sent1 = MailItem.importFromSOAP(grantor, "in:sent subject:(" + subject + ")");
 		ZAssert.assertNotNull(sent1, "Verify sent message is present in grantor's Sent folder");
-
 	}
 
-	@Test(description = "Don't save a copy of sent messages", groups = { "functional", "L3" })
+
+	@Test(description = "Don't save a copy of sent messages",
+			groups = { "functional", "L3" })
 
 	public void DelegateSendAsSaveCopyOfMessage_04() throws HarnessException {
 
@@ -189,8 +183,7 @@ public class DelegateSendAsSaveCopyOfMessage extends PrefGroupMailByMessageTest 
 		grantor.provision();
 		grantor.authenticate();
 
-		// Configure 'Delegate Send Settings' to - Don't save a copy of sent
-		// messages
+		// Configure 'Delegate Send Settings' to - Don't save a copy of sent messages
 		grantor.soapSend("<GrantRightsRequest xmlns='urn:zimbraAccount'>" + "<ace gt='usr' d='"
 				+ app.zGetActiveAccount().EmailAddress + "' right='sendAs'/>" + "</GrantRightsRequest>");
 
@@ -199,8 +192,6 @@ public class DelegateSendAsSaveCopyOfMessage extends PrefGroupMailByMessageTest 
 
 		// Refresh UI
 		app.zPageMain.zRefreshMainUI();
-
-		// -- GUI Steps
 
 		// Open the new mail form
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
@@ -213,7 +204,6 @@ public class DelegateSendAsSaveCopyOfMessage extends PrefGroupMailByMessageTest 
 		mailform.zFillField(Field.From, grantor.EmailAddress);
 		mailform.zSubmit();
 
-		// -- Data Verification
 		// Verify sent message is not present in delegate's sent folder
 		MailItem sent = MailItem.importFromSOAP(app.zGetActiveAccount(), "in:sent subject:(" + subject + ")");
 		ZAssert.assertNull(sent, "Verify the subject field is correct");
@@ -221,6 +211,5 @@ public class DelegateSendAsSaveCopyOfMessage extends PrefGroupMailByMessageTest 
 		// Verify sent message is not present in grantor's sent folder
 		MailItem sent1 = MailItem.importFromSOAP(grantor, "in:sent subject:(" + subject + ")");
 		ZAssert.assertNull(sent1, "Verify the subject field is correct");
-
 	}
 }

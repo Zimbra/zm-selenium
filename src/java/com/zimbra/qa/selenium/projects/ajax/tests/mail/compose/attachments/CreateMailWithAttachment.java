@@ -34,6 +34,7 @@ public class CreateMailWithAttachment extends PrefGroupMailByMessageTest {
 		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "html");
 	}
 
+
 	@Test( description = "Send a mail by adding attachment",
 			groups = { "sanity", "L0" })
 
@@ -99,14 +100,11 @@ public class CreateMailWithAttachment extends PrefGroupMailByMessageTest {
 				ZAssert.assertTrue(app.zPageMail.zVerifyAttachmentExistsInMail(fileName), "Verify attachment exists in the email");
 
 			} finally {
-
 				app.zPageMain.zKeyboardKeyEvent(KeyEvent.VK_ESCAPE);
-
 			}
 
 		} else {
 			throw new SkipException("File upload operation is allowed only for Windows OS (Skipping upload tests on MS Edge for now due to intermittancy and major control issue), skipping this test...");
 		}
 	}
-
 }

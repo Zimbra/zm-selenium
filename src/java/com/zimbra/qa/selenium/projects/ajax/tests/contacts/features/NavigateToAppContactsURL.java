@@ -1,5 +1,3 @@
-package com.zimbra.qa.selenium.projects.ajax.tests.contacts.features;
-
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
@@ -16,11 +14,10 @@ package com.zimbra.qa.selenium.projects.ajax.tests.contacts.features;
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
+ package com.zimbra.qa.selenium.projects.ajax.tests.contacts.features;
 
 import java.util.*;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.items.ContactItem;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -29,15 +26,11 @@ import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 public class NavigateToAppContactsURL extends AjaxCommonTest {
 	public NavigateToAppContactsURL() {
 		logger.info("New " + NavigateToAppContactsURL.class.getCanonicalName());
-
-		// All tests start at the Address page
 		super.startingPage = app.zPageContacts;
-
-		// Enable user preference checkboxes
-
 	}
 
-	@Test(description = "?app=contacts in url", 
+
+	@Test(description = "?app=contacts in url",
 			groups = { "smoke", "L1"})
 
 	public void NavigateToAppContactsURL_01() throws HarnessException {
@@ -45,11 +38,9 @@ public class NavigateToAppContactsURL extends AjaxCommonTest {
 		// Go to Mail tab
 		app.zPageMail.zNavigateTo();
 		SleepUtil.sleepMedium();
-
 		String lastname;
 
 		// Create contact
-
 		lastname = "B" + ConfigProperties.getUniqueString();
 		app.zGetActiveAccount()
 				.soapSend("<CreateContactRequest xmlns='urn:zimbraMail'>" + "<cn >" + "<a n='firstName'>first"
@@ -57,35 +48,25 @@ public class NavigateToAppContactsURL extends AjaxCommonTest {
 						+ "<a n='email'>email@domain.com</a>" + "</cn>" + "</CreateContactRequest>");
 		ContactItem contact1 = ContactItem.importFromSOAP(app.zGetActiveAccount(), "#lastname:" + lastname);
 
-		// -- GUI
-
 		// Reload the application, with app=contacts query parameter
-
 		ZimbraURI uri = new ZimbraURI(ZimbraURI.getBaseURI());
 		uri.addQuery("app", "contacts");
 		app.zPageContacts.sOpen(uri.toString());
 
 		SleepUtil.sleepMedium();
 
-		// click All
+		// Click All
 		app.zPageContacts.zToolbarPressButton(Button.B_AB_ALL);
 
-		// -- Verification of added contacts
-
+		// Verification of added contacts
 		List<ContactItem> items = app.zPageContacts.zListGetContacts();
-
 		boolean found1 = false;
 
 		for (ContactItem item : items) {
-
 			if (item.getName().equals(contact1.getName())) {
 				found1 = true;
 			}
-
 		}
-
 		ZAssert.assertTrue(found1, "Verify contact  is listed");
-
 	}
-
 }

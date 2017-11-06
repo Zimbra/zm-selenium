@@ -17,7 +17,6 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.preferences.sharing;
 
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -27,16 +26,15 @@ import com.zimbra.qa.selenium.projects.ajax.ui.preferences.TreePreferences.TreeI
 public class AutoShareRemoval extends AjaxCommonTest {
 
 	public AutoShareRemoval() {
-
 		super.startingPage = app.zPagePreferences;
-						
 	}
 
-	@Test( description = "check for autoshare removal prompt message and press 'ok' to revoke", groups = { "functional", "L3" })
+
+	@Test( description = "check for autoshare removal prompt message and press 'ok' to revoke",
+			groups = { "functional", "L3" })
 
 	public void AutoShareRemoval_01() throws HarnessException {
 
-		//*** Test Data
 		ZimbraAccount delegate = new ZimbraAccount();
 		delegate.provision();
 		delegate.authenticate();
@@ -54,7 +52,7 @@ public class AutoShareRemoval extends AjaxCommonTest {
 		FolderItem ownerFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), ownerFoldername);
 		ZAssert.assertNotNull(ownerFolder, "Verify the new owner folder exists");
 
-		// Share folder with delegate 
+		// Share folder with delegate
 		app.zGetActiveAccount().soapSend(
 				"<FolderActionRequest xmlns='urn:zimbraMail'>"
 						+		"<action id='"+ ownerFolder.getId() +"' op='grant'>"
@@ -67,28 +65,24 @@ public class AutoShareRemoval extends AjaxCommonTest {
 				"<DeleteAccountRequest xmlns='urn:zimbraAdmin'>"
 			+		"<id>"+ delegate.ZimbraId + "</id>"
 			+	"</DeleteAccountRequest>");
-		
+
 		// Refresh
 		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
 
 		// Navigate to preferences -> notifications
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.Sharing);
-	
-		//UI verification
-		
+
 		// Verify that "Items have been share no longer exists" message is displayed
 		ZAssert.assertStringContains(app.zPagePreferences.sGetText("css=td[id='MessageDialog_1_Msg'] p"), "no longer exists", "Verify 'ok/cancel' button is displayed in message prompt");
-	
+
 		// Verify share folder name is displayed in the message prompt
 		ZAssert.assertStringContains(app.zPagePreferences.sGetText("css=td[id='MessageDialog_1_Msg'] li"), ownerFoldername, "Verify 'ok/cancel' button is displayed in message prompt");
 
 		// Click 'OK' button at message prompt to revoke folder
 		app.zPageMain.zClick("css=td[id='OkCancel_button2_title']"); //OK button locator
 		SleepUtil.sleepSmall();
-		
+
 		// UI verification
 		ZAssert.assertFalse(app.zPagePreferences.sIsElementPresent("css= div[id='Prefs_Pages_Sharing_sharesBy'] td[id$=_ac]:contains('Revoke')"), "Verify that 'Revoke' action not present");
-		
 	}
-
 }

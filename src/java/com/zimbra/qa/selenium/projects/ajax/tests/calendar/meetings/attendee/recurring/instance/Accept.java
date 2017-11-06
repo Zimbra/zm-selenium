@@ -85,7 +85,7 @@ public class Accept extends AjaxCommonTest {
 		// ---------------- Verification at organizer & invitee side both -------------------------------------
 
 
-		// --- Check that the organizer shows the attendee as "NEEDS ACTION" for series ---
+		// Check that the organizer shows the attendee as "NEEDS ACTION" for series ---
 
 		// Organizer: Search for the appointment (InvId)
 		ZimbraAccount.AccountA().soapSend(
@@ -104,7 +104,7 @@ public class Accept extends AjaxCommonTest {
 		// Verify attendee status shows as ptst=NE
 		ZAssert.assertEquals(attendeeStatus, "NE", "Verify that the attendee shows as 'NEEDS ACTION' for series");
 
-		// --- Check that the attendee showing status as "NEEDS ACTION" for series ---
+		// Check that the attendee showing status as "NEEDS ACTION" for series ---
 
 		// Attendee: Search for the appointment (InvId)
 		app.zGetActiveAccount().soapSend(

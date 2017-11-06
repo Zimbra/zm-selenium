@@ -36,8 +36,7 @@ import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
 public class ReplyAllMsgWithHtmlSignature extends AjaxCommonTest {
 	String sigName = "signame" + ConfigProperties.getUniqueString();
 	String sigBody = "signature<b>bold" + ConfigProperties.getUniqueString() + "</b>signature";
-	String contentHTMLSig = XmlStringUtil
-			.escapeXml("<html>" + "<head></head>" + "<body>" + sigBody + "</body>" + "</html>");
+	String contentHTMLSig = XmlStringUtil.escapeXml("<html>" + "<head></head>" + "<body>" + sigBody + "</body>" + "</html>");
 
 	public ReplyAllMsgWithHtmlSignature() {
 		super.startingPage = app.zPageMail;
@@ -57,19 +56,21 @@ public class ReplyAllMsgWithHtmlSignature extends AjaxCommonTest {
 		logger.info("CreateSignature: finish");
 	}
 
+
 	/**
 	 * Test case : ReplyAll Msg with html signature and Verify signature through
 	 * soap Create signature through soap Send message with html signature
 	 * through soap ReplyAll same message Verify html signature in replied msg
 	 * through soap
-	 * 
-	 * @throws HarnessException
 	 */
-	@Test(description = " ReplyAll Msg with html signature and Verify signature through soap", groups = {
-			"functional", "L2" })
+
+	@Test(description = " ReplyAll Msg with html signature and Verify signature through soap",
+			groups = { "functional", "L2" })
+
 	public void ReplyAllMsgWithHtmlSignature_01() throws HarnessException {
 
 		FolderItem inboxFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
+
 		// Verify Signature
 		SignatureItem signature = SignatureItem.importFromSOAP(app.zGetActiveAccount(), this.sigName);
 		ZAssert.assertEquals(signature.getName(), this.sigName, "verified Text Signature is created");
@@ -77,10 +78,8 @@ public class ReplyAllMsgWithHtmlSignature extends AjaxCommonTest {
 		String subject = "subject" + ConfigProperties.getUniqueString();
 		String bodyText = "text" + ConfigProperties.getUniqueString();
 		String bodyHTML = "text <b>bold" + ConfigProperties.getUniqueString() + "</b> text";
-		String contentHTML = XmlStringUtil
-				.escapeXml("<html>" + "<head></head>" + "<body>" + bodyHTML + "<br></br>" + "</body>" + "</html>");
-		String signatureContent = XmlStringUtil
-				.escapeXml("<html>" + "<head></head>" + "<body>" + signature.dBodyHtmlText + "</body>" + "</html>");
+		String contentHTML = XmlStringUtil.escapeXml("<html>" + "<head></head>" + "<body>" + bodyHTML + "<br></br>" + "</body>" + "</html>");
+		String signatureContent = XmlStringUtil.escapeXml("<html>" + "<head></head>" + "<body>" + signature.dBodyHtmlText + "</body>" + "</html>");
 
 		// Send a message to the account
 		ZimbraAccount.AccountZCS()
@@ -125,6 +124,5 @@ public class ReplyAllMsgWithHtmlSignature extends AjaxCommonTest {
 				"Verify the to field is correct");
 		ZAssert.assertStringContains(received.dBodyHtml.toLowerCase(), bodyHTML, "Verify the body content is correct");
 		ZAssert.assertStringContains(received.dBodyHtml.toLowerCase(), this.sigBody, "Verify the signature is correct");
-
 	}
 }

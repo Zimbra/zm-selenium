@@ -17,7 +17,6 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.folders;
 
 import org.testng.annotations.*;
-
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.items.FolderItem.*;
 import com.zimbra.qa.selenium.framework.ui.*;
@@ -29,27 +28,17 @@ public class ExpandFolder extends PrefGroupMailByMessageTest {
 	public ExpandFolder() {
 		logger.info("New "+ ExpandFolder.class.getCanonicalName());
 	}
-	
+
+
 	@Test( description = "Expand a subfolder",
 			groups = { "smoke", "L1" })
-	
+
 	public void ExpandFolder_01() throws HarnessException {
-		
-		
-		//-- DATA
-		
-		
+
 		final FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
 		final String foldername1 = "folder" + ConfigProperties.getUniqueString();
 		final String foldername2 = "folder" + ConfigProperties.getUniqueString();
 
-		// Create this folder structure
-		// +- Inbox
-		//  +-- folder1
-		//   +-- folder2
-		// +- Sent
-		//
-		
 		app.zGetActiveAccount().soapSend(
 				"<CreateFolderRequest xmlns='urn:zimbraMail'>" +
                 	"<folder name='"+ foldername1 +"' l='"+ inbox.getId() +"'/>" +
@@ -61,7 +50,6 @@ public class ExpandFolder extends PrefGroupMailByMessageTest {
                 	"<folder name='"+ foldername2 +"' l='"+ folder1.getId() +"'/>" +
                 "</CreateFolderRequest>");
 
-
 		// Collapse all folders
 		app.zGetActiveAccount().soapSend(
 				"<SetMailboxMetadataRequest xmlns='urn:zimbraMail'>"
@@ -72,16 +60,12 @@ public class ExpandFolder extends PrefGroupMailByMessageTest {
 
 		// Refresh UI
 		app.zPageMain.zRefreshMainUI();
-		
+
 		// Expand folder1
 		app.zTreeMail.zTreeItem(Action.A_TREE_EXPAND, folder1);
-		
-		
-		//-- VERIFICATION
-		
-		
+
 		// Check that the mailbox metadata shows the folder as expanded
-		
+
 		app.zGetActiveAccount().soapSend(
 				"<GetMailboxMetadataRequest xmlns='urn:zimbraMail'>"
 	    	+		"<meta section='zwc:implicit'>"
@@ -91,31 +75,20 @@ public class ExpandFolder extends PrefGroupMailByMessageTest {
 
 		String value = app.zGetActiveAccount().soapSelectValue("//mail:a[@n='zimbraPrefFoldersExpanded']", null);
 		ZAssert.assertStringContains(value, folder1.getId() + ":true", "Verify the mailbox metadata saves the folder as expanded");
-	}	
+	}
+
 
 	@Test( description = "Expand 2 subfolders",
 			groups = { "functional", "L2" })
+
 	public void ExpandFolder_02() throws HarnessException {
-		
-		
-		//-- DATA
-		
-		
+
 		final FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
 		final String foldername1 = "folder" + ConfigProperties.getUniqueString();
 		final String foldername2 = "folder" + ConfigProperties.getUniqueString();
 		final String foldername3 = "folder" + ConfigProperties.getUniqueString();
 		final String foldername4 = "folder" + ConfigProperties.getUniqueString();
 
-		// Create this folder structure
-		// +- Inbox
-		//  +-- folder1
-		//   +-- folder2
-		//  +-- folder3
-		//   +-- folder4
-		// +- Sent
-		//
-		
 		app.zGetActiveAccount().soapSend(
 				"<CreateFolderRequest xmlns='urn:zimbraMail'>" +
                 	"<folder name='"+ foldername1 +"' l='"+ inbox.getId() +"'/>" +
@@ -149,26 +122,16 @@ public class ExpandFolder extends PrefGroupMailByMessageTest {
 		// Refresh UI
 		app.zPageMain.zRefreshMainUI();
 
-		//-- GUI
-		
-		
 		// Click on Get Mail to refresh the folder list
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
-		
-		
-		
 		// Expand folder3
 		app.zTreeMail.zTreeItem(Action.A_TREE_EXPAND, folder3);
-		
+
 		// Expand folder1
 		app.zTreeMail.zTreeItem(Action.A_TREE_EXPAND, folder1);
-		
-		//-- VERIFICATION
-		
-		
+
 		// Check that the mailbox metadata shows the folder as expanded
-		
 		app.zGetActiveAccount().soapSend(
 				"<GetMailboxMetadataRequest xmlns='urn:zimbraMail'>"
 	    	+		"<meta section='zwc:implicit'>"
@@ -179,32 +142,20 @@ public class ExpandFolder extends PrefGroupMailByMessageTest {
 		String value = app.zGetActiveAccount().soapSelectValue("//mail:a[@n='zimbraPrefFoldersExpanded']", null);
 		ZAssert.assertStringContains(value, folder1.getId() + ":true", "Verify the mailbox metadata saves the folder as expanded");
 		ZAssert.assertStringContains(value, folder3.getId() + ":true", "Verify the mailbox metadata saves the folder as expanded");
+	}
 
-	}	
 
 	@Test( description = "Expand-All subfolders",
 			groups = { "functional", "L3" })
+
 	public void ExpandAllFolders_01() throws HarnessException {
-		
-		
-		//-- DATA
-		
-		
+
 		final FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
 		final String foldername1 = "folder" + ConfigProperties.getUniqueString();
 		final String foldername2 = "folder" + ConfigProperties.getUniqueString();
 		final String foldername3 = "folder" + ConfigProperties.getUniqueString();
 		final String foldername4 = "folder" + ConfigProperties.getUniqueString();
 
-		// Create this folder structure
-		// +- Inbox
-		//  +-- folder1
-		//   +-- folder2
-		//  +-- folder3
-		//   +-- folder4
-		// +- Sent
-		//
-		
 		app.zGetActiveAccount().soapSend(
 				"<CreateFolderRequest xmlns='urn:zimbraMail'>" +
                 	"<folder name='"+ foldername1 +"' l='"+ inbox.getId() +"'/>" +
@@ -238,23 +189,14 @@ public class ExpandFolder extends PrefGroupMailByMessageTest {
 		// Refresh UI
 		app.zPageMain.zRefreshMainUI();
 
-		//-- GUI
-		
-		
 		// Click on Get Mail to refresh the folder list
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
-		
+
 		// Expand-All on Inbox
 		app.zTreeMail.zTreeItem(Action.A_RIGHTCLICK, Button.B_TREE_FOLDER_EXPANDALL, inbox);
-		
-		
-		
-		//-- VERIFICATION
-		
-		
+
 		// Check that the mailbox metadata shows the folder as expanded
-		
 		app.zGetActiveAccount().soapSend(
 				"<GetMailboxMetadataRequest xmlns='urn:zimbraMail'>"
 	    	+		"<meta section='zwc:implicit'>"
@@ -266,7 +208,5 @@ public class ExpandFolder extends PrefGroupMailByMessageTest {
 		ZAssert.assertStringContains(value, inbox.getId() + ":true", "Verify the mailbox metadata saves the folder as expanded");
 		ZAssert.assertStringContains(value, folder1.getId() + ":true", "Verify the mailbox metadata saves the folder as expanded");
 		ZAssert.assertStringContains(value, folder3.getId() + ":true", "Verify the mailbox metadata saves the folder as expanded");
-
-	}	
-
+	}
 }

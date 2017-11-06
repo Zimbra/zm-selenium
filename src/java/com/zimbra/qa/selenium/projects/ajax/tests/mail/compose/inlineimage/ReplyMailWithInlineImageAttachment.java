@@ -37,6 +37,7 @@ public class ReplyMailWithInlineImageAttachment extends PrefGroupMailByMessageTe
 		super.startingAccountPreferences.put("zimbraPrefForwardReplyInOriginalFormat", "FALSE");
 	}
 
+
 	@Test( description = "Reply to a mail with attachment - Verify inline image sent",
 			groups = { "smoke", "L1" })
 
@@ -46,7 +47,6 @@ public class ReplyMailWithInlineImageAttachment extends PrefGroupMailByMessageTe
 
 			try {
 
-				//-- DATA
 				final String mimeSubject = "subjectAttachment";
 				final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email17/mime.txt";
 				FolderItem sent = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Sent);
@@ -55,8 +55,6 @@ public class ReplyMailWithInlineImageAttachment extends PrefGroupMailByMessageTe
 
 				MailItem original = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ mimeSubject +")");
 				ZAssert.assertNotNull(original, "Verify the message is received correctly");
-
-				//-- GUI
 
 				// Refresh current view
 				ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(mimeSubject), "Verify message displayed in current view");
@@ -81,8 +79,6 @@ public class ReplyMailWithInlineImageAttachment extends PrefGroupMailByMessageTe
 				// Send the message
 				mailform.zSubmit();
 
-				//-- Verification
-
 				// From the receiving end, verify the message details
 				MailItem received = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "from:("+ app.zGetActiveAccount().EmailAddress +") subject:("+ mimeSubject +")");
 				ZAssert.assertNotNull(received, "Verify the message is received correctly");
@@ -105,9 +101,7 @@ public class ReplyMailWithInlineImageAttachment extends PrefGroupMailByMessageTe
 				ZAssert.assertTrue(app.zPageMail.zVerifyInlineImageAttachmentExistsInMail(), "Verify inline attachment exists in the email");
 
 			} finally {
-
 				app.zPageMain.zKeyboardKeyEvent(KeyEvent.VK_ESCAPE);
-
 			}
 
 		} else {

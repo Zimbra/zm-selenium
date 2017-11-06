@@ -17,9 +17,7 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.tasks;
 
 import java.util.*;
-
 import org.testng.annotations.*;
-
 import com.zimbra.common.soap.*;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.items.FolderItem.*;
@@ -44,10 +42,11 @@ public class CreateTask extends AjaxCommonTest {
 			put("zimbraPrefTasksReadingPaneLocation", "bottom");
 		}};
 	}
-	
-	@Test( description = "Create Simple task through GUI - verify through soap", 
+
+
+	@Test( description = "Create Simple task through GUI - verify through soap",
 			groups = { "sanity", "L0"})
-	
+
 	public void CreateTask_01() throws HarnessException {
 
 		String subject = "task" + ConfigProperties.getUniqueString();
@@ -64,37 +63,37 @@ public class CreateTask extends AjaxCommonTest {
 		TaskItem task = TaskItem.importFromSOAP(app.zGetActiveAccount(), subject);
 		ZAssert.assertEquals(task.getName(), subject, "Verify task subject");
 		ZAssert.assertEquals(task.gettaskBody().trim(), body.trim(), "Verify the task body");
-
 	}
-	
-	@Test( description = "Create new task using keyboard shortcut Esc- Verify through Soap", 
+
+
+	@Test( description = "Create new task using keyboard shortcut Esc- Verify through Soap",
 			groups = { "smoke", "L0"})
-	
+
 	public void CreateTask_02() throws HarnessException {
 
 		Shortcut shortcut = Shortcut.S_ESCAPE;
 		String subject = "task" + ConfigProperties.getUniqueString();
 		String body = "taskbody" + ConfigProperties.getUniqueString();
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
-		
-		//Click NEW button
+
+		// Click NEW button
 		FormTaskNew taskNew = (FormTaskNew) app.zPageTasks.zToolbarPressButton(Button.B_NEW);
-		
-		//Fill out resulting form		
+
+		// Fill out resulting form
 		taskNew.zFillField(Field.Subject, subject);
-		
+
 		//Work around by typing using keyboard otherwise warning dialog won't come
 		taskNew.sFocus(Locators.zTaskBodyField);
 		taskNew.zClick(Locators.zTaskBodyField);
 		taskNew.zKeyboard.zTypeCharacters(body);
-				
-		//Click Escape shortcut 'Esc'	
+
+		// Click Escape shortcut 'Esc'
 		DialogWarning warning =(DialogWarning)app.zPageTasks.zKeyboardShortcut(shortcut);
 		ZAssert.assertNotNull(warning, "Verify the dialog is opened");
 
-		//Click Yes button of warning dialog
+		// Click Yes button of warning dialog
 		warning.zClickButton(Button.B_YES);
-		
+
 		SleepUtil.sleepMedium();
 		// Refresh the tasks view
 		app.zTreeTasks.zTreeItem(Action.A_LEFTCLICK, taskFolder);
@@ -102,12 +101,12 @@ public class CreateTask extends AjaxCommonTest {
 		TaskItem task = TaskItem.importFromSOAP(app.zGetActiveAccount(), subject);
 		ZAssert.assertEquals(task.getName(), subject, "Verify task subject");
 		ZAssert.assertEquals(task.gettaskBody().trim(), body.trim(), "Verify the task body");
-
 	}
-	
-	@Test( description = "Create task using New menu pulldown  - verify through SOAP",	
+
+
+	@Test( description = "Create task using New menu pulldown  - verify through SOAP",
 			groups = { "smoke", "L0"})
-	
+
 	public void CreateTask_03() throws HarnessException {
 
 		String subject = "task" + ConfigProperties.getUniqueString();
@@ -123,56 +122,55 @@ public class CreateTask extends AjaxCommonTest {
 		taskNew.zFillField(Field.Body, body);
 		taskNew.zSubmit();
 		SleepUtil.sleepMedium();
-		
+
 		// Refresh the tasks view
 		app.zTreeTasks.zTreeItem(Action.A_LEFTCLICK, taskFolder);
 		TaskItem task = TaskItem.importFromSOAP(app.zGetActiveAccount(),subject);
 		ZAssert.assertEquals(task.getName(), subject, "Verify task subject");
 		ZAssert.assertEquals(task.gettaskBody().trim(), body.trim(),"Verify the task body");
-
 	}
-	
-	@Test( description = "Create new task using NK keyboard shortcut key", 
+
+
+	@Test( description = "Create new task using NK keyboard shortcut key",
 			groups = { "smoke", "L0"})
-	
+
 	public void CreateTask_04() throws HarnessException {
 
 		Shortcut shortcut = Shortcut.S_NEWTASK;
 		String subject = "task" + ConfigProperties.getUniqueString();
 		String body = "taskbody" + ConfigProperties.getUniqueString();
-	//	FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
-		
+
 		//Explicitly cliking of Task folder to refresh view
 		ZimbraAccount account = app.zGetActiveAccount();
 		FolderItem taskFolder = FolderItem.importFromSOAP(account,SystemFolder.Tasks);
 		app.zTreeTasks.zTreeItem(Action.A_LEFTCLICK, taskFolder);
-		
-		//Click NEW Task shortcut "NK"
-		FormTaskNew taskNew = (FormTaskNew) app.zPageTasks.zKeyboardShortcut(shortcut);		
+
+		// Click NEW Task shortcut "NK"
+		FormTaskNew taskNew = (FormTaskNew) app.zPageTasks.zKeyboardShortcut(shortcut);
 		SleepUtil.sleepMedium();
-		
-		//Fill out resulting form		
+
+		// Fill out resulting form
 		taskNew.zFillField(Field.Subject, subject);
 		taskNew.zFillField(Field.Body, body);
-		taskNew.zSubmit();	
+		taskNew.zSubmit();
 		SleepUtil.sleepMedium();
-		
+
 		// Refresh the tasks view
 		app.zTreeTasks.zTreeItem(Action.A_LEFTCLICK, taskFolder);
 
 		TaskItem task = TaskItem.importFromSOAP(app.zGetActiveAccount(), subject);
 		ZAssert.assertEquals(task.getName(), subject, "Verify task subject");
 		ZAssert.assertEquals(task.gettaskBody().trim(), body.trim(), "Verify the task body");
-
 	}
-	
-	@Test( description = "Create Tasks, using 'Right Click' Mail subject -> 'Create Task'-Verify through Soap", 
+
+
+	@Test( description = "Create Tasks, using 'Right Click' Mail subject -> 'Create Task'-Verify through Soap",
 			groups = { "smoke", "L0"})
-	
+
 	public void CreateTask_05() throws HarnessException {
-		
+
 		app.zPageMail.zNavigateTo();
-		String subject = "subject"+ ConfigProperties.getUniqueString();	
+		String subject = "subject"+ ConfigProperties.getUniqueString();
 
 		// Send a message to the account
 		ZimbraAccount.AccountA().soapSend(
@@ -185,45 +183,44 @@ public class CreateTask extends AjaxCommonTest {
 							"</mp>" +
 						"</m>" +
 					"</SendMsgRequest>");
-		
+
 		// Get the mail item for the new message
 		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
-		
+
 		// Click Get Mail button
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
-		
+
 		SleepUtil.sleepMedium();
-		
-		//Click on subject
+
+		// Click on subject
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, mail.dSubject);
-		
-		//Right click subject >> select Create Task menu item
+
+		// Right click subject >> select Create Task menu item
 		app.zPageMail.zListItem(Action.A_RIGHTCLICK, Button.O_CREATE_TASK, mail.dSubject);
-		
-		//click save
+
+		// Click save
 		app.zPageTasks.zToolbarPressButton(Button.B_SAVE);
-		
-		//Verify task created.
+
+		// Verify task created.
 		TaskItem task = TaskItem.importFromSOAP(app.zGetActiveAccount(), subject);
 		ZAssert.assertEquals(task.getName(), subject, "Verify task subject");
 	}
-	
-	@Test( description = "Create Simple task with attachment through RestUtil - verify through GUI", 
+
+
+	@Test( description = "Create Simple task with attachment through RestUtil - verify through GUI",
 			groups = { "smoke", "L0"})
-	
+
 	public void CreateTask_06() throws HarnessException {
 
 		String subject = "task" + ConfigProperties.getUniqueString();
-		
-		
+
 		ZimbraAccount account = app.zGetActiveAccount();
 		FolderItem taskFolder = FolderItem.importFromSOAP(account,SystemFolder.Tasks);
 
 		// Create file item
 		String filePath = ConfigProperties.getBaseDirectory() + "/data/public/Files/Basic01/BasicExcel2007.xlsx";
 		// Upload file to server through RestUtil
-		String attachmentId = account.uploadFile(filePath);		
-		
+		String attachmentId = account.uploadFile(filePath);
 
 		app.zGetActiveAccount().soapSend(
 				"<CreateTaskRequest xmlns='urn:zimbraMail'>" +
@@ -251,16 +248,16 @@ public class CreateTask extends AjaxCommonTest {
 		// Select the item
 		app.zPageTasks.zListItem(Action.A_LEFTCLICK, subject);
 		ZAssert.assertTrue(app.zPageTasks.sIsElementPresent(Locators.zAttachmentsLabel),"Verify Attachments: label");
-		
 	}
-	
+
+
 	@Test( description = "Create Simple task  with attachment through RestUtil - verify through soap",
 			groups = { "smoke", "L0"})
-	
+
 	public void CreateTask_07() throws HarnessException {
 
 		String subject = "task" + ConfigProperties.getUniqueString();
-		
+
 		ZimbraAccount account = app.zGetActiveAccount();
 		FolderItem taskFolder = FolderItem.importFromSOAP(account,SystemFolder.Tasks);
 
@@ -268,10 +265,10 @@ public class CreateTask extends AjaxCommonTest {
 		String filePath = ConfigProperties.getBaseDirectory() + "/data/public/Files/Basic01/BasicExcel2007.xlsx";
 		FileItem file = new FileItem(filePath);
 		String fileName = file.getName();
-		
+
 		// Upload file to server through RestUtil
-		String attachmentId = account.uploadFile(filePath);		
-		
+		String attachmentId = account.uploadFile(filePath);
+
 		app.zGetActiveAccount().soapSend(
 				"<CreateTaskRequest xmlns='urn:zimbraMail'>" +
 				"<m >" +
@@ -289,25 +286,24 @@ public class CreateTask extends AjaxCommonTest {
 				"</m>" +
 		"</CreateTaskRequest>");
 
-
 		TaskItem task = TaskItem.importFromSOAP(app.zGetActiveAccount(), subject);
 		ZAssert.assertNotNull(task, "Verify the task is created");
-		
-		app.zTreeTasks.zTreeItem(Action.A_LEFTCLICK, taskFolder);		
+
+		app.zTreeTasks.zTreeItem(Action.A_LEFTCLICK, taskFolder);
 		account.soapSend("<SearchRequest xmlns='urn:zimbraMail' types='task' >"
 				+ "<query>" + subject + "</query>" + "</SearchRequest>");
-		
+
 		String invId = account.soapSelectValue("//mail:SearchResponse/mail:task", "invId");
-		
+
 		account.soapSend("<GetMsgRequest xmlns='urn:zimbraMail'>"
 				+ "<m id='" + invId + "' />" + "</GetMsgRequest>");
-		
+
 		Element getMsgResponse = account.soapSelectNode("//mail:GetMsgResponse", 1);
 		Element m = ZimbraAccount.SoapClient.selectNode(getMsgResponse,"//mail:mp[@s='9055']");
 		ZAssert.assertEquals(m.getAttribute("filename", null), fileName, "Verify file name through SOAP");
-				
 	}
-	
+
+
 	@DataProvider(name = "DataProvidePriorities")
 	public Object[][] DataProvidePriorities() {
 	  return new Object[][] {
@@ -317,25 +313,21 @@ public class CreateTask extends AjaxCommonTest {
 	  };
 	}
 
-	@Test( description = "Create a task with different priorities high/normal/low", 
+	@Test( description = "Create a task with different priorities high/normal/low",
 			groups = { "smoke", "L1"},	dataProvider = "DataProvidePriorities")
-	
+
 	public void CreateTask_10(Button option, String verify) throws HarnessException {
-		
-		//-- DATA
-		
+
 		String subject = "task" + ConfigProperties.getUniqueString();
-		String body = "taskbody"+ ConfigProperties.getUniqueString();		
-		
+		String body = "taskbody"+ ConfigProperties.getUniqueString();
+
 		// Click NEW button
 		FormTaskNew form = (FormTaskNew) app.zPageTasks.zToolbarPressButton(Button.B_NEW);
-		
+
 		SleepUtil.sleepMedium();
 
 		// Fill out the resulting form
 		form.zFillField(Field.Subject, subject);
-		//form.zFillField(Field.Body, body);
-		//Work around by typing using keyboard otherwise it won't save task
 		form.sFocus(Locators.zTaskBodyField);
 		form.zClick(Locators.zTaskBodyField);
 		form.zKeyboard.zTypeCharacters(body);
@@ -343,14 +335,10 @@ public class CreateTask extends AjaxCommonTest {
 		// Change the priority
 		form.zToolbarPressPulldown(Button.B_PRIORITY, option);
 		SleepUtil.sleepMedium();
-		
 		form.zSubmit();
-		
-		//-- VERIFICATION
-		
+
+		// Verification
 		TaskItem task = TaskItem.importFromSOAP(app.zGetActiveAccount(), subject);
 		ZAssert.assertStringContains(task.gPriority, verify, "Verify the correct priority was sent");
-
 	}
-
 }

@@ -1,5 +1,3 @@
-package com.zimbra.qa.selenium.projects.ajax.tests.mail.newwindow.inlineimage;
-
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
@@ -16,10 +14,10 @@ package com.zimbra.qa.selenium.projects.ajax.tests.mail.newwindow.inlineimage;
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
+package com.zimbra.qa.selenium.projects.ajax.tests.mail.newwindow.inlineimage;
 
 import org.testng.SkipException;
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -30,13 +28,13 @@ public class ReplyMailWithAnInlineAttachment extends PrefGroupMailByMessageTest 
 
 	public ReplyMailWithAnInlineAttachment() {
 		logger.info("New "+ ReplyMailWithAnInlineAttachment.class.getCanonicalName());
-
 		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "html");
 	}
 
+
 	@Test( description = "Reply a mail  with an inline attachment by pressing Reply button>>attach>>Inline - in separate window",
 			groups = { "smoke", "L1" })
-	
+
 	public void ReplyMailWithAnInlineAttachment_01() throws HarnessException {
 
 		if (OperatingSystem.isWindows() == true && !ConfigProperties.getStringProperty("browser").contains("edge")) {
@@ -49,7 +47,6 @@ public class ReplyMailWithAnInlineAttachment extends PrefGroupMailByMessageTest 
 							"<head></head>" +
 							"<body>"+ bodyHTML +"</body>" +
 					"</html>");
-
 
 			// Send a message to the account
 			ZimbraAccount.AccountA().soapSend(
@@ -68,16 +65,13 @@ public class ReplyMailWithAnInlineAttachment extends PrefGroupMailByMessageTest 
 							"</m>" +
 					"</SendMsgRequest>");
 
-
-
 			// Refresh current view
 			ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 
 			// Select the item
 			app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 
-			FolderItem sent = FolderItem.importFromSOAP(
-					app.zGetActiveAccount(), FolderItem.SystemFolder.Sent);
+			FolderItem sent = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Sent);
 
 			// Create file item
 			final String fileName = "samplejpg.jpg";
@@ -95,7 +89,7 @@ public class ReplyMailWithAnInlineAttachment extends PrefGroupMailByMessageTest 
 				ZAssert.assertTrue(window.zIsWindowOpen(windowTitle),"Verify the window is opened and switch to it");
 
 				window.zToolbarPressButton(Button.B_REPLY);
-				
+
 				//Add an attachment
 				// Click Attach>>inline image
 				window.zPressButton(Button.O_ATTACH_DROPDOWN);
@@ -104,9 +98,9 @@ public class ReplyMailWithAnInlineAttachment extends PrefGroupMailByMessageTest 
 
 				ZAssert.assertTrue(app.zPageMail.zVerifyInlineImageAttachmentExistsInComposeWindow(windowTitle, 1),"Verify inline image is present in Reply compose window");
 
-				//click Send
+				// Click Send
 				window.zToolbarPressButton(Button.B_SEND);
-				
+
 			} finally {
 				app.zPageMain.zCloseWindow(window, windowTitle, app);
 			}
@@ -117,7 +111,6 @@ public class ReplyMailWithAnInlineAttachment extends PrefGroupMailByMessageTest 
 			ZAssert.assertTrue(app.zPageMail.zVerifyInlineImageAttachmentExistsInMail(),"Verify inline attachment exists in the email");
 
 			// From the receiving end, verify the message details
-			// Need 'in:inbox' to seprate the message from the sent message
 			MailItem received = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "in:inbox subject:("+subject +")");
 
 			ZAssert.assertEquals(received.dFromRecipient.dEmailAddress, app.zGetActiveAccount().EmailAddress, "Verify the from field is correct");
@@ -128,5 +121,4 @@ public class ReplyMailWithAnInlineAttachment extends PrefGroupMailByMessageTest 
 			throw new SkipException("File upload operation is allowed only for Windows OS (Skipping upload tests on MS Edge for now due to intermittancy and major control issue), skipping this test...");
 		}
 	}
-
 }

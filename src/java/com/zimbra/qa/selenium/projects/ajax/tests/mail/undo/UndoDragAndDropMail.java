@@ -40,8 +40,6 @@ public class UndoDragAndDropMail extends PrefGroupMailByMessageTest {
 		String foldername = "folder"+ ConfigProperties.getUniqueString();
 
 		// Create a subfolder to move the message into
-		// i.e. Inbox/subfolder
-		//
 		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
 
 		app.zGetActiveAccount().soapSend(
@@ -73,12 +71,10 @@ public class UndoDragAndDropMail extends PrefGroupMailByMessageTest {
 		// Refresh current view
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
-		// Expand the Inbox folder to see the subfolder?
-
 		// Select the item
 		app.zPageMail.zDragAndDrop(
 					"css=span[id$='"+ mail.getId() +"__su']", // <td id="zlif__TV__12345__su" .../>
-					"css=div[id='zti__main_Mail__"+ subfolder.getId() +"']"); // <div id="zti__main_Mail__67890" .../>
+					"css=div[id='zti__main_Mail__"+ subfolder.getId() +"']");
 
 		MailItem moved = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
 		ZAssert.assertEquals(moved.dFolderId, subfolder.getId(), "Verify the message is now in the subfolder");

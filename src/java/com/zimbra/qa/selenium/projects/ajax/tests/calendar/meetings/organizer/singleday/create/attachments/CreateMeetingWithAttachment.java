@@ -102,7 +102,7 @@ public class CreateMeetingWithAttachment extends AjaxCommonTest {
 				ZAssert.assertNotNull(invite, "Verify the invite is received");
 				ZAssert.assertEquals(invite.dSubject, appt.getSubject(), "Subject: Verify the appointment data");
 
-				//Login as attendee and accept the invite
+				// Login as attendee and accept the invite
 				app.zPageMain.zLogout();
 				app.zPageLogin.zLogin(ZimbraAccount.Account2());
 				app.zPageMail.zToolbarPressButton(Button.B_REFRESH);

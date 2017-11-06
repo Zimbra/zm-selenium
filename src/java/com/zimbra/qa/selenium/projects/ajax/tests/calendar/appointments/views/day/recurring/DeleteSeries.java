@@ -86,7 +86,7 @@ public class DeleteSeries extends AjaxCommonTest {
         app.zPageCalendar.zListItem(Action.A_LEFTCLICK, apptSubject);
 
         // If you select an instance and click delete button, you
-        // get two dialogs:
+        // Get two dialogs:
         // First: do you want to delete the instance or series?
         // Second: do you want to delete all occurrences or this instance and all future instances
         //
@@ -166,7 +166,7 @@ public class DeleteSeries extends AjaxCommonTest {
         app.zPageCalendar.zListItem(Action.A_LEFTCLICK, apptSubject);
 
         // If you right-click an instance and select delete from the context menu, you
-        // get one dialog:
+        // Get one dialog:
         // First: do you want to delete all occurrences or this instance and all future instances
         //
         // This is different from the "select an instance and click delete button" usage

@@ -31,10 +31,10 @@ public class AutoCompleteDLExpandMembers extends AjaxCommonTest  {
 	public AutoCompleteDLExpandMembers() {
 		logger.info("New "+ AutoCompleteDLExpandMembers.class.getCanonicalName());
 		super.startingPage = app.zPageMail;
-		
 	}
 
-	@Test( description = "Auto complete DL, expand members and send mail to all", 
+
+	@Test( description = "Auto complete DL, expand members and send mail to all",
 			groups = { "functional", "L2"})
 
 	public void AutoCompleteDLExpandMembers_01() throws HarnessException {

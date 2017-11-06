@@ -40,8 +40,9 @@ public class ComposeForwardMailWithAttachmentAndVariousOptions extends PrefGroup
 		logger.info("New "+ ComposeForwardMailWithAttachmentAndVariousOptions.class.getCanonicalName());
 	}
 
+
 	@Bugs(ids = "103903, 106583")
-	@Test( description = "Verify the presence of attachment while forwarding a mail and changing option from 'Include Original as an attachment' to 'Include Original message' in new window", 
+	@Test( description = "Verify the presence of attachment while forwarding a mail and changing option from 'Include Original as an attachment' to 'Include Original message' in new window",
 			groups = { "functional", "L3" })
 
 	public void ComposeForwardMailWithAttachmentAndVariousOptions_01() throws HarnessException {
@@ -51,6 +52,7 @@ public class ComposeForwardMailWithAttachmentAndVariousOptions extends PrefGroup
 			String subject = "subject" + ConfigProperties.getUniqueString();
 
 			try {
+
 				// Send a message to the account
 				ZimbraAccount.AccountA().soapSend(
 					"<SendMsgRequest xmlns='urn:zimbraMail'>" +
@@ -66,8 +68,6 @@ public class ComposeForwardMailWithAttachmentAndVariousOptions extends PrefGroup
 				// Get the mail item for the new message
 				MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
 				ZAssert.assertNotNull(mail, "Verify the message is received correctly");
-
-				//-- GUI
 
 				// Refresh current view
 				ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
@@ -89,10 +89,10 @@ public class ComposeForwardMailWithAttachmentAndVariousOptions extends PrefGroup
 				// Open it in new window
 				SeparateWindowFormMailNew window = null;
 				String windowTitle = "Zimbra: Forward";
-				
+
 				final String fileName = "inlineImage.jpg";
 				final String filePath = ConfigProperties.getBaseDirectory() + "\\data\\public\\other\\" + fileName;
-				
+
 				try {
 
 					window = (SeparateWindowFormMailNew) app.zPageMail.zToolbarPressButton(Button.B_DETACH_COMPOSE);
@@ -121,9 +121,7 @@ public class ComposeForwardMailWithAttachmentAndVariousOptions extends PrefGroup
 				}
 
 			} finally {
-
 				app.zPageMain.zKeyboardKeyEvent(KeyEvent.VK_ESCAPE);
-
 			}
 
 		} else {
@@ -133,7 +131,7 @@ public class ComposeForwardMailWithAttachmentAndVariousOptions extends PrefGroup
 
 
 	@Bugs(ids = "103903")
-	@Test( description = "Verify the presence of attachment in new window while forwarding a mail and selecting 'Use Prefixes' option from Options.", 
+	@Test( description = "Verify the presence of attachment in new window while forwarding a mail and selecting 'Use Prefixes' option from Options.",
 			groups = { "functional", "L3" })
 
 	public void ComposeForwardMailWithAttachmentAndVariousOptions_02() throws HarnessException {
@@ -143,6 +141,7 @@ public class ComposeForwardMailWithAttachmentAndVariousOptions extends PrefGroup
 			String subject = "subject" + ConfigProperties.getUniqueString();
 
 			try {
+
 				// Send a message to the account
 				ZimbraAccount.AccountA().soapSend(
 						"<SendMsgRequest xmlns='urn:zimbraMail'>" +
@@ -158,8 +157,6 @@ public class ComposeForwardMailWithAttachmentAndVariousOptions extends PrefGroup
 				// Get the mail item for the new message
 				MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
 				ZAssert.assertNotNull(mail, "Verify the message is received correctly");
-
-				//-- GUI
 
 				// Refresh current view
 				ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
@@ -189,7 +186,7 @@ public class ComposeForwardMailWithAttachmentAndVariousOptions extends PrefGroup
 				// Open it in new window
 				SeparateWindowFormMailNew window = null;
 				String windowTitle = "Zimbra: Forward";
-				
+
 				try {
 
 					window = (SeparateWindowFormMailNew) app.zPageMail.zToolbarPressButton(Button.B_DETACH_COMPOSE);
@@ -205,9 +202,7 @@ public class ComposeForwardMailWithAttachmentAndVariousOptions extends PrefGroup
 				}
 
 			} finally {
-
 				app.zPageMain.zKeyboardKeyEvent(KeyEvent.VK_ESCAPE);
-
 			}
 
 		} else {
@@ -215,8 +210,9 @@ public class ComposeForwardMailWithAttachmentAndVariousOptions extends PrefGroup
 		}
 	}
 
+
 	@Bugs(ids = "103903")
-	@Test( description = "Verify the presence of attachment in new window while forwarding a mail and selecting 'Include Headers' option from Options'", 
+	@Test( description = "Verify the presence of attachment in new window while forwarding a mail and selecting 'Include Headers' option from Options'",
 			groups = { "functional", "L3" })
 
 	public void ComposeForwardMailWithAttachmentAndVariousOptions_03() throws HarnessException {
@@ -226,6 +222,7 @@ public class ComposeForwardMailWithAttachmentAndVariousOptions extends PrefGroup
 			String subject = "subject" + ConfigProperties.getUniqueString();
 
 			try {
+
 				// Send a message to the account
 				ZimbraAccount.AccountA().soapSend(
 						"<SendMsgRequest xmlns='urn:zimbraMail'>" +
@@ -241,8 +238,6 @@ public class ComposeForwardMailWithAttachmentAndVariousOptions extends PrefGroup
 				// Get the mail item for the new message
 				MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
 				ZAssert.assertNotNull(mail, "Verify the message is received correctly");
-
-				//-- GUI
 
 				// Refresh current view
 				ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
@@ -273,14 +268,14 @@ public class ComposeForwardMailWithAttachmentAndVariousOptions extends PrefGroup
 				mailform.zToolbarPressPulldown(Button.B_OPTIONS, Button.O_INCLUDE_HEADERS);
 				SleepUtil.sleepMedium();
 				zCloseRandomDialogs(mailform);
-				
+
 				// Verify that the attachment is present after selecting Include Headers option
 				ZAssert.assertTrue(mailform.zHasAttachment(fileName),"Attachment is not present after selecting Include Headers from Options!");
 
 				// Open message in a separate window
 				SeparateWindowFormMailNew window = null;
 				String windowTitle = "Zimbra: Forward";
-								
+
 				try {
 
 					window = (SeparateWindowFormMailNew) app.zPageMail.zToolbarPressButton(Button.B_DETACH_COMPOSE);
@@ -296,25 +291,23 @@ public class ComposeForwardMailWithAttachmentAndVariousOptions extends PrefGroup
 				}
 
 			} finally {
-
 				app.zPageMain.zKeyboardKeyEvent(KeyEvent.VK_ESCAPE);
-
 			}
 
 		} else {
 			throw new SkipException("File upload operation is allowed only for Windows OS (Skipping upload tests on MS Edge for now due to intermittancy and major control issue), skipping this test...");
 		}
 	}
-	
-	
+
+
 	public void zCloseRandomDialogs(FormMailNew mailform) throws HarnessException {
-		
+
 		// Check if a warning dialog is present. If Yes, Press Yes to continue
 		if (mailform.sIsVisible(Locators.zOkCancelContinueComposeWarningDialog) && mailform.sIsElementPresent(Locators.zOkCancelContinueComposeWarningDialog)) {
 			mailform.sClickAt(Locators.zOkBtnOnContinueComposeWarningDialog,"0,0");
 			SleepUtil.sleepMedium();
 		}
-		
+
 		// Check if a warning dialog is present. If Yes, Press Yes to continue
 		if (mailform.sIsVisible("css=div#OkCancel.DwtDialog") && mailform.sIsElementPresent("css=div#OkCancel.DwtDialog")) {
 			mailform.sClickAt("css=div#OkCancel.DwtDialog td[id^='OK']  td[id$='_title']","0,0");

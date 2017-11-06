@@ -56,7 +56,7 @@ public class Move extends AjaxCommonTest {
 				+	  	"<folder name='"+ name1 +"' l='"+ root.getId() +"' view='appointment'/>"
 				+	"</CreateFolderRequest>");
 
-		// refresh the view
+		// Refresh the view
 		app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
 		FolderItem subfolder1 = FolderItem.importFromSOAP(app.zGetActiveAccount(), name1);
 		ZAssert.assertNotNull(subfolder1, "Verify the first subfolder is available");

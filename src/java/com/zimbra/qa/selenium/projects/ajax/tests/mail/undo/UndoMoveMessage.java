@@ -40,8 +40,6 @@ public class UndoMoveMessage extends PrefGroupMailByMessageTest {
 		String foldername = "folder"+ ConfigProperties.getUniqueString();
 
 		// Create a subfolder to move the message into
-		// i.e. Inbox/subfolder
-		//
 		app.zGetActiveAccount().soapSend(
 					"<CreateFolderRequest xmlns='urn:zimbraMail'>" +
 						"<folder name='" + foldername +"' l='"+ inbox.getId() +"'/>" +

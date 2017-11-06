@@ -19,7 +19,6 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.preferences.general;
 
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
@@ -27,17 +26,17 @@ import com.zimbra.qa.selenium.projects.ajax.ui.preferences.TreePreferences.TreeI
 import com.zimbra.qa.selenium.projects.ajax.ui.preferences.PagePreferences.Locators;
 
 public class VerifyTimezoneView extends AjaxCommonTest {
-	
+
 	public VerifyTimezoneView() {
-		
 		super.startingPage = app.zPagePreferences;
-			
 	}
 
-	@Test (description = "Check timezone options in preferences", groups = { "smoke", "L1" } )
-	
+
+	@Test(description = "Check timezone options in preferences",
+			groups = { "smoke", "L1" } )
+
 	public void VerifyTimezoneView_01() throws HarnessException {
-		
+
 		String[] Timezone = { "GMT -12:00 Dateline",
 				"GMT -11:00 Samoa",
 				"GMT -10:00 Adak",
@@ -172,16 +171,15 @@ public class VerifyTimezoneView extends AjaxCommonTest {
 				"GMT +14:00 Kiritimati Island" };
 
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.General);
-				
+
 		// Click on timezone pull down
 		app.zPagePreferences.zFolderPressPulldown(Button.O_TIMEZONE);
 		SleepUtil.sleepSmall();
-		ZAssert.assertTrue(app.zPagePreferences.sIsElementPresent(Locators.zUpArrow),"Up Arrow key present");  
-		
+		ZAssert.assertTrue(app.zPagePreferences.sIsElementPresent(Locators.zUpArrow),"Up Arrow key present");
+
 		for (int i=0; i<=Timezone.length-1; i++) {
 			System.out.println("Verify " + Timezone[i] + " timezone present");
-			ZAssert.assertTrue(app.zPagePreferences.sIsElementPresent(Locators.zTimezonelistXpath+"\""+ Timezone[i] +"\")]" ), "Verify " + Timezone[i] + " timezone present"); 
+			ZAssert.assertTrue(app.zPagePreferences.sIsElementPresent(Locators.zTimezonelistXpath+"\""+ Timezone[i] +"\")]" ), "Verify " + Timezone[i] + " timezone present");
 		}
-		
 	}
 }

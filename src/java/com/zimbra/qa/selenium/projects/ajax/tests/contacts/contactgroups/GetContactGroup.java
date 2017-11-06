@@ -18,9 +18,7 @@ package com.zimbra.qa.selenium.projects.ajax.tests.contacts.contactgroups;
 
 import java.util.*;
 import java.util.Map.Entry;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.Button;
@@ -28,21 +26,14 @@ import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.contacts.PageContacts;
 
-/**
- * These test cases verify the contact lists display the correct contact gropus
- * 
- * @author Matt Rhoades
- */
-
 public class GetContactGroup extends AjaxCommonTest {
 
 	public GetContactGroup() {
 		logger.info("New " + GetContactGroup.class.getCanonicalName());
 		super.startingPage = app.zPageContacts;
-
 	}
 
-	@Test(description = "Click Alphabetbar button All: Verify contact groups started with digit and A-Z listed", 
+	@Test(description = "Click Alphabetbar button All: Verify contact groups started with digit and A-Z listed",
 			groups = {"smoke", "L0" })
 
 	public void GetContactGroup_All_Button_01() throws HarnessException {
@@ -53,7 +44,6 @@ public class GetContactGroup extends AjaxCommonTest {
 		String member = "email" + ConfigProperties.getUniqueString() + "@example.com";
 
 		// Create three contact groups
-
 		groupname = "Bp" + ConfigProperties.getUniqueString();
 		app.zGetActiveAccount()
 				.soapSend("<CreateContactRequest xmlns='urn:zimbraMail'>" + "<cn >" + "<a n='type'>group</a>"
@@ -75,14 +65,10 @@ public class GetContactGroup extends AjaxCommonTest {
 						+ "<m type='I' value='" + member + "' />" + "</cn>" + "</CreateContactRequest>");
 		ContactGroupItem group3 = ContactGroupItem.importFromSOAP(app.zGetActiveAccount(), groupname);
 
-		// -- GUI
-
 		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 
-		// click All
+		// Click All
 		app.zPageContacts.zToolbarPressButton(Button.B_AB_ALL);
-
-		// -- Verification
 
 		// Verify group name and members displayed
 		List<ContactItem> items = app.zPageContacts.zListGetContacts();
@@ -92,7 +78,6 @@ public class GetContactGroup extends AjaxCommonTest {
 		boolean found3 = false;
 
 		for (ContactItem item : items) {
-
 			if (item.getName().equals(group1.getName())) {
 				found1 = true;
 			}
@@ -102,26 +87,23 @@ public class GetContactGroup extends AjaxCommonTest {
 			if (item.getName().equals(group3.getName())) {
 				found3 = true;
 			}
-
 		}
 
 		ZAssert.assertTrue(found1, "Verify contact group starting with B is listed");
 		ZAssert.assertTrue(found2, "Verify contact group starting with 5 is listed");
 		ZAssert.assertTrue(found3, "Verify contact group starting with b is listed");
-
 	}
 
-	@Test(description = "Click Alphabetbar button All: Verify contact groups started with digit and A-Z listed", 
+
+	@Test(description = "Click Alphabetbar button All: Verify contact groups started with digit and A-Z listed",
 			groups = {"smoke", "L0"})
+
 	public void GetContactGroup_123_Button_02() throws HarnessException {
 
 		String groupname;
-
-		// -- Data
 		String member = "email" + ConfigProperties.getUniqueString() + "@example.com";
 
 		// Create three contact groups
-
 		groupname = "Bp" + ConfigProperties.getUniqueString();
 		app.zGetActiveAccount()
 				.soapSend("<CreateContactRequest xmlns='urn:zimbraMail'>" + "<cn >" + "<a n='type'>group</a>"
@@ -143,14 +125,10 @@ public class GetContactGroup extends AjaxCommonTest {
 						+ "<m type='I' value='" + member + "' />" + "</cn>" + "</CreateContactRequest>");
 		ContactGroupItem group3 = ContactGroupItem.importFromSOAP(app.zGetActiveAccount(), groupname);
 
-		// -- GUI
-
 		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 
-		// click All
+		// Click All
 		app.zPageContacts.zToolbarPressButton(Button.B_AB_123);
-
-		// -- Verification
 
 		// Verify group name and members displayed
 		List<ContactItem> items = app.zPageContacts.zListGetContacts();
@@ -160,7 +138,6 @@ public class GetContactGroup extends AjaxCommonTest {
 		boolean found3 = false;
 
 		for (ContactItem item : items) {
-
 			if (item.getName().equals(group1.getName())) {
 				found1 = true;
 			}
@@ -170,27 +147,24 @@ public class GetContactGroup extends AjaxCommonTest {
 			if (item.getName().equals(group3.getName())) {
 				found3 = true;
 			}
-
 		}
 
 		ZAssert.assertFalse(found1, "Verify contact group starting with B is not listed");
 		ZAssert.assertTrue(found2, "Verify contact group starting with 5 is listed");
 		ZAssert.assertFalse(found3, "Verify contact group starting with b is not listed");
-
 	}
 
+
 	@Bugs(ids = "100227")
-	@Test(description = "Click Alphabetbar button Z: Verify only contact groups started with Z|z is listed", 
+	@Test(description = "Click Alphabetbar button Z: Verify only contact groups started with Z|z is listed",
 			groups = {"functional", "L2"})
+
 	public void GetContactGroup_B_Button_03() throws HarnessException {
 
 		String groupname;
-
-		// -- Data
 		String member = "email" + ConfigProperties.getUniqueString() + "@example.com";
 
 		// Create three contact groups
-
 		groupname = "Bp" + ConfigProperties.getUniqueString();
 		app.zGetActiveAccount()
 				.soapSend("<CreateContactRequest xmlns='urn:zimbraMail'>" + "<cn >" + "<a n='type'>group</a>"
@@ -212,14 +186,10 @@ public class GetContactGroup extends AjaxCommonTest {
 						+ "<m type='I' value='" + member + "' />" + "</cn>" + "</CreateContactRequest>");
 		ContactGroupItem group3 = ContactGroupItem.importFromSOAP(app.zGetActiveAccount(), groupname);
 
-		// -- GUI
-
 		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 
-		// click All
+		// Click All
 		app.zPageContacts.zToolbarPressButton(Button.B_AB_B);
-
-		// -- Verification
 
 		// Verify group name and members displayed
 		List<ContactItem> items = app.zPageContacts.zListGetContacts();
@@ -229,7 +199,6 @@ public class GetContactGroup extends AjaxCommonTest {
 		boolean found3 = false;
 
 		for (ContactItem item : items) {
-
 			if (item.getName().equals(group1.getName())) {
 				found1 = true;
 			}
@@ -239,26 +208,23 @@ public class GetContactGroup extends AjaxCommonTest {
 			if (item.getName().equals(group3.getName())) {
 				found3 = true;
 			}
-
 		}
 
 		ZAssert.assertTrue(found1, "Verify contact group starting with B is listed");
 		ZAssert.assertFalse(found2, "Verify contact group starting with 5 is not listed");
 		ZAssert.assertTrue(found3, "Verify contact group starting with b is listed");
-
 	}
 
-	@Test(description = "Click all Alphabetbar buttons: Verify only contact group started with the alphabet is listed", 
-			groups = {"functional", "L2"})
-	public void GetContactGroup_Iterate_Buttons_04() throws HarnessException {
 
-		// -- Data
+	@Test(description = "Click all Alphabetbar buttons: Verify only contact group started with the alphabet is listed",
+			groups = {"functional", "L2"})
+
+	public void GetContactGroup_Iterate_Buttons_04() throws HarnessException {
 
 		// A map of buttons to ContactGroupItem
 		HashMap<Button, ContactGroupItem> groups = new HashMap<Button, ContactGroupItem>();
 
 		// Create contact groups with each letter
-
 		for (Entry<Character, Button> entry : PageContacts.buttons.entrySet()) {
 
 			Character c = entry.getKey();
@@ -273,18 +239,12 @@ public class GetContactGroup extends AjaxCommonTest {
 			ContactGroupItem group = ContactGroupItem.importFromSOAP(app.zGetActiveAccount(), groupname);
 
 			groups.put(b, group);
-
 		}
 
-		// -- GUI
-
-		// refresh
+		// Refresh
 		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 
-		// -- Verification
-
 		for (Entry<Button, ContactGroupItem> entry : groups.entrySet()) {
-
 			Button b = entry.getKey();
 			ContactGroupItem g = entry.getValue();
 
@@ -298,9 +258,7 @@ public class GetContactGroup extends AjaxCommonTest {
 					found = true;
 				}
 			}
-
 			ZAssert.assertTrue(found, "Verify contact group " + g.getName() + " is listed");
-
 		}
 
 	}

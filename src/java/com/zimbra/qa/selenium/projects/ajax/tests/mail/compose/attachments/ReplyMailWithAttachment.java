@@ -36,6 +36,7 @@ public class ReplyMailWithAttachment extends PrefGroupMailByMessageTest {
 		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "text");
 	}
 
+
 	@Test( description = "Reply to a mail with attachment - Verify existing attachment not sent",
 			groups = { "sanity", "L0" })
 
@@ -45,7 +46,6 @@ public class ReplyMailWithAttachment extends PrefGroupMailByMessageTest {
 
 			try {
 
-				//-- DATA
 				final String mimeSubject = "subjectAttachment";
 				final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email17/mime.txt";
 				FolderItem sent = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Sent);
@@ -55,8 +55,6 @@ public class ReplyMailWithAttachment extends PrefGroupMailByMessageTest {
 
 				MailItem original = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ mimeSubject +")");
 				ZAssert.assertNotNull(original, "Verify the message is received correctly");
-
-				//-- GUI
 
 				// Refresh current view
 				ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(mimeSubject), "Verify message displayed in current view");
@@ -78,8 +76,6 @@ public class ReplyMailWithAttachment extends PrefGroupMailByMessageTest {
 
 				// Send the message
 				mailform.zSubmit();
-
-				//-- Verification
 
 				// From the receiving end, verify the message details
 				MailItem received = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "from:("+ app.zGetActiveAccount().EmailAddress +") subject:("+ mimeSubject +")");
@@ -109,9 +105,7 @@ public class ReplyMailWithAttachment extends PrefGroupMailByMessageTest {
 				ZAssert.assertFalse(app.zPageMail.zVerifyAttachmentExistsInMail(mimeAttachmentName), "Verify attachment doesn't exists in the email");
 
 			} finally {
-
 				app.zPageMain.zKeyboardKeyEvent(KeyEvent.VK_ESCAPE);
-
 			}
 
 		} else {

@@ -36,18 +36,15 @@ import com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail;
 public class FwdReplyHtmlSignatureBelowIncludeMsg extends AjaxCommonTest {
 	String sigName = "signame" + ConfigProperties.getUniqueString();
 	String sigBody = "signature<b>bold" + ConfigProperties.getUniqueString() + "</b>signature";
-	String contentHTMLSig = XmlStringUtil
-			.escapeXml("<html>" + "<head></head>" + "<body>" + sigBody + "</body>" + "</html>");
+	String contentHTMLSig = XmlStringUtil.escapeXml("<html>" + "<head></head>" + "<body>" + sigBody + "</body>" + "</html>");
 
 	@SuppressWarnings("serial")
 	public FwdReplyHtmlSignatureBelowIncludeMsg() {
 		super.startingPage = app.zPageMail;
-		super.startingAccountPreferences = new HashMap<String, String>() {
-			{
-				put("zimbraPrefGroupMailBy", "message");
-				put("zimbraPrefMailSignatureStyle", "internet");
-			}
-		};
+		super.startingAccountPreferences = new HashMap<String, String>() {{
+			put("zimbraPrefGroupMailBy", "message");
+			put("zimbraPrefMailSignatureStyle", "internet");
+		}};
 	}
 
 	@BeforeMethod(groups = { "always" })
@@ -63,18 +60,18 @@ public class FwdReplyHtmlSignatureBelowIncludeMsg extends AjaxCommonTest {
 		logger.info("CreateSignature: finish");
 	}
 
+
 	/**
 	 * Test case : Verify Html Signature BelowIncludedMsg While Fwd'ing Create
 	 * HTML signature through soap Send message through soap Select Same Msg and
 	 * click Fwd Click Options dropdown and select Signature Verify signature
 	 * should place Below included message while fwd'ing msg
-	 * 
-	 * @throws HarnessException
 	 */
 
 	@Bugs(ids = "102479")
-	@Test(description = "Verify Html Signature place BelowIncludedMsg While Fwd'ing- Verify through GUI ", groups = {
-			"functional", "L2" })
+	@Test(description = "Verify Html Signature place BelowIncludedMsg While Fwd'ing- Verify through GUI ",
+			groups = { "functional", "L2" })
+
 	public void FwdMsgWithTextSignatureBelowIncludeMsg_01() throws HarnessException {
 
 		SignatureItem signature = SignatureItem.importFromSOAP(app.zGetActiveAccount(), this.sigName);
@@ -84,8 +81,7 @@ public class FwdReplyHtmlSignatureBelowIncludeMsg extends AjaxCommonTest {
 		String subject = "subject" + ConfigProperties.getUniqueString();
 		String bodyText = "text" + ConfigProperties.getUniqueString();
 		String bodyHTML = "text <b>bold" + ConfigProperties.getUniqueString() + "</b> text";
-		String contentHTML = XmlStringUtil
-				.escapeXml("<html>" + "<head></head>" + "<body>" + bodyHTML + "<br></br>" + "</body>" + "</html>");
+		String contentHTML = XmlStringUtil.escapeXml("<html>" + "<head></head>" + "<body>" + bodyHTML + "<br></br>" + "</body>" + "</html>");
 
 		// Send a message to the account
 		ZimbraAccount.AccountZCS()
@@ -109,21 +105,23 @@ public class FwdReplyHtmlSignatureBelowIncludeMsg extends AjaxCommonTest {
 
 		// Click Options Drop Down and select Signature
 		app.zPageMail.zToolbarPressPulldown(Button.B_OPTIONS, Button.O_ADD_FWD_SIGNATURE, this.sigName);
-		
+
 		// Verify Signature is place Below included message.
 		actual.zVerifySignaturePlaceInHTML("BelowIncludedMsg", this.sigBody, "Forward");
 	}
+
 
 	/**
 	 * Test case : Verify Html Signature BelowIncludedMsg While Reply'ing Create
 	 * Html signature through soap Send message through soap Select Same Msg and
 	 * click Reply from toolbar Click Options dropdown and select Signature
 	 * Verify signature should place Below included message while Replying msg
-	 * 
-	 * @throws HarnessException
 	 */
+
 	@Bugs(ids = "102479")
-	@Test(description = "Verify Html Signature placed BelowIncludedMsg While Replying Msg", groups = { "functional", "L2" })
+	@Test(description = "Verify Html Signature placed BelowIncludedMsg While Replying Msg",
+			groups = { "functional", "L2" })
+
 	public void ReplyMsgWithTextSignatureBelowIncludeMsg_02() throws HarnessException {
 
 		SignatureItem signature = SignatureItem.importFromSOAP(app.zGetActiveAccount(), this.sigName);
@@ -133,8 +131,7 @@ public class FwdReplyHtmlSignatureBelowIncludeMsg extends AjaxCommonTest {
 		String subject = "subject" + ConfigProperties.getUniqueString();
 		String bodyText = "text" + ConfigProperties.getUniqueString();
 		String bodyHTML = "text <b>bold" + ConfigProperties.getUniqueString() + "</b> text";
-		String contentHTML = XmlStringUtil
-				.escapeXml("<html>" + "<head></head>" + "<body>" + bodyHTML + "<br></br>" + "</body>" + "</html>");
+		String contentHTML = XmlStringUtil.escapeXml("<html>" + "<head></head>" + "<body>" + bodyHTML + "<br></br>" + "</body>" + "</html>");
 
 		// Send a message to the account
 		ZimbraAccount.AccountZCS()
@@ -153,15 +150,15 @@ public class FwdReplyHtmlSignatureBelowIncludeMsg extends AjaxCommonTest {
 
 		// Forward the item
 		actual.zPressButton(Button.B_REPLY);
-		ZAssert.assertTrue(actual.zGetMailPropertyAsText(DisplayMail.Field.Subject).contains("Re"),
-				"Verify Reply Window");
+		ZAssert.assertTrue(actual.zGetMailPropertyAsText(DisplayMail.Field.Subject).contains("Re"), "Verify Reply Window");
 
 		// Click Options Drop Down and select Signature
 		app.zPageMail.zToolbarPressPulldown(Button.B_OPTIONS, Button.O_ADD_Reply_SIGNATURE, this.sigName);
-		
+
 		// Verify Signature is place Below included message.
 		actual.zVerifySignaturePlaceInHTML("BelowIncludedMsg", this.sigBody, "Reply");
 	}
+
 
 	/**
 	 * Test case : Verify Html Signature placed BelowIncludedMsg While
@@ -169,12 +166,12 @@ public class FwdReplyHtmlSignatureBelowIncludeMsg extends AjaxCommonTest {
 	 * Select Same Msg and click ReplyAll from toolbar Click Options dropdown
 	 * and select Signature Verify signature should place Below included message
 	 * while Replying msg
-	 * 
-	 * @throws HarnessException
 	 */
 
 	@Bugs(ids = "102479")
-	@Test(description = "Verify Html Signature placed BelowIncludedMsg While ReplyingAll", groups = { "functional", "L2" })
+	@Test(description = "Verify Html Signature placed BelowIncludedMsg While ReplyingAll",
+			groups = { "functional", "L2" })
+
 	public void ReplyAllMsgWithTextSignatureBelowIncludeMsg_03() throws HarnessException {
 
 		SignatureItem signature = SignatureItem.importFromSOAP(app.zGetActiveAccount(), this.sigName);
@@ -184,8 +181,7 @@ public class FwdReplyHtmlSignatureBelowIncludeMsg extends AjaxCommonTest {
 		String subject = "subject" + ConfigProperties.getUniqueString();
 		String bodyText = "text" + ConfigProperties.getUniqueString();
 		String bodyHTML = "text <b>bold" + ConfigProperties.getUniqueString() + "</b> text";
-		String contentHTML = XmlStringUtil
-				.escapeXml("<html>" + "<head></head>" + "<body>" + bodyHTML + "<br></br>" + "</body>" + "</html>");
+		String contentHTML = XmlStringUtil.escapeXml("<html>" + "<head></head>" + "<body>" + bodyHTML + "<br></br>" + "</body>" + "</html>");
 
 		// Send a message to the account
 		ZimbraAccount.AccountZCS()
@@ -204,8 +200,7 @@ public class FwdReplyHtmlSignatureBelowIncludeMsg extends AjaxCommonTest {
 
 		// Forward the item
 		actual.zPressButton(Button.B_REPLYALL);
-		ZAssert.assertTrue(actual.zGetMailPropertyAsText(DisplayMail.Field.Subject).contains("Re"),
-				"Verify Reply All Window");
+		ZAssert.assertTrue(actual.zGetMailPropertyAsText(DisplayMail.Field.Subject).contains("Re"), "Verify Reply All Window");
 
 		// Click Options Drop Down and select Signature
 		app.zPageMail.zToolbarPressPulldown(Button.B_OPTIONS, Button.O_ADD_ReplyAll_SIGNATURE, this.sigName);

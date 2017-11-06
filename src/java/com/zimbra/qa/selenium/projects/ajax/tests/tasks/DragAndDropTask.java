@@ -27,19 +27,20 @@ import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 public class DragAndDropTask extends AjaxCommonTest {
 
 	@SuppressWarnings("serial")
-public DragAndDropTask() {
-		logger.info("DragAndDropTask " + DragAndDropTask.class.getCanonicalName());		
+	public DragAndDropTask() {
+		logger.info("DragAndDropTask " + DragAndDropTask.class.getCanonicalName());
+
 		super.startingPage = app.zPageTasks;
-		
 		super.startingAccountPreferences = new HashMap<String , String>() {{
 			put("zimbraPrefTasksReadingPaneLocation", "bottom");
 			put("zimbraPrefShowSelectionCheckbox", "TRUE");
 		}};
 	}
-	
-	@Test( description = "Drag and Drop a task from Tasks to subfolder", 
+
+
+	@Test( description = "Drag and Drop a task from Tasks to subfolder",
 			groups = { "smoke", "L1"})
-	
+
 	public void DragAndDropTask_01() throws HarnessException {
 
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
@@ -56,7 +57,7 @@ public DragAndDropTask() {
 
 		FolderItem subFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), name);
 
-		// refresh task page
+		// Refresh task page
 		app.zTreeTasks.zTreeItem(Action.A_LEFTCLICK, taskFolder);
 
 		String subject = "task" + ConfigProperties.getUniqueString();
@@ -68,7 +69,7 @@ public DragAndDropTask() {
 				+			"<inv>"
 				+				"<comp name='" + subject + "'>"
 				+					"<or a='"+ app.zGetActiveAccount().EmailAddress + "'/>"
-				+				"</comp>" 
+				+				"</comp>"
 				+			"</inv>"
 				+			"<su>" + subject + "</su>"
 				+			"<mp ct='text/plain'>"
@@ -76,8 +77,6 @@ public DragAndDropTask() {
 				+			"</mp>"
 				+		"</m>"
 				+	"</CreateTaskRequest>");
-
-		
 
 		// Get the task item for the new task
 		TaskItem task = TaskItem.importFromSOAP(app.zGetActiveAccount(),subject);
@@ -88,13 +87,13 @@ public DragAndDropTask() {
 
 		// Select the created task item
 		app.zPageTasks.zListItem(Action.A_LEFTCLICK, subject);
-		
+
 		//Drag and drop task item into subfolder
 		app.zPageMail.zDragAndDrop(
 				"css=td[id$='"+task.getId() +"__su']",
 				"css=td[id='zti__main_Tasks__"+ subFolder.getId() + "_textCell']:contains('"+ name + "')");
-		
-		// refresh tasks page
+
+		// Refresh tasks page
 		app.zTreeTasks.zTreeItem(Action.A_LEFTCLICK, taskFolder);
 
 		List<TaskItem> tasks = app.zPageTasks.zGetTasks();
@@ -111,7 +110,7 @@ public DragAndDropTask() {
 
 		ZAssert.assertNull(found,"Verify the  task no longer  present in the task list");
 
-		// click on subfolder in tree view
+		// Click on subfolder in tree view
 		app.zTreeTasks.zTreeItem(Action.A_LEFTCLICK, subFolder);
 		List<TaskItem> tasks1 = app.zPageTasks.zGetTasks();
 

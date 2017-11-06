@@ -74,6 +74,5 @@ public class DeleteAppointment extends AjaxCommonTest {
 		AppointmentItem deleted = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +") is:anywhere");
 		ZAssert.assertNotNull(deleted, "Verify the deleted appointment exists");
 		ZAssert.assertEquals(deleted.getFolder(), trash.getId(), "Verify the deleted appointment is in the trash");
-
 	}
 }

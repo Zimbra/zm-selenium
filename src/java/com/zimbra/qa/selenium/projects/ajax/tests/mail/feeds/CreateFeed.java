@@ -30,13 +30,13 @@ public class CreateFeed extends PrefGroupMailByMessageTest {
 		logger.info("New "+ CreateFeed.class.getCanonicalName());
 	}
 
-	@Test( description = "Create a new feed by clicking 'new folder' on folder tree", groups = { "smoke", "L1" })
+
+	@Test( description = "Create a new feed by clicking 'new folder' on folder tree",
+			groups = { "smoke", "L1" })
 
 	public void CreateFeed_01() throws HarnessException, MalformedURLException {
 
 		String foldername = "folder" + ConfigProperties.getUniqueString();
-
-		// feed.rss=http://server/files/Service/RSS/Basic/basic.xml
 		String feed = ConfigProperties.getStringProperty("rss.sample");
 
 		// Click on the "new folder" button
@@ -45,14 +45,11 @@ public class CreateFeed extends PrefGroupMailByMessageTest {
 		createFolderDialog.zEnterFolderName(foldername);
 		createFolderDialog.zClickSubscribeFeed(true);
 		createFolderDialog.zEnterFeedURL(new URL(feed));
-
 		createFolderDialog.zClickButton(Button.B_OK);
 
 		// Make sure the folder was created on the ZCS server
 		FolderItem folder = FolderItem.importFromSOAP(app.zGetActiveAccount(), foldername);
 		ZAssert.assertNotNull(folder, "Verify the feed exists on the server");
-
 		ZAssert.assertEquals(folder.getName(), foldername, "Verify the server and client feed names match");
-
 	}
 }

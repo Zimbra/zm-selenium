@@ -31,6 +31,7 @@ public class GetExternalPOP extends PrefGroupMailByMessageTest {
 		logger.info("New "+ GetExternalPOP.class.getCanonicalName());
 	}
 
+
 	/**
 	 * Objective: View an external folder - POP
 	 *
@@ -41,8 +42,6 @@ public class GetExternalPOP extends PrefGroupMailByMessageTest {
 	 * 5. Add a data source to the account from step 1, associate with the folder in step 4
 	 * 6. Right click on the folder -> Get external mail
 	 * 7. Verify the message from step 2 appears
-	 *
-	 * @throws HarnessException
 	 */
 
 	@Test( description = "View an external folder - POP",
@@ -131,7 +130,6 @@ public class GetExternalPOP extends PrefGroupMailByMessageTest {
 			}
 		}
 		ZAssert.assertNotNull(found, "Verify the message is in the external folder");
-
 	}
 
 
@@ -145,9 +143,7 @@ public class GetExternalPOP extends PrefGroupMailByMessageTest {
 	 * 5. Add a data source to the account from step 1, associate with the folder in step 4
 	 * 6. Select the folder (http://bugzilla.zimbra.com/show_bug.cgi?id=66528#c5)
 	 * 7. Click "Refresh"
-	 * 7. Verify the message from step 2 appears
-	 *
-	 * @throws HarnessException
+	 * 8. Verify the message from step 2 appears
 	 */
 
 	@Test( description = "POP: get updates from the external account - 'refresh' button",
@@ -262,7 +258,6 @@ public class GetExternalPOP extends PrefGroupMailByMessageTest {
 			}
 		}
 		ZAssert.assertNotNull(found, "Verify the message is in the external folder");
-
 	}
 
 
@@ -376,7 +371,5 @@ public class GetExternalPOP extends PrefGroupMailByMessageTest {
 			}
 		}
 		ZAssert.assertNotNull(found, "Verify the message is in the external folder");
-
 	}
-
 }

@@ -37,6 +37,7 @@ public class ForwardMailWithInlineImageAttachment extends PrefGroupMailByMessage
 		super.startingAccountPreferences.put("zimbraPrefForwardReplyInOriginalFormat", "FALSE");
 	}
 
+
 	@Test( description = "Forward to a mail with attachment - Verify inline image sent",
 			groups = { "smoke", "L1" })
 
@@ -46,7 +47,6 @@ public class ForwardMailWithInlineImageAttachment extends PrefGroupMailByMessage
 
 			try {
 
-				//-- DATA
 				final String mimeSubject = "subjectAttachment";
 				final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email17/mime.txt";
 				FolderItem sent = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Sent);
@@ -55,8 +55,6 @@ public class ForwardMailWithInlineImageAttachment extends PrefGroupMailByMessage
 
 				MailItem original = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ mimeSubject +")");
 				ZAssert.assertNotNull(original, "Verify the message is received correctly");
-
-				//-- GUI
 
 				// Refresh current view
 				ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(mimeSubject), "Verify message displayed in current view");
@@ -81,8 +79,6 @@ public class ForwardMailWithInlineImageAttachment extends PrefGroupMailByMessage
 				// Send the message
 				mailform.zSubmit();
 
-				//-- Verification
-
 				// From the receiving end, verify the message details
 				MailItem received = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "from:("+ app.zGetActiveAccount().EmailAddress +") subject:("+ mimeSubject +")");
 				ZAssert.assertNotNull(received, "Verify the message is received correctly");
@@ -101,7 +97,6 @@ public class ForwardMailWithInlineImageAttachment extends PrefGroupMailByMessage
 				Element[] nodes = ZimbraAccount.AccountA().soapSelectNodes("//mail:mp[@filename='" + fileName + "']");
 				ZAssert.assertEquals(nodes.length, 2, "Verify attachment exist in the forwarded mail");
 
-
 				// Verify UI for attachment
 				app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, sent);
 				app.zPageMail.zListItem(Action.A_LEFTCLICK, mimeSubject);
@@ -109,9 +104,7 @@ public class ForwardMailWithInlineImageAttachment extends PrefGroupMailByMessage
 				ZAssert.assertTrue(app.zPageMail.zVerifyInlineImageAttachmentExistsInMail(), "Verify inline attachment exists in the email");
 
 			} finally {
-
 				app.zPageMain.zKeyboardKeyEvent(KeyEvent.VK_ESCAPE);
-
 			}
 
 		} else {

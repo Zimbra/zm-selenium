@@ -17,9 +17,7 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.mail;
 
 import java.io.File;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -33,19 +31,20 @@ public class CheckMailContentForSpecificMimes extends PrefGroupMailByMessageTest
 		logger.info("New "+ CheckMailContentForSpecificMimes.class.getCanonicalName());
 	}
 
-	@Bugs( ids = "13911,11684")
-	@Test( description = "Verify bug 13911",
+
+	@Bugs( ids = "11684")
+	@Test( description = "Bug 11684 - Web client stops rendering message when it encounters an inline image",
 			groups = { "functional", "L2" })
-	
+
 	public void CheckMailContentForSpecificMime_01() throws HarnessException {
-		
+
 		String subject = "subject13010064065623";
-		String bodyBeforeImage = "K\u00e6re alle"; 
+		String bodyBeforeImage = "K\u00e6re alle";
 		String bodyAfterImage = "Problemet best\u00E5r";
 
 		String MimeFolder = ConfigProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug13911";
 		LmtpInject.injectFile(ZimbraAccount.AccountZCS(), new File(MimeFolder));
-		
+
 		// Refresh current view
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
@@ -53,15 +52,16 @@ public class CheckMailContentForSpecificMimes extends PrefGroupMailByMessageTest
 		DisplayMail display = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 
 		String body = display.zGetMailProperty(Field.Body);
-		
+
 		ZAssert.assertStringContains(body, bodyBeforeImage, "Verify the text before the image");
 		ZAssert.assertStringContains(body, bodyAfterImage, "Verify the text after the image");
-
 	}
-	
+
+
 	@Bugs( ids = "21415")
-	@Test( description = "Verify bug 21415", groups = { "functional", "L2" })
-	
+	@Test( description = "Bug 21415 - Msg content truncated",
+			groups = { "functional", "L2" })
+
 	public void CheckMailContentForSpecificMime_02() throws HarnessException {
 
 		String subject = "subject12998858731253";
@@ -70,25 +70,26 @@ public class CheckMailContentForSpecificMimes extends PrefGroupMailByMessageTest
 
 		String MimeFolder = ConfigProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug21415";
 		LmtpInject.injectFile(ZimbraAccount.AccountZCS(), new File(MimeFolder));
-		
+
 		// Refresh current view
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
 		// Select the message so that it shows in the reading pane
 		DisplayMail display = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
-		
+
 		// Get the body
 		String body = display.zGetMailProperty(Field.Body);
-		
+
 		// Make sure both the beginning and ending text appear
 		ZAssert.assertStringContains(body, beginningContent, "Verify the ending text appears");
 		ZAssert.assertStringContains(body, endingContent, "Verify the ending text appears");
-
 	}
-	
+
+
 	@Bugs( ids = "21415")
-	@Test( description = "Verify bug 21415", groups = { "functional", "L2" })
-	
+	@Test( description = "Bug 21415 - Msg content truncated",
+			groups = { "functional", "L2" })
+
 	public void CheckMailContentForSpecificMime_03() throws HarnessException {
 
 		String subject = "subject12998912514374";
@@ -103,19 +104,20 @@ public class CheckMailContentForSpecificMimes extends PrefGroupMailByMessageTest
 
 		// Select the message so that it shows in the reading pane
 		DisplayMail display = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
-		
+
 		// Get the body
 		String body = display.zGetMailProperty(Field.Body);
-		
+
 		// Make sure both the beginning and ending text appear
 		ZAssert.assertStringContains(body, beginningContent, "Verify the ending text appears");
 		ZAssert.assertStringContains(body, endingContent, "Verify the ending text appears");
-		
 	}
-	
+
+
 	@Bugs( ids = "25624")
-	@Test( description = "Verify bug 25624", groups = { "functional", "L2" })
-	
+	@Test( description = "Bug 25624 - Email reply to an invite shows a fragment of the msg but opens as blank msg",
+			groups = { "functional", "L2" })
+
 	public void CheckMailContentForSpecificMime_04() throws HarnessException {
 
 		String subject = "subject13001430504373";
@@ -132,10 +134,12 @@ public class CheckMailContentForSpecificMimes extends PrefGroupMailByMessageTest
 		String body = display.zGetMailProperty(Field.Body);
 		ZAssert.assertStringContains(body, "Hi Candace", "Verify the message content is not blank");
 	}
-	
+
+
 	@Bugs( ids = "27796")
-	@Test( description = "Verify bug 27796", groups = { "functional", "L2" })
-	
+	@Test( description = "Bug 27796 - Message renders in standard client but not advanced",
+			groups = { "functional", "L2" })
+
 	public void CheckMailContentForSpecificMime_05() throws HarnessException {
 
 		String subject = "subject13001430504374";
@@ -143,7 +147,7 @@ public class CheckMailContentForSpecificMimes extends PrefGroupMailByMessageTest
 		String MimeFolder = ConfigProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug27796";
 		LmtpInject.injectFile(ZimbraAccount.AccountZCS(), new File(MimeFolder));
 
-		
+
 		// Refresh current view
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
@@ -155,10 +159,12 @@ public class CheckMailContentForSpecificMimes extends PrefGroupMailByMessageTest
 		ZAssert.assertStringContains(body, "http://twiki.corp.yahoo.com/view/Devel/DevelRandom", "Verify the message content contains the footer");
 
 	}
-	
+
+
 	@Bugs(ids="83527")
-	@Test( description = "Verify bug 34401", groups = { "functional", "L2" })
-	
+	@Test( description = "Bug 83527 - InlineImage attribute is missing for inline image in main branch",
+			groups = { "functional", "L2" })
+
 	public void CheckMailContentForSpecificMime_06() throws HarnessException {
 
 		String subject = "subject13002239738283";
@@ -173,30 +179,31 @@ public class CheckMailContentForSpecificMimes extends PrefGroupMailByMessageTest
 		DisplayMail display = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 
 		HtmlElement bodyElement = display.zGetMailPropertyAsHtml(Field.Body);
-		
+
 		HtmlElement.evaluate(bodyElement, "//body//img", "class", "InlineImage", 1);
 	}
-	
+
+
 	@Bugs( ids = "66192")
-	@Test( description = "Blank body with JS error on viewing some messages", groups = { "functional", "L2" })
-	
+	@Test( description = "Blank body with JS error on viewing some messages",
+			groups = { "functional", "L2" })
+
 	public void CheckMailContentForSpecificMime_07() throws HarnessException {
 
 		String subject = "Fwd: test bug66192";
 		String bodytext = "Kind regards,";
-	
+
 		String MimeFolder = ConfigProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug66192";
 		LmtpInject.injectFile(ZimbraAccount.AccountZCS(), new File(MimeFolder));
-				
+
 		// Refresh current view
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
 		// Select the message so that it shows in the reading pane
 		DisplayMail display = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 		String body = display.zGetMailProperty(Field.Body);
-		
-		//Verify body contents
-		ZAssert.assertStringContains(body, bodytext, "Verify the ending text appears");
 
+		// Verify body contents
+		ZAssert.assertStringContains(body, bodytext, "Verify the ending text appears");
 	}
 }

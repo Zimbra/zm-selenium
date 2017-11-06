@@ -93,7 +93,7 @@ public class OpenDocument extends FeatureBriefcaseTest {
 
 			text = documentBriefcaseOpen.retriveDocumentText();
 
-			// close
+			// Close
 			app.zPageBriefcase.zSelectWindow(docName);
 
 			app.zPageBriefcase.closeWindow();
@@ -157,7 +157,7 @@ public class OpenDocument extends FeatureBriefcaseTest {
 
 			text = documentBriefcaseOpen.retriveDocumentText();
 
-			// close
+			// Close
 			app.zPageBriefcase.zSelectWindow(docName);
 
 			app.zPageBriefcase.closeWindow();
@@ -221,7 +221,7 @@ public class OpenDocument extends FeatureBriefcaseTest {
 
 			text = documentBriefcaseOpen.retriveDocumentText();
 
-			// close
+			// Close
 			app.zPageBriefcase.zSelectWindow(docName);
 
 			app.zPageBriefcase.closeWindow();

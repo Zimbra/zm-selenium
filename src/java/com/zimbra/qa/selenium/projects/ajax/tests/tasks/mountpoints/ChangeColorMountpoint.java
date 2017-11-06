@@ -17,9 +17,7 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.tasks.mountpoints;
 
 import java.util.HashMap;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.FolderMountpointItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
@@ -40,25 +38,23 @@ public class ChangeColorMountpoint extends PrefGroupMailByMessageTest {
 		logger.info("New " + ChangeColorMountpoint.class.getCanonicalName());
 
 		super.startingPage = app.zPageTasks;
-		super.startingAccountPreferences = new HashMap<String, String>() {
-			{
-				put("zimbraPrefReadingPaneLocation", "bottom");
-				put("zimbraPrefShowSelectionCheckbox", "TRUE");
-				
-			}
-		};
+		super.startingAccountPreferences = new HashMap<String, String>() {{
+			put("zimbraPrefReadingPaneLocation", "bottom");
+			put("zimbraPrefShowSelectionCheckbox", "TRUE");
+		}};
 	}
-		
+
+
 	@Test( description = "Edit a tasklist, change the color (Context menu -> Edit)",
 			groups = { "functional", "L3" })
-	
+
 	public void ChangeColorMountpoint_01() throws HarnessException {
-		
+
 		ZimbraAccount Owner = (new ZimbraAccount()).provision().authenticate();
 
 		// Owner creates a folder, shares it with current user
 		String ownerFoldername = "ownerfolder"+ ConfigProperties.getUniqueString();
-		
+
 		FolderItem ownerTask = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
 		ZAssert.assertNotNull(ownerTask, "Verify the new owner folder exists");
 
@@ -89,7 +85,7 @@ public class ChangeColorMountpoint extends PrefGroupMailByMessageTest {
 
 		// Click Get Mail button
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
-		
+
 		// Rename the folder using context menu
 		DialogEditFolder dialog = (DialogEditFolder) app.zTreeTasks.zTreeItem(Action.A_RIGHTCLICK, Button.B_TREE_EDIT, mountpoint);
 		ZAssert.assertNotNull(dialog, "Verify the dialog opened");

@@ -35,6 +35,7 @@ public class CreateMailWithInlineImageAttachment extends PrefGroupMailByMessageT
 		super.startingAccountPreferences.put("zimbraPrefForwardReplyInOriginalFormat", "FALSE");
 	}
 
+
 	@Test( description = "Send a mail by adding inline image attachment",
 			groups = { "sanity", "L0" })
 
@@ -67,7 +68,7 @@ public class CreateMailWithInlineImageAttachment extends PrefGroupMailByMessageT
 				app.zPageMail.zPressButton(Button.O_ATTACH_DROPDOWN);
 				app.zPageMail.zPressButton(Button.B_ATTACH_INLINE);
 				zUploadInlineImageAttachment(filePath);
-				
+
 				// Verify inline image in compose window
 				ZAssert.assertTrue(app.zPageMail.zVerifyInlineImageAttachmentExistsInComposeWindow(), "Verify inline image is present in compose window");
 
@@ -109,9 +110,7 @@ public class CreateMailWithInlineImageAttachment extends PrefGroupMailByMessageT
 				ZAssert.assertTrue(app.zPageMail.zVerifyInlineImageAttachmentExistsInMail(), "Verify inline image is present in reading pane");
 
 			} finally {
-
 				app.zPageMain.zKeyboardKeyEvent(KeyEvent.VK_ESCAPE);
-
 			}
 
 		} else {

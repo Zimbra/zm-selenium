@@ -17,7 +17,6 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.compose.personas;
 
 import org.testng.annotations.*;
-
 import com.zimbra.common.soap.Element;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -34,17 +33,17 @@ public class FromAllowAddress extends PrefGroupMailByMessageTest {
 		logger.info("New "+ FromAllowAddress.class.getCanonicalName());
 		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "text");
 	}
-	
+
 	@BeforeMethod( groups = { "always" } )
 	public void addAliasToActiveAccount() throws HarnessException {
-		
+
 		AllowFromDisplay = "allowed" + ConfigProperties.getUniqueString();
-		AllowEmailAddress = AllowFromDisplay + 
+		AllowEmailAddress = AllowFromDisplay +
 					"@" +
 					ConfigProperties.getStringProperty("testdomain", "testdomain.com");
-		
+
 		String identity = "identity" + ConfigProperties.getUniqueString();
-		
+
 		ZimbraAdminAccount.GlobalAdmin().soapSend(
 					"<ModifyAccountRequest xmlns='urn:zimbraAdmin'>"
 				+		"<id>"+ app.zGetActiveAccount().ZimbraId +"</id>"
@@ -65,23 +64,24 @@ public class FromAllowAddress extends PrefGroupMailByMessageTest {
 			+			"<a name='zimbraPrefWhenInFoldersEnabled'>FALSE</a>"
 			+		"</identity>"
 			+	"</CreateIdentityRequest>");
-		
+
 		// Refresh UI
 		app.zPageMain.zRefreshMainUI();
-		
 	}
+
 
 	@Test( description = "Send a mail using zimbraAllowFromAddress",
 			groups = { "functional", "L2" })
+
 	public void FromAllowAddress_01() throws HarnessException {
-		
+
 		// Create the message data to be sent
 		String subject = "subject" + ConfigProperties.getUniqueString();
-		
+
 		// Open the new mail form
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
 		ZAssert.assertNotNull(mailform, "Verify the new form opened");
-		
+
 		// Fill out the form with the data
 		mailform.zFillField(Field.From, AllowEmailAddress);
 		mailform.zFillField(Field.To, ZimbraAccount.AccountA().EmailAddress);
@@ -104,19 +104,17 @@ public class FromAllowAddress extends PrefGroupMailByMessageTest {
 		// Verify From: alias
 		String address = ZimbraAccount.AccountA().soapSelectValue("//mail:e[@t='f']", "a");
 		ZAssert.assertEquals(address, AllowEmailAddress, "Verify the from is the alias email address");
-		
+
 		// Verify no headers contain active account
 		Element[] nodes = ZimbraAccount.AccountA().soapSelectNodes("//mail:e");
 		for (Element e : nodes) {
 			String attr = e.getAttribute("a", null);
 			if ( attr != null ) {
 				ZAssert.assertStringDoesNotContain(
-						attr, 
-						app.zGetActiveAccount().EmailAddress, 
+						attr,
+						app.zGetActiveAccount().EmailAddress,
 						"Verify no headers contain the active account email address");
 			}
 		}
-
 	}
-
 }

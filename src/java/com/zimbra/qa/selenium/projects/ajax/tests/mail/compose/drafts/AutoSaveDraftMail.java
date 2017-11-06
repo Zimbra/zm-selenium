@@ -41,11 +41,11 @@ public class AutoSaveDraftMail extends PrefGroupMailByMessageTest {
 		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "text");
 	}
 
-	
+
 	@Bugs(ids = "66393")
 	@Test( description = "Auto save a basic draft (subject only)",
 			groups = { "smoke", "L1" })
-	
+
 	public void AutoSaveDraftMail_01() throws HarnessException {
 
 		// Create the message data to be sent

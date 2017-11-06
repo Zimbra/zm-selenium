@@ -29,20 +29,19 @@ public class UndoDeleteContact extends AjaxCommonTest {
 
 	public UndoDeleteContact() {
 		logger.info("New " + UndoDeleteContact.class.getCanonicalName());
-		// All tests start at the Address page
+
 		super.startingPage = app.zPageContacts;
-		// Enable user preference checkboxes
 		super.startingAccountPreferences = new HashMap<String, String>() {
-			private static final long serialVersionUID = -8102550098554063084L;
-			{
+			private static final long serialVersionUID = -8102550098554063084L; {
 				put("zimbraPrefShowSelectionCheckbox", "TRUE");
 			}
 		};
-
 	}
 
-	@Test( description = "Undone deleted contact", 
+
+	@Test( description = "Undone deleted contact",
 			groups = { "functional", "L3"})
+
 	public void UndoDeleteContact_01() throws HarnessException {
 
 		// The contacts folder
@@ -76,15 +75,16 @@ public class UndoDeleteContact extends AjaxCommonTest {
 		toast.zClickUndo();
 
 
-		//Verify contact come back into Contacts folder
+		// Verify contact come back into Contacts folder
 		ContactItem actual = ContactItem.importFromSOAP(app.zGetActiveAccount(), "#firstname:"+ contact.firstName);
 		ZAssert.assertNotNull(actual, "Verify the contact is not deleted from the addressbook");
 		ZAssert.assertEquals(actual.getFolderId(), contacts.getId(), "Verify the contact is back in the contacts folder");
-
 	}
 
-	@Test( description = "Undone deleted a contact item selected with checkbox", 
+
+	@Test( description = "Undone deleted a contact item selected with checkbox",
 			groups = { "functional", "L3"})
+
 	public void UndoDeleteContact_02() throws HarnessException {
 
 		// The contacts folder
@@ -108,7 +108,7 @@ public class UndoDeleteContact extends AjaxCommonTest {
 
 		// Select the contact's checkbox
 		app.zPageContacts.zListItem(Action.A_CHECKBOX, contact.firstName);
-		
+
 		// Delete contact
 		app.zPageContacts.zToolbarPressButton(Button.B_DELETE);
 
@@ -117,15 +117,16 @@ public class UndoDeleteContact extends AjaxCommonTest {
 		toast.zWaitForActive();
 		toast.zClickUndo();
 
-		//Verify contact come back into Contacts folder
+		// Verify contact come back into Contacts folder
 		ContactItem actual = ContactItem.importFromSOAP(app.zGetActiveAccount(), "#firstname:"+ contact.firstName);
 		ZAssert.assertNotNull(actual, "Verify the contact is not deleted from the addressbook");
 		ZAssert.assertEquals(actual.getFolderId(), contacts.getId(), "Verify the contact is back in the contacts folder");
-
 	}
 
-	@Test( description = "Undone deleted multiple contact items", 
+
+	@Test( description = "Undone deleted multiple contact items",
 			groups = { "functional", "L3"})
+
 	public void UndoDeleteContact_03() throws HarnessException {
 
 		// The contacts folder
@@ -148,8 +149,7 @@ public class UndoDeleteContact extends AjaxCommonTest {
 		ContactItem contact2 = new ContactItem();
 		contact2.firstName = "First"+ ConfigProperties.getUniqueString();
 		contact2.lastName = "Last" + ConfigProperties.getUniqueString();
-		contact2.email = "email" + ConfigProperties.getUniqueString()
-		+ "@domain.com";
+		contact2.email = "email" + ConfigProperties.getUniqueString() + "@domain.com";
 		contact2.fileAs = contact2.lastName + ", " + contact2.firstName;
 
 		app.zGetActiveAccount().soapSend(
@@ -160,11 +160,9 @@ public class UndoDeleteContact extends AjaxCommonTest {
 				+ "</CreateContactRequest>");
 
 		ContactItem contact3 = new ContactItem();
-		contact3.firstName = "First"
-			+ ConfigProperties.getUniqueString();
+		contact3.firstName = "First" + ConfigProperties.getUniqueString();
 		contact3.lastName = "Last" + ConfigProperties.getUniqueString();
-		contact3.email = "email" + ConfigProperties.getUniqueString()
-		+ "@domain.com";
+		contact3.email = "email" + ConfigProperties.getUniqueString() + "@domain.com";
 		contact3.fileAs = contact3.lastName + ", " + contact3.firstName;
 
 		app.zGetActiveAccount().soapSend(
@@ -182,7 +180,7 @@ public class UndoDeleteContact extends AjaxCommonTest {
 		app.zPageContacts.zListItem(Action.A_CHECKBOX, contact2.fileAs);
 		app.zPageContacts.zListItem(Action.A_CHECKBOX, contact3.fileAs);
 
-		// delete 3 contacts
+		// Delete 3 contacts
 		app.zPageContacts.zToolbarPressButton(Button.B_DELETE);
 
 		// Click undo from the toaster message
@@ -190,8 +188,7 @@ public class UndoDeleteContact extends AjaxCommonTest {
 		toast.zWaitForActive();
 		toast.zClickUndo();
 
-		//Verify all 3 contacts are come back into Contacts folder
-
+		// Verify all 3 contacts are come back into Contacts folder
 		ContactItem actual1 = ContactItem.importFromSOAP(app.zGetActiveAccount(), "#firstname:"+ contact1.firstName);
 		ZAssert.assertNotNull(actual1, "Verify the contact1 is not deleted from the addressbook");
 		ZAssert.assertEquals(actual1.getFolderId(), contacts.getId(), "Verify the contact is back in the contacts folder");
@@ -203,8 +200,5 @@ public class UndoDeleteContact extends AjaxCommonTest {
 		ContactItem actual3 = ContactItem.importFromSOAP(app.zGetActiveAccount(), "#firstname:"+ contact3.firstName);
 		ZAssert.assertNotNull(actual3, "Verify the contact3 not deleted from the addressbook");
 		ZAssert.assertEquals(actual3.getFolderId(), contacts.getId(), "Verify the contact is back in the contacts folder");
-
 	}
-
 }
-

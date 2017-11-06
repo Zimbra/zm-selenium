@@ -14,7 +14,6 @@
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-
 package com.zimbra.qa.selenium.projects.ajax.tests.preferences.mail.signatures;
 
 import org.testng.Assert;
@@ -44,7 +43,10 @@ public class SignatureVcard extends AjaxCommonTest {
 		super.startingPage = app.zPagePreferences;
 	}
 
-	@Test(description = "Verify Signature Vcard thoough GUI", groups = { "functional", "L2" })
+
+	@Test(description = "Verify Signature Vcard through GUI",
+		groups = { "functional", "L2" })
+
 	public void SignatureVcard_01() throws HarnessException {
 
 		// Create a contact
@@ -52,7 +54,7 @@ public class SignatureVcard extends AjaxCommonTest {
 		String sigName = "signame" + ConfigProperties.getUniqueString();
 		String sigBody = "sigbody" + ConfigProperties.getUniqueString();
 
-		// click on signature from left pane
+		// Click on signature from left pane
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.MailSignatures);
 
 		// Click on New signature button
@@ -62,10 +64,8 @@ public class SignatureVcard extends AjaxCommonTest {
 		signew.zFillField(Field.SignatureName, sigName);
 		signew.zFillField(Field.SignatureBody, sigBody);
 
-		// click Browse button to select contact from Select Contact Dialog
-
-		DialogSelectContact selectContactDialog = (DialogSelectContact) app.zPageSignature
-				.zToolbarPressButton(Button.B_BROWSE);
+		// Click Browse button to select contact from Select Contact Dialog
+		DialogSelectContact selectContactDialog = (DialogSelectContact) app.zPageSignature.zToolbarPressButton(Button.B_BROWSE);
 
 		// Verify Select Contact is active
 		selectContactDialog.zIsActive();
@@ -97,7 +97,6 @@ public class SignatureVcard extends AjaxCommonTest {
 		app.zPageMail.zNavigateTo();
 
 		MailItem mail = new MailItem();
-
 		FolderItem sent = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Sent);
 		mail.dToRecipients.add(new RecipientItem(ZimbraAccount.AccountZCS()));
 		mail.dSubject = "subject" + ConfigProperties.getUniqueString();
@@ -110,21 +109,19 @@ public class SignatureVcard extends AjaxCommonTest {
 		// Fill out the form with the data
 		mailform.zFill(mail);
 
-		// click Signature drop down and add signature
+		// Click Signature drop down and add signature
 		app.zPageMail.zToolbarPressPulldown(Button.B_OPTIONS, Button.O_ADD_SIGNATURE, sigName);
 
 		// Vrify Attachment present in compose window
 		Assert.assertTrue(app.zPageMail.sIsElementPresent("css=a[class='AttLink']"), "vcf attachment link present");
 
 		// Verify Signature present in body
-		Assert.assertTrue(app.zPageMail
-				.zVerifyContentPresentInComposedBody("css=body[id='tinymce'] div[data-marker='__SIG_PRE__']", sigBody));
+		Assert.assertTrue(app.zPageMail.zVerifyContentPresentInComposedBody("css=body[id='tinymce'] div[data-marker='__SIG_PRE__']", sigBody));
 
 		// Send the message
 		mailform.zSubmit();
 
 		// Verify signature body and attachment through UI
-
 		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, sent);
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, mail.dSubject.toString());
 
@@ -132,9 +129,6 @@ public class SignatureVcard extends AjaxCommonTest {
 		Assert.assertTrue(app.zPageMail.sIsElementPresent("css=a[class='AttLink']"), "vcf attachment link present");
 
 		// Verify Signature present in body
-		Assert.assertTrue(app.zPageMail
-				.zVerifyContentPresentInDisplayMail("css=body[id='tinymce'] div[data-marker='__SIG_PRE__']", sigBody));
-
+		Assert.assertTrue(app.zPageMail.zVerifyContentPresentInDisplayMail("css=body[id='tinymce'] div[data-marker='__SIG_PRE__']", sigBody));
 	}
-
 }

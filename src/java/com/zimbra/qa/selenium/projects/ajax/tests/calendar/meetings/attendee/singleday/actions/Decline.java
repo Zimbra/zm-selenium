@@ -80,7 +80,7 @@ public class Decline extends AjaxCommonTest {
 		// ---------------- Verification at organizer & invitee side both -------------------------------------
 
 
-		// --- Check that the organizer shows the attendee as "DECLINE" ---
+		// Check that the organizer shows the attendee as "DECLINE" ---
 
 		// Organizer: Search for the appointment (InvId)
 		ZimbraAccount.AccountA().soapSend(
@@ -100,7 +100,7 @@ public class Decline extends AjaxCommonTest {
 		ZAssert.assertEquals(attendeeStatus, "NE", "Verify that the attendee status shows as 'NEEDS ACTION' instead of 'DECLINED'");
 
 
-		// --- Check that the attendee showing status as "DECLINE" ---
+		// Check that the attendee showing status as "DECLINE" ---
 
 		// Attendee: Search for the appointment (InvId)
 		app.zGetActiveAccount().soapSend(
@@ -181,7 +181,7 @@ public class Decline extends AjaxCommonTest {
 		// ---------------- Verification at organizer & invitee side both -------------------------------------
 
 
-		// --- Check that the organizer shows the attendee as "DECLINE" ---
+		// Check that the organizer shows the attendee as "DECLINE" ---
 
 		// Organizer: Search for the appointment (InvId)
 		ZimbraAccount.AccountA().soapSend(
@@ -201,7 +201,7 @@ public class Decline extends AjaxCommonTest {
 		ZAssert.assertEquals(attendeeStatus, "DE", "Verify that the attendee status shows as 'DECLINED'");
 
 
-		// --- Check that the attendee showing status as "DECLINE" ---
+		// Check that the attendee showing status as "DECLINE" ---
 
 		// Attendee: Search for the appointment (InvId)
 		app.zGetActiveAccount().soapSend(

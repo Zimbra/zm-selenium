@@ -44,12 +44,13 @@ public class DragAndDropSharedTask extends AjaxCommonTest {
 				put("zimbraPrefTasksReadingPaneLocation", "bottom");
 				put("zimbraPrefShowSelectionCheckbox", "TRUE");
 			}
-		};			
+		};
 	}
+
 
 	@Test( description = "Drag task  from shared folder and drop into local task folder (manager rights)",
 			groups = { "functional", "L2" })
-	
+
 	public void DragAndDropSharedTaskToLocalFolder() throws HarnessException {
 
 		String foldername = "tasklist" + ConfigProperties.getUniqueString();
@@ -93,7 +94,7 @@ public class DragAndDropSharedTask extends AjaxCommonTest {
 
 		app.zPageTasks.zToolbarPressButton(Button.B_REFRESH);
 		SleepUtil.sleepMedium();
-	
+
 		TaskItem mountpointsubject = TaskItem.importFromSOAP(ZimbraAccount.AccountA(), subject);
 		ZAssert.assertNotNull(mountpointsubject, "Verify the task added");
 
@@ -121,7 +122,7 @@ public class DragAndDropSharedTask extends AjaxCommonTest {
 				"css=td[id$='"+mountpointsubject.getId() +"__su']",
 				"css=td[id='zti__main_Tasks__"+ taskFolder.getId() + "_textCell']:contains('"+ taskFolder.getName() + "')");
 
-		// refresh tasks page
+		// Refresh tasks page
 		app.zTreeTasks.zTreeItem(Action.A_LEFTCLICK,mountpoint);
 
 		List<TaskItem> tasks = app.zPageTasks.zGetTasks();
@@ -137,7 +138,7 @@ public class DragAndDropSharedTask extends AjaxCommonTest {
 
 		ZAssert.assertNull(found,"Verify the  task no longer  present in the mounted folder");
 
-		// click on subfolder in tree view
+		// Click on subfolder in tree view
 		app.zTreeTasks.zTreeItem(Action.A_LEFTCLICK, taskFolder);
 		List<TaskItem> tasks1 = app.zPageTasks.zGetTasks();
 
@@ -157,7 +158,7 @@ public class DragAndDropSharedTask extends AjaxCommonTest {
 
 	@Test( description = "Drag task from local task folder to shared folder(manager rights)",
 			groups = { "functional", "L2" })
-	
+
 	public void DragAndDropTaskToSharedFolder() throws HarnessException {
 
 		String foldername = "tasklist" + ConfigProperties.getUniqueString();
@@ -199,7 +200,7 @@ public class DragAndDropSharedTask extends AjaxCommonTest {
 		"</CreateTaskRequest>");
 
 		app.zPageTasks.zToolbarPressButton(Button.B_REFRESH);
-		
+
 		TaskItem task1 = TaskItem.importFromSOAP(app.zGetActiveAccount(), subject);
 		ZAssert.assertNotNull(task1, "Verify the task added");
 
@@ -224,8 +225,7 @@ public class DragAndDropSharedTask extends AjaxCommonTest {
 				"css=td[id$='"+task1.getId() +"__su']",
 				"css=td[id='zti__main_Tasks__"+ mountpoint.getId() + "_textCell']:contains('"+ mountpoint.getName() + "')");
 
-
-		// refresh tasks page
+		// Refresh tasks page
 		app.zTreeTasks.zTreeItem(Action.A_LEFTCLICK,taskFolder);
 
 		List<TaskItem> tasks = app.zPageTasks.zGetTasks();
@@ -241,7 +241,7 @@ public class DragAndDropSharedTask extends AjaxCommonTest {
 
 		ZAssert.assertNull(found,"Verify the  task is no longer  present in the task list");
 
-		// click on subfolder in tree view
+		// Click on subfolder in tree view
 		app.zTreeTasks.zTreeItem(Action.A_LEFTCLICK, mountpoint);
 		List<TaskItem> tasks1 = app.zPageTasks.zGetTasks();
 

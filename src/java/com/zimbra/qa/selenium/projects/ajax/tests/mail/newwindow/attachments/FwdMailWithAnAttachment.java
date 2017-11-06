@@ -14,7 +14,6 @@
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.newwindow.attachments;
 
 import org.testng.SkipException;
@@ -39,6 +38,7 @@ public class FwdMailWithAnAttachment extends PrefGroupMailByMessageTest {
 		logger.info("New "+ FwdMailWithAnAttachment.class.getCanonicalName());
 	}
 
+
 	@Test( description = "Forward a mail  with an attachment by pressing Forward button>>attach - in separate window",
 			groups = { "smoke", "L1" })
 
@@ -47,7 +47,6 @@ public class FwdMailWithAnAttachment extends PrefGroupMailByMessageTest {
 		if (OperatingSystem.isWindows() == true && !ConfigProperties.getStringProperty("browser").contains("edge")) {
 
 			String subject = "subject"+ ConfigProperties.getUniqueString();
-
 
 			// Send a message to the account
 			ZimbraAccount.AccountA().soapSend(
@@ -83,12 +82,12 @@ public class FwdMailWithAnAttachment extends PrefGroupMailByMessageTest {
 
 				window.zSetWindowTitle(windowTitle);
 				ZAssert.assertTrue(window.zIsWindowOpen(windowTitle),"Verify the window is opened and switch to it");
-				
+
 				window.zToolbarPressButton(Button.B_FORWARD);
 				String locator = FormMailNew.Locators.zToField;
 				window.sType(locator, ZimbraAccount.AccountB().EmailAddress+",");
 				SleepUtil.sleepSmall();
-				
+
 				// Add an attachment
 				window.zPressButton(Button.B_ATTACH);
 				zUpload(filePath, window);
@@ -114,7 +113,5 @@ public class FwdMailWithAnAttachment extends PrefGroupMailByMessageTest {
 		} else {
 			throw new SkipException("File upload operation is allowed only for Windows OS (Skipping upload tests on MS Edge for now due to intermittancy and major control issue), skipping this test...");
 		}
-
 	}
-
 }

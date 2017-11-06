@@ -95,7 +95,5 @@ public class ModifyLocationSuggestionPreference extends AjaxCommonTest {
 		MailItem invite = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "subject:("+ appt.getSubject() +")");
 		ZAssert.assertNotNull(invite, "Verify the invite is received");
 		ZAssert.assertEquals(invite.dSubject, appt.getSubject(), "Subject: Verify the appointment data");
-
 	}
-
 }

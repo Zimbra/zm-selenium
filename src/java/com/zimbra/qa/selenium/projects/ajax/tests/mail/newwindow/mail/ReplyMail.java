@@ -1,5 +1,3 @@
-package com.zimbra.qa.selenium.projects.ajax.tests.mail.newwindow.mail;
-
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
@@ -16,6 +14,7 @@ package com.zimbra.qa.selenium.projects.ajax.tests.mail.newwindow.mail;
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
+package com.zimbra.qa.selenium.projects.ajax.tests.mail.newwindow.mail;
 
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.items.*;
@@ -30,13 +29,13 @@ public class ReplyMail extends PrefGroupMailByMessageTest {
 		logger.info("New "+ ReplyMail.class.getCanonicalName());
 	}
 
-	
+
 	@Test( description = "Reply to a mail by pressing Reply button - in separate window",
 			groups = { "smoke", "L1" })
-	
+
 	public void ReplyMailFromNewWindow_01() throws HarnessException {
 
-		String subject = "subject"+ ConfigProperties.getUniqueString();		
+		String subject = "subject"+ ConfigProperties.getUniqueString();
 
 		// Send a message to the account
 		ZimbraAccount.AccountA().soapSend(
@@ -66,9 +65,9 @@ public class ReplyMail extends PrefGroupMailByMessageTest {
 
 			window.zSetWindowTitle(windowTitle);
 			ZAssert.assertTrue(window.zIsWindowOpen(windowTitle),"Verify the window is opened and switch to it");
-			
+
 			window.zToolbarPressButton(Button.B_REPLY);
-			window.zToolbarPressButton(Button.B_SEND);		
+			window.zToolbarPressButton(Button.B_SEND);
 			window.zToolbarPressButton(Button.B_CLOSE);
 
 		} finally {
@@ -76,7 +75,6 @@ public class ReplyMail extends PrefGroupMailByMessageTest {
 		}
 
 		// From the receiving end, verify the message details
-		// Need 'in:inbox' to seprate the message from the sent message
 		MailItem received = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "in:inbox subject:("+subject +")");
 
 		ZAssert.assertEquals(received.dFromRecipient.dEmailAddress, app.zGetActiveAccount().EmailAddress, "Verify the from field is correct");
@@ -88,9 +86,10 @@ public class ReplyMail extends PrefGroupMailByMessageTest {
 
 	@Test( description = "Reply a  message , using keyboard shortcut (keyboard='r') - in a separate window",
 			groups = { "smoke", "L1" })
+
 	public void ReplyMailFromNewWindow_02() throws HarnessException {
 
-		String subject = "subject"+ ConfigProperties.getUniqueString();		
+		String subject = "subject"+ ConfigProperties.getUniqueString();
 
 
 		// Send a message to the account
@@ -132,7 +131,6 @@ public class ReplyMail extends PrefGroupMailByMessageTest {
 		}
 
 		// From the receiving end, verify the message details
-		// Need 'in:inbox' to seprate the message from the sent message
 		MailItem received = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "in:inbox subject:("+subject +")");
 
 		ZAssert.assertEquals(received.dFromRecipient.dEmailAddress, app.zGetActiveAccount().EmailAddress, "Verify the from field is correct");
@@ -140,14 +138,14 @@ public class ReplyMail extends PrefGroupMailByMessageTest {
 		ZAssert.assertStringContains(received.dSubject, subject, "Verify the subject field is correct");
 		ZAssert.assertStringContains(received.dSubject, "Re", "Verify the subject field contains the 'Re' prefix");
 	}
-	
-	
+
+
 	@Test( description = "Reply All a  message , using keyboard shortcut (keyboard='a') - in a separate window",
 			groups = { "smoke", "L1" })
-	
+
 	public void ReplyAllMailFromNewWindow_03() throws HarnessException {
 
-		String subject = "subject"+ ConfigProperties.getUniqueString();		
+		String subject = "subject"+ ConfigProperties.getUniqueString();
 
 
 		// Send a message to the account
@@ -190,16 +188,11 @@ public class ReplyMail extends PrefGroupMailByMessageTest {
 		}
 
 		// From the receiving end, verify the message details
-		// Need 'in:inbox' to seprate the message from the sent message
 		MailItem received = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "in:inbox subject:("+subject +")");
 
 		ZAssert.assertEquals(received.dFromRecipient.dEmailAddress, app.zGetActiveAccount().EmailAddress, "Verify the from field is correct");
 		ZAssert.assertEquals(received.dToRecipients.get(0).dEmailAddress, ZimbraAccount.AccountA().EmailAddress, "Verify the to field is correct");
 		ZAssert.assertStringContains(received.dSubject, subject, "Verify the subject field is correct");
 		ZAssert.assertStringContains(received.dSubject, "Re", "Verify the subject field contains the 'Re' prefix");
-
 	}
-
-
 }
-

@@ -25,27 +25,24 @@ import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 
 public class DeleteContact extends AjaxCommonTest  {
-	
+
 	public DeleteContact() {
 		logger.info("New "+ DeleteContact.class.getCanonicalName());
-		
-		super.startingPage = app.zPageContacts;
 
-		// Enable user preference checkboxes
+		super.startingPage = app.zPageContacts;
 		super.startingAccountPreferences = new HashMap<String , String>() {
-		private static final long serialVersionUID = -8102550098554063084L;
-			{
-			    put("zimbraPrefShowSelectionCheckbox", "TRUE");		         
-			}};
+			private static final long serialVersionUID = -8102550098554063084L; {
+				put("zimbraPrefShowSelectionCheckbox", "TRUE");
+			}
+		};
 	}
-		
+
+
 	@Test( description = "Delete a contact item",
 			groups = { "smoke", "L0"})
-	
+
 	public void ClickDeleteOnToolbar_01() throws HarnessException {
 
-		//-- Data
-		
 		// Create a contact item
 		ContactItem contact = new ContactItem();
 		contact.firstName = "First" + ConfigProperties.getUniqueString();
@@ -61,36 +58,30 @@ public class DeleteContact extends AjaxCommonTest  {
                 			"</cn>" +
 	                "</CreateContactRequest>");
 
-		//-- GUI
-		
 		// Refresh to get the contact into the client
 		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
-		
+
 		// Select the contact
 		app.zPageContacts.zListItem(Action.A_LEFTCLICK, contact.firstName);
-		
-        // delete contact
+
+        // Delete contact
         app.zPageContacts.zToolbarPressButton(Button.B_DELETE);
-       
-        
-        //-- Verification
-        
-        //verify contact deleted
+
+        // Verify contact deleted
         ContactItem actual = ContactItem.importFromSOAP(app.zGetActiveAccount(), "#firstname:"+ contact.firstName);
         ZAssert.assertNull(actual, "Verify the contact is deleted from the addressbook");
-        
+
         // Verify contact in trash
         actual = ContactItem.importFromSOAP(app.zGetActiveAccount(), "is:anywhere #firstname:"+ contact.firstName);
         ZAssert.assertNotNull(actual, "Verify the contact is in the trash");
    	}
-	
+
+
 	@Test( description = "Delete a contact item selected with checkbox",
 			groups = { "functional", "L2" })
-	
+
 	public void DeleteContactSelectedWithCheckbox_02() throws HarnessException {
 
-		//-- Data
-		
 		// Create a contact item
 		ContactItem contact = new ContactItem();
 		contact.firstName = "First" + ConfigProperties.getUniqueString();
@@ -105,26 +96,23 @@ public class DeleteContact extends AjaxCommonTest  {
 	                			"<a n='email'>" + contact.email + "</a>" +
                 			"</cn>" +
 	                "</CreateContactRequest>");
-		
-		//-- GUI
-		
+
 		// Refresh to get the contact into the client
 		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
-		
+
 		// By default newly created contact will be checked.
 		// Select the contact's checkbox
 		//app.zPageContacts.zListItem(Action.A_CHECKBOX, contact.firstName);
-		
-        // delete contact
-        app.zPageContacts.zToolbarPressButton(Button.B_DELETE);       
-        
-        //-- Verification
-        
-        //verify contact deleted
+
+        // Delete contact
+        app.zPageContacts.zToolbarPressButton(Button.B_DELETE);
+
+        // Verify contact deleted
         ContactItem actual = ContactItem.importFromSOAP(app.zGetActiveAccount(), "#firstname:"+ contact.firstName);
-        ZAssert.assertNull(actual, "Verify the contact is deleted from the addressbook");        
+        ZAssert.assertNull(actual, "Verify the contact is deleted from the addressbook");
    	}
-	
+
+
 	@DataProvider(name = "DataProviderDeleteKeys")
 	public Object[][] DataProviderDeleteKeys() {
 	  return new Object[][] {
@@ -132,15 +120,13 @@ public class DeleteContact extends AjaxCommonTest  {
 	    new Object[] { "VK_BACK_SPACE", KeyEvent.VK_BACK_SPACE },
 	  };
 	}
-	
+
 	@Test( description = "Delete a contact item using keyboard short cut Del",
 			groups = { "functional", "L2"},
 			dataProvider = "DataProviderDeleteKeys")
-	
+
 	public void UseShortcut_03(String name, int keyEvent) throws HarnessException {
-        
-		//-- Data
-		
+
 		// Create a contact item
 		ContactItem contact = new ContactItem();
 		contact.firstName = "First" + ConfigProperties.getUniqueString();
@@ -156,35 +142,30 @@ public class DeleteContact extends AjaxCommonTest  {
                 			"</cn>" +
 	                "</CreateContactRequest>");
 
-		//-- GUI
-		
 		// Refresh to get the contact into the client
 		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 		SleepUtil.sleepMedium();
-		
+
 		// Select the contact
 		app.zPageContacts.zListItem(Action.A_LEFTCLICK, contact.firstName);
 		SleepUtil.sleepSmall();
-		
+
 		// Delete the contact
 		logger.info("Typing shortcut key "+ name + " KeyEvent: "+ keyEvent);
 		app.zPageMail.zKeyboardKeyEvent(keyEvent);
 		SleepUtil.sleepSmall();
-        
-        //-- Verification
-        
-        //verify contact deleted
+
+        // Verify contact deleted
         ContactItem actual = ContactItem.importFromSOAP(app.zGetActiveAccount(), "#firstname:"+ contact.firstName);
-        ZAssert.assertNull(actual, "Verify the contact is deleted from the addressbook");    
+        ZAssert.assertNull(actual, "Verify the contact is deleted from the addressbook");
    	}
-	
+
+
 	@Test( description = "Right click then click delete",
 			groups = { "smoke", "L0"})
-	
-	public void DeleteFromContextMenu_04() throws HarnessException {		
 
-		//-- Data	
-		
+	public void DeleteFromContextMenu_04() throws HarnessException {
+
 		// Create a contact item
 		ContactItem contact = new ContactItem();
 		contact.firstName = "First" + ConfigProperties.getUniqueString();
@@ -201,28 +182,23 @@ public class DeleteContact extends AjaxCommonTest  {
                 			"</cn>" +
 	                "</CreateContactRequest>");
 
-		//-- GUI
-		
 		// Refresh to get the contact into the client
 		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
-		
-		//select delete option
-        app.zPageContacts.zListItem(Action.A_RIGHTCLICK, Button.B_DELETE, contact.fileAs);       
-        
-        //-- Verification
-        
-        //verify contact deleted
+
+		// Select delete option
+        app.zPageContacts.zListItem(Action.A_RIGHTCLICK, Button.B_DELETE, contact.fileAs);
+
+        // Verify contact deleted
         ContactItem actual = ContactItem.importFromSOAP(app.zGetActiveAccount(), "#firstname:"+ contact.firstName);
         ZAssert.assertNull(actual, "Verify the contact is deleted from the addressbook");
    	}
-	
+
+
 	@Test( description = "Delete multiple contact items",
 			groups = { "functional", "L2"})
-	
+
 	public void DeleteMultipleContacts_05() throws HarnessException {
 
-		//-- Data
-		
 		// Create a contact items
 		ContactItem contact1 = new ContactItem();
 		contact1.firstName = "First" + ConfigProperties.getUniqueString();
@@ -269,28 +245,24 @@ public class DeleteContact extends AjaxCommonTest  {
                 			"</cn>" +
 	                "</CreateContactRequest>");
 
-		//-- GUI
-		
 		// Refresh to get the contact into the client
 		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
-		
+
 	    // Select the item
 	    app.zPageContacts.zListItem(Action.A_CHECKBOX, contact1.fileAs);
 	    app.zPageContacts.zListItem(Action.A_CHECKBOX, contact2.fileAs);
 	   // app.zPageContacts.zListItem(Action.A_CHECKBOX, contact3.fileAs);
-	   
-		//delete 3 contacts
-        app.zPageContacts.zToolbarPressButton(Button.B_DELETE);       
-        
-        //-- Verification
-        
-        //verify contacts deleted
+
+		// Delete 3 contacts
+        app.zPageContacts.zToolbarPressButton(Button.B_DELETE);
+
+        // Verify contacts deleted
         ContactItem actual1 = ContactItem.importFromSOAP(app.zGetActiveAccount(), "#firstname:"+ contact1.firstName);
         ZAssert.assertNull(actual1, "Verify the contact is deleted from the addressbook");
-        
+
         ContactItem actual2 = ContactItem.importFromSOAP(app.zGetActiveAccount(), "#firstname:"+ contact1.firstName);
         ZAssert.assertNull(actual2, "Verify the contact is deleted from the addressbook");
-        
+
         ContactItem actual3 = ContactItem.importFromSOAP(app.zGetActiveAccount(), "#firstname:"+ contact1.firstName);
         ZAssert.assertNull(actual3, "Verify the contact is deleted from the addressbook");
    	}

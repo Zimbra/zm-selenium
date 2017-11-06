@@ -1,5 +1,3 @@
-package com.zimbra.qa.selenium.projects.ajax.tests.mail.newwindow.attachments;
-
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
@@ -16,6 +14,7 @@ package com.zimbra.qa.selenium.projects.ajax.tests.mail.newwindow.attachments;
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
+package com.zimbra.qa.selenium.projects.ajax.tests.mail.newwindow.attachments;
 
 import org.testng.Assert;
 import org.testng.SkipException;
@@ -36,8 +35,10 @@ public class OpenComposedMsgWithAnAttachmentInNewWindow extends PrefGroupMailByM
 		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "html");
 	}
 
-	@Test( description = "Verify attachment in Normal Compose window as well as in New compose window", groups = { "functional", "L2" })
-	
+
+	@Test( description = "Verify attachment in Normal Compose window as well as in New compose window",
+			groups = { "functional", "L2" })
+
 	public void OpenComposedMsgWithAnAttachmentInNewWindow_01() throws HarnessException {
 
 		if (OperatingSystem.isWindows() == true && !ConfigProperties.getStringProperty("browser").contains("edge")) {
@@ -53,17 +54,17 @@ public class OpenComposedMsgWithAnAttachmentInNewWindow extends PrefGroupMailByM
 			// Upload the file
 			app.zPageMail.zPressButton(Button.B_ATTACH);
 			zUpload(filePath);
-			
+
 			SeparateWindowFormMailNew window = null;
 			String windowTitle = "Zimbra: Compose";
-			
+
 			try {
 
 				window = (SeparateWindowFormMailNew) app.zPageMail.zToolbarPressButton(Button.B_DETACH_COMPOSE);
 
 				window.zSetWindowTitle(windowTitle);
 				ZAssert.assertTrue(window.zIsWindowOpen(windowTitle),"Verify the window is opened and switch to it");
-				
+
 				// Verify Attachment should not disappeared  New compose window
 				Assert.assertTrue(window.zIsVisiblePerPosition("css=a[id^='COMPOSE']:contains(" + fileName + ")", 0, 0),"vcf attachment link present");
 

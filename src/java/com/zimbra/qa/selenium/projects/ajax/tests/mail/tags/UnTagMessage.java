@@ -17,7 +17,6 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.tags;
 
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.*;
@@ -29,11 +28,12 @@ public class UnTagMessage extends PrefGroupMailByMessageTest {
 
 	public UnTagMessage() {
 		logger.info("New " + UnTagMessage.class.getCanonicalName());
-
-
 	}
 
-	@Test( description = "Remove a tag from a message using Toolbar -> Tag ->Remove Tag", groups = { "smoke", "L1" })
+
+	@Test( description = "Remove a tag from a message using Toolbar -> Tag ->Remove Tag",
+			groups = { "smoke", "L1" })
+
 	public void UnTagMessage_01() throws HarnessException {
 
 		String subject = "subject" + ConfigProperties.getUniqueString();
@@ -43,12 +43,11 @@ public class UnTagMessage extends PrefGroupMailByMessageTest {
 		app.zGetActiveAccount().soapSend(
 				"<CreateTagRequest xmlns='urn:zimbraMail'>" + "<tag name='"
 						+ tagname + "' color='1' />" + "</CreateTagRequest>");
-		String tagid = app.zGetActiveAccount().soapSelectValue(
-				"//mail:CreateTagResponse/mail:tag", "id");
+		String tagid = app.zGetActiveAccount().soapSelectValue("//mail:CreateTagResponse/mail:tag", "id");
 
 		// Add a message to the mailbox
-		FolderItem inboxFolder = FolderItem.importFromSOAP(app
-				.zGetActiveAccount(), SystemFolder.Inbox);
+		FolderItem inboxFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
+
 		app.zGetActiveAccount().soapSend(
 				"<AddMsgRequest xmlns='urn:zimbraMail'>" + "<m l='"
 						+ inboxFolder.getId() + "' t='" + tagid + "'>"
@@ -60,8 +59,7 @@ public class UnTagMessage extends PrefGroupMailByMessageTest {
 						+ "</m>" + "</AddMsgRequest>");
 
 		// Get the message data from SOAP
-		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(),
-				"subject:(" + subject + ")");
+		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:(" + subject + ")");
 
 		// Refresh current view
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
@@ -75,32 +73,31 @@ public class UnTagMessage extends PrefGroupMailByMessageTest {
 		app.zGetActiveAccount().soapSend(
 				"<GetMsgRequest xmlns='urn:zimbraMail'>" + "<m id='"
 						+ mail.getId() + "'/>" + "</GetMsgRequest>");
-		String mailTags = app.zGetActiveAccount().soapSelectValue(
-				"//mail:GetMsggResponse//mail:m", "t");
 
-		ZAssert.assertNull(mailTags,
-				"Verify that the tag is removed from the message");
-
+		String mailTags = app.zGetActiveAccount().soapSelectValue("//mail:GetMsggResponse//mail:m", "t");
+		ZAssert.assertNull(mailTags,"Verify that the tag is removed from the message");
 	}
-	
-	@Test( description = "Remove a tag from a message using Keyboard shortcut u", groups = { "functional", "L2" })
+
+
+	@Test( description = "Remove a tag from a message using Keyboard shortcut u",
+			groups = { "functional", "L2" })
+
 	public void UnTagMessage_02() throws HarnessException {
 
 		String subject = "subject" + ConfigProperties.getUniqueString();
 		String tagname = "tag" + ConfigProperties.getUniqueString();
-		
+
 		Shortcut shortcut = Shortcut.S_UNTAG;
 
 		// Create a tag
 		app.zGetActiveAccount().soapSend(
 				"<CreateTagRequest xmlns='urn:zimbraMail'>" + "<tag name='"
 						+ tagname + "' color='1' />" + "</CreateTagRequest>");
-		String tagid = app.zGetActiveAccount().soapSelectValue(
-				"//mail:CreateTagResponse/mail:tag", "id");
+		String tagid = app.zGetActiveAccount().soapSelectValue("//mail:CreateTagResponse/mail:tag", "id");
 
 		// Add a message to the mailbox
-		FolderItem inboxFolder = FolderItem.importFromSOAP(app
-				.zGetActiveAccount(), SystemFolder.Inbox);
+		FolderItem inboxFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
+
 		app.zGetActiveAccount().soapSend(
 				"<AddMsgRequest xmlns='urn:zimbraMail'>" + "<m l='"
 						+ inboxFolder.getId() + "' t='" + tagid + "'>"
@@ -112,8 +109,7 @@ public class UnTagMessage extends PrefGroupMailByMessageTest {
 						+ "</m>" + "</AddMsgRequest>");
 
 		// Get the message data from SOAP
-		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(),
-				"subject:(" + subject + ")");
+		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:(" + subject + ")");
 
 		// Refresh current view
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
@@ -121,40 +117,37 @@ public class UnTagMessage extends PrefGroupMailByMessageTest {
 		// Select the item
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, mail.dSubject);
 
-		// Untag it		
-		
+		// Untag it
+
 		app.zPageMail.zKeyboardShortcut(shortcut);
 		SleepUtil.sleepMedium();
-			
+
 		app.zGetActiveAccount().soapSend(
 				"<GetMsgRequest xmlns='urn:zimbraMail'>" + "<m id='"
 						+ mail.getId() + "'/>" + "</GetMsgRequest>");
-		String mailTags = app.zGetActiveAccount().soapSelectValue(
-				"//mail:GetMsggResponse//mail:m", "t");
 
-		ZAssert.assertNull(mailTags,
-				"Verify that the tag is removed from the message");
-
+		String mailTags = app.zGetActiveAccount().soapSelectValue("//mail:GetMsggResponse//mail:m", "t");
+		ZAssert.assertNull(mailTags, "Verify that the tag is removed from the message");
 	}
-	
-	@Test( description = "Remove a tag from a message clicking 'x' from tag bubble", groups = { "functional", "L2" })
+
+
+	@Test( description = "Remove a tag from a message clicking 'x' from tag bubble",
+			groups = { "functional", "L2" })
+
 	public void UnTagMessage_03() throws HarnessException {
 
 		String subject = "subject" + ConfigProperties.getUniqueString();
 		String tagname = "tag" + ConfigProperties.getUniqueString();
-		
-		
 
 		// Create a tag
 		app.zGetActiveAccount().soapSend(
 				"<CreateTagRequest xmlns='urn:zimbraMail'>" + "<tag name='"
 						+ tagname + "' color='1' />" + "</CreateTagRequest>");
-		String tagid = app.zGetActiveAccount().soapSelectValue(
-				"//mail:CreateTagResponse/mail:tag", "id");
+		String tagid = app.zGetActiveAccount().soapSelectValue("//mail:CreateTagResponse/mail:tag", "id");
 
 		// Add a message to the mailbox
-		FolderItem inboxFolder = FolderItem.importFromSOAP(app
-				.zGetActiveAccount(), SystemFolder.Inbox);
+		FolderItem inboxFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
+
 		app.zGetActiveAccount().soapSend(
 				"<AddMsgRequest xmlns='urn:zimbraMail'>" + "<m l='"
 						+ inboxFolder.getId() + "' t='" + tagid + "'>"
@@ -166,8 +159,7 @@ public class UnTagMessage extends PrefGroupMailByMessageTest {
 						+ "</m>" + "</AddMsgRequest>");
 
 		// Get the message data from SOAP
-		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(),
-				"subject:(" + subject + ")");
+		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:(" + subject + ")");
 
 		// Refresh current view
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
@@ -175,22 +167,15 @@ public class UnTagMessage extends PrefGroupMailByMessageTest {
 		// Select the item
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, mail.dSubject);
 
-		// Untag it	pressing 'x' from tag bubble
-			
+		// Untag it by pressing 'x' from tag bubble
 		app.zPageMail.sClickAt(Locators.zUntagBubble,"");
 		SleepUtil.sleepMedium();
-		
-	
+
 		app.zGetActiveAccount().soapSend(
 				"<GetMsgRequest xmlns='urn:zimbraMail'>" + "<m id='"
 						+ mail.getId() + "'/>" + "</GetMsgRequest>");
-		String mailTags = app.zGetActiveAccount().soapSelectValue(
-				"//mail:GetMsggResponse//mail:m", "t");
 
-		ZAssert.assertNull(mailTags,
-				"Verify that the tag is removed from the message");
-
+		String mailTags = app.zGetActiveAccount().soapSelectValue("//mail:GetMsggResponse//mail:m", "t");
+		ZAssert.assertNull(mailTags, "Verify that the tag is removed from the message");
 	}
-
-
 }

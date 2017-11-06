@@ -68,7 +68,7 @@ public class ModifyMultipleDayAppointment extends AjaxCommonTest {
 		//Attendees
 		List<ZimbraAccount> attendees = Arrays.asList(ZimbraAccount.Account5());
 
-		//Create multiple day spanning all-day appointments for 5 days
+		// Create multiple day spanning all-day appointments for 5 days
 		AppointmentItem.createAppointmentAllDay(
 				app.zGetActiveAccount(),
 				now,
@@ -88,16 +88,17 @@ public class ModifyMultipleDayAppointment extends AjaxCommonTest {
 		FormApptNew form = (FormApptNew)app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, subject);
 		ZAssert.assertNotNull(form, "Verify the appointment form opens correctly");
 
-		//Increasing the start date by 1 day
+		// Increasing the start date by 1 day
 		now.set(Calendar.DAY_OF_MONTH, now.get(Calendar.DAY_OF_MONTH) + 1 );
 		form.zSelectStartDateFromDatePicker(String.valueOf(now.get(Calendar.DAY_OF_MONTH)));
-		//Decreasing the duration of appointment by 1 day
+
+		// Decreasing the duration of appointment by 1 day
 		form.zSelectEndDateFromDatePicker(String.valueOf(now.get(Calendar.DAY_OF_MONTH) + noOfDays - 2));
 
 		form.zFillField(Field.Subject, subject+"_new");
 		form.zToolbarPressButton(Button.B_SEND);
 
-		//Verify that multi-day appointments are displayed correctly in month view
+		// Verify that multi-day appointments are displayed correctly in month view
 		boolean displayed = app.zPageCalendar.zVerifyMultidayAllDayAppointmentInMonthView(now, 4, subject+"_new");
 		ZAssert.assertTrue(displayed, "Multi-day all-day appointments are not created and displayed correctly in month view");
 	}
@@ -120,7 +121,7 @@ public class ModifyMultipleDayAppointment extends AjaxCommonTest {
 			now.set(Calendar.DAY_OF_MONTH, now.get(Calendar.DAY_OF_MONTH) - 8 );
 		}
 
-		//Create multiple day spanning all-day appointments for 5 days
+		// Create multiple day spanning all-day appointments for 5 days
 		AppointmentItem.createAppointmentAllDay(
 				app.zGetActiveAccount(),
 				now,
@@ -154,18 +155,18 @@ public class ModifyMultipleDayAppointment extends AjaxCommonTest {
         dialogFindAttendees.zWaitForBusyOverlay();
         dialogFindAttendees.zClickButton(Button.B_OK);
 
-        //Save and send the appointment
+        // Save and send the appointment
 		form.zToolbarPressButton(Button.B_SAVE);
 		form.zToolbarPressButton(Button.B_SEND);
 
-		//Login to attendee's account and go to calendar
+		// Login to attendee's account and go to calendar
 		app.zPageLogin.zLogin(ZimbraAccount.AccountA());
 		startingPage.zNavigateTo();
 
-		//Go to month view
+		// Go to month view
 		app.zPageCalendar.zToolbarPressButton(Button.B_MONTH_VIEW);
 
-		//Verify that multi-day appointments are displayed correctly in month view
+		// Verify that multi-day appointments are displayed correctly in month view
 		boolean displayed = app.zPageCalendar.zVerifyMultidayAllDayAppointmentInMonthView(now, noOfDays, subject);
 		ZAssert.assertTrue(displayed, "Multi-day all-day appointments are not created and displayed correctly in month view");
 		ZimbraAccount.ResetAccountZCS();

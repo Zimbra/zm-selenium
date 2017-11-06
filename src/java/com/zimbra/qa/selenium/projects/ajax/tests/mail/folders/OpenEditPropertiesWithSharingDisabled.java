@@ -2,11 +2,11 @@
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
  * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
@@ -28,18 +28,17 @@ public class OpenEditPropertiesWithSharingDisabled extends AjaxCommonTest {
 	public OpenEditPropertiesWithSharingDisabled() {
 		logger.info("New "+ OpenEditPropertiesWithSharingDisabled.class.getCanonicalName());
 
-		// All tests start at the login page
 		super.startingPage = app.zPageMail;
 		super.startingAccountPreferences.put("zimbraFeatureSharingEnabled", "FALSE");
-
 	}
 
-	@Test(
-			description = "Bug 104040 - Open Edit properties with sharing disabled for a user ", 	groups = { "functional", "L2" }
-			)
+
+	@Test(description = "Bug 104040 - Open Edit properties with sharing disabled for a user ",
+			groups = { "functional", "L2" })
+
 	public void OpenEditPropertiesWithSharingDisabled_01() throws HarnessException {
 
-		// Create a new folder	
+		// Create a new folder
 		String name = "folder" + ConfigProperties.getUniqueString();
 		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
 		ZAssert.assertNotNull(inbox, "Verify the inbox is available");
@@ -55,13 +54,12 @@ public class OpenEditPropertiesWithSharingDisabled extends AjaxCommonTest {
 		// Click the refresh button and select edit properties for the folder
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 		app.zTreeMail.zTreeItem(Action.A_RIGHTCLICK, Button.B_TREE_EDIT, subfolder);
-		
+
 		// Verify that the 'folder properties' dialogue opens
-		ZAssert.assertTrue(app.zPageMail.sIsElementPresent("css=td[id='FolderProperties_title']"),"verify that 'edit properties' dialoge is present" ); 
-			
+		ZAssert.assertTrue(app.zPageMail.sIsElementPresent("css=td[id='FolderProperties_title']"),"verify that 'edit properties' dialoge is present" );
+
 		//Enable sharing again for the active account
 		super.startingAccountPreferences.put("zimbraFeatureSharingEnabled", "TRUE");
 		app.zGetActiveAccount().modifyAccountPreferences(startingAccountPreferences);
-
-	}	
+	}
 }

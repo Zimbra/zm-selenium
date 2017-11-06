@@ -17,7 +17,6 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.contacts.dl.create;
 
 import org.testng.annotations.Test;
-
 import com.zimbra.common.soap.Element;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -30,17 +29,17 @@ public class CreateDLByAddingMembersFromVariousOptions extends AjaxCommonTest  {
 	public CreateDLByAddingMembersFromVariousOptions() {
 		logger.info("New "+ CreateDLByAddingMembersFromVariousOptions.class.getCanonicalName());
 		super.startingPage = app.zPageContacts;
-		
 	}
 
-	@Test( description = "Create DL by adding DL members from various options", 
+
+	@Test( description = "Create DL by adding DL members from various options",
 			groups = { "sanity", "L0"})
 
 	public void CreateDLByAddingMembersFromVariousOptions_01 () throws HarnessException {
 
 		String dlName = "dl" + ConfigProperties.getUniqueString();
 		String fullDLName = dlName + "@" + ConfigProperties.getStringProperty("testdomain");
-		
+
 		String firstContactFirstName = "First1" + ConfigProperties.getUniqueString();
 		String firstContactLastName = "Last1" + ConfigProperties.getUniqueString();
 		String firstContactEmail = ZimbraAccount.Account1().EmailAddress;
@@ -58,23 +57,23 @@ public class CreateDLByAddingMembersFromVariousOptions extends AjaxCommonTest  {
 
 		FormContactDistributionListNew FormContactDistributionListNew = (FormContactDistributionListNew) zToolbarPressPulldown(Button.B_NEW, Button.O_NEW_DISTRIBUTION_LIST);
 		FormContactDistributionListNew.zFillField(Field.DistributionListName, dlName);
-		
+
 		// Personal Contacts
 		FormContactDistributionListNew.zToolbarPressPulldown (Button.B_DISTRIBUTIONLIST_SEARCH_TYPE, Button.O_DISTRIBUTIONLIST_SEARCH_CONTACTS);
 		FormContactDistributionListNew.zFillField(Field.SearchField, firstContactEmail);
 		FormContactDistributionListNew.zToolbarPressButton(Button.B_SEARCH);
 		FormContactDistributionListNew.zToolbarPressButton(Button.B_ADD);
-		
+
 		// GAL
 		FormContactDistributionListNew.zToolbarPressPulldown (Button.B_DISTRIBUTIONLIST_SEARCH_TYPE, Button.O_DISTRIBUTIONLIST_SEARCH_GAL);
 		FormContactDistributionListNew.zFillField(Field.SearchField, secondContactEmail);
 		FormContactDistributionListNew.zToolbarPressButton(Button.B_SEARCH);
 		FormContactDistributionListNew.zToolbarPressButton(Button.B_ADD);
-		
+
 		// Comma separated emails
 		FormContactDistributionListNew.zFillField(Field.CommaSeparatedEmailsField, thirdContactEmail);
 		FormContactDistributionListNew.zToolbarPressButton(Button.B_ADD_NEW);
-		
+
 		FormContactDistributionListNew.zSubmit();
 
 		// Verify DL

@@ -80,7 +80,7 @@ public class EditReplyTentative extends AjaxCommonTest {
 		// ---------------- Verification at organizer & invitee side both -------------------------------------
 
 
-		// --- Check that the organizer shows the attendee as "TENTATIVE" ---
+		// Check that the organizer shows the attendee as "TENTATIVE" ---
 
 		// Organizer: Search for the appointment (InvId)
 		ZimbraAccount.AccountA().soapSend(
@@ -100,7 +100,7 @@ public class EditReplyTentative extends AjaxCommonTest {
 		ZAssert.assertEquals(attendeeStatus, "TE", "Verify that the attendee shows as 'TENTATIVE'");
 
 
-		// --- Check that the attendee showing status as "TENTATIVE" ---
+		// Check that the attendee showing status as "TENTATIVE" ---
 
 		// Attendee: Search for the appointment (InvId)
 		app.zGetActiveAccount().soapSend(

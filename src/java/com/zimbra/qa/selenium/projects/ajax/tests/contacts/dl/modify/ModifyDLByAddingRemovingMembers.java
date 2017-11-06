@@ -17,7 +17,6 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.contacts.dl.modify;
 
 import org.testng.annotations.Test;
-
 import com.zimbra.common.soap.Element;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
@@ -33,8 +32,9 @@ public class ModifyDLByAddingRemovingMembers extends AjaxCommonTest  {
 		super.startingPage = app.zPageContacts;
 		super.startingAccountPreferences = null;
 	}
-	
-	@Test( description = "Modify DL by adding and removing members", 
+
+
+	@Test( description = "Modify DL by adding and removing members",
 			groups = { "functional", "L2"})
 
 	public void ModifyDLByAddingRemovingMembers_01 () throws HarnessException {
@@ -68,7 +68,7 @@ public class ModifyDLByAddingRemovingMembers extends AjaxCommonTest  {
 		app.zPageContacts.zListItem(Action.A_LEFTCLICK, fullDLName);
 		app.zPageContacts.zListItem(Action.A_LEFTCLICK, Button.B_EDIT, fullDLName);
 		app.zPageContacts.sClick("//div[@class='ZmContactView' and not(aria-hidden)]/descendant::td[@class='contactGroupTableContent']/div[contains(text(),'"+secondContactEmail+"')]/parent::td/following-sibling::td/div");
-		
+
 		SleepUtil.sleepMedium();
 
 		// Add member 3

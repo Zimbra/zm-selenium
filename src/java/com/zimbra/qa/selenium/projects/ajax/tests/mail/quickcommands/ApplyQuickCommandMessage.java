@@ -17,9 +17,7 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.quickcommands;
 
 import java.util.HashMap;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.MailItem;
@@ -30,26 +28,21 @@ import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxQuickCommandTest;
 
-
 public class ApplyQuickCommandMessage extends AjaxQuickCommandTest {
 
 	@SuppressWarnings("serial")
 	public ApplyQuickCommandMessage() {
 		logger.info("New "+ ApplyQuickCommandMessage.class.getCanonicalName());
-
-		
-		
-
-		
 		super.startingAccountPreferences = new HashMap<String, String>() {{
 			put("zimbraPrefGroupMailBy", "message");
 		}};
 
 	}
 
-	@Bugs(ids = "71389")	// Hold off on GUI implementation of Quick Commands in 8.X
+	@Bugs(ids = "71389")
 	@Test( description = "Apply a Quick Command to a message",
 			groups = { "functional-skip" })
+
 	public void ApplyQuickCommandMessage_01() throws HarnessException {
 
 		// Create the message data to be sent
@@ -73,8 +66,6 @@ public class ApplyQuickCommandMessage extends AjaxQuickCommandTest {
 		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
 		ZAssert.assertNotNull(mail, "Verify other account's mail is created");
 
-		
-		
 		// Refresh current view
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 
@@ -84,14 +75,10 @@ public class ApplyQuickCommandMessage extends AjaxQuickCommandTest {
 		// Apply Quick Command #1 to the message
 		app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.O_QUICK_COMMANDS_MENU, this.getQuickCommand01().getName());
 
-		
-		
 		// Make sure the message is flagged, filed, tagged
 		mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
 		ZAssert.assertStringContains(mail.getFlags(), "f", "Verify the message is flagged in the server");
 
 		// TODO: add tags, folder, unread checks
 	}
-
-
 }

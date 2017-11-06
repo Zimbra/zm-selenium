@@ -41,8 +41,7 @@ public class SMSNotificationViaEmail extends AjaxCommonTest {
 	public SMSNotificationViaEmail() {
 		super.startingPage = app.zPagePreferences;
 		super.startingAccountPreferences = new HashMap<String, String>() {
-			private static final long serialVersionUID = 8123430160111682678L;
-			{
+			private static final long serialVersionUID = 8123430160111682678L; {
 				put("zimbraFeatureCalendarReminderDeviceEmailEnabled", "TRUE");
 				put("zimbraPrefCalendarApptReminderWarningTime", "2");
 			}

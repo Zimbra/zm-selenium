@@ -17,9 +17,7 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.feeds;
 
 import java.net.MalformedURLException;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
@@ -39,21 +37,17 @@ public class DeleteMailFromFeed extends PrefGroupMailByMessageTest {
 		super.startingAccountPreferences.put("zimbraPrefShowSelectionCheckbox", "TRUE");
 	}
 
+
 	@Bugs( ids = "102261")
-	@Test( description = "Verify the deletion of a mail from feed folder", 
+	@Test( description = "Verify the deletion of a mail from feed folder",
 			groups = { "functional", "L2" })
 
 	public void DeleteMailFromFeed_01() throws HarnessException, MalformedURLException {
 
-		FolderItem root = FolderItem.importFromSOAP(app.zGetActiveAccount(),
-				SystemFolder.UserRoot);
-		FolderItem trash = FolderItem.importFromSOAP(app.zGetActiveAccount(),
-				SystemFolder.Trash);
+		FolderItem root = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.UserRoot);
+		FolderItem trash = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Trash);
 
-		String foldername = "feed"
-				+ ConfigProperties.getUniqueString();
-
-		// feed.rss=http://server/files/Service/RSS/Basic/basic.xml
+		String foldername = "feed"	+ ConfigProperties.getUniqueString();
 		String feed = ConfigProperties.getStringProperty("rss.sample");
 		String feedMailSubject = "RssItemNumberOneTitle";
 
@@ -63,42 +57,36 @@ public class DeleteMailFromFeed extends PrefGroupMailByMessageTest {
 						+ root.getId() + "' url='" + feed + "'/>"
 						+ "</CreateFolderRequest>");
 
-		FolderItem feedFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(),
-				foldername);
+		FolderItem feedFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), foldername);
 
 		// Click on Get Mail to refresh the folder list
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
 		// Click on the "Feed"
 		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, feedFolder);
-		
+
 		// Select the item
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, feedMailSubject);
 
 		// Click delete
 		app.zPageMail.zToolbarPressButton(Button.B_DELETE);
-		
 		ZAssert.assertFalse(app.zPageMail.zVerifyMailExists(feedMailSubject),"The deleted feed mail is present in feed folder even after deletion!");
-		
-		//Verify that the deleted feed mail is present is Trash
+
+		// Verify that the deleted feed mail is present is Trash
 		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, trash);
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(feedMailSubject),"The deleted feed mail is not present in trash!");
 	}
-	
-	@Test( description = "Verify the deletion of mutiple mails from feed folder using context menu delete button", 
+
+
+	@Test( description = "Verify the deletion of mutiple mails from feed folder using context menu delete button",
 			groups = { "functional", "L3" })
 
 	public void DeleteMailFromFeed_02() throws HarnessException, MalformedURLException {
 
-		FolderItem root = FolderItem.importFromSOAP(app.zGetActiveAccount(),
-				SystemFolder.UserRoot);
-		FolderItem trash = FolderItem.importFromSOAP(app.zGetActiveAccount(),
-				SystemFolder.Trash);
+		FolderItem root = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.UserRoot);
+		FolderItem trash = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Trash);
 
-		String foldername = "feed"
-				+ ConfigProperties.getUniqueString();
-
-		// feed.rss=http://server/files/Service/RSS/Basic/basic.xml
+		String foldername = "feed"	+ ConfigProperties.getUniqueString();
 		String feed = ConfigProperties.getStringProperty("rss.sample");
 		String feedMailSubject1 = "RssItemNumberOneTitle";
 		String feedMailSubject2 = "RssItemNumberTwoTitle";
@@ -109,8 +97,7 @@ public class DeleteMailFromFeed extends PrefGroupMailByMessageTest {
 						+ root.getId() + "' url='" + feed + "'/>"
 						+ "</CreateFolderRequest>");
 
-		FolderItem feedFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(),
-				foldername);
+		FolderItem feedFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), foldername);
 
 		// Click on Get Mail to refresh the folder list
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
@@ -124,30 +111,26 @@ public class DeleteMailFromFeed extends PrefGroupMailByMessageTest {
 
 		// Right click the item, select delete
 		app.zPageMail.zListItem(Action.A_RIGHTCLICK, Button.B_DELETE, feedMailSubject2);
-		
+
 		ZAssert.assertFalse(app.zPageMail.zVerifyMailExists(feedMailSubject1),"The deleted feed mail is present in feed folder even after deletion!");
 		ZAssert.assertFalse(app.zPageMail.zVerifyMailExists(feedMailSubject2),"The deleted feed mail is present in feed folder even after deletion!");
-		
-		//Verify that the deleted feed mail is present is Trash
+
+		// Verify that the deleted feed mail is present is Trash
 		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, trash);
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(feedMailSubject1),"The deleted feed mail is not present in trash!");
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(feedMailSubject2),"The deleted feed mail is not present in trash!");
 	}
-	
-	@Test( description = "Verify the hard deletion of a mail from feed folder using 'shift-del' shortcut", 
+
+
+	@Test( description = "Verify the hard deletion of a mail from feed folder using 'shift-del' shortcut",
 			groups = { "functional", "L3" })
 
 	public void DeleteMailFromFeed_03() throws HarnessException, MalformedURLException {
 
-		FolderItem root = FolderItem.importFromSOAP(app.zGetActiveAccount(),
-				SystemFolder.UserRoot);
-		FolderItem trash = FolderItem.importFromSOAP(app.zGetActiveAccount(),
-				SystemFolder.Trash);
+		FolderItem root = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.UserRoot);
+		FolderItem trash = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Trash);
 
-		String foldername = "feed"
-				+ ConfigProperties.getUniqueString();
-
-		// feed.rss=http://server/files/Service/RSS/Basic/basic.xml
+		String foldername = "feed"	+ ConfigProperties.getUniqueString();
 		String feed = ConfigProperties.getStringProperty("rss.sample");
 		String feedMailSubject = "RssItemNumberOneTitle";
 
@@ -157,25 +140,23 @@ public class DeleteMailFromFeed extends PrefGroupMailByMessageTest {
 						+ root.getId() + "' url='" + feed + "'/>"
 						+ "</CreateFolderRequest>");
 
-		FolderItem feedFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(),
-				foldername);
+		FolderItem feedFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), foldername);
 
 		// Click on Get Mail to refresh the folder list
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
 		// Click on the "Feed"
 		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, feedFolder);
-		
+
 		// Select the item
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, feedMailSubject);
 
 		// Click shift-delete
 		DialogWarning dialog = (DialogWarning)app.zPageMail.zKeyboardShortcut(Shortcut.S_MAIL_HARDELETE);
 		dialog.zClickButton(Button.B_OK);
-		
 		ZAssert.assertFalse(app.zPageMail.zVerifyMailExists(feedMailSubject),"The deleted feed mail is present in feed folder even after deletion!");
-		
-		//Verify that the deleted feed mail is not present is Trash as well
+
+		// Verify that the deleted feed mail is not present is Trash as well
 		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, trash);
 		ZAssert.assertFalse(app.zPageMail.zVerifyMailExists(feedMailSubject),"The deleted feed mail is present in trash!");
 	}

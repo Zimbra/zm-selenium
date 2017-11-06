@@ -28,14 +28,13 @@ public class UnTagTask extends AjaxCommonTest {
 
 	public UnTagTask() {
 		logger.info("New " + UnTagTask.class.getCanonicalName());
-
-		// All tests start at the Briefcase page
 		super.startingPage = app.zPageTasks;
-		
 	}
 
-	@Test( description = "Remove a tag from a Document using Toolbar -> Tag -> Remove Tag", 
+
+	@Test( description = "Remove a tag from a Document using Toolbar -> Tag -> Remove Tag",
 			groups = { "smoke", "L1"})
+
 	public void UnTagTask_01() throws HarnessException {
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
 
@@ -46,7 +45,7 @@ public class UnTagTask extends AjaxCommonTest {
 				+			"<inv>"
 				+				"<comp name='" + subject + "'>"
 				+					"<or a='"+ app.zGetActiveAccount().EmailAddress + "'/>"
-				+				"</comp>" 
+				+				"</comp>"
 				+			"</inv>"
 				+			"<su>" + subject + "</su>"
 				+			"<mp ct='text/plain'>"
@@ -72,7 +71,7 @@ public class UnTagTask extends AjaxCommonTest {
 		ZAssert.assertNotNull(dialogtag, "Verify that the Create New Tag dialog is active");
 		ZAssert.assertTrue(dialogtag.zIsActive(), "Verify that the Create New Tag dialog is active");
 
-		//Fill Name  and Press OK button
+		// Fill Name  and Press OK button
 		dialogtag.zSetTagName(tagName);
 		dialogtag.zClickButton(Button.B_OK);
 
@@ -94,16 +93,14 @@ public class UnTagTask extends AjaxCommonTest {
 		ZAssert.assertEquals(name, subject,	"Verify tagged task name");
 
 		// Make sure the tag was applied to the task
-		app.zGetActiveAccount()
-		.soapSend("<SearchRequest xmlns='urn:zimbraMail' types='task'>"
+		app.zGetActiveAccount().soapSend("<SearchRequest xmlns='urn:zimbraMail' types='task'>"
 				+ "<query>" + subject + "</query>" + "</SearchRequest>");
 
-		String id = app.zGetActiveAccount().soapSelectValue(
-				"//mail:SearchResponse//mail:task", "t");
+		String id = app.zGetActiveAccount().soapSelectValue("//mail:SearchResponse//mail:task", "t");
 
 		ZAssert.assertEquals(id, tagID,"Verify the tag was attached to the task");
 
-		// refresh briefcase page
+		// Refresh briefcase page
 		app.zTreeTasks.zTreeItem(Action.A_LEFTCLICK, taskFolder);
 
 		// Click on tagged document
@@ -112,12 +109,10 @@ public class UnTagTask extends AjaxCommonTest {
 		// Click Remove Tag
 		app.zPageTasks.zToolbarPressPulldown(Button.B_TAG, Button.O_TAG_REMOVETAG);
 
-		app.zGetActiveAccount()
-		.soapSend("<SearchRequest xmlns='urn:zimbraMail' types='task'>"
+		app.zGetActiveAccount().soapSend("<SearchRequest xmlns='urn:zimbraMail' types='task'>"
 				+ "<query>" + subject + "</query>" + "</SearchRequest>");
 
 		id = app.zGetActiveAccount().soapSelectValue("//mail:SearchResponse//mail:task", "t");
-
-		ZAssert.assertStringDoesNotContain(id,tagID, "Verify that the tag is removed from the message");		
+		ZAssert.assertStringDoesNotContain(id,tagID, "Verify that the tag is removed from the message");
 	}
 }

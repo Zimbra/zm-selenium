@@ -23,20 +23,18 @@ import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.DialogAssistant;
 
 public class OpenAssistant extends AjaxCommonTest {
-	
+
 	public OpenAssistant() {
 		logger.info("New "+ OpenAssistant.class.getCanonicalName());
 		super.startingPage = app.zPageContacts;
 	}
-	
-	
+
+
 	@Test( description = "Open the assistant",
 			groups = { "deprecated" })
-	
+
 	public void OpenAssistant_01() throws HarnessException {
-		
 		DialogAssistant assistant = (DialogAssistant)app.zPageContacts.zKeyboardShortcut(Shortcut.S_ASSISTANT);
 		assistant.zClickButton(Button.B_CANCEL);
-		
 	}
 }

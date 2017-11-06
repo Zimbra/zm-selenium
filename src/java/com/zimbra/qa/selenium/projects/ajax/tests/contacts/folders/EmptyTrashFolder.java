@@ -17,7 +17,6 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.contacts.folders;
 
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.*;
@@ -29,19 +28,14 @@ public class EmptyTrashFolder extends AjaxCommonTest {
 
 	public EmptyTrashFolder() {
 		logger.info("New " + EmptyTrashFolder.class.getCanonicalName());
-
-		// All tests start at the login page
 		super.startingPage = app.zPageContacts;
-
-		// Enable user preference checkboxes
-
 	}
 
-	@Test(description = "Delete a contact, group, and folder permanently by Empty Trash folder on context menu", 
-			groups = {"smoke", "L1"})
-	public void ClickOK_02() throws HarnessException {
 
-		// -- Data
+	@Test(description = "Delete a contact, group, and folder permanently by Empty Trash folder on context menu",
+			groups = {"smoke", "L1"})
+
+	public void EmptyTrashFolder_01() throws HarnessException {
 
 		// The trash folder
 		FolderItem trash = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Trash);
@@ -65,21 +59,14 @@ public class EmptyTrashFolder extends AjaxCommonTest {
 		app.zGetActiveAccount().soapSend("<CreateFolderRequest xmlns='urn:zimbraMail'>" + "<folder name='" + name
 				+ "' view='contact' l='" + trash.getId() + "'/>" + "</CreateFolderRequest>");
 
-		// -- GUI
-
 		// Refresh
 		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 
 		// Now open empty trash dialog
-		DialogWarning dialogWarning = (DialogWarning) app.zTreeContacts.zTreeItem(Action.A_RIGHTCLICK,
-				Button.B_TREE_FOLDER_EMPTY, trash);
+		DialogWarning dialogWarning = (DialogWarning) app.zTreeContacts.zTreeItem(Action.A_RIGHTCLICK, Button.B_TREE_FOLDER_EMPTY, trash);
 
 		// Click OK
 		dialogWarning.zClickButton(Button.B_OK);
-
-		// -- Verification
-
-		// Verify items are permanently deleted
 
 		// Verify Trash folder is empty
 		ContactItem actualContact = ContactItem.importFromSOAP(app.zGetActiveAccount(),
@@ -92,14 +79,13 @@ public class EmptyTrashFolder extends AjaxCommonTest {
 
 		FolderItem actualAddressbook = FolderItem.importFromSOAP(app.zGetActiveAccount(), name);
 		ZAssert.assertNull(actualAddressbook, "Verify the addressbook is deleted");
-
 	}
 
-	@Test(description = "Cancel Empty Trash folder option", 
-			groups = { "functional", "L2"})
-	public void ClickCancel_03() throws HarnessException {
 
-		// -- Data
+	@Test(description = "Cancel Empty Trash folder option",
+			groups = { "functional", "L2"})
+
+	public void EmptyTrashFolder_02() throws HarnessException {
 
 		// The trash folder
 		FolderItem trash = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Trash);
@@ -123,21 +109,14 @@ public class EmptyTrashFolder extends AjaxCommonTest {
 		app.zGetActiveAccount().soapSend("<CreateFolderRequest xmlns='urn:zimbraMail'>" + "<folder name='" + name
 				+ "' view='contact' l='" + trash.getId() + "'/>" + "</CreateFolderRequest>");
 
-		// -- GUI
-
 		// Refresh
 		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 
 		// Now open empty trash dialog
-		DialogWarning dialogWarning = (DialogWarning) app.zTreeContacts.zTreeItem(Action.A_RIGHTCLICK,
-				Button.B_TREE_FOLDER_EMPTY, trash);
+		DialogWarning dialogWarning = (DialogWarning) app.zTreeContacts.zTreeItem(Action.A_RIGHTCLICK, Button.B_TREE_FOLDER_EMPTY, trash);
 
 		// Click OK
 		dialogWarning.zClickButton(Button.B_CANCEL);
-
-		// -- Verification
-
-		// Verify items are permanently deleted
 
 		// Verify Trash folder is empty
 		ContactItem actualContact = ContactItem.importFromSOAP(app.zGetActiveAccount(),
@@ -150,7 +129,5 @@ public class EmptyTrashFolder extends AjaxCommonTest {
 
 		FolderItem actualAddressbook = FolderItem.importFromSOAP(app.zGetActiveAccount(), name);
 		ZAssert.assertNotNull(actualAddressbook, "Verify the addressbook is not deleted");
-
 	}
-
 }

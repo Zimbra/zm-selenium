@@ -74,7 +74,7 @@ public class Create extends AjaxCommonTest {
 		apptAttendee1 = ZimbraAccount.Account2().EmailAddress;
 		apptContent = ConfigProperties.getUniqueString();
 
-		//Create persona
+		// Create persona
 		app.zGetActiveAccount().soapSend(
 				" <CreateIdentityRequest xmlns='urn:zimbraAccount'>"
 			+		"<identity name='"+ persona +"'>"

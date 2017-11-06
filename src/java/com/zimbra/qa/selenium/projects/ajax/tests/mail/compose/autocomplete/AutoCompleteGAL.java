@@ -17,9 +17,7 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.compose.autocomplete;
 
 import java.util.*;
-
 import org.testng.annotations.*;
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
@@ -29,41 +27,40 @@ import com.zimbra.qa.selenium.projects.ajax.ui.*;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew.Field;
 
-
 public class AutoCompleteGAL extends PrefGroupMailByMessageTest {
 
 	private String FirstName = "James" + ConfigProperties.getUniqueString();
 	private String LastName = "Smith" + ConfigProperties.getUniqueString();
 	private ZimbraAccount SampleAccount = null;
-	
-	
+
 	public AutoCompleteGAL() throws HarnessException {
 		logger.info("New "+ AutoCompleteGAL.class.getCanonicalName());
-		
+
 		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "text");
 		super.startingAccountPreferences.put("zimbraPrefGalAutoCompleteEnabled", "TRUE");
-	
 	}
-	
+
+
 	@Test( description = "Autocomplete using the GAL - First Name",
 			groups = { "functional", "L2" })
+
 	public void AutoCompleteGAL_01() throws HarnessException {
-		
+
 		// Message properties
 		String subject = "subject" + ConfigProperties.getUniqueString();
 		String body = "body" + ConfigProperties.getUniqueString();
-		
+
 		if ( SampleAccount == null ) {
 			SampleAccount = new ZimbraAccount();
 			SampleAccount.DisplayName = FirstName + " " + LastName;
 			SampleAccount.provision();
 			SampleAccount.authenticate();
 		}
-		
+
 		// Open the new mail form
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
 		ZAssert.assertNotNull(mailform, "Verify the new form opened");
-		
+
 		// Fill out the form with the data
 		mailform.zFillField(Field.Subject, subject);
 		mailform.zFillField(Field.Body, body);
@@ -79,38 +76,36 @@ public class AutoCompleteGAL extends PrefGroupMailByMessageTest {
 		}
 		ZAssert.assertNotNull(found, "Verify the autocomplete entry exists in the returned list");
 		mailform.zAutocompleteSelectItem(found);
-		
+
 		// Send the message
 		mailform.zSubmit();
 
-		
 		// Log into the destination account and make sure the message is received
 		MailItem received = MailItem.importFromSOAP(SampleAccount, "subject:("+ subject +")");
 		ZAssert.assertNotNull(received, "Verify the message is received correctly");
-		
 	}
+
 
 	@Test( description = "Autocomplete using the GAL - Partial First Name",
 			groups = { "functional", "L2" })
+
 	public void AutoCompleteGAL_02() throws HarnessException {
-		
+
 		// Message properties
 		String subject = "subject" + ConfigProperties.getUniqueString();
 		String body = "body" + ConfigProperties.getUniqueString();
-		
+
 		if ( SampleAccount == null ) {
 			SampleAccount = new ZimbraAccount();
 			SampleAccount.DisplayName = FirstName + " " + LastName;
 			SampleAccount.provision();
 			SampleAccount.authenticate();
 		}
-		
 
-		
 		// Open the new mail form
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
 		ZAssert.assertNotNull(mailform, "Verify the new form opened");
-		
+
 		// Fill out the form with the data
 		mailform.zFillField(Field.Subject, subject);
 		mailform.zFillField(Field.Body, body);
@@ -126,38 +121,36 @@ public class AutoCompleteGAL extends PrefGroupMailByMessageTest {
 		}
 		ZAssert.assertNotNull(found, "Verify the autocomplete entry exists in the returned list");
 		mailform.zAutocompleteSelectItem(found);
-		
+
 		// Send the message
 		mailform.zSubmit();
 
-		
 		// Log into the destination account and make sure the message is received
 		MailItem received = MailItem.importFromSOAP(SampleAccount, "subject:("+ subject +")");
 		ZAssert.assertNotNull(received, "Verify the message is received correctly");
-		
 	}
+
 
 	@Test( description = "Autocomplete using the GAL - Last Name",
 			groups = { "functional", "L3" })
+
 	public void AutoCompleteGAL_03() throws HarnessException {
-		
+
 		// Message properties
 		String subject = "subject" + ConfigProperties.getUniqueString();
 		String body = "body" + ConfigProperties.getUniqueString();
-		
+
 		if ( SampleAccount == null ) {
 			SampleAccount = new ZimbraAccount();
 			SampleAccount.DisplayName = FirstName + " " + LastName;
 			SampleAccount.provision();
 			SampleAccount.authenticate();
 		}
-		
 
-		
 		// Open the new mail form
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
 		ZAssert.assertNotNull(mailform, "Verify the new form opened");
-		
+
 		// Fill out the form with the data
 		mailform.zFillField(Field.Subject, subject);
 		mailform.zFillField(Field.Body, body);
@@ -173,38 +166,36 @@ public class AutoCompleteGAL extends PrefGroupMailByMessageTest {
 		}
 		ZAssert.assertNotNull(found, "Verify the autocomplete entry exists in the returned list");
 		mailform.zAutocompleteSelectItem(found);
-		
+
 		// Send the message
 		mailform.zSubmit();
 
-		
 		// Log into the destination account and make sure the message is received
 		MailItem received = MailItem.importFromSOAP(SampleAccount, "subject:("+ subject +")");
 		ZAssert.assertNotNull(received, "Verify the message is received correctly");
-		
 	}
+
 
 	@Test( description = "Autocomplete using the GAL - Partial Last Name",
 			groups = { "functional", "L3" })
+
 	public void AutoCompleteGAL_04() throws HarnessException {
-		
+
 		// Message properties
 		String subject = "subject" + ConfigProperties.getUniqueString();
 		String body = "body" + ConfigProperties.getUniqueString();
-		
+
 		if ( SampleAccount == null ) {
 			SampleAccount = new ZimbraAccount();
 			SampleAccount.DisplayName = FirstName + " " + LastName;
 			SampleAccount.provision();
 			SampleAccount.authenticate();
 		}
-		
 
-		
 		// Open the new mail form
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
 		ZAssert.assertNotNull(mailform, "Verify the new form opened");
-		
+
 		// Fill out the form with the data
 		mailform.zFillField(Field.Subject, subject);
 		mailform.zFillField(Field.Body, body);
@@ -220,38 +211,36 @@ public class AutoCompleteGAL extends PrefGroupMailByMessageTest {
 		}
 		ZAssert.assertNotNull(found, "Verify the autocomplete entry exists in the returned list");
 		mailform.zAutocompleteSelectItem(found);
-		
+
 		// Send the message
 		mailform.zSubmit();
 
-		
 		// Log into the destination account and make sure the message is received
 		MailItem received = MailItem.importFromSOAP(SampleAccount, "subject:("+ subject +")");
 		ZAssert.assertNotNull(received, "Verify the message is received correctly");
-		
 	}
+
 
 	@Test( description = "Autocomplete using the GAL - Full Name",
 			groups = { "functional", "L3" })
+
 	public void AutoCompleteGAL_05() throws HarnessException {
-		
+
 		// Message properties
 		String subject = "subject" + ConfigProperties.getUniqueString();
 		String body = "body" + ConfigProperties.getUniqueString();
-		
+
 		if ( SampleAccount == null ) {
 			SampleAccount = new ZimbraAccount();
 			SampleAccount.DisplayName = FirstName + " " + LastName;
 			SampleAccount.provision();
 			SampleAccount.authenticate();
 		}
-		
 
-		
 		// Open the new mail form
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
 		ZAssert.assertNotNull(mailform, "Verify the new form opened");
-		
+
 		// Fill out the form with the data
 		mailform.zFillField(Field.Subject, subject);
 		mailform.zFillField(Field.Body, body);
@@ -267,38 +256,36 @@ public class AutoCompleteGAL extends PrefGroupMailByMessageTest {
 		}
 		ZAssert.assertNotNull(found, "Verify the autocomplete entry exists in the returned list");
 		mailform.zAutocompleteSelectItem(found);
-		
+
 		// Send the message
 		mailform.zSubmit();
 
-		
 		// Log into the destination account and make sure the message is received
 		MailItem received = MailItem.importFromSOAP(SampleAccount, "subject:("+ subject +")");
 		ZAssert.assertNotNull(received, "Verify the message is received correctly");
-		
 	}
+
 
 	@Test( description = "Autocomplete using the GAL - First Name and Last Initial",
 			groups = { "functional", "L3" })
+
 	public void AutoCompleteGAL_07() throws HarnessException {
-		
+
 		// Message properties
 		String subject = "subject" + ConfigProperties.getUniqueString();
 		String body = "body" + ConfigProperties.getUniqueString();
-		
+
 		if ( SampleAccount == null ) {
 			SampleAccount = new ZimbraAccount();
 			SampleAccount.DisplayName = FirstName + " " + LastName;
 			SampleAccount.provision();
 			SampleAccount.authenticate();
 		}
-		
 
-		
 		// Open the new mail form
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
 		ZAssert.assertNotNull(mailform, "Verify the new form opened");
-		
+
 		// Fill out the form with the data
 		mailform.zFillField(Field.Subject, subject);
 		mailform.zFillField(Field.Body, body);
@@ -314,27 +301,27 @@ public class AutoCompleteGAL extends PrefGroupMailByMessageTest {
 		}
 		ZAssert.assertNotNull(found, "Verify the autocomplete entry exists in the returned list");
 		mailform.zAutocompleteSelectItem(found);
-		
+
 		// Send the message
 		mailform.zSubmit();
 
-		
 		// Log into the destination account and make sure the message is received
 		MailItem received = MailItem.importFromSOAP(SampleAccount, "subject:("+ subject +")");
 		ZAssert.assertNotNull(received, "Verify the message is received correctly");
-		
 	}
 
 
 	@Test( description = "Autocomplete using the GAL - Multiple Matches",
 			groups = { "functional", "L2" })
+
 	public void AutoCompleteGAL_08() throws HarnessException {
+
 		int count = 3;
-		
+
 		// Message properties
 		String subject = "subject" + ConfigProperties.getUniqueString();
 		String body = "body" + ConfigProperties.getUniqueString();
-		
+
 		String firstname = "Ethan" + ConfigProperties.getUniqueString();
 		for (int i = 0; i < count; i++) {
 			ZimbraAccount account = new ZimbraAccount();
@@ -342,65 +329,66 @@ public class AutoCompleteGAL extends PrefGroupMailByMessageTest {
 			account.provision();
 			account.authenticate();
 		}
-		
+
 		// Open the new mail form
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
 		ZAssert.assertNotNull(mailform, "Verify the new form opened");
-		
+
 		// Fill out the form with the data
 		mailform.zFillField(Field.Subject, subject);
 		mailform.zFillField(Field.Body, body);
 
 		// Auto complete a name
 		List<AutocompleteEntry> entries = mailform.zAutocompleteFillField(Field.To, firstname);
-		
+
 		ZAssert.assertEquals(entries.size(), count, "Verify the correct number of results were returned");
-		
+
 		mailform.zAutocompleteSelectItem(entries.get(1));
-		
+
 		// Send the message
 		mailform.zSubmit();
-
-		
 	}
+
 
 	@Test( description = "Autocomplete using the GAL - No Matches",
 			groups = { "functional", "L2" })
+
 	public void AutoCompleteGAL_09() throws HarnessException {
-		
+
 		// Message properties
 		String subject = "subject" + ConfigProperties.getUniqueString();
 		String body = "body" + ConfigProperties.getUniqueString();
-		
+
 		// Open the new mail form
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
 		ZAssert.assertNotNull(mailform, "Verify the new form opened");
-		
+
 		// Fill out the form with the data
 		mailform.zFillField(Field.Subject, subject);
 		mailform.zFillField(Field.Body, body);
 
 		// Auto complete a name
 		List<AutocompleteEntry> entries = mailform.zAutocompleteFillField(Field.To, "nomatchstring");
-		
+
 		ZAssert.assertEquals(entries.size(), 0, "Verify zero results were returned");
-				
+
 		DialogWarning dialog = (DialogWarning)mailform.zToolbarPressButton(Button.B_CANCEL);
 		if ( dialog.zIsActive() ) {
 			dialog.zClickButton(Button.B_NO);
 		}
-		
 	}
+
 
 	@Bugs( ids = "45815")
 	@Test( description = "Autocomplete using the GAL - Apostrophe character",
 			groups = { "functional", "L3" })
+
 	public void AutoCompleteGAL_10() throws HarnessException {
-		
+
 		final String givenName = "Thomas" + ConfigProperties.getUniqueString();
 		final String sn = "O'Connor" + ConfigProperties.getUniqueString();
 		final String displayName = givenName + " " + sn;
-		
+
 		// Create a GAL Entry
 		ZimbraAccount account = new ZimbraAccount();
 		Map<String,String> attrs = new HashMap<String, String>() {
@@ -413,18 +401,17 @@ public class AutoCompleteGAL extends PrefGroupMailByMessageTest {
 		account.setAccountPreferences(attrs);
 		account.provision();
 		account.authenticate();
-		
+
 		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
 
-		
 		// Message properties
 		String subject = "subject" + ConfigProperties.getUniqueString();
 		String body = "body" + ConfigProperties.getUniqueString();
-		
+
 		// Open the new mail form
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
 		ZAssert.assertNotNull(mailform, "Verify the new form opened");
-		
+
 		// Fill out the form with the data
 		mailform.zFillField(Field.Subject, subject);
 		mailform.zFillField(Field.Body, body);
@@ -440,22 +427,21 @@ public class AutoCompleteGAL extends PrefGroupMailByMessageTest {
 		}
 		ZAssert.assertNotNull(found, "Verify the autocomplete entry exists in the returned list");
 		mailform.zAutocompleteSelectItem(found);
-		
+
 		// Send the message
 		mailform.zSubmit();
 
-		
 		// Log into the destination account and make sure the message is received
 		MailItem received = MailItem.importFromSOAP(account, "subject:("+ subject +")");
 		ZAssert.assertNotNull(received, "Verify the message is received correctly");
-		
 	}
+
 
 	@Bugs(ids = "47045")
 	@Test( description = "Autocomplete including a period/dot '.' in the string",
 			groups = { "functional", "L3" })
+
 	public void AutoCompleteGAL_Bug47045A() throws HarnessException {
-		
 
 		if ( SampleAccount == null ) {
 			SampleAccount = new ZimbraAccount();
@@ -463,16 +449,15 @@ public class AutoCompleteGAL extends PrefGroupMailByMessageTest {
 			SampleAccount.provision();
 			SampleAccount.authenticate();
 		}
-		
 
 		// Message properties
 		String subject = "subject" + ConfigProperties.getUniqueString();
 		String body = "body" + ConfigProperties.getUniqueString();
-		
+
 		// Open the new mail form
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
 		ZAssert.assertNotNull(mailform, "Verify the new form opened");
-		
+
 		// Fill out the form with the data
 		mailform.zFillField(Field.Subject, subject);
 		mailform.zFillField(Field.Body, body);
@@ -489,22 +474,21 @@ public class AutoCompleteGAL extends PrefGroupMailByMessageTest {
 		}
 		ZAssert.assertNotNull(found, "Verify the autocomplete entry exists in the returned list");
 		mailform.zAutocompleteSelectItem(found);
-		
+
 		// Send the message
 		mailform.zSubmit();
 
-		
 		// Log into the destination account and make sure the message is received
 		MailItem received = MailItem.importFromSOAP(SampleAccount, "subject:("+ subject +")");
 		ZAssert.assertNotNull(received, "Verify the message is received correctly");
-		
 	}
+
 
 	@Bugs(ids = "47045")
 	@Test( description = "Autocomplete including a period/dot '.' in the string",
 			groups = { "functional", "L3" })
+
 	public void AutoCompleteGAL_Bug47045B() throws HarnessException {
-		
 
 		if ( SampleAccount == null ) {
 			SampleAccount = new ZimbraAccount();
@@ -512,16 +496,15 @@ public class AutoCompleteGAL extends PrefGroupMailByMessageTest {
 			SampleAccount.provision();
 			SampleAccount.authenticate();
 		}
-		
 
 		// Message properties
 		String subject = "subject" + ConfigProperties.getUniqueString();
 		String body = "body" + ConfigProperties.getUniqueString();
-		
+
 		// Open the new mail form
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
 		ZAssert.assertNotNull(mailform, "Verify the new form opened");
-		
+
 		// Fill out the form with the data
 		mailform.zFillField(Field.Subject, subject);
 		mailform.zFillField(Field.Body, body);
@@ -538,22 +521,22 @@ public class AutoCompleteGAL extends PrefGroupMailByMessageTest {
 		}
 		ZAssert.assertNotNull(found, "Verify the autocomplete entry exists in the returned list");
 		mailform.zAutocompleteSelectItem(found);
-		
+
 		// Send the message
 		mailform.zSubmit();
 
-		
 		// Log into the destination account and make sure the message is received
 		MailItem received = MailItem.importFromSOAP(SampleAccount, "subject:("+ subject +")");
 		ZAssert.assertNotNull(received, "Verify the message is received correctly");
-		
 	}
+
 
 	@Bugs(ids = "40959, 65081")
 	@Test( description = "Autocomplete on 'mike m' should not return all 'mike' names, only those with last name starting with 'm'",
 			groups = { "functional", "L3" })
+
 	public void AutoCompleteGAL_Bug40959() throws HarnessException {
-		
+
 		final String givenName1 = "Mike";
 		final String sn1 = "Carter" + ConfigProperties.getUniqueString();
 		final String displayName1 = givenName1 + " " + sn1;
@@ -603,15 +586,14 @@ public class AutoCompleteGAL extends PrefGroupMailByMessageTest {
 		account3.provision();
 		account3.authenticate();
 
-		
 		// Message properties
 		String subject = "subject" + ConfigProperties.getUniqueString();
 		String body = "body" + ConfigProperties.getUniqueString();
-		
+
 		// Open the new mail form
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
 		ZAssert.assertNotNull(mailform, "Verify the new form opened");
-		
+
 		// Fill out the form with the data
 		mailform.zFillField(Field.Subject, subject);
 		mailform.zFillField(Field.Body, body);
@@ -631,18 +613,15 @@ public class AutoCompleteGAL extends PrefGroupMailByMessageTest {
 				found3 = entry;
 			}
 		}
-		
+
 		ZAssert.assertNull(found1, "Verify 'mike m' does not match "+ account1.DisplayName);
 		ZAssert.assertNotNull(found2, "Verify 'mike m' does match "+ account2.DisplayName);
 		ZAssert.assertNotNull(found3, "Verify 'mike m' does match "+ account3.DisplayName);
-		
+
 		// Cancel the compose
 		DialogWarning dialog = (DialogWarning)mailform.zToolbarPressButton(Button.B_CANCEL);
 		if ( dialog.zIsActive() ) {
 			dialog.zClickButton(Button.B_NO);
 		}
-
 	}
-
-
 }

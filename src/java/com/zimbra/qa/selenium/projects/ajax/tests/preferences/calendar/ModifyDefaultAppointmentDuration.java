@@ -29,10 +29,8 @@ import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.preferences.TreePreferences.TreeItem;
-
 import java.awt.event.KeyEvent;
 import java.util.Calendar;
-
 import org.testng.annotations.Test;
 
 public class ModifyDefaultAppointmentDuration extends AjaxCommonTest {
@@ -41,19 +39,21 @@ public class ModifyDefaultAppointmentDuration extends AjaxCommonTest {
 	    logger.info("New " + ModifyDefaultAppointmentDuration.class.getCanonicalName());
 	    this.startingPage = this.app.zPagePreferences;
 	 }
-  
-	 @Test( description = "Modify calendar default appointment duration", groups = {"functional", "L2"} )
-	
+
+
+	 @Test( description = "Modify calendar default appointment duration",
+			groups = {"functional", "L2"} )
+
 	 public void ModifyDefaultAppointmentDuration_01() throws HarnessException  {
-		 
+
 		 Calendar now = Calendar.getInstance();
 		 String apptSubject = ConfigProperties.getUniqueString();
 		 ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 10, 0, 0);
-		 
+
 		 // Go to calendar preference
 		 app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.Calendar);
 		 SleepUtil.sleepMedium();
-		 
+
 		 // Modify appointment duration
 		 app.zPagePreferences.zClickAt("css=td[id='Prefs_Select_CAL_DEFAULT_APPT_DURATION_dropdown']", "");
 		 SleepUtil.sleepSmall();
@@ -61,7 +61,7 @@ public class ModifyDefaultAppointmentDuration extends AjaxCommonTest {
 		 SleepUtil.sleepSmall();
 		 app.zPagePreferences.zToolbarPressButton(Button.B_SAVE);
 		 SleepUtil.sleepSmall();
-		 
+
 		 // Go to calendar
 		 startingPage= app.zPageCalendar;
 		 startingPage.zNavigateTo();
@@ -70,16 +70,16 @@ public class ModifyDefaultAppointmentDuration extends AjaxCommonTest {
 		 AppointmentItem appt = new AppointmentItem();
 		 appt.setSubject(apptSubject);
 		 appt.setStartTime(startUTC);
-		 
+
 		 // Open the new mail form
 		 FormApptNew apptForm = (FormApptNew) app.zPageCalendar.zToolbarPressButton(Button.B_NEW);
 		 apptForm.zFill(appt);
-		 // Let end time set automatically
+
 		 app.zPageCalendar.zKeyboard.zTypeKeyEvent(KeyEvent.VK_TAB);
 		 app.zPageCalendar.zKeyboard.zTypeKeyEvent(KeyEvent.VK_TAB);
 		 app.zPageCalendar.zKeyboard.zTypeKeyEvent(KeyEvent.VK_TAB);
 		 apptForm.zSubmit();
-		
+
 		 // Verify the new appointment exists on the server
 		 app.zGetActiveAccount().soapSend(
 				 "<SearchRequest xmlns='urn:zimbraMail' types='appointment' calExpandInstStart='"+ startUTC.addDays(-7).toMillis() +"' calExpandInstEnd='"+ startUTC.addDays(7).toMillis() +"'>"
@@ -87,10 +87,9 @@ public class ModifyDefaultAppointmentDuration extends AjaxCommonTest {
 					+	"</SearchRequest>");
 		 String id = app.zGetActiveAccount().soapSelectValue("//mail:appt", "invId");
 		 ZAssert.assertNotNull(id, "verify that appointment is synced to the server");
-		
+
 		 app.zGetActiveAccount().soapSend("<GetAppointmentRequest  xmlns='urn:zimbraMail' id='"+ id +"'/>");
 		 String endtime = app.zGetActiveAccount().soapSelectValue("//mail:e", "d");
 		 ZAssert.assertEquals(startUTC.addMinutes(30).toyyyyMMddTHHmmss(), endtime, "Verify that the duartion is 30 minutes");
-	
-	 } 
+	 }
 }

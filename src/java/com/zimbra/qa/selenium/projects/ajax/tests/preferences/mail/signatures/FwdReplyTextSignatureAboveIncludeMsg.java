@@ -38,12 +38,10 @@ public class FwdReplyTextSignatureAboveIncludeMsg extends AjaxCommonTest {
 	@SuppressWarnings("serial")
 	public FwdReplyTextSignatureAboveIncludeMsg() {
 		super.startingPage = app.zPageMail;
-		super.startingAccountPreferences = new HashMap<String, String>() {
-			{
-				put("zimbraPrefComposeFormat", "text");
-				put("zimbraPrefGroupMailBy", "message");
-			}
-		};
+		super.startingAccountPreferences = new HashMap<String, String>() {{
+			put("zimbraPrefComposeFormat", "text");
+			put("zimbraPrefGroupMailBy", "message");
+		}};
 	}
 
 	@BeforeMethod(groups = { "always" })
@@ -61,16 +59,17 @@ public class FwdReplyTextSignatureAboveIncludeMsg extends AjaxCommonTest {
 		logger.info("CreateSignature: finish");
 	}
 
+
 	/**
 	 * Test case : Verify Text Signature AboveIncludedMsg While Fwd'ing Create
 	 * signature through soap Send message with text signature through soap
 	 * Select Same Msg and click Fwd Click Options dropdown and select Signature
 	 * Verify signature should place above included message while fwd'ing msg
-	 * 
-	 * @throws HarnessException
 	 */
-	@Test(description = "Verify Text Signature AboveIncludedMsg While Fwd'ing- Verify through GUI ", groups = {
-			"functional", "L2" })
+
+	@Test(description = "Verify Text Signature AboveIncludedMsg While Fwd'ing- Verify through GUI ",
+			groups = { "functional", "L2" })
+
 	public void FwdMsgWithTextSignatureAboveIncludeMsg_01() throws HarnessException {
 
 		// Signature is created
@@ -96,8 +95,7 @@ public class FwdReplyTextSignatureAboveIncludeMsg extends AjaxCommonTest {
 
 		// Forward the item
 		actual.zPressButton(Button.B_FORWARD);
-		ZAssert.assertTrue(actual.zGetMailPropertyAsText(DisplayMail.Field.Subject).contains("Fwd"),
-				"Verify Fwd Window");
+		ZAssert.assertTrue(actual.zGetMailPropertyAsText(DisplayMail.Field.Subject).contains("Fwd"), "Verify Fwd Window");
 
 		// Click Options Drop Down and select Signature
 		app.zPageMail.zToolbarPressPulldown(Button.B_OPTIONS, Button.O_ADD_FWD_SIGNATURE, this.sigName);
@@ -106,17 +104,18 @@ public class FwdReplyTextSignatureAboveIncludeMsg extends AjaxCommonTest {
 		actual.zVerifySignaturePlaceInText("AboveIncludedMsg", this.sigBody, "Forward");
 	}
 
+
 	/**
 	 * Test case : Verify Text Signature AboveIncludedMsg While Reply'ing Create
 	 * signature through soap Send message with text signature through soap
 	 * Select Same Msg and click Reply from toolbar Click Options dropdown and
 	 * select Signature Verify signature should place above included message
 	 * while Replying msg
-	 * 
-	 * @throws HarnessException
 	 */
 
-	@Test(description = "Verify Text Signature AboveIncludedMsg While Replying Msg ", groups = { "functional", "L3" })
+	@Test(description = "Verify Text Signature AboveIncludedMsg While Replying Msg ",
+			groups = { "functional", "L3" })
+
 	public void ReplyMsgWithTextSignatureAboveIncludeMsg_02() throws HarnessException {
 
 		// Signature is created
@@ -142,10 +141,8 @@ public class FwdReplyTextSignatureAboveIncludeMsg extends AjaxCommonTest {
 		DisplayMail actual = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 
 		// Reply the item
-		// app.zPageMail.zClickAt(Locators.zReplyToolbarButton, "0,0");
 		actual.zPressButton(Button.B_REPLY);
-		ZAssert.assertTrue(actual.zGetMailPropertyAsText(DisplayMail.Field.Subject).contains("Re"),
-				"Verify Reply Window");
+		ZAssert.assertTrue(actual.zGetMailPropertyAsText(DisplayMail.Field.Subject).contains("Re"), "Verify Reply Window");
 
 		// Click Options Drop Down and select Signature
 		app.zPageMail.zToolbarPressPulldown(Button.B_OPTIONS, Button.O_ADD_Reply_SIGNATURE, this.sigName);
@@ -154,16 +151,18 @@ public class FwdReplyTextSignatureAboveIncludeMsg extends AjaxCommonTest {
 		actual.zVerifySignaturePlaceInText("AboveIncludedMsg", this.sigBody, "Reply");
 	}
 
+
 	/**
 	 * Test case : Verify Text Signature AboveIncludedMsg While ReplyingAll
 	 * Create signature through soap Send message with text signature through
 	 * soap Select Same Msg and click ReplyAll from toolbar Click Options
 	 * dropdown and select Signature Verify signature should place above
 	 * included message while Replying msg
-	 * 
-	 * @throws HarnessException
 	 */
-	@Test(description = "Verify Text Signature AboveIncludedMsg While ReplyingAll Msg ", groups = { "functional", "L3" })
+
+	@Test(description = "Verify Text Signature AboveIncludedMsg While ReplyingAll Msg ",
+			groups = { "functional", "L3" })
+
 	public void ReplyAllMsgWithTextSignatureAboveIncludeMsg_03() throws HarnessException {
 
 		// Signature is created
@@ -188,10 +187,8 @@ public class FwdReplyTextSignatureAboveIncludeMsg extends AjaxCommonTest {
 		DisplayMail actual = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 
 		// Reply the item
-		// app.zPageMail.zClickAt(Locators.zReplyAllToolbarButton, "0,0");
 		actual.zPressButton(Button.B_REPLYALL);
-		ZAssert.assertTrue(actual.zGetMailPropertyAsText(DisplayMail.Field.Subject).contains("Re"),
-				"Verify ReplyAll Window");
+		ZAssert.assertTrue(actual.zGetMailPropertyAsText(DisplayMail.Field.Subject).contains("Re"), "Verify ReplyAll Window");
 
 		// Click Options Drop Down and select Signature
 		app.zPageMail.zToolbarPressPulldown(Button.B_OPTIONS, Button.O_ADD_ReplyAll_SIGNATURE, this.sigName);

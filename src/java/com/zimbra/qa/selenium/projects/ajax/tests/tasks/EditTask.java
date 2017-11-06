@@ -18,17 +18,13 @@ package com.zimbra.qa.selenium.projects.ajax.tests.tasks;
 
 import java.util.HashMap;
 import java.util.List;
-
 import org.testng.annotations.Test;
-
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.TaskItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
-
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
@@ -45,22 +41,20 @@ public class EditTask extends AjaxCommonTest{
 	public EditTask() {
 		logger.info("Edit " + EditTask.class.getCanonicalName());
 
-		// All tests start at the login page
 		super.startingPage = app.zPageTasks;
-
 		super.startingAccountPreferences = new HashMap<String , String>() {{
 			put("zimbraPrefShowSelectionCheckbox", "TRUE");
 			put("zimbraPrefTasksReadingPaneLocation", "bottom");
 		}};
 	}
-	
+
+
 	@Test( description = "Create task through SOAP - edit subject and verify through GUI",
 			groups = { "smoke", "L0"})
-	
+
 	public void EditTask_01() throws HarnessException {
 
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
-
 
 		String subject = "task"+ ConfigProperties.getUniqueString();
 		String Newsubject = "Edittask"+ ConfigProperties.getUniqueString();
@@ -80,8 +74,6 @@ public class EditTask extends AjaxCommonTest{
 				"</m>" +
 		"</CreateTaskRequest>");
 
-		
-
 		TaskItem task = TaskItem.importFromSOAP(app.zGetActiveAccount(), subject);
 		ZAssert.assertNotNull(task, "Verify the task is created");
 
@@ -92,10 +84,9 @@ public class EditTask extends AjaxCommonTest{
 		app.zPageTasks.zListItem(Action.A_LEFTCLICK, subject);
 
 		// Click edit
-
 		FormTaskNew taskedit = (FormTaskNew) app.zPageTasks.zToolbarPressButton(Button.B_EDIT);
 
-		//Fill new subject in subject field
+		// Fill new subject in subject field
 		taskedit.zFillField(Field.Subject, Newsubject);
 		taskedit.zSubmit();
 
@@ -126,23 +117,23 @@ public class EditTask extends AjaxCommonTest{
 		}
 
 		ZAssert.assertNull(foundoldtask, "Verify the old task no longer  present in the task list");
-
 	}
-	
+
+
 	/**
 	 * 	1. Go to Tasks
 	 * 	2. Create a new task with no due date
-	 * 	3. Refresh list view to see new task 
+	 * 	3. Refresh list view to see new task
 	 * 	4. Edit task and add due date
 	 * 	5. Refresh list view again
 	 * 	   Expected result:Task should show due date
 	 * @throws HarnessException
 	 */
-	
+
 	@Bugs(ids="64647")
 	@Test( description = "Create task through SOAP - edit due date >> Refresh task >>verify Due Date in list view through GUI",
 			groups = { "smoke", "L1"})
-	
+
 	public void EditTask_02() throws HarnessException {
 
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
@@ -150,8 +141,8 @@ public class EditTask extends AjaxCommonTest{
 
 		String subject = "task"+ ConfigProperties.getUniqueString();
 		ZDate dueDate      = new ZDate(2015, 11, 17, 12, 0, 0);
-		
-		//Create task
+
+		// Create task
 		app.zGetActiveAccount().soapSend(
 				"<CreateTaskRequest xmlns='urn:zimbraMail'>" +
 				"<m >" +
@@ -178,31 +169,31 @@ public class EditTask extends AjaxCommonTest{
 		FormTaskNew taskedit = (FormTaskNew) app.zPageTasks.zToolbarPressButton(Button.B_EDIT);
 		SleepUtil.sleepMedium();
 
-		//Fill due date field
+		// Fill due date field
 		taskedit.zFillField(Field.DueDate, dueDate.toMM_DD_YYYY());
 		taskedit.zSubmit();
 
 		DisplayTask actual = (DisplayTask) app.zPageTasks.zListItem(Action.A_LEFTCLICK, subject);
-		
-		//Verify Due Date before refresh
+
+		// Verify Due Date before refresh
 		ZAssert.assertEquals(actual.zGetTaskListViewProperty(com.zimbra.qa.selenium.projects.ajax.ui.tasks.DisplayTask.Field.DueDate), dueDate.toMM_DD_YYYY(), "Verify the due date matches");
-		
-		// click on Trash folder
-		app.zTreeTasks.zTreeItem(Action.A_LEFTCLICK, trashFolder);		
+
+		// Click on Trash folder
+		app.zTreeTasks.zTreeItem(Action.A_LEFTCLICK, trashFolder);
 		// Refresh the tasks view
 		app.zTreeTasks.zTreeItem(Action.A_LEFTCLICK, taskFolder);
-		
-		//Verify the due date matches after refresh
-		ZAssert.assertEquals(actual.zGetTaskListViewProperty(com.zimbra.qa.selenium.projects.ajax.ui.tasks.DisplayTask.Field.DueDate), dueDate.toMM_DD_YYYY(), "Verify the due date matches after refresh");	
+
+		// Verify the due date matches after refresh
+		ZAssert.assertEquals(actual.zGetTaskListViewProperty(com.zimbra.qa.selenium.projects.ajax.ui.tasks.DisplayTask.Field.DueDate), dueDate.toMM_DD_YYYY(), "Verify the due date matches after refresh");
 	}
-	
+
+
 	@Test( description = "Create task through SOAP - Edit task using Right Click Context Menu & verify through GUI",
 			groups = { "smoke", "L1"})
-	
+
 	public void EditTask_03() throws HarnessException {
 
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
-
 
 		String subject = "task"+ ConfigProperties.getUniqueString();
 		String Newsubject = "Edittask"+ ConfigProperties.getUniqueString();
@@ -222,8 +213,6 @@ public class EditTask extends AjaxCommonTest{
 				"</m>" +
 		"</CreateTaskRequest>");
 
-		
-
 		TaskItem task = TaskItem.importFromSOAP(app.zGetActiveAccount(), subject);
 		ZAssert.assertNotNull(task, "Verify the task is created");
 
@@ -236,7 +225,7 @@ public class EditTask extends AjaxCommonTest{
 		// Right click subject and select edit context menu
 		FormTaskNew taskedit = (FormTaskNew) app.zPageTasks.zListItem(Action.A_RIGHTCLICK, Button.O_EDIT, subject);
 
-		//Fill new subject in subject field
+		// Fill new subject in subject field
 		taskedit.zFillField(Field.Subject, Newsubject);
 		taskedit.zSubmit();
 
@@ -267,7 +256,5 @@ public class EditTask extends AjaxCommonTest{
 		}
 
 		ZAssert.assertNull(foundoldtask, "Verify the old task no longer  present in the task list");
-
 	}
-
 }

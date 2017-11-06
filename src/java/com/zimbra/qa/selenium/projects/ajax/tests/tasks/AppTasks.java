@@ -20,9 +20,7 @@ package com.zimbra.qa.selenium.projects.ajax.tests.tasks;
 
 import java.util.HashMap;
 import java.util.List;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.TaskItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
@@ -40,26 +38,26 @@ public class AppTasks extends PrefGroupMailByMessageTest {
 
 		super.startingPage = app.zPageTasks;
 		super.startingAccountPreferences = new HashMap<String , String>() {{
-			
 			put("zimbraPrefShowSelectionCheckbox", "TRUE");
 			put("zimbraPrefTasksReadingPaneLocation", "bottom");
 		}};
-
 	}
+
 
 	@Test( description = "?app=tasks in url",
 			groups = { "smoke", "L0"})
+
 	public void AppTasks_01() throws HarnessException {
 
-		//Go to AB tab
-		app.zPageContacts.zNavigateTo();				
+		// Go to AB tab
+		app.zPageContacts.zNavigateTo();
 		SleepUtil.sleepMedium();
 
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
-		
+
 		// Create a basic task to delete
 		String subject = "task"+ ConfigProperties.getUniqueString();
-				
+
 		app.zGetActiveAccount().soapSend(
 				"<CreateTaskRequest xmlns='urn:zimbraMail'>" +
 					"<m >" +
@@ -82,7 +80,8 @@ public class AppTasks extends PrefGroupMailByMessageTest {
 		ZimbraURI uri = new ZimbraURI(ZimbraURI.getBaseURI());
 		uri.addQuery("app", "tasks");
 		app.zPageMail.sOpen(uri.toString());
-		SleepUtil.sleepMedium();		
+		SleepUtil.sleepMedium();
+
 		// Refresh the tasks view
 		app.zTreeTasks.zTreeItem(Action.A_LEFTCLICK, taskFolder);
 		SleepUtil.sleepMedium();
@@ -100,7 +99,5 @@ public class AppTasks extends PrefGroupMailByMessageTest {
 			}
 		}
 		ZAssert.assertNotNull(found, "Verify the task is present");
-
-
 	}
 }

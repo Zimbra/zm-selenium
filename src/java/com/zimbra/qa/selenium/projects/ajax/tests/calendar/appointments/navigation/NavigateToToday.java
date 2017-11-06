@@ -67,11 +67,11 @@ public class NavigateToToday extends AjaxCommonTest {
 		// Verify appointment exists in current view
         ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
 
-        // navigate to next week and make sure Today is not present
+        // Navigate to next week and make sure Today is not present
         app.zPageCalendar.zToolbarPressButton(Button.B_NEXT_WEEK);
         ZAssert.assertFalse(app.zPageCalendar.sIsElementPresent(Locators.TodayHighlighted), "Today is not visible");
 
-        // click on Today Button and make sure Today is present
+        // Click on Today Button and make sure Today is present
         app.zPageCalendar.zToolbarPressButton(Button.O_GO_TO_TODAY_MENU);
         ZAssert.assertTrue(app.zPageCalendar.sIsElementPresent(Locators.TodayHighlighted), "Today is visible");
         String todaysDate = app.zPageCalendar.sGetText(Locators.TodayHighlighted);
@@ -125,7 +125,7 @@ public class NavigateToToday extends AjaxCommonTest {
         // Verify appointment exists in current view
         ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
 
-        // click on Today Button and make sure Today is present
+        // Click on Today Button and make sure Today is present
         app.zPageCalendar.zToolbarPressButton(Button.O_GO_TO_TODAY_MENU);
         ZAssert.assertTrue(app.zPageCalendar.sIsElementPresent(Locators.TodaySelelcted), "Today is visible");
         String todaysDate = app.zPageCalendar.sGetText(Locators.TodaySelelcted);

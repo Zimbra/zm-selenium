@@ -17,44 +17,28 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.attributes;
 
 import java.util.*;
-
 import org.testng.annotations.*;
-
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.*;
 
-
 public class ZimbraPrefMailPollingIntervalAsMailArrives extends PrefGroupMailByMessageTest {
 
-	
-	
-	
 	public ZimbraPrefMailPollingIntervalAsMailArrives() {
 		logger.info("New "+ ZimbraPrefMailPollingIntervalAsMailArrives.class.getCanonicalName());
-		
 		super.startingAccountPreferences.put("zimbraPrefMailPollingInterval", ""+ com.zimbra.qa.selenium.projects.ajax.tests.preferences.mail.displayingmessages.ZimbraPrefMailPollingIntervalAsMailArrives.AsMailArrives);
-
-
-
 	}
-	
+
+
 	@Test( description = "Receive a mail with - As Mail Arrives set",
 			groups = { "functional", "L2" })
+
 	public void ZimbraPrefMailPollingIntervalAsMailArrives_01() throws HarnessException {
-		
-		
-		//-- DATA
-		
+
 		// Create the message data to be sent
 		String subject = "subject" + ConfigProperties.getUniqueString();
-		
 
-		
-
-		//-- GUI
-		
 		// Refresh the client to sync up
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
@@ -72,12 +56,7 @@ public class ZimbraPrefMailPollingIntervalAsMailArrives extends PrefGroupMailByM
 
 		// Wait for at least a little time (i.e. harness may be faster than the client and network)
 		SleepUtil.sleep(com.zimbra.qa.selenium.projects.ajax.tests.preferences.mail.displayingmessages.ZimbraPrefMailPollingIntervalAsMailArrives.AsMailArrivesDelay);
-		
-		
-		
-		//-- VERIFICATION
-		
-		
+
 		// Get all the messages in the inbox
 		List<MailItem> messages = app.zPageMail.zListGetMessages();
 		ZAssert.assertNotNull(messages, "Verify the message list exists");
@@ -92,10 +71,5 @@ public class ZimbraPrefMailPollingIntervalAsMailArrives extends PrefGroupMailByM
 			}
 		}
 		ZAssert.assertNotNull(found, "Verify the message is in the inbox");
-
-		
 	}
-
-
-
 }

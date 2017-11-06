@@ -166,7 +166,7 @@ public class DeleteSeries extends AjaxCommonTest {
 		String organizerInvId = app.zGetActiveAccount().soapSelectValue("//mail:appt", "invId");
 		ZAssert.assertNotNull(organizerInvId, "Verify that appointment is deleted");
 
-        //Login as attendee and verify that cancellation mail does not have A/D/T buttons
+        // Login as attendee and verify that cancellation mail does not have A/D/T buttons
         app.zPageMain.zLogout();
 
 		ZimbraAdminAccount.GlobalAdmin().soapSend(
@@ -175,7 +175,7 @@ public class DeleteSeries extends AjaxCommonTest {
 			+		"<a n='zimbraPrefGroupMailBy'>message</a>"
 			+	"</ModifyAccountRequest>");
 
-		//Login as attendee
+		// Login as attendee
 		app.zPageLogin.zLogin(ZimbraAccount.Account2());
 
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);

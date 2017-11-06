@@ -57,11 +57,10 @@ public class ChangeSignatureWhenzimbraFeatureHtmlComposeEnabledIsFalse extends A
 		logger.info("CreateSignature: finish");
 	}
 
+
 	/**
 	 * Test case : User should be able to change/select signature when
 	 * zimbraFeatureHtmlComposeEnabled = FALSE
-	 * 
-	 * @throws HarnessException
 	 */
 	@Bugs(ids = "83194")
 	@Test(description = " User should be able to change/select signature when zimbraFeatureHtmlComposeEnabled = FALSE", groups = {
@@ -86,17 +85,15 @@ public class ChangeSignatureWhenzimbraFeatureHtmlComposeEnabledIsFalse extends A
 		// Fill out the form with the data
 		mailform.zFill(mail);
 
-		// click Signature drop down and add signature
+		// Click Signature drop down and add signature
 		app.zPageMail.zToolbarPressPulldown(Button.B_OPTIONS, Button.O_ADD_SIGNATURE, this.sigName);
 
 		// Send the message
 		mailform.zSubmit();
 
-		MailItem received = MailItem.importFromSOAP(ZimbraAccount.AccountZCS(),
-				"in:inbox subject:(" + mail.dSubject + ")");
+		MailItem received = MailItem.importFromSOAP(ZimbraAccount.AccountZCS(), "in:inbox subject:(" + mail.dSubject + ")");
 
 		// Verify TO, Subject, Body,Signature
-
 		ZAssert.assertEquals(received.dFromRecipient.dEmailAddress, app.zGetActiveAccount().EmailAddress,
 				"Verify the from field is correct");
 		ZAssert.assertEquals(received.dToRecipients.get(0).dEmailAddress, ZimbraAccount.AccountZCS().EmailAddress,
@@ -104,6 +101,5 @@ public class ChangeSignatureWhenzimbraFeatureHtmlComposeEnabledIsFalse extends A
 		ZAssert.assertEquals(received.dSubject, mail.dSubject, "Verify the subject field is correct");
 		ZAssert.assertStringContains(received.dBodyText, mail.dBodyText, "Verify the body content is correct");
 		ZAssert.assertStringContains(received.dBodyText, this.sigBody, "Verify the signature is correct");
-
 	}
 }

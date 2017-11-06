@@ -17,9 +17,7 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.tasks.tags;
 
 import java.util.HashMap;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.TagItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
@@ -43,8 +41,10 @@ public class DeleteTag extends AjaxCommonTest {
 		};
 	}
 
-	@Test( description = "Delete a tag - Right click, Delete", 
+
+	@Test( description = "Delete a tag - Right click, Delete",
 			groups = { "smoke", "L1"})
+
 	public void DeleteTag_01() throws HarnessException {
 
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
@@ -62,7 +62,6 @@ public class DeleteTag extends AjaxCommonTest {
 		app.zTreeTasks.zTreeItem(Action.A_LEFTCLICK, taskFolder);
 
 		// Delete the tag using context menu
-
 		DialogWarning dialog = (DialogWarning) app.zTreeTasks.zTreeItem(Action.A_RIGHTCLICK, Button.B_DELETE, tag);
 		ZAssert.assertNotNull(dialog, "Verify the warning dialog opened");
 

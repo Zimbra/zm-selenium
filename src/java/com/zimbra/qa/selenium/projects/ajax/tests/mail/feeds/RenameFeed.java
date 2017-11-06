@@ -17,9 +17,7 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.feeds;
 
 import java.net.*;
-
 import org.testng.annotations.*;
-
 import com.zimbra.common.soap.*;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.items.FolderItem.*;

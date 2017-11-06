@@ -36,12 +36,12 @@ import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
 public class ReplyMsgWithHtmlSignature extends AjaxCommonTest {
 	String sigName = "signame" + ConfigProperties.getUniqueString();
 	String sigBody = "signature<b>bold" + ConfigProperties.getUniqueString() + "</b>signature";
-	String contentHTMLSig = XmlStringUtil
-			.escapeXml("<html>" + "<head></head>" + "<body>" + sigBody + "</body>" + "</html>");
+	String contentHTMLSig = XmlStringUtil.escapeXml("<html>" + "<head></head>" + "<body>" + sigBody + "</body>" + "</html>");
 
 	public ReplyMsgWithHtmlSignature() {
 		super.startingPage = app.zPageMail;
 	}
+
 
 	@BeforeMethod(groups = { "always" })
 	public void CreateSignature() throws HarnessException {
@@ -55,20 +55,23 @@ public class ReplyMsgWithHtmlSignature extends AjaxCommonTest {
 		app.zPageMain.zRefreshMainUI();
 
 		logger.info("CreateSignature: finish");
-
 	}
+
 
 	/**
 	 * Test case : Reply Msg with html signature and Verify signature through
 	 * soap Create signature through soap Send message with html signature
 	 * through soap Reply same message. Verify html signature in Replied msg
 	 * through soap
-	 * 
-	 * @throws HarnessException
 	 */
-	@Test(description = " Reply Msg with html signature and Verify signature through soap", groups = { "functional", "L2" })
+
+	@Test(description = " Reply Msg with html signature and Verify signature through soap",
+			groups = { "functional", "L2" })
+
 	public void ReplyMsgWithHtmlSignature_01() throws HarnessException {
+
 		FolderItem inboxFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
+
 		// Verify Signature
 		SignatureItem signature = SignatureItem.importFromSOAP(app.zGetActiveAccount(), this.sigName);
 		ZAssert.assertEquals(signature.getName(), this.sigName, "verified Text Signature is created");
@@ -76,10 +79,8 @@ public class ReplyMsgWithHtmlSignature extends AjaxCommonTest {
 		String subject = "subject" + ConfigProperties.getUniqueString();
 		String bodyText = "text" + ConfigProperties.getUniqueString();
 		String bodyHTML = "text <b>bold" + ConfigProperties.getUniqueString() + "</b> text";
-		String contentHTML = XmlStringUtil
-				.escapeXml("<html>" + "<head></head>" + "<body>" + bodyHTML + "<br></br>" + "</body>" + "</html>");
-		String signatureContent = XmlStringUtil
-				.escapeXml("<html>" + "<head></head>" + "<body>" + signature.dBodyHtmlText + "</body>" + "</html>");
+		String contentHTML = XmlStringUtil.escapeXml("<html>" + "<head></head>" + "<body>" + bodyHTML + "<br></br>" + "</body>" + "</html>");
+		String signatureContent = XmlStringUtil.escapeXml("<html>" + "<head></head>" + "<body>" + signature.dBodyHtmlText + "</body>" + "</html>");
 
 		// Send a message to the account
 		ZimbraAccount.AccountZCS()
@@ -124,6 +125,5 @@ public class ReplyMsgWithHtmlSignature extends AjaxCommonTest {
 				"Verify the to field is correct");
 		ZAssert.assertStringContains(received.dBodyHtml.toLowerCase(), bodyHTML, "Verify the body content is correct");
 		ZAssert.assertStringContains(received.dBodyHtml.toLowerCase(), this.sigBody, "Verify the signature is correct");
-
 	}
 }

@@ -17,7 +17,6 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.contacts.toaster;
 
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.ContactGroupItem;
 import com.zimbra.qa.selenium.framework.ui.*;
@@ -28,26 +27,26 @@ import com.zimbra.qa.selenium.projects.ajax.ui.contacts.*;
 import com.zimbra.qa.selenium.projects.ajax.ui.contacts.FormContactGroupNew.Field;
 
 public class EditContactGroup extends AjaxCommonTest {
+
 	public EditContactGroup() {
 		logger.info("New " + EditContactGroup.class.getCanonicalName());
-
-		// All tests start at the Address page
 		super.startingPage = app.zPageContacts;
-		// Make sure we are using an account with conversation view
-
 	}
 
+
 	@Bugs(ids = "97157")
-	@Test(description = "Edit a contact group by click Edit on Toolbar button and verify Toast msg", 
+	@Test(description = "Edit a contact group by click Edit on Toolbar button and verify Toast msg",
 			groups = {"functional", "L2"})
+
 	public void EditContactGroupToastMsg_01() throws HarnessException {
 
 		// A new group name
 		String newname = "edit" + ConfigProperties.getUniqueString();
+
 		// Create a contact group
 		ContactGroupItem group = ContactGroupItem.createContactGroupItem(app.zGetActiveAccount());
 
-		// -Refresh
+		// Refresh
 		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 
 		// Select the contact group
@@ -62,10 +61,9 @@ public class EditContactGroup extends AjaxCommonTest {
 
 		if (ConfigProperties.getStringProperty(ConfigProperties.getLocalHost() + ".coverage.enabled",
 				ConfigProperties.getStringProperty("coverage.enabled")).contains("true") == true) {
-			// this method won't wait for some sec after submitting data so
-			// toast message disappears and testcase fails (JS COVERAGE)
 			app.zPageContacts.zClickAt(
 					"css=div#" + formContactGroupNew.getToolbarID() + " div[id$='__SAVE'] td[id$='_title']", "0,0");
+
 		} else {
 			formContactGroupNew.zSubmit();
 		}
@@ -76,13 +74,16 @@ public class EditContactGroup extends AjaxCommonTest {
 		ZAssert.assertStringContains(toastMsg, "Group Saved", "Verify toast message: Group Saved bug:97157");
 	}
 
+
 	@Bugs(ids = "97157")
-	@Test(description = "Edit a contact group by click Edit Group on Context Menu and verify toast msg", 
+	@Test(description = "Edit a contact group by click Edit Group on Context Menu and verify toast msg",
 			groups = {"functional", "L2"})
+
 	public void EditContactGroupToastMsg_02() throws HarnessException {
 
 		// A new group name
 		String newname = "edit" + ConfigProperties.getUniqueString();
+
 		// Create a contact group
 		ContactGroupItem group = ContactGroupItem.createContactGroupItem(app.zGetActiveAccount());
 
@@ -98,8 +99,6 @@ public class EditContactGroup extends AjaxCommonTest {
 
 		if (ConfigProperties.getStringProperty(ConfigProperties.getLocalHost() + ".coverage.enabled",
 				ConfigProperties.getStringProperty("coverage.enabled")).contains("true") == true) {
-			// this method won't wait for some sec after submitting data so
-			// toast message disappears and testcase fails (JS COVERAGE)
 			app.zPageContacts.zClickAt(
 					"css=div#" + formContactGroupNew.getToolbarID() + " div[id$='__SAVE'] td[id$='_title']", "0,0");
 		} else {
@@ -110,12 +109,13 @@ public class EditContactGroup extends AjaxCommonTest {
 		Toaster toast = app.zPageMain.zGetToaster();
 		String toastMsg = toast.zGetToastMessage();
 		ZAssert.assertStringContains(toastMsg, "Group Saved", "Verify toast message: Group Saved bug:97157");
-
 	}
 
+
 	@Bugs(ids = "97157")
-	@Test(description = "Edit a contact group by double click on the contact group and verify toast msg  ", 
+	@Test(description = "Edit a contact group by double click on the contact group and verify toast msg  ",
 			groups = {"functional", "L2"})
+
 	public void EditContactGroupToastMsg_03() throws HarnessException {
 
 		// A new group name
@@ -136,8 +136,6 @@ public class EditContactGroup extends AjaxCommonTest {
 
 		if (ConfigProperties.getStringProperty(ConfigProperties.getLocalHost() + ".coverage.enabled",
 				ConfigProperties.getStringProperty("coverage.enabled")).contains("true") == true) {
-			// this method won't wait for some sec after submitting data so
-			// toast message disappears and testcase fails (JS COVERAGE)
 			app.zPageContacts.zClickAt(
 					"css=div#" + formContactGroupNew.getToolbarID() + " div[id$='__SAVE'] td[id$='_title']", "0,0");
 		} else {
@@ -149,5 +147,4 @@ public class EditContactGroup extends AjaxCommonTest {
 		String toastMsg = toast.zGetToastMessage();
 		ZAssert.assertStringContains(toastMsg, "Group Saved", "Verify toast message: Group Saved bug:97157");
 	}
-
 }

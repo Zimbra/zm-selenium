@@ -1,7 +1,3 @@
-package com.zimbra.qa.selenium.projects.ajax.tests.mail.newwindow.mail;
-
-
-
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
@@ -18,10 +14,9 @@ package com.zimbra.qa.selenium.projects.ajax.tests.mail.newwindow.mail;
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-
+package com.zimbra.qa.selenium.projects.ajax.tests.mail.newwindow.mail;
 
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -29,24 +24,20 @@ import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail.Field;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.SeparateWindowDisplayMail;
 
-
 public class EditAsNew extends PrefGroupMailByMessageTest {
 
-
 	public EditAsNew() {
-
 		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "html");
 		logger.info("New "+ EditAsNew.class.getCanonicalName());
-
-
 	}
+
 
 	@Test( description = "Edit as new' message, using 'Actions -> Edit as New' from new window ",
 			groups = { "functional", "L2" })
+
 	public void EditAsNewFromNewWindow_01() throws HarnessException {
 
-		String subject = "subject"+ ConfigProperties.getUniqueString();		
-
+		String subject = "subject"+ ConfigProperties.getUniqueString();
 
 		// Send a message to the account
 		ZimbraAccount.AccountA().soapSend(
@@ -60,7 +51,6 @@ public class EditAsNew extends PrefGroupMailByMessageTest {
 						"</m>" +
 				"</SendMsgRequest>");
 
-
 		// Refresh current view
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 
@@ -70,7 +60,7 @@ public class EditAsNew extends PrefGroupMailByMessageTest {
 		SeparateWindowDisplayMail window = null;
 		MailItem mail = new MailItem();
 		mail.dBodyHtml = " body"+ ConfigProperties.getUniqueString();
-		
+
 		String windowTitle = "Zimbra: " + subject;
 
 		try {
@@ -78,12 +68,12 @@ public class EditAsNew extends PrefGroupMailByMessageTest {
 			// Choose Actions -> Launch in Window
 			window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 			window.zSetWindowTitle(windowTitle);
-			ZAssert.assertTrue(window.zIsWindowOpen(windowTitle),"Verify the window is opened and switch to it");			
+			ZAssert.assertTrue(window.zIsWindowOpen(windowTitle),"Verify the window is opened and switch to it");
 
 			window.zToolbarPressPulldown(Button.B_ACTIONS, Button.O_EDIT_AS_NEW);
 			SleepUtil.sleepMedium();
 			window.zFillField(Field.Body, mail.dBodyHtml);
-			
+
 			window.zToolbarPressButton(Button.B_SEND);
 			window.zToolbarPressButton(Button.B_CLOSE);
 
@@ -92,20 +82,15 @@ public class EditAsNew extends PrefGroupMailByMessageTest {
 		}
 
 		for (int i = 0; i < 30; i++) {
-
 			app.zGetActiveAccount().soapSend(
 					"<SearchRequest types='message' xmlns='urn:zimbraMail'>"
 							+ "<query>subject:(" + subject + ")</query>"
 							+ "</SearchRequest>");
-			com.zimbra.common.soap.Element node = ZimbraAccount.AccountA()
-					.soapSelectNode("//mail:m", 1);
+			com.zimbra.common.soap.Element node = ZimbraAccount.AccountA().soapSelectNode("//mail:m", 1);
 			if (node != null) {
-				// found the message
 				break;
 			}
-
 			SleepUtil.sleep(1000);
-
 		}
 
 		app.zGetActiveAccount().soapSend(
@@ -120,9 +105,5 @@ public class EditAsNew extends PrefGroupMailByMessageTest {
 
 		String html = app.zGetActiveAccount().soapSelectValue("//mail:mp[@ct='text/html']//mail:content", null);
 		ZAssert.assertStringContains(html, mail.dBodyHtml, "Verify the html content");
-
 	}
-
 }
-
-

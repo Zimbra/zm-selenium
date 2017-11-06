@@ -14,13 +14,10 @@
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.compose.formatting;
 
 import java.io.File;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
@@ -33,9 +30,10 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 		logger.info("New " + ViewMail.class.getCanonicalName());
 	}
 
-	@Test( description = "View a message with Excel data formatting", 
+
+	@Test( description = "View a message with Excel data formatting",
 			groups = { "smoke", "L1" })
-	
+
 	public void ViewMail_01() throws HarnessException {
 
 		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/Excel_Data_Formatting_Mime.txt";

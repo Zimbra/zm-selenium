@@ -25,40 +25,39 @@ import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.DialogAssistant;
 
 public class CreateContact extends AjaxCommonTest {
-	
+
 	public CreateContact() {
 		logger.info("New "+ CreateContact.class.getCanonicalName());
 		super.startingPage = app.zPageContacts;
 	}
-	
-	
+
+
 	@Test( description = "Create a new conntact using the Zimbra Assistant",
 			groups = { "deprecated" })
-	
+
 	public void CreateContact_01() throws HarnessException {
-		
+
 		// Create a contact item
 		ContactItem contactItem = ContactItem.createContactItem(app.zGetActiveAccount());
-	
+
 		String command = "contact " + contactItem.firstName + " " + contactItem.lastName + " " + contactItem.email;
-	
+
 		DialogAssistant assistant = (DialogAssistant)app.zPageContacts.zKeyboardShortcut(Shortcut.S_ASSISTANT);
 		assistant.zEnterCommand(command);
 		assistant.zClickButton(Button.B_OK);
-		
-	  
+
 	    // verify contact created
-		List<ContactItem> contacts = app.zPageContacts.zListGetContacts(); 
- 	           
+		List<ContactItem> contacts = app.zPageContacts.zListGetContacts();
+
         boolean isContactItemDisplayed=false;
 	    for (ContactItem ci : contacts) {
-		    if (ci.fileAs.toLowerCase().contains(contactItem.firstName)) 
+		    if (ci.fileAs.toLowerCase().contains(contactItem.firstName))
 			   {
               isContactItemDisplayed=true;
               break;
 	  	    }
 	      }
-			
+
         ZAssert.assertTrue(isContactItemDisplayed, "Verify contact fileAs (" + contactItem.firstName + " displayed");
 	}
 }

@@ -32,10 +32,12 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 
 		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "text");
 		super.startingAccountPreferences.put("zimbraPrefComposeInNewWindow", "TRUE");
-
 	}
 
-	@Test(description = "Send a mail using Text editor - in a separate window", groups = { "sanity", "L0" })
+
+	@Test(description = "Send a mail using Text editor - in a separate window",
+			groups = { "sanity", "L0" })
+
 	public void CreateMailText_01() throws HarnessException {
 
 		// Create the message data to be sent
@@ -66,17 +68,13 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 		}
 
 		for (int i = 0; i < 30; i++) {
-
 			ZimbraAccount.AccountA().soapSend("<SearchRequest types='message' xmlns='urn:zimbraMail'>"
 					+ "<query>subject:(" + mail.dSubject + ")</query>" + "</SearchRequest>");
 			com.zimbra.common.soap.Element node = ZimbraAccount.AccountA().soapSelectNode("//mail:m", 1);
 			if (node != null) {
-				// found the message
 				break;
 			}
-
 			SleepUtil.sleep(1000);
-
 		}
 
 		MailItem received = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "subject:(" + mail.dSubject + ")");
@@ -87,8 +85,8 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 				"Verify the to field is correct");
 		ZAssert.assertEquals(received.dSubject, mail.dSubject, "Verify the subject field is correct");
 		ZAssert.assertStringContains(received.dBodyText, mail.dBodyText, "Verify the body field is correct");
-
 	}
+
 
 	@DataProvider(name = "DataProvideNewMessageShortcuts")
 	public Object[][] DataProvideNewMessageShortcuts() {
@@ -98,8 +96,9 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 				new Object[] { Shortcut.S_NEWMESSAGE2_IN_NEW_WINDOW, Shortcut.S_NEWMESSAGE2_IN_NEW_WINDOW.getKeys() } };
 	}
 
-	@Test(description = "Send a mail using Text editor using keyboard shortcuts - in separate window", groups = {
-			"functional", "L2" }, dataProvider = "DataProvideNewMessageShortcuts")
+	@Test(description = "Send a mail using Text editor using keyboard shortcuts - in separate window",
+			groups = { "functional", "L2" }, dataProvider = "DataProvideNewMessageShortcuts")
+
 	public void CreateMailText_02(Shortcut shortcut, String keys) throws HarnessException {
 
 		// Create the message data to be sent
@@ -137,10 +136,12 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 		MailItem received = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "subject:(" + mail.dSubject + ")");
 
 		ZAssert.assertNotNull(received, "Verify the message is received");
-
 	}
 
-	@Test(description = "Send a mail with CC - in a separate window", groups = { "functional", "L2" })
+
+	@Test(description = "Send a mail with CC - in a separate window",
+			groups = { "functional", "L2" })
+
 	public void CreateMailText_03() throws HarnessException {
 
 		// Create the message data to be sent
@@ -178,25 +179,25 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 		for (RecipientItem r : sent.dToRecipients) {
 			to.append(r.dEmailAddress).append(",");
 		}
-		ZAssert.assertStringContains(to.toString(), ZimbraAccount.AccountA().EmailAddress,
-				"Verify TO contains AccountA");
+		ZAssert.assertStringContains(to.toString(), ZimbraAccount.AccountA().EmailAddress, "Verify TO contains AccountA");
 
 		StringBuilder cc = new StringBuilder();
 		for (RecipientItem r : sent.dCcRecipients) {
 			cc.append(r.dEmailAddress).append(",");
 		}
-		ZAssert.assertStringContains(cc.toString(), ZimbraAccount.AccountB().EmailAddress,
-				"Verify CC contains AccountB");
+		ZAssert.assertStringContains(cc.toString(), ZimbraAccount.AccountB().EmailAddress, "Verify CC contains AccountB");
 
 		MailItem toReceived = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "subject:(" + mail.dSubject + ")");
 		ZAssert.assertNotNull(toReceived, "Verify the TO recipient receives the message");
 
 		MailItem ccReceived = MailItem.importFromSOAP(ZimbraAccount.AccountB(), "subject:(" + mail.dSubject + ")");
 		ZAssert.assertNotNull(ccReceived, "Verify the CC recipient receives the message");
-
 	}
 
-	@Test(description = "Send a mail with BCC", groups = { "deprecated" })
+
+	@Test(description = "Send a mail with BCC",
+			groups = { "deprecated" })
+
 	public void CreateMailText_04() throws HarnessException {
 
 		// Create the message data to be sent
@@ -234,16 +235,15 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 		for (RecipientItem r : sent.dToRecipients) {
 			to.append(r.dEmailAddress).append(",");
 		}
-		ZAssert.assertStringContains(to.toString(), ZimbraAccount.AccountA().EmailAddress,
-				"Verify TO contains AccountA");
+		ZAssert.assertStringContains(to.toString(), ZimbraAccount.AccountA().EmailAddress, "Verify TO contains AccountA");
 
 		MailItem toReceived = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "subject:(" + mail.dSubject + ")");
 		ZAssert.assertNotNull(toReceived, "Verify the TO recipient receives the message");
 
 		MailItem bccReceived = MailItem.importFromSOAP(ZimbraAccount.AccountB(), "subject:(" + mail.dSubject + ")");
 		ZAssert.assertNotNull(bccReceived, "Verify the BCC recipient receives the message");
-
 	}
+
 
 	@DataProvider(name = "DataProvidePriorities")
 	public Object[][] DataProvidePriorities() {
@@ -251,8 +251,9 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 				new Object[] { Button.O_PRIORITY_NORMAL, "" }, new Object[] { Button.O_PRIORITY_LOW, "?" } };
 	}
 
-	@Test(description = "Send a mail with different priorities high/normal/low - in a separate window", groups = {
-			"functional", "L2" }, dataProvider = "DataProvidePriorities")
+	@Test(description = "Send a mail with different priorities high/normal/low - in a separate window",
+			groups = { "functional", "L2" }, dataProvider = "DataProvidePriorities")
+
 	public void CreateMailText_05(Button option, String verify) throws HarnessException {
 
 		// Create the message data to be sent
@@ -266,10 +267,10 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 		try {
 
 			window = (SeparateWindowFormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW_IN_NEW_WINDOW);
-			
+
 			window.zSetWindowTitle(windowTitle);
 			ZAssert.assertTrue(window.zIsWindowOpen(windowTitle),"Verify the window is opened and switch to it");
-			
+
 			window.waitForComposeWindow();
 
 			// Change the priority
@@ -285,14 +286,11 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 
 		} finally {
 			app.zPageMain.zCloseWindow(window, windowTitle, app);
-
 		}
 
 		MailItem received = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "subject:(" + subject + ")");
+
 		ZAssert.assertNotNull(received, "Verify the message is received");
-
 		ZAssert.assertStringContains(received.getFlags(), verify, "Verify the correct priority was sent");
-
 	}
-
 }

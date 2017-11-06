@@ -80,7 +80,6 @@ public class RecurringWeekly extends AjaxCommonTest {
 					"</m>" +
 				"</CreateAppointmentRequest>");
 
-
 		app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
 		app.zPageCalendar.zToolbarPressButton(Button.B_NEXT_PAGE);
 		DialogOpenRecurringItem openRecurring = (DialogOpenRecurringItem) app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, apptSubject);

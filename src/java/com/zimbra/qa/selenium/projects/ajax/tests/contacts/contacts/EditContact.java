@@ -26,263 +26,239 @@ import com.zimbra.qa.selenium.projects.ajax.ui.contacts.*;
 import com.zimbra.qa.selenium.projects.ajax.ui.contacts.FormContactNew.Field;
 
 public class EditContact extends AjaxCommonTest  {
-	
+
 	public EditContact() {
 		logger.info("New "+ EditContact.class.getCanonicalName());
 		super.startingPage =  app.zPageContacts;
-	}	
-	
+	}
+
+
 	@Test( description = "Edit a contact item, click Edit on toolbar",
 			groups = { "smoke", "L0"})
-	
+
 	public void ClickToolbarEdit_01() throws HarnessException {
-		
-		//-- Data
-		
+
 		// Create a contact
 		ContactItem contact = ContactItem.createContactItem(app.zGetActiveAccount());
-		
+
 		// The new first name
 		String firstname = "new" + ConfigProperties.getUniqueString();
-		
-		//-- GUI
-		
+
 		// Refresh
 		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
-		
+
 		// Select the contact
 		app.zPageContacts.zListItem(Action.A_LEFTCLICK, contact.getName());
-		
+
 		// Click "Edit" from the toolbar
         FormContactNew form = (FormContactNew) app.zPageContacts.zToolbarPressButton(Button.B_EDIT);
-		
+
 		// Change the first name
         form.zFillField(Field.FirstName, firstname);
         form.zToolbarPressButton(Button.B_SAVE);
-        
-        //-- Verification
+
+        // Verification
         ContactItem actual = ContactItem.importFromSOAP(app.zGetActiveAccount(), "#firstname:"+ firstname);
         ZAssert.assertNotNull(actual, "Verify the contact is found");
         ZAssert.assertEquals(actual.firstName, firstname, "Verify the new first name is saved");
 	}
-	
+
+
 	@Test( description = "Edit a contact item, Right click then click Edit",
 			groups = { "smoke", "L1"})
-	
+
 	public void ClickContextMenuEdit_02() throws HarnessException {
-		
-		//-- Data
-		
+
 		// Create a contact
 		ContactItem contact = ContactItem.createContactItem(app.zGetActiveAccount());
-		
+
 		// The new first name
 		String firstname = "new" + ConfigProperties.getUniqueString();
-		
-		//-- GUI
-		
+
 		// Refresh
 		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
-		
+
 		// Rigth Click -> "Edit"
-        FormContactNew form = (FormContactNew) app.zPageContacts.zListItem(Action.A_RIGHTCLICK, Button.B_EDIT, contact.getName());        
-		
+        FormContactNew form = (FormContactNew) app.zPageContacts.zListItem(Action.A_RIGHTCLICK, Button.B_EDIT, contact.getName());
+
 		// Change the first name
         form.zFillField(Field.FirstName, firstname);
         form.zToolbarPressButton(Button.B_SAVE);
-        
-        
-        
-        //-- Verification
+
+        // Verification
         ContactItem actual = ContactItem.importFromSOAP(app.zGetActiveAccount(), "#firstname:"+ firstname);
         ZAssert.assertNotNull(actual, "Verify the contact is found");
         ZAssert.assertEquals(actual.firstName, firstname, "Verify the new first name is saved");
 	}
-	
+
+
 	@Test( description = "Edit a contact item, double click the contact",
 			groups = { "smoke", "L1" })
-	
+
 	public void DoubleClickContact_03() throws HarnessException {
-		
-		//-- Data
-		
+
 		// Create a contact
 		ContactItem contact = ContactItem.createContactItem(app.zGetActiveAccount());
-		
+
 		// The new first name
 		String firstname = "new" + ConfigProperties.getUniqueString();
-		
-		//-- GUI
-		
+
 		// Refresh
 		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
-		
+
 		// Double click contact
-        FormContactNew form = (FormContactNew) app.zPageContacts.zListItem(Action.A_DOUBLECLICK, contact.getName());        
-		
+        FormContactNew form = (FormContactNew) app.zPageContacts.zListItem(Action.A_DOUBLECLICK, contact.getName());
+
 		// Change the first name
         form.zFillField(Field.FirstName, firstname);
         form.zToolbarPressButton(Button.B_SAVE);
-        
-        //-- Verification
+
+        // Verification
         ContactItem actual = ContactItem.importFromSOAP(app.zGetActiveAccount(), "#firstname:"+ firstname);
         ZAssert.assertNotNull(actual, "Verify the contact is found");
         ZAssert.assertEquals(actual.firstName, firstname, "Verify the new first name is saved");
 	}
-	
+
+
 	@Test( description = "Cancel Editing a contact by click Close",
 			groups = { "functional", "L2"})
-	
+
 	public void NoEditClickToolbarClose_04() throws HarnessException {
-		
-		//-- Data
-		
+
 		// Create a contact
 		ContactItem contact = ContactItem.createContactItem(app.zGetActiveAccount());
-		
-		//-- GUI
-		
+
 		// Refresh
 		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
-		
+
 		// Select the contact
 		app.zPageContacts.zListItem(Action.A_LEFTCLICK, contact.getName());
-		
+
 		// Click "Edit" from the toolbar
         FormContactNew form = (FormContactNew) app.zPageContacts.zToolbarPressButton(Button.B_EDIT);
-		
+
 		// Change the first name
         form.zToolbarPressButton(Button.B_CLOSE);
-        
-        //-- Verification
+
+        // Verification
         ContactItem actual = ContactItem.importFromSOAP(app.zGetActiveAccount(), "#firstname:"+ contact.firstName);
         ZAssert.assertNotNull(actual, "Verify the contact is found");
 	}
-		
+
+
 	@Test( description = "Cancel an edited contact by click Close, then click No",
 			groups = { "functional", "L2"})
-	
+
 	public void ClickToolbarCloseThenClickNo_05() throws HarnessException {
-		
-		//-- Data
-		
+
 		// Create a contact
 		ContactItem contact = ContactItem.createContactItem(app.zGetActiveAccount());
-		
+
 		// The new first name
 		String firstname = "new" + ConfigProperties.getUniqueString();
-		
-		//-- GUI
-		
+
 		// Refresh
 		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
-		
+
 		// Select the contact
 		app.zPageContacts.zListItem(Action.A_LEFTCLICK, contact.getName());
-		
+
 		// Click "Edit" from the toolbar
         FormContactNew form = (FormContactNew) app.zPageContacts.zToolbarPressButton(Button.B_EDIT);
-		
+
 		// Change the first name
         form.zFillField(Field.FirstName, firstname);
-        
+
         // Click close
         DialogWarning dialog = (DialogWarning) form.zToolbarPressButton(Button.B_CLOSE);
-        
+
         // Make sure the dialog is active
         dialog.zWaitForActive();
-        
-	    // Click No in popup dialog 
+
+	    // Click No in popup dialog
         dialog.zClickButton(Button.B_NO);
 
-        //-- Verification
+        // Verification
         ContactItem actual = ContactItem.importFromSOAP(app.zGetActiveAccount(), "#firstname:"+ contact.firstName);
         ZAssert.assertNotNull(actual, "Verify the contact is found");
 	}
-	
+
+
 	@Test( description = "Cancel an edited contact by click Close, then click Cancel",
 			groups = { "functional", "L2"})
-	
+
 	public void ClickToolbarCloseThenClickCancel_06() throws HarnessException {
-		
-		//-- Data
-		
+
 		// Create a contact
 		ContactItem contact = ContactItem.createContactItem(app.zGetActiveAccount());
-		
+
 		// The new first name
 		String firstname = "new" + ConfigProperties.getUniqueString();
-		
-		//-- GUI
-		
+
 		// Refresh
 		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
-		
+
 		// Select the contact
 		app.zPageContacts.zListItem(Action.A_LEFTCLICK, contact.getName());
-		
+
 		// Click "Edit" from the toolbar
         FormContactNew form = (FormContactNew) app.zPageContacts.zToolbarPressButton(Button.B_EDIT);
-		
+
 		// Change the first name
         form.zFillField(Field.FirstName, firstname);
-        
+
         // Click close
         DialogWarning dialog = (DialogWarning) form.zToolbarPressButton(Button.B_CLOSE);
-        
+
         // Make sure the dialog is active
         dialog.zWaitForActive();
-        
-	    // Click No in popup dialog 
+
+	    // Click No in popup dialog
         dialog.zClickButton(Button.B_CANCEL);
-        
+
         // Click save
         form.zToolbarPressButton(Button.B_SAVE);
-        
-        //-- Verification
+
+        // Verification
         ContactItem actual = ContactItem.importFromSOAP(app.zGetActiveAccount(), "#firstname:"+ firstname);
         ZAssert.assertNotNull(actual, "Verify the contact is found");
     }
-	
+
+
 	@Test( description = "Cancel an edited contact by click Close, then click Yes",
 			groups = { "functional", "L2"})
-	
+
 	public void ClickToolbarCloseThenClickYes_07() throws HarnessException {
-		
-		//-- Data
-		
+
 		// Create a contact
 		ContactItem contact = ContactItem.createContactItem(app.zGetActiveAccount());
-		
+
 		// The new first name
 		String firstname = "new" + ConfigProperties.getUniqueString();
-		
-		//-- GUI
-		
+
 		// Refresh
 		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
-		
+
 		// Select the contact
 		app.zPageContacts.zListItem(Action.A_LEFTCLICK, contact.getName());
-		
+
 		// Click "Edit" from the toolbar
         FormContactNew form = (FormContactNew) app.zPageContacts.zToolbarPressButton(Button.B_EDIT);
-		
+
 		// Change the first name
         form.zFillField(Field.FirstName, firstname);
-        
+
         // Click close
         DialogWarning dialog = (DialogWarning) form.zToolbarPressButton(Button.B_CLOSE);
-        
+
         // Make sure the dialog is active
         dialog.zWaitForActive();
-        
-	    // Click No in popup dialog 
+
+	    // Click No in popup dialog
         dialog.zClickButton(Button.B_YES);
-        
-        //-- Verification
+
+        // Verification
         ContactItem actual = ContactItem.importFromSOAP(app.zGetActiveAccount(), "#firstname:"+ firstname);
         ZAssert.assertNotNull(actual, "Verify the contact is found");
 	}
 }
-

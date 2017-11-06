@@ -85,7 +85,7 @@ public class OpenFile extends FeatureBriefcaseTest {
 
 			text = file.retriveFileText();
 
-			// close
+			// Close
 			app.zPageBriefcase.zSelectWindow(fileName);
 
 			app.zPageBriefcase.closeWindow();

@@ -34,20 +34,19 @@ import com.zimbra.qa.selenium.projects.ajax.ui.preferences.signature.FormSignatu
 public class EditHtmlSignature extends AjaxCommonTest {
 	String sigName = "signame " + ConfigProperties.getUniqueString();
 	String bodyHTML = "text <strong>bold" + ConfigProperties.getUniqueString() + " </strong>text";
-	String contentHTML = XmlStringUtil
-			.escapeXml("<html>" + "<head></head>" + "<body>" + bodyHTML + "</body>" + "</html>");
+	String contentHTML = XmlStringUtil.escapeXml("<html>" + "<head></head>" + "<body>" + bodyHTML + "</body>" + "</html>");
 
 	public EditHtmlSignature() throws HarnessException {
 		super.startingPage = app.zPagePreferences;
 	}
 
+
 	/**
 	 * Added @BeforeMethod because after logged in, when we try to create
 	 * signature through soap, it doesn't shows in(GUI) 'Pref/signatures' unless
 	 * and until we refresh browser.
-	 * 
-	 * @throws HarnessException
 	 */
+
 	@BeforeMethod(groups = { "always" })
 	public void CreateHtmlSignature() throws HarnessException {
 		ZimbraAccount.AccountZCS().authenticate();
@@ -63,14 +62,15 @@ public class EditHtmlSignature extends AjaxCommonTest {
 		logger.info("CreateSignature: finish");
 	}
 
+
 	/**
 	 * Test case : Create html signature through soap then Edit and verify
 	 * edited html signature through soap
-	 * 
-	 * @throws HarnessException
 	 */
 
-	@Test(description = "Edit signature through GUI and verify through soap", groups = { "sanity", "L0"  })
+	@Test(description = "Edit signature through GUI and verify through soap",
+		groups = { "sanity", "L0"  })
+
 	public void EditHtmlSignature_01() throws HarnessException {
 
 		String sigEditName = "edit name " + ConfigProperties.getUniqueString();
@@ -104,9 +104,6 @@ public class EditHtmlSignature extends AjaxCommonTest {
 		// Verify signature name and body contents
 		ZAssert.assertEquals(editsignature.getName(), sigEditName, "Verify Edited signature name");
 		ZAssert.assertStringContains(editsignature.dBodyHtmlText, editbodyHTML, "Verify Edited Html signature body");
-		ZAssert.assertStringDoesNotContain(editsignature.getName(), this.sigName,
-				"Verify after edit 1st signature  does not present");
-
+		ZAssert.assertStringDoesNotContain(editsignature.getName(), this.sigName, "Verify after edit 1st signature  does not present");
 	}
-
 }

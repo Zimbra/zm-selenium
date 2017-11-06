@@ -17,34 +17,29 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.folders;
 
 import java.util.List;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.DialogWarning;
 
-
 public class EmptyFolder extends PrefGroupMailByMessageTest {
 
 	public EmptyFolder() {
 		logger.info("New "+ EmptyFolder.class.getCanonicalName());
-
-		
-
 	}
 
-	@Test( description = "Empty a folder (context menu)", groups = { "smoke", "L1" })
+
+	@Test( description = "Empty a folder (context menu)",
+			groups = { "smoke", "L1" })
+
 	public void EmptyFolder_01() throws HarnessException {
 
-		String foldername = "folder"
-				+ ConfigProperties.getUniqueString();
+		String foldername = "folder" + ConfigProperties.getUniqueString();
 		String subject = "subject" + ConfigProperties.getUniqueString();
 
-		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(),
-				FolderItem.SystemFolder.Inbox);
+		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Inbox);
 
 		// Create a subfolder in Inbox
 		app.zGetActiveAccount().soapSend(
@@ -53,10 +48,8 @@ public class EmptyFolder extends PrefGroupMailByMessageTest {
 						+ inbox.getId() + "'/>" + "</CreateFolderRequest>");
 
 		// Make sure the folder was created on the server
-		FolderItem subfolder = FolderItem.importFromSOAP(app
-				.zGetActiveAccount(), foldername);
-		ZAssert.assertNotNull(subfolder,
-				"Verify the folder exists on the server");
+		FolderItem subfolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), foldername);
+		ZAssert.assertNotNull(subfolder, "Verify the folder exists on the server");
 
 		// Add an message to the new subfolder
 		app.zGetActiveAccount().soapSend(
@@ -70,11 +63,12 @@ public class EmptyFolder extends PrefGroupMailByMessageTest {
 						+ "</m>" + "</AddMsgRequest>");
 
 		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(),"subject:(" + subject + ")");
+
 		// Click on Get Mail to refresh the folder list
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
+
 		// Right click on folder, select "Mark all as read"
-		DialogWarning dialog = (DialogWarning) app.zTreeMail.zTreeItem(
-				Action.A_RIGHTCLICK, Button.B_TREE_FOLDER_EMPTY, subfolder);
+		DialogWarning dialog = (DialogWarning) app.zTreeMail.zTreeItem(Action.A_RIGHTCLICK, Button.B_TREE_FOLDER_EMPTY, subfolder);
 		ZAssert.assertNotNull(dialog,"Verify the warning dialog pops up - Are you sure you want to delete all items?");
 
 		// Dismiss it
@@ -92,11 +86,5 @@ public class EmptyFolder extends PrefGroupMailByMessageTest {
 			}
 		}
 		ZAssert.assertNull(found, "Verify the message is no longer exist");
-
-		// Make sure the folder was created on the server
-		// MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(),
-		// "subject:("+ subject +")");
-		// ZAssert.assertNull(mail, "Verify the message no longer exists");
-
 	}
 }

@@ -108,7 +108,7 @@ public class ModifyByAddingAttendees extends AjaxCommonTest {
         sendUpdateDialog.zClickButton(Button.B_SEND_UPDATES_ONLY_TO_ADDED_OR_REMOVED_ATTENDEES);
         sendUpdateDialog.zClickButton(Button.B_OK);
 
-        //Verify that attendee is present in the attendee field
+        // Verify that attendee is present in the attendee field
         apptForm = (FormApptNew)app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, apptSubject);
         ZAssert.assertNotNull(apptForm.zVerifyRequiredAttendee(apptAttendee2), "Verify that reecently added attendee is present");
         apptForm.zToolbarPressButton(Button.B_CLOSE);

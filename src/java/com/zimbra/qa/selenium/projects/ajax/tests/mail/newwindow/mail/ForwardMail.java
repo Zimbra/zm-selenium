@@ -14,7 +14,6 @@
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.newwindow.mail;
 
 import org.testng.annotations.Test;
@@ -67,8 +66,8 @@ public class ForwardMail extends PrefGroupMailByMessageTest {
 					Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 
 			window.zSetWindowTitle(windowTitle);
-			ZAssert.assertTrue(window.zIsWindowOpen(windowTitle),"Verify the window is opened and switch to it");			
-			
+			ZAssert.assertTrue(window.zIsWindowOpen(windowTitle),"Verify the window is opened and switch to it");
+
 			window.zToolbarPressButton(Button.B_FORWARD);
 			window.sType(FormMailNew.Locators.zToField, ZimbraAccount.AccountB().EmailAddress + ",");
 			window.zToolbarPressButton(Button.B_SEND);
@@ -122,7 +121,7 @@ public class ForwardMail extends PrefGroupMailByMessageTest {
 
 			window.zSetWindowTitle(windowTitle);
 			ZAssert.assertTrue(window.zIsWindowOpen(windowTitle),"Verify the window is opened and switch to it");
-			
+
 			window.zKeyboardShortcut(Shortcut.S_MAIL_FOWARD);
 			window.sType(FormMailNew.Locators.zToField, ZimbraAccount.AccountB().EmailAddress + ",");
 			window.zToolbarPressButton(Button.B_SEND);
@@ -137,7 +136,5 @@ public class ForwardMail extends PrefGroupMailByMessageTest {
 		ZAssert.assertEquals(received.dToRecipients.get(0).dEmailAddress, ZimbraAccount.AccountB().EmailAddress, "Verify the to field is correct");
 		ZAssert.assertStringContains(received.dSubject, subject, "Verify the subject field is correct");
 		ZAssert.assertStringContains(received.dSubject, "Fwd", "Verify the subject field contains the 'Fwd' prefix");
-
 	}
-
 }

@@ -17,7 +17,6 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.folders;
 
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.Button;
@@ -30,9 +29,10 @@ public class DragAndDropFolder extends PrefGroupMailByMessageTest{
 		logger.info("New "+ DragAndDropFolder.class.getCanonicalName());
 	}
 
+
 	@Test( description = "Drag one folder and Drop into other",
 			groups = { "smoke", "L1" })
-	
+
 	public void DragDropFolder_01() throws HarnessException {
 
 		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
@@ -45,7 +45,6 @@ public class DragAndDropFolder extends PrefGroupMailByMessageTest{
 					"<CreateFolderRequest xmlns='urn:zimbraMail'>"
 				+		"<folder name='"+ name1 +"' l='"+ inbox.getId() +"'/>"
 				+	"</CreateFolderRequest>");
-
 
 		FolderItem subfolder1 = FolderItem.importFromSOAP(app.zGetActiveAccount(), name1);
 		ZAssert.assertNotNull(subfolder1, "Verify the first subfolder is available");

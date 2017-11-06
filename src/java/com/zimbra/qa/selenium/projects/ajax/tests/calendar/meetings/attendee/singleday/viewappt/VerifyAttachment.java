@@ -44,7 +44,7 @@ public class VerifyAttachment extends AjaxCommonTest {
 		String filename = "BasicExcel2007.xlsx";
 		String filePath = ConfigProperties.getBaseDirectory() + "/data/public/Files/Basic01/"+ filename;
 		String dAttachmentId  = account.uploadFile(filePath);
-		//create date object
+		// Create date object
 		String tz = ZTimeZone.getLocalTimeZone().getID();
 		Calendar now = Calendar.getInstance();
 		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 17, 0, 0);

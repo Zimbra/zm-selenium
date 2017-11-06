@@ -17,9 +17,7 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.mail;
 
 import java.util.List;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.items.MailItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -30,16 +28,16 @@ import com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail.Field;
 public class GetMail extends PrefGroupMailByMessageTest {
 
 	int pollIntervalSeconds = 60;
-	
+
 	public GetMail() {
 		logger.info("New " + GetMail.class.getCanonicalName());
 		super.startingAccountPreferences.put("zimbraPrefMailPollingInterval", "" + pollIntervalSeconds);
 	}
 
-	
+
 	@Test( description = "Receive a text mail - Right Click From Msg Header and verify all context menus",
 			groups = { "sanity", "L0" })
-	
+
 	public void GetMail_VerifyMsgHdrContextmenu_01() throws HarnessException {
 
 		// Create the message data to be sent
@@ -64,22 +62,22 @@ public class GetMail extends PrefGroupMailByMessageTest {
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 
 		// Select the message so that it shows in the reading pane
-		DisplayMail actual = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, mail.dSubject);		
+		DisplayMail actual = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, mail.dSubject);
 		ZAssert.assertEquals(actual.zGetMailProperty(Field.From), ZimbraAccount.AccountA().EmailAddress, "Verify the From matches");
 
 		app.zPageMail.zRightClickAddressBubble(com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew.Field.From);
 		ZAssert.assertTrue(app.zPageMail.zVerifyAllAddressContextMenu("MessageHeader"),"Copy/FindEmails/New Email/AddtoContact/Goto URL/Create Filter menu should be exist");
 	}
-	
-	
+
+
 	@Test( description = "Receive a mail",
 			groups = { "smoke", "L1" })
-	
+
 	public void GetMail_02() throws HarnessException {
-		
+
 		// Create the message data to be sent
 		String subject = "subject" + ConfigProperties.getUniqueString();
-		
+
 		// Send the message from AccountA to the ZCS user
 		ZimbraAccount.AccountA().soapSend(
 					"<SendMsgRequest xmlns='urn:zimbraMail'>" +
@@ -113,15 +111,15 @@ public class GetMail extends PrefGroupMailByMessageTest {
 		ZAssert.assertNotNull(found, "Verify the message is in the inbox");
 	}
 
-	
+
 	@Test( description = "Receive a text mail - verify mail contents",
 			groups = { "smoke", "L1" })
-	
+
 	public void GetMail_03() throws HarnessException {
-		
+
 		// Create the message data to be sent
 		String subject = "subject" + ConfigProperties.getUniqueString();
-		
+
 		ZimbraAccount.AccountA().soapSend(
 					"<SendMsgRequest xmlns='urn:zimbraMail'>" +
 						"<m>" +
@@ -136,7 +134,7 @@ public class GetMail extends PrefGroupMailByMessageTest {
 
 		// Get all the SOAP data for later verification
 		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
-		
+
 		// Refresh current view
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 
@@ -150,18 +148,15 @@ public class GetMail extends PrefGroupMailByMessageTest {
 		ZAssert.assertEquals(actual.zGetMailProperty(Field.From), ZimbraAccount.AccountA().EmailAddress, "Verify the From matches");
 		ZAssert.assertEquals(actual.zGetMailProperty(Field.Cc), ZimbraAccount.AccountB().EmailAddress, "Verify the Cc matches");
 		ZAssert.assertEquals(actual.zGetMailProperty(Field.To), app.zGetActiveAccount().EmailAddress, "Verify the To matches");
-		
-		// The body could contain HTML, even though it is only displaying text (e.g. <br> may be present)
-		// do a contains, rather than equals.
 		ZAssert.assertStringContains(actual.zGetMailProperty(Field.Body), mail.dBodyText, "Verify the body matches");
 	}
 
-	
+
 	@Test( description = "Receive an html mail - verify mail contents",
 			groups = { "smoke", "L1" })
-	
+
 	public void GetMail_04() throws HarnessException {
-		
+
 		// Create the message data to be sent
 		String subject = "subject" + ConfigProperties.getUniqueString();
 		String bodyText = "text" + ConfigProperties.getUniqueString();
@@ -171,7 +166,7 @@ public class GetMail extends PrefGroupMailByMessageTest {
 				"<head></head>" +
 				"<body>"+ bodyHTML +"</body>" +
 			"</html>");
-		
+
 		ZimbraAccount.AccountA().soapSend(
 					"<SendMsgRequest xmlns='urn:zimbraMail'>" +
 						"<m>" +
@@ -188,7 +183,7 @@ public class GetMail extends PrefGroupMailByMessageTest {
 							"</mp>" +
 						"</m>" +
 					"</SendMsgRequest>");
-		
+
 		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
 
 		// Refresh current view
@@ -197,7 +192,7 @@ public class GetMail extends PrefGroupMailByMessageTest {
 		// Select the message so that it shows in the reading pane
 		DisplayMail actual = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, mail.dSubject);
 
-		// Verify the To, From, Subject, Body		
+		// Verify the To, From, Subject, Body
 		ZAssert.assertEquals(actual.zGetMailProperty(Field.Subject), mail.dSubject, "Verify the subject matches");
 		ZAssert.assertNotNull(actual.zGetMailProperty(Field.ReceivedDate), "Verify the date is displayed");
 		ZAssert.assertNotNull(actual.zGetMailProperty(Field.ReceivedTime), "Verify the time is displayed");
@@ -205,18 +200,17 @@ public class GetMail extends PrefGroupMailByMessageTest {
 		ZAssert.assertEquals(actual.zGetMailProperty(Field.Cc), ZimbraAccount.AccountB().EmailAddress, "Verify the Cc matches");
 		ZAssert.assertEquals(actual.zGetMailProperty(Field.To), app.zGetActiveAccount().EmailAddress, "Verify the To matches");
 		ZAssert.assertStringContains(actual.zGetMailProperty(Field.Body), bodyHTML, "Verify the body content matches");
-		
 	}
 
 
 	@Test( description = "Click 'Get Mail' to receive any new messages",
 			groups = { "functional", "L2" })
-	
+
 	public void GetMail_05() throws HarnessException {
 
 		// Create the message data to be sent
 		String subject = "subject" + ConfigProperties.getUniqueString();
-		
+
 		ZimbraAccount.AccountA().soapSend(
 					"<SendMsgRequest xmlns='urn:zimbraMail'>" +
 						"<m>" +
@@ -227,7 +221,7 @@ public class GetMail extends PrefGroupMailByMessageTest {
 							"</mp>" +
 						"</m>" +
 					"</SendMsgRequest>");
-		
+
 		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
 
 		// Refresh current view
@@ -245,17 +239,17 @@ public class GetMail extends PrefGroupMailByMessageTest {
 			}
 		}
 		ZAssert.assertNotNull(found, "Verify the list contains the new message");
-		
 	}
+
 
 	@Test( description = "Verify new messages are polled based on the preference setting",
 			groups = { "functional", "L2" })
-	
+
 	public void GetMail_06() throws HarnessException {
 
 		// Create the message data to be sent
 		String subject = "subject" + ConfigProperties.getUniqueString();
-		
+
 		ZimbraAccount.AccountA().soapSend(
 					"<SendMsgRequest xmlns='urn:zimbraMail'>" +
 						"<m>" +
@@ -285,18 +279,17 @@ public class GetMail extends PrefGroupMailByMessageTest {
 			}
 		}
 		ZAssert.assertNotNull(found, "Verify the list contains the new message");
-		
 	}
-	
-	
+
+
 	@Test( description = "Type keyboard shortcut (=) for 'Get Mail' to receive any new messages",
 			groups = { "functional", "L2" })
-	
+
 	public void GetMail_07() throws HarnessException {
-		
+
 		// Create the message data to be sent
 		String subject = "subject" + ConfigProperties.getUniqueString();
-		
+
 		ZimbraAccount.AccountA().soapSend(
 					"<SendMsgRequest xmlns='urn:zimbraMail'>" +
 						"<m>" +
@@ -307,12 +300,12 @@ public class GetMail extends PrefGroupMailByMessageTest {
 							"</mp>" +
 						"</m>" +
 					"</SendMsgRequest>");
-		
+
 		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
 
 		// Type shortcut
 		app.zPageMail.zKeyboardShortcut(Shortcut.S_MAIL_GETMAIL);
-		
+
 		// Get the message list
 		List<MailItem> messages = app.zPageMail.zListGetMessages();
 		ZAssert.assertNotNull(messages, "Verify the list contains messages");
@@ -325,7 +318,5 @@ public class GetMail extends PrefGroupMailByMessageTest {
 			}
 		}
 		ZAssert.assertNotNull(found, "Verify the list contains the new message");
-		
-		
 	}
 }

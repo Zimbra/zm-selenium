@@ -17,9 +17,7 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.feeds;
 
 import java.net.*;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.*;
@@ -33,7 +31,9 @@ public class MoveFeed extends PrefGroupMailByMessageTest {
 		logger.info("New "+ MoveFeed.class.getCanonicalName());
 	}
 
-	@Test( description = "Move a feed folder - Right click, Move", groups = { "smoke", "L1" })
+
+	@Test( description = "Move a feed folder - Right click, Move",
+			groups = { "smoke", "L1" })
 
 	public void MoveFeed_01() throws HarnessException, MalformedURLException {
 
@@ -41,7 +41,6 @@ public class MoveFeed extends PrefGroupMailByMessageTest {
 		ZAssert.assertNotNull(inbox, "Verify the inbox is available");
 
 		String feedname = "feed" + ConfigProperties.getUniqueString();
-		// feed.rss=http://server/files/Service/RSS/Basic/basic.xml
 		URL feedurl = new URL(ConfigProperties.getStringProperty("rss.sample"));
 
 		app.zGetActiveAccount().soapSend(
@@ -63,8 +62,6 @@ public class MoveFeed extends PrefGroupMailByMessageTest {
 		FolderItem folder = FolderItem.importFromSOAP(app.zGetActiveAccount(), foldername);
 		ZAssert.assertNotNull(folder, "Verify the first subfolder is available");
 
-
-
 		// Click on Get Mail to refresh the folder list
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
@@ -77,6 +74,5 @@ public class MoveFeed extends PrefGroupMailByMessageTest {
 		feed = FolderItem.importFromSOAP(app.zGetActiveAccount(), feedname);
 		ZAssert.assertNotNull(feed, "Verify the subfolder is again available");
 		ZAssert.assertEquals(folder.getId(), feed.getParentId(), "Verify the subfolder's parent is now the other subfolder");
-
 	}
 }

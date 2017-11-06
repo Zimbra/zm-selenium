@@ -17,7 +17,6 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.contacts.undo;
 
 import org.testng.annotations.*;
-
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.items.FolderItem.*;
 import com.zimbra.qa.selenium.framework.ui.*;
@@ -33,17 +32,18 @@ public class UndoMoveContact extends AjaxCommonTest {
 	}
 
 
-	@Test(
-			description = "Undone moved contact", 
+	@Test(	description = "Undone moved contact",
 			groups = { "functional", "L3"})
+
 	public void UndoMoveContact_01() throws HarnessException {
-		 
+
 		// The contacts folder
 		FolderItem contacts = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Contacts);
 
 		// Create the sub addressbook
 		FolderItem root = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.UserRoot);
 		String foldername = "ab"+ ConfigProperties.getUniqueString();
+
 		app.zGetActiveAccount().soapSend(
 				"<CreateFolderRequest xmlns='urn:zimbraMail'>" +
 					"<folder name='" + foldername +"' l='"+ root.getId() +"' view='contact'/>" +
@@ -52,7 +52,7 @@ public class UndoMoveContact extends AjaxCommonTest {
 
 		 // Create a contact
 		ContactItem contact = ContactItem.createContactItem(app.zGetActiveAccount());
-		
+
 		// Refresh to get the contact into the client
 		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 
@@ -71,9 +71,5 @@ public class UndoMoveContact extends AjaxCommonTest {
 		ContactItem actual = ContactItem.importFromSOAP(app.zGetActiveAccount(), "#firstname:"+ contact.firstName);
 		ZAssert.assertNotNull(actual, "Verify the contact is not deleted from the addressbook");
 		ZAssert.assertEquals(actual.getFolderId(), contacts.getId(), "Verify the contact is back in the contacts folder");
-
 	}
-
-
 }
-

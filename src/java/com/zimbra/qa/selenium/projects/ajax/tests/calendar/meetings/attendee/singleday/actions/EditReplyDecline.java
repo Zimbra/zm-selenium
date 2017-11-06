@@ -80,7 +80,7 @@ public class EditReplyDecline extends AjaxCommonTest {
 		// ---------------- Verification at organizer & invitee side both -------------------------------------
 
 
-		// --- Check that the organizer shows the attendee as "DECLINE" ---
+		// Check that the organizer shows the attendee as "DECLINE" ---
 
 		// Organizer: Search for the appointment (InvId)
 		ZimbraAccount.AccountA().soapSend(
@@ -100,7 +100,7 @@ public class EditReplyDecline extends AjaxCommonTest {
 		ZAssert.assertEquals(attendeeStatus, "DE", "Verify that the attendee shows as 'DECLINED'");
 
 
-		// --- Check that the attendee showing status as "DECLINE" ---
+		// Check that the attendee showing status as "DECLINE" ---
 
 		// Attendee: Search for the appointment (InvId)
 		app.zGetActiveAccount().soapSend(

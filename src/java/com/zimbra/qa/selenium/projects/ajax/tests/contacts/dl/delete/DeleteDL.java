@@ -17,9 +17,7 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.contacts.dl.delete;
 
 import java.util.List;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.items.ContactItem;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
@@ -32,10 +30,10 @@ public class DeleteDL extends AjaxCommonTest  {
 	public DeleteDL() {
 		logger.info("New "+ DeleteDL.class.getCanonicalName());
 		super.startingPage = app.zPageContacts;
-		
 	}
 
-	@Test( description = "Delete DL using toolbar button", 
+
+	@Test( description = "Delete DL using toolbar button",
 			groups = { "smoke", "L0"})
 
 	public void DeleteDLUsingToolbarButton_01() throws HarnessException {
@@ -95,7 +93,8 @@ public class DeleteDL extends AjaxCommonTest  {
 		ZAssert.assertFalse(found, "Verify deleted DL is not shown in UI");
 	}
 
-	@Test( description = "Delete DL using context menu", 
+
+	@Test( description = "Delete DL using context menu",
 			groups = { "smoke", "L1"})
 
 	public void DeleteDLUsingContextMenu_02() throws HarnessException {

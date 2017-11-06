@@ -29,18 +29,18 @@ public class Get extends AjaxCommonTest {
 		super.startingPage = app.zPagePreferences;
 	}
 
-	@Test(description = "View the shortcuts preference page", groups = { "functional", "L2" })
-	
+	@Test(description = "View the shortcuts preference page",
+			groups = { "functional", "L2" })
+
 	public void Get_01() throws HarnessException {
-		
+
 		// Navigate to preferences -> notifications
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.Shortcuts);
-		
+
 		// Verify the page is showing
 		String locator = "css=div[id$='_SHORTCUT_LIST']";
-		
+
 		ZAssert.assertTrue(app.zPagePreferences.sIsElementPresent(locator), "Verify the page is present");
 		ZAssert.assertTrue(app.zPagePreferences.zIsVisiblePerPosition(locator, 0, 0), "Verify the page is visible");
-		
 	}
 }

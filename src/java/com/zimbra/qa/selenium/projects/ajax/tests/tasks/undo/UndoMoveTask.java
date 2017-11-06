@@ -18,9 +18,7 @@ package com.zimbra.qa.selenium.projects.ajax.tests.tasks.undo;
 
 import java.util.HashMap;
 import java.util.List;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
@@ -35,17 +33,18 @@ public class UndoMoveTask extends AjaxCommonTest {
 	public UndoMoveTask() {
 		logger.info("Move " + UndoMoveTask.class.getCanonicalName());
 
-		// All tests start at the login page
 		super.startingPage = app.zPageTasks;
-
 		super.startingAccountPreferences = new HashMap<String , String>() {{
 			put("zimbraPrefShowSelectionCheckbox", "TRUE");
 			put("zimbraPrefTasksReadingPaneLocation", "bottom");
 		}};
 	}
-	
+
+
 	@Bugs( ids = "96832")
-	@Test( description = "Undo moved task", groups = { "smoke", "L1"})
+	@Test( description = "Undo moved task",
+			groups = { "smoke", "L1"})
+
 	public void UndoMoveTask_01() throws HarnessException {
 
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
@@ -62,7 +61,7 @@ public class UndoMoveTask extends AjaxCommonTest {
 
 		FolderItem subFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), name);
 
-		// refresh task page
+		// Refresh task page
 		app.zTreeTasks.zTreeItem(Action.A_LEFTCLICK, taskFolder);
 
 		String subject = "task" + ConfigProperties.getUniqueString();
@@ -73,7 +72,7 @@ public class UndoMoveTask extends AjaxCommonTest {
 				+			"<inv>"
 				+				"<comp name='" + subject + "'>"
 				+					"<or a='"+ app.zGetActiveAccount().EmailAddress + "'/>"
-				+				"</comp>" 
+				+				"</comp>"
 				+			"</inv>"
 				+			"<su>" + subject + "</su>"
 				+			"<mp ct='text/plain'>"
@@ -81,8 +80,6 @@ public class UndoMoveTask extends AjaxCommonTest {
 				+			"</mp>"
 				+		"</m>"
 				+	"</CreateTaskRequest>");
-
-		
 
 		TaskItem task = TaskItem.importFromSOAP(app.zGetActiveAccount(),subject);
 		ZAssert.assertNotNull(task, "Verify the task is created");
@@ -96,10 +93,10 @@ public class UndoMoveTask extends AjaxCommonTest {
 		Toaster toaster = app.zPageMain.zGetToaster();
 		toaster.zClickUndo();
 
-		// refresh tasks page
+		// Refresh tasks page
 		app.zTreeTasks.zTreeItem(Action.A_LEFTCLICK, taskFolder);
 
-		//Verify Task come back to Tasks folder
+		// Verify Task come back to Tasks folder
 
 		List<TaskItem> tasks = app.zPageTasks.zGetTasks();
 		TaskItem found = null;
@@ -112,9 +109,6 @@ public class UndoMoveTask extends AjaxCommonTest {
 				break;
 			}
 		}
-
 		ZAssert.assertNotNull(found,"Verify the  task is come back to Task folder @Bugs96832");
-
-
 	}
 }

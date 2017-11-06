@@ -30,20 +30,21 @@ import com.zimbra.qa.selenium.projects.ajax.ui.*;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail;
 
 public class AddToBriefcase extends PrefGroupMailByMessageTest {
-	
-    	private String subject;
-    	private String filename;
-    	private ZimbraAccount account;
+
+	private String subject;
+	private String filename;
+	private ZimbraAccount account;
 
 	public AddToBriefcase() throws HarnessException {
 		logger.info("New "+ AddToBriefcase.class.getCanonicalName());
 		super.startingPage =  app.zPageMail;
-		super.startingAccountPreferences.put("zimbraPrefBriefcaseReadingPaneLocation", "bottom");				
+		super.startingAccountPreferences.put("zimbraPrefBriefcaseReadingPaneLocation", "bottom");
 	}
-	
+
+
 	@Test( description = "Add JPG attachment to Briefcase when viewing email in the current window",
 			groups = { "functional", "L2" })
-			
+
 	public void AddToBriefcase_01() throws HarnessException {
 
 		// -- Data Setup
@@ -51,9 +52,9 @@ public class AddToBriefcase extends PrefGroupMailByMessageTest {
 		subject = "subject03431362517016470";
 		filename = "screenshot.JPG";
 		account = app.zGetActiveAccount();
-		
+
 		FolderItem folder = FolderItem.importFromSOAP(account, FolderItem.SystemFolder.Briefcase);
-		
+
 		// Inject the message
 		LmtpInject.injectFile(account, new File(mimeFile));
 
@@ -63,7 +64,7 @@ public class AddToBriefcase extends PrefGroupMailByMessageTest {
 			+		"<query>subject:("+ subject +")</query>"
 			+	"</SearchRequest>");
 		String id = account.soapSelectValue("//mail:m", "id");
-		
+
 		account.soapSend(
 				"<GetMsgRequest xmlns='urn:zimbraMail' >"
 			+		"<m id='"+ id +"'/>"
@@ -85,42 +86,42 @@ public class AddToBriefcase extends PrefGroupMailByMessageTest {
 			}
 		}
 		ZAssert.assertNotNull(item, "Verify one attachment is in the message");
-		
+
 		// Click to "Briefcase"
 		DialogAddToBriefcase dialog = (DialogAddToBriefcase)display.zListAttachmentItem(Button.B_BRIEFCASE, item);
 		dialog.zChooseBriefcaseFolder(folder.getId());
 		dialog.zClickButton(Button.B_OK);
-		
-		//-- Verification
+
+		// Verification
 		app.zGetActiveAccount().soapSend(
 				"<SearchRequest xmlns='urn:zimbraMail' types='document'>"
 			+		"<query>"+ filename +"</query>"
 			+	"</SearchRequest>");
-	
+
 		String name = account.soapSelectValue("//mail:doc", "name");
-		
-		//Verify the search response returns the file name
+
+		// Verify the search response returns the file name
 		ZAssert.assertNotNull(name,
 			"Verify the search response returns the document name");
 
-		//Verify saved to Briefcase file and mail attachment name are matched
+		// Verify saved to Briefcase file and mail attachment name are matched
 		ZAssert.assertEquals(name, filename, "Verify saved to Briefcase mail attachment name through SOAP");
 	}
-	
-	
+
+
 	@Test( description = "Add txt attachment to Briefcase when viewing email in a separate window",
 			groups = { "functional", "L3" })
-			
+
 	public void AddToBriefcase_02() throws HarnessException {
-		
+
 	    	// -- Data Setup
  		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email05/mime01.txt";
  		subject = "subject151615738";
  		filename = "file.txt";
  		account = app.zGetActiveAccount();
-	 		
+
  		FolderItem folder = FolderItem.importFromSOAP(account, FolderItem.SystemFolder.Briefcase);
-	 		
+
  		// Inject the message
  		LmtpInject.injectFile(account, new File(mimeFile));
 
@@ -130,7 +131,7 @@ public class AddToBriefcase extends PrefGroupMailByMessageTest {
  			+		"<query>subject:("+ subject +")</query>"
  			+	"</SearchRequest>");
  		String id = account.soapSelectValue("//mail:m", "id");
-	 		
+
  		account.soapSend(
  				"<GetMsgRequest xmlns='urn:zimbraMail' >"
  			+		"<m id='"+ id +"'/>"
@@ -151,53 +152,53 @@ public class AddToBriefcase extends PrefGroupMailByMessageTest {
 	 		}
 	 	}
 	 	ZAssert.assertNotNull(item, "Verify one attachment is in the message");
-		
+
 	 	//Open message in a separate window
 		SeparateWindow window = (SeparateWindow)app.zPageMail.zToolbarPressButton(Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 		String windowTitle = "Zimbra: " + subject;
-		
+
 		try {
-			
+
 			window.zWaitForActive();
 			app.zPageMail.zSelectWindow("_blank");
 			SleepUtil.sleepMedium();
 			app.zPageCalendar.zWaitForElementAppear("css=div[id*=zv__MSG__MSG][id*=_attLinks_]");
-			
+
 			DialogAddToBriefcase dialog = (DialogAddToBriefcase)app.zPageMail.zToolbarPressButton(Button.B_BRIEFCASE);
 			dialog.zChooseBriefcaseFolder(folder.getId());
 			dialog.zClickButton(Button.B_OK);
 			SleepUtil.sleepLong(); //sometime client takes longer time to add the file
-			
+
         } finally {
         	app.zPageMain.zCloseWindow(window, windowTitle, app);
        	}
-		
-		//-- Verification
+
+		// Verification
 		account.soapSend(
 			"<SearchRequest xmlns='urn:zimbraMail' types='document'>"
 			+		"<query>"+ filename +"</query>"
 			+	"</SearchRequest>");
-			
+
 		String name = account.soapSelectValue("//mail:doc", "name");
-				
-		//Verify the search response returns the file name
+
+		// Verify the search response returns the file name
 		ZAssert.assertNotNull(name, "Verify the search response returns the document name");
-		
-		//Verify saved to Briefcase file and mail attachment name are matched
+
+		// Verify saved to Briefcase file and mail attachment name are matched
 		ZAssert.assertEquals(name, filename, "Verify saved to Briefcase mail attachment name through SOAP");
-	}	
-	
+	}
+
 	@AfterMethod(groups = { "always" })
 	public void afterMethod() throws HarnessException {
 		logger.info("AfterMethod cleanup ...");
-		
-		// delete file upon test completion
+
+		// Delete file upon test completion
 		app.zPageBriefcase.deleteFileByName(filename);
-		
-		// delete message
+
+		// Delete message
 		MailItem received = MailItem.importFromSOAP(account, "in:inbox subject:("+ subject +")");
-		account.soapSend("<ItemActionRequest xmlns='urn:zimbraMail'>" 
-						+ "<action op='move' id='"+ received.getId() +"' l='"+ FolderItem.importFromSOAP(account, SystemFolder.Trash).getId() +"'/>" 
+		account.soapSend("<ItemActionRequest xmlns='urn:zimbraMail'>"
+						+ "<action op='move' id='"+ received.getId() +"' l='"+ FolderItem.importFromSOAP(account, SystemFolder.Trash).getId() +"'/>"
 						+ "</ItemActionRequest>");
 	}
 }

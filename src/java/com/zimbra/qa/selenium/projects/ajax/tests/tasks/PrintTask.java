@@ -18,9 +18,7 @@ package com.zimbra.qa.selenium.projects.ajax.tests.tasks;
 
 import java.awt.event.KeyEvent;
 import java.util.HashMap;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.items.TaskItem;
@@ -47,8 +45,9 @@ public class PrintTask extends AjaxCommonTest {
 			put("zimbraPrefTasksReadingPaneLocation", "bottom");
 		}};
 	}
-	
-	@Test( description = "Print Task using RightClick -> Print and Verify Contents in Print view", 
+
+
+	@Test( description = "Print Task using RightClick -> Print and Verify Contents in Print view",
 			groups = { "functional", "L3"} )
 
 	public void PrintTask_01() throws HarnessException {
@@ -89,13 +88,13 @@ public class PrintTask extends AjaxCommonTest {
 			// Right click the item, select print
 			window = (SeparateWindowPrintPreview)app.zPageTasks.zListItem(Action.A_RIGHTCLICK, Button.O_PRINT_MENU, subject);
 			SleepUtil.sleepLong();
-			
+
 			// Press esc from keyboard to discard the print preview dialog.
 			window.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ESCAPE);
-			
+
 			window.zSetWindowTitle(windowTitle);
 			ZAssert.assertTrue(window.zIsWindowOpen(windowTitle),"Verify the window is opened and switch to it");
-		
+
 			// Verify content in Print view.
 			String printContent = window.sGetBodyContent(windowTitle, "css=div[class='ZhCallListPrintView']");
 			ZAssert.assertStringContains(printContent, subject, "Verify subject in Print view");
@@ -107,9 +106,10 @@ public class PrintTask extends AjaxCommonTest {
 		}
 	}
 
-	@Test( description = "Print Task using shortcut 'p' and verify its content from GUI", 
+
+	@Test( description = "Print Task using shortcut 'p' and verify its content from GUI",
 			groups = { "functional", "L3"} )
-	
+
 	public void PrintTask_02() throws HarnessException {
 
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
@@ -151,13 +151,13 @@ public class PrintTask extends AjaxCommonTest {
 			// Press keyboard shortcut p
 			window = (SeparateWindowPrintPreview)app.zPageTasks.zKeyboardShortcut(Shortcut.S_PRINTTASK);
 			SleepUtil.sleepLong();
-			
+
 			// Press esc from keyboard to discard the print preview dialog.
 			window.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ESCAPE);
-			
+
 			window.zSetWindowTitle(windowTitle);
 			ZAssert.assertTrue(window.zIsWindowOpen(windowTitle),"Verify the window is opened and switch to it");
-			
+
 			// Verify content in Print view.
 			String printContent = window.sGetBodyContent(windowTitle, "css=div[class='ZhCallListPrintView']");
 			ZAssert.assertStringContains(printContent, subject, "Verify subject in Print view");
@@ -169,7 +169,8 @@ public class PrintTask extends AjaxCommonTest {
 		}
 	}
 
-	@Test( description = "Print multiple tasks using Print-> Print TaskFolder and  and verify its content from GUI", 
+
+	@Test( description = "Print multiple tasks using Print-> Print TaskFolder and  and verify its content from GUI",
 			groups = { "functional", "L3"}	)
 
 	public void PrintTask_03() throws HarnessException {
@@ -245,10 +246,10 @@ public class PrintTask extends AjaxCommonTest {
 			// Pull down Print button and select Print Task folder.
 			window = (SeparateWindowPrintPreview)app.zPageTasks.zToolbarPressPulldown(Button.B_PRINT, Button.O_PRINT_TASKFOLDER);
 			SleepUtil.sleepLong();
-			
+
 			// Press esc from keyboard to discard the print preview dialog.
 			window.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ESCAPE);
-			
+
 			window.zSetWindowTitle(windowTitle);
 			ZAssert.assertTrue(window.zIsWindowOpen(windowTitle),"Verify the window is opened and switch to it");
 
@@ -262,8 +263,5 @@ public class PrintTask extends AjaxCommonTest {
 			window.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ESCAPE);
 			app.zPageMain.zCloseWindow(window, windowTitle, app);
 		}
-
 	}
-	
 }
-

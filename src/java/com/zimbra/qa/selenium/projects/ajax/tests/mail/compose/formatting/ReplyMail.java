@@ -14,7 +14,6 @@
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.compose.formatting;
 
 import java.io.File;
@@ -31,13 +30,13 @@ import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
 public class ReplyMail extends PrefGroupMailByMessageTest {
 
 	public ReplyMail() {
-		logger.info("New "+ ReplyMail.class.getCanonicalName());		
+		logger.info("New "+ ReplyMail.class.getCanonicalName());
 	}
 
-	
-	@Test( description = "Reply an Excel formatting data message  and verify its formatting", 
+
+	@Test( description = "Reply an Excel formatting data message  and verify its formatting",
 			groups = { "smoke", "L1" })
-	
+
 	public void ReplyHtmlMail_01() throws HarnessException {
 
 		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/Excel_Data_Formatting_Mime.txt";

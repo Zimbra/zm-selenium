@@ -17,9 +17,7 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.feeds;
 
 import java.net.*;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.*;
@@ -34,17 +32,16 @@ public class ChangeColorFeed extends PrefGroupMailByMessageTest {
 		logger.info("New " + ChangeColorFeed.class.getCanonicalName());
 	}
 
-	@Test( description = "Edit a feedfolder, change the color (Context menu -> Edit)", groups = { "functional", "L2" })
+
+	@Test( description = "Edit a feedfolder, change the color (Context menu -> Edit)",
+			groups = { "functional", "L2" })
 
 	public void ChangeColorFeed_01() throws HarnessException, MalformedURLException {
 
 		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
 		ZAssert.assertNotNull(inbox, "Verify the inbox is available");
 
-		// Create a subfolder in Inbox
 		String feedname = "feed" + ConfigProperties.getUniqueString();
-
-		// feed.rss=http://server/files/Service/RSS/Basic/basic.xml
 		URL feedurl = new URL(ConfigProperties.getStringProperty("rss.sample"));
 
 		app.zGetActiveAccount().soapSend(
@@ -54,7 +51,6 @@ public class ChangeColorFeed extends PrefGroupMailByMessageTest {
 
 		FolderItem feed = FolderItem.importFromSOAP(app.zGetActiveAccount(), feedname);
 		ZAssert.assertNotNull(feed, "Verify the subfolder is available");
-
 
 		// Click on Get Mail to refresh the folder list
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);

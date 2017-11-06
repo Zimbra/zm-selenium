@@ -80,7 +80,7 @@ public class ViewInviteWithSchedulePolicyofLocation extends AjaxCommonTest {
         app.zPageMain.zLogout();
 		app.zPageLogin.zLogin(location);
 
-		//Verify Accept Decline buttons
+		// Verify Accept Decline buttons
 		DisplayMail display = (DisplayMail)app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);
 		ZAssert.assertTrue(display.zHasADTButtons(), "Verify A/D/T buttons");
 		ZAssert.assertStringContains(display.zGetMailProperty(Field.Body), apptContent, "Verify the text content");

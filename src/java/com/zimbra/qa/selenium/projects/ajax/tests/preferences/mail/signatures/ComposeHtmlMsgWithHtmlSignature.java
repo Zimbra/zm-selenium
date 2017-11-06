@@ -35,15 +35,12 @@ import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
 public class ComposeHtmlMsgWithHtmlSignature extends AjaxCommonTest {
 	String sigName = "signame" + ConfigProperties.getUniqueString();
 	String sigBody = "signature<b>bold" + ConfigProperties.getUniqueString() + "</b>signature";
-	String contentHTML = XmlStringUtil
-			.escapeXml("<html>" + "<head></head>" + "<body>" + sigBody + "</body>" + "</html>");
+	String contentHTML = XmlStringUtil.escapeXml("<html>" + "<head></head>" + "<body>" + sigBody + "</body>" + "</html>");
 
 	public ComposeHtmlMsgWithHtmlSignature() {
 		super.startingPage = app.zPageMail;
 		super.startingAccountPreferences = new HashMap<String, String>() {
-			private static final long serialVersionUID = 1L;
-
-			{
+			private static final long serialVersionUID = 1L; {
 				put("zimbraPrefComposeFormat", "html");
 			}
 		};
@@ -67,11 +64,11 @@ public class ComposeHtmlMsgWithHtmlSignature extends AjaxCommonTest {
 	/**
 	 * Test case : Create html signature through soap Compose html message and
 	 * add html signature Send mail to self and verify signature through soap.
-	 * 
-	 * @throws HarnessException
 	 */
-	@Test(description = " Compose Html Msg with html signature and Verify signature through soap", groups = {
-			"functional", "L2" })
+
+	@Test(description = " Compose Html Msg with html signature and Verify signature through soap",
+			groups = { "functional", "L2" })
+
 	public void ComposeHtmlMsgWithHtmlSignature_01() throws HarnessException {
 
 		// Signature is created
@@ -91,7 +88,7 @@ public class ComposeHtmlMsgWithHtmlSignature extends AjaxCommonTest {
 		// Fill out the form with the data
 		mailform.zFill(mail);
 
-		// click Signature drop down and add signature
+		// Click Signature drop down and add signature
 		app.zPageMail.zToolbarPressPulldown(Button.B_OPTIONS, Button.O_ADD_SIGNATURE, this.sigName);
 
 		// Send the message
@@ -114,7 +111,5 @@ public class ComposeHtmlMsgWithHtmlSignature extends AjaxCommonTest {
 		ZAssert.assertEquals(received.dSubject, mail.dSubject, "Verify the subject field is correct");
 		ZAssert.assertStringContains(received.dBodyHtml.toLowerCase(),
 				mail.dBodyHtml.replace("<b>", "").replace("</b>", ""), "Verify the body content is correct");
-
 	}
-
 }

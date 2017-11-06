@@ -17,7 +17,6 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.compose.delegates;
 
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
@@ -30,15 +29,16 @@ public class SendOnBehalfOf extends PrefGroupMailByMessageTest {
 		logger.info("New "+ SendOnBehalfOf.class.getCanonicalName());
 		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "text");
 	}
-	
-	
-	@Test( description = "Send On Behalf Of another user",	groups = { "smoke", "L1" })
-	
+
+
+	@Test( description = "Send On Behalf Of another user",
+			groups = { "smoke", "L1" })
+
 	public void SendOnBehalfOf_01() throws HarnessException {
-		
+
 		// Mail data
 		String subject = "subject"+ ConfigProperties.getUniqueString();
-		
+
 		// The grantor
 		ZimbraAccount grantor = null;
 		grantor = new ZimbraAccount();
@@ -52,20 +52,19 @@ public class SendOnBehalfOf extends PrefGroupMailByMessageTest {
 
 		// Refresh UI
 		app.zPageMain.zRefreshMainUI();
-		
+
 		// Open the new mail form
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
 		ZAssert.assertNotNull(mailform, "Verify the new form opened");
-		
+
 		// Fill out the form with the data
 		mailform.zFillField(Field.To, ZimbraAccount.AccountA().EmailAddress);
 		mailform.zFillField(Field.Subject, subject);
 		mailform.zFillField(Field.Body, "body" + ConfigProperties.getUniqueString());
-		mailform.zFillField(Field.From, grantor.EmailAddress);	
+		mailform.zFillField(Field.From, grantor.EmailAddress);
 		mailform.zSubmit();
-	
-		//-- Data verification
-		
+
+		// Verification
 		ZimbraAccount.AccountA().soapSend(
 				"<SearchRequest xmlns='urn:zimbraMail' types='message'>"
 			+		"<query>subject:("+ subject +")</query>"
@@ -80,11 +79,9 @@ public class SendOnBehalfOf extends PrefGroupMailByMessageTest {
 		// Verify From: grantor
 		String from = ZimbraAccount.AccountA().soapSelectValue("//mail:e[@t='f']", "a");
 		ZAssert.assertEquals(from, grantor.EmailAddress, "Verify From: grantor");
-		
+
 		// Verify Sender: active account
 		String sender = ZimbraAccount.AccountA().soapSelectValue("//mail:e[@t='s']", "a");
 		ZAssert.assertEquals(sender, app.zGetActiveAccount().EmailAddress, "Verify Sender: active account");
-
 	}
-
 }

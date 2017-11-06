@@ -71,7 +71,7 @@ public class ResetStatusAfterAddingLocation extends AjaxCommonTest {
 		// Verify appointment exists in current view
         ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
 
-        //Login as attendee and accept the invite
+        // Login as attendee and accept the invite
         app.zPageMain.zLogout();
 		app.zPageLogin.zLogin(ZimbraAccount.Account1());
 
@@ -86,7 +86,7 @@ public class ResetStatusAfterAddingLocation extends AjaxCommonTest {
         apptForm.zFillField(Field.Location, apptLocation);
         apptForm.zSubmitWithResources();
 
-		// --- Check that the organizer shows the attendee as "Needs Action" ---
+		// Check that the organizer shows the attendee as "Needs Action" ---
 		app.zGetActiveAccount().soapSend(
 				"<SearchRequest xmlns='urn:zimbraMail' types='appointment' calExpandInstStart='"+ startUTC.addDays(-10).toMillis() +"' calExpandInstEnd='"+ endUTC.addDays(10).toMillis() +"'>"
 			+		"<query>"+ apptSubject +"</query>"
@@ -102,7 +102,7 @@ public class ResetStatusAfterAddingLocation extends AjaxCommonTest {
 		// Verify attendee status shows as ptst=NE
 		ZAssert.assertEquals(attendeeStatus, "NE", "Verify that the attendee shows as 'Needs Action'");
 
-		// --- Check that the attendee showing status as "Needs Action" ---
+		// Check that the attendee showing status as "Needs Action" ---
 		ZimbraAccount.Account1().soapSend(
 				"<SearchRequest xmlns='urn:zimbraMail' types='appointment' calExpandInstStart='"+ startUTC.addDays(-10).toMillis() +"' calExpandInstEnd='"+ endUTC.addDays(10).toMillis() +"'>"
 			+		"<query>"+ apptSubject +"</query>"

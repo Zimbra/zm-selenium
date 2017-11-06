@@ -36,16 +36,15 @@ public class DeleteTextSignature extends AjaxCommonTest {
 
 	public DeleteTextSignature() throws HarnessException {
 		super.startingPage = app.zPagePreferences;
-
 	}
+
 
 	/**
 	 * Added @beforeClass because after logged in ,when we try to create
 	 * signature through soap, it doesn't shows in (GUI)'Pref/signatures' unless
 	 * and until we refresh browser.
-	 * 
-	 * @throws HarnessException
 	 */
+
 	@BeforeMethod(groups = { "always" })
 	public void CreateSignature() throws HarnessException {
 		ZimbraAccount.AccountZCS().authenticate();
@@ -61,15 +60,15 @@ public class DeleteTextSignature extends AjaxCommonTest {
 		logger.info("CreateSignature: finish");
 	}
 
+
 	/**
 	 * Test case :Create signature through soap then delete and verify signature
 	 * through soap
-	 * 
-	 * @Steps: Create signature through soap Delete signature using delete
-	 *         button. Verify signature doesn't exist from soap
-	 * @throws HarnessException
 	 */
-	@Test(description = " Delete Text signature using Delete button and verify  through soap ", groups = { "smoke", "L1"  })
+
+	@Test(description = " Delete Text signature using Delete button and verify  through soap ",
+			groups = { "smoke", "L1"  })
+
 	public void DeleteTextSignatures_01() throws HarnessException {
 
 		// Click on Mail/signature
@@ -94,9 +93,7 @@ public class DeleteTextSignature extends AjaxCommonTest {
 		// To check whether deleted signature is exist
 		app.zGetActiveAccount().soapSend("<GetSignaturesRequest xmlns='urn:zimbraAccount'/>");
 
-		String signame = app.zGetActiveAccount().soapSelectValue("//acct:signature[@name='" + this.sigName + "']",
-				"name");
+		String signame = app.zGetActiveAccount().soapSelectValue("//acct:signature[@name='" + this.sigName + "']", "name");
 		ZAssert.assertNull(signame, "Verify signature is deleted");
-
 	}
 }

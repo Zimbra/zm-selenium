@@ -38,18 +38,16 @@ public class EditSignature extends AjaxCommonTest {
 	String sigBody = "sigbody" + ConfigProperties.getUniqueString();
 
 	public EditSignature() throws HarnessException {
-
 		super.startingPage = app.zPagePreferences;
-
 	}
+
 
 	/**
 	 * Added @beforeClass because after logged in ,when we try to create
 	 * signature through soap, it doesn't shows in (GUI)'Pref/signatures' unless
 	 * and until we refresh browser.
-	 * 
-	 * @throws HarnessException
 	 */
+
 	@BeforeClass(groups = { "always" })
 	public void CreateSignature() throws HarnessException {
 		ZimbraAccount.AccountZCS().authenticate();
@@ -57,16 +55,16 @@ public class EditSignature extends AjaxCommonTest {
 				.soapSend("<CreateSignatureRequest xmlns='urn:zimbraAccount'>" + "<signature name='" + this.sigName
 						+ "' >" + "<content type='text/plain'>" + this.sigBody + "</content>" + "</signature>"
 						+ "</CreateSignatureRequest>");
-
 	}
 
+
 	/**
-	 * Test case : Create signature through soap Edit it through GUI and Verify
-	 * toast message
-	 * 
-	 * @throws HarnessException
+	 * Test case : Create signature through soap Edit it through GUI and Verify toast message
 	 */
-	@Test(description = " Edit Text singature and verify toast msg", groups = { "functional", "L3"  })
+
+	@Test(description = " Edit Text singature and verify toast msg",
+			groups = { "functional", "L3"  })
+
 	public void EditTextSignatureToastMsg_01() throws HarnessException {
 
 		String sigEditName = "editsigname" + ConfigProperties.getUniqueString();
@@ -99,7 +97,5 @@ public class EditSignature extends AjaxCommonTest {
 		Toaster toast = app.zPageMain.zGetToaster();
 		String toastMsg = toast.zGetToastMessage();
 		ZAssert.assertStringContains(toastMsg, "Preferences Saved", "Verify toast message: Preferences Saved");
-
 	}
-
 }

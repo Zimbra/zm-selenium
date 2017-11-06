@@ -124,7 +124,7 @@ public class CreateMeetingWithMultilineBody extends AjaxCommonTest {
 		FormApptNew apptForm = (FormApptNew) app.zPageMail.zToolbarPressPulldown(Button.B_NEW, Button.O_NEW_APPOINTMENT);
 		ZAssert.assertNotNull(apptForm, "Verify the new form opened");
 
-		// change compose preference
+		// Change compose preference
 		DialogWarning dialog = (DialogWarning)apptForm.zToolbarPressPulldown(Button.B_OPTIONS, Button.O_FORMAT_AS_PLAIN_TEXT);
 		dialog.zClickButton(Button.B_OK);
 

@@ -153,5 +153,4 @@ public class SpellCheckAddIgnore extends PrefGroupMailByMessageTest {
 		String html = ZimbraAccount.AccountA().soapSelectValue("//mail:mp[@ct='text/html']//mail:content", null);
 		ZAssert.assertStringContains(html, misspelledWord, "Verify the html content");
 	}
-
 }

@@ -36,21 +36,19 @@ public class DeleteHtmlSignature extends AjaxCommonTest {
 
 	String sigHtmlName = "signame" + ConfigProperties.getUniqueString();
 	String bodyHTML = "text<strong>bold" + ConfigProperties.getUniqueString() + "</strong>text";
-	String contentHTML = XmlStringUtil
-			.escapeXml("<html>" + "<head></head>" + "<body>" + bodyHTML + "</body>" + "</html>");
+	String contentHTML = XmlStringUtil	.escapeXml("<html>" + "<head></head>" + "<body>" + bodyHTML + "</body>" + "</html>");
 
 	public DeleteHtmlSignature() throws HarnessException {
 		super.startingPage = app.zPagePreferences;
-
 	}
+
 
 	/**
 	 * Added @beforeClass because after logged in ,when we try to create
 	 * signature through soap, it doesn't shows in(GUI) 'Pref/signatures' unless
 	 * and until we refresh browser.
-	 * 
-	 * @throws HarnessException
 	 */
+
 	@BeforeMethod(groups = { "always" })
 	public void CreateHtmlSignature() throws HarnessException {
 
@@ -67,15 +65,15 @@ public class DeleteHtmlSignature extends AjaxCommonTest {
 		logger.info("CreateSignature: finish");
 	}
 
+
 	/**
 	 * Test case :Create Html signature through soap then delete and verify
 	 * signature through GUI
-	 * 
-	 * @Steps: Create Html signature through soap Delete signature using delete
-	 *         button. Verify signature doesn't exist from soap
-	 * @throws HarnessException
 	 */
-	@Test(description = "Delete Html signature using Delete button and verify through soap", groups = { "sanity", "L0"  })
+
+	@Test(description = "Delete Html signature using Delete button and verify through soap",
+			groups = { "sanity", "L0"  })
+
 	public void DeletetHtmlSignature_01() throws HarnessException {
 
 		// Click on Mail/signature
@@ -101,10 +99,7 @@ public class DeleteHtmlSignature extends AjaxCommonTest {
 		// To check whether deleted signature is exist
 		app.zGetActiveAccount().soapSend("<GetSignaturesRequest xmlns='urn:zimbraAccount'/>");
 
-		String signame = app.zGetActiveAccount().soapSelectValue("//acct:signature[@name='" + this.sigHtmlName + "']",
-				"name");
+		String signame = app.zGetActiveAccount().soapSelectValue("//acct:signature[@name='" + this.sigHtmlName + "']", "name");
 		ZAssert.assertNull(signame, "Verify signature is deleted");
-
 	}
-
 }

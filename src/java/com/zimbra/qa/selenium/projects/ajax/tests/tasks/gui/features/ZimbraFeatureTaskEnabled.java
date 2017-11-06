@@ -18,13 +18,11 @@ package com.zimbra.qa.selenium.projects.ajax.tests.tasks.gui.features;
 
 import java.util.HashMap;
 import java.util.List;
-
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.TaskItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.Action;
-
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
@@ -36,39 +34,29 @@ public class ZimbraFeatureTaskEnabled extends AjaxCommonTest {
 	public ZimbraFeatureTaskEnabled() {
 		logger.info("New " + ZimbraFeatureTaskEnabled.class.getCanonicalName());
 
-		// All tests start at the login page
 		super.startingPage = app.zPageTasks;
 
-		super.startingAccountPreferences = new HashMap<String, String>() {
-			{
-
-				// Only task is enabled
-				put("zimbraFeatureTasksEnabled", "TRUE");
-				put("zimbraFeatureMailEnabled", "FALSE");
-				put("zimbraFeatureContactsEnabled", "FALSE");
-				put("zimbraFeatureCalendarEnabled", "FALSE");
-				put("zimbraFeatureBriefcasesEnabled", "FALSE");
-
-			    // https://bugzilla.zimbra.com/show_bug.cgi?id=62161#c3
-			    // put("zimbraFeatureOptionsEnabled", "FALSE");
-				
-				put("zimbraPrefTasksReadingPaneLocation", "bottom");
-				
-
-			}
-		};
-
+		super.startingAccountPreferences = new HashMap<String, String>() {{
+			put("zimbraFeatureTasksEnabled", "TRUE");
+			put("zimbraFeatureMailEnabled", "FALSE");
+			put("zimbraFeatureContactsEnabled", "FALSE");
+			put("zimbraFeatureCalendarEnabled", "FALSE");
+			put("zimbraFeatureBriefcasesEnabled", "FALSE");
+			put("zimbraPrefTasksReadingPaneLocation", "bottom");
+		}};
 	}
-	
+
+
 	@Test( description = "Load the Task tab with just Tasks enabled",
 			groups = { "functional-skip", "L3-skip"})
+
 	public void ZimbraFeatureTaskEnabled_01() throws HarnessException {
-		
+
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
 
 		// Create a basic task
 		String subject = "task" + ConfigProperties.getUniqueString();
-				
+
 		app.zGetActiveAccount().soapSend(
 				"<CreateTaskRequest xmlns='urn:zimbraMail'>" +
 					"<m >" +
@@ -84,11 +72,9 @@ public class ZimbraFeatureTaskEnabled extends AjaxCommonTest {
 					"</m>" +
 				"</CreateTaskRequest>");
 
-		
-
 		TaskItem task = TaskItem.importFromSOAP(app.zGetActiveAccount(), subject);
 		ZAssert.assertNotNull(task, "Verify the task is created");
-		
+
 		// Refresh the tasks view
 		app.zTreeTasks.zTreeItem(Action.A_LEFTCLICK, taskFolder);
 
@@ -105,6 +91,5 @@ public class ZimbraFeatureTaskEnabled extends AjaxCommonTest {
 			}
 		}
 		ZAssert.assertNotNull(found, "Verify the task is present");
-		
 	}
 }

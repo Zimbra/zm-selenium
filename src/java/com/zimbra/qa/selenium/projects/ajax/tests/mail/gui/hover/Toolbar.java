@@ -26,8 +26,10 @@ public class Toolbar extends PrefGroupMailByMessageTest {
 		logger.info("New " + Toolbar.class.getCanonicalName());
 	}
 
-	
-	@Test(description = "Hover over Delete button", groups = { "functional", "L2" })
+
+	@Test(description = "Hover over Delete button",
+			groups = { "functional", "L2" })
+
 	public void Toolbar_01() throws HarnessException {
 
 		// No DOM or java script support to verify tooltip so checking through attributes
@@ -35,13 +37,14 @@ public class Toolbar extends PrefGroupMailByMessageTest {
 		ZAssert.assertStringContains(tooltip, "Move selected item(s) to Trash [Del]", "Verify tooltip exists as a title");
 	}
 
-	
-	@Test(description = "Hover over Reply button", groups = { "functional","L3" })
+
+	@Test(description = "Hover over Reply button",
+			groups = { "functional","L3" })
+
 	public void Toolbar_02() throws HarnessException {
 
 		// No DOM or java script support to verify tooltip so checking through attributes
 		String tooltip = app.zPageMail.sGetAttribute("css=div[id='zb__TV-main__REPLY']@title");
 		ZAssert.assertStringContains(tooltip, "Reply to the sender of the selected message [r]", "Verify tooltip exists as a title");
 	}
-
 }

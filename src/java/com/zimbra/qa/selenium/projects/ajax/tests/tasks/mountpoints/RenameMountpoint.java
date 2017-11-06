@@ -17,9 +17,7 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.tasks.mountpoints;
 
 import java.util.HashMap;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.common.soap.Element;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.FolderMountpointItem;
@@ -40,18 +38,16 @@ public class RenameMountpoint extends PrefGroupMailByMessageTest {
 		logger.info("New " + RenameMountpoint.class.getCanonicalName());
 
 		super.startingPage = app.zPageTasks;
-		super.startingAccountPreferences = new HashMap<String, String>() {
-			{
-				put("zimbraPrefReadingPaneLocation", "bottom");
-				put("zimbraPrefShowSelectionCheckbox", "TRUE");
-				
-			}
-		};
-
+		super.startingAccountPreferences = new HashMap<String, String>() {{
+			put("zimbraPrefReadingPaneLocation", "bottom");
+			put("zimbraPrefShowSelectionCheckbox", "TRUE");
+		}};
 	}
 
-	@Test( description = "Rename a mountpoint (Right Click -> Rename)", 
+
+	@Test( description = "Rename a mountpoint (Right Click -> Rename)",
 			groups = { "smoke", "L1"})
+
 	public void RenameMountpoint_01() throws HarnessException {
 
 		ZimbraAccount Owner = (new ZimbraAccount()).provision().authenticate();
@@ -60,7 +56,6 @@ public class RenameMountpoint extends PrefGroupMailByMessageTest {
 		String ownerFoldername = "ownerfolder"
 				+ ConfigProperties.getUniqueString();
 
-		
 		FolderItem ownerTask = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
 		ZAssert.assertNotNull(ownerTask, "Verify the new owner folder exists");
 
@@ -86,15 +81,13 @@ public class RenameMountpoint extends PrefGroupMailByMessageTest {
 						+ "' zid='" + Owner.ZimbraId + "'/>"
 						+ "</CreateMountpointRequest>");
 
-		FolderMountpointItem mountpoint = FolderMountpointItem.importFromSOAP(
-				app.zGetActiveAccount(), mountpointFoldername);
+		FolderMountpointItem mountpoint = FolderMountpointItem.importFromSOAP(app.zGetActiveAccount(), mountpointFoldername);
 		ZAssert.assertNotNull(mountpoint, "Verify the subfolder is available");
 
 		// Click Get Mail button
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
-		DialogRenameFolder dialog = (DialogRenameFolder) app.zTreeTasks
-				.zTreeItem(Action.A_RIGHTCLICK, Button.B_RENAME, mountpoint);
+		DialogRenameFolder dialog = (DialogRenameFolder) app.zTreeTasks.zTreeItem(Action.A_RIGHTCLICK, Button.B_RENAME, mountpoint);
 		ZAssert.assertNotNull(dialog, "Verify the dialog opened");
 
 		// Set the name, click OK
@@ -102,8 +95,7 @@ public class RenameMountpoint extends PrefGroupMailByMessageTest {
 		dialog.zSetNewName(mountpointFoldername2);
 		dialog.zClickButton(Button.B_OK);
 
-		// Get all the folders and verify the new name appears and the old name
-		// disappears
+		// Get all the folders and verify the new name appears and the old name disappears
 		app.zGetActiveAccount().soapSend("<GetFolderRequest xmlns = 'urn:zimbraMail'/>");
 
 		Element[] eFolder1 = app.zGetActiveAccount().soapSelectNodes("//mail:link[@name='" + mountpointFoldername + "']");
@@ -111,7 +103,5 @@ public class RenameMountpoint extends PrefGroupMailByMessageTest {
 
 		Element[] eFolder2 = app.zGetActiveAccount().soapSelectNodes("//mail:link[@name='" + mountpointFoldername2 + "']");
 		ZAssert.assertEquals(eFolder2.length, 1,"Verify the new folder name exists");
-
 	}
-
 }

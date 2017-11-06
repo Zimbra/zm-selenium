@@ -41,6 +41,7 @@ public class ComposeReplyMailWithAttachmentAndVariousOptions extends PrefGroupMa
 		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "html");
 	}
 
+
 	@Bugs(ids = "103903")
 	@Test( description = "Verify the presence of attachment while replying to mail and changing option from  'Include Original as an attachment' to 'Include Original message'",
 			groups = { "functional", "L2" })
@@ -52,6 +53,7 @@ public class ComposeReplyMailWithAttachmentAndVariousOptions extends PrefGroupMa
 			String subject = "subject" + ConfigProperties.getUniqueString();
 
 			try {
+
 				// Send a message to the account
 				ZimbraAccount.AccountA().soapSend(
 							"<SendMsgRequest xmlns='urn:zimbraMail'>" +
@@ -68,8 +70,6 @@ public class ComposeReplyMailWithAttachmentAndVariousOptions extends PrefGroupMa
 				MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
 				ZAssert.assertNotNull(mail, "Verify the message is received correctly");
 
-				//-- GUI
-
 				// Refresh current view
 				ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 
@@ -84,12 +84,10 @@ public class ComposeReplyMailWithAttachmentAndVariousOptions extends PrefGroupMa
 				//Include original message as attachment
 				mailform.zToolbarPressPulldown(Button.B_OPTIONS, Button.O_INCLUDE_ORIGINAL_AS_ATTACHMENT);
 
-				//Check if a warning dialog is present. If Yes, Press Yes to continue
+				// Check if a warning dialog is present. If Yes, Press Yes to continue
 				if (mailform.sIsVisible(Locators.zOkCancelContinueComposeWarningDialog) && mailform.sIsElementPresent(Locators.zOkCancelContinueComposeWarningDialog)) {
-
 					mailform.sClickAt(Locators.zOkBtnOnContinueComposeWarningDialog,"0,0");
 				}
-
 				SleepUtil.sleepSmall();
 
 				// Verify that the message is included as attachment
@@ -120,11 +118,9 @@ public class ComposeReplyMailWithAttachmentAndVariousOptions extends PrefGroupMa
 				warning.zWaitForClose();
 
 			} finally {
-
 				app.zPageMain.zKeyboardKeyEvent(KeyEvent.VK_ESCAPE);
-
 			}
-			
+
 		} else {
 			throw new SkipException("File upload operation is allowed only for Windows OS (Skipping upload tests on MS Edge for now due to intermittancy and major control issue), skipping this test...");
 		}
@@ -142,6 +138,7 @@ public class ComposeReplyMailWithAttachmentAndVariousOptions extends PrefGroupMa
 			String subject = "subject" + ConfigProperties.getUniqueString();
 
 			try {
+
 				// Send a message to the account
 				ZimbraAccount.AccountA().soapSend(
 							"<SendMsgRequest xmlns='urn:zimbraMail'>" +
@@ -179,7 +176,7 @@ public class ComposeReplyMailWithAttachmentAndVariousOptions extends PrefGroupMa
 				// Select Use Prefix from Options drop down
 				mailform.zToolbarPressPulldown(Button.B_OPTIONS, Button.O_USE_PRIFIX);
 
-				//Check if a warning dialog is present. If Yes, Press Yes to continue
+				// Check if a warning dialog is present. If Yes, Press Yes to continue
 				if (mailform.sIsVisible(Locators.zOkCancelContinueComposeWarningDialog) && mailform.sIsElementPresent(Locators.zOkCancelContinueComposeWarningDialog)) {
 					mailform.sClickAt(Locators.zOkBtnOnContinueComposeWarningDialog,"0,0");
 				}
@@ -195,17 +192,15 @@ public class ComposeReplyMailWithAttachmentAndVariousOptions extends PrefGroupMa
 				warning.zClickButton(Button.B_NO);
 				warning.zWaitForClose();
 
-
 			} finally {
-
 				app.zPageMain.zKeyboardKeyEvent(KeyEvent.VK_ESCAPE);
-
 			}
-			
+
 		} else {
 			throw new SkipException("File upload operation is allowed only for Windows OS (Skipping upload tests on MS Edge for now due to intermittancy and major control issue), skipping this test...");
 		}
 	}
+
 
 	@Bugs(ids = "103903")
 	@Test( description = "Verify the presence of attachment while replying to mail and selecting 'Include Headers' option from Options'",
@@ -218,6 +213,7 @@ public class ComposeReplyMailWithAttachmentAndVariousOptions extends PrefGroupMa
 			String subject = "subject" + ConfigProperties.getUniqueString();
 
 			try {
+
 				// Send a message to the account
 				ZimbraAccount.AccountA().soapSend(
 							"<SendMsgRequest xmlns='urn:zimbraMail'>" +
@@ -233,8 +229,6 @@ public class ComposeReplyMailWithAttachmentAndVariousOptions extends PrefGroupMa
 				// Get the mail item for the new message
 				MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
 				ZAssert.assertNotNull(mail, "Verify the message is received correctly");
-
-				//-- GUI
 
 				// Refresh current view
 				ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
@@ -257,7 +251,7 @@ public class ComposeReplyMailWithAttachmentAndVariousOptions extends PrefGroupMa
 				// Select Include Headers from Options drop down
 				mailform.zToolbarPressPulldown(Button.B_OPTIONS, Button.O_INCLUDE_HEADERS);
 
-				//Check if a warning dialog is present. If Yes, Press Yes to continue
+				// Check if a warning dialog is present. If Yes, Press Yes to continue
 				if (mailform.sIsVisible(Locators.zOkCancelContinueComposeWarningDialog) && mailform.sIsElementPresent(Locators.zOkCancelContinueComposeWarningDialog)) {
 					mailform.sClickAt(Locators.zOkBtnOnContinueComposeWarningDialog,"0,0");
 				}
@@ -280,9 +274,7 @@ public class ComposeReplyMailWithAttachmentAndVariousOptions extends PrefGroupMa
 				warning.zWaitForClose();
 
 			} finally {
-
 				app.zPageMain.zKeyboardKeyEvent(KeyEvent.VK_ESCAPE);
-
 			}
 
 		} else {

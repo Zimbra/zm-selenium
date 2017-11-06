@@ -17,56 +17,40 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.preferences.mail.displayingmessages;
 
 import java.util.*;
-
 import org.testng.annotations.*;
-
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.*;
 import com.zimbra.qa.selenium.projects.ajax.ui.preferences.TreePreferences.*;
 
-
 public class ZimbraPrefColorMessagesEnabledTrue extends AjaxCommonTest {
 
-	
-	
 	public ZimbraPrefColorMessagesEnabledTrue() {
 		logger.info("New "+ ZimbraPrefColorMessagesEnabledTrue.class.getCanonicalName());
-		
+
 		super.startingPage = app.zPagePreferences;
 		super.startingAccountPreferences = new HashMap<String, String>() {
-			private static final long serialVersionUID = -6497002017653159621L;
-		{
+			private static final long serialVersionUID = -6497002017653159621L; {
 				put("zimbraPrefColorMessagesEnabled", "FALSE");
-			} };
-
-
+			}};
 	}
-	
+
+
 	@Test( description = "Set 'Set color of messages and conversations according to tag color.': Enabled",
 			groups = { "functional", "L3" })
+
 	public void ZimbraPrefColorMessagesEnabledTrue_01() throws HarnessException {
-		
-		//-- DATA
-		
-		
 
-
-		//-- GUI
-		
 		// Navigate to preferences -> mail -> displaying messages
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.Mail);
 
 		// Click checkbox: Set color of messages and conversations according to tag color
 		app.zPagePreferences.zCheckboxSet("css=div.ZmPreferencesPage div[id$='COLOR_MESSAGES_control'] input[id$='COLOR_MESSAGES']", true);
-		
+
 		// Click save
 		app.zPagePreferences.zToolbarPressButton(Button.B_SAVE);
 
-		
-		
-		//-- VERIFICATION
-		
+		// Verification
 		app.zGetActiveAccount().soapSend(
 						"<GetPrefsRequest xmlns='urn:zimbraAccount'>"
 				+			"<pref name='zimbraPrefColorMessagesEnabled'/>"
@@ -74,10 +58,5 @@ public class ZimbraPrefColorMessagesEnabledTrue extends AjaxCommonTest {
 
 		String value = app.zGetActiveAccount().soapSelectValue("//acct:pref[@name='zimbraPrefColorMessagesEnabled']", null);
 		ZAssert.assertEquals(value, "TRUE", "Verify the preference was changed to TRUE");
-
-		
 	}
-
-
-
 }

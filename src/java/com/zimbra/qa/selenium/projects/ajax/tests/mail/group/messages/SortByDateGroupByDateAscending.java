@@ -17,9 +17,7 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.group.messages;
 
 import java.util.List;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
@@ -36,29 +34,26 @@ import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.preferences.PagePreferences.Locators;
 import com.zimbra.qa.selenium.projects.ajax.ui.preferences.TreePreferences.TreeItem;
 
-
 public class SortByDateGroupByDateAscending extends PrefGroupMailByMessageTest {
-
 
 	public SortByDateGroupByDateAscending() {
 		logger.info("New "+ SortByDateGroupByDateAscending.class.getCanonicalName());
 		super.startingPage = app.zPagePreferences;
-		
+
 		super.startingAccountPreferences.put("zimbraPrefReadingPaneLocation", "bottom");
 		super.startingAccountPreferences.put("zimbraPrefGroupMailBy", "message");
 		super.startingAccountPreferences.put("zimbraPrefMailPollingInterval", "500");
 	}
-	
+
+
 	@Bugs(ids = "ZCS-1337")
 	@Test( description = "Sort a list of messages by Date in ascending order and Group by Date",
 			groups = { "functional", "L2" })
-	
+
 	public void SortByDateGroupByDateAscending_01() throws HarnessException {
 
 		if (OperatingSystem.isWindows() == true && !ConfigProperties.getStringProperty("browser").contains("edge")) {
 
-			// File (export of an Inbox which contained mail of different past dates) to import. 
-			// The is required so that mails can be grouped by date and issue can be reproduced.
 			final String fileName = "pastMails.tgz";
 			final String filePath = ConfigProperties.getBaseDirectory() + "\\data\\public\\tgz\\" + fileName;
 
@@ -87,7 +82,7 @@ public class SortByDateGroupByDateAscending extends PrefGroupMailByMessageTest {
 			// Create the message data
 			FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
 			String subjectA = "subjectA" + ConfigProperties.getUniqueString();
-			String subjectB = "subjectB" + ConfigProperties.getUniqueString(); 
+			String subjectB = "subjectB" + ConfigProperties.getUniqueString();
 
 			// Add the message
 			app.zGetActiveAccount().soapSend(
@@ -104,6 +99,7 @@ public class SortByDateGroupByDateAscending extends PrefGroupMailByMessageTest {
 							+			"</content>"
 							+		"</m>"
 							+	"</AddMsgRequest>");
+
 			// Group by Date
 			app.zGetActiveAccount().soapSend(
 					"<SetMailboxMetadataRequest xmlns='urn:zimbraMail'>"
@@ -112,7 +108,7 @@ public class SortByDateGroupByDateAscending extends PrefGroupMailByMessageTest {
 							+		"</meta>"
 							+	"</SetMailboxMetadataRequest>");
 
-			// Refresh web-client to load the changes done. It is required as the next soap request overwrites the changes done by previous request if done without refresh. 
+			// Refresh web-client to load the changes done. It is required as the next soap request overwrites the changes done by previous request if done without refresh.
 			app.zPageMain.zRefreshMainUI();
 
 			// Sort by Date in ascending order
@@ -156,4 +152,3 @@ public class SortByDateGroupByDateAscending extends PrefGroupMailByMessageTest {
 		}
 	}
 }
-

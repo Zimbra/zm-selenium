@@ -94,7 +94,7 @@ public class VerifyDisabledUI extends AjaxCommonTest {
         ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
 
 		// Mark ON to mounted calendar folder and select the appointment
-		app.zTreeCalendar.zMarkOnOffCalendarFolder("Calendar"); //need to localize it
+		app.zTreeCalendar.zMarkOnOffCalendarFolder("Calendar"); // Need to localize it
 		app.zTreeCalendar.zMarkOnOffCalendarFolder(mountpointname);
 
 		// Verify Save, Tag, Accepted, Edit, Forward, Delete, Propose New Time & Delete menus are disabled
@@ -174,7 +174,7 @@ public class VerifyDisabledUI extends AjaxCommonTest {
         ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
 
 		// Mark ON to mounted calendar folder and select the appointment
-		app.zTreeCalendar.zMarkOnOffCalendarFolder("Calendar"); //need to localize it
+		app.zTreeCalendar.zMarkOnOffCalendarFolder("Calendar"); // Need to localize it
 		app.zTreeCalendar.zMarkOnOffCalendarFolder(mountpointname);
 
 		// Verify Save, Tag, Accepted, Edit, Forward, Delete, Propose New Time & Delete menus are disabled

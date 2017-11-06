@@ -84,7 +84,6 @@ public class Cancel extends AjaxCommonTest {
 		ZAssert.assertEquals(app.zPageCalendar.zIsAppointmentExists(apptSubject), false, "Verify meeting is deleted from organizer's calendar");
 
 		// Verify meeting is deleted from attendee's calendar
-		//		AppointmentItem canceledAppt = AppointmentItem.importFromSOAP(ZimbraAccount.AccountA(), "subject:("+ apptSubject +")", startUTC, endUTC);
 		AppointmentItem canceledAppt = AppointmentItem.importFromSOAP(ZimbraAccount.AccountA(), "subject:("+ apptSubject +")");
 		ZAssert.assertNull(canceledAppt, "Verify meeting is deleted from attendee's calendar");
 	}
@@ -155,15 +154,15 @@ public class Cancel extends AjaxCommonTest {
 				"<SearchRequest types='message' xmlns='urn:zimbraMail'>"
 		+			"<query>in:inbox subject:(Cancelled) subject:("+ apptSubject +")</query>"
 		+		"</SearchRequest>");
-	String id = ZimbraAccount.AccountA().soapSelectValue("//mail:m", "id");
+		String id = ZimbraAccount.AccountA().soapSelectValue("//mail:m", "id");
 
-	ZimbraAccount.AccountA().soapSend(
+		ZimbraAccount.AccountA().soapSend(
 				"<GetMsgRequest xmlns='urn:zimbraMail'>"
 		+			"<m id='"+ id +"' html='1'/>"
 		+		"</GetMsgRequest>");
 
-	// Verify From: alias
-	String address = ZimbraAccount.AccountA().soapSelectValue("//mail:e[@t='f']", "a");
-	ZAssert.assertEquals(address, fromAddress, "Verify the from is the alias email address");
+		// Verify From: alias
+		String address = ZimbraAccount.AccountA().soapSelectValue("//mail:e[@t='f']", "a");
+		ZAssert.assertEquals(address, fromAddress, "Verify the from is the alias email address");
 	}
 }

@@ -55,7 +55,7 @@ public class DragAndDropAppointment extends AjaxCommonTest {
 					"</CreateFolderRequest>");
 		FolderItem subcalendarFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), foldername);
 
-		//Refresh view after folder creation
+		// Refresh view after folder creation
 		app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
 
 		// Creating objects for appointment data

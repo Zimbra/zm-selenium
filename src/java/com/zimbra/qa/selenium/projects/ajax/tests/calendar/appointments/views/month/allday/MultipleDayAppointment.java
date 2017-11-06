@@ -64,7 +64,7 @@ public class MultipleDayAppointment extends AjaxCommonTest {
 		//Attendees
 		List<ZimbraAccount> attendees = Arrays.asList(ZimbraAccount.Account8());
 
-		//Create multiple day spanning all-day appointments for 5 days
+		// Create multiple day spanning all-day appointments for 5 days
 		AppointmentItem.createAppointmentAllDay(
 				app.zGetActiveAccount(),
 				now,
@@ -77,7 +77,7 @@ public class MultipleDayAppointment extends AjaxCommonTest {
 		// Refresh the calendar
 		app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
 
-		//Verify that multi-day appointments are displayed correctly in month view
+		// Verify that multi-day appointments are displayed correctly in month view
 		boolean displayed = app.zPageCalendar.zVerifyMultidayAllDayAppointmentInMonthView(now,noOfDays,subject);
 		ZAssert.assertTrue(displayed, "Multi-day all-day appointments are not created and displayed correctlly in month view");
 	}

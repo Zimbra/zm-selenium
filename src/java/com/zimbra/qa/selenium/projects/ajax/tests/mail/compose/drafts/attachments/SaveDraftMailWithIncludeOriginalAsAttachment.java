@@ -37,7 +37,7 @@ public class SaveDraftMailWithIncludeOriginalAsAttachment extends PrefGroupMailB
 		logger.info("New "+ SaveDraftMailWithIncludeOriginalAsAttachment.class.getCanonicalName());
 	}
 
-	
+
 	@Bugs( ids = "104334")
 	@Test( description = "Reply to a mail with include original as attachment, format as HTML and save draft",
 			groups = { "functional", "L2" })
@@ -83,10 +83,9 @@ public class SaveDraftMailWithIncludeOriginalAsAttachment extends PrefGroupMailB
 		// Verify the draft data matches
 		ZAssert.assertStringContains(draft.dSubject, subject, "Verify the subject field is correct");
 		ZAssert.assertStringContains(draft.dBodyText, body, "Verify the subject field is correct");
-
 	}
 
-	
+
 	@Bugs( ids = "104334")
 	@Test( description = "Reply to a mail with include original as attachment, format as text and save draft",
 			groups = { "functional", "L2" })
@@ -137,7 +136,5 @@ public class SaveDraftMailWithIncludeOriginalAsAttachment extends PrefGroupMailB
 		// Verify the draft data matches
 		ZAssert.assertStringContains(draft.dSubject, subject, "Verify the subject field is correct");
 		ZAssert.assertStringContains(draft.dBodyText, body, "Verify the subject field is correct");
-
 	}
-
 }

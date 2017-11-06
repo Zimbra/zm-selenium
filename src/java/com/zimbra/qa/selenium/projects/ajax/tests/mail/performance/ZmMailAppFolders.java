@@ -17,9 +17,7 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.performance;
 
 import java.util.HashMap;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
@@ -30,26 +28,24 @@ import com.zimbra.qa.selenium.framework.util.performance.PerfToken;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.PageLogin.Locators;
 
-
-
 public class ZmMailAppFolders extends AjaxCommonTest {
-	
+
 	public ZmMailAppFolders() {
 		logger.info("New "+ ZmMailAppFolders.class.getCanonicalName());
-		
-		
+
 		super.startingPage = app.zPageLogin;
 		super.startingAccountPreferences = new HashMap<String, String>() {
-			private static final long serialVersionUID = 7525760124523255182L;
-		{
-			put("zimbraPrefGroupMailBy", "message");
-			put("zimbraPrefMessageViewHtmlPreferred", "TRUE");
-		}};
-		
+			private static final long serialVersionUID = 7525760124523255182L; {
+				put("zimbraPrefGroupMailBy", "message");
+				put("zimbraPrefMessageViewHtmlPreferred", "TRUE");
+			}
+		};
 	}
-	
+
+
 	@Test( description = "Measure the time to load the mail app, message view, 1 folder",
 			groups = { "performance", "deprecated" })
+
 	public void ZmMailAppFolder_01() throws HarnessException {
 
 		// Create a folder
@@ -59,7 +55,6 @@ public class ZmMailAppFolders extends AjaxCommonTest {
 	                	"<folder name='folder"+ ConfigProperties.getUniqueString() + "' view='message' l='"+ root.getId() +"'/>" +
 	                "</CreateFolderRequest>");
 
-
 		// Fill out the login page
 		app.zPageLogin.zSetLoginName(ZimbraAccount.AccountZCS().EmailAddress);
 		app.zPageLogin.zSetLoginPassword(ZimbraAccount.AccountZCS().Password);
@@ -68,17 +63,16 @@ public class ZmMailAppFolders extends AjaxCommonTest {
 
 		// Click the Login button
 		app.zPageLogin.sClick(Locators.zBtnLogin);
-
 		PerfMetrics.waitTimestamp(token);
-				
+
 		// Wait for the app to load
 		app.zPageMain.zWaitForActive();
-		
-		
 	}
+
 
 	@Test( description = "Measure the time to load the mail app, message view, 100 folders",
 			groups = { "performance", "deprecated" })
+
 	public void ZmMailAppFolder_02() throws HarnessException {
 
 		// Create 100 folders
@@ -90,7 +84,6 @@ public class ZmMailAppFolders extends AjaxCommonTest {
 					"</CreateFolderRequest>");
 		}
 
-
 		// Fill out the login page
 		app.zPageLogin.zSetLoginName(ZimbraAccount.AccountZCS().EmailAddress);
 		app.zPageLogin.zSetLoginPassword(ZimbraAccount.AccountZCS().Password);
@@ -99,14 +92,9 @@ public class ZmMailAppFolders extends AjaxCommonTest {
 
 		// Click the Login button
 		app.zPageLogin.sClick(Locators.zBtnLogin);
-
 		PerfMetrics.waitTimestamp(token);
 
 		// Wait for the app to load
 		app.zPageMain.zWaitForActive();
-
-
 	}
-
-
 }

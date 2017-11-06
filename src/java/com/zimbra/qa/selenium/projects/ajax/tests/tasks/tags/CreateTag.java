@@ -28,15 +28,13 @@ public class CreateTag extends AjaxCommonTest {
 
 	public CreateTag() {
 		logger.info("New "+ CreateTag.class.getCanonicalName());
-
-		// All tests start at the login page
 		super.startingPage = app.zPageTasks;
-		
 	}
 
-	@Test( description = "Create a new tag by clicking 'new tag' on Task page", 
+
+	@Test( description = "Create a new tag by clicking 'new tag' on Task page",
 			groups = { "sanity", "L0"})
-	
+
 	public void CreateTag_01() throws HarnessException {
 
 		// Set the new tag name
@@ -56,9 +54,10 @@ public class CreateTag extends AjaxCommonTest {
 		ZAssert.assertEquals(tag.getName(), name, "Verify the server and client tag names match");
 	}
 
-	@Test( description = "Create a new tag using keyboard shortcuts on Task page", 
+
+	@Test( description = "Create a new tag using keyboard shortcuts on Task page",
 			groups = { "smoke", "L1"})
-	
+
 	public void CreateTag_02() throws HarnessException {
 
 		Shortcut shortcut = Shortcut.S_NEWTAG;
@@ -66,8 +65,8 @@ public class CreateTag extends AjaxCommonTest {
 
 		// Set the new tag name
 		String name = "tag" + ConfigProperties.getUniqueString();
-		
-		//Added explicitly boz some time focus does shifted into search input after login
+
+		// Add explicitly because some time focus does shifted into search input after login
 		app.zTreeTasks.zTreeItem(Action.A_LEFTCLICK, taskFolder);
 
 		DialogTag dialog = (DialogTag)app.zPageTasks.zKeyboardShortcut(shortcut);
@@ -76,9 +75,7 @@ public class CreateTag extends AjaxCommonTest {
 		// Fill out the form with the basic details
 		dialog.zSubmit(name);
 
-		
-
-		//Need to click on Task folder explicitly so that created tag does show in tag list.
+		// Need to click on Task folder explicitly so that created tag does show in tag list.
 		app.zTreeTasks.zTreeItem(Action.A_LEFTCLICK, taskFolder);
 
 		// Make sure the tag was created on the server
@@ -86,12 +83,12 @@ public class CreateTag extends AjaxCommonTest {
 
 		ZAssert.assertNotNull(tag, "Verify the new tag was created");
 		ZAssert.assertEquals(tag.getName(), name, "Verify the server and client tag names match");
-
 	}
-	
-	@Test( description = "Create a new tag using context menu from a tag", 
+
+
+	@Test( description = "Create a new tag using context menu from a tag",
 			groups = { "smoke", "L1"})
-	
+
 	public void CreateTag_03() throws HarnessException {
 
 		// Set the new tag name
@@ -107,9 +104,9 @@ public class CreateTag extends AjaxCommonTest {
 		// Get the tag
 		TagItem tag2 = TagItem.importFromSOAP(app.zGetActiveAccount(), name2);
 
-		//Need to click on Task folder explicitly so that created tag does show in tag list.
+		// Need to click on Task folder explicitly so that created tag does show in tag list.
 		app.zPageTasks.zToolbarPressButton(Button.B_REFRESH);
-		
+
 		// Work around
 		app.zPageMain.zRefreshMainUI();
 		app.zPageTasks.zNavigateTo();
@@ -127,10 +124,11 @@ public class CreateTag extends AjaxCommonTest {
 
 		ZAssert.assertEquals(tag1.getName(), name1, "Verify the server and client tag names match");
 	}
-	
-	@Test( description = "Create a new tag using task app New -> Tag", 
+
+
+	@Test( description = "Create a new tag using task app New -> Tag",
 			groups = { "smoke", "L1"})
-	
+
 	public void CreateTag_04() throws HarnessException {
 
 		// Set the new tag name
@@ -146,10 +144,6 @@ public class CreateTag extends AjaxCommonTest {
 		// Make sure the task was created on the server
 		TagItem tag = app.zPageTasks.zGetTagItem(app.zGetActiveAccount(), name);
 		ZAssert.assertNotNull(tag, "Verify the new tag was created");
-
-		ZAssert.assertEquals(tag.getName(), name,
-		"Verify the server and client tag names match");
-
+		ZAssert.assertEquals(tag.getName(), name,	"Verify the server and client tag names match");
 	}
-
 }

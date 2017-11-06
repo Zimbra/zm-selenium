@@ -2,11 +2,11 @@
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
  * Copyright (C) 2011, 2013, 2014 Zimbra, Inc.
- * 
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
@@ -27,18 +27,20 @@ public class ForwardACopyTo extends PrefGroupMailByMessageTest {
 
 	public ForwardACopyTo() {
 		logger.info("New "+ ForwardACopyTo.class.getCanonicalName());
-			
+
 		super.startingPage = app.zPagePreferences;
 		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "html");
 	}
-	
-	@Test( description = "Set forward a copy to when receiving the message from preferences",	groups = { "functional", "L2" })
-	
+
+
+	@Test( description = "Set forward a copy to when receiving the message from preferences",
+			groups = { "functional", "L2" })
+
 	public void ForwardACopyTo_01() throws HarnessException {
-		
+
 		// Set message arrival email address
-		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.Mail);	
-		app.zPagePreferences.sType(("css=input[id='Prefs_Pages_MAIL_MAIL_FORWARDING_ADDRESS']") , ZimbraAccount.AccountB().EmailAddress);	
+		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.Mail);
+		app.zPagePreferences.sType(("css=input[id='Prefs_Pages_MAIL_MAIL_FORWARDING_ADDRESS']") , ZimbraAccount.AccountB().EmailAddress);
 		app.zPagePreferences.zToolbarPressButton(Button.B_SAVE);
 
 		// Create message from account A
@@ -50,7 +52,7 @@ public class ForwardACopyTo extends PrefGroupMailByMessageTest {
 				"<head></head>" +
 				"<body>"+ bodyHTML +"</body>" +
 			"</html>");
-				
+
 		// Send a message to the account
 		ZimbraAccount.AccountA().soapSend(
 			"<SendMsgRequest xmlns='urn:zimbraMail'>" +
@@ -67,11 +69,11 @@ public class ForwardACopyTo extends PrefGroupMailByMessageTest {
 					"</mp>" +
 				"</m>" +
 			"</SendMsgRequest>");
-		
-		// SOAP verification 
-		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");	
+
+		// SOAP verification
+		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
-		
+
 		mail = MailItem.importFromSOAP(ZimbraAccount.AccountB(), "subject:("+ subject +")");
 		ZAssert.assertEquals(mail.dFromRecipient.dEmailAddress, ZimbraAccount.AccountA().EmailAddress, "Verify the from field is correct");
 		ZAssert.assertEquals(mail.dToRecipients.get(0).dEmailAddress, app.zGetActiveAccount().EmailAddress, "Verify the to field is correct");

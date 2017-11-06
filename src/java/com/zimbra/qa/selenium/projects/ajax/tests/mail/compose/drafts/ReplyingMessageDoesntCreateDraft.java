@@ -17,9 +17,7 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.compose.drafts;
 
 import java.io.*;
-
 import org.testng.annotations.*;
-
 import com.zimbra.common.soap.*;
 import com.zimbra.qa.selenium.framework.core.*;
 import com.zimbra.qa.selenium.framework.items.*;
@@ -35,20 +33,18 @@ public class ReplyingMessageDoesntCreateDraft extends PrefGroupMailByMessageTest
 		logger.info("New "+ ReplyingMessageDoesntCreateDraft.class.getCanonicalName());
 	}
 
+
 	@Bugs( ids = "67686, 69384")
-	@Test( description = "Verify bug 67686", groups = { "functional", "L2" })
-	
+	@Test( description = "Verify bug 67686",
+			groups = { "functional", "L2" })
+
 	public void ReplyingMessageDoesntCreateDraft_01() throws HarnessException {
 
-		//-- DATA
-		
 		String subject = "subject13690880312762";
 
 		String MimeFolder = ConfigProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug67686";
 		LmtpInject.injectFile(ZimbraAccount.AccountZCS(), new File(MimeFolder));
 
-		//-- GUI
-		
 		// Refresh current view
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
@@ -61,8 +57,6 @@ public class ReplyingMessageDoesntCreateDraft extends PrefGroupMailByMessageTest
 		// Send the message
 		mailform.zSubmit();
 
-		//-- VERIFICATION
-		
 		// Verify no draft messages exist
 		FolderItem drafts = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Drafts);
 		app.zGetActiveAccount().soapSend(
@@ -72,7 +66,5 @@ public class ReplyingMessageDoesntCreateDraft extends PrefGroupMailByMessageTest
 
 		Element[] nodes = app.zGetActiveAccount().soapSelectNodes("//mail:m");
 		ZAssert.assertEquals(nodes.length, 0, "Verify no drafts are saved");
-		
 	}
-
 }

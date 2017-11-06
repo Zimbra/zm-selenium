@@ -14,34 +14,32 @@
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.newwindow.inlineimage;
 
 import org.testng.SkipException;
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.SeparateWindowFormMailNew;
 
-public class OpenComposedMsgWithAnInlineAttachmentInNewWindow extends
-PrefGroupMailByMessageTest {
+public class OpenComposedMsgWithAnInlineAttachmentInNewWindow extends PrefGroupMailByMessageTest {
 
 	public OpenComposedMsgWithAnInlineAttachmentInNewWindow() {
 		logger.info("New "+ OpenComposedMsgWithAnInlineAttachmentInNewWindow.class.getCanonicalName());
 		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "html");
 	}
 
-	@Test( description = "Verify inline attachment in Normal Compose window as well as in New compose window", groups = { "functional", "L2" })
-	
+
+	@Test( description = "Verify inline attachment in Normal Compose window as well as in New compose window",
+			groups = { "functional", "L2" })
+
 	public void OpenComposedMsgWithAnAttachmentInNewWindow_01() throws HarnessException {
 
 		if (OperatingSystem.isWindows() == true && !ConfigProperties.getStringProperty("browser").contains("edge")) {
 
 			// Create file item
-
 			final String fileName = "samplejpg.jpg";
 			final String filePath = ConfigProperties.getBaseDirectory() + "\\data\\public\\other\\" + fileName;
 

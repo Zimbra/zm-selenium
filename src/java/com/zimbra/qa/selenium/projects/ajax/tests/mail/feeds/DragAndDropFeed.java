@@ -17,9 +17,7 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.feeds;
 
 import java.net.*;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.Button;
@@ -33,7 +31,8 @@ public class DragAndDropFeed extends PrefGroupMailByMessageTest{
 	}
 
 
-	@Test( description = "Drag one folder and Drop into other", groups = { "smoke", "L1" })
+	@Test( description = "Drag one feed folder and Drop into other",
+			groups = { "smoke", "L1" })
 
 	public void DragAndDropFeed_01() throws HarnessException, MalformedURLException {
 
@@ -42,7 +41,6 @@ public class DragAndDropFeed extends PrefGroupMailByMessageTest{
 
 		// Create a subfolder in Inbox
 		String feedname = "feed" + ConfigProperties.getUniqueString();
-		// feed.rss=http://server/files/Service/RSS/Basic/basic.xml
 		URL feedurl = new URL(ConfigProperties.getStringProperty("rss.sample"));
 
 		app.zGetActiveAccount().soapSend(
@@ -59,7 +57,6 @@ public class DragAndDropFeed extends PrefGroupMailByMessageTest{
 					"<CreateFolderRequest xmlns='urn:zimbraMail'>"
 				+		"<folder name='"+ name1 +"' l='"+ inbox.getId() +"'/>"
 				+	"</CreateFolderRequest>");
-
 
 		FolderItem subfolder1 = FolderItem.importFromSOAP(app.zGetActiveAccount(), name1);
 		ZAssert.assertNotNull(subfolder1, "Verify the first subfolder is available");

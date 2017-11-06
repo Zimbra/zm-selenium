@@ -17,27 +17,26 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.contacts.tags;
 
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 
 public class UnTagContact extends AjaxCommonTest  {
+
 	public UnTagContact() {
 		logger.info("New "+ UnTagContact.class.getCanonicalName());
-		
-		// All tests start at the Address page
 		super.startingPage = app.zPageContacts;
-		
 	}
-	
+
+
 	@Test( description = "Untag a contact by click Toolbar Tag, then select Remove Tag",
 			groups = { "smoke", "L1"})
+
 	public void ClickToolbarTagRemoveTag_01() throws HarnessException {
-		
+
 		// Create a tag
-		TagItem tagItem = TagItem.CreateUsingSoap(app.zGetActiveAccount());		
+		TagItem tagItem = TagItem.CreateUsingSoap(app.zGetActiveAccount());
 
 		// Create a contact via Soap then select
 		ContactItem contact = ContactItem.createContactItem(app.zGetActiveAccount());
@@ -47,37 +46,35 @@ public class UnTagContact extends AjaxCommonTest  {
 				"<ContactActionRequest xmlns='urn:zimbraMail'>" +
 					"<action id='"+ contact.getId() +"' op='tag' tag='"+ tagItem.getId() +"'/>" +
 				"</ContactActionRequest>");
-		
-		//-- GUI
-		
+
 		// Refresh
 		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 		SleepUtil.sleepMedium();
-		
+
 		// Select the contact
 		app.zPageContacts.zListItem(Action.A_LEFTCLICK, contact.firstName);
 
     	// Untag it
 		app.zPageContacts.zToolbarPressPulldown(Button.B_TAG, Button.O_TAG_REMOVETAG);
-		
-		//-- Verification
-		
+
+		// Verification
 		app.zGetActiveAccount().soapSend(
 				"<GetContactsRequest xmlns='urn:zimbraMail' >" +
 						"<cn id='"+ contact.getId() +"'/>" +
 				"</GetContactsRequest>");
-		
+
 		String t = app.zGetActiveAccount().soapSelectValue("//mail:cn", "t");
 		ZAssert.assertNull(t, "Verify the contact has no tags");
-
    	}
-	   
+
+
 	@Test( description = "Untag a contact by click Tag->Remove Tag on context menu",
 				groups = { "smoke", "L1"})
+
 	public void ClickContextMenuTagRemoveTag_02() throws HarnessException {
-		
+
 		// Create a tag
-		TagItem tagItem = TagItem.CreateUsingSoap(app.zGetActiveAccount());		
+		TagItem tagItem = TagItem.CreateUsingSoap(app.zGetActiveAccount());
 
 		// Create a contact via Soap then select
 		ContactItem contact = ContactItem.createContactItem(app.zGetActiveAccount());
@@ -87,28 +84,22 @@ public class UnTagContact extends AjaxCommonTest  {
 				"<ContactActionRequest xmlns='urn:zimbraMail'>" +
 					"<action id='"+ contact.getId() +"' op='tag' tag='"+ tagItem.getId() +"'/>" +
 				"</ContactActionRequest>");
-		
-		//-- GUI
-		
+
 		// Refresh
 		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
-		
+
 		SleepUtil.sleepMedium();
-		
+
     	// Untag it
         app.zPageContacts.zListItem(Action.A_RIGHTCLICK, Button.B_TAG, Button.O_TAG_REMOVETAG , contact.fileAs);
-		
-		//-- Verification
-		
+
+		// Verification
 		app.zGetActiveAccount().soapSend(
 				"<GetContactsRequest xmlns='urn:zimbraMail' >" +
 						"<cn id='"+ contact.getId() +"'/>" +
 				"</GetContactsRequest>");
-		
+
 		String t = app.zGetActiveAccount().soapSelectValue("//mail:cn", "t");
 		ZAssert.assertNull(t, "Verify the contact has no tags");
-
 	}
-	
 }
-

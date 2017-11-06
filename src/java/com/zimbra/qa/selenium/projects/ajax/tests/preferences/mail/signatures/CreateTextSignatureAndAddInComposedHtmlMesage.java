@@ -52,15 +52,16 @@ public class CreateTextSignatureAndAddInComposedHtmlMesage extends AjaxCommonTes
 		logger.info("CreateSignature: finish");
 	}
 
+
 	/**
 	 * Test case : Create signature through soap Compose HTML message and add
 	 * text signature Send mail to self and verify signature through soap.
-	 * 
-	 * @throws HarnessException
 	 */
+
 	@Bugs(ids = "45274")
-	@Test(description = " Compose html Msg with text signature and Verify signature through soap", groups = {
-			"functional", "L3" })
+	@Test(description = " Compose html Msg with text signature and Verify signature through soap",
+			groups = { "functional", "L3" })
+
 	public void CreateTextSignatureAndAddInComposedHtmlMesage_01() throws HarnessException {
 
 		// Signature is created
@@ -80,14 +81,13 @@ public class CreateTextSignatureAndAddInComposedHtmlMesage extends AjaxCommonTes
 		// Fill out the form with the data
 		mailform.zFill(mail);
 
-		// click Signature drop down and add signature
+		// Click Signature drop down and add signature
 		app.zPageMail.zToolbarPressPulldown(Button.B_OPTIONS, Button.O_ADD_SIGNATURE, this.sigName);
 
 		// Send the message
 		mailform.zSubmit();
 
-		MailItem received = MailItem.importFromSOAP(ZimbraAccount.AccountZCS(),
-				"in:inbox subject:(" + mail.dSubject + ")");
+		MailItem received = MailItem.importFromSOAP(ZimbraAccount.AccountZCS(), "in:inbox subject:(" + mail.dSubject + ")");
 
 		// Verify TO, Subject, Body, Signature
 		ZAssert.assertEquals(received.dFromRecipient.dEmailAddress, app.zGetActiveAccount().EmailAddress,
@@ -97,6 +97,5 @@ public class CreateTextSignatureAndAddInComposedHtmlMesage extends AjaxCommonTes
 		ZAssert.assertEquals(received.dSubject, mail.dSubject, "Verify the subject field is correct");
 		ZAssert.assertStringContains(received.dBodyText, mail.dBodyHtml, "Verify the body content is correct");
 		ZAssert.assertStringContains(received.dBodyText, this.sigBody, "Verify the signature is correct");
-
 	}
 }

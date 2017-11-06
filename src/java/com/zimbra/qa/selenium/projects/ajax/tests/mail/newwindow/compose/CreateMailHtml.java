@@ -32,8 +32,10 @@ public class CreateMailHtml extends PrefGroupMailByMessageTest {
 		super.startingAccountPreferences.put("zimbraPrefComposeInNewWindow", "TRUE");
 	}
 
+
 	@Bugs(ids = "101612")
-	@Test(description = "Send a mail using HTML editor - in a separate window", groups = { "sanity", "L0" })
+	@Test(description = "Send a mail using HTML editor - in a separate window",
+			groups = { "sanity", "L0" })
 
 	public void CreateMailHtml_01() throws HarnessException {
 
@@ -92,5 +94,4 @@ public class CreateMailHtml extends PrefGroupMailByMessageTest {
 		ZAssert.assertEquals(subject, mail.dSubject, "Verify the subject field is correct");
 		ZAssert.assertStringContains(html, mail.dBodyHtml, "Verify the html content");
 	}
-
 }

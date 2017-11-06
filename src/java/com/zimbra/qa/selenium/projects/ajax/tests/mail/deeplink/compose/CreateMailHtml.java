@@ -17,70 +17,44 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.deeplink.compose;
 
 import org.testng.annotations.*;
-
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.*;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.*;
 
-
 public class CreateMailHtml extends PrefGroupMailByMessageTest {
 
 	public CreateMailHtml() {
 		logger.info("New "+ CreateMailHtml.class.getCanonicalName());
-		
 		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "html");
-		
 	}
-	
+
+
 	@Test( description = "Create an html mail using the deep link URL",
 			groups = { "functional", "L2" })
+
 	public void CreateMailHtml_01() throws HarnessException {
-		
-		
-		
-		//-- DATA
-		
-		
+
 		// Create the message data to be sent
 		final String to = ZimbraAccount.AccountA().EmailAddress;
 		final String subject = "subject" + ConfigProperties.getUniqueString();
 		final String body = "body" + ConfigProperties.getUniqueString();
-		
-		
-		
-		
-		//-- GUI
-		
-		// The account is already authenticated
-		// However, we need to change the URL and open
-		// the deep link form.
-		
+
 		ZimbraURI uri = new ZimbraURI(ZimbraURI.getCurrentURI());
-		uri.addQuery("view", "compose");	// Setting view=compose will make PageMain return a FormMailNew object
+		uri.addQuery("view", "compose");
 		uri.addQuery("to", to);
 		uri.addQuery("subject", subject);
 		uri.addQuery("body", body);
 
-		// Open the Deep Link URL: http://server.com/?view=compose&to=addy&subject=text&body=value
-		//
 		FormMailNew mailform = (FormMailNew)app.zPageMain.zOpenDeeplink(uri);
 		ZAssert.assertNotNull(mailform, "Verify the deeplink page opens");
 		ZAssert.assertTrue(mailform.zIsActive(), "Verify the deeplink page opens");
-		
+
 		// The form should be filled out, so just submit
 		mailform.zSubmit();
-		
-		
-		//-- VERIFICATION
-		//-- VERIFICATION
+
+		// Verification
 		MailItem received = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "subject:("+ subject +")");
 		ZAssert.assertNotNull(received, "Verify the message is received correctly");
-		
 	}
-
-	
-
-
-
 }

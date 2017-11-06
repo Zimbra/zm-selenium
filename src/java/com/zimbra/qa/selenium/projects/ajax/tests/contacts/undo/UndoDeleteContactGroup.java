@@ -29,20 +29,19 @@ import com.zimbra.qa.selenium.projects.ajax.ui.Toaster;
 public class UndoDeleteContactGroup extends AjaxCommonTest {
 	public UndoDeleteContactGroup() {
 		logger.info("New " + UndoDeleteContactGroup.class.getCanonicalName());
-		// All tests start at the Address page
+
 		super.startingPage = app.zPageContacts;
-		// Enable user preference checkboxes
 		super.startingAccountPreferences = new HashMap<String, String>() {
-			private static final long serialVersionUID = -263733102718446576L;
-			{
+			private static final long serialVersionUID = -263733102718446576L; {
 				put("zimbraPrefShowSelectionCheckbox", "TRUE");
 			}
 		};
-
 	}
 
-	@Test( description = "Undone deleted a contact group", 
+
+	@Test( description = "Undone deleted a contact group",
 			groups = { "functional", "L3"})
+
 	public void UndoDeleteContactGroup_01() throws HarnessException {
 
 		// The contacts folder
@@ -57,7 +56,7 @@ public class UndoDeleteContactGroup extends AjaxCommonTest {
 		// Select the contact group
 		app.zPageContacts.zListItem(Action.A_LEFTCLICK, group.getName());
 
-		// delete contact group by click Delete button on toolbar
+		// Delete contact group by click Delete button on toolbar
 		app.zPageContacts.zToolbarPressButton(Button.B_DELETE);
 
 		// Click undo from the toaster message
@@ -65,15 +64,16 @@ public class UndoDeleteContactGroup extends AjaxCommonTest {
 		toast.zWaitForActive();
 		toast.zClickUndo();
 
-		//Verify contact group come back into Contacts folder		
+		// Verify contact group come back into Contacts folder
 		ContactGroupItem actual = ContactGroupItem.importFromSOAP(app.zGetActiveAccount(), "is:anywhere #nickname:"+ group.getName());
 		ZAssert.assertNotNull(actual, "Verify the contact group exists");
 		ZAssert.assertEquals(actual.getFolderId(), contacts.getId(), "Verify the contact is back in the contacts folder");
-
 	}
 
-	@Test( description = "Undone deleted contact group by clicking Delete on Context Menu", 
+
+	@Test( description = "Undone deleted contact group by clicking Delete on Context Menu",
 			groups = { "functional", "L3"})
+
 	public void UndoDeleteContactGroup_02() throws HarnessException {
 
 		// The contacts folder
@@ -85,7 +85,7 @@ public class UndoDeleteContactGroup extends AjaxCommonTest {
 		// Refresh
 		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
 
-		// delete contact group by click Delete on Context menu
+		// Delete contact group by click Delete on Context menu
 		app.zPageContacts.zListItem(Action.A_RIGHTCLICK, Button.B_DELETE,group.getName());
 
 		// Click undo from the toaster message
@@ -93,14 +93,16 @@ public class UndoDeleteContactGroup extends AjaxCommonTest {
 		toast.zWaitForActive();
 		toast.zClickUndo();
 
-		//Verify contact group come back into Contacts folder		
+		// Verify contact group come back into Contacts folder
 		ContactGroupItem actual = ContactGroupItem.importFromSOAP(app.zGetActiveAccount(), "is:anywhere #nickname:"+ group.getName());
 		ZAssert.assertNotNull(actual, "Verify the contact group exists");
 		ZAssert.assertEquals(actual.getFolderId(), contacts.getId(), "Verify the contact is back in the contacts folder");
 	}
 
-	@Test( description = "Undone deleted  contact group selected by checkbox", 
+
+	@Test( description = "Undone deleted  contact group selected by checkbox",
 			groups = { "functional", "L3"})
+
 	public void UndoDeleteContactGroup_03()throws HarnessException {
 
 		// The contacts folder
@@ -115,7 +117,7 @@ public class UndoDeleteContactGroup extends AjaxCommonTest {
 		// Select the contact group
 		app.zPageContacts.zListItem(Action.A_CHECKBOX, group.getName());
 
-		// delete contact group by click Delete button on toolbar
+		// Delete contact group by click Delete button on toolbar
 		app.zPageContacts.zToolbarPressButton(Button.B_DELETE);
 
 		// Click undo from the toaster message
@@ -123,15 +125,16 @@ public class UndoDeleteContactGroup extends AjaxCommonTest {
 		toast.zWaitForActive();
 		toast.zClickUndo();
 
-		//Verify contact group come back into Contacts folder		
+		// Verify contact group come back into Contacts folder
 		ContactGroupItem actual = ContactGroupItem.importFromSOAP(app.zGetActiveAccount(), "is:anywhere #nickname:"+ group.getName());
 		ZAssert.assertNotNull(actual, "Verify the contact group exists");
 		ZAssert.assertEquals(actual.getFolderId(), contacts.getId(), "Verify the contact is back in the contacts folder");
-
 	}
 
-	@Test( description = "undone deleted a contact group use shortcut Del", 
+
+	@Test( description = "undone deleted a contact group use shortcut Del",
 			groups = { "functional", "L3"})
+
 	public void UndoDeleteContactGroup_04() throws HarnessException {
 
 		// The contacts folder
@@ -146,7 +149,7 @@ public class UndoDeleteContactGroup extends AjaxCommonTest {
 		// Select the contact group
 		app.zPageContacts.zListItem(Action.A_LEFTCLICK, group.getName());
 
-		// delete contact group by click shortcut Del
+		// Delete contact group by click shortcut Del
 		app.zPageContacts.zKeyboardKeyEvent(KeyEvent.VK_DELETE);
 
 		// Click undo from the toaster message
@@ -154,14 +157,16 @@ public class UndoDeleteContactGroup extends AjaxCommonTest {
 		toast.zWaitForActive();
 		toast.zClickUndo();
 
-		//Verify contact group come back into Contacts folder		
+		// Verify contact group come back into Contacts folder
 		ContactGroupItem actual = ContactGroupItem.importFromSOAP(app.zGetActiveAccount(), "is:anywhere #nickname:"+ group.getName());
 		ZAssert.assertNotNull(actual, "Verify the contact group exists");
 		ZAssert.assertEquals(actual.getFolderId(), contacts.getId(), "Verify the contact is back in the contacts folder");
 	}
 
-	@Test( description = "Undone deleted multiple contact groups at once", 
+
+	@Test( description = "Undone deleted multiple contact groups at once",
 			groups = { "functional", "L3"})
+
 	public void UndoDeleteContactGroup_05() throws HarnessException {
 
 		// The contacts folder
@@ -180,7 +185,7 @@ public class UndoDeleteContactGroup extends AjaxCommonTest {
 		app.zPageContacts.zListItem(Action.A_CHECKBOX, group2.getName());
 		app.zPageContacts.zListItem(Action.A_CHECKBOX, group3.getName());
 
-		// delete contact group by click Delete button on toolbar
+		// Delete contact group by click Delete button on toolbar
 		app.zPageContacts.zToolbarPressButton(Button.B_DELETE);
 
 		// Click undo from the toaster message
@@ -188,7 +193,7 @@ public class UndoDeleteContactGroup extends AjaxCommonTest {
 		toast.zWaitForActive();
 		toast.zClickUndo();
 
-		//Verify 3 contact groups are come back into Contacts folder
+		// Verify 3 contact groups are come back into Contacts folder
 
 		ContactGroupItem actual1 = ContactGroupItem.importFromSOAP(app.zGetActiveAccount(), "is:anywhere #nickname:"+ group1.getName());
 		ZAssert.assertNotNull(actual1, "Verify the contact group exists");
@@ -201,11 +206,12 @@ public class UndoDeleteContactGroup extends AjaxCommonTest {
 		ContactGroupItem actual3 = ContactGroupItem.importFromSOAP(app.zGetActiveAccount(), "is:anywhere #nickname:"+ group3.getName());
 		ZAssert.assertNotNull(actual3, "Verify the contact group exists");
 		ZAssert.assertEquals(actual3.getFolderId(), contacts.getId(), "Verify the contact is back in the contacts folder");
-
 	}
 
-	@Test( description = "Undone Deleted contact + contact group at once", 
+
+	@Test( description = "Undone Deleted contact + contact group at once",
 			groups = { "functional", "L3"})
+
 	public void UndoDeleteContactGroup_06() throws HarnessException {
 
 		// The contacts folder
@@ -221,7 +227,7 @@ public class UndoDeleteContactGroup extends AjaxCommonTest {
 		// Select the contact group
 		app.zPageContacts.zListItem(Action.A_CHECKBOX, group.getName());
 
-		// delete contact group by click Delete button on toolbar
+		// Delete contact group by click Delete button on toolbar
 		app.zPageContacts.zToolbarPressButton(Button.B_DELETE);
 
 		// Click undo from the toaster message
@@ -229,7 +235,7 @@ public class UndoDeleteContactGroup extends AjaxCommonTest {
 		toast.zWaitForActive();
 		toast.zClickUndo();
 
-		//Verify contact group as well as contact come back into Contacts folder		
+		// Verify contact group as well as contact come back into Contacts folder
 		ContactGroupItem actual = ContactGroupItem.importFromSOAP(app.zGetActiveAccount(), "is:anywhere #nickname:"+ group.getName());
 		ZAssert.assertNotNull(actual, "Verify the contact group is not deleted from the addressbook");
 		ZAssert.assertEquals(actual.getFolderId(), contacts.getId(), "Verify the contact group is back in the contacts folder");
@@ -237,8 +243,5 @@ public class UndoDeleteContactGroup extends AjaxCommonTest {
 		ContactItem actual1 = ContactItem.importFromSOAP(app.zGetActiveAccount(), "#firstname:"+ contact.firstName);
 		ZAssert.assertNotNull(actual1, "Verify the contact is not deleted from the addressbook");
 		ZAssert.assertEquals(actual1.getFolderId(), contacts.getId(), "Verify the contact is back in the contacts folder");
-
 	}
-
 }
-

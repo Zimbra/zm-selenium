@@ -14,7 +14,6 @@
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-
 package com.zimbra.qa.selenium.projects.ajax.tests.preferences.mail.signatures;
 
 import org.testng.annotations.Test;
@@ -97,9 +96,8 @@ public class ChangeSignatureAndVerifyBody extends AjaxCommonTest {
 		// Verify that entered body text is still present after changing the signature
 		ZAssert.assertTrue(mailform.zGetFieldValue(Field.Body).contains(bodyText), "Entered body text is lost after changing the signature!");
 		ZAssert.assertTrue(mailform.zGetFieldValue(Field.Body).contains(sigBody2.replace("<b>", "").replace("</b>", "")), "Verify added signature");
-
 	}
-	
+
 
 	@Bugs(ids="47375")
 	@Test(description = "Verify the body of the mail after deleting the signature and changing the From Persona which has a different signature",
@@ -135,7 +133,6 @@ public class ChangeSignatureAndVerifyBody extends AjaxCommonTest {
 			+			"<a name='zimbraPrefWhenInFoldersEnabled'>FALSE</a>"
 			+		"</identity>"
 			+	"</CreateIdentityRequest>");
-
 
 		// Refresh UI
 		app.zPageMain.zRefreshMainUI();

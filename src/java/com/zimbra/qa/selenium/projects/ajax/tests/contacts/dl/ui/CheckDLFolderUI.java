@@ -17,7 +17,6 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.contacts.dl.ui;
 
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -28,10 +27,10 @@ public class CheckDLFolderUI extends AjaxCommonTest  {
 	public CheckDLFolderUI() {
 		logger.info("New "+ CheckDLFolderUI.class.getCanonicalName());
 		super.startingPage = app.zPageContacts;
-		
 	}
 
-	@Test( description = "Right click to DL folder and check respected UI options", 
+
+	@Test( description = "Right click to DL folder and check respected UI options",
 			groups = { "functional", "L2"})
 
 	public void CheckDLFolderRightClickOptions_01 () throws HarnessException {

@@ -17,9 +17,7 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.preferences.contacts;
 
 import java.util.HashMap;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
@@ -28,45 +26,31 @@ import com.zimbra.qa.selenium.projects.ajax.ui.preferences.TreePreferences.TreeI
 public class ZimbraPrefGalAutoCompleteEnabledTrue extends AjaxCommonTest {
 
 	public ZimbraPrefGalAutoCompleteEnabledTrue() {
-		
-		
+
 		super.startingPage = app.zPagePreferences;
 		super.startingAccountPreferences = new HashMap<String, String>() {
-			private static final long serialVersionUID = -9003499097205536365L;
-			{				
+			private static final long serialVersionUID = -9003499097205536365L; {
 				put("zimbraPrefGalAutoCompleteEnabled", "FALSE");
 			}
 		};
-		
-		
 	}
 
-	@Test(
-			description = "Set zimbraPrefGalAutoCompleteEnabled to 'TRUE'",
-			groups = { "functional", "L2" }
-	)
+
+	@Test (description = "Set zimbraPrefGalAutoCompleteEnabled to 'TRUE'",
+			groups = { "functional", "L2" } )
+
 	public void zimbraPrefGalAutoCompleteEnabledTrue_01() throws HarnessException {
 
-		//-- DATA Setup
-		
-		
-		
-		//-- GUI Actions
-		
 		// Navigate to preferences -> mail -> composing
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.AddressBook);
 
-		
 		// Click radio button for "	Initially search the Global Address List when using the contact picker"
 		app.zPagePreferences.sClick("css=div[id$='GAL_AUTOCOMPLETE_control'] input[id$='GAL_AUTOCOMPLETE']");
 
 		// Click save
 		app.zPagePreferences.zToolbarPressButton(Button.B_SAVE);
 
-		
-		
-		//-- VERIFICATION
-		
+		// Verification
 		app.zGetActiveAccount().soapSend(
 						"<GetPrefsRequest xmlns='urn:zimbraAccount'>"
 				+			"<pref name='zimbraPrefGalAutoCompleteEnabled'/>"
@@ -74,7 +58,5 @@ public class ZimbraPrefGalAutoCompleteEnabledTrue extends AjaxCommonTest {
 
 		String value = app.zGetActiveAccount().soapSelectValue("//acct:pref[@name='zimbraPrefGalAutoCompleteEnabled']", null);
 		ZAssert.assertEquals(value, "TRUE", "Verify the zimbraPrefGalAutoCompleteEnabled preference was changed to 'TRUE'");
-
 	}
-	
 }

@@ -38,13 +38,13 @@ public class EditTextSignature extends AjaxCommonTest {
 		super.startingPage = app.zPagePreferences;
 	}
 
+
 	/**
 	 * Added @BeforeMethod because after logged in, when we try to create
 	 * signature through soap, it doesn't shows in (GUI) 'Pref/signatures'
 	 * unless and until we refresh browser.
-	 * 
-	 * @throws HarnessException
 	 */
+
 	@BeforeMethod(groups = { "always" })
 	public void CreateSignature() throws HarnessException {
 		ZimbraAccount.AccountZCS().authenticate();
@@ -60,13 +60,15 @@ public class EditTextSignature extends AjaxCommonTest {
 		logger.info("CreateSignature: finish");
 	}
 
+
 	/**
 	 * Test case : Create signature through soap Edit it through GUI and Verify
 	 * edit text signature through soap
-	 * 
-	 * @throws HarnessException
 	 */
-	@Test(description = " Edit and verify text signature through soap", groups = { "smoke", "L1"  })
+
+	@Test(description = " Edit and verify text signature through soap",
+			groups = { "smoke", "L1"  })
+
 	public void EditTextSignature_01() throws HarnessException {
 
 		String sigEditName = "edit name " + ConfigProperties.getUniqueString();
@@ -98,9 +100,6 @@ public class EditTextSignature extends AjaxCommonTest {
 		// Verify Edited signature name and body contents
 		ZAssert.assertEquals(editsignature.getName(), sigEditName, "Verify Edited signature name");
 		ZAssert.assertEquals(editsignature.dBodyText, sigEditBody, "Verify Edited text signature body");
-		ZAssert.assertStringDoesNotContain(editsignature.getName(), this.sigName,
-				"Verify after edit 1st signature  does not present");
-
+		ZAssert.assertStringDoesNotContain(editsignature.getName(), this.sigName, 	"Verify after edit 1st signature  does not present");
 	}
-
 }

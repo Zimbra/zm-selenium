@@ -30,10 +30,10 @@ public class AutoCompleteDL extends AjaxCommonTest  {
 	public AutoCompleteDL() {
 		logger.info("New "+ AutoCompleteDL.class.getCanonicalName());
 		super.startingPage = app.zPageMail;
-		
 	}
 
-	@Test( description = "Auto complete DL and send mail to DL", 
+
+	@Test( description = "Auto complete DL and send mail to DL",
 			groups = { "smoke", "L0"})
 
 	public void AutoCompleteDL_01() throws HarnessException {

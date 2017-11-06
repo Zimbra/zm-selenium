@@ -24,38 +24,32 @@ import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.contacts.DisplayContactGroup;
 
-
 public class ViewContactGroup extends AjaxCommonTest  {
-	
+
 	public ViewContactGroup() {
 		logger.info("New "+ ViewContactGroup.class.getCanonicalName());
-
-		// All tests start at the Address page
 		super.startingPage = app.zPageContacts;
-				
-
 	}
 
-	@Test( description = "View a contact group", 
+
+	@Test( description = "View a contact group",
 			groups = { "smoke", "L0" } )
-	
+
 	public void DisplayContactGroupInfo_01() throws HarnessException {
 
-		//-- Data
 		ContactGroupItem group = ContactGroupItem.createContactGroupItem(app.zGetActiveAccount());
-		
+
 		// Refresh
-		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);		
-		
+		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
+
 		// Select the contact group
 		DisplayContactGroup groupView = (DisplayContactGroup) app.zPageContacts.zListItem(Action.A_LEFTCLICK, group.getName());
 
 		ZAssert.assertStringContains(groupView.zGetContactProperty(DisplayContactGroup.Field.Company), group.getName(),
-				"Verify contact group email (" + group.getName() + ") displayed");	
+				"Verify contact group email (" + group.getName() + ") displayed");
 
 		// verify group members
 		for (ContactGroupItem.MemberItem m : group.getMemberList()) {
-			
 			String email = m.getValue();
 			String locator = "css=div.ZmContactSplitView div.contactGroupList div:contains('"+ email +"')";
 
@@ -64,9 +58,6 @@ public class ViewContactGroup extends AjaxCommonTest  {
 
 			boolean visible = app.zPageContacts.zIsVisiblePerPosition(locator, 0, 0);
 			ZAssert.assertTrue(visible, "Verify the member "+ email +" is visible");
-			
 		}
-		
 	}
 }
-

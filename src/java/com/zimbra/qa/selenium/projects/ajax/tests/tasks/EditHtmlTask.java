@@ -18,10 +18,7 @@ package com.zimbra.qa.selenium.projects.ajax.tests.tasks;
 
 import java.util.HashMap;
 import java.util.List;
-
 import org.testng.annotations.Test;
-
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.TaskItem;
@@ -46,18 +43,17 @@ public class EditHtmlTask extends AjaxCommonTest{
 	public EditHtmlTask() {
 		logger.info("Edit " + EditHtmlTask.class.getCanonicalName());
 
-		// All tests start at the login page
 		super.startingPage = app.zPageTasks;
-
 		super.startingAccountPreferences = new HashMap<String , String>() {{
 			put("zimbraPrefShowSelectionCheckbox", "TRUE");
 			put("zimbraPrefTasksReadingPaneLocation", "bottom");
 		}};
 	}
-	
+
+
 	@Test( description = "Create Html task through SOAP - edit subject and verify through Soap",
 			groups = { "smoke", "L0"})
-	
+
 	public void EditHtmlTask_01() throws HarnessException {
 
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
@@ -67,7 +63,7 @@ public class EditHtmlTask extends AjaxCommonTest{
 
 		String taskHtmlbody = "task<b>bold"+ ConfigProperties.getUniqueString()+"</b>task";
 		String editTaskHtmlbody = "Edittask"+ ConfigProperties.getUniqueString();
-		String contentHTML = XmlStringUtil.escapeXml("<html>"+"<body>"+"<div>"+taskHtmlbody+"</div>"+"</body>"+"</html>");		
+		String contentHTML = XmlStringUtil.escapeXml("<html>"+"<body>"+"<div>"+taskHtmlbody+"</div>"+"</body>"+"</html>");
 
 		app.zGetActiveAccount().soapSend(
 				"<CreateTaskRequest xmlns='urn:zimbraMail'>" +
@@ -100,8 +96,8 @@ public class EditHtmlTask extends AjaxCommonTest{
 
 		// Click edit
 		SleepUtil.sleepVeryLong();
-		
-		//Fill new subject in subject field
+
+		// Fill new subject in subject field
 		FormTaskNew taskedit = (FormTaskNew) app.zPageTasks.zToolbarPressButton(Button.B_EDIT);
 		taskedit.zFillField(Field.Subject, editSubject);
 		taskedit.zFillField(Field.HtmlBody, editTaskHtmlbody);
@@ -109,27 +105,26 @@ public class EditHtmlTask extends AjaxCommonTest{
 		SleepUtil.sleepMedium();
 
 		TaskItem task1 = TaskItem.importFromSOAP(app.zGetActiveAccount(), editSubject);
-		
-		//Verify the Edited task present in the task list
+
+		// Verify the Edited task present in the task list
 		ZAssert.assertEquals(task1.getName(), editSubject, "Verify edited task subject");
 		ZAssert.assertStringContains(task1.getHtmlTaskBody().trim(), editTaskHtmlbody.trim(), "Verify the Edited task present in the task list");
-
-
 	}
-	
+
+
 	/**
 	 * 	1. Go to Tasks
 	 * 	2. Create a new html task with no due date
-	 * 	3. Refresh list view to see new task 
+	 * 	3. Refresh list view to see new task
 	 * 	4. Edit html task and add due date
 	 * 	5. Refresh list view again
 	 * 	   Expected result:Task should show due date
-	 * @throws HarnessException
 	 */
+
 	@Bugs(ids="64647")
 	@Test( description = "Create Html task through SOAP - edit due date >> Refresh task >>verify Due Date in list view through GUI",
 			groups = { "smoke", "L1"})
-	
+
 	public void EditHtmlTask_02() throws HarnessException {
 
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
@@ -138,9 +133,9 @@ public class EditHtmlTask extends AjaxCommonTest{
 		String subject = "task"+ ConfigProperties.getUniqueString();
 		ZDate dueDate      = new ZDate(2015, 11, 17, 12, 0, 0);
 
-		//Create task
+		// Create task
 		String taskHtmlbody = "task<b>bold"+ ConfigProperties.getUniqueString()+"</b>task";
-		String contentHTML = XmlStringUtil.escapeXml("<html>"+"<body>"+"<div>"+taskHtmlbody+"</div>"+"</body>"+"</html>");		
+		String contentHTML = XmlStringUtil.escapeXml("<html>"+"<body>"+"<div>"+taskHtmlbody+"</div>"+"</body>"+"</html>");
 
 		app.zGetActiveAccount().soapSend(
 				"<CreateTaskRequest xmlns='urn:zimbraMail'>" +
@@ -167,33 +162,36 @@ public class EditHtmlTask extends AjaxCommonTest{
 
 		// Refresh the tasks view
 		app.zTreeTasks.zTreeItem(Action.A_LEFTCLICK, taskFolder);
+
 		// Select the item
 		app.zPageTasks.zListItem(Action.A_LEFTCLICK, subject);
+
 		// Click edit
 		FormTaskNew taskedit = (FormTaskNew) app.zPageTasks.zToolbarPressButton(Button.B_EDIT);
 
-		//Fill due date field
+		// Fill due date field
 		taskedit.zFillField(Field.DueDate, dueDate.toMM_DD_YYYY());
 		taskedit.zSubmit();
 
 		DisplayTask actual = (DisplayTask) app.zPageTasks.zListItem(Action.A_LEFTCLICK, subject);
 
-		//Verify Due Date before refresh
+		// Verify Due Date before refresh
 		ZAssert.assertEquals(actual.zGetTaskListViewProperty(com.zimbra.qa.selenium.projects.ajax.ui.tasks.DisplayTask.Field.DueDate), dueDate.toMM_DD_YYYY(), "Verify the due date matches");
 
-		// click on Trash folder
-		app.zTreeTasks.zTreeItem(Action.A_LEFTCLICK, trashFolder);		
+		// Click on Trash folder
+		app.zTreeTasks.zTreeItem(Action.A_LEFTCLICK, trashFolder);
+
 		// Refresh the tasks view
 		app.zTreeTasks.zTreeItem(Action.A_LEFTCLICK, taskFolder);
 
-		//Verify the due date matches after refresh
+		// Verify the due date matches after refresh
 		ZAssert.assertEquals(actual.zGetTaskListViewProperty(com.zimbra.qa.selenium.projects.ajax.ui.tasks.DisplayTask.Field.DueDate), dueDate.toMM_DD_YYYY(), "Verify the due date matches after refresh");
-
 	}
-	
+
+
 	@Test( description = "Create Html task through SOAP - Edit html task using Right Click Context Menu & verify through GUI",
 			groups = { "smoke", "L1"})
-	
+
 	public void EditHtmlTask_03() throws HarnessException {
 
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
@@ -201,7 +199,7 @@ public class EditHtmlTask extends AjaxCommonTest{
 		String editSubject = "Edittask"+ ConfigProperties.getUniqueString();
 		String taskHtmlbody = "task<b>bold"+ ConfigProperties.getUniqueString()+"</b>task";
 		String editTaskHtmlbody = "task<b>bold"+ ConfigProperties.getUniqueString()+"</b>task";
-		String contentHTML = XmlStringUtil.escapeXml("<html>"+"<body>"+"<div>"+taskHtmlbody+"</div>"+"</body>"+"</html>");		
+		String contentHTML = XmlStringUtil.escapeXml("<html>"+"<body>"+"<div>"+taskHtmlbody+"</div>"+"</body>"+"</html>");
 
 		app.zGetActiveAccount().soapSend(
 				"<CreateTaskRequest xmlns='urn:zimbraMail'>" +
@@ -235,12 +233,11 @@ public class EditHtmlTask extends AjaxCommonTest{
 		// Right click subject and select edit context menu
 		FormTaskNew taskedit = (FormTaskNew) app.zPageTasks.zListItem(Action.A_RIGHTCLICK, Button.O_EDIT, subject);
 
-		//Fill new subject in subject field
+		// Fill new subject in subject field
 		taskedit.zFillField(Field.Subject, editSubject);
 		taskedit.zFillField(Field.HtmlBody, editTaskHtmlbody);
 		taskedit.zSubmit();
 		SleepUtil.sleepMedium();
-
 
 		// Get the list of tasks in the view
 		List<TaskItem> tasks = app.zPageTasks.zGetTasks();
@@ -267,21 +264,20 @@ public class EditHtmlTask extends AjaxCommonTest{
 				break;
 			}
 		}
-
 		ZAssert.assertNull(foundoldtask, "Verify the old html task no longer  present in the task list");
-
 	}
-	
+
+
 	@Test( description = "Create Html task through SOAP - Edit> convert Html to Plain Text and veirfy Warning dialog and its content",
 			groups = { "functional", "L3"})
-	
+
 	public void EditHtmlTask_04() throws HarnessException {
 
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
 
 		String subject = "task"+ ConfigProperties.getUniqueString();
 		String taskHtmlbody = "task<b>bold"+ ConfigProperties.getUniqueString()+"</b>task";
-		String contentHTML = XmlStringUtil.escapeXml("<html>"+"<body>"+"<div>"+taskHtmlbody+"</div>"+"</body>"+"</html>");		
+		String contentHTML = XmlStringUtil.escapeXml("<html>"+"<body>"+"<div>"+taskHtmlbody+"</div>"+"</body>"+"</html>");
 
 		app.zGetActiveAccount().soapSend(
 				"<CreateTaskRequest xmlns='urn:zimbraMail'>" +
@@ -315,12 +311,10 @@ public class EditHtmlTask extends AjaxCommonTest{
 		// Click edit
 		FormTaskNew taskedit = (FormTaskNew) app.zPageTasks.zToolbarPressButton(Button.B_EDIT);
 		SleepUtil.sleepVeryLong();
-		
+
 		DialogWarning dialogWarning = (DialogWarning)  taskedit.zToolbarPressPulldown(Button.B_OPTIONS, Button.O_OPTION_FORMAT_AS_TEXT);
 		ZAssert.assertNotNull(dialogWarning, "Verify the dialog is returned");
 		String text = "Switching to text will discard all HTML formatting. Continue?";
-		ZAssert.assertEquals(text,dialogWarning.zGetWarningContent()," Verify content is " + text);	
-
+		ZAssert.assertEquals(text,dialogWarning.zGetWarningContent()," Verify content is " + text);
 	}
-
 }

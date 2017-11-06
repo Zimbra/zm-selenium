@@ -17,7 +17,6 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.contacts.toaster;
 
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
@@ -31,24 +30,18 @@ public class CreateContact extends AjaxCommonTest {
 
 	public CreateContact() {
 		logger.info("New " + CreateContact.class.getCanonicalName());
-		// All tests start at the Address page
 		super.startingPage = app.zPageContacts;
-		// Make sure we are using an account with conversation view
-
 	}
 
-	@Test(description = "Create a basic contact item by click New in page Addressbook and verify toast msg ", 
+
+	@Test(description = "Create a basic contact item by click New in page Addressbook and verify toast msg ",
 			groups = {"functional", "L2"})
 
 	public void CreateContactToastMsg_01() throws HarnessException {
 
-		// -- DATA
-
 		String contactFirst = "First" + ConfigProperties.getUniqueString();
 		String contactLast = "Last" + ConfigProperties.getUniqueString();
 		String contactEmail = "email" + ConfigProperties.getUniqueString() + "@domain.com";
-
-		// -- GUI Action
 
 		FormContactNew formContactNew = (FormContactNew) app.zPageContacts.zToolbarPressButton(Button.B_NEW);
 
@@ -59,8 +52,6 @@ public class CreateContact extends AjaxCommonTest {
 
 		if (ConfigProperties.getStringProperty(ConfigProperties.getLocalHost() + ".coverage.enabled",
 				ConfigProperties.getStringProperty("coverage.enabled")).contains("true") == true) {
-			// this method won't wait for some sec after submitting data so
-			// toast message disappears and testcase fails (JS COVERAGE)
 			app.zPageContacts.zClickAt(
 					"css=div#" + formContactNew.getToolbarID() + " div[id$='__SAVE'] td[id$='_title']", "0,0");
 		} else {
@@ -71,6 +62,5 @@ public class CreateContact extends AjaxCommonTest {
 		Toaster toast = app.zPageMain.zGetToaster();
 		String toastMsg = toast.zGetToastMessage();
 		ZAssert.assertStringContains(toastMsg, "Contact Created", "Verify toast message: Contact Created");
-
 	}
 }

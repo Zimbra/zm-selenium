@@ -17,33 +17,29 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.conversation.conversationview;
 
 import java.util.List;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByConversationTest;
 
-
 public class ExpandConversation extends PrefGroupMailByConversationTest {
 
 	public ExpandConversation() {
 		logger.info("New "+ ExpandConversation.class.getCanonicalName());
-		
-	
 	}
-	
+
+
 	@Test( description = "Expand a conversation",
 			groups = { "smoke", "L1" })
+
 	public void ExpandConversation01() throws HarnessException {
-		
-		
+
 		// Create the message data to be sent
 		String subject = "subject" + ConfigProperties.getUniqueString();
 		String fragment1 = "fragment" + ConfigProperties.getUniqueString();
 		String fragment2 = "fragment" + ConfigProperties.getUniqueString();
-		
+
 		ZimbraAccount.AccountA().soapSend(
 				"<SendMsgRequest xmlns='urn:zimbraMail'>" +
 					"<m>" +
@@ -68,15 +64,15 @@ public class ExpandConversation extends PrefGroupMailByConversationTest {
 
 		// Refresh current view
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
-		
+
 		// Select the item
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
-		
+
 		// Expand the item
 		app.zPageMail.zListItem(Action.A_MAIL_EXPANDCONVERSATION, subject);
 
 		// Verify the list shows: 1 conversation with 2 messages
-		
+
 		List<MailItem> items = app.zPageMail.zListGetMessages();
 		ZAssert.assertNotNull(items, "Verify the conversation list exists");
 
@@ -89,7 +85,7 @@ public class ExpandConversation extends PrefGroupMailByConversationTest {
 			}
 		}
 		ZAssert.assertTrue(found, "Verify the conversation is in the inbox");
-		
+
 		int count = 0;
 		for (MailItem m : items) {
 			logger.info("Subject: looking for "+ fragment1 +" or "+ fragment2 +" found: "+ m.gFragment);
@@ -97,13 +93,12 @@ public class ExpandConversation extends PrefGroupMailByConversationTest {
 			if ( m instanceof ConversationItem ) {
 
 				ConversationItem c = (ConversationItem)m;
-				
+
 				if ( !c.gIsConvExpanded ) {
 					// Not a conversation member
 					continue;
 				}
-				
-					
+
 				if ( fragment1.equals(c.gFragment) ) {
 					logger.info("Subject: Found "+ fragment1);
 					count++;
@@ -112,12 +107,10 @@ public class ExpandConversation extends PrefGroupMailByConversationTest {
 					logger.info("Subject: Found "+ fragment2);
 					count++;
 				}
-				
+
 			}
-				
+
 		}
 		ZAssert.assertEquals(count, 2, "Verify two messages in the conversation");
-
 	}
-
 }

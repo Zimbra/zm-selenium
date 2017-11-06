@@ -17,44 +17,31 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.preferences.general.searches;
 
 import java.util.HashMap;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.preferences.TreePreferences.TreeItem;
 
-
 public class ZimbraPrefShowSearchStringFalse extends AjaxCommonTest {
 
 	public ZimbraPrefShowSearchStringFalse() {
 		logger.info("New "+ ZimbraPrefShowSearchStringFalse.class.getCanonicalName());
-		
-		// All tests start at the login page
-		super.startingPage = app.zPagePreferences;
 
-		// Make sure we are using an account with conversation view
+		super.startingPage = app.zPagePreferences;
 		super.startingAccountPreferences = new HashMap<String, String>() {
-			private static final long serialVersionUID = -2268118661370669072L;
-			{
+			private static final long serialVersionUID = -2268118661370669072L; {
 				put("zimbraPrefShowSearchString", "TRUE");
-				}};
-			
-		
+			}
+		};
 	}
-	
+
 
 	@Test( description = "Change zimbraPrefShowSearchString setting FALSE",
 			groups = { "functional", "L2" })
+
 	public void PreferencesGeneralSearches_zimbraPrefShowSearchString_01() throws HarnessException {
-		
-
-		//-- SETUP
-
-
-		//-- GUI
 
 		// Go to "General"
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.General);
@@ -64,11 +51,7 @@ public class ZimbraPrefShowSearchStringFalse extends AjaxCommonTest {
 		app.zPagePreferences.zCheckboxSet(locator, true);
 		app.zPagePreferences.zToolbarPressButton(Button.B_SAVE);
 
-
-		//-- Verification
-
 		// Verify the account preference has been modified
-
 		app.zGetActiveAccount().soapSend(
 					"<GetPrefsRequest xmlns='urn:zimbraAccount'>"
 				+		"<pref name='zimbraPrefShowSearchString'/>"
@@ -76,9 +59,5 @@ public class ZimbraPrefShowSearchStringFalse extends AjaxCommonTest {
 
 		String value = app.zGetActiveAccount().soapSelectValue("//acct:pref[@name='zimbraPrefShowSearchString']", null);
 		ZAssert.assertEquals(value, "TRUE", "Verify the zimbraPrefShowSearchString preference was changed to 'TRUE'");
-
-
 	}
-
-
 }

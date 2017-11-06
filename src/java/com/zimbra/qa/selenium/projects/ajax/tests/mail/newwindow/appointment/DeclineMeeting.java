@@ -14,7 +14,6 @@
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.newwindow.appointment;
 
 import java.util.*;
@@ -30,23 +29,15 @@ public class DeclineMeeting extends AjaxCommonTest {
 
 	public DeclineMeeting() {
 		logger.info("New "+ DeclineMeeting.class.getCanonicalName());
+
 		super.startingPage =  app.zPageMail;
-		super.startingAccountPreferences = new HashMap<String, String>()
-				{
-			private static final long serialVersionUID = 1L;
-			{
+		super.startingAccountPreferences = new HashMap<String, String>() {
+			private static final long serialVersionUID = 1L; {
 				put("zimbraPrefGroupMailBy", "message");
 			}
-				};
+		};
 	}
 
-	/**
-	 * ZimbraAccount.AccountA() sends a two-hour appointment to app.zGetActiveAccount()
-	 * with subject and start time
-	 * @param subject
-	 * @param start
-	 * @throws HarnessException 
-	 */
 	private void SendCreateAppointmentRequest(String subject, ZDate start) throws HarnessException {
 
 		ZimbraAccount.AccountA().soapSend(
@@ -64,28 +55,20 @@ public class DeclineMeeting extends AjaxCommonTest {
 						+				"<content>content</content>"
 						+			"</mp>"
 						+		"</m>"
-						+	"</CreateAppointmentRequest>");        
-
+						+	"</CreateAppointmentRequest>");
 	}
 
-	@Test(
-			description = " From New Windoow Decline a meeting using Decline button from invitation message", 
+
+	@Test(description = " From New Windoow Decline a meeting using Decline button from invitation message",
 			groups = { "functional", "L2" })
+
 	public void DeclineMeeting_01() throws HarnessException {
-
-
-
-		// ------------------------ Test data ------------------------------------
 
 		String apptSubject = "appointment" + ConfigProperties.getUniqueString();
 
 		Calendar now = Calendar.getInstance();
 		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
 		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
-
-
-
-		// --------------- Creating invitation (organizer) ----------------------------
 
 		ZimbraAccount.AccountA().soapSend(
 				"<CreateAppointmentRequest xmlns='urn:zimbraMail'>"
@@ -102,18 +85,12 @@ public class DeclineMeeting extends AjaxCommonTest {
 						+				"<content>content</content>"
 						+			"</mp>"
 						+		"</m>"
-						+	"</CreateAppointmentRequest>");        
-
-
-
-		// --------------- Login to attendee & decline invitation ----------------------------------------------------
+						+	"</CreateAppointmentRequest>");
 
 		// Refresh the view
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(apptSubject), "Verify message displayed in current view");
 
-
 		// Select the invitation
-
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);
 
 		SeparateWindowDisplayMail window = null;
@@ -133,12 +110,6 @@ public class DeclineMeeting extends AjaxCommonTest {
 		} finally {
 			app.zPageMain.zCloseWindow(window, windowTitle, app);
 		}
-
-
-		// ---------------- Verification at organizer & invitee side both -------------------------------------
-
-
-		// --- Check that the organizer shows the attendee as "DECLINE" ---
 
 		// Organizer: Search for the appointment (InvId)
 		ZimbraAccount
@@ -166,7 +137,7 @@ public class DeclineMeeting extends AjaxCommonTest {
 		ZAssert.assertEquals(attendeeStatus, "DE", "Verify that the attendee shows as 'DECLINED'");
 
 
-		// --- Check that the attendee showing status as "DECLINE" ---
+		// Check that the attendee showing status as "DECLINE" ---
 
 		// Attendee: Search for the appointment (InvId)
 		app.zGetActiveAccount().soapSend(
@@ -184,33 +155,20 @@ public class DeclineMeeting extends AjaxCommonTest {
 
 		// Verify attendee status shows as ptst=DE
 		ZAssert.assertEquals(myStatus, "DE", "Verify that the attendee shows as 'DECLINED'");
-
 	}
 
 
-	@Test(
-			description = " From New Window >>Decline meeting - Verify organizer gets notification message", 
+	@Test(description = " From New Window >>Decline meeting - Verify organizer gets notification message",
 			groups = { "functional", "L2" })
+
 	public void DeclineMeeting_02() throws HarnessException {
-
-
-
-		// ------------------------ Test data ------------------------------------
 
 		String apptSubject = "appointment" + ConfigProperties.getUniqueString();
 
 		Calendar now = Calendar.getInstance();
 		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
 
-
-
-		// --------------- Creating invitation (organizer) ----------------------------
-
-
 		this.SendCreateAppointmentRequest(apptSubject, startUTC);
-
-
-		// --------------- Login to attendee & decline invitation ----------------------------------------------------
 
 		// Refresh the view
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(apptSubject), "Verify message displayed in current view");
@@ -235,12 +193,6 @@ public class DeclineMeeting extends AjaxCommonTest {
 			app.zPageMain.zCloseWindow(window, windowTitle, app);
 		}
 
-
-		// ---------------- Verification at organizer & invitee side both -------------------------------------       
-
-
-		// --- Check that the organizer shows the attendee as "DECLINE" ---
-
 		// Organizer: Search for the appointment response
 		String inboxId = FolderItem.importFromSOAP(ZimbraAccount.AccountA(), FolderItem.SystemFolder.Inbox).getId();
 
@@ -256,25 +208,19 @@ public class DeclineMeeting extends AjaxCommonTest {
 				"<GetMsgRequest  xmlns='urn:zimbraMail'>"
 						+		"<m id='"+ messageId +"'/>"
 						+	"</GetMsgRequest>");
-
 	}
 
 
-	@Test(
-			description = "From New Window >>Decline meeting using 'Decline -> Notify Organizer'", 
+	@Test(description = "From New Window >>Decline meeting using 'Decline -> Notify Organizer'",
 			groups = { "functional", "L2" })
-	public void DeclineMeeting_03() throws HarnessException {
 
-		// ------------------------ Test data ------------------------------------
+	public void DeclineMeeting_03() throws HarnessException {
 
 		String apptSubject = "appointment" + ConfigProperties.getUniqueString();
 
 		Calendar now = Calendar.getInstance();
 		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
 		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
-
-
-		// --------------- Creating invitation (organizer) ----------------------------
 
 		ZimbraAccount.AccountA().soapSend(
 				"<CreateAppointmentRequest xmlns='urn:zimbraMail'>"
@@ -291,11 +237,7 @@ public class DeclineMeeting extends AjaxCommonTest {
 						+				"<content>content</content>"
 						+			"</mp>"
 						+		"</m>"
-						+	"</CreateAppointmentRequest>");        
-
-
-
-		// --------------- Login to attendee & decline invitation ----------------------------------------------------
+						+	"</CreateAppointmentRequest>");
 
 		// Refresh the view
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(apptSubject), "Verify message displayed in current view");
@@ -320,12 +262,6 @@ public class DeclineMeeting extends AjaxCommonTest {
 			app.zPageMain.zCloseWindow(window, windowTitle, app);
 		}
 
-
-		// ---------------- Verification at organizer & invitee side both -------------------------------------       
-
-
-		// --- Check that the organizer shows the attendee as "DECLINE" ---
-
 		// Organizer: Search for the appointment (InvId)
 		ZimbraAccount.AccountA().soapSend(
 				"<SearchRequest xmlns='urn:zimbraMail' types='appointment' calExpandInstStart='"+ startUTC.addDays(-10).toMillis() +"' calExpandInstEnd='"+ endUTC.addDays(10).toMillis() +"'>"
@@ -342,9 +278,6 @@ public class DeclineMeeting extends AjaxCommonTest {
 
 		// Verify attendee status shows as ptst=DE
 		ZAssert.assertEquals(attendeeStatus, "DE", "Verify that the attendee shows as 'DECLINED'");
-
-
-		// --- Check that the attendee showing status as "DECLINE" ---
 
 		// Attendee: Search for the appointment (InvId)
 		app.zGetActiveAccount().soapSend(
@@ -378,25 +311,19 @@ public class DeclineMeeting extends AjaxCommonTest {
 				"<GetMsgRequest  xmlns='urn:zimbraMail'>"
 						+		"<m id='"+ messageId +"'/>"
 						+	"</GetMsgRequest>");
-
 	}
 
 
-	@Test(
-			description = "Decline meeting using 'Decline -> Don't Notify Organizer'", 
+	@Test(description = "Decline meeting using 'Decline -> Don't Notify Organizer'",
 			groups = { "functional", "L2" })
-	public void DeclineMeeting_04() throws HarnessException {
 
-		// ------------------------ Test data ------------------------------------
+	public void DeclineMeeting_04() throws HarnessException {
 
 		String apptSubject = "appointment" + ConfigProperties.getUniqueString();
 
 		Calendar now = Calendar.getInstance();
 		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
 		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
-
-
-		// --------------- Creating invitation (organizer) ----------------------------
 
 		ZimbraAccount.AccountA().soapSend(
 				"<CreateAppointmentRequest xmlns='urn:zimbraMail'>"
@@ -413,11 +340,7 @@ public class DeclineMeeting extends AjaxCommonTest {
 						+				"<content>content</content>"
 						+			"</mp>"
 						+		"</m>"
-						+	"</CreateAppointmentRequest>");        
-
-
-
-		// --------------- Login to attendee & decline invitation ----------------------------------------------------
+						+	"</CreateAppointmentRequest>");
 
 		// Refresh the view
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(apptSubject), "Verify message displayed in current view");
@@ -442,12 +365,6 @@ public class DeclineMeeting extends AjaxCommonTest {
 			app.zPageMain.zCloseWindow(window, windowTitle, app);
 		}
 
-
-		// ---------------- Verification at organizer & invitee side both -------------------------------------       
-
-
-		// --- Check that the organizer shows the attendee as "DECLINE" ---
-
 		// Organizer: Search for the appointment (InvId)
 		ZimbraAccount.AccountA().soapSend(
 				"<SearchRequest xmlns='urn:zimbraMail' types='appointment' calExpandInstStart='"+ startUTC.addDays(-10).toMillis() +"' calExpandInstEnd='"+ endUTC.addDays(10).toMillis() +"'>"
@@ -464,9 +381,6 @@ public class DeclineMeeting extends AjaxCommonTest {
 
 		// Verify attendee status shows as ptst=NE (bug 65356)
 		ZAssert.assertEquals(attendeeStatus, "NE", "Verify that the attendee shows as 'DECLINED'");
-
-
-		// --- Check that the attendee showing status as "DECLINE" ---
 
 		// Attendee: Search for the appointment (InvId)
 		app.zGetActiveAccount().soapSend(
@@ -500,8 +414,5 @@ public class DeclineMeeting extends AjaxCommonTest {
 
 		Element[] nodes = app.zGetActiveAccount().soapSelectNodes("//mail:m");
 		ZAssert.assertEquals(nodes.length, 0, "Verify appointment notification message is not present");
-
 	}
-
 }
-

@@ -17,7 +17,6 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.mountpoints.manager;
 
 import org.testng.annotations.Test;
-
 import com.zimbra.common.soap.Element;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
@@ -25,39 +24,32 @@ import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.DialogWarning;
 
-
 public class EmptyMountpoint extends PrefGroupMailByMessageTest {
 
-	
 	public EmptyMountpoint() {
 		logger.info("New "+ EmptyMountpoint.class.getCanonicalName());
-		
-		
-		
-
-		
-		
-
-
 	}
-	
+
+
 	@Test( description = "Empty a mountpoint folder (context menu)",
 			groups = { "functional", "L2" })
+
 	public void EmptyMountpoint_01() throws HarnessException {
+
 		String foldername = "folder" + ConfigProperties.getUniqueString();
 		String subject = "subject" + ConfigProperties.getUniqueString();
 		String mountpointname = "mountpoint" + ConfigProperties.getUniqueString();
-		
+
 		FolderItem inbox = FolderItem.importFromSOAP(ZimbraAccount.AccountA(), FolderItem.SystemFolder.Inbox);
-		
+
 		// Create a folder to share
 		ZimbraAccount.AccountA().soapSend(
 					"<CreateFolderRequest xmlns='urn:zimbraMail'>"
 				+		"<folder name='" + foldername + "' l='" + inbox.getId() + "'/>"
 				+	"</CreateFolderRequest>");
-		
+
 		FolderItem folder = FolderItem.importFromSOAP(ZimbraAccount.AccountA(), foldername);
-		
+
 		// Share it
 		ZimbraAccount.AccountA().soapSend(
 					"<FolderActionRequest xmlns='urn:zimbraMail'>"
@@ -65,7 +57,7 @@ public class EmptyMountpoint extends PrefGroupMailByMessageTest {
 				+			"<grant d='"+ app.zGetActiveAccount().EmailAddress +"' gt='usr' perm='rwidx'/>"
 				+		"</action>"
 				+	"</FolderActionRequest>");
-		
+
 		// Add a message to it
 		ZimbraAccount.AccountA().soapSend(
 					"<AddMsgRequest xmlns='urn:zimbraMail'>"
@@ -82,21 +74,20 @@ public class EmptyMountpoint extends PrefGroupMailByMessageTest {
             	+		"</m>"
 				+	"</AddMsgRequest>");
 		String messageId = ZimbraAccount.AccountA().soapSelectValue("//mail:m", "id");
-		
+
 		// Mount it
 		app.zGetActiveAccount().soapSend(
 					"<CreateMountpointRequest xmlns='urn:zimbraMail'>"
 				+		"<link l='1' name='"+ mountpointname +"'  rid='"+ folder.getId() +"' zid='"+ ZimbraAccount.AccountA().ZimbraId +"'/>"
 				+	"</CreateMountpointRequest>");
-		
+
 		FolderMountpointItem mountpoint = FolderMountpointItem.importFromSOAP(app.zGetActiveAccount(), mountpointname);
-		
+
 		// Refresh current view
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
 		// Right click on folder, select "Mark all as read"
-		DialogWarning dialog = 
-			(DialogWarning) app.zTreeMail.zTreeItem(Action.A_RIGHTCLICK, Button.B_TREE_FOLDER_EMPTY, mountpoint);
+		DialogWarning dialog = (DialogWarning) app.zTreeMail.zTreeItem(Action.A_RIGHTCLICK, Button.B_TREE_FOLDER_EMPTY, mountpoint);
 		ZAssert.assertNotNull(dialog,"Verify the warning dialog pops up - Are you sure you want to delete all items?");
 
 		// Dismiss it
@@ -109,10 +100,5 @@ public class EmptyMountpoint extends PrefGroupMailByMessageTest {
 			+	"</GetMsgRequest>");
 		Element[] elements = ZimbraAccount.AccountA().soapSelectNodes("//mail:m");
 		ZAssert.assertEquals(elements.length, 0, "Verify the message no longer appears");
-		
-
-		
 	}
-
-
 }

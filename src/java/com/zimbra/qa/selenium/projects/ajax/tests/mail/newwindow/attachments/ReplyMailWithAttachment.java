@@ -14,7 +14,6 @@
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.newwindow.attachments;
 
 import org.testng.SkipException;
@@ -31,9 +30,10 @@ public class ReplyMailWithAttachment extends PrefGroupMailByMessageTest {
 		logger.info("New "+ ReplyMailWithAttachment.class.getCanonicalName());
 	}
 
+
 	@Test( description = "Reply to a mail  with an attachment by pressing Reply button>>attach - in separate window",
 			groups = { "smoke", "L1" })
-	
+
 	public void ReplyMailWithAttachment_01() throws HarnessException {
 
 		if (OperatingSystem.isWindows() == true && !ConfigProperties.getStringProperty("browser").contains("edge")) {
@@ -51,7 +51,6 @@ public class ReplyMailWithAttachment extends PrefGroupMailByMessageTest {
 							"</mp>" +
 							"</m>" +
 					"</SendMsgRequest>");
-
 
 			// Refresh current view
 			ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
@@ -75,7 +74,7 @@ public class ReplyMailWithAttachment extends PrefGroupMailByMessageTest {
 
 				window.zSetWindowTitle(windowTitle);
 				ZAssert.assertTrue(window.zIsWindowOpen(windowTitle),"Verify the window is opened and switch to it");
-				
+
 				window.zToolbarPressButton(Button.B_REPLY);
 
 				// Add an attachment
@@ -84,7 +83,7 @@ public class ReplyMailWithAttachment extends PrefGroupMailByMessageTest {
 
 				// Click Send
 				window.zToolbarPressButton(Button.B_SEND);
-				
+
 			} finally {
 				app.zPageMain.zCloseWindow(window, windowTitle, app);
 			}
@@ -102,7 +101,5 @@ public class ReplyMailWithAttachment extends PrefGroupMailByMessageTest {
 		} else {
 			throw new SkipException("File upload operation is allowed only for Windows OS (Skipping upload tests on MS Edge for now due to intermittancy and major control issue), skipping this test...");
 		}
-
 	}
-
 }

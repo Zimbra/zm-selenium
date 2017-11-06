@@ -53,6 +53,7 @@ public class ComposeForwardMailWithAttachmentAndVariousOptions extends PrefGroup
 			String subject = "subject" + ConfigProperties.getUniqueString();
 
 			try {
+
 				// Send a message to the account
 				ZimbraAccount.AccountA().soapSend(
 							"<SendMsgRequest xmlns='urn:zimbraMail'>" +
@@ -69,8 +70,6 @@ public class ComposeForwardMailWithAttachmentAndVariousOptions extends PrefGroup
 				MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
 				ZAssert.assertNotNull(mail, "Verify the message is received correctly");
 
-				//-- GUI
-
 				// Refresh current view
 				ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 
@@ -85,12 +84,12 @@ public class ComposeForwardMailWithAttachmentAndVariousOptions extends PrefGroup
 				//Include original message as attachment
 				mailform.zToolbarPressPulldown(Button.B_OPTIONS, Button.O_INCLUDE_ORIGINAL_AS_ATTACHMENT);
 
-				//Check if a warning dialog is present. If Yes, Press Yes to continue
+				// Check if a warning dialog is present. If Yes, Press Yes to continue
 				if (mailform.sIsVisible(Locators.zOkCancelContinueComposeWarningDialog) && mailform.sIsElementPresent(Locators.zOkCancelContinueComposeWarningDialog)) {
 					mailform.sClickAt(Locators.zOkBtnOnContinueComposeWarningDialog,"0,0");
 				}
-
 				SleepUtil.sleepSmall();
+
 				// Verify that the message is included as attachment
 				ZAssert.assertTrue(mailform.zHasAttachment(subject),"Original message is not present as attachment");
 
@@ -118,13 +117,10 @@ public class ComposeForwardMailWithAttachmentAndVariousOptions extends PrefGroup
 				warning.zClickButton(Button.B_NO);
 				warning.zWaitForClose();
 
-
 			} finally {
-
 				app.zPageMain.zKeyboardKeyEvent(KeyEvent.VK_ESCAPE);
-
 			}
-			
+
 		} else {
 			throw new SkipException("File upload operation is allowed only for Windows OS (Skipping upload tests on MS Edge for now due to intermittancy and major control issue), skipping this test...");
 		}
@@ -142,6 +138,7 @@ public class ComposeForwardMailWithAttachmentAndVariousOptions extends PrefGroup
 			String subject = "subject" + ConfigProperties.getUniqueString();
 
 			try {
+
 				// Send a message to the account
 				ZimbraAccount.AccountA().soapSend(
 							"<SendMsgRequest xmlns='urn:zimbraMail'>" +
@@ -157,8 +154,6 @@ public class ComposeForwardMailWithAttachmentAndVariousOptions extends PrefGroup
 				// Get the mail item for the new message
 				MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
 				ZAssert.assertNotNull(mail, "Verify the message is received correctly");
-
-				//-- GUI
 
 				// Refresh current view
 				ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
@@ -197,17 +192,15 @@ public class ComposeForwardMailWithAttachmentAndVariousOptions extends PrefGroup
 				warning.zClickButton(Button.B_NO);
 				warning.zWaitForClose();
 
-
 			} finally {
-
 				app.zPageMain.zKeyboardKeyEvent(KeyEvent.VK_ESCAPE);
-
 			}
-			
+
 		} else {
 			throw new SkipException("File upload operation is allowed only for Windows OS (Skipping upload tests on MS Edge for now due to intermittancy and major control issue), skipping this test...");
 		}
 	}
+
 
 	@Bugs(ids = "103903")
 	@Test( description = "Verify the presence of attachment while forwarding a mail and selecting 'Include Headers' option from Options'",
@@ -220,6 +213,7 @@ public class ComposeForwardMailWithAttachmentAndVariousOptions extends PrefGroup
 			String subject = "subject" + ConfigProperties.getUniqueString();
 
 			try {
+
 				// Send a message to the account
 				ZimbraAccount.AccountA().soapSend(
 							"<SendMsgRequest xmlns='urn:zimbraMail'>" +
@@ -235,8 +229,6 @@ public class ComposeForwardMailWithAttachmentAndVariousOptions extends PrefGroup
 				// Get the mail item for the new message
 				MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
 				ZAssert.assertNotNull(mail, "Verify the message is received correctly");
-
-				//-- GUI
 
 				// Refresh current view
 				ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
@@ -282,9 +274,7 @@ public class ComposeForwardMailWithAttachmentAndVariousOptions extends PrefGroup
 				warning.zWaitForClose();
 
 			} finally {
-
 				app.zPageMain.zKeyboardKeyEvent(KeyEvent.VK_ESCAPE);
-
 			}
 
 		} else {

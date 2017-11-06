@@ -30,36 +30,34 @@ public class ReceiveReadReceipt extends PrefGroupMailByMessageTest {
 		logger.info("New "+ ReceiveReadReceipt.class.getCanonicalName());
 		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "text");
 	}
-	
+
+
 	@Test( description = "Receive/view a read receipt",
 			groups = { "functional", "L2" })
+
 	public void CreateMailText_01() throws HarnessException {
-		
-		// Data setup
-		
+
 		// Send a message requesting a read receipt
 		String subject = "subject" + ConfigProperties.getUniqueString();
 		app.zGetActiveAccount().soapSend(
-					"<SendMsgRequest xmlns='urn:zimbraMail'>" 
+					"<SendMsgRequest xmlns='urn:zimbraMail'>"
 			+			"<m>"
 			+				"<e t='t' a='"+ ZimbraAccount.AccountA().EmailAddress +"'/>"
 			+				"<e t='f' a='"+ app.zGetActiveAccount().EmailAddress +"'/>"
 			+				"<e t='n' a='"+ app.zGetActiveAccount().EmailAddress +"'/>"
 			+				"<su>"+ subject +"</su>"
 			+				"<mp ct='text/plain'>"
-			+					"<content>content" + ConfigProperties.getUniqueString() +"</content>" 
+			+					"<content>content" + ConfigProperties.getUniqueString() +"</content>"
 			+				"</mp>"
-			+			"</m>" 
+			+			"</m>"
 			+		"</SendMsgRequest>");
 
-		
 		MailItem received = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "subject:("+ subject +")");
-		
+
 		// Send the read receipt
 		ZimbraAccount.AccountA().soapSend("<SendDeliveryReportRequest xmlns='urn:zimbraMail' mid='"+ received.getId() +"'/>");
-		
+
 		// GUI verification
-		// Refresh current view
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
 		// Select the message so that it shows in the reading pane

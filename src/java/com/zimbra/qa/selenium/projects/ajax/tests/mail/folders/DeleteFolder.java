@@ -62,7 +62,6 @@ public class DeleteFolder extends PrefGroupMailByMessageTest {
 		subfolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), name);
 		ZAssert.assertNotNull(subfolder, "Verify the subfolder is again available");
 		ZAssert.assertEquals(trash.getId(), subfolder.getParentId(), "Verify the subfolder's parent is now the trash folder ID");
-
 	}
 
 
@@ -82,7 +81,7 @@ public class DeleteFolder extends PrefGroupMailByMessageTest {
 
 	   app.zGetActiveAccount().soapSend(
 	         "<CreateFolderRequest xmlns='urn:zimbraMail'>" +
-	         "<folder name='"+ name +"' l='"+ inbox.getId() +"'/>" +
+				"<folder name='"+ name +"' l='"+ inbox.getId() +"'/>" +
 	         "</CreateFolderRequest>");
 
 	   FolderItem subfolder1 = FolderItem.importFromSOAP(app.zGetActiveAccount(), name);
@@ -99,7 +98,7 @@ public class DeleteFolder extends PrefGroupMailByMessageTest {
 	   // Create the same subfolder again under the same parent
 	   app.zGetActiveAccount().soapSend(
             "<CreateFolderRequest xmlns='urn:zimbraMail'>" +
-            "<folder name='"+ name +"' l='"+ inbox.getId() +"'/>" +
+				"<folder name='"+ name +"' l='"+ inbox.getId() +"'/>" +
             "</CreateFolderRequest>");
 
       FolderItem subfolder2 = FolderItem.importFromSOAP(app.zGetActiveAccount(), name);

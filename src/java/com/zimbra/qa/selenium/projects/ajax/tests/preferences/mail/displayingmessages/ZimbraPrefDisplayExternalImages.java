@@ -17,9 +17,7 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.preferences.mail.displayingmessages;
 
 import java.io.File;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
@@ -34,23 +32,19 @@ import com.zimbra.qa.selenium.projects.ajax.ui.preferences.TreePreferences.TreeI
 
 public class ZimbraPrefDisplayExternalImages extends AjaxCommonTest {
 
-
 	public ZimbraPrefDisplayExternalImages() {
-
 		super.startingPage = app.zPageMail;
 		super.startingAccountPreferences.put("zimbraPrefDisplayExternalImages", "FALSE");
 	}
-	
-	@Test(
-			description = "Verify the Automatic display of external image when 'zimbraPrefDisplayExternalImages' is Set TRUE",
-			groups = { "functional", "L2" }
-			)
+
+
+	@Test(description = "Verify the Automatic display of external image when 'zimbraPrefDisplayExternalImages' is Set TRUE",
+			groups = { "functional", "L2" })
 
 	public void ZimbraPrefDisplayExternalImages_01() throws HarnessException {
 
-
 		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email18/AutomaticExternalImageDisplayMime.txt";
-		final String subject = "Display external image preference check";		
+		final String subject = "Display external image preference check";
 
 		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
 
@@ -63,30 +57,30 @@ public class ZimbraPrefDisplayExternalImages extends AjaxCommonTest {
 		// Verify Warning info bar with other links
 		ZAssert.assertTrue(app.zPageMail.zHasWDDLinks(), "Verify display images link");
 
-		//Navigate to Preferences -> General
+		// Navigate to Preferences -> General
 		startingPage=app.zPagePreferences;
 		startingPage.zNavigateTo();
 
 		// Navigate to preferences -> mail
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.Mail);
 
-		//Select the check box for Automatic display of External images 
+		// Select the check box for Automatic display of External images
 		app.zPagePreferences.sClick(PagePreferences.Locators.zDisplayExternalImage);
 
 		// Click save
 		app.zPagePreferences.zToolbarPressButton(Button.B_SAVE);
 
-		//Verification through SOAP
+		// Verification through SOAP
 		app.zGetActiveAccount().soapSend(
 				"<GetPrefsRequest xmlns='urn:zimbraAccount'>"
 						+			"<pref name='zimbraPrefDisplayExternalImages'/>"
 						+		"</GetPrefsRequest>");
 
-		//Verifying that the 'zimbraPrefDisplayExternalImages' is set to TRUE
+		// Verifying that the 'zimbraPrefDisplayExternalImages' is set to TRUE
 		String value = app.zGetActiveAccount().soapSelectValue("//acct:pref[@name='zimbraPrefDisplayExternalImages']", null);
 		ZAssert.assertEquals(value, "TRUE", "Verify that external image display is enabled");
 
-		//Verification of External image display when preference is set TRUE
+		// Verification of External image display when preference is set TRUE
 
 		// Refresh current view
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
@@ -96,10 +90,9 @@ public class ZimbraPrefDisplayExternalImages extends AjaxCommonTest {
 
 		// Verify Warning info bar with other links is not present
 		ZAssert.assertFalse(app.zPageMail.zHasWDDLinks(), "Verify display images link");
-		
-		//Select the body frame and verify the external image is displayed
+
+		// Select the body frame and verify the external image is displayed
 		app.zPageMail.sSelectFrame("iframe[name$='__body__iframe']");
 		ZAssert.assertTrue(app.zPageMail.sIsElementPresent(Locators.zMsgExternalImage), "Verify the external is displayed");
-		
 	}
 }

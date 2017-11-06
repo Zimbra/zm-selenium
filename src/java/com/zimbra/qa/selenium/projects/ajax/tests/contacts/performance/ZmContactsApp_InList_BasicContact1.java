@@ -17,10 +17,8 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.contacts.performance;
 
 import java.io.File;
-
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.items.ContactItem;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.RestUtil;
@@ -34,12 +32,7 @@ public class ZmContactsApp_InList_BasicContact1 extends AjaxCommonTest {
 
    public ZmContactsApp_InList_BasicContact1() {
       logger.info("New " + ZmContactsApp_InList_BasicContact1.class.getCanonicalName());
-
-      // All tests start at the login page
       super.startingPage = app.zPageMail;
-
-      // Make sure we are using an account with message view
-      
    }
 
    @DataProvider(name = "DataProvider_LoadingApp_1Contact")
@@ -49,25 +42,26 @@ public class ZmContactsApp_InList_BasicContact1 extends AjaxCommonTest {
            new Object[] { "Load (from cache) the Address Book app, 1 contact in list"}
      };
    }
-   
+
+
    @Test( description = "Measure the time to load address book page with 1 contact item",
          groups = {"performance", "deprecated"}, dataProvider = "DataProvider_LoadingApp_1Contact")
+
    public void ZmContactsApp_01(String logMessage) throws HarnessException {
 	   ContactItem.createContactItem(app.zGetActiveAccount());
 
-	   PerfToken token = PerfMetrics.startTimestamp(PerfKey.ZmContactsApp,
-			   logMessage);
-	   //  app.zPageContacts.zNavigateTo();
+	   PerfToken token = PerfMetrics.startTimestamp(PerfKey.ZmContactsApp, logMessage);
 	   app.zPageContacts.zClickAt("css=td[id='zb__App__Contacts_title']","");
-
 	   PerfMetrics.waitTimestamp(token);
 
 	   // Wait for the app to load
 	   app.zPageContacts.zWaitForActive();
    }
 
+
    @Test( description = "Measure the time to load address book page with 100 contact items",
          groups = {"performance", "deprecated"})
+
    public void ZmContactsApp_02() throws HarnessException {
 
       // Loading csv file that has information for 100 contacts to speed up the setup
@@ -80,11 +74,8 @@ public class ZmContactsApp_InList_BasicContact1 extends AjaxCommonTest {
       rest.setUploadFile(new File(filename));
       rest.doPost();
 
-      PerfToken token = PerfMetrics.startTimestamp(PerfKey.ZmContactsApp,
-            "Load the Address Book app, 100 contacts in list");
-    //  app.zPageContacts.zNavigateTo();
+      PerfToken token = PerfMetrics.startTimestamp(PerfKey.ZmContactsApp, "Load the Address Book app, 100 contacts in list");
       app.zPageContacts.zClickAt("css=td[id='zb__App__Contacts_title']","");
-
       PerfMetrics.waitTimestamp(token);
 
       // Wait for the app to load

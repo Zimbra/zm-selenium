@@ -29,42 +29,40 @@ public class SendOnBehalfOfDistList extends PrefGroupMailByMessageTest {
 		logger.info("New "+ SendOnBehalfOfDistList.class.getCanonicalName());
 		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "text");
 	}
-	
-	
+
+
 	@Test( description = "Send On Behalf Of Distribution List",
 			groups = { "smoke", "L1" })
-	
+
 	public void SendOnBehalfOfDistList_01() throws HarnessException {
-		
+
 		// Mail data
 		String subject = "subject"+ ConfigProperties.getUniqueString();
-		
+
 		// The grantor
 		ZimbraDistributionList list = new ZimbraDistributionList();
 		list.provision();
 
 		// Add a member
 		list.addMember(ZimbraAccount.AccountA());
-		
+
 		// Grant send rights
 		list.grantRight(app.zGetActiveAccount(), "sendOnBehalfOfDistList");
 
 		// Refresh UI
 		app.zPageMain.zRefreshMainUI();
-		
-		//-- GUI Steps
-		
+
 		// Open the new mail form
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
 		ZAssert.assertNotNull(mailform, "Verify the new form opened");
-		
+
 		// Fill out the form with the data
 		mailform.zFillField(Field.To, ZimbraAccount.AccountA().EmailAddress);
 		mailform.zFillField(Field.Subject, subject);
 		mailform.zFillField(Field.Body, "body" + ConfigProperties.getUniqueString());
-		mailform.zFillField(Field.From, list.EmailAddress);	
+		mailform.zFillField(Field.From, list.EmailAddress);
 		mailform.zSubmit();
-	
+
 		ZimbraAccount.AccountA().soapSend(
 				"<SearchRequest xmlns='urn:zimbraMail' types='message'>"
 			+		"<query>subject:("+ subject +")</query>"
@@ -79,7 +77,7 @@ public class SendOnBehalfOfDistList extends PrefGroupMailByMessageTest {
 		// Verify From: grantor
 		String from = ZimbraAccount.AccountA().soapSelectValue("//mail:e[@t='f']", "a");
 		ZAssert.assertEquals(from, list.EmailAddress, "Verify From: grantor");
-		
+
 		// Verify Sender: active account
 		String sender = ZimbraAccount.AccountA().soapSelectValue("//mail:e[@t='s']", "a");
 		ZAssert.assertEquals(sender, app.zGetActiveAccount().EmailAddress, "Verify Sender: active account");

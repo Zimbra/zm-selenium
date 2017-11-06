@@ -17,7 +17,6 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.folders.retention;
 
 import org.testng.annotations.*;
-
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -28,17 +27,14 @@ public class ModifyRetention extends PrefGroupMailByMessageTest {
 
 	public ModifyRetention() {
 		logger.info("New " + ModifyRetention.class.getCanonicalName());
-
 	}
 
-	@Test(
-			description = "Modify a basic retention (Context menu -> Edit -> Retention)", 
-			groups = { "functional", "L2" }
-			)
+
+	@Test(	description = "Modify a basic retention (Context menu -> Edit -> Retention)",
+			groups = { "functional", "L2" })
+
 	public void ModifyRetention_01() throws HarnessException {
 
-		//-- Data
-		
 		// Create the subfolder
 		String foldername = "folder" + ConfigProperties.getUniqueString();
 
@@ -62,11 +58,6 @@ public class ModifyRetention extends PrefGroupMailByMessageTest {
 			+		"</action>"
 			+	"</FolderActionRequest>");
 
-		
-		
-		
-		//-- GUI
-		
 		// Click on Get Mail to refresh the folder list
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
@@ -79,20 +70,14 @@ public class ModifyRetention extends PrefGroupMailByMessageTest {
 
 		// Save
 		dialog.zClickButton(Button.B_OK);
-		
-		
-		//-- Verification
-		
+
 		// Verify the retention policy on the folder
 		app.zGetActiveAccount().soapSend(
 				"<GetFolderRequest xmlns='urn:zimbraMail'>"
 			+		"<folder l='" + folder.getId() + "'/>"
 			+	"</GetFolderRequest>");
+
 		String lifetime = app.zGetActiveAccount().soapSelectValue("//mail:keep//mail:policy", "lifetime");
-		
 		ZAssert.assertEquals(lifetime, "6d", "Verify the policy lifetime is set to 6 days");
-		
 	}
-
-
 }
