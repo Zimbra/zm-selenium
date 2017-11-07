@@ -66,7 +66,6 @@ public class ZimbraHelpAdvancedURL extends AjaxCommonTest {
 
 			app.zPageMain.zRefreshMainUI();
 			app.zPageMain.zToolbarPressPulldown(Button.B_ACCOUNT, Button.O_PRODUCT_HELP);
-			SleepUtil.sleepMedium();
 
 			// Zimbra advanced help page can open in separate window
 			List<String> windowIds=app.zPageMain.sGetAllWindowIds();
@@ -126,6 +125,65 @@ public class ZimbraHelpAdvancedURL extends AjaxCommonTest {
 			}
 
 		}
+	}
 
+
+	@Bugs(ids = "ZCS-3487")
+	@Test(description = "Verify the product help URL as per the value set in attribute ZimbraHelpAdminURL at the global config", priority=5,
+			groups = { "functional", "L3" })
+
+	public void ZimbraHelpAdvancedURL_02() throws HarnessException {
+
+		String url = "https://www.bbc.com";
+		String tempURL = null;
+		boolean found = false;
+
+		try {
+			// Modify the config and change the help URL
+			ZimbraAdminAccount.AdminConsoleAdmin()
+					.soapSend("<ModifyConfigRequest xmlns='urn:zimbraAdmin'>"
+					+ "<a n='zimbraHelpAdvancedURL'>" + url + "</a>"
+					+ "</ModifyConfigRequest>");
+
+			app.zPageMain.zRefreshMainUI();
+			app.zPageMain.zToolbarPressPulldown(Button.B_ACCOUNT, Button.O_PRODUCT_HELP);
+
+			// Zimbra advanced help page can open in separate window
+			List<String> windowIds = app.zPageMain.sGetAllWindowIds();
+
+			if (windowIds.size() > 1) {
+
+				for (String id: windowIds) {
+					app.zPageMain.sSelectWindow(id);
+
+					if (app.zPageMain.sGetTitle().contains("BBC")) {
+						//Get the opened URL
+						tempURL = app.zPageMain.sGetLocation();
+						found = true;
+						app.zPageMain.zSeparateWindowClose(app.zPageMain.sGetTitle());
+						break;
+
+					} else if (!(app.zPageMain.sGetTitle().contains("Zimbra: Inbox"))) {
+						app.zPageMain.zSeparateWindowClose(app.zPageMain.sGetTitle());
+					}
+				}
+				if (!found) {
+					tempURL = app.zPageMain.sGetLocation();
+				}
+
+			} else {
+				tempURL = app.zPageMain.sGetLocation();
+			}
+
+			// Check the URL
+			ZAssert.assertTrue(tempURL.contains("www.bbc.com"),	"Product Help URL is not as set in zimbraHelpAdvancedURL");
+
+		} finally {
+			// Revert the changes done in attribute 'zimbraHelpAdvancedURL'
+			ZimbraAdminAccount.AdminConsoleAdmin()
+					.soapSend("<ModifyConfigRequest xmlns='urn:zimbraAdmin'>"
+					+ "<a n='zimbraHelpAdvancedURL'>" + "" + "</a>"
+					+ "</ModifyConfigRequest>");
+		}
 	}
 }
