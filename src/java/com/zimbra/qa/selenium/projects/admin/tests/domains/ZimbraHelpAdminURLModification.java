@@ -109,13 +109,13 @@ public class ZimbraHelpAdminURLModification extends AdminCommonTest {
 	}
 
 
-	@Bugs(ids="101023")
+	@Bugs(ids="ZCS-3487")
 	@Test( description = "Verify that zimbra admin help page is opened as per the value set in attribute ZimbraHelpAdminURL at the global config",
 			groups = { "functional", "L2" })
 
 	public void ZimbraHelpAdminURLModification_02() throws HarnessException {
 
-		try{
+		try {
 			// Modify the config and change the help URL
 			ZimbraAdminAccount.AdminConsoleAdmin()
 					.soapSend("<ModifyConfigRequest xmlns='urn:zimbraAdmin'>"
@@ -163,7 +163,7 @@ public class ZimbraHelpAdminURLModification extends AdminCommonTest {
 			}
 
 			// Check the URL
-			ZAssert.assertTrue(tempURL.contains("www.bbc.com"),"Admin Help URL is not as set in zimbraHelpAdminURL");
+			ZAssert.assertTrue(tempURL.contains("www.bbc.com"), "Admin Help URL is not as set in zimbraHelpAdminURL");
 
 		} finally {
 			// Revert the changes done in attribute 'zimbraHelpAdminURL'
