@@ -33,7 +33,6 @@ public class ZimbraHelpAdminURLModification extends AdminCommonTest {
 		logger.info("New "+ ZimbraHelpAdminURLModification.class.getCanonicalName());
 	}
 
-
 	@Bugs(ids="101023")
 	@Test( description = "Verify that zimbra admin help page is opened as per the value set in attribute ZimbraHelpAdminURL",
 			groups = { "functional", "L2" })
@@ -89,7 +88,6 @@ public class ZimbraHelpAdminURLModification extends AdminCommonTest {
 							app.zPageMain.zSeparateWindowClose(app.zPageMain.sGetTitle());
 				}
 			}
-
 			if (!found) {
 
 				tempURL=app.zPageMain.sGetLocation();
@@ -107,5 +105,69 @@ public class ZimbraHelpAdminURLModification extends AdminCommonTest {
 						+	"</ModifyDomainRequest>");
 		// Check the URL
 		ZAssert.assertTrue(tempURL.contains("/zimbraAdmin/helpUrl/help/admin/adminhelp.html"),"Admin Help URL is not as set in zimbraHelpAdminURL");
+
+	}
+	
+	@Bugs(ids="101023")
+	@Test( description = "Verify that zimbra admin help page is opened as per the value set in attribute ZimbraHelpAdminURL at the global config",
+			groups = { "functional", "L2" })
+
+	public void ZimbraHelpAdminURLModification_02() throws HarnessException {
+
+		try{
+		// Modify the config and change the help URL
+		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
+				"<ModifyConfigRequest xmlns='urn:zimbraAdmin'>"
+						+  "<a n='zimbraHelpAdminURL'>https://www.bbc.com</a>"
+						+	"</ModifyConfigRequest>");
+
+		String tempURL = null;
+		boolean found = false;
+
+		// Click on the Help drop down arrow
+		app.zPageMain.sMouseMoveAt(PageMain.Locators.zSkinContainerHelpDropDownArrow,"0,0");
+		app.zPageMain.sClickAt(PageMain.Locators.zSkinContainerHelpDropDownArrow,"0,0");
+		SleepUtil.sleepSmall();
+
+		// Select Help Center option
+		app.zPageMain.sMouseMoveAt(PageMain.Locators.zHelpCenterOption,"0,0");
+		app.zPageMain.sClickAt(PageMain.Locators.zHelpCenterOption,"0,0");
+		SleepUtil.sleepSmall();
+
+		// Zimbra admin help page opens in separate window
+		List<String> windowIds=app.zPageMain.sGetAllWindowIds();
+
+		if (windowIds.size() > 1) {
+
+			for(String id: windowIds) {
+				app.zPageMain.sSelectWindow(id);
+
+				if (app.zPageMain.sGetTitle().contains("BBC")) {
+					//Get the opened URL
+					tempURL=app.zPageMain.sGetLocation();
+					found = true;
+					app.zPageMain.zSeparateWindowClose(app.zPageMain.sGetTitle());
+					break;
+				} else if (!(app.zPageMain.sGetTitle().contains("Zimbra Administration"))) {
+							app.zPageMain.zSeparateWindowClose(app.zPageMain.sGetTitle());
+				}
+			}
+			if (!found) {
+				tempURL=app.zPageMain.sGetLocation();
+			}
+		} else {
+			tempURL=app.zPageMain.sGetLocation();
+		}
+
+			// Check the URL
+			ZAssert.assertTrue(tempURL.contains("www.bbc.com"),"Admin Help URL is not as set in zimbraHelpAdminURL");
+		}
+		finally{
+			// Revert the changes done in attribute 'zimbraHelpAdminURL'
+			ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
+					"<ModifyConfigRequest xmlns='urn:zimbraAdmin'>"
+							+  "<a n='zimbraHelpAdminURL'>" + "" + "</a>"
+							+	"</ModifyConfigRequest>");
+		}
 	}
 }
