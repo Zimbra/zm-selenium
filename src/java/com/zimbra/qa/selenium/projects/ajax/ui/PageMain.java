@@ -227,7 +227,7 @@ public class PageMain extends AbsTab {
 
 				this.zClickAt(optionLocator, "0,0");
 				this.zWaitForBusyOverlay();
-				SleepUtil.sleepSmall();
+				SleepUtil.sleepMedium();
 
 				return (window);
 
