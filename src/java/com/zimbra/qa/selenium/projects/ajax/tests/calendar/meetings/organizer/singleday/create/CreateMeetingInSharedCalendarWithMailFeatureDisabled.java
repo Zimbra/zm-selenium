@@ -40,7 +40,6 @@ public class CreateMeetingInSharedCalendarWithMailFeatureDisabled extends AjaxCo
 
 	public CreateMeetingInSharedCalendarWithMailFeatureDisabled() {
 		logger.info("New " + CreateMeetingInSharedCalendarWithMailFeatureDisabled.class.getCanonicalName());
-		super.startingPage = app.zPageCalendar;
 	}
 
 
@@ -89,15 +88,16 @@ public class CreateMeetingInSharedCalendarWithMailFeatureDisabled extends AjaxCo
 					+ folder.getId() + "' zid='" + ZimbraAccount.AccountB().ZimbraId + "' view='appointment' color='4'/>" + "</CreateMountpointRequest>");
 
 			ZimbraAdminAccount.GlobalAdmin().soapSend(
-			  "<ModifyAccountRequest xmlns='urn:zimbraAdmin'><id>" +
-			  this.app.zGetActiveAccount().ZimbraId + "</id>" +
-			  "<a n='zimbraFeatureMailEnabled'>FALSE</a>" +
-			  "</ModifyAccountRequest>");
+					"<ModifyAccountRequest xmlns='urn:zimbraAdmin'><id>" +
+						this.app.zGetActiveAccount().ZimbraId + "</id>" +
+						"<a n='zimbraFeatureMailEnabled'>FALSE</a>" +
+					"</ModifyAccountRequest>");
 
 			// Refresh UI
 			app.zPageMain.zRefreshUITillElementPresent(PageMail.Locators.zCalendarZimletsPane);
 
 			// Compose appointment on shared mailbox
+			app.zPageCalendar.zNavigateTo();
 			FormApptNew apptForm = (FormApptNew) app.zPageCalendar.zToolbarPressButton(Button.B_NEW);
 			apptForm.zFill(appt);
 			apptForm.zFillField(Field.CalendarFolder, mountPointName);
