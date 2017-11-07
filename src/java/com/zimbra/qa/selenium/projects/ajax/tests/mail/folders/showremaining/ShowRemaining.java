@@ -30,7 +30,7 @@ public class ShowRemaining extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Click on 'show remaining folders'",
+	@Test (description = "Click on 'show remaining folders'",
 			groups = { "functional", "L2" })
 
 	public void ShowRemaining_01() throws HarnessException {

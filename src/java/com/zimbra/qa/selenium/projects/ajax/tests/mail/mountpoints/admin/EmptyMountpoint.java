@@ -31,7 +31,7 @@ public class EmptyMountpoint extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Empty a mountpoint folder (context menu)",
+	@Test (description = "Empty a mountpoint folder (context menu)",
 			groups = { "functional", "L2" })
 
 	public void EmptyMountpoint_01() throws HarnessException {

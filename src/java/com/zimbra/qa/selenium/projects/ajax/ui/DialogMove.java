@@ -27,6 +27,7 @@ import com.zimbra.qa.selenium.projects.ajax.ui.mail.PageMail;
 import com.zimbra.qa.selenium.projects.ajax.ui.tasks.PageTasks;
 
 public class DialogMove extends AbsDialog {
+
 	public static class Locators {
 
 		public static final String zDialogId = "ChooseFolderDialog";
@@ -93,24 +94,18 @@ public class DialogMove extends AbsDialog {
 		String locator = "css=div[id='" + Locators.zDialogId + "']";
 
 		if (!this.sIsElementPresent(locator)) {
-			return (false); // Not even present
+			return (false);
 		}
 
 		if (!this.zIsVisiblePerPosition(locator, 0, 0)) {
-			return (false); // Not visible per position
+			return (false);
 		}
 
-		// Yes, visible
 		logger.info(myPageName() + " zIsActive() = true");
 		return (true);
 
 	}
 
-	/**
-	 * Enter text into the move message dialog folder name field
-	 * 
-	 * @param folder
-	 */
 	public void zEnterFolderName(String folder) throws HarnessException {
 		String locator = "css=div[id='ChooseFolderDialog_inputDivId']>div>input";
 
@@ -123,12 +118,6 @@ public class DialogMove extends AbsDialog {
 
 	}
 
-	/**
-	 * Left-Click on a folder in the tree
-	 * 
-	 * @param folder
-	 * @throws HarnessException
-	 */
 	public void zClickTreeFolder(FolderItem folder) throws HarnessException {
 
 		logger.info(myPageName() + " zClickTreeFolder(" + folder + ")");
@@ -175,6 +164,5 @@ public class DialogMove extends AbsDialog {
 		this.sClick(locator);
 		this.zWaitForBusyOverlay();
 		SleepUtil.sleepSmall();
-
 	}
 }

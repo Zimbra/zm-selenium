@@ -47,7 +47,7 @@ public class CheckFromHeaderInConversationView extends AjaxCommonTest {
 
 
 	@Bugs(ids = "67986,64067,47288,16213")
-	@Test(description = "Conversation list should show From=<blank>",
+	@Test (description = "Conversation list should show From=<blank>",
 			groups = { "functional", "L2" })
 
 	public void CheckFromHeaderInConversationView_01() throws HarnessException {

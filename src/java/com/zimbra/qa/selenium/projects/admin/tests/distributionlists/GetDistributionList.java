@@ -46,7 +46,7 @@ public class GetDistributionList extends AdminCommonTest {
 	 * 3. Verify dl is present in the list
 	 * @throws HarnessException
 	 */
-	@Test( description = "Verify created dl is present in the list view",
+	@Test (description = "Verify created dl is present in the list view",
 			groups = { "smoke", "L1" })
 			public void GetDistributionList_01() throws HarnessException {
 
@@ -85,7 +85,7 @@ public class GetDistributionList extends AdminCommonTest {
 	 * 3. Verify dl is present in the list
 	 * @throws HarnessException
 	 */
-	@Test( description = "Verify created admin dl is present in the list view",
+	@Test (description = "Verify created admin dl is present in the list view",
 			groups = { "functional", "L2" })
 			public void GetDistributionList_02() throws HarnessException {
 
@@ -125,7 +125,7 @@ public class GetDistributionList extends AdminCommonTest {
 	 * 3. Verify dl is present in the list
 	 * @throws HarnessException
 	 */
-	@Test( description = "Verify created dynamic admin dl is present in the list view",
+	@Test (description = "Verify created dynamic admin dl is present in the list view",
 			groups = { "functional", "L2" })
 			public void GetDistributionList_03() throws HarnessException {
 
@@ -167,7 +167,7 @@ public class GetDistributionList extends AdminCommonTest {
 	 * 2. Verify dl is present in the search list.
 	 * @throws HarnessException
 	 */
-	@Test( description = "Verify created dl is present in the list view  - Search view",
+	@Test (description = "Verify created dl is present in the list view  - Search view",
 			groups = { "functional", "L3" })
 			public void GetDistributionList_04() throws HarnessException {
 

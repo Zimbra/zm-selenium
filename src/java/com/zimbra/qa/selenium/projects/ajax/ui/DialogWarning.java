@@ -33,7 +33,7 @@ import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
  * During construction, the div ID attribute must be specified, such as
  * "YesNoCancel".
  * <p>
- * 
+ *
  * @author Matt Rhoades
  *
  */
@@ -116,10 +116,8 @@ public class DialogWarning extends AbsDialog {
 			throw new HarnessException("button cannot be null");
 
 		String locator = null;
-		AbsPage page = null; // Does this ever result in a page being returned?
+		AbsPage page = null;
 
-		// See http://bugzilla.zimbra.com/show_bug.cgi?id=54560
-		// Need unique id's for the buttons
 		String buttonsTableLocator = "css=div[id='" + MyDivId + "'] div[id$='_buttons']";
 
 		if (button == Button.B_YES) {
@@ -149,7 +147,7 @@ public class DialogWarning extends AbsDialog {
 		} else if (button == Button.B_Signature_OK) {
 			locator = "css= div[role='alertdialog'] div[id$='_buttons'] td[id$='_button2_title']";
 
-		}else {
+		} else {
 			throw new HarnessException("no logic defined for button " + button);
 		}
 
@@ -202,5 +200,4 @@ public class DialogWarning extends AbsDialog {
 
 		return (true);
 	}
-
 }

@@ -47,7 +47,7 @@ public class EditPreferences extends AdminCommonTest {
 	 * 5. Edited details should be saved without any errors
 	 * @throws HarnessException
 	 */
-	@Test( description = "Edit account - Edit preferences at account level",
+	@Test (description = "Edit account - Edit preferences at account level",
 			groups = { "smoke", "L1" })
 
 	public void EditPreferences_01() throws HarnessException {

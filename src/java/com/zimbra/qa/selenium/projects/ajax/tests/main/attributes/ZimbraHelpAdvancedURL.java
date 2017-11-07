@@ -35,8 +35,8 @@ public class ZimbraHelpAdvancedURL extends AjaxCommonTest {
 
 
 	@Bugs(ids = "101023")
-	@Test(description = "Verify the product help URL", priority=5,
-		groups = { "functional", "L3"})
+	@Test (description = "Verify the product help URL", priority=5,
+		groups = { "functional", "L3" })
 
 	public void ZimbraHelpAdvancedURL_01() throws HarnessException {
 
@@ -129,7 +129,7 @@ public class ZimbraHelpAdvancedURL extends AjaxCommonTest {
 
 
 	@Bugs(ids = "ZCS-3487")
-	@Test(description = "Verify the product help URL as per the value set in attribute ZimbraHelpAdminURL at the global config", priority=5,
+	@Test (description = "Verify the product help URL as per the value set in attribute ZimbraHelpAdminURL at the global config", priority=5,
 			groups = { "functional", "L3" })
 
 	public void ZimbraHelpAdvancedURL_02() throws HarnessException {

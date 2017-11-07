@@ -44,7 +44,7 @@ public class ModifyByChangingOrganiser extends AjaxCommonTest {
 
 
 	@Bugs(ids = "77105")
-	@Test( description = " Changing organizer of an imported appointment is not allowed",
+	@Test (description = " Changing organizer of an imported appointment is not allowed",
 			groups = { "functional", "L2" })
 
 	public void ModifyByChangingOrganiser_01() throws HarnessException {

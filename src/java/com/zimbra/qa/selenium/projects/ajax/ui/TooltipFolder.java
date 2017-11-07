@@ -17,30 +17,29 @@
 package com.zimbra.qa.selenium.projects.ajax.ui;
 
 import org.apache.log4j.*;
-
 import com.zimbra.qa.selenium.framework.ui.AbsApplication;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 
 public class TooltipFolder extends Tooltip {
+
 	protected static Logger logger = LogManager.getLogger(TooltipFolder.class);
 
 	public static class Locators {
-	
 	}
-	
+
 	public static class Field {
-		
+
 		public static final Field Foldername = new Field("Foldername");
 		public static final Field TotalMessages = new Field("TotalMessages");
 		public static final Field UnreadMessages = new Field("UnreadMessages");
 		public static final Field Size = new Field("Size");
-		
-		
+
 		private String field;
+
 		private Field(String name) {
 			field = name;
 		}
-		
+
 		@Override
 		public String toString() {
 			return (field);
@@ -56,44 +55,39 @@ public class TooltipFolder extends Tooltip {
 	}
 
 	public String zGetField(Field field) throws HarnessException {
-		
+
 		String locator = null;
-		
-		if ( field == Field.Foldername ) {
+
+		if (field == Field.Foldername) {
 
 			// https://bugzilla.zimbra.com/show_bug.cgi?id=78592
 			locator = Tooltip.Locators.DwtToolTipCSS + " div#tooltipContents tbody tr:nth-of-type(1)";
-		
-		} else if ( field == Field.UnreadMessages ) {
-			
+
+		} else if (field == Field.UnreadMessages) {
+
 			// https://bugzilla.zimbra.com/show_bug.cgi?id=78592
 			locator = Tooltip.Locators.DwtToolTipCSS + " div#tooltipContents tbody tr:nth-of-type(2) td:nth-of-type(2)";
-		
-		} else if ( field == Field.TotalMessages ) {
-		
+
+		} else if (field == Field.TotalMessages) {
+
 			// https://bugzilla.zimbra.com/show_bug.cgi?id=78592
 			locator = Tooltip.Locators.DwtToolTipCSS + " div#tooltipContents tbody tr:nth-of-type(3) td:nth-of-type(2)";
-		
-		} else if ( field == Field.Size ) {
-		
+
+		} else if (field == Field.Size) {
+
 			// https://bugzilla.zimbra.com/show_bug.cgi?id=78592
 			locator = Tooltip.Locators.DwtToolTipCSS + " div#tooltipContents tbody tr:nth-of-type(4) td:nth-of-type(2)";
-		
+
 		} else {
-			
-			throw new HarnessException("implement me: "+ field);
-			
+			throw new HarnessException("implement me: " + field);
 		}
-		
-		// Make sure the field exists
-		if ( !this.sIsElementPresent(locator) )
-			throw new HarnessException("Field is not present field="+ field +" locator="+ locator);
-			
+
+		if (!this.sIsElementPresent(locator))
+			throw new HarnessException("Field is not present field=" + field + " locator=" + locator);
+
 		// Get the displayed text
 		String value = this.sGetText(locator);
-		
-		return (value);
 
+		return (value);
 	}
-		
 }

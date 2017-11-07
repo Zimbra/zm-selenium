@@ -39,7 +39,7 @@ public class ModifyMeetingPrivateToPublic extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Modify Meeting class from Private to Public",
+	@Test (description = "Modify Meeting class from Private to Public",
 			groups = { "functional", "L2" })
 
 	public void ModifyMeetingPrivateToPublic_01() throws HarnessException {
@@ -99,7 +99,7 @@ public class ModifyMeetingPrivateToPublic extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Modify Meeting class from Public to Private",
+	@Test (description = "Modify Meeting class from Public to Private",
 			groups = { "functional", "L2" })
 
 	public void ModifyMeetingPublicToPrivate_02() throws HarnessException {

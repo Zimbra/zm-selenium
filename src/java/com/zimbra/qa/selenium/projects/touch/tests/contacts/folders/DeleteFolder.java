@@ -32,7 +32,7 @@ public class DeleteFolder extends PrefGroupMailByMessageTest {
 		super.startingPage = app.zPageAddressbook;
 	}
 
-	@Test( description = "Delete contact folder",
+	@Test (description = "Delete contact folder",
 			groups = { "smoke" })
 	
 	public void DeleteFolder_01() throws HarnessException  {

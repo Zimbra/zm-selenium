@@ -49,7 +49,7 @@ public class ChangeGALConfiguration extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Bugs( ids = "96777")
-	@Test( description = "Verify GAL Configuration after chnaging GAL mode of a domain from internal to both",
+	@Test (description = "Verify GAL Configuration after chnaging GAL mode of a domain from internal to both",
 	groups = { "functional", "L2" })
 	public void ChangeGALConfiguration_01() throws HarnessException {
 
@@ -131,7 +131,7 @@ public class ChangeGALConfiguration extends AdminCommonTest {
 	}
 
 	@Bugs( ids = "96777")
-	@Test( description = "Verify GAL Configuration after chnaging GAL mode of a domain from external to both",
+	@Test (description = "Verify GAL Configuration after chnaging GAL mode of a domain from external to both",
 	groups = { "functional", "L2" })
 	public void ChangeGALConfiguration_02() throws HarnessException {
 

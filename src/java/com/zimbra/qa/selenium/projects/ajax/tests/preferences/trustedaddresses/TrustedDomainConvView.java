@@ -55,7 +55,7 @@ public class TrustedDomainConvView extends AjaxCommonTest {
 	 * 5.Yellow color Warning msg Info bar should not present for trusted domain
 	 */
 
-	@Test( description = "Verify Display Image link in Trusted doamin for conversation view",
+	@Test (description = "Verify Display Image link in Trusted doamin for conversation view",
 			groups = { "smoke", "L1"  })
 
 	public void TrustedDomainConvView_01() throws HarnessException {

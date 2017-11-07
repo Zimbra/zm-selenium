@@ -35,7 +35,7 @@ public class CreateACopy extends AjaxCommonTest {
 
 
 	@Bugs(ids = "95961")
-	@Test( description = "Create a copy of meeting invite (Series)",
+	@Test (description = "Create a copy of meeting invite (Series)",
 			groups = { "functional", "L2" })
 
 	public void CopyMeeting_01() throws HarnessException {

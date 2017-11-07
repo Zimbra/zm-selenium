@@ -42,7 +42,7 @@ public class CreateTag extends TouchCommonTest {
 	 * @throws HarnessException
 	 */
 	
-	@Test( description = "Create a new tag by clicking to Edit -> 'New tag'", 
+	@Test (description = "Create a new tag by clicking to Edit -> 'New tag'", 
 			groups = { "sanity" })
 	
 	public void CreateTag_01() throws HarnessException  {
@@ -79,7 +79,7 @@ public class CreateTag extends TouchCommonTest {
 	 * @throws HarnessException
 	 */
 	
-	@Test( description = "Try to create duplicate tag & verify error", 
+	@Test (description = "Try to create duplicate tag & verify error", 
 			groups = { "functional" })
 	
 	public void CreateTag_02() throws HarnessException  {

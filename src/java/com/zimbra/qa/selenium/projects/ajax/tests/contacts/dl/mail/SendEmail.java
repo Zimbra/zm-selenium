@@ -32,8 +32,8 @@ public class SendEmail extends AjaxCommonTest  {
 	}
 
 
-	@Test( description = "Right click to DL and send email",
-			groups = { "smoke", "L0"})
+	@Test (description = "Right click to DL and send email",
+			groups = { "smoke", "L0" })
 
 	public void SendEmail_01 () throws HarnessException {
 

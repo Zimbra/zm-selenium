@@ -46,7 +46,7 @@ public class SearchFunctionality extends AdminCommonTest {
 	 * 2. Verify the account is present in the all results search.
 	 * @throws HarnessException
 	 */
-	@Test( description = "Verify search functionality of all results.",
+	@Test (description = "Verify search functionality of all results.",
 			groups = { "smoke", "L1" })
 			public void SearchFunctionality_01() throws HarnessException {
 
@@ -89,7 +89,7 @@ public class SearchFunctionality extends AdminCommonTest {
 	 * 2. Verify the account is present in the "Accounts" search.
 	 * @throws HarnessException
 	 */
-	@Test( description = "Verify search functionality of Accounts.",
+	@Test (description = "Verify search functionality of Accounts.",
 			groups = { "smoke", "L1" })
 			public void SearchFunctionality_02() throws HarnessException {
 
@@ -131,7 +131,7 @@ public class SearchFunctionality extends AdminCommonTest {
 	 * 2. Verify the DL is present in the "DL" search.
 	 * @throws HarnessException
 	 */
-	@Test( description = "Verify search functionality of DL",
+	@Test (description = "Verify search functionality of DL",
 			groups = { "smoke", "L1" })
 			public void SearchFunctionality_03() throws HarnessException {
 
@@ -173,7 +173,7 @@ public class SearchFunctionality extends AdminCommonTest {
 	 * 2. Verify the Domain is present in the "DL" search.
 	 * @throws HarnessException
 	 */
-	@Test( description = "Verify search functionality of Domain",
+	@Test (description = "Verify search functionality of Domain",
 			groups = { "smoke", "L1" })
 			public void SearchFunctionality_04() throws HarnessException {
 
@@ -214,7 +214,7 @@ public class SearchFunctionality extends AdminCommonTest {
 	 * 2. Verify the account is present in the "locked out account" search.
 	 * @throws HarnessException
 	 */
-	@Test( description = "Verify search functionality of locked out accounts.",
+	@Test (description = "Verify search functionality of locked out accounts.",
 			groups = { "smoke", "L1" })
 			public void SearchFunctionality_05() throws HarnessException {
 	
@@ -257,7 +257,7 @@ public class SearchFunctionality extends AdminCommonTest {
 	 * 2. Verify the account is present in the "non-active account" search.
 	 * @throws HarnessException
 	 */
-	@Test( description = "Verify search functionality of non-active accounts.",
+	@Test (description = "Verify search functionality of non-active accounts.",
 			groups = { "smoke", "L1" })
 			public void SearchFunctionality_06() throws HarnessException {
 	
@@ -300,7 +300,7 @@ public class SearchFunctionality extends AdminCommonTest {
 	 * 2. Verify the account is present in the "admin account" search.
 	 * @throws HarnessException
 	 */
-	@Test( description = "Verify search functionality of admin accounts.",
+	@Test (description = "Verify search functionality of admin accounts.",
 			groups = { "smoke", "L1" })
 			public void SearchFunctionality_07() throws HarnessException {
 	
@@ -361,7 +361,7 @@ public class SearchFunctionality extends AdminCommonTest {
 	 * 2. Verify the account is present in the "closed account" search.
 	 * @throws HarnessException
 	 */
-	@Test( description = "Verify search functionality of closed accounts.",
+	@Test (description = "Verify search functionality of closed accounts.",
 			groups = { "smoke", "L1" })
 			public void SearchFunctionality_08() throws HarnessException {
 	
@@ -404,7 +404,7 @@ public class SearchFunctionality extends AdminCommonTest {
 	 * 2. Verify the account is present in the "maintenance account" search.
 	 * @throws HarnessException
 	 */
-	@Test( description = "Verify search functionality of maintenance accounts.",
+	@Test (description = "Verify search functionality of maintenance accounts.",
 			groups = { "smoke", "L1" })
 			public void SearchFunctionality_9() throws HarnessException {
 	

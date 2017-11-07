@@ -51,7 +51,7 @@ public class DeleteCos extends AdminCommonTest {
 	 * 4. Verify cos is deleted using SOAP
 	 * @throws HarnessException
 	 */
-	@Test( description = "Verify delete cos operation -- Manage cos view",
+	@Test (description = "Verify delete cos operation -- Manage cos view",
 			groups = { "functional", "L2" })
 			public void DeleteCos_01() throws HarnessException {
 
@@ -96,7 +96,7 @@ public class DeleteCos extends AdminCommonTest {
 	 * 4. Verify cos is deleted using SOAP
 	 * @throws HarnessException
 	 */
-	@Test( description = "Verify delete cos operation -- Manage COS list view/Right click menu",
+	@Test (description = "Verify delete cos operation -- Manage COS list view/Right click menu",
 			groups = { "functional", "L2" })
 			public void DeleteCos_02() throws HarnessException {
 
@@ -140,7 +140,7 @@ public class DeleteCos extends AdminCommonTest {
 	 * 4. Verify cos is deleted using SOAP
 	 * @throws HarnessException
 	 */
-	@Test( description = "Verify delete cos operation -- Search list view",
+	@Test (description = "Verify delete cos operation -- Search list view",
 			groups = { "functional-skip", "L3-skip" })
 			public void functional() throws HarnessException {
 
@@ -195,7 +195,7 @@ public class DeleteCos extends AdminCommonTest {
 	 * 4. Verify cos is deleted using SOAP
 	 * @throws HarnessException
 	 */
-	@Test( description = "Verify delete cos in -- Search list view/Right click menu",
+	@Test (description = "Verify delete cos in -- Search list view/Right click menu",
 			groups = { "functional-skip", "L3-skip" })
 			public void DeleteCos_04() throws HarnessException {
 
@@ -242,7 +242,7 @@ public class DeleteCos extends AdminCommonTest {
 	}
 	
 	
-	@Test( description = "Verify Delete COS operation via tree menu is disabled in search results",
+	@Test (description = "Verify Delete COS operation via tree menu is disabled in search results",
 			groups = { "functional", "L3" })
 			public void DeleteCos_05() throws HarnessException {
 
@@ -268,7 +268,7 @@ public class DeleteCos extends AdminCommonTest {
 		
 	}
 
-	@Test( description = "Verify Delete COS operation via context option is disabled inn search results",
+	@Test (description = "Verify Delete COS operation via context option is disabled inn search results",
 			groups = { "functional", "L3" })
 			public void DeleteCos_06() throws HarnessException {
 

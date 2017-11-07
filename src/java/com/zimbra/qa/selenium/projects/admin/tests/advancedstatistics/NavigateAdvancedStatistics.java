@@ -38,7 +38,7 @@ public class NavigateAdvancedStatistics extends AdminCommonTest {
 	 * 1. Verify navigation path -- "Home --> Monitor --> Advanced Statistics"
 	 * @throws HarnessException
 	 */
-	@Test( description = "Navigate to Advanced Statistics",
+	@Test (description = "Navigate to Advanced Statistics",
 			groups = { "sanity", "L0" })
 			public void NavigateAdvancedStatistics_01() throws HarnessException {
 		

@@ -31,7 +31,7 @@ public class ZmBriefcaseAppFolders extends FeatureBriefcaseTest {
 	}
 
 
-	@Test( description = "Measure the time to load the briefcase app, 1 briefcase",
+	@Test (description = "Measure the time to load the briefcase app, 1 briefcase",
 			groups = { "performance", "deprecated" })
 
 	public void ZmBriefcaseAppFolders_01() throws HarnessException {
@@ -60,7 +60,7 @@ public class ZmBriefcaseAppFolders extends FeatureBriefcaseTest {
 	}
 
 
-	@Test( description = "Measure the time to load the briefcase app, 100 briefcases",
+	@Test (description = "Measure the time to load the briefcase app, 100 briefcases",
 			groups = { "performance", "deprecated" })
 
 	public void ZmBriefcaseAppFolders_02() throws HarnessException {

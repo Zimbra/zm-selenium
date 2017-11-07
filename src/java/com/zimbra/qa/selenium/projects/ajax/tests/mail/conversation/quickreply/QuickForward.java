@@ -31,7 +31,7 @@ public class QuickForward extends PrefGroupMailByConversationTest {
 	}
 
 
-	@Test( description = "Quick Reply (Forward) a conversation (1 message, 1 recipient)",
+	@Test (description = "Quick Reply (Forward) a conversation (1 message, 1 recipient)",
 			groups = { "smoke", "L1" })
 
 	public void QuickForward_01() throws HarnessException {
@@ -87,7 +87,7 @@ public class QuickForward extends PrefGroupMailByConversationTest {
 	}
 
 
-	@Test( description = "Quick Reply (forward) a conversation (1 message, 2 recipients)",
+	@Test (description = "Quick Reply (forward) a conversation (1 message, 2 recipients)",
 			groups = { "functional", "L3" })
 
 	public void QuickForward_02() throws HarnessException {
@@ -158,7 +158,7 @@ public class QuickForward extends PrefGroupMailByConversationTest {
 	}
 
 
-	@Test( description = "Quick Reply (forward) a conversation (1 message, 1 recipient, 1 CC, 1 BCC)",
+	@Test (description = "Quick Reply (forward) a conversation (1 message, 1 recipient, 1 CC, 1 BCC)",
 			groups = { "functional", "L3" })
 
 	public void QuickForward_03() throws HarnessException {
@@ -238,7 +238,7 @@ public class QuickForward extends PrefGroupMailByConversationTest {
 	}
 
 
-	@Test( description = "Quick Forward two a 3 message conversation - first message",
+	@Test (description = "Quick Forward two a 3 message conversation - first message",
 			groups = { "functional", "L2" })
 
 	public void QuickForward_10() throws HarnessException {
@@ -332,7 +332,7 @@ public class QuickForward extends PrefGroupMailByConversationTest {
 	}
 
 
-	@Test( description = "Quick Forward two a 3 message conversation - middle message",
+	@Test (description = "Quick Forward two a 3 message conversation - middle message",
 			groups = { "functional", "L3" })
 
 	public void QuickForward_11() throws HarnessException {
@@ -426,7 +426,7 @@ public class QuickForward extends PrefGroupMailByConversationTest {
 	}
 
 
-	@Test( description = "Quick Forward two a 3 message conversation - last message",
+	@Test (description = "Quick Forward two a 3 message conversation - last message",
 			groups = { "functional", "L3" })
 
 	public void QuickForward_12() throws HarnessException {

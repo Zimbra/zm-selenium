@@ -31,7 +31,7 @@ public class ForwardMail extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Forward mail from new window",
+	@Test (description = "Forward mail from new window",
 			groups = { "smoke", "L1" })
 
 	public void ForwardMailFromNewWindow_01() throws HarnessException {
@@ -85,7 +85,7 @@ public class ForwardMail extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Forward a  message , using keyboard shortcut (keyboard='f') - in a separate window",
+	@Test (description = "Forward a  message , using keyboard shortcut (keyboard='f') - in a separate window",
 			groups = { "smoke", "L1" })
 
 	public void ForwardMailFromNewWindow_02() throws HarnessException {

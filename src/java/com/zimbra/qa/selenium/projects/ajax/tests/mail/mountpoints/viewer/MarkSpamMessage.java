@@ -31,7 +31,7 @@ public class MarkSpamMessage extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Verify Permission Denied on Spam a shared mail (read-only share)",
+	@Test (description = "Verify Permission Denied on Spam a shared mail (read-only share)",
 			groups = { "functional", "L2" })
 
 	public void MarkSpamMessage_01() throws HarnessException {
@@ -112,7 +112,7 @@ public class MarkSpamMessage extends PrefGroupMailByMessageTest {
 
 
 	@Bugs(ids = "63796")
-	@Test( description = "Verify Permission Denied on Spam (keyboard='ms') a shared mail (read-only share)",
+	@Test (description = "Verify Permission Denied on Spam (keyboard='ms') a shared mail (read-only share)",
 			groups = { "functional", "L2" })
 
 	public void MarkSpamMessage_02() throws HarnessException {

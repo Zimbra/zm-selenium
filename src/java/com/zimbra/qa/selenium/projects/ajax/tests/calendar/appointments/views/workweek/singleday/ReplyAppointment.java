@@ -39,7 +39,7 @@ public class ReplyAppointment extends AjaxCommonTest {
 		};
 	}
 
-	@Test( description = "Verify Reply & ReplyAll context menu option for saved appt",
+	@Test (description = "Verify Reply & ReplyAll context menu option for saved appt",
 			groups = { "functional", "L2" },
 			dataProvider = "DataProviderReply")
 

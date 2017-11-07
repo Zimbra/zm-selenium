@@ -30,7 +30,7 @@ public class OpenAssistant extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Open the assistant",
+	@Test (description = "Open the assistant",
 			groups = { "deprecated" })
 
 	public void OpenAssistant_01() throws HarnessException {

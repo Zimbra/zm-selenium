@@ -35,7 +35,7 @@ public class RemoveAttendee extends CalendarWorkWeekTest {
 	}
 	
 	@Bugs(ids = "95600")
-	@Test( description = "Modify meeting by removing attendee",
+	@Test (description = "Modify meeting by removing attendee",
 			groups = { "smoke" })
 			
 	public void RemoveAttendee_01() throws HarnessException {

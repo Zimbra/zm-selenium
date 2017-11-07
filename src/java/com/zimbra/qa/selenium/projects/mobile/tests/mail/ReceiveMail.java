@@ -39,7 +39,7 @@ public class ReceiveMail extends MobileCommonTest {
 		
 	}
 	
-	@Test( description = "Verify a new mail shows up in the message list",
+	@Test (description = "Verify a new mail shows up in the message list",
 			groups = { "sanity" })
 	public void ReceiveMail_01() throws HarnessException, InterruptedException {
 

@@ -46,7 +46,7 @@ public class ZmMailAppReplyCompose extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Measure the time to load reply-compose  window for simple message",
+	@Test (description = "Measure the time to load reply-compose  window for simple message",
 			groups = { "performance", "deprecated" })
 
 	public void ZmMailAppReplyCompose_01() throws HarnessException {
@@ -70,7 +70,7 @@ public class ZmMailAppReplyCompose extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Measure the time to load reply-compose  window for large conversation",
+	@Test (description = "Measure the time to load reply-compose  window for large conversation",
 			groups = { "performance", "deprecated" })
 
 	public void ZmMailAppReplyCompose_02() throws HarnessException {
@@ -95,7 +95,7 @@ public class ZmMailAppReplyCompose extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Measure the time to load reply-compose window for invite conversation",
+	@Test (description = "Measure the time to load reply-compose window for invite conversation",
 			groups = { "performance", "deprecated" })
 
 	public void ZmMailAppReplyCompose_03() throws HarnessException {
@@ -121,7 +121,7 @@ public class ZmMailAppReplyCompose extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Measure the time to load reply-compose window for invite conversation with 7mb attachment",
+	@Test (description = "Measure the time to load reply-compose window for invite conversation with 7mb attachment",
 			groups = { "performance", "deprecated" })
 
 	public void ZmMailAppReplyCompose_04() throws HarnessException {

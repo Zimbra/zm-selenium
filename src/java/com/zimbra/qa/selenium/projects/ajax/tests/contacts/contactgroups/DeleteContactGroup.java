@@ -39,7 +39,7 @@ public class DeleteContactGroup extends AjaxCommonTest  {
 	}
 
 
-	@Test( description = "Delete a contact group by click Delete button on toolbar",
+	@Test (description = "Delete a contact group by click Delete button on toolbar",
 			groups = { "smoke", "L0" })
 
 	public void ClickDeleteOnToolbar_01() throws HarnessException {
@@ -67,7 +67,7 @@ public class DeleteContactGroup extends AjaxCommonTest  {
    	}
 
 
-	@Test( description = "Delete a contact group by click Delete on Context Menu",
+	@Test (description = "Delete a contact group by click Delete on Context Menu",
 			groups = { "functional", "L3" })
 
 	public void ClickDeleteOnContextMenu_02() throws HarnessException {
@@ -93,7 +93,7 @@ public class DeleteContactGroup extends AjaxCommonTest  {
    	}
 
 
-	@Test( description = "Delete a contact group selected by checkbox by click Delete button on toolbar",
+	@Test (description = "Delete a contact group selected by checkbox by click Delete button on toolbar",
 			groups = { "functional", "L3" })
 
 	public void DeleteContactGroupSelectedWithCheckbox_03() throws HarnessException {
@@ -119,7 +119,7 @@ public class DeleteContactGroup extends AjaxCommonTest  {
    	}
 
 
-	@Test( description = "Delete a contact group use shortcut Del",
+	@Test (description = "Delete a contact group use shortcut Del",
 			groups = { "functional", "L3" })
 
 	public void UseShortcutDel_04() throws HarnessException {
@@ -148,7 +148,7 @@ public class DeleteContactGroup extends AjaxCommonTest  {
    	}
 
 
-	@Test( description = "Delete a contact group use shortcut backspace",
+	@Test (description = "Delete a contact group use shortcut backspace",
 			groups = { "functional", "L3" })
 
 	public void  UseShortcutBackspace_05() throws HarnessException {
@@ -177,7 +177,7 @@ public class DeleteContactGroup extends AjaxCommonTest  {
    	}
 
 
-	@Test( description = "Delete multiple contact groups at once",
+	@Test (description = "Delete multiple contact groups at once",
 			groups = { "functional", "L3" })
 
 	public void DeleteMultipleContactGroups_06() throws HarnessException {
@@ -216,7 +216,7 @@ public class DeleteContactGroup extends AjaxCommonTest  {
 	}
 
 
-	@Test( description = "Delete contact + contact group at once",
+	@Test (description = "Delete contact + contact group at once",
 			groups = { "functional", "L3" })
 
 	public void DeleteMixOfContactAndGroup_07() throws HarnessException {
@@ -249,7 +249,7 @@ public class DeleteContactGroup extends AjaxCommonTest  {
 	}
 
 
-	@Test( description = "Move a contact group to folder Trash by expand Move dropdown then select Trash",
+	@Test (description = "Move a contact group to folder Trash by expand Move dropdown then select Trash",
 			groups = { "functional", "L3" })
 
 	public void MoveToTrashFromMoveDropdownOnToolbar_08() throws HarnessException {
@@ -276,7 +276,7 @@ public class DeleteContactGroup extends AjaxCommonTest  {
    	}
 
 
-	@Test( description = "Click Delete Toolbar button in Edit Contact Group form",
+	@Test (description = "Click Delete Toolbar button in Edit Contact Group form",
 			groups = { "functional", "L3" })
 
 	public void DeleteContactGroupFromEditContactGroupUI_09() throws HarnessException {

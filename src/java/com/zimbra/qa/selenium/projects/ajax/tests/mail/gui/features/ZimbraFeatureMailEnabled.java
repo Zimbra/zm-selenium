@@ -35,7 +35,7 @@ public class ZimbraFeatureMailEnabled extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Load the mail tab with just Mail enabled",
+	@Test (description = "Load the mail tab with just Mail enabled",
 			groups = { "functional-skip", "L3-skip" })
 
 	public void ZimbraFeatureMailEnabled_01() throws HarnessException {

@@ -48,8 +48,8 @@ public class CreateMountpoint extends AjaxCommonTest{
 	}
 
 
-	@Test( description = "Receive an invitation to a shared folder, accept it.",
-			groups = { "smoke", "L1"})
+	@Test (description = "Receive an invitation to a shared folder, accept it.",
+			groups = { "smoke", "L1" })
 
 	public void CreateMountpoint_01() throws HarnessException {
 

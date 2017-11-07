@@ -30,7 +30,7 @@ public class ModifyDisposal extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test(description = "Modify a basic disposal (Context menu -> Edit -> Retention)",
+	@Test (description = "Modify a basic disposal (Context menu -> Edit -> Retention)",
 			groups = { "functional", "L2" })
 
 	public void ModifyDisposal_01() throws HarnessException {

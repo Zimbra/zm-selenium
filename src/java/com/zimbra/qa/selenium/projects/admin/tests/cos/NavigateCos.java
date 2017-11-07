@@ -38,7 +38,7 @@ public class NavigateCos extends AdminCommonTest {
 	 * 2. Verify navigation path -- "Home --> Configure --> Class Of Service"
 	 * @throws HarnessException
 	 */
-	@Test( description = "Navigate to Cos",
+	@Test (description = "Navigate to Cos",
 			groups = { "sanity", "L0" })
 			public void NavigateCos_01() throws HarnessException {
 		

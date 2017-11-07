@@ -32,7 +32,7 @@ public class SearchContextMenu extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageMail;
 	}
 
-	@Test( description = "Click on To msg Header and verify context menu>> Search", 
+	@Test (description = "Click on To msg Header and verify context menu>> Search", 
 			groups = { "smoke" })
 
 	public void SearchContextMenu_01() throws HarnessException {
@@ -87,7 +87,7 @@ public class SearchContextMenu extends CalendarWorkWeekTest {
 		
 	}
 
-	@Test( description = "Click on organizer msg Header and verify context menu>> Search", 
+	@Test (description = "Click on organizer msg Header and verify context menu>> Search", 
 			groups = { "functional" })
 
 	public void NewMessageContextMenu_02() throws HarnessException {

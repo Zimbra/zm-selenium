@@ -14,9 +14,6 @@
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-/**
- * 
- */
 package com.zimbra.qa.selenium.projects.ajax.ui.contacts;
 
 import com.zimbra.qa.selenium.framework.ui.*;
@@ -24,18 +21,19 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 
 /**
  * Represents a "Create New Folder" dialog box
- * 
+ *
  * Lots of methods not yet implemented. See
  * https://bugzilla.zimbra.com/show_bug.cgi?id=55923
  * <p>
- * 
+ *
  * @author Matt Rhoades
- * 
+ *
  */
-public class DialogEditFolder extends com.zimbra.qa.selenium.projects.ajax.ui.mail.DialogEditFolder{
+
+public class DialogEditFolder extends com.zimbra.qa.selenium.projects.ajax.ui.mail.DialogEditFolder {
 
 	public static final class Locators {
-		
+
 		public static final String zNoneColorId = "css=div.ZmColorMenu div#COLOR_0 td[id$='_title']";
 		public static final String zBlueColorId = "css=div.ZmColorMenu div#COLOR_1 td[id$='_title']";
 		public static final String zCyanColorId = "css=div.ZmColorMenu div#COLOR_2 td[id$='_title']";
@@ -46,50 +44,23 @@ public class DialogEditFolder extends com.zimbra.qa.selenium.projects.ajax.ui.ma
 		public static final String zPinkColorId = "css=div.ZmColorMenu div#COLOR_7 td[id$='_title']";
 		public static final String zGrayColorId = "css=div.ZmColorMenu div#COLOR_8 td[id$='_title']";
 		public static final String zOrangeColorId = "css=div.ZmColorMenu div#COLOR_9 td[id$='_title']";
-	
+
 	}
-	
+
 	public DialogEditFolder(AbsApplication application, AbsTab tab) {
 		super(application, tab);
 		logger.info("new " + DialogEditFolder.class.getCanonicalName());
 
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see framework.ui.AbsDialog#myPageName()
-	 */
 	@Override
 	public String myPageName() {
 		return (this.getClass().getName());
 	}
 
-	/**
-	 * Set the color pulldown
-	 * 
-	 * @param folder
-	 */
 	public void zSetNewColor(FolderColor color) throws HarnessException {
 		logger.info(myPageName() + " zEnterFolderColor(" + color + ")");
-		
-		/*
-			For system folders, it seems that class=ImgSelectPullDownArrowHover
-			is used rather than class=ImgSelectPullDownArrow
-			
-			Define actionLocator to handle both.
-			
-			<td id="DWT78_dropdown" class="ZDropDown">
-              <div class="ImgSelectPullDownArrowHover"></div>
-            </td>
 
-			AND
-			
-			<td id="DWT78_dropdown" class="ZDropDown">
-              <div class="ImgSelectPullDownArrow"></div>
-            </td>
-
-		 */
 		String actionLocator = "css=div[id^='FolderProperties'] td[id$='_dropdown'].ZDropDown>div";
 		String optionLocator = null;
 		tracer.trace("Enter folder color " + color);
@@ -98,11 +69,9 @@ public class DialogEditFolder extends com.zimbra.qa.selenium.projects.ajax.ui.ma
 			throw new HarnessException("folder must not be null");
 
 		if (color == FolderColor.MoreColors) {
-			
 			throw new HarnessException("'more colors' - implement me!");
-			
 		}
-		
+
 		if (color == FolderColor.Gray) {
 
 			optionLocator = Locators.zGrayColorId;
@@ -139,10 +108,10 @@ public class DialogEditFolder extends com.zimbra.qa.selenium.projects.ajax.ui.ma
 			throw new HarnessException("color " + color + " not yet implemented");
 		}
 
-		if ( actionLocator != null ) {
+		if (actionLocator != null) {
 
-			if ( !this.sIsElementPresent(actionLocator) ) {
-				throw new HarnessException("actionLocator is not present! "+ this.sGetHtmlSource());
+			if (!this.sIsElementPresent(actionLocator)) {
+				throw new HarnessException("actionLocator is not present! " + this.sGetHtmlSource());
 			}
 
 			zClick(actionLocator);
@@ -150,11 +119,10 @@ public class DialogEditFolder extends com.zimbra.qa.selenium.projects.ajax.ui.ma
 
 		}
 
+		if (optionLocator != null) {
 
-		if ( optionLocator != null ) {
-
-			if ( !this.sIsElementPresent(optionLocator) ) {
-				throw new HarnessException("optionLocator is not present! "+ this.sGetHtmlSource());
+			if (!this.sIsElementPresent(optionLocator)) {
+				throw new HarnessException("optionLocator is not present! " + this.sGetHtmlSource());
 			}
 
 			zClick(optionLocator);
@@ -176,17 +144,7 @@ public class DialogEditFolder extends com.zimbra.qa.selenium.projects.ajax.ui.ma
 		if (!this.sIsElementPresent(locator))
 			throw new HarnessException("unable to find folder name field " + locator);
 
-		// For some reason, the text doesn't get entered on the first try
-//		this.sFocus(locator);
-//		this.zClick(locator);
-//		zKeyboard.zTypeCharacters(folder);
-//		if (!(sGetValue(locator).equalsIgnoreCase(folder))) {
-//			sType(locator, folder);
-//		}
-
 		this.sType(locator, folder);
 		this.zWaitForBusyOverlay();
-
 	}
-
 }

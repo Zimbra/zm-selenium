@@ -23,11 +23,8 @@ import com.zimbra.qa.selenium.projects.ajax.ui.*;
 public class DialogWarningConflictingResources extends DialogWarning {
 
 	public static class Locators {
-
-		// The ID for the main Dialog DIV
 		public static final String LocatorDivID = "RESC_CONFLICT_DLG";
 		public static final String CancelInstanceLink = "css=div[class='ZmResourceConflictDialog'] div[class='ResourceConflictResolver'] span span";
-
 	}
 
 	public DialogWarningConflictingResources(AbsApplication application, AbsTab page) {
@@ -45,8 +42,6 @@ public class DialogWarningConflictingResources extends DialogWarning {
 
 	public void zPressButton(Button button) throws HarnessException {
 		logger.info(myPageName() + " zClickButton(" + button + ")");
-		//AbsPage page = null;
-		//String text = null;
 		String locator = null;
 
 		if (button == Button.B_CANCEL_INSTANCE_LINK) {
@@ -55,7 +50,6 @@ public class DialogWarningConflictingResources extends DialogWarning {
 
 			sClick(locator);
 			this.zWaitForBusyOverlay();
-			}
-		 // return text;
+		}
 	}
 }

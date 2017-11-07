@@ -30,7 +30,7 @@ public class UnTagMessage extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Verify success on UnTag a shared mail (manager share)",
+	@Test (description = "Verify success on UnTag a shared mail (manager share)",
 			groups = { "functional", "L2" })
 
 	public void UnTagMessage_01() throws HarnessException {
@@ -126,7 +126,7 @@ public class UnTagMessage extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Verify success on Un Tag (keyboard='u') a shared mail (manager share)",
+	@Test (description = "Verify success on Un Tag (keyboard='u') a shared mail (manager share)",
 			groups = { "functional", "L2" })
 
 	public void UnTagMessage_02() throws HarnessException {

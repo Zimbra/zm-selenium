@@ -23,5 +23,4 @@ public class DisplayConversation extends com.zimbra.qa.selenium.projects.ajax.ui
 	protected DisplayConversation(AbsApplication application) {
 		super(application);
 	}
-
 }

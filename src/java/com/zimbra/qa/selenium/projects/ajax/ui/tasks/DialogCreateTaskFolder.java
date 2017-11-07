@@ -26,7 +26,7 @@ import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.DialogCreateFolder;
 
 public class DialogCreateTaskFolder extends AbsDialog {
-	
+
 	public static class Locators {
 		public static final String zDialogId = "css=div[class*='DwtDialog WindowOuterContainer']";
 		public static final String zNameField = "css=input[id$='_name'][class*='Field']";
@@ -61,14 +61,13 @@ public class DialogCreateTaskFolder extends AbsDialog {
 		String locator = Locators.zNameField;
 
 		if (!this.sIsElementPresent(locator)) {
-			return (false); // Not even present
+			return (false);
 		}
 
 		if (!this.zIsVisiblePerPosition(locator, 0, 0)) {
-			return (false); // Not visible per position
+			return (false);
 		}
 
-		// Yes, visible
 		logger.info(myPageName() + " zIsActive() = true");
 		return (true);
 
@@ -99,12 +98,10 @@ public class DialogCreateTaskFolder extends AbsDialog {
 			throw new HarnessException("Button " + button + " not implemented");
 		}
 
-		// Make sure the locator was set
 		if (locator == null) {
 			throw new HarnessException("Button " + button + " not implemented");
 		}
 
-		// Make sure the locator exists
 		if (!this.sIsElementPresent(locator)) {
 			throw new HarnessException("Button " + button + " locator " + locator + " not present!");
 		}
@@ -116,11 +113,6 @@ public class DialogCreateTaskFolder extends AbsDialog {
 		return (page);
 	}
 
-	/**
-	 * Enter text into the move message dialog folder name field
-	 * 
-	 * @param folder
-	 */
 	public void zEnterFolderName(String folder) throws HarnessException {
 		logger.info(myPageName() + " zEnterFolderName(" + folder + ")");
 
@@ -133,7 +125,7 @@ public class DialogCreateTaskFolder extends AbsDialog {
 
 		if (!this.sIsElementPresent(locator))
 			throw new HarnessException("unable to find folder name field " + locator);
-		
+
 		sClickAt(locator, "0,0");
 		sType(locator, folder);
 	}
@@ -142,11 +134,6 @@ public class DialogCreateTaskFolder extends AbsDialog {
 		None, Blue, Cyan, Green, Purple, Red, Yellow, Pink, Grey, Orange, MoreColors
 	}
 
-	/**
-	 * Set the color pulldown
-	 * 
-	 * @param folder
-	 */
 	public void zEnterFolderColor(FolderColor color) throws HarnessException {
 		logger.info(myPageName() + " zEnterFolderColor(" + color + ")");
 
@@ -159,7 +146,5 @@ public class DialogCreateTaskFolder extends AbsDialog {
 			throw new HarnessException("'more colors' - implement me!");
 
 		throw new HarnessException("implement me!");
-
 	}
-
 }

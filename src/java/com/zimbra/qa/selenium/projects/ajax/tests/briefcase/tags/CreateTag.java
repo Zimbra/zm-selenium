@@ -32,7 +32,7 @@ public class CreateTag extends FeatureBriefcaseTest {
 	}
 
 
-	@Test(description = "Create a new tag by clicking 'new tag' on folder tree",
+	@Test (description = "Create a new tag by clicking 'new tag' on folder tree",
 			groups = { "functional", "L2" })
 
 	public void CreateTag_01() throws HarnessException {
@@ -58,7 +58,7 @@ public class CreateTag extends FeatureBriefcaseTest {
 	}
 
 
-	@Test(description = "Create a new tag using keyboard shortcuts",
+	@Test (description = "Create a new tag using keyboard shortcuts",
 			groups = { "functional", "L3" })
 
 	public void CreateTag_02() throws HarnessException {
@@ -97,7 +97,7 @@ public class CreateTag extends FeatureBriefcaseTest {
 	}
 
 
-	@Test(description = "Create a new tag using context menu on a tag",
+	@Test (description = "Create a new tag using context menu on a tag",
 			groups = { "functional", "L3" })
 
 	public void CreateTag_03() throws HarnessException {
@@ -140,7 +140,7 @@ public class CreateTag extends FeatureBriefcaseTest {
 	}
 
 
-	@Test(description = "Create a new tag using briefcase app New -> New Tag",
+	@Test (description = "Create a new tag using briefcase app New -> New Tag",
 			groups = { "functional", "L3" })
 
 	public void CreateTag_04() throws HarnessException {

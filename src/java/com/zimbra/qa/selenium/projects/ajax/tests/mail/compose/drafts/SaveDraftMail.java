@@ -43,7 +43,7 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Save a basic draft (subject only)",
+	@Test (description = "Save a basic draft (subject only)",
 			groups = { "smoke", "L1" })
 
 	public void SaveDraftMail_01() throws HarnessException {
@@ -84,7 +84,7 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 	 * @throws HarnessException
 	 */
 
-	@Test( description = "Save draft using keyboard shortcut 'Escape'",
+	@Test (description = "Save draft using keyboard shortcut 'Escape'",
 			groups = { "functional", "L2" })
 
 	public void SaveDraftMail_02() throws HarnessException {
@@ -119,7 +119,7 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Save draft with To",
+	@Test (description = "Save draft with To",
 			groups = { "functional", "L2" })
 
 	public void SaveDraftMail_03() throws HarnessException {
@@ -160,7 +160,7 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Save draft with two receipients in To field",
+	@Test (description = "Save draft with two receipients in To field",
 			groups = { "functional", "L3" })
 
 	public void SaveDraftMail_04() throws HarnessException {
@@ -207,7 +207,7 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Save draft with Cc",
+	@Test (description = "Save draft with Cc",
 			groups = { "functional", "L2" })
 
 	public void SaveDraftMail_05() throws HarnessException {
@@ -249,7 +249,7 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Save draft with 2 Cc",
+	@Test (description = "Save draft with 2 Cc",
 			groups = { "functional", "L2" })
 
 	public void SaveDraftMail_06() throws HarnessException {
@@ -302,7 +302,7 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Save draft with Bcc",
+	@Test (description = "Save draft with Bcc",
 			groups = { "functional", "L2" })
 
 	public void SaveDraftMail_07() throws HarnessException {
@@ -349,7 +349,7 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Save draft with 2 Bcc",
+	@Test (description = "Save draft with 2 Bcc",
 			groups = { "functional", "L2" })
 
 	public void SaveDraftMail_08() throws HarnessException {

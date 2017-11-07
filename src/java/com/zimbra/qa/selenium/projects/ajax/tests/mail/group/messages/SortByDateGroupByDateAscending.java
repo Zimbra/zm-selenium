@@ -47,7 +47,7 @@ public class SortByDateGroupByDateAscending extends PrefGroupMailByMessageTest {
 
 
 	@Bugs(ids = "ZCS-1337")
-	@Test( description = "Sort a list of messages by Date in ascending order and Group by Date",
+	@Test (description = "Sort a list of messages by Date in ascending order and Group by Date",
 			groups = { "functional", "L2" })
 
 	public void SortByDateGroupByDateAscending_01() throws HarnessException {

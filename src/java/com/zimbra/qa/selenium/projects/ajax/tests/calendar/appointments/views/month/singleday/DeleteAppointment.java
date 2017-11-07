@@ -40,7 +40,7 @@ public class DeleteAppointment extends AjaxCommonTest {
 
 
 	@Bugs(ids = "69132")
-	@Test( description = "Delete a basic appointment in the month view",
+	@Test (description = "Delete a basic appointment in the month view",
 			groups = { "functional", "L2" })
 
 	public void DeleteAppointment_01() throws HarnessException {

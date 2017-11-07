@@ -50,7 +50,7 @@ public class EditResource extends AdminCommonTest {
 	 * 5. Verify resource is deleted using SOAP.
 	 * @throws HarnessException
 	 */
-	@Test( description = " Edit Resource name  -- Manage resource View -- Location",
+	@Test (description = " Edit Resource name  -- Manage resource View -- Location",
 			groups = { "smoke", "L1" })
 			public void EditResource_01() throws HarnessException {
 
@@ -103,7 +103,7 @@ public class EditResource extends AdminCommonTest {
 	 * 5. Verify resource is deleted using SOAP.
 	 * @throws HarnessException
 	 */
-	@Test( description = " Edit Resource name  -- Manage resource View -- Location",
+	@Test (description = " Edit Resource name  -- Manage resource View -- Location",
 			groups = { "functional", "L2" })
 			public void EditResource_02() throws HarnessException {
 
@@ -168,7 +168,7 @@ public class EditResource extends AdminCommonTest {
 	 * 5. Verify resource is deleted using SOAP.
 	 * @throws HarnessException
 	 */
-	@Test( description = "Edit Resource name -- Manage resource View/Right Click Menu -- Location",
+	@Test (description = "Edit Resource name -- Manage resource View/Right Click Menu -- Location",
 			groups = { "functional", "L3" })
 			public void EditResource_03() throws HarnessException {
 
@@ -221,7 +221,7 @@ public class EditResource extends AdminCommonTest {
 	 * 5. Verify resource is deleted using SOAP.
 	 * @throws HarnessException
 	 */
-	@Test( description = "Edit Resource name -- Manage resource View/Right Click Menu -- Equipment",
+	@Test (description = "Edit Resource name -- Manage resource View/Right Click Menu -- Equipment",
 			groups = { "functional", "L3" })
 			public void EditResource_04() throws HarnessException {
 
@@ -274,7 +274,7 @@ public class EditResource extends AdminCommonTest {
 	 * 5. Verify resource is deleted using SOAP.
 	 * @throws HarnessException
 	 */
-	@Test( description = " Edit Resource name  -- Manage resource View -- Location",
+	@Test (description = " Edit Resource name  -- Manage resource View -- Location",
 			groups = { "functional", "L2" })
 			public void EditResource_05() throws HarnessException {
 
@@ -331,7 +331,7 @@ public class EditResource extends AdminCommonTest {
 	 * 5. Verify resource is deleted using SOAP.
 	 * @throws HarnessException
 	 */
-	@Test( description = " Edit Resource name  -- Manage resource View -- Equipment",
+	@Test (description = " Edit Resource name  -- Manage resource View -- Equipment",
 			groups = { "functional", "L2" })
 			public void EditResource_06() throws HarnessException {
 
@@ -388,7 +388,7 @@ public class EditResource extends AdminCommonTest {
 	 * 5. Verify resource is deleted using SOAP.
 	 * @throws HarnessException
 	 */
-	@Test( description = "Edit Resource name -- Manage resource View/Right Click Menu -- Location",
+	@Test (description = "Edit Resource name -- Manage resource View/Right Click Menu -- Location",
 			groups = { "functional", "L3" })
 			public void EditResource_07() throws HarnessException {
 
@@ -445,7 +445,7 @@ public class EditResource extends AdminCommonTest {
 	 * 5. Verify resource is deleted using SOAP.
 	 * @throws HarnessException
 	 */
-	@Test( description = "Edit Resource name -- Manage resource View/Right Click Menu -- Equipment",
+	@Test (description = "Edit Resource name -- Manage resource View/Right Click Menu -- Equipment",
 			groups = { "functional", "L3" })
 			public void EditResource_08() throws HarnessException {
 

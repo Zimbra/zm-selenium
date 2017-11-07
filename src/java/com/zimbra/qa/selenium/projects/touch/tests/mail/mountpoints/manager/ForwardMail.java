@@ -33,7 +33,7 @@ public class ForwardMail extends PrefGroupMailByMessageTest{
 		logger.info("New " + FlagMail.class.getCanonicalName());
 	}
 
-	@Test( description = "Forward a email on mount point with manager rights",
+	@Test (description = "Forward a email on mount point with manager rights",
 			groups = { "functional" })
 
 	public void ForwardMail_01() throws HarnessException  {

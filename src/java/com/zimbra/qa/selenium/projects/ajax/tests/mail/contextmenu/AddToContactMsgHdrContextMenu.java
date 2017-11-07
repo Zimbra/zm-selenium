@@ -37,7 +37,7 @@ public class AddToContactMsgHdrContextMenu extends PrefGroupMailByMessageTest {
 
 
 	@Bugs(ids = "102204")
-	@Test( description = "Receive a  mail - Right Click From Msg Header and verify context menus >> AddToContact",
+	@Test (description = "Receive a  mail - Right Click From Msg Header and verify context menus >> AddToContact",
 			groups = { "smoke", "L1" })
 
 	public void AddToContactMessageHdrContextMenu_01() throws HarnessException {

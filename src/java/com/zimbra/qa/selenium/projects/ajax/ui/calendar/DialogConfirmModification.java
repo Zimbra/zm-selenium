@@ -15,6 +15,7 @@
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.ui.calendar;
+
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.staf.Stafpostqueue;
@@ -22,7 +23,6 @@ import com.zimbra.qa.selenium.projects.ajax.ui.DialogWarning;
 
 public class DialogConfirmModification extends DialogWarning {
 
-	// The ID for the main Dialog DIV
 	public static final String LocatorDivID = "SEND_UPDATES_DIALOG";
 
 	public static class Locators {
@@ -30,9 +30,9 @@ public class DialogConfirmModification extends DialogWarning {
 		public static final String DontSaveAndKeepOpen = "css= div[class='DwtDialog WindowOuterContainer'] label:contains('Don't save but keep the meeting open.')";
 		public static final String DiscardAndClose = "css= div[class='DwtDialog WindowOuterContainer'] label:contains('Discard changes and close.')";
 		public static final String Ok_changes = "css=td[id='YesNoCancel_button5_title']";
-		public static final String Cancel_changes =  "css=td[id='YesNoCancel_button4_title']";
+		public static final String Cancel_changes = "css=td[id='YesNoCancel_button4_title']";
 		public static final String Save_modifications = "css=td[id='CHNG_DLG_ORG_1_button2_title']";
-		public static final String Cancel_modifications =  "css=td[id='CHNG_DLG_ORG_1_button1_title']";
+		public static final String Cancel_modifications = "css=td[id='CHNG_DLG_ORG_1_button1_title']";
 	}
 
 	public DialogConfirmModification(AbsApplication application, AbsTab page) {
@@ -46,7 +46,7 @@ public class DialogConfirmModification extends DialogWarning {
 		logger.info(myPageName() + " zClickButton(" + button + ")");
 
 		tracer.trace("Click dialog button " + button);
-		if ( button == null )
+		if (button == null)
 			throw new HarnessException("button cannot be null");
 
 		String locator = null;
@@ -74,46 +74,38 @@ public class DialogConfirmModification extends DialogWarning {
 
 		} else if (button == Button.B_CANCEL) {
 
-			locator =Locators.Cancel_changes;
+			locator = Locators.Cancel_changes;
 			page = null;
 
-		}  else if (button == Button.B_SAVE_MODIFICATION) {
+		} else if (button == Button.B_SAVE_MODIFICATION) {
 			locator = Locators.Save_modifications;
 			page = null;
 
 		} else if (button == Button.B_CANCEL_MODIFICATION) {
 
-			locator =Locators.Cancel_modifications;
+			locator = Locators.Cancel_modifications;
 			page = null;
 
 		} else {
-
-			return ( super.zClickButton(button) );
-
+			return (super.zClickButton(button));
 		}
 
-		// Make sure the locator was set
 		if (locator == null) {
 			throw new HarnessException("Button " + button + " not implemented");
 		}
 
-		// Make sure the locator exists
 		if (!this.sIsElementPresent(locator)) {
-			throw new HarnessException("Button " + button + " locator "
-					+ locator + " not present!");
+			throw new HarnessException("Button " + button + " locator " + locator + " not present!");
 		}
 		this.sFocus(locator);
 		this.sClickAt(locator, "");
 		this.zWaitForBusyOverlay();
 
-		// This dialog could send messages, so wait for the queue
-		if ( waitForPostfix ) {
+		if (waitForPostfix) {
 			Stafpostqueue sp = new Stafpostqueue();
 			sp.waitForPostqueue();
 		}
 
 		return (page);
 	}
-
 }
-

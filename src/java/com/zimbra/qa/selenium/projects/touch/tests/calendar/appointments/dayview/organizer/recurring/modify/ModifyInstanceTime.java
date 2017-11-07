@@ -37,7 +37,7 @@ public class ModifyInstanceTime extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 
-	@Test( description = "Modify instance date of series and verify it",
+	@Test (description = "Modify instance date of series and verify it",
 			groups = { "functional" })
 
 	public void ModifyInstanceTime_01() throws HarnessException, ParseException {

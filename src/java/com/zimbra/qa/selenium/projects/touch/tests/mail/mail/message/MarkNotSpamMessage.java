@@ -35,7 +35,7 @@ public class MarkNotSpamMessage extends PrefGroupMailByMessageTest{
 	public MarkNotSpamMessage() {
 		logger.info("New "+ MarkNotSpamMessage.class.getCanonicalName());
 	}
-	@Test( description = "Mark message as not spam, from option menu",
+	@Test (description = "Mark message as not spam, from option menu",
 			groups = { "smoke" })
 
 	public void MarkNotSpamMessage_01() throws HarnessException, AWTException {

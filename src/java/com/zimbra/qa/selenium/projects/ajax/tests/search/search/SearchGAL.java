@@ -31,7 +31,7 @@ public class SearchGAL extends AjaxCommonTest {
 	}
 
 
-	@Test(description = "Search for a GAL contact",
+	@Test (description = "Search for a GAL contact",
 			groups = { "functional","L2" })
 
 	public void SearchGAL_01() throws HarnessException {
@@ -75,8 +75,8 @@ public class SearchGAL extends AjaxCommonTest {
 	}
 
 
-	@Test(description = "Search for a non-existing GAL contact",
-			groups = { "functional","L2"})
+	@Test (description = "Search for a non-existing GAL contact",
+			groups = { "functional","L2" })
 
 	public void SearchGAL_02() throws HarnessException {
 

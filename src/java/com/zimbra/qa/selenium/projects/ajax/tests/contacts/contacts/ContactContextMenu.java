@@ -72,8 +72,8 @@ public class ContactContextMenu extends AjaxCommonTest {
 	}
 
 
-	@Test(description = "Right click a contact to show a menu",
-			groups = { "smoke", "L0"})
+	@Test (description = "Right click a contact to show a menu",
+			groups = { "smoke", "L0" })
 
 	public void ShowContextMenu_01() throws HarnessException {
 
@@ -102,7 +102,7 @@ public class ContactContextMenu extends AjaxCommonTest {
 	}
 
 
-	@Test(description = "Right click then click New Email",
+	@Test (description = "Right click then click New Email",
 			groups = { "smoke", "L0" })
 
 	public void NewEmail_02() throws HarnessException {
@@ -124,7 +124,7 @@ public class ContactContextMenu extends AjaxCommonTest {
 	}
 
 
-	@Test(description = "Right click then click Advanced Search",
+	@Test (description = "Right click then click Advanced Search",
 			groups = { "deprecated"})
 
 	public void AdvancedSearch_03() throws HarnessException {
@@ -142,7 +142,7 @@ public class ContactContextMenu extends AjaxCommonTest {
 	}
 
 
-	@Test(description = "Right click then click Print",
+	@Test (description = "Right click then click Print",
 			groups = { "smoke-skip", "L3-skip" })
 
 	public void Print_04() throws HarnessException {
@@ -167,7 +167,7 @@ public class ContactContextMenu extends AjaxCommonTest {
 
 	}
 
-	@Test(description = "Right click then  click Find Emails->Received From contact",
+	@Test (description = "Right click then  click Find Emails->Received From contact",
 			groups = { "smoke" , "L1" })
 
 	public void FindEmailsReceivedFromContact_05() throws HarnessException {
@@ -205,7 +205,7 @@ public class ContactContextMenu extends AjaxCommonTest {
 	}
 
 
-	@Test(description = "Right click then  click Find Emails->Sent To contact",
+	@Test (description = "Right click then  click Find Emails->Sent To contact",
 			groups = { "smoke", "L1" })
 
 	public void FindEmailsSentToContact_06() throws HarnessException {

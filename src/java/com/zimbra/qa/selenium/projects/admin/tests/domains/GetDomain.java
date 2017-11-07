@@ -45,7 +45,7 @@ public class GetDomain extends AdminCommonTest {
 	 * 2. Verify domain is present in the list.
 	 * @throws HarnessException
 	 */
-	@Test( description = "Verify created domain is present in the domain list view",
+	@Test (description = "Verify created domain is present in the domain list view",
 			groups = { "smoke", "L1" })
 	public void GetDomain_01() throws HarnessException {
 
@@ -86,7 +86,7 @@ public class GetDomain extends AdminCommonTest {
 	 * 4. Verify domain alias is deleted using SOAP.
 	 * @throws HarnessException
 	 */
-	@Test( description = "Verify get domain alias operation",
+	@Test (description = "Verify get domain alias operation",
 			groups = { "functional", "L2" })
 			public void GetDomain_02() throws HarnessException {
 		
@@ -142,7 +142,7 @@ public class GetDomain extends AdminCommonTest {
 	 * 2. Verify domain is present in the list.
 	 * @throws HarnessException
 	 */
-	@Test( description = "Verify created domain is present in the domain list view",
+	@Test (description = "Verify created domain is present in the domain list view",
 			groups = { "smoke", "L1" })
 	public void GetDomain_03() throws HarnessException {
 
@@ -189,7 +189,7 @@ public class GetDomain extends AdminCommonTest {
 	 * 4. Verify domain alias is deleted using SOAP.
 	 * @throws HarnessException
 	 */
-	@Test( description = "Verify get domain alias operation - Search list view",
+	@Test (description = "Verify get domain alias operation - Search list view",
 			groups = { "functional", "L3" })
 			public void GetDomain_04() throws HarnessException {
 		

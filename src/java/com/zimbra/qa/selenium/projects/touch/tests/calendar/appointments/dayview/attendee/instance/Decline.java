@@ -34,7 +34,7 @@ public class Decline extends CalendarWorkWeekTest {
 	}
 
 	@Bugs(ids = "96437")
-	@Test( description = "Decline a instance using view appointment options", 
+	@Test (description = "Decline a instance using view appointment options", 
 			groups = { "functional" })
 	
 	public void DeclineMeeting_01() throws HarnessException {

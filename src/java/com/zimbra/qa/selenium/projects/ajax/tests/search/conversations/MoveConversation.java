@@ -31,7 +31,7 @@ public class MoveConversation extends PrefGroupMailByConversationTest {
 	}
 
 
-	@Test( description = "From search: Move a conversation to a subfolder",
+	@Test (description = "From search: Move a conversation to a subfolder",
 			groups = { "functional","L2" })
 
 	public void MoveConversation01() throws HarnessException {
@@ -74,7 +74,7 @@ public class MoveConversation extends PrefGroupMailByConversationTest {
 
 
 	@Bugs(ids = "77217")
-	@Test( description = "From search: Move a conversation in Trash to a subfolder",
+	@Test (description = "From search: Move a conversation in Trash to a subfolder",
 			groups = { "functional","L2" })
 
 	public void MoveConversation02() throws HarnessException {
@@ -132,7 +132,7 @@ public class MoveConversation extends PrefGroupMailByConversationTest {
 
 
 	@Bugs(ids = "80611")
-	@Test( description = "From search: Move a conversation in Sent to a subfolder",
+	@Test (description = "From search: Move a conversation in Sent to a subfolder",
 			groups = { "functional","L2" })
 
 	public void MoveConversation03() throws HarnessException {

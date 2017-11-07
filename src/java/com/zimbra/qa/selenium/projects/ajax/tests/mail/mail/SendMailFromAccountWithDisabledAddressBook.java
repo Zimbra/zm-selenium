@@ -34,7 +34,7 @@ public class SendMailFromAccountWithDisabledAddressBook extends PrefGroupMailByM
 
 
 	@Bugs( ids = "48923")
-	@Test( description = "Send a mail from an account having Contacts disabled",
+	@Test (description = "Send a mail from an account having Contacts disabled",
 			groups = { "functional", "L2" } )
 
 	public void SendMailFromAccountWithNoAddressBook_01() throws HarnessException {

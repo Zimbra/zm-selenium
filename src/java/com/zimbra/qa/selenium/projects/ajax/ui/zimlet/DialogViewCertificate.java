@@ -45,14 +45,13 @@ public class DialogViewCertificate extends AbsDialog {
 		String locator = Locators.zDialogTitleClass;
 
 		if (!this.sIsElementPresent(locator)) {
-			return (false); // Not even present
+			return (false);
 		}
 
 		if (!this.zIsVisiblePerPosition(locator, 0, 0)) {
-			return (false); // Not visible per position
+			return (false);
 		}
 
-		// Yes, visible
 		logger.info(myPageName() + " zIsActive() = true");
 		return (true);
 	}
@@ -65,84 +64,78 @@ public class DialogViewCertificate extends AbsDialog {
 		String locator = null;
 
 		if (button == Button.B_OK) {
-			locator = "css=div[class='" + Locators.zDialogClass + "'] "
-					+ "div[class='" + Locators.zDialogButtonsClass
+			locator = "css=div[class='" + Locators.zDialogClass + "'] " + "div[class='" + Locators.zDialogButtonsClass
 					+ "'] td[class=ZWidgetTitle]:contains(OK)";
 		} else {
 			throw new HarnessException("Button " + button + " not implemented");
 		}
 		if (!this.sIsElementPresent(locator)) {
-			throw new HarnessException("Button " + button + " locator "
-					+ locator + " not present!");
+			throw new HarnessException("Button " + button + " locator " + locator + " not present!");
 		}
 		this.zClickAt(locator, "0,0");
 		SleepUtil.sleepMedium();
 
 		return (null);
 	}
-	
+
 	@Override
 	public String zGetDisplayedText(String issuedToEmail) throws HarnessException {
 		logger.info(myPageName() + " Issued to email");
 
 		String locator = "//table[@class='CertificateDetails']/tbody/tr[@data-name='Email'][1]/td[@class='Value']";
-		// Make sure the locator exists
-		if ( !this.sIsElementPresent(locator) ) {
+
+		if (!this.sIsElementPresent(locator)) {
 			throw new HarnessException("Issued to email " + locator + " is not present");
 		}
-		
-		return(this.sGetText(locator));
+
+		return (this.sGetText(locator));
 	}
 
 	public String zGetDisplayedTextIssuedToOrganization() throws HarnessException {
 		logger.info(myPageName() + " Issued to Organisation");
 
-		String locator = "//table[@class='CertificateDetails']/tbody/tr[@data-name='Organization (O)'][1]/td[@class='Value']" ;
-		
-		// Make sure the locator exists
-		if ( !this.sIsElementPresent(locator) ) {
+		String locator = "//table[@class='CertificateDetails']/tbody/tr[@data-name='Organization (O)'][1]/td[@class='Value']";
+
+		if (!this.sIsElementPresent(locator)) {
 			throw new HarnessException("Issued to organization " + locator + " is not present");
 		}
-		
-		return(this.sGetText(locator));
+
+		return (this.sGetText(locator));
 	}
-	
+
 	public String zGetDisplayedTextIssuedByOrganization() throws HarnessException {
 		logger.info(myPageName() + " Issued by Organisation");
 
-		String locator = "//table[@class='CertificateDetails']/tbody/tr[@data-name='Organization (O)'][2]/td[@class='Value']" ;
-		
-		// Make sure the locator exists
-		if ( !this.sIsElementPresent(locator) ) {
+		String locator = "//table[@class='CertificateDetails']/tbody/tr[@data-name='Organization (O)'][2]/td[@class='Value']";
+
+		if (!this.sIsElementPresent(locator)) {
 			throw new HarnessException("Issued by organization " + locator + " is not present");
 		}
-		
-		return(this.sGetText(locator));
+
+		return (this.sGetText(locator));
 	}
-	
+
 	public String zGetDisplayedTextIssuedByEmail() throws HarnessException {
 		logger.info(myPageName() + " Issued by email");
 
-		String locator = "//table[@class='CertificateDetails']/tbody/tr[@data-name='Email'][2]/td[@class='Value']" ;
-		
-		// Make sure the locator exists
-		if ( !this.sIsElementPresent(locator) ) {
+		String locator = "//table[@class='CertificateDetails']/tbody/tr[@data-name='Email'][2]/td[@class='Value']";
+
+		if (!this.sIsElementPresent(locator)) {
 			throw new HarnessException("Issued by email " + locator + " is not present");
 		}
-		
-		return(this.sGetText(locator));
+
+		return (this.sGetText(locator));
 	}
-	
+
 	public String zGetDisplayedTextAlgorithm() throws HarnessException {
 		logger.info(myPageName() + " Algorithm");
 
-		String locator = "css=div[class='CertificateDetailsWrapper'] table[class='CertificateDetails'] tbody tr[data-name='Algorithm'] td[class='Value']" ;
-		
-		// Make sure the locator exists
-		if ( !this.sIsElementPresent(locator) ) {
+		String locator = "css=div[class='CertificateDetailsWrapper'] table[class='CertificateDetails'] tbody tr[data-name='Algorithm'] td[class='Value']";
+
+		if (!this.sIsElementPresent(locator)) {
 			throw new HarnessException("Algorithm used " + locator + " is not present");
 		}
-		
-		return(this.sGetText(locator));
+
+		return (this.sGetText(locator));
 	}
 }

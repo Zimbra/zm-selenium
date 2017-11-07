@@ -31,7 +31,7 @@ public class RenameFolder extends PrefGroupMailByMessageTest {
 		logger.info("New "+ CreateFolder.class.getCanonicalName());
 	}
 
-	@Test( description = "Rename mail folder",
+	@Test (description = "Rename mail folder",
 			groups = { "smoke" })
 	
 	public void RenameFolder_01() throws HarnessException  {

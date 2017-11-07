@@ -31,7 +31,7 @@ public class MuteMessage extends PrefGroupMailByMessageTest {
 
 
 	@Bugs(ids = "38449")
-	@Test( description = "Mute a message (conversation) using Actions -> Mute",
+	@Test (description = "Mute a message (conversation) using Actions -> Mute",
 			groups = { "smoke-skip", "application-bug" })
 
 	public void MuteMessage_01() throws HarnessException {
@@ -68,7 +68,7 @@ public class MuteMessage extends PrefGroupMailByMessageTest {
 
 
 	@Bugs( ids = "38449")
-	@Test( description = "Mute message, using 'Mute' shortcut key",
+	@Test (description = "Mute message, using 'Mute' shortcut key",
 			groups = { "functional-skip", "application-bug" })
 
 	public void MuteMessage_02() throws HarnessException {
@@ -76,7 +76,7 @@ public class MuteMessage extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Mute message, using 'Right Click' -> 'Mute'",
+	@Test (description = "Mute message, using 'Right Click' -> 'Mute'",
 			groups = { "smoke-skip", "application-bug" })
 
 	public void MuteMessage_03() throws HarnessException {

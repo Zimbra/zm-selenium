@@ -30,7 +30,7 @@ public class AddressContextMenuOptions extends PrefGroupMailByMessageTest {
 		super.startingPage = app.zPageMail;
 	}
 	
-	@Test( description = "Click from bubble address>>Verify AddtoContact/Newmessage/Search menus", 
+	@Test (description = "Click from bubble address>>Verify AddtoContact/Newmessage/Search menus", 
 			groups = { "sanity" })
 	
 	public void AcceptMeeting_01() throws HarnessException {

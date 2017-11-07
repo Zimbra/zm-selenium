@@ -32,7 +32,7 @@ public class Tentative extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "View meeting invite by opening it and mark as Tentative",
+	@Test (description = "View meeting invite by opening it and mark as Tentative",
 			groups = { "smoke", "L1" })
 
 	public void TentativeMeeting_01() throws HarnessException {

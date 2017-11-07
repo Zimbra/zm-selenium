@@ -39,7 +39,7 @@ public class CreateMeetingWithAttachment extends AjaxCommonTest {
 
 
 	@Bugs(ids = "104231")
-	@Test( description = "Create invite by attaching file",
+	@Test (description = "Create invite by attaching file",
 		groups = { "sanity", "L0" })
 
 	public void CreateMeetingWithAttachment_01() throws HarnessException {

@@ -44,7 +44,7 @@ public class CreateAccount extends AdminCommonTest {
 	 */
 	
 	@Bugs( ids = "100779")
-	@Test( description = "Create a basic account using New->Account",
+	@Test (description = "Create a basic account using New->Account",
 			groups = { "sanity", "L0" })
 	
 	public void CreateAccount_01() throws HarnessException {

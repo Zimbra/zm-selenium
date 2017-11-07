@@ -39,7 +39,7 @@ public class ToggleStatus extends AdminCommonTest {
 	 * 3. Verify status
 	 * @throws HarnessException
 	 */
-	@Test( description = "Verify administrator should be able to toggle zimlet status",
+	@Test (description = "Verify administrator should be able to toggle zimlet status",
 			groups = { "smoke","L1" })
 	public void ToggleStatus_01() throws HarnessException {
 	

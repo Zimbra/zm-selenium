@@ -31,8 +31,8 @@ public class DeleteMountpoint extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Delete a mountpoint to a shared addressbook (right click -> Delete)",
-			groups = { "smoke", "L1"})
+	@Test (description = "Delete a mountpoint to a shared addressbook (right click -> Delete)",
+			groups = { "smoke", "L1" })
 
 	public void DeleteMountpoint_01() throws HarnessException {
 

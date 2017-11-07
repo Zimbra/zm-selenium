@@ -41,7 +41,7 @@ public class FwdMailWithAnInlineAttachment extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Fwd a mail  with an inline attachment by pressing Forward button>>attach>>Inline - in separate window",
+	@Test (description = "Fwd a mail  with an inline attachment by pressing Forward button>>attach>>Inline - in separate window",
 			groups = { "smoke", "L1" })
 
 	public void FwdMailWithAnInlineAttachment_01() throws HarnessException {

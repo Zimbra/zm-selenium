@@ -38,7 +38,7 @@ public class ModifySeries extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Modify series from every day to every week",
+	@Test (description = "Modify series from every day to every week",
 			groups = { "functional", "L2" })
 
 	public void ModifySeries_01() throws HarnessException {
@@ -138,7 +138,7 @@ public class ModifySeries extends AjaxCommonTest {
 		ZAssert.assertNotNull(messageId, "Verify attendee1 gets new email notification");
 	}
 
-	@Test( description = "Modify summary of a weekly recurring series",
+	@Test (description = "Modify summary of a weekly recurring series",
 			groups = { "functional", "L2" })
 
 	public void ModifySeries_02() throws HarnessException {
@@ -242,7 +242,7 @@ public class ModifySeries extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Modify summary of a daily recurring series",
+	@Test (description = "Modify summary of a daily recurring series",
 			groups = { "functional", "L2" })
 
 	public void ModifySeries_03() throws HarnessException {
@@ -354,7 +354,7 @@ public class ModifySeries extends AjaxCommonTest {
 
 
 	@Bugs(ids = "100575")
-	@Test( description = "Modify series by setting end date",
+	@Test (description = "Modify series by setting end date",
 			groups = { "functional", "L2" })
 
 	public void ModifySeries_04() throws HarnessException {
@@ -461,7 +461,7 @@ public class ModifySeries extends AjaxCommonTest {
 	}
 
 	@Bugs(ids = "101610")
-	@Test( description = "Modifying daily custom series doesn't update new selection in custom repeat dialog ",
+	@Test (description = "Modifying daily custom series doesn't update new selection in custom repeat dialog ",
 			groups = { "functional-skip", "application-bug" })
 
 	public void ModifySeries_05() throws HarnessException {

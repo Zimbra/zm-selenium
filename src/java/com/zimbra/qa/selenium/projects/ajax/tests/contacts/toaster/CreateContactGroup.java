@@ -35,8 +35,8 @@ public class CreateContactGroup extends AjaxCommonTest {
 	}
 
 
-	@Test(description = "Create a basic contact group with 2 addresses.  New -> Contact Group and verify toast msg",
-			groups = {"functional", "L2"})
+	@Test (description = "Create a basic contact group with 2 addresses.  New -> Contact Group and verify toast msg",
+			groups = { "functional", "L2" })
 
 	public void CreateContactGroupToastMsg_01() throws HarnessException {
 
@@ -69,8 +69,8 @@ public class CreateContactGroup extends AjaxCommonTest {
 	}
 
 
-	@Test(description = "Create a contact group with existing contacts and verify toast msg",
-			groups = { "functional", "L2"})
+	@Test (description = "Create a contact group with existing contacts and verify toast msg",
+			groups = { "functional", "L2" })
 
 	public void CreateContactGroupToastMsg_02() throws HarnessException {
 

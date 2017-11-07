@@ -31,7 +31,7 @@ public class TagMail extends PrefGroupMailByConversationTest {
 		logger.info("New "+ DeleteMail.class.getCanonicalName());
 	}
 	
-	@Test( description = "Tag a mail in message view",
+	@Test (description = "Tag a mail in message view",
 			groups = { "smoke" })
 			
 	public void TagMail_01() throws HarnessException {

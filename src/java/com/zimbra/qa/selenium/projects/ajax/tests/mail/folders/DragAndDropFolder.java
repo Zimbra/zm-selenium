@@ -30,7 +30,7 @@ public class DragAndDropFolder extends PrefGroupMailByMessageTest{
 	}
 
 
-	@Test( description = "Drag one folder and Drop into other",
+	@Test (description = "Drag one folder and Drop into other",
 			groups = { "smoke", "L1" })
 
 	public void DragDropFolder_01() throws HarnessException {

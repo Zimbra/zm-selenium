@@ -29,7 +29,7 @@ public class GetMessage extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Receive a mail with embedded video",
+	@Test (description = "Receive a mail with embedded video",
 			groups = { "functional", "L2" })
 
 	public void GetMail_01() throws HarnessException {

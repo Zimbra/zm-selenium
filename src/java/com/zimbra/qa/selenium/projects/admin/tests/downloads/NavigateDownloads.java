@@ -38,7 +38,7 @@ public class NavigateDownloads extends AdminCommonTest {
 	 * 2. Verify navigation path -- "Home --> Tools and Migration --> Downloads"
 	 * @throws HarnessException
 	 */
-	@Test( description = "Navigate to Downloads",
+	@Test (description = "Navigate to Downloads",
 			groups = { "sanity", "L0" })
 			public void NavigateDownloads_01() throws HarnessException {
 		

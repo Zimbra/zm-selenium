@@ -38,7 +38,7 @@ public class MainScreen extends MobileCommonTest {
 		
 	}
 	
-	@Test( description = "Verify basic elements on the Main Screen",
+	@Test (description = "Verify basic elements on the Main Screen",
 			groups = { "sanity" })
 	public void MainScreen_01() throws HarnessException {
 				
@@ -54,7 +54,7 @@ public class MainScreen extends MobileCommonTest {
 
 	}
 
-	@Test( description = "Verify Copyright on the Main Screen",
+	@Test (description = "Verify Copyright on the Main Screen",
 			groups = { "smoke" })
 	public void MainScreen_02() throws HarnessException {
 				

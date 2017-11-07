@@ -37,7 +37,7 @@ public class SaveDraftMail extends TouchCommonTest {
 
 	}
 	
-	@Test( description = "Save a draft with To, Cc, Bcc, Subject & Body value",
+	@Test (description = "Save a draft with To, Cc, Bcc, Subject & Body value",
 			groups = { "sanity" })
 			
 	public void SaveDraftMail_01() throws HarnessException {

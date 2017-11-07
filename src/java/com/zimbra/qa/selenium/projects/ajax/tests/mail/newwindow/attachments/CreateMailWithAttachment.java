@@ -35,8 +35,8 @@ public class CreateMailWithAttachment extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Send a mail with an attachment - in a separate window",
-			groups = {"sanity", "L0" })
+	@Test (description = "Send a mail with an attachment - in a separate window",
+			groups = { "sanity", "L0" })
 
 	public void CreateMailWithAttachment_01() throws HarnessException {
 

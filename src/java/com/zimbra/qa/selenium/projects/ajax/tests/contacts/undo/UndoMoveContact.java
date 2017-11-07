@@ -33,7 +33,7 @@ public class UndoMoveContact extends AjaxCommonTest {
 
 
 	@Test(	description = "Undone moved contact",
-			groups = { "functional", "L3"})
+			groups = { "functional", "L3" })
 
 	public void UndoMoveContact_01() throws HarnessException {
 

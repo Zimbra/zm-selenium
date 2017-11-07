@@ -64,14 +64,14 @@ public class PageLogin extends AbsTab {
 
 		// Look for the login button.
 		boolean present = sIsElementPresent(locator);
-		if ( !present ) {
-			logger.debug("isActive() present = "+ present);
+		if (!present) {
+			logger.debug("isActive() present = " + present);
 			return (false);
 		}
 
-		boolean visible = zIsVisiblePerPosition(locator, 0 , 0);
-		if ( !visible ) {
-			logger.debug("isActive() visible = "+ visible);
+		boolean visible = zIsVisiblePerPosition(locator, 0, 0);
+		if (!visible) {
+			logger.debug("isActive() visible = " + visible);
 			return (false);
 		}
 
@@ -87,13 +87,13 @@ public class PageLogin extends AbsTab {
 	@Override
 	public void zNavigateTo() throws HarnessException {
 
-		if ( zIsActive() ) {
+		if (zIsActive()) {
 			logger.info(myPageName() + " is already loaded");
 			return;
 		}
 
 		// Logout
-		if ( ((AppAjaxClient)MyApplication).zPageMain.zIsActive() ) {
+		if (((AppAjaxClient) MyApplication).zPageMain.zIsActive()) {
 			sOpen(ConfigProperties.getLogoutURL());
 			sOpen(ConfigProperties.getBaseURL());
 		}
@@ -105,7 +105,8 @@ public class PageLogin extends AbsTab {
 	public void zLogin(ZimbraAccount account) throws HarnessException {
 		logger.debug("login(ZimbraAccount account)" + account.EmailAddress);
 
-		tracer.trace("Login to the " + MyApplication.myApplicationName() + " using user/password " + account.EmailAddress + "/" + account.Password);
+		tracer.trace("Login to the " + MyApplication.myApplicationName() + " using user/password "
+				+ account.EmailAddress + "/" + account.Password);
 
 		zNavigateTo();
 
@@ -113,7 +114,7 @@ public class PageLogin extends AbsTab {
 
 		try {
 
-			((AppAjaxClient)MyApplication).zPageMain.zRefreshUITillElementPresent(Locators.zBtnLogin);
+			((AppAjaxClient) MyApplication).zPageMain.zRefreshUITillElementPresent(Locators.zBtnLogin);
 
 			zSetLoginName(account.EmailAddress);
 			zSetLoginPassword(account.Password);
@@ -121,8 +122,8 @@ public class PageLogin extends AbsTab {
 			SleepUtil.sleepLong();
 			zWaitForBusyOverlay();
 
-			((AppAjaxClient)MyApplication).zPageMain.zWaitForActive(100000);
-			((AppAjaxClient)MyApplication).zSetActiveAccount(account);
+			((AppAjaxClient) MyApplication).zPageMain.zWaitForActive(100000);
+			((AppAjaxClient) MyApplication).zSetActiveAccount(account);
 
 		} finally {
 
@@ -134,7 +135,8 @@ public class PageLogin extends AbsTab {
 	public AbsPage zSetupAfterLogin(ZimbraAccount account) throws HarnessException {
 		logger.debug("login(ZimbraAccount account)" + account.EmailAddress);
 
-		tracer.trace("Login to the "+ MyApplication.myApplicationName() +" using user/password "+ account.EmailAddress +"/"+ account.Password);
+		tracer.trace("Login to the " + MyApplication.myApplicationName() + " using user/password "
+				+ account.EmailAddress + "/" + account.Password);
 
 		zNavigateTo();
 		zSetLoginName(account.EmailAddress);
@@ -147,19 +149,19 @@ public class PageLogin extends AbsTab {
 
 		AbsPage page = null;
 		page = new Dialog2FactorAuthEnable(MyApplication, ((AppAjaxClient) MyApplication).zPageLogin);
-		if ( page.zIsActive() ) {
+		if (page.zIsActive()) {
 			return (page);
 		}
 
-		return(null);
+		return (null);
 
 	}
-
 
 	public void zLogin(ZimbraAccount account, String totp, boolean trustThisComputer) throws HarnessException {
 		logger.debug("login(ZimbraAccount account)" + account.EmailAddress);
 
-		tracer.trace("Login to the "+ MyApplication.myApplicationName() +" using user/password "+ account.EmailAddress +"/"+ account.Password);
+		tracer.trace("Login to the " + MyApplication.myApplicationName() + " using user/password "
+				+ account.EmailAddress + "/" + account.Password);
 
 		zNavigateTo();
 
@@ -175,16 +177,15 @@ public class PageLogin extends AbsTab {
 			SleepUtil.sleepMedium();
 			zSetLoginTOTPCode(totp);
 
-			if ( trustThisComputer == true) {
+			if (trustThisComputer == true) {
 				zMarkTrustThisComputer();
 			}
 
 			sClickAt(Locators.zBtnLogin, "");
 
-			((AppAjaxClient)MyApplication).zPageMain.zWaitForActive(180000);
+			((AppAjaxClient) MyApplication).zPageMain.zWaitForActive(180000);
 
-			((AppAjaxClient)MyApplication).zSetActiveAccount(account);
-
+			((AppAjaxClient) MyApplication).zSetActiveAccount(account);
 
 		} finally {
 
@@ -193,37 +194,27 @@ public class PageLogin extends AbsTab {
 		}
 	}
 
-	/**
-	 * Add the specified name to the login name field
-	 * @param name
-	 * @throws HarnessException
-	 */
 	public void zSetLoginName(String name) throws HarnessException {
 		String locator = Locators.zInputUsername;
-		if ( name == null ) {
+		if (name == null) {
 			throw new HarnessException("Name is null");
 		}
 
-		if ( !this.sIsElementPresent(locator) ) {
-			throw new HarnessException("Login field does not exist "+ locator);
+		if (!this.sIsElementPresent(locator)) {
+			throw new HarnessException("Login field does not exist " + locator);
 		}
 		clearField(locator);
 		sType(locator, name);
 		SleepUtil.sleepSmall();
 	}
 
-	/**
-	 * Add the specified password to the login password field
-	 * @param name
-	 * @throws HarnessException
-	 */
 	public void zSetLoginPassword(String password) throws HarnessException {
 		String locator = Locators.zInputPassword;
-		if ( password == null ) {
+		if (password == null) {
 			throw new HarnessException("Password is null");
 		}
-		if ( !this.sIsElementPresent(locator) ) {
-			throw new HarnessException("Password field does not exist "+ locator);
+		if (!this.sIsElementPresent(locator)) {
+			throw new HarnessException("Password field does not exist " + locator);
 		}
 		clearField(locator);
 		sType(locator, password);
@@ -232,11 +223,11 @@ public class PageLogin extends AbsTab {
 
 	public void zSetLoginTOTPCode(String totpCode) throws HarnessException {
 		String locator = Locators.zInputCode;
-		if ( totpCode == null ) {
+		if (totpCode == null) {
 			throw new HarnessException("totp code is null");
 		}
-		if ( !this.sIsElementPresent(locator) ) {
-			throw new HarnessException("totp code field does not exist "+ locator);
+		if (!this.sIsElementPresent(locator)) {
+			throw new HarnessException("totp code field does not exist " + locator);
 		}
 		clearField(locator);
 		sType(locator, totpCode);
@@ -253,7 +244,6 @@ public class PageLogin extends AbsTab {
 	public Boolean zVerifyTrustThisComputer() throws HarnessException {
 		return sIsElementPresent(Locators.zTrustThisComputer);
 	}
-
 
 	@Override
 	public AbsPage zToolbarPressButton(Button button) throws HarnessException {
@@ -276,8 +266,7 @@ public class PageLogin extends AbsTab {
 	}
 
 	@Override
-	public AbsPage zListItem(Action action, Button option, Button subOption ,String item)
-	throws HarnessException {
+	public AbsPage zListItem(Action action, Button option, Button subOption, String item) throws HarnessException {
 		throw new HarnessException("Login page does not have lists");
 	}
 
@@ -285,5 +274,4 @@ public class PageLogin extends AbsTab {
 	public AbsPage zKeyboardShortcut(Shortcut shortcut) throws HarnessException {
 		throw new HarnessException("No shortcuts supported in the login page");
 	}
-
 }

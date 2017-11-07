@@ -28,7 +28,7 @@ public class BasicLogo extends AdminCommonTest {
 		logger.info("New "+ BasicLogo.class.getCanonicalName());
 	}
 	
-	@Test( description = "Verify the Top Menu displays the Logo image correctly",
+	@Test (description = "Verify the Top Menu displays the Logo image correctly",
 			groups = { "functional-skip", "L3-skip" })
 	public void TopMenu_BasicLogo_01() throws HarnessException {
 		throw new HarnessException("Implement me!");

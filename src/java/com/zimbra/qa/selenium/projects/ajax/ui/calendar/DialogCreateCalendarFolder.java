@@ -14,21 +14,12 @@
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-
 package com.zimbra.qa.selenium.projects.ajax.ui.calendar;
 
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 
-/**
- * Represents a "Add external calendar" dialog box
- *
- * It would probably be best to fix up DialogCreateNewFolder and
- * DialogCreateBriefcaseFolder classes to be generic. It seems this class only
- * changes the locator for finding the folder name input field.
- *
- */
 public class DialogCreateCalendarFolder extends AbsDialog {
 
 	public static class Locators {
@@ -82,7 +73,6 @@ public class DialogCreateCalendarFolder extends AbsDialog {
 			throw new HarnessException("Button " + button + " not implemented");
 		}
 
-		// Make sure the locator exists
 		if (!this.sIsElementPresent(locator)) {
 			throw new HarnessException("Button " + button + " locator " + locator + " not present!");
 		}
@@ -110,10 +100,9 @@ public class DialogCreateCalendarFolder extends AbsDialog {
 		}
 
 		if (!this.zIsVisiblePerPosition(locator, 0, 0)) {
-			return (false); // Not visible per position
+			return (false);
 		}
 
-		// Yes, visible
 		logger.info(myPageName() + " zIsActive() = true");
 		return (true);
 	}
@@ -125,7 +114,5 @@ public class DialogCreateCalendarFolder extends AbsDialog {
 
 		this.sType(locator, calendarname);
 		this.zWaitForBusyOverlay();
-
 	}
-
 }

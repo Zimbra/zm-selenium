@@ -27,7 +27,7 @@ public class DisableTagFromAdmin extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Bug # 80892 - Disable tag from admin and check in AJAX client",
+	@Test (description = "Bug # 80892 - Disable tag from admin and check in AJAX client",
 			groups = { "functional", "L2" })
 
 	public void DisableTagFromAdmin_01() throws HarnessException {

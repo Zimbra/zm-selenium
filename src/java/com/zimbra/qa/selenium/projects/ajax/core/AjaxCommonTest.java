@@ -175,7 +175,6 @@ public class AjaxCommonTest {
 				// Reset the account
 				ZimbraAccount.ResetAccountZCS();
 
-				// Create a new account
 				// Set the preferences accordingly
 				ZimbraAccount.AccountZCS().modifyAccountPreferences(startingAccountPreferences);
 				ZimbraAccount.AccountZCS().modifyUserZimletPreferences(startingUserZimletPreferences);

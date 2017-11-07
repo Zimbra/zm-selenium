@@ -34,7 +34,7 @@ public class ModifySubjectBody extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 	
-	@Test( description = "Modify meeting subject and body",
+	@Test (description = "Modify meeting subject and body",
 			groups = { "smoke" })
 			
 	public void ModifySubjectBody_01() throws HarnessException {

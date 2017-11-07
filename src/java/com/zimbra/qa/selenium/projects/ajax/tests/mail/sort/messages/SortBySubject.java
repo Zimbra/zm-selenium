@@ -32,7 +32,7 @@ public class SortBySubject extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Sort a list of messages by subject (A->Z)",
+	@Test (description = "Sort a list of messages by subject (A->Z)",
 			groups = { "functional", "L2" })
 
 	public void SortBySubject_01() throws HarnessException {
@@ -107,7 +107,7 @@ public class SortBySubject extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Sort a list of messages by subject (Z->A)",
+	@Test (description = "Sort a list of messages by subject (Z->A)",
 			groups = { "functional", "L2" })
 
 	public void SortBySubject_02() throws HarnessException {

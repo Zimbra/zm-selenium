@@ -31,8 +31,8 @@ public class CreateShare extends AjaxCommonTest  {
 	}
 
 
-	@Test( description = "Share an addressbook - Viewer",
-			groups = { "smoke", "L1"})
+	@Test (description = "Share an addressbook - Viewer",
+			groups = { "smoke", "L1" })
 
 	public void CreateShare_01() throws HarnessException {
 

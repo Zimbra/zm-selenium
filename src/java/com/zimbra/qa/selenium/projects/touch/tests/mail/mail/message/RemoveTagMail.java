@@ -30,7 +30,7 @@ public class RemoveTagMail extends PrefGroupMailByMessageTest {
 		logger.info("New "+ DeleteMail.class.getCanonicalName());
 	}
 	
-	@Test( description = "Cancel tag operation in message view",
+	@Test (description = "Cancel tag operation in message view",
 			groups = { "smoke" })
 			
 	public void RemoveTagMail_01() throws HarnessException {

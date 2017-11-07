@@ -35,7 +35,7 @@ public class EditReplyDecline extends AjaxCommonTest {
 
 
 	@Bugs(ids = "80559")
-	@Test( description = "Assistant right clicks to calendar invite from shared calendar and declines the invite OBO boss (Notify organizer)",
+	@Test (description = "Assistant right clicks to calendar invite from shared calendar and declines the invite OBO boss (Notify organizer)",
 			groups = { "functional-skip", "application-bug" })
 
 	public void EditReplyDecline_01() throws HarnessException {

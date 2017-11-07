@@ -40,7 +40,7 @@ public class AppPreferences extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "?app=options in url",
+	@Test (description = "?app=options in url",
 			groups = { "smoke", "L0"  })
 
 	public void AppPreferences_01() throws HarnessException {

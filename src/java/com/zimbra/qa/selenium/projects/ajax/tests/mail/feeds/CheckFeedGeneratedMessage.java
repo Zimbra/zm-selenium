@@ -34,7 +34,7 @@ public class CheckFeedGeneratedMessage extends PrefGroupMailByMessageTest {
 
 
 	@Bugs( ids = "52121")
-	@Test( description = "Bug 52121: Feed-generated messages do not render in AJAX client ",
+	@Test (description = "Bug 52121: Feed-generated messages do not render in AJAX client ",
 			groups = { "functional", "L2" })
 
 	public void CheckFeedGeneratedMessage_01() throws HarnessException {

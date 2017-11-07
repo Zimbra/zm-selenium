@@ -30,7 +30,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Bug 77538 - Double click a mail and delete it",
+	@Test (description = "Bug 77538 - Double click a mail and delete it",
 			groups = { "functional", "L2" } )
 
 	public void DeleteMail_01() throws HarnessException {

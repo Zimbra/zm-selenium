@@ -30,7 +30,7 @@ public class Cancel extends PrefGroupMailByMessageTest {
 		logger.info("New "+ Cancel.class.getCanonicalName());
 	}
 
-	@Test( description = "Open the find shares dialog.  Cancel the dialog.",
+	@Test (description = "Open the find shares dialog.  Cancel the dialog.",
 			groups = { "functional", "L2" })
 
 	public void CancelFindShares_01() throws HarnessException {

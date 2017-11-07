@@ -34,7 +34,7 @@ public class Decline extends AjaxCommonTest {
 
 
 	@Bugs(ids = "95961")
-	@Test( description = "Rt-click to appointment from the calendar app and Decline the meeting invite (Series)",
+	@Test (description = "Rt-click to appointment from the calendar app and Decline the meeting invite (Series)",
 			groups = { "smoke", "L1" })
 
 	public void DeclineMeeting_01() throws HarnessException {

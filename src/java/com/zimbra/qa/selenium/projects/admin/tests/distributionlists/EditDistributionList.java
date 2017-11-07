@@ -49,7 +49,7 @@ public class EditDistributionList extends AdminCommonTest {
 	 * 5. Verify dl is edit using SOAP.
 	 * @throws HarnessException
 	 */
-	@Test( description = "Edit Distribution List name - Manage Distribution List view",
+	@Test (description = "Edit Distribution List name - Manage Distribution List view",
 			groups = { "smoke", "L1" })
 	public void EditDistributionList_01() throws HarnessException {
 
@@ -102,7 +102,7 @@ public class EditDistributionList extends AdminCommonTest {
 	 * 5. Verify dl is edited using SOAP.
 	 * @throws HarnessException
 	 */
-	@Test( description = "Edit Distribution List name - Manage Distribution List view + Right Click Menu",
+	@Test (description = "Edit Distribution List name - Manage Distribution List view + Right Click Menu",
 			groups = { "functional", "L2" })
 	public void EditDistributionList_02() throws HarnessException {
 
@@ -154,7 +154,7 @@ public class EditDistributionList extends AdminCommonTest {
 	 * 5. Verify dl is edit using SOAP.
 	 * @throws HarnessException
 	 */
-	@Test( description = "Edit Admin Distribution List name - Manage Distribution List view",
+	@Test (description = "Edit Admin Distribution List name - Manage Distribution List view",
 			groups = { "functional", "L2" })
 	public void EditDistributionList_03() throws HarnessException {
 
@@ -208,7 +208,7 @@ public class EditDistributionList extends AdminCommonTest {
 	 * 5. Verify dl is edit using SOAP.
 	 * @throws HarnessException
 	 */
-	@Test( description = "Edit Dynamic Admin Distribution List name - Manage Distribution List view",
+	@Test (description = "Edit Dynamic Admin Distribution List name - Manage Distribution List view",
 			groups = { "functional", "L2" })
 	public void EditDistributionList_04() throws HarnessException {
 
@@ -269,7 +269,7 @@ public class EditDistributionList extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Bugs(ids = "97150")
-	@Test( description = "Edit dynamic Distribution List name - Manage Distribution List view",
+	@Test (description = "Edit dynamic Distribution List name - Manage Distribution List view",
 			groups = { "functional", "L3" })
 	public void EditDistributionList_05() throws HarnessException {
 
@@ -328,7 +328,7 @@ public class EditDistributionList extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Bugs(ids = "97150")
-	@Test( description = "Edit Dynamic Distribution List name - Manage Distribution List view + Right Click Menu",
+	@Test (description = "Edit Dynamic Distribution List name - Manage Distribution List view + Right Click Menu",
 			groups = { "functional", "L3" })
 	public void EditDistributionList_06() throws HarnessException {
 

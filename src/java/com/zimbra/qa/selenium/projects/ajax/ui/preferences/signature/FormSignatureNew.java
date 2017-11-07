@@ -106,11 +106,9 @@ public class FormSignatureNew extends AbsForm {
 			throw new HarnessException("no logic defined for button " + button);
 		}
 
-		// Make sure the button exists
 		if (!this.sIsElementPresent(locator))
 			throw new HarnessException("Button is not present locator=" + locator + " button=" + button);
 
-		// Click it
 		this.zClickAt(locator, "");
 		this.zWaitForBusyOverlay();
 		SleepUtil.sleepSmall();
@@ -143,13 +141,6 @@ public class FormSignatureNew extends AbsForm {
 		return false;
 	}
 
-	/**
-	 * Fill in the form field with the specified text
-	 *
-	 * @param field
-	 * @param value
-	 * @throws HarnessException
-	 */
 	public void zFillField(Field field, String value) throws HarnessException {
 		tracer.trace("Set " + field + " to " + value);
 
@@ -176,7 +167,6 @@ public class FormSignatureNew extends AbsForm {
 			throw new HarnessException("not implemented for field " + field);
 		}
 
-		// Make sure the button exists
 		if (!this.sIsElementPresent(locator))
 			throw new HarnessException("Field is not present field=" + field + " locator=" + locator);
 
@@ -206,7 +196,5 @@ public class FormSignatureNew extends AbsForm {
 					((AppAjaxClient) this.MyApplication).zPagePreferences);
 			return page;
 		}
-
 	}
-
 }

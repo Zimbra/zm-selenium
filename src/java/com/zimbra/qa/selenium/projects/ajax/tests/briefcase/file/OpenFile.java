@@ -42,7 +42,7 @@ public class OpenFile extends FeatureBriefcaseTest {
 	}
 
 	
-	@Test( description = "Upload file through RestUtil - open & verify through GUI", 
+	@Test (description = "Upload file through RestUtil - open & verify through GUI", 
 			groups = { "smoke", "L0" })
 	
 	public void OpenFile_01() throws HarnessException {

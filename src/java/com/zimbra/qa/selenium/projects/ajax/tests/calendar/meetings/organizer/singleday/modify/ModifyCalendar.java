@@ -36,7 +36,7 @@ public class ModifyCalendar extends AjaxCommonTest {
 
 
 	@Bugs(ids = "102771")
-	@Test( description = "Modify meeting calendar",
+	@Test (description = "Modify meeting calendar",
 			groups = { "functional", "L2" })
 
 	public void ModifyMeetingCalendar_01() throws HarnessException {

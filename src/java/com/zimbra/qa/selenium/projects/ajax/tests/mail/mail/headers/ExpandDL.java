@@ -32,7 +32,7 @@ public class ExpandDL extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Verify the Expand icon a DL in the To field",
+	@Test (description = "Verify the Expand icon a DL in the To field",
 			groups = { "smoke", "L1" })
 
 	public void ExpandDL_01() throws HarnessException {
@@ -80,7 +80,7 @@ public class ExpandDL extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Expand a DL in the To field",
+	@Test (description = "Expand a DL in the To field",
 			groups = { "smoke", "L1" })
 
 	public void ExpandDL_02() throws HarnessException {

@@ -33,7 +33,7 @@ public class Delete extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "View meeting invite by opening it and Delete the invitation by selecting 'Don't notify organizer'",
+	@Test (description = "View meeting invite by opening it and Delete the invitation by selecting 'Don't notify organizer'",
 			groups = { "smoke", "L1" })
 
 	public void DeleteMeeting_01() throws HarnessException {
@@ -126,7 +126,7 @@ public class Delete extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "View meeting invite by opening it and Delete the invitation by selecting 'Notify organizer'",
+	@Test (description = "View meeting invite by opening it and Delete the invitation by selecting 'Notify organizer'",
 			groups = { "smoke", "L1" })
 
 	public void DeleteMeeting_02() throws HarnessException {

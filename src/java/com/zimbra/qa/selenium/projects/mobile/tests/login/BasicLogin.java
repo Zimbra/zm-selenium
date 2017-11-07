@@ -35,7 +35,7 @@ public class BasicLogin extends MobileCommonTest {
 		
 	}
 	
-	@Test( description = "Login to the Mobile Client",
+	@Test (description = "Login to the Mobile Client",
 			groups = { "sanity" })
 	public void BasicLogin01() throws HarnessException {
 		

@@ -34,7 +34,7 @@ public class Edit extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 
-	@Test( description = "Edit meeting and locally save it", 
+	@Test (description = "Edit meeting and locally save it", 
 			groups = { "functional" })
 	
 	public void EditMeeting_01() throws HarnessException {

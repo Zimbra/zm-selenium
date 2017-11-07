@@ -35,7 +35,7 @@ public class SuggestALocation extends AjaxCommonTest {
 
 
 	@Bugs(ids = "107050")
-	@Test( description = "Suggest a free location while creating appointment from quick add dialog",
+	@Test (description = "Suggest a free location while creating appointment from quick add dialog",
 			groups = { "functional", "L2" })
 
 	public void SuggestALocation_01() throws HarnessException {

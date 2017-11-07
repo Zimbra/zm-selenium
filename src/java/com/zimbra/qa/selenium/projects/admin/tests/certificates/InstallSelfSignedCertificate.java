@@ -43,7 +43,7 @@ public class InstallSelfSignedCertificate extends AdminCommonTest {
 	 * 2. Verify certificate using SOAP.
 	 */
 
-	@Test(description = "Install self-signed certificate", priority=5,
+	@Test (description = "Install self-signed certificate", priority=5,
 			groups = { "smoke", "L1" })
 
 	public void InstallSelfSignedCertificate_01() throws HarnessException {

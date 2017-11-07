@@ -33,7 +33,7 @@ public class RedirectMessage extends PrefGroupMailByMessageTest {
 
 
 	@Bugs(ids = "14110")
-	@Test( description = "Redirect message, using 'Redirect' toolbar button",
+	@Test (description = "Redirect message, using 'Redirect' toolbar button",
 			groups = { "smoke", "L1" })
 
 	public void RedirectMessage_01() throws HarnessException {
@@ -73,7 +73,7 @@ public class RedirectMessage extends PrefGroupMailByMessageTest {
 
 
 	@Bugs( ids = "62170")
-	@Test( description = "Redirect message, using 'Redirect' shortcut key",
+	@Test (description = "Redirect message, using 'Redirect' shortcut key",
 			groups = { "functional-skip", "application-bug" })
 
 	public void RedirectMessage_02() throws HarnessException {
@@ -81,7 +81,7 @@ public class RedirectMessage extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Redirect message, using 'Right Click' -> 'Redirect'",
+	@Test (description = "Redirect message, using 'Right Click' -> 'Redirect'",
 			groups = { "smoke", "L1" })
 
 	public void RedirectMessage_03() throws HarnessException {

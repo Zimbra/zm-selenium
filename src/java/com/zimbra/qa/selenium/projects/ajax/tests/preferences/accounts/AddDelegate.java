@@ -30,7 +30,7 @@ public class AddDelegate extends AjaxCommonTest {
 	}
 
 
-	@Test(description = "Add a 'Send As' delegate to the primary account",
+	@Test (description = "Add a 'Send As' delegate to the primary account",
 			groups = { "functional", "L3" })
 
 	public void AddDelegate_01() throws HarnessException {
@@ -69,7 +69,7 @@ public class AddDelegate extends AjaxCommonTest {
 	}
 
 
-	@Test(description = "Add a 'Send On Behalf Of' delegate to the primary account",
+	@Test (description = "Add a 'Send On Behalf Of' delegate to the primary account",
 			groups = { "functional", "L3" })
 
 	public void AddDelegate_02() throws HarnessException {

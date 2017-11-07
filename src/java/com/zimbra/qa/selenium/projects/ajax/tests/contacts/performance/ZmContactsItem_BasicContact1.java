@@ -34,7 +34,7 @@ public class ZmContactsItem_BasicContact1 extends AjaxCommonTest{
    }
 
 
-   @Test( description="Measure the time to view Basic contact item",
+   @Test (description="Measure the time to view Basic contact item",
          groups={"performance", "deprecated"})
 
    public void ZmContactsItem_01() throws HarnessException {

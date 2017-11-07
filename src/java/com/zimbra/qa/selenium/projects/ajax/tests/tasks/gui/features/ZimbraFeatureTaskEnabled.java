@@ -47,7 +47,7 @@ public class ZimbraFeatureTaskEnabled extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Load the Task tab with just Tasks enabled",
+	@Test (description = "Load the Task tab with just Tasks enabled",
 			groups = { "functional-skip", "L3-skip"})
 
 	public void ZimbraFeatureTaskEnabled_01() throws HarnessException {

@@ -42,8 +42,8 @@ public class ShareDeleted extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Login to the Ajax Client - with a mountpoint to a deleted share",
-			groups = { "functional" , "L3"})
+	@Test (description = "Login to the Ajax Client - with a mountpoint to a deleted share",
+			groups = { "functional" , "L3" })
 
 	public void ShareDeleted01() throws HarnessException {
 

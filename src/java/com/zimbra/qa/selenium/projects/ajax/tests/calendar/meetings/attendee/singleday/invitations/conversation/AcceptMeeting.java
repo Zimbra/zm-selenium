@@ -64,7 +64,7 @@ public class AcceptMeeting extends AjaxCommonTest {
 
 
 	@Bugs( ids = "69132")
-	@Test( description = "Accept a meeting using Accept button from invitation message",
+	@Test (description = "Accept a meeting using Accept button from invitation message",
 			groups = { "sanity", "L0" })
 
 	public void AcceptMeeting_01() throws HarnessException {
@@ -159,7 +159,7 @@ public class AcceptMeeting extends AjaxCommonTest {
 	}
 
 	@Bugs ( ids = "69132")
-	@Test ( description = "Accept meeting - Verify organizer gets notification message",
+	@Test (description = "Accept meeting - Verify organizer gets notification message",
 			groups = { "functional", "L2" })
 
 	public void AcceptMeeting_02() throws HarnessException {

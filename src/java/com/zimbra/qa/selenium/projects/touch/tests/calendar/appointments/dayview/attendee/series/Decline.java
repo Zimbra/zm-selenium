@@ -30,7 +30,7 @@ public class Decline extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 
-	@Test( description = "Decline a series using view appointment options", 
+	@Test (description = "Decline a series using view appointment options", 
 			groups = { "smoke" })
 	
 	public void DeclineMeeting_01() throws HarnessException {

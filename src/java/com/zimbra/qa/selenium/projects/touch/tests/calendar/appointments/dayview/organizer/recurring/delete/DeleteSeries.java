@@ -40,7 +40,7 @@ public class DeleteSeries extends CalendarWorkWeekTest {
 		}};
 	}
 	
-	@Test ( description = "Delete entire series of recurring invite", 
+	@Test (description = "Delete entire series of recurring invite", 
 			groups = { "smoke" } )
 	
 	public void DeleteSeries_01() throws HarnessException {

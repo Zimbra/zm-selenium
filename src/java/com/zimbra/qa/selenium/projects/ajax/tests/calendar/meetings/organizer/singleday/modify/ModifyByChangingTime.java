@@ -34,7 +34,7 @@ public class ModifyByChangingTime extends AjaxCommonTest {
 
 
 	@Bugs(ids = "102759")
-	@Test( description = "Rescheduled appointments do not show the correct time in the summary",
+	@Test (description = "Rescheduled appointments do not show the correct time in the summary",
 			groups = { "functional", "L2" })
 
 	public void ModifyByChangingTime_01() throws HarnessException {

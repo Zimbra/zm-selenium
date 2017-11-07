@@ -50,7 +50,7 @@ public class GlobalHomeSearch extends AdminCommonTest {
 	 * 2. Verify the global search return the cos.
 	 * @throws HarnessException
 	 */
-	@Test( description = "Verify search functionality of COS.",
+	@Test (description = "Verify search functionality of COS.",
 			groups = { "functional", "L2" })
 			public void HomeSearchFunctionalityCOS_01() throws HarnessException {
 
@@ -95,7 +95,7 @@ public class GlobalHomeSearch extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Bugs( ids = "96768")
-	@Test( description = "Verify search functionality of Account Object.",
+	@Test (description = "Verify search functionality of Account Object.",
 			groups = { "functional", "L2" })
 			public void HomeSearchFunctionalityAccount_02() throws HarnessException {
 
@@ -139,7 +139,7 @@ public class GlobalHomeSearch extends AdminCommonTest {
 	 * 2. Verify the global search return the resource.
 	 * @throws HarnessException
 	 */
-	@Test( description = "Verify search functionality of Resource Object.",
+	@Test (description = "Verify search functionality of Resource Object.",
 			groups = { "functional", "L2" })
 			public void HomeSearchFunctionalityResource_03() throws HarnessException {
 
@@ -186,7 +186,7 @@ public class GlobalHomeSearch extends AdminCommonTest {
 	 * 2. Verify the global search return the DL.
 	 * @throws HarnessException
 	 */
-	@Test( description = "Verify search functionality of DL Object.",
+	@Test (description = "Verify search functionality of DL Object.",
 			groups = { "functional", "L2" })
 			public void HomeSearchFunctionalityDL_04() throws HarnessException {
 
@@ -229,7 +229,7 @@ public class GlobalHomeSearch extends AdminCommonTest {
 	 * 2. Verify the global search return the alias.
 	 * @throws HarnessException
 	 */
-	@Test( description = "Verify search functionality of Alias Object.",
+	@Test (description = "Verify search functionality of Alias Object.",
 			groups = { "functional", "L2" })
 			public void HomeSearchFunctionalityAlias_05() throws HarnessException {
 
@@ -276,7 +276,7 @@ public class GlobalHomeSearch extends AdminCommonTest {
 	 * 2. Verify the global search return the Account.
 	 * @throws HarnessException
 	 */
-	@Test( description = "Verify search functionality of domain Object.",
+	@Test (description = "Verify search functionality of domain Object.",
 			groups = { "functional", "L2" })
 			public void HomeSearchFunctionalityDomain_06() throws HarnessException {
 

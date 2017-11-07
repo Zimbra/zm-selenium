@@ -30,7 +30,7 @@ public class FlagMail extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Verify Permission Denied on Flag a shared mail (read-only share)",
+	@Test (description = "Verify Permission Denied on Flag a shared mail (read-only share)",
 			groups = { "functional", "L2" })
 
 	public void FlagMail_01() throws HarnessException {
@@ -115,7 +115,7 @@ public class FlagMail extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Verify Permission Denied on Flag (keyboard='mf') a shared mail (read-only share)",
+	@Test (description = "Verify Permission Denied on Flag (keyboard='mf') a shared mail (read-only share)",
 			groups = { "functional", "L2" })
 
 	public void FlagMail_02() throws HarnessException {
@@ -200,7 +200,7 @@ public class FlagMail extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Verify Permission Denied toaster on Flag a shared mail (read-only share)",
+	@Test (description = "Verify Permission Denied toaster on Flag a shared mail (read-only share)",
 			groups = { "functional", "L2" })
 
 	public void FlagMail_03() throws HarnessException {

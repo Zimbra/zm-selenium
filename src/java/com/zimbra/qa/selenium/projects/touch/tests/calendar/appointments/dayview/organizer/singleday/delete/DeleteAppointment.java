@@ -34,7 +34,7 @@ public class DeleteAppointment extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 	
-	@Test( description = "Delete an appointment using Delete toolbar button in day view",
+	@Test (description = "Delete an appointment using Delete toolbar button in day view",
 			groups = { "smoke" })
 	
 	public void DeleteAppointment_01() throws HarnessException {

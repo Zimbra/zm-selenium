@@ -31,7 +31,7 @@ public class DragAndDropFeed extends PrefGroupMailByMessageTest{
 	}
 
 
-	@Test( description = "Drag one feed folder and Drop into other",
+	@Test (description = "Drag one feed folder and Drop into other",
 			groups = { "smoke", "L1" })
 
 	public void DragAndDropFeed_01() throws HarnessException, MalformedURLException {

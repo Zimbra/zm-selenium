@@ -31,7 +31,7 @@ public class MarkSpamConversation extends PrefGroupMailByConversationTest {
 	}
 
 
-	@Test( description = "Mark a conversation as spam, using 'Spam' toolbar button",
+	@Test (description = "Mark a conversation as spam, using 'Spam' toolbar button",
 			groups = { "smoke", "L1" })
 
 	public void MarkSpamConversation_01() throws HarnessException {
@@ -73,7 +73,7 @@ public class MarkSpamConversation extends PrefGroupMailByConversationTest {
 	}
 
 
-	@Test( description = "Mark a conversation as spam, using keyboard shortcut (keyboard='ms')",
+	@Test (description = "Mark a conversation as spam, using keyboard shortcut (keyboard='ms')",
 			groups = { "smoke", "L1" })
 
 	public void MarkSpamConversation_02() throws HarnessException {
@@ -115,7 +115,7 @@ public class MarkSpamConversation extends PrefGroupMailByConversationTest {
 	}
 
 
-	@Test( description = "Mark multiple conversations (3) as spam by select and toolbar delete",
+	@Test (description = "Mark multiple conversations (3) as spam by select and toolbar delete",
 			groups = { "functional", "L2" })
 
 	public void MarkSpamConversation_03() throws HarnessException {

@@ -39,7 +39,7 @@ public class GetMessage extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Receive a mail with a basic URL",
+	@Test (description = "Receive a mail with a basic URL",
 			groups = { "smoke", "L0" })
 
 	public void GetMessage_01() throws HarnessException {
@@ -81,7 +81,7 @@ public class GetMessage extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Receive a mail with two URLs in body",
+	@Test (description = "Receive a mail with two URLs in body",
 			groups = { "functional", "L2" })
 
 	public void GetMessage_02() throws HarnessException {
@@ -127,7 +127,7 @@ public class GetMessage extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Validate the url zimlet matches valid URLs",
+	@Test (description = "Validate the url zimlet matches valid URLs",
 			groups = { "functional", "L2" })
 
 	public void GetMessage_03() throws HarnessException {
@@ -163,7 +163,7 @@ public class GetMessage extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Validate the url zimlet does not match invalid URLs",
+	@Test (description = "Validate the url zimlet does not match invalid URLs",
 			groups = { "functional", "L3" })
 
 	public void GetMessage_04() throws HarnessException {
@@ -195,7 +195,7 @@ public class GetMessage extends AjaxCommonTest {
 
 
 	@Bugs(ids="86667")
-	@Test( description = "Receive a mail with a url in subject reference bug 86667",
+	@Test (description = "Receive a mail with a url in subject reference bug 86667",
 			groups = { "deprecated" })
 
 	public void GetMessage_05() throws HarnessException {
@@ -234,7 +234,7 @@ public class GetMessage extends AjaxCommonTest {
 
 
 	@Bugs(ids = "29018,67927")
-	@Test( description = "Receive a mail with a URL in angled brackets",
+	@Test (description = "Receive a mail with a URL in angled brackets",
 			groups = { "functional", "L2" })
 
 	public void GetMessage_06() throws HarnessException {

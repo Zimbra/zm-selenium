@@ -31,7 +31,7 @@ public class DeleteFeed extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Delete a feed folder - Right click, Delete",
+	@Test (description = "Delete a feed folder - Right click, Delete",
 			groups = { "smoke", "L1" })
 
 	public void DeleteFeed_01() throws HarnessException, MalformedURLException {

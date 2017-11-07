@@ -40,7 +40,7 @@ public class SendDocAttachment extends FeatureBriefcaseTest {
 	}
 
 
-	@Test( description = "Create document through SOAP - click Send as attachment, Cancel & verify through GUI",
+	@Test (description = "Create document through SOAP - click Send as attachment, Cancel & verify through GUI",
 			groups = { "functional", "L2" })
 
 	public void SendDocAttachment_01() throws HarnessException {
@@ -107,7 +107,7 @@ public class SendDocAttachment extends FeatureBriefcaseTest {
 	}
 
 
-	@Test( description = "Send document as attachment using Right Click Context Menu & verify through GUI",
+	@Test (description = "Send document as attachment using Right Click Context Menu & verify through GUI",
 			groups = { "functional", "L2" })
 
 	public void SendDocAttachment_02() throws HarnessException {

@@ -34,7 +34,7 @@ public class CreateMeeting extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 	
-	@Test( description = "Create a basic meeting with attendee and location",
+	@Test (description = "Create a basic meeting with attendee and location",
 			groups = { "sanity" })
 			
 	public void CreateMeeting_01() throws HarnessException {
@@ -93,7 +93,7 @@ public class CreateMeeting extends CalendarWorkWeekTest {
 
 	}
 	
-	@Test( description = "Create invite with multiple attendees and location",
+	@Test (description = "Create invite with multiple attendees and location",
 			groups = { "sanity" })
 			
 	public void CreateMeeting_02() throws HarnessException {

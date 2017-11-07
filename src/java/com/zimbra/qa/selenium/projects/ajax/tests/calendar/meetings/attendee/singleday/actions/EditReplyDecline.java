@@ -33,7 +33,7 @@ public class EditReplyDecline extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Rt-click to appointment and Edit Reply -> Decline the meeting invite",
+	@Test (description = "Rt-click to appointment and Edit Reply -> Decline the meeting invite",
 			groups = { "smoke", "L1" })
 
 	public void DeclineMeeting_01() throws HarnessException {

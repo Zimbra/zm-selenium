@@ -34,7 +34,7 @@ public class PermanentDeleteAppointment extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 	
-	@Test( description = "Permanently delete an appointment",
+	@Test (description = "Permanently delete an appointment",
 			groups = { "functional" })
 	
 	public void PermanentDeleteAppointment_01() throws HarnessException {

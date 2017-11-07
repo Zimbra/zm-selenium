@@ -36,7 +36,7 @@ public class AddTo extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Select a 'To' address in the addresspicker",
+	@Test (description = "Select a 'To' address in the addresspicker",
 			groups = { "functional", "L2" })
 
 	public void AddTo_01() throws HarnessException {

@@ -37,8 +37,8 @@ public class ModifyDLByAddingListOwnersAndOwnerDeletesDL extends AjaxCommonTest 
 	}
 
 
-	@Test( description = "Modify DL by adding list owners and owner deletes DL",
-			groups = { "functional", "L2"})
+	@Test (description = "Modify DL by adding list owners and owner deletes DL",
+			groups = { "functional", "L2" })
 
 	public void ModifyDLByAddingListOwnersAndOwnerDeletesDL_01() throws HarnessException {
 

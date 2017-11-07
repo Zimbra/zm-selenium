@@ -33,7 +33,7 @@ public class CheckViewEntireMessageFunctionality extends PrefGroupMailByMessageT
 
 
 	@Bugs( ids = "102052")
-	@Test( description = "Can't read long message due to missing of 'View entire message' link",
+	@Test (description = "Can't read long message due to missing of 'View entire message' link",
 			groups = { "smoke", "L1" })
 
 	public void CheckViewEntireMessageFunctionality_01() throws HarnessException  {

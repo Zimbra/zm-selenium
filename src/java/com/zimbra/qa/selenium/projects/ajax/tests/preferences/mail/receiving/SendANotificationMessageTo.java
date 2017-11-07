@@ -33,7 +33,7 @@ public class SendANotificationMessageTo extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Send a notification to other user after recieving a message",
+	@Test (description = "Send a notification to other user after recieving a message",
 			groups = { "functional", "L2" })
 
 	public void SendANotificationMessageTo_01() throws HarnessException {

@@ -33,7 +33,7 @@ public class SearchContact extends TouchCommonTest  {
 		super.startingPage = app.zPageAddressbook;
 	}
 
-	@Test( description = "Search contact item with first name",
+	@Test (description = "Search contact item with first name",
 			groups = { "smoke" })
 
 	public void CreateContact_01() throws HarnessException{
@@ -69,7 +69,7 @@ public class SearchContact extends TouchCommonTest  {
 		
 	}
 
-	@Test( description = "Search contact item with last name",
+	@Test (description = "Search contact item with last name",
 			groups = { "functional" })
 
 	public void CreateContact_02() throws HarnessException {
@@ -105,7 +105,7 @@ public class SearchContact extends TouchCommonTest  {
 		
 	}
 	
-	@Test( description = "Search contact item with email",
+	@Test (description = "Search contact item with email",
 			groups = { "functional" })
 
 	public void CreateContact_03() throws HarnessException {

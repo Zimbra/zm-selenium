@@ -31,7 +31,7 @@ public class Open extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Grantee opens appointment from grantor's calendar and close it without making any changes",
+	@Test (description = "Grantee opens appointment from grantor's calendar and close it without making any changes",
 			groups = { "functional", "L2" })
 
 	public void Open_01() throws HarnessException {

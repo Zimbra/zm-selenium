@@ -28,33 +28,34 @@ import com.zimbra.qa.selenium.framework.util.staf.Stafpostqueue;
 public class DialogInformational extends AbsDialog {
 
 	public static class DialogWarningID {
-		
+
 		public static final DialogWarningID InformationalDialog = new DialogWarningID("ZmMsgDialog");
 		public static final DialogWarningID ShortcutDialog = new DialogWarningID("css=div[class='ZmShortcutsPanel']");
 		protected String Id;
+
 		public DialogWarningID(String id) {
 			Id = id;
 		}
 	}
-	
+
 	protected String MyDivId = null;
-	
+
 	public DialogInformational(DialogWarningID dialogId, AbsApplication application, AbsTab tab) {
-		super(application, tab);	
-		MyDivId = dialogId.Id;		
+		super(application, tab);
+		MyDivId = dialogId.Id;
 		logger.info("new " + DialogInformational.class.getCanonicalName());
 	}
-	
+
 	public String zGetWarningTitle() throws HarnessException {
-		String locator = "css=div[id='"+ MyDivId +"'] td[id='"+ MyDivId +"_title']";
+		String locator = "css=div[id='" + MyDivId + "'] td[id='" + MyDivId + "_title']";
 		return (zGetDisplayedText(locator));
 	}
-	
-	public String zGetWarningContent() throws HarnessException {	
+
+	public String zGetWarningContent() throws HarnessException {
 		String locator = "css=td[id^='MessageDialog'][class='DwtMsgArea']";
 		return (zGetDisplayedText(locator));
 	}
-	
+
 	@Override
 	public String myPageName() {
 		return (this.getClass().getName());
@@ -62,18 +63,18 @@ public class DialogInformational extends AbsDialog {
 
 	@Override
 	public AbsPage zClickButton(Button button) throws HarnessException {
-		if ( button == null )
+		if (button == null)
 			throw new HarnessException("button cannot be null");
 
 		String locator = null;
-		AbsPage page = null; 
+		AbsPage page = null;
 
-		String buttonsTableLocator = "css=div[id='"+ MyDivId +"'] div[id$='_buttons']";
-		
+		String buttonsTableLocator = "css=div[id='" + MyDivId + "'] div[id$='_buttons']";
+
 		if (button == Button.B_OK) {
-			
+
 			locator = buttonsTableLocator + " td[id^='OK_'] td[id$='_title']";
-			
+
 		} else if (button == Button.B_CANCEL) {
 
 			locator = buttonsTableLocator + " td[id^='CANCEL_'] td[id$='_title']";
@@ -92,15 +93,14 @@ public class DialogInformational extends AbsDialog {
 			SleepUtil.sleepVeryLong();
 			return page;
 
-		}  else {
-			throw new HarnessException("no logic defined for button "+ button);
+		} else {
+			throw new HarnessException("no logic defined for button " + button);
 		}
 
-		// Click it
 		sClickAt(locator, "");
 		zWaitForBusyOverlay();
 		SleepUtil.sleepMedium();
-		
+
 		if (button == Button.B_OK) {
 			Stafpostqueue sp = new Stafpostqueue();
 			sp.waitForPostqueue();
@@ -111,26 +111,25 @@ public class DialogInformational extends AbsDialog {
 
 	@Override
 	public String zGetDisplayedText(String locator) throws HarnessException {
-		if ( locator == null )
+		if (locator == null)
 			throw new HarnessException("locator cannot be null");
-		
-		if ( !this.sIsElementPresent(locator) )
+
+		if (!this.sIsElementPresent(locator))
 			throw new HarnessException("locator cannot be found");
-		
+
 		return (this.sGetText(locator));
-		
+
 	}
 
 	@Override
 	public boolean zIsActive() throws HarnessException {
-		
-		if ( !this.sIsElementPresent(MyDivId) )
+
+		if (!this.sIsElementPresent(MyDivId))
 			return (false);
-	
-		if ( !this.zIsVisiblePerPosition(MyDivId, 0, 0) )
+
+		if (!this.zIsVisiblePerPosition(MyDivId, 0, 0))
 			return (false);
-		
+
 		return (true);
 	}
-
 }

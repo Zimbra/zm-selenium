@@ -36,7 +36,7 @@ public class CreateMeetingWithEquipmentConflict extends AjaxCommonTest {
 
 
 	@Bugs(ids = "102271")
-	@Test( description = "Verify sending appt invite when Equipment resource has conflicts shows conflict dialog",
+	@Test (description = "Verify sending appt invite when Equipment resource has conflicts shows conflict dialog",
 			groups = { "functional-skip", "application-bug" })
 
 	public void CreateMeetingWithEquipmentConflict_01() throws HarnessException {
@@ -110,7 +110,7 @@ public class CreateMeetingWithEquipmentConflict extends AjaxCommonTest {
 
 
 	@Bugs(ids = "ZCS-3343")
-	@Test( description = "Verify Saving meeting invite when Equipment resource has conflicts shows conflict dialog",
+	@Test (description = "Verify Saving meeting invite when Equipment resource has conflicts shows conflict dialog",
 			groups = { "functional", "L2" })
 
 	public void CreateMeetingWithEquipmentConflict_02() throws HarnessException {
@@ -186,7 +186,7 @@ public class CreateMeetingWithEquipmentConflict extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Verify Cancelling create appt when Equipment resource has conflicts shows conflict dialog",
+	@Test (description = "Verify Cancelling create appt when Equipment resource has conflicts shows conflict dialog",
 			groups = { "functional", "L2" })
 
 	public void CreateMeetingWithEquipmentConflict_03() throws HarnessException {
@@ -261,7 +261,7 @@ public class CreateMeetingWithEquipmentConflict extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Verify organizer can close modified appointment with Equipment Conflict",
+	@Test (description = "Verify organizer can close modified appointment with Equipment Conflict",
 			groups = { "functional", "L2" })
 
 	public void CreateMeetingWithEquipmentConflict_04() throws HarnessException {

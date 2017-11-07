@@ -63,7 +63,7 @@ public class ChangeSignatureWhenzimbraFeatureHtmlComposeEnabledIsFalse extends A
 	 * zimbraFeatureHtmlComposeEnabled = FALSE
 	 */
 	@Bugs(ids = "83194")
-	@Test(description = " User should be able to change/select signature when zimbraFeatureHtmlComposeEnabled = FALSE", groups = {
+	@Test (description = " User should be able to change/select signature when zimbraFeatureHtmlComposeEnabled = FALSE", groups = {
 			"functional", "L2" })
 
 	public void ChangeSignatureWhenzimbraFeatureHtmlComposeEnabledIsFalse_01() throws HarnessException {

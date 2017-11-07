@@ -48,7 +48,7 @@ public class ModifyMultipleDayAppointment extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Modify multiple-day all-day appointment (Date) and verify its display in month view.",
+	@Test (description = "Modify multiple-day all-day appointment (Date) and verify its display in month view.",
 			groups = { "functional", "L3" })
 
 	public void ModifyAllDayAppointment_01() throws HarnessException {
@@ -104,7 +104,7 @@ public class ModifyMultipleDayAppointment extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Modify multiple-day all-day appointment (Add attendee) and verify its display in month view.",
+	@Test (description = "Modify multiple-day all-day appointment (Add attendee) and verify its display in month view.",
 			groups = { "functional", "L3" })
 
 	public void ModifyAllDayAppointment_02() throws HarnessException {

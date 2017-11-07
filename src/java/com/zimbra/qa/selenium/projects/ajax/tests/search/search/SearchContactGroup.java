@@ -33,7 +33,7 @@ public class SearchContactGroup extends AjaxCommonTest {
 	}
 
 
-	@Test(description = "Search for an existing contact group",
+	@Test (description = "Search for an existing contact group",
 			groups = { "functional","L2" })
 
 	public void SearchContactGroup_01() throws HarnessException {
@@ -63,7 +63,7 @@ public class SearchContactGroup extends AjaxCommonTest {
 
 
 	@Bugs(ids = "77950")
-	@Test(description = "Search for an existing contact group, by member",
+	@Test (description = "Search for an existing contact group, by member",
 			groups = { "functional-skip","L3-skip" })
 
 	public void SearchContactGroup_02() throws HarnessException {

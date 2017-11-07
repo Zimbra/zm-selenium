@@ -67,7 +67,7 @@ public class FwdReplyTextSignatureAboveIncludeMsg extends AjaxCommonTest {
 	 * Verify signature should place above included message while fwd'ing msg
 	 */
 
-	@Test(description = "Verify Text Signature AboveIncludedMsg While Fwd'ing- Verify through GUI ",
+	@Test (description = "Verify Text Signature AboveIncludedMsg While Fwd'ing- Verify through GUI ",
 			groups = { "functional", "L2" })
 
 	public void FwdMsgWithTextSignatureAboveIncludeMsg_01() throws HarnessException {
@@ -113,7 +113,7 @@ public class FwdReplyTextSignatureAboveIncludeMsg extends AjaxCommonTest {
 	 * while Replying msg
 	 */
 
-	@Test(description = "Verify Text Signature AboveIncludedMsg While Replying Msg ",
+	@Test (description = "Verify Text Signature AboveIncludedMsg While Replying Msg ",
 			groups = { "functional", "L3" })
 
 	public void ReplyMsgWithTextSignatureAboveIncludeMsg_02() throws HarnessException {
@@ -160,7 +160,7 @@ public class FwdReplyTextSignatureAboveIncludeMsg extends AjaxCommonTest {
 	 * included message while Replying msg
 	 */
 
-	@Test(description = "Verify Text Signature AboveIncludedMsg While ReplyingAll Msg ",
+	@Test (description = "Verify Text Signature AboveIncludedMsg While ReplyingAll Msg ",
 			groups = { "functional", "L3" })
 
 	public void ReplyAllMsgWithTextSignatureAboveIncludeMsg_03() throws HarnessException {

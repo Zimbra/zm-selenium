@@ -43,7 +43,7 @@ public class AutoSaveDraftMail extends PrefGroupMailByMessageTest {
 
 
 	@Bugs(ids = "66393")
-	@Test( description = "Auto save a basic draft (subject only)",
+	@Test (description = "Auto save a basic draft (subject only)",
 			groups = { "smoke", "L1" })
 
 	public void AutoSaveDraftMail_01() throws HarnessException {

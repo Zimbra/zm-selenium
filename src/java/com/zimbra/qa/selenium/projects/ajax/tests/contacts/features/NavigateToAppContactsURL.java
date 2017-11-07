@@ -30,8 +30,8 @@ public class NavigateToAppContactsURL extends AjaxCommonTest {
 	}
 
 
-	@Test(description = "?app=contacts in url",
-			groups = { "smoke", "L1"})
+	@Test (description = "?app=contacts in url",
+			groups = { "smoke", "L1" })
 
 	public void NavigateToAppContactsURL_01() throws HarnessException {
 

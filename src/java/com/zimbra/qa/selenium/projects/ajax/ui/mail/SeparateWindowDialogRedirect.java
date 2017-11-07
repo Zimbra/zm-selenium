@@ -14,9 +14,6 @@
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-/**
- *
- */
 package com.zimbra.qa.selenium.projects.ajax.ui.mail;
 
 import com.zimbra.qa.selenium.framework.ui.*;
@@ -24,17 +21,6 @@ import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.framework.util.staf.Stafpostqueue;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.DialogRedirect.*;
 
-/**
- * Represents a "Specify Message Send Time" dialog box (Send Later)
- *
- * See https://bugzilla.zimbra.com/show_bug.cgi?id=7524 See
- * https://bugzilla.zimbra.com/show_bug.cgi?id=61935
- *
- * <p>
- *
- * @author Matt Rhoades
- *
- */
 public class SeparateWindowDialogRedirect extends AbsDialogSeparateWindow {
 
 	public SeparateWindowDialogRedirect(AbsApplication application, AbsSeparateWindow window) {
@@ -78,13 +64,11 @@ public class SeparateWindowDialogRedirect extends AbsDialogSeparateWindow {
 			throw new HarnessException("locator was null for field " + field);
 		}
 
-		// Make sure the button exists
 		if (!MyWindow.sIsElementPresent(locator))
 			throw new HarnessException("Field is not present field=" + field + " locator=" + locator);
-		
-		// Enter text
+
 		MyWindow.sType(locator, value);
-		
+
 	}
 
 	public AbsPage zClickButton(Button button) throws HarnessException {
@@ -103,7 +87,6 @@ public class SeparateWindowDialogRedirect extends AbsDialogSeparateWindow {
 
 			MyWindow.zWaitForBusyOverlay();
 
-			// Check the message queue
 			Stafpostqueue sp = new Stafpostqueue();
 			sp.waitForPostqueue();
 
@@ -121,12 +104,10 @@ public class SeparateWindowDialogRedirect extends AbsDialogSeparateWindow {
 			throw new HarnessException("Button " + button + " not implemented");
 		}
 
-		// Make sure the locator was set
 		if (locator == null) {
 			throw new HarnessException("Button " + button + " not implemented");
 		}
 
-		// Make sure the locator exists
 		if (!MyWindow.sIsElementPresent(locator)) {
 			throw new HarnessException("Button " + button + " locator " + locator + " not present!");
 		}
@@ -141,7 +122,6 @@ public class SeparateWindowDialogRedirect extends AbsDialogSeparateWindow {
 	public boolean zIsActive() throws HarnessException {
 		logger.info(myPageName() + " zIsActive()");
 
-		// Check if the separate window is active
 		if (!super.zIsActive()) {
 			return (false);
 		}

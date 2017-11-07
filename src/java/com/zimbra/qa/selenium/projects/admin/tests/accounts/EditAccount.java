@@ -48,7 +48,7 @@ public class EditAccount extends AdminCommonTest {
 	 * 5. Verify account is edited using SOAP.
 	 * @throws HarnessException
 	 */
-	@Test( description = "Edit Account name  - Manage Account View",
+	@Test (description = "Edit Account name  - Manage Account View",
 			groups = { "smoke", "L1" })
 	
 	public void EditAccount_01() throws HarnessException {
@@ -94,7 +94,7 @@ public class EditAccount extends AdminCommonTest {
 	 * 3. Verify account name is changed using SOAP.
 	 * @throws HarnessException
 	 */
-	@Test( description = "Edit account name -- right click",
+	@Test (description = "Edit account name -- right click",
 			groups = { "functional", "L2" })
 	
 	public void EditAccount_02() throws HarnessException {
@@ -143,7 +143,7 @@ public class EditAccount extends AdminCommonTest {
 	 * 
 	 * @throws HarnessException
 	 */
-	@Test( description = "Edit a basic account - Search List View",
+	@Test (description = "Edit a basic account - Search List View",
 			groups = { "functional", "L2" })
 	
 	public void EditAccount_03() throws HarnessException {
@@ -200,7 +200,7 @@ public class EditAccount extends AdminCommonTest {
 	 * 
 	 * @throws HarnessException
 	 */
-	@Test( description = "Edit a basic account - Search List View",
+	@Test (description = "Edit a basic account - Search List View",
 			groups = { "functional", "L3" })
 	
 	public void EditAccount_04() throws HarnessException {

@@ -32,7 +32,7 @@ public class GetFolder extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Get a folder",
+	@Test (description = "Get a folder",
 			groups = { "smoke", "L1" })
 
 	public void GetFolder_01() throws HarnessException {
@@ -68,7 +68,7 @@ public class GetFolder extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test(description = "Get a folder with non-ASCII special characters",
+	@Test (description = "Get a folder with non-ASCII special characters",
 			groups = { "functional", "L3" },
 			dataProvider = "DataProviderSupportedCharsets")
 

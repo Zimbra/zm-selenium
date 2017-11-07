@@ -37,7 +37,7 @@ public class ModifyCalendarFolder extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 	
-	@Test( description = "Edit appointment and modify calendar folder",
+	@Test (description = "Edit appointment and modify calendar folder",
 			groups = { "smoke" })
 	
 	public void ModifyCalendarFolder_01() throws HarnessException {

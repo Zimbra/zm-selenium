@@ -40,8 +40,8 @@ public class SaveModifiedAppointment extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Save modified appt and take action from warning dialog : Save Chnages and send updates",
-			groups = { "functional", "L2"})
+	@Test (description = "Save modified appt and take action from warning dialog : Save Chnages and send updates",
+			groups = { "functional", "L2" })
 
 	public void SaveModifiedAppointment_01() throws HarnessException {
 
@@ -107,8 +107,8 @@ public class SaveModifiedAppointment extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Save modified appt and take action from warning dialog : Discard and close",
-			groups = { "functional", "L2"})
+	@Test (description = "Save modified appt and take action from warning dialog : Discard and close",
+			groups = { "functional", "L2" })
 
 	public void SaveModifiedAppointment_02() throws HarnessException {
 
@@ -180,8 +180,8 @@ public class SaveModifiedAppointment extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Save modified appt and take action from warning dialog : Dont save But keep open",
-			groups = { "functional", "L2"})
+	@Test (description = "Save modified appt and take action from warning dialog : Dont save But keep open",
+			groups = { "functional", "L2" })
 
 	public void SaveModifiedAppointment_03() throws HarnessException {
 

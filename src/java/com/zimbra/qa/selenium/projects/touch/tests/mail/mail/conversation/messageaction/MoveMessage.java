@@ -32,7 +32,7 @@ import com.zimbra.qa.selenium.projects.touch.core.PrefGroupMailByConversationTes
 		public MoveMessage() {
 			logger.info("New "+ MoveMessage.class.getCanonicalName());
 		}
-			@Test( description = "Move a mail by 'move conversation' button",
+			@Test (description = "Move a mail by 'move conversation' button",
 					groups = { "sanity" })
 			
 			
@@ -82,7 +82,7 @@ import com.zimbra.qa.selenium.projects.touch.core.PrefGroupMailByConversationTes
 		
 
 		@Bugs( ids = "83506")
-		@Test( description = "Move a mail into subfolder",
+		@Test (description = "Move a mail into subfolder",
 					groups = { "smoke" })
 		public void MoveMessage_02() throws HarnessException {
 

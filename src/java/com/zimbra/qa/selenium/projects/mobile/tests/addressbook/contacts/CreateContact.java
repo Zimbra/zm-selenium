@@ -40,7 +40,7 @@ public class CreateContact extends MobileCommonTest {
 		
 	}
 	
-	@Test( description = "Create a new contact",
+	@Test (description = "Create a new contact",
 			groups = { "sanity" })
 	public void CreateContact_01() throws HarnessException, InterruptedException {
 

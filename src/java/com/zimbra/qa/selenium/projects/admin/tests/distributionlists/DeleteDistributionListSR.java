@@ -36,7 +36,7 @@ public class DeleteDistributionListSR extends AdminCommonTest {
 		super.startingPage = app.zPageManageSearch;
 	}
 
-	@Test( description = "Verify delete operation for distribution list - Search distribution list view",
+	@Test (description = "Verify delete operation for distribution list - Search distribution list view",
 			groups = { "smoke", "L1" })
 			public void DeleteDistributionList_03() throws HarnessException {
 
@@ -91,7 +91,7 @@ public class DeleteDistributionListSR extends AdminCommonTest {
 	 * 5. Verify dl is deleted using SOAP.
 	 * @throws HarnessException
 	 */
-	@Test( description = "Verify delete operation for distribution list - Search distribution list view/Right Click Menu.",
+	@Test (description = "Verify delete operation for distribution list - Search distribution list view/Right Click Menu.",
 			groups = { "functional", "L2" })
 			public void DeleteDistributionList_04() throws HarnessException {
 

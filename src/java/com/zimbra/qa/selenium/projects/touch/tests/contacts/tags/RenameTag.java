@@ -38,7 +38,7 @@ public class RenameTag extends TouchCommonTest  {
 	 * @throws HarnessException
 	 */
 	
-	@Test( description = "Rename a tag item", 
+	@Test (description = "Rename a tag item", 
 			groups = { "smoke" })
 	
 	public void RenameTag_01() throws HarnessException {

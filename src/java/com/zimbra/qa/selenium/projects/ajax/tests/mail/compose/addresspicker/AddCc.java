@@ -36,7 +36,7 @@ public class AddCc extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Select a 'Cc' address in the addresspicker",
+	@Test (description = "Select a 'Cc' address in the addresspicker",
 			groups = { "functional", "L2" })
 
 	public void AddCc_01() throws HarnessException {

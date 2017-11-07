@@ -34,7 +34,7 @@ public class CreateAppointment extends AjaxCommonTest {
 
 
 	@Bugs(ids = "69132,95899,95900")
-	@Test( description = "Create simple all day appointment",
+	@Test (description = "Create simple all day appointment",
 			groups = { "smoke", "L0" } )
 
 	public void CreateAllDayAppointment_01() throws HarnessException {
@@ -72,7 +72,7 @@ public class CreateAppointment extends AjaxCommonTest {
 
 
 	@Bugs(ids = "104312")
-	@Test( description = "Create multi-day all day appointment in week view",
+	@Test (description = "Create multi-day all day appointment in week view",
 			groups = { "smoke", "L1" } )
 
 	public void CreateAllDayAppointment_02() throws HarnessException {
@@ -111,7 +111,7 @@ public class CreateAppointment extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Create simple all day appointment which occurs in past",
+	@Test (description = "Create simple all day appointment which occurs in past",
 			groups = { "smoke", "L0" } )
 
 	public void CreateAllDayAppointment_03() throws HarnessException {

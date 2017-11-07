@@ -33,8 +33,8 @@ public class DeleteConversation extends PrefGroupMailByConversationTest {
 
 
 	@Bugs( ids = "81074")
-	@Test( description = "From search: Delete a conversation using the Delete Toolbar button",
-			groups = { "functional","L2"})
+	@Test (description = "From search: Delete a conversation using the Delete Toolbar button",
+			groups = { "functional","L2" })
 
 	public void DeleteConversation_01() throws HarnessException {
 

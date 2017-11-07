@@ -28,10 +28,7 @@ import com.zimbra.qa.selenium.projects.ajax.ui.AppAjaxClient;
 public class DocumentBriefcaseNew extends AbsForm {
 
 	public static class Locators {
-		//public static final String zFrame = "css=iframe[class=ZDEditor]";
 		public static final String zFrame = "css=iframe[id$='_body_ifr']";
-		//public static final String zFrame = "css=iframe[id*=content_ifr]";
-		//public static final String zSaveAndCloseIconBtn = "css=[id='DWT9_left_icon']";
 		public static final String zSaveAndCloseIconBtn = "css=td[id$='_title']:contains('Close')";
 		public static final String zBodyField = "css=body";
 		public static final String zNameField = "css=td[class='ZmDocsEditViewHeaderCell'] td[id$='_item_1'] input";
@@ -42,8 +39,6 @@ public class DocumentBriefcaseNew extends AbsForm {
 	public static class Field {
 		public static final Field Name = new Field("Name");
 		public static final Field Body = new Field("Body");
-
-		// private String field;
 
 		private Field(String name) {
 			// field = name;
@@ -64,8 +59,6 @@ public class DocumentBriefcaseNew extends AbsForm {
 
 	public void typeDocumentText(String text) throws HarnessException {
 		sSelectFrame(Locators.zFrame);
-		// ClientSessionFactory.session().selenium().selectFrame("css=iframe[id='DWT10',class='ZDEditor']");
-		// ClientSessionFactory.session().selenium().type("xpath=(//html/body)",text);
 		logger.info("typing Document Text: ");
 		sType(Locators.zBodyField, text);
 		logger.info(text);
@@ -94,13 +87,12 @@ public class DocumentBriefcaseNew extends AbsForm {
 
 			zSelectWindow(pageTitle);
 
-			// Make sure the locator exists
 			if (!this.sIsElementPresent(nameFieldLocator))
 				throw new HarnessException("Locator is not present: " + nameFieldLocator);
 
 			this.sMouseOver(nameFieldLocator);
 			this.sFocus(nameFieldLocator);
-			this.zClickAt(nameFieldLocator,"0,0");
+			this.zClickAt(nameFieldLocator, "0,0");
 			this.sType(nameFieldLocator, value);
 			logger.info("typed: " + value);
 
@@ -108,24 +100,18 @@ public class DocumentBriefcaseNew extends AbsForm {
 
 			String iframeLocator = Locators.zFrame;
 
-			// Make sure the locator exists
 			if (!this.sIsElementPresent(iframeLocator))
 				throw new HarnessException("Locator is not present: " + iframeLocator);
 
-				WebElement we = getElement(iframeLocator);
-				this.sMouseOver(iframeLocator);
-				this.sFocus(iframeLocator);
-				this.zClickAt(iframeLocator,"0,0");
-				this.executeScript("var bodytext=\""
-							+ value
-							+ "\";"
-							+ "var iframe_locator=\""
-							+ iframeLocator
-							+ "\";"
-							+ "var iframe_body=arguments[0].contentWindow.document.body;"
-							+ "if (navigator.userAgent.indexOf('Firefox')!=-1 || navigator.userAgent.indexOf('Chrome')!=-1) {iframe_body.innerHTML=bodytext;}"
-							+ "else if (navigator.userAgent.indexOf('MSIE')!=-1) {iframe_body.innerHTML=bodytext;}"
-							+ "else {iframe_body.innerHTML=bodytext;}", we);
+			WebElement we = getElement(iframeLocator);
+			this.sMouseOver(iframeLocator);
+			this.sFocus(iframeLocator);
+			this.zClickAt(iframeLocator, "0,0");
+			this.executeScript("var bodytext=\"" + value + "\";" + "var iframe_locator=\"" + iframeLocator + "\";"
+					+ "var iframe_body=arguments[0].contentWindow.document.body;"
+					+ "if (navigator.userAgent.indexOf('Firefox')!=-1 || navigator.userAgent.indexOf('Chrome')!=-1) {iframe_body.innerHTML=bodytext;}"
+					+ "else if (navigator.userAgent.indexOf('MSIE')!=-1) {iframe_body.innerHTML=bodytext;}"
+					+ "else {iframe_body.innerHTML=bodytext;}", we);
 		} else {
 			throw new HarnessException("Not implemented field: " + field);
 		}
@@ -140,29 +126,23 @@ public class DocumentBriefcaseNew extends AbsForm {
 
 		// Look for "Save & Close"
 		if (!this.sIsElementPresent(Locators.zSaveAndCloseIconBtn))
-			throw new HarnessException("Save & Close button is not present "
-					+ Locators.zSaveAndCloseIconBtn);
+			throw new HarnessException("Save & Close button is not present " + Locators.zSaveAndCloseIconBtn);
 
 		boolean visible = this.sIsVisible(Locators.zSaveAndCloseIconBtn);
 		if (!visible)
-			throw new HarnessException("Save & Close button is not visible "
-					+ Locators.zSaveAndCloseIconBtn);
+			throw new HarnessException("Save & Close button is not visible " + Locators.zSaveAndCloseIconBtn);
 
 		if (!(sIsElementPresent(Locators.zEnableVersionNotes) && sIsChecked(Locators.zEnableVersionNotes))) {
-			// Click on it
-			zClickAt(Locators.zSaveAndCloseIconBtn,"0,0");
+			zClickAt(Locators.zSaveAndCloseIconBtn, "0,0");
+
 		} else {
-			// Click on it
-			// this.sMouseDown(Locators.zSaveAndCloseIconBtn);
-			// this.sMouseUp(Locators.zSaveAndCloseIconBtn);
-			zClickAt(Locators.zSaveAndCloseIconBtn,"0,0");
+			zClickAt(Locators.zSaveAndCloseIconBtn, "0,0");
 
-				// add version notes
-				DialogAddVersionNotes dlgAddNotes = new DialogAddVersionNotes(
-						MyApplication,
-						((AppAjaxClient) MyApplication).zPageBriefcase);
+			// add version notes
+			DialogAddVersionNotes dlgAddNotes = new DialogAddVersionNotes(MyApplication,
+					((AppAjaxClient) MyApplication).zPageBriefcase);
 
-				dlgAddNotes.zDismissAddVersionNotesDlg(pageTitle);
+			dlgAddNotes.zDismissAddVersionNotesDlg(pageTitle);
 
 		}
 		SleepUtil.sleepMedium();

@@ -32,7 +32,7 @@ public class VerifyOptionalAttendee extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "View meeting invite by opening it, Edit the invitation and locally save it",
+	@Test (description = "View meeting invite by opening it, Edit the invitation and locally save it",
 			groups = { "functional", "L2" })
 
 	public void VerifyOptionalAttendee_01() throws HarnessException {

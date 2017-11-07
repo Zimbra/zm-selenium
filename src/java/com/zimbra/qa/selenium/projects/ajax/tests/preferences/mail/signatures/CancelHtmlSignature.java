@@ -35,7 +35,7 @@ public class CancelHtmlSignature extends AjaxCommonTest {
 	}
 
 
-	@Test(description = "Cancel text signature through GUI",
+	@Test (description = "Cancel text signature through GUI",
 		groups = { "functional", "L2"  })
 
 	public void CancelHtmlSignature_01() throws HarnessException {

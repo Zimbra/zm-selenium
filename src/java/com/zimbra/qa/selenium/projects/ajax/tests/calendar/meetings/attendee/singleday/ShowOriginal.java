@@ -31,7 +31,7 @@ public class ShowOriginal extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "check context menu for Show Original option and check of the its displayed",
+	@Test (description = "check context menu for Show Original option and check of the its displayed",
 			groups = { "functional", "L2" })
 
 	public void ShowOriginal_01() throws HarnessException {

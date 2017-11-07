@@ -35,7 +35,7 @@ public class EditContact extends TouchCommonTest  {
 		super.startingPage = app.zPageAddressbook;
 	}
 
-	@Test( description = "Edit a contact item in mount folder with manager rights",
+	@Test (description = "Edit a contact item in mount folder with manager rights",
 			groups = { "functional" })
 
 	public void EditContact_01() throws HarnessException {

@@ -33,7 +33,7 @@ public class CheckMailContentForSpecificMimes extends PrefGroupMailByMessageTest
 
 
 	@Bugs( ids = "11684")
-	@Test( description = "Bug 11684 - Web client stops rendering message when it encounters an inline image",
+	@Test (description = "Bug 11684 - Web client stops rendering message when it encounters an inline image",
 			groups = { "functional", "L2" })
 
 	public void CheckMailContentForSpecificMime_01() throws HarnessException {
@@ -59,7 +59,7 @@ public class CheckMailContentForSpecificMimes extends PrefGroupMailByMessageTest
 
 
 	@Bugs( ids = "21415")
-	@Test( description = "Bug 21415 - Msg content truncated",
+	@Test (description = "Bug 21415 - Msg content truncated",
 			groups = { "functional", "L2" })
 
 	public void CheckMailContentForSpecificMime_02() throws HarnessException {
@@ -87,7 +87,7 @@ public class CheckMailContentForSpecificMimes extends PrefGroupMailByMessageTest
 
 
 	@Bugs( ids = "21415")
-	@Test( description = "Bug 21415 - Msg content truncated",
+	@Test (description = "Bug 21415 - Msg content truncated",
 			groups = { "functional", "L2" })
 
 	public void CheckMailContentForSpecificMime_03() throws HarnessException {
@@ -115,7 +115,7 @@ public class CheckMailContentForSpecificMimes extends PrefGroupMailByMessageTest
 
 
 	@Bugs( ids = "25624")
-	@Test( description = "Bug 25624 - Email reply to an invite shows a fragment of the msg but opens as blank msg",
+	@Test (description = "Bug 25624 - Email reply to an invite shows a fragment of the msg but opens as blank msg",
 			groups = { "functional", "L2" })
 
 	public void CheckMailContentForSpecificMime_04() throws HarnessException {
@@ -137,7 +137,7 @@ public class CheckMailContentForSpecificMimes extends PrefGroupMailByMessageTest
 
 
 	@Bugs( ids = "27796")
-	@Test( description = "Bug 27796 - Message renders in standard client but not advanced",
+	@Test (description = "Bug 27796 - Message renders in standard client but not advanced",
 			groups = { "functional", "L2" })
 
 	public void CheckMailContentForSpecificMime_05() throws HarnessException {
@@ -162,7 +162,7 @@ public class CheckMailContentForSpecificMimes extends PrefGroupMailByMessageTest
 
 
 	@Bugs(ids="83527")
-	@Test( description = "Bug 83527 - InlineImage attribute is missing for inline image in main branch",
+	@Test (description = "Bug 83527 - InlineImage attribute is missing for inline image in main branch",
 			groups = { "functional", "L2" })
 
 	public void CheckMailContentForSpecificMime_06() throws HarnessException {
@@ -185,7 +185,7 @@ public class CheckMailContentForSpecificMimes extends PrefGroupMailByMessageTest
 
 
 	@Bugs( ids = "66192")
-	@Test( description = "Blank body with JS error on viewing some messages",
+	@Test (description = "Blank body with JS error on viewing some messages",
 			groups = { "functional", "L2" })
 
 	public void CheckMailContentForSpecificMime_07() throws HarnessException {

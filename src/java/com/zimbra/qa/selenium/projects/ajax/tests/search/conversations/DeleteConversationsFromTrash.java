@@ -40,7 +40,7 @@ public class DeleteConversationsFromTrash extends PrefGroupMailByMessageTest {
 
 
 	@Bugs( ids = "44826")
-	@Test( description = " Search in Trash and delete, does not delete",
+	@Test (description = " Search in Trash and delete, does not delete",
 			groups = { "functional","L2" })
 
 	public void DeleteConversationsFromTrash_01() throws HarnessException {
@@ -133,7 +133,7 @@ public class DeleteConversationsFromTrash extends PrefGroupMailByMessageTest {
 
 
 	@Bugs( ids = "44826")
-	@Test( description = " Search in Trash and delete, does not delete",
+	@Test (description = " Search in Trash and delete, does not delete",
 			groups = { "functional","L2" })
 
 	public void DeleteConversationsFromTrash_02() throws HarnessException {

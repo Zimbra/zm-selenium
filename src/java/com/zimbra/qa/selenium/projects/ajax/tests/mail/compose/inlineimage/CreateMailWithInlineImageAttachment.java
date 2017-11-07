@@ -36,7 +36,7 @@ public class CreateMailWithInlineImageAttachment extends PrefGroupMailByMessageT
 	}
 
 
-	@Test( description = "Send a mail by adding inline image attachment",
+	@Test (description = "Send a mail by adding inline image attachment",
 			groups = { "sanity", "L0" })
 
 	public void CreateMailWithInlineImageAttachment_01() throws HarnessException {

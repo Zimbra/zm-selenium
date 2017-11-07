@@ -20,24 +20,11 @@ import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.projects.ajax.ui.DialogWarning;
 
-/**
- * Represents a "Delete Recurring Item(s)" dialog box,
- * for an appointment without attendees.
- *
- * Two new options
- * - Delete This Instance
- * - Delete The Series
- *
- * No new buttons on this dialog, just OK and Cancel
- * <p>
- */
 public class DialogConfirmDeleteSeries extends DialogWarning {
 
-	// The ID for the main Dialog DIV
 	public static final String LocatorDivID = "CONFIRM_DELETE_APPT_DIALOG";
 
 	public static class Locators {
-
 	}
 
 	public DialogConfirmDeleteSeries(AbsApplication application, AbsTab page) {
@@ -45,8 +32,6 @@ public class DialogConfirmDeleteSeries extends DialogWarning {
 
 		logger.info("new " + DialogConfirmDeleteSeries.class.getCanonicalName());
 	}
-
-
 
 	public AbsPage zCheckRadioButton(Button button) throws HarnessException {
 
@@ -57,11 +42,8 @@ public class DialogConfirmDeleteSeries extends DialogWarning {
 
 		tracer.trace("Check the radio " + button + " button");
 
-
 		String locator = null;
 		AbsPage page = null;
-
-		// Based on the button specified, take the appropriate action(s)
 
 		if (button == Button.B_DELETE_THIS_INSTANCE) {
 
@@ -77,14 +59,9 @@ public class DialogConfirmDeleteSeries extends DialogWarning {
 			throw new HarnessException("no logic defined for radio button " + button);
 		}
 
-		// Default behavior, process the locator by clicking on it
 		sClick(locator);
-
-		// If the app is busy, wait for it to become active
 		this.zWaitForBusyOverlay();
 
 		return (page);
 	}
-
 }
-

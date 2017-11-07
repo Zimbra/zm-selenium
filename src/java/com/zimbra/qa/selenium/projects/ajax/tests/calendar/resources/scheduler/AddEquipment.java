@@ -43,7 +43,7 @@ public class AddEquipment extends AjaxCommonTest {
 		};
 	}
 
-	@Test( description = "Add equipment from scheduler pane using keyboard Enter and Tab key",
+	@Test (description = "Add equipment from scheduler pane using keyboard Enter and Tab key",
 			groups = { "functional", "L2" },
 			dataProvider = "DataProviderShortcutKeys")
 

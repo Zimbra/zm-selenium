@@ -14,9 +14,6 @@
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-/**
- * 
- */
 package com.zimbra.qa.selenium.projects.ajax.ui.preferences;
 
 import java.util.Collections;
@@ -45,13 +42,6 @@ public class TreePreferences extends AbsTree {
 		logger.info("new " + TreePreferences.class.getCanonicalName());
 	}
 
-	/**
-	 * Click on an item in the preference tree
-	 * 
-	 * @param action
-	 * @param item
-	 * @throws HarnessException
-	 */
 	public void zTreeItem(Action action, TreeItem item) throws HarnessException {
 		logger.info("zTreeItem(" + action + ", " + item + ")");
 		String locator = null;
@@ -75,25 +65,16 @@ public class TreePreferences extends AbsTree {
 		zWaitForBusyOverlay();
 	}
 
-	/**
-	 * Not implemented. Use zTreeItem(Action action, TreeItem item) instead
-	 */
 	@Override
 	public AbsPage zTreeItem(Action action, IItem preference) throws HarnessException {
 		throw new HarnessException("Not implemented.  Use zTreeItem(Action action, TreeItem item) instead");
 	}
 
-	/**
-	 * Not implemented. Use zTreeItem(Action action, TreeItem item) instead
-	 */
 	@Override
 	public AbsPage zTreeItem(Action action, Button option, IItem item) throws HarnessException {
 		throw new HarnessException("Not applicable.");
 	}
 
-	/**
-	 * Not implemented. There are no buttons in the preferences tree.
-	 */
 	@Override
 	public AbsPage zPressButton(Button button) throws HarnessException {
 		throw new HarnessException("Not implemented.  There are no buttons in the preferences tree.");
@@ -136,5 +117,4 @@ public class TreePreferences extends AbsTree {
 	public boolean zIsActive() throws HarnessException {
 		throw new HarnessException("implement me");
 	}
-
 }

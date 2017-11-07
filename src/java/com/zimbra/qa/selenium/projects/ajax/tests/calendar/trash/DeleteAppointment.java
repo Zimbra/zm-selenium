@@ -38,7 +38,7 @@ public class DeleteAppointment extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Verify the deletion of an appointment from trash",
+	@Test (description = "Verify the deletion of an appointment from trash",
 			groups = { "functional", "L3" })
 
 	public void DeleteAppointment_01() throws HarnessException {

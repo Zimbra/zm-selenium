@@ -36,7 +36,7 @@ public class ZimbraPrefComposeFormatText extends AjaxCommonTest {
 	}
 
 
-	@Test(description = "Set zimbraPrefComposeFormat to 'text'",
+	@Test (description = "Set zimbraPrefComposeFormat to 'text'",
 			groups = { "functional", "L2" })
 
 	public void ZimbraPrefComposeFormatText_01() throws HarnessException {

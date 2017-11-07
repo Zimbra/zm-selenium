@@ -21,22 +21,22 @@ import com.zimbra.qa.selenium.framework.ui.AbsApplication;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.framework.util.performance.PerfMetrics;
 
-
 /**
- * This class extends the Login Page, but tracks the external registration URL.  
- * example, https://server/service/extuserprov/?p=0_46059ce585e90f5d2d5...12e636f6d3b
+ * This class extends the Login Page, but tracks the external registration URL.
+ * example,
+ * https://server/service/extuserprov/?p=0_46059ce585e90f5d2d5...12e636f6d3b
+ *
  * @author Matt Rhoades
  *
  */
 public class PageExternalRegistration extends PageLogin {
 
-
 	/**
-	 * The URL to register at.
-	 * example, https://server/service/extuserprov/?p=0_46059ce585e90f5d2d5...12e636f6d3b
+	 * The URL to register at. example,
+	 * https://server/service/extuserprov/?p=0_46059ce585e90f5d2d5...12e636f6d3b
 	 */
 	protected ZimbraURI MyUrl = null;
-	
+
 	public PageExternalRegistration(AbsApplication application) {
 		super(application);
 		logger.info("new " + PageExternalRegistration.class.getCanonicalName());
@@ -46,11 +46,11 @@ public class PageExternalRegistration extends PageLogin {
 	public boolean zIsActive() throws HarnessException {
 
 		String buttonText = this.sGetAttribute(Locators.zBtnLogin + "@value");
-		if ( ! ("Register".equals(buttonText)) ) {
-			logger.debug("button text does not equal 'Register': "+ buttonText);
+		if (!("Register".equals(buttonText))) {
+			logger.debug("button text does not equal 'Register': " + buttonText);
 			return (false);
 		}
-		
+
 		logger.debug("isActive() = " + true);
 		return (true);
 	}
@@ -59,17 +59,17 @@ public class PageExternalRegistration extends PageLogin {
 	public String myPageName() {
 		return (this.getClass().getName());
 	}
-	
+
 	public void zSetURL(URI uri) throws HarnessException {
-		
+
 		// Add the code coverage and perf metrics to the URI
 		this.MyUrl = new ZimbraURI(uri);
-		
-		if ( CodeCoverage.getInstance().isEnabled() ) {
+
+		if (CodeCoverage.getInstance().isEnabled()) {
 			this.MyUrl.addQuery(CodeCoverage.getInstance().getQueryMap());
 		}
-		
-		if ( PerfMetrics.getInstance().Enabled ) {
+
+		if (PerfMetrics.getInstance().Enabled) {
 			this.MyUrl.addQuery(PerfMetrics.getInstance().getQueryMap());
 		}
 
@@ -79,24 +79,19 @@ public class PageExternalRegistration extends PageLogin {
 	public void zNavigateTo() throws HarnessException {
 
 		// Logout
-		if ( ((AppAjaxClient)MyApplication).zPageMain.zIsActive() ) {
-			((AppAjaxClient)MyApplication).zPageMain.zLogout();
+		if (((AppAjaxClient) MyApplication).zPageMain.zIsActive()) {
+			((AppAjaxClient) MyApplication).zPageMain.zLogout();
 		}
-		
+
 		// Open MyURL
 		this.sOpen(this.MyUrl.toString());
 	}
 
-
-	/**
-	 * Register as the specified account
-	 * @param account
-	 * @throws HarnessException
-	 */
 	public void zLogin(ZimbraAccount account) throws HarnessException {
 		logger.debug("zLogin(ZimbraAccount account)" + account.EmailAddress);
 
-		tracer.trace("Login to the "+ MyApplication.myApplicationName() +" using user/password "+ account.EmailAddress +"/"+ account.Password);
+		tracer.trace("Login to the " + MyApplication.myApplicationName() + " using user/password "
+				+ account.EmailAddress + "/" + account.Password);
 
 		zSetLoginName(account.EmailAddress);
 		zSetLoginPassword(account.Password);
@@ -107,38 +102,29 @@ public class PageExternalRegistration extends PageLogin {
 
 		// Wait for the app to load
 		sWaitForPageToLoad();
-		((AppAjaxClient)MyApplication).zPageExternalMain.zWaitForActive();
-		((AppAjaxClient)MyApplication).zSetActiveAccount(account);
+		((AppAjaxClient) MyApplication).zPageExternalMain.zWaitForActive();
+		((AppAjaxClient) MyApplication).zSetActiveAccount(account);
 	}
-	
-	/**
-	 * For external user registration,
-	 * instead of login name, this is display name
-	 */
+
 	public void zSetLoginName(String name) throws HarnessException {
-		if ( name == null ) {
+		if (name == null) {
 			throw new HarnessException("Name is null");
 		}
 		String locator = "css=input#displayname";
-		if ( !this.sIsElementPresent(locator) ) {
-			throw new HarnessException("Display field does not exist "+ locator);
+		if (!this.sIsElementPresent(locator)) {
+			throw new HarnessException("Display field does not exist " + locator);
 		}
 		sType(locator, name);
 	}
 
-	/**
-	 * For external user registration,
-	 * there is an extra 'confirm password' field
-	 */
 	public void zSetLoginPasswordConfirm(String password) throws HarnessException {
-		if ( password == null ) {
+		if (password == null) {
 			throw new HarnessException("Password is null");
 		}
 		String locator = "css=input#password2";
-		if ( !this.sIsElementPresent(locator) ) {
-			throw new HarnessException("Confirm field does not exist "+ locator);
+		if (!this.sIsElementPresent(locator)) {
+			throw new HarnessException("Confirm field does not exist " + locator);
 		}
 		sType(locator, password);
 	}
-	
 }

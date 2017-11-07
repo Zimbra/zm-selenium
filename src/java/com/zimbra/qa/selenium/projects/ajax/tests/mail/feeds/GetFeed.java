@@ -32,7 +32,7 @@ public class GetFeed extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Verify a feed appears in the folder tree",
+	@Test (description = "Verify a feed appears in the folder tree",
 			groups = { "functional", "L2" })
 
 	public void GetFeed_01() throws HarnessException, MalformedURLException {
@@ -68,7 +68,7 @@ public class GetFeed extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Reload a feed",
+	@Test (description = "Reload a feed",
 			groups = { "functional", "L2" })
 
 	public void GetFeed_02() throws HarnessException, MalformedURLException {

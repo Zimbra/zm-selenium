@@ -29,7 +29,7 @@ public class WorkWeekView extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Verify quick add dialog opens after hitting new appointment in work week view",
+	@Test (description = "Verify quick add dialog opens after hitting new appointment in work week view",
 			groups = { "functional", "L2" } )
 
 	public void WorkWeekView_01() throws HarnessException {

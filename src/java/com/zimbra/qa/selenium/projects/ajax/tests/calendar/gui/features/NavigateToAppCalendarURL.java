@@ -39,7 +39,7 @@ public class NavigateToAppCalendarURL extends AjaxCommonTest {
 
 
 	@Bugs( ids = "96868,62137")
-	@Test( description = "Bug 62137 - 'http://<server>?app=calendar' broken with/without login to zcs",
+	@Test (description = "Bug 62137 - 'http://<server>?app=calendar' broken with/without login to zcs",
 			groups = { "smoke", "L1" })
 
 	public void NavigateToAppCalendarURL_01() throws HarnessException {

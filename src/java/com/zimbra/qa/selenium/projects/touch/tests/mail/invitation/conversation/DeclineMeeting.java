@@ -51,7 +51,7 @@ public class DeclineMeeting extends CalendarWorkWeekTest {
 				+	"</CreateAppointmentRequest>");
 	}
 	
-	@Test( description = "Decline a meeting using Decline button from invitation message", 
+	@Test (description = "Decline a meeting using Decline button from invitation message", 
 			groups = { "sanity" })
 	
 	public void DeclineMeeting_01() throws HarnessException {
@@ -136,7 +136,7 @@ public class DeclineMeeting extends CalendarWorkWeekTest {
 
 	}
 
-	@Test( description = "Decline meeting - Verify organizer gets notification message", 
+	@Test (description = "Decline meeting - Verify organizer gets notification message", 
 			groups = { "functional" })
 	
 	public void DeclineMeeting_02() throws HarnessException {

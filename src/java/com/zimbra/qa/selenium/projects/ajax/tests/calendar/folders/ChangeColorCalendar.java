@@ -34,7 +34,7 @@ public class ChangeColorCalendar extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Edit a Calendar, change the color (Context menu -> Edit)",
+	@Test (description = "Edit a Calendar, change the color (Context menu -> Edit)",
 			groups = { "functional", "L2" })
 
 	public void ChangeColorCalendar_01() throws HarnessException {

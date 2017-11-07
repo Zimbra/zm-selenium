@@ -36,7 +36,7 @@ public class QuickReplyAll extends PrefGroupMailByConversationTest {
 	}
 
 
-	@Test( description = "Quick Reply All to a conversation (1 message, 1 recipient)",
+	@Test (description = "Quick Reply All to a conversation (1 message, 1 recipient)",
 			groups = { "smoke", "L1" })
 
 	public void QuickReplyAll_01() throws HarnessException {
@@ -85,7 +85,7 @@ public class QuickReplyAll extends PrefGroupMailByConversationTest {
 	}
 
 
-	@Test( description = "Quick Reply to a conversation (1 message, 2 recipients)",
+	@Test (description = "Quick Reply to a conversation (1 message, 2 recipients)",
 			groups = { "functional", "L2" })
 
 	public void QuickReplyAll_02() throws HarnessException {
@@ -147,7 +147,7 @@ public class QuickReplyAll extends PrefGroupMailByConversationTest {
 	}
 
 
-	@Test( description = "Quick Reply to a conversation (1 message, 1 recipient, 1 CC, 1 BCC)",
+	@Test (description = "Quick Reply to a conversation (1 message, 1 recipient, 1 CC, 1 BCC)",
 			groups = { "functional", "L3" })
 
 	public void QuickReplyAll_03() throws HarnessException {
@@ -223,7 +223,7 @@ public class QuickReplyAll extends PrefGroupMailByConversationTest {
 	}
 
 
-	@Test( description = "Quick Reply-All to a 3 message conversation - first message",
+	@Test (description = "Quick Reply-All to a 3 message conversation - first message",
 			groups = { "functional", "L3" })
 
 	public void QuickReplyAll_10() throws HarnessException {
@@ -325,7 +325,7 @@ public class QuickReplyAll extends PrefGroupMailByConversationTest {
 	}
 
 
-	@Test( description = "Quick Reply-All to a 3 message conversation - middle message",
+	@Test (description = "Quick Reply-All to a 3 message conversation - middle message",
 			groups = { "functional", "L3" })
 
 	public void QuickReplyAll_11() throws HarnessException {
@@ -427,7 +427,7 @@ public class QuickReplyAll extends PrefGroupMailByConversationTest {
 	}
 
 
-	@Test( description = "Quick Reply-All to a 3 message conversation - last message",
+	@Test (description = "Quick Reply-All to a 3 message conversation - last message",
 			groups = { "functional", "L3" })
 
 	public void QuickReplyAll_12() throws HarnessException {

@@ -25,7 +25,6 @@ import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew.Locators;
 
 public class DialogSendUpdatetoAttendees extends DialogWarning {
 
-	// The ID for the main Dialog DIV
 	public static final String LocatorDivID = "SEND_UPDATES_DIALOG";
 
 	public DialogSendUpdatetoAttendees(AbsApplication application, AbsTab page) {
@@ -39,7 +38,7 @@ public class DialogSendUpdatetoAttendees extends DialogWarning {
 		logger.info(myPageName() + " zClickButton(" + button + ")");
 
 		tracer.trace("Click dialog button " + button);
-		if ( button == null )
+		if (button == null)
 			throw new HarnessException("button cannot be null");
 
 		String locator = null;
@@ -62,16 +61,15 @@ public class DialogSendUpdatetoAttendees extends DialogWarning {
 			page = null;
 
 		} else {
-			return ( super.zClickButton(button) );
+			return (super.zClickButton(button));
 		}
 
-		// Make sure the locator was set
 		if (locator == null) {
 			throw new HarnessException("Button " + button + " not implemented");
 		}
 
 		if (!this.sIsElementPresent(locator)) {
-			throw new HarnessException("Button " + button + " locator "	+ locator + " not present!");
+			throw new HarnessException("Button " + button + " locator " + locator + " not present!");
 		}
 
 		this.sClickAt(locator, "");

@@ -30,7 +30,7 @@ public class SpamMail extends PrefGroupMailByMessageTest{
 		logger.info("New " + SpamMail.class.getCanonicalName());
 	}
 
-	@Test( description = "Verify error message is displayed when on marking the message as spam on mountpoint folder (read-only share)",
+	@Test (description = "Verify error message is displayed when on marking the message as spam on mountpoint folder (read-only share)",
 			groups = { "functional" })
 
 	public void SpamMail_01() throws HarnessException  {

@@ -34,7 +34,7 @@ public class CreateMailHtml extends PrefGroupMailByMessageTest {
 
 
 	@Bugs(ids = "101612")
-	@Test(description = "Send a mail using HTML editor - in a separate window",
+	@Test (description = "Send a mail using HTML editor - in a separate window",
 			groups = { "sanity", "L0" })
 
 	public void CreateMailHtml_01() throws HarnessException {

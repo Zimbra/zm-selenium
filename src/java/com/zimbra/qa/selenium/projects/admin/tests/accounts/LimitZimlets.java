@@ -36,7 +36,7 @@ public class LimitZimlets extends AdminCommonTest {
 		super.startingPage = app.zPageManageAccounts;
 	}
 
-	@Test( description = "Edit account - Verify option 'Limit Zimlets available to this user to:'",
+	@Test (description = "Edit account - Verify option 'Limit Zimlets available to this user to:'",
 			groups = { "smoke", "L1" })
 
 	public void LimitZimlets_01() throws HarnessException {

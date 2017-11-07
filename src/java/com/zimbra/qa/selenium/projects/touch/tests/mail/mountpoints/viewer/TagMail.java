@@ -31,7 +31,7 @@ public class TagMail extends PrefGroupMailByMessageTest{
 		logger.info("New " + TagMail.class.getCanonicalName());
 	}
 
-	@Test( description = "Mark tag to an email on mountpoint message (read-only share)",
+	@Test (description = "Mark tag to an email on mountpoint message (read-only share)",
 			groups = { "functional" })
 
 	public void TagMail_01() throws HarnessException  {

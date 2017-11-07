@@ -29,7 +29,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 		logger.info("New "+ DeleteMail.class.getCanonicalName());
 	}
 	
-	@Test( description = "Delete a mail item in message view",
+	@Test (description = "Delete a mail item in message view",
 			groups = { "smoke" })
 			
 	public void DeleteMail_01() throws HarnessException {

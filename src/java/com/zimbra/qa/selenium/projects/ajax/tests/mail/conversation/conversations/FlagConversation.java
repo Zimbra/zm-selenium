@@ -29,7 +29,7 @@ public class FlagConversation extends PrefGroupMailByConversationTest {
 	}
 
 
-	@Test( description = "Flag a conversation clicking flagged icon",
+	@Test (description = "Flag a conversation clicking flagged icon",
 			groups = { "smoke", "L1" })
 
 	public void FlagConversation_01() throws HarnessException {
@@ -53,7 +53,7 @@ public class FlagConversation extends PrefGroupMailByConversationTest {
 	}
 
 
-	@Test( description = "Flag a conversation by using shortcut 'mf'",
+	@Test (description = "Flag a conversation by using shortcut 'mf'",
 			groups = { "functional", "L2" })
 
 	public void FlagConversation_02() throws HarnessException {

@@ -52,7 +52,7 @@ public class ReplyMsgWithTwoThreeLineTextSignature extends AjaxCommonTest {
 	 */
 
 	@Bugs(ids = "45490")
-	@Test(description = "Reply Msg with text signature with multiple line and Verify signature through soap",
+	@Test (description = "Reply Msg with text signature with multiple line and Verify signature through soap",
 			groups = { "functional", "L2" })
 
 	public void ReplyMsgWithTextSignature_01() throws HarnessException {

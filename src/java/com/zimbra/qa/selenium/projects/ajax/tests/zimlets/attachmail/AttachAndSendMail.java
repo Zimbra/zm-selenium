@@ -35,7 +35,7 @@ public class AttachAndSendMail extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Attach an email to a mail",
+	@Test (description = "Attach an email to a mail",
 			groups = { "functional", "L2" })
 
 	public void AttachAndSendMail_01() throws HarnessException {

@@ -30,7 +30,7 @@ public class ReplyConversationText extends PrefGroupMailByConversationTest {
 		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "text");
 	}
 
-	@Test( description = "Reply to a conversation",
+	@Test (description = "Reply to a conversation",
 			groups = { "smoke", "L1" })
 
 	public void ReplyConversationText_01() throws HarnessException {

@@ -33,7 +33,7 @@ public class CreateACopy extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Create a copy of meeting invite (Instance)",
+	@Test (description = "Create a copy of meeting invite (Instance)",
 			groups = { "functional", "L2" })
 
 	public void CopyMeeting_01() throws HarnessException {

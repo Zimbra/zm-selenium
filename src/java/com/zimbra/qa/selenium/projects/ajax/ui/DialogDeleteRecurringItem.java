@@ -15,10 +15,6 @@
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.ajax.ui;
-/**
- * 
- */
-
 
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
@@ -28,7 +24,7 @@ public class DialogDeleteRecurringItem extends AbsDialog {
 	public static enum Confirmation {
 		DELETERECURRINGITEM
 	}
-	
+
 	public static class Locators {
 		public static final String zDialogClass = "DwtDialog";
 		public static final String zDialogButtonsClass = "DwtDialogButtonBar";
@@ -37,7 +33,7 @@ public class DialogDeleteRecurringItem extends AbsDialog {
 
 	public DialogDeleteRecurringItem(Confirmation confirmation, AbsApplication application, AbsTab tab) {
 		super(application, tab);
-		
+
 		logger.info("new " + DialogDeleteRecurringItem.class.getCanonicalName());
 	}
 
@@ -51,40 +47,30 @@ public class DialogDeleteRecurringItem extends AbsDialog {
 		logger.info(myPageName() + " zClickButton(" + button + ")");
 
 		tracer.trace("Click dialog button " + button);
-		if ( button == null )
+		if (button == null)
 			throw new HarnessException("button cannot be null");
-	
+
 		String locator = null;
-		AbsPage page = null; 
+		AbsPage page = null;
 
 		if (button == Button.B_OK) {
-			locator = "css=div[class='" + Locators.zDialogClass + "'] "
-					+ "div[class='" + Locators.zDialogButtonsClass
+			locator = "css=div[class='" + Locators.zDialogClass + "'] " + "div[class='" + Locators.zDialogButtonsClass
 					+ "'] td[class=ZWidgetTitle]:contains(OK)";
-			
+
 		} else if (button == Button.B_CANCEL) {
-			locator = "css=div[class='" + Locators.zDialogClass + "'] "
-					+ "div[class='" + Locators.zDialogButtonsClass
+			locator = "css=div[class='" + Locators.zDialogClass + "'] " + "div[class='" + Locators.zDialogButtonsClass
 					+ "'] td[class=ZWidgetTitle]:contains(Cancel)";
 		} else {
 			throw new HarnessException("Button " + button + " not implemented");
 		}
 
-		// Make sure the locator exists
 		if (!this.sIsElementPresent(locator)) {
-			throw new HarnessException("Button " + button + " locator "
-					+ locator + " not present!");
+			throw new HarnessException("Button " + button + " locator " + locator + " not present!");
 		}
 
-		// if (zIsActive())
-		// zGetDisplayedText("css=div[class=" + Locators.zDialogContentClassId +
-		// "]");
-
-		this.zClickAt(locator,"0,0");
-
-		// If the app is busy, wait for it to become active
+		this.zClickAt(locator, "0,0");
 		this.zWaitForBusyOverlay();
-		
+
 		return (page);
 	}
 
@@ -97,7 +83,7 @@ public class DialogDeleteRecurringItem extends AbsDialog {
 
 		return (this.sGetText(locator));
 	}
-	
+
 	@Override
 	public boolean zIsActive() throws HarnessException {
 		logger.info(myPageName() + " zIsActive()");
@@ -105,11 +91,11 @@ public class DialogDeleteRecurringItem extends AbsDialog {
 		String locator = "class=" + Locators.zDialogClass;
 
 		if (!this.sIsElementPresent(locator)) {
-			return (false); // Not even present
+			return (false);
 		}
 
 		if (!this.zIsVisiblePerPosition(locator, 0, 0)) {
-			return (false); // Not visible per position
+			return (false);
 		}
 
 		logger.info(myPageName() + " zIsActive() = true");
@@ -117,4 +103,3 @@ public class DialogDeleteRecurringItem extends AbsDialog {
 
 	}
 }
-

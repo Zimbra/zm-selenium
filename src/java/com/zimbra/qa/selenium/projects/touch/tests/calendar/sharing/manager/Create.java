@@ -36,7 +36,7 @@ public class Create extends CalendarWorkWeekTest {
 	}
 	
 	@Bugs(ids = "95890")
-	@Test( description = "Create a basic meeting with attendee and location on shared mailbox",
+	@Test (description = "Create a basic meeting with attendee and location on shared mailbox",
 			groups = { "smoke" })
 
 	public void CreateMeeting_01() throws HarnessException {

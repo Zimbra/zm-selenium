@@ -31,7 +31,7 @@ public class FlagMail extends PrefGroupMailByMessageTest{
 		logger.info("New " + FlagMail.class.getCanonicalName());
 	}
 
-	@Test( description = "Verify user can flag a  email on mount point with manager rights",
+	@Test (description = "Verify user can flag a  email on mount point with manager rights",
 			groups = { "functional" })
 
 	public void FlagMail_01() throws HarnessException  {

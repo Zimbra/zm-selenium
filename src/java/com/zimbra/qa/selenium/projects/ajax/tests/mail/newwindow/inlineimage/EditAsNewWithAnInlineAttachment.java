@@ -33,7 +33,7 @@ public class EditAsNewWithAnInlineAttachment extends PrefGroupMailByMessageTest 
 	}
 
 
-	@Test( description = "Edit as New message >> add inline Attchment from new window ",
+	@Test (description = "Edit as New message >> add inline Attchment from new window ",
 			groups = { "functional", "L2" })
 
 	public void EditAsNewWithAnInlineAttachment_01() throws HarnessException {

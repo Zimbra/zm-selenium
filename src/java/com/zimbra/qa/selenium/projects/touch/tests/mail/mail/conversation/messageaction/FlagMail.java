@@ -29,7 +29,7 @@ public class FlagMail extends PrefGroupMailByConversationTest {
 		logger.info("New "+ FlagMail.class.getCanonicalName());
 	}
 
-	@Test( description = "mark mail flag",
+	@Test (description = "mark mail flag",
 			groups = { "smoke" })
 
 	public void FlagMail_01() throws HarnessException {

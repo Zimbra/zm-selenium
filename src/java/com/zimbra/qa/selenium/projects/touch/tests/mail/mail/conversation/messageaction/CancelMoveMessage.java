@@ -34,7 +34,7 @@ import com.zimbra.qa.selenium.projects.touch.core.PrefGroupMailByConversationTes
 		public CancelMoveMessage() {
 			logger.info("New "+ CancelMoveMessage.class.getCanonicalName());
 		}
-			@Test( description = "cancel move mail operation",
+			@Test (description = "cancel move mail operation",
 					groups = { "smoke" })
 			
 			

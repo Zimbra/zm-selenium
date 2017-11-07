@@ -31,7 +31,7 @@ public class UnTagMessage extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Remove a tag from a message using Toolbar -> Tag ->Remove Tag",
+	@Test (description = "Remove a tag from a message using Toolbar -> Tag ->Remove Tag",
 			groups = { "smoke", "L1" })
 
 	public void UnTagMessage_01() throws HarnessException {
@@ -79,7 +79,7 @@ public class UnTagMessage extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Remove a tag from a message using Keyboard shortcut u",
+	@Test (description = "Remove a tag from a message using Keyboard shortcut u",
 			groups = { "functional", "L2" })
 
 	public void UnTagMessage_02() throws HarnessException {
@@ -131,7 +131,7 @@ public class UnTagMessage extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Remove a tag from a message clicking 'x' from tag bubble",
+	@Test (description = "Remove a tag from a message clicking 'x' from tag bubble",
 			groups = { "functional", "L2" })
 
 	public void UnTagMessage_03() throws HarnessException {

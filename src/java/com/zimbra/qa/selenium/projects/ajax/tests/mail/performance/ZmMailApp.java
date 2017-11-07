@@ -38,7 +38,7 @@ public class ZmMailApp extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Measure the time to load the mail app, message view, initial load",
+	@Test (description = "Measure the time to load the mail app, message view, initial load",
 			groups = { "performance", "deprecated" })
 
 	public void ZmMailApp_01() throws HarnessException {
@@ -58,7 +58,7 @@ public class ZmMailApp extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Measure the time to load the mail app, message view, 1 message",
+	@Test (description = "Measure the time to load the mail app, message view, 1 message",
 			groups = { "performance", "deprecated" })
 
 	public void ZmMailApp_02() throws HarnessException {
@@ -81,7 +81,7 @@ public class ZmMailApp extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Measure the time to load the mail app, message view, 100 messages",
+	@Test (description = "Measure the time to load the mail app, message view, 100 messages",
 			groups = { "performance", "deprecated" })
 
 	public void ZmMailApp_03() throws HarnessException {

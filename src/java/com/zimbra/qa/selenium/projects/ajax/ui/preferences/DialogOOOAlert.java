@@ -21,6 +21,7 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 
 public class DialogOOOAlert extends AbsDialog {
+
 	public static class Locators {
 		public static final String zDialogClass = "DwtDialog";
 		public static final String zDialogButtonsClass = "DwtDialogButtonBar";
@@ -49,21 +50,17 @@ public class DialogOOOAlert extends AbsDialog {
 		AbsPage page = null;
 
 		if (button == Button.B_YES) {
-			locator = "css=div[class='" + Locators.zDialogClass + "'] "
-					+ "div[class='" + Locators.zDialogButtonsClass
+			locator = "css=div[class='" + Locators.zDialogClass + "'] " + "div[class='" + Locators.zDialogButtonsClass
 					+ "'] td[class=ZWidgetTitle]:contains(Yes)";
 		} else if (button == Button.B_NO) {
-			locator = "css=div[class='" + Locators.zDialogClass + "'] "
-					+ "div[class='" + Locators.zDialogButtonsClass
+			locator = "css=div[class='" + Locators.zDialogClass + "'] " + "div[class='" + Locators.zDialogButtonsClass
 					+ "'] td[class=ZWidgetTitle]:contains(No)";
 		} else {
 			throw new HarnessException("Button " + button + " not implemented");
 		}
 
-		// Make sure the locator exists
 		if (!this.sIsElementPresent(locator)) {
-			throw new HarnessException("Button " + button + " locator "
-					+ locator + " not present!");
+			throw new HarnessException("Button " + button + " locator " + locator + " not present!");
 		}
 
 		this.zClickAt(locator, "0,0");
@@ -79,8 +76,7 @@ public class DialogOOOAlert extends AbsDialog {
 		String locator = "css=input[type=checkbox][id$=dontRemind]";
 
 		if (!sIsElementPresent(locator)) {
-			throw new HarnessException(
-					"DialogOOOAlert checkbox locator not present " + locator);
+			throw new HarnessException("DialogOOOAlert checkbox locator not present " + locator);
 		}
 
 		boolean checked = sIsChecked(locator);
@@ -124,15 +120,14 @@ public class DialogOOOAlert extends AbsDialog {
 	public boolean zIsActive() throws HarnessException {
 		logger.info(myPageName() + " zIsActive()");
 
-		String locator = "css=div." + Locators.zDialogClass
-				+ ":contains(Out Of Office Alert)";
+		String locator = "css=div." + Locators.zDialogClass + ":contains(Out Of Office Alert)";
 
 		if (!this.sIsElementPresent(locator)) {
-			return (false); // Not even present
+			return (false);
 		}
 
 		if (!this.zIsVisiblePerPosition(locator, 0, 0)) {
-			return (false); // Not visible per position
+			return (false);
 		}
 
 		logger.info(myPageName() + " zIsActive() = true");

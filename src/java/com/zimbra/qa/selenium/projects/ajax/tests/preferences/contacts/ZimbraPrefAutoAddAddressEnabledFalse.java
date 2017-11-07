@@ -38,8 +38,8 @@ public class ZimbraPrefAutoAddAddressEnabledFalse extends AjaxCommonTest {
 	}
 
 
-	@Test(description= "Select the checkbox to set zimbraPrefAutoAddAddressEnabled=false ",
-			groups= {"functional", "L2" })
+	@Test (description= "Select the checkbox to set zimbraPrefAutoAddAddressEnabled=false ",
+			groups= { "functional", "L2" })
 
 	public void ZimbraPrefAutoAddAddressEnabledFalse_01() throws HarnessException {
 

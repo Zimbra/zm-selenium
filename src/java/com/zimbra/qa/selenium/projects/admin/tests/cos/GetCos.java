@@ -44,7 +44,7 @@ public class GetCos extends AdminCommonTest {
 	 * 3. Verify cos is present in the list.
 	 * @throws HarnessException
 	 */
-	@Test( description = "Verify created cos is displayed in UI - Manage COS list view.",
+	@Test (description = "Verify created cos is displayed in UI - Manage COS list view.",
 			groups = { "smoke", "L1" })
 			public void GetCos_01() throws HarnessException {
 
@@ -75,7 +75,7 @@ public class GetCos extends AdminCommonTest {
 	 * 3. Verify cos is present in the list.
 	 * @throws HarnessException
 	 */
-	@Test( description = "Verify created cos is displayed in UI - Search list view.",
+	@Test (description = "Verify created cos is displayed in UI - Search list view.",
 			groups = { "smoke", "L1" })
 			public void GetCos_02() throws HarnessException {
 

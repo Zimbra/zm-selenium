@@ -52,7 +52,7 @@ public class DeleteAccount extends AdminCommonTest {
 	 * 
 	 * @throws HarnessException
 	 */
-	@Test( description = "Delete a basic account -- Manage Account View",
+	@Test (description = "Delete a basic account -- Manage Account View",
 			groups = { "smoke", "L1" })
 			public void DeleteAccount_01() throws HarnessException {
 
@@ -105,7 +105,7 @@ public class DeleteAccount extends AdminCommonTest {
 	 * 
 	 * @throws HarnessException
 	 */
-	@Test( description = "Delete a basic account - Manage Account View/Right Click Menu",
+	@Test (description = "Delete a basic account - Manage Account View/Right Click Menu",
 			groups = { "functional", "L2" })
 			public void DeleteAccount_02() throws HarnessException {
 
@@ -158,7 +158,7 @@ public class DeleteAccount extends AdminCommonTest {
 	 * 
 	 * @throws HarnessException
 	 */
-	@Test( description = "Delete a basic account - Search List View",
+	@Test (description = "Delete a basic account - Search List View",
 			groups = { "smoke", "L1" })
 			public void DeleteAccount_03() throws HarnessException {
 
@@ -212,7 +212,7 @@ public class DeleteAccount extends AdminCommonTest {
 	 * 5. Verify account is deleted using SOAP.
 	 * @throws HarnessException
 	 */
-	@Test( description = "Delete a basic account - Search List View/Right Click Menu",
+	@Test (description = "Delete a basic account - Search List View/Right Click Menu",
 			groups = { "functional", "L2" })
 			public void DeleteAccount_04() throws HarnessException {
 

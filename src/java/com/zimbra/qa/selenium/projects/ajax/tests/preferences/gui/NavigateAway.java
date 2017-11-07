@@ -119,7 +119,7 @@ public class NavigateAway extends AjaxCommonTest {
 
 
 	@Bugs(ids = "103549")
-	@Test( description = "Set calendar custom work week and navigate away without saving",
+	@Test (description = "Set calendar custom work week and navigate away without saving",
 			groups = { "functional", "L2" })
 
 	public void NavigateAway_02() throws HarnessException {
@@ -138,7 +138,7 @@ public class NavigateAway extends AjaxCommonTest {
 
 
 	@Bugs(ids = "103549")
-	@Test( description = "Change default appointment duration and navigate away without saving",
+	@Test (description = "Change default appointment duration and navigate away without saving",
 			groups = { "functional", "L3" })
 
 	public void NavigateAway_03() throws HarnessException {

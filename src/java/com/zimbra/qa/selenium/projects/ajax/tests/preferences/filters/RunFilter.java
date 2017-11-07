@@ -34,7 +34,7 @@ public class RunFilter extends AjaxCommonTest {
 	}
 
 
-   	@Test( description = "Create an incoming filter, run it and check the results",
+   	@Test (description = "Create an incoming filter, run it and check the results",
 			groups = { "sanity", "L0"  } )
 
 	public void RunFilter_01() throws HarnessException {
@@ -122,7 +122,7 @@ public class RunFilter extends AjaxCommonTest {
 	}
 
 
-   	@Test( description = "Create an Outgoinging filter, run it and check the results",
+   	@Test (description = "Create an Outgoinging filter, run it and check the results",
 			groups = { "functional", "L3" } )
 
 	public void RunFilter_02() throws HarnessException {

@@ -14,9 +14,6 @@
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-/**
- *
- */
 package com.zimbra.qa.selenium.projects.ajax.ui.contacts;
 
 import com.zimbra.qa.selenium.framework.items.*;
@@ -41,7 +38,6 @@ public class TreeContacts extends AbsTree {
 	public AbsPage zTreeItem(Action action, IItem addressbook) throws HarnessException {
 		tracer.trace("Click " + action + " on addressbook " + addressbook);
 
-		// Validate the arguments
 		if ((action == null) || (addressbook == null)) {
 			throw new HarnessException("Must define an action and addressbook");
 		}
@@ -91,7 +87,6 @@ public class TreeContacts extends AbsTree {
 
 		tracer.trace("Click " + action + " then " + option + " on folder " + folder.getName());
 
-		// Validate the arguments
 		if ((action == null) || (option == null) || (folder == null)) {
 			throw new HarnessException("Must define an action, option, and addressbook");
 		}
@@ -102,8 +97,7 @@ public class TreeContacts extends AbsTree {
 			return (zTreeItem(action, option, folder));
 		} else if (folder instanceof TagItem) {
 			return (zTreeItem(action, option, (TagItem) folder));
-		} else if (folder instanceof FolderItem) { // FolderItem needs to go
-													// last
+		} else if (folder instanceof FolderItem) {
 			return (zTreeItem(action, option, (FolderItem) folder));
 		}
 
@@ -342,15 +336,14 @@ public class TreeContacts extends AbsTree {
 
 		if (action == Action.A_LEFTCLICK) {
 			sClickAt(locator, "0,0");
-			SleepUtil.sleepLong(); // DL UI rendering takes some time
+			SleepUtil.sleepLong();
 
 		} else if (action == Action.A_RIGHTCLICK) {
 
-			// Select the folder
 			zRightClickAt(locator, "0,0");
 			zWaitForBusyOverlay();
 			SleepUtil.sleepSmall();
-			// return a context menu
+
 			return (new ContextMenu(MyApplication));
 
 		} else {
@@ -377,7 +370,7 @@ public class TreeContacts extends AbsTree {
 			page = new DialogCreateFolder(MyApplication, ((AppAjaxClient) MyApplication).zPageContacts);
 
 		} else if (button == Button.B_TREE_NEWTAG) {
-			locator = "css=div[id=main_Contacts-parent-TAG] div[class*=ImgContextMenu]"; // td#ztih__main_Contacts__TAG_optCell";
+			locator = "css=div[id=main_Contacts-parent-TAG] div[class*=ImgContextMenu]";
 			subLocator = "css=div[id='NEW_TAG']";
 			page = new DialogTag(MyApplication, ((AppAjaxClient) MyApplication).zPageContacts);
 
@@ -385,7 +378,6 @@ public class TreeContacts extends AbsTree {
 			throw new HarnessException("no logic defined for button " + button);
 		}
 
-		// Make sure the button exists
 		if (!this.sIsElementPresent(locator))
 			throw new HarnessException("Button is not present locator=" + locator + " button=" + button);
 
@@ -393,7 +385,6 @@ public class TreeContacts extends AbsTree {
 		this.zWaitForBusyOverlay();
 		SleepUtil.sleepSmall();
 
-		// Make sure the subLocator exists
 		if (!this.sIsElementPresent(subLocator))
 			throw new HarnessException("Button is not present locator=" + subLocator);
 
@@ -408,11 +399,9 @@ public class TreeContacts extends AbsTree {
 		return (page);
 	}
 
-	// expand the folder to show folder's children
 	public void zExpand(FolderItem folderItem) throws HarnessException {
 
 		String locator = "css=td#zti__main_Contacts__" + folderItem.getId() + "_nodeCell" + ">div.";
-		// already expanded or not have sub folders
 		if (!sIsElementPresent(locator + Locators.COLLAPSE_NODE)) {
 			return;
 		}

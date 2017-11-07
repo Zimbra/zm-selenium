@@ -44,7 +44,7 @@ public class CreateAppointment extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Create a basic appointment without an attendee in day view",
+	@Test (description = "Create a basic appointment without an attendee in day view",
 			groups = { "smoke", "L0" } )
 
 	public void CreateAppointment_01() throws HarnessException {
@@ -74,7 +74,7 @@ public class CreateAppointment extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Create appointment with all the fields and verify it in day view",
+	@Test (description = "Create appointment with all the fields and verify it in day view",
 			groups = { "functional", "L2" } )
 
 	public void CreateAppointment_02() throws HarnessException {
@@ -131,7 +131,7 @@ public class CreateAppointment extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Create private appointment in day view",
+	@Test (description = "Create private appointment in day view",
 			groups = { "functional", "L2" } )
 
 	public void CreatePrivateAppointment_03() throws HarnessException {

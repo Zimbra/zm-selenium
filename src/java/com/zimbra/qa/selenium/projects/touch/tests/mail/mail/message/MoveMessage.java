@@ -36,7 +36,7 @@ public class MoveMessage extends PrefGroupMailByConversationTest{
 	public MoveMessage() {
 		logger.info("New "+ MoveMessage.class.getCanonicalName());
 	}
-	@Test( description = "Move a mail by 'move conversation' button",
+	@Test (description = "Move a mail by 'move conversation' button",
 			groups = { "sanity" })
 
 
@@ -84,7 +84,7 @@ public class MoveMessage extends PrefGroupMailByConversationTest{
 	}	
 
 	@Bugs( ids = "83506")
-	@Test( description = "Move a mail into subfolder",
+	@Test (description = "Move a mail into subfolder",
 	groups = { "smoke" })
 	public void MoveMail_02() throws HarnessException {
 

@@ -35,7 +35,7 @@ public class CreateMeetingByChangingBodyTextFormat extends AjaxCommonTest {
 
 
     @Bugs(ids = "103714")
-	@Test( description = "Compose a meeting with body text as plain, change to HTML and verify if text is not lost",
+	@Test (description = "Compose a meeting with body text as plain, change to HTML and verify if text is not lost",
 			groups = { "smoke", "L1" })
 
 	public void PlainText_To_HTML_01() throws HarnessException {
@@ -80,7 +80,7 @@ public class CreateMeetingByChangingBodyTextFormat extends AjaxCommonTest {
 
 
     @Bugs(ids = "103714")
-	@Test( description = "Compose a meeting with body text as plain, change to HTML and verify if text is not lost",
+	@Test (description = "Compose a meeting with body text as plain, change to HTML and verify if text is not lost",
 			groups = { "smoke", "L1" })
 
 	public void HTML_To_PlainText_01() throws HarnessException {
@@ -126,7 +126,7 @@ public class CreateMeetingByChangingBodyTextFormat extends AjaxCommonTest {
 
 
     @Bugs(ids = "103797")
-	@Test( description = " Description of a previous appointment comes up when changing mode from plain-text to html ",
+	@Test (description = " Description of a previous appointment comes up when changing mode from plain-text to html ",
 			groups = { "functional", "L2" })
 
 	public void PlainText_To_HTML_02() throws HarnessException {

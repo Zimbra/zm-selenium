@@ -38,7 +38,7 @@ public class NavigateServerStatus extends AdminCommonTest {
 	 * 1. Verify navigation path -- "Home --> Monitor --> Server Status"
 	 * @throws HarnessException
 	 */
-	@Test( description = "Navigate to Server Status",
+	@Test (description = "Navigate to Server Status",
 			groups = { "sanity", "L0" })
 			public void NavigateServerStatus_01() throws HarnessException {
 		

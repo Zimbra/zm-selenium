@@ -28,7 +28,7 @@ public class BasicLogout extends TouchCommonTest {
 		logger.info("New "+ BasicLogout.class.getCanonicalName());
 	}
 	
-	@Test( description = "Logout of the Touch Client",
+	@Test (description = "Logout of the Touch Client",
 			groups = { "sanity" })
 			
 	public void BasicLogout01() throws HarnessException {

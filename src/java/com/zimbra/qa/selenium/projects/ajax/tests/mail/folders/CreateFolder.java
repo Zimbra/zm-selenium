@@ -34,7 +34,7 @@ public class CreateFolder extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Create a new folder by clicking 'new folder' on folder tree",
+	@Test (description = "Create a new folder by clicking 'new folder' on folder tree",
 			groups = { "sanity", "L0" })
 
 	public void CreateFolder_01() throws HarnessException {
@@ -52,7 +52,7 @@ public class CreateFolder extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Create a new folder using keyboard shortcuts",
+	@Test (description = "Create a new folder using keyboard shortcuts",
 			groups = { "functional", "L2" })
 
 	public void CreateFolder_02() throws HarnessException {
@@ -75,7 +75,7 @@ public class CreateFolder extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Create a new folder using context menu from root folder",
+	@Test (description = "Create a new folder using context menu from root folder",
 			groups = { "functional", "L2" })
 
 	public void CreateFolder_03() throws HarnessException {
@@ -98,7 +98,7 @@ public class CreateFolder extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Create a new folder using mail app New -> New Folder",
+	@Test (description = "Create a new folder using mail app New -> New Folder",
 			groups = { "functional", "L2" })
 
 	public void CreateFolder_04() throws HarnessException {
@@ -120,7 +120,7 @@ public class CreateFolder extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Create a folder with non-ASCII special characters",
+	@Test (description = "Create a folder with non-ASCII special characters",
 			groups = { "functional", "L3" }, dataProvider = "DataProviderSupportedCharsets")
 
 	public void CreateFolder_05(ZCharset charset, String foldername) throws HarnessException {

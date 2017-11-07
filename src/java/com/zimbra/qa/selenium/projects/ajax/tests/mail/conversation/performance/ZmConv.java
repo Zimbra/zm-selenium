@@ -41,7 +41,7 @@ public class ZmConv extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Measure the performance for conversation view, preview pane, text message, initial load",
+	@Test (description = "Measure the performance for conversation view, preview pane, text message, initial load",
 			groups = { "performance","deprecated" })
 
 	public void ZmMailItem_01() throws HarnessException {

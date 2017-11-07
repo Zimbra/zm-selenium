@@ -30,7 +30,7 @@ public class MarkReadMail extends PrefGroupMailByMessageTest {
 		logger.info("New "+ MarkReadMail.class.getCanonicalName());
 	}
 	
-	@Test( description = "mark mail as read",
+	@Test (description = "mark mail as read",
 			groups = { "smoke" })
 			
 	public void readMail_01() throws HarnessException {

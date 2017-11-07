@@ -40,8 +40,7 @@ public class DocumentBriefcaseEdit extends AbsForm {
 		return docItem;
 	}
 
-	public DocumentBriefcaseEdit(AbsApplication application,
-			DocumentItem document) {
+	public DocumentBriefcaseEdit(AbsApplication application, DocumentItem document) {
 		super(application);
 
 		docItem = document;
@@ -55,15 +54,12 @@ public class DocumentBriefcaseEdit extends AbsForm {
 	}
 
 	public void typeDocumentText(String text) throws HarnessException {
-		// ClientSessionFactory.session().selenium().getEval("var x = selenium.browserbot.findElementOrNull(\""+Locators.zFrame+"\");if (x!=null)x=x.contentWindow.document.body;if (browserVersion.isChrome) {x.textContent='"+text+"';} else if (browserVersion.isIE) {x.innerText='"+text+"';}");
 		sSelectFrame(Locators.zFrame);
 		logger.info("typing Document Text" + text);
-		// SleepUtil.sleepSmall();
 		sType(Locators.zBodyField, text);
 	}
 
 	public String retriveDocumentText() throws HarnessException {
-		// ClientSessionFactory.session().selenium().getEval("var x = selenium.browserbot.findElementOrNull(\""+Locators.zFrame+"\");if (x!=null)x=x.contentWindow.document.body;if (browserVersion.isChrome) {x.textContent;} else if (browserVersion.isIE) {x.innerText;}");
 		sSelectFrame(Locators.zFrame);
 		String text = "";
 		if (sIsElementPresent(Locators.zBodyField)) {
@@ -87,10 +83,8 @@ public class DocumentBriefcaseEdit extends AbsForm {
 
 			String nameFieldLocator = Locators.zNameField;
 
-			// Make sure the locator exists
 			if (!this.sIsElementPresent(nameFieldLocator))
-				throw new HarnessException("Locator is not present: "
-						+ nameFieldLocator);
+				throw new HarnessException("Locator is not present: " + nameFieldLocator);
 
 			this.sMouseOver(nameFieldLocator);
 			this.sFocus(nameFieldLocator);
@@ -103,25 +97,20 @@ public class DocumentBriefcaseEdit extends AbsForm {
 
 			String iframeLocator = Locators.zFrame;
 
-			// Make sure the locator exists
 			if (!this.sIsElementPresent(iframeLocator))
-				throw new HarnessException("Locator is not present: "
-						+ iframeLocator);
-				
-				WebElement we = getElement(iframeLocator);
-				this.sMouseOver(iframeLocator);
-				this.sFocus(iframeLocator);
-				this.zClickAt(iframeLocator, "0,0");
+				throw new HarnessException("Locator is not present: " + iframeLocator);
 
-				this.executeScript(
-						"var bodytext=\""
-								+ value
-								+ "\";"								
-								+ "var iframe_body=arguments[0].contentWindow.document.body;"
-								+ "if (navigator.userAgent.indexOf('Firefox')!=-1 || navigator.userAgent.indexOf('Chrome')!=-1) {iframe_body.innerHTML=bodytext;}"
-								+ "else if (navigator.userAgent.indexOf('MSIE')!=-1) {iframe_body.innerHTML=bodytext;}"
-								+ "else {iframe_body.innerHTML=bodytext;}", we);
-			
+			WebElement we = getElement(iframeLocator);
+			this.sMouseOver(iframeLocator);
+			this.sFocus(iframeLocator);
+			this.zClickAt(iframeLocator, "0,0");
+
+			this.executeScript("var bodytext=\"" + value + "\";"
+					+ "var iframe_body=arguments[0].contentWindow.document.body;"
+					+ "if (navigator.userAgent.indexOf('Firefox')!=-1 || navigator.userAgent.indexOf('Chrome')!=-1) {iframe_body.innerHTML=bodytext;}"
+					+ "else if (navigator.userAgent.indexOf('MSIE')!=-1) {iframe_body.innerHTML=bodytext;}"
+					+ "else {iframe_body.innerHTML=bodytext;}", we);
+
 		} else {
 			throw new HarnessException("Not implemented field: " + field);
 		}
@@ -137,22 +126,18 @@ public class DocumentBriefcaseEdit extends AbsForm {
 
 		// Look for "Save & Close"
 		if (!this.sIsElementPresent(Locators.zSaveAndCloseIconBtn))
-			throw new HarnessException("Save & Close button is not present "
-					+ Locators.zSaveAndCloseIconBtn);
+			throw new HarnessException("Save & Close button is not present " + Locators.zSaveAndCloseIconBtn);
 
 		boolean visible = this.sIsVisible(Locators.zSaveAndCloseIconBtn);
 		if (!visible)
-			throw new HarnessException("Save & Close button is not visible "
-					+ Locators.zSaveAndCloseIconBtn);
+			throw new HarnessException("Save & Close button is not visible " + Locators.zSaveAndCloseIconBtn);
 
 		// Click on it
 		zClickAt(Locators.zSaveAndCloseIconBtn, "0,0");
-		// this.sMouseDown(Locators.zSaveAndCloseIconBtn);
-		// this.sMouseUp(Locators.zSaveAndCloseIconBtn);
 
 		// add version notes
-		DialogAddVersionNotes dlgAddNotes = new DialogAddVersionNotes(
-				MyApplication, ((AppAjaxClient) MyApplication).zPageBriefcase);
+		DialogAddVersionNotes dlgAddNotes = new DialogAddVersionNotes(MyApplication,
+				((AppAjaxClient) MyApplication).zPageBriefcase);
 
 		dlgAddNotes.zDismissAddVersionNotesDlg(docItem.getName());
 	}
@@ -168,11 +153,9 @@ public class DocumentBriefcaseEdit extends AbsForm {
 
 			zWaitForElementPresent("css=div[class='ZDToolBar ZWidget']");
 
-			//zWaitForElementPresent("css=iframe[id*='DWT'][class='ZDEditor']");
 			zWaitForElementPresent("css=iframe[id*=body_ifr]");
 
-			zWaitForIframeText("css=iframe[id*=body_ifr]",
-					docItem.getDocText());
+			zWaitForIframeText("css=iframe[id*=body_ifr]", docItem.getDocText());
 
 			logger.info("DocumentBriefcaseEdit is Active()");
 

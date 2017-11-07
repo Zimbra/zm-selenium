@@ -32,7 +32,7 @@ public class CreateFolder extends PrefGroupMailByMessageTest {
 		logger.info("New " + CreateFolder.class.getCanonicalName());
 	}
 
-	@Test( description = "Create a new folder by clicking to Edit -> 'New Folder'", 
+	@Test (description = "Create a new folder by clicking to Edit -> 'New Folder'", 
 			groups = { "sanity" })
 	
 	public void CreateFolder_01() throws HarnessException  {

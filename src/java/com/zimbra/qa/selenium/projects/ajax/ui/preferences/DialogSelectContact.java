@@ -1,5 +1,3 @@
-package com.zimbra.qa.selenium.projects.ajax.ui.preferences;
-
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
@@ -16,16 +14,11 @@ package com.zimbra.qa.selenium.projects.ajax.ui.preferences;
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-/**
- * 
- */
+package com.zimbra.qa.selenium.projects.ajax.ui.preferences;
+
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 
-/**
- * Represents a "Add Document Version Notes" dialog box
- * <p>
- */
 public class DialogSelectContact extends AbsDialog {
 
 	public static class Locators {
@@ -55,14 +48,13 @@ public class DialogSelectContact extends AbsDialog {
 		String locator = Locators.zDialogTitleClass;
 
 		if (!this.sIsElementPresent(locator)) {
-			return (false); // Not even present
+			return (false);
 		}
 
 		if (!this.zIsVisiblePerPosition(locator, 0, 0)) {
-			return (false); // Not visible per position
+			return (false);
 		}
 
-		// Yes, visible
 		logger.info(myPageName() + " zIsActive() = true");
 		return (true);
 	}
@@ -75,53 +67,33 @@ public class DialogSelectContact extends AbsDialog {
 		String locator = null;
 
 		if (button == Button.B_OK) {
-			locator = "css=div[class='" + Locators.zDialogClass + "'] "
-					+ "div[class='" + Locators.zDialogButtonsClass
+			locator = "css=div[class='" + Locators.zDialogClass + "'] " + "div[class='" + Locators.zDialogButtonsClass
 					+ "'] td[class=ZWidgetTitle]:contains(OK)";
 		} else if (button == Button.B_CANCEL) {
-			locator = "css=div[class='" + Locators.zDialogClass + "'] "
-					+ "div[class='" + Locators.zDialogButtonsClass
+			locator = "css=div[class='" + Locators.zDialogClass + "'] " + "div[class='" + Locators.zDialogButtonsClass
 					+ "'] td[class=ZWidgetTitle]:contains(Cancel)";
 		} else if (button == Button.B_SEARCH) {
-			locator = "css=div[class=" + Locators.zDialogContactSearchInput
-					+ "] td[id$=" + Locators.zDialogContactSearchButton
-					+ "] td[id$='title']:contains('Search')";
+			locator = "css=div[class=" + Locators.zDialogContactSearchInput + "] td[id$="
+					+ Locators.zDialogContactSearchButton + "] td[id$='title']:contains('Search')";
 		} else {
 			throw new HarnessException("Button " + button + " not implemented");
 		}
 
-		// Default behavior, click the locator
-
-		// Make sure the locator was set
-
-		// Make sure the locator exists
 		if (!this.sIsElementPresent(locator)) {
-			throw new HarnessException("Button " + button + " locator "
-					+ locator + " not present!");
+			throw new HarnessException("Button " + button + " locator " + locator + " not present!");
 		}
-
-		// if (zIsActive())
-		// zGetDisplayedText("css=div[class=" + Locators.zDialogContentClassId +
-		// "]");
 
 		this.zClickAt(locator, "0,0");
 
 		return (null);
 	}
 
-	/**
-	 * Enter text into the search contact input
-	 * 
-	 * @param notes
-	 */
-	// @SuppressWarnings("unused")
 	public void zEnterContacts(String contact) throws HarnessException {
 
 		if (contact == null)
 			throw new HarnessException("contact must not be null");
 
-		String locator = "css=div[class=" + Locators.zDialogContactSearchInput
-				+ "] input[id$='searchField']";
+		String locator = "css=div[class=" + Locators.zDialogContactSearchInput + "] input[id$='searchField']";
 
 		if (!this.zWaitForElementPresent(locator, "10000"))
 			throw new HarnessException("unable to find body field " + locator);
@@ -133,8 +105,6 @@ public class DialogSelectContact extends AbsDialog {
 
 	@Override
 	public String zGetDisplayedText(String locator) throws HarnessException {
-		// TODO Auto-generated method stub
 		return null;
 	}
-
 }

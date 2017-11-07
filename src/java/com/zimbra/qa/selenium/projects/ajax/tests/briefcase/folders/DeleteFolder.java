@@ -33,7 +33,7 @@ public class DeleteFolder extends FeatureBriefcaseTest {
 	}
 
 
-	@Test( description = "Delete a briefcase sub-folder - Right click, Delete",
+	@Test (description = "Delete a briefcase sub-folder - Right click, Delete",
 			groups = { "smoke", "L0" })
 
 	public void DeleteFolder_01() throws HarnessException {
@@ -70,7 +70,7 @@ public class DeleteFolder extends FeatureBriefcaseTest {
 	}
 
 
-	@Test( description = "Delete a a top level briefcase folder - Right click, Delete",
+	@Test (description = "Delete a a top level briefcase folder - Right click, Delete",
 			groups = { "smoke", "L1" })
 
 	public void DeleteFolder_02() throws HarnessException {
@@ -110,7 +110,7 @@ public class DeleteFolder extends FeatureBriefcaseTest {
 
 
 	@Bugs(ids = "80600")
-	@Test( description = "Delete a briefcase sub-folder from list view and hitting toolbar delete button",
+	@Test (description = "Delete a briefcase sub-folder from list view and hitting toolbar delete button",
 			groups = { "functional", "L2" })
 
 	public void DeleteFolder_03() throws HarnessException {

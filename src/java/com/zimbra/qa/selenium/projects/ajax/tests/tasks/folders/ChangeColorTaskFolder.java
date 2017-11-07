@@ -43,8 +43,8 @@ public class ChangeColorTaskFolder extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Edit a folder, change the color (Context menu -> Edit)",
-			groups = { "functional", "L2"})
+	@Test (description = "Edit a folder, change the color (Context menu -> Edit)",
+			groups = { "functional", "L2" })
 
 	public void ChangeColorTaskFolder_01() throws HarnessException {
 

@@ -28,7 +28,7 @@ public class BasicSearch extends AdminCommonTest {
 		logger.info("New "+ BasicSearch.class.getCanonicalName());
 	}
 	
-	@Test( description = "Verify the Top Menu displays the Search bar correctly",
+	@Test (description = "Verify the Top Menu displays the Search bar correctly",
 			groups = { "functional-skip", "L3-skip" })
 	public void TopMenu_BasicSearch_01() throws HarnessException {
 		throw new HarnessException("Implement me!");

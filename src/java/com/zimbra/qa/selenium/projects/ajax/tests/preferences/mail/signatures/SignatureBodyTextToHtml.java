@@ -37,7 +37,7 @@ public class SignatureBodyTextToHtml extends AjaxCommonTest {
 
 
 	@Bugs(ids="98736")
-	@Test(description = "Verify that body content of signature is not lost when changed from text to HTMl",
+	@Test (description = "Verify that body content of signature is not lost when changed from text to HTMl",
 			groups = { "functional", "L3"  })
 
 	public void SignatureBodyTextToHtml_01() throws HarnessException {

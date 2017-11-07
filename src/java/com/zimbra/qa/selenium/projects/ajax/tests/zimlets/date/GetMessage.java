@@ -40,7 +40,7 @@ public class GetMessage extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Receive a mail with a basic date",
+	@Test (description = "Receive a mail with a basic date",
 			groups = { "smoke", "L0" })
 
 	public void GetMessage_01() throws HarnessException {
@@ -78,7 +78,7 @@ public class GetMessage extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Receive a mail with two dates in body",
+	@Test (description = "Receive a mail with two dates in body",
 			groups = { "smoke", "L1" })
 
 	public void GetMessage_02() throws HarnessException {
@@ -119,7 +119,7 @@ public class GetMessage extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Validate the date zimlet matches valid dates",
+	@Test (description = "Validate the date zimlet matches valid dates",
 			groups = { "functional", "L2" })
 
 	public void GetMessage_03() throws HarnessException {
@@ -156,7 +156,7 @@ public class GetMessage extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Validate the date zimlet does not match invalid dates",
+	@Test (description = "Validate the date zimlet does not match invalid dates",
 			groups = { "functional", "L2" })
 
 	public void GetMessage_04() throws HarnessException {
@@ -185,7 +185,7 @@ public class GetMessage extends AjaxCommonTest {
 
 
 	@Bugs(ids="86667")
-	@Test( description = "Receive a mail with a date in subject(as Per bug this is invalid test case",
+	@Test (description = "Receive a mail with a date in subject(as Per bug this is invalid test case",
 			groups = { "deprecated" })
 
 	public void GetMessage_05() throws HarnessException {
@@ -223,7 +223,7 @@ public class GetMessage extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Receive a mail with a date string, such as today, tomorrow, last night, etc.",
+	@Test (description = "Receive a mail with a date string, such as today, tomorrow, last night, etc.",
 			groups = { "functional", "L2" })
 
 	public void GetMessage_11() throws HarnessException {

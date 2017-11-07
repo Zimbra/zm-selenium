@@ -31,8 +31,8 @@ public class DragAndDropContact extends AjaxCommonTest  {
 	}
 
 
-	@Test( description = "Move a contact item to sub-addressbook",
-			groups = { "smoke", "L0"})
+	@Test (description = "Move a contact item to sub-addressbook",
+			groups = { "smoke", "L0" })
 
 	public void DragAndDropContact_01() throws HarnessException {
 
@@ -79,8 +79,8 @@ public class DragAndDropContact extends AjaxCommonTest  {
    	}
 
 
-	@Test( description = "Move a contact item to trash folder by drag and drop",
-			groups = { "functional", "L2"})
+	@Test (description = "Move a contact item to trash folder by drag and drop",
+			groups = { "functional", "L2" })
 
 	public void DnDToTrash_02() throws HarnessException {
 

@@ -38,7 +38,7 @@ public class GetAppointment extends AjaxCommonTest {
 
 	
 	@Bugs(ids = "69132")
-	@Test( description = "View a basic all-day appointment in day view",
+	@Test (description = "View a basic all-day appointment in day view",
 			groups = { "smoke", "L1" })
 	
 	public void GetAllDayAppointment_01() throws HarnessException {

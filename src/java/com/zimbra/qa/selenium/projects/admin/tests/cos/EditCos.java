@@ -49,7 +49,7 @@ public class EditCos extends AdminCommonTest {
 	 * 5. Verify cos is edited using SOAP.
 	 * @throws HarnessException
 	 */
-	@Test( description = "Edit Cos name  - Manage Cos View",
+	@Test (description = "Edit Cos name  - Manage Cos View",
 			groups = { "functional", "L2" })
 	public void EditCos_01() throws HarnessException {
 
@@ -96,7 +96,7 @@ public class EditCos extends AdminCommonTest {
 	 * 3. Verify cos name is changed using SOAP.
 	 * @throws HarnessException
 	 */
-	@Test( description = "Edit cos name -- right click",
+	@Test (description = "Edit cos name -- right click",
 			groups = { "functional", "L2" })
 	public void EditCos_02() throws HarnessException {
 
@@ -147,7 +147,7 @@ public class EditCos extends AdminCommonTest {
 	 * 5. Verify cos is edited using SOAP.
 	 * @throws HarnessException
 	 */
-	@Test( description = "Edit Cos name  - Search Cos View",
+	@Test (description = "Edit Cos name  - Search Cos View",
 			groups = { "functional", "L3" })
 	public void EditCos_03() throws HarnessException {
 
@@ -203,7 +203,7 @@ public class EditCos extends AdminCommonTest {
 	 * 3. Verify cos name is changed using SOAP.
 	 * @throws HarnessException
 	 */
-	@Test( description = "Edit cos name -- right click",
+	@Test (description = "Edit cos name -- right click",
 			groups = { "functional", "L3" })
 	public void EditCos_04() throws HarnessException {
 

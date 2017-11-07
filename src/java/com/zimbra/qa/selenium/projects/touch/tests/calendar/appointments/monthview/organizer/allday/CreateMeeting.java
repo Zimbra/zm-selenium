@@ -39,7 +39,7 @@ public class CreateMeeting extends CalendarWorkWeekTest {
 		}};
 	}
 	
-	@Test( description = "Create all day meeting with attendee and location in month view",
+	@Test (description = "Create all day meeting with attendee and location in month view",
 			groups = { "sanity" })
 			
 	public void CreateMeeting_01() throws HarnessException {

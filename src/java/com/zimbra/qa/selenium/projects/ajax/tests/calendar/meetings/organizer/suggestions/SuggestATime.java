@@ -33,8 +33,8 @@ public class SuggestATime extends AjaxCommonTest {
 	}
 
 	@Bugs(ids = "73966,88287")
-	@Test( description = "Suggest a free time while creating appointment",
-			groups = { "smoke", "L1"})
+	@Test (description = "Suggest a free time while creating appointment",
+			groups = { "smoke", "L1" })
 
 	public void SuggestATime_01() throws HarnessException {
 

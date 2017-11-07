@@ -41,8 +41,8 @@ public class UndoDeleteTask extends AjaxCommonTest {
 
 
 	@Bugs( ids = "96832")
-	@Test( description = "Undone deleted  task",
-			groups = { "smoke", "L1"})
+	@Test (description = "Undone deleted  task",
+			groups = { "smoke", "L1" })
 
 	public void UndoDeleteTask_01() throws HarnessException {
 

@@ -39,7 +39,7 @@ public class NavigateAccount extends AdminCommonTest {
 	 * 2. Verify navigation path -- "Home --> Manage --> Accounts"
 	 * @throws HarnessException
 	 */
-	@Test( description = "Navigate to Accounts",
+	@Test (description = "Navigate to Accounts",
 			groups = { "sanity", "L0" })
 			public void NavigateAccount_01() throws HarnessException {
 		

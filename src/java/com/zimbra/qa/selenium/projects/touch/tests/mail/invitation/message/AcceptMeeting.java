@@ -61,7 +61,7 @@ public class AcceptMeeting extends CalendarWorkWeekTest {
 				+	"</CreateAppointmentRequest>");
 	}
 	
-	@Test( description = "Accept a meeting using Accept button from invitation message", 
+	@Test (description = "Accept a meeting using Accept button from invitation message", 
 			groups = { "sanity" })
 	
 	public void AcceptMeeting_01() throws HarnessException {
@@ -146,7 +146,7 @@ public class AcceptMeeting extends CalendarWorkWeekTest {
 
 	}
 
-	@Test( description = "Accept meeting - Verify organizer gets notification message", 
+	@Test (description = "Accept meeting - Verify organizer gets notification message", 
 			groups = { "functional" })
 	
 	public void AcceptMeeting_02() throws HarnessException {
@@ -195,7 +195,7 @@ public class AcceptMeeting extends CalendarWorkWeekTest {
 	}
 	
 	@Bugs(ids = "95782")
-	@Test( description = "Verify invite message is removed after accepting/declining appointment", 
+	@Test (description = "Verify invite message is removed after accepting/declining appointment", 
 			groups = { "functional" })
 	
 	public void AcceptMeeting_03() throws HarnessException {
@@ -226,7 +226,7 @@ public class AcceptMeeting extends CalendarWorkWeekTest {
 
 	}
 	
-	@Test( description = "Verify toast message after accepting/declining invite", 
+	@Test (description = "Verify toast message after accepting/declining invite", 
 			groups = { "functional" })
 	
 	public void AcceptMeeting_04() throws HarnessException {

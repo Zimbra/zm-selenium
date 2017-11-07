@@ -34,6 +34,7 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -186,6 +187,10 @@ public class ClientSession {
 				System.setProperty("webdriver.gecko.driver", driverFilePath);
 				options.setCapability(CapabilityType.LOGGING_PREFS, logs);
 				webDriver = new FirefoxDriver(options);
+				
+				Dimension dimension = new Dimension(500, 500);
+				webDriver.manage().window().setSize(dimension);
+				webDriver.manage().window().maximize();
 
 			} else {
 

@@ -64,7 +64,7 @@ public class ComposeMsgWithTextSignature extends AjaxCommonTest {
 	 */
 
 	@Bugs(ids = "78085")
-	@Test(description = " Compose Msg with text signature and Verify signature thropugh soap",
+	@Test (description = " Compose Msg with text signature and Verify signature thropugh soap",
 			groups = { "functional", "L3" })
 
 	public void ComposeMsgWithTextSignature_01() throws HarnessException {

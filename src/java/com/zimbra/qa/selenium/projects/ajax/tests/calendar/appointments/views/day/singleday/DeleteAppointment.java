@@ -42,7 +42,7 @@ public class DeleteAppointment extends AjaxCommonTest {
 
 
 	@Bugs(ids = "69132")
-	@Test( description = "Delete an appointment using Delete toolbar button in day view",
+	@Test (description = "Delete an appointment using Delete toolbar button in day view",
 			groups = { "smoke", "L1" })
 
 	public void DeleteAppointment_01() throws HarnessException {
@@ -87,7 +87,7 @@ public class DeleteAppointment extends AjaxCommonTest {
 
 
 	@Bugs(ids = "69132")
-	@Test( description = "Delete an appointment using context menu in day view",
+	@Test (description = "Delete an appointment using context menu in day view",
 			groups = { "functional", "L2" })
 
 	public void DeleteAppointment_02() throws HarnessException {
@@ -139,7 +139,7 @@ public class DeleteAppointment extends AjaxCommonTest {
 	}
 
 	@Bugs(ids = "69132")
-	@Test( description = "Delete an appointment using keyboard shortcuts (Del & Backspace) in day view",
+	@Test (description = "Delete an appointment using keyboard shortcuts (Del & Backspace) in day view",
 			groups = { "functional", "L2" },
 			dataProvider = "DataProviderShortcutKeys")
 

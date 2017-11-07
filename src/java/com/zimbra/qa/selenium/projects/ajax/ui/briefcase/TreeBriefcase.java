@@ -14,13 +14,9 @@
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-/**
- * 
- */
 package com.zimbra.qa.selenium.projects.ajax.ui.briefcase;
 
 import java.util.*;
-
 import org.openqa.selenium.By;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
@@ -45,104 +41,88 @@ public class TreeBriefcase extends AbsTree {
 	}
 
 	@Override
-	public AbsPage zTreeItem(Action action, Button option, IItem item)
-			throws HarnessException {
+	public AbsPage zTreeItem(Action action, Button option, IItem item) throws HarnessException {
+
 		// Validate the arguments
 		if ((action == null) || (option == null) || (item == null)) {
-			throw new HarnessException(
-					"zTreeItem(Action, Button, IItem): Must define an action, option, and item");
+			throw new HarnessException("zTreeItem(Action, Button, IItem): Must define an action, option, and item");
 		}
 
-		logger.info(myPageName() + " zTreeItem(" + action + ", " + option
-				+ ", " + item.getName() + ")");
+		logger.info(myPageName() + " zTreeItem(" + action + ", " + option + ", " + item.getName() + ")");
 
-		tracer.trace("Click " + action + " then " + option + " on item "
-				+ item.getName());
+		tracer.trace("Click " + action + " then " + option + " on item " + item.getName());
 
 		AbsPage page = null;
 		String actionLocator = null;
 		String optionLocator = null;
 
 		if (item instanceof TagItem) {
-			actionLocator = "css=td[id^=zti__main_Briefcase__]:contains(" + ((TagItem) item).getName()
-				+ ")";
+			actionLocator = "css=td[id^=zti__main_Briefcase__]:contains(" + ((TagItem) item).getName() + ")";
 		} else if (item instanceof FolderItem) {
-			actionLocator = "css=td[id^=zti__main_Briefcase__"
-					+ ((FolderItem) item).getId() + "_textCell]";
+			actionLocator = "css=td[id^=zti__main_Briefcase__" + ((FolderItem) item).getId() + "_textCell]";
 		} else {
-			throw new HarnessException("Must use IItem as argument, but was "
-					+ item.getClass());
+			throw new HarnessException("Must use IItem as argument, but was " + item.getClass());
 		}
-		
-		zWaitForElementVisible(actionLocator);	
+
+		zWaitForElementVisible(actionLocator);
 
 		if (action == Action.A_RIGHTCLICK) {
 			this.zRightClickAt(actionLocator, "0,0");
 		} else {
-			throw new HarnessException("implement me! " + action
-					+ ": not implemented");
+			throw new HarnessException("implement me! " + action + ": not implemented");
 		}
 
 		if (option == Button.B_TREE_NEWTAG) {
 
 			optionLocator = Locators.zNewTagTreeMenuItem;
 
-			page = new DialogTag(MyApplication,
-					((AppAjaxClient) MyApplication).zPageBriefcase);
+			page = new DialogTag(MyApplication, ((AppAjaxClient) MyApplication).zPageBriefcase);
 
 		} else if (option == Button.B_TREE_RENAMETAG) {
 
 			optionLocator = Locators.zRenameTagTreeMenuItem;
 
-			page = new DialogRenameTag(MyApplication,
-					((AppAjaxClient) MyApplication).zPageBriefcase);
+			page = new DialogRenameTag(MyApplication, ((AppAjaxClient) MyApplication).zPageBriefcase);
 		} else if (option == Button.B_TREE_DELETE) {
 
 			optionLocator = Locators.zDeleteTreeMenuItem;
 
 			if (item instanceof TagItem) {
-				page = new DialogWarning(
-						DialogWarning.DialogWarningID.DeleteTagWarningMessage,
-						MyApplication,
+				page = new DialogWarning(DialogWarning.DialogWarningID.DeleteTagWarningMessage, MyApplication,
 						((AppAjaxClient) MyApplication).zPageBriefcase);
 			}
 		} else if (option == Button.B_TREE_NEWFOLDER) {
 
 			optionLocator = Locators.zNewFolderTreeMenuItem;
 
-			page = new DialogCreateBriefcaseFolder(MyApplication,
-					((AppAjaxClient) MyApplication).zPageBriefcase);
+			page = new DialogCreateBriefcaseFolder(MyApplication, ((AppAjaxClient) MyApplication).zPageBriefcase);
 
 		} else if (option == Button.B_TREE_EDIT_PROPERTIES) {
 
 			optionLocator = Locators.zEditPropertiesTreeMenuItem;
 
-			page = new DialogEditProperties(MyApplication,
-					((AppAjaxClient) MyApplication).zPageBriefcase);
+			page = new DialogEditProperties(MyApplication, ((AppAjaxClient) MyApplication).zPageBriefcase);
 
 		} else {
-			throw new HarnessException("button " + option
-					+ " not yet implemented");
+			throw new HarnessException("button " + option + " not yet implemented");
 		}
 
 		this.zWaitForBusyOverlay();
-		
-		zWaitForElementVisible(optionLocator);		
-		
-		// Default behavior. Click the locator
-		zClickAt(optionLocator,"");
- 
-		// If there is a busy overlay, wait for that to finish
+
+		zWaitForElementVisible(optionLocator);
+
+		zClickAt(optionLocator, "");
+
 		this.zWaitForBusyOverlay();
 
 		if (page != null) {
-			// Wait for the page to become active, if it was specified
+
 			page.zWaitForActive();
 		}
 		return (page);
 	}
 
-	public AbsPage zTreeItem(Action action, IItem item, boolean isRowAdded)	throws HarnessException {
+	public AbsPage zTreeItem(Action action, IItem item, boolean isRowAdded) throws HarnessException {
 
 		tracer.trace("Click " + action + " on folder " + item.getName());
 
@@ -160,8 +140,7 @@ public class TreeBriefcase extends AbsTree {
 		if ((action == null) || (item == null)) {
 			throw new HarnessException("zTreeItem(Action, IItem): Must define an action, and item");
 		}
-		logger.info(myPageName() + " zTreeItem(" + action + ", "
-				+ item.getName() + ")");
+		logger.info(myPageName() + " zTreeItem(" + action + ", " + item.getName() + ")");
 
 		tracer.trace("Click " + action + " on item " + item.getName());
 
@@ -169,53 +148,42 @@ public class TreeBriefcase extends AbsTree {
 		String locator = null;
 
 		if (item instanceof TagItem) {
-			locator = "css=td[id^=zti__main_Briefcase__]:contains(" + ((TagItem) item).getName()
-				+ ")";
+			locator = "css=td[id^=zti__main_Briefcase__]:contains(" + ((TagItem) item).getName() + ")";
 		} else if (item instanceof FolderItem) {
-			locator = Locators.briefcaseTreeView + ((FolderItem) item).getId()
-					+ "_imageCell]";
+			locator = Locators.briefcaseTreeView + ((FolderItem) item).getId() + "_imageCell]";
 
 		} else if (item instanceof LinkItem) {
 			page = new DialogFindShares(MyApplication, ((AppAjaxClient) MyApplication).zPageBriefcase);
 			clickBy(By.id("ztih__main_Briefcase__BRIEFCASE"), By.linkText("Find Shares..."));
 			return page;
-			
+
 		} else {
-			throw new HarnessException("Must use IItem as argument, but was "
-					+ item.getClass());
+			throw new HarnessException("Must use IItem as argument, but was " + item.getClass());
 		}
 
 		if (action == Action.A_LEFTCLICK) {
 
 			zWaitForBusyOverlay();
 
-			
 		} else if (action == Action.A_RIGHTCLICK) {
 
 			if (!this.sIsElementPresent(locator))
-				throw new HarnessException(
-						"Unable to locate folder in the tree " + locator);
+				throw new HarnessException("Unable to locate folder in the tree " + locator);
 
-			// Select the folder
 			this.zRightClickAt(locator, "0,0");
 
-			// return a context menu
 			return (new ContextMenu(MyApplication));
 		} else {
-			throw new HarnessException("Action " + action
-					+ " not yet implemented");
+			throw new HarnessException("Action " + action + " not yet implemented");
 		}
 
 		if (!this.sIsElementPresent(locator))
-			throw new HarnessException("Unable to locate folder in the tree "
-					+ locator);
+			throw new HarnessException("Unable to locate folder in the tree " + locator);
 
-		// Default behavior. Click the locator
 		zClickAt(locator, "0,0");
 
-		// If there is a busy overlay, wait for that to finish
 		zWaitForBusyOverlay();
-		
+
 		return (page);
 	}
 
@@ -232,12 +200,10 @@ public class TreeBriefcase extends AbsTree {
 		if (button == Button.B_TREE_NEWBRIEFCASE) {
 
 			locator = "css=div[id=ztih__main_Briefcase__BRIEFCASE] div[class^=ImgNewFolder ZWidget]";
-			page = new DialogCreateBriefcaseFolder(MyApplication,
-					((AppAjaxClient) MyApplication).zPageBriefcase);
+			page = new DialogCreateBriefcaseFolder(MyApplication, ((AppAjaxClient) MyApplication).zPageBriefcase);
 
 			if (!this.sIsElementPresent(locator)) {
-				throw new HarnessException(
-						"Unable to locate folder in the tree " + locator);
+				throw new HarnessException("Unable to locate folder in the tree " + locator);
 			}
 
 			this.zClickAt(locator, "0,0");
@@ -253,8 +219,8 @@ public class TreeBriefcase extends AbsTree {
 			if (!this.sIsElementPresent(locator)) {
 				throw new HarnessException("Unable to locate folder in tree " + locator);
 			}
-			page = new DialogTag(MyApplication,	((AppAjaxClient) MyApplication).zPageBriefcase);
-			
+			page = new DialogTag(MyApplication, ((AppAjaxClient) MyApplication).zPageBriefcase);
+
 		} else if (button == Button.B_TREE_BRIEFCASE_EXPANDCOLLAPSE) {
 
 			locator = null;
@@ -268,25 +234,17 @@ public class TreeBriefcase extends AbsTree {
 			throw new HarnessException("locator was null for button " + button);
 		}
 
-		// Click it
 		this.zClickAt(locator, "0,0");
-
-		// If the app is busy, wait for that to finish
 		zWaitForBusyOverlay();
 
-		// If page was specified, make sure it is active
 		if (page != null) {
-
-			// This function (default) throws an exception if never active
 			page.zWaitForActive();
 		}
 		return (page);
 	}
 
-	public AbsPage zPressPulldown(Button pulldown, Button option)
-			throws HarnessException {
-		logger.info(myPageName() + " zPressPulldown(" + pulldown + ", "
-				+ option + ")");
+	public AbsPage zPressPulldown(Button pulldown, Button option) throws HarnessException {
+		logger.info(myPageName() + " zPressPulldown(" + pulldown + ", " + option + ")");
 
 		tracer.trace("Click " + pulldown + " then " + option);
 
@@ -306,21 +264,16 @@ public class TreeBriefcase extends AbsTree {
 
 			if (option == Button.B_TREE_NEWFOLDER) {
 
-				optionLocator ="css=div[id='NEW_BRIEFCASE']";
-				page = new DialogCreateBriefcaseFolder(MyApplication,
-						((AppAjaxClient) MyApplication).zPageBriefcase);
+				optionLocator = "css=div[id='NEW_BRIEFCASE']";
+				page = new DialogCreateBriefcaseFolder(MyApplication, ((AppAjaxClient) MyApplication).zPageBriefcase);
 
 			} else if (option == Button.B_TREE_FIND_SHARES) {
 
-				optionLocator ="css=div[id='FIND_SHARES']";
-				page = new DialogFindShares(MyApplication,
-						((AppAjaxClient) MyApplication).zPageBriefcase);
+				optionLocator = "css=div[id='FIND_SHARES']";
+				page = new DialogFindShares(MyApplication, ((AppAjaxClient) MyApplication).zPageBriefcase);
 			} else {
-				throw new HarnessException("Pulldown/Option " + pulldown + "/"
-						+ option + " not implemented");
+				throw new HarnessException("Pulldown/Option " + pulldown + "/" + option + " not implemented");
 			}
-
-			
 
 		} else if (pulldown == Button.B_TREE_TAGS_OPTIONS) {
 
@@ -329,67 +282,48 @@ public class TreeBriefcase extends AbsTree {
 			if (option == Button.B_TREE_NEWTAG) {
 
 				optionLocator = "css=div[id='ZmActionMenu_briefcase_TAG'] div[id='NEW_TAG'] td[id$='_title']";
-				optionLocator ="css=div[id='NEW_TAG']";
-				
-				page = new DialogTag(MyApplication,
-						((AppAjaxClient) MyApplication).zPageBriefcase);
+				optionLocator = "css=div[id='NEW_TAG']";
+
+				page = new DialogTag(MyApplication, ((AppAjaxClient) MyApplication).zPageBriefcase);
 
 			} else {
-				throw new HarnessException("Pulldown/Option " + pulldown + "/"
-						+ option + " not implemented");
+				throw new HarnessException("Pulldown/Option " + pulldown + "/" + option + " not implemented");
 			}
-
-			
 
 		} else {
-			throw new HarnessException("Pulldown/Option " + pulldown + "/"
-					+ option + " not implemented");
+			throw new HarnessException("Pulldown/Option " + pulldown + "/" + option + " not implemented");
 		}
 
-		// Default behavior
 		if (pulldownLocator != null) {
 
-			// Make sure the locator exists
 			if (!this.sIsElementPresent(pulldownLocator)) {
-				throw new HarnessException("Button " + pulldown + " option "
-						+ option + " pulldownLocator " + pulldownLocator
-						+ " not present!");
+				throw new HarnessException("Button " + pulldown + " option " + option + " pulldownLocator "
+						+ pulldownLocator + " not present!");
 			}
 
-			// 8.0 change ... need zClickAt()
-			// this.zClick(pulldownLocator);
 			this.zClickAt(pulldownLocator, "0,0");
 
-			// If the app is busy, wait for it to become active
 			zWaitForBusyOverlay();
 
 			if (optionLocator != null) {
 
-				// Make sure the locator exists
 				if (!this.sIsElementPresent(optionLocator)) {
-					throw new HarnessException("Button " + pulldown
-							+ " option " + option + " optionLocator "
+					throw new HarnessException("Button " + pulldown + " option " + option + " optionLocator "
 							+ optionLocator + " not present!");
 				}
 
-				// 8.0 change ... need zClickAt()
-				// this.zClick(optionLocator);
 				this.zClickAt(optionLocator, "0,0");
 
-				// If the app is busy, wait for it to become active
 				zWaitForBusyOverlay();
 			}
 
-			// If we click on pulldown/option and the page is specified, then
-			// wait for the page to go active
 			if (page != null) {
 				page.zWaitForActive();
 			}
 		}
-		
+
 		SleepUtil.sleepMedium();
 
-		// Return the specified page, or null if not set
 		return (page);
 
 	}
@@ -397,8 +331,6 @@ public class TreeBriefcase extends AbsTree {
 	public List<TagItem> zListGetTags() throws HarnessException {
 
 		List<TagItem> items = new ArrayList<TagItem>();
-
-		// TODO: implement me!
 
 		// Return the list of items
 		return (items);
@@ -420,11 +352,6 @@ public class TreeBriefcase extends AbsTree {
 		throw new HarnessException("implement me!");
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see framework.ui.AbsTree#myPageName()
-	 */
 	@Override
 	public String myPageName() {
 		return (this.getClass().getName());
@@ -433,7 +360,6 @@ public class TreeBriefcase extends AbsTree {
 	@Override
 	public boolean zIsActive() throws HarnessException {
 
-		// Make sure the briefcase page is active
 		if (!((AppAjaxClient) MyApplication).zPageBriefcase.zIsActive()) {
 			((AppAjaxClient) MyApplication).zPageBriefcase.zNavigateTo();
 		}

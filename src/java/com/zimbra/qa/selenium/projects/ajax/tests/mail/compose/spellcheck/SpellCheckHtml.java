@@ -33,7 +33,7 @@ public class SpellCheckHtml extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Spell check an HTML message",
+	@Test (description = "Spell check an HTML message",
 			groups = { "functional", "L2" })
 
 	public void SpellCheckHtml_01() throws HarnessException {

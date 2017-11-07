@@ -14,9 +14,6 @@
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-/**
- * 
- */
 package com.zimbra.qa.selenium.projects.ajax.ui.briefcase;
 
 import com.zimbra.qa.selenium.framework.items.FolderItem;
@@ -59,10 +56,9 @@ public class DialogCreateBriefcaseFolder extends AbsDialog {
 		}
 
 		if (!this.zIsVisiblePerPosition(locator, 0, 0)) {
-			return (false); // Not visible per position
+			return (false);
 		}
 
-		// Yes, visible
 		logger.info(myPageName() + " zIsActive() = true");
 		return (true);
 
@@ -89,7 +85,6 @@ public class DialogCreateBriefcaseFolder extends AbsDialog {
 			throw new HarnessException("Button " + button + " not implemented");
 		}
 
-		// Make sure the locator exists
 		if (!this.sIsElementPresent(locator)) {
 			throw new HarnessException("Button " + button + " locator " + locator + " not present!");
 		}
@@ -111,12 +106,6 @@ public class DialogCreateBriefcaseFolder extends AbsDialog {
 		return (this.sGetText(locator));
 	}
 
-	/**
-	 * Click on the folder in the dialog tree
-	 * 
-	 * @param folder
-	 * @throws HarnessException
-	 */
 	public void zClickTreeFolder(FolderItem folder) throws HarnessException {
 		if (folder == null) {
 			throw new HarnessException("zClickTreeFolder(FolderItem): folder must not be null");
@@ -138,11 +127,6 @@ public class DialogCreateBriefcaseFolder extends AbsDialog {
 
 	}
 
-	/**
-	 * Enter text into the move message dialog folder name field
-	 * 
-	 * @param folder
-	 */
 	public void zEnterFolderName(String folder) throws HarnessException {
 		logger.info(myPageName() + " zEnterFolderName(" + folder + ")");
 
@@ -156,7 +140,6 @@ public class DialogCreateBriefcaseFolder extends AbsDialog {
 		if (!this.sIsElementPresent(locator))
 			throw new HarnessException("unable to find folder name field " + locator);
 
-		// For some reason, the text doesn't get entered on the first try
 		this.sFocus(locator);
 		this.zClickAt(locator, "0,0");
 		this.clearField(locator);
@@ -169,11 +152,6 @@ public class DialogCreateBriefcaseFolder extends AbsDialog {
 		None, Blue, Cyan, Green, Purple, Red, Yellow, Pink, Grey, Orange, MoreColors
 	}
 
-	/**
-	 * Set the color pulldown
-	 * 
-	 * @param folder
-	 */
 	public void zEnterFolderColor(FolderColor color) throws HarnessException {
 		logger.info(myPageName() + " zEnterFolderColor(" + color + ")");
 
@@ -186,6 +164,5 @@ public class DialogCreateBriefcaseFolder extends AbsDialog {
 			throw new HarnessException("'more colors' - implement me!");
 
 		throw new HarnessException("implement me!");
-
 	}
 }

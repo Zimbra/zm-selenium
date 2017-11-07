@@ -29,7 +29,7 @@ public class PermanentDeleteContact extends TouchCommonTest  {
 		super.startingPage = app.zPageAddressbook;
 	}
 	
-	@Test( description = "Permanently delete a contact item",
+	@Test (description = "Permanently delete a contact item",
 			groups = { "functional" })
 	
 	public void PermanentDeleteContact_01() throws HarnessException {

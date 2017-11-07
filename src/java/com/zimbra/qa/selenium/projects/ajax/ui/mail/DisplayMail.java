@@ -40,7 +40,7 @@ import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
  * <p>
  * Hover over objects, such as email or URL hover over, are encapsulated.
  * <p>
- * 
+ *
  * @author zimbra
  * @see http://wiki.zimbra.com/wiki/Testing:_Selenium:_ZimbraSelenium_Overview#Mail_Page
  */
@@ -52,19 +52,12 @@ public class DisplayMail extends AbsDisplay {
 
 		public static final String MessageViewPreviewAtBottomCSS = "css=div[id='zv__TV-main__MSG']";
 		public static final String MessageViewPreviewAtRightCSS = "css=div[id='zv__TV-main__MSG']";
-		public static final String MessageViewPreviewOff="css=td[id='off_check'] div[class='ImgMenuRadio']";
-		// 4/26/2012, the message ID is now used in the locator
-		// public static final String MessageViewOpenMessageCSS =
-		// "css=div[id='zv__MSG-1__MSG']";
+		public static final String MessageViewPreviewOff = "css=td[id='off_check'] div[class='ImgMenuRadio']";
 		public static final String MessageViewOpenMessageCSS = "css=div[id^='zv__MSG-'][id$='__MSG']";
 
 		public static final String ConversationViewPreviewAtBottomCSS = "css=div[id='zv__CLV-main__CV']";
 		public static final String ConversationViewPreviewAtRightCSS = "css=div[id='zv__CLV-main__CV']";
 		public static final String ConversationViewOpenMessageCSS = "css=TODO#TODO";
-		// public static final String ConversationViewPreviewAtBottomCSS =
-		// "css=div[id='zv__CLV__MSG']";
-		// public static final String ConversationViewPreviewAtRightCSS =
-		// "css=div[id='zv__CLV__MSG']";
 
 		// Accept, Decline & Tentative button, menus and dropdown locators
 		public static final String CalendarDropdown = "css=td[id$='_calendarSelectToolbarCell'] td[id$='_select_container']";
@@ -100,21 +93,12 @@ public class DisplayMail extends AbsDisplay {
 		public static final String zCertificateValidationFailed = "css=td[class$='ZmSecureMailCertificateRow'] td[id$='title']:contains('Certificate is invalid because the email address does not match')";
 	}
 
-	/**
-	 * The various displayed fields in a message
-	 */
 	public static enum Field {
-		ReceivedTime,ReceivedDate,From, ResentFrom, ReplyTo, To, Cc, OnBehalfOf, OnBehalfOfLabel, Bcc,Subject, Body
+		ReceivedTime, ReceivedDate, From, ResentFrom, ReplyTo, To, Cc, OnBehalfOf, OnBehalfOfLabel, Bcc, Subject, Body
 	}
 
 	public String ContainerLocator = Locators.MessageViewPreviewAtBottomCSS;
 
-	/**
-	 * Protected constuctor for this object. Only classes within this package
-	 * should create DisplayMail objects.
-	 * 
-	 * @param application
-	 */
 	protected DisplayMail(AbsApplication application) {
 		super(application);
 
@@ -144,7 +128,7 @@ public class DisplayMail extends AbsDisplay {
 			if (!this.sIsElementPresent(locator))
 				throw new HarnessException("locator is not present for button " + button + " : " + locator);
 
-			this.sClick(locator); // sClick() is required for this element
+			this.sClick(locator);
 
 			this.zWaitForBusyOverlay();
 
@@ -157,7 +141,7 @@ public class DisplayMail extends AbsDisplay {
 			if (!this.sIsElementPresent(locator))
 				throw new HarnessException("locator is not present for button " + button + " : " + locator);
 
-			this.sClick(locator); // sClick() is required for this element
+			this.sClick(locator);
 
 			this.zWaitForBusyOverlay();
 
@@ -170,12 +154,12 @@ public class DisplayMail extends AbsDisplay {
 			if (!this.sIsElementPresent(locator))
 				throw new HarnessException("locator is not present for button " + button + " : " + locator);
 
-			this.sClick(locator); // sClick() is required for this element
+			this.sClick(locator);
 
 			this.zWaitForBusyOverlay();
 
 			return (page);
-			
+
 		} else if (button == Button.B_HIGHLIGHT_OBJECTS) {
 
 			locator = this.ContainerLocator + " span[id$='_highlightObjects_link']";
@@ -183,7 +167,7 @@ public class DisplayMail extends AbsDisplay {
 			if (!this.sIsElementPresent(locator))
 				throw new HarnessException("locator is not present for button " + button + " : " + locator);
 
-			this.sClick(locator); // sClick() is required for this element
+			this.sClick(locator);
 
 			this.zWaitForBusyOverlay();
 
@@ -439,9 +423,7 @@ public class DisplayMail extends AbsDisplay {
 
 	public AbsPage zPressButtonPulldown(Button pulldown, String option) throws HarnessException {
 
-		SleepUtil.sleepMedium(); // test fails because it immidiately tries to
-									// select dropdown
-
+		SleepUtil.sleepMedium();
 		logger.info(myPageName() + " zPressButtonPulldown(" + pulldown + ", " + option + ")");
 
 		tracer.trace("Click pulldown " + pulldown + " then " + option);
@@ -485,27 +467,12 @@ public class DisplayMail extends AbsDisplay {
 		return (page);
 	}
 
-	/**
-	 * Parse an attachment row from a message
-	 * 
-	 * @param locator
-	 * @return
-	 * @throws HarnessException
-	 */
 	protected AttachmentItem parseAttachmentRow(String locator) throws HarnessException {
 
 		AttachmentItem item = new AttachmentItem();
 
-		// Remember the locator to this structure.
-		// The locator can be re-used when clicking on the attachment.
 		item.setLocator(locator);
 
-		// Set the icon class
-		//
-		// "tr>td>div" ... probably not the most stable locator, however, there
-		// is no unique ID on the image element. If this locator breaks,
-		// just file a bug to put an ID on that element, e.g. div[id$='_icon']
-		//
 		if (this.sIsElementPresent(locator + " tr>td>div")) {
 			String icon = this.sGetAttribute(locator + " tr>td>div@class");
 			item.setAttachmentIcon(AttachmentItem.AttachmentIcon.valueOf(icon));
@@ -520,12 +487,6 @@ public class DisplayMail extends AbsDisplay {
 
 	}
 
-	/**
-	 * Get the list of attachments on the displayed message
-	 * 
-	 * @return
-	 * @throws HarnessException
-	 */
 	public List<AttachmentItem> zListGetAttachments() throws HarnessException {
 		logger.info(myPageName() + " zListGetAttachments()");
 
@@ -533,18 +494,15 @@ public class DisplayMail extends AbsDisplay {
 
 		String listLocator = "css=div[parentid='z_shell']:not([aria-hidden='true']) table[id$='attLinks_table']";
 
-		// Make sure the button exists
 		if (!this.sIsElementPresent(listLocator)) {
 			// No attachments!
 			return (items);
 		}
 
-		// How many items are in the table?
 		String tableLocator = listLocator + ">tbody>tr";
 		int count = this.sGetCssCount(tableLocator);
 		logger.debug(myPageName() + " zListGetMessages: number of messages: " + count);
 
-		// Get each conversation's data from the table list
 		for (int i = 1; i <= count; i++) {
 
 			// Add the new item to the list
@@ -556,23 +514,22 @@ public class DisplayMail extends AbsDisplay {
 		return (items);
 	}
 
-	public boolean zMailSecurityPresent(String emailAddress) throws HarnessException{
-		
-		String locator="css=td[class='ZmSecureMailCertificateRow'] td[id$='title']:contains('" + emailAddress + "')";
-		
+	public boolean zMailSecurityPresent(String emailAddress) throws HarnessException {
+
+		String locator = "css=td[class='ZmSecureMailCertificateRow'] td[id$='title']:contains('" + emailAddress + "')";
+
 		if (this.sIsElementPresent(locator)) {
-			//Mail Security header found
 			return true;
 		}
 
 		return false;
 	}
 
-	public boolean zMessageCannotBeDecrypted() throws HarnessException{		
+	public boolean zMessageCannotBeDecrypted() throws HarnessException {
 		return sIsElementPresent(Locators.zMessageDecryptionFailed);
 	}
 
-	public boolean zCertificateValidationFailed() throws HarnessException{		
+	public boolean zCertificateValidationFailed() throws HarnessException {
 		return sIsElementPresent(Locators.zCertificateValidationFailed);
 	}
 
@@ -698,13 +655,10 @@ public class DisplayMail extends AbsDisplay {
 			page = new SeparateWindowOpenAttachment(this.MyApplication);
 			((SeparateWindowOpenAttachment) page).zInitializeWindowNames();
 
-			// Left-Click on the item
 			this.sClick(locator + " a[id$='_main']");
 
 			this.zWaitForBusyOverlay();
 
-			// Sucks. Wait for the page to display.
-			// Any have ideas for a workaround?
 			SleepUtil.sleepVeryLong();
 
 			return (page);
@@ -718,12 +672,6 @@ public class DisplayMail extends AbsDisplay {
 
 			locator = attachment.getLocator() + "a[id$='_main']";
 			page = new TooltipImage(MyApplication);
-
-			// If another tooltip is active, sometimes it takes a few seconds
-			// for the new text to show
-			// So, wait if the tooltip is already active
-			// Don't wait if the tooltip is not active
-			//
 
 			if (page.zIsActive()) {
 
@@ -742,7 +690,7 @@ public class DisplayMail extends AbsDisplay {
 				// Mouse over
 				this.sMouseOver(locator);
 				this.zWaitForBusyOverlay();
-				
+
 				// Make sure the tooltip is active
 				page.zWaitForActive();
 
@@ -754,19 +702,10 @@ public class DisplayMail extends AbsDisplay {
 			throw new HarnessException("implement me!  action = " + action);
 		}
 
-		// default return command
 		return (page);
 
 	}
 
-	/**
-	 * Get a list of bubble objects form the field
-	 * 
-	 * @param field
-	 *            - must be To, Cc, Bcc
-	 * @return
-	 * @throws HarnessException
-	 */
 	public List<AbsBubble> zListGetBubbles(Field field) throws HarnessException {
 		logger.info("DisplayMail.zListGetBubbles(" + field + ")");
 
@@ -830,18 +769,7 @@ public class DisplayMail extends AbsDisplay {
 
 	}
 
-	/**
-	 * Return TRUE/FALSE whether the appointment Accept/Decline/Tentative
-	 * buttons are present
-	 * 
-	 * @return
-	 * @throws HarnessException
-	 */
 	public boolean zHasShareADButtons() throws HarnessException {
-
-		// Haven't fully baked this method.
-		// Maybe it works.
-		// Maybe it needs to check "visible" and/or x/y/z coordinates
 
 		List<String> locators = Arrays.asList(this.ContainerLocator + " td[id$='__Shr__SHARE_ACCEPT_title']",
 				this.ContainerLocator + " td[id$='__Shr__SHARE_DECLINE_title']");
@@ -855,13 +783,6 @@ public class DisplayMail extends AbsDisplay {
 
 	}
 
-	/**
-	 * Return TRUE/FALSE whether the Accept/Decline/Tentative buttons are
-	 * present
-	 * 
-	 * @return
-	 * @throws HarnessException
-	 */
 	public boolean zHasADTButtons() throws HarnessException {
 
 		List<String> locators = Arrays.asList(this.ContainerLocator + " td[id$='__Inv__REPLY_ACCEPT_title']",
@@ -941,7 +862,6 @@ public class DisplayMail extends AbsDisplay {
 				return (BodyText);
 
 			} finally {
-				// Make sure to go back to the original iframe
 				// this.sSelectFrame("relative=top");
 			}
 
@@ -1002,12 +922,6 @@ public class DisplayMail extends AbsDisplay {
 		}
 	}
 
-	/**
-	 * Get the string value of the specified field
-	 * 
-	 * @return the displayed string value
-	 * @throws HarnessException
-	 */
 	public String zGetMailProperty(Field field) throws HarnessException {
 		logger.info("DisplayMail.zGetDisplayedValue(" + field + ")");
 
@@ -1019,7 +933,7 @@ public class DisplayMail extends AbsDisplay {
 			throw new HarnessException("implement me!");
 
 		} else if (field == Field.Body) {
-			
+
 			int frames = this.sGetCssCount("css=iframe");
 			logger.debug("Body: # of frames: " + frames);
 
@@ -1027,13 +941,13 @@ public class DisplayMail extends AbsDisplay {
 
 				String bodyLocator = "body";
 				webDriver().switchTo().defaultContent();
-				
-				if (frames >=1 ) {
+
+				if (frames >= 1) {
 					webDriver().switchTo().frame(0);
 					we = webDriver().findElement(By.cssSelector(bodyLocator));
 				} else {
 					we = webDriver().findElement(By.className("MsgBody-text"));
-				}				
+				}
 
 				String html = this.sGetHtmlSource();
 				logger.info("DisplayMail.zGetBody(" + bodyLocator + ") = " + html);
@@ -1063,13 +977,10 @@ public class DisplayMail extends AbsDisplay {
 
 		} else if (field == Field.OnBehalfOf) {
 
-			// locator = this.ContainerLocator + " td[id$='_obo']
-			// span[id$='_com_zimbra_email'] span span";
 			locator = this.ContainerLocator
 					+ "td[id$='_from'] span[id$='_com_zimbra_email'] span:contains(on behalf of)";
 
 			if (!sIsElementPresent(locator)) {
-				// no email zimlet case
 				locator = this.ContainerLocator + " td[id$='_obo']";
 			}
 
@@ -1077,7 +988,6 @@ public class DisplayMail extends AbsDisplay {
 
 			locator = this.ContainerLocator + " td[id$='_bwo'] span[id$='_com_zimbra_email'] span";
 			if (!sIsElementPresent(locator)) {
-				// no email zimlet case
 				locator = this.ContainerLocator + " td[id$='_bwo']";
 			}
 
@@ -1176,25 +1086,14 @@ public class DisplayMail extends AbsDisplay {
 
 	}
 
-	/**
-	 * Wait for Zimlets to be rendered in the message
-	 * 
-	 * @throws HarnessException
-	 */
 	public void zWaitForZimlets() throws HarnessException {
-		// TODO: don't sleep. figure out a way to query the app if zimlets are
-		// applied
 		logger.info("zWaitForZimlets: sleep a bit to let the zimlets be applied");
 		SleepUtil.sleepLong();
 	}
 
 	@Override
 	public boolean zIsActive() throws HarnessException {
-		// logger.warn("implement me", new Throwable());
 		zWaitForZimlets();
-
-		// Determine which <div/> contains this preview
-		// Use this 'top' css for all subsequent parsing
 
 		if (this.zIsVisiblePerPosition(Locators.MessageViewOpenMessageCSS, 0, 0)) {
 			int count = this.sGetCssCount(Locators.MessageViewOpenMessageCSS);
@@ -1202,29 +1101,29 @@ public class DisplayMail extends AbsDisplay {
 				throw new HarnessException("Too many message views open: " + count);
 			}
 			ContainerLocator = "css=div#" + this.sGetAttribute(Locators.MessageViewOpenMessageCSS + "@id");
-			
+
 		} else if (this.zIsVisiblePerPosition(PageMail.Locators.IsMsgViewActiveCSS, 0, 0)) {
 			if (this.zIsVisiblePerPosition(Locators.MessageViewPreviewAtBottomCSS, 0, 0)) {
 				ContainerLocator = Locators.MessageViewPreviewAtBottomCSS;
 			} else if (this.zIsVisiblePerPosition(Locators.MessageViewPreviewAtRightCSS, 0, 0)) {
 				ContainerLocator = Locators.MessageViewPreviewAtRightCSS;
-			} else if (this.sIsElementPresent(Locators.MessageViewPreviewOff)){
-				ContainerLocator=Locators.MessageViewPreviewOff;
+			} else if (this.sIsElementPresent(Locators.MessageViewPreviewOff)) {
+				ContainerLocator = Locators.MessageViewPreviewOff;
 			} else {
 				throw new HarnessException("Unable to determine the current open view");
 			}
-			
+
 		} else if (this.zIsVisiblePerPosition(PageMail.Locators.IsConViewActiveCSS, 0, 0)) {
 			if (this.zIsVisiblePerPosition(Locators.ConversationViewPreviewAtBottomCSS, 0, 0)) {
 				ContainerLocator = Locators.ConversationViewPreviewAtBottomCSS;
 			} else if (this.zIsVisiblePerPosition(Locators.ConversationViewPreviewAtRightCSS, 0, 0)) {
 				ContainerLocator = Locators.ConversationViewPreviewAtRightCSS;
-			} else if (this.sIsElementPresent(Locators.MessageViewPreviewOff)){
-				ContainerLocator=Locators.MessageViewPreviewOff;
+			} else if (this.sIsElementPresent(Locators.MessageViewPreviewOff)) {
+				ContainerLocator = Locators.MessageViewPreviewOff;
 			} else {
 				throw new HarnessException("Unable to determine the current open view");
 			}
-			
+
 		} else {
 			throw new HarnessException("Unable to determine the current open view");
 		}

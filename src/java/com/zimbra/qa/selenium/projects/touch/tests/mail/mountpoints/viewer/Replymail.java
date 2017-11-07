@@ -31,7 +31,7 @@ public class Replymail extends PrefGroupMailByMessageTest{
 		logger.info("New " + Replymail.class.getCanonicalName());
 	}
 
-	@Test( description = "reply to an email on mountpoint message (read-only share)",
+	@Test (description = "reply to an email on mountpoint message (read-only share)",
 			groups = { "functional" })
 
 	public void Replymail_01() throws HarnessException  {

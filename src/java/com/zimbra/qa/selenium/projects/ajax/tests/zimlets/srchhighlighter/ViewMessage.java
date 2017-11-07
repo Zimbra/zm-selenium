@@ -38,7 +38,7 @@ public class ViewMessage extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Search for mail content.  Verify search terms are highlighted.",
+	@Test (description = "Search for mail content.  Verify search terms are highlighted.",
 			groups = { "functional", "L2" })
 
 	public void ViewMessage_01() throws HarnessException {

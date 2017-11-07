@@ -47,7 +47,7 @@ public class ModifyAppointment extends AjaxCommonTest {
 
 	
 	@Bugs(ids = "69132")
-	@Test(description = "Modify appointment with subject & body and verify it in day view",
+	@Test (description = "Modify appointment with subject & body and verify it in day view",
 			groups = { "smoke", "L1" })
 	
 	public void ModifyAppointment_01() throws HarnessException {

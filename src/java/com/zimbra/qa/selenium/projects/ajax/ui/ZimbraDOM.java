@@ -37,34 +37,18 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
  * This utility class helps the harness determine the dynamically generated DOM
  * ID's. Based on given paramenters, the DOM ID can be found using Zimbra app
  * provided ZmId.lookup().
- * 
+ *
  * There are two ways to access the methods: instance and static
- * 
+ *
  * Using instance: create a ZimbraDOM, add the params, then getID(s) Using
  * static: create a JSONObject, add the params, then ZimbraDOM.getID(JSON)
- * 
+ *
  * @author Matt Rhoades
  *
  */
 
 public class ZimbraDOM {
 	public static Logger logger = LogManager.getLogger(ZimbraDOM.class);
-
-	////
-	// Hints:
-	//
-	// Use ZmId.showIds() in the firebug console to find all
-	// the currently defined IDs that can be returned
-	// using ZmId.lookup().
-	// 1. Open firefox with firebug
-	// 2. Login to Zimbra using ?dev=1
-	// 3. Execute test case
-	// 4. In firebug console, type ZmId.showIds()
-	// 5. In the zimbra debug window, the currently defined ID's will be shown
-	//
-	// Add any undefined values to the static definitions below.
-	//
-	////
 
 	public static Map<String, EnumMap<KEY, String>> ids;
 
@@ -99,16 +83,6 @@ public class ZimbraDOM {
 				+ PART + "return text";
 	}
 
-	/**
-	 * Use selenium.getEval() to call ZmId.lookup()
-	 * 
-	 * @param parms
-	 *            a JSONObject to use, such as "ZmId.lookup(JSONObject)"
-	 * @return
-	 * @throws HarnessException
-	 *             on Selenium exception trying to call getEval()
-	 */
-
 	protected static String lookup(JSONObject parms) throws HarnessException {
 
 		String command = null;
@@ -122,8 +96,6 @@ public class ZimbraDOM {
 			js.append("domIds;");
 			command = js.toString();
 
-			// String value =
-			// ClientSessionFactory.session().selenium().getEval(command);
 			String value = ((JavascriptExecutor) ClientSessionFactory.session().webDriver()).executeScript(SCRIPT)
 					.toString();
 			logger.info("Selenium.getEval(" + command + ") = " + value);
@@ -224,35 +196,12 @@ public class ZimbraDOM {
 		public static final String ONE = "1";
 	}
 
-	////
-	// BEGIN: object methods
-	////
-
 	protected JSONObject MyJSON = null;
 
-	/**
-	 * Create a new ZimbraDOM to determine a DOM ID
-	 */
 	public ZimbraDOM() {
 		MyJSON = new JSONObject();
 	}
 
-	/**
-	 * Add a new parameter to narrow down the DOM search. For example: to only
-	 * look for DOM elements in the tasks app, use:
-	 * accumulate(ZimbraDOM.KEYS.APP, ZimbraDOM.APP.APP_TASKS); to only look for
-	 * buttons, use: accumulate(ZimbraDOM.KEYS.COMPONENT_TYPE,
-	 * ZimbraDOM.COMPONENT_TYPE.WIDGET_BUTTON); to only look for delete
-	 * operations, use: accumulate(ZimbraDOM.KEYS.COMPONENT_NAME,
-	 * ZimbraDOM.COMPONENT_NAME.OP_DELETE);
-	 *
-	 * @param key.
-	 *            (ZimbraDOM.KEYS)
-	 * @param value
-	 *            (ZimbraDOM.COMPONENT_TYPE, ZimbraDOM.COMPONENT_NAME, etc.)
-	 * @return
-	 * @throws HarnessException
-	 */
 	public ZimbraDOM accumulate(KEY key, Object value) throws HarnessException {
 		try {
 			MyJSON.accumulate(key.getKEY(), value);
@@ -262,13 +211,6 @@ public class ZimbraDOM {
 		}
 	}
 
-	/**
-	 * Return the current DOM id that this ZimbraDOM points to
-	 * 
-	 * @return
-	 * @throws HarnessException
-	 *             if more than one DOM element is referenced
-	 */
 	public String getID() throws HarnessException {
 		List<String> ids = ZimbraDOM.getIDs(this.MyJSON);
 		if (ids == null || ids.size() != 1) {
@@ -277,22 +219,10 @@ public class ZimbraDOM {
 		return (ids.get(0));
 	}
 
-	/**
-	 * Return the current list of DOM ids that this ZimbraDOM points to
-	 * 
-	 * @return
-	 * @throws HarnessException
-	 */
 	public List<String> getIDs() throws HarnessException {
 		return (ZimbraDOM.getIDs(this.MyJSON));
 	}
 
-	/**
-	 * For debugging. Log the current IDs to the info log.
-	 * 
-	 * @return
-	 * @throws HarnessException
-	 */
 	public static String showIDs() throws HarnessException {
 		try {
 			final String response;
@@ -305,15 +235,6 @@ public class ZimbraDOM {
 		}
 	}
 
-	/**
-	 * Given a list of parameters for ZmId.lookup(), return the current DOM id
-	 * that match the list
-	 * 
-	 * @param json
-	 * @return
-	 * @throws HarnessException
-	 *             if more than one DOM element is referenced
-	 */
 	public static String getID(final String... params) throws HarnessException {
 		String id = null;
 		if (params == null || !(params.length > 0)) {
@@ -358,16 +279,6 @@ public class ZimbraDOM {
 		return id;
 	}
 
-	/**
-	 * Given a JSONObject with key/value pairs for ZmId.lookup(), return the
-	 * current list of DOM ids that the JSONObject points to
-	 * 
-	 * TBD: should this be public? TBD: should this be converted as getID is
-	 * implemented using a list of String arguments?
-	 * 
-	 * @return
-	 * @throws HarnessException
-	 */
 	private static List<String> getIDs(JSONObject json) throws HarnessException {
 		logger.debug("getIds()");
 

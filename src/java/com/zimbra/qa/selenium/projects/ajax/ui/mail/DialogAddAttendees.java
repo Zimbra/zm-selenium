@@ -1,22 +1,19 @@
 /*
- * ***** BEGIN LICENSE BLOCK *****
- * Zimbra Collaboration Suite Server
- * Copyright (C) 2013, 2014, 2015, 2016 Synacor, Inc.
- *
- * This program is free software: you can redistribute it and/or modify it under
- * the terms of the GNU General Public License as published by the Free Software Foundation,
- * version 2 of the License.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
- * You should have received a copy of the GNU General Public License along with this program.
- * If not, see <https://www.gnu.org/licenses/>.
- * ***** END LICENSE BLOCK *****
- */
-/**
- * 
- */
+* ***** BEGIN LICENSE BLOCK *****
+* Zimbra Collaboration Suite Server
+* Copyright (C) 2013, 2014, 2015, 2016 Synacor, Inc.
+*
+* This program is free software: you can redistribute it and/or modify it under
+* the terms of the GNU General Public License as published by the Free Software Foundation,
+* version 2 of the License.
+*
+* This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+* without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+* See the GNU General Public License for more details.
+* You should have received a copy of the GNU General Public License along with this program.
+* If not, see <https://www.gnu.org/licenses/>.
+* ***** END LICENSE BLOCK *****
+*/
 package com.zimbra.qa.selenium.projects.ajax.ui.mail;
 
 import com.zimbra.qa.selenium.framework.ui.*;
@@ -33,13 +30,12 @@ public class DialogAddAttendees extends AbsDialog {
 		public static final String zYesButton = "css=div[id='YesNoMsgDialog_buttons'] td[id^='Yes_'] td[id$='_title']";
 		public static final String zNoButton = "css=div[id='YesNoMsgDialog_buttons'] td[id^='No_'] td[id$='_title']";
 	}
-	
-	
+
 	public DialogAddAttendees(AbsApplication application, AbsTab tab) {
 		super(application, tab);
-		logger.info("new "+ DialogAddAttendees.class.getCanonicalName());
+		logger.info("new " + DialogAddAttendees.class.getCanonicalName());
 	}
-	
+
 	@Override
 	public String myPageName() {
 		return (this.getClass().getName());
@@ -50,55 +46,53 @@ public class DialogAddAttendees extends AbsDialog {
 		logger.info(myPageName() + " zIsActive()");
 
 		String locator = Locators.DialogDivLocatorCSS;
-		
-		if ( !this.sIsElementPresent(locator) ) {
-			return (false); // Not even present
-		}
-		
-		if ( !this.zIsVisiblePerPosition(locator, 0, 0) ) {
+
+		if (!this.sIsElementPresent(locator)) {
 			return (false);
 		}
-	
+
+		if (!this.zIsVisiblePerPosition(locator, 0, 0)) {
+			return (false);
+		}
+
 		logger.info(myPageName() + " zIsActive() = true");
 		return (true);
 	}
 
 	@Override
 	public AbsPage zClickButton(Button button) throws HarnessException {
-		logger.info(myPageName() + " zClickButton("+ button +")");
+		logger.info(myPageName() + " zClickButton(" + button + ")");
 
-		tracer.trace("Click dialog button "+ button);
+		tracer.trace("Click dialog button " + button);
 
 		AbsPage page = null;
 		String locator = null;
-		
-		if ( button == Button.B_YES ) {
+
+		if (button == Button.B_YES) {
 
 			locator = Locators.zYesButton;
 
-		} else if ( button == Button.B_NO ) {
+		} else if (button == Button.B_NO) {
 
 			locator = Locators.zNoButton;
 
 		} else {
-			throw new HarnessException("Button "+ button +" not implemented");
+			throw new HarnessException("Button " + button + " not implemented");
 		}
 
-		// Make sure the locator was set
-		if ( locator == null ) {
-			throw new HarnessException("Button "+ button +" not implemented");
+		if (locator == null) {
+			throw new HarnessException("Button " + button + " not implemented");
 		}
 
-		// Make sure the locator exists
-		if ( !this.sIsElementPresent(locator) ) {
-			throw new HarnessException("Button "+ button +" locator "+ locator +" not present!");
+		if (!this.sIsElementPresent(locator)) {
+			throw new HarnessException("Button " + button + " locator " + locator + " not present!");
 		}
 
 		this.zClick(locator);
 		this.zWaitForBusyOverlay();
 		SleepUtil.sleepMedium();
-		
-		if ( button == Button.B_YES ) {
+
+		if (button == Button.B_YES) {
 			Stafpostqueue sp = new Stafpostqueue();
 			sp.waitForPostqueue();
 		}
@@ -108,12 +102,11 @@ public class DialogAddAttendees extends AbsDialog {
 
 	@Override
 	public String zGetDisplayedText(String locator) throws HarnessException {
-		logger.info(myPageName() + " zGetDisplayedText("+ locator +")");
-		
-		if ( locator == null )
+		logger.info(myPageName() + " zGetDisplayedText(" + locator + ")");
+
+		if (locator == null)
 			throw new HarnessException("locator was null");
-		
+
 		return (this.sGetText(locator));
 	}
-
 }

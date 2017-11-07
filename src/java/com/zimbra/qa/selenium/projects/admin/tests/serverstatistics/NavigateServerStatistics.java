@@ -38,7 +38,7 @@ public class NavigateServerStatistics extends AdminCommonTest {
 	 * 1. Verify navigation path -- "Home --> Monitor --> Server Statistics"
 	 * @throws HarnessException
 	 */
-	@Test( description = "Navigate to Server Statistics",
+	@Test (description = "Navigate to Server Statistics",
 			groups = { "sanity", "L0" })
 			public void NavigateServerStatistics_01() throws HarnessException {
 		

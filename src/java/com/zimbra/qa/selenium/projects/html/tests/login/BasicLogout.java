@@ -29,7 +29,7 @@ public class BasicLogout extends HtmlCommonTest {
 		logger.info("New "+ BasicLogout.class.getCanonicalName());
 	}
 	
-	@Test( description = "Logout of the Mobile Client",
+	@Test (description = "Logout of the Mobile Client",
 			groups = { "sanity" })
 	public void BasicLogout01() throws HarnessException {
 		

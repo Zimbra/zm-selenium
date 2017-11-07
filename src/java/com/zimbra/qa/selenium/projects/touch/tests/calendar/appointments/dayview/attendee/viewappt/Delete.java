@@ -31,7 +31,7 @@ public class Delete extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 
-	@Test( description = "Delete meeting invite as an attendee", 
+	@Test (description = "Delete meeting invite as an attendee", 
 			groups = { "smoke" })
 	
 	public void DeleteMeeting_01() throws HarnessException {

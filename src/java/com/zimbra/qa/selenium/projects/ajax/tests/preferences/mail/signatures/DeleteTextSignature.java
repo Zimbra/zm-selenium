@@ -66,7 +66,7 @@ public class DeleteTextSignature extends AjaxCommonTest {
 	 * through soap
 	 */
 
-	@Test(description = " Delete Text signature using Delete button and verify  through soap ",
+	@Test (description = " Delete Text signature using Delete button and verify  through soap ",
 			groups = { "smoke", "L1"  })
 
 	public void DeleteTextSignatures_01() throws HarnessException {

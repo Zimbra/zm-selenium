@@ -30,7 +30,7 @@ public class ComposeMail extends TouchCommonTest {
 		logger.info("New "+ ComposeMail.class.getCanonicalName());
 	}
 	
-	@Test( description = "Send a mail with To, Cc, Bcc user and verify it for all recipients",
+	@Test (description = "Send a mail with To, Cc, Bcc user and verify it for all recipients",
 			groups = { "sanity" })
 			
 	public void ComposeMail_01() throws HarnessException {

@@ -46,7 +46,7 @@ public class DeleteDomainSR extends AdminCommonTest {
 	 * 5. Verify delete domain option is disabled at search results.
 	 * @throws HarnessException
 	 */
-	@Test( description = "Verify delete domain operation is absent from leftclick > gear icon --  Search List View",
+	@Test (description = "Verify delete domain operation is absent from leftclick > gear icon --  Search List View",
 			groups = { "functional", "L2" })
 			public void DeleteDomain_05() throws HarnessException {
 
@@ -85,7 +85,7 @@ public class DeleteDomainSR extends AdminCommonTest {
 	 * 5. Verify option is disabled
 	 * @throws HarnessException
 	 */
-	@Test( description = " Verify delete domain operation is disabled -- Search List View/Right Click Menu",
+	@Test (description = " Verify delete domain operation is disabled -- Search List View/Right Click Menu",
 			groups = { "functional", "L3" })
 			public void DeleteDomain_06() throws HarnessException {
 
@@ -121,7 +121,7 @@ public class DeleteDomainSR extends AdminCommonTest {
 	 * 4. Verify domain alias option is disabled
 	 * @throws HarnessException
 	 */
-	@Test( description = "Verify delete domain alias operation is disabled- Search list view.",
+	@Test (description = "Verify delete domain alias operation is disabled- Search list view.",
 			groups = { "functional", "L2" })
 			public void DeleteDomain_07() throws HarnessException {
 		
@@ -173,7 +173,7 @@ public class DeleteDomainSR extends AdminCommonTest {
 	 * 4. Verify domain alias option is disabled
 	 * @throws HarnessException
 	 */
-	@Test( description = "Verify delete domain alias operation is disabled- Search list view.",
+	@Test (description = "Verify delete domain alias operation is disabled- Search list view.",
 			groups = { "functional", "L3" })
 			public void DeleteDomain_08() throws HarnessException {
 		

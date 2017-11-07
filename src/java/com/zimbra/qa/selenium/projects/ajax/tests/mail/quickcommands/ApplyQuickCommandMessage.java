@@ -40,7 +40,7 @@ public class ApplyQuickCommandMessage extends AjaxQuickCommandTest {
 	}
 
 	@Bugs(ids = "71389")
-	@Test( description = "Apply a Quick Command to a message",
+	@Test (description = "Apply a Quick Command to a message",
 			groups = { "functional-skip" })
 
 	public void ApplyQuickCommandMessage_01() throws HarnessException {

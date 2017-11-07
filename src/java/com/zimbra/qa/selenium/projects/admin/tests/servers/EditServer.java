@@ -44,7 +44,7 @@ public class EditServer extends AdminCommonTest {
 	 * 4. Verify details are edited successfully
 	 * @throws HarnessException
 	 */
-	@Test( description = "Edit Server from gear menu option",
+	@Test (description = "Edit Server from gear menu option",
 			groups = { "smoke", "L1" })
 	public void EditServer_01() throws HarnessException {
 		

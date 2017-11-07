@@ -37,7 +37,7 @@ public class ZimbraPrefSkinSerenity extends AjaxCommonTest {
 	}
 
 
-	@Test ( description = "Verify the 'zimbraPrefSkin' option can be changed",
+	@Test (description = "Verify the 'zimbraPrefSkin' option can be changed",
 			groups = { "functional", "L2" } )
 
 	public void ZimbraPrefSkinSerenity_01() throws HarnessException {

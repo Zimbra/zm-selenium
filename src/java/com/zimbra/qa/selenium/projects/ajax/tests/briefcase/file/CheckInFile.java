@@ -38,7 +38,7 @@ public class CheckInFile extends FeatureBriefcaseTest {
 	}
 
 
-	@Test( description = "Check Out File through SOAP - right click 'Check In' - click 'Cancel'",
+	@Test (description = "Check Out File through SOAP - right click 'Check In' - click 'Cancel'",
 			groups = { "functional", "L2" })
 
 	public void CheckInFile_01() throws HarnessException {
@@ -103,7 +103,7 @@ public class CheckInFile extends FeatureBriefcaseTest {
 	}
 
 
-	@Test( description = "Check Out File through SOAP - right click 'Discard Check Out'",
+	@Test (description = "Check Out File through SOAP - right click 'Discard Check Out'",
 			groups = { "functional", "L2" })
 
 	public void CheckInFile_02() throws HarnessException {

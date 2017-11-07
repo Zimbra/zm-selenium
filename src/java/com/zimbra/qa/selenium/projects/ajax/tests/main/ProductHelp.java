@@ -30,7 +30,7 @@ public class ProductHelp extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Open 'Product Help'",
+	@Test (description = "Open 'Product Help'",
 			groups = { "smoke", "L0" })
 
 	public void ProductHelp_01() throws HarnessException {

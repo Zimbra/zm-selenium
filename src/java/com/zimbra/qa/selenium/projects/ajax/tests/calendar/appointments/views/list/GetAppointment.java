@@ -41,7 +41,7 @@ public class GetAppointment extends AjaxCommonTest {
 
 
 	@Bugs(ids = "69132")
-	@Test( description = "View a basic appointment in the list view",
+	@Test (description = "View a basic appointment in the list view",
 			groups = { "functional", "L2" })
 	
 	public void GetAppointment_01() throws HarnessException {
@@ -92,7 +92,7 @@ public class GetAppointment extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Verify all fields show up in List View",
+	@Test (description = "Verify all fields show up in List View",
 			groups = { "functional", "L2" })
 
 	public void GetAppointment_02() throws HarnessException {

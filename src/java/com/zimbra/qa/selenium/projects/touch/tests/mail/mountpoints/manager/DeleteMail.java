@@ -31,7 +31,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest{
 		logger.info("New " + DeleteMail.class.getCanonicalName());
 	}
 
-	@Test( description = "Verify user can delete email on mount point with manager rights",
+	@Test (description = "Verify user can delete email on mount point with manager rights",
 			groups = { "smoke" })
 
 	public void DeleteMail_01() throws HarnessException  {

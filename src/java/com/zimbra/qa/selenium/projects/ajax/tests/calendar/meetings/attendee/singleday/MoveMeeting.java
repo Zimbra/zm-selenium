@@ -33,7 +33,7 @@ public class MoveMeeting extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Move meeting invite using toolbar menu as attendee",
+	@Test (description = "Move meeting invite using toolbar menu as attendee",
 			groups = { "functional", "L2" })
 
 	public void MoveMeeting_01() throws HarnessException {

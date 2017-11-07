@@ -57,8 +57,8 @@ public class CancelTask extends AjaxCommonTest {
 	 * Task should not show in list
 	 * @throws HarnessException
 	 */
-	@Test( description = "Cancel composing of new task through GUI",
-			groups = { "functional", "L3"})
+	@Test (description = "Cancel composing of new task through GUI",
+			groups = { "functional", "L3" })
 
 	public void CancelTask_01() throws HarnessException {
 
@@ -95,8 +95,8 @@ public class CancelTask extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Cancel composing of new task using Esc shortcut",
-			groups = { "functional", "L3"})
+	@Test (description = "Cancel composing of new task using Esc shortcut",
+			groups = { "functional", "L3" })
 
 	public void CancelTask_02() throws HarnessException {
 
@@ -150,8 +150,8 @@ public class CancelTask extends AjaxCommonTest {
 	 */
 
 	@Bugs(ids = "74670")
-	@Test( description = "cancelling empty attachment task in 2nd attempt",
-			groups = { "functional", "L3"})
+	@Test (description = "cancelling empty attachment task in 2nd attempt",
+			groups = { "functional", "L3" })
 
 	public void Bug_74670() throws HarnessException {
 

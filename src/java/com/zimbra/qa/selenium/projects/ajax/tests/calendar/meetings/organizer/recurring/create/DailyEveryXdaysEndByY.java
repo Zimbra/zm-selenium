@@ -38,7 +38,7 @@ public class DailyEveryXdaysEndByY extends AjaxCommonTest {
 
 
 	@Bugs(ids = "96566")
-	@Test( description = "Create daily recurring invite with attendee and location with every day & end by particular date",
+	@Test (description = "Create daily recurring invite with attendee and location with every day & end by particular date",
 			groups = { "smoke", "L1" })
 
 	public void DailyEveryXdaysEndByY_01() throws HarnessException {

@@ -32,7 +32,7 @@ public class ForwardConversationText extends PrefGroupMailByConversationTest {
 	}
 
 
-	@Test( description = "Forward a conversation",
+	@Test (description = "Forward a conversation",
 			groups = { "smoke", "L1" })
 
 	public void ForwardConversationText_01() throws HarnessException {

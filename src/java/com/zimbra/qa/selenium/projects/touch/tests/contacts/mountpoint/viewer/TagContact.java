@@ -35,7 +35,7 @@ public class TagContact extends TouchCommonTest  {
 		super.startingPage = app.zPageAddressbook;
 	}
 
-	@Test( description = "Tag a contact item in mount folder with viewer rights",
+	@Test (description = "Tag a contact item in mount folder with viewer rights",
 			groups = { "functional" })
 
 	public void TagContact_01() throws HarnessException {

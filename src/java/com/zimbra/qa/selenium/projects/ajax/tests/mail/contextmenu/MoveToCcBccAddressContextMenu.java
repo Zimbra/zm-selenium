@@ -35,7 +35,7 @@ public class MoveToCcBccAddressContextMenu extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Right click To bubble address >> Move To Cc",
+	@Test (description = "Right click To bubble address >> Move To Cc",
 			groups = { "smoke", "L1" })
 
 	public void MoveToccAddressContextMenu_01() throws HarnessException {
@@ -63,7 +63,7 @@ public class MoveToCcBccAddressContextMenu extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Right click To bubble address >> Move to Bcc",
+	@Test (description = "Right click To bubble address >> Move to Bcc",
 			groups = { "smoke", "L1" })
 
 	public void MoveToBccAddressContextMenu_02() throws HarnessException {

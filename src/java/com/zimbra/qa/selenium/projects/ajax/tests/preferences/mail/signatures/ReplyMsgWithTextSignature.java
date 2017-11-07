@@ -68,7 +68,7 @@ public class ReplyMsgWithTextSignature extends AjaxCommonTest {
 	 * through soap
 	 */
 
-	@Test(description = " Reply Msg with text signature and Verify signature through soap",
+	@Test (description = " Reply Msg with text signature and Verify signature through soap",
 			groups = { "functional", "L3" })
 
 	public void ReplyMsgWithTextSignature_01() throws HarnessException {

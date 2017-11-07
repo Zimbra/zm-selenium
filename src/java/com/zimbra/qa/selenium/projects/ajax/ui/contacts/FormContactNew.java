@@ -105,11 +105,6 @@ public class FormContactNew extends AbsForm {
 
 	}
 
-	/**
-	 * There are a lot of 'duplicate' divs involved with the Contact Group
-	 * New/Edit forms We need to determine which div is active to make the code
-	 * work correctly
-	 */
 	protected String MyDivID = null;
 
 	public FormContactNew(AbsApplication application) {
@@ -163,12 +158,6 @@ public class FormContactNew extends AbsForm {
 			partialLocator = locator;
 		}
 
-		/**
-		 * Prepend "css=div#<ID>" to this locator to find the field in the new
-		 * contact form
-		 *
-		 * @return
-		 */
 		public String getLocator() {
 			return (partialLocator);
 		}
@@ -214,36 +203,18 @@ public class FormContactNew extends AbsForm {
 		}
 	}
 
-	/**
-	 * Expand all the hidden name fields
-	 *
-	 * @throws HarnessException
-	 */
 	public void zDisplayHiddenName() throws HarnessException {
 
-		/*
-		 * Commented rows are expanded by default
-		 */
 		zToolbarPressPulldown(Button.B_EXPAND, Button.O_PREFIX);
 		zToolbarPressPulldown(Button.B_EXPAND, Button.O_MIDDLE);
 		zToolbarPressPulldown(Button.B_EXPAND, Button.O_MAIDEN);
 		zToolbarPressPulldown(Button.B_EXPAND, Button.O_SUFFIX);
 		zToolbarPressPulldown(Button.B_EXPAND, Button.O_NICKNAME);
 		zToolbarPressPulldown(Button.B_EXPAND, Button.O_DEPARTMENT);
-
 	}
 
 	private String MyToolbarID = null;
 
-	/**
-	 * Determine the z-shell <div/> that contains the Search Contacts, GAL,
-	 * Personal and Shared menu.
-	 *
-	 * See https://bugzilla.zimbra.com/show_bug.cgi?id=77791
-	 *
-	 * @return The z_shell Child ID
-	 * @throws HarnessException
-	 */
 	public String getToolbarID() throws HarnessException {
 		logger.info("getToolbarID()");
 
@@ -268,14 +239,6 @@ public class FormContactNew extends AbsForm {
 
 	private String MyExpandHiddenID = null;
 
-	/**
-	 * Determine the z-shell <div/> that contains the hidden name menu.
-	 *
-	 * See https://bugzilla.zimbra.com/show_bug.cgi?id=77791
-	 *
-	 * @return The z_shell Child ID
-	 * @throws HarnessException
-	 */
 	protected String getExpandHiddenID() throws HarnessException {
 		logger.info("getExpandHiddenID()");
 
@@ -300,14 +263,6 @@ public class FormContactNew extends AbsForm {
 
 	private String MyFileAsMenuID = null;
 
-	/**
-	 * Determine the z-shell <div/> that contains the hidden FileAs menu.
-	 *
-	 * See https://bugzilla.zimbra.com/show_bug.cgi?id=77791
-	 *
-	 * @return The z_shell Child ID
-	 * @throws HarnessException
-	 */
 	protected String getFileAsMenuID() throws HarnessException {
 		logger.info("getFileAsMenuID()");
 
@@ -353,14 +308,10 @@ public class FormContactNew extends AbsForm {
 	public void zFillField(Field field, String value) throws HarnessException {
 		tracer.trace("Set " + field + " to " + value);
 
-		// The field contains the locator, for example:
-		// css=div#editcontactform_DWT98 inpput[id$='_NICKNAME_input']
-		//
 		String locator = String.format("css=div#%s %s", MyDivID, field.getLocator());
 
 		if (field == Field.Email || field == Field.IM || field == Field.HomeURL) {
 
-			// Make sure the button exists
 			if (!this.sIsElementPresent(locator))
 				throw new HarnessException("Field is not present field=" + field + " locator=" + locator);
 
@@ -443,8 +394,6 @@ public class FormContactNew extends AbsForm {
 			return (false);
 		}
 
-		// Div ID is set, check it.
-
 		String locator = "css=div#" + MyDivID;
 
 		boolean present = this.sIsElementPresent(locator);
@@ -462,13 +411,6 @@ public class FormContactNew extends AbsForm {
 
 	}
 
-	/**
-	 * Press the toolbar button
-	 *
-	 * @param button
-	 * @return
-	 * @throws HarnessException
-	 */
 	public AbsPage zToolbarPressPulldown(Button pulldown, Button option) throws HarnessException {
 		logger.info(myPageName() + " zToolbarPressButton(" + pulldown + ", " + option + ")");
 		tracer.trace("Click pulldown " + pulldown + " then " + option);
@@ -614,14 +556,6 @@ public class FormContactNew extends AbsForm {
 
 	}
 
-	/**
-	 * Press the toolbar button. For B_CLOSE and B_CANCEL, the test case must
-	 * check for dialog active, based on the contact being dirty or not.
-	 *
-	 * @param button
-	 * @return
-	 * @throws HarnessException
-	 */
 	public AbsPage zToolbarPressButton(Button button) throws HarnessException {
 		logger.info(myPageName() + " zToolbarPressButton(" + button + ")");
 
@@ -630,7 +564,6 @@ public class FormContactNew extends AbsForm {
 		if (button == null)
 			throw new HarnessException("Button cannot be null!");
 
-		// Fallthrough objects
 		AbsPage page = null;
 		String locator = null;
 
@@ -638,7 +571,7 @@ public class FormContactNew extends AbsForm {
 
 			locator = "css=div#" + getToolbarID() + " div[id$='__SAVE'] td[id$='_title']";
 			page = null;
-			
+
 		} else if (button == Button.B_BROWSE_TO_CERTIFICATE) {
 
 			locator = "css=div[id$='_UploadCertificateBtn'] td:contains('Browse to certificate...')";
@@ -652,10 +585,6 @@ public class FormContactNew extends AbsForm {
 
 			page = new DialogWarning(DialogWarning.DialogWarningID.CancelCreateContact, this.MyApplication,
 					((AppAjaxClient) this.MyApplication).zPageContacts);
-
-			// The dialog will only appear if the contact is dirty.
-			// so, don't check for active here - instead check in the
-			// test case
 
 			sClick(locator);
 			this.zWaitForBusyOverlay();
@@ -682,7 +611,6 @@ public class FormContactNew extends AbsForm {
 			throw new HarnessException("no logic defined for button " + button);
 		}
 
-		// Click it
 		sClick(locator);
 		this.zWaitForBusyOverlay();
 		SleepUtil.sleepSmall();
@@ -693,5 +621,4 @@ public class FormContactNew extends AbsForm {
 
 		return (page);
 	}
-
 }

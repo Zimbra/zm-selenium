@@ -36,7 +36,7 @@ public class LimitThemes extends AdminCommonTest {
 		super.startingPage = app.zPageManageAccounts;
 	}
 
-	@Test( description = "Edit account - Verify option 'Limit Themes available to this user to:'",
+	@Test (description = "Edit account - Verify option 'Limit Themes available to this user to:'",
 			groups = { "smoke", "L1" })
 
 	public void LimitThemes_01() throws HarnessException {

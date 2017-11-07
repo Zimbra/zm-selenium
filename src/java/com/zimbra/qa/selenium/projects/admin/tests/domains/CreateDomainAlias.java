@@ -45,7 +45,7 @@ public class CreateDomainAlias extends AdminCommonTest {
 	 * 2. Verify domain alias is created using SOAP.
 	 * @throws HarnessException
 	 */
-	@Test( description = "Create a domain alias",
+	@Test (description = "Create a domain alias",
 			groups = { "sanity", "L0" })
 			public void CreateAlias_01() throws HarnessException {
 

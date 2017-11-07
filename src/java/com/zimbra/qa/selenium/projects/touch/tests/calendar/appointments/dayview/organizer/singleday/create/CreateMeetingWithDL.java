@@ -32,7 +32,7 @@ public class CreateMeetingWithDL extends CalendarWorkWeekTest {
 	    super.startingAccountPreferences = null;
 	}
 
-	@Test( description = "Create meeting invite using DL",
+	@Test (description = "Create meeting invite using DL",
 			groups = { "smoke" })
 	
 	public void CreateMeetingWithDL_01() throws HarnessException {

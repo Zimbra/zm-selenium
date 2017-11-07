@@ -150,31 +150,22 @@ public class PageMail extends AbsTab {
 		public static final String zBottomReadingPaneSeparatorBar = "css=div[class='AppSash-vert'][style*='display: block']";
 		public static final String zRightReadingPaneSeparatorBar = "css=div[class='AppSash-horiz'][style*='display: block']";
 
-		//Column view headers
+		// Column view headers
 		public static final String zConversationViewHeaderSubject = "css=td[id='zlhl__CLV-main__su']";
 		public static final String zMessageViewHeaderSubject = "css=td[id='zlhl__TV-main__su']";
 
 		public static class CONTEXT_MENU {
-			// TODO: Until https://bugzilla.zimbra.com/show_bug.cgi?id=56273 is
-			// fixed, ContextMenuItem will be defined using the text content
 			public static String stringToReplace = "<ITEM_NAME>";
 		}
 	}
 
 	public enum Column {
 
-		Flag("fg"),
-		Priority("pr"),
-		Tag("tg"),
-		All("rd"),
-		Status("st"),
-		From("fr"),
-		Attachemnt("at"),
-		Folder("fo"),
-		Size("sz"),
-		Received("dt");
+		Flag("fg"), Priority("pr"), Tag("tg"), All("rd"), Status("st"), From("fr"), Attachemnt("at"), Folder(
+				"fo"), Size("sz"), Received("dt");
 
 		private final String value;
+
 		private Column(final String value) {
 			this.value = value;
 		}
@@ -190,7 +181,6 @@ public class PageMail extends AbsTab {
 	@Override
 	public boolean zIsActive() throws HarnessException {
 
-		// Make sure the main page is active
 		if (!((AppAjaxClient) MyApplication).zPageMain.zIsActive()) {
 			((AppAjaxClient) MyApplication).zPageMain.zNavigateTo();
 		}
@@ -397,7 +387,7 @@ public class PageMail extends AbsTab {
 			webDriver().switchTo().defaultContent();
 			webDriver().switchTo().frame(0);
 			we = webDriver().findElement(By.cssSelector("html div img"));
-			if(we.getAttribute("src").contains("/service/home/~/?auth=co")) {
+			if (we.getAttribute("src").contains("/service/home/~/?auth=co")) {
 				return true;
 			} else {
 				return false;
@@ -1121,12 +1111,6 @@ public class PageMail extends AbsTab {
 		BY_MESSAGE, BY_CONVERSATION
 	}
 
-	/**
-	 * Get the Page Property: ListView = By message OR By Conversation
-	 *
-	 * @return
-	 * @throws HarnessException
-	 */
 	public PageMailView zGetPropMailView() throws HarnessException {
 		if (this.zIsVisiblePerPosition(Locators.IsConViewActiveCSS, 0, 0)) {
 			return (PageMailView.BY_CONVERSATION);
@@ -1247,16 +1231,14 @@ public class PageMail extends AbsTab {
 			rowLocator = "li[id^='zli__CLV-main__']";
 		}
 
-		// Make sure the button exists
 		if (!this.sIsElementPresent(listLocator))
 			throw new HarnessException("Message List View Rows is not present: " + listLocator);
 
 		String tableLocator = listLocator + " " + rowLocator;
-		// How many items are in the table?
+
 		int count = this.sGetCssCount(tableLocator);
 		logger.debug(myPageName() + " zListGetMessages: number of messages: " + count);
 
-		// Get each conversation's data from the table list
 		for (int i = 1; i <= count; i++) {
 
 			// Add the new item to the list
@@ -1286,9 +1268,6 @@ public class PageMail extends AbsTab {
 		String rowLocator;
 		String itemlocator = null;
 
-		// Find the item locator
-		//
-
 		if (zGetPropMailView() == PageMailView.BY_MESSAGE) {
 			listLocator = "css=ul[id='zl__TV-main__rows']";
 			rowLocator = "li[id^='zli__TV-main__']";
@@ -1301,18 +1280,16 @@ public class PageMail extends AbsTab {
 		if (!this.sIsElementPresent(listLocator))
 			throw new HarnessException("List View Rows is not present " + listLocator);
 
-		// How many items are in the table?
 		int count = this.sGetCssCount(listLocator + " " + rowLocator);
 		logger.debug(myPageName() + " zListSelectItem: number of list items: " + count);
 
-		// Get each conversation's data from the table list
 		for (int i = 1; i <= count; i++) {
 
 			itemlocator = listLocator + " li:nth-of-type(" + i + ") ";
 			String s = this.sGetText(itemlocator + " [id$='__su']").trim();
 
 			if (s.contains(subject)) {
-				break; // found it
+				break;
 			}
 
 			itemlocator = null;
@@ -1324,7 +1301,6 @@ public class PageMail extends AbsTab {
 
 		if (action == Action.A_LEFTCLICK) {
 
-			// Left-Click on the item
 			this.zClickAt(itemlocator, "");
 
 			this.zWaitForBusyOverlay();
@@ -1371,12 +1347,10 @@ public class PageMail extends AbsTab {
 			if (image.equals("ImgCheckboxChecked"))
 				throw new HarnessException("Trying to check box, but it was already enabled");
 
-			// Left-Click on the flag field
 			this.zClick(selectlocator);
 
 			this.zWaitForBusyOverlay();
 
-			// No page to return
 			page = null;
 
 		} else if (action == Action.A_MAIL_UNCHECKBOX) {
@@ -1389,12 +1363,10 @@ public class PageMail extends AbsTab {
 			if (image.equals("ImgCheckboxUnchecked"))
 				throw new HarnessException("Trying to uncheck box, but it was already disabled");
 
-			// Left-Click on the flag field
 			this.zClick(selectlocator);
 
 			this.zWaitForBusyOverlay();
 
-			// No page to return
 			page = null;
 
 		} else if (action == Action.A_MAIL_EXPANDCONVERSATION) {
@@ -1407,12 +1379,10 @@ public class PageMail extends AbsTab {
 			if (image.equals("ImgNodeExpanded"))
 				throw new HarnessException("Trying to expand, but conversation was alread expanded");
 
-			// Left-Click on the flag field
 			this.zClick(selectlocator);
 
 			this.zWaitForBusyOverlay();
 
-			// No page to return
 			page = null;
 
 		} else if (action == Action.A_MAIL_COLLAPSECONVERSATION) {
@@ -1425,12 +1395,10 @@ public class PageMail extends AbsTab {
 			if (image.equals("ImgNodeCollapsed"))
 				throw new HarnessException("Trying to collapse, but conversation was alread collapsed");
 
-			// Left-Click on the flag field
 			this.zClick(selectlocator);
 
 			this.zWaitForBusyOverlay();
 
-			// No page to return
 			page = null;
 
 		} else if ((action == Action.A_MAIL_FLAG) || (action == Action.A_MAIL_UNFLAG)) {
@@ -1438,12 +1406,10 @@ public class PageMail extends AbsTab {
 
 			String flaglocator = itemlocator + " div[id$='__fg']";
 
-			// Left-Click on the flag field
 			this.zClick(flaglocator);
 
 			this.zWaitForBusyOverlay();
 
-			// No page to return
 			page = null;
 
 		} else {
@@ -1497,18 +1463,16 @@ public class PageMail extends AbsTab {
 		if (!this.sIsElementPresent(listLocator))
 			throw new HarnessException("List View Rows is not present " + listLocator);
 
-		// How many items are in the table?
 		int count = this.sGetCssCount(listLocator + " " + rowLocator);
 		logger.debug(myPageName() + " zListSelectItem: number of list items: " + count);
 
-		// Get each conversation's data from the table list
 		for (int i = 1; i <= count; i++) {
 
 			itemlocator = listLocator + " div:nth-of-type(" + i + ") ";
 			String s = this.sGetText(itemlocator + " [id$='__su']").trim();
 
 			if (s.contains(subject)) {
-				break; // found it
+				break;
 			}
 
 			itemlocator = null;
@@ -1600,7 +1564,6 @@ public class PageMail extends AbsTab {
 			page.zWaitForActive();
 		}
 
-		// Default behavior
 		return (page);
 
 	}
@@ -1698,13 +1661,10 @@ public class PageMail extends AbsTab {
 
 		zKeyboard.zTypeCharacters(shortcut.getKeys());
 
-		// If the app is busy, wait for it to become active
 		this.zWaitForBusyOverlay();
 
-		// If a page is specified, wait for it to become active
 		if (page != null) {
-			page.zWaitForActive(); // This method throws a HarnessException if
-									// never active
+			page.zWaitForActive();
 		}
 		return (page);
 	}
@@ -1789,7 +1749,6 @@ public class PageMail extends AbsTab {
 						+ "')";
 				page = null;
 
-				// Make sure the locator exists
 				if (!this.sIsElementPresent(pulldownLocator)) {
 					throw new HarnessException(pulldownLocator + " not present!");
 				}
@@ -1818,10 +1777,8 @@ public class PageMail extends AbsTab {
 			throw new HarnessException("no logic defined for pulldown/option " + pulldown + "/" + option);
 		}
 
-		// Default behavior
 		if (pulldownLocator != null) {
 
-			// Make sure the locator exists
 			if (!this.sIsElementPresent(pulldownLocator)) {
 				throw new HarnessException("Button " + pulldown + " option " + option + " pulldownLocator "
 						+ pulldownLocator + " not present!");
@@ -1829,12 +1786,10 @@ public class PageMail extends AbsTab {
 
 			this.zClickAt(pulldownLocator, "");
 
-			// If the app is busy, wait for it to become active
 			zWaitForBusyOverlay();
 
 			if (optionLocator != null) {
 
-				// Make sure the locator exists
 				if (!this.sIsElementPresent(optionLocator)) {
 					throw new HarnessException(
 							" option " + option + " optionLocator " + optionLocator + " not present!");
@@ -1845,7 +1800,6 @@ public class PageMail extends AbsTab {
 			}
 			if (dynamicLocator != null) {
 
-				// Make sure the locator exists
 				if (!this.sIsElementPresent(dynamicLocator)) {
 					throw new HarnessException(dynamicLocator + " not present!");
 				}
@@ -1863,7 +1817,6 @@ public class PageMail extends AbsTab {
 			dialog.zClickButton(Button.B_OK);
 		}
 
-		// Return the specified page, or null if not set
 		return (page);
 
 	}
@@ -1917,10 +1870,8 @@ public class PageMail extends AbsTab {
 
 		}
 
-		// Default behavior
 		if (pulldownLocator != null) {
 
-			// Make sure the locator exists
 			if (!this.sIsElementPresent(pulldownLocator)) {
 				throw new HarnessException(
 						"Button " + pulldown + " pulldownLocator " + pulldownLocator + " not present!");
@@ -1932,7 +1883,6 @@ public class PageMail extends AbsTab {
 
 			if (optionLocator != null) {
 
-				// Make sure the locator exists
 				if (!this.sIsElementPresent(optionLocator)) {
 					throw new HarnessException(
 							" dynamic " + dynamic + " optionLocator " + optionLocator + " not present!");
@@ -1946,7 +1896,6 @@ public class PageMail extends AbsTab {
 
 		}
 
-		// Return the specified page, or null if not set
 		return (page);
 
 	}
@@ -2008,12 +1957,6 @@ public class PageMail extends AbsTab {
 		return (tooltip);
 	}
 
-	/**
-	 * Check warning icon,Display Image link,Domain link
-	 *
-	 * @return
-	 * @throws HarnessException
-	 */
 	public boolean zHasWDDLinks() throws HarnessException {
 
 		if (zGetPropMailView() == PageMailView.BY_MESSAGE) {
@@ -2268,12 +2211,10 @@ public class PageMail extends AbsTab {
 			throw new HarnessException("Button " + button + " not implemented");
 		}
 
-		// Make sure the locator was set
 		if (locator == null) {
 			throw new HarnessException("Button " + button + " not implemented");
 		}
 
-		// Make sure the locator exists
 		if (!this.sIsElementPresent(locator)) {
 			throw new HarnessException("Button " + button + " locator " + locator + " not present!");
 		}
@@ -2288,7 +2229,7 @@ public class PageMail extends AbsTab {
 	public void zEditColumnView(Action action, Column column) throws HarnessException {
 
 		logger.info(myPageName() + " zEditColumnView (" + action + ") " + column);
-		tracer.trace("Right-Click Column Header Subject"  );
+		tracer.trace("Right-Click Column Header Subject");
 
 		if (action == null)
 			throw new HarnessException("action cannot be null");
@@ -2307,28 +2248,36 @@ public class PageMail extends AbsTab {
 		}
 		zRightClick(locator);
 
-		if(action == Action.A_UNCHECKBOX) {
+		if (action == Action.A_UNCHECKBOX) {
 
-			if(sIsElementPresent("//td[starts-with(@id,'" + prefix + "') and contains(text(),'" + column.name()  +"')]/parent::tr//div[@class='ImgMenuCheck']")) {
-				if(!(sIsVisible("//td[starts-with(@id,'" + prefix + "') and contains(text(),'" + column.name()  +"')]"))) {
+			if (sIsElementPresent("//td[starts-with(@id,'" + prefix + "') and contains(text(),'" + column.name()
+					+ "')]/parent::tr//div[@class='ImgMenuCheck']")) {
+				if (!(sIsVisible(
+						"//td[starts-with(@id,'" + prefix + "') and contains(text(),'" + column.name() + "')]"))) {
 					zRightClick(locator);
 				}
-				List<WebElement> elements = getElements("//td[starts-with(@id,'" + prefix + "') and contains(text(),'" + column.name() +"')]");
-				elements.get(elements.size()-1).click();
+				List<WebElement> elements = getElements(
+						"//td[starts-with(@id,'" + prefix + "') and contains(text(),'" + column.name() + "')]");
+				elements.get(elements.size() - 1).click();
 			}
-		} else if(action == Action.A_CHECKBOX) {
+		} else if (action == Action.A_CHECKBOX) {
 
-			if(sIsElementPresent("//td[starts-with(@id,'" + prefix + "') and contains(text(),'" + column.name()  +"')]/parent::tr//div[@class='ImgBlank_9']")) {
-				if(!(sIsVisible("//td[starts-with(@id,'" + prefix + "') and contains(text(),'" + column.name()  +"')]"))) {
+			if (sIsElementPresent("//td[starts-with(@id,'" + prefix + "') and contains(text(),'" + column.name()
+					+ "')]/parent::tr//div[@class='ImgBlank_9']")) {
+				if (!(sIsVisible(
+						"//td[starts-with(@id,'" + prefix + "') and contains(text(),'" + column.name() + "')]"))) {
 					zRightClick(locator);
 				}
-				List<WebElement> elements = getElements("//td[starts-with(@id,'" + prefix + "') and contains(text(),'" + column.name() +"')]");
-				elements.get(elements.size()-1).click();
+				List<WebElement> elements = getElements(
+						"//td[starts-with(@id,'" + prefix + "') and contains(text(),'" + column.name() + "')]");
+				elements.get(elements.size() - 1).click();
 			}
 		} else {
-			throw new HarnessException("Action " + action.toString() + " is not applicable for Edition columns on Page mail");
+			throw new HarnessException(
+					"Action " + action.toString() + " is not applicable for Edition columns on Page mail");
 		}
 	}
+
 	public boolean zVerifyColumnPresent(Column column) throws HarnessException {
 
 		logger.info(myPageName() + " zVerifyColumnPresent (" + column.name() + ") ");
@@ -2341,15 +2290,16 @@ public class PageMail extends AbsTab {
 		} else {
 			locatorPrefix = "css=td[id^='zlh__CLV-main__']";
 		}
-		return sIsElementPresent(locatorPrefix + "[id$='" + column.value +"']");
+		return sIsElementPresent(locatorPrefix + "[id$='" + column.value + "']");
 
 	}
 
 	public boolean zVerifyExternalImageInfoBarExists(String subject) throws HarnessException {
-		return sIsElementPresent("css=div[aria-label='"+subject+"'] span:contains('External images are not displayed.')");
+		return sIsElementPresent(
+				"css=div[aria-label='" + subject + "'] span:contains('External images are not displayed.')");
 	}
 
-	public String zGetMessageProperty (String subject, String property) throws HarnessException {
+	public String zGetMessageProperty(String subject, String property) throws HarnessException {
 
 		String viewLocator, listLocator, rowLocator, itemlocator;
 
@@ -2373,18 +2323,24 @@ public class PageMail extends AbsTab {
 				String messageID = this.sGetAttribute(itemlocator + " span[id^='zlif" + viewLocator + "']@id");
 
 				if (property.contains("flag")) {
-					messageID = this.sGetAttribute(itemlocator + "span[id^='zlif" + viewLocator + "']@id").replace("__fr", "__fg");
-					Boolean isMessageFlagged = this.sIsVisible(itemlocator + "div[id='" + messageID + "'] div[class='ImgFlagRed']");
+					messageID = this.sGetAttribute(itemlocator + "span[id^='zlif" + viewLocator + "']@id")
+							.replace("__fr", "__fg");
+					Boolean isMessageFlagged = this
+							.sIsVisible(itemlocator + "div[id='" + messageID + "'] div[class='ImgFlagRed']");
 					return isMessageFlagged.toString();
 
 				} else if (property.contains("attachment")) {
-					messageID = this.sGetAttribute(itemlocator + "span[id^='zlif" + viewLocator + "']@id").replace("__fr", "__at");
-					Boolean isMessageContainsAttachment = this.sIsVisible(itemlocator + "div[id='" + messageID + "'] div[class='ImgAttachment']");
+					messageID = this.sGetAttribute(itemlocator + "span[id^='zlif" + viewLocator + "']@id")
+							.replace("__fr", "__at");
+					Boolean isMessageContainsAttachment = this
+							.sIsVisible(itemlocator + "div[id='" + messageID + "'] div[class='ImgAttachment']");
 					return isMessageContainsAttachment.toString();
 
 				} else if (property.contains("tag")) {
-					messageID = this.sGetAttribute(itemlocator + "span[id^='zlif" + viewLocator + "']@id").replace("__fr", "__tg");
-					Boolean isMessageTagged = this.sIsVisible(itemlocator + "div[id='" + messageID + "'] img[src^='data:image/png;base64']");
+					messageID = this.sGetAttribute(itemlocator + "span[id^='zlif" + viewLocator + "']@id")
+							.replace("__fr", "__tg");
+					Boolean isMessageTagged = this
+							.sIsVisible(itemlocator + "div[id='" + messageID + "'] img[src^='data:image/png;base64']");
 					return isMessageTagged.toString();
 
 				} else {

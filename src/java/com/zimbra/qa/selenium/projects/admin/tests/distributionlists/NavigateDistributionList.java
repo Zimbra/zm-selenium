@@ -39,7 +39,7 @@ public class NavigateDistributionList extends AdminCommonTest {
 	 * 2. Verify navigation path -- "Home --> Manage --> Distribution Lists"
 	 * @throws HarnessException
 	 */
-	@Test( description = "Navigate to DL",
+	@Test (description = "Navigate to DL",
 			groups = { "sanity", "L0" })
 			public void NavigateDistributionList_01() throws HarnessException {
 		

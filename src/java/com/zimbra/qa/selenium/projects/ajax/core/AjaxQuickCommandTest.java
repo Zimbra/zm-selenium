@@ -17,9 +17,7 @@
 package com.zimbra.qa.selenium.projects.ajax.core;
 
 import java.util.ArrayList;
-
 import org.apache.log4j.*;
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.items.QuickCommand.*;
@@ -29,10 +27,9 @@ import com.zimbra.qa.selenium.framework.util.*;
  * A base class that creates some basic Quick Command shortcuts in the mailbox.  This
  * class should only be used when testing Quick Commands.
  * 
- * 
  * @author Matt Rhoades
- *
  */
+
 public class AjaxQuickCommandTest extends AjaxCommonTest {
 	protected static Logger logger = LogManager.getLogger(AjaxQuickCommandTest.class);
 
@@ -40,15 +37,14 @@ public class AjaxQuickCommandTest extends AjaxCommonTest {
 	private QuickCommand command2;
 	private QuickCommand command3;
 
-
 	public AjaxQuickCommandTest() {
 		logger.info("New "+ AjaxQuickCommandTest.class.getCanonicalName());
 		
 		command1 = null;
 		command2 = null;
 		command3 = null;
-		
 	}
+
 
 	/**
 	 * Quick Command:
@@ -57,15 +53,13 @@ public class AjaxQuickCommandTest extends AjaxCommonTest {
 	 * Action 2: Mark Read
 	 * Action 3: Mark Flagged
 	 * Action 4: Move To Subfolder
-	 * @throws HarnessException
 	 */
+
 	protected QuickCommand getQuickCommand01() throws HarnessException {
 		
 		if ( command1 != null ) {
-			// Command already exists, just return it
 			return (command1);
 		}
-		
 		
 		// Create a tag
 		String tagname = "tag" + ConfigProperties.getUniqueString();
@@ -94,7 +88,6 @@ public class AjaxQuickCommandTest extends AjaxCommonTest {
 		actions.add(new QuickCommandAction(QuickCommandAction.TypeId.actionFlag, "flagged", true));
 		actions.add(new QuickCommandAction(QuickCommandAction.TypeId.actionFileInto, folder.getId(), true));
 
-
 		String name = "name" + ConfigProperties.getUniqueString();
 		String description = "description" + ConfigProperties.getUniqueString();
 		
@@ -104,6 +97,7 @@ public class AjaxQuickCommandTest extends AjaxCommonTest {
 		return (command1);
 	}
 	
+
 	/**
 	 * Quick Command:
 	 * Item Type: Contact
@@ -111,14 +105,12 @@ public class AjaxQuickCommandTest extends AjaxCommonTest {
 	 * Action 2: Move To Subfolder
 	 * @throws HarnessException
 	 */
+
 	protected QuickCommand getQuickCommand02() throws HarnessException {
 
-		
 		if ( command2 != null ) {
-			// Command already exists, just return it
 			return (command2);
 		}
-		
 		
 		// Create a tag
 		String tagname = "tag" + ConfigProperties.getUniqueString();
@@ -145,7 +137,6 @@ public class AjaxQuickCommandTest extends AjaxCommonTest {
 		actions.add(new QuickCommandAction(QuickCommandAction.TypeId.actionTag, tag.getId(), true));
 		actions.add(new QuickCommandAction(QuickCommandAction.TypeId.actionFileInto, folder.getId(), true));
 
-
 		String name = "name" + ConfigProperties.getUniqueString();
 		String description = "description" + ConfigProperties.getUniqueString();
 		
@@ -155,6 +146,7 @@ public class AjaxQuickCommandTest extends AjaxCommonTest {
 		return (command2);
 	}
 	
+
 	/**
 	 * Quick Command:
 	 * Item Type: Appointment
@@ -162,15 +154,13 @@ public class AjaxQuickCommandTest extends AjaxCommonTest {
 	 * Action 2: Mark Read
 	 * Action 3: Mark Flagged
 	 * Action 4: Move To Subfolder
-	 * @throws HarnessException
 	 */
+
 	protected QuickCommand getQuickCommand03() throws HarnessException {
 		
 		if ( command3 != null ) {
-			// Command already exists, just return it
 			return (command3);
 		}
-		
 		
 		// Create a tag
 		String tagname = "tag" + ConfigProperties.getUniqueString();
@@ -199,7 +189,6 @@ public class AjaxQuickCommandTest extends AjaxCommonTest {
 		actions.add(new QuickCommandAction(QuickCommandAction.TypeId.actionFlag, "flagged", true));
 		actions.add(new QuickCommandAction(QuickCommandAction.TypeId.actionFileInto, folder.getId(), true));
 
-
 		String name = "name" + ConfigProperties.getUniqueString();
 		String description = "description" + ConfigProperties.getUniqueString();
 		
@@ -212,14 +201,12 @@ public class AjaxQuickCommandTest extends AjaxCommonTest {
 
 	/**
 	 * Set up basic quick commands for all combinations 
-	 * @throws HarnessException
 	 */
-	@Bugs(ids = "71389")	// Hold off on GUI implementation of Quick Commands in 8.X
-//	@BeforeClass( groups = { "always" } )
+
+	@Bugs(ids = "71389")
 	public void addQuickCommands() throws HarnessException {
 		logger.info("addQuickCommands: start");
 		
-
 		// Create a quick command in the user preferences
 		ZimbraAccount.AccountZCS().soapSend(
 				"<ModifyPrefsRequest xmlns='urn:zimbraAccount'>"
@@ -227,7 +214,6 @@ public class AjaxQuickCommandTest extends AjaxCommonTest {
 				+		"<pref name='zimbraPrefQuickCommand'>"+ this.getQuickCommand02().toString() +"</pref>"
 				+		"<pref name='zimbraPrefQuickCommand'>"+ this.getQuickCommand03().toString() +"</pref>"
 				+	"</ModifyPrefsRequest>");
-
 		
 		// Re-login to pick up the new preferences
 		app.zPageMain.zRefreshMainUI();
@@ -235,6 +221,4 @@ public class AjaxQuickCommandTest extends AjaxCommonTest {
 		// The AjaxCommonTest.commonTestBeforeMethod() method will log into the client
 		logger.info("addQuickCommands: finish");
 	}
-
-
 }

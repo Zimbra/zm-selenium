@@ -43,7 +43,7 @@ public class CreateDistributionList extends AdminCommonTest {
 	 * 2. Verify DL is created using SOAP.
 	 * @throws HarnessException
 	 */
-	@Test( description = "Create a basic DL",
+	@Test (description = "Create a basic DL",
 			groups = { "functional-skip", "L3-skip" })
 			public void CreateDistributionList_01() throws HarnessException {
 
@@ -72,7 +72,7 @@ public class CreateDistributionList extends AdminCommonTest {
 	 * 2. Verify DL is created using soap.
 	 * @throws HarnessException
 	 */
-	@Test( description = "Create a basic DL.",
+	@Test (description = "Create a basic DL.",
 			groups = { "sanity", "L0" })
 			public void CreateDistributionList_02() throws HarnessException {
 		
@@ -102,7 +102,7 @@ public class CreateDistributionList extends AdminCommonTest {
 	 * @throws HarnessException
 	 * @throws ServiceException 
 	 */
-	@Test( description = "Create a basic dynamic  DL.",
+	@Test (description = "Create a basic dynamic  DL.",
 			groups = { "smoke", "L1" })
 			public void CreateDistributionList_03() throws HarnessException, ServiceException {
 

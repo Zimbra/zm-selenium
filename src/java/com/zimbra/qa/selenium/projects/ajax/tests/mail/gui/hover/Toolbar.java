@@ -27,7 +27,7 @@ public class Toolbar extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test(description = "Hover over Delete button",
+	@Test (description = "Hover over Delete button",
 			groups = { "functional", "L2" })
 
 	public void Toolbar_01() throws HarnessException {
@@ -38,7 +38,7 @@ public class Toolbar extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test(description = "Hover over Reply button",
+	@Test (description = "Hover over Reply button",
 			groups = { "functional","L3" })
 
 	public void Toolbar_02() throws HarnessException {

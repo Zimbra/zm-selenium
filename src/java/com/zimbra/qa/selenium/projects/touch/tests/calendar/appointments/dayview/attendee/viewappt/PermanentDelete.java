@@ -32,7 +32,7 @@ public class PermanentDelete extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 
-	@Test( description = "Permanently delete meeting invite as an attendee", 
+	@Test (description = "Permanently delete meeting invite as an attendee", 
 			groups = { "smoke" })
 	
 	public void PermanentDeleteMeeting_01() throws HarnessException {

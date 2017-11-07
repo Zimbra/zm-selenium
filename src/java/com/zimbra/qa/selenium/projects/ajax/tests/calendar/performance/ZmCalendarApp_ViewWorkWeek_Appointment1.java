@@ -33,7 +33,7 @@ public class ZmCalendarApp_ViewWorkWeek_Appointment1 extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Measure the time to load the Calendar, work week view, initial load",
+	@Test (description = "Measure the time to load the Calendar, work week view, initial load",
 			groups = { "performance", "deprecated" })
 
 	public void ZmCalendarApp_01() throws HarnessException {
@@ -64,7 +64,7 @@ public class ZmCalendarApp_ViewWorkWeek_Appointment1 extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Measure the time to load the Calendar, work week view, 1 appointment",
+	@Test (description = "Measure the time to load the Calendar, work week view, 1 appointment",
 			groups = { "performance", "deprecated" })
 
 	public void ZmCalendarApp_02() throws HarnessException {
@@ -96,7 +96,7 @@ public class ZmCalendarApp_ViewWorkWeek_Appointment1 extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Measure the time to load the Calendar, work week view, 100 appointments",
+	@Test (description = "Measure the time to load the Calendar, work week view, 100 appointments",
 			groups = { "performance", "deprecated" })
 
 	public void ZmCalendarApp_03() throws HarnessException {

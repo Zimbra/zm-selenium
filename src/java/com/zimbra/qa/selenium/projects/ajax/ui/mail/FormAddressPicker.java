@@ -24,22 +24,16 @@ import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 
-
-
-
 /**
  * The <code>FormAddressPicker<code> object defines an addresspicker dialog
  * <p>
- * 
+ *
  * @author Matt Rhoades
  * @see http://wiki.zimbra.com/wiki/File:ZimbraSeleniumScreenshotAjaxMail6.JPG
- * 
+ *
  */
 public class FormAddressPicker extends AbsForm {
 
-	/**
-	 * Defines Selenium locators for various objects in {@link FormAddressPicker}
-	 */
 	public static class Locators {
 		public static final String ZmContactPickerLocatorCSS = "css=div[id='ZmContactPicker']";
 		public static final String SearchResultArea = "css=div[id$='ContactPicker_chooser'] div[class$='ListView']";
@@ -53,8 +47,8 @@ public class FormAddressPicker extends AbsForm {
 		public static final Field EmailAddress = new Field("Search = Email address");
 		public static final Field Department = new Field("Search = department");
 
-
 		private String field;
+
 		private Field(String name) {
 			field = name;
 		}
@@ -66,10 +60,6 @@ public class FormAddressPicker extends AbsForm {
 
 	}
 
-
-	/**
-	 * @param application
-	 */
 	public FormAddressPicker(AbsApplication application) {
 		super(application);
 
@@ -82,7 +72,6 @@ public class FormAddressPicker extends AbsForm {
 		return (this.getClass().getName());
 	}
 
-
 	@Override
 	public void zSubmit() throws HarnessException {
 		logger.info("FormMailNew.submit()");
@@ -93,170 +82,130 @@ public class FormAddressPicker extends AbsForm {
 
 	}
 
-	/**
-	 * Press the toolbar button
-	 * @param button
-	 * @return
-	 * @throws HarnessException
-	 */
 	public AbsPage zToolbarPressButton(Button button) throws HarnessException {
-		logger.info(myPageName() + " zToolbarPressButton("+ button +")");
+		logger.info(myPageName() + " zToolbarPressButton(" + button + ")");
 
-		tracer.trace("Click button "+ button);
+		tracer.trace("Click button " + button);
 
-		if ( button == null )
+		if (button == null)
 			throw new HarnessException("Button cannot be null!");
 
-		// Fallthrough objects
 		AbsPage page = null;
 		String locator = null;
 
-		if ( button == Button.B_OK ) {
+		if (button == Button.B_OK) {
 
 			locator = "css=div[id='ZmContactPicker_buttons'] td[id^='OK_'] td[id$='_title']";
 			page = null;
 
-			
-
-		} else if ( button == Button.B_CANCEL ) {
+		} else if (button == Button.B_CANCEL) {
 
 			locator = "css=div[id='ZmContactPicker_buttons'] td[id^='Cancel_'] td[id$='_title']";
 			page = null;
 
-			
-
-		} else if ( button == Button.B_TO ) {
+		} else if (button == Button.B_TO) {
 
 			locator = "css=div[id='ZmContactPicker'] div[id='DwtChooserButtonDiv_1'] td[id$='_title']";
 			page = null;
 
-			
-
-		} else if ( button == Button.B_CC ) {
+		} else if (button == Button.B_CC) {
 
 			locator = "css=div[id='ZmContactPicker'] div[id='DwtChooserButtonDiv_2'] td[id$='_title']";
 			page = null;
 
-			
-
-		} else if ( button == Button.B_BCC ) {
+		} else if (button == Button.B_BCC) {
 
 			locator = "css=div[id='ZmContactPicker'] div[id='DwtChooserButtonDiv_3'] td[id$='_title']";
 			page = null;
 
-			
-
-		} else if ( button == Button.B_REMOVE ) {
+		} else if (button == Button.B_REMOVE) {
 
 			locator = "css=div[id='DwtChooserRemoveButton_1'] td[id$='_title']";
 			page = null;
 
-			
-
-		} else if ( button == Button.B_SEARCH ) {
+		} else if (button == Button.B_SEARCH) {
 
 			locator = "css=td[id='ZmContactPicker_searchButton'] td[id$='_title']";
 			page = null;
 
-			
-
 		} else {
-			throw new HarnessException("no logic defined for button "+ button);
+			throw new HarnessException("no logic defined for button " + button);
 		}
 
-		if ( !this.sIsElementPresent(locator) ) 
-			throw new HarnessException("locator was not present for button "+ button);
+		if (!this.sIsElementPresent(locator))
+			throw new HarnessException("locator was not present for button " + button);
 
-		// Click it
 		this.sClickAt(locator, "");
-		
+
 		SleepUtil.sleepMedium();
 
-		// if the app is busy, wait for it to become active again
 		this.zWaitForBusyOverlay();
 
-		// Return the page, if specified
 		return (page);
 
 	}
 
-	/**
-	 * Press the toolbar pulldown and the menu option
-	 * @param pulldown
-	 * @param option
-	 * @return
-	 * @throws HarnessException
-	 */
 	public AbsPage zToolbarPressPulldown(Button pulldown, Button option) throws HarnessException {
-		logger.info(myPageName() + " zToolbarPressPulldown("+ pulldown +", "+ option +")");
+		logger.info(myPageName() + " zToolbarPressPulldown(" + pulldown + ", " + option + ")");
 
-		tracer.trace("Click pulldown "+ pulldown +" then "+ option);
+		tracer.trace("Click pulldown " + pulldown + " then " + option);
 
-		if ( pulldown == null )
+		if (pulldown == null)
 			throw new HarnessException("Pulldown cannot be null!");
 
-		if ( option == null )
+		if (option == null)
 			throw new HarnessException("Option cannot be null!");
 
-		
 		//
 		String pulldownLocator = null;
 		String optionLocator = null;
 		AbsPage page = null;
 
-		// Based on the button specified, take the appropriate action(s)
 		//
 
-		if ( pulldown == Button.B_SHOW_NAMES_FROM ) {
+		if (pulldown == Button.B_SHOW_NAMES_FROM) {
 
 			pulldownLocator = "css=td[id='ZmContactPicker_listSelect'] div[class='ImgSelectPullDownArrow']";
 
-			if ( option == Button.O_CONTACTS ) {
+			if (option == Button.O_CONTACTS) {
 
 				optionLocator = "css=TODO#TODO";
 				page = null;
 
-				
-
-			} else if ( option == Button.O_PERSONAL_AND_SHARED_CONTACTS ) {
+			} else if (option == Button.O_PERSONAL_AND_SHARED_CONTACTS) {
 
 				optionLocator = "css=TODO#TODO";
 				page = null;
 
-				
-
-			} else if ( option == Button.O_GLOBAL_ADDRESS_LIST ) {
+			} else if (option == Button.O_GLOBAL_ADDRESS_LIST) {
 
 				optionLocator = "css=TODO#TODO";
 				page = null;
-
-				
 
 			} else {
-				throw new HarnessException("unsupported priority option "+ option);
+				throw new HarnessException("unsupported priority option " + option);
 			}
 
 		} else {
-			throw new HarnessException("no logic defined for pulldown "+ pulldown);
+			throw new HarnessException("no logic defined for pulldown " + pulldown);
 		}
 
-		// Default behavior
-		if ( pulldownLocator != null ) {
+		if (pulldownLocator != null) {
 
-			// Make sure the locator exists
-			if ( !this.sIsElementPresent(pulldownLocator) ) {
-				throw new HarnessException("Button "+ pulldown +" option "+ option +" pulldownLocator "+ pulldownLocator +" not present!");
+			if (!this.sIsElementPresent(pulldownLocator)) {
+				throw new HarnessException("Button " + pulldown + " option " + option + " pulldownLocator "
+						+ pulldownLocator + " not present!");
 			}
 
 			this.zClick(pulldownLocator);
 
 			this.zWaitForBusyOverlay();
 
-			if ( optionLocator != null ) {
+			if (optionLocator != null) {
 
-				// Make sure the locator exists
-				if ( !this.sIsElementPresent(optionLocator) ) {
-					throw new HarnessException("Button "+ pulldown +" option "+ option +" optionLocator "+ optionLocator +" not present!");
+				if (!this.sIsElementPresent(optionLocator)) {
+					throw new HarnessException("Button " + pulldown + " option " + option + " optionLocator "
+							+ optionLocator + " not present!");
 				}
 
 				this.zClick(optionLocator);
@@ -267,47 +216,33 @@ public class FormAddressPicker extends AbsForm {
 
 		}
 
-		// Return the specified page, or null if not set
 		return (page);
 	}
 
-	/**
-	 * Fill in the form field with the specified text
-	 * @param field
-	 * @param value
-	 * @throws HarnessException
-	 */
 	public void zFillField(Field field, String value) throws HarnessException {
 
-		tracer.trace("Set "+ field +" to "+ value);
+		tracer.trace("Set " + field + " to " + value);
 
 		String locator = null;
 
-		if ( field == Field.Search ) {
+		if (field == Field.Search) {
 
 			locator = "css=td>input[id*=ZmContactPicker_searchField]";
 
-			
-
-		} else if ( field == Field.Department ) {
+		} else if (field == Field.Department) {
 
 			locator = "css=input[id$='_searchDepartmentField']";
 
-			
-
-		} else if ( field == Field.EmailAddress ) {
+		} else if (field == Field.EmailAddress) {
 
 			locator = "css=input[id$='_searchEmailField']";
-
-			
 
 		} else {
 			throw new HarnessException("not implemented for field " + field);
 		}
 
-		// Make sure the button exists
-		if ( !this.sIsElementPresent(locator) )
-			throw new HarnessException("Field is not present field="+ field +" locator="+ locator);
+		if (!this.sIsElementPresent(locator))
+			throw new HarnessException("Field is not present field=" + field + " locator=" + locator);
 
 		// Click at the field
 		this.sClickAt(locator, "");
@@ -319,11 +254,11 @@ public class FormAddressPicker extends AbsForm {
 
 	}
 
-
 	@Override
 	public void zFill(IItem item) throws HarnessException {
 
-		throw new HarnessException("No item associated with this dialog - use zFillField(Field.Search, 'value') instead");
+		throw new HarnessException(
+				"No item associated with this dialog - use zFillField(Field.Search, 'value') instead");
 
 	}
 
@@ -332,25 +267,21 @@ public class FormAddressPicker extends AbsForm {
 		logger.info(myPageName() + " zIsActive()");
 
 		// https://bugzilla.zimbra.com/show_bug.cgi?id=62021
-
 		String locator = Locators.ZmContactPickerLocatorCSS;
 
-		if ( !this.sIsElementPresent(locator) )
+		if (!this.sIsElementPresent(locator))
 			return (false);
 
-		if ( !this.zIsVisiblePerPosition(locator, 0, 0) )
+		if (!this.zIsVisiblePerPosition(locator, 0, 0))
 			return (false);
-		
-		//Check the existing contacts are loaded in the dialog
+
+		// Check the existing contacts are loaded in the dialog
 		int count = this.sGetCssCount(Locators.contactRowsCSS);
-		if(count < 1) {
+		if (count < 1) {
 			logger.info(myPageName() + " Contacts are not displayed in address picker dialog");
 			return (false);
 		}
 
 		return (true);
-
 	}
-
-
 }

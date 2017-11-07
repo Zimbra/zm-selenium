@@ -45,7 +45,7 @@ public class CreateDomain extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Bugs( ids = "58795")
-	@Test( description = "Create a simple domain",
+	@Test (description = "Create a simple domain",
 			groups = { "sanity", "L0" })
 			public void CreateDomain_01() throws HarnessException {
 

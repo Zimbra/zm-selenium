@@ -32,7 +32,7 @@ public class SendAsDistList extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Send As Distribution List",
+	@Test (description = "Send As Distribution List",
 			groups = { "smoke", "L1" })
 
 	public void SendAsDistList_01() throws HarnessException {

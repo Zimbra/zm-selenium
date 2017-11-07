@@ -30,7 +30,7 @@ public class DeleteDisposal extends PrefGroupMailByMessageTest {
 		logger.info("New " + DeleteDisposal.class.getCanonicalName());
 	}
 
-	@Test(description = "Delete a basic disposal (Context menu -> Edit -> Retention)",
+	@Test (description = "Delete a basic disposal (Context menu -> Edit -> Retention)",
 			groups = { "functional", "L2" })
 
 	public void DeleteDisposal_01() throws HarnessException {

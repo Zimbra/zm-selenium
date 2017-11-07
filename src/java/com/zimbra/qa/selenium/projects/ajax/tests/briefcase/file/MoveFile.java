@@ -41,7 +41,7 @@ public class MoveFile extends FeatureBriefcaseTest {
 	}
 
 
-	@Test( description = "Upload file through RestUtil - move & verify through GUI",
+	@Test (description = "Upload file through RestUtil - move & verify through GUI",
 			groups = { "smoke", "L1" })
 
 	public void MoveFile_01() throws HarnessException {
@@ -103,7 +103,7 @@ public class MoveFile extends FeatureBriefcaseTest {
 	}
 
 
-	@Test( description = "Move File using 'm' keyboard shortcut",
+	@Test (description = "Move File using 'm' keyboard shortcut",
 			groups = { "functional", "L3" })
 
 	public void MoveFile_02() throws HarnessException {
@@ -175,7 +175,7 @@ public class MoveFile extends FeatureBriefcaseTest {
 	}
 
 
-	@Test( description = "Upload file through RestUtil - move using Right Click Context Menu & verify through GUI",
+	@Test (description = "Upload file through RestUtil - move using Right Click Context Menu & verify through GUI",
 			groups = { "functional", "L2" })
 
 	public void MoveFile_03() throws HarnessException {

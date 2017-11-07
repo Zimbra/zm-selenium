@@ -33,7 +33,7 @@ public class Delete extends TouchCommonTest  {
 		super.startingPage = app.zPageAddressbook;
 	}
 
-	@Test( description = "Delete a contact item in mount folder with manager rights",
+	@Test (description = "Delete a contact item in mount folder with manager rights",
 			groups = { "functional" })
 
 	public void Delete_01() throws HarnessException {

@@ -35,7 +35,7 @@ public class SelectAddressUsingAutoComplete extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 	
-	@Test( description = "Select address using auto-complete when creating meeting invite",
+	@Test (description = "Select address using auto-complete when creating meeting invite",
 			groups = { "smoke" })
 			
 	public void SelectAddressUsingAutoComplete_01() throws HarnessException {

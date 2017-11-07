@@ -39,7 +39,7 @@ public class NavigateAlias extends AdminCommonTest {
 	 * 2. Verify navigation path -- "Home --> Manage --> Aliases"
 	 * @throws HarnessException
 	 */
-	@Test( description = "Navigate to Aliases",
+	@Test (description = "Navigate to Aliases",
 			groups = { "sanity", "L0" })
 			public void NavigateAlias_01() throws HarnessException {
 		

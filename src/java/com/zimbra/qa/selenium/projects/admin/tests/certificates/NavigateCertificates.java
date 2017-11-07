@@ -38,7 +38,7 @@ public class NavigateCertificates extends AdminCommonTest {
 	 * 2. Verify navigation path -- "Home --> Configure --> Certificates"
 	 * @throws HarnessException
 	 */
-	@Test( description = "Navigate to Certificates",
+	@Test (description = "Navigate to Certificates",
 			groups = { "sanity", "L0" })
 			public void NavigateCertificates_01() throws HarnessException {
 		

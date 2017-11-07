@@ -34,7 +34,7 @@ public class CreateExternalCalendarOther extends AjaxCommonTest {
 
 
 	@Bugs(ids = "66576")
-	@Test( description = "Create a new external calendar (type=other) by clicking 'Gear' -> 'new folder' on folder tree",
+	@Test (description = "Create a new external calendar (type=other) by clicking 'Gear' -> 'new folder' on folder tree",
 			groups = { "functional", "L2" })
 
 	public void CreateExternalCalendarOther_01() throws HarnessException {
@@ -71,7 +71,7 @@ public class CreateExternalCalendarOther extends AjaxCommonTest {
 		ZAssert.assertEquals(folder.getName(), calendarname, "Verify the server and client folder names match");
 	}
 
-//	@Test( description = "Create a new external calendar (type=other) using keyboard shortcuts",
+//	@Test (description = "Create a new external calendar (type=other) using keyboard shortcuts",
 //			groups = { "functional" })
 //	public void CreateExternalCalendarOther_02() throws HarnessException {
 //
@@ -95,7 +95,7 @@ public class CreateExternalCalendarOther extends AjaxCommonTest {
 //
 //	}
 //
-//	@Test( description = "Create a new external calendar (type=other)  using context menu from root folder",
+//	@Test (description = "Create a new external calendar (type=other)  using context menu from root folder",
 //			groups = { "functional" })
 //	public void CreateCalendar_03() throws HarnessException {
 //
@@ -121,7 +121,7 @@ public class CreateExternalCalendarOther extends AjaxCommonTest {
 //
 //	}
 //
-//	@Test( description = "Create a new external calendar (type=other)  using  mail app New -> New Folder",
+//	@Test (description = "Create a new external calendar (type=other)  using  mail app New -> New Folder",
 //			groups = { "functional" })
 //	public void CreateCalendar_04() throws HarnessException {
 //

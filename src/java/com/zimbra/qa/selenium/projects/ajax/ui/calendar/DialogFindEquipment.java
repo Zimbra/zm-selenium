@@ -23,7 +23,6 @@ import com.zimbra.qa.selenium.projects.ajax.ui.DialogWarning;
 
 public class DialogFindEquipment extends DialogWarning {
 
-	// The ID for the main Dialog DIV
 	public static final String LocatorDivID = "SEND_UPDATES_DIALOG";
 
 	public DialogFindEquipment(AbsApplication application, AbsTab page) {
@@ -31,10 +30,11 @@ public class DialogFindEquipment extends DialogWarning {
 
 		logger.info("new " + DialogFindEquipment.class.getCanonicalName());
 	}
+
 	public static class Locators {
-		public static final String EquipmentPickerSerach="css=div[class='DwtDialog'] td[id$='_title']:contains('Search')";
-		public static final String SelectEquipmentFromPicker="css=div[class='DwtDialog'] td[id$='DwtChooserButton_1_title']:contains('Add')";
-		public static final String AddEquipmentFromPicker="css=div[class='DwtDialog'] td[id='ZmAttendeePicker_EQUIPMENT_button2_title']";
+		public static final String EquipmentPickerSerach = "css=div[class='DwtDialog'] td[id$='_title']:contains('Search')";
+		public static final String SelectEquipmentFromPicker = "css=div[class='DwtDialog'] td[id$='DwtChooserButton_1_title']:contains('Add')";
+		public static final String AddEquipmentFromPicker = "css=div[class='DwtDialog'] td[id='ZmAttendeePicker_EQUIPMENT_button2_title']";
 	}
 
 	@Override
@@ -42,7 +42,7 @@ public class DialogFindEquipment extends DialogWarning {
 		logger.info(myPageName() + " zClickButton(" + button + ")");
 
 		tracer.trace("Click dialog button " + button);
-		if ( button == null )
+		if (button == null)
 			throw new HarnessException("button cannot be null");
 
 		String locator = null;
@@ -57,7 +57,7 @@ public class DialogFindEquipment extends DialogWarning {
 			page = null;
 
 		} else if (button == Button.B_OK) {
-			locator= Locators.AddEquipmentFromPicker;
+			locator = Locators.AddEquipmentFromPicker;
 			page = null;
 
 		} else if (button == Button.B_CANCEL) {
@@ -65,17 +65,15 @@ public class DialogFindEquipment extends DialogWarning {
 			page = null;
 
 		} else {
-			return ( super.zClickButton(button) );
+			return (super.zClickButton(button));
 		}
 
-		// Make sure the locator was set
 		if (locator == null) {
 			throw new HarnessException("Button " + button + " not implemented");
 		}
 
-		// Make sure the locator exists
 		if (!this.sIsElementPresent(locator)) {
-			throw new HarnessException("Button " + button + " locator "	+ locator + " not present!");
+			throw new HarnessException("Button " + button + " locator " + locator + " not present!");
 		}
 		this.sFocus(locator);
 		this.sClickAt(locator, "10,10");

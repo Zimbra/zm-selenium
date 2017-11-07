@@ -39,7 +39,7 @@ public class HelpLinks extends AdminCommonTest {
 	 * 2. Verify links Zimbra Online Help, Administrators Guide, End Users Guide displayed by clicking on Help Center
 	 * @throws HarnessException
 	 */
-	@Test( description = "Verify Help Center links",
+	@Test (description = "Verify Help Center links",
 			groups = { "sanity", "L0" })
 	
 		public void HelpLinks_01() throws HarnessException {

@@ -45,8 +45,8 @@ public class UnTagTask extends AjaxCommonTest{
 	}
 
 
-	@Test( description = "UnTag a Task using Toolbar -> Tag -> Remove Tag",
-			groups = { "smoke", "L1"})
+	@Test (description = "UnTag a Task using Toolbar -> Tag -> Remove Tag",
+			groups = { "smoke", "L1" })
 
 	public void UnTagTask_01() throws HarnessException {
 
@@ -120,8 +120,8 @@ public class UnTagTask extends AjaxCommonTest{
 	}
 
 
-	@Test( description = "UnTag a Task using shortcut u",
-			groups = { "functional", "L3"})
+	@Test (description = "UnTag a Task using shortcut u",
+			groups = { "functional", "L3" })
 
 	public void UnTagTask_02() throws HarnessException {
 
@@ -204,8 +204,8 @@ public class UnTagTask extends AjaxCommonTest{
 	}
 
 
-	@Test( description = "Remove a tag from a task clicking 'x' from tag bubble",
-			groups = { "functional","L2"})
+	@Test (description = "Remove a tag from a task clicking 'x' from tag bubble",
+			groups = { "functional","L2" })
 
 	public void UnTagTask_03() throws HarnessException {
 

@@ -38,7 +38,7 @@ public class NavigateSoftwareUpdates extends AdminCommonTest {
 	 * 1. Verify navigation path -- "Home --> Tools and Migraton --> Software Updates"
 	 * @throws HarnessException
 	 */
-	@Test( description = "Navigate to Software Updates",
+	@Test (description = "Navigate to Software Updates",
 			groups = { "sanity", "L0" })
 			public void NavigateAccountMigration_01() throws HarnessException {
 		

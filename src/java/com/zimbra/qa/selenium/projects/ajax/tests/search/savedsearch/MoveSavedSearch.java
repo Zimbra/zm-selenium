@@ -33,7 +33,7 @@ public class MoveSavedSearch extends AjaxCommonTest  {
 
 
 	@Bugs( ids = "102547")
-	@Test( description = "Move a saved search",
+	@Test (description = "Move a saved search",
 			groups = { "smoke","L0" })
 
 	public void MoveSavedSearch_01() throws HarnessException {

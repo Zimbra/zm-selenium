@@ -37,7 +37,7 @@ public class CheckPopulatedContactsWhenCreatingContactGroup extends AjaxCommonTe
 
 
 	@Bugs(ids = "65606,60652")
-	@Test( description = "Contacts are not populated while creating a new contact group",
+	@Test (description = "Contacts are not populated while creating a new contact group",
 			groups = { "functional", "L2" })
 
 	public void CheckPopulatedContactsWhenCreatingContactGroup_01() throws HarnessException {

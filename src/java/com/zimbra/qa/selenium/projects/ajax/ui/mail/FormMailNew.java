@@ -109,8 +109,7 @@ public class FormMailNew extends AbsForm {
 		public static final String zAddMisspelledWord = "css=div[id^='POPUP_'] div[id='add'] td[id$='_title']";
 		public static final String zIgnoreMisspelledWord = "css=div[id^='POPUP_'] div[id='ignore'] td[id$='_title']";
 
-		// Spell check warning dialog locators when Mandatory spell check is
-		// enabled
+		// Spell check warning dialog locators when Mandatory spell check is enabled
 		public static final String zSpellCheckWarningDialog = "css=div[id^='SpellCheckConfirm'][class='DwtDialog']";
 		public static final String zSpellCheckWarningDialogContent = "css=div[id^='SpellCheckConfirm'] [class='DwtMsgArea']";
 		public static final String zCorrectSpellingBtn = "css=div[id^='SpellCheckConfirm'][id$='_button5']";
@@ -130,9 +129,6 @@ public class FormMailNew extends AbsForm {
 
 		public static final String zAddAttachmentFromOriginalMsgLink = "css=tr[id$='_reply_attachments_link'] a";
 
-		// Warning dialog which comes when we rely/fwd and try to select options
-		// like inlcude origina message as attachment, use prefix, include
-		// headers etc.
 		public static final String zOkCancelContinueComposeWarningDialog = "css=div#OkCancel.DwtDialog";
 		public static final String zOkBtnOnContinueComposeWarningDialog = "css=div#OkCancel.DwtDialog td[id^='OK'] td[id$='_title']";
 		public static final String zCancelBtnOnContinueComposeWarningDialog = "css=div#OkCancel.DwtDialog td[id^='Cancel'] td[id$='_title']";
@@ -162,12 +158,6 @@ public class FormMailNew extends AbsForm {
 
 	}
 
-	/**
-	 * Protected constuctor for this object. Only classes within this package
-	 * should create DisplayMail objects.
-	 *
-	 * @param application
-	 */
 	public FormMailNew(AbsApplication application) {
 		super(application);
 
@@ -185,13 +175,6 @@ public class FormMailNew extends AbsForm {
 		zToolbarPressButton(Button.B_SEND);
 	}
 
-	/**
-	 * Press the toolbar button
-	 * 
-	 * @param button
-	 * @return
-	 * @throws HarnessException
-	 */
 	public AbsPage zToolbarPressButton(Button button) throws HarnessException {
 		logger.info(myPageName() + " zToolbarPressButton(" + button + ")");
 
@@ -200,7 +183,6 @@ public class FormMailNew extends AbsForm {
 		if (button == null)
 			throw new HarnessException("Button cannot be null!");
 
-		// Fallthrough objects
 		AbsPage page = null;
 		String locator = null;
 
@@ -300,7 +282,6 @@ public class FormMailNew extends AbsForm {
 			if (zBccIsActive())
 				return (this);
 
-			// Click it
 			this.sClick(locator);
 			this.zWaitForBusyOverlay();
 
@@ -309,7 +290,6 @@ public class FormMailNew extends AbsForm {
 			throw new HarnessException("no logic defined for button " + button);
 		}
 
-		// Make sure a locator was set
 		if (locator == null)
 			throw new HarnessException("locator was null for button " + button);
 
@@ -324,14 +304,6 @@ public class FormMailNew extends AbsForm {
 		return (page);
 	}
 
-	/**
-	 * Press the toolbar pulldown and the menu option
-	 * 
-	 * @param pulldown
-	 * @param option
-	 * @return
-	 * @throws HarnessException
-	 */
 	public AbsPage zToolbarPressPulldown(Button pulldown, Button option) throws HarnessException {
 		logger.info(myPageName() + " zToolbarPressPulldown(" + pulldown + ", " + option + ")");
 
@@ -501,7 +473,6 @@ public class FormMailNew extends AbsForm {
 				optionLocator = "css=tr#POPUP_SEND td#SEND_title";
 				page = null;
 
-				// Make sure the locator exists
 				if (!this.sIsElementPresent(pulldownLocator)) {
 					throw new HarnessException("Button " + pulldown + " option " + option + " pulldownLocator "
 							+ pulldownLocator + " not present!");
@@ -510,7 +481,6 @@ public class FormMailNew extends AbsForm {
 				this.zRightClick(pulldownLocator);
 				this.zWaitForBusyOverlay();
 
-				// Make sure the locator exists
 				if (!this.sIsElementPresent(optionLocator)) {
 					throw new HarnessException("Button " + pulldown + " option " + option + " optionLocator "
 							+ optionLocator + " not present!");
@@ -569,7 +539,6 @@ public class FormMailNew extends AbsForm {
 
 			if (optionLocator != null) {
 
-				// Make sure the locator exists
 				if (!this.sIsElementPresent(optionLocator)) {
 					throw new HarnessException("Button " + pulldown + " option " + option + " optionLocator "
 							+ optionLocator + " not present!");
@@ -588,11 +557,6 @@ public class FormMailNew extends AbsForm {
 		return (page);
 	}
 
-	/**
-	 * Set the 'From' value
-	 * 
-	 * @param value
-	 */
 	public void zSetFromIdentity(String value) throws HarnessException {
 		logger.info(myPageName() + " zSetFrom(" + value + ")");
 
@@ -626,13 +590,6 @@ public class FormMailNew extends AbsForm {
 		}
 	}
 
-	/**
-	 * Fill in the form field with the specified text
-	 * 
-	 * @param field
-	 * @param value
-	 * @throws HarnessException
-	 */
 	public void zFillField(Field field, String value) throws HarnessException {
 
 		tracer.trace("Set " + field + " to " + value);
@@ -734,11 +691,7 @@ public class FormMailNew extends AbsForm {
 
 				try {
 
-					this.sSelectFrame("css=iframe[id$='_body_ifr']"); // iframe
-																		// index
-																		// is 0
-																		// based
-
+					this.sSelectFrame("css=iframe[id$='_body_ifr']");
 					locator = "css=html body";
 
 					if (!this.sIsElementPresent(locator))
@@ -904,7 +857,6 @@ public class FormMailNew extends AbsForm {
 			throw new HarnessException("locator was null for field " + field);
 		}
 
-		// Make sure the button exists
 		if (!this.sIsElementPresent(locator))
 			throw new HarnessException("Field is not present field=" + field + " locator=" + locator);
 
@@ -922,11 +874,6 @@ public class FormMailNew extends AbsForm {
 
 	private boolean zBccIsActive() throws HarnessException {
 		logger.info(myPageName() + ".zBccIsActive()");
-
-		// <tr id='zv__COMPOSEX_bcc_row' style='display: table_row'
-		// x-display='table-row' ...
-		// <tr id='zv__COMPOSEX_bcc_row' style='display: none'
-		// x-display='table-row' ...
 
 		String locator;
 
@@ -951,9 +898,6 @@ public class FormMailNew extends AbsForm {
 		// Convert object to MailItem
 		MailItem mail = (MailItem) item;
 
-		// Fill out the form
-		//
-
 		// Handle the subject
 		if (mail.dSubject != null) {
 			zFillField(Field.Subject, mail.dSubject);
@@ -973,8 +917,8 @@ public class FormMailNew extends AbsForm {
 			zTypeFormattedText(bodyLocator, mail.dBodyHtml);
 		}
 
-		// Handle the Recipient list, which can be a combination
-		// of To, Cc, Bcc, and From
+		// Handle the Recipient list, which can be a combination of To, Cc, Bcc, and
+		// From
 		StringBuilder to = null;
 		StringBuilder cc = null;
 		StringBuilder bcc = null;
@@ -1087,16 +1031,6 @@ public class FormMailNew extends AbsForm {
 		return (filename.contains(name));
 	}
 
-	/**
-	 * Autocompleting is more complicated than zFillField(). Use this method
-	 * when filling out a field that will autocomplete.
-	 * 
-	 * @param field
-	 *            The form field to use (to, cc, bcc, etc.)
-	 * @param value
-	 *            The partial string to use to autocomplete
-	 * @throws HarnessException
-	 */
 	public List<AutocompleteEntry> zAutocompleteFillField(Field field, String value) throws HarnessException {
 		logger.info(myPageName() + " zAutocompleteFillField(" + field + ", " + value + ")");
 
@@ -1149,7 +1083,7 @@ public class FormMailNew extends AbsForm {
 		String locator = "css=div[class='acWaiting'][style*='display: none;']";
 		for (int i = 0; i < 30; i++) {
 			if (this.sIsElementPresent(locator))
-				return; // Found it!
+				return;
 			SleepUtil.sleep(1000);
 		}
 		throw new HarnessException("autocomplete never completed");
@@ -1305,7 +1239,7 @@ public class FormMailNew extends AbsForm {
 
 		return false;
 	}
-	
+
 	public String zGetSignatueImageSrc() throws HarnessException {
 		String imageSrc;
 		try {
@@ -1314,10 +1248,9 @@ public class FormMailNew extends AbsForm {
 			imageSrc = sGetAttribute("css=div[data-marker='__QUOTED_TEXT__'] img@src");
 
 		} finally {
-			
+
 			this.sSelectFrame("relative=top");
 		}
 		return imageSrc;
 	}
-
 }

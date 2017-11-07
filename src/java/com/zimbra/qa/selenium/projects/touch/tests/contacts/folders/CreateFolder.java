@@ -33,7 +33,7 @@ public class CreateFolder extends PrefGroupMailByMessageTest {
 		super.startingPage = app.zPageAddressbook;
 	}
 
-	@Test( description = "Create a folder under contacts",
+	@Test (description = "Create a folder under contacts",
 			groups = { "sanity" })
 	
 	public void CreateFolder_01() throws HarnessException  {

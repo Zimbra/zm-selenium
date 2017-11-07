@@ -31,7 +31,7 @@ public class MarkAsUnread extends PrefGroupMailByMessageTest{
 		logger.info("New " + FlagMail.class.getCanonicalName());
 	}
 
-	@Test( description = "Verify user can mark unread a email on mount point with manager rights",
+	@Test (description = "Verify user can mark unread a email on mount point with manager rights",
 			groups = { "functional" })
 
 	public void MarkAsUnread_01() throws HarnessException  {

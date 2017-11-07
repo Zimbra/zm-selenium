@@ -35,7 +35,7 @@ public class FolderTree extends AjaxCommonTest {
 
 
 	@Bugs( ids = "81078")
-	@Test( description = "Verify the LinkedIn zimlet appears in the folder tree",
+	@Test (description = "Verify the LinkedIn zimlet appears in the folder tree",
 			groups = { "deprecated" })
 
 	public void FolderTree_01() throws HarnessException {

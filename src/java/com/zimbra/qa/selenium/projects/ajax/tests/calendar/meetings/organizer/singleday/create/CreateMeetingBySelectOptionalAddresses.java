@@ -33,7 +33,7 @@ public class CreateMeetingBySelectOptionalAddresses extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Compose appointment by selecting optional attendees using 'Select Addresses' dialog and send the appointment",
+	@Test (description = "Compose appointment by selecting optional attendees using 'Select Addresses' dialog and send the appointment",
 			groups = { "functional", "L2" })
 
 	public void CreateMeetingBySelectOptionalAttendees_01() throws HarnessException {

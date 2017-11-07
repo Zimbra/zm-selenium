@@ -35,7 +35,7 @@ public class EditAttendeeContextMenu extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Right click To attendee bubble address>>Verify Edit menus",
+	@Test (description = "Right click To attendee bubble address>>Verify Edit menus",
 			groups = { "smoke", "L1" })
 
 	public void EditAttendeesContextMenu_01() throws HarnessException {

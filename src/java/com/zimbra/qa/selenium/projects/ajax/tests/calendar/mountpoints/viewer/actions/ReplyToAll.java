@@ -35,7 +35,7 @@ public class ReplyToAll extends AjaxCommonTest {
 
 
 	@Bugs(ids = "102475")
-	@Test( description = "Grantee replies all to appointment from grantor's calendar",
+	@Test (description = "Grantee replies all to appointment from grantor's calendar",
 			groups = { "functional", "L2" })
 
 	public void ReplyToAll_01() throws HarnessException {

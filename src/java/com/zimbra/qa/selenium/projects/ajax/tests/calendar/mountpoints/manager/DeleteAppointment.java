@@ -38,7 +38,7 @@ public class DeleteAppointment extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Verify Delete button is enabled and functional on mountpoint appointment (manager share)",
+	@Test (description = "Verify Delete button is enabled and functional on mountpoint appointment (manager share)",
 			groups = { "functional", "L2" })
 
 	public void DeleteAppointment_01() throws HarnessException {
@@ -131,7 +131,7 @@ public class DeleteAppointment extends AjaxCommonTest {
 		};
 	}
 
-	@Test( description = "Verify Delete keyboard shortcut is functional on mountpoint appointment (manager share)",
+	@Test (description = "Verify Delete keyboard shortcut is functional on mountpoint appointment (manager share)",
 			groups = { "functional-skip", "application-bug" },
 			dataProvider = "DataProviderShortcutKeys")
 

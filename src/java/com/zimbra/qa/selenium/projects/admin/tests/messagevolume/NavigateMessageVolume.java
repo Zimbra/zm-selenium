@@ -38,7 +38,7 @@ public class NavigateMessageVolume extends AdminCommonTest {
 	 * 1. Verify navigation path -- "Home --> Monitor --> Message Volume"
 	 * @throws HarnessException
 	 */
-	@Test( description = "Navigate to Message Volume",
+	@Test (description = "Navigate to Message Volume",
 			groups = { "sanity", "L0" })
 			public void NavigateMessageVolume_01() throws HarnessException {
 		

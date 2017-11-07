@@ -34,7 +34,7 @@ public class Accept extends CalendarWorkWeekTest {
 	}
 	
 	@Bugs(ids = "95870")
-	@Test( description = "Assistant selects calendar invite from shared calendar and accepts the invite OBO boss",
+	@Test (description = "Assistant selects calendar invite from shared calendar and accepts the invite OBO boss",
 			groups = { "smoke" })
 
 	public void Accept_01() throws HarnessException {

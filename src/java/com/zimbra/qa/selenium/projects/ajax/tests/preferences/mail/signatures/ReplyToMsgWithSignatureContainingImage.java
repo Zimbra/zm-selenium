@@ -87,7 +87,7 @@ public class ReplyToMsgWithSignatureContainingImage extends AjaxCommonTest {
 	 * Verify that the body of reply compose form contains the signature with image displayed.
 	 */
 
-	@Test(description = " Verify the display of signature image in reply compose window!",
+	@Test (description = " Verify the display of signature image in reply compose window!",
 			groups = { "functional", "L2" })
 
 	public void ReplyMsgWithHtmlSignature_01() throws HarnessException {

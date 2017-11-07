@@ -41,7 +41,7 @@ public class DeclineShareFolder extends PrefGroupMailByMessageTest {
 
 
 	@Bugs( ids = "70082")
-	@Test( description = "Receive an invitation to a shared folder, Decline it - in a separate window",
+	@Test (description = "Receive an invitation to a shared folder, Decline it - in a separate window",
 			groups = { "functional", "L2" })
 
 	public void DeclineShareFolder_01() throws HarnessException {

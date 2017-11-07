@@ -39,7 +39,7 @@ public class DragAndDropAppointment extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Drag and Drop a appointment from calendar to different calendar in day view",
+	@Test (description = "Drag and Drop a appointment from calendar to different calendar in day view",
 			groups = { "smoke", "L1" })
 
 	public void DragAndDropAppointment_01() throws HarnessException {
@@ -98,7 +98,7 @@ public class DragAndDropAppointment extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Drag and Drop a appointment from one time to a different time in day view",
+	@Test (description = "Drag and Drop a appointment from one time to a different time in day view",
 			groups = { "smoke", "L1" })
 
 	public void DragAndDropAppointment_02() throws HarnessException {

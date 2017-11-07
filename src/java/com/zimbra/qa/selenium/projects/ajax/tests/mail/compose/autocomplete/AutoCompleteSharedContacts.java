@@ -94,7 +94,7 @@ public class AutoCompleteSharedContacts extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Autocomplete using a Shared Contact - First Name",
+	@Test (description = "Autocomplete using a Shared Contact - First Name",
 			groups = { "functional", "L2" })
 
 	public void AutoCompleteSharedContacts_01() throws HarnessException {
@@ -134,7 +134,7 @@ public class AutoCompleteSharedContacts extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Autocomplete using the Shared Contacts - Partial First Name",
+	@Test (description = "Autocomplete using the Shared Contacts - Partial First Name",
 			groups = { "functional", "L2" })
 
 	public void AutoCompleteSharedContacts_02() throws HarnessException {
@@ -174,7 +174,7 @@ public class AutoCompleteSharedContacts extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Autocomplete using a Shared Contact - Last Name",
+	@Test (description = "Autocomplete using a Shared Contact - Last Name",
 			groups = { "functional", "L3" })
 
 	public void AutoCompleteSharedContacts_03() throws HarnessException {
@@ -214,7 +214,7 @@ public class AutoCompleteSharedContacts extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Autocomplete using a Shared Contact - Partial Last Name",
+	@Test (description = "Autocomplete using a Shared Contact - Partial Last Name",
 			groups = { "functional", "L3" })
 
 	public void AutoCompleteSharedContacts_04() throws HarnessException {
@@ -254,7 +254,7 @@ public class AutoCompleteSharedContacts extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Autocomplete using a Shared Contact - Full Name",
+	@Test (description = "Autocomplete using a Shared Contact - Full Name",
 			groups = { "functional", "L3" })
 
 	public void AutoCompleteSharedContacts_05() throws HarnessException {
@@ -294,7 +294,7 @@ public class AutoCompleteSharedContacts extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Autocomplete using a Shared Contact - First Name and Last Initial",
+	@Test (description = "Autocomplete using a Shared Contact - First Name and Last Initial",
 			groups = { "functional", "L3" })
 
 	public void AutoCompleteSharedContacts_07() throws HarnessException {
@@ -334,7 +334,7 @@ public class AutoCompleteSharedContacts extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Autocomplete using a Shared Contact - Multiple Matches",
+	@Test (description = "Autocomplete using a Shared Contact - Multiple Matches",
 			groups = { "functional", "L2" })
 
 	public void AutoCompleteSharedContacts_08() throws HarnessException {
@@ -390,7 +390,7 @@ public class AutoCompleteSharedContacts extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Autocomplete using a Shared Contact - No Matches",
+	@Test (description = "Autocomplete using a Shared Contact - No Matches",
 			groups = { "functional", "L2" })
 
 	public void AutoCompleteSharedContacts_09() throws HarnessException {

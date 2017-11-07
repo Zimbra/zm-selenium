@@ -38,7 +38,7 @@ public class ZmMailAppComposeHtml extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Measure the time to load the html compose window",
+	@Test (description = "Measure the time to load the html compose window",
 			groups = { "performance", "deprecated" })
 
 	public void ZmMailAppComposeHtml_01() throws HarnessException {

@@ -35,7 +35,7 @@ public class CreateFilter extends PrefGroupMailByMessageTest {
 	}
 
 	@Bugs(ids="88916")
-	@Test( description = "Verify Add Filter dialog from new window action menu -> Create Filter",
+	@Test (description = "Verify Add Filter dialog from new window action menu -> Create Filter",
 			groups = { "functional", "L2" })
 
 	public void CreatefilterFromNewWindow() throws HarnessException {

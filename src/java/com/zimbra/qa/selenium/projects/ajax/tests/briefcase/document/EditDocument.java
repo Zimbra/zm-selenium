@@ -45,7 +45,7 @@ public class EditDocument extends FeatureBriefcaseTest {
 	}
 
 
-	@Test(description = "Create document through SOAP - edit name & verify through GUI",
+	@Test (description = "Create document through SOAP - edit name & verify through GUI",
 			groups = { "smoke", "L2" })
 
 	public void EditDocument_01() throws HarnessException {
@@ -107,7 +107,7 @@ public class EditDocument extends FeatureBriefcaseTest {
 
 
 	@Bugs(ids = "97124")
-	@Test(description = "Create document through SOAP - edit text & name & verify through GUI",
+	@Test (description = "Create document through SOAP - edit text & name & verify through GUI",
 			groups = { "smoke", "L2" })
 
 	public void EditDocument_02() throws HarnessException {
@@ -194,7 +194,7 @@ public class EditDocument extends FeatureBriefcaseTest {
 
 
 	@Bugs(ids = "97124")
-	@Test(description = "Create document & edit text through SOAP & verify through GUI",
+	@Test (description = "Create document & edit text through SOAP & verify through GUI",
 			groups = { "smoke", "L3" })
 
 	public void EditDocument_03() throws HarnessException {
@@ -265,8 +265,8 @@ public class EditDocument extends FeatureBriefcaseTest {
 	}
 
 
-	@Test(description = "Create document through SOAP - Edit Document using Right Click Context Menu & verify through GUI",
-			groups = {"functional", "L2" })
+	@Test (description = "Create document through SOAP - Edit Document using Right Click Context Menu & verify through GUI",
+			groups = { "functional", "L2" })
 
 	public void EditDocument_04() throws HarnessException {
 

@@ -41,7 +41,7 @@ public class PermanentDeleteSeries extends CalendarWorkWeekTest {
 	}
 	
 	@Bugs(ids = "95735")
-	@Test ( description = "Permanently delete entire series", 
+	@Test (description = "Permanently delete entire series", 
 			groups = { "functional" } )
 	
 	public void PermanentDeleteSeries_01() throws HarnessException {

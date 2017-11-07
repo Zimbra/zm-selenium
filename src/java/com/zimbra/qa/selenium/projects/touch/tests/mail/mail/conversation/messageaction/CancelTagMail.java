@@ -30,7 +30,7 @@ public class CancelTagMail extends PrefGroupMailByConversationTest {
 		logger.info("New "+ CancelTagMail.class.getCanonicalName());
 	}
 	
-	@Test( description = "Cancel tag operation in conversation view",
+	@Test (description = "Cancel tag operation in conversation view",
 			groups = { "smoke" })
 			
 	public void CancelTagMail_01() throws HarnessException {

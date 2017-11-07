@@ -31,7 +31,7 @@ public class RequestReadReceiptText extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Send a text message requesting a read receipt",
+	@Test (description = "Send a text message requesting a read receipt",
 			groups = { "smoke", "L1" })
 
 	public void CreateMailText_01() throws HarnessException {

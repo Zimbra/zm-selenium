@@ -40,7 +40,7 @@ public class VerifySplitView extends AjaxCommonTest {
 
 
 	@Bugs(ids = "66603")
-	@Test( description = "Verify that in Day-split view all calendars are visible correctly",
+	@Test (description = "Verify that in Day-split view all calendars are visible correctly",
 			groups = { "smoke", "L1" } )
 	
 	public void VerifySplitView_01() throws HarnessException {

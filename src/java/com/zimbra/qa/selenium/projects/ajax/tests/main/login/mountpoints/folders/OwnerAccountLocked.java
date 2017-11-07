@@ -40,8 +40,8 @@ public class OwnerAccountLocked extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Login to the Ajax Client - with a mountpoint to a 'locked' account",
-			groups = { "functional", "L3"})
+	@Test (description = "Login to the Ajax Client - with a mountpoint to a 'locked' account",
+			groups = { "functional", "L3" })
 
 	public void OwnerAccountLocked01() throws HarnessException {
 

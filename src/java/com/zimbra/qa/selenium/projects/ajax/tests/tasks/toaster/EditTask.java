@@ -46,8 +46,8 @@ public class EditTask extends AjaxCommonTest{
 	}
 
 
-	@Test( description = "Unchecked Attachment from edit window and - verify Toast message",
-			groups = { "smoke", "L1"})
+	@Test (description = "Unchecked Attachment from edit window and - verify Toast message",
+			groups = { "smoke", "L1" })
 
 	public void EditTaskToastMsg() throws HarnessException {
 

@@ -14,19 +14,12 @@
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-/**
- * 
- */
 package com.zimbra.qa.selenium.projects.ajax.ui.briefcase;
 
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 
-/**
- * Represents a "Add Document Version Notes" dialog box
- * <p>
- */
 public class DialogAddVersionNotes extends AbsDialog {
 
 	public static class Locators {
@@ -53,14 +46,13 @@ public class DialogAddVersionNotes extends AbsDialog {
 		String locator = Locators.zDialogTitleClass;
 
 		if (!this.sIsElementPresent(locator)) {
-			return (false); // Not even present
+			return (false);
 		}
 
 		if (!this.zIsVisiblePerPosition(locator, 0, 0)) {
-			return (false); // Not visible per position
+			return (false);
 		}
 
-		// Yes, visible
 		logger.info(myPageName() + " zIsActive() = true");
 		return (true);
 	}
@@ -73,41 +65,24 @@ public class DialogAddVersionNotes extends AbsDialog {
 		String locator = null;
 
 		if (button == Button.B_OK) {
-			locator = "css=div[class='" + Locators.zDialogClass + "'] "
-					+ "div[class='" + Locators.zDialogButtonsClass
+			locator = "css=div[class='" + Locators.zDialogClass + "'] " + "div[class='" + Locators.zDialogButtonsClass
 					+ "'] td[class=ZWidgetTitle]:contains(OK)";
 		} else if (button == Button.B_CANCEL) {
-			locator = "css=div[class='" + Locators.zDialogClass + "'] "
-					+ "div[class='" + Locators.zDialogButtonsClass
+			locator = "css=div[class='" + Locators.zDialogClass + "'] " + "div[class='" + Locators.zDialogButtonsClass
 					+ "'] td[class=ZWidgetTitle]:contains(Cancel)";
 		} else {
 			throw new HarnessException("Button " + button + " not implemented");
 		}
-		
-		// Default behavior, click the locator
-		
-		// Make sure the locator was set
-		
-		// Make sure the locator exists
+
 		if (!this.sIsElementPresent(locator)) {
-			throw new HarnessException("Button " + button + " locator "
-					+ locator + " not present!");
+			throw new HarnessException("Button " + button + " locator " + locator + " not present!");
 		}
 
-		// if (zIsActive())
-		// zGetDisplayedText("css=div[class=" + Locators.zDialogContentClassId +
-		// "]");
-		
-		this.zClickAt(locator,"0,0");
-		
+		this.zClickAt(locator, "0,0");
+
 		return (null);
 	}
 
-	/**
-	 * Enter text into the Add Document Version Notes dialog
-	 * 
-	 * @param notes
-	 */
 	private void zEnterVersionNotes(String notes) throws HarnessException {
 		logger.info(myPageName() + " zEnterVersionNotes(" + notes + ")");
 
@@ -116,27 +91,23 @@ public class DialogAddVersionNotes extends AbsDialog {
 		if (notes == null)
 			throw new HarnessException("notes must not be null");
 
-		String locator = "css=div[class=" + Locators.zDialogContentClassId
-				+ "] textarea[id$='notes']";
+		String locator = "css=div[class=" + Locators.zDialogContentClassId + "] textarea[id$='notes']";
 
-		if (!this.zWaitForElementPresent(locator,"10000"))
+		if (!this.zWaitForElementPresent(locator, "10000"))
 			throw new HarnessException("unable to find body field " + locator);
 
 		this.sFocus(locator);
-		this.zClickAt(locator,"0,0");
-		this.sType(locator, notes);		
+		this.zClickAt(locator, "0,0");
+		this.sType(locator, notes);
 	}
 
-	public void zDismissAddVersionNotesDlg(String parentWindow)
-			throws HarnessException {
+	public void zDismissAddVersionNotesDlg(String parentWindow) throws HarnessException {
 		sSelectWindow(PageBriefcase.pageTitle);
-		//SleepUtil.sleepSmall();
 		if (zIsWindowOpen(parentWindow)) {
 			zSelectWindow(parentWindow);
 
 			if (zIsActive()) {
-				zEnterVersionNotes("notes"
-						+ ConfigProperties.getUniqueString());
+				zEnterVersionNotes("notes" + ConfigProperties.getUniqueString());
 
 				zClickButton(Button.B_OK);
 			}

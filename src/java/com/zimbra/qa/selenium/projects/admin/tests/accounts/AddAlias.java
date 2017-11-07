@@ -46,7 +46,7 @@ public class AddAlias extends AdminCommonTest {
 	 * 4. Verify alias should be created without any error
 	 * @throws HarnessException
 	 */
-	@Test( description = "Edit account - Add Alias at account level ",
+	@Test (description = "Edit account - Add Alias at account level ",
 			groups = { "smoke", "L1" })
 
 	public void AddAlias_01() throws HarnessException {

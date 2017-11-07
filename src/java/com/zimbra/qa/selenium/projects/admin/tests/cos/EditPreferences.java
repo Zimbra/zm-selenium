@@ -47,8 +47,8 @@ public class EditPreferences extends AdminCommonTest {
 	 * 5. Edited details should be saved without any errors
 	 * @throws HarnessException
 	 */
-	@Test( description = "Edit COS - Edit preferences at COS level",
-			groups = { "smoke", "L1"})
+	@Test (description = "Edit COS - Edit preferences at COS level",
+			groups = { "smoke", "L1" })
 
 	public void EditPreferences_01() throws HarnessException {
 

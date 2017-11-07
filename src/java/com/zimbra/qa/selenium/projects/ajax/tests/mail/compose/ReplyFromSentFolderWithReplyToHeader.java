@@ -35,7 +35,7 @@ public class ReplyFromSentFolderWithReplyToHeader extends PrefGroupMailByMessage
 	}
 
 
-	@Test( description = "Reply to all from the sent folder (alias in Reply-to header)",
+	@Test (description = "Reply to all from the sent folder (alias in Reply-to header)",
 			groups = { "functional", "L2" })
 
 	public void ReplyFromSentFolderWithReplyToHeader_01() throws HarnessException {
@@ -143,7 +143,7 @@ public class ReplyFromSentFolderWithReplyToHeader extends PrefGroupMailByMessage
 	}
 
 
-	@Test( description = "Reply to all from the sent folder (primary address in Reply-to header)",
+	@Test (description = "Reply to all from the sent folder (primary address in Reply-to header)",
 			groups = { "functional", "L2" })
 
 	public void ReplyFromSentFolderWithReplyToHeader_02() throws HarnessException {

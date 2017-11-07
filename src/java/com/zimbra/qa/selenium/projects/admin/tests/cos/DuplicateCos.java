@@ -46,7 +46,7 @@ public class DuplicateCos extends AdminCommonTest {
 	 * 4. Verify cos is Duplicated using SOAP
 	 * @throws HarnessException
 	 */
-	@Test( description = "Verify Duplicate cos operation -- Manage cos view",
+	@Test (description = "Verify Duplicate cos operation -- Manage cos view",
 			groups = { "functional", "L2" })
 			public void DuplicateCos_01() throws HarnessException {
 
@@ -94,7 +94,7 @@ public class DuplicateCos extends AdminCommonTest {
 	 * 3. Verify Duplicate cos is created using SOAP
 	 * @throws HarnessException
 	 */
-	@Test( description = "Verify Duplicate cos operation -- Search COS list view/Right click menu",
+	@Test (description = "Verify Duplicate cos operation -- Search COS list view/Right click menu",
 			groups = { "functional", "L2" })
 			public void DuplicateCos_02() throws HarnessException {
 

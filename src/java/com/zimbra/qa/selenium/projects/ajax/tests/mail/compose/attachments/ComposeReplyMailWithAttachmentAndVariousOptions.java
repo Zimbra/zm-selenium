@@ -43,7 +43,7 @@ public class ComposeReplyMailWithAttachmentAndVariousOptions extends PrefGroupMa
 
 
 	@Bugs(ids = "103903")
-	@Test( description = "Verify the presence of attachment while replying to mail and changing option from  'Include Original as an attachment' to 'Include Original message'",
+	@Test (description = "Verify the presence of attachment while replying to mail and changing option from  'Include Original as an attachment' to 'Include Original message'",
 			groups = { "functional", "L2" })
 
 	public void ComposeReplyWithAttachmentAndVariousOptions_01() throws HarnessException {
@@ -128,7 +128,7 @@ public class ComposeReplyMailWithAttachmentAndVariousOptions extends PrefGroupMa
 
 
 	@Bugs(ids = "103903")
-	@Test( description = "Verify the presence of attachment while replying to mail and selecting 'Use Prefixes' option from Options'",
+	@Test (description = "Verify the presence of attachment while replying to mail and selecting 'Use Prefixes' option from Options'",
 			groups = { "functional", "L3" })
 
 	public void ComposeReplyWithAttachmentAndVariousOptions_02() throws HarnessException {
@@ -203,7 +203,7 @@ public class ComposeReplyMailWithAttachmentAndVariousOptions extends PrefGroupMa
 
 
 	@Bugs(ids = "103903")
-	@Test( description = "Verify the presence of attachment while replying to mail and selecting 'Include Headers' option from Options'",
+	@Test (description = "Verify the presence of attachment while replying to mail and selecting 'Include Headers' option from Options'",
 			groups = { "functional", "L3" })
 
 	public void ComposeReplyWithAttachmentAndVariousOptions_03() throws HarnessException {

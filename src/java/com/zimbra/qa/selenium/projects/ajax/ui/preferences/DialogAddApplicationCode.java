@@ -46,14 +46,13 @@ public class DialogAddApplicationCode extends AbsDialog {
 		String locator = Locators.zDialogTitleClass;
 
 		if (!this.sIsElementPresent(locator)) {
-			return (false); // Not even present
+			return (false);
 		}
 
 		if (!this.zIsVisiblePerPosition(locator, 0, 0)) {
-			return (false); // Not visible per position
+			return (false);
 		}
 
-		// Yes, visible
 		logger.info(myPageName() + " zIsActive() = true");
 		return (true);
 	}
@@ -66,19 +65,16 @@ public class DialogAddApplicationCode extends AbsDialog {
 		String locator = null;
 
 		if (button == Button.B_NEXT) {
-			locator = "css=div[class='" + Locators.zDialogClass + "'] "
-					+ "div[class='" + Locators.zDialogButtonsClass
+			locator = "css=div[class='" + Locators.zDialogClass + "'] " + "div[class='" + Locators.zDialogButtonsClass
 					+ "'] td[class=ZWidgetTitle]:contains(Next)";
 		} else if (button == Button.B_CLOSE) {
-			locator = "css=div[class='" + Locators.zDialogClass + "'] "
-					+ "div[class='" + Locators.zDialogButtonsClass
+			locator = "css=div[class='" + Locators.zDialogClass + "'] " + "div[class='" + Locators.zDialogButtonsClass
 					+ "'] td[class=ZWidgetTitle]:contains(Close)";
 		} else {
 			throw new HarnessException("Button " + button + " not implemented");
 		}
 		if (!this.sIsElementPresent(locator)) {
-			throw new HarnessException("Button " + button + " locator "
-					+ locator + " not present!");
+			throw new HarnessException("Button " + button + " locator " + locator + " not present!");
 		}
 		this.zClickAt(locator, "0,0");
 		SleepUtil.sleepLong();
@@ -103,19 +99,16 @@ public class DialogAddApplicationCode extends AbsDialog {
 		SleepUtil.sleepSmall();
 	}
 
-
 	@Override
 	public String zGetDisplayedText(String passcode) throws HarnessException {
 		logger.info(myPageName() + " zGetSecretKey");
 
-		String locator = "css=td[class='WindowInnerContainer'] div[id$='_app_passcode'] span[id$='_app_passcode_value']" ;
+		String locator = "css=td[class='WindowInnerContainer'] div[id$='_app_passcode'] span[id$='_app_passcode_value']";
 
-		// Make sure the locator exists
-		if ( !this.sIsElementPresent(locator) ) {
-			throw new HarnessException("Secret key "+ locator +" is not present");
+		if (!this.sIsElementPresent(locator)) {
+			throw new HarnessException("Secret key " + locator + " is not present");
 		}
 
-		return(this.sGetText(locator));
+		return (this.sGetText(locator));
 	}
-
 }

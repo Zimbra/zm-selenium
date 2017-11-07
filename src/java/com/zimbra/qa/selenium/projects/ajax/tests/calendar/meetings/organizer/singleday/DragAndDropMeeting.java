@@ -38,8 +38,8 @@ public class DragAndDropMeeting extends AjaxCommonTest {
 
 
 	@Bugs(ids = "77866")
-	@Test( description = "Drag and drop meeting to different date in month view",
-			groups = { "functional", "L2"})
+	@Test (description = "Drag and drop meeting to different date in month view",
+			groups = { "functional", "L2" })
 
 	public void DragAndDropMeeting_01() throws HarnessException {
 

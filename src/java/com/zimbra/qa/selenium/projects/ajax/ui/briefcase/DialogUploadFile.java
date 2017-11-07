@@ -23,15 +23,16 @@ import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 
 public class DialogUploadFile extends AbsDialog {
+
 	public static class Locators {
 		public static final String zDialogClass = "css=div.ZmUploadDialog";
-		public static final String zTitleCLass =  "DwtDialogTitle";
-		public static final String zDialogButtonsClass = "DwtDialogButtonBar";		
+		public static final String zTitleCLass = "DwtDialogTitle";
+		public static final String zDialogButtonsClass = "DwtDialogButtonBar";
 	}
 
-	public DialogUploadFile(AbsApplication application,AbsTab page) {
-		super(application,page);		
-		logger.info("new "+ DialogCheckInFile.class.getCanonicalName());
+	public DialogUploadFile(AbsApplication application, AbsTab page) {
+		super(application, page);
+		logger.info("new " + DialogCheckInFile.class.getCanonicalName());
 	}
 
 	@Override
@@ -45,64 +46,56 @@ public class DialogUploadFile extends AbsDialog {
 		logger.info(myPageName() + " zIsActive()");
 
 		String locator = Locators.zDialogClass;
-		
-		if ( !this.sIsElementPresent(locator) ) {
-			return (false); // Not even present
+
+		if (!this.sIsElementPresent(locator)) {
+			return (false);
 		}
-		
-		if ( !this.zIsVisiblePerPosition(locator, 0, 0) ) {
-			return (false);	// Not visible per position
+
+		if (!this.zIsVisiblePerPosition(locator, 0, 0)) {
+			return (false);
 		}
-	
-		// Yes, visible
+
 		logger.info(myPageName() + " zIsActive() = true");
 		return (true);
 	}
-	
+
 	@Override
 	public AbsPage zClickButton(Button button) throws HarnessException {
 		logger.info(myPageName() + " zClickButton(" + button + ")");
 		tracer.trace("Click dialog button " + button);
-		
+
 		String locator = null;
 
 		if (button == Button.B_CANCEL) {
-		    locator = "//div[@class='ZmUploadDialog']"
-			    + "//*[contains(@class,'ZWidgetTitle') and contains(text(),'Cancel')]";
+			locator = "//div[@class='ZmUploadDialog']"
+					+ "//*[contains(@class,'ZWidgetTitle') and contains(text(),'Cancel')]";
 		} else if (button == Button.B_OK) {
-		    locator = "//div[@class='ZmUploadDialog']"
-			    + "//*[contains(@class,'ZWidgetTitle') and contains(text(),'OK')]";
+			locator = "//div[@class='ZmUploadDialog']"
+					+ "//*[contains(@class,'ZWidgetTitle') and contains(text(),'OK')]";
 		} else if (button == Button.B_BROWSE) {
-		    locator = "css=td>input[id*=_input][type=file][name=uploadFile]";
+			locator = "css=td>input[id*=_input][type=file][name=uploadFile]";
 			WebElement el = this.getElement(locator);
-	    	if (webDriver() instanceof InternetExplorerDriver) {
-			    Actions action = new Actions(webDriver());
-			    action.moveToElement(el,1,1).doubleClick(el).build().perform();
-	    	} else {
-	    	    executeScript("arguments[0].click()",el);
-	    	}
-		    return null;
+			if (webDriver() instanceof InternetExplorerDriver) {
+				Actions action = new Actions(webDriver());
+				action.moveToElement(el, 1, 1).doubleClick(el).build().perform();
+			} else {
+				executeScript("arguments[0].click()", el);
+			}
+			return null;
 		} else {
 			throw new HarnessException("Button " + button + " not implemented");
 		}
 
-		// Default behavior, click the locator
-		
-		// Make sure the locator was set
-	
-		// Make sure the locator exists
 		if (!this.sIsVisible(locator)) {
-			throw new HarnessException("Button " + button + " locator "
-					+ locator + " not visible!");
+			throw new HarnessException("Button " + button + " locator " + locator + " not visible!");
 		}
-		
-		this.zClickAt(locator,"0,0");
-		
+
+		this.zClickAt(locator, "0,0");
 		this.zWaitForBusyOverlay();
 
 		return (null);
 	}
-	
+
 	@Override
 	public String zGetDisplayedText(String locator) throws HarnessException {
 		logger.info(myPageName() + " zGetDisplayedText(" + locator + ")");

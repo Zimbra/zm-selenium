@@ -35,7 +35,7 @@ public class CreateContact extends TouchCommonTest  {
 		super.startingPage = app.zPageAddressbook;
 	}
 
-	@Test( description = "create a contact item in mount folder with manager rights",
+	@Test (description = "create a contact item in mount folder with manager rights",
 			groups = { "functional" })
 
 	public void CreateContact_01() throws HarnessException {

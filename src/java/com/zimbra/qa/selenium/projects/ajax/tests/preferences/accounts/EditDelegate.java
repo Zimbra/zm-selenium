@@ -32,7 +32,7 @@ public class EditDelegate extends AjaxCommonTest {
 	}
 
 
-	@Test(description = "Edit a 'Send As' delegate - Add 'Send On Behalf Of'",
+	@Test (description = "Edit a 'Send As' delegate - Add 'Send On Behalf Of'",
 			groups = { "functional", "L2" })
 
 	public void EditDelegate_01() throws HarnessException {
@@ -97,7 +97,7 @@ public class EditDelegate extends AjaxCommonTest {
 	}
 
 
-	@Test(description = "Edit a 'Send As' delegate - Remove 'Send As' and Add 'Send On Behalf Of'",
+	@Test (description = "Edit a 'Send As' delegate - Remove 'Send As' and Add 'Send On Behalf Of'",
 			groups = { "functional", "L3" })
 
 	public void EditDelegate_02() throws HarnessException {
@@ -174,7 +174,7 @@ public class EditDelegate extends AjaxCommonTest {
 	}
 
 
-	@Test(description = "Edit a 'Send As' delegate - Remove 'Send As'",
+	@Test (description = "Edit a 'Send As' delegate - Remove 'Send As'",
 			groups = { "functional", "L3" })
 
 	public void EditDelegate_03() throws HarnessException {
@@ -237,7 +237,7 @@ public class EditDelegate extends AjaxCommonTest {
 	}
 
 
-	@Test(description = "Edit a 'Send On Behalf Of' delegate - Add 'Send As'",
+	@Test (description = "Edit a 'Send On Behalf Of' delegate - Add 'Send As'",
 			groups = { "functional", "L3" })
 
 	public void EditDelegate_04() throws HarnessException {
@@ -300,7 +300,7 @@ public class EditDelegate extends AjaxCommonTest {
 	}
 
 
-	@Test(description = "Edit a 'Send On Behalf Of' delegate - Remove 'Send On Behalf Of' and Add 'Send As'",
+	@Test (description = "Edit a 'Send On Behalf Of' delegate - Remove 'Send On Behalf Of' and Add 'Send As'",
 			groups = { "functional", "L3" })
 
 	public void EditDelegate_05() throws HarnessException {
@@ -375,7 +375,7 @@ public class EditDelegate extends AjaxCommonTest {
 	}
 
 
-	@Test(description = "Edit a 'Send On Behalf Of' delegate - Remove 'Send On Behalf Of'",
+	@Test (description = "Edit a 'Send On Behalf Of' delegate - Remove 'Send On Behalf Of'",
 			groups = { "functional", "L3" })
 
 	public void EditDelegate_06() throws HarnessException {

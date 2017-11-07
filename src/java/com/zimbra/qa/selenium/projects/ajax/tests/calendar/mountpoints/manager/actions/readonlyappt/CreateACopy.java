@@ -36,7 +36,7 @@ public class CreateACopy extends AjaxCommonTest {
 
 
 	@Bugs(ids = "80322")
-	@Test( description = "Assistant right clicks to calendar invite from shared calendar and creates a copy of it",
+	@Test (description = "Assistant right clicks to calendar invite from shared calendar and creates a copy of it",
 			groups = { "functional-skip", "application-bug" })
 
 	public void CreateACopy_01() throws HarnessException {

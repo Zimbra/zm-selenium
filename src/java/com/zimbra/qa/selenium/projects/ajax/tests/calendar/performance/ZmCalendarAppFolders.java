@@ -31,7 +31,7 @@ public class ZmCalendarAppFolders extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Measure the time to load the calendar app, 1 calendar",
+	@Test (description = "Measure the time to load the calendar app, 1 calendar",
 			groups = { "performance", "deprecated" })
 
 	public void ZmCalendarAppFolders_01() throws HarnessException {
@@ -57,7 +57,7 @@ public class ZmCalendarAppFolders extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Measure the time to load the calendar app, 100 calendars",
+	@Test (description = "Measure the time to load the calendar app, 100 calendars",
 			groups = { "performance", "deprecated" })
 
 	public void ZmCalendarAppFolders_02() throws HarnessException {

@@ -33,7 +33,7 @@ public class VerifyConfigureReminderRemoved extends AjaxCommonTest {
 
 
 	@Bugs(ids = "97410")
-	@Test( description = "Verify 'configure' link from quick add dialog for calendar",
+	@Test (description = "Verify 'configure' link from quick add dialog for calendar",
 			groups = { "smoke", "L1" } )
 
 	public void VerifyConfigureReminderRemoved_01() throws HarnessException {

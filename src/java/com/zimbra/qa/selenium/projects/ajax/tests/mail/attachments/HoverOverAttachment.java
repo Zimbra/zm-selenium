@@ -45,7 +45,7 @@ public class HoverOverAttachment extends PrefGroupMailByMessageTest {
 
 
 	@Bugs( ids = "82807")
-	@Test( description = "Hover over an image attachment",
+	@Test (description = "Hover over an image attachment",
 			dataProvider = "DataProviderMimeWithImageAttachments",
 			groups = { "functional", "L2" })
 

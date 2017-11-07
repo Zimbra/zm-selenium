@@ -35,7 +35,7 @@ public class ProposeNewTime extends AjaxCommonTest {
 
 
 	@Bugs(ids = "80559")
-	@Test( description = "Assistant right clicks to calendar invite from shared calendar and proposes new time OBO boss",
+	@Test (description = "Assistant right clicks to calendar invite from shared calendar and proposes new time OBO boss",
 			groups = { "functional-skip", "application-bug" })
 
 	public void ProposeNewTime_01() throws HarnessException {

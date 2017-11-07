@@ -38,7 +38,7 @@ public class NavigateDomain extends AdminCommonTest {
 	 * 2. Verify navigation path -- "Home --> Configure --> Domains"
 	 * @throws HarnessException
 	 */
-	@Test( description = "Navigate to Domain",
+	@Test (description = "Navigate to Domain",
 			groups = { "sanity", "L0" })
 			public void NavigateDomain_01() throws HarnessException {
 		

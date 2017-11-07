@@ -68,13 +68,7 @@ public class DocumentBriefcaseOpen extends AbsDisplay {
 	}
 
 	public String retriveDocumentText() throws HarnessException {
-		// ClientSessionFactory.session().selenium().selectFrame(Locators.zFrame);
 		String text = sGetText(Locators.zDocumentBodyField);
-		// if (zIsVisiblePerPosition(Locators.zDocumentBodyField, 0, 0)) {
-		// text = zGetHtml(Locators.zBodyField);
-		// text = sGetText(Locators.zBodyField);
-		// text = sGetText(Locators.zDocumentBodyField);
-		// }
 		return text;
 	}
 
@@ -99,15 +93,14 @@ public class DocumentBriefcaseOpen extends AbsDisplay {
 
 		List<String> windows = sGetAllWindowNames();
 		for (String window : windows) {
-			if (window.indexOf(pageTitle.split("\\.")[0])!=-1) {
+			if (window.indexOf(pageTitle.split("\\.")[0]) != -1) {
 				pageTitle = window;
 			}
 		}
 		zSelectWindow(pageTitle);
 
 		if (pageText != null)
-		zWaitForElementPresent("css=td[class='ZhAppContent'] div:contains('"
-				+ pageText + "')");
+			zWaitForElementPresent("css=td[class='ZhAppContent'] div:contains('" + pageText + "')");
 
 		return true;
 	}

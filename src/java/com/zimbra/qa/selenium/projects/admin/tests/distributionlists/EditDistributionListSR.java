@@ -52,7 +52,7 @@ public class EditDistributionListSR extends AdminCommonTest {
 	 * 5. Verify dl is edited using SOAP.
 	 * @throws HarnessException
 	 */
-	@Test( description = "Verify edit operation for distribution list - Search distribution list view",
+	@Test (description = "Verify edit operation for distribution list - Search distribution list view",
 			groups = { "functional", "L2" })
 	public void EditDistributionListSR_01() throws HarnessException {
 
@@ -109,7 +109,7 @@ public class EditDistributionListSR extends AdminCommonTest {
 	 * 5. Verify dl is edited using SOAP.
 	 * @throws HarnessException
 	 */
-	@Test( description = "Verify edit operation for distribution list - Search distribution list view + right click",
+	@Test (description = "Verify edit operation for distribution list - Search distribution list view + right click",
 			groups = { "functional", "L3" })
 	public void EditDistributionListSR_02() throws HarnessException {
 
@@ -170,7 +170,7 @@ public class EditDistributionListSR extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Bugs(ids = "97150")
-	@Test( description = "Verify edit operation for dynamic distribution list - Search distribution list view",
+	@Test (description = "Verify edit operation for dynamic distribution list - Search distribution list view",
 			groups = { "functional", "L2" })
 	public void EditDistributionListSR_03() throws HarnessException {
 

@@ -34,7 +34,7 @@ public class CreateMeetingWithLocation extends AjaxCommonTest {
 
 
 	@Bugs(ids = "69132")
-	@Test( description = "Create simple meeting with location resource", 
+	@Test (description = "Create simple meeting with location resource", 
 			groups = { "smoke", "L1" })
 
 	public void CreateMeetingWithSingleLocation_01() throws HarnessException {
@@ -77,7 +77,7 @@ public class CreateMeetingWithLocation extends AjaxCommonTest {
 
 
 	@Bugs(ids = "69132")
-	@Test( description = "Create simple meeting with two location resource", 
+	@Test (description = "Create simple meeting with two location resource", 
 			groups = { "functional", "L2" })
 
 	public void CreateMeetingWithMultiLocation_02() throws HarnessException {
@@ -119,7 +119,7 @@ public class CreateMeetingWithLocation extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Create simple meeting with floating location resource", 
+	@Test (description = "Create simple meeting with floating location resource", 
 			groups = { "functional", "L2" })
 
 	public void CreateMeetingWithFloatingLocation_03() throws HarnessException {

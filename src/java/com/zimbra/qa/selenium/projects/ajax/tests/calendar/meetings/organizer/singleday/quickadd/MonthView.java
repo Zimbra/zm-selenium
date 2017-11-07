@@ -46,7 +46,7 @@ public class MonthView extends AjaxCommonTest {
 		};
 	}
 
-	@Test( description = "Verify quick add dialog opens after double/right clicking to any date slot in month view",
+	@Test (description = "Verify quick add dialog opens after double/right clicking to any date slot in month view",
 			groups = { "functional", "L2" },
 			dataProvider = "DataProviderQuickAdd")
 

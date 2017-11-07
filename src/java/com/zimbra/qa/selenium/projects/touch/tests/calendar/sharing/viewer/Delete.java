@@ -32,7 +32,7 @@ public class Delete extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 	
-	@Test( description = "Verify Delete button is disabled and non-functional on mountpoint appointment (read-only share)",
+	@Test (description = "Verify Delete button is disabled and non-functional on mountpoint appointment (read-only share)",
 			groups = { "functional" })
 
 	public void DeleteAppointment_01() throws HarnessException {

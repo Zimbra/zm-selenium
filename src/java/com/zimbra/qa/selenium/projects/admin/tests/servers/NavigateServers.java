@@ -38,7 +38,7 @@ public class NavigateServers extends AdminCommonTest {
 	 * 2. Verify navigation path -- "Home --> Configure --> Servers"
 	 * @throws HarnessException
 	 */
-	@Test( description = "Navigate to Servers",
+	@Test (description = "Navigate to Servers",
 			groups = { "sanity", "L0" })
 			public void NavigateServers_01() throws HarnessException {
 		

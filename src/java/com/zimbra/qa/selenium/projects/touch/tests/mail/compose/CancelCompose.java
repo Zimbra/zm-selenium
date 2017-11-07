@@ -36,7 +36,7 @@ public class CancelCompose extends TouchCommonTest {
 		
 	}
 	
-	@Test( description = "Compose message, specify subject, body and cancel it without saving as draft",
+	@Test (description = "Compose message, specify subject, body and cancel it without saving as draft",
 			groups = { "functional" })
 			
 	public void CancelCompose_DontSaveDraft_01() throws HarnessException {
@@ -62,7 +62,7 @@ public class CancelCompose extends TouchCommonTest {
 		
 	}
 	
-	@Test( description = "Compose message, specify subject, body and cancel it by saving as draft",
+	@Test (description = "Compose message, specify subject, body and cancel it by saving as draft",
 			groups = { "functional" })
 			
 	public void CancelCompose_SaveDraft_02() throws HarnessException {
@@ -98,7 +98,7 @@ public class CancelCompose extends TouchCommonTest {
 	}
 	
 	@Bugs( ids = "83978")
-	@Test( description = "Compose message, specify subject, body and send a mail after saving as draft",
+	@Test (description = "Compose message, specify subject, body and send a mail after saving as draft",
 			groups = { "obsolete" }) // obsolete testcase because UI has been changed (after saving draft, dialog is closed)
 		
 	public void CancelCompose_SendMail_03() throws HarnessException {
@@ -147,7 +147,7 @@ public class CancelCompose extends TouchCommonTest {
 		
 	}
 	
-	@Test( description = "Compose message, specify subject, body and send a mail without saving as draft",
+	@Test (description = "Compose message, specify subject, body and send a mail without saving as draft",
 			groups = { "functional" })
 			
 	public void CancelCompose_SendMail_04() throws HarnessException {

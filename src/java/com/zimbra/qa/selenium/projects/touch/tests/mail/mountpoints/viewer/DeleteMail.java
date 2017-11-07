@@ -31,7 +31,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest{
 		logger.info("New " + DeleteMail.class.getCanonicalName());
 	}
 
-	@Test( description = "Verify error message is displayed when on deleting email on mountpoint message (read-only share)",
+	@Test (description = "Verify error message is displayed when on deleting email on mountpoint message (read-only share)",
 			groups = { "smoke" })
 
 	public void DeleteMail_01() throws HarnessException  {

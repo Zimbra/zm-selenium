@@ -38,7 +38,7 @@ public class LoginScreen extends MobileCommonTest {
 
 	}
 
-	@Test( description = "Verify the label text on the mobile client login screen",
+	@Test (description = "Verify the label text on the mobile client login screen",
 			groups = { "smoke" })
 	public void LoginScreen01() throws HarnessException {
 		
@@ -48,7 +48,7 @@ public class LoginScreen extends MobileCommonTest {
 
 	}
 	
-	@Test( description = "Verify the copyright on the login screen contains the current year",
+	@Test (description = "Verify the copyright on the login screen contains the current year",
 			groups = { "smoke" })
 	public void LoginScreen02() throws HarnessException {
 		

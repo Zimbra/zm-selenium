@@ -45,7 +45,7 @@ public class EditFeatures extends AdminCommonTest {
 	 * 3. Verify mail and calendar features attributes are changed using SOAP.
 	 * @throws HarnessException
 	 */
-	@Test( description = "Edit account - Edit features",
+	@Test (description = "Edit account - Edit features",
 			groups = { "smoke", "L1" })
 
 	public void EditFeatures_01() throws HarnessException {

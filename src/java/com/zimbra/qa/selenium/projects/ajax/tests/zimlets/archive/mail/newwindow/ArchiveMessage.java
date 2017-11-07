@@ -32,7 +32,7 @@ public class ArchiveMessage extends ArchiveZimletByMessageTest {
 
 
 	@Bugs(ids = "80238")
-	@Test( description = "Archive a message from new window",
+	@Test (description = "Archive a message from new window",
 			groups = { "smoke-skip", "application-bug" })
 
 	public void ArchiveMessage_01() throws HarnessException {
@@ -86,7 +86,7 @@ public class ArchiveMessage extends ArchiveZimletByMessageTest {
 	}
 
 
-	@Test( description = "Verify the 'archive' button is not present in separate window",
+	@Test (description = "Verify the 'archive' button is not present in separate window",
 			groups = { "functional", "L3" })
 
 	public void ArchiveMessage_02() throws HarnessException {

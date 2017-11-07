@@ -35,7 +35,6 @@ public class PageSignature extends AbsTab {
 
 	public static class Locators {
 
-		// Preferences Toolbar: Save, Cancel
 		public static final String zToolbarSaveID = "zb__PREF__SAVE_title";
 		public static final String zToolbarCancelID = "zb__PREF__CANCEL_title";
 		public static final String zSignatureListView = "//div[@class='ZmSignatureListView']";
@@ -125,11 +124,7 @@ public class PageSignature extends AbsTab {
 			throw new HarnessException("locator was null for button " + button);
 		}
 
-		// Default behavior, process the locator by clicking on it
-
 		this.zClickAt(locator, "");
-
-		// If the app is busy, wait for it to become active
 		this.zWaitForBusyOverlay();
 
 		return (page);
@@ -158,5 +153,4 @@ public class PageSignature extends AbsTab {
 		this.sClick(locator);
 		SleepUtil.sleepMedium();
 	}
-
 }

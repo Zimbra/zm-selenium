@@ -42,7 +42,7 @@ public class DeleteInstance extends CalendarWorkWeekTest {
 	}
 	
 	@Bugs(ids = "95735")
-	@Test ( description = "Delete instance of recurring invite", 
+	@Test (description = "Delete instance of recurring invite", 
 			groups = { "functional" } )
 	
 	public void DeleteInstance_01() throws HarnessException {

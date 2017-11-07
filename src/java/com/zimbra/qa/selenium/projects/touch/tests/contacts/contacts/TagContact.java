@@ -32,7 +32,7 @@ public class TagContact extends TouchCommonTest  {
 		super.startingPage = app.zPageAddressbook;			
 	}
 	
-	@Test( description = "Add Tag to a contact item",
+	@Test (description = "Add Tag to a contact item",
 			groups = { "sanity" })
 	
 	public void TagContact_01() throws HarnessException {

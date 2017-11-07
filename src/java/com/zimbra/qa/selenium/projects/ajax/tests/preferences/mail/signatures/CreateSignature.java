@@ -35,7 +35,7 @@ public class CreateSignature extends AjaxCommonTest {
 	}
 
 
-	@Test(description = "Create Simple text signature through GUI",
+	@Test (description = "Create Simple text signature through GUI",
 			groups = { "sanity", "L0" })
 
 	public void CreateBasicTextSignature_01() throws HarnessException {
@@ -62,7 +62,7 @@ public class CreateSignature extends AjaxCommonTest {
 	}
 
 
-	@Test(description = "Create Simple Html signature through GUI",
+	@Test (description = "Create Simple Html signature through GUI",
 			groups = { "sanity", "L0" })
 
 	public void CreateBasicHtmlSignature_02() throws HarnessException {

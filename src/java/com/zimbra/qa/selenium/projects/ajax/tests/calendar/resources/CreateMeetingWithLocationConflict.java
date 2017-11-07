@@ -36,7 +36,7 @@ public class CreateMeetingWithLocationConflict extends AjaxCommonTest {
 
 
 	@Bugs(ids = "102271")
-	@Test( description = "Verify sending appt invite when Location resource has conflicts shows conflict dialog",
+	@Test (description = "Verify sending appt invite when Location resource has conflicts shows conflict dialog",
 			groups = { "functional-skip", "application-bug"})
 
 	public void CreateMeetingWithLocationConflict_01() throws HarnessException {
@@ -112,7 +112,7 @@ public class CreateMeetingWithLocationConflict extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Verify Cancelling create appt when Location resource has conflicts shows conflict dialog",
+	@Test (description = "Verify Cancelling create appt when Location resource has conflicts shows conflict dialog",
 			groups = { "functional", "L2" })
 
 	public void CreateMeetingWithLocationConflict_02() throws HarnessException {
@@ -188,7 +188,7 @@ public class CreateMeetingWithLocationConflict extends AjaxCommonTest {
 
 
 	@Bugs(ids = "ZCS-3343")
-	@Test( description = "Verify Saving meeting invite when Location resource has conflicts shows conflict dialog",
+	@Test (description = "Verify Saving meeting invite when Location resource has conflicts shows conflict dialog",
 			groups = { "functional", "L2" })
 
 	public void CreateMeetingWithLocationConflict_03() throws HarnessException {
@@ -270,7 +270,7 @@ public class CreateMeetingWithLocationConflict extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Verify organizer can close modified appointment with location Conflict",
+	@Test (description = "Verify organizer can close modified appointment with location Conflict",
 			groups = { "functional", "L2" })
 
 	public void CreateMeetingWithLocationConflict_04() throws HarnessException {

@@ -43,7 +43,7 @@ public class CreateAlias extends AdminCommonTest {
 	 * 2. Verify alias is created using SOAP.
 	 * @throws HarnessException
 	 */
-	@Test( description = "Create a basic alias",
+	@Test (description = "Create a basic alias",
 			groups = { "sanity", "L0" })
 	public void CreateAlias_01() throws HarnessException {
 

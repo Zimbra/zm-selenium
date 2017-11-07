@@ -42,7 +42,7 @@ public class SendFileLink extends FeatureBriefcaseTest {
 	}
 
 
-	@Test( description = "Upload file through RestUtil - click Send Link, Cancel & verify through GUI",
+	@Test (description = "Upload file through RestUtil - click Send Link, Cancel & verify through GUI",
 			groups = { "functional", "L3" })
 
 	public void SendFileLink_01() throws HarnessException {
@@ -104,7 +104,7 @@ public class SendFileLink extends FeatureBriefcaseTest {
 	}
 
 
-	@Test( description = "Send File link using Right Click Context Menu & verify through GUI",
+	@Test (description = "Send File link using Right Click Context Menu & verify through GUI",
 			groups = { "functional", "L2" })
 
 	public void SendFileLink_02() throws HarnessException {

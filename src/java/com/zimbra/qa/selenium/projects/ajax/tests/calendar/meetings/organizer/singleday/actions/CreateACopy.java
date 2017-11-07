@@ -33,7 +33,7 @@ public class CreateACopy extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Copy meeting invite and verify content",
+	@Test (description = "Copy meeting invite and verify content",
 			groups = { "smoke", "L1" })
 
 	public void CopyMeeting_01() throws HarnessException {

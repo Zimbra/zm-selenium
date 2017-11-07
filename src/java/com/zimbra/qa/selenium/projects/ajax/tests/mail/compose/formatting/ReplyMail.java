@@ -34,7 +34,7 @@ public class ReplyMail extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Reply an Excel formatting data message  and verify its formatting",
+	@Test (description = "Reply an Excel formatting data message  and verify its formatting",
 			groups = { "smoke", "L1" })
 
 	public void ReplyHtmlMail_01() throws HarnessException {

@@ -28,7 +28,7 @@ public class ViewContact extends TouchCommonTest  {
 		super.startingPage = app.zPageAddressbook;
 	}
 
-	@Test( description = "View a contact",
+	@Test (description = "View a contact",
 			groups = { "sanity" })
 	
 	public void ViewContact_01() throws HarnessException {		         		

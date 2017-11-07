@@ -38,7 +38,7 @@ public class Decline extends AjaxCommonTest {
 
 
 	@Bugs(ids = "69342")
-	@Test( description = "Rt-click to appointment and Decline the meeting invite by selecting 'Don't notify organizer'",
+	@Test (description = "Rt-click to appointment and Decline the meeting invite by selecting 'Don't notify organizer'",
 			groups = { "smoke", "L1" })
 
 	public void DeclineMeeting_01() throws HarnessException {
@@ -148,7 +148,7 @@ public class Decline extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Rt-click to appointment and Decline the meeting invite by selecting 'Notify organizer'",
+	@Test (description = "Rt-click to appointment and Decline the meeting invite by selecting 'Notify organizer'",
 			groups = { "smoke", "L2" })
 
 	public void DeclineMeeting_02() throws HarnessException {

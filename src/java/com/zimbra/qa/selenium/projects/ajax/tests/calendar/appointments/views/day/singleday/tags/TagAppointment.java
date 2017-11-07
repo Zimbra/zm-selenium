@@ -41,7 +41,7 @@ public class TagAppointment extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Tag an appointment using toolbar button in day view",
+	@Test (description = "Tag an appointment using toolbar button in day view",
 			groups = { "smoke", "L1" })
 	
 	public void TagAppointment_01() throws HarnessException {
@@ -74,7 +74,7 @@ public class TagAppointment extends AjaxCommonTest {
 	}
 
 	
-	@Test( description = "Create new tag using toolbar button and apply same tag to appointment using toolbar in day view",
+	@Test (description = "Create new tag using toolbar button and apply same tag to appointment using toolbar in day view",
 			groups = { "functional", "L2" })
 	
 	public void TagAppointment_02() throws HarnessException {
@@ -110,7 +110,7 @@ public class TagAppointment extends AjaxCommonTest {
         ZAssert.assertEquals(app.zGetActiveAccount().soapSelectValue("//mail:appt", "t"), tagID, "Verify the appointment is tagged with the correct tag");
 	}
 
-	@Test( description = "Apply existing tag to appointment using context menu in day view",
+	@Test (description = "Apply existing tag to appointment using context menu in day view",
 			groups = { "functional", "L2" })
 
 	public void TagAppointment_03() throws HarnessException {
@@ -144,7 +144,7 @@ public class TagAppointment extends AjaxCommonTest {
 	}
 
 	
-	@Test( description = "Create new tag using context menu and apply same tag to appointment using context menu in day view",
+	@Test (description = "Create new tag using context menu and apply same tag to appointment using context menu in day view",
 			groups = { "functional", "L2" })
 	
 	public void TagAppointment_04() throws HarnessException {

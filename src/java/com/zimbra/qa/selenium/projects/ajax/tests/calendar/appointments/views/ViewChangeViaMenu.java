@@ -31,7 +31,7 @@ public class ViewChangeViaMenu extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Verify changing view via right click view change options",
+	@Test (description = "Verify changing view via right click view change options",
 			groups = { "sanity", "L0" } )
 
 	public void ViewChangeViaMenu_01() throws HarnessException {

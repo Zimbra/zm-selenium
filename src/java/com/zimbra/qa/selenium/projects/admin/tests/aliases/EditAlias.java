@@ -45,7 +45,7 @@ public class EditAlias extends AdminCommonTest {
 	 * 2. Verify alias is created using SOAP.
 	 * @throws HarnessException
 	 */
-	@Test( description = "Edit a basic alias",
+	@Test (description = "Edit a basic alias",
 			groups = { "smoke", "L1" })
 	public void EditAlias_01() throws HarnessException {
 
@@ -85,7 +85,7 @@ public class EditAlias extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Bugs( ids = "58191")
-	@Test( description = "Bug 58191 - JavaScript error while clicking on alias of resource",
+	@Test (description = "Bug 58191 - JavaScript error while clicking on alias of resource",
 			groups = { "functional", "L2" })
 	public void EditAlias_02() throws HarnessException {
 	

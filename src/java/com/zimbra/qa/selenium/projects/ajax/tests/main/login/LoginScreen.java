@@ -34,8 +34,8 @@ public class LoginScreen extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Verify the label text on the ajax client login screen",
-			groups = { "smoke", "L0"})
+	@Test (description = "Verify the label text on the ajax client login screen",
+			groups = { "smoke", "L0" })
 
 	public void LoginScreen01() throws HarnessException {
 
@@ -44,7 +44,7 @@ public class LoginScreen extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Verify the copyright on the login screen contains the current year",
+	@Test (description = "Verify the copyright on the login screen contains the current year",
 			groups = { "functional","L2" })
 
 	public void LoginScreen02() throws HarnessException {
@@ -59,7 +59,7 @@ public class LoginScreen extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Verify initial focus on the login screen should be in username",
+	@Test (description = "Verify initial focus on the login screen should be in username",
 			groups = { "functional","L2" })
 
 	public void LoginScreen03() throws HarnessException {
@@ -78,7 +78,7 @@ public class LoginScreen extends AjaxCommonTest {
 
 
 	@Bugs(ids = "50457")
-	@Test( description = "Verify 'web client' rather than 'collaboration suite'",
+	@Test (description = "Verify 'web client' rather than 'collaboration suite'",
 			groups = { "functional", "L2" })
 
 	public void LoginScreen04() throws HarnessException {

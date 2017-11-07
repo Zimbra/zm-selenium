@@ -37,8 +37,8 @@ public class AddAlias extends AdminCommonTest {
 		super.startingPage = app.zPageManageDistributionList;
 	}
 
-	@Test( description = "Edit DL - Add Alias",
-	groups = { "smoke", "L1"})
+	@Test (description = "Edit DL - Add Alias",
+	groups = { "smoke", "L1" })
 
 	public void AddAlias_01() throws HarnessException {
 

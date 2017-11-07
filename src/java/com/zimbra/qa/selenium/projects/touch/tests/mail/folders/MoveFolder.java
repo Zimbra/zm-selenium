@@ -31,7 +31,7 @@ public class MoveFolder extends PrefGroupMailByMessageTest {
 		logger.info("New "+ CreateFolder.class.getCanonicalName());
 	}
 
-	@Test( description = "Move mail folder",
+	@Test (description = "Move mail folder",
 			groups = { "t1" })
 	
 	public void MoveFolder_01() throws HarnessException  {

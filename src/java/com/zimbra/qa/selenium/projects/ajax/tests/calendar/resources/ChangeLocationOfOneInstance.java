@@ -36,7 +36,7 @@ public class ChangeLocationOfOneInstance extends AjaxCommonTest {
 
 
 	@Bugs(ids = "52682")
-	@Test( description = "Can't change location of one instance", 
+	@Test (description = "Can't change location of one instance", 
 			groups = { "functional", "L2" } )
 
 	public void ChangeLocationOfOneInstance_01() throws HarnessException {

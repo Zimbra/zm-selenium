@@ -29,7 +29,7 @@ public class UnTagMessage extends PrefGroupMailByMessageTest {
 		logger.info("New "+ UnTagMessage.class.getCanonicalName());
 	}
 
-	@Test( description = "Verify Permission Denied on Un Tag a shared mail (read-only share)",
+	@Test (description = "Verify Permission Denied on Un Tag a shared mail (read-only share)",
 			groups = { "functional", "L2" })
 
 	public void UnTagMessage_01() throws HarnessException {
@@ -108,7 +108,7 @@ public class UnTagMessage extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Verify Permission Denied on Un Tag (keyboard='u') a shared mail (read-only share)",
+	@Test (description = "Verify Permission Denied on Un Tag (keyboard='u') a shared mail (read-only share)",
 			groups = { "functional", "L2" })
 
 	public void UnTagMessage_02() throws HarnessException {

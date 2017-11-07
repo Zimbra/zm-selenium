@@ -32,8 +32,8 @@ public class BasicRegistration extends AjaxCommonTest {
 
 
 	@Bugs(ids = "103011")
-	@Test( description = "Register as and external user", priority=3,
-			groups = { "smoke", "L0"})
+	@Test (description = "Register as and external user", priority=3,
+			groups = { "smoke", "L0" })
 
 	public void BasicRegistration_01() throws HarnessException {
 

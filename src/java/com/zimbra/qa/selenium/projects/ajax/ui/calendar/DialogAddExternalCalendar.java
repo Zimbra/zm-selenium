@@ -23,7 +23,7 @@ public class DialogAddExternalCalendar extends AbsDialog {
 
 	public static class Locators {
 		public static final String DialogDivID = "ADD_EXTERNAL_CAL_DIALOG";
-		public static final String DialogDivCss = "css=div[id='"+ DialogDivID +"']";
+		public static final String DialogDivCss = "css=div[id='" + DialogDivID + "']";
 
 		public static final String RadioGoogleCss = "css=input[id$='_shareRadioGoogle']";
 		public static final String RadioYahooCss = "css=input[id$='_shareRadioYahoo']";
@@ -47,7 +47,7 @@ public class DialogAddExternalCalendar extends AbsDialog {
 		logger.info(myPageName() + " zClickButton(" + button + ")");
 
 		tracer.trace("Click dialog button " + button);
-		if ( button == null )
+		if (button == null)
 			throw new HarnessException("button cannot be null");
 
 		String locator = null;
@@ -61,28 +61,24 @@ public class DialogAddExternalCalendar extends AbsDialog {
 		} else if (button == Button.B_CANCEL) {
 
 			locator = Locators.DialogDivCss + " div[id$='_buttons'] td[id^='Cancel_'] td[id$='_title']";
-			page = null; // Probably need to have a FormMailNew
+			page = null;
 
 		} else if (button == Button.B_BACK) {
 
 			locator = Locators.DialogDivCss + " div[id$='_buttons'] td[id^='Back_'] td[id$='_title']";
-			page = null; // Probably need to have a FormMailNew
+			page = null;
 
 		} else {
 
-			throw new HarnessException("no logic defined for button "+ button);
+			throw new HarnessException("no logic defined for button " + button);
 
 		}
 
-		// Make sure the locator exists
 		if (!this.sIsElementPresent(locator)) {
-			throw new HarnessException("Button " + button + " locator "
-					+ locator + " not present!");
+			throw new HarnessException("Button " + button + " locator " + locator + " not present!");
 		}
 
-		this.zClickAt(locator,"0,0");
-
-		// If the app is busy, wait for it to become active
+		this.zClickAt(locator, "0,0");
 		this.zWaitForBusyOverlay();
 
 		return (page);
@@ -102,15 +98,14 @@ public class DialogAddExternalCalendar extends AbsDialog {
 	public boolean zIsActive() throws HarnessException {
 		logger.info(myPageName() + " zIsActive()");
 
-		// See https://bugzilla.zimbra.com/show_bug.cgi?id=66576
 		String locator = Locators.DialogDivCss;
 
 		if (!this.sIsElementPresent(locator)) {
-			return (false); // Not even present
+			return (false);
 		}
 
 		if (!this.zIsVisiblePerPosition(locator, 0, 0)) {
-			return (false); // Not even present
+			return (false);
 		}
 
 		logger.info(myPageName() + " zIsActive() = true");
@@ -123,27 +118,27 @@ public class DialogAddExternalCalendar extends AbsDialog {
 	}
 
 	public void zSetSourceType(SourceType type) throws HarnessException {
-		logger.info(myPageName() + " zSetSourceType("+ type +")");
+		logger.info(myPageName() + " zSetSourceType(" + type + ")");
 
 		String locator = null;
-		if ( type == SourceType.Google ) {
+		if (type == SourceType.Google) {
 
 			locator = Locators.RadioGoogleCss;
 
-		} else if ( type == SourceType.Yahoo ) {
+		} else if (type == SourceType.Yahoo) {
 
 			locator = Locators.RadioYahooCss;
 
-		} else if ( type == SourceType.Other ) {
+		} else if (type == SourceType.Other) {
 
 			locator = Locators.RadioOtherCss;
 
 		} else {
-			throw new HarnessException("unknown calendar type: "+ type);
+			throw new HarnessException("unknown calendar type: " + type);
 		}
 
-		if ( !sIsElementPresent(locator) ) {
-			throw new HarnessException("locator not present: "+ locator);
+		if (!sIsElementPresent(locator)) {
+			throw new HarnessException("locator not present: " + locator);
 		}
 
 		this.sClick(locator);
@@ -156,11 +151,11 @@ public class DialogAddExternalCalendar extends AbsDialog {
 	}
 
 	public void zSetCalendarType(CalendarType type) throws HarnessException {
-		logger.info(myPageName() + " zSetCalendarType("+ type +")");
+		logger.info(myPageName() + " zSetCalendarType(" + type + ")");
 	}
 
 	public void zSetSourceEmailAddress(String address) throws HarnessException {
-		logger.info(myPageName() + " zSetSourceEmailAddress("+ address +")");
+		logger.info(myPageName() + " zSetSourceEmailAddress(" + address + ")");
 
 		String locator = "css=input#ADD_EXTERNAL_CAL_DIALOG_syncUserNameInput";
 		this.sType(locator, address);
@@ -169,7 +164,7 @@ public class DialogAddExternalCalendar extends AbsDialog {
 	}
 
 	public void zSetSourcePassword(String password) throws HarnessException {
-		logger.info(myPageName() + " zSetSourceEmailAddress("+ password +")");
+		logger.info(myPageName() + " zSetSourceEmailAddress(" + password + ")");
 
 		String locator = "css=input#ADD_EXTERNAL_CAL_DIALOG_syncPasswordInput";
 		this.sType(locator, password);
@@ -178,18 +173,12 @@ public class DialogAddExternalCalendar extends AbsDialog {
 	}
 
 	public void zSetSourceServer(String server) throws HarnessException {
-		logger.info(myPageName() + " zSetSourceEmailAddress("+ server +")");
+		logger.info(myPageName() + " zSetSourceEmailAddress(" + server + ")");
 
 		String locator = "css=input#ADD_EXTERNAL_CAL_DIALOGsyncUrlInput";
 		this.sType(locator, server);
 		this.zWaitForBusyOverlay();
 
-
 		SleepUtil.sleepMedium();
-
 	}
-
-
-
 }
-

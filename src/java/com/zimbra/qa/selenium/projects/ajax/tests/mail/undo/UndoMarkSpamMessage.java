@@ -29,7 +29,7 @@ public class UndoMarkSpamMessage extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Undo - Mark a message as spam, using 'Spam' toolbar button",
+	@Test (description = "Undo - Mark a message as spam, using 'Spam' toolbar button",
 			groups = { "functional", "L2" })
 
 	public void UndoMarkSpamMessage_01() throws HarnessException {

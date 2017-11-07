@@ -44,8 +44,8 @@ public class CreateShare extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Share a Tasklist  - Viewer",
-			groups = { "smoke", "L1"})
+	@Test (description = "Share a Tasklist  - Viewer",
+			groups = { "smoke", "L1" })
 
 	public void CreateShare_01() throws HarnessException {
 
@@ -95,8 +95,8 @@ public class CreateShare extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Share a task folder - Manager rights",
-			groups = { "smoke", "L1"})
+	@Test (description = "Share a task folder - Manager rights",
+			groups = { "smoke", "L1" })
 
 	public void CreateShare_02() throws HarnessException {
 
@@ -152,8 +152,8 @@ public class CreateShare extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Share a task folder - Admin rights",
-			groups = { "smoke", "L1"})
+	@Test (description = "Share a task folder - Admin rights",
+			groups = { "smoke", "L1" })
 
 	public void CreateShare_03() throws HarnessException {
 

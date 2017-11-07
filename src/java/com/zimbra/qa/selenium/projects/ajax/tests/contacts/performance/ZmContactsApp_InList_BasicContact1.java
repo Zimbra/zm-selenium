@@ -44,7 +44,7 @@ public class ZmContactsApp_InList_BasicContact1 extends AjaxCommonTest {
    }
 
 
-   @Test( description = "Measure the time to load address book page with 1 contact item",
+   @Test (description = "Measure the time to load address book page with 1 contact item",
          groups = {"performance", "deprecated"}, dataProvider = "DataProvider_LoadingApp_1Contact")
 
    public void ZmContactsApp_01(String logMessage) throws HarnessException {
@@ -59,7 +59,7 @@ public class ZmContactsApp_InList_BasicContact1 extends AjaxCommonTest {
    }
 
 
-   @Test( description = "Measure the time to load address book page with 100 contact items",
+   @Test (description = "Measure the time to load address book page with 100 contact items",
          groups = {"performance", "deprecated"})
 
    public void ZmContactsApp_02() throws HarnessException {

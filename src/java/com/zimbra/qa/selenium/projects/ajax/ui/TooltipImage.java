@@ -17,40 +17,26 @@
 package com.zimbra.qa.selenium.projects.ajax.ui;
 
 import org.apache.log4j.*;
-
 import com.zimbra.qa.selenium.framework.ui.AbsApplication;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 
 public class TooltipImage extends Tooltip {
+
 	protected static Logger logger = LogManager.getLogger(TooltipImage.class);
 
-	
-	/*
-	 * Example DOM:
-	 * 
-	 *  <div class="DwtToolTip" style="position: absolute; z-index: 775; left: -10000px; top: -10000px;">
-	 * 	 <div id="tooltipContents" class="DwtToolTipBody">
-	 *    <img id="DWT81" width="110" style="visibility: visible;" src="https://server/service/home/~/?auth=co&loc=en_US&id=259&part=2">
-	 *   </div>
-	 *  </div>
-	 *  
-	 */
-	
-	
 	public static class Locators {
-	
 	}
-	
+
 	public static class Field {
-		
+
 		public static final Field URL = new Field("URL");
-		
-		
+
 		private String field;
+
 		private Field(String name) {
 			field = name;
 		}
-		
+
 		@Override
 		public String toString() {
 			return (field);
@@ -66,26 +52,22 @@ public class TooltipImage extends Tooltip {
 	}
 
 	public String zGetField(Field field) throws HarnessException {
-		
+
 		String locator = null;
 		String value = null;
-		
-		if ( field == Field.URL ) {
+
+		if (field == Field.URL) {
 
 			locator = Tooltip.Locators.DwtToolTipCSS + " img";
-			if ( !this.sIsElementPresent(locator) ) {
-				throw new HarnessException("Unable to find image source "+ locator);
+			if (!this.sIsElementPresent(locator)) {
+				throw new HarnessException("Unable to find image source " + locator);
 			}
-			
+
 			value = this.sGetAttribute(locator + "@src");
 			return (value);
-			
+
 		} else {
-			
-			throw new HarnessException("implement me: "+ field);
-			
+			throw new HarnessException("implement me: " + field);
 		}
-		
 	}
-		
 }

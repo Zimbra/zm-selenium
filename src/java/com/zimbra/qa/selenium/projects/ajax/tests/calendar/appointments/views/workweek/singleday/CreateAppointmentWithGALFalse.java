@@ -35,7 +35,7 @@ public class CreateAppointmentWithGALFalse extends AjaxCommonTest {
 
 
 	@Bugs(ids = "99777")
-	@Test( description = "Create a basic appointment this zimbraFeatureGalEnabled=FALSE", 
+	@Test (description = "Create a basic appointment this zimbraFeatureGalEnabled=FALSE", 
 			groups = { "functional", "L2" } )
 
 	public void CreateAppointmentWithGALFalse_01() throws HarnessException {

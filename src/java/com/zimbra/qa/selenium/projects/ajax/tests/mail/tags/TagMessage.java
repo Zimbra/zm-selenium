@@ -31,7 +31,7 @@ public class TagMessage extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test(description = "Tag a message using Toolbar -> Tag -> New Tag",
+	@Test (description = "Tag a message using Toolbar -> Tag -> New Tag",
 			groups = { "smoke", "L1" })
 
 	public void TagMessage_01() throws HarnessException {
@@ -82,7 +82,7 @@ public class TagMessage extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test(description = "Tag a message using Toolbar -> Tag -> Existing Tag",
+	@Test (description = "Tag a message using Toolbar -> Tag -> Existing Tag",
 			groups = { "smoke", "L1" })
 
 	public void TagMessage_02() throws HarnessException {
@@ -141,7 +141,7 @@ public class TagMessage extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test(description = "Tag a message by DnD onto a tag",
+	@Test (description = "Tag a message by DnD onto a tag",
 			groups = { "functional", "L2" })
 
 	public void TagMessage_03() throws HarnessException {

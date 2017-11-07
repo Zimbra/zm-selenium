@@ -24,23 +24,14 @@ import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.staf.Stafpostqueue;
 
-/**
- * A <code>DialogError</code> object represents a "Error" dialog, such as "Permission 
- * denied", etc.
- * <p>
- * During construction, the div ID attribute must be specified, such as "Zimbra".
- * <p>
- * @author Matt Rhoades
- *
- */
 public class DialogAssistant extends AbsDialog {
 
 	public static class Locators {
-		
+
 		public static final String Locator_Assistant_DIV_css = "css=div[class='ZmAssistantDialog']";
-		
+
 	}
-	
+
 	public DialogAssistant(AbsApplication application, AbsTab tab) {
 		super(application, tab);
 	}
@@ -53,57 +44,45 @@ public class DialogAssistant extends AbsDialog {
 	@Override
 	public AbsPage zClickButton(Button button) throws HarnessException {
 
-		if ( button == null )
+		if (button == null)
 			throw new HarnessException("button cannot be null");
-		
+
 		String locator = null;
-		AbsPage page = null; 		// Does this ever result in a page being returned?
-		boolean postqueue = false;	// Does this event result in a postfix queue check
-		
-		// See http://bugzilla.zimbra.com/show_bug.cgi?id=54560
-		// Need unique id's for the buttons
+		AbsPage page = null;
+		boolean postqueue = false;
+
 		String buttonsTableLocator = Locators.Locator_Assistant_DIV_css + " div[id$='_buttons']";
-		
-		if ( button == Button.B_HELP ) {
-			
+
+		if (button == Button.B_HELP) {
+
 			locator = buttonsTableLocator + " td[id^='Help_'] td[id$='_title']";
-			page = null; // TODO
-			
-			
+			page = null;
 
-		} else if ( button == Button.B_OK ) {
-			
+		} else if (button == Button.B_OK) {
+
 			locator = buttonsTableLocator + " td[id^='OK_'] td[id$='_title']";
-			page = null; // TODO
-			postqueue = true; // The Assistant could send a message, so check the queue
-			
-			
+			page = null;
+			postqueue = true;
 
-		} else if ( button == Button.B_CANCEL ) {			
-			
+		} else if (button == Button.B_CANCEL) {
+
 			locator = buttonsTableLocator + " td[id^='Cancel_'] td[id$='_title']";
-			page = null; // TODO
-			
-			
+			page = null;
 
-		} else if ( button == Button.B_MORE_DETAILS ) {			
-			
+		} else if (button == Button.B_MORE_DETAILS) {
+
 			locator = buttonsTableLocator + " td[id^='More Details'] td[id$='_title']";
-			page = null; // TODO
-			
-			
+			page = null;
 
 		} else {
-			throw new HarnessException("no logic defined for button "+ button);
+			throw new HarnessException("no logic defined for button " + button);
 		}
 
-		// Click it
-		zClickAt(locator,"0,0");
-		
-		// If the app is busy, wait for it to become active
+		zClickAt(locator, "0,0");
+
 		zWaitForBusyOverlay();
-		
-		if ( postqueue ) {
+
+		if (postqueue) {
 			Stafpostqueue sp = new Stafpostqueue();
 			sp.waitForPostqueue();
 		}
@@ -118,45 +97,41 @@ public class DialogAssistant extends AbsDialog {
 	}
 
 	public void zEnterCommand(String command) throws HarnessException {
-		
-		if ( (command == null) || (command.trim().length() == 0) ) {
+
+		if ((command == null) || (command.trim().length() == 0)) {
 			throw new HarnessException("command cannot be null or empty");
 		}
 
 		String locator = Locators.Locator_Assistant_DIV_css + " div[id$='_content'] textarea";
-		
+
 		if (!this.sIsElementPresent(locator))
 			throw new HarnessException("Unable to locate command area");
-		
+
 		this.sFocus(locator);
 		this.zClick(locator);
-		this.zKeyboard.zTypeCharacters(command); // Need to use keyboard for some reason, to activate the OK button
+		this.zKeyboard.zTypeCharacters(command);
 		this.zWaitForBusyOverlay();
 
 		return;
-
-		
 	}
 
 	@Override
 	public boolean zIsActive() throws HarnessException {
-		
+
 		boolean present = this.sIsElementPresent(Locators.Locator_Assistant_DIV_css);
-		if ( !present ) {
+		if (!present) {
 			logger.info("Zimbra Assistant is not present");
 			return (false);
 		}
-		
+
 		boolean visible = this.zIsVisiblePerPosition(Locators.Locator_Assistant_DIV_css, 0, 0);
-		if ( !visible ) {
+		if (!visible) {
 			logger.info("Zimbra Assistant is not visible");
 			return (false);
 		}
-		if ( this.sIsElementPresent(Locators.Locator_Assistant_DIV_css) ) {
-			
-		}
+		if (this.sIsElementPresent(Locators.Locator_Assistant_DIV_css)) {
 
+		}
 		return (true);
 	}
-
 }

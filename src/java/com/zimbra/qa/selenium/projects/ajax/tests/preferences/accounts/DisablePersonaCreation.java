@@ -32,7 +32,7 @@ public class DisablePersonaCreation extends AjaxCommonTest {
 	}
 
 
-	@Test(description = "Verify the display of 'Add Persona' button when Persona creation is disabled",
+	@Test (description = "Verify the display of 'Add Persona' button when Persona creation is disabled",
 			groups = { "functional", "L3" })
 
 	public void DisablePersonaCreation_01() throws HarnessException {

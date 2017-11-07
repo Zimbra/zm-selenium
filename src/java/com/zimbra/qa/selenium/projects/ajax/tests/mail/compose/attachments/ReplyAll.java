@@ -33,7 +33,7 @@ public class ReplyAll extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Reply to a mail with attachment - Verify no attachment sent",
+	@Test (description = "Reply to a mail with attachment - Verify no attachment sent",
 			groups = { "functional", "L2" })
 
 	public void Reply_01() throws HarnessException {

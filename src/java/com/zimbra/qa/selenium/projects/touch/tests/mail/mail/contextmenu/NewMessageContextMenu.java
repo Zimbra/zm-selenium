@@ -31,7 +31,7 @@ public class NewMessageContextMenu extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageMail;
 	}
 
-	@Test( description = "Click on To msg Header and verify context menu>> New message", 
+	@Test (description = "Click on To msg Header and verify context menu>> New message", 
 			groups = { "smoke" })
 
 	public void NewMessageContextMenu_01() throws HarnessException {
@@ -100,7 +100,7 @@ public class NewMessageContextMenu extends CalendarWorkWeekTest {
 		ZAssert.assertNotNull(id, "Verify the contact is returned in the search");
 	}
 
-	@Test( description = "Click on organizer msg Header and verify context menu>> New Message", 
+	@Test (description = "Click on organizer msg Header and verify context menu>> New Message", 
 			groups = { "functional" })
 
 	public void NewMessageContextMenu_02() throws HarnessException {

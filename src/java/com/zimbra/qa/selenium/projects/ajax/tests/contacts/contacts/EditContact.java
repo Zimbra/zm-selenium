@@ -33,8 +33,8 @@ public class EditContact extends AjaxCommonTest  {
 	}
 
 
-	@Test( description = "Edit a contact item, click Edit on toolbar",
-			groups = { "smoke", "L0"})
+	@Test (description = "Edit a contact item, click Edit on toolbar",
+			groups = { "smoke", "L0" })
 
 	public void ClickToolbarEdit_01() throws HarnessException {
 
@@ -64,8 +64,8 @@ public class EditContact extends AjaxCommonTest  {
 	}
 
 
-	@Test( description = "Edit a contact item, Right click then click Edit",
-			groups = { "smoke", "L1"})
+	@Test (description = "Edit a contact item, Right click then click Edit",
+			groups = { "smoke", "L1" })
 
 	public void ClickContextMenuEdit_02() throws HarnessException {
 
@@ -92,7 +92,7 @@ public class EditContact extends AjaxCommonTest  {
 	}
 
 
-	@Test( description = "Edit a contact item, double click the contact",
+	@Test (description = "Edit a contact item, double click the contact",
 			groups = { "smoke", "L1" })
 
 	public void DoubleClickContact_03() throws HarnessException {
@@ -120,8 +120,8 @@ public class EditContact extends AjaxCommonTest  {
 	}
 
 
-	@Test( description = "Cancel Editing a contact by click Close",
-			groups = { "functional", "L2"})
+	@Test (description = "Cancel Editing a contact by click Close",
+			groups = { "functional", "L2" })
 
 	public void NoEditClickToolbarClose_04() throws HarnessException {
 
@@ -146,8 +146,8 @@ public class EditContact extends AjaxCommonTest  {
 	}
 
 
-	@Test( description = "Cancel an edited contact by click Close, then click No",
-			groups = { "functional", "L2"})
+	@Test (description = "Cancel an edited contact by click Close, then click No",
+			groups = { "functional", "L2" })
 
 	public void ClickToolbarCloseThenClickNo_05() throws HarnessException {
 
@@ -184,8 +184,8 @@ public class EditContact extends AjaxCommonTest  {
 	}
 
 
-	@Test( description = "Cancel an edited contact by click Close, then click Cancel",
-			groups = { "functional", "L2"})
+	@Test (description = "Cancel an edited contact by click Close, then click Cancel",
+			groups = { "functional", "L2" })
 
 	public void ClickToolbarCloseThenClickCancel_06() throws HarnessException {
 
@@ -225,8 +225,8 @@ public class EditContact extends AjaxCommonTest  {
     }
 
 
-	@Test( description = "Cancel an edited contact by click Close, then click Yes",
-			groups = { "functional", "L2"})
+	@Test (description = "Cancel an edited contact by click Close, then click Yes",
+			groups = { "functional", "L2" })
 
 	public void ClickToolbarCloseThenClickYes_07() throws HarnessException {
 

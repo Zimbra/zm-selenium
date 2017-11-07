@@ -38,7 +38,7 @@ public class NavigateMessageCount extends AdminCommonTest {
 	 * 1. Verify navigation path -- "Home --> Monitor --> Message Count"
 	 * @throws HarnessException
 	 */
-	@Test( description = "Navigate to Message Count",
+	@Test (description = "Navigate to Message Count",
 			groups = { "sanity", "L0" })
 			public void NavigateMessageCount_01() throws HarnessException {
 		

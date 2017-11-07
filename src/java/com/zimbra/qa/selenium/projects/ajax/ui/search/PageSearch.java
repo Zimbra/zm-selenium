@@ -14,15 +14,11 @@
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-/**
- * 
- */
 package com.zimbra.qa.selenium.projects.ajax.ui.search;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
 import com.zimbra.qa.selenium.framework.items.ContactItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.MailItem;
@@ -38,10 +34,6 @@ import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.projects.ajax.ui.AppAjaxClient;
 import com.zimbra.qa.selenium.projects.ajax.ui.ContextMenu;
 
-/**
- * @author Matt Rhoades
- *
- */
 public class PageSearch extends AbsTab {
 
 	public static class Locators {
@@ -85,9 +77,7 @@ public class PageSearch extends AbsTab {
 
 	public PageSearch(AbsApplication application) {
 		super(application);
-
 		logger.info("new " + PageSearch.class.getCanonicalName());
-
 	}
 
 	@Override
@@ -169,7 +159,6 @@ public class PageSearch extends AbsTab {
 		String locator = null;
 		AbsPage page = null;
 
-		// Based on the button specified, take the appropriate action(s)
 		//
 
 		if (button == Button.B_SEARCH) {
@@ -229,24 +218,17 @@ public class PageSearch extends AbsTab {
 			throw new HarnessException("no logic defined for button " + button);
 		}
 
-		// Make sure the button exists
 		if (!sIsElementPresent(locator))
 			throw new HarnessException("Button is not present locator=" + locator + " button=" + button);
 
-		// Click it
 		SleepUtil.sleepSmall();
 		sClickAt(locator, "");
 		SleepUtil.sleepMedium();
 
-		// If the app is busy, wait for it to become active
 		zWaitForBusyOverlay();
 
-		// If page was specified, make sure it is active
 		if (page != null) {
-
-			// This function (default) throws an exception if never active
 			page.zWaitForActive();
-
 		}
 
 		return (page);
@@ -264,16 +246,11 @@ public class PageSearch extends AbsTab {
 		if (option == null)
 			throw new HarnessException("Option cannot be null!");
 
-		//
 		String pulldownLocator = null;
 		String optionLocator = null;
 		AbsPage page = null;
 
-		// Based on the button specified, take the appropriate action(s)
-		//
-
 		if (pulldown == Button.B_SEARCHTYPE) {
-			// pulldownLocator = "css=td#ztb_search_searchMenuButton";
 			pulldownLocator = "css=div[id='zb__Search__MENU'] td[id='zb__Search__MENU_dropdown']>div";
 
 			if (option == Button.O_SEARCHTYPE_ALL) {
@@ -301,24 +278,18 @@ public class PageSearch extends AbsTab {
 			throw new HarnessException("no logic defined for pulldown " + pulldown);
 		}
 
-		// Default behavior
 		if (pulldownLocator != null) {
 
-			// Make sure the locator exists
 			if (!this.sIsElementPresent(pulldownLocator)) {
-				// throw new HarnessException("Button "+ pulldown +" option "+
-				// option +" pulldownLocator "+ pulldownLocator +" not
-				// present!");
+
 			}
 
 			this.zClick(pulldownLocator);
 
-			// If the app is busy, wait for it to become active
 			this.zWaitForBusyOverlay();
 
 			if (optionLocator != null) {
 
-				// Make sure the locator exists
 				if (!this.sIsElementPresent(optionLocator)) {
 					throw new HarnessException("Button " + pulldown + " option " + option + " optionLocator "
 							+ optionLocator + " not present!");
@@ -326,7 +297,6 @@ public class PageSearch extends AbsTab {
 
 				this.zClick(optionLocator);
 
-				// If the app is busy, wait for it to become active
 				this.zWaitForBusyOverlay();
 
 				if (option == Button.O_SEARCHTYPE_INCLUDESHARED) {
@@ -335,29 +305,15 @@ public class PageSearch extends AbsTab {
 
 			}
 
-			// If we click on pulldown/option and the page is specified, then
-			// wait for the page to go active
-
 			if (!zIsSearchType(option)) {
 				throw new HarnessException("Not able to change search type " + option);
 			}
 
 		}
 
-		// Return the specified page, or null if not set
 		return (page);
 	}
 
-	/**
-	 * Activate a pulldown with dynamic values, such as "Move to folder" and
-	 * "Add a tag".
-	 * 
-	 * @param pulldown
-	 *            the toolbar button to press
-	 * @param dynamic
-	 *            the toolbar item to click such as FolderItem or TagItem
-	 * @throws HarnessException
-	 */
 	public AbsPage zToolbarPressPulldown(Button pulldown, Object dynamic) throws HarnessException {
 		logger.info(myPageName() + " zToolbarPressButtonWithPulldown(" + pulldown + ", " + dynamic + ")");
 
@@ -438,10 +394,8 @@ public class PageSearch extends AbsTab {
 
 		}
 
-		// Default behavior
 		if (pulldownLocator != null) {
 
-			// Make sure the locator exists
 			if (!this.sIsElementPresent(pulldownLocator)) {
 				throw new HarnessException(
 						"Button " + pulldown + " pulldownLocator " + pulldownLocator + " not present!");
@@ -449,14 +403,12 @@ public class PageSearch extends AbsTab {
 
 			this.zClickAt(pulldownLocator, "");
 
-			// If the app is busy, wait for it to become active
 			zWaitForBusyOverlay();
 
 			SleepUtil.sleepSmall();
 
 			if (optionLocator != null) {
 
-				// Make sure the locator exists
 				if (!this.sIsElementPresent(optionLocator)) {
 					throw new HarnessException(
 							" dynamic " + dynamic + " optionLocator " + optionLocator + " not present!");
@@ -464,20 +416,16 @@ public class PageSearch extends AbsTab {
 
 				this.zClickAt(optionLocator, "");
 
-				// If the app is busy, wait for it to become active
 				zWaitForBusyOverlay();
 			}
 
 		}
 
-		// Return the specified page, or null if not set
 		return (page);
 
 	}
 
 	protected AbsPage zListItemMessages(Action action, String subject) throws HarnessException {
-
-		// Copied from PageMail. It would probably be better to re-use somehow.
 
 		logger.info(myPageName() + " zListItem(" + action + ", " + subject + ")");
 
@@ -529,18 +477,16 @@ public class PageSearch extends AbsTab {
 		if (!this.sIsElementPresent(listLocator))
 			throw new HarnessException("List View Rows is not present " + listLocator);
 
-		// How many items are in the table?
 		int count = this.sGetCssCount(listLocator + " " + rowLocator);
 		logger.debug(myPageName() + " zListSelectItem: number of list items: " + count);
 
-		// Get each conversation's data from the table list
 		for (int i = 1; i <= count; i++) {
 
 			itemlocator = listLocator + " li:nth-of-type(" + i + ") ";
 			String s = this.sGetText(itemlocator + " [id$='__su']").trim();
 
 			if (s.contains(subject)) {
-				break; // found it
+				break;
 			}
 
 			itemlocator = null;
@@ -552,7 +498,6 @@ public class PageSearch extends AbsTab {
 
 		if (action == Action.A_LEFTCLICK) {
 
-			// Left-Click on the item
 			this.zClickAt(itemlocator, "");
 
 			this.zWaitForBusyOverlay();
@@ -566,12 +511,10 @@ public class PageSearch extends AbsTab {
 
 		} else if (action == Action.A_DOUBLECLICK) {
 
-			// Double-Click on the item
 			this.sDoubleClick(itemlocator);
 
 			this.zWaitForBusyOverlay();
 
-			// page = new DisplayMail(MyApplication);
 			page = null;
 
 		} else if (action == Action.A_CTRLSELECT) {
@@ -600,12 +543,10 @@ public class PageSearch extends AbsTab {
 			if (image.equals("ImgCheckboxChecked"))
 				throw new HarnessException("Trying to check box, but it was already enabled");
 
-			// Left-Click on the flag field
 			this.zClick(selectlocator);
 
 			this.zWaitForBusyOverlay();
 
-			// No page to return
 			page = null;
 
 		} else if (action == Action.A_MAIL_UNCHECKBOX) {
@@ -618,12 +559,10 @@ public class PageSearch extends AbsTab {
 			if (image.equals("ImgCheckboxUnchecked"))
 				throw new HarnessException("Trying to uncheck box, but it was already disabled");
 
-			// Left-Click on the flag field
 			this.zClick(selectlocator);
 
 			this.zWaitForBusyOverlay();
 
-			// No page to return
 			page = null;
 
 		} else if (action == Action.A_MAIL_EXPANDCONVERSATION) {
@@ -636,12 +575,10 @@ public class PageSearch extends AbsTab {
 			if (image.equals("ImgNodeExpanded"))
 				throw new HarnessException("Trying to expand, but conversation was alread expanded");
 
-			// Left-Click on the flag field
 			this.zClick(selectlocator);
 
 			this.zWaitForBusyOverlay();
 
-			// No page to return
 			page = null;
 
 		} else if (action == Action.A_MAIL_COLLAPSECONVERSATION) {
@@ -654,25 +591,20 @@ public class PageSearch extends AbsTab {
 			if (image.equals("ImgNodeCollapsed"))
 				throw new HarnessException("Trying to collapse, but conversation was alread collapsed");
 
-			// Left-Click on the flag field
 			this.zClick(selectlocator);
 
 			this.zWaitForBusyOverlay();
 
-			// No page to return
 			page = null;
 
 		} else if ((action == Action.A_MAIL_FLAG) || (action == Action.A_MAIL_UNFLAG)) {
-			// Both FLAG and UNFLAG have the same action and result
 
 			String flaglocator = itemlocator + " div[id$='__fg']";
 
-			// Left-Click on the flag field
 			this.zClick(flaglocator);
 
 			this.zWaitForBusyOverlay();
 
-			// No page to return
 			page = null;
 
 		} else {
@@ -683,7 +615,6 @@ public class PageSearch extends AbsTab {
 			page.zWaitForActive();
 		}
 
-		// default return command
 		return (page);
 
 	}
@@ -703,12 +634,6 @@ public class PageSearch extends AbsTab {
 		throw new HarnessException(myPageName() + " does not have a list view");
 	}
 
-	/**
-	 * Enter text into the query string field
-	 * 
-	 * @param query
-	 * @throws HarnessException
-	 */
 	public void zAddSearchQuery(String query) throws HarnessException {
 		logger.info(myPageName() + " zAddSearchQuery(" + query + ")");
 
@@ -767,17 +692,14 @@ public class PageSearch extends AbsTab {
 			rowLocator = rowLocator2;
 		}
 
-		// Make sure the button exists
 		if (!this.sIsElementPresent(listLocator))
 			throw new HarnessException("Message List View Rows is not present: " + listLocator);
 
 		String tableLocator = listLocator + " " + rowLocator;
 
-		// How many items are in the table?
 		int count = this.sGetCssCount(tableLocator);
 		logger.debug(myPageName() + " zListGetMessages: number of messages: " + count);
 
-		// Get each conversation's data from the table list
 		for (int i = 1; i <= count; i++) {
 
 			// Add the new item to the list
@@ -855,17 +777,14 @@ public class PageSearch extends AbsTab {
 			rowLocator = "li[id^='zli__CNS-SR-1']";
 		}
 
-		// Make sure the button exists
 		if (!this.sIsElementPresent(listLocator))
 			throw new HarnessException("Contacts Rows is not present: " + listLocator);
 
 		String tableLocator = listLocator + " " + rowLocator;
 
-		// How many items are in the table?
 		int count = this.sGetCssCount(tableLocator);
 		logger.debug(myPageName() + " zListGetContacts: number of contacts: " + count);
 
-		// Get each conversation's data from the table list
 		for (int i = 1; i <= count; i++) {
 
 			// Add the new item to the list
@@ -902,7 +821,5 @@ public class PageSearch extends AbsTab {
 		}
 
 		return found;
-
 	}
-
 }

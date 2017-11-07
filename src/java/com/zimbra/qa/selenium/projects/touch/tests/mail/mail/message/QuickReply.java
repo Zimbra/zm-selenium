@@ -30,7 +30,7 @@ public class QuickReply extends PrefGroupMailByMessageTest {
 
 	}
 	
-	@Test( description = "Quick Reply to a conversation (1 message, 1 recipient)",
+	@Test (description = "Quick Reply to a conversation (1 message, 1 recipient)",
 			groups = { "smoke" })
 	
 	public void QuickReply_01() throws HarnessException {
@@ -75,7 +75,7 @@ public class QuickReply extends PrefGroupMailByMessageTest {
 		
 	}
 	
-	@Test( description = "Bug 92120: Verify quick reply text area clears the content after replying to the message.",
+	@Test (description = "Bug 92120: Verify quick reply text area clears the content after replying to the message.",
 			groups = { "functional" })
 	
 	public void QuickReply_02() throws HarnessException {

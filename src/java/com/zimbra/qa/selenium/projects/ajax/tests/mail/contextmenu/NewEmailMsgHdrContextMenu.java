@@ -35,7 +35,7 @@ public class NewEmailMsgHdrContextMenu extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Receive a  mail - Right Click From Msg Header and verify context menus >> New Emails",
+	@Test (description = "Receive a  mail - Right Click From Msg Header and verify context menus >> New Emails",
 			groups = { "smoke", "L1" })
 
 	public void NewEmailMessageHdrContextMenu_01() throws HarnessException {

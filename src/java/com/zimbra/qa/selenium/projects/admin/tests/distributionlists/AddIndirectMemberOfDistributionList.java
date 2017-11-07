@@ -40,8 +40,8 @@ public class AddIndirectMemberOfDistributionList extends AdminCommonTest {
 	}
 	
 	@Bugs(ids = "99081")
-	@Test( description = "Edit DL - Add 'Indirect Member of' to DL",
-			groups = { "smoke", "L1"})
+	@Test (description = "Edit DL - Add 'Indirect Member of' to DL",
+			groups = { "smoke", "L1" })
 
 	public void AddIndirectMemberOfDistributionList_01() throws HarnessException {
 		

@@ -30,7 +30,7 @@ public class Print extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Print the shortcuts preference page",
+	@Test (description = "Print the shortcuts preference page",
 			groups = { "functional", "L3" } )
 
 	public void Print_01() throws HarnessException {

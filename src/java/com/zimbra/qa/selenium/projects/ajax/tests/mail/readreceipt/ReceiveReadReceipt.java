@@ -32,7 +32,7 @@ public class ReceiveReadReceipt extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Receive/view a read receipt",
+	@Test (description = "Receive/view a read receipt",
 			groups = { "functional", "L2" })
 
 	public void CreateMailText_01() throws HarnessException {

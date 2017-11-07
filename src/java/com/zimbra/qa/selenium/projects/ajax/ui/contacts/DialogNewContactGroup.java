@@ -45,14 +45,13 @@ public class DialogNewContactGroup extends AbsDialog {
 		logger.info(myPageName() + " zIsActive()");
 
 		if (!this.sIsElementPresent(Locators.WINDOW_DIALOGNAME)) {
-			return (false); // Not even present
+			return (false);
 		}
 
 		if (!this.zIsVisiblePerPosition(Locators.WINDOW_DIALOGNAME, 0, 0)) {
-			return (false); // Not visible per position
+			return (false);
 		}
 
-		// Yes, visible
 		logger.info(myPageName() + " zIsVisible() = true");
 		return (true);
 	}
@@ -93,7 +92,6 @@ public class DialogNewContactGroup extends AbsDialog {
 			throw new HarnessException("Button " + button + " not implemented");
 		}
 
-		// Make sure the locator was set
 		if (locator == null) {
 			throw new HarnessException("Button " + button + " not implemented");
 		}

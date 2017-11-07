@@ -32,8 +32,8 @@ public class LoginWithCsrfTokenCheckDisabled extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Login to the webclient after disabling csrf check", priority=5,
-			groups = { "smoke", "L0"})
+	@Test (description = "Login to the webclient after disabling csrf check", priority=5,
+			groups = { "smoke", "L0" })
 
 	public void LoginWithCsrfTokenCheckDisabled_01() throws HarnessException {
 		try {

@@ -42,7 +42,7 @@ public class AddLocation extends AjaxCommonTest {
 	//			new Object[] { "VK_TAB", KeyEvent.VK_TAB },
 		};
 	}
-	@Test( description = "Add location from scheduler pane using keyboard Enter and Tab key",
+	@Test (description = "Add location from scheduler pane using keyboard Enter and Tab key",
 			groups = { "functional", "L2" },
 			dataProvider = "DataProviderShortcutKeys")
 

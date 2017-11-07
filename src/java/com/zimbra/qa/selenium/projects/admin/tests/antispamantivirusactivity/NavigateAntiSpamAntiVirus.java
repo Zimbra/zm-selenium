@@ -38,7 +38,7 @@ public class NavigateAntiSpamAntiVirus extends AdminCommonTest {
 	 * 1. Verify navigation path -- "Home --> Monitor --> Anti-Spam/Anti-Virus Activity"
 	 * @throws HarnessException
 	 */
-	@Test( description = "Navigate to Anti-Spam/Anti-Virus Activity",
+	@Test (description = "Navigate to Anti-Spam/Anti-Virus Activity",
 			groups = { "sanity", "L0" })
 			public void NavigateAnitSpamAntiVirus_01() throws HarnessException {
 		

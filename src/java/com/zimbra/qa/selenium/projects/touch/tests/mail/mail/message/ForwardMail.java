@@ -33,7 +33,7 @@ public class ForwardMail extends PrefGroupMailByConversationTest {
 		logger.info("New "+ ForwardMail.class.getCanonicalName());
 	}
 
-	@Test( description = "Forward a mail in message view",
+	@Test (description = "Forward a mail in message view",
 			groups = { "sanity" })
 
 	public void ForwardMail_01() throws HarnessException {

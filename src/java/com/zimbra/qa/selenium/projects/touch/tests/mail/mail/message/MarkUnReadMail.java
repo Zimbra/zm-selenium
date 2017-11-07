@@ -29,7 +29,7 @@ public class MarkUnReadMail extends PrefGroupMailByMessageTest {
 		logger.info("New "+ MarkUnReadMail.class.getCanonicalName());
 	}
 	
-	@Test( description = "mark mail as unread",
+	@Test (description = "mark mail as unread",
 			groups = { "smoke" })
 			
 	public void UnreadMail_01() throws HarnessException {

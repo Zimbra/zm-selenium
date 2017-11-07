@@ -31,7 +31,7 @@ public class CreateFolder extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Create a new folder by clicking 'new folder' on folder tree",
+	@Test (description = "Create a new folder by clicking 'new folder' on folder tree",
 			groups = { "sanity", "L0"} )
 
 	public void ClickNewFolderOnFolderTree_01() throws HarnessException {
@@ -51,7 +51,7 @@ public class CreateFolder extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Create a new folder using context menu from root folder",
+	@Test (description = "Create a new folder using context menu from root folder",
 			groups = { "sanity", "L0"} )
 
 	public void ClickContextMenuNewAddressbook_02() throws HarnessException {
@@ -74,7 +74,7 @@ public class CreateFolder extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Create a new folder using context menu from root folder",
+	@Test (description = "Create a new folder using context menu from root folder",
 			groups = { "smoke", "L1"} )
 
 	public void CreateSubFolderUnderContactsClickContextMenuNewAddressbook_03() throws HarnessException {
@@ -101,7 +101,7 @@ public class CreateFolder extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Create a new folder using   New -> New Addressbook",
+	@Test (description = "Create a new folder using   New -> New Addressbook",
 			groups = { "functional", "L2"} )
 
 	public void ClickMenuNewNewAddressbook_04() throws HarnessException {

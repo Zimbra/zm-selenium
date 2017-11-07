@@ -40,7 +40,7 @@ public class ChangePassword extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Change the account password",
+	@Test (description = "Change the account password",
 			groups = { "sanity", "L0" })
 
 	public void ChangePassword_01() throws HarnessException {

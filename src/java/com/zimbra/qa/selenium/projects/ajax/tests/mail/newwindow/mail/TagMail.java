@@ -33,7 +33,7 @@ public class TagMail extends PrefGroupMailByMessageTest {
 
 
 	@Bugs(ids = "99519")
-	@Test( description = "Tag a message using Toolbar -> Tag -> Existing Tag - in a separate window",
+	@Test (description = "Tag a message using Toolbar -> Tag -> Existing Tag - in a separate window",
 			groups = { "functional", "L3" })
 
 	public void TagMail_01() throws HarnessException {

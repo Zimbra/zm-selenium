@@ -36,7 +36,7 @@ public class Move extends AjaxCommonTest {
 
 
 	@Bugs(ids = "95961")
-	@Test( description = "Move entire series to different calendar folder",
+	@Test (description = "Move entire series to different calendar folder",
 			groups = { "smoke", "L1" })
 
 	public void MoveMeeting_01() throws HarnessException {

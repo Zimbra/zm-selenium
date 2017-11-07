@@ -38,7 +38,7 @@ public class NavigateClientUpload extends AdminCommonTest {
 	 * 1. Verify navigation path -- "Home --> Tools and Migraton --> Client Upload"
 	 * @throws HarnessException
 	 */
-	@Test( description = "Navigate to Client Upload",
+	@Test (description = "Navigate to Client Upload",
 			groups = { "sanity", "L0" })
 			public void NavigateClientUpload_01() throws HarnessException {
 		

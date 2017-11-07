@@ -45,7 +45,7 @@ public class ZimbraPrefCalendarReminderSMS extends AjaxCommonTest {
 	}
 
 
-	@Test(description = "Send SendVerificationCodeRequest to an SMS address",
+	@Test (description = "Send SendVerificationCodeRequest to an SMS address",
 			groups = { "functional" })
 
 	public void ZimbraPrefCalendarReminderSMS_01() throws HarnessException {
@@ -82,7 +82,7 @@ public class ZimbraPrefCalendarReminderSMS extends AjaxCommonTest {
 	}
 
 
-	@Test(description = "Send VerifyCodeRequest to an SMS address",
+	@Test (description = "Send VerifyCodeRequest to an SMS address",
 			groups = { "functional", "L3" })
 
 	public void ZimbraPrefCalendarReminderSMS_02() throws HarnessException {

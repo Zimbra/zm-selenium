@@ -30,7 +30,7 @@ public class UnFlagMail extends PrefGroupMailByConversationTest {
 		logger.info("New "+ UnFlagMail.class.getCanonicalName());
 	}
 
-	@Test( description = "Unflag mail",
+	@Test (description = "Unflag mail",
 			groups = { "sanity" })
 
 	public void UnFlagMail_01() throws HarnessException {

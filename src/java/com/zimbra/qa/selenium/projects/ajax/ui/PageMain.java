@@ -14,7 +14,6 @@
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-
 package com.zimbra.qa.selenium.projects.ajax.ui;
 
 import java.util.List;
@@ -144,7 +143,7 @@ public class PageMain extends AbsTab {
 		if (!((AppAjaxClient) MyApplication).zPageLogin.zIsActive()) {
 			((AppAjaxClient) MyApplication).zPageLogin.zNavigateTo();
 		}
-		
+
 		((AppAjaxClient) MyApplication).zPageLogin.zLogin(ZimbraAccount.AccountZCS());
 	}
 
@@ -209,8 +208,7 @@ public class PageMain extends AbsTab {
 		String optionLocator = null;
 		AbsPage page = null;
 
-		SleepUtil.sleepLong(); // Intentional sleep due to failure and for
-								// reliability
+		SleepUtil.sleepLong();
 
 		if (pulldown == Button.B_ACCOUNT) {
 
@@ -301,8 +299,8 @@ public class PageMain extends AbsTab {
 	}
 
 	/**
-	 * Throw an exception on error dialog found and refresh page on any
-	 * un-closed dialogs found
+	 * Throw an exception on error dialog found and refresh page on any un-closed
+	 * dialogs found
 	 */
 	public void zHandleDialogs(AbsTab appTab) throws HarnessException {
 
@@ -366,8 +364,8 @@ public class PageMain extends AbsTab {
 	 * @param uri
 	 *            The URL to access (e.g.
 	 *            ?to=foo@foo.com&body=MsgContent&subject=MsgSubject&view=compose)
-	 * @return the page that opens
-	 * @throws HarnessException
+	 *            the page that opens
+	 *
 	 */
 	public AbsPage zOpenDeeplink(ZimbraURI uri) throws HarnessException {
 		logger.info("PageMain.zOpenDeeplink(" + uri.toString() + ")");

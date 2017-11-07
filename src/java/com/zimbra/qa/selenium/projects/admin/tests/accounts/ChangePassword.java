@@ -46,7 +46,7 @@ public class ChangePassword extends AdminCommonTest {
 	 * 3. Verify password is changed using SOAP.
 	 * @throws HarnessException
 	 */
-	@Test( description = "Edit password  -- manage account > right click > change password",
+	@Test (description = "Edit password  -- manage account > right click > change password",
 			groups = { "smoke", "L1" })
 			public void ChangePassword_01() throws HarnessException {
 
@@ -95,7 +95,7 @@ public class ChangePassword extends AdminCommonTest {
 	 * 3. Verify password is changed using SOAP.
 	 * @throws HarnessException
 	 */
-	@Test( description = "Edit password  -- manage account > Gearbox > edit account > change password",
+	@Test (description = "Edit password  -- manage account > Gearbox > edit account > change password",
 			groups = { "functional", "L2" })
 			public void ChangePassword_02() throws HarnessException {
 

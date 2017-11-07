@@ -34,7 +34,7 @@ public class Cancel extends AjaxCommonTest {
 
 
 	@Bugs(ids = "69132")
-	@Test( description = "Cancel meeting using context menu",
+	@Test (description = "Cancel meeting using context menu",
 			groups = { "functional", "L2" })
 
 	public void CancelMeeting_01() throws HarnessException {
@@ -90,7 +90,7 @@ public class Cancel extends AjaxCommonTest {
 
 
 	@Bugs(ids = "65749")
-	@Test( description = "Reply to Cancelled Appointments not using zimbraPrefFromAddress",
+	@Test (description = "Reply to Cancelled Appointments not using zimbraPrefFromAddress",
 			groups = { "functional", "L2" })
 
 	public void CancelMeeting_02() throws HarnessException {

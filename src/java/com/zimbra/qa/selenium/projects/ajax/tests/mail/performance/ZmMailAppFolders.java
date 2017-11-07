@@ -43,7 +43,7 @@ public class ZmMailAppFolders extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Measure the time to load the mail app, message view, 1 folder",
+	@Test (description = "Measure the time to load the mail app, message view, 1 folder",
 			groups = { "performance", "deprecated" })
 
 	public void ZmMailAppFolder_01() throws HarnessException {
@@ -70,7 +70,7 @@ public class ZmMailAppFolders extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Measure the time to load the mail app, message view, 100 folders",
+	@Test (description = "Measure the time to load the mail app, message view, 100 folders",
 			groups = { "performance", "deprecated" })
 
 	public void ZmMailAppFolder_02() throws HarnessException {

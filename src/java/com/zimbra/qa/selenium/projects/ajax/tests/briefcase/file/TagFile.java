@@ -37,7 +37,7 @@ public class TagFile extends FeatureBriefcaseTest {
 	}
 
 
-	@Test(description = "Tag a File using Toolbar -> Tag -> New Tag",
+	@Test (description = "Tag a File using Toolbar -> Tag -> New Tag",
 			groups = { "smoke", "L0" })
 
 	public void TagFile_01() throws HarnessException {
@@ -104,7 +104,7 @@ public class TagFile extends FeatureBriefcaseTest {
 	}
 
 
-	@Test(description = "Tag uploaded File using pre-existing Tag",
+	@Test (description = "Tag uploaded File using pre-existing Tag",
 			groups = { "smoke", "L1" })
 
 	public void TagFile_02() throws HarnessException {
@@ -162,7 +162,7 @@ public class TagFile extends FeatureBriefcaseTest {
 	}
 
 
-	@Test(description = "Tag uploaded File using Right Click context menu",
+	@Test (description = "Tag uploaded File using Right Click context menu",
 			groups = { "functional", "L2" })
 
 	public void TagFile_03() throws HarnessException {

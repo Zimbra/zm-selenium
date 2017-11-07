@@ -36,7 +36,7 @@ public class PreviewFile extends FeatureBriefcaseTest {
 	}
 
 
-	@Test( description = "Verify JPEG fiew preview in reading pane",
+	@Test (description = "Verify JPEG fiew preview in reading pane",
 			groups = { "smoke", "L1" })
 
 	public void PreviewJPEGFile_01() throws HarnessException {
@@ -71,7 +71,7 @@ public class PreviewFile extends FeatureBriefcaseTest {
 	}
 
 
-	@Test( description = "Verify text fiew preview in reading pane",
+	@Test (description = "Verify text fiew preview in reading pane",
 			groups = { "smoke", "L1" })
 
 	public void PreviewTextFile_02() throws HarnessException {
@@ -106,7 +106,7 @@ public class PreviewFile extends FeatureBriefcaseTest {
 	}
 
 
-	@Test( description = "Verify PDF fiew preview in reading pane",
+	@Test (description = "Verify PDF fiew preview in reading pane",
 			groups = { "smoke", "L1" })
 
 	public void PreviewPDFFile_03() throws HarnessException {
@@ -141,7 +141,7 @@ public class PreviewFile extends FeatureBriefcaseTest {
 	}
 
 
-	@Test( description = "Verify word fiew preview in reading pane",
+	@Test (description = "Verify word fiew preview in reading pane",
 			groups = { "smoke", "L1" })
 
 	public void PreviewWordFile_04() throws HarnessException {
@@ -176,7 +176,7 @@ public class PreviewFile extends FeatureBriefcaseTest {
 	}
 
 
-	@Test( description = "Verify excel fiew preview in reading pane",
+	@Test (description = "Verify excel fiew preview in reading pane",
 			groups = { "smoke", "L1" })
 
 	public void PreviewXlsFile_05() throws HarnessException {
@@ -211,7 +211,7 @@ public class PreviewFile extends FeatureBriefcaseTest {
 	}
 
 
-	@Test( description = "Verify power point fiew preview in reading pane",
+	@Test (description = "Verify power point fiew preview in reading pane",
 			groups = { "smoke", "L1" })
 
 	public void PreviewPptFile_06() throws HarnessException {

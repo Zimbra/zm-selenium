@@ -38,7 +38,7 @@ public class NavigateSearch extends AdminCommonTest {
 	 * 1. Verify navigation path -- "Home --> Search --> Search --> Options"
 	 * @throws HarnessException
 	 */
-	@Test( description = "Navigate to Search",
+	@Test (description = "Navigate to Search",
 			groups = { "sanity", "L0" })
 			public void NavigateSearch_01() throws HarnessException {
 
@@ -89,7 +89,7 @@ public class NavigateSearch extends AdminCommonTest {
 	 * 1. Verify navigation path -- "Home --> Search --> Search --> Options"
 	 * @throws HarnessException
 	 */
-	@Test( description = "Navigate to Search",
+	@Test (description = "Navigate to Search",
 			groups = { "sanity", "L0" })
 			public void NavigateSearch_02() throws HarnessException {
 
@@ -172,7 +172,7 @@ public class NavigateSearch extends AdminCommonTest {
 	 * 1. Verify navigation path -- "Home --> Search --> Search --> Options"
 	 * @throws HarnessException
 	 */
-	@Test( description = "Navigate to Search",
+	@Test (description = "Navigate to Search",
 			groups = { "sanity", "L0" })
 			public void NavigateSearch_03() throws HarnessException {
 

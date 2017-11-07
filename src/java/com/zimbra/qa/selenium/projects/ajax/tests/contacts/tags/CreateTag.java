@@ -31,8 +31,8 @@ public class CreateTag extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Create a new tag by clicking 'new tag' on folder tree",
-			groups = { "sanity", "L0"})
+	@Test (description = "Create a new tag by clicking 'new tag' on folder tree",
+			groups = { "sanity", "L0" })
 
 	public void CreateTag_01() throws HarnessException {
 
@@ -55,8 +55,8 @@ public class CreateTag extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Create a new tag using keyboard shortcuts",
-			groups = { "functional", "L2"})
+	@Test (description = "Create a new tag using keyboard shortcuts",
+			groups = { "functional", "L2" })
 
 	public void CreateTag_02() throws HarnessException {
 
@@ -81,8 +81,8 @@ public class CreateTag extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Create a new tag using context menu from a tag",
-			groups = { "functional", "L2"})
+	@Test (description = "Create a new tag using context menu from a tag",
+			groups = { "functional", "L2" })
 
 	public void CreateTag_03() throws HarnessException {
 
@@ -121,8 +121,8 @@ public class CreateTag extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Create a new tag using mail app New -> New Tag",
-			groups = { "functional", "L2"})
+	@Test (description = "Create a new tag using mail app New -> New Tag",
+			groups = { "functional", "L2" })
 
 	public void CreateTag_04() throws HarnessException {
 

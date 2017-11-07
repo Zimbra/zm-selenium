@@ -35,7 +35,7 @@ public class ZimbraPrefMailRequestReadReceiptsFalse extends AjaxCommonTest {
 		}};
 	}
 
-	@Test ( description = "Set zimbraPrefMailRequestReadReceipts to 'false'",
+	@Test (description = "Set zimbraPrefMailRequestReadReceipts to 'false'",
 			groups = { "functional", "L3" } )
 
 	public void ZimbraPrefMailRequestReadReceipts_01() throws HarnessException {

@@ -40,7 +40,7 @@ public class CreateMeetingWhenMailFeatureDisabled extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Verify if organizer can Schedule meeting from account with Calendar enabled and Mail disabled",
+	@Test (description = "Verify if organizer can Schedule meeting from account with Calendar enabled and Mail disabled",
 			groups = { "functional-skip", "L3-skip" })
 
 	public void CreateMeetingWhenMailFeatureDisabled_01() throws HarnessException {

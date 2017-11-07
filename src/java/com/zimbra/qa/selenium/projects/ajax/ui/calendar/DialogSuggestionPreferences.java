@@ -24,7 +24,6 @@ import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew.Locators;
 
 public class DialogSuggestionPreferences extends DialogWarning {
 
-	// The ID for the main Dialog DIV
 	public static final String LocatorDivID = "SUGGESTION_PREFERENCES";
 
 	public DialogSuggestionPreferences(AbsApplication application, AbsTab page) {
@@ -38,7 +37,7 @@ public class DialogSuggestionPreferences extends DialogWarning {
 		logger.info(myPageName() + " zClickButton(" + button + ")");
 
 		tracer.trace("Click dialog button " + button);
-		if ( button == null )
+		if (button == null)
 			throw new HarnessException("button cannot be null");
 
 		String locator = null;
@@ -61,10 +60,9 @@ public class DialogSuggestionPreferences extends DialogWarning {
 			page = null;
 
 		} else {
-			return ( super.zClickButton(button) );
+			return (super.zClickButton(button));
 		}
 
-		// Make sure the locator was set
 		if (locator == null) {
 			throw new HarnessException("Button " + button + " not implemented");
 		}
@@ -86,7 +84,7 @@ public class DialogSuggestionPreferences extends DialogWarning {
 
 		tracer.trace("Type value in " + editField);
 
-		if ( editField == null )
+		if (editField == null)
 			throw new HarnessException("Edit field cannot be null");
 
 		String locator = null;
@@ -98,9 +96,7 @@ public class DialogSuggestionPreferences extends DialogWarning {
 			page = null;
 
 		} else {
-
 			throw new HarnessException("Edit field " + editField + " not implemented");
-
 		}
 
 		if (!this.sIsElementPresent(locator)) {

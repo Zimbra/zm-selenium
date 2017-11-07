@@ -32,7 +32,7 @@ public class ViewAppointment extends AjaxCommonTest {
 
 
 	@Bugs(ids = "46416")
-	@Test( description = "Shared root and Calendar: appointment visibility issues",
+	@Test (description = "Shared root and Calendar: appointment visibility issues",
 			groups = { "functional", "L2" })
 
 	public void ViewAppointment_01() throws HarnessException {

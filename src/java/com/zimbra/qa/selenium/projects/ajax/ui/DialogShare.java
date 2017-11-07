@@ -14,9 +14,6 @@
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-/**
- * 
- */
 package com.zimbra.qa.selenium.projects.ajax.ui;
 
 import java.awt.event.KeyEvent;
@@ -27,10 +24,8 @@ import com.zimbra.qa.selenium.framework.util.staf.Stafpostqueue;
 
 /**
  * Represents a "Rename Folder" dialog box
- * <p>
  * 
  * @author Matt Rhoades
- *
  */
 public class DialogShare extends AbsDialog {
 
@@ -86,7 +81,6 @@ public class DialogShare extends AbsDialog {
 			throw new HarnessException("type = " + type + " not implemented yet");
 		}
 
-		// Make sure the locator exists
 		if (!this.sIsElementPresent(locator)) {
 			throw new HarnessException("zSetShareWith " + locator + " is not present");
 		}
@@ -102,7 +96,6 @@ public class DialogShare extends AbsDialog {
 
 		String locator = "css=input#ShareDialog_grantee";
 
-		// Make sure the locator exists
 		if (!this.sIsElementPresent(locator)) {
 			throw new HarnessException("zSetEmailAddress " + locator + " is not present");
 		}
@@ -156,7 +149,6 @@ public class DialogShare extends AbsDialog {
 		}
 		this.sFocus(locator);
 		this.sClick(locator);
-		// this.sCheck(locator);
 	}
 
 	public static class ShareMessageType {
@@ -248,16 +240,14 @@ public class DialogShare extends AbsDialog {
 		String locator = "id=" + Locators.zDialogShareId;
 
 		if (!this.sIsElementPresent(locator)) {
-			return (false); // Not even present
+			return (false);
 		}
 
 		if (!this.zIsVisiblePerPosition(locator, 0, 0)) {
-			return (false); // Not visible per position
+			return (false);
 		}
 
-		// Yes, visible
 		logger.info(myPageName() + " zIsActive() = true");
 		return (true);
 	}
-
 }

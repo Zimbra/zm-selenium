@@ -33,7 +33,7 @@ public class Dumpster extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test(description = "Verify the Trash folder's context menu does not contain dumpster",
+	@Test (description = "Verify the Trash folder's context menu does not contain dumpster",
 			groups = { "functional", "L2" })
 
 	public void RecoverItems_01() throws HarnessException {

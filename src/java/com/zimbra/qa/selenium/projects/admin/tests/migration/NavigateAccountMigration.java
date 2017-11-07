@@ -38,7 +38,7 @@ public class NavigateAccountMigration extends AdminCommonTest {
 	 * 1. Verify navigation path -- "Home --> Tools and Migraton --> Account Migration"
 	 * @throws HarnessException
 	 */
-	@Test( description = "Navigate to Account Migration",
+	@Test (description = "Navigate to Account Migration",
 			groups = { "sanity", "L0" })
 			public void NavigateAccountMigration_01() throws HarnessException {
 		

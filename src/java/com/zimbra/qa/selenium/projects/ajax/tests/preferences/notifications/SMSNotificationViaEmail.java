@@ -49,7 +49,7 @@ public class SMSNotificationViaEmail extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Verify SMS notification via Email for appointment reminder.",
+	@Test (description = "Verify SMS notification via Email for appointment reminder.",
 			groups = { "functional", "L2" } )
 
 	public void SMSNotificationViaEmail_01() throws HarnessException {

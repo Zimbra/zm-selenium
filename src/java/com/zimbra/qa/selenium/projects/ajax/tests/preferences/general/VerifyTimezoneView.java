@@ -32,7 +32,7 @@ public class VerifyTimezoneView extends AjaxCommonTest {
 	}
 
 
-	@Test(description = "Check timezone options in preferences",
+	@Test (description = "Check timezone options in preferences",
 			groups = { "smoke", "L1" } )
 
 	public void VerifyTimezoneView_01() throws HarnessException {

@@ -51,7 +51,7 @@ public class DeleteAlias extends AdminCommonTest {
 	 * 5. Verify alias is deleted using SOAP.
 	 * @throws HarnessException
 	 */
-	@Test( description = "Verify delete alias operation  -- Manage alias View",
+	@Test (description = "Verify delete alias operation  -- Manage alias View",
 			groups = { "smoke", "L1" })
 			public void DeleteAlias_01() throws HarnessException {
 
@@ -109,7 +109,7 @@ public class DeleteAlias extends AdminCommonTest {
 	 * 5. Verify alias is deleted using SOAP.
 	 * @throws HarnessException
 	 */
-	@Test( description = "Verify delete alias operation-- Manage alias View/Right Click Menu",
+	@Test (description = "Verify delete alias operation-- Manage alias View/Right Click Menu",
 			groups = { "functional", "L2" })
 			public void DeleteAlias_02() throws HarnessException {
 
@@ -166,7 +166,7 @@ public class DeleteAlias extends AdminCommonTest {
 	 * 4. Verify account is deleted using SOAP.
 	 * @throws HarnessException
 	 */
-	@Test( description = "Verify delete alias operation - Search list view",
+	@Test (description = "Verify delete alias operation - Search list view",
 			groups = { "functional", "L2" })
 			public void DeleteAlias_03() throws HarnessException {
 
@@ -226,7 +226,7 @@ public class DeleteAlias extends AdminCommonTest {
 	 * 4. Verify account is deleted using SOAP.
 	 * @throws HarnessException
 	 */
-	@Test( description = "Verify delete alias operation - Search list view/Right Click menu.",
+	@Test (description = "Verify delete alias operation - Search list view/Right Click menu.",
 			groups = { "functional", "L3" })
 			public void DeleteAlias_04() throws HarnessException {
 

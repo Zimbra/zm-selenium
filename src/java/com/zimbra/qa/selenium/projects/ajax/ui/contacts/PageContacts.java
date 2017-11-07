@@ -43,13 +43,11 @@ public class PageContacts extends AbsTab {
 		public static final ContextMenuItem CONTACT_NEW_EMAIL = new ContextMenuItem("POPUP_zmi__Contacts__NEW_MESSAGE",
 				"New Email", "div[class*='ImgNewMessage']", ":contains('nm')");
 
-		// TODO: contact group: "Edit Group" instead of "Edit Contact"
 		public static final ContextMenuItem CONTACT_EDIT = new ContextMenuItem("POPUP_zmi__Contacts__CONTACT",
 				"Edit Contact", "", "");
 		public static final ContextMenuItem CONTACT_FORWARD = new ContextMenuItem(
 				"POPUP_zmi__Contacts__SEND_CONTACTS_IN_EMAIL", "Forward Contact", "", "");
 
-		// TODO: contact group: "Tag Group" instead of "Tag Contact"
 		public static final ContextMenuItem CONTACT_TAG = new ContextMenuItem("POPUP_zmi__Contacts__TAG_MENU",
 				"Tag Contact", "div[class*='ImgTag']", " div[class='ImgCascade']");
 		public static final ContextMenuItem CONTACT_DELETE = new ContextMenuItem("POPUP_zmi__Contacts__DELETE",
@@ -92,8 +90,8 @@ public class PageContacts extends AbsTab {
 	}
 
 	/**
-	 * A mapping of letter characters (upper case) to addressbook buttons, e.g.
-	 * 'A' -> Button.B_AB_A
+	 * A mapping of letter characters (upper case) to addressbook buttons, e.g. 'A'
+	 * -> Button.B_AB_A
 	 */
 	public static final HashMap<Character, Button> buttons = new HashMap<Character, Button>() {
 		private static final long serialVersionUID = -8341258587369022596L;
@@ -137,7 +135,6 @@ public class PageContacts extends AbsTab {
 	@Override
 	public boolean zIsActive() throws HarnessException {
 
-		// Make sure the main page is active
 		if (!((AppAjaxClient) MyApplication).zPageMain.zIsActive()) {
 			((AppAjaxClient) MyApplication).zPageMain.zNavigateTo();
 		}
@@ -339,7 +336,7 @@ public class PageContacts extends AbsTab {
 			} else if (contactType.equals(GALItem.IMAGE_CLASS)) {
 				ci = new GALItem(fileAs);
 			} else if (contactType.equals(DistributionListItem.IMAGE_CLASS)) {
-				ci = new DistributionListItem(fileAs, fileAs); // TODO???
+				ci = new DistributionListItem(fileAs, fileAs);
 			} else {
 				throw new HarnessException("Image type not valid.");
 			}
@@ -359,8 +356,8 @@ public class PageContacts extends AbsTab {
 		if (button == null)
 			throw new HarnessException("Button cannot be null");
 
-		String locator = null; // If set, this will be clicked
-		AbsPage page = null; // If set, this page will be returned
+		String locator = null;
+		AbsPage page = null;
 
 		if (button == Button.B_REFRESH) {
 			return (((AppAjaxClient) this.MyApplication).zPageMain.zToolbarPressButton(Button.B_REFRESH));
@@ -419,7 +416,7 @@ public class PageContacts extends AbsTab {
 			if (zIsElementDisabled(locator)) {
 				throw new HarnessException("Tried clicking on " + locator + " but it was disabled ");
 			}
-			
+
 		} else if (button == Button.B_VIEW_CERTIFICATE) {
 
 			locator = "css=td[class='ZmSecureMailCertificateRow'] div[class='FakeAnchor'] td[id$='title']:contains('View certificate')";
@@ -462,7 +459,7 @@ public class PageContacts extends AbsTab {
 
 		tracer.trace("Click the shortcut " + shortcut.getKeys());
 
-		AbsPage page = null; // If set, this page will be returned
+		AbsPage page = null;
 
 		if (shortcut == Shortcut.S_NEWTAG) {
 			page = new DialogTag(MyApplication, ((AppAjaxClient) MyApplication).zPageContacts);
@@ -480,7 +477,6 @@ public class PageContacts extends AbsTab {
 			throw new HarnessException("No logic for shortcut : " + shortcut);
 		}
 
-		// Click it
 		// zKeyboardTypeString(shortcut.getKeys());
 		zKeyboard.zTypeCharacters(shortcut.getKeys());
 
@@ -671,7 +667,6 @@ public class PageContacts extends AbsTab {
 
 		if (pulldownLocator != null) {
 
-			// Make sure the locator exists
 			if (!sIsElementPresent(pulldownLocator)) {
 				throw new HarnessException("Button " + pulldown + " folder " + item + " pulldownLocator "
 						+ pulldownLocator + " not present!");
@@ -682,7 +677,6 @@ public class PageContacts extends AbsTab {
 			zWaitForBusyOverlay();
 
 			if (optionLocator != null) {
-				// Make sure the locator exists and visible
 				zWaitForElementPresent(optionLocator);
 
 				if (zIsVisiblePerPosition(optionLocator, 0, 0)) {
@@ -694,35 +688,11 @@ public class PageContacts extends AbsTab {
 
 						if (item == TagItem.Remove_All_Tags) {
 							subOptionLocator = "css=div[id^='REMOVE_TAG_MENU'] div[id='REMOVE_ALL_TAGS']";
+
 						} else {
-							// subOptionLocator =
-							// "css=div[id='REMOVE_TAG_MENU_TAG_MENU|MENU']
-							// td[id^='Remove_tag_'][id$='_title']:contains('" +
-							// ((TagItem) item).getName() + "')";
 							subOptionLocator = "//div[contains(@id,'REMOVE_TAG_MENU')]//td[contains(@id,'Remove_tag') and contains(text(),'"
 									+ ((TagItem) item).getName() + "')]";
 						}
-
-						// find active menu id
-						/*
-						 * //get number of z_shell's children int countOption=
-						 * Integer.parseInt(sGetEval(
-						 * "window.document.getElementById('z_shell').children.length"
-						 * )); String parentMenuid= null;
-						 * 
-						 * //find id of the active menu for (int
-						 * i=countOption-1; i>0; i--) { parentMenuid= sGetEval(
-						 * "window.document.getElementById('z_shell').children["
-						 * + i + "].id");
-						 * 
-						 * if (sGetEval("window.document.getElementById('" +
-						 * parentMenuid + "').getAttribute('class')").
-						 * contains("ActionMenu ZHasIcon") &&
-						 * sIsVisible(parentMenuid)) { subOptionLocator =
-						 * "css=div#" + parentMenuid +
-						 * " td[id$=title]:contains(" + tagName + ")"; break; }
-						 * }
-						 */
 					}
 
 					if (subOptionLocator != null) {
@@ -969,23 +939,6 @@ public class PageContacts extends AbsTab {
 		return (page);
 	}
 
-	/**
-	 * Action -> Option -> suboption -> object on contact. For example, Right
-	 * click -> Tag -> Remove Tag -> tagname on ContactA
-	 * 
-	 * @param action
-	 *            e.g. A_RIGHTCLICK
-	 * @param option
-	 *            e.g B_TAG
-	 * @param subOption
-	 *            e.g O_TAG_REMOVETAG
-	 * @param choice
-	 *            e.g. String tagname
-	 * @param contact
-	 *            The contact to take the action on
-	 * @return
-	 * @throws HarnessException
-	 */
 	public AbsPage zListItem(Action action, Button option, Button subOption, Object choice, String contact)
 			throws HarnessException {
 
@@ -1125,8 +1078,8 @@ public class PageContacts extends AbsTab {
 
 	@Override
 	public AbsPage zListItem(Action action, Button option, String contact) throws HarnessException {
-		String locator = null; // If set, this will be clicked
-		AbsPage page = null; // If set, this page will be returned
+		String locator = null;
+		AbsPage page = null;
 
 		String contactLocator = getContactLocator(contact);
 
@@ -1215,12 +1168,6 @@ public class PageContacts extends AbsTab {
 		return (page);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.zimbra.qa.selenium.framework.ui.AbsTab#zListItem(com.zimbra.qa.
-	 * selenium.framework.ui.Action, java.lang.String)
-	 */
 	@Override
 	public AbsPage zListItem(Action action, String contact) throws HarnessException {
 		logger.info(myPageName() + " zListItem(" + action + ", " + contact + ")");
@@ -1357,18 +1304,19 @@ public class PageContacts extends AbsTab {
 				|| (button == Button.B_AB_W) || (button == Button.B_AB_X) || (button == Button.B_AB_Y)
 				|| (button == Button.B_AB_Z);
 	}
-	
-	public boolean zVerifyCertificatePresent(String emailAddress) throws HarnessException{
-		
-		String locator="css=td[class='ZmSecureMailCertificateRow'] td[id$='title']:contains('" + emailAddress + "')";
-		
+
+	public boolean zVerifyCertificatePresent(String emailAddress) throws HarnessException {
+
+		String locator = "css=td[class='ZmSecureMailCertificateRow'] td[id$='title']:contains('" + emailAddress + "')";
+
 		if (this.sIsElementPresent(locator)) {
-			//Mail Security header found
+			// Mail Security header found
 			return true;
 		}
 
 		return false;
 	}
+
 	private boolean zIsInSearchView() throws HarnessException {
 		return zIsVisiblePerPosition("css=div#z_filterPanel__SR-1", 0, 0);
 	}

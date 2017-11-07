@@ -34,7 +34,7 @@ public class MoveContact extends TouchCommonTest  {
 		super.startingPage = app.zPageAddressbook;
 	}
 
-	@Test( description = "Move a contact item in mount folder with manager rights to emailed contact folder",
+	@Test (description = "Move a contact item in mount folder with manager rights to emailed contact folder",
 			groups = { "functional" })
 
 	public void MoveContact_01() throws HarnessException {

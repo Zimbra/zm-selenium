@@ -39,8 +39,8 @@ public class DeleteContact extends AjaxCommonTest {
 	}
 
 
-	@Test(description = "Delete a contact item from toolbar and verify toast msg",
-			groups = { "functional", "L2"})
+	@Test (description = "Delete a contact item from toolbar and verify toast msg",
+			groups = { "functional", "L2" })
 
 	public void DeleteContactToastMsg_01() throws HarnessException {
 
@@ -72,8 +72,8 @@ public class DeleteContact extends AjaxCommonTest {
 	}
 
 
-	@Test(description = "Delete a contact item selected with checkbox and  verify toast msg",
-			groups = { "functional", "L2"})
+	@Test (description = "Delete a contact item selected with checkbox and  verify toast msg",
+			groups = { "functional", "L2" })
 
 	public void DeleteContactToastMsg_02() throws HarnessException {
 
@@ -111,8 +111,8 @@ public class DeleteContact extends AjaxCommonTest {
 				new Object[] { "VK_BACK_SPACE", KeyEvent.VK_BACK_SPACE }, };
 	}
 
-	@Test(description = "Delete a contact item using keyboard short cut Del and verify toast mesg",
-			groups = {"functional", "L2"}, dataProvider = "DataProviderDeleteKeys")
+	@Test (description = "Delete a contact item using keyboard short cut Del and verify toast mesg",
+			groups = { "functional", "L2"}, dataProvider = "DataProviderDeleteKeys")
 
 	public void DeleteContactToastMsg_03(String name, int keyEvent) throws HarnessException {
 
@@ -144,8 +144,8 @@ public class DeleteContact extends AjaxCommonTest {
 	}
 
 
-	@Test(description = "Right click then click delete and verify toast msg",
-			groups = { "functional", "L2"})
+	@Test (description = "Right click then click delete and verify toast msg",
+			groups = { "functional", "L2" })
 
 	public void DeleteContactToastMsg_04() throws HarnessException {
 
@@ -174,8 +174,8 @@ public class DeleteContact extends AjaxCommonTest {
 	}
 
 
-	@Test(description = "Delete multiple contact items and verify toast msg",
-			groups = { "functional", "L2"})
+	@Test (description = "Delete multiple contact items and verify toast msg",
+			groups = { "functional", "L2" })
 
 	public void DeleteContactToastMsg_05() throws HarnessException {
 

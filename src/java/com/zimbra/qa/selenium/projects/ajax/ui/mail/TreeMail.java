@@ -14,9 +14,6 @@
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-/**
- * 
- */
 package com.zimbra.qa.selenium.projects.ajax.ui.mail;
 
 import java.util.ArrayList;
@@ -199,15 +196,12 @@ public class TreeMail extends AbsTree {
 			actionLocator = "zti__main_Mail__" + f.getId() + "_textCell";
 
 			GeneralUtility.waitForElementPresent(this, actionLocator);
-			// actionLocator= Locators.zTagsHeader;
 			this.zRightClick(actionLocator);
 			this.zWaitForBusyOverlay();
 
-			optionLocator = Locators.ContextMenuTVSearchesCSS; // css=div[id='ZmActionMenu_mail_SEARCH']
+			optionLocator = Locators.ContextMenuTVSearchesCSS;
 
 			if (!(this.sIsElementPresent(optionLocator) && this.zIsVisiblePerPosition(optionLocator, 0, 0))) {
-				// The app could use the conversation div, if it was ever
-				// activated previously
 				optionLocator = Locators.ContextMenuCLVSearchesCSS;
 			}
 
@@ -331,14 +325,6 @@ public class TreeMail extends AbsTree {
 
 	}
 
-	/**
-	 * This is the same locators as FolderItem ... hmm. How to combine?
-	 * 
-	 * @param action
-	 * @param tag
-	 * @return
-	 * @throws HarnessException
-	 */
 	protected AbsPage zTreeItem(Action action, TagItem tag) throws HarnessException {
 		AbsPage page = null;
 		String locator = null;
@@ -352,7 +338,6 @@ public class TreeMail extends AbsTree {
 			this.zRightClickAt(locator, "");
 			SleepUtil.sleepSmall();
 
-			// return a context menu
 			return (new ContextMenu(MyApplication));
 
 		} else if (action == Action.A_TREE_EXPAND) {
@@ -370,7 +355,6 @@ public class TreeMail extends AbsTree {
 			this.sMouseOver(Locators.ztih__main_Mail__ZIMLET_ID);
 			SleepUtil.sleepVerySmall();
 
-			// No page to return
 			return (null);
 
 		} else if (action == Action.A_TREE_COLLAPSE) {
@@ -388,19 +372,12 @@ public class TreeMail extends AbsTree {
 			this.sMouseOver(Locators.ztih__main_Mail__ZIMLET_ID);
 			SleepUtil.sleepVerySmall();
 
-			// No page to return
 			return (null);
 
 		} else if (action == Action.A_HOVEROVER) {
 
 			locator = "css=td[id='zti__main_Mail__" + tag.getId() + "_textCell']";
 			page = new TooltipFolder(MyApplication);
-
-			// If another tooltip is active, sometimes it takes a few seconds
-			// for the new text to show
-			// So, wait if the tooltip is already active
-			// Don't wait if the tooltip is not active
-			//
 
 			if (page.zIsActive()) {
 
@@ -447,12 +424,10 @@ public class TreeMail extends AbsTree {
 
 			locator = "css=td[id='zti__main_Mail__" + folder.getId() + "_textCell']";
 
-			// Select the folder
 			zWaitForElementPresent(locator);
 			this.zRightClickAt(locator, "");
 			SleepUtil.sleepSmall();
 
-			// return a context menu
 			return (new ContextMenu(MyApplication));
 
 		} else if (action == Action.A_TREE_EXPAND) {
@@ -462,8 +437,8 @@ public class TreeMail extends AbsTree {
 				logger.warn("Trying to expand a folder that probably has no subfolders or is already expanded");
 				return (page);
 			}
-			
-			this.sClickAt(locator,"");
+
+			this.sClickAt(locator, "");
 			this.zWaitForBusyOverlay();
 			SleepUtil.sleepSmall();
 
@@ -471,7 +446,6 @@ public class TreeMail extends AbsTree {
 			this.sMouseOver(Locators.ztih__main_Mail__ZIMLET_ID);
 			SleepUtil.sleepVerySmall();
 
-			// No page to return
 			return (null);
 
 		} else if (action == Action.A_TREE_COLLAPSE) {
@@ -482,7 +456,7 @@ public class TreeMail extends AbsTree {
 				return (page);
 			}
 
-			this.sClickAt(locator,"");
+			this.sClickAt(locator, "");
 			this.zWaitForBusyOverlay();
 			SleepUtil.sleepSmall();
 
@@ -490,7 +464,6 @@ public class TreeMail extends AbsTree {
 			this.sMouseOver(Locators.ztih__main_Mail__ZIMLET_ID);
 			SleepUtil.sleepVerySmall();
 
-			// No page to return
 			return (null);
 
 		} else if (action == Action.A_HOVEROVER) {
@@ -535,12 +508,6 @@ public class TreeMail extends AbsTree {
 		return (page);
 	}
 
-	/**
-	 * To get whether the tree is collapsed or not
-	 * 
-	 * @return true if tree is collapsed, otherwise false
-	 * @throws HarnessException
-	 */
 	public boolean isCollapsed() throws HarnessException {
 		if (sIsElementPresent(Locators.treeExpandCollapseButton.replace("ImgNode", "ImgNodeCollapsed"))) {
 			return true;
@@ -561,7 +528,7 @@ public class TreeMail extends AbsTree {
 		sClickAt(locator, "");
 		this.zWaitForBusyOverlay();
 		SleepUtil.sleepSmall();
-		
+
 		return (page);
 	}
 
@@ -622,7 +589,8 @@ public class TreeMail extends AbsTree {
 		if (pulldownLocator != null) {
 
 			if (!this.sIsElementPresent(pulldownLocator)) {
-				throw new HarnessException("Button " + pulldown + " option " + option + " pulldownLocator " + pulldownLocator + " not present!");
+				throw new HarnessException("Button " + pulldown + " option " + option + " pulldownLocator "
+						+ pulldownLocator + " not present!");
 			}
 
 			this.sClick(pulldownLocator);
@@ -631,9 +599,9 @@ public class TreeMail extends AbsTree {
 
 			if (optionLocator != null) {
 
-				// Make sure the locator exists
 				if (!this.sIsElementPresent(optionLocator)) {
-					throw new HarnessException("Button " + pulldown + " option " + option + " optionLocator " + optionLocator + " not present!");
+					throw new HarnessException("Button " + pulldown + " option " + option + " optionLocator "
+							+ optionLocator + " not present!");
 				}
 
 				this.sClick(optionLocator);
@@ -650,13 +618,6 @@ public class TreeMail extends AbsTree {
 
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.zimbra.qa.selenium.framework.ui.AbsTree#zPressButton(com.zimbra.qa.
-	 * selenium.framework.ui.Button)
-	 */
 	@Override
 	public AbsPage zPressButton(Button button) throws HarnessException {
 		logger.info(myPageName() + " zPressButton(" + button + ")");
@@ -690,10 +651,8 @@ public class TreeMail extends AbsTree {
 			this.sClickAt(locator, "");
 			SleepUtil.sleepSmall();
 
-			// If the app is busy, wait for that to finish
 			this.zWaitForBusyOverlay();
 
-			// This function (default) throws an exception if never active
 			page.zWaitForActive();
 
 			return (page);
@@ -735,10 +694,8 @@ public class TreeMail extends AbsTree {
 
 		} else if (action == Action.A_RIGHTCLICK) {
 
-			// Select the folder
 			this.zRightClick(locator);
 
-			// return a context menu
 			return (new ContextMenu(MyApplication));
 
 		} else {
@@ -766,13 +723,13 @@ public class TreeMail extends AbsTree {
 
 		if (folder instanceof FolderItem) {
 			return (zTreeItem(action, (FolderItem) folder));
-			
+
 		} else if (folder instanceof TagItem) {
 			return (zTreeItem(action, (TagItem) folder));
-			
+
 		} else if (folder instanceof SavedSearchFolderItem) {
 			return (zTreeItem(action, (SavedSearchFolderItem) folder));
-			
+
 		} else if (folder instanceof ZimletItem) {
 			return (zTreeItem(action, (ZimletItem) folder));
 		}
@@ -833,18 +790,9 @@ public class TreeMail extends AbsTree {
 			item.gSetIsSelected("DwtTreeItem-selected".equals(sGetAttribute(locator + "@class")));
 		}
 
-		// TODO: color
-
 		return (item);
 	}
 
-	/**
-	 * Used for recursively building the tree list for Mail Folders
-	 * 
-	 * @param css
-	 * @return
-	 * @throws HarnessException
-	 */
 	private List<FolderItem> zListGetFolders(String css) throws HarnessException {
 		List<FolderItem> items = new ArrayList<FolderItem>();
 
@@ -854,8 +802,7 @@ public class TreeMail extends AbsTree {
 		logger.debug(myPageName() + " zListGetFolders: number of folders: " + count);
 
 		if (ConfigProperties.zimbraGetVersionString().contains("8.6.")) {
-			count++; // temp-fix -- This is required because find share section
-						// removed
+			count++;
 		}
 
 		for (int i = 1; i <= count + 1; i++) {
@@ -869,16 +816,10 @@ public class TreeMail extends AbsTree {
 			logger.debug(myPageName() + " identifier: " + identifier);
 
 			if (identifier == null || identifier.trim().length() == 0 || !(identifier.startsWith("zti__main_Mail__"))) {
-				// Not a folder
-				// Maybe "Find Shares ..."
-				count++; // Add one more to the total 'count' for this 'unknown'
-							// item
+				count++;
 				continue;
 			}
 
-			// Set the locator
-			// TODO: This could probably be made safer, to make sure the id
-			// matches an int pattern
 			String id = identifier.replace("zti__main_Mail__", "");
 
 			FolderItem item = this.parseFolderRow(id);
@@ -894,13 +835,6 @@ public class TreeMail extends AbsTree {
 
 	}
 
-	/**
-	 * Used for recursively building the tree list for Saved Search Folders
-	 * 
-	 * @param top
-	 * @return
-	 * @throws HarnessException
-	 */
 	private List<SavedSearchFolderItem> zListGetSavedSearchFolders(String top) throws HarnessException {
 		List<SavedSearchFolderItem> items = new ArrayList<SavedSearchFolderItem>();
 
@@ -929,9 +863,6 @@ public class TreeMail extends AbsTree {
 
 			SavedSearchFolderItem item = new SavedSearchFolderItem();
 
-			// Set the locator
-			// TODO: This could probably be made safer, to make sure the id
-			// matches an int pattern
 			item.setId(id.replace(
 					"zti__" + ((AppAjaxClient) MyApplication).zGetActiveAccount().EmailAddress + ":main_Mail__", ""));
 
@@ -989,8 +920,6 @@ public class TreeMail extends AbsTree {
 
 		List<TagItem> items = new ArrayList<TagItem>();
 
-		// TODO: implement me!
-
 		// Return the list of items
 		return (items);
 
@@ -1003,7 +932,6 @@ public class TreeMail extends AbsTree {
 
 		String treeLocator = Locators.ztih__main_Mail__ZIMLET_ID;
 
-		// Make sure the button exists
 		if (!this.sIsElementPresent(treeLocator))
 			throw new HarnessException("Zimlet Tree is not present " + treeLocator);
 
@@ -1055,12 +983,11 @@ public class TreeMail extends AbsTree {
 	}
 
 	/**
-	 * Apply an expand/collpase to the Folders, Searches, Tags and Zimlets
-	 * sections
-	 * 
+	 * Apply an expand/collpase to the Folders, Searches, Tags and Zimlets sections
+	 *
 	 * @param a
 	 * @param section
-	 * @throws HarnessException
+	 *
 	 */
 	public AbsPage zSectionAction(FolderSectionAction action, FolderSection section) throws HarnessException {
 
@@ -1093,7 +1020,6 @@ public class TreeMail extends AbsTree {
 			throw new HarnessException("no locator defined for " + action + " " + section);
 		}
 
-		// Default behavior
 		this.sClickAt(locator, "");
 		this.zWaitForBusyOverlay();
 		SleepUtil.sleepSmall();
@@ -1109,7 +1035,6 @@ public class TreeMail extends AbsTree {
 	@Override
 	public boolean zIsActive() throws HarnessException {
 
-		// Make sure the main page is active
 		if (!((AppAjaxClient) MyApplication).zPageMail.zIsActive()) {
 			((AppAjaxClient) MyApplication).zPageMail.zNavigateTo();
 		}
@@ -1123,7 +1048,5 @@ public class TreeMail extends AbsTree {
 			return (false);
 
 		return (loaded);
-
 	}
-
 }

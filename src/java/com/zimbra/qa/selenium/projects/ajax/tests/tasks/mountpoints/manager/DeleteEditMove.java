@@ -47,7 +47,7 @@ public class DeleteEditMove extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Verify Delete Edit Move button are visible on mountpoint task (manager rights)",
+	@Test (description = "Verify Delete Edit Move button are visible on mountpoint task (manager rights)",
 			groups = { "functional", "L2" })
 
 	public void DeleteEditMove_01() throws HarnessException {

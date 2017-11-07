@@ -35,7 +35,7 @@ public class RenameMount extends PrefGroupMailByMessageTest{
 		logger.info("New " + DeleteMount.class.getCanonicalName());
 	}
 
-	@Test( description = "Verify user can delete mount point with any rights",
+	@Test (description = "Verify user can delete mount point with any rights",
 			groups = { "functional" })
 
 	public void RenameMount_01() throws HarnessException  {

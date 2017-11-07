@@ -23,7 +23,7 @@ public class CancelCreateContact extends TouchCommonTest  {
 		logger.info("New "+ CancelCreateContact.class.getCanonicalName());
 		super.startingPage = app.zPageAddressbook;
 	}	
-	@Test( description = "Fill up creat contact form with basic attributes and cancel it",
+	@Test (description = "Fill up creat contact form with basic attributes and cancel it",
 			groups = { "smoke" })
 	public void CancelCreateContact_01() throws HarnessException {
 		//-- DATA

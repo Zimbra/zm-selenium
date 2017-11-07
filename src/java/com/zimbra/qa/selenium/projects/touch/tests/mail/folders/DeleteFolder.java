@@ -31,7 +31,7 @@ public class DeleteFolder extends PrefGroupMailByMessageTest {
 		logger.info("New "+ CreateFolder.class.getCanonicalName());
 	}
 
-	@Test( description = "Delete mail folder",
+	@Test (description = "Delete mail folder",
 			groups = { "smoke" })
 	
 	public void DeleteFolder_01() throws HarnessException  {

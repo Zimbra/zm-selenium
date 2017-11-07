@@ -33,7 +33,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 
 
 	@Bugs( ids = "65915")
-	@Test( description = "Delete a mail with zimbraDumpsterEnabled=TRUE",
+	@Test (description = "Delete a mail with zimbraDumpsterEnabled=TRUE",
 			groups = { "smoke", "L1" })
 
 	public void DeleteMail_01() throws HarnessException {

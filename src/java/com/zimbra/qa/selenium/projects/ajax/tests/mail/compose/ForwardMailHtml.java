@@ -31,7 +31,7 @@ public class ForwardMailHtml extends PrefGroupMailByMessageTest {
 		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "html");
 	}
 
-	@Test( description = "Forward an html mail using html editor",
+	@Test (description = "Forward an html mail using html editor",
 			groups = { "smoke", "L1" })
 
 	public void ForwardMailHtml_01l() throws HarnessException {

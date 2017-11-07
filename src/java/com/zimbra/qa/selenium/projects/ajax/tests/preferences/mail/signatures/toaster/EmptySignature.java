@@ -36,7 +36,7 @@ public class EmptySignature extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Verify Toast Msg for Empty Signature Name",
+	@Test (description = "Verify Toast Msg for Empty Signature Name",
 			groups = { "functional", "L2"  })
 
 	public void EmptySignature_01() throws HarnessException {
@@ -62,7 +62,7 @@ public class EmptySignature extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Verify Toast Msg for Empty Signature body (asp per bug comment#10)",
+	@Test (description = "Verify Toast Msg for Empty Signature body (asp per bug comment#10)",
 			groups = { "deprecated" })
 
 	public void EmptySignature_02() throws HarnessException {

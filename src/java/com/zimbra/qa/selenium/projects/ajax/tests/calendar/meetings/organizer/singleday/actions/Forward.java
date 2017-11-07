@@ -37,7 +37,7 @@ public class Forward extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Forward a meeting invite using context menu",
+	@Test (description = "Forward a meeting invite using context menu",
 			groups = { "smoke", "L1" })
 
 	public void ForwardMeeting_01() throws HarnessException {
@@ -99,7 +99,7 @@ public class Forward extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Forward a meeting invite by changing content",
+	@Test (description = "Forward a meeting invite by changing content",
 			groups = { "smoke", "L1" })
 
 	public void ForwardMeeting_02() throws HarnessException {
@@ -181,7 +181,7 @@ public class Forward extends AjaxCommonTest {
 
 
 	@Bugs(ids = "59724")
-	@Test( description = "Forwarding if a conf-room is already scheduled for same invite",
+	@Test (description = "Forwarding if a conf-room is already scheduled for same invite",
 			groups = { "functional", "L2" })
 
 	public void ForwardMeeting_03() throws HarnessException {
@@ -251,7 +251,7 @@ public class Forward extends AjaxCommonTest {
 
 
 	@Bugs(ids="100340")
-	@Test( description = "forwarding invite shows html source in meeting notes section",
+	@Test (description = "forwarding invite shows html source in meeting notes section",
 			groups = { "functional", "L2" })
 
 	public void ForwardMeeting_04() throws HarnessException {

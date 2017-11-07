@@ -53,7 +53,7 @@ public class UnTrustedDomainConvView extends AjaxCommonTest {
 	 */
 
 	@Bugs(ids="74691,64830")
-	@Test( description = "Verify Display Image link in UnTrusted doamin for conversation view",
+	@Test (description = "Verify Display Image link in UnTrusted doamin for conversation view",
 			groups = { "sanity", "L0"  })
 
 	public void UnTrustedDomainConvView_01() throws HarnessException {

@@ -29,7 +29,7 @@ public class PriorityMail extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Receive a high priority mail",
+	@Test (description = "Receive a high priority mail",
 			groups = { "functional", "L2" })
 
 	public void GetMail_01() throws HarnessException {
@@ -70,7 +70,7 @@ public class PriorityMail extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Receive a low priority mail",
+	@Test (description = "Receive a low priority mail",
 			groups = { "functional", "L2" })
 
 	public void GetMail_02() throws HarnessException {
@@ -112,7 +112,7 @@ public class PriorityMail extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Receive a normal priority mail",
+	@Test (description = "Receive a normal priority mail",
 			groups = { "functional", "L3" })
 
 	public void GetMail_03() throws HarnessException {

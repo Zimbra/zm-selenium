@@ -38,7 +38,7 @@ public class NavigateZimlets extends AdminCommonTest {
 	 * 2. Verify navigation path -- "Home --> Configure --> Zimlets"
 	 * @throws HarnessException
 	 */
-	@Test( description = "Navigate to Zimlets",
+	@Test (description = "Navigate to Zimlets",
 			groups = { "sanity", "L0" })
 			public void NavigateZimlets_01() throws HarnessException {
 		

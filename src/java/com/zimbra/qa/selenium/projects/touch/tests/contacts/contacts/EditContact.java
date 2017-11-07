@@ -32,7 +32,7 @@ public class EditContact extends TouchCommonTest  {
 		super.startingPage =  app.zPageAddressbook;
 	}
 	
-	@Test( description = "Edit a contact item and save it",
+	@Test (description = "Edit a contact item and save it",
 			groups = { "sanity" })
 	
 	public void EditContact_01() throws HarnessException {

@@ -34,7 +34,7 @@ public class NavigateToToday extends AjaxCommonTest {
 
 
 	@Bugs(ids = "78821")
-	@Test( description = "Verify clicking on Today button highlights today when moved to next week",
+	@Test (description = "Verify clicking on Today button highlights today when moved to next week",
 			groups = { "smoke", "L1" })
 
 	public void NavigateToToday_01() throws HarnessException {
@@ -92,7 +92,7 @@ public class NavigateToToday extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Verify clicking on Today button highlights today",
+	@Test (description = "Verify clicking on Today button highlights today",
 			groups = { "smoke", "L1" })
 
 	public void NavigateToToday_02() throws HarnessException {

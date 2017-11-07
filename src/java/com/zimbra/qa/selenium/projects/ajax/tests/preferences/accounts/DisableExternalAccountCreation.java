@@ -32,7 +32,7 @@ public class DisableExternalAccountCreation extends AjaxCommonTest {
 	}
 
 
-	@Test(description = "Verify the display of 'Add External Account' button when External IMAP and POP3 is disabled",
+	@Test (description = "Verify the display of 'Add External Account' button when External IMAP and POP3 is disabled",
 			groups = { "functional", "L3" })
 
 	public void DisableExternalAccountCreation_01() throws HarnessException {

@@ -32,7 +32,7 @@ public class VerifyDisabledUI extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Verify Save, Tag, Accepted and Actions -> Edit, Forward, Delete, Propose New Time & Delete menus are non-functional on mountpoint appointment (read-only share)",
+	@Test (description = "Verify Save, Tag, Accepted and Actions -> Edit, Forward, Delete, Propose New Time & Delete menus are non-functional on mountpoint appointment (read-only share)",
 			groups = { "functional", "L2" })
 
 	public void VerifyDisabledUI_01() throws HarnessException {
@@ -113,7 +113,7 @@ public class VerifyDisabledUI extends AjaxCommonTest {
 
 
 	@Bugs(ids = "99947")
-	@Test( description = "Verify  disabled Create a copy, Move, Forward & Show Original menus for private appointment on mountpoint appointment (read-only share)",
+	@Test (description = "Verify  disabled Create a copy, Move, Forward & Show Original menus for private appointment on mountpoint appointment (read-only share)",
 			groups = { "functional-skip", "application-bug" })
 
 	public void VerifyDisabledUI_02() throws HarnessException {

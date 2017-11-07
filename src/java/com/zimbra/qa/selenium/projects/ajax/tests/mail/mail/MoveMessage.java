@@ -44,7 +44,7 @@ public class MoveMessage extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Move a mail by selecting message, then clicking toolbar 'Move' button",
+	@Test (description = "Move a mail by selecting message, then clicking toolbar 'Move' button",
 			groups = { "smoke", "L1" })
 
 	public void MoveMail_01() throws HarnessException {
@@ -95,7 +95,7 @@ public class MoveMessage extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Move a mail by selecting message, then click 'm' shortcut",
+	@Test (description = "Move a mail by selecting message, then click 'm' shortcut",
 			groups = { "functional", "L2" })
 
 	public void MoveMail_02() throws HarnessException {
@@ -151,7 +151,7 @@ public class MoveMessage extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Move a mail by using 'move to trash' shortcut '.t'",
+	@Test (description = "Move a mail by using 'move to trash' shortcut '.t'",
 			groups = { "functional", "L2" })
 
 	public void MoveMail_03() throws HarnessException {
@@ -194,7 +194,7 @@ public class MoveMessage extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Move a mail by using 'move to inbox' shortcut '.i'",
+	@Test (description = "Move a mail by using 'move to inbox' shortcut '.i'",
 			groups = { "functional", "L2" })
 
 	public void MoveMail_04() throws HarnessException {
@@ -253,7 +253,7 @@ public class MoveMessage extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Move a mail by using Move -> New folder",
+	@Test (description = "Move a mail by using Move -> New folder",
 			groups = { "functional", "L2" })
 
 	public void MoveMail_05() throws HarnessException {

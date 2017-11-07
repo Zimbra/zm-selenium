@@ -42,8 +42,8 @@ public class DeleteTag extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Delete a tag - Right click, Delete",
-			groups = { "smoke", "L1"})
+	@Test (description = "Delete a tag - Right click, Delete",
+			groups = { "smoke", "L1" })
 
 	public void DeleteTag_01() throws HarnessException {
 

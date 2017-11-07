@@ -32,7 +32,7 @@ public class EveryWeek extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 
-	@Test( description = "Create weekly recurring invite with attendee and location",
+	@Test (description = "Create weekly recurring invite with attendee and location",
 			groups = { "sanity" })
 
 	public void EveryWeek_01() throws HarnessException {

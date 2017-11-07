@@ -30,7 +30,7 @@ public class ExpandFolder extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Expand a subfolder",
+	@Test (description = "Expand a subfolder",
 			groups = { "smoke", "L1" })
 
 	public void ExpandFolder_01() throws HarnessException {
@@ -78,7 +78,7 @@ public class ExpandFolder extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Expand 2 subfolders",
+	@Test (description = "Expand 2 subfolders",
 			groups = { "functional", "L2" })
 
 	public void ExpandFolder_02() throws HarnessException {
@@ -145,7 +145,7 @@ public class ExpandFolder extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Expand-All subfolders",
+	@Test (description = "Expand-All subfolders",
 			groups = { "functional", "L3" })
 
 	public void ExpandAllFolders_01() throws HarnessException {

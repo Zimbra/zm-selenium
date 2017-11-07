@@ -14,9 +14,6 @@
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-/**
- * 
- */
 package com.zimbra.qa.selenium.projects.ajax.ui.social;
 
 import com.zimbra.qa.selenium.framework.ui.AbsApplication;
@@ -28,54 +25,46 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 
 /**
  * Represents a "Rename Folder" dialog box
- * <p>
+ * 
  * @author Matt Rhoades
- *
  */
+
 public class DialogSocialZimletWelcome extends AbsDialog {
 
 	public static class Locators {
 		public static final String zDialogLocatorCSS = "css=div[id='SocialZimlet_WelcomeDlg']";
 	}
-	
-	
+
 	public DialogSocialZimletWelcome(AbsApplication application, AbsTab tab) {
 		super(application, tab);
 	}
-	
-	
+
 	@Override
 	public AbsPage zClickButton(Button button) throws HarnessException {
-		logger.info(myPageName() + " zClickButton("+ button +")");
+		logger.info(myPageName() + " zClickButton(" + button + ")");
 
 		String locator = null;
-		
-		if ( button == Button.B_OK ) {
-			
+
+		if (button == Button.B_OK) {
+
 			locator = Locators.zDialogLocatorCSS + " td[id^='OK_'] td[id$='_title']";
-			
+
 		} else {
-			throw new HarnessException("Button "+ button +" not implemented");
+			throw new HarnessException("Button " + button + " not implemented");
 		}
-		
+
 		this.zClick(locator);
-		
+
 		zWaitForBusyOverlay();
-		
+
 		return (null);
 	}
 
 	@Override
 	public String zGetDisplayedText(String locator) throws HarnessException {
-		
 		throw new HarnessException("implement me");
-		
 	}
 
-
-	/* (non-Javadoc)
-	 * @see framework.ui.AbsDialog#myPageName()
-	 */
 	@Override
 	public String myPageName() {
 		return (this.getClass().getName());
@@ -83,26 +72,22 @@ public class DialogSocialZimletWelcome extends AbsDialog {
 
 	@Override
 	public boolean zIsActive() throws HarnessException {
-		
+
 		logger.info(myPageName() + " zIsActive()");
 
 		String locator = Locators.zDialogLocatorCSS;
-		
+
 		boolean present = this.sIsElementPresent(locator);
-		if ( !present ) {
-			return (false); // Not even present
+		if (!present) {
+			return (false);
 		}
-		
+
 		boolean visible = this.zIsVisiblePerPosition(locator, 0, 0);
-		if ( !visible ) {
-			return (false);	// Not visible per position
+		if (!visible) {
+			return (false);
 		}
-	
-		// Yes, visible
+
 		logger.info(myPageName() + " zIsVisible() = true");
 		return (true);
 	}
-
-
-
 }

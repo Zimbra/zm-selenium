@@ -32,7 +32,7 @@ public class CreateAppointment extends AjaxCommonTest {
 	}
 
 
-	@Test ( description = "Create basic recurring appointment (every day)",
+	@Test (description = "Create basic recurring appointment (every day)",
 			groups = { "smoke", "L0" } )
 
 	public void CreateRecurringAppointment_01() throws HarnessException {

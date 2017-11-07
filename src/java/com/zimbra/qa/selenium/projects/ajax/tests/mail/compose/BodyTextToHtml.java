@@ -31,7 +31,7 @@ public class BodyTextToHtml extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Compose a message with body text as plain, change to HTML and verify if text is not lost",
+	@Test (description = "Compose a message with body text as plain, change to HTML and verify if text is not lost",
 			groups = { "smoke", "L1" })
 
 	public void BodyTextToHtml_01() throws HarnessException {

@@ -41,7 +41,7 @@ public class ZmMailItem extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Measure the performance for preview pane, text message, initial load",
+	@Test (description = "Measure the performance for preview pane, text message, initial load",
 			groups = { "performance", "deprecated" })
 
 	public void ZmMailItem_01() throws HarnessException {
@@ -60,7 +60,7 @@ public class ZmMailItem extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Measure the performance for preview pane, text message, 1 message",
+	@Test (description = "Measure the performance for preview pane, text message, 1 message",
 			groups = { "performance", "deprecated" })
 
 	public void ZmMailItem_02() throws HarnessException {
@@ -79,7 +79,7 @@ public class ZmMailItem extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Measure the performance for preview pane,  message with 1 attachment",
+	@Test (description = "Measure the performance for preview pane,  message with 1 attachment",
 			groups = { "performance", "deprecated" })
 
 	public void ZmMailItem_03() throws HarnessException {
@@ -97,7 +97,7 @@ public class ZmMailItem extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Measure the performance for preview pane,  message with 3 attachment",
+	@Test (description = "Measure the performance for preview pane,  message with 3 attachment",
 			groups = { "performance", "deprecated" })
 
 	public void ZmMailItem_04() throws HarnessException {

@@ -46,14 +46,13 @@ public class DialogPasswordRequired extends AbsDialog {
 		String locator = Locators.zDialogTitleClass;
 
 		if (!this.sIsElementPresent(locator)) {
-			return (false); // Not even present
+			return (false);
 		}
 
 		if (!this.zIsVisiblePerPosition(locator, 0, 0)) {
-			return (false); // Not visible per position
+			return (false);
 		}
 
-		// Yes, visible
 		logger.info(myPageName() + " zIsActive() = true");
 		return (true);
 	}
@@ -67,27 +66,26 @@ public class DialogPasswordRequired extends AbsDialog {
 
 		if (button == Button.B_SUBMIT) {
 			locator = "css=td[id='CertificatePasswordDialog_button2_title']:contains('Submit')";
-			
+
 		} else {
 			throw new HarnessException("Button " + button + " not implemented");
 		}
 		if (!this.sIsElementPresent(locator)) {
-			throw new HarnessException("Button " + button + " locator "
-					+ locator + " not present!");
+			throw new HarnessException("Button " + button + " locator " + locator + " not present!");
 		}
 		this.zClickAt(locator, "0,0");
 		SleepUtil.sleepMedium();
 
 		return (null);
 	}
-	
+
 	public void zEnterPassword(String password) throws HarnessException {
 
 		if (password == null)
 			throw new HarnessException("password must not be null");
-		
+
 		String locator = Locators.zPassword;
-		
+
 		if (!this.zWaitForElementPresent(locator, "10000"))
 			throw new HarnessException("unable to find body field " + locator);
 
@@ -97,10 +95,9 @@ public class DialogPasswordRequired extends AbsDialog {
 		this.zKeyboard.zTypeCharacters(password);
 		SleepUtil.sleepSmall();
 	}
-	
+
 	@Override
 	public String zGetDisplayedText(String text) throws HarnessException {
 		return null;
 	}
-
 }

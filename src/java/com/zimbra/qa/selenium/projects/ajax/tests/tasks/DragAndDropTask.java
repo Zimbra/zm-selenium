@@ -38,8 +38,8 @@ public class DragAndDropTask extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Drag and Drop a task from Tasks to subfolder",
-			groups = { "smoke", "L1"})
+	@Test (description = "Drag and Drop a task from Tasks to subfolder",
+			groups = { "smoke", "L1" })
 
 	public void DragAndDropTask_01() throws HarnessException {
 

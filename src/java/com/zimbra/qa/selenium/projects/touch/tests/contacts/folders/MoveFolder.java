@@ -32,7 +32,7 @@ public class MoveFolder extends PrefGroupMailByMessageTest {
 		super.startingPage = app.zPageAddressbook;
 	}
 
-	@Test( description = "Move and existing contact folder",
+	@Test (description = "Move and existing contact folder",
 			groups = { "smoke" })
 	
 	public void MoveFolder_01() throws HarnessException  {

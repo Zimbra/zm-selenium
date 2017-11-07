@@ -30,7 +30,7 @@ public class CreateMail extends PrefGroupMailByMessageTest {
 	}
 
 	@Bugs( ids = "21624")
-	@Test( description = "Create a mail using the deep link URL",
+	@Test (description = "Create a mail using the deep link URL",
 			groups = { "smoke", "L1" })
 
 	public void CreateMail_01() throws HarnessException {
@@ -60,7 +60,7 @@ public class CreateMail extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Create a mail with cc and bcc using the deep link URL",
+	@Test (description = "Create a mail with cc and bcc using the deep link URL",
 			groups = { "functional", "L2" })
 
 	public void CreateMail_02() throws HarnessException {
@@ -104,7 +104,7 @@ public class CreateMail extends PrefGroupMailByMessageTest {
 
 
 	@Bugs( ids = "82734")
-	@Test( description = "Create a mail with two 'to' adn two 'cc' addresses using the deep link URL",
+	@Test (description = "Create a mail with two 'to' adn two 'cc' addresses using the deep link URL",
 			groups = { "functional-skip", "application-bug" })
 
 	public void CreateMail_03() throws HarnessException {
@@ -165,7 +165,7 @@ public class CreateMail extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Create a mail with two 'to' adn two 'cc' addresses (comma separated) using the deep link URL",
+	@Test (description = "Create a mail with two 'to' adn two 'cc' addresses (comma separated) using the deep link URL",
 			groups = { "functional", "L3" })
 
 	public void CreateMail_04() throws HarnessException {
@@ -243,7 +243,7 @@ public class CreateMail extends PrefGroupMailByMessageTest {
 	}
 
 	@Bugs( ids = "76182,80816")
-	@Test( description = "Create a mail with to with angled brackets, i.e. to=First Last<email@domain.com>",
+	@Test (description = "Create a mail with to with angled brackets, i.e. to=First Last<email@domain.com>",
 			dataProvider = "DataProviderMailtoBrackets",
 			groups = { "functional", "L3" })
 

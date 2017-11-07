@@ -31,7 +31,7 @@ public class ZmTasksAppFolders extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Measure the time to load the tasks app, 1 task list",
+	@Test (description = "Measure the time to load the tasks app, 1 task list",
 			groups = { "performance", "deprecated"})
 
 	public void ZmTasksAppFolders_01() throws HarnessException {
@@ -54,7 +54,7 @@ public class ZmTasksAppFolders extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Measure the time to load the tasks app, 100 task lists",
+	@Test (description = "Measure the time to load the tasks app, 100 task lists",
 			groups = { "performance", "deprecated"})
 
 	public void ZmTasksAppFolders_02() throws HarnessException {

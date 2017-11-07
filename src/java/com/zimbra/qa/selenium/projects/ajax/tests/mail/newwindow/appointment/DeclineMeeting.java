@@ -59,7 +59,7 @@ public class DeclineMeeting extends AjaxCommonTest {
 	}
 
 
-	@Test(description = " From New Windoow Decline a meeting using Decline button from invitation message",
+	@Test (description = " From New Windoow Decline a meeting using Decline button from invitation message",
 			groups = { "functional", "L2" })
 
 	public void DeclineMeeting_01() throws HarnessException {
@@ -158,7 +158,7 @@ public class DeclineMeeting extends AjaxCommonTest {
 	}
 
 
-	@Test(description = " From New Window >>Decline meeting - Verify organizer gets notification message",
+	@Test (description = " From New Window >>Decline meeting - Verify organizer gets notification message",
 			groups = { "functional", "L2" })
 
 	public void DeclineMeeting_02() throws HarnessException {
@@ -211,7 +211,7 @@ public class DeclineMeeting extends AjaxCommonTest {
 	}
 
 
-	@Test(description = "From New Window >>Decline meeting using 'Decline -> Notify Organizer'",
+	@Test (description = "From New Window >>Decline meeting using 'Decline -> Notify Organizer'",
 			groups = { "functional", "L2" })
 
 	public void DeclineMeeting_03() throws HarnessException {
@@ -314,7 +314,7 @@ public class DeclineMeeting extends AjaxCommonTest {
 	}
 
 
-	@Test(description = "Decline meeting using 'Decline -> Don't Notify Organizer'",
+	@Test (description = "Decline meeting using 'Decline -> Don't Notify Organizer'",
 			groups = { "functional", "L2" })
 
 	public void DeclineMeeting_04() throws HarnessException {

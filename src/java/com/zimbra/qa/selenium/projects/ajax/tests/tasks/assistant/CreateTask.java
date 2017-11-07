@@ -52,7 +52,7 @@ public class CreateTask extends AjaxCommonTest {
 	 * @throws HarnessException
 	 */
 
-	@Test( description = "Create Task using assistant",
+	@Test (description = "Create Task using assistant",
 			groups = { "deprecated"})
 
 	public void CreateTask_01() throws HarnessException {
@@ -87,7 +87,7 @@ public class CreateTask extends AjaxCommonTest {
 	 */
 
 		@Bugs(ids="63199")
-		@Test( description = "Create Task using assistant and save it",
+		@Test (description = "Create Task using assistant and save it",
 			groups = { "deprecated"})
 
 		public void CreateTask_02() throws HarnessException {

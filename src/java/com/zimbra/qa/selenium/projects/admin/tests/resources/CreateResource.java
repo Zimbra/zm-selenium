@@ -45,7 +45,7 @@ public class CreateResource extends AdminCommonTest {
 	 * 2. Verify resource is created using SOAP.
 	 * @throws HarnessException
 	 */
-	@Test( description = "Create a basic resource",
+	@Test (description = "Create a basic resource",
 			groups = { "functional-skip", "L3-skip" })
 			public void CreateResource_01() throws HarnessException {
 
@@ -79,7 +79,7 @@ public class CreateResource extends AdminCommonTest {
 	 * 2. Verify resource is created using SOAP.
 	 * @throws HarnessException
 	 */
-	@Test( description = "Create a basic resource using Manage Accounts --> Resources --> Gear box --> New",
+	@Test (description = "Create a basic resource using Manage Accounts --> Resources --> Gear box --> New",
 			groups = { "functional-skip", "L3-skip" })
 			public void CreateResource_02() throws HarnessException {
 
@@ -113,7 +113,7 @@ public class CreateResource extends AdminCommonTest {
 	 * 2. Verify resource is created using SOAP.
 	 * @throws HarnessException
 	 */
-	@Test( description = "Create a basic Location resource",
+	@Test (description = "Create a basic Location resource",
 			groups = { "sanity", "L0" })
 			public void CreateResource_03() throws HarnessException {
 
@@ -148,7 +148,7 @@ public class CreateResource extends AdminCommonTest {
 	 * 2. Verify resource is created using SOAP.
 	 * @throws HarnessException
 	 */
-	@Test( description = "Create a basic Equipment resource",
+	@Test (description = "Create a basic Equipment resource",
 			groups = { "sanity", "L0" })
 			public void CreateResource_04() throws HarnessException {
 

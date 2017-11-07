@@ -48,7 +48,7 @@ public class DialogOpenRecurringItem extends AbsDialog {
 		logger.info(myPageName() + " zClickButton(" + button + ")");
 
 		tracer.trace("Click dialog button " + button);
-		if ( button == null )
+		if (button == null)
 			throw new HarnessException("button cannot be null");
 
 		String locator = null;
@@ -61,27 +61,23 @@ public class DialogOpenRecurringItem extends AbsDialog {
 			locator = "css=label:contains('Open the series')";
 
 		} else if (button == Button.B_OK) {
-			locator = "css=div[class='" + Locators.zDialogClass + "'] "
-					+ "div[class='" + Locators.zDialogButtonsClass
+			locator = "css=div[class='" + Locators.zDialogClass + "'] " + "div[class='" + Locators.zDialogButtonsClass
 					+ "'] td[class=ZWidgetTitle]:contains(OK)";
 
 		} else if (button == Button.B_CANCEL) {
-			locator = "css=div[class='" + Locators.zDialogClass + "'] "
-					+ "div[class='" + Locators.zDialogButtonsClass
+			locator = "css=div[class='" + Locators.zDialogClass + "'] " + "div[class='" + Locators.zDialogButtonsClass
 					+ "'] td[class=ZWidgetTitle]:contains(Cancel)";
 		} else {
 			throw new HarnessException("Button " + button + " not implemented");
 		}
 
-		// Make sure the locator exists
 		if (!this.sIsElementPresent(locator)) {
 			throw new HarnessException("Button " + button + " locator " + locator + " not present!");
 		}
 
-		this.sClickAt(locator,"0,0");
+		this.sClickAt(locator, "0,0");
 		SleepUtil.sleepMedium();
 
-		// If the app is busy, wait for it to become active
 		this.zWaitForBusyOverlay();
 
 		return (page);
@@ -104,11 +100,11 @@ public class DialogOpenRecurringItem extends AbsDialog {
 		String locator = "css=td[class='DwtDialogTitle']:contains('Open Recurring Item')";
 
 		if (!this.sIsElementPresent(locator)) {
-			return (false); // Not even present
+			return (false);
 		}
 
 		if (!this.zIsVisiblePerPosition(locator, 0, 0)) {
-			return (false); // Not visible per position
+			return (false);
 		}
 
 		logger.info(myPageName() + " zIsActive() = true");

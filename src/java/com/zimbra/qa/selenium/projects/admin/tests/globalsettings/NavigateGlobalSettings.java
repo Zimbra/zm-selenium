@@ -38,7 +38,7 @@ public class NavigateGlobalSettings extends AdminCommonTest {
 	 * 2. Verify navigation path -- "Home --> Configure --> Global Settings"
 	 * @throws HarnessException
 	 */
-	@Test( description = "Navigate to Global Settings",
+	@Test (description = "Navigate to Global Settings",
 			groups = { "sanity", "L0" })
 			public void NavigateGlobalSettings_01() throws HarnessException {
 		

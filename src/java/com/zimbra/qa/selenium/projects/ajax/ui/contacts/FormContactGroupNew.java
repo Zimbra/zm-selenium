@@ -24,6 +24,7 @@ import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.ui.*;
 
 public class FormContactGroupNew extends AbsForm {
+
 	public static final String SELECT_OPTION_TEXT_GAL = "Global Address List";
 	public static final String SELECT_OPTION_TEXT_CONTACTS = "Contacts";
 	public static final String SELECT_OPTION_TEXT_SHARED_CONTACTS = "Personal and Shared Contacts";
@@ -49,7 +50,6 @@ public class FormContactGroupNew extends AbsForm {
 		public static final String SAVE = "css=[id^=zb__CN][id$=__SAVE_left_icon]";
 		public static final String CANCEL = "css=[id^=zb__CN][id$=__CANCEL]";
 
-		// TODO
 		public static final String zDropdownSelectContacts = "css=DYNAMIC_ID";
 		public static final String zDropdownSelectSharedContacts = "css=DYNAMIC_ID";
 		public static final String zDropdownSelectGAL = "css=DYNAMIC_ID";
@@ -81,11 +81,6 @@ public class FormContactGroupNew extends AbsForm {
 
 	}
 
-	/**
-	 * There are a lot of 'duplicate' divs involved with the Contact Group
-	 * New/Edit forms We need to determine which div is active to make the code
-	 * work correctly
-	 */
 	protected String MyDivID = null;
 
 	public FormContactGroupNew(AbsApplication application) {
@@ -105,13 +100,6 @@ public class FormContactGroupNew extends AbsForm {
 		this.zToolbarPressButton(Button.B_SAVE);
 	}
 
-	/**
-	 * Press the toolbar button
-	 * 
-	 * @param button
-	 * @return
-	 * @throws HarnessException
-	 */
 	public AbsPage zToolbarPressButton(Button button) throws HarnessException {
 		logger.info(myPageName() + " zToolbarPressButton(" + button + ")");
 
@@ -122,7 +110,6 @@ public class FormContactGroupNew extends AbsForm {
 		if (button == null)
 			throw new HarnessException("Button cannot be null!");
 
-		// Fallthrough objects
 		AbsPage page = null;
 		String locator = null;
 
@@ -136,11 +123,6 @@ public class FormContactGroupNew extends AbsForm {
 			locator = "css=div#" + getToolbarID() + " div[id$='__CANCEL'] td[id$='_title']";
 			page = new DialogWarning(DialogWarning.DialogWarningID.CancelCreateContact, this.MyApplication,
 					((AppAjaxClient) this.MyApplication).zPageContacts);
-
-			// If there are pending changes, the dialog will appear.
-			// If no pending changes, the dialog will not appear.
-			// Click the button and blindly return the page (no checking for
-			// active)
 
 			this.zClick(locator);
 
@@ -190,29 +172,18 @@ public class FormContactGroupNew extends AbsForm {
 
 		SleepUtil.sleepMedium();
 
-		// if the app is busy, wait for it to become active again
 		this.zWaitForBusyOverlay();
 
 		if (page != null) {
 
-			// Make sure the page becomes active
 			page.zWaitForActive();
 
 		}
 
-		// Return the page, if specified
 		return (page);
 
 	}
 
-	/**
-	 * Press the toolbar pulldown and the menu option
-	 * 
-	 * @param pulldown
-	 * @param option
-	 * @return
-	 * @throws HarnessException
-	 */
 	public AbsPage zToolbarPressPulldown(Button pulldown, Button option) throws HarnessException {
 
 		logger.info(myPageName() + " zToolbarPressPulldown(" + pulldown + ", " + option + ")");
@@ -225,13 +196,8 @@ public class FormContactGroupNew extends AbsForm {
 		if (option == null)
 			throw new HarnessException("Option cannot be null!");
 
-		//
 		String pulldownLocator = null;
 		String optionLocator = null;
-		// AbsPage page = null;
-
-		// Based on the button specified, take the appropriate action(s)
-		//
 
 		if (pulldown == Button.B_CONTACTGROUP_SEARCH_TYPE) {
 
@@ -247,27 +213,18 @@ public class FormContactGroupNew extends AbsForm {
 			SleepUtil.sleepMedium();
 			this.zWaitForBusyOverlay();
 
-			// See: https://bugzilla.zimbra.com/show_bug.cgi?id=77791
 			optionLocator = "css=div#" + this.getSearchPulldownID();
 
 			if (option == Button.O_CONTACTGROUP_SEARCH_GAL) {
 
-				// optionLocator = optionLocator + "
-				// td[id$='_title']:contains('Global Address List')"; // TODO:
-				// INTL
 				optionLocator = "css=div[id$='_Menu_1'][style*='display: block;'] div[id$='_Menu_1_option_3']";
 
 			} else if (option == Button.O_CONTACTGROUP_SEARCH_CONTACTS) {
 
-				// optionLocator = optionLocator + "
-				// td[id$='_title']:contains('Contacts')"; // TODO: INTL
 				optionLocator = "css=div[id$='_Menu_1'][style*='display: block;'] div[id$='_Menu_1_option_1']";
 
 			} else if (option == Button.O_CONTACTGROUP_SEARCH_PERSONAL_AND_SHARED) {
 
-				// optionLocator = optionLocator + "
-				// td[id$='_title']:contains('Personal and Shared Contacts')";
-				// // TODO: INTL
 				optionLocator = "css=div[id$='_Menu_1'][style*='display: block;'] div[id$='_Menu_1_option_2']";
 
 			} else {
@@ -281,7 +238,6 @@ public class FormContactGroupNew extends AbsForm {
 			}
 
 			this.zClick(optionLocator);
-			// this.sClickAt(optionLocator,"");
 
 			this.zWaitForBusyOverlay();
 
@@ -336,10 +292,6 @@ public class FormContactGroupNew extends AbsForm {
 			throw new HarnessException("not implemented for field " + field);
 		}
 
-		// Default behavior, enter value into locator field
-		//
-
-		// Make sure the button exists
 		if (!this.sIsElementPresent(locator))
 			throw new HarnessException("Field is not present field=" + field + " locator=" + locator);
 
@@ -397,30 +349,15 @@ public class FormContactGroupNew extends AbsForm {
 
 	}
 
-	/*
-	 * check if the list group is empty
-	 */
 	public boolean zIsListGroupEmpty() throws HarnessException {
 		return sIsElementPresent(
 				getLocator(" div#[id$=_listView].groupMembers div[id^=zl__DWT][id$=__rows] td.NoResults"));
 	}
 
-	/**
-	 * Return the list of group members currently showing in the group member
-	 * list
-	 * 
-	 * @return
-	 */
 	public ArrayList<ContactItem> zListGetMembers() throws HarnessException {
 		throw new HarnessException("implement me");
 	}
 
-	/**
-	 * Return the list of contacts/groups/GAL currently showing in the search
-	 * results
-	 * 
-	 * @return
-	 */
 	public ArrayList<ContactItem> zListGetSearchResults() throws HarnessException {
 		logger.info("zListGetSearchResults()");
 
@@ -521,15 +458,6 @@ public class FormContactGroupNew extends AbsForm {
 
 	private String MyToolbarID = null;
 
-	/**
-	 * Determine the z-shell <div/> that contains the Search Contacts, GAL,
-	 * Personal and Shared menu.
-	 * 
-	 * See https://bugzilla.zimbra.com/show_bug.cgi?id=77791
-	 * 
-	 * @return The z_shell Child ID
-	 * @throws HarnessException
-	 */
 	public String getToolbarID() throws HarnessException {
 		logger.info("getToolbarID()");
 
@@ -554,15 +482,6 @@ public class FormContactGroupNew extends AbsForm {
 
 	private String MySearchPulldownID = null;
 
-	/**
-	 * Determine the z-shell <div/> that contains the Search Contacts, GAL,
-	 * Personal and Shared menu.
-	 * 
-	 * See https://bugzilla.zimbra.com/show_bug.cgi?id=77791
-	 * 
-	 * @return The z_shell Child ID
-	 * @throws HarnessException
-	 */
 	protected String getSearchPulldownID() throws HarnessException {
 		logger.info("getSearchPulldownID()");
 

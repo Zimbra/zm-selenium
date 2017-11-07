@@ -36,7 +36,7 @@ public class ZimbraPrefColorMessagesEnabledTrue extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Set 'Set color of messages and conversations according to tag color.': Enabled",
+	@Test (description = "Set 'Set color of messages and conversations according to tag color.': Enabled",
 			groups = { "functional", "L3" })
 
 	public void ZimbraPrefColorMessagesEnabledTrue_01() throws HarnessException {

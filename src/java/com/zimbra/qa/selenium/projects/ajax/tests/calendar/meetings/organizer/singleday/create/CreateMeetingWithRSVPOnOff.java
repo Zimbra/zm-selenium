@@ -36,7 +36,7 @@ public class CreateMeetingWithRSVPOnOff extends AjaxCommonTest {
 
 
 	@Bugs(ids = "101999")
-	@Test( description = "Verify organizer does not recieve email notification when attendee responds to the meeting invite while 'Request Response' remains OFF",
+	@Test (description = "Verify organizer does not recieve email notification when attendee responds to the meeting invite while 'Request Response' remains OFF",
 			groups = { "smoke", "L1" })
 
 	public void CreateMeetingWithRSVPOff_01() throws HarnessException {
@@ -107,7 +107,7 @@ public class CreateMeetingWithRSVPOnOff extends AjaxCommonTest {
 
 
 	@Bugs(ids = "101999")
-	@Test( description = "Verify organizer receives email notification when attendee responds to the meeting invite while 'Request Response' remains ON",
+	@Test (description = "Verify organizer receives email notification when attendee responds to the meeting invite while 'Request Response' remains ON",
 			groups = { "functional", "L2" })
 
 	public void CreateMeetingWithRSVPOn_02() throws HarnessException {

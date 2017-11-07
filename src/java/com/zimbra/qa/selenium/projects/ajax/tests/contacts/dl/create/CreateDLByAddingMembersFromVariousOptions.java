@@ -32,8 +32,8 @@ public class CreateDLByAddingMembersFromVariousOptions extends AjaxCommonTest  {
 	}
 
 
-	@Test( description = "Create DL by adding DL members from various options",
-			groups = { "sanity", "L0"})
+	@Test (description = "Create DL by adding DL members from various options",
+			groups = { "sanity", "L0" })
 
 	public void CreateDLByAddingMembersFromVariousOptions_01 () throws HarnessException {
 

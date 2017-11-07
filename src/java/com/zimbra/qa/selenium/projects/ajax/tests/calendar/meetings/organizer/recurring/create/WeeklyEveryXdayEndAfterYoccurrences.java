@@ -35,7 +35,7 @@ public class WeeklyEveryXdayEndAfterYoccurrences extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Create weekly recurring invite with attendee and location with which ends after 2 occurrences",
+	@Test (description = "Create weekly recurring invite with attendee and location with which ends after 2 occurrences",
 			groups = { "sanity", "L0" })
 
 	public void WeeklyEveryXdayEndAfterYoccurrences_01() throws HarnessException {

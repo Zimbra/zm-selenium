@@ -30,7 +30,7 @@ public class MarkUnReadMail extends PrefGroupMailByMessageTest{
 		logger.info("New " + MarkUnReadMail.class.getCanonicalName());
 	}
 
-	@Test( description = "Verify error message is displayed when on deleting email on mountpoint message (read-only share)",
+	@Test (description = "Verify error message is displayed when on deleting email on mountpoint message (read-only share)",
 			groups = { "functional" })
 
 	public void MarkReadMail_01() throws HarnessException  {

@@ -55,8 +55,8 @@ public class CreateHtmlTask extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Create Simple Html task through GUI - verify through soap",
-			groups = { "sanity", "L0"})
+	@Test (description = "Create Simple Html task through GUI - verify through soap",
+			groups = { "sanity", "L0" })
 
 	public void CreateHtmlTask_01() throws HarnessException {
 
@@ -78,8 +78,8 @@ public class CreateHtmlTask extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Create new Html task using keyboard shortcut Esc- Verify through Soap",
-			groups = { "smoke", "L0"})
+	@Test (description = "Create new Html task using keyboard shortcut Esc- Verify through Soap",
+			groups = { "smoke", "L0" })
 
 	public void CreateHtmlTask_02() throws HarnessException {
 
@@ -108,8 +108,8 @@ public class CreateHtmlTask extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Create Html task using New menu pulldown  - verify through SOAP",
-			groups = { "smoke", "L0"})
+	@Test (description = "Create Html task using New menu pulldown  - verify through SOAP",
+			groups = { "smoke", "L0" })
 
 	public void CreateHtmlTask_03() throws HarnessException {
 
@@ -131,8 +131,8 @@ public class CreateHtmlTask extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Create new Html task using keyboard shortcut 'NK'- Verify through Soap",
-			groups = { "smoke", "L0"})
+	@Test (description = "Create new Html task using keyboard shortcut 'NK'- Verify through Soap",
+			groups = { "smoke", "L0" })
 
 	public void CreateHtmlTask_04() throws HarnessException {
 
@@ -160,8 +160,8 @@ public class CreateHtmlTask extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Create Html Tasks, using 'Right Click' Html Mail subject -> 'Create Task'-Verify through Soap",
-			groups = { "smoke", "L0"})
+	@Test (description = "Create Html Tasks, using 'Right Click' Html Mail subject -> 'Create Task'-Verify through Soap",
+			groups = { "smoke", "L0" })
 
 	public void CreateHtmlTask_05() throws HarnessException {
 
@@ -216,8 +216,8 @@ public class CreateHtmlTask extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Create Html task with attachment through RestUtil - verify through GUI",
-			groups = { "smoke", "L0"})
+	@Test (description = "Create Html task with attachment through RestUtil - verify through GUI",
+			groups = { "smoke", "L0" })
 
 	public void CreateHtmlTask_06() throws HarnessException {
 
@@ -266,8 +266,8 @@ public class CreateHtmlTask extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Create Html task with attachment through RestUtil - verify through Soap",
-			groups = { "smoke", "L0"})
+	@Test (description = "Create Html task with attachment through RestUtil - verify through Soap",
+			groups = { "smoke", "L0" })
 
 	public void CreateHtmlTask_07() throws HarnessException {
 

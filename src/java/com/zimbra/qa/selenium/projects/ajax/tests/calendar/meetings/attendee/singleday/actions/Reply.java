@@ -35,7 +35,7 @@ public class Reply extends AjaxCommonTest {
 
 
 	@Bugs(ids = "102475")
-	@Test( description = "Verify organizer receives message while attendee replies to",
+	@Test (description = "Verify organizer receives message while attendee replies to",
 			groups = { "functional", "L2" })
 
 	public void Reply_01() throws HarnessException {

@@ -32,13 +32,13 @@ public class DialogCustomRepeat extends AbsDialog {
 		public static final DialogWarningID DialogCustomRepeat = new DialogWarningID("DwtDialog");
 
 		protected String Id;
+
 		public DialogWarningID(String id) {
 			Id = id;
 		}
 	}
 
 	protected String MyDivId = null;
-
 
 	public DialogCustomRepeat(DialogWarningID dialogId, AbsApplication application, AbsTab tab) {
 		super(application, tab);
@@ -47,7 +47,7 @@ public class DialogCustomRepeat extends AbsDialog {
 	}
 
 	public String zGetWarningTitle() throws HarnessException {
-		String locator = "css=div[id='"+ MyDivId +"'] td[id='"+ MyDivId +"_title']";
+		String locator = "css=div[id='" + MyDivId + "'] td[id='" + MyDivId + "_title']";
 		return (zGetDisplayedText(locator));
 	}
 
@@ -63,13 +63,13 @@ public class DialogCustomRepeat extends AbsDialog {
 
 	@Override
 	public AbsPage zClickButton(Button button) throws HarnessException {
-		if ( button == null )
+		if (button == null)
 			throw new HarnessException("button cannot be null");
 
 		String locator = null;
 		AbsPage page = null;
 
-		String buttonsTableLocator = "css=div[class='"+ MyDivId +"']";
+		String buttonsTableLocator = "css=div[class='" + MyDivId + "']";
 
 		if (button == Button.B_OK) {
 			locator = buttonsTableLocator + " td[id$='_button2_title']:contains('OK')";
@@ -82,10 +82,8 @@ public class DialogCustomRepeat extends AbsDialog {
 			throw new HarnessException("no logic defined for button " + button);
 		}
 
-		// Click it
 		sClickAt(locator, "");
 
-		// If the app is busy, wait for it to become active
 		zWaitForBusyOverlay();
 
 		if (button == Button.B_OK) {
@@ -100,10 +98,10 @@ public class DialogCustomRepeat extends AbsDialog {
 
 	@Override
 	public String zGetDisplayedText(String locator) throws HarnessException {
-		if ( locator == null )
+		if (locator == null)
 			throw new HarnessException("locator cannot be null");
 
-		if ( !this.sIsElementPresent(locator) )
+		if (!this.sIsElementPresent(locator))
 			throw new HarnessException("locator cannot be found");
 
 		return (this.sGetText(locator));
@@ -112,10 +110,10 @@ public class DialogCustomRepeat extends AbsDialog {
 
 	@Override
 	public boolean zIsActive() throws HarnessException {
-		if ( !this.sIsElementPresent(MyDivId) )
+		if (!this.sIsElementPresent(MyDivId))
 			return (false);
 
-		if ( !this.zIsVisiblePerPosition(MyDivId, 0, 0) )
+		if (!this.zIsVisiblePerPosition(MyDivId, 0, 0))
 			return (false);
 
 		return (true);

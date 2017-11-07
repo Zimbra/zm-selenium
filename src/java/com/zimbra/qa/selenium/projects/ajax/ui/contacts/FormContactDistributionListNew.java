@@ -34,35 +34,32 @@ public class FormContactDistributionListNew extends AbsForm {
 		public static final String zNewContactGroupMenuIconBtn = "css=id=^_left_icon div[class=ImgNewGroup]";
 		public static String zActiveEditForm = "";
 
-		public static String zGroupnameField               = " div.companyName input[id$='_groupName']";
-	    public static String zGroupAddNewTextArea          = " textarea[id$='_addNewField']";
-	    public static String zAddNewButton                 = " td[id$='_addNewButton'] td[id$='_title']";
-	    public static String zAddButton                    = " td[id$='_addButton'] td[id$='_title']";
-	    public static String zAddAllButton                 = " td[id$='_addAllButton'] td[id$='_title']";
-	    public static String zPrevButton                   = " td[id$='_prevButton'] td[id$='_title']";
-	    public static String zNextButton                   = " td[id$='_nextButton'] td[id$='_title']";
+		public static String zGroupnameField = " div.companyName input[id$='_groupName']";
+		public static String zGroupAddNewTextArea = " textarea[id$='_addNewField']";
+		public static String zAddNewButton = " td[id$='_addNewButton'] td[id$='_title']";
+		public static String zAddButton = " td[id$='_addButton'] td[id$='_title']";
+		public static String zAddAllButton = " td[id$='_addAllButton'] td[id$='_title']";
+		public static String zPrevButton = " td[id$='_prevButton'] td[id$='_title']";
+		public static String zNextButton = " td[id$='_nextButton'] td[id$='_title']";
 
-	    public static String zFindField                    = " input[id$='_searchField']";
-        public static String zSearchButton                 = " td[id$='_searchButton'][id^='DWT'] td[id$='_title']";
-        public static String zSearchDropdown               = " td[id$='_listSelect'] td[id$='_select_container'] ";
-        public static String zFolderDropdown               = ">table.contactHeaderTable td[id$='_title']";
+		public static String zFindField = " input[id$='_searchField']";
+		public static String zSearchButton = " td[id$='_searchButton'][id^='DWT'] td[id$='_title']";
+		public static String zSearchDropdown = " td[id$='_listSelect'] td[id$='_select_container'] ";
+		public static String zFolderDropdown = ">table.contactHeaderTable td[id$='_title']";
 
-		public static final String SAVE					   = "css=[id^=zb__CN][id$=__SAVE_left_icon]";
-		public static final String CANCEL				   = "css=[id^=zb__CN][id$=__CANCEL]";
+		public static final String SAVE = "css=[id^=zb__CN][id$=__SAVE_left_icon]";
+		public static final String CANCEL = "css=[id^=zb__CN][id$=__CANCEL]";
 
+		public static final String zDropdownSelectContacts = "css=DYNAMIC_ID";
+		public static final String zDropdownSelectSharedContacts = "css=DYNAMIC_ID";
+		public static final String zDropdownSelectGAL = "css=DYNAMIC_ID";
 
-        //TODO
-	    public static final String zDropdownSelectContacts       = "css=DYNAMIC_ID";
-	    public static final String zDropdownSelectSharedContacts = "css=DYNAMIC_ID";
-	    public static final String zDropdownSelectGAL            = "css=DYNAMIC_ID";
+		public static String zListView = " div[id$='_listView'] div#z1__GRP__rows";
+		public static String zEmailView = " div[id$='_groupMembers'] div#z1__GRP__rows";
 
-	    public static String zListView                     = " div[id$='_listView'] div#z1__GRP__rows";
-	    public static String zEmailView                    = " div[id$='_groupMembers'] div#z1__GRP__rows";
-
-	    public static String zDeleteAllButton              = " td[id$='_delAllButton'] td[id$='_title']";
-	    public static String zDeleteButton                 = " td[id$='_delButton'] td[id$='_title']";
+		public static String zDeleteAllButton = " td[id$='_delAllButton'] td[id$='_title']";
+		public static String zDeleteButton = " td[id$='_delButton'] td[id$='_title']";
 	}
-
 
 	public static class Field {
 
@@ -74,6 +71,7 @@ public class FormContactDistributionListNew extends AbsForm {
 		public static final Field DistributionListDisplayName = new Field("DistributionListDisplayName");
 
 		private String field;
+
 		private Field(String name) {
 			field = name;
 		}
@@ -85,13 +83,7 @@ public class FormContactDistributionListNew extends AbsForm {
 
 	}
 
-
-	/**
-		There are a lot of 'duplicate' divs involved with the Contact Group New/Edit forms
-		We need to determine which div is active to make the code work correctly
-	 */
 	protected String MyDivID = null;
-
 
 	public FormContactDistributionListNew(AbsApplication application) {
 		super(application);
@@ -111,31 +103,23 @@ public class FormContactDistributionListNew extends AbsForm {
 		SleepUtil.sleepLong();
 	}
 
-	/**
-	 * Press the toolbar button
-	 * @param button
-	 * @return
-	 * @throws HarnessException
-	 */
 	public AbsPage zToolbarPressButton(Button button) throws HarnessException {
-		logger.info(myPageName() + " zToolbarPressButton("+ button +")");
+		logger.info(myPageName() + " zToolbarPressButton(" + button + ")");
 
-		tracer.trace("Click button "+ button);
+		tracer.trace("Click button " + button);
 
-
-		if ( button == null )
+		if (button == null)
 			throw new HarnessException("Button cannot be null!");
 
-		// Fallthrough objects
 		AbsPage page = null;
 		String locator = null;
 
-		if ( button == Button.B_SAVE ) {
+		if (button == Button.B_SAVE) {
 
 			locator = "css=div#" + getToolbarID() + " div[id$='__SAVE'] td[id$='_title']";
 			page = null;
 
-		} else if ( button == Button.B_CLOSE ) {
+		} else if (button == Button.B_CLOSE) {
 
 			locator = "css=div#" + getToolbarID() + " div[id$='__CANCEL'] td[id$='_title']";
 			page = null;
@@ -144,56 +128,56 @@ public class FormContactDistributionListNew extends AbsForm {
 
 			return (page);
 
-		} else if ( button == Button.B_DELETE ) {
+		} else if (button == Button.B_DELETE) {
 
 			locator = "css=div#" + getToolbarID() + " div[id$='__DELETE'] td[id$='_title']";
 			page = null;
 
-		} else if ( button == Button.B_CHOOSE_ADDRESSBOOK ) {
+		} else if (button == Button.B_CHOOSE_ADDRESSBOOK) {
 
-			locator = "css=div#"+ MyDivID +" td[id$='_LOCATION_FOLDER'] td[id$='_title']";
+			locator = "css=div#" + MyDivID + " td[id$='_LOCATION_FOLDER'] td[id$='_title']";
 			page = null;
 
-		} else if ( button == Button.B_DISTRIBUTIONLIST_ADD_ADDRESS ) {
+		} else if (button == Button.B_DISTRIBUTIONLIST_ADD_ADDRESS) {
 
-			locator = "css=div#"+ MyDivID +" td[id$='_addNewButton'] td[id$='_title']";
+			locator = "css=div#" + MyDivID + " td[id$='_addNewButton'] td[id$='_title']";
 			page = null;
 
-		} else if ( button == Button.B_DISTRIBUTIONLIST_ADD_SEARCH_RESULT ) {
+		} else if (button == Button.B_DISTRIBUTIONLIST_ADD_SEARCH_RESULT) {
 
-			locator = "css=div#"+ MyDivID +" td[id$='_addButton'] td[id$='_title']";
+			locator = "css=div#" + MyDivID + " td[id$='_addButton'] td[id$='_title']";
 			page = null;
 
-		} else if ( button == Button.B_DISTRIBUTIONLIST_ADD_ALL_SEARCH_RESULT ) {
+		} else if (button == Button.B_DISTRIBUTIONLIST_ADD_ALL_SEARCH_RESULT) {
 
-			locator = "css=div#"+ MyDivID +" td[id$='_addAllButton'] td[id$='_title']";
+			locator = "css=div#" + MyDivID + " td[id$='_addAllButton'] td[id$='_title']";
 			page = null;
 
-		} else if ( button == Button.B_SEARCH ) {
+		} else if (button == Button.B_SEARCH) {
 
-			locator = "css=div#"+ MyDivID +" td[id$='_searchButton'] td[id$='_title']";
+			locator = "css=div#" + MyDivID + " td[id$='_searchButton'] td[id$='_title']";
 			page = null;
 
-		} else if ( button == Button.B_ADD ) {
+		} else if (button == Button.B_ADD) {
 
 			locator = "css=td[id$='_addButton'] td[id$='_title']";
 			page = null;
 
-		} else if ( button == Button.B_ADD_NEW ) {
+		} else if (button == Button.B_ADD_NEW) {
 
 			locator = "css=td[id$='_addNewButton'] td[id$='_title']";
 			page = null;
 
-		} else if ( button == Button.B_ADD_ALL ) {
+		} else if (button == Button.B_ADD_ALL) {
 
 			locator = "css=td[id$='_addAllButton'] td[id$='_title']";
 			page = null;
 
 		} else {
-			throw new HarnessException("no logic defined for button "+ button);
+			throw new HarnessException("no logic defined for button " + button);
 		}
 
-		this.sClickAt(locator,"");
+		this.sClickAt(locator, "");
 
 		SleepUtil.sleepMedium();
 
@@ -203,43 +187,37 @@ public class FormContactDistributionListNew extends AbsForm {
 
 	}
 
-	/**
-	 * Press the toolbar pulldown and the menu option
-	 * @param pulldown
-	 * @param option
-	 * @return
-	 * @throws HarnessException
-	 */
 	public AbsPage zToolbarPressPulldown(Button pulldown, Button option) throws HarnessException {
 
-		logger.info(myPageName() + " zToolbarPressPulldown("+ pulldown +", "+ option +")");
+		logger.info(myPageName() + " zToolbarPressPulldown(" + pulldown + ", " + option + ")");
 
-		tracer.trace("Click pulldown "+ pulldown +" then "+ option);
+		tracer.trace("Click pulldown " + pulldown + " then " + option);
 
-		if ( pulldown == null )
+		if (pulldown == null)
 			throw new HarnessException("Pulldown cannot be null!");
 
-		if ( option == null )
+		if (option == null)
 			throw new HarnessException("Option cannot be null!");
 
 		String pulldownLocator = null;
 		String optionLocator = null;
 
-		if ( pulldown == Button.B_DISTRIBUTIONLIST_SEARCH_TYPE ) {
+		if (pulldown == Button.B_DISTRIBUTIONLIST_SEARCH_TYPE) {
 
 			pulldownLocator = "css=td[id$='_listSelect'] td[id$='_title']:contains('Global Address List')";
-			if ( !this.sIsElementPresent(pulldownLocator) ) {
+			if (!this.sIsElementPresent(pulldownLocator)) {
 				pulldownLocator = "css=td[id$='_listSelect'] td[id$='_title']:contains('Contacts')";
 			}
 
-			if ( !this.sIsElementPresent(pulldownLocator) ) {
-				throw new HarnessException("Button "+ pulldown +" option "+ option +" pulldownLocator "+ pulldownLocator +" not present!");
+			if (!this.sIsElementPresent(pulldownLocator)) {
+				throw new HarnessException("Button " + pulldown + " option " + option + " pulldownLocator "
+						+ pulldownLocator + " not present!");
 			}
 
 			this.sClickAt(pulldownLocator, "");
 			this.zWaitForBusyOverlay();
 
-			if ( option == Button.O_DISTRIBUTIONLIST_SEARCH_GAL ) {
+			if (option == Button.O_DISTRIBUTIONLIST_SEARCH_GAL) {
 				if (sIsElementPresent("css=td[id$='Menu_2_option_3_title']:contains('Global Address List')")) {
 					optionLocator = "css=td[id$='Menu_2_option_3_title']:contains('Global Address List')";
 				} else {
@@ -261,27 +239,28 @@ public class FormContactDistributionListNew extends AbsForm {
 				}
 
 			} else {
-				throw new HarnessException("implement "+ pulldown +" and "+ option);
+				throw new HarnessException("implement " + pulldown + " and " + option);
 			}
 
-			if ( !this.sIsElementPresent(optionLocator) ) {
-				throw new HarnessException("Button "+ pulldown +" option "+ option +" optionLocator "+ optionLocator +" not present!");
+			if (!this.sIsElementPresent(optionLocator)) {
+				throw new HarnessException("Button " + pulldown + " option " + option + " optionLocator "
+						+ optionLocator + " not present!");
 			}
 
 			this.sClickAt(optionLocator, "");
 			this.zWaitForBusyOverlay();
-			SleepUtil.sleepLong(); // Search may take longer time (safer side)
+			SleepUtil.sleepLong();
 
 			return (null);
 		}
 
-		throw new HarnessException("no logic defined for pulldown "+ pulldown);
+		throw new HarnessException("no logic defined for pulldown " + pulldown);
 
 	}
 
 	public static String getLocator(String locator) {
 		if (locator.startsWith("css=")) {
-		    locator=locator.substring(locator.indexOf(" "));
+			locator = locator.substring(locator.indexOf(" "));
 		}
 
 		return "css=div#" + Locators.zActiveEditForm + locator;
@@ -289,24 +268,24 @@ public class FormContactDistributionListNew extends AbsForm {
 
 	public void zFillField(Field field, String value) throws HarnessException {
 
-		tracer.trace("Set "+ field +" to "+ value);
+		tracer.trace("Set " + field + " to " + value);
 
-		String locator = "css=div#"+ MyDivID;
+		String locator = "css=div#" + MyDivID;
 
-		if ( field == Field.DistributionListName ) {
+		if (field == Field.DistributionListName) {
 
 			locator = "css=div[id$='_groupNameParent'] input[id$='_groupName']";
 			clearField(locator);
 			sType(locator, value);
 			return;
 
-		} else if ( field == Field.SearchField ) {
+		} else if (field == Field.SearchField) {
 			locator += "  table.ZPropertySheet input[id$='_searchField']";
 
-		} else if ( field == Field.CommaSeparatedEmailsField ) {
+		} else if (field == Field.CommaSeparatedEmailsField) {
 			locator = "css=textarea[id$='addNewField']";
 
-		} else if ( field == Field.FreeFormAddress ) {
+		} else if (field == Field.FreeFormAddress) {
 
 			locator += " table.ZPropertySheet textarea[id$='_addNewField']";
 
@@ -319,21 +298,20 @@ public class FormContactDistributionListNew extends AbsForm {
 
 			return;
 
-		} else if ( field == Field.DistributionListDisplayName ) {
+		} else if (field == Field.DistributionListDisplayName) {
 			locator = "css=input[id$='_dlDisplayName']";
 
 		} else {
 			throw new HarnessException("not implemented for field " + field);
 		}
 
-		if ( !this.sIsElementPresent(locator) )
-			throw new HarnessException("Field is not present field="+ field +" locator="+ locator);
+		if (!this.sIsElementPresent(locator))
+			throw new HarnessException("Field is not present field=" + field + " locator=" + locator);
 
 		this.sClickAt(locator, "");
 		this.sType(locator, value);
 
 		this.zWaitForBusyOverlay();
-
 
 	}
 
@@ -343,7 +321,7 @@ public class FormContactDistributionListNew extends AbsForm {
 		logger.info(item.prettyPrint());
 
 		// Make sure the item is a ContactGroupItem
-		if ( !(item instanceof ContactGroupItem) ) {
+		if (!(item instanceof ContactGroupItem)) {
 			throw new HarnessException("Invalid item type - must be ContactGroupItem");
 		}
 
@@ -353,14 +331,13 @@ public class FormContactDistributionListNew extends AbsForm {
 		// Fill out the form
 
 		// Fill out the name
-		if ( (group.getName() == null) || (group.getName().trim().length() == 0) ) {
+		if ((group.getName() == null) || (group.getName().trim().length() == 0)) {
 			throw new HarnessException("Empty group name - group name is required");
 		}
 		zFillField(Field.DistributionListName, group.getName());
 
-
 		// Add addresses
-		if ( group.getMemberList().size() == 0 ) {
+		if (group.getMemberList().size() == 0) {
 			throw new HarnessException("Empty group members - group members are required");
 		}
 
@@ -368,11 +345,11 @@ public class FormContactDistributionListNew extends AbsForm {
 
 			// Depending on the type, fill out the form appropriately.
 
-			if ( m instanceof ContactGroupItem.MemberItemAddress ) {
+			if (m instanceof ContactGroupItem.MemberItemAddress) {
 				zFillField(Field.FreeFormAddress, m.getValue());
-			} else if ( m instanceof ContactGroupItem.MemberItemContact ) {
+			} else if (m instanceof ContactGroupItem.MemberItemContact) {
 				throw new HarnessException("implement me!");
-			} else if ( m instanceof ContactGroupItem.MemberItemGAL ) {
+			} else if (m instanceof ContactGroupItem.MemberItemGAL) {
 				throw new HarnessException("implement me!");
 			} else {
 				throw new HarnessException("implement me!");
@@ -380,40 +357,28 @@ public class FormContactDistributionListNew extends AbsForm {
 
 		}
 
-
 	}
 
-	/*
-	 * check if the list group is empty
-	 */
 	public boolean zIsListGroupEmpty() throws HarnessException {
-		return sIsElementPresent(getLocator(" div#[id$=_listView].groupMembers div[id^=zl__DWT][id$=__rows] td.NoResults"));
+		return sIsElementPresent(
+				getLocator(" div#[id$=_listView].groupMembers div[id^=zl__DWT][id$=__rows] td.NoResults"));
 	}
 
-	/**
-	 * Return the list of group members currently showing in the group member list
-	 * @return
-	 */
 	public ArrayList<ContactItem> zListGetMembers() throws HarnessException {
 		throw new HarnessException("implement me");
 	}
 
-
-	/**
-	 * Return the list of contacts/groups/GAL currently showing in the search results
-	 * @return
-	 */
 	public ArrayList<ContactItem> zListGetSearchResults() throws HarnessException {
 		logger.info("zListGetSearchResults()");
-
 
 		String locator = null;
 		ArrayList<ContactItem> items = new ArrayList<ContactItem>();
 
-		int count = this.sGetCssCount("css=div#"+ MyDivID +" div[id$='_listView'] div[id$='__rows'] div[id^='zli__']");
-		for ( int i = 1; i <= count; i++) {
+		int count = this
+				.sGetCssCount("css=div#" + MyDivID + " div[id$='_listView'] div[id$='__rows'] div[id^='zli__']");
+		for (int i = 1; i <= count; i++) {
 
-			locator = "css=div#"+ MyDivID +" div[id$='_listView'] div[id$='__rows']>div:nth-child(" + i + ")";
+			locator = "css=div#" + MyDivID + " div[id$='_listView'] div[id$='__rows']>div:nth-child(" + i + ")";
 
 			String name = this.sGetText(locator + " td:nth-child(2)");
 			String email = this.sGetText(locator + " td:nth-child(3)");
@@ -430,19 +395,18 @@ public class FormContactDistributionListNew extends AbsForm {
 		return items;
 	}
 
-
 	public boolean zIsActive() throws HarnessException {
 		logger.info(myPageName() + " zIsActive()");
 
-		if ( MyDivID == null ) {
+		if (MyDivID == null) {
 
 			// Determine which ZmContactView div is visible (if any)
 			String locator = "//div[@id='z_shell']/div[contains(@class, 'ZmContactView')]";
 			int count = this.sGetXpathCount(locator);
 
 			for (int i = 1; i <= count; i++) {
-				String id = this.sGetAttribute(locator + "["+ i +"]@id");
-				if ( this.zIsVisiblePerPosition("css=div#"+ id, 0, 0) ) {
+				String id = this.sGetAttribute(locator + "[" + i + "]@id");
+				if (this.zIsVisiblePerPosition("css=div#" + id, 0, 0)) {
 					MyDivID = id;
 					return (true);
 				}
@@ -452,23 +416,20 @@ public class FormContactDistributionListNew extends AbsForm {
 			return (false);
 		}
 
-		// Div ID is set, check it.
-
 		String locator = "css=div#" + MyDivID;
 
 		boolean present = this.sIsElementPresent(locator);
-		if ( !present ) {
+		if (!present) {
 			return (false);
 		}
 
 		boolean visible = this.zIsVisiblePerPosition(locator, 0, 0);
-		if ( !visible ) {
+		if (!visible) {
 			return (false);
 		}
 
 		logger.info(myPageName() + " zIsActive() = true");
 		return (true);
-
 
 	}
 
@@ -481,14 +442,13 @@ public class FormContactDistributionListNew extends AbsForm {
 			return;
 		}
 
-		//select contact dropdown
+		// select contact dropdown
 		zClick(dropdown + postfix);
 		SleepUtil.sleepSmall();
 
-
-		//assume contact is one arrow key down away from top
-		//assume shared contact is two arrow key down away from top
-		//assume GAL is three arrow key down away from top
+		// assume contact is one arrow key down away from top
+		// assume shared contact is two arrow key down away from top
+		// assume GAL is three arrow key down away from top
 		app.zPageContacts.zKeyboardKeyEvent(KeyEvent.VK_DOWN);
 		if (!option.equals(SELECT_OPTION_TEXT_CONTACTS)) {
 			app.zPageContacts.zKeyboardKeyEvent(KeyEvent.VK_DOWN);
@@ -499,23 +459,16 @@ public class FormContactDistributionListNew extends AbsForm {
 
 		app.zPageContacts.zKeyboardKeyEvent(KeyEvent.VK_ENTER);
 
-		return ;
+		return;
 	}
 
 	private String MyToolbarID = null;
-	/**
-	 * Determine the z-shell <div/> that contains the Search Contacts, GAL, Personal and Shared
-	 * menu.
-	 *
-	 * See https://bugzilla.zimbra.com/show_bug.cgi?id=77791
-	 * @return The z_shell Child ID
-	 * @throws HarnessException
-	 */
+
 	protected String getToolbarID() throws HarnessException {
 		logger.info("getToolbarID()");
 
-		if ( MyToolbarID != null ) {
-			logger.info("getToolbarID() - Re-using "+ MyToolbarID);
+		if (MyToolbarID != null) {
+			logger.info("getToolbarID() - Re-using " + MyToolbarID);
 			return (MyToolbarID);
 		}
 
@@ -523,30 +476,23 @@ public class FormContactDistributionListNew extends AbsForm {
 		int count = this.sGetXpathCount(locator);
 
 		for (int i = 1; i <= count; i++) {
-			String id = this.sGetAttribute(locator + "["+ i +"]@id");
-			if ( this.zIsVisiblePerPosition("css=div#"+ id, 0, 0) ) {
+			String id = this.sGetAttribute(locator + "[" + i + "]@id");
+			if (this.zIsVisiblePerPosition("css=div#" + id, 0, 0)) {
 				MyToolbarID = id;
 				return (id);
 			}
 		}
 
-		throw new HarnessException("Unable to determine the Toolbar ID "+ this.sGetHtmlSource());
+		throw new HarnessException("Unable to determine the Toolbar ID " + this.sGetHtmlSource());
 	}
 
 	private String MySearchPulldownID = null;
-	/**
-	 * Determine the z-shell <div/> that contains the Search Contacts, GAL, Personal and Shared
-	 * menu.
-	 *
-	 * See https://bugzilla.zimbra.com/show_bug.cgi?id=77791
-	 * @return The z_shell Child ID
-	 * @throws HarnessException
-	 */
+
 	protected String getSearchPulldownID() throws HarnessException {
 		logger.info("getSearchPulldownID()");
 
-		if ( MySearchPulldownID != null ) {
-			logger.info("getSearchPulldownID() - Re-using "+ MySearchPulldownID);
+		if (MySearchPulldownID != null) {
+			logger.info("getSearchPulldownID() - Re-using " + MySearchPulldownID);
 			return (MySearchPulldownID);
 		}
 
@@ -554,13 +500,13 @@ public class FormContactDistributionListNew extends AbsForm {
 		int count = this.sGetXpathCount(locator);
 
 		for (int i = 1; i <= count; i++) {
-			String id = this.sGetAttribute(locator + "["+ i +"]@id");
-			if ( this.zIsVisiblePerPosition("css=div#"+ id, 0, 0) ) {
+			String id = this.sGetAttribute(locator + "[" + i + "]@id");
+			if (this.zIsVisiblePerPosition("css=div#" + id, 0, 0)) {
 				MySearchPulldownID = id;
 				return (id);
 			}
 		}
 
-		throw new HarnessException("Unable to determine the Search Pulldown ID "+ this.sGetHtmlSource());
+		throw new HarnessException("Unable to determine the Search Pulldown ID " + this.sGetHtmlSource());
 	}
 }

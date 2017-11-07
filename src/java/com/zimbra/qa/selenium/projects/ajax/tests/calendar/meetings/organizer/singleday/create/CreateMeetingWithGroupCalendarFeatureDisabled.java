@@ -36,7 +36,7 @@ public class CreateMeetingWithGroupCalendarFeatureDisabled extends AjaxCommonTes
 
 
 	@Bugs(ids = "68726,71103")
-	@Test( description = "Appointment creation broken if 'Group Calendar' feature is disabled for calendar (zimbraFeatureGroupCalendarEnabled)",
+	@Test (description = "Appointment creation broken if 'Group Calendar' feature is disabled for calendar (zimbraFeatureGroupCalendarEnabled)",
 			groups = { "functional", "L2" } )
 
 	public void CreateMeetingWithGroupCalendarFeatureDisabled_01() throws HarnessException {

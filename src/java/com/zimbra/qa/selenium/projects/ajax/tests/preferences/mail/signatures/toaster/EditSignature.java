@@ -62,7 +62,7 @@ public class EditSignature extends AjaxCommonTest {
 	 * Test case : Create signature through soap Edit it through GUI and Verify toast message
 	 */
 
-	@Test(description = " Edit Text singature and verify toast msg",
+	@Test (description = " Edit Text singature and verify toast msg",
 			groups = { "functional", "L3"  })
 
 	public void EditTextSignatureToastMsg_01() throws HarnessException {

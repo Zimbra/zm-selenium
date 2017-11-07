@@ -23,11 +23,10 @@ public class ContactsPrefShowSelectionCheckbox extends AjaxCommonTest {
 	public ContactsPrefShowSelectionCheckbox() {
 		
 	    super.startingPage = app.zPageContacts;
-
 	    super.startingAccountPreferences = new HashMap<String, String>() {
-		private static final long serialVersionUID = 1L;
-		{
-		    put("zimbraPrefShowSelectionCheckbox", "TRUE");
-		}};
+			private static final long serialVersionUID = 1L;{
+				put("zimbraPrefShowSelectionCheckbox", "TRUE");
+			}
+		};
 	}
 }

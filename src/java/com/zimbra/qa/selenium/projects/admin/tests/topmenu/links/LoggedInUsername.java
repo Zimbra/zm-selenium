@@ -33,7 +33,7 @@ public class LoggedInUsername extends AdminCommonTest {
 		// Use default starting page and starting account
 	}
 	
-	@Test( description = "Verify the Top Menu displays the correct Admin username",
+	@Test (description = "Verify the Top Menu displays the correct Admin username",
 			groups = { "smoke", "L1" })
 	public void TopMenu_LoggedInUsername_01() throws HarnessException {
 		

@@ -47,7 +47,7 @@ public class InvalidateSession extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Bugs( ids = "74482")
-	@Test( description = "Invalidate Session -- manage account > right click > Invalidate Session",
+	@Test (description = "Invalidate Session -- manage account > right click > Invalidate Session",
 			groups = { "smoke", "L1" })
 			public void InvalidateSession_01() throws HarnessException {
 
@@ -83,7 +83,7 @@ public class InvalidateSession extends AdminCommonTest {
 	 * 3. Verify toast message is displayed
 	 * @throws HarnessException
 	 */
-	@Test( description = " Invalidate Session  -- manage account >> Gearbox >> edit account >>  Invalidate Session",
+	@Test (description = " Invalidate Session  -- manage account >> Gearbox >> edit account >>  Invalidate Session",
 			groups = { "functional", "L2" })
 			public void InvalidateSession_02() throws HarnessException {
 
@@ -121,7 +121,7 @@ public class InvalidateSession extends AdminCommonTest {
 	 * 
 	 * @throws HarnessException
 	 */
-	@Test( description = "Invalidate Session from search list view",
+	@Test (description = "Invalidate Session from search list view",
 			groups = { "functional", "L2" })
 	public void InvalidateSession_03() throws HarnessException {
 

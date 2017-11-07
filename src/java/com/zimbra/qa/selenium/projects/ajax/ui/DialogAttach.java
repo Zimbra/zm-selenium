@@ -20,19 +20,11 @@ import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 
 public class DialogAttach extends AbsDialog {
+
 	public static class Locators {
 
-		// TODO: See https://bugzilla.zimbra.com/show_bug.cgi?id=54173
 		public static final String zDialogId = "css=div[class='ZmAttachDialog']";
 		public static final String zTitleId = "css=td[class='DwtDialogTitle']";
-		/*
-		 * public static final String zDialogContentId =
-		 * "ChooseFolderDialog_content"; // TODO: Tree public static final
-		 * String zDialogInputId = "ChooseFolderDialog_inputDivId"; public
-		 * static final String zDialogInputLocator = "css=div[id='"+ zDialogId
-		 * +"'] div[id='"+ zDialogInputId +"'] > div > input"; public static
-		 * final String zDialogButtonsId = "ChooseFolderDialog_buttons";
-		 */
 	}
 
 	public DialogAttach(AbsApplication application, AbsTab page) {
@@ -66,7 +58,6 @@ public class DialogAttach extends AbsDialog {
 		}
 
 		this.zClick(locator);
-
 		this.zWaitForBusyOverlay();
 
 		return (page);
@@ -85,17 +76,14 @@ public class DialogAttach extends AbsDialog {
 		String locator = Locators.zDialogId;
 
 		if (!this.sIsElementPresent(locator)) {
-			return (false); // Not even present
+			return (false);
 		}
 
 		if (!this.zIsVisiblePerPosition(locator, 0, 0)) {
-			return (false); // Not visible per position
+			return (false);
 		}
 
-		// Yes, visible
 		logger.info(myPageName() + " zIsActive() = true");
 		return (true);
-
 	}
-
 }

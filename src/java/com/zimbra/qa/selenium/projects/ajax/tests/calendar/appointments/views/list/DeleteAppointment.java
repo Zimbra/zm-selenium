@@ -53,7 +53,7 @@ public class DeleteAppointment extends AjaxCommonTest {
 
 
 	@Bugs(ids = "69132")
-	@Test( description = "Delete an appointment in the list view - Toolbar Delete",
+	@Test (description = "Delete an appointment in the list view - Toolbar Delete",
 			groups = { "functional", "L2" })
 
 	public void DeleteAppointment_01() throws HarnessException {
@@ -127,7 +127,7 @@ public class DeleteAppointment extends AjaxCommonTest {
 
 
 	@Bugs(ids = "69132")
-	@Test( description = "Delete an appt using checkbox and toolbar delete button",
+	@Test (description = "Delete an appt using checkbox and toolbar delete button",
 			groups = { "functional", "L2" })
 
 	public void DeleteAppointment_02() throws HarnessException {
@@ -210,7 +210,7 @@ public class DeleteAppointment extends AjaxCommonTest {
 	}
 
 	@Bugs(ids = "69132")
-	@Test( description = "Delete a appt by selecting and typing 'delete' keyboard",
+	@Test (description = "Delete a appt by selecting and typing 'delete' keyboard",
 			groups = { "functional", "L2" },
 			dataProvider = "DataProviderDeleteKeys")
 
@@ -286,7 +286,7 @@ public class DeleteAppointment extends AjaxCommonTest {
 
 
 	@Bugs(ids = "72444")
-	@Test( description = "Delete a appt by selecting and typing '.t' shortcut",
+	@Test (description = "Delete a appt by selecting and typing '.t' shortcut",
 			groups = { "functional-skip", "application-bug" } )
 
 	public void DeleteAppointment_04() throws HarnessException {
@@ -360,7 +360,7 @@ public class DeleteAppointment extends AjaxCommonTest {
 
 
 	@Bugs(ids = "69132,79524")
-	@Test( description = "Delete multiple appts (3) by select and toolbar delete",
+	@Test (description = "Delete multiple appts (3) by select and toolbar delete",
 			groups = { "functional", "L2" } )
 
 	public void DeleteAppointment_05() throws HarnessException {
@@ -511,7 +511,7 @@ public class DeleteAppointment extends AjaxCommonTest {
 
 
 	@Bugs(ids = "69132")
-	@Test( description = "Delete a appt using context menu delete button",
+	@Test (description = "Delete a appt using context menu delete button",
 			groups = { "functional", "L2" })
 
 	public void DeleteAppointment_06() throws HarnessException {
@@ -584,7 +584,7 @@ public class DeleteAppointment extends AjaxCommonTest {
 
 
 	@Bugs(ids = "102051")
-	@Test( description = "Hard-delete a appt by selecting and typing 'shift-del' shortcut",
+	@Test (description = "Hard-delete a appt by selecting and typing 'shift-del' shortcut",
 			groups = { "functional-skip", "application-bug" } )
 
 	public void HardDeleteAppointment_01() throws HarnessException {
@@ -654,7 +654,7 @@ public class DeleteAppointment extends AjaxCommonTest {
 
 
 	@Bugs(ids = "102051")
-	@Test( description = "Hard-delete multiple appts (3) by selecting and typing 'shift-del' shortcut",
+	@Test (description = "Hard-delete multiple appts (3) by selecting and typing 'shift-del' shortcut",
 			groups = { "functional-skip", "application-bug" })
 
 	public void HardDeleteAppointment_02() throws HarnessException {

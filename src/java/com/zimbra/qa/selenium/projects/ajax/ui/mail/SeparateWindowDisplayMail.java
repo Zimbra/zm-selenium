@@ -14,15 +14,12 @@
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-
 package com.zimbra.qa.selenium.projects.ajax.ui.mail;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
 import org.openqa.selenium.By;
-
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.ui.AbsApplication;
 import com.zimbra.qa.selenium.framework.ui.AbsPage;
@@ -40,10 +37,8 @@ import com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail.Field;
 
 /**
  * Represents a "Launch in New Window" display of a message
- * <p>
- *
+ * 
  * @author Matt Rhoades
- *
  */
 public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 
@@ -62,11 +57,7 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 
 	public SeparateWindowDisplayMail(AbsApplication application) {
 		super(application);
-
-		// Set the title to null to start.
-		// Set the title with zSetSubject()
 		this.DialogWindowTitle = null;
-
 	}
 
 	public String zGetMailProperty(Field field) throws HarnessException {
@@ -195,18 +186,17 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 
 	}
 
-	public boolean zMailSecurityPresent(String emailAddress) throws HarnessException{
-		
-		String locator="css=td[class='ZmSecureMailCertificateRow'] td[id$='title']:contains('" + emailAddress + "')";
-		
+	public boolean zMailSecurityPresent(String emailAddress) throws HarnessException {
+
+		String locator = "css=td[class='ZmSecureMailCertificateRow'] td[id$='title']:contains('" + emailAddress + "')";
+
 		if (this.sIsElementPresent(locator)) {
-			//Mail Security header found
 			return true;
 		}
 
 		return false;
 	}
-	
+
 	public AbsPage zToolbarPressButton(Button button) throws HarnessException {
 		logger.info(myPageName() + " zToolbarPressButton(" + button + ")");
 
@@ -226,7 +216,7 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 			this.sClick(locator);
 			page = null;
 			return page;
-			
+
 		} else if (button == Button.B_DELETE) {
 
 			locator = container + " div[id$='__DELETE'] td[id$='_title']";
@@ -291,11 +281,9 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 			}
 
 			SleepUtil.sleepSmall();
-			
-			// Click on send
+
 			this.sClick(locator);
 
-			// Wait for the message to be delivered
 			Stafpostqueue sp = new Stafpostqueue();
 			sp.waitForPostqueue();
 
@@ -408,7 +396,7 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 			} else {
 				throw new HarnessException("no logic defined for pulldown/option " + pulldown + "/" + option);
 			}
-			
+
 		} else if (pulldown == Button.B_SECURE_EMAIL) {
 
 			pulldownLocator = "css=td[id$='_com_zimbra_securemail_checkbox_title']";
@@ -494,7 +482,7 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 				} else {
 					pulldownLocator = "css=div[id='ztb__TV-main'] div[id$='__MOVE_MENU'] td[id$='_dropdown']";
 					optionLocator = "css=div[id='ZmMoveButton_TV-main'] div[id$='NEWFOLDER'] td[id$='_title']";
-				} 
+				}
 				page = new DialogCreateFolder(this.MyApplication, ((AppAjaxClient) this.MyApplication).zPageMail);
 
 				if (!this.sIsElementPresent(pulldownLocator)) {
@@ -686,10 +674,6 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 	}
 
 	public boolean zHasShareADButtons() throws HarnessException {
-		// Haven't fully baked this method.
-		// Maybe it works.
-		// Maybe it needs to check "visible" and/or x/y/z coordinates
-
 		List<String> locators = Arrays.asList(this.ContainerLocator + " td[id$='__Shr__SHARE_ACCEPT_title']",
 				this.ContainerLocator + " td[id$='__Shr__SHARE_DECLINE_title']");
 
@@ -722,7 +706,7 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 			this.zWaitForBusyOverlay();
 
 			return (page);
-			
+
 		} else if (button == Button.B_VIEW_CERTIFICATE) {
 
 			locator = "css=td[class='ZmSecureMailCertificateRow'] div[class='FakeAnchor'] td[id$='title']:contains('View certificate')";
@@ -730,12 +714,12 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 			if (!this.sIsElementPresent(locator))
 				throw new HarnessException("locator is not present for button " + button + " : " + locator);
 
-			this.sClick(locator); // sClick() is required for this element
+			this.sClick(locator);
 
 			this.zWaitForBusyOverlay();
-			
+
 			return (page);
-			
+
 		} else if (button == Button.B_HIGHLIGHT_OBJECTS) {
 
 			locator = this.ContainerLocator + " span[id$='_highlightObjects_link']";
@@ -893,7 +877,7 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 			throw new HarnessException("locator is not present for button " + button + " : " + locator);
 
 		this.sClick(locator);
-		
+
 		if (doPostfixCheck) {
 			Stafpostqueue sp = new Stafpostqueue();
 			sp.waitForPostqueue();
@@ -933,7 +917,6 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 				optionLocator = DisplayMail.Locators.AcceptEditReplyMenu;
 				page = null;
 				doPostfixCheck = true;
-				// this.zSetWindowTitle("Reply");
 
 			} else if (option == Button.O_ACCEPT_DONT_NOTIFY_ORGANIZER) {
 
@@ -1016,7 +999,6 @@ public class SeparateWindowDisplayMail extends AbsSeparateWindow {
 		SleepUtil.sleepMedium();
 
 		if (doPostfixCheck) {
-			// Make sure the response is delivered before proceeding
 			Stafpostqueue sp = new Stafpostqueue();
 			sp.waitForPostqueue();
 		}

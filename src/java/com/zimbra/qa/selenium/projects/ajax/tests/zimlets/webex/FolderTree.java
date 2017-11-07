@@ -34,7 +34,7 @@ public class FolderTree extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Verify the WebEx zimlet appears in the folder tree",
+	@Test (description = "Verify the WebEx zimlet appears in the folder tree",
 			groups = { "smoke", "L1" })
 
 	public void FolderTree_01() throws HarnessException {

@@ -36,7 +36,7 @@ public class CancelComposeHtml extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Verify message dialog, when cancel a html draft (body filled)",
+	@Test (description = "Verify message dialog, when cancel a html draft (body filled)",
 			groups = { "functional", "L2" })
 
 	public void CancelComposeHtml_01() throws HarnessException {
@@ -70,7 +70,7 @@ public class CancelComposeHtml extends PrefGroupMailByMessageTest {
 	 * 5.Verify Message no longer present in inbox
 	 */
 
-	@Test( description = "Cancel html composed mail using keyboard shortcut 'Escape'",
+	@Test (description = "Cancel html composed mail using keyboard shortcut 'Escape'",
 			groups = { "functional", "L3" })
 
 	public void CancelComposeHtml_02() throws HarnessException {

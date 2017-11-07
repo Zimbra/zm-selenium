@@ -30,7 +30,7 @@ public class MoveContact extends TouchCommonTest  {
 		super.startingPage = app.zPageAddressbook;
 	}
 	
-	@Test( description = "Move a contact item to EmailedContacts Address Book",
+	@Test (description = "Move a contact item to EmailedContacts Address Book",
 			groups = { "sanity" })
 	
 	public void MoveContact_01() throws HarnessException {

@@ -30,7 +30,7 @@ public class UnFlagMail extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test(description = "Un-Flag a mail by clicking flagged icon",
+	@Test (description = "Un-Flag a mail by clicking flagged icon",
 			groups = { "smoke", "L1" })
 
 	public void UnFlagMail_01() throws HarnessException {
@@ -68,7 +68,7 @@ public class UnFlagMail extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test(description = "Un-Flag a mail by using shortcut 'mf'",
+	@Test (description = "Un-Flag a mail by using shortcut 'mf'",
 			groups = { "functional", "L2" })
 
 	public void UnFlagMail_02() throws HarnessException {

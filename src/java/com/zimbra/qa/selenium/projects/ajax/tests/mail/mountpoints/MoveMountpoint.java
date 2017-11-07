@@ -36,7 +36,7 @@ public class MoveMountpoint extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Move a mountpoint under a subfolder - Right click, Move",
+	@Test (description = "Move a mountpoint under a subfolder - Right click, Move",
 			groups = { "smoke", "L1" })
 
 	public void MoveMountpoint_01() throws HarnessException {

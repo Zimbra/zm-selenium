@@ -45,8 +45,8 @@ public class RenameMountpoint extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Rename a mountpoint (Right Click -> Rename)",
-			groups = { "smoke", "L1"})
+	@Test (description = "Rename a mountpoint (Right Click -> Rename)",
+			groups = { "smoke", "L1" })
 
 	public void RenameMountpoint_01() throws HarnessException {
 

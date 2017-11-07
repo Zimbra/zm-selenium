@@ -32,7 +32,7 @@ public class RenameFolder extends PrefGroupMailByMessageTest {
 		super.startingPage = app.zPageAddressbook;
 	}
 
-	@Test( description = "Rename contact folder",
+	@Test (description = "Rename contact folder",
 			groups = { "smoke" })
 	
 	public void RenameFolder_01() throws HarnessException  {

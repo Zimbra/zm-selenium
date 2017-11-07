@@ -34,7 +34,7 @@ public class ModifyTimeToAllDay extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 	
-	@Test( description = "Modify meeting time by single day to all day",
+	@Test (description = "Modify meeting time by single day to all day",
 			groups = { "smoke" })
 			
 	public void ModifyTimeToAllDay_01() throws HarnessException {

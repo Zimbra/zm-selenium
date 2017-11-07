@@ -38,8 +38,8 @@ public class EditPreferences extends AdminCommonTest {
 	}
 
 	@Bugs(ids = "104654")
-	@Test( description = "Edit DL - Edit Preferences",
-	groups = { "smoke", "L1"})
+	@Test (description = "Edit DL - Edit Preferences",
+	groups = { "smoke", "L1" })
 
 	public void EditPreferences_01() throws HarnessException {
 

@@ -31,7 +31,7 @@ public class RevokeShareFromPreferences extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Revoke share folder from preferences",
+	@Test (description = "Revoke share folder from preferences",
 		groups = { "functional", "L2" })
 
 	public void RevokeShareFromPreferences_01() throws HarnessException {

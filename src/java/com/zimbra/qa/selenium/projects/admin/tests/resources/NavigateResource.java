@@ -39,7 +39,7 @@ public class NavigateResource extends AdminCommonTest {
 	 * 2. Verify navigation path -- "Home --> Manage --> Resources"
 	 * @throws HarnessException
 	 */
-	@Test( description = "Navigate to Resource",
+	@Test (description = "Navigate to Resource",
 			groups = { "sanity", "L0" })
 			public void NavigateResource_01() throws HarnessException {
 		

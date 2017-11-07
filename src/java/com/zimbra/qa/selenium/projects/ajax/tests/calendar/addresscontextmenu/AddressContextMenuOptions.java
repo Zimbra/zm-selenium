@@ -33,7 +33,7 @@ public class AddressContextMenuOptions extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Right click To address bubble and verify Delete, Copy, Edit, Expand and Add to Contacts menus",
+	@Test (description = "Right click To address bubble and verify Delete, Copy, Edit, Expand and Add to Contacts menus",
 			groups = { "sanity", "L0" })
 
 	public void VerifyAttendeesContextMenuOptions_01() throws HarnessException {

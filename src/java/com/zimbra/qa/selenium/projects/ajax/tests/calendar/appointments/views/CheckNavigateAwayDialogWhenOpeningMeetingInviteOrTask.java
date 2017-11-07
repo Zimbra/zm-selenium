@@ -36,7 +36,7 @@ public class CheckNavigateAwayDialogWhenOpeningMeetingInviteOrTask extends AjaxC
 
 
 	@Bugs(ids="50432")
-	@Test( description = "Bug 50432 - Unwanted navigate away dialog after opening appointment/task",
+	@Test (description = "Bug 50432 - Unwanted navigate away dialog after opening appointment/task",
 			groups = { "functional", "L2" })
 
 	public void CheckNavigateAwayDialogWhenOpeningMeetingInviteOrTask_01() throws HarnessException {

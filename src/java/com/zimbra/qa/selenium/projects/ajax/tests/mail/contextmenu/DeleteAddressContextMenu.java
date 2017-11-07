@@ -34,7 +34,7 @@ public class DeleteAddressContextMenu extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Right click To bubble address >> Delete",
+	@Test (description = "Right click To bubble address >> Delete",
 			groups = { "smoke", "L1" })
 
 	public void DeleteToAddressContextMenu_01() throws HarnessException {
@@ -56,7 +56,7 @@ public class DeleteAddressContextMenu extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Right click Cc bubble address >> Delete",
+	@Test (description = "Right click Cc bubble address >> Delete",
 			groups = { "smoke", "L1" })
 
 	public void DeleteCcAddressContextMenu_02() throws HarnessException {
@@ -77,7 +77,7 @@ public class DeleteAddressContextMenu extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Right click BCc bubble address >> Delete",
+	@Test (description = "Right click BCc bubble address >> Delete",
 			groups = { "smoke", "L1" })
 
 	public void DeleteBccAddressContextMenu_03() throws HarnessException {

@@ -39,7 +39,7 @@ public class GroupByFrom extends PrefGroupMailByMessageTest {
 	 * 3. Verify messages are grouped by From
 	 */
 
-	@Test( description = "Group a list of messages by From",
+	@Test (description = "Group a list of messages by From",
 			groups = { "functional", "L2" })
 
 	public void GroupByFrom_01() throws HarnessException {

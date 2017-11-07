@@ -14,7 +14,6 @@
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-
 package com.zimbra.qa.selenium.projects.ajax.ui.mail;
 
 import java.awt.event.KeyEvent;
@@ -38,7 +37,6 @@ import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew.Field;
 public class SeparateWindowFormMailNew extends AbsSeparateWindow {
 
 	public static class Locators {
-
 	}
 
 	public SeparateWindowFormMailNew(AbsApplication application) {
@@ -54,7 +52,7 @@ public class SeparateWindowFormMailNew extends AbsSeparateWindow {
 	public void zFill(MailItem mail) throws HarnessException {
 		logger.info(myPageName() + ".zFill(MailItem)");
 		logger.info(mail.prettyPrint());
-		
+
 		if (mail.dSubject != null) {
 			zFillField(Field.Subject, mail.dSubject);
 		}
@@ -188,7 +186,7 @@ public class SeparateWindowFormMailNew extends AbsSeparateWindow {
 				SleepUtil.sleepMedium();
 				try {
 
-					this.sSelectFrame("css=iframe[id$='_body_ifr']"); 
+					this.sSelectFrame("css=iframe[id$='_body_ifr']");
 
 					locator = "css=html body";
 
@@ -212,13 +210,13 @@ public class SeparateWindowFormMailNew extends AbsSeparateWindow {
 		}
 
 		sType(locator, value);
-		
+
 		if (field == Field.To || field == Field.Cc || field == Field.Bcc) {
 			SleepUtil.sleepMedium();
 			this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
 			SleepUtil.sleepSmall();
 		}
-		
+
 		SleepUtil.sleepSmall();
 		this.zWaitForBusyOverlay();
 	}
@@ -322,7 +320,7 @@ public class SeparateWindowFormMailNew extends AbsSeparateWindow {
 			}
 
 		} else if (button == Button.B_ATTACH) {
-			
+
 			if (ConfigProperties.getStringProperty("browser").contains("edge")) {
 				if (sIsElementPresent("css=td[id='zb__COMPOSE-2___attachments_btn_title']")) {
 					locator = "css=td[id='zb__COMPOSE-2___attachments_btn_title']";
@@ -334,7 +332,7 @@ public class SeparateWindowFormMailNew extends AbsSeparateWindow {
 				this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
 				SleepUtil.sleepLong();
 				return page;
-				
+
 			} else {
 				if (sIsElementPresent("css=td[id='zb__COMPOSE-2___attachments_btn_title']")) {
 					locator = "css=td[id='zb__COMPOSE-2___attachments_btn_title']";
@@ -344,19 +342,19 @@ public class SeparateWindowFormMailNew extends AbsSeparateWindow {
 			}
 
 		} else if (button == Button.B_MY_COMPUTER) {
-			
+
 			if (ConfigProperties.getStringProperty("browser").contains("edge")) {
 				this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
 				this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
 				SleepUtil.sleepLong();
 				return page;
-				
+
 			} else {
 				locator = "css=div[class='DwtMenu'] td[id$='_title']:contains('My Computer')";
 			}
 
 		} else if (button == Button.B_ATTACH_INLINE) {
-			
+
 			if (ConfigProperties.getStringProperty("browser").contains("edge")) {
 				this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_DOWN);
 				SleepUtil.sleepSmall();
@@ -364,7 +362,7 @@ public class SeparateWindowFormMailNew extends AbsSeparateWindow {
 				this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
 				SleepUtil.sleepLong();
 				return page;
-				
+
 			} else {
 				locator = "css=div[class='DwtMenu'] td[id$='_title']:contains('Attach Inline')";
 			}
@@ -417,7 +415,7 @@ public class SeparateWindowFormMailNew extends AbsSeparateWindow {
 			} else {
 				throw new HarnessException("unsupported priority option " + option);
 			}
-			
+
 		} else if (pulldown == Button.B_SECURE_EMAIL) {
 
 			pulldownLocator = "css=td[id$='_com_zimbra_securemail_checkbox_title']";

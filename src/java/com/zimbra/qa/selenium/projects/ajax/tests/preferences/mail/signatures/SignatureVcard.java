@@ -44,7 +44,7 @@ public class SignatureVcard extends AjaxCommonTest {
 	}
 
 
-	@Test(description = "Verify Signature Vcard through GUI",
+	@Test (description = "Verify Signature Vcard through GUI",
 		groups = { "functional", "L2" })
 
 	public void SignatureVcard_01() throws HarnessException {

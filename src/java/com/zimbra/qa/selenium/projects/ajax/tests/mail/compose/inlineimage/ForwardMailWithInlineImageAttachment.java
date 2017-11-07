@@ -38,7 +38,7 @@ public class ForwardMailWithInlineImageAttachment extends PrefGroupMailByMessage
 	}
 
 
-	@Test( description = "Forward to a mail with attachment - Verify inline image sent",
+	@Test (description = "Forward to a mail with attachment - Verify inline image sent",
 			groups = { "smoke", "L1" })
 
 	public void ForwardMailWithInlineImageAttachment_01() throws HarnessException {

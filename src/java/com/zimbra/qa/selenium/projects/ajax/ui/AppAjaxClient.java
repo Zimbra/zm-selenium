@@ -14,9 +14,6 @@
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-/**
- *
- */
 package com.zimbra.qa.selenium.projects.ajax.ui;
 
 import com.zimbra.qa.selenium.framework.ui.*;
@@ -41,15 +38,14 @@ import com.zimbra.qa.selenium.projects.ajax.ui.tasks.*;
 /**
  * The <code>AppAjaxClient</code> class defines the Zimbra Ajax client.
  * <p>
- * The <code>AppAjaxClient</code> contains all pages, folder trees,
- * dialog boxes, forms, menus for the Ajax client.
+ * The <code>AppAjaxClient</code> contains all pages, folder trees, dialog
+ * boxes, forms, menus for the Ajax client.
  * <p>
- * In {@link AjaxCommonTest}, there is one
- * AppAjaxClient object created per test case class (ensuring
- * class-level concurrency).  The test case methods can access
- * different application pages and trees, using the object
- * properties.
+ * In {@link AjaxCommonTest}, there is one AppAjaxClient object created per test
+ * case class (ensuring class-level concurrency). The test case methods can
+ * access different application pages and trees, using the object properties.
  * <p>
+ *
  * <pre>
  * {@code
  *
@@ -70,37 +66,35 @@ import com.zimbra.qa.selenium.projects.ajax.ui.tasks.*;
 public class AppAjaxClient extends AbsApplication {
 
 	// Pages
-	public PageLogin					zPageLogin = null;
-	public PageExternalRegistration		zPageExternalRegistration = null;
-	public PageMain						zPageMain = null;
-	public PageExternalMain				zPageExternalMain = null;
-	public PageSearch					zPageSearch = null;
-	public PageAdvancedSearch			zPageAdvancedSearch = null;
-	public PageMail						zPageMail = null;
-	public PageBriefcase                zPageBriefcase = null;
-	public PageContacts              	zPageContacts = null;
-	public PageCalendar					zPageCalendar = null;
-	public PageTasks					zPageTasks = null;
-	public PagePreferences				zPagePreferences = null;
-	public PageSignature				zPageSignature = null;
+	public PageLogin zPageLogin = null;
+	public PageExternalRegistration zPageExternalRegistration = null;
+	public PageMain zPageMain = null;
+	public PageExternalMain zPageExternalMain = null;
+	public PageSearch zPageSearch = null;
+	public PageAdvancedSearch zPageAdvancedSearch = null;
+	public PageMail zPageMail = null;
+	public PageBriefcase zPageBriefcase = null;
+	public PageContacts zPageContacts = null;
+	public PageCalendar zPageCalendar = null;
+	public PageTasks zPageTasks = null;
+	public PagePreferences zPagePreferences = null;
+	public PageSignature zPageSignature = null;
 
 	// Trees
-	public TreeMail						zTreeMail = null;
-	public TreeContacts					zTreeContacts = null;
-	public TreeCalendar					zTreeCalendar = null;
-	public TreeTasks					zTreeTasks = null;
-	public TreeBriefcase		        zTreeBriefcase = null;
-	public TreePreferences				zTreePreferences = null;
+	public TreeMail zTreeMail = null;
+	public TreeContacts zTreeContacts = null;
+	public TreeCalendar zTreeCalendar = null;
+	public TreeTasks zTreeTasks = null;
+	public TreeBriefcase zTreeBriefcase = null;
+	public TreePreferences zTreePreferences = null;
 
 	// Zimlets
-	public PageSocial					zPageSocial = null;
-
+	public PageSocial zPageSocial = null;
 
 	public AppAjaxClient() {
 		super();
 
 		logger.info("new " + AppAjaxClient.class.getCanonicalName());
-
 
 		// Login page
 		zPageLogin = new PageLogin(this);
@@ -129,7 +123,7 @@ public class AppAjaxClient extends AbsApplication {
 		zTreeMail = new TreeMail(this);
 		trees.put(zTreeMail.myPageName(), zTreeMail);
 
-		//Addressbook page
+		// Addressbook page
 		zPageContacts = new PageContacts(this);
 		pages.put(zPageContacts.myPageName(), zPageContacts);
 
@@ -165,13 +159,11 @@ public class AppAjaxClient extends AbsApplication {
 		trees.put(zTreePreferences.myPageName(), zTreePreferences);
 		// signature Preferences page
 		zPageSignature = new PageSignature(this);
-		pages.put(zPageSignature.myPageName(),zPageSignature);
-
+		pages.put(zPageSignature.myPageName(), zPageSignature);
 
 		// Zimlets
 		zPageSocial = new PageSocial(this);
 		pages.put(zPageSocial.myPageName(), zPageSocial);
-
 
 		// Configure the localization strings
 		getL10N().zAddBundlename(I18N.Catalog.I18nMsg);
@@ -182,34 +174,22 @@ public class AppAjaxClient extends AbsApplication {
 
 	}
 
-
-	/* (non-Javadoc)
-	 * @see projects.admin.ui.AbsApplication#isLoaded()
-	 */
 	@Override
 	public boolean zIsLoaded() throws HarnessException {
-	   if (this.zPageMain.zIsActive() ||
-            this.zPageLogin.zIsActive()) {
-         return true;
-      } else {
-         return false;
-      }
+		if (this.zPageMain.zIsActive() || this.zPageLogin.zIsActive()) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
-	/* (non-Javadoc)
-	 * @see projects.admin.ui.AbsApplication#myApplicationName()
-	 */
 	@Override
 	public String myApplicationName() {
 		return ("Ajax Client");
 	}
 
-	/* (non-Javadoc)
-	 * @see projects.admin.ui.AbsApplication#myApplicationName()
-	 */
 	@Override
 	public ZimbraAccount zSetActiveAccount(ZimbraAccount account) throws HarnessException {
 		return (super.zSetActiveAccount(account));
 	}
-
 }

@@ -34,8 +34,8 @@ public class ModifyDLDisplayNameAndDescription extends AjaxCommonTest  {
 	}
 
 
-	@Test( description = "Modify DL display name and description",
-			groups = { "functional", "L2"})
+	@Test (description = "Modify DL display name and description",
+			groups = { "functional", "L2" })
 
 	public void ModifyDLDisplayNameAndDescription_01 () throws HarnessException {
 

@@ -31,7 +31,7 @@ public class AttachmentIcons extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Verify icon: ImgGenericDoc",
+	@Test (description = "Verify icon: ImgGenericDoc",
 			groups = { "functional", "L2" })
 
 	public void ImgGenericDoc_01() throws HarnessException {
@@ -60,7 +60,7 @@ public class AttachmentIcons extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Verify icon: ImgImageDoc",
+	@Test (description = "Verify icon: ImgImageDoc",
 			groups = { "functional", "L2" })
 
 	public void ImgImageDoc_01() throws HarnessException {

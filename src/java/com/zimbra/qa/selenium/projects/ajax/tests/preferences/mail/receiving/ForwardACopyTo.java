@@ -33,7 +33,7 @@ public class ForwardACopyTo extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Set forward a copy to when receiving the message from preferences",
+	@Test (description = "Set forward a copy to when receiving the message from preferences",
 			groups = { "functional", "L2" })
 
 	public void ForwardACopyTo_01() throws HarnessException {

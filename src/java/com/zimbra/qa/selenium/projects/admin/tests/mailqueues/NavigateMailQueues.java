@@ -38,7 +38,7 @@ public class NavigateMailQueues extends AdminCommonTest {
 	 * 1. Verify navigation path -- "Home --> Monitor --> Mail Queues"
 	 * @throws HarnessException
 	 */
-	@Test( description = "Navigate to Mail Queues",
+	@Test (description = "Navigate to Mail Queues",
 			groups = { "sanity", "L0" })
 			public void NavigateMailQueues_01() throws HarnessException {
 		

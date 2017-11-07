@@ -31,7 +31,7 @@ public class HoverOverDate extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Hover over a date in a message body",
+	@Test (description = "Hover over a date in a message body",
 			groups = { "functional","L2" })
 
 	public void HoverOverDate_01() throws HarnessException {
@@ -73,7 +73,7 @@ public class HoverOverDate extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Hovor over a date string in the body, such as today, tomorrow, last night, etc.",
+	@Test (description = "Hovor over a date string in the body, such as today, tomorrow, last night, etc.",
 			groups = { "functional", "L2" })
 
 	public void HoverOverDate_02() throws HarnessException {

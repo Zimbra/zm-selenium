@@ -49,7 +49,7 @@ public class GetAlias extends AdminCommonTest {
 	 * 5. Verify alias is deleted using SOAP.
 	 * @throws HarnessException
 	 */
-	@Test( description = "Verify alias creation operation   -- Manage alias View",
+	@Test (description = "Verify alias creation operation   -- Manage alias View",
 			groups = { "smoke", "L1" })
 			public void GetAlias_01() throws HarnessException {
 	
@@ -93,7 +93,7 @@ public class GetAlias extends AdminCommonTest {
 	 * 2. Verify alias is present in the list.
 	 * @throws HarnessException
 	 */
-	@Test( description = "Verify created alias is present in the list view",
+	@Test (description = "Verify created alias is present in the list view",
 			groups = { "functional", "L2" })
 			public void GetAlias_02() throws HarnessException {
 

@@ -37,7 +37,7 @@ public class AddToContactsContextMenu extends CalendarWorkWeekTest {
 	}
 
 	@Bugs(ids = "95782")
-	@Test( description = "Click on organizer msg Header and verify context menu>> AddToContact", 
+	@Test (description = "Click on organizer msg Header and verify context menu>> AddToContact", 
 	groups = { "functional" })
 
 	public void AddToContactsContextMenu_01() throws HarnessException {
@@ -97,7 +97,7 @@ public class AddToContactsContextMenu extends CalendarWorkWeekTest {
 		ZAssert.assertEquals(actual.firstName, contactFirst, "Verify the new first name is saved");
 	}
 
-	@Test( description = "Click on To msg Header and verify context menu>> AddToContact", 
+	@Test (description = "Click on To msg Header and verify context menu>> AddToContact", 
 			groups = { "smoke" })
 
 	public void AddToContactsContextMenu_02() throws HarnessException {

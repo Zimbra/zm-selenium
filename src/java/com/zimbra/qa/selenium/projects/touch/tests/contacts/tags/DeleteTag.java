@@ -39,7 +39,7 @@ public class DeleteTag extends TouchCommonTest  {
 	 * @throws HarnessException
 	 */
 	
-	@Test( description = "Delete a tag item", 
+	@Test (description = "Delete a tag item", 
 			groups = { "sanity" })
 	
 	public void DeleteTag_01() throws HarnessException {
@@ -85,7 +85,7 @@ public class DeleteTag extends TouchCommonTest  {
 	 * 3. Verify tag is exist using SOAP & GUI.
 	 * @throws HarnessException
 	 */
-	@Test( description = "Cancel delete tag operation",
+	@Test (description = "Cancel delete tag operation",
 			groups = { "functional" })
 	
 	public void DeleteTag_02() throws HarnessException {

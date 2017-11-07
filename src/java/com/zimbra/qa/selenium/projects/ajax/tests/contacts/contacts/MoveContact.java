@@ -33,8 +33,8 @@ public class MoveContact extends AjaxCommonTest {
 	}
 
 
-	@Test(description = "Move a contact item to sub addressbook by click tool bar Move",
-			groups = { "smoke", "L0"})
+	@Test (description = "Move a contact item to sub addressbook by click tool bar Move",
+			groups = { "smoke", "L0" })
 
 	public void MoveContact_01() throws HarnessException {
 
@@ -65,7 +65,7 @@ public class MoveContact extends AjaxCommonTest {
 	}
 
 
-	@Test(description = "Move a contact item to sub addressbook by click shortcut m",
+	@Test (description = "Move a contact item to sub addressbook by click shortcut m",
 			groups = { "functional", "L3" })
 
 	public void MoveContact_02() throws HarnessException {
@@ -101,8 +101,8 @@ public class MoveContact extends AjaxCommonTest {
 	}
 
 
-	@Test(description = "Move a contact item to sub addressbook by click Move on context menu",
-			groups = {"functional", "L2"})
+	@Test (description = "Move a contact item to sub addressbook by click Move on context menu",
+			groups = { "functional", "L2" })
 
 	public void MoveContact_03() throws HarnessException {
 
@@ -138,8 +138,8 @@ public class MoveContact extends AjaxCommonTest {
 	}
 
 
-	@Test(description = "Move a contact item to trash folder by expand Move dropdown on toolbar, then select Trash",
-			groups = {"functional", "L2"})
+	@Test (description = "Move a contact item to trash folder by expand Move dropdown on toolbar, then select Trash",
+			groups = { "functional", "L2" })
 
 	public void MoveContact_04() throws HarnessException {
 
@@ -165,8 +165,8 @@ public class MoveContact extends AjaxCommonTest {
 	}
 
 
-	@Test(description = "Move a contact item to Emailed Contacts by expand Move dropdown on toolbar, then select Trash",
-			groups = {"functional", "L2"})
+	@Test (description = "Move a contact item to Emailed Contacts by expand Move dropdown on toolbar, then select Trash",
+			groups = { "functional", "L2" })
 
 	public void MoveContact_05() throws HarnessException {
 
@@ -192,8 +192,8 @@ public class MoveContact extends AjaxCommonTest {
 	}
 
 
-	@Test(description = "Move a contact item to sub addressbook.  Click toolbar Edit then Location",
-			groups = {"functional", "L2"})
+	@Test (description = "Move a contact item to sub addressbook.  Click toolbar Edit then Location",
+			groups = { "functional", "L2" })
 
 	public void MoveContact_06() throws HarnessException {
 

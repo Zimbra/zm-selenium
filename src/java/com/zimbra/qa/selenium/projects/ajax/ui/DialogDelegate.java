@@ -14,24 +14,13 @@
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-/**
- * 
- */
 package com.zimbra.qa.selenium.projects.ajax.ui;
 
 import java.awt.event.KeyEvent;
-
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 
-/**
- * Represents a "Add Delegate" dialog box (Preferences -> Accounts -> Delegates)
- * <p>
- * 
- * @author Matt Rhoades
- *
- */
 public class DialogDelegate extends AbsDialog {
 
 	public static class Locators {
@@ -106,7 +95,6 @@ public class DialogDelegate extends AbsDialog {
 
 		String locator = "css=input#ZmGrantRightsDialog_name";
 
-		// Make sure the locator exists
 		if (!this.sIsElementPresent(locator)) {
 			throw new HarnessException("zSetEmailAddress " + locator + " is not present");
 		}
@@ -143,5 +131,4 @@ public class DialogDelegate extends AbsDialog {
 		logger.info(myPageName() + " zUnCheckRight(" + right + ")");
 		zCheckRight(right);
 	}
-
 }

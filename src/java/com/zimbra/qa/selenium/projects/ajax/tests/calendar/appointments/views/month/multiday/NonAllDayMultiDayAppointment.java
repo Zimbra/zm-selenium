@@ -42,7 +42,7 @@ public class NonAllDayMultiDayAppointment extends AjaxCommonTest {
 
 
 	@Bugs(ids = "69132")
-	@Test( description = "Verify the display of a non-all-day-multiday appointment in the month view",
+	@Test (description = "Verify the display of a non-all-day-multiday appointment in the month view",
 			groups = { "functional", "L2" })
 
 	public void NonAllDayMultiDayAppointment_01() throws HarnessException {

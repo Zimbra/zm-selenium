@@ -30,7 +30,7 @@ public class AutoShareRemoval extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "check for autoshare removal prompt message and press 'ok' to revoke",
+	@Test (description = "check for autoshare removal prompt message and press 'ok' to revoke",
 			groups = { "functional", "L3" })
 
 	public void AutoShareRemoval_01() throws HarnessException {

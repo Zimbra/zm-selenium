@@ -43,7 +43,7 @@ public class AddOptionalAttendee extends AjaxCommonTest {
 		};
 	}
 
-	@Test( description = "Add optional attendee from scheduler pane using keyboard Enter and Tab key",
+	@Test (description = "Add optional attendee from scheduler pane using keyboard Enter and Tab key",
 			groups = { "functional-skip", "application-bug"},
 			dataProvider = "DataProviderShortcutKeys")
 

@@ -64,7 +64,7 @@ public class ContextMenuAddressbooks extends AjaxCommonTest {
 	}
 
 
-	@Test ( description = "Verify 'Rename folder' dialog is not present from right click context menu",
+	@Test (description = "Verify 'Rename folder' dialog is not present from right click context menu",
 			groups = { "functional", "L3"},
 			dataProvider = "DataProviderSystemFolders" )
 

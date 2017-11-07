@@ -29,7 +29,7 @@ public class DeleteContact extends TouchCommonTest  {
 	super.startingPage = app.zPageAddressbook;
 }
 
-@Test( description = "Delete a contact item",
+@Test (description = "Delete a contact item",
 		groups = { "sanity" })
 
 public void DeleteContact_01() throws HarnessException {

@@ -36,7 +36,7 @@ public class ModifyByAddingAttendees extends AjaxCommonTest {
 
 
 	@Bugs(ids = "77590,77588,77364")
-	@Test( description = "Modify meeting by adding more attendee and send updates only to added/removed attendees",
+	@Test (description = "Modify meeting by adding more attendee and send updates only to added/removed attendees",
 			groups = { "smoke", "L1" })
 
 	public void ModifyMeetingByAddingAttendees_01() throws HarnessException {
@@ -102,7 +102,7 @@ public class ModifyByAddingAttendees extends AjaxCommonTest {
 
 
 	@Bugs(ids = "77590,77588,77364")
-	@Test( description = "Modify meeting by adding more attendee and send updates to all attendees",
+	@Test (description = "Modify meeting by adding more attendee and send updates to all attendees",
 			groups = { "smoke", "L1" })
 
 	public void ModifyMeetingByAddingAttendees_02() throws HarnessException {
@@ -190,7 +190,7 @@ public class ModifyByAddingAttendees extends AjaxCommonTest {
 
 
 	@Bugs(ids = "56295")
-	@Test( description = "Add an attendee to an existing appointment and send modified invite to all",
+	@Test (description = "Add an attendee to an existing appointment and send modified invite to all",
 			groups = { "functional", "L2" })
 
 	public void ModifyMeetingByAddingAttendees_03() throws HarnessException {

@@ -32,8 +32,8 @@ public class PriorityTask extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "View a high priority task (priority=1)",
-			groups = { "functional", "L2"})
+	@Test (description = "View a high priority task (priority=1)",
+			groups = { "functional", "L2" })
 
 	public void PriorityTask_01() throws HarnessException {
 
@@ -78,8 +78,8 @@ public class PriorityTask extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "View a low priority task (priority=9)",
-			groups = { "functional", "L2"})
+	@Test (description = "View a low priority task (priority=9)",
+			groups = { "functional", "L2" })
 
 	public void PriorityTask_02() throws HarnessException {
 
@@ -124,8 +124,8 @@ public class PriorityTask extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "View a normal priority task (priority=5)",
-			groups = { "functional", "L2"})
+	@Test (description = "View a normal priority task (priority=5)",
+			groups = { "functional", "L2" })
 
 	public void PriorityTask_03() throws HarnessException {
 

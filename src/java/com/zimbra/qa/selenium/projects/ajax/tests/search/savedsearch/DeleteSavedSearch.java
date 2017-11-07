@@ -33,7 +33,7 @@ public class DeleteSavedSearch extends AjaxCommonTest  {
 	}
 
 
-	@Test( description = "Delete a saved search",
+	@Test (description = "Delete a saved search",
 			groups = { "smoke","L0" })
 
 	public void DeleteSavedSearch_01() throws HarnessException {

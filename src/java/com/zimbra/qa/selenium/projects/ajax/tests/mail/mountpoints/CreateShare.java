@@ -32,7 +32,7 @@ public class CreateShare extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Share a folder - Viewer",
+	@Test (description = "Share a folder - Viewer",
 			groups = { "smoke", "L1" })
 
 	public void CreateShare_01() throws HarnessException {
@@ -82,7 +82,7 @@ public class CreateShare extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Share a folder - Manager",
+	@Test (description = "Share a folder - Manager",
 			groups = { "smoke", "L1" })
 
 	public void CreateShare_02() throws HarnessException {

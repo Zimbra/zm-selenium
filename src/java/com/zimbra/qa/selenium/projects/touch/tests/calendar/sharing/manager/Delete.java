@@ -34,7 +34,7 @@ public class Delete extends CalendarWorkWeekTest {
 	}
 	
 	@Bugs(ids = "95870")
-	@Test( description = "Assistant selects calendar invite from shared calendar and deletes the invite OBO boss",
+	@Test (description = "Assistant selects calendar invite from shared calendar and deletes the invite OBO boss",
 			groups = { "t" })
 
 	public void Delete_01() throws HarnessException {
@@ -173,7 +173,7 @@ public class Delete extends CalendarWorkWeekTest {
 		
 	}
 	
-	@Test( description = "Verify Delete button is enabled and functional on mountpoint appointment (manager share)",
+	@Test (description = "Verify Delete button is enabled and functional on mountpoint appointment (manager share)",
 			groups = { "functional" })
 			
 	public void Delete_02() throws HarnessException {

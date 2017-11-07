@@ -37,8 +37,8 @@ public class AddOwners extends AdminCommonTest {
 		super.startingPage = app.zPageManageDistributionList;
 	}
 
-	@Test( description = "Edit DL - Add Owner to DL",
-	groups = { "smoke", "L1"})
+	@Test (description = "Edit DL - Add Owner to DL",
+	groups = { "smoke", "L1" })
 
 	public void AddOwner_01() throws HarnessException {
 

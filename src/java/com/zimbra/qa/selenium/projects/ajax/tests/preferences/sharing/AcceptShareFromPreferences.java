@@ -32,7 +32,7 @@ public class AcceptShareFromPreferences extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Accept shared folder from preferences/sharing",
+	@Test (description = "Accept shared folder from preferences/sharing",
 			groups = { "functional", "L2" })
 
 	public void AcceptShare_01() throws HarnessException {

@@ -30,7 +30,7 @@ public class ResendShareFromPreferences extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Resend share folder request from preferences",
+	@Test (description = "Resend share folder request from preferences",
 			groups = { "functional", "L2" })
 
 	public void ResendShareFromPreferences_01() throws HarnessException {

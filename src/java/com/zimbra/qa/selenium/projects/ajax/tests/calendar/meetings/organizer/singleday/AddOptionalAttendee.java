@@ -40,8 +40,8 @@ public class AddOptionalAttendee extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Add optional attendee by typing in the field and resend the appointment",
-			groups = { "functional", "L2"})
+	@Test (description = "Add optional attendee by typing in the field and resend the appointment",
+			groups = { "functional", "L2" })
 
 	public void AddOptionalAttendee_01() throws HarnessException {
 
@@ -103,8 +103,8 @@ public class AddOptionalAttendee extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Create appt and add optional attendee to existing appointment from contact picker",
-			groups = { "functional", "L2"})
+	@Test (description = "Create appt and add optional attendee to existing appointment from contact picker",
+			groups = { "functional", "L2" })
 
 	public void CreateMeetingBySelectAttendees_01() throws HarnessException {
 

@@ -51,7 +51,7 @@ public class CreateDocument extends FeatureBriefcaseTest {
 
 
 	@Bugs(ids = "97124")
-	@Test( description = "Create document through GUI - verify through GUI",
+	@Test (description = "Create document through GUI - verify through GUI",
 		groups = { "sanity", "L0" })
 
 	public void CreateDocument_01() throws HarnessException {
@@ -121,7 +121,7 @@ public class CreateDocument extends FeatureBriefcaseTest {
 	}
 
 
-	@Test( description = "Create document using keyboard shortcut - verify through SOAP & RestUtil",
+	@Test (description = "Create document using keyboard shortcut - verify through SOAP & RestUtil",
 			groups = { "functional", "L3" })
 
 	public void CreateDocument_02() throws HarnessException {
@@ -190,7 +190,7 @@ public class CreateDocument extends FeatureBriefcaseTest {
 
 
 	@Bugs(ids="81299")
-	@Test( description = "Create document using New menu pulldown menu - verify through SOAP & RestUtil",
+	@Test (description = "Create document using New menu pulldown menu - verify through SOAP & RestUtil",
 			groups = { "smoke", "L1" })
 
 	public void CreateDocument_03() throws HarnessException {

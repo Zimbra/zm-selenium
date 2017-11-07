@@ -33,7 +33,7 @@ public class BasicLogin extends TouchCommonTest {
 		
 	}
 	
-	@Test( description = "Login to the Touch Client",
+	@Test (description = "Login to the Touch Client",
 			groups = { "sanity" })
 			
 	public void BasicLogin01() throws HarnessException {

@@ -30,8 +30,8 @@ public class SwitchToConversationView extends PrefGroupMailByMessageTest{
 	public SwitchToConversationView() {
 		logger.info("New "+ SwitchToConversationView.class.getCanonicalName());
 	}
-	@Test( description = "Switch to conversation view",
-			groups = {"smoke"})
+	@Test (description = "Switch to conversation view",
+			groups = { "smoke"})
 
 	public void SwitchToConversationView_01() throws HarnessException, AWTException {
 

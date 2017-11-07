@@ -37,7 +37,7 @@ public class CreateFolder extends FeatureBriefcaseTest {
 	}
 
 
-	@Test( description = "Create a new folder by clicking 'Create a new briefcase' on folders tree",
+	@Test (description = "Create a new folder by clicking 'Create a new briefcase' on folders tree",
 			groups = { "sanity", "L0" })
 
 	public void CreateFolder_01() throws HarnessException {
@@ -69,7 +69,7 @@ public class CreateFolder extends FeatureBriefcaseTest {
 
 
 	@Bugs(ids = "67061")
-	@Test(description = "According to Comment#1 in the bug 67061 Create a new folder using 'nf' keyboard shortcut is for mail only",
+	@Test (description = "According to Comment#1 in the bug 67061 Create a new folder using 'nf' keyboard shortcut is for mail only",
 			groups = { "functional-skip", "L3-skip" })
 
 	public void CreateFolder_02() throws HarnessException {
@@ -107,7 +107,7 @@ public class CreateFolder extends FeatureBriefcaseTest {
 	}
 
 
-	@Test( description = "Create a new folder using context menu from root folder",
+	@Test (description = "Create a new folder using context menu from root folder",
 			groups = { "functional", "L2" })
 
 	public void CreateFolder_03() throws HarnessException {
@@ -138,7 +138,7 @@ public class CreateFolder extends FeatureBriefcaseTest {
 	}
 
 
-	@Test( description = "Create a new Briefcase folder using Briefcase app toolbar pulldown: New -> New Briefcase",
+	@Test (description = "Create a new Briefcase folder using Briefcase app toolbar pulldown: New -> New Briefcase",
 			groups = { "functional", "L2" })
 
 	public void CreateFolder_04() throws HarnessException {

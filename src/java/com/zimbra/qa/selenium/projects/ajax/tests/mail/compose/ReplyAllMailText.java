@@ -31,7 +31,7 @@ public class ReplyAllMailText extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Reply a plain text mail using Text editor",
+	@Test (description = "Reply a plain text mail using Text editor",
 			groups = { "smoke", "L1" })
 
 	public void replyAllPlainTextMail() throws HarnessException {

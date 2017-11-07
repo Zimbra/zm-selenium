@@ -70,7 +70,7 @@ public class ForwardMsgWithHtmlSignature extends AjaxCommonTest {
 	 * html signature in forwarded msg through soap
 	 */
 
-	@Test(description = "Forward Msg with html signature and Verify html signature through soap",
+	@Test (description = "Forward Msg with html signature and Verify html signature through soap",
 			groups = { "functional", "L2" })
 
 	public void ForwardMsgWithHtmlSignature_01() throws HarnessException {

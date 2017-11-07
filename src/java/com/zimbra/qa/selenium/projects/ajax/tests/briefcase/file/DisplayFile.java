@@ -38,7 +38,7 @@ public class DisplayFile extends FeatureBriefcaseTest {
 	}
 
 
-	@Test( description = "Upload file through RestUtil - verify through GUI",
+	@Test (description = "Upload file through RestUtil - verify through GUI",
 			groups = { "smoke", "L0" })
 
 	public void DisplayFile_01() throws HarnessException {
@@ -72,7 +72,7 @@ public class DisplayFile extends FeatureBriefcaseTest {
 
 
 	@Bugs(ids = "79994")
-	@Test( description = " german umlauts breaks briefcase",
+	@Test (description = " german umlauts breaks briefcase",
 			groups = { "functional-skip", "L3-skip" })
 
 	public void DisplayFile_02() throws HarnessException {

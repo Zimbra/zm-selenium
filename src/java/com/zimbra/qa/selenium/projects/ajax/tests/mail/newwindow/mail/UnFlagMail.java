@@ -36,7 +36,7 @@ public class UnFlagMail extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Unflag from new window ,action menu -> UnFlag",
+	@Test (description = "Unflag from new window ,action menu -> UnFlag",
 			groups = { "functional", "L2" })
 
 	public void UnFlagrFromNewWindow_01() throws HarnessException {
@@ -111,7 +111,7 @@ public class UnFlagMail extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Un Flag mail from new window ,using shortcut 'mf'",
+	@Test (description = "Un Flag mail from new window ,using shortcut 'mf'",
 			groups = { "functional", "L2" })
 
 	public void UnFlagrFromNewWindow_02() throws HarnessException {

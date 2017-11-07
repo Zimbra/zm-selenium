@@ -33,7 +33,7 @@ public class AddAttendee extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 	
-	@Test( description = "Modify meeting by adding more attendees",
+	@Test (description = "Modify meeting by adding more attendees",
 			groups = { "smoke" })
 			
 	public void AddAttendee_01() throws HarnessException {

@@ -14,9 +14,6 @@
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-/**
- * 
- */
 package com.zimbra.qa.selenium.projects.ajax.ui.mail;
 
 import java.net.URL;
@@ -27,11 +24,11 @@ import com.zimbra.qa.selenium.framework.util.SleepUtil;
 
 /**
  * Represents a "Create New Folder" dialog box
- * 
+ *
  * Lots of methods not yet implemented. See
  * https://bugzilla.zimbra.com/show_bug.cgi?id=55923
  * <p>
- * 
+ *
  * @author Matt Rhoades
  *
  */
@@ -62,14 +59,13 @@ public class DialogCreateFolder extends AbsDialog {
 		String locator = Locators.DialogDivLocatorCSS;
 
 		if (!this.sIsElementPresent(locator)) {
-			return (false); // Not even present
+			return (false);
 		}
 
 		if (!this.zIsVisiblePerPosition(locator, 0, 0)) {
-			return (false); // Not visible per position
+			return (false);
 		}
 
-		// Yes, visible
 		logger.info(myPageName() + " zIsActive() = true");
 		return (true);
 
@@ -118,12 +114,6 @@ public class DialogCreateFolder extends AbsDialog {
 		return (this.sGetText(locator));
 	}
 
-	/**
-	 * Click on the folder in the dialog tree
-	 * 
-	 * @param folder
-	 * @throws HarnessException
-	 */
 	public void zClickTreeFolder(FolderItem folder) throws HarnessException {
 		logger.info(myPageName() + " zClickTreeFolder(" + folder + ")");
 
@@ -144,11 +134,6 @@ public class DialogCreateFolder extends AbsDialog {
 
 	}
 
-	/**
-	 * Enter text into the move message dialog folder name field
-	 * 
-	 * @param folder
-	 */
 	public void zEnterFolderName(String folder) throws HarnessException {
 		logger.info(myPageName() + " zEnterFolderName(" + folder + ")");
 
@@ -171,11 +156,6 @@ public class DialogCreateFolder extends AbsDialog {
 		None, Blue, Cyan, Green, Purple, Red, Yellow, Pink, Grey, Orange, MoreColors
 	}
 
-	/**
-	 * Set the color pulldown
-	 * 
-	 * @param folder
-	 */
 	public void zEnterFolderColor(FolderColor color) throws HarnessException {
 		logger.info(myPageName() + " zEnterFolderColor(" + color + ")");
 
@@ -215,7 +195,5 @@ public class DialogCreateFolder extends AbsDialog {
 		}
 
 		this.sType(locator, feed.toString());
-
 	}
-
 }

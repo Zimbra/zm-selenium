@@ -37,7 +37,7 @@ public class ModifyDate extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 
-	@Test( description = "Modify meeting date and verify it",
+	@Test (description = "Modify meeting date and verify it",
 			groups = { "smoke" })
 
 	public void ModifyDate_01() throws HarnessException, ParseException {

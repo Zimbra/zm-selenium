@@ -32,7 +32,7 @@ public class RenameSavedSearch extends AjaxCommonTest  {
 	}
 
 
-	@Test( description = "Rename a saved search",
+	@Test (description = "Rename a saved search",
 			groups = { "smoke","L1" })
 
 	public void RenameSavedSearch_01() throws HarnessException {

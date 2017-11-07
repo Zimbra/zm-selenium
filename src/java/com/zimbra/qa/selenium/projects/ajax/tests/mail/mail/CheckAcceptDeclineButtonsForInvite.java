@@ -37,7 +37,7 @@ public class CheckAcceptDeclineButtonsForInvite extends PrefGroupMailByMessageTe
 
 
 	@Bugs( ids = "21013")
-	@Test( description = "Mail with ics attachment doesn't open appt (view-appt window breaks)",
+	@Test (description = "Mail with ics attachment doesn't open appt (view-appt window breaks)",
 			groups = { "functional", "L2" })
 
 	public void CheckAcceptDeclineButtonsForInvite_01 () throws HarnessException {

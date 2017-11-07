@@ -108,12 +108,10 @@ public class DialogFindAttendees extends DialogWarning {
 			return (super.zClickButton(button));
 		}
 
-		// Make sure the locator was set
 		if (locator == null) {
 			throw new HarnessException("Button " + button + " not implemented");
 		}
 
-		// Make sure the locator exists
 		if (!this.sIsElementPresent(locator)) {
 			throw new HarnessException("Button " + button + " locator " + locator + " not present!");
 		}
@@ -122,7 +120,6 @@ public class DialogFindAttendees extends DialogWarning {
 		SleepUtil.sleepMedium();
 		this.zWaitForBusyOverlay();
 
-		// This dialog could send messages, so wait for the queue
 		if (waitForPostfix) {
 			Stafpostqueue sp = new Stafpostqueue();
 			sp.waitForPostqueue();
@@ -169,7 +166,6 @@ public class DialogFindAttendees extends DialogWarning {
 			throw new HarnessException("locator was null for field " + field);
 		}
 
-		// Make sure the button exists
 		if (!this.sIsElementPresent(locator))
 			throw new HarnessException("Field is not present field=" + field + " locator=" + locator);
 

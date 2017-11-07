@@ -32,7 +32,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 
 
 	@Bugs(ids = "66525, 26103")
-	@Test( description = "Delete a message from a mountpoint folder",
+	@Test (description = "Delete a message from a mountpoint folder",
 			groups = { "functional", "L2" })
 
 	public void DeleteMail_01() throws HarnessException {
@@ -116,7 +116,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 
 
 	@Bugs(ids = "66525, 26103")
-	@Test( description = "Delete multiple messages from a mountpoint folder",
+	@Test (description = "Delete multiple messages from a mountpoint folder",
 			groups = { "functional", "L2" })
 
 	public void DeleteMail_02() throws HarnessException {

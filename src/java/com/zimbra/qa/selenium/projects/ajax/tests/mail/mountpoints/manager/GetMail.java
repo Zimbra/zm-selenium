@@ -32,7 +32,7 @@ public class GetMail extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "View a mail in a mountpoint",
+	@Test (description = "View a mail in a mountpoint",
 			groups = { "functional", "L2" })
 
 	public void GetMail_01() throws HarnessException {
@@ -111,7 +111,7 @@ public class GetMail extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "View the contents of a mail in a mountpoint",
+	@Test (description = "View the contents of a mail in a mountpoint",
 			groups = { "functional", "L2" })
 
 	public void GetMail_02() throws HarnessException {

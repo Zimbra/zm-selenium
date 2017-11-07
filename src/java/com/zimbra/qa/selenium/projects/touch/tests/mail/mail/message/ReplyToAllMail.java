@@ -36,7 +36,7 @@ public class ReplyToAllMail extends PrefGroupMailByConversationTest {
 		logger.info("New "+ ReplyToAllMail.class.getCanonicalName());
 	}
 
-	@Test( description = "Reply to all in message view",
+	@Test (description = "Reply to all in message view",
 			groups = { "t1" })
 
 	public void ReplyToAllMail_01() throws HarnessException {

@@ -32,7 +32,7 @@ public class ChangeColorFolder extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Edit a folder, change the color (Context menu -> Edit)",
+	@Test (description = "Edit a folder, change the color (Context menu -> Edit)",
 			groups = { "functional", "L2" })
 
 	public void ChangeColorFolder_01() throws HarnessException {

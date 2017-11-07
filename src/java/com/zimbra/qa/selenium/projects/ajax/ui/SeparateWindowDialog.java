@@ -53,7 +53,7 @@ public class SeparateWindowDialog extends AbsSeparateWindow {
 	}
 
 	public AbsPage zClickButton(Button button) throws HarnessException {
-		if ( button == null )
+		if (button == null)
 			throw new HarnessException("button cannot be null");
 
 		String locator = null;
@@ -61,7 +61,7 @@ public class SeparateWindowDialog extends AbsSeparateWindow {
 
 		String buttonsTableLocator = "css=div[id^=" + MyDivId + "] div[id$='_buttons']";
 
-		if ( button == Button.B_YES ) {
+		if (button == Button.B_YES) {
 
 			locator = buttonsTableLocator + " td[id^='Yes_'] td[id$='_title']";
 			if (!sIsElementPresent(locator)) {
@@ -69,14 +69,14 @@ public class SeparateWindowDialog extends AbsSeparateWindow {
 				sIsElementPresent(locator);
 			}
 			if (MyDivId.contains("css=div[class=DwtConfirmDialog]")) {
-				page = 	new FormMailNew(this.MyApplication);
+				page = new FormMailNew(this.MyApplication);
 			}
 
-		} else if ( button == Button.B_NO ) {
+		} else if (button == Button.B_NO) {
 
 			locator = buttonsTableLocator + " td[id^='No_'] td[id$='_title']";
 
-		} else if ( button == Button.B_CANCEL ) {
+		} else if (button == Button.B_CANCEL) {
 
 			locator = buttonsTableLocator + " td[id^='Cancel_'] td[id$='_title']";
 
@@ -85,17 +85,16 @@ public class SeparateWindowDialog extends AbsSeparateWindow {
 			locator = buttonsTableLocator + " td[id^='OK_'] td[id$='_title']";
 
 		} else {
-			throw new HarnessException("no logic defined for button "+ button);
+			throw new HarnessException("no logic defined for button " + button);
 		}
 
-		// Click it
 		sClick(locator);
-		
-		if ( button == Button.B_YES ) {
+
+		if (button == Button.B_YES) {
 			Stafpostqueue sp = new Stafpostqueue();
 			sp.waitForPostqueue();
 		}
-		
+
 		return (page);
 	}
 }

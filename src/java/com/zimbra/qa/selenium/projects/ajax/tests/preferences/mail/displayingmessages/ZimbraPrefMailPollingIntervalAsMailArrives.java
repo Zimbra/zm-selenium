@@ -33,7 +33,7 @@ public class ZimbraPrefMailPollingIntervalAsMailArrives extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Set 'Check new mail': As Mail Arrives",
+	@Test (description = "Set 'Check new mail': As Mail Arrives",
 			groups = { "functional", "L2" })
 
 	public void ZimbraPrefMailPollingIntervalAsMailArrives_01() throws HarnessException {

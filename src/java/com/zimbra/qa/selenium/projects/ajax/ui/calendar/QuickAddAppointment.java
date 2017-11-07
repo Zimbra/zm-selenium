@@ -38,8 +38,10 @@ public class QuickAddAppointment extends AbsTab {
 		public static final String EndTimeFieldQuickAdd = "css=div[class='DwtDialog'] td[id$='_endTime'] td[id$='_timeSelectInput'] input";
 		public static final String RepeatDropdownQuickAdd = "css=div[class='DwtDialog'] td[id$='_repeat'] td[id$='_title']";
 		public static final String ReminderDropdownQuickAdd = "css=div[class='DwtDialog'] td[id$='_reminderSelect']";
-		public static final String OKButtonQuickAdd = "css=div[class='DwtDialog'] td[id$='_button2_title']:contains(" + "'OK'" + ")";
-		public static final String CancelButtonQuickAdd = "css=div[class='DwtDialog'] td[id$='_button1_title']:contains(" + "'Cancel'" + ")";
+		public static final String OKButtonQuickAdd = "css=div[class='DwtDialog'] td[id$='_button2_title']:contains("
+				+ "'OK'" + ")";
+		public static final String CancelButtonQuickAdd = "css=div[class='DwtDialog'] td[id$='_button1_title']:contains("
+				+ "'Cancel'" + ")";
 		public static final String MoreDetailsButtonQuickAdd = "css=div[class='DwtDialog'] div[id$='_buttons'] td[id^='More Details..._DWT'] td[id$='_title']";
 		public static final String ConfigureReminder = "css=div[class='DwtDialog'] div[class='FakeAnchor']:contains('Configure')";
 
@@ -85,7 +87,6 @@ public class QuickAddAppointment extends AbsTab {
 		public String toString() {
 			return (field);
 		}
-
 	}
 
 	public QuickAddAppointment(AbsApplication application) {
@@ -253,12 +254,14 @@ public class QuickAddAppointment extends AbsTab {
 
 	public void zSelectStartDateFromDatePicker(String Day) throws HarnessException {
 		this.sClick("css=td[id$='startMiniCal'] div");
-		this.sClick("//div[@class='DwtMenu' and contains(@style,'display: block;')]/descendant::td[text()='" + Day + "' and not(contains(@class,'DwtCalendarDay-grey'))]");
+		this.sClick("//div[@class='DwtMenu' and contains(@style,'display: block;')]/descendant::td[text()='" + Day
+				+ "' and not(contains(@class,'DwtCalendarDay-grey'))]");
 	}
 
 	public void zSelectEndDateFromDatePicker(String Day) throws HarnessException {
 		this.sClick("css=td[id$='endMiniCal'] div");
-		this.sClick("//div[@class='DwtMenu' and contains(@style,'display: block;')]/descendant::td[text()='" + Day +"' and not(contains(@class,'DwtCalendarDay-grey'))]");
+		this.sClick("//div[@class='DwtMenu' and contains(@style,'display: block;')]/descendant::td[text()='" + Day
+				+ "' and not(contains(@class,'DwtCalendarDay-grey'))]");
 	}
 
 	public void zFill(IItem item) throws HarnessException {
@@ -410,5 +413,4 @@ public class QuickAddAppointment extends AbsTab {
 	public AbsPage zToolbarPressButton(Button button) throws HarnessException {
 		return null;
 	}
-
 }

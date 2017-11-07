@@ -34,7 +34,7 @@ public class CreateACopy extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Grantee copies appointment from grantor's calendar and creates new invite",
+	@Test (description = "Grantee copies appointment from grantor's calendar and creates new invite",
 			groups = { "functional", "L2" })
 
 	public void CreateACopy_01() throws HarnessException {

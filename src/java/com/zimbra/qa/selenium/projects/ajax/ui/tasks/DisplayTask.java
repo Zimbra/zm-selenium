@@ -21,49 +21,22 @@ import org.openqa.selenium.WebElement;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 
-
-/**
- * The <code>DisplayMail<code> object defines a read-only view of a message
- * in the Zimbra Ajax client.
- * <p>
- * This class can be used to extract data from the message, such as To,
- * From, Subject, Received Date, message body.  Additionally, it can
- * be used to click on certain links in the message body, such as
- * "view entire message" and "highlight objects".
- * <p>
- * Hover over objects, such as email or URL hover over, are encapsulated.
- * <p>
- *
- * @author zimbra
- * @see http://wiki.zimbra.com/wiki/Testing:_Selenium:_ZimbraSelenium_Overview#Mail_Page
- */
 public class DisplayTask extends AbsDisplay {
 
 	WebElement we = null;
 
 	public static class Locators {
-		public static final String IsActive 			= "css=[parentid='zv__TKL-main']";
+		public static final String IsActive = "css=[parentid='zv__TKL-main']";
 	}
 
-	/**
-	 * The various displayed fields in a message
-	 */
 	public static enum Field {
 		Subject, Location, StartDate, DueDate, Priority, Status, Percentage, Reminder, Body
 	}
 
-
-	/**
-	 * Protected constuctor for this object.  Only classes within
-	 * this package should create DisplayMail objects.
-	 *
-	 * @param application
-	 */
 	protected DisplayTask(AbsApplication application) {
 		super(application);
 
 		logger.info("new " + DisplayTask.class.getCanonicalName());
-
 	}
 
 	@Override
@@ -73,14 +46,13 @@ public class DisplayTask extends AbsDisplay {
 
 	@Override
 	public AbsPage zPressButton(Button button) throws HarnessException {
-		logger.info(myPageName() + " zDisplayPressButton("+ button +")");
+		logger.info(myPageName() + " zDisplayPressButton(" + button + ")");
 
-		tracer.trace("Click "+ button);
+		tracer.trace("Click " + button);
 
-		throw new HarnessException("no logic defined for button: "+ button);
+		throw new HarnessException("no logic defined for button: " + button);
 
 	}
-
 
 	@Override
 	public boolean zIsActive() throws HarnessException {
@@ -93,40 +65,39 @@ public class DisplayTask extends AbsDisplay {
 
 		String locator = "css=div[id='zv__TKL-main'] div[class='ZmMailMsgView']";
 
-		if ( field == Field.Subject ) {
+		if (field == Field.Subject) {
 
-			//locator = "css=[parentid='zv__TKL'][class^='SubjectCol']";
 			locator += " div[id$='__su']";
 
-		} else if ( field == Field.Location ) {
+		} else if (field == Field.Location) {
 
 			locator += " tr[id$='__lo'] td[class='LabelColValue']";
 
-		} else if ( field == Field.Priority ) {
+		} else if (field == Field.Priority) {
 
 			locator += " tr[id$='__pr'] td[class='LabelColValue']";
 
-		} else if ( field == Field.Status ) {
+		} else if (field == Field.Status) {
 
 			locator += " tr[id$='__st'] td[class='LabelColValue']";
 
-		} else if ( field == Field.Percentage ) {
+		} else if (field == Field.Percentage) {
 
 			locator += " tr[id$='__pc'] td[class='LabelColValue']";
 
-		} else if ( field == Field.StartDate ) {
+		} else if (field == Field.StartDate) {
 
 			locator += " tr[id$='__sd'] td[class='LabelColValue']";
 
-		} else if ( field == Field.DueDate ) {
+		} else if (field == Field.DueDate) {
 
 			locator += " tr[id$='__ed'] td[class='LabelColValue']";
 
-		} else if ( field == Field.Reminder ) {
+		} else if (field == Field.Reminder) {
 
 			locator += " tr[id$='__al'] td[class='LabelColValue']";
 
-		} else if ( field == Field.Body ) {
+		} else if (field == Field.Body) {
 
 			try {
 
@@ -137,7 +108,7 @@ public class DisplayTask extends AbsDisplay {
 
 				String html = this.sGetHtmlSource();
 				logger.info("zGetTaskProperty.zGetBody(" + bodyLocator + ") = " + html);
-				return(html);
+				return (html);
 
 			} finally {
 				this.sSelectFrame("relative=top");
@@ -145,15 +116,14 @@ public class DisplayTask extends AbsDisplay {
 			}
 
 		} else {
-			throw new HarnessException("no logic defined for field "+ field);
+			throw new HarnessException("no logic defined for field " + field);
 		}
 
 		// Get the subject value
 		String value = this.sGetText(locator).trim();
 
 		logger.info(myPageName() + ".zGetTaskProperty(" + field + ") = " + value);
-		return(value);
-
+		return (value);
 
 	}
 
@@ -177,22 +147,13 @@ public class DisplayTask extends AbsDisplay {
 			locator += " td[id$='__dt']";
 
 		} else {
-
 			throw new HarnessException("no logic defined for field " + field);
-
 		}
 
 		// Get the subject value
 		String value = this.sGetText(locator).trim();
 
-		logger.info(myPageName() + ".zGetTaskListViewProperty(" + field
-				+ ") = " + value);
+		logger.info(myPageName() + ".zGetTaskListViewProperty(" + field + ") = " + value);
 		return (value);
-
 	}
-
-
-
-
-
 }

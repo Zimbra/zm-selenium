@@ -41,8 +41,8 @@ public class OwnerAccountMaintenance extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Login to the Ajax Client - with a mountpoint to a 'in-maintenance' account",
-			groups = { "functional", "L3"})
+	@Test (description = "Login to the Ajax Client - with a mountpoint to a 'in-maintenance' account",
+			groups = { "functional", "L3" })
 
 	public void OwnerAccountMaintenance01() throws HarnessException {
 

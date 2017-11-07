@@ -49,7 +49,7 @@ public class DownloadsTab extends AdminCommonTest {
 	}
 
 
-	@Test( description = "Verify the Downloads Tab contains the correct download links",
+	@Test (description = "Verify the Downloads Tab contains the correct download links",
 			groups = { "functional", "L2" })
 
 	public void DownloadsTab_01() throws HarnessException {
@@ -76,7 +76,7 @@ public class DownloadsTab extends AdminCommonTest {
 
 
 	@Bugs( ids = "100755")
-	@Test( description = "Verify the downloads links are accessible",
+	@Test (description = "Verify the downloads links are accessible",
 			groups = { "functional", "L2" })
 
 	public void DownloadsTab_02() throws HarnessException {

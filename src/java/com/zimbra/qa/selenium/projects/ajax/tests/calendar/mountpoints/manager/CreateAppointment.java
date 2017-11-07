@@ -35,7 +35,7 @@ public class CreateAppointment extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Create a basic meeting with attendee and location on shared mailbox",
+	@Test (description = "Create a basic meeting with attendee and location on shared mailbox",
 			groups = { "smoke", "L1" })
 
 	public void CreateAppointment_01() throws HarnessException {

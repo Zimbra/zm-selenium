@@ -30,7 +30,7 @@ public class DeleteRetention extends PrefGroupMailByMessageTest {
 		logger.info("New " + DeleteRetention.class.getCanonicalName());
 	}
 
-	@Test(description = "Delete a basic retention (Context menu -> Edit -> Retention)",
+	@Test (description = "Delete a basic retention (Context menu -> Edit -> Retention)",
 			groups = { "functional", "L2" })
 
 	public void DeleteRetention_01() throws HarnessException {

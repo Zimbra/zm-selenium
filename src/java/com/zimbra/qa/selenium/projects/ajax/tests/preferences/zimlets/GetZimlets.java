@@ -31,7 +31,7 @@ public class GetZimlets extends AjaxCommonTest {
 		super.startingPage = app.zPagePreferences;
 	}
 
-	@Test(description = "View the number of zimlets in the default list",
+	@Test (description = "View the number of zimlets in the default list",
 			groups = { "deprecated" })
 
 	public void GetZimlets_01() throws HarnessException {
@@ -57,7 +57,7 @@ public class GetZimlets extends AjaxCommonTest {
 
 
 	@Bugs(ids = "50123")
-	@Test(description = "Verify the LinkedIn table text",
+	@Test (description = "Verify the LinkedIn table text",
 			groups = { "deprecated" })
 
 	public void GetZimlets_02() throws HarnessException {
@@ -76,7 +76,7 @@ public class GetZimlets extends AjaxCommonTest {
 	}
 
 
-	@Test(description = "Verify the Phone table text",
+	@Test (description = "Verify the Phone table text",
 			groups = { "functional", "L3" })
 
 	public void GetZimlets_03() throws HarnessException {
@@ -95,7 +95,7 @@ public class GetZimlets extends AjaxCommonTest {
 	}
 
 
-	@Test(description = "Verify the Search Highlighter table text",
+	@Test (description = "Verify the Search Highlighter table text",
 			groups = { "functional", "L3" })
 
 	public void GetZimlets_04() throws HarnessException {
@@ -114,7 +114,7 @@ public class GetZimlets extends AjaxCommonTest {
 	}
 
 
-	@Test(description = "Verify the WebEx table text",
+	@Test (description = "Verify the WebEx table text",
 			groups = { "functional", "L2" })
 
 	public void GetZimlets_05() throws HarnessException {
@@ -153,7 +153,7 @@ public class GetZimlets extends AjaxCommonTest {
 	}
 
 
-	@Test(description = "Verify the Y-Emoticons table text",
+	@Test (description = "Verify the Y-Emoticons table text",
 			groups = { "functional", "L2" })
 
 	public void GetZimlets_07() throws HarnessException {

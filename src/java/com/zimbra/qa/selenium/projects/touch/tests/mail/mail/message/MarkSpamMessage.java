@@ -34,7 +34,7 @@ public class MarkSpamMessage extends PrefGroupMailByMessageTest{
 	public MarkSpamMessage() {
 		logger.info("New "+ MarkSpamMessage.class.getCanonicalName());
 	}
-	@Test( description = "Mark message as spam, from option menu",
+	@Test (description = "Mark message as spam, from option menu",
 			groups = { "sanity" })
 
 

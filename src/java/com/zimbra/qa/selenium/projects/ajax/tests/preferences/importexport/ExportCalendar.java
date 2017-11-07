@@ -30,7 +30,7 @@ public class ExportCalendar extends AjaxCommonTest {
 	}
 
 
-	@Test(description = "Verify clicking on 'export calendar' radio button",
+	@Test (description = "Verify clicking on 'export calendar' radio button",
 			groups = { "functional", "L2" })
 
 	public void ExportCalendar_01() throws HarnessException {

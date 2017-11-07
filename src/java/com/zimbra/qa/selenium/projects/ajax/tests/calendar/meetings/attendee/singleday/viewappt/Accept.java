@@ -32,7 +32,7 @@ public class Accept extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "View meeting invite by opening it and Accept the invitation",
+	@Test (description = "View meeting invite by opening it and Accept the invitation",
 			groups = { "smoke", "L1" })
 
 	public void AcceptMeeting_01() throws HarnessException {

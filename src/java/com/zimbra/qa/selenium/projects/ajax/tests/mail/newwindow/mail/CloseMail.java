@@ -31,7 +31,7 @@ public class CloseMail extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test(description = "Close a separate window",
+	@Test (description = "Close a separate window",
 			groups = { "functional", "L2" })
 
 	public void CloseMail_01() throws HarnessException {
@@ -72,7 +72,7 @@ public class CloseMail extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test(description = "Close a separate window - press Esc",
+	@Test (description = "Close a separate window - press Esc",
 			groups = { "functional", "L2" })
 
 	public void CloseMail_02() throws HarnessException {

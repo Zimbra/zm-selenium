@@ -42,7 +42,7 @@ public class ZimbraZimletAvailableZimlets extends AjaxCommonTest {
 
 
 	@Bugs(ids = "50123")
-	@Test( description = "Load the client with just Social enabled",
+	@Test (description = "Load the client with just Social enabled",
 			groups = { "deprecated" })
 
 	public void ZimbraZimletAvailableZimlets_01() throws HarnessException {

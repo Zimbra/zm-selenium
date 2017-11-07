@@ -33,7 +33,7 @@ public class CreateAppointment extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Create Appointment from new window by action menu -> Create Appointment",
+	@Test (description = "Create Appointment from new window by action menu -> Create Appointment",
 			groups = { "functional", "L2" })
 
 	public void CreateAppointment_01() throws HarnessException {

@@ -34,7 +34,7 @@ public class ViewAppointment extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 	
-	@Test( description = "View appointment and verify reading pane shows invite details correctly",
+	@Test (description = "View appointment and verify reading pane shows invite details correctly",
 			groups = { "sanity" })
 			
 	public void ViewAppointment_01() throws HarnessException {

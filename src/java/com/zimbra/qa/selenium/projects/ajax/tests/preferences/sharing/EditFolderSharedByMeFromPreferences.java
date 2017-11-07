@@ -31,7 +31,7 @@ public class EditFolderSharedByMeFromPreferences extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Modify share folder rights from preferences",
+	@Test (description = "Modify share folder rights from preferences",
 			groups = { "functional", "L2" })
 
 	public void EditFolderSharedByMeFromPreferences_01() throws HarnessException {

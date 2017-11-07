@@ -48,7 +48,7 @@ public class GetAccount extends AdminCommonTest {
 	 * 2. Verify account is present in the list.
 	 * @throws HarnessException
 	 */
-	@Test( description = "Verify created account is displayed in UI -- Manage Account View.",
+	@Test (description = "Verify created account is displayed in UI -- Manage Account View.",
 			groups = { "sanity", "L0" })
 	public void GetAccount_01() throws HarnessException {
 
@@ -91,7 +91,7 @@ public class GetAccount extends AdminCommonTest {
 	 * 3. Verify account is present in the list.
 	 * @throws HarnessException
 	 */
-	@Test( description = "Verify created account is displayed in UI -- Search list view",
+	@Test (description = "Verify created account is displayed in UI -- Search list view",
 			groups = { "functional", "L3" })
 	public void GetAccount_02() throws HarnessException {
 
@@ -138,7 +138,7 @@ public class GetAccount extends AdminCommonTest {
 	 * 4. Verify spam/ham, wiki, galsync accounts are not displayed in Account List.
 	 * @throws HarnessException
 	 */
-	@Test( description = "Verify that system accounts such as spam/ham, wiki and galsync accounts are not displayed in the list.",
+	@Test (description = "Verify that system accounts such as spam/ham, wiki and galsync accounts are not displayed in the list.",
 			groups = { "functional", "L3" })
 	public void GetAccount_03() throws HarnessException {
 
@@ -201,7 +201,7 @@ public class GetAccount extends AdminCommonTest {
 	 * 3. Verify account is present in the list.
 	 * @throws HarnessException
 	 */
-	@Test( description = "Verify system accounts i.e. spam/ham, wiki, galsync account is displayed in Search list view",
+	@Test (description = "Verify system accounts i.e. spam/ham, wiki, galsync account is displayed in Search list view",
 			groups = { "functional", "L2" })
 	public void GetAccount_04() throws HarnessException {
 

@@ -33,8 +33,8 @@ public class RenameDL extends AjaxCommonTest  {
 	}
 
 
-	@Test( description = "Rename DL",
-			groups = { "functional", "L2"})
+	@Test (description = "Rename DL",
+			groups = { "functional", "L2" })
 
 	public void RenameDL_01 () throws HarnessException {
 

@@ -23,13 +23,10 @@ import com.zimbra.qa.selenium.projects.ajax.ui.*;
 public class DialogConfirmationDeleteAppointment extends DialogWarning {
 
 	public static class Locators {
-
 		public static final String LocatorDivID = "CONFIRM_DELETE_APPT_DIALOG";
 		public static final String LocatorDivCSS = "css=div#CONFIRM_DELETE_APPT_DIALOG";
-
 		public static final String DeleteAllOccurrencesRadioButton = "css=div[id='CONFIRM_DELETE_APPT_DIALOG_content'] td label:contains('Delete all occurrences')";
 		public static final String DeleteThisAndFutureOccurrencesRadioButton = "css=div[id='CONFIRM_DELETE_APPT_DIALOG_content'] td label:contains('Delete this instance and all future occurrences.')";
-
 	}
 
 	public DialogConfirmationDeleteAppointment(AbsApplication application, AbsTab page) {
@@ -37,7 +34,6 @@ public class DialogConfirmationDeleteAppointment extends DialogWarning {
 
 		logger.info("new " + DialogConfirmationDeleteAppointment.class.getCanonicalName());
 	}
-
 
 	public AbsPage zClickButton(Button button) throws HarnessException {
 		logger.info(myPageName() + " zClickButton(" + button + ")");
@@ -49,7 +45,7 @@ public class DialogConfirmationDeleteAppointment extends DialogWarning {
 
 			locator = Locators.DeleteAllOccurrencesRadioButton;
 
-			sClickAt(locator,"0,0");
+			sClickAt(locator, "0,0");
 			this.zWaitForBusyOverlay();
 
 			return (page);
@@ -58,14 +54,13 @@ public class DialogConfirmationDeleteAppointment extends DialogWarning {
 
 			locator = Locators.DeleteThisAndFutureOccurrencesRadioButton;
 
-			sClickAt(locator,"0,0");
+			sClickAt(locator, "0,0");
 			this.zWaitForBusyOverlay();
 
 			return (page);
 
 		}
 
-		return ( super.zClickButton(button) );
-
+		return (super.zClickButton(button));
 	}
 }

@@ -33,7 +33,7 @@ public class DeleteTag extends FeatureBriefcaseTest {
 	}
 
 
-	@Test( description = "Delete a tag - Right click, Delete",
+	@Test (description = "Delete a tag - Right click, Delete",
 			groups = { "functional", "L3" })
 
 	public void DeleteTag_01() throws HarnessException {

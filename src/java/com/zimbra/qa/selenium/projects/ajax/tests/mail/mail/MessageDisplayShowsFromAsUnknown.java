@@ -44,7 +44,7 @@ public class MessageDisplayShowsFromAsUnknown extends AjaxCommonTest {
 
 
 	@Bugs( ids = "16213")
-	@Test( description = "Verify bug 16213 - Message display should show From=Unknown",
+	@Test (description = "Verify bug 16213 - Message display should show From=Unknown",
 			groups = { "functional", "L2" })
 
 	public void MessageDisplayShowsFromAsUnknown_01() throws HarnessException {

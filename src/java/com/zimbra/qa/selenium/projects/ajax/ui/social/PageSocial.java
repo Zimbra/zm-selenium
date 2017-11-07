@@ -14,9 +14,6 @@
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-/**
- *
- */
 package com.zimbra.qa.selenium.projects.ajax.ui.social;
 
 import com.zimbra.qa.selenium.framework.ui.AbsApplication;
@@ -29,11 +26,6 @@ import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.projects.ajax.ui.AppAjaxClient;
 import com.zimbra.qa.selenium.projects.ajax.ui.PageMain;
 
-
-/**
- * @author Matt Rhoades
- *
- */
 public class PageSocial extends AbsTab {
 
 	public static class Locators {
@@ -46,33 +38,34 @@ public class PageSocial extends AbsTab {
 	}
 
 	private boolean zDismissWelcomeDialog() throws HarnessException {
-		DialogSocialZimletWelcome dialog = new DialogSocialZimletWelcome(MyApplication, ((AppAjaxClient) MyApplication).zPageSocial);
-		if ( dialog.zIsActive() ) {
+		DialogSocialZimletWelcome dialog = new DialogSocialZimletWelcome(MyApplication,
+				((AppAjaxClient) MyApplication).zPageSocial);
+		if (dialog.zIsActive()) {
 			dialog.zClickButton(Button.B_OK);
 			return (true);
 		}
 		return (false);
 	}
-	
+
 	@Override
 	public boolean zIsActive() throws HarnessException {
 
-		if ( !((AppAjaxClient)MyApplication).zPageMain.zIsActive() ) {
-			((AppAjaxClient)MyApplication).zPageMain.zNavigateTo();
+		if (!((AppAjaxClient) MyApplication).zPageMain.zIsActive()) {
+			((AppAjaxClient) MyApplication).zPageMain.zNavigateTo();
 		}
 
 		this.zDismissWelcomeDialog();
-		
+
 		boolean present = this.sIsElementPresent(Locators.StatusTextAreaLocatorCSS);
-		if ( !present ) {
+		if (!present) {
 			return (false);
 		}
-		
+
 		boolean visible = this.zIsVisiblePerPosition(Locators.StatusTextAreaLocatorCSS, 0, 0);
-		if ( !visible ) {
+		if (!visible) {
 			return (false);
 		}
-		
+
 		return (true);
 	}
 
@@ -84,16 +77,16 @@ public class PageSocial extends AbsTab {
 	@Override
 	public void zNavigateTo() throws HarnessException {
 
-		if ( zIsActive() ) {
+		if (zIsActive()) {
 			logger.info(myPageName() + " is already loaded");
 			return;
 		}
 
-		if ( !((AppAjaxClient)MyApplication).zPageMain.zIsActive() ) {
-			((AppAjaxClient)MyApplication).zPageMain.zNavigateTo();
+		if (!((AppAjaxClient) MyApplication).zPageMain.zIsActive()) {
+			((AppAjaxClient) MyApplication).zPageMain.zNavigateTo();
 		}
 
-		logger.info("Navigate to "+ this.myPageName());
+		logger.info("Navigate to " + this.myPageName());
 
 		this.zClick(PageMain.Locators.zSocialTab);
 		SleepUtil.sleepSmall();
@@ -101,13 +94,13 @@ public class PageSocial extends AbsTab {
 		this.zWaitForBusyOverlay();
 		zWaitForActive();
 
-		logger.info("Navigated to "+ this.myPageName() + " page");
+		logger.info("Navigated to " + this.myPageName() + " page");
 	}
 
 	@Override
 	public AbsPage zToolbarPressButton(Button button) throws HarnessException {
-		logger.info(myPageName() + " zToolbarPressButton("+ button +")");
-		tracer.trace("Press the "+ button +" button");
+		logger.info(myPageName() + " zToolbarPressButton(" + button + ")");
+		tracer.trace("Press the " + button + " button");
 		throw new HarnessException("implement me!");
 	}
 

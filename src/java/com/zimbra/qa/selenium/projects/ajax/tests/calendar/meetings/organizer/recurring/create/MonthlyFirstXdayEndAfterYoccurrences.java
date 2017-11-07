@@ -35,7 +35,7 @@ public class MonthlyFirstXdayEndAfterYoccurrences extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Create monthly recurring invite with attendee and location with particular week & end date",
+	@Test (description = "Create monthly recurring invite with attendee and location with particular week & end date",
 			groups = { "sanity", "L0" })
 
 	public void MonthlyFirstXdayEndAfterYoccurrences_01() throws HarnessException {

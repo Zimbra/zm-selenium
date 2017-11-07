@@ -34,7 +34,7 @@ public class CreateFlag extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Create flag from new window from action menu -> Create Flag",
+	@Test (description = "Create flag from new window from action menu -> Create Flag",
 			groups = { "functional", "L2" })
 
 	public void CreateFlagFromNewWindow_01() throws HarnessException {
@@ -105,7 +105,7 @@ public class CreateFlag extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Create flag from new window using shortcut key 'mf'",
+	@Test (description = "Create flag from new window using shortcut key 'mf'",
 			groups = { "functional", "L3" })
 
 	public void CreateFlagFromNewWindow_02() throws HarnessException {

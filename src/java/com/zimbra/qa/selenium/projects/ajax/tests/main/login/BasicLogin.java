@@ -30,7 +30,7 @@ public class BasicLogin extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Login to the Ajax Client",
+	@Test (description = "Login to the Ajax Client",
 			groups = { "sanity", "L0" })
 
 	public void BasicLogin01() throws HarnessException {

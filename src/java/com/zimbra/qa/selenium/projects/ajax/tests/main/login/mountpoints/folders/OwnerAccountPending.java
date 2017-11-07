@@ -41,8 +41,8 @@ public class OwnerAccountPending extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Login to the Ajax Client - with a mountpoint to a 'pending' account",
-			groups = { "functional", "L3"})
+	@Test (description = "Login to the Ajax Client - with a mountpoint to a 'pending' account",
+			groups = { "functional", "L3" })
 
 	public void OwnerAccountPending01() throws HarnessException {
 

@@ -49,7 +49,7 @@ public class GetMail extends HtmlCommonTest {
 
 	}
 	
-	@Test( description = "Receive a mail",
+	@Test (description = "Receive a mail",
 			groups = { "smoke" })
 	public void GetMail_01() throws HarnessException {
 		

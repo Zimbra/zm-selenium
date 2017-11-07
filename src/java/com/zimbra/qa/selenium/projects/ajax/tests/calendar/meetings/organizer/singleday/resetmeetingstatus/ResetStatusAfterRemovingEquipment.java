@@ -33,8 +33,8 @@ public class ResetStatusAfterRemovingEquipment extends AjaxCommonTest {
 
 
 	@Bugs(ids = "49881")
-	@Test( description = "Check reset status of meeting after Removing Equipment",
-			groups = { "functional", "L2"})
+	@Test (description = "Check reset status of meeting after Removing Equipment",
+			groups = { "functional", "L2" })
 
 	public void ResetStatusAfterRemovingEquipment_01() throws HarnessException {
 
@@ -91,12 +91,9 @@ public class ResetStatusAfterRemovingEquipment extends AjaxCommonTest {
 				"<SearchRequest xmlns='urn:zimbraMail' types='appointment' calExpandInstStart='"+ startUTC.addDays(-10).toMillis() +"' calExpandInstEnd='"+ endUTC.addDays(10).toMillis() +"'>"
 			+		"<query>"+ apptSubject +"</query>"
 			+	"</SearchRequest>");
-
 		String organizerInvId = app.zGetActiveAccount().soapSelectValue("//mail:appt", "invId");
 
-			app.zGetActiveAccount().soapSend(
-				"<GetAppointmentRequest  xmlns='urn:zimbraMail' id='"+ organizerInvId +"'/>");
-
+		app.zGetActiveAccount().soapSend("<GetAppointmentRequest  xmlns='urn:zimbraMail' id='"+ organizerInvId +"'/>");
 		String attendeeStatus = app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ ZimbraAccount.Account1().EmailAddress +"']", "ptst");
 
 		// Verify attendee status shows as ptst=AC
@@ -107,12 +104,9 @@ public class ResetStatusAfterRemovingEquipment extends AjaxCommonTest {
 				"<SearchRequest xmlns='urn:zimbraMail' types='appointment' calExpandInstStart='"+ startUTC.addDays(-10).toMillis() +"' calExpandInstEnd='"+ endUTC.addDays(10).toMillis() +"'>"
 			+		"<query>"+ apptSubject +"</query>"
 			+	"</SearchRequest>");
-
 		String attendeeInvId = ZimbraAccount.Account1().soapSelectValue("//mail:appt", "invId");
 
-		ZimbraAccount.Account1().soapSend(
-				"<GetAppointmentRequest  xmlns='urn:zimbraMail' id='"+ attendeeInvId +"'/>");
-
+		ZimbraAccount.Account1().soapSend("<GetAppointmentRequest  xmlns='urn:zimbraMail' id='"+ attendeeInvId +"'/>");
 		String myStatus = ZimbraAccount.Account1().soapSelectValue("//mail:at[@a='"+ ZimbraAccount.Account1().EmailAddress +"']", "ptst");
 
 		// Verify attendee status shows as ptst=NE

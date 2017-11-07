@@ -38,8 +38,8 @@ public class MoveTask extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Verify Toaster message on moving Task",
-			groups = { "functional", "L3"})
+	@Test (description = "Verify Toaster message on moving Task",
+			groups = { "functional", "L3" })
 
 	public void MoveTask_01() throws HarnessException {
 

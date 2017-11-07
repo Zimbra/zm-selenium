@@ -38,7 +38,7 @@ public class NavigateAdminExtensions extends AdminCommonTest {
 	 * 2. Verify navigation path -- "Home --> Configure --> Admin Extensions"
 	 * @throws HarnessException
 	 */
-	@Test( description = "Navigate to Admin Extensions",
+	@Test (description = "Navigate to Admin Extensions",
 			groups = { "sanity", "L0" })
 			public void NavigateAdminExtensions_01() throws HarnessException {
 		

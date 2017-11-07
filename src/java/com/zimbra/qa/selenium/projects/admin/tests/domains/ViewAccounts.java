@@ -36,7 +36,7 @@ public class ViewAccounts extends AdminCommonTest {
 
 	}
 
-	@Test( description = "Verify edit domain operation --  View Accounts",
+	@Test (description = "Verify edit domain operation --  View Accounts",
 			groups = { "smoke", "L1" })
 			public void ViewAccounts_01() throws HarnessException {
 	

@@ -29,7 +29,7 @@ public class MarkAllAsReadFolder extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Mark all messages as read in folder (context menu)",
+	@Test (description = "Mark all messages as read in folder (context menu)",
 			groups = { "smoke", "L1" })
 
 	public void MarkAllAsReadFolder_01() throws HarnessException {

@@ -32,7 +32,7 @@ public class OpenComposedMsgWithAnInlineAttachmentInNewWindow extends PrefGroupM
 	}
 
 
-	@Test( description = "Verify inline attachment in Normal Compose window as well as in New compose window",
+	@Test (description = "Verify inline attachment in Normal Compose window as well as in New compose window",
 			groups = { "functional", "L2" })
 
 	public void OpenComposedMsgWithAnAttachmentInNewWindow_01() throws HarnessException {

@@ -34,7 +34,7 @@ public class CreateAppointmentWithLocation extends AjaxCommonTest {
 
 
 	@Bugs(ids = "101584")
-	@Test( description = "Create appointment with location using quick add dialog",
+	@Test (description = "Create appointment with location using quick add dialog",
 			groups = { "functional", "L2" } )
 
 	public void CreateAppointmentWithLocation_01() throws HarnessException {

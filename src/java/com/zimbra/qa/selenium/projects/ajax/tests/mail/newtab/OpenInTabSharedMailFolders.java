@@ -37,7 +37,7 @@ public class OpenInTabSharedMailFolders extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Verify Open in new tab option for shared folder - custom folder",
+	@Test (description = "Verify Open in new tab option for shared folder - custom folder",
 			groups = { "functional", "L2" })
 
 	public void OpenInTabSharedMailFolders_01() throws HarnessException {
@@ -110,7 +110,7 @@ public class OpenInTabSharedMailFolders extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Verify Open in new tab option for shared folder - Inbox folder",
+	@Test (description = "Verify Open in new tab option for shared folder - Inbox folder",
 			groups = { "functional", "L2" })
 
 	public void OpenInTabSharedMailFolders_02() throws HarnessException {

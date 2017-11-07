@@ -43,7 +43,7 @@ public class SendLater extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Send a mail later using Send -> Send Later",
+	@Test (description = "Send a mail later using Send -> Send Later",
 			groups = { "smoke", "L1" })
 
 	public void SendLater_01() throws HarnessException {
@@ -73,7 +73,7 @@ public class SendLater extends PrefGroupMailByMessageTest {
 
 
 	@Bugs(ids="ZCS-700")
-	@Test( description = "Send a mail later using Send -> Send Later - specify time in future",
+	@Test (description = "Send a mail later using Send -> Send Later - specify time in future",
 			groups = { "smoke", "L1" })
 
 	public void SendLater_02() throws HarnessException {
@@ -104,7 +104,7 @@ public class SendLater extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Send a mail now using Send -> Send",
+	@Test (description = "Send a mail now using Send -> Send",
 			groups = { "functional", "L3" })
 
 	public void SendLater_03() throws HarnessException {

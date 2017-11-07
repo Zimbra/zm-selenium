@@ -51,7 +51,7 @@ public class TentativeMeeting extends CalendarWorkWeekTest {
 				+	"</CreateAppointmentRequest>");
 	}
 	
-	@Test( description = "Tentative a meeting using Tentative button from invitation message", 
+	@Test (description = "Tentative a meeting using Tentative button from invitation message", 
 			groups = { "sanity" })
 	
 	public void TentativeMeeting_01() throws HarnessException {
@@ -136,7 +136,7 @@ public class TentativeMeeting extends CalendarWorkWeekTest {
 
 	}
 
-	@Test( description = "Tentative meeting - Verify organizer gets notification message", 
+	@Test (description = "Tentative meeting - Verify organizer gets notification message", 
 			groups = { "functional" })
 	
 	public void TentativeMeeting_02() throws HarnessException {

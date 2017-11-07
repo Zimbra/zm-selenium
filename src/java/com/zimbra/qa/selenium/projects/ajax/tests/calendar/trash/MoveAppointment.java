@@ -39,7 +39,7 @@ public class MoveAppointment extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "Verify the move of an appointment from trash to Calendar",
+	@Test (description = "Verify the move of an appointment from trash to Calendar",
 			groups = { "sanity", "L1" })
 
 	public void MoveAppointment_01() throws HarnessException {

@@ -36,7 +36,7 @@ public class ChangeColorMountpoint extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Edit a folder, change the color (Context menu -> Edit)",
+	@Test (description = "Edit a folder, change the color (Context menu -> Edit)",
 			groups = { "functional", "L2" })
 
 	public void ChangeColorMountpoint_01() throws HarnessException {

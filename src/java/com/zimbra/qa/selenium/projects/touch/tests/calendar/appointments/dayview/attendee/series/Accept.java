@@ -30,7 +30,7 @@ public class Accept extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 
-	@Test( description = "Accept a series using view appointment options", 
+	@Test (description = "Accept a series using view appointment options", 
 			groups = { "smoke" })
 	
 	public void AcceptMeeting_01() throws HarnessException {

@@ -32,8 +32,8 @@ public class RenameTag extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Rename a tag - Right click, Rename",
-			groups = { "smoke", "L1"})
+	@Test (description = "Rename a tag - Right click, Rename",
+			groups = { "smoke", "L1" })
 
 	public void RenameTag_01() throws HarnessException {
 

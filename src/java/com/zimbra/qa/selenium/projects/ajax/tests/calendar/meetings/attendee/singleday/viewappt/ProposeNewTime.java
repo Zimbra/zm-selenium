@@ -33,7 +33,7 @@ public class ProposeNewTime extends AjaxCommonTest {
 	}
 
 
-	@Test( description = "View meeting invite by opening it and propose new time to organizer",
+	@Test (description = "View meeting invite by opening it and propose new time to organizer",
 			groups = { "functional", "L2" })
 
 	public void MeetingProposeNewTime_01() throws HarnessException {

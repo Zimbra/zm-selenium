@@ -35,7 +35,7 @@ public class Forward extends AjaxCommonTest {
 
 
 	@Bugs(ids = "95961")
-	@Test( description = "Forward entire series by changing content",
+	@Test (description = "Forward entire series by changing content",
 			groups = { "smoke", "L1" })
 
 	public void ForwardMeeting_01() throws HarnessException {

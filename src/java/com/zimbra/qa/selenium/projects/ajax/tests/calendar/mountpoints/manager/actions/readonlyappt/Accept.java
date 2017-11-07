@@ -33,7 +33,7 @@ public class Accept extends AjaxCommonTest {
 
 
 	@Bugs(ids = "81647")
-	@Test( description = "Assistant right clicks to calendar invite from shared calendar and accepts the invite OBO boss",
+	@Test (description = "Assistant right clicks to calendar invite from shared calendar and accepts the invite OBO boss",
 			groups = { "smoke", "L1" })
 
 	public void Accept_01() throws HarnessException {

@@ -14,9 +14,6 @@
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-/**
- * 
- */
 package com.zimbra.qa.selenium.projects.ajax.ui.briefcase;
 
 import com.zimbra.qa.selenium.framework.ui.*;
@@ -61,17 +58,16 @@ public class DialogEditProperties extends AbsDialog {
 
 		logger.info(myPageName() + " zIsActive()");
 
-		String locator = "css=div[class=" + Locators.zEditPropertiesDialogId +"]";
+		String locator = "css=div[class=" + Locators.zEditPropertiesDialogId + "]";
 
 		if (!this.sIsElementPresent(locator)) {
-			return (false); // Not even present
+			return (false);
 		}
 
 		if (!this.zIsVisiblePerPosition(locator, 0, 0)) {
-			return (false); // Not visible per position
+			return (false);
 		}
 
-		// Yes, visible
 		logger.info(myPageName() + " zIsActive() = true");
 		return (true);
 	}
@@ -87,25 +83,29 @@ public class DialogEditProperties extends AbsDialog {
 
 		if (button == Button.B_OK) {
 
-			locator = "//div[@class='" + Locators.zEditPropertiesDialogId+ "']//div[contains(@id,'_buttons')]//td[text()='OK']";
+			locator = "//div[@class='" + Locators.zEditPropertiesDialogId
+					+ "']//div[contains(@id,'_buttons')]//td[text()='OK']";
 
 		} else if (button == Button.B_CANCEL) {
 
-			locator = "//div[@class='" + Locators.zEditPropertiesDialogId+ "']//div[contains(@id,'_buttons')]//td[text()='Cancel']";
+			locator = "//div[@class='" + Locators.zEditPropertiesDialogId
+					+ "']//div[contains(@id,'_buttons')]//td[text()='Cancel']";
 
 		} else if (button == Button.B_SHARE) {
 
-			locator = "//div[@class='" + Locators.zEditPropertiesDialogId+ "']//div[contains(@id,'_buttons')]//td[text()=''Add Share...']";
+			locator = "//div[@class='" + Locators.zEditPropertiesDialogId
+					+ "']//div[contains(@id,'_buttons')]//td[text()=''Add Share...']";
 
 		} else if (button == Button.O_RESEND_LINK) {
-			
+
 			throw new HarnessException("implement me");
-			
+
 		} else if (button == Button.O_REVOKE_LINK) {
-			
-			locator = "//div[@class='" + Locators.zEditPropertiesDialogId+ "']//div[contains(@id,'_content')]//div/fieldset/div/table/tbody/tr/td/a[contains(text(),'Revoke')]";
-			page = new DialogShareRevoke(MyApplication,((AppAjaxClient) MyApplication).zPageMail);
-			
+
+			locator = "//div[@class='" + Locators.zEditPropertiesDialogId
+					+ "']//div[contains(@id,'_content')]//div/fieldset/div/table/tbody/tr/td/a[contains(text(),'Revoke')]";
+			page = new DialogShareRevoke(MyApplication, ((AppAjaxClient) MyApplication).zPageMail);
+
 			// Click the link
 			this.sClick(locator);
 			this.zWaitForBusyOverlay();
@@ -119,9 +119,10 @@ public class DialogEditProperties extends AbsDialog {
 
 		} else if (button == Button.O_EDIT_LINK) {
 
-			locator = "//div[@class='" + Locators.zEditPropertiesDialogId+ "']//div[contains(@id,'_content')]//div/fieldset/div/table/tbody/tr/td/a[contains(text(),'Edit')]";
-			page = new DialogShare(MyApplication,((AppAjaxClient) MyApplication).zPageMail);
-			
+			locator = "//div[@class='" + Locators.zEditPropertiesDialogId
+					+ "']//div[contains(@id,'_content')]//div/fieldset/div/table/tbody/tr/td/a[contains(text(),'Edit')]";
+			page = new DialogShare(MyApplication, ((AppAjaxClient) MyApplication).zPageMail);
+
 			// Click the link
 			this.sClick(locator);
 			this.zWaitForBusyOverlay();
@@ -132,14 +133,11 @@ public class DialogEditProperties extends AbsDialog {
 
 			// Done
 			return (page);
-			
+
 		} else {
 			throw new HarnessException("Button " + button + " not implemented");
 		}
 
-		
-		// Make sure the locator was set
-				
 		this.zClick(locator);
 
 		this.zWaitForBusyOverlay();
@@ -159,8 +157,6 @@ public class DialogEditProperties extends AbsDialog {
 
 	/**
 	 * Set the new folder name
-	 * 
-	 * @param folder
 	 */
 	public void zSetNewName(String folder) throws HarnessException {
 		logger.info(myPageName() + " zEnterFolderName(" + folder + ")");
@@ -173,14 +169,13 @@ public class DialogEditProperties extends AbsDialog {
 		String locator = "css=div.DwtDialogBody div input";
 
 		if (!this.sIsElementPresent(locator))
-			throw new HarnessException("unable to find folder name field "
-					+ locator);
+			throw new HarnessException("unable to find folder name field " + locator);
 
 		// For some reason, the text doesn't get entered on the first try
 		this.sFocus(locator);
 		this.zClick(locator);
 		this.clearField(locator);
-		this.sType(locator, folder);	
+		this.sType(locator, folder);
 		this.zWaitForBusyOverlay();
 	}
 
@@ -190,8 +185,6 @@ public class DialogEditProperties extends AbsDialog {
 
 	/**
 	 * Set the color pulldown
-	 * 
-	 * @param folder
 	 */
 	public void zSetNewColor(FolderColor color) throws HarnessException {
 		logger.info(myPageName() + " zEnterFolderColor(" + color + ")");
@@ -245,8 +238,7 @@ public class DialogEditProperties extends AbsDialog {
 			zClick(optionLocator);
 
 		} else {
-			throw new HarnessException("color " + color
-					+ " not yet implemented");
+			throw new HarnessException("color " + color + " not yet implemented");
 		}
 
 	}
