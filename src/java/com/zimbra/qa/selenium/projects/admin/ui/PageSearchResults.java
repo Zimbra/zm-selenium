@@ -255,7 +255,7 @@ public class PageSearchResults extends AbsTab {
 		//
 
 		// Click it
-		this.zClick(locator);
+		this.sClick(locator);
 
 
 		// If page was specified, make sure it is active
@@ -363,7 +363,7 @@ public class PageSearchResults extends AbsTab {
 				throw new HarnessException("Button " + pulldown + " option " + option + " pulldownLocator " + pulldownLocator + " not present!");
 			}
 
-			this.zClickAt(pulldownLocator,"");
+			this.sClickAt(pulldownLocator,"");
 
 			// If the app is busy, wait for it to become active
 			//zWaitForBusyOverlay();
@@ -375,7 +375,7 @@ public class PageSearchResults extends AbsTab {
 					throw new HarnessException("Button " + pulldown + " option " + option + " optionLocator " + optionLocator + " not present!");
 				}
 
-				this.zClick(optionLocator);
+				this.sClick(optionLocator);
 
 				// If the app is busy, wait for it to become active
 				//zWaitForBusyOverlay();

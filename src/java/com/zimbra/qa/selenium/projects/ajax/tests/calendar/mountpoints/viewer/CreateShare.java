@@ -59,7 +59,7 @@ public class CreateShare extends AjaxCommonTest {
 		dialog.zSetEmailAddress(ZimbraAccount.Account1().EmailAddress);
 
 		// Send it
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 
 		// Make sure that AccountA now has the share
 		ZimbraAccount.Account1().soapSend("<GetShareInfoRequest xmlns='urn:zimbraAccount'>" + "<grantee type='usr'/>"
@@ -103,7 +103,7 @@ public class CreateShare extends AjaxCommonTest {
 
 		dialog.zSetEmailAddress(ZimbraAccount.Account10().EmailAddress);
 		dialog.zSetMessageType(ShareMessageType.DoNotSendMsg, null);
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 
 		// Search for the mail in recepients inbox
 		MailItem received = MailItem.importFromSOAP(ZimbraAccount.Account10(),
@@ -145,7 +145,7 @@ public class CreateShare extends AjaxCommonTest {
 		dialog.zSetEmailAddress(ZimbraAccount.Account9().EmailAddress);
 
 		dialog.zSetMessageType(ShareMessageType.AddNoteToStandardMsg, firstLine +"\n" + secondLine +"\n"+thirdLine);
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 
 		// Search for the mail in recepients inbox
 		MailItem received = MailItem.importFromSOAP(ZimbraAccount.Account9(),

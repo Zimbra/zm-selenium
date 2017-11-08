@@ -69,7 +69,7 @@ public class ChangeColorSavedSearch extends PrefGroupMailByMessageTest {
 		
 		// Change the color, click OK
 		dialog.zSetNewColor(FolderColor.Gray);
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 
 		
 		//-- VERIFICATION

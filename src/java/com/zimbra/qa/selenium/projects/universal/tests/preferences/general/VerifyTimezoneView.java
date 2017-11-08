@@ -105,7 +105,7 @@ public class VerifyTimezoneView extends UniversalCommonTest {
 		
 		for (int i=7; i<=Timezone.length-1; i++) {
 			System.out.println("Verify " + Timezone[i] + " timezone present");
-			app.zPagePreferences.zClick(Locators.zDownArrow);
+			app.zPagePreferences.sClick(Locators.zDownArrow);
 			ZAssert.assertTrue(app.zPagePreferences.sIsElementPresent(Timezone[i]), "Verify " + Timezone[i] + " timezone present"); 
 		}
 		

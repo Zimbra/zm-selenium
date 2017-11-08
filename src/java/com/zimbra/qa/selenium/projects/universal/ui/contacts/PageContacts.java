@@ -568,7 +568,7 @@ public class PageContacts extends AbsTab {
 				zWaitForElementPresent(optionLocator);
 
 				if (!zIsElementDisabled(optionLocator)) {
-					zClick(optionLocator);
+					sClick(optionLocator);
 					SleepUtil.sleepSmall();
 					zWaitForBusyOverlay();
 				}

@@ -72,7 +72,7 @@ public class DeleteAppointment extends CalendarWorkWeekTest {
         // Select appointment and delete it
         app.zPageCalendar.zListItem(Action.A_LEFTCLICK, apptSubject);
         app.zPageCalendar.zToolbarPressButton(Button.B_DELETE);
-        app.zPageMail.zClickButton(Button.B_YES);
+        app.zPageMail.zPressButton(Button.B_YES);
         
         ZAssert.assertEquals(zVerifyToastMessage("Appointment moved to trash"), true, "Verify toast message after creating invite");
         

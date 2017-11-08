@@ -73,7 +73,7 @@ public class UndoDeleteContact extends UniversalCommonTest {
 		// Click undo from the toaster message
 		Toaster toast = app.zPageMain.zGetToaster();
 		toast.zWaitForActive();
-		toast.zClickUndo();
+		toast.sClickUndo();
 
 
 		//Verify contact come back into Contacts folder
@@ -115,7 +115,7 @@ public class UndoDeleteContact extends UniversalCommonTest {
 		// Click undo from the toaster message
 		Toaster toast = app.zPageMain.zGetToaster();
 		toast.zWaitForActive();
-		toast.zClickUndo();
+		toast.sClickUndo();
 
 		//Verify contact come back into Contacts folder
 		ContactItem actual = ContactItem.importFromSOAP(app.zGetActiveAccount(), "#firstname:"+ contact.firstName);
@@ -188,7 +188,7 @@ public class UndoDeleteContact extends UniversalCommonTest {
 		// Click undo from the toaster message
 		Toaster toast = app.zPageMain.zGetToaster();
 		toast.zWaitForActive();
-		toast.zClickUndo();
+		toast.sClickUndo();
 
 		//Verify all 3 contacts are come back into Contacts folder
 

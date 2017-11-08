@@ -105,7 +105,7 @@ public class FormEditAccount extends AbsForm {
 		SleepUtil.sleepSmall();
 	}
 
-	public void zClickTreeItem(String treeItem) throws HarnessException {
+	public void zSelectTreeItem(String treeItem) throws HarnessException {
 		sClickAt("css=td:contains('" + treeItem + "')", "");
 	}
 
@@ -254,7 +254,7 @@ public class FormEditAccount extends AbsForm {
 		SleepUtil.sleepSmall();
 		zType(Locators.ALIAS_DOMAIN_NAME,domain);
 		SleepUtil.sleepSmall();
-		zClick(Locators.zdlg_OK);
+		sClick(Locators.zdlg_OK);
 		SleepUtil.sleepSmall();	
 	}
 
@@ -310,7 +310,7 @@ public class FormEditAccount extends AbsForm {
 		logger.info(myPageName() + " zLimitZimlets("+ zimlet +")");
 		tracer.trace("Click page button ");
 
-		zClick(Locators.LIMIT_ZIMLETS_RADIO);
+		sClick(Locators.LIMIT_ZIMLETS_RADIO);
 		SleepUtil.sleepSmall();
 		sUncheck("css=td[id$='zimbraZimletAvailableZimlets_4___container'] div table tbody tr:contains('"+zimlet+"') td input");
 		if ( !this.sIsElementPresent("css=td[id$='zimbraZimletAvailableZimlets_4___container'] div table tbody tr:contains('"+zimlet+"') td input") ) {
@@ -322,7 +322,7 @@ public class FormEditAccount extends AbsForm {
 		logger.info(myPageName() + " zLimitZimlets("+ theme +")");
 		tracer.trace("Click page button ");
 
-		zClick(Locators.LIMIT_THEME_RADIO);
+		sClick(Locators.LIMIT_THEME_RADIO);
 		SleepUtil.sleepSmall();
 		sCheck("css=td[id$='zimbraAvailableSkin_4___container'] div table tbody tr:contains('"+theme+"') input");
 		if ( !this.sIsElementPresent("css=td[id$='zimbraAvailableSkin_4___container'] div table tbody tr:contains('"+theme+"') input") ) {

@@ -40,8 +40,8 @@ public class DialogConfirmModification extends DialogWarning {
 	}
 
 	@Override
-	public AbsPage zClickButton(Button button) throws HarnessException {
-		logger.info(myPageName() + " zClickButton(" + button + ")");
+	public AbsPage zPressButton(Button button) throws HarnessException {
+		logger.info(myPageName() + " zPressButton(" + button + ")");
 
 		tracer.trace("Click dialog button " + button);
 		if ( button == null )
@@ -86,7 +86,7 @@ public class DialogConfirmModification extends DialogWarning {
 			                              
 		} else {
 			
-			return ( super.zClickButton(button) );
+			return ( super.zPressButton(button) );
 
 		}
 		

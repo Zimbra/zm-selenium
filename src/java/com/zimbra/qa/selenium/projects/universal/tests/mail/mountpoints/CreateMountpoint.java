@@ -116,7 +116,7 @@ public class CreateMountpoint extends PrefGroupMailByMessageTest {
 		ZAssert.assertNotNull(dialog, "Verify that the accept share dialog opens");
 		
 		// Click OK on the dialog
-		dialog.zClickButton(Button.B_YES);
+		dialog.zPressButton(Button.B_YES);
 		
 		FolderItem found = null;
 		

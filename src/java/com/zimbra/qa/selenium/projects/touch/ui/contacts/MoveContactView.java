@@ -70,7 +70,7 @@ public class MoveContactView extends AbsTree {
 	    }
 	
 		// By default, left click at locator
-		zClick(locator);
+		sClick(locator);
 		zWaitForBusyOverlay();									
 
 		return (page);
@@ -168,7 +168,7 @@ public class MoveContactView extends AbsTree {
 			zRightClickAt(actionLocator,"0,0");
 			zWaitForBusyOverlay();
 
-			zClickAt(optionLocator, "0,0");
+			sClickAt(optionLocator, "0,0");
 			zWaitForBusyOverlay();
 
 			return (page);
@@ -255,7 +255,7 @@ public class MoveContactView extends AbsTree {
 			
 			if ( optionLocator != null ) {
 				
-				zClickAt(optionLocator,"0,0");				
+				sClickAt(optionLocator,"0,0");				
 				zWaitForBusyOverlay();						
 
 			}
@@ -266,7 +266,7 @@ public class MoveContactView extends AbsTree {
 			
 			if (option == Button.B_TREE_NEWFOLDER) {
 				
-				zClickAt("css=div[class^=ImgNewContactsFolder][class*=ZWidget]","0,0");
+				sClickAt("css=div[class^=ImgNewContactsFolder][class*=ZWidget]","0,0");
 				page = null;
 			      				
 			} else {
@@ -411,7 +411,7 @@ public class MoveContactView extends AbsTree {
 			throw new HarnessException("Button is not present locator="+ locator +" button="+ button);
 		
 		// Click it
-		this.zClickAt(locator,"");
+		this.sClickAt(locator,"");
 		
 		// If the app is busy, wait for that to finish
 		this.zWaitForBusyOverlay();
@@ -420,7 +420,7 @@ public class MoveContactView extends AbsTree {
 		if ( !this.sIsElementPresent(subLocator) )
 			throw new HarnessException("Button is not present locator="+ subLocator );
 		
-		this.zClick(subLocator);
+		this.sClick(subLocator);
 		
 		// If the app is busy, wait for that to finish
 		this.zWaitForBusyOverlay();

@@ -107,10 +107,10 @@ public class PageManageCertificates extends AbsTab {
 		}
 
 		// Click on Addresses -> Accounts
-		zClickAt(Locators.CONFIGURE_ICON, "");
+		sClickAt(Locators.CONFIGURE_ICON, "");
 		zWaitForWorkInProgressDialogInVisible();
 		sIsElementPresent(Locators.CERTIFICATE);
-		zClickAt(Locators.CERTIFICATE, "");
+		sClickAt(Locators.CERTIFICATE, "");
 		zWaitForWorkInProgressDialogInVisible();
 		zWaitForActive();
 		SleepUtil.sleepMedium();
@@ -226,7 +226,7 @@ public class PageManageCertificates extends AbsTab {
 						+ pulldownLocator + " not present!");
 			}
 
-			this.zClickAt(pulldownLocator, "");
+			this.sClickAt(pulldownLocator, "");
 			SleepUtil.sleepMedium();
 
 			// If the app is busy, wait for it to become active
@@ -240,7 +240,7 @@ public class PageManageCertificates extends AbsTab {
 							+ optionLocator + " not present!");
 				}
 
-				this.zClickAt(optionLocator, "");
+				this.sClickAt(optionLocator, "");
 
 				// If the app is busy, wait for it to become active
 				// zWaitForBusyOverlay();
@@ -300,7 +300,7 @@ public class PageManageCertificates extends AbsTab {
 		AbsPage page = null;
 		SleepUtil.sleepMedium();
 		if (this.sIsElementPresent(Locators.SERVER_HOST_NAME))
-			this.zClickAt(PageManageCertificates.Locators.SERVER_HOST_NAME, "");
+			this.sClickAt(PageManageCertificates.Locators.SERVER_HOST_NAME, "");
 		return (page);
 	}
 
@@ -329,7 +329,7 @@ public class PageManageCertificates extends AbsTab {
 			if (this.sIsElementPresent(locator)) {
 				if (this.sGetText(locator).trim().contains(item)) {
 					if (action == Action.A_LEFTCLICK) {
-						zClick(locator);
+						sClick(locator);
 						break;
 					} else if (action == Action.A_RIGHTCLICK) {
 						zRightClick(locator);

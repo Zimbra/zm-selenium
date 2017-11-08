@@ -24,6 +24,7 @@ import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew.Field;
+import com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail;
 
 public class ResetStatusAfterUpdatingEquipment extends AjaxCommonTest {
 
@@ -78,8 +79,10 @@ public class ResetStatusAfterUpdatingEquipment extends AjaxCommonTest {
         app.zPageMain.zLogout();
 		app.zPageLogin.zLogin(ZimbraAccount.Account1());
 
-		app.zPageCalendar.zNavigateTo();
-		app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_ACCEPT_MENU, apptSubject);
+		// Accept invite
+		DisplayMail display = (DisplayMail)app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);
+		display.zPressButton(Button.B_ACCEPT);
+
 		app.zPageMain.zLogout();
 		app.zPageLogin.zLogin(ZimbraAccount.AccountZCS());
 
@@ -89,7 +92,6 @@ public class ResetStatusAfterUpdatingEquipment extends AjaxCommonTest {
         apptForm.zRemoveEquipment(apptEquipment1);
         apptForm.zFillField(Field.Equipment, apptEquipment2);
 		apptForm.zSubmitWithResources();
-		SleepUtil.sleepLong(); //Testing temporarily
 
 		// Check that the organizer shows the attendee as "Accepted" ---
 		app.zGetActiveAccount().soapSend(

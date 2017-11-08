@@ -482,7 +482,7 @@ public class FormContactDistributionListNew extends AbsForm {
 		}
 
 		//select contact dropdown
-		zClick(dropdown + postfix);
+		sClick(dropdown + postfix);
 		SleepUtil.sleepSmall();
 
 

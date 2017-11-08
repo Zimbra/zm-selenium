@@ -63,7 +63,7 @@ public class SearchFunctionality extends AdminCommonTest {
 		/*
 		 * Go to navigation path -- "Home --> Search --> Search --> All Results"
 		 */
-		app.zPageManageSearch.zClickTreeItemOfSearch(PageManageSearch.Locators.ALL_RESULT);
+		app.zPageManageSearch.zSelectTreeItemOfSearch(PageManageSearch.Locators.ALL_RESULT);
 		
 		// Get the list of displayed accounts
 		List<AccountItem> accounts = app.zPageSearchResults.zListGetAccounts();
@@ -105,7 +105,7 @@ public class SearchFunctionality extends AdminCommonTest {
 		/*
 		 * Go to navigation path -- "Home --> Search --> Search --> Accounts"
 		 */
-		app.zPageManageSearch.zClickTreeItemOfSearch(PageManageSearch.Locators.ACCOUNTS);
+		app.zPageManageSearch.zSelectTreeItemOfSearch(PageManageSearch.Locators.ACCOUNTS);
 		
 		// Get the list of displayed accounts
 		List<AccountItem> accounts = app.zPageSearchResults.zListGetAccounts();
@@ -147,7 +147,7 @@ public class SearchFunctionality extends AdminCommonTest {
 		/*
 		 * Go to navigation path -- "Home --> Search --> Search --> DLs"
 		 */
-		app.zPageManageSearch.zClickTreeItemOfSearch(PageManageSearch.Locators.DISTRIBUTION_LISTS);
+		app.zPageManageSearch.zSelectTreeItemOfSearch(PageManageSearch.Locators.DISTRIBUTION_LISTS);
 		
 		// Get the list of displayed accounts
 		List<AccountItem> accounts = app.zPageSearchResults.zListGetAccounts();
@@ -188,7 +188,7 @@ public class SearchFunctionality extends AdminCommonTest {
 		/*
 		 * Go to navigation path -- "Home --> Search --> Search --> Domains"
 		 */
-		app.zPageManageSearch.zClickTreeItemOfSearch(PageManageSearch.Locators.DOMAINS);
+		app.zPageManageSearch.zSelectTreeItemOfSearch(PageManageSearch.Locators.DOMAINS);
 		
 		// Get the list of displayed accounts
 		List<AccountItem> accounts = app.zPageSearchResults.zListGetAccounts();
@@ -231,7 +231,7 @@ public class SearchFunctionality extends AdminCommonTest {
 		/*
 		 * Go to navigation path -- "Home --> Search --> Saved Searches --> Locked Out"
 		 */
-		app.zPageManageSearch.zClickTreeItem(PageManageSearch.TreeItem.LOCKED_OUT_ACCOUNTS);
+		app.zPageManageSearch.zSelectTreeItem(PageManageSearch.TreeItem.LOCKED_OUT_ACCOUNTS);
 	
 		// Get the list of displayed accounts
 		List<AccountItem> accounts = app.zPageSearchResults.zListGetAccounts();
@@ -274,7 +274,7 @@ public class SearchFunctionality extends AdminCommonTest {
 		/*
 		 * Go to navigation path -- "Home --> Search --> Saved Searches --> Non-Active accounts"
 		 */
-		app.zPageManageSearch.zClickTreeItem(PageManageSearch.TreeItem.NON_ACTIVE_ACCOUNTS);
+		app.zPageManageSearch.zSelectTreeItem(PageManageSearch.TreeItem.NON_ACTIVE_ACCOUNTS);
 	
 		// Get the list of displayed accounts
 		List<AccountItem> accounts = app.zPageSearchResults.zListGetAccounts();
@@ -326,7 +326,7 @@ public class SearchFunctionality extends AdminCommonTest {
 		/*
 		 * Go to navigation path -- "Home --> Search --> Saved Searches --> admin"
 		 */
-		app.zPageManageSearch.zClickTreeItem(PageManageSearch.TreeItem.ADMIN_ACCOUNTS);
+		app.zPageManageSearch.zSelectTreeItem(PageManageSearch.TreeItem.ADMIN_ACCOUNTS);
 	
 		// Get the list of displayed accounts
 		List<AccountItem> accounts = app.zPageSearchResults.zListGetAccounts();
@@ -378,7 +378,7 @@ public class SearchFunctionality extends AdminCommonTest {
 		/*
 		 * Go to navigation path -- "Home --> Search --> Saved Searches --> Closed"
 		 */
-		app.zPageManageSearch.zClickTreeItem(PageManageSearch.TreeItem.CLOSED_ACCOUNTS);
+		app.zPageManageSearch.zSelectTreeItem(PageManageSearch.TreeItem.CLOSED_ACCOUNTS);
 	
 		// Get the list of displayed accounts
 		List<AccountItem> accounts = app.zPageSearchResults.zListGetAccounts();
@@ -421,7 +421,7 @@ public class SearchFunctionality extends AdminCommonTest {
 		/*
 		 * Go to navigation path -- "Home --> Search --> Saved Searches --> maintenance"
 		 */
-		app.zPageManageSearch.zClickTreeItem(PageManageSearch.TreeItem.MAINTENANCE_ACCOUNTS);
+		app.zPageManageSearch.zSelectTreeItem(PageManageSearch.TreeItem.MAINTENANCE_ACCOUNTS);
 	
 		// Get the list of displayed accounts
 		List<AccountItem> accounts = app.zPageSearchResults.zListGetAccounts();

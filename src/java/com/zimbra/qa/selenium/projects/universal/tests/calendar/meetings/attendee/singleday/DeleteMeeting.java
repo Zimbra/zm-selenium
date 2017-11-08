@@ -78,8 +78,8 @@ public class DeleteMeeting extends CalendarWorkWeekTest {
 
         // Select "Don't notify organizer"
  		DialogConfirmationDeclineAppointment declineAppt = (DialogConfirmationDeclineAppointment) new DialogConfirmationDeclineAppointment(app, app.zPageCalendar);
- 		declineAppt.zClickButton(Button.B_DONT_NOTIFY_ORGANIZER);
- 		declineAppt.zClickButton(Button.B_YES);
+ 		declineAppt.zPressButton(Button.B_DONT_NOTIFY_ORGANIZER);
+ 		declineAppt.zPressButton(Button.B_YES);
 
  		
  		// ---------------- Verification at organizer & invitee side both -------------------------------------       
@@ -163,8 +163,8 @@ public class DeleteMeeting extends CalendarWorkWeekTest {
 
         // Select "Don't notify organizer"
  		DialogConfirmationDeclineAppointment declineAppt = (DialogConfirmationDeclineAppointment) new DialogConfirmationDeclineAppointment(app, app.zPageCalendar);
- 		declineAppt.zClickButton(Button.B_NOTIFY_ORGANIZER);
- 		declineAppt.zClickButton(Button.B_YES);
+ 		declineAppt.zPressButton(Button.B_NOTIFY_ORGANIZER);
+ 		declineAppt.zPressButton(Button.B_YES);
  		
  		// ---------------- Verification at organizer & invitee side both -------------------------------------       
 

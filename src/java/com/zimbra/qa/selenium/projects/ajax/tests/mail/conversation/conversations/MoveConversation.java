@@ -40,7 +40,7 @@ public class MoveConversation extends PrefGroupMailByConversationTest {
 		DialogMove dialog = new DialogMove(app, ((AppAjaxClient)app).zPageMail);
 		if ( dialog.zIsActive() ) {
 			logger.warn(dialog.myPageName() +" was still active.  Cancelling ...");
-			dialog.zClickButton(Button.B_CANCEL);
+			dialog.zPressButton(Button.B_CANCEL);
 		}
 	}
 
@@ -110,8 +110,8 @@ public class MoveConversation extends PrefGroupMailByConversationTest {
 
 		// A move dialog will pop up
 		DialogMove dialog = new DialogMove(app, ((AppAjaxClient)app).zPageMail);
-		dialog.zClickTreeFolder(subfolder);
-		dialog.zClickButton(Button.B_OK);
+		dialog.sClickTreeFolder(subfolder);
+		dialog.zPressButton(Button.B_OK);
 
 		// Verify all mesages are in the subfolder
 		ConversationItem actual = ConversationItem.importFromSOAP(app.zGetActiveAccount(), "is:anywhere subject:"+ c.getSubject());
@@ -216,7 +216,7 @@ public class MoveConversation extends PrefGroupMailByConversationTest {
 		// Click move
 		DialogCreateFolder dialog = (DialogCreateFolder) app.zPageMail.zToolbarPressPulldown(Button.B_MOVE, Button.O_NEW_FOLDER);
 		dialog.zEnterFolderName(foldername);
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 
 		// Get the folder
 		FolderItem subfolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), foldername);

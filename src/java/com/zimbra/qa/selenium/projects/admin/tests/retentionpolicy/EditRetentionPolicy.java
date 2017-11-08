@@ -93,7 +93,7 @@ public class EditRetentionPolicy extends AdminCommonTest {
 		form.setRetentionRange(editedRetentionRange);
 
 		// Click on OK button
-		form.zClickOkButton();
+		form.sClickOkButton();
 
 		// Get retention policy information
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(

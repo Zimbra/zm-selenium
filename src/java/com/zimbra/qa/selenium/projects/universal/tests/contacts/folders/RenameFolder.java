@@ -62,7 +62,7 @@ public class RenameFolder extends UniversalCommonTest {
 				Button.B_RENAME, folderItem);
 
 		dialog.zSetNewName(name2);
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 
 		// -- Verification
 		FolderItem actual = FolderItem.importFromSOAP(app.zGetActiveAccount(), name);
@@ -100,7 +100,7 @@ public class RenameFolder extends UniversalCommonTest {
 				Button.B_RENAME, folderItem);
 
 		dialog.zSetNewName(name2);
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 
 		// -- Verification
 		FolderItem actual = FolderItem.importFromSOAP(app.zGetActiveAccount(), name);

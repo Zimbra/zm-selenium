@@ -91,11 +91,11 @@ public class SearchResourceUsingDescription extends CalendarWorkWeekTest {
 	    dialogFindEquipment.zType(Locators.EquipmentName, apptEquipment);
 	    dialogFindEquipment.zType(Locators.EquipmentDescription, equipmentDescription);
 	    SleepUtil.sleepSmall();
-	    dialogFindEquipment.zClickButton(Button.B_SEARCH_EQUIPMENT);
+	    dialogFindEquipment.zPressButton(Button.B_SEARCH_EQUIPMENT);
 	    SleepUtil.sleepMedium();
-	    dialogFindEquipment.zClickButton(Button.B_SELECT_EQUIPMENT);
+	    dialogFindEquipment.zPressButton(Button.B_SELECT_EQUIPMENT);
 	    SleepUtil.sleepSmall();
-	    dialogFindEquipment.zClickButton(Button.B_OK);
+	    dialogFindEquipment.zPressButton(Button.B_OK);
 	    SleepUtil.sleepMedium();
 	    apptForm.zSubmitWithResources();
 	

@@ -71,7 +71,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 	MailItem actual= MailItem.importFromSOAP(app.zGetActiveAccount(), "in:trash "+ subject);
 	ZAssert.assertNotNull(actual, "Verify the mail is in the trash");
 	
-	app.zPageMail.zClickButton(Button.B_BACK);
+	app.zPageMail.zPressButton(Button.B_BACK);
 	
 	}
 

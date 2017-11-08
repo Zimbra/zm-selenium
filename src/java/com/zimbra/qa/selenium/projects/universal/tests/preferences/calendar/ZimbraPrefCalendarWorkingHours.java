@@ -54,7 +54,7 @@ public class ZimbraPrefCalendarWorkingHours extends UniversalCommonTest {
 		
 		// Save preferences
 		app.zPagePreferences.zToolbarPressButton(Button.B_SAVE);
-		//DialogWarning dlgWarning = (DialogWarning) new DialogWarning(null, app, null).zClickButton(Button.B_NO);
+		//DialogWarning dlgWarning = (DialogWarning) new DialogWarning(null, app, null).zPressButton(Button.B_NO);
 		app.zPagePreferences.zPressButton(Button.B_NO);
  
 		// Verify the preference value
@@ -87,7 +87,7 @@ public class ZimbraPrefCalendarWorkingHours extends UniversalCommonTest {
 		app.zPagePreferences.zToolbarPressButton(Button.B_SAVE);
 		DialogWarning dialog = (DialogWarning) new DialogWarning(DialogWarning.DialogWarningID.ReloadApplication, app, app.zPagePreferences);
 		ZAssert.assertNotNull(dialog, "Dialog is present");
-		dialog.zClickButton(Button.B_YES);
+		dialog.zPressButton(Button.B_YES);
 		// Verify the preference value
 		app.zGetActiveAccount().soapSend(
 						"<GetPrefsRequest xmlns='urn:zimbraAccount'>"

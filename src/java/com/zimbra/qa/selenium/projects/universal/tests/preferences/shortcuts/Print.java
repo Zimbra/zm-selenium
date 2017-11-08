@@ -52,7 +52,7 @@ public class Print extends UniversalCommonTest {
 				
 			// Click Print, which opens a separate window
 			window.zSetWindowTitle(windowTitle);
-			app.zTreePreferences.zClickAt(locator, "");
+			app.zTreePreferences.sClickAt(locator, "");
 			app.zTreePreferences.zWaitForBusyOverlay();
 
 			window.zWaitForActive();

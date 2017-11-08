@@ -54,7 +54,7 @@ public class EditProperties extends AjaxCommonTest {
 		ZAssert.assertNotNull(dialog, "Verify the dialog opened");
 
 		dialog.zSetNewColor(FolderColor.Blue);
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 
 		// Get the folder again
 		FolderItem actual = FolderItem.importFromSOAP(app.zGetActiveAccount(), name);
@@ -77,7 +77,7 @@ public class EditProperties extends AjaxCommonTest {
 		ZAssert.assertNotNull(dialog, "Verify the dialog opened");
 
 		dialog.zSetNewColor(FolderColor.Green);
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 
 		// Get the folder again
 		FolderItem actual = FolderItem.importFromSOAP(app.zGetActiveAccount(), contacts.getName());
@@ -106,7 +106,7 @@ public class EditProperties extends AjaxCommonTest {
 		ZAssert.assertNotNull(dialog, "Verify the dialog opened");
 
 		dialog.zSetNewColor(FolderColor.Red);
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 
 		// Get the folder again
 		FolderItem actual = FolderItem.importFromSOAP(app.zGetActiveAccount(), name);
@@ -137,7 +137,7 @@ public class EditProperties extends AjaxCommonTest {
 		ZAssert.assertNotNull(dialog, "Verify the dialog opened");
 
 		dialog.zSetNewName(newname);
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 
 		// Get the folder again
 		FolderItem actual = FolderItem.importFromSOAP(app.zGetActiveAccount(), name);
@@ -171,7 +171,7 @@ public class EditProperties extends AjaxCommonTest {
 		ZAssert.assertNotNull(dialog, "Verify the dialog opened");
 
 		dialog.zSetNewName(newname);
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 
 		// Get the folder again
 		FolderItem actual = FolderItem.importFromSOAP(app.zGetActiveAccount(), name);
@@ -206,7 +206,7 @@ public class EditProperties extends AjaxCommonTest {
 
 		dialog.zSetNewColor(FolderColor.Yellow);
 		dialog.zSetNewName(newname);
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 
 		// Get the folder again
 		FolderItem actual = FolderItem.importFromSOAP(app.zGetActiveAccount(), name);
@@ -242,7 +242,7 @@ public class EditProperties extends AjaxCommonTest {
 
 		dialog.zSetNewColor(FolderColor.Orange);
 		dialog.zSetNewName(newname);
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 
 		// Get the folder again
 		FolderItem actual = FolderItem.importFromSOAP(app.zGetActiveAccount(), name);

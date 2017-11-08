@@ -670,7 +670,7 @@ public class TreeMail extends AbsTree {
 
 			page = new DialogShareFind(MyApplication, ((AppUniversalClient) MyApplication).zPageMail);
 
-			// Use sClick, not default zClick
+			// Use sClick, not default sClick
 			this.sClickAt(locator, "");
 			SleepUtil.sleepSmall();
 

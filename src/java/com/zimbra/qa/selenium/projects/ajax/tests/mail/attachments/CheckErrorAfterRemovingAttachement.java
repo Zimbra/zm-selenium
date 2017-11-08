@@ -87,7 +87,7 @@ public class CheckErrorAfterRemovingAttachement extends PrefGroupMailByMessageTe
 
 		// Click remove attachment
 		DialogWarning dialog = (DialogWarning)display.zListAttachmentItem(Button.B_REMOVE, item);
-		dialog.zClickButton(Button.B_YES);
+		dialog.zPressButton(Button.B_YES);
 
 		// Verify the message no longer has an attachment
 		account.soapSend(

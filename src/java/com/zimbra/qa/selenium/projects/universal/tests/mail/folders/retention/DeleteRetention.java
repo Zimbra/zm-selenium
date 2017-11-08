@@ -79,7 +79,7 @@ public class DeleteRetention extends PrefGroupMailByMessageTest {
 		dialog.zRetentionDisable();
 
 		// Save
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 		
 		
 		//-- Verification

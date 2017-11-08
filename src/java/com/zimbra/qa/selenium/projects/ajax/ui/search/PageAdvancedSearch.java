@@ -83,7 +83,7 @@ public class PageAdvancedSearch extends AbsTab {
 		tracer.trace("Press the " + button + " button");
 
 		if (button == Button.B_CLOSE) {
-			zClick(Locators.CLOSE);
+			sClick(Locators.CLOSE);
 			throw new HarnessException("Wait for bug 57826 fixed");
 		}
 		zWaitForBusyOverlay();

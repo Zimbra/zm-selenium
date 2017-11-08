@@ -69,7 +69,7 @@ public class OpenLinkToMessage extends FeatureBriefcaseTest {
 
 		// The starting page intentionally defined as Briefcase and not Mail
 		// From Briefcase open Mail page by clicking on Mail tab 
-		app.zPageMain.zClickAt("id=zb__App__Mail_title", "0,0");
+		app.zPageMain.sClickAt("id=zb__App__Mail_title", "0,0");
 		
 		SleepUtil.sleepSmall();
 		

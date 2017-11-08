@@ -79,7 +79,7 @@ public class ZmTasksItem_Task1 extends AjaxCommonTest{
 		// Refresh the tasks view
 		app.zTreeTasks.zTreeItem(Action.A_LEFTCLICK, taskFolder);
 		PerfToken token = PerfMetrics.startTimestamp(PerfKey.ZmTaskItem, "Load the Task item");
-		app.zPageTasks.zClickAt("css=div[id='zl__TKL__rows'] div[id^='zli__TKL'] td[id$='_su']:contains('"+subject1+"')","");
+		app.zPageTasks.sClickAt("css=div[id='zl__TKL__rows'] div[id^='zli__TKL'] td[id$='_su']:contains('"+subject1+"')","");
 		PerfMetrics.waitTimestamp(token);
    }
 }

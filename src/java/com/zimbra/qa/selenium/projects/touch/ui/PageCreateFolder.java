@@ -74,8 +74,8 @@ public class PageCreateFolder extends AbsPage {
 
 	}
 
-	public AbsPage zClickButton(Button button) throws HarnessException {
-		logger.info(myPageName() + " zClickButton("+ button +")");
+	public AbsPage zPressButton(Button button) throws HarnessException {
+		logger.info(myPageName() + " zPressButton("+ button +")");
 		tracer.trace("Click page button "+ button);
 
 		AbsPage page = null;

@@ -46,7 +46,7 @@ public class ZmTasksAppFolders extends AjaxCommonTest {
 		// Sync the changes to the client (notification block)
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 		PerfToken token = PerfMetrics.startTimestamp(PerfKey.ZmTasksAppOverviewPanel, "Load the tasks app, 1 task list");
-		app.zPageContacts.zClickAt("css=td[id='zb__App__Tasks_title']","");
+		app.zPageContacts.sClickAt("css=td[id='zb__App__Tasks_title']","");
 		PerfMetrics.waitTimestamp(token);
 
 		// Wait for the app to load
@@ -71,7 +71,7 @@ public class ZmTasksAppFolders extends AjaxCommonTest {
 		// Sync the changes to the client (notification block)
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 		PerfToken token = PerfMetrics.startTimestamp(PerfKey.ZmTasksAppOverviewPanel, "Load the tasks app, 100 task lists");
-		app.zPageContacts.zClickAt("css=td[id='zb__App__Tasks_title']","");
+		app.zPageContacts.sClickAt("css=td[id='zb__App__Tasks_title']","");
 		PerfMetrics.waitTimestamp(token);
 
 		// Wait for the app to load

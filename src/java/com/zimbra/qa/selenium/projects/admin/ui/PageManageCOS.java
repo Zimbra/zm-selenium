@@ -109,10 +109,10 @@ public class PageManageCOS extends AbsTab {
 
 		// Click on Addresses -> Accounts
 		SleepUtil.sleepMedium();
-		zClickAt(Locators.CONFIGURE_ICON,"");
+		sClickAt(Locators.CONFIGURE_ICON,"");
 		zWaitForWorkInProgressDialogInVisible();
 		SleepUtil.sleepMedium();
-		zClickAt(Locators.COS, "");
+		sClickAt(Locators.COS, "");
 		zWaitForWorkInProgressDialogInVisible();
 		SleepUtil.sleepMedium();
 
@@ -148,7 +148,7 @@ public class PageManageCOS extends AbsTab {
 				if (this.sGetText(locator).trim().equalsIgnoreCase(item))
 				{
 					if (action == Action.A_LEFTCLICK) {
-						zClick(locator);
+						sClick(locator);
 						break;
 					} else if (action == Action.A_RIGHTCLICK) {
 						zRightClick(locator);
@@ -238,7 +238,7 @@ public class PageManageCOS extends AbsTab {
 		// Default behavior, process the locator by clicking on it
 		//
 		SleepUtil.sleepLong();
-		this.zClickAt(locator,"");
+		this.sClickAt(locator,"");
 
 		// If page was specified, make sure it is active
 		if ( page != null ) {

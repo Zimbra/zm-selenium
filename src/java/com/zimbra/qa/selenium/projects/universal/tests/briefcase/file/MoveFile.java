@@ -119,10 +119,10 @@ public class MoveFile extends FeatureBriefcaseTest {
 			    .zToolbarPressButton(Button.B_MOVE, fileItem);
 
 		    // Choose folder on Confirmation dialog
-		    chooseFolder.zClickTreeFolder(subFolderItem);
+		    chooseFolder.sClickTreeFolder(subFolderItem);
 		    
 		    // Click OK on Confirmation dialog
-		    chooseFolder.zClickButton(Button.B_OK);
+		    chooseFolder.zPressButton(Button.B_OK);
 		} else {
 		    // Click move -> subfolder
 		    app.zPageBriefcase.zToolbarPressPulldown(Button.B_MOVE, subFolderItem);
@@ -231,10 +231,10 @@ public class MoveFile extends FeatureBriefcaseTest {
 				.zKeyboardShortcut(shortcut);
 
 		// Choose destination folder and Click OK on Confirmation dialog
-		chooseFolder.zClickTreeFolder(subFolders[1]);
+		chooseFolder.sClickTreeFolder(subFolders[1]);
 
-		//chooseFolder.zClickButton(Button.B_OK);
-		app.zPageBriefcase.zClickAt("css=div[id=ChooseFolderDialog_button2]","0,0");
+		//chooseFolder.zPressButton(Button.B_OK);
+		app.zPageBriefcase.sClickAt("css=div[id=ChooseFolderDialog_button2]","0,0");
 
 		// click on sub-folder1 in tree view
 		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, subFolders[0], false);
@@ -323,8 +323,8 @@ public class MoveFile extends FeatureBriefcaseTest {
 		.zListItem(Action.A_RIGHTCLICK, Button.O_MOVE, fileItem);
 
 		// Click OK on Confirmation dialog
-		chooseFolder.zClickTreeFolder(subFolderItem);
-		chooseFolder.zClickButton(Button.B_OK);
+		chooseFolder.sClickTreeFolder(subFolderItem);
+		chooseFolder.zPressButton(Button.B_OK);
 
 		// refresh briefcase page
 		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, folderItem, false);
@@ -355,7 +355,7 @@ public class MoveFile extends FeatureBriefcaseTest {
 		if (dialog.zIsActive()) {
 			logger.warn(dialog.myPageName()
 					+ " was still active.  Cancelling ...");
-			dialog.zClickButton(Button.B_CANCEL);
+			dialog.zPressButton(Button.B_CANCEL);
 		}
 
 	}

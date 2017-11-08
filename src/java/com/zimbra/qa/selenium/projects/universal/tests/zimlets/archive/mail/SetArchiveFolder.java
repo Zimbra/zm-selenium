@@ -74,8 +74,8 @@ public class SetArchiveFolder extends PrefGroupMailByMessageTest {
 		// A choose folder dialog will pop up
 		DialogMove dialog = new DialogMove(app, ((AppUniversalClient)app).zPageMail);
 		dialog.zWaitForActive();
-		dialog.zClickTreeFolder(subfolder);
-		dialog.zClickButton(Button.B_OK);
+		dialog.sClickTreeFolder(subfolder);
+		dialog.zPressButton(Button.B_OK);
 
 		app.zGetActiveAccount().soapSend(
 				"<GetMailboxMetadataRequest xmlns='urn:zimbraMail'>" +

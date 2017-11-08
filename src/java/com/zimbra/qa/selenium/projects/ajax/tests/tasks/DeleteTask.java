@@ -464,7 +464,7 @@ public class DeleteTask extends AjaxCommonTest {
 
 		// Click shift-delete
 		DialogWarning dialog = (DialogWarning)app.zPageTasks.zKeyboardShortcut(Shortcut.S_TASK_HARDELETE);
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 
 		// Verify the task is no longer present in tasks folder
 		List<TaskItem> tasks = app.zPageTasks.zGetTasks();
@@ -565,7 +565,7 @@ public class DeleteTask extends AjaxCommonTest {
 		app.zPageTasks.zListItem(Action.A_MAIL_CHECKBOX, subject3);
 
 		DialogWarning dialog = (DialogWarning)app.zPageTasks.zKeyboardShortcut(Shortcut.S_TASK_HARDELETE);
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 
 		// Verify the task is no longer present in tasks/trash folder
 		app.zGetActiveAccount().soapSend(

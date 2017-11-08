@@ -102,13 +102,13 @@ public class DeleteSeries extends CalendarWorkWeekTest {
         if (deleteRecurringItems == null) {
         	throw new HarnessException("The 'Delete Recurring Items' dialog never appeared.");
         }
-        deleteRecurringItems.zClickButton(Button.B_DELETE_THE_SERIES);
-        DialogWarning confirmDelete = (DialogWarning)deleteRecurringItems.zClickButton(Button.B_OK);
+        deleteRecurringItems.zPressButton(Button.B_DELETE_THE_SERIES);
+        DialogWarning confirmDelete = (DialogWarning)deleteRecurringItems.zPressButton(Button.B_OK);
         if (confirmDelete == null) {
         	throw new HarnessException("The 'Confirm Delete' dialog never appeared.");
         }
-        // confirmDelete.zClickButton(Button.B_DELETE_ALL_OCCURRENCES);
-        confirmDelete.zClickButton(Button.B_YES);
+        // confirmDelete.zPressButton(Button.B_DELETE_ALL_OCCURRENCES);
+        confirmDelete.zPressButton(Button.B_YES);
         
         
         
@@ -193,8 +193,8 @@ public class DeleteSeries extends CalendarWorkWeekTest {
         if (confirmDelete == null) {
         	throw new HarnessException("The 'Confirm Delete' dialog never appeared.");
         }
-        // confirmDelete.zClickButton(Button.B_DELETE_ALL_OCCURRENCES);
-        confirmDelete.zClickButton(Button.B_YES);
+        // confirmDelete.zPressButton(Button.B_DELETE_ALL_OCCURRENCES);
+        confirmDelete.zPressButton(Button.B_YES);
         
         
         
@@ -282,13 +282,13 @@ public class DeleteSeries extends CalendarWorkWeekTest {
         if (deleteRecurringItems == null) {
         	throw new HarnessException("The 'Delete Recurring Items' dialog never appeared.");
         }
-        deleteRecurringItems.zClickButton(Button.B_DELETE_THE_SERIES);
-        DialogWarning confirmDelete = (DialogWarning)deleteRecurringItems.zClickButton(Button.B_OK);
+        deleteRecurringItems.zPressButton(Button.B_DELETE_THE_SERIES);
+        DialogWarning confirmDelete = (DialogWarning)deleteRecurringItems.zPressButton(Button.B_OK);
         if (confirmDelete == null) {
         	throw new HarnessException("The 'Confirm Delete' dialog never appeared.");
         }
-        // confirmDelete.zClickButton(Button.B_DELETE_ALL_OCCURRENCES);
-        confirmDelete.zClickButton(Button.B_YES);
+        // confirmDelete.zPressButton(Button.B_DELETE_ALL_OCCURRENCES);
+        confirmDelete.zPressButton(Button.B_YES);
         
         
         

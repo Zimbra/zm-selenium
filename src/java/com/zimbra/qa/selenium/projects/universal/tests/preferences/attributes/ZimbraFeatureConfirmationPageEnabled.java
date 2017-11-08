@@ -63,7 +63,7 @@ public class ZimbraFeatureConfirmationPageEnabled extends PrefGroupMailByMessage
 		ZAssert.assertTrue(dialog.zIsActive(), "Verify the confirmation pops up");
 		
 		// Dismiss the dialog
-		dialog.zClickButton(Button.B_CLOSE);
+		dialog.zPressButton(Button.B_CLOSE);
 		
 
 		MailItem received = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "subject:("+ mail.dSubject +")");

@@ -79,7 +79,7 @@ public class DeleteDisposal extends PrefGroupMailByMessageTest {
 		dialog.zDisposalDisable();
 
 		// Save
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 		
 		
 		//-- Verification

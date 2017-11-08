@@ -57,8 +57,8 @@ public class DialogConfirmDelete extends AbsDialog {
 	}
 
 	@Override
-	public AbsPage zClickButton(Button button) throws HarnessException {
-		logger.info(myPageName() + " zClickButton(" + button + ")");
+	public AbsPage zPressButton(Button button) throws HarnessException {
+		logger.info(myPageName() + " zPressButton(" + button + ")");
 
 		tracer.trace("Click dialog button " + button);
 		if ( button == null )
@@ -104,7 +104,7 @@ public class DialogConfirmDelete extends AbsDialog {
 		// zGetDisplayedText("css=div[class=" + Locators.zDialogContentClassId +
 		// "]");
 
-		this.zClickAt(locator,"0,0");
+		this.sClickAt(locator,"0,0");
 
 		// If the app is busy, wait for it to become active
 		this.zWaitForBusyOverlay();

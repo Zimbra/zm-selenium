@@ -67,7 +67,7 @@ public class ManageContactGroupUsingRightClickContextMenu extends UniversalCommo
 				contact.firstName);
 		
 		dialog.zEnterGroupName(groupname);
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 		
 		//-- Verification
 		
@@ -216,7 +216,7 @@ public class ManageContactGroupUsingRightClickContextMenu extends UniversalCommo
 				contact3.getName());
 
 		dialog.zEnterGroupName(groupname);
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 
 		//-- Verification
 		
@@ -276,7 +276,7 @@ public class ManageContactGroupUsingRightClickContextMenu extends UniversalCommo
 				contact.getName());
 		
 		dialog.zEnterGroupName(groupname);
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 
 		//-- Verification
 		

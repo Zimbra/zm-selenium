@@ -65,11 +65,11 @@ public class CreateMeetingBySelectOptionalAddresses extends AjaxCommonTest {
         dialogFindAttendees.zFill(apptSearchForm1);
 
         // Choose the contact and select it
-        dialogFindAttendees.zClickButton(Button.B_SEARCH);
+        dialogFindAttendees.zPressButton(Button.B_SEARCH);
         SleepUtil.sleepSmall();
-        dialogFindAttendees.zClickButton(Button.B_SELECT_FIRST_CONTACT);
-        dialogFindAttendees.zClickButton(Button.B_CHOOSE_CONTACT_FROM_PICKER);
-        dialogFindAttendees.zClickButton(Button.B_OK);
+        dialogFindAttendees.zPressButton(Button.B_SELECT_FIRST_CONTACT);
+        dialogFindAttendees.zPressButton(Button.B_CHOOSE_CONTACT_FROM_PICKER);
+        dialogFindAttendees.zPressButton(Button.B_OK);
         apptForm.zSubmit();
 
         // Verify new invitation appears in the optional attendee's inbox

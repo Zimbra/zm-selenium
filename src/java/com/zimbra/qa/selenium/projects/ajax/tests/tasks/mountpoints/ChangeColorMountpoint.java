@@ -92,7 +92,7 @@ public class ChangeColorMountpoint extends PrefGroupMailByMessageTest {
 
 		// Change the color, click OK
 		dialog.zSetNewColor(FolderColor.Gray);
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 
 		// Check the color
 		app.zGetActiveAccount().soapSend("<GetFolderRequest xmlns='urn:zimbraMail'/>");

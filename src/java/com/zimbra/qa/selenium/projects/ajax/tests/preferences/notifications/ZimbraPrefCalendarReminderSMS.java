@@ -66,19 +66,19 @@ public class ZimbraPrefCalendarReminderSMS extends AjaxCommonTest {
 		ZAssert.assertTrue(visible, "Verify the SMS number field is present");
 
 		app.zPagePreferences.sFocus(locator);
-		app.zPagePreferences.zClick(locator);
+		app.zPagePreferences.sClick(locator);
 		app.zPagePreferences.zKeyboardTypeString(sms);
 
 		// Click "Send Code"
 		locator = "css=td[id='ZmNotificationsPage_DEVICE_EMAIL_PHONE_SEND_CODE_title']";
-		app.zPagePreferences.zClick(locator);
+		app.zPagePreferences.sClick(locator);
 
 		// Verify the popup is displayed
 		DialogWarning dialog = app.zPageMain.zGetWarningDialog(DialogWarningID.SmsVerificationCodeSent);
 		dialog.zWaitForActive();
 
 		ZAssert.assertTrue(dialog.zIsActive(), "Verify the confirmation dialog appears");
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 	}
 
 
@@ -103,7 +103,7 @@ public class ZimbraPrefCalendarReminderSMS extends AjaxCommonTest {
 		ZAssert.assertTrue(visible, "Verify the SMS number field is present");
 
 		app.zPagePreferences.sFocus(locator);
-		app.zPagePreferences.zClick(locator);
+		app.zPagePreferences.sClick(locator);
 		app.zPagePreferences.zKeyboardTypeString(sms);
 
 		// Set the code
@@ -113,11 +113,11 @@ public class ZimbraPrefCalendarReminderSMS extends AjaxCommonTest {
 		ZAssert.assertTrue(visible, "Verify the Code field is present");
 
 		app.zPagePreferences.sFocus(locator);
-		app.zPagePreferences.zClick(locator);
+		app.zPagePreferences.sClick(locator);
 		app.zPagePreferences.zKeyboardTypeString(code);
 
 		// Click "Validate Code"
 		locator = "css=td[id='ZmNotificationsPage_DEVICE_EMAIL_CODE_VALIDATE_title']";
-		app.zPagePreferences.zClick(locator);
+		app.zPagePreferences.sClick(locator);
 	}
 }

@@ -72,7 +72,7 @@ public class SendReadReceiptsPrompt extends PrefGroupMailByMessageTest {
 		ZAssert.assertNotNull(dialog, "Verify the read receipt dialog is popped up");
 		
 		// Click YES to send
-		dialog.zClickButton(Button.B_YES);
+		dialog.zPressButton(Button.B_YES);
 
 		// Make sure all read-receipts are delivered
 		Stafpostqueue q = new Stafpostqueue();
@@ -124,7 +124,7 @@ public class SendReadReceiptsPrompt extends PrefGroupMailByMessageTest {
 		ZAssert.assertNotNull(dialog, "Verify the read receipt dialog is popped up");
 		
 		// Click NO to not send
-		dialog.zClickButton(Button.B_NO);
+		dialog.zPressButton(Button.B_NO);
 
 		// Make sure all read-receipts are delivered
 		Stafpostqueue q = new Stafpostqueue();

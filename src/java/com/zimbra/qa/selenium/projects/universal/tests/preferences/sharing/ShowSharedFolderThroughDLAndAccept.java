@@ -74,7 +74,7 @@ import com.zimbra.qa.selenium.projects.universal.ui.preferences.TreePreferences.
 			app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.Sharing);
 	
 			// Click "show folders shared with me through a DL'
-			app.zPagePreferences.zClick("css=label[id$='group_text_right']:contains('Show folders shared with me through a distribution list')"); //Select share with me through DL option
+			app.zPagePreferences.sClick("css=label[id$='group_text_right']:contains('Show folders shared with me through a distribution list')"); //Select share with me through DL option
 
 			// Accept the share from active account
 			app.zPagePreferences.zWaitForBusyOverlay();

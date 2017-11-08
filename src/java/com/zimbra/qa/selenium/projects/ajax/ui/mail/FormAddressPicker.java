@@ -197,7 +197,7 @@ public class FormAddressPicker extends AbsForm {
 						+ pulldownLocator + " not present!");
 			}
 
-			this.zClick(pulldownLocator);
+			this.sClick(pulldownLocator);
 
 			this.zWaitForBusyOverlay();
 
@@ -208,7 +208,7 @@ public class FormAddressPicker extends AbsForm {
 							+ optionLocator + " not present!");
 				}
 
-				this.zClick(optionLocator);
+				this.sClick(optionLocator);
 
 				this.zWaitForBusyOverlay();
 

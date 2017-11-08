@@ -490,7 +490,7 @@ public class PageMail extends AbsTab {
 
 			locator = "css=div[id$='__NEW_MENU'] td[id$='__NEW_MENU_title']";
 			page = new SeparateWindowFormMailNew(this.MyApplication);
-			this.zClickAt(locator, "0,0");
+			this.sClickAt(locator, "0,0");
 
 			return (page);
 
@@ -747,7 +747,7 @@ public class PageMail extends AbsTab {
 				|| (button == Button.B_MAIL_VIEW_READING_PANE_OFF)) {
 
 			locator = "css=div.ZToolbar:not([aria-hidden='true']) td[id$=VIEW_MENU_dropdown]>div[class='ImgSelectPullDownArrow']";
-			this.zClick(locator);
+			this.sClick(locator);
 			this.zWaitForBusyOverlay();
 
 			// Click on Reading pane
@@ -763,7 +763,7 @@ public class PageMail extends AbsTab {
 			} else if (button == Button.B_MAIL_VIEW_READING_PANE_OFF) {
 				locator = "css=div[id^='POPUP'][style*='display: block'] div[id^='off'] td[id$='_title']";
 			}
-			this.zClick(locator);
+			this.sClick(locator);
 			this.zWaitForBusyOverlay();
 
 			return (null);
@@ -771,7 +771,7 @@ public class PageMail extends AbsTab {
 		} else if ((button == Button.B_MAIL_VIEW_BY_CONVERSATION) || (button == Button.B_MAIL_VIEW_BY_MESSAGE)) {
 
 			locator = "css=td[id$=VIEW_MENU_dropdown]>div[class='ImgSelectPullDownArrow']";
-			this.zClick(locator);
+			this.sClick(locator);
 			this.zWaitForBusyOverlay();
 
 			// Select view (message/conversation)
@@ -780,7 +780,7 @@ public class PageMail extends AbsTab {
 			} else if (button == Button.B_MAIL_VIEW_BY_MESSAGE) {
 				locator = "css=div#TV td[id$='_title']";
 			}
-			this.zClick(locator);
+			this.sClick(locator);
 			this.zWaitForBusyOverlay();
 
 			return (null);
@@ -789,7 +789,7 @@ public class PageMail extends AbsTab {
 				|| (button == Button.B_MAIL_LIST_GROUPBY_SIZE)) {
 
 			locator = "css=td[id$=VIEW_MENU_dropdown]>div[class='ImgSelectPullDownArrow']";
-			this.zClick(locator);
+			this.sClick(locator);
 			this.zWaitForBusyOverlay();
 
 			// mouseOver on GroupBy
@@ -813,42 +813,42 @@ public class PageMail extends AbsTab {
 		} else if (button == Button.B_MAIL_LIST_SORTBY_FLAGGED) {
 
 			locator = "css=td[id='zlh__TV-main__fg'] div[class='ImgFlagRed']";
-			this.zClick(locator);
+			this.sClick(locator);
 			this.zWaitForBusyOverlay();
 			return (null);
 
 		} else if (button == Button.B_MAIL_LIST_SORTBY_FROM) {
 
 			locator = "css=td[id='zlh__TV-main__fr'] td[id='zlhl__TV-main__fr']";
-			this.zClick(locator);
+			this.sClick(locator);
 			this.zWaitForBusyOverlay();
 			return (null);
 
 		} else if (button == Button.B_MAIL_LIST_SORTBY_ATTACHMENT) {
 
 			locator = "css=td[id='zlh__TV-main__at'] div[class='ImgAttachment']";
-			this.zClick(locator);
+			this.sClick(locator);
 			this.zWaitForBusyOverlay();
 			return (null);
 
 		} else if (button == Button.B_MAIL_LIST_SORTBY_SUBJECT) {
 
 			locator = "css=td[id='zlh__TV-main__su'] td[id='zlhl__TV-main__su']";
-			this.zClick(locator);
+			this.sClick(locator);
 			this.zWaitForBusyOverlay();
 			return (null);
 
 		} else if (button == Button.B_MAIL_LIST_SORTBY_SIZE) {
 
 			locator = "css=td[id='zlh__TV-main__sz'] td[id='zlhl__TV-main__sz']";
-			this.zClick(locator);
+			this.sClick(locator);
 			this.zWaitForBusyOverlay();
 			return (null);
 
 		} else if (button == Button.B_MAIL_LIST_SORTBY_RECEIVED) {
 
 			locator = "css=td[id='zlh__TV-main__dt'] td[id='zlhl__TV-main__dt']";
-			this.zClick(locator);
+			this.sClick(locator);
 			this.zWaitForBusyOverlay();
 			return (null);
 
@@ -1326,7 +1326,7 @@ public class PageMail extends AbsTab {
 		if (action == Action.A_LEFTCLICK) {
 
 			// Left-Click on the item
-			this.zClickAt(itemlocator, "");
+			this.sClickAt(itemlocator, "");
 
 			this.zWaitForBusyOverlay();
 
@@ -1373,7 +1373,7 @@ public class PageMail extends AbsTab {
 				throw new HarnessException("Trying to check box, but it was already enabled");
 
 			// Left-Click on the flag field
-			this.zClick(selectlocator);
+			this.sClick(selectlocator);
 
 			this.zWaitForBusyOverlay();
 
@@ -1391,7 +1391,7 @@ public class PageMail extends AbsTab {
 				throw new HarnessException("Trying to uncheck box, but it was already disabled");
 
 			// Left-Click on the flag field
-			this.zClick(selectlocator);
+			this.sClick(selectlocator);
 
 			this.zWaitForBusyOverlay();
 
@@ -1409,7 +1409,7 @@ public class PageMail extends AbsTab {
 				throw new HarnessException("Trying to expand, but conversation was alread expanded");
 
 			// Left-Click on the flag field
-			this.zClick(selectlocator);
+			this.sClick(selectlocator);
 
 			this.zWaitForBusyOverlay();
 
@@ -1427,7 +1427,7 @@ public class PageMail extends AbsTab {
 				throw new HarnessException("Trying to collapse, but conversation was alread collapsed");
 
 			// Left-Click on the flag field
-			this.zClick(selectlocator);
+			this.sClick(selectlocator);
 
 			this.zWaitForBusyOverlay();
 
@@ -1440,7 +1440,7 @@ public class PageMail extends AbsTab {
 			String flaglocator = itemlocator + " div[id$='__fg']";
 
 			// Left-Click on the flag field
-			this.zClick(flaglocator);
+			this.sClick(flaglocator);
 
 			this.zWaitForBusyOverlay();
 
@@ -1590,7 +1590,7 @@ public class PageMail extends AbsTab {
 				throw new HarnessException("implement action:" + action + " option:" + option);
 			}
 
-			this.zClickAt(optionLocator, "");
+			this.sClickAt(optionLocator, "");
 			this.zWaitForBusyOverlay();
 
 		} else {
@@ -1795,7 +1795,7 @@ public class PageMail extends AbsTab {
 					throw new HarnessException(pulldownLocator + " not present!");
 				}
 
-				this.zClickAt(pulldownLocator, "");
+				this.sClickAt(pulldownLocator, "");
 				zWaitForBusyOverlay();
 
 				if (!this.sIsElementPresent(optionLocator)) {
@@ -1806,7 +1806,7 @@ public class PageMail extends AbsTab {
 				zWaitForBusyOverlay();
 				SleepUtil.sleepSmall();
 
-				this.zClickAt(dynamicLocator, "");
+				this.sClickAt(dynamicLocator, "");
 				zWaitForBusyOverlay();
 
 				return (page);
@@ -1828,7 +1828,7 @@ public class PageMail extends AbsTab {
 						+ pulldownLocator + " not present!");
 			}
 
-			this.zClickAt(pulldownLocator, "");
+			this.sClickAt(pulldownLocator, "");
 
 			// If the app is busy, wait for it to become active
 			zWaitForBusyOverlay();
@@ -1851,7 +1851,7 @@ public class PageMail extends AbsTab {
 					throw new HarnessException(dynamicLocator + " not present!");
 				}
 				// this.sMouseOver(dynamicLocator);
-				this.zClickAt(dynamicLocator, "");
+				this.sClickAt(dynamicLocator, "");
 				zWaitForBusyOverlay();
 				SleepUtil.sleepMedium();
 			}
@@ -1861,7 +1861,7 @@ public class PageMail extends AbsTab {
 		DialogWarning dialog = new DialogWarning(DialogWarning.DialogWarningID.ComposeOptionsChangeWarning,
 				MyApplication, ((AppUniversalClient) MyApplication).zPageMail);
 		if (dialog.zIsActive()) {
-			dialog.zClickButton(Button.B_OK);
+			dialog.zPressButton(Button.B_OK);
 		}
 
 		// Return the specified page, or null if not set

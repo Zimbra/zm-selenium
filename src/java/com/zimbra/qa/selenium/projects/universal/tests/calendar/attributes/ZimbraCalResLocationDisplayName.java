@@ -109,7 +109,7 @@ public class ZimbraCalResLocationDisplayName extends CalendarWorkWeekTest {
         
         DialogFindLocation dialogFindLocation = (DialogFindLocation) new DialogFindLocation(app, app.zPageCalendar);
         dialogFindLocation.zType(Locators.LocationName, location.EmailAddress);
-        dialogFindLocation.zClickButton(Button.B_SEARCH_LOCATION);
+        dialogFindLocation.zPressButton(Button.B_SEARCH_LOCATION);
         SleepUtil.sleepMedium();
         
         // Verify the search dialog show name as email address and Location as Display name set above
@@ -118,7 +118,7 @@ public class ZimbraCalResLocationDisplayName extends CalendarWorkWeekTest {
 		ZAssert.assertStringContains(searchResult, location.EmailAddress, "verify if the Location  name is being displayed as email address in the results");
       
 		// Close the search location dialog
-		dialogFindLocation.zClickButton(Button.B_OK);
+		dialogFindLocation.zPressButton(Button.B_OK);
 		
 		// Close Edit appt form
         apptForm.zToolbarPressButton(Button.B_CLOSE);

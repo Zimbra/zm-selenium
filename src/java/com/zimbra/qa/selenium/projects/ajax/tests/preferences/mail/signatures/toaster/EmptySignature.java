@@ -88,8 +88,8 @@ public class EmptySignature extends AjaxCommonTest {
 		ZAssert.assertStringContains(toastMsg, "Signature value is empty. It's required","Verify toast message:Signature value is empty. It's required");
 
 		// Select signature which is to be Delete
-		signew.zClick(Locators.zSignatureListView);
-		signew.zClick("//td[contains(text(),'"+sigName+"')]");
+		signew.sClick(Locators.zSignatureListView);
+		signew.sClick("//td[contains(text(),'"+sigName+"')]");
 
 		// Click Delete button
 		app.zPageSignature.zToolbarPressButton(Button.B_DELETE);

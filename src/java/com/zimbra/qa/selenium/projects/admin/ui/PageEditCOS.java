@@ -164,7 +164,7 @@ public class PageEditCOS extends AbsTab {
 
 		// Default behavior, process the locator by clicking on it
 		//
-		this.zClickAt(locator,"");
+		this.sClickAt(locator,"");
 		SleepUtil.sleepMedium();
 
 

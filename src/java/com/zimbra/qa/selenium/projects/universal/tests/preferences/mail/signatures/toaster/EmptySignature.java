@@ -85,8 +85,8 @@ public class EmptySignature extends UniversalCommonTest {
 		
 		//This is special case where we need to explicitly delete signature to avoid  failing other test cases  
 		//Select signature which is to be Delete
-		signew.zClick(Locators.zSignatureListView);
-		signew.zClick("//td[contains(text(),'"+sigName+"')]");
+		signew.sClick(Locators.zSignatureListView);
+		signew.sClick("//td[contains(text(),'"+sigName+"')]");
 		//click Delete button
 		app.zPageSignature.zToolbarPressButton(Button.B_DELETE);
 

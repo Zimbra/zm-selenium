@@ -119,7 +119,7 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 
 			// Type "esc" key
 			SeparateWindowDialog warning = (SeparateWindowDialog)window.zKeyboardShortcut(Shortcut.S_ESCAPE);
-			warning.zClickButton(Button.B_YES);
+			warning.zPressButton(Button.B_YES);
 
 		} finally {
 			app.zPageMain.zCloseWindow(window, windowTitle, app);

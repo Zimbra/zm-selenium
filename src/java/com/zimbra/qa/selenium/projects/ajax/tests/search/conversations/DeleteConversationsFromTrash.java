@@ -104,7 +104,7 @@ public class DeleteConversationsFromTrash extends PrefGroupMailByMessageTest {
 			// Warning dialog will appear
 			DialogWarning dialog = new DialogWarning(DialogWarning.DialogWarningID.PermanentlyDeleteTheItem, app, ((AppAjaxClient) app).zPageSearch);
 			ZAssert.assertTrue(dialog.zIsActive(), "Verify the warning dialog opens");
-			dialog.zClickButton(Button.B_OK);
+			dialog.zPressButton(Button.B_OK);
 
 		} finally {
 			// Remember to close the search view
@@ -200,7 +200,7 @@ public class DeleteConversationsFromTrash extends PrefGroupMailByMessageTest {
 			DialogWarning dialog = new DialogWarning(DialogWarning.DialogWarningID.PermanentlyDeleteTheItem,
 											app, ((AppAjaxClient) app).zPageSearch);
 			ZAssert.assertTrue(dialog.zIsActive(), "Verify the warning dialog opens");
-			dialog.zClickButton(Button.B_OK);
+			dialog.zPressButton(Button.B_OK);
 
 		} finally {
 			app.zPageSearch.zClose();

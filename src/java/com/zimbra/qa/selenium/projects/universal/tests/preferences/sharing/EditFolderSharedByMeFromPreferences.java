@@ -56,7 +56,7 @@ public class EditFolderSharedByMeFromPreferences extends UniversalCommonTest {
 		app.zPagePreferences.sClick("css=div[id ='zl__SVG__rows'] a[id$='_edit' ]"); //Edit link locator
 		SleepUtil.sleepSmall(); 
 		app.zPagePreferences.zSetRole(ShareRole.Manager);		
-		app.zPagePreferences.zClickButton(Button.B_OK);
+		app.zPagePreferences.zPressButton(Button.B_OK);
 		SleepUtil.sleepMedium(); 
 
 		//Soap verification

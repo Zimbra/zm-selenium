@@ -91,7 +91,7 @@ public class ZmTasksItem_Task1 extends UniversalCommonTest{
 	   // Select the item
 	   // app.zPageTasks.zListItem(Action.A_LEFTCLICK, subject1);
 
-	   app.zPageTasks.zClickAt("css=div[id='zl__TKL__rows'] div[id^='zli__TKL'] td[id$='_su']:contains('"+subject1+"')","");
+	   app.zPageTasks.sClickAt("css=div[id='zl__TKL__rows'] div[id^='zli__TKL'] td[id$='_su']:contains('"+subject1+"')","");
 
 	   PerfMetrics.waitTimestamp(token);
    }

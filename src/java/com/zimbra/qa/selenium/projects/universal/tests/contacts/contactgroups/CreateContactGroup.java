@@ -282,7 +282,7 @@ public class CreateContactGroup extends UniversalCommonTest  {
 		//fill in group name 
 		dialog.zEnterGroupName(newGroup.getName());
 		//Save
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 
 		//verify toast message 'group created'
 		ZAssert.assertStringContains(app.zPageMain.zGetToaster().zGetToastMessage(), "Group Created" , "Verify toast message: '" + "Group Created" + "'");

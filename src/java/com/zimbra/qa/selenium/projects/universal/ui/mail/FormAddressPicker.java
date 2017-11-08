@@ -247,7 +247,7 @@ public class FormAddressPicker extends AbsForm {
 				throw new HarnessException("Button "+ pulldown +" option "+ option +" pulldownLocator "+ pulldownLocator +" not present!");
 			}
 
-			this.zClick(pulldownLocator);
+			this.sClick(pulldownLocator);
 
 			this.zWaitForBusyOverlay();
 
@@ -258,7 +258,7 @@ public class FormAddressPicker extends AbsForm {
 					throw new HarnessException("Button "+ pulldown +" option "+ option +" optionLocator "+ optionLocator +" not present!");
 				}
 
-				this.zClick(optionLocator);
+				this.sClick(optionLocator);
 
 				this.zWaitForBusyOverlay();
 

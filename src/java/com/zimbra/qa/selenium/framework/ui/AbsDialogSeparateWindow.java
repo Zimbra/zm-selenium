@@ -40,7 +40,7 @@ public abstract class AbsDialogSeparateWindow extends AbsSeparateWindow {
 
 	}
 	
-	public AbsPage zClickButton(Button button) throws HarnessException {
+	public AbsPage zPressButton(Button button) throws HarnessException {
 		throw new HarnessException("implement me!");
 	}
 

@@ -190,7 +190,7 @@ public class PageBriefcase extends AbsTab {
 			locator = Locators.zNewMenuLeftIconBtn.locator;
 
 			// Click on New Document icon
-			this.zClickAt(locator, "0,0");
+			this.sClickAt(locator, "0,0");
 			zWaitForBusyOverlay();
 			SleepUtil.sleepLong();
 
@@ -269,7 +269,7 @@ public class PageBriefcase extends AbsTab {
 		if (!this.sIsElementPresent(locator))
 			throw new HarnessException("Button is not present locator=" + locator + " button=" + button);
 
-		this.zClickAt(locator, "0,0");
+		this.sClickAt(locator, "0,0");
 
 		// If the app is busy, wait for it to become active
 		zWaitForBusyOverlay();
@@ -418,9 +418,9 @@ public class PageBriefcase extends AbsTab {
 				throw new HarnessException(pulldownLocator + " not present!");
 			}
 
-			// 8.0 change ... need zClickAt()
-			// this.zClick(pulldownLocator);
-			this.zClickAt(pulldownLocator, "0,0");
+			// 8.0 change ... need sClickAt()
+			// this.sClick(pulldownLocator);
+			this.sClickAt(pulldownLocator, "0,0");
 
 			// If the app is busy, wait for it to become active
 			zWaitForBusyOverlay();
@@ -429,7 +429,7 @@ public class PageBriefcase extends AbsTab {
 				throw new HarnessException(optionLocator + " not present!");
 			}
 
-			this.zClick(optionLocator);
+			this.sClick(optionLocator);
 
 			// If the app is busy, wait for it to become active
 			zWaitForBusyOverlay();
@@ -460,12 +460,12 @@ public class PageBriefcase extends AbsTab {
 			if (zIsBrowserMatch(BrowserMasks.BrowserMaskIE)) {
 				if (pulldown == Button.B_NEW) {
 					pulldownLocator = "css=td[id=zb__NEW_MENU_dropdown]>div[class^=ImgSelectPullDownArrow]";
-					zClick(pulldownLocator);
+					sClick(pulldownLocator);
 				} else {
-					zClick(pulldownLocator);
+					sClick(pulldownLocator);
 				}
 			} else {
-				zClickAt(pulldownLocator, "0,0");
+				sClickAt(pulldownLocator, "0,0");
 			}
 			// If the app is busy, wait for it to become active
 			zWaitForBusyOverlay();
@@ -490,7 +490,7 @@ public class PageBriefcase extends AbsTab {
 					}
 					zKeyEvent(optionLocator, "13", "keydown");
 				} else
-					this.zClickAt(optionLocator, "0,0");
+					this.sClickAt(optionLocator, "0,0");
 
 				// If the app is busy, wait for it to become active
 				zWaitForBusyOverlay();
@@ -561,7 +561,7 @@ public class PageBriefcase extends AbsTab {
 						+ pulldownLocator + " not present!");
 			}
 
-			this.zClickAt(pulldownLocator, "0,0");
+			this.sClickAt(pulldownLocator, "0,0");
 
 			// If the app is busy, wait for it to become active
 			zWaitForBusyOverlay();
@@ -574,7 +574,7 @@ public class PageBriefcase extends AbsTab {
 							+ optionLocator + " not present!");
 				}
 
-				this.zClickAt(optionLocator, "0,0");
+				this.sClickAt(optionLocator, "0,0");
 
 				// If the app is busy, wait for it to become active
 				zWaitForBusyOverlay();
@@ -635,7 +635,7 @@ public class PageBriefcase extends AbsTab {
 				throw new HarnessException(
 						"Button " + pulldown + " pulldownLocator " + pulldownLocator + " not present!");
 			}
-			this.zClickAt(pulldownLocator, "");
+			this.sClickAt(pulldownLocator, "");
 
 			// If the app is busy, wait for it to become active
 			zWaitForBusyOverlay();
@@ -648,7 +648,7 @@ public class PageBriefcase extends AbsTab {
 					throw new HarnessException(
 							" dynamic " + dynamic + " optionLocator " + optionLocator + " not present!");
 				}
-				this.zClickAt(optionLocator, "");
+				this.sClickAt(optionLocator, "");
 
 				// If the app is busy, wait for it to become active
 				zWaitForBusyOverlay();
@@ -676,7 +676,7 @@ public class PageBriefcase extends AbsTab {
 			locator = Locators.zHeaderCheckBox.locator;
 
 			// Left-Click on the header
-			this.zClickAt(locator, "0,0");
+			this.sClickAt(locator, "0,0");
 		} else {
 			throw new HarnessException("implement me!  action = " + action);
 		}
@@ -756,7 +756,7 @@ public class PageBriefcase extends AbsTab {
 
 			if (!image.equals("ImgCheckboxChecked")) {
 				// Left-Click on the Check box field
-				this.zClickAt(checkBoxLocator, "0,0");
+				this.sClickAt(checkBoxLocator, "0,0");
 			} else {
 				logger.error("Trying to mark check box, but it was already enabled");
 			}
@@ -897,7 +897,7 @@ public class PageBriefcase extends AbsTab {
 			}
 
 			// click on the option
-			this.zClickAt(optionLocator, "0,0");
+			this.sClickAt(optionLocator, "0,0");
 			SleepUtil.sleepSmall();
 			
 			this.zWaitForBusyOverlay();
@@ -972,7 +972,7 @@ public class PageBriefcase extends AbsTab {
 			}
 
 			// click on the option
-			// this.zClickAt(optionLocator, "0,0");
+			// this.sClickAt(optionLocator, "0,0");
 			// optionLocator = "css=div[id=zm__Briefcase] div[id=TAG_MENU]
 			// tr[id=POPUP_TAG_MENU]>td[id^=TAG_MENU_dropdown]>div[class=ImgCascade]";
 			this.sMouseOver(optionLocator);
@@ -988,7 +988,7 @@ public class PageBriefcase extends AbsTab {
 			zWaitForElementVisible(subOptionLocator, true, "3000");
 
 			// click on the sub option
-			this.zClickAt(subOptionLocator, "0,0");
+			this.sClickAt(subOptionLocator, "0,0");
 
 			this.zWaitForBusyOverlay();
 
@@ -1386,7 +1386,7 @@ public class PageBriefcase extends AbsTab {
 
 		if (action == Action.A_LEFTCLICK) {
 			zWaitForElementPresent(itemNameLocator);
-			this.zClickAt(itemNameLocator, "0,0");
+			this.sClickAt(itemNameLocator, "0,0");
 
 		} else if (action == Action.A_BRIEFCASE_CHECKBOX) {
 			zWaitForElementPresent(itemNameLocator);
@@ -1411,7 +1411,7 @@ public class PageBriefcase extends AbsTab {
 			String image = this.sGetAttribute(checkBoxLocator + "@class");
 
 			if (!image.equals("ImgCheckboxChecked")) {
-				this.zClickAt(checkBoxLocator, "0,0");
+				this.sClickAt(checkBoxLocator, "0,0");
 			} else {
 				logger.error("Trying to mark check box, but it was already enabled");
 			}
@@ -1463,7 +1463,7 @@ public class PageBriefcase extends AbsTab {
 				page = null;
 
 			}
-			this.zClick(optionLocator);
+			this.sClick(optionLocator);
 		}
 
 		// If the app is busy, wait for it to become active

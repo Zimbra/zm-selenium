@@ -90,7 +90,7 @@ public class FormSearchMail extends AbsForm {
 		SleepUtil.sleepSmall();
 	}
 
-	public void zClickTreeItem(String treeItem) throws HarnessException {
+	public void zSelectTreeItem(String treeItem) throws HarnessException {
 		sClickAt("css=td:contains('" + treeItem + "')", "");
 	}
 
@@ -178,7 +178,7 @@ public class FormSearchMail extends AbsForm {
 			{
 				if(this.sGetText(locator).trim().equalsIgnoreCase(email))
 				{
-					zClick(locator);
+					sClick(locator);
 					SleepUtil.sleepMedium();
 				} else {
 					logger.info("Element is not present!");

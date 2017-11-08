@@ -88,8 +88,8 @@ public class ShowHideDeclinedMeetings extends AjaxCommonTest {
 		this.app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_DECLINE_MENU, apptSubject);
 
 		DialogConfirmationDeclineAppointment declineAppt = new DialogConfirmationDeclineAppointment(this.app, this.app.zPageCalendar);
-		declineAppt.zClickButton(Button.B_DONT_NOTIFY_ORGANIZER);
-		declineAppt.zClickButton(Button.B_YES);
+		declineAppt.zPressButton(Button.B_DONT_NOTIFY_ORGANIZER);
+		declineAppt.zPressButton(Button.B_YES);
 		SleepUtil.sleepMedium();
 
 		this.app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);

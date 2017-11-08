@@ -75,11 +75,11 @@ public class AttachContactAndSendMail extends PrefGroupMailByMessageTest {
 		ZAssert.assertTrue(dialog.zIsActive(), "Attach Contact dialog gets open and active");
 
 		// Click on Contact folder
-		dialog.zClick(Locators.zAttachContactFolder);
+		dialog.sClick(Locators.zAttachContactFolder);
 
 		// Select first contact
 		dialog.sClick("css=div[id^='attachContactsZimlet_row'] tr td>span:contains('" + contact.firstName + "')");
-		dialog.zClickButton(Button.B_ATTACH);
+		dialog.zPressButton(Button.B_ATTACH);
 		SleepUtil.sleepMedium();
 		mailform.zSubmit();
 

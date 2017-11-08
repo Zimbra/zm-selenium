@@ -108,11 +108,11 @@ public class PageManageResources extends AbsTab {
 		}
 
 		// Click on Addresses -> Accounts
-		zClickAt(Locators.MANAGE_ACCOUNTS_ICON,"");
+		sClickAt(Locators.MANAGE_ACCOUNTS_ICON,"");
 		zWaitForWorkInProgressDialogInVisible();
 		//SleepUtil.sleepMedium();
 		sIsElementPresent(Locators.RESOURCES);
-		zClickAt(Locators.RESOURCES,"");
+		sClickAt(Locators.RESOURCES,"");
 		zWaitForWorkInProgressDialogInVisible();
 		//SleepUtil.sleepLong();
 		zWaitForActive();
@@ -164,7 +164,7 @@ public class PageManageResources extends AbsTab {
 			if (listItem.equalsIgnoreCase(item))
 			{
 				if (action == Action.A_LEFTCLICK) {
-					zClick(locator);
+					sClick(locator);
 
 
 				} else if (action == Action.A_RIGHTCLICK) {
@@ -270,7 +270,7 @@ public class PageManageResources extends AbsTab {
 
 		// Default behavior, process the locator by clicking on it
 		//
-		this.zClickAt(locator,"");
+		this.sClickAt(locator,"");
 
 		// If page was specified, make sure it is active
 		if ( page != null ) {
@@ -354,7 +354,7 @@ public class PageManageResources extends AbsTab {
 					throw new HarnessException("Button " + pulldown + " option " + option + " optionLocator " + optionLocator + " not present!");
 				}
 
-				this.zClickAt(optionLocator,"");
+				this.sClickAt(optionLocator,"");
 
 				// If the app is busy, wait for it to become active
 				//zWaitForBusyOverlay();
@@ -395,7 +395,7 @@ public class PageManageResources extends AbsTab {
 			for (int a1 = 1; a1 <= 5; a1++) { 
 				String p0  = rowsLocator + ":nth-child("+m+")";
 				if (this.sIsElementPresent(p0)) {
-					zClick(p0);
+					sClick(p0);
 					this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_DOWN);
 					m=m+20;
 				}

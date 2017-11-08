@@ -66,7 +66,7 @@ public class RenameFeed extends PrefGroupMailByMessageTest {
 		// Set the name, click OK
 		String name2 = "feed" + ConfigProperties.getUniqueString();
 		dialog.zSetNewName(name2);
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 
 		// Get all the folders and verify the new name appears and the old name disappears
 		app.zGetActiveAccount().soapSend("<GetFolderRequest xmlns = 'urn:zimbraMail'/>");

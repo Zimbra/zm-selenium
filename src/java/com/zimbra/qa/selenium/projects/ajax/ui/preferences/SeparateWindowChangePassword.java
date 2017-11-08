@@ -58,8 +58,8 @@ public class SeparateWindowChangePassword extends SeparateWindow {
 		this.sType(Locators.LocatorConfirmPasswordCSS, password);
 	}
 
-	public AbsPage zClickButton(Button button) throws HarnessException {
-		logger.info(myPageName() + " zClickButton(" + button + ")");
+	public AbsPage zPressButton(Button button) throws HarnessException {
+		logger.info(myPageName() + " zPressButton(" + button + ")");
 
 		String locator = null;
 

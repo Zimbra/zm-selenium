@@ -108,10 +108,10 @@ public class DA_PageManageAccounts extends AbsTab {
 		}
 
 		// Click on Manage Accounts -> Accounts
-		zClickAt(Locators.MANAGE_ACCOUNTS_ICON,"");
+		sClickAt(Locators.MANAGE_ACCOUNTS_ICON,"");
 		zWaitForWorkInProgressDialogInVisible();
 		sIsElementPresent(Locators.ACCOUNTS);
-		zClickAt(Locators.ACCOUNTS, "");
+		sClickAt(Locators.ACCOUNTS, "");
 		zWaitForWorkInProgressDialogInVisible();
 		zWaitForActive();
 
@@ -151,7 +151,7 @@ public class DA_PageManageAccounts extends AbsTab {
 				if (this.sGetText(locator).trim().equalsIgnoreCase(item))
 				{
 					if (action == Action.A_LEFTCLICK) {
-						zClick(locator);
+						sClick(locator);
 						break;
 					} else if (action == Action.A_RIGHTCLICK) {
 						zRightClick(locator);
@@ -241,7 +241,7 @@ public class DA_PageManageAccounts extends AbsTab {
 
 		// Default behavior, process the locator by clicking on it
 		//
-		this.zClickAt(locator,"");
+		this.sClickAt(locator,"");
 
 
 
@@ -319,7 +319,7 @@ public class DA_PageManageAccounts extends AbsTab {
 				throw new HarnessException("Button " + pulldown + " option " + option + " pulldownLocator " + pulldownLocator + " not present!");
 			}
 
-			this.zClickAt(pulldownLocator,"");
+			this.sClickAt(pulldownLocator,"");
 			SleepUtil.sleepMedium();
 
 			// If the app is busy, wait for it to become active
@@ -332,7 +332,7 @@ public class DA_PageManageAccounts extends AbsTab {
 					throw new HarnessException("Button " + pulldown + " option " + option + " optionLocator " + optionLocator + " not present!");
 				}
 
-				this.zClickAt(optionLocator,"");
+				this.sClickAt(optionLocator,"");
 
 				// If the app is busy, wait for it to become active
 				//zWaitForBusyOverlay();

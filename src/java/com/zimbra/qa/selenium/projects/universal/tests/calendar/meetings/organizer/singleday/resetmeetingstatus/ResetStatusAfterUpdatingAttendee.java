@@ -91,8 +91,8 @@ public class ResetStatusAfterUpdatingAttendee extends CalendarWorkWeekTest {
         apptForm.zSubmit();
         
         DialogSendUpdatetoAttendees sendUpdateDialog = (DialogSendUpdatetoAttendees) new DialogSendUpdatetoAttendees(app, app.zPageCalendar);
-        sendUpdateDialog.zClickButton(Button.B_SEND_UPDATES_ONLY_TO_ADDED_OR_REMOVED_ATTENDEES);
-        sendUpdateDialog.zClickButton(Button.B_OK);
+        sendUpdateDialog.zPressButton(Button.B_SEND_UPDATES_ONLY_TO_ADDED_OR_REMOVED_ATTENDEES);
+        sendUpdateDialog.zPressButton(Button.B_OK);
         
 		// --- Check that the organizer shows the attendee as "Accepted" ---
 		app.zGetActiveAccount().soapSend(

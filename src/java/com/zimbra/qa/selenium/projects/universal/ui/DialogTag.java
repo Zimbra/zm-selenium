@@ -81,8 +81,8 @@ public class DialogTag extends AbsDialog {
 	}
 	
 	@Override
-	public AbsPage zClickButton(Button button) throws HarnessException {
-		logger.info(myPageName() + " zClickButton("+ button +")");
+	public AbsPage zPressButton(Button button) throws HarnessException {
+		logger.info(myPageName() + " zPressButton("+ button +")");
 
 		String locator = null;
 		
@@ -133,7 +133,7 @@ public class DialogTag extends AbsDialog {
 		int original = this.MyApplication.zGetActiveAccount().soapSelectNodes("//mail:tag").length;
 
 		// Click OK
-		zClickButton(Button.B_OK);
+		zPressButton(Button.B_OK);
 
 		// Now, make sure more tags are in the mailbox.
 		boolean found = false;

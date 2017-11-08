@@ -100,7 +100,7 @@ public class PageManageSearchMail extends AbsTab {
 		}
 
 		// Click on Tools and Migration -> Downloads
-		zClickAt(Locators.TOOLS_AND_MIGRATION_ICON,"");
+		sClickAt(Locators.TOOLS_AND_MIGRATION_ICON,"");
 		zWaitForWorkInProgressDialogInVisible();
 		//SleepUtil.sleepMedium();
 		if (sIsElementPresent(Locators.SEARCHMAIL));
@@ -242,7 +242,7 @@ public class PageManageSearchMail extends AbsTab {
 				throw new HarnessException("Button " + pulldown + " option " + option + " pulldownLocator " + pulldownLocator + " not present!");
 			}
 
-			this.zClickAt(pulldownLocator,"");
+			this.sClickAt(pulldownLocator,"");
 			SleepUtil.sleepMedium();
 
 			// If the app is busy, wait for it to become active
@@ -255,7 +255,7 @@ public class PageManageSearchMail extends AbsTab {
 					throw new HarnessException("Button " + pulldown + " option " + option + " optionLocator " + optionLocator + " not present!");
 				}
 
-				this.zClickAt(optionLocator,"");
+				this.sClickAt(optionLocator,"");
 				SleepUtil.sleepMedium();
 
 				// If the app is busy, wait for it to become active

@@ -66,7 +66,7 @@ public class ChangeCustomColorWithExcludeFreeBusy extends AjaxCommonTest {
 		// Change the color, click OK
 		dialog.zSetNewColor(FolderColor.MoreColors);
 		dialog.zExcludeFBEnable();
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 
 		// Verify that the custom color has been applied to the folder
 	    dialog = (DialogEditFolder) app.zTreeCalendar.zTreeItem(Action.A_RIGHTCLICK, Button.B_TREE_EDIT, calendar);
@@ -76,7 +76,7 @@ public class ChangeCustomColorWithExcludeFreeBusy extends AjaxCommonTest {
 		ZAssert.assertTrue(dialog.sIsChecked(Locators.zExcludeFB) ,"Verify the calendar is excluded from FB");
 		ZAssert.assertNotNull(Locators.zSetCustom, "Verify the color of the folder is set to Custom color");
 
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 
 		// Create appointment data
 		ZimbraAccount organizer,apptAttendee2;
@@ -165,7 +165,7 @@ public class ChangeCustomColorWithExcludeFreeBusy extends AjaxCommonTest {
 		// Change the color, click OK
 		dialog.zSetNewColor(FolderColor.MoreColors);
 		dialog.zExcludeFBDisable();
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 
 		// Verify that the custom color has been applied to the folder
 		dialog = (DialogEditFolder) app.zTreeCalendar.zTreeItem(Action.A_RIGHTCLICK, Button.B_TREE_EDIT, calendar);
@@ -175,7 +175,7 @@ public class ChangeCustomColorWithExcludeFreeBusy extends AjaxCommonTest {
 		ZAssert.assertFalse(dialog.sIsChecked(Locators.zExcludeFB) ,"Verify the calendar is excluded from FB");
 		ZAssert.assertNotNull(Locators.zSetCustom, "Verify the color of the folder is set to Custom color");
 
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 
 		// Create appointment data
 		ZimbraAccount organizer,apptAttendee2;

@@ -67,8 +67,8 @@ public class MoveFeed extends PrefGroupMailByMessageTest {
 
 		// Move the folder using context menu
 		DialogMove dialog = (DialogMove)app.zTreeMail.zTreeItem(Action.A_RIGHTCLICK, Button.B_MOVE, feed);
-		dialog.zClickTreeFolder(folder);
-		dialog.zClickButton(Button.B_OK);
+		dialog.sClickTreeFolder(folder);
+		dialog.zPressButton(Button.B_OK);
 
 		// Verify the folder is now in the other subfolder
 		feed = FolderItem.importFromSOAP(app.zGetActiveAccount(), feedname);

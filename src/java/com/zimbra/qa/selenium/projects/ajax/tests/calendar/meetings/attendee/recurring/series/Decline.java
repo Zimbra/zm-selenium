@@ -83,8 +83,8 @@ public class Decline extends AjaxCommonTest {
 
 		app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_SERIES_MENU, Button.O_DECLINE_MENU, apptSubject);
 		DialogConfirmationDeclineAppointment declineAppt = (DialogConfirmationDeclineAppointment) new DialogConfirmationDeclineAppointment(app, app.zPageCalendar);
-		declineAppt.zClickButton(Button.B_NOTIFY_ORGANIZER);
-		declineAppt.zClickButton(Button.B_YES);
+		declineAppt.zPressButton(Button.B_NOTIFY_ORGANIZER);
+		declineAppt.zPressButton(Button.B_YES);
 
 		// ---------------- Verification at organizer & invitee side both -------------------------------------
 

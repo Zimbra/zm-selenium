@@ -73,7 +73,7 @@ public class DeleteTagAppointment extends AjaxCommonTest {
         // Delete the tag using the context menu
 		DialogDeleteTag dialog = (DialogDeleteTag) app.zTreeCalendar.zTreeItem(
 				Action.A_RIGHTCLICK, Button.B_DELETE, tag);
-		dialog.zClickButton(Button.B_YES);
+		dialog.zPressButton(Button.B_YES);
         app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
 
         // Verify appointment is not tagged
@@ -110,7 +110,7 @@ public class DeleteTagAppointment extends AjaxCommonTest {
         app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
         app.zPageCalendar.zListItem(Action.A_LEFTCLICK, apptSubject);
         DialogConfirmDeleteAppointment dlgConfirm = (DialogConfirmDeleteAppointment)app.zPageCalendar.zToolbarPressButton(Button.B_DELETE);
-		dlgConfirm.zClickButton(Button.B_YES);
+		dlgConfirm.zPressButton(Button.B_YES);
 		SleepUtil.sleepMedium(); //testcase fails here due to timing issue so added sleep
 		ZAssert.assertEquals(app.zPageCalendar.zIsAppointmentExists(apptSubject), false, "Verify appointment is deleted");
 	}
@@ -146,7 +146,7 @@ public class DeleteTagAppointment extends AjaxCommonTest {
         // Delete the tag using the context menu
 		DialogDeleteTag dialog = (DialogDeleteTag) app.zTreeCalendar.zTreeItem(
 				Action.A_RIGHTCLICK, Button.B_DELETE, tag);
-		dialog.zClickButton(Button.B_YES);
+		dialog.zPressButton(Button.B_YES);
         app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
 
         // Verify appointment is not tagged

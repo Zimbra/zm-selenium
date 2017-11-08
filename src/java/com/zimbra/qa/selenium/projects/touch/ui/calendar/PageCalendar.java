@@ -652,7 +652,7 @@ public class PageCalendar extends AbsTab {
 
 		if ( action == Action.A_LEFTCLICK ) {
 			
-			this.zClickAt(locator, "");
+			this.sClickAt(locator, "");
 			this.zWaitForBusyOverlay();
 
 			page = null;
@@ -714,7 +714,7 @@ public class PageCalendar extends AbsTab {
 
 		if (action == Action.A_LEFTCLICK) {
 			
-			this.zClickAt(locator, "");
+			this.sClickAt(locator, "");
 			this.zWaitForBusyOverlay();
 			SleepUtil.sleepSmall();
 			
@@ -1268,7 +1268,7 @@ public class PageCalendar extends AbsTab {
 
 			if (optionLocator != null) {
 
-				zClick(optionLocator);
+				sClick(optionLocator);
 				zWaitForBusyOverlay();
 
 			}
@@ -1792,7 +1792,7 @@ public class PageCalendar extends AbsTab {
 			throw new HarnessException("Unable to determine locator : " + locator);
 		}
 		
-		this.zClickAt(locator, "");
+		this.sClickAt(locator, "");
 		this.zWaitForBusyOverlay();
 
 		return (page);
@@ -1815,7 +1815,7 @@ public class PageCalendar extends AbsTab {
 			throw new HarnessException("Unable to determine locator : " + locator);
 		}
 		
-		this.zClickAt(locator, "");
+		this.sClickAt(locator, "");
 		this.zWaitForBusyOverlay();
 
 		return (page);
@@ -1836,7 +1836,7 @@ public class PageCalendar extends AbsTab {
 			if (isElementPresent == false) {
 				SleepUtil.sleepMedium();
 				if (locator == Locators.NewTagMenu_ViewAppt) {
-					this.zClickAt(Locators.TagButton_ViewAppt, "");
+					this.sClickAt(Locators.TagButton_ViewAppt, "");
 				}
 			} else if (isElementPresent == true) {
 				return;

@@ -150,12 +150,12 @@ public abstract class AbsSeparateWindow extends AbsPage {
 			if(windows.size() != 1) {
 				for (String winHandle : windows) {
 					WebDriver window = webDriver().switchTo().window(winHandle);
-					if (!window.getTitle().contentEquals("Zimbra: Inbox")
-							&& !window.getTitle().contentEquals("Zimbra: Contacts")
-							&& !window.getTitle().contentEquals("Zimbra: Calendar")
-							&& !window.getTitle().contentEquals("Zimbra: Tasks")
-							&& !window.getTitle().contentEquals("Zimbra: Briefcase")
-							&& !window.getTitle().contentEquals("Zimbra: Preferences")) {
+					if (!window.getTitle().equals("Zimbra: Inbox")
+							&& !window.getTitle().equals("Zimbra: Contacts")
+							&& !window.getTitle().equals("Zimbra: Calendar")
+							&& !window.getTitle().equals("Zimbra: Tasks")
+							&& !window.getTitle().equals("Zimbra: Briefcase")
+							&& !window.getTitle().equals("Zimbra: Preferences")) {
 						webDriver().close();
 					}
 				}
@@ -202,28 +202,39 @@ public abstract class AbsSeparateWindow extends AbsPage {
 
 				} else {
 					Set<String> windows = webDriver().getWindowHandles();
-					if (windows.size() != 1 && (sGetTitle().equals(title) || sGetLocation().contains("/" + title + "?"))) {
-						logger.info("Closing winodw: " + title);
-						webDriver().close();
 
-					} else if (windows.size() != 1) {
-						for (String winHandle : windows) {
-							WebDriver window = webDriver().switchTo().window(winHandle);
-							if ((window.getTitle().contentEquals(title) || window.getCurrentUrl().contains("/" + title + "?"))
-									&& !window.getTitle().contentEquals("Zimbra: Inbox")
-									&& !window.getTitle().contentEquals("Zimbra: Contacts")
-									&& !window.getTitle().contentEquals("Zimbra: Calendar")
-									&& !window.getTitle().contentEquals("Zimbra: Tasks")
-									&& !window.getTitle().contentEquals("Zimbra: Briefcase")
-									&& !window.getTitle().contentEquals("Zimbra: Preferences")) {
-								webDriver().close();
-							}
-							if (title.equals("selenium_blank")) {
-								if (window.getTitle().equals("")) {
+					if (windows.size() >= 2) {
+
+						if ((sGetTitle().equals(title) || sGetLocation().contains("/" + title + "?"))
+								&& !sGetTitle().equals("Zimbra: Inbox")
+								&& !sGetTitle().equals("Zimbra: Contacts")
+								&& !sGetTitle().equals("Zimbra: Calendar")
+								&& !sGetTitle().equals("Zimbra: Tasks")
+								&& !sGetTitle().equals("Zimbra: Briefcase")
+								&& !sGetTitle().equals("Zimbra: Preferences")) {
+							logger.info("Closing winodw: " + title);
+							webDriver().close();
+
+						} else {
+							for (String winHandle : windows) {
+								WebDriver window = webDriver().switchTo().window(winHandle);
+								if ((sGetTitle().equals(title) || window.getCurrentUrl().contains("/" + title + "?"))
+										&& !sGetTitle().equals("Zimbra: Inbox")
+										&& !sGetTitle().equals("Zimbra: Contacts")
+										&& !sGetTitle().equals("Zimbra: Calendar")
+										&& !sGetTitle().equals("Zimbra: Tasks")
+										&& !sGetTitle().equals("Zimbra: Briefcase")
+										&& !sGetTitle().equals("Zimbra: Preferences")) {
 									webDriver().close();
+								}
+								if (title.equals("selenium_blank")) {
+									if (window.getTitle().equals("")) {
+										webDriver().close();
+									}
 								}
 							}
 						}
+
 					} else {
 						logger.info("Window is already closed: " + title);
 					}

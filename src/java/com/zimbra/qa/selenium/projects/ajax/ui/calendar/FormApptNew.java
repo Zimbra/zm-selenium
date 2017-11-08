@@ -267,42 +267,45 @@ public class FormApptNew extends AbsForm {
 			this.sClickAt("css=td[id$='_scheduler'] td[id$='_NAME_'] input", "");
 			SleepUtil.sleepSmall();
 			pageCal.zKeyboard.zTypeKeyEvent(keyEvent);
-
 		}
+		SleepUtil.sleepMedium();
 	}
 
 	public void zAddOptionalAttendeeFromScheduler(String attendee, int keyEvent) throws HarnessException {
 		zToolbarPressButton(Button.B_SHOW);
 		SleepUtil.sleepSmall();
-		this.zClickAt("css=td[id$='_scheduler'] td[id$='_SELECT_'] td[id$='_dropdown']", "");
-		this.zClickAt("css=div[class='DwtMenu ZHasIcon'] td[id$='_title']:contains('Optional Attendee')", "");
+		this.sClickAt("css=td[id$='_scheduler'] td[id$='_SELECT_'] td[id$='_dropdown']", "");
+		this.sClickAt("css=div[class='DwtMenu ZHasIcon'] td[id$='_title']:contains('Optional Attendee')", "");
 		this.zType("css=td[id$='_scheduler'] td[id$='_NAME_'] input", attendee);
 		this.sClickAt("css=td[id$='_scheduler'] td[id$='_NAME_'] input", "");
 		SleepUtil.sleepSmall();
 		pageCal.zKeyboard.zTypeKeyEvent(keyEvent);
+		SleepUtil.sleepMedium();
 	}
 
 	public void zAddLocationFromScheduler(String location, int keyEvent) throws HarnessException {
 		SleepUtil.sleepMedium();
 		zToolbarPressButton(Button.B_SHOW);
 		SleepUtil.sleepSmall();
-		this.zClickAt("css=td[id$='_scheduler'] td[id$='_SELECT_'] td[id$='_dropdown']", "");
-		this.zClickAt("css=div[class='DwtMenu ZHasIcon'] td[id$='_title']:contains('Location')", "");
+		this.sClickAt("css=td[id$='_scheduler'] td[id$='_SELECT_'] td[id$='_dropdown']", "");
+		this.sClickAt("css=div[class='DwtMenu ZHasIcon'] td[id$='_title']:contains('Location')", "");
 		this.zType("css=td[id$='_scheduler'] td[id$='_NAME_'] input", location);
 		this.sClickAt("css=td[id$='_scheduler'] td[id$='_NAME_'] input", "");
 		SleepUtil.sleepSmall();
 		pageCal.zKeyboard.zTypeKeyEvent(keyEvent);
+		SleepUtil.sleepMedium();
 	}
 
 	public void zAddEquipmentFromScheduler(String equipment, int keyEvent) throws HarnessException {
 		zToolbarPressButton(Button.B_SHOW);
 		SleepUtil.sleepSmall();
-		this.zClickAt("css=td[id$='_scheduler'] td[id$='_SELECT_'] td[id$='_dropdown']", "");
-		this.zClickAt("css=div[class='DwtMenu ZHasIcon'] td[id$='_title']:contains('Equipment')", "");
+		this.sClickAt("css=td[id$='_scheduler'] td[id$='_SELECT_'] td[id$='_dropdown']", "");
+		this.sClickAt("css=div[class='DwtMenu ZHasIcon'] td[id$='_title']:contains('Equipment')", "");
 		this.zType("css=td[id$='_scheduler'] td[id$='_NAME_'] input", equipment);
 		this.sClickAt("css=td[id$='_scheduler'] td[id$='_NAME_'] input", "");
 		SleepUtil.sleepSmall();
 		pageCal.zKeyboard.zTypeKeyEvent(keyEvent);
+		SleepUtil.sleepMedium();
 	}
 
 	public String zGetApptSubject() throws HarnessException {
@@ -357,22 +360,22 @@ public class FormApptNew extends AbsForm {
 		SleepUtil.sleepSmall();
 		this.zRightClickAt("css=td[id$='_person'] span:contains('" + attendee + "')", "");
 		SleepUtil.sleepSmall();
-		this.zClickAt(Locators.DeleteZimletContextMenu, "");
+		this.sClickAt(Locators.DeleteZimletContextMenu, "");
 	}
 
 	public void zRemoveLocation(String location) throws HarnessException {
 		SleepUtil.sleepSmall();
 		this.zRightClickAt("css=td[id$='_location'] span:contains('" + location + "')", "");
-		this.zClickAt(Locators.DeleteZimletContextMenu, "");
-		this.zClickAt("css=input[id$='_location_input']", "");
+		this.sClickAt(Locators.DeleteZimletContextMenu, "");
+		this.sClickAt("css=input[id$='_location_input']", "");
 		SleepUtil.sleepMedium();
 	}
 
 	public void zRemoveEquipment(String equipment) throws HarnessException {
 		SleepUtil.sleepSmall();
 		this.zRightClickAt("css=td[id$='resourcesData'] span:contains('" + equipment + "')", "");
-		this.zClickAt(Locators.DeleteZimletContextMenu, "");
-		this.zClickAt("css=td[id$='resourcesData']", "");
+		this.sClickAt(Locators.DeleteZimletContextMenu, "");
+		this.sClickAt("css=td[id$='resourcesData']", "");
 		SleepUtil.sleepMedium();
 	}
 
@@ -487,7 +490,9 @@ public class FormApptNew extends AbsForm {
 		} else if (button == Button.B_SHOW) {
 
 			locator = Locators.ShowSchedulerLink;
-			page = null;
+			this.sClickJavaScript(locator);
+			SleepUtil.sleepMedium();
+			return (page);
 
 		} else if (button == Button.B_SHOW_TIMES_ANYWAY) {
 
@@ -742,7 +747,7 @@ public class FormApptNew extends AbsForm {
 				throw new HarnessException("pulldownLocator not present! " + pulldownLocator);
 			}
 
-			this.zClick(pulldownLocator);
+			this.sClick(pulldownLocator);
 
 			this.zWaitForBusyOverlay();
 
@@ -752,7 +757,7 @@ public class FormApptNew extends AbsForm {
 					throw new HarnessException("optionLocator not present! " + optionLocator);
 				}
 
-				this.zClick(optionLocator);
+				this.sClick(optionLocator);
 
 				this.zWaitForBusyOverlay();
 
@@ -937,7 +942,7 @@ public class FormApptNew extends AbsForm {
 						locator = "css=body[id='tinymce']";
 						this.sSelectFrame(
 								"css=div[class='ZmApptComposeView'] div[id$='_notes'] iframe[id$='_body_ifr']");
-						this.zClickAt(locator, "10,10");
+						this.sClickAt(locator, "10,10");
 						this.sFocus(locator);
 						this.sType(locator, value);
 						// this.zKeyboard.zTypeCharacters(value);
@@ -1109,7 +1114,7 @@ public class FormApptNew extends AbsForm {
 			throw new HarnessException("Repeat options can't be null!");
 		}
 
-		this.zClickAt(Locators.NoneButton, "");
+		this.sClickAt(Locators.NoneButton, "");
 
 		if (!recurringType.equals(Button.O_CUSTOM_MENU)) {
 
@@ -1214,7 +1219,7 @@ public class FormApptNew extends AbsForm {
 		DialogCustomRepeat dlgCustomRepeat = (DialogCustomRepeat) new DialogCustomRepeat(
 				DialogCustomRepeat.DialogWarningID.DialogCustomRepeat, MyApplication,
 				((AppAjaxClient) MyApplication).zPageCalendar);
-		dlgCustomRepeat.zClickButton(Button.B_OK);
+		dlgCustomRepeat.zPressButton(Button.B_OK);
 	}
 
 	public void zRepeat(Button recurringType, Button repeat, Button end) throws HarnessException {
@@ -1303,23 +1308,23 @@ public class FormApptNew extends AbsForm {
 	}
 
 	public void zRequestResponseOFF() throws HarnessException {
-		this.zClickAt(Locators.ToolbarOptions, "");
-		this.zClickAt(Locators.RequestResponse, "");
+		this.sClickAt(Locators.ToolbarOptions, "");
+		this.sClickAt(Locators.RequestResponse, "");
 	}
 
 	public void zRequestResponseON() throws HarnessException {
-		this.zClickAt(Locators.ToolbarOptions, "");
-		this.zClickAt(Locators.RequestResponse, "");
+		this.sClickAt(Locators.ToolbarOptions, "");
+		this.sClickAt(Locators.RequestResponse, "");
 		SleepUtil.sleepSmall();
-		this.zClickAt(Locators.ToolbarOptions, "");
-		this.zClickAt(Locators.RequestResponse, "");
+		this.sClickAt(Locators.ToolbarOptions, "");
+		this.sClickAt(Locators.RequestResponse, "");
 	}
 
 	public void zCloseModifiedApptTab() throws HarnessException {
 		this.zToolbarPressButton(Button.B_CLOSE);
 		DialogConfirmModification confirmClose = (DialogConfirmModification) new DialogConfirmModification(
 				this.MyApplication, pageCal);
-		confirmClose.zClickButton(Button.B_CANCEL);
+		confirmClose.zPressButton(Button.B_CANCEL);
 	}
 
 	public String zVerifyComposeFormatHTML() throws HarnessException {

@@ -104,7 +104,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 //			// A warning dialog will appear
 //			DialogWarning dialog = app.zPageMain.zGetWarningDialog(DialogWarning.DialogWarningID.EmptyFolderWarningMessage);
 //			ZAssert.assertNotNull(dialog, "Verify the dialog pops up");
-//			dialog.zClickButton(Button.B_OK);
+//			dialog.zPressButton(Button.B_OK);
 
 		} finally {
 			
@@ -214,7 +214,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 //			// A warning dialog will appear
 //			DialogWarning dialog = app.zPageMain.zGetWarningDialog(DialogWarning.DialogWarningID.EmptyFolderWarningMessage);
 //			ZAssert.assertNotNull(dialog, "Verify the dialog pops up");
-//			dialog.zClickButton(Button.B_OK);
+//			dialog.zPressButton(Button.B_OK);
 
 		} finally {
 			

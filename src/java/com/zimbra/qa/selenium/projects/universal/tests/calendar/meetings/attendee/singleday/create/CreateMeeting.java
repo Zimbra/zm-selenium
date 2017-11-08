@@ -126,7 +126,7 @@ public class CreateMeeting extends CalendarWorkWeekTest {
 		
 		// change compose preference 
 		DialogWarning dialog = (DialogWarning)apptForm.zToolbarPressPulldown(Button.B_OPTIONS, Button.O_FORMAT_AS_PLAIN_TEXT);
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 		
 		// Fill out the form with the data
 		apptForm.zFillField(Field.Subject, dSubject);

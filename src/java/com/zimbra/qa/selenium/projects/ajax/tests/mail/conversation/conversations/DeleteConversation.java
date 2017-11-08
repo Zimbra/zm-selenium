@@ -670,7 +670,7 @@ public class DeleteConversation extends PrefGroupMailByConversationTest {
 
 		// Click shift-delete
 		DialogWarning dialog = (DialogWarning)app.zPageMail.zKeyboardShortcut(Shortcut.S_MAIL_HARDELETE);
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 
 		// Verify the message is no longer in the mailbox
 		app.zGetActiveAccount().soapSend(
@@ -703,7 +703,7 @@ public class DeleteConversation extends PrefGroupMailByConversationTest {
 		app.zPageMail.zListItem(Action.A_MAIL_CHECKBOX, c3.getSubject());
 
 		DialogWarning dialog = (DialogWarning)app.zPageMail.zKeyboardShortcut(Shortcut.S_MAIL_HARDELETE);
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 
 		// Verify the message is no longer in the mailbox
 		app.zGetActiveAccount().soapSend(

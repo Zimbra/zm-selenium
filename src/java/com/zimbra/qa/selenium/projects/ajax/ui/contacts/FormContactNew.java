@@ -316,7 +316,7 @@ public class FormContactNew extends AbsForm {
 				throw new HarnessException("Field is not present field=" + field + " locator=" + locator);
 
 			this.sFocus(locator);
-			this.zClick(locator);
+			this.sClick(locator);
 			this.zWaitForBusyOverlay();
 
 			// Enter text
@@ -428,7 +428,7 @@ public class FormContactNew extends AbsForm {
 		if (pulldown == Button.B_EXPAND) {
 
 			pulldownLocator = "css=div#" + MyDivID + " div[id$='_DETAILS'] span[id$='_title']";
-			this.zClickAt(pulldownLocator, "0,0");
+			this.sClickAt(pulldownLocator, "0,0");
 			zWaitForBusyOverlay();
 
 			SleepUtil.sleepMedium();
@@ -487,7 +487,7 @@ public class FormContactNew extends AbsForm {
 				throw new HarnessException("no logic defined for pulldown/option " + pulldown + "/" + option);
 			}
 
-			this.zClickAt(optionLocator, "0,0");
+			this.sClickAt(optionLocator, "0,0");
 			zWaitForBusyOverlay();
 
 			return (null);
@@ -495,7 +495,7 @@ public class FormContactNew extends AbsForm {
 		} else if (pulldown == Button.B_FILEAS) {
 
 			pulldownLocator = "css=div#" + MyDivID + " div[id$='_FILE_AS'] td[id$='_title']";
-			this.zClickAt(pulldownLocator, "0,0");
+			this.sClickAt(pulldownLocator, "0,0");
 			zWaitForBusyOverlay();
 
 			if (option == Button.O_FILEAS_COMPANY) {

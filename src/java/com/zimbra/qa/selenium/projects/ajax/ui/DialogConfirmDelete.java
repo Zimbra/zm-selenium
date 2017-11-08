@@ -49,8 +49,8 @@ public class DialogConfirmDelete extends AbsDialog {
 	}
 
 	@Override
-	public AbsPage zClickButton(Button button) throws HarnessException {
-		logger.info(myPageName() + " zClickButton(" + button + ")");
+	public AbsPage zPressButton(Button button) throws HarnessException {
+		logger.info(myPageName() + " zPressButton(" + button + ")");
 
 		tracer.trace("Click dialog button " + button);
 		if (button == null)
@@ -87,7 +87,7 @@ public class DialogConfirmDelete extends AbsDialog {
 			throw new HarnessException("Button " + button + " locator " + locator + " not present!");
 		}
 
-		this.zClickAt(locator, "0,0");
+		this.sClickAt(locator, "0,0");
 		this.zWaitForBusyOverlay();
 
 		if (page != null) {

@@ -46,7 +46,7 @@ public class NavigateSearch extends AdminCommonTest {
 		/*
 		 * Verify navigation path -- "Home --> Search --> Search --> All Results"
 		 */
-		app.zPageManageSearch.zClickTreeItemOfSearch(PageManageSearch.Locators.ALL_RESULT);
+		app.zPageManageSearch.zSelectTreeItemOfSearch(PageManageSearch.Locators.ALL_RESULT);
 		
 		ZAssert.assertTrue(app.zPageManageSearch.zVerifyHeader(PageManageSearch.Locators.HOME), "Verfiy the \"Home\" text exists in navigation path");
 		ZAssert.assertTrue(app.zPageManageSearch.zVerifyHeader(PageManageSearch.Locators.SEARCH), "Verfiy the \"Search\" text exists in navigation path");
@@ -56,7 +56,7 @@ public class NavigateSearch extends AdminCommonTest {
 		 * Verify navigation path -- "Home --> Search --> Search --> Accounts"
 		 */
 		
-		app.zPageManageSearch.zClickTreeItemOfSearch(PageManageSearch.Locators.ACCOUNTS);
+		app.zPageManageSearch.zSelectTreeItemOfSearch(PageManageSearch.Locators.ACCOUNTS);
 		
 		ZAssert.assertTrue(app.zPageManageSearch.zVerifyHeader(PageManageSearch.Locators.HOME), "Verfiy the \"Home\" text exists in navigation path");
 		ZAssert.assertTrue(app.zPageManageSearch.zVerifyHeader(PageManageSearch.Locators.SEARCH), "Verfiy the \"Search\" text exists in navigation path");
@@ -65,7 +65,7 @@ public class NavigateSearch extends AdminCommonTest {
 		/*
 		 * Verify navigation path -- "Home --> Search --> Search --> Domains"
 		 */
-		app.zPageManageSearch.zClickTreeItemOfSearch(PageManageSearch.Locators.DOMAINS);
+		app.zPageManageSearch.zSelectTreeItemOfSearch(PageManageSearch.Locators.DOMAINS);
 		
 		ZAssert.assertTrue(app.zPageManageSearch.zVerifyHeader(PageManageSearch.Locators.HOME), "Verfiy the \"Home\" text exists in navigation path");
 		ZAssert.assertTrue(app.zPageManageSearch.zVerifyHeader(PageManageSearch.Locators.SEARCH), "Verfiy the \"Search\" text exists in navigation path");
@@ -74,7 +74,7 @@ public class NavigateSearch extends AdminCommonTest {
 		/*
 		 * Verify navigation path -- "Home --> Search --> Search --> Distribution Lists"
 		 */
-		app.zPageManageSearch.zClickTreeItemOfSearch(PageManageSearch.Locators.DISTRIBUTION_LISTS);
+		app.zPageManageSearch.zSelectTreeItemOfSearch(PageManageSearch.Locators.DISTRIBUTION_LISTS);
 		
 		ZAssert.assertTrue(app.zPageManageSearch.zVerifyHeader(PageManageSearch.Locators.HOME), "Verfiy the \"Home\" text exists in navigation path");
 		ZAssert.assertTrue(app.zPageManageSearch.zVerifyHeader(PageManageSearch.Locators.SEARCH), "Verfiy the \"Search\" text exists in navigation path");
@@ -97,7 +97,7 @@ public class NavigateSearch extends AdminCommonTest {
 		/*
 		 * Verify navigation path -- "Home --> Search --> Search Options --> Basci Attributes"
 		 */
-		app.zPageManageSearch.zClickTreeItem(PageManageSearch.TreeItem.BASIC_ATTRIBUTES);
+		app.zPageManageSearch.zSelectTreeItem(PageManageSearch.TreeItem.BASIC_ATTRIBUTES);
 		
 		ZAssert.assertTrue(app.zPageManageSearch.zVerifyHeader(PageManageSearch.Locators.HOME), "Verfiy the \"Home\" text exists in navigation path");
 		ZAssert.assertTrue(app.zPageManageSearch.zVerifyHeader(PageManageSearch.Locators.SEARCH), "Verfiy the \"Search\" text exists in navigation path");
@@ -107,7 +107,7 @@ public class NavigateSearch extends AdminCommonTest {
 		/*
 		 * Verify navigation path -- "Home --> Search --> Search Options --> Status"
 		 */
-		app.zPageManageSearch.zClickTreeItem(PageManageSearch.TreeItem.STATUS);
+		app.zPageManageSearch.zSelectTreeItem(PageManageSearch.TreeItem.STATUS);
 		
 		ZAssert.assertTrue(app.zPageManageSearch.zVerifyHeader(PageManageSearch.Locators.HOME), "Verfiy the \"Home\" text exists in navigation path");
 		ZAssert.assertTrue(app.zPageManageSearch.zVerifyHeader(PageManageSearch.Locators.SEARCH), "Verfiy the \"Search\" text exists in navigation path");
@@ -117,7 +117,7 @@ public class NavigateSearch extends AdminCommonTest {
 		/*
 		 * Verify navigation path -- "Home --> Search --> Search Options --> Last Login Time"
 		 */
-		app.zPageManageSearch.zClickTreeItem(PageManageSearch.TreeItem.LAST_LOGIN_TIME);
+		app.zPageManageSearch.zSelectTreeItem(PageManageSearch.TreeItem.LAST_LOGIN_TIME);
 		
 		ZAssert.assertTrue(app.zPageManageSearch.zVerifyHeader(PageManageSearch.Locators.HOME), "Verfiy the \"Home\" text exists in navigation path");
 		ZAssert.assertTrue(app.zPageManageSearch.zVerifyHeader(PageManageSearch.Locators.SEARCH), "Verfiy the \"Search\" text exists in navigation path");
@@ -127,7 +127,7 @@ public class NavigateSearch extends AdminCommonTest {
 		/*
 		 * Verify navigation path -- "Home --> Search --> Search Options --> External Email Address"
 		 */
-		app.zPageManageSearch.zClickTreeItem(PageManageSearch.TreeItem.EXTERNAL_EMAIL_ADDRESS);
+		app.zPageManageSearch.zSelectTreeItem(PageManageSearch.TreeItem.EXTERNAL_EMAIL_ADDRESS);
 		
 		ZAssert.assertTrue(app.zPageManageSearch.zVerifyHeader(PageManageSearch.Locators.HOME), "Verfiy the \"Home\" text exists in navigation path");
 		ZAssert.assertTrue(app.zPageManageSearch.zVerifyHeader(PageManageSearch.Locators.SEARCH), "Verfiy the \"Search\" text exists in navigation path");
@@ -137,7 +137,7 @@ public class NavigateSearch extends AdminCommonTest {
 		/*
 		 * Verify navigation path -- "Home --> Search --> Search Options --> COS"
 		 */
-		app.zPageManageSearch.zClickTreeItem(PageManageSearch.TreeItem.COS);
+		app.zPageManageSearch.zSelectTreeItem(PageManageSearch.TreeItem.COS);
 		
 		ZAssert.assertTrue(app.zPageManageSearch.zVerifyHeader(PageManageSearch.Locators.HOME), "Verfiy the \"Home\" text exists in navigation path");
 		ZAssert.assertTrue(app.zPageManageSearch.zVerifyHeader(PageManageSearch.Locators.SEARCH), "Verfiy the \"Search\" text exists in navigation path");
@@ -147,7 +147,7 @@ public class NavigateSearch extends AdminCommonTest {
 		/*
 		 * Verify navigation path -- "Home --> Search --> Search Options --> Server"
 		 */
-		app.zPageManageSearch.zClickTreeItem(PageManageSearch.TreeItem.SERVER);
+		app.zPageManageSearch.zSelectTreeItem(PageManageSearch.TreeItem.SERVER);
 		
 		ZAssert.assertTrue(app.zPageManageSearch.zVerifyHeader(PageManageSearch.Locators.HOME), "Verfiy the \"Home\" text exists in navigation path");
 		ZAssert.assertTrue(app.zPageManageSearch.zVerifyHeader(PageManageSearch.Locators.SEARCH), "Verfiy the \"Search\" text exists in navigation path");
@@ -157,7 +157,7 @@ public class NavigateSearch extends AdminCommonTest {
 		/*
 		 * Verify navigation path -- "Home --> Search --> Search Options --> Domains"
 		 */
-		app.zPageManageSearch.zClickTreeItemOfSearch(PageManageSearch.Locators.SEARCH_OPTION_DOMAINS);
+		app.zPageManageSearch.zSelectTreeItemOfSearch(PageManageSearch.Locators.SEARCH_OPTION_DOMAINS);
 		
 		ZAssert.assertTrue(app.zPageManageSearch.zVerifyHeader(PageManageSearch.Locators.HOME), "Verfiy the \"Home\" text exists in navigation path");
 		ZAssert.assertTrue(app.zPageManageSearch.zVerifyHeader(PageManageSearch.Locators.SEARCH), "Verfiy the \"Search\" text exists in navigation path");
@@ -180,7 +180,7 @@ public class NavigateSearch extends AdminCommonTest {
 		/*
 		 * Verify navigation path -- "Home --> Search --> Saved Searches --> Inactive Accounts (90 days)"
 		 */
-		app.zPageManageSearch.zClickTreeItem(PageManageSearch.TreeItem.INACTIVE_ACCOUNTS_90);
+		app.zPageManageSearch.zSelectTreeItem(PageManageSearch.TreeItem.INACTIVE_ACCOUNTS_90);
 		
 		ZAssert.assertTrue(app.zPageManageSearch.zVerifyHeader(PageManageSearch.Locators.HOME), "Verfiy the \"Home\" text exists in navigation path");
 		ZAssert.assertTrue(app.zPageManageSearch.zVerifyHeader(PageManageSearch.Locators.SEARCH), "Verfiy the \"Search\" text exists in navigation path");
@@ -190,7 +190,7 @@ public class NavigateSearch extends AdminCommonTest {
 		/*
 		 * Verify navigation path -- "Home --> Search --> Saved Searches --> Locked Out Accounts"
 		 */
-		app.zPageManageSearch.zClickTreeItem(PageManageSearch.TreeItem.LOCKED_OUT_ACCOUNTS);
+		app.zPageManageSearch.zSelectTreeItem(PageManageSearch.TreeItem.LOCKED_OUT_ACCOUNTS);
 		
 		ZAssert.assertTrue(app.zPageManageSearch.zVerifyHeader(PageManageSearch.Locators.HOME), "Verfiy the \"Home\" text exists in navigation path");
 		ZAssert.assertTrue(app.zPageManageSearch.zVerifyHeader(PageManageSearch.Locators.SEARCH), "Verfiy the \"Search\" text exists in navigation path");
@@ -200,7 +200,7 @@ public class NavigateSearch extends AdminCommonTest {
 		/*
 		 * Verify navigation path -- "Home --> Search --> Saved Searches --> Non-Active Accounts"
 		 */
-		app.zPageManageSearch.zClickTreeItem(PageManageSearch.TreeItem.NON_ACTIVE_ACCOUNTS);
+		app.zPageManageSearch.zSelectTreeItem(PageManageSearch.TreeItem.NON_ACTIVE_ACCOUNTS);
 		
 		ZAssert.assertTrue(app.zPageManageSearch.zVerifyHeader(PageManageSearch.Locators.HOME), "Verfiy the \"Home\" text exists in navigation path");
 		ZAssert.assertTrue(app.zPageManageSearch.zVerifyHeader(PageManageSearch.Locators.SEARCH), "Verfiy the \"Search\" text exists in navigation path");
@@ -210,7 +210,7 @@ public class NavigateSearch extends AdminCommonTest {
 		/*
 		 * Verify navigation path -- "Home --> Search --> Saved Searches --> Inactive Accounts (30 days)"
 		 */
-		app.zPageManageSearch.zClickTreeItem(PageManageSearch.TreeItem.INACTIVE_ACCOUNTS_30);
+		app.zPageManageSearch.zSelectTreeItem(PageManageSearch.TreeItem.INACTIVE_ACCOUNTS_30);
 		
 		ZAssert.assertTrue(app.zPageManageSearch.zVerifyHeader(PageManageSearch.Locators.HOME), "Verfiy the \"Home\" text exists in navigation path");
 		ZAssert.assertTrue(app.zPageManageSearch.zVerifyHeader(PageManageSearch.Locators.SEARCH), "Verfiy the \"Search\" text exists in navigation path");
@@ -220,7 +220,7 @@ public class NavigateSearch extends AdminCommonTest {
 		/*
 		 * Verify navigation path -- "Home --> Search --> Saved Searches --> Admin Accounts"
 		 */
-		app.zPageManageSearch.zClickTreeItem(PageManageSearch.TreeItem.ADMIN_ACCOUNTS);
+		app.zPageManageSearch.zSelectTreeItem(PageManageSearch.TreeItem.ADMIN_ACCOUNTS);
 		
 		ZAssert.assertTrue(app.zPageManageSearch.zVerifyHeader(PageManageSearch.Locators.HOME), "Verfiy the \"Home\" text exists in navigation path");
 		ZAssert.assertTrue(app.zPageManageSearch.zVerifyHeader(PageManageSearch.Locators.SEARCH), "Verfiy the \"Search\" text exists in navigation path");
@@ -230,7 +230,7 @@ public class NavigateSearch extends AdminCommonTest {
 		/*
 		 * Verify navigation path -- "Home --> Search --> Saved Searches --> External Accounts"
 		 */
-		app.zPageManageSearch.zClickTreeItem(PageManageSearch.TreeItem.EXTERNAL_ACCOUNTS);
+		app.zPageManageSearch.zSelectTreeItem(PageManageSearch.TreeItem.EXTERNAL_ACCOUNTS);
 		
 		ZAssert.assertTrue(app.zPageManageSearch.zVerifyHeader(PageManageSearch.Locators.HOME), "Verfiy the \"Home\" text exists in navigation path");
 		ZAssert.assertTrue(app.zPageManageSearch.zVerifyHeader(PageManageSearch.Locators.SEARCH), "Verfiy the \"Search\" text exists in navigation path");
@@ -240,7 +240,7 @@ public class NavigateSearch extends AdminCommonTest {
 		/*
 		 * Verify navigation path -- "Home --> Search --> Saved Searches --> Closed Accounts"
 		 */
-		app.zPageManageSearch.zClickTreeItem(PageManageSearch.TreeItem.CLOSED_ACCOUNTS);
+		app.zPageManageSearch.zSelectTreeItem(PageManageSearch.TreeItem.CLOSED_ACCOUNTS);
 		
 		ZAssert.assertTrue(app.zPageManageSearch.zVerifyHeader(PageManageSearch.Locators.HOME), "Verfiy the \"Home\" text exists in navigation path");
 		ZAssert.assertTrue(app.zPageManageSearch.zVerifyHeader(PageManageSearch.Locators.SEARCH), "Verfiy the \"Search\" text exists in navigation path");
@@ -250,7 +250,7 @@ public class NavigateSearch extends AdminCommonTest {
 		/*
 		 * Verify navigation path -- "Home --> Search --> Saved Searches --> Maintenance Accounts"
 		 */
-		app.zPageManageSearch.zClickTreeItem(PageManageSearch.TreeItem.MAINTENANCE_ACCOUNTS);
+		app.zPageManageSearch.zSelectTreeItem(PageManageSearch.TreeItem.MAINTENANCE_ACCOUNTS);
 		
 		ZAssert.assertTrue(app.zPageManageSearch.zVerifyHeader(PageManageSearch.Locators.HOME), "Verfiy the \"Home\" text exists in navigation path");
 		ZAssert.assertTrue(app.zPageManageSearch.zVerifyHeader(PageManageSearch.Locators.SEARCH), "Verfiy the \"Search\" text exists in navigation path");

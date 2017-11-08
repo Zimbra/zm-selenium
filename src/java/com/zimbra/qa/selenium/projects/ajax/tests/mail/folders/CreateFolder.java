@@ -43,7 +43,7 @@ public class CreateFolder extends PrefGroupMailByMessageTest {
 		DialogCreateFolder createFolderDialog = (DialogCreateFolder) app.zTreeMail.zPressButton(Button.B_TREE_NEWFOLDER);
 
 		createFolderDialog.zEnterFolderName(folderName);
-		createFolderDialog.zClickButton(Button.B_OK);
+		createFolderDialog.zPressButton(Button.B_OK);
 
 		// Make sure the folder was created on the ZCS server
 		FolderItem folder = FolderItem.importFromSOAP(app.zGetActiveAccount(),folderName);
@@ -66,7 +66,7 @@ public class CreateFolder extends PrefGroupMailByMessageTest {
 		ZAssert.assertNotNull(dialog, "Verify the new dialog opened");
 
 		dialog.zEnterFolderName(name);
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 
 		// Make sure the folder was created on the server
 		FolderItem folder = FolderItem.importFromSOAP(app.zGetActiveAccount(),name);
@@ -89,7 +89,7 @@ public class CreateFolder extends PrefGroupMailByMessageTest {
 		DialogCreateFolder createFolderDialog = (DialogCreateFolder) app.zTreeMail.zTreeItem(Action.A_RIGHTCLICK, Button.O_NEW_FOLDER, root);
 
 		createFolderDialog.zEnterFolderName(folderName);
-		createFolderDialog.zClickButton(Button.B_OK);
+		createFolderDialog.zPressButton(Button.B_OK);
 
 		// Make sure the folder was created on the ZCS server
 		FolderItem folder = FolderItem.importFromSOAP(app.zGetActiveAccount(), folderName);
@@ -111,7 +111,7 @@ public class CreateFolder extends PrefGroupMailByMessageTest {
 		ZAssert.assertNotNull(dialog, "Verify the new dialog opened");
 
 		dialog.zEnterFolderName(name);
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 
 		// Make sure the folder was created on the server
 		FolderItem folder = FolderItem.importFromSOAP(app.zGetActiveAccount(),name);
@@ -130,7 +130,7 @@ public class CreateFolder extends PrefGroupMailByMessageTest {
 
 		// Fill out the form with the basic details
 		dialog.zEnterFolderName(foldername);
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 
 		// Make sure the folder was created on the server
 		FolderItem folder = FolderItem.importFromSOAP(app.zGetActiveAccount(),foldername);

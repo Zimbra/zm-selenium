@@ -185,7 +185,7 @@ public class PageTasks extends AbsTab {
 
 		if (action == Action.A_LEFTCLICK) {
 
-			this.zClick(itemLocator);
+			this.sClick(itemLocator);
 
 			this.zWaitForBusyOverlay();
 
@@ -217,7 +217,7 @@ public class PageTasks extends AbsTab {
 			if (this.sIsElementPresent(selectlocator + "[class*=ImgCheckboxChecked]"))
 				throw new HarnessException("Trying to check box, but it was already enabled");
 
-			this.zClick(selectlocator);
+			this.sClick(selectlocator);
 			this.zWaitForBusyOverlay();
 
 			page = null;
@@ -237,7 +237,7 @@ public class PageTasks extends AbsTab {
 			if (this.sIsElementPresent(selectlocator + "[class*=ImgCheckboxChecked]"))
 				throw new HarnessException("Trying to uncheck box, but it was already disabled");
 
-			this.zClick(selectlocator);
+			this.sClick(selectlocator);
 			this.zWaitForBusyOverlay();
 
 			page = null;
@@ -590,13 +590,13 @@ public class PageTasks extends AbsTab {
 						ZimbraDOM.SKIN_COMPONENT.SKIN_APP_TOP_TOOLBAR);
 				pulldownLocator = "css=div#" + PrintTaskDropDown + " td[id$='_dropdown']";
 			}
-			this.zClickAt(pulldownLocator, "");
+			this.sClickAt(pulldownLocator, "");
 			zWaitForBusyOverlay();
 
 			if (option == Button.O_PRINT_TASKFOLDER) {
 				// Click the pulldown option, if specified
 				optionLocator = Locators.zPrintTaskFolder;
-				this.zClickAt(optionLocator, "");
+				this.sClickAt(optionLocator, "");
 				zWaitForBusyOverlay();
 			}
 
@@ -625,7 +625,7 @@ public class PageTasks extends AbsTab {
 						+ pulldownLocator + " not present!");
 			}
 
-			this.zClickAt(pulldownLocator, "");
+			this.sClickAt(pulldownLocator, "");
 			SleepUtil.sleepMedium();
 
 			zWaitForBusyOverlay();
@@ -637,7 +637,7 @@ public class PageTasks extends AbsTab {
 							+ optionLocator + " not present!");
 				}
 
-				this.zClickAt(optionLocator, "");
+				this.sClickAt(optionLocator, "");
 
 				zWaitForBusyOverlay();
 			}
@@ -696,7 +696,7 @@ public class PageTasks extends AbsTab {
 						"Button " + pulldown + " pulldownLocator " + pulldownLocator + " not present!");
 			}
 
-			this.zClickAt(pulldownLocator, "");
+			this.sClickAt(pulldownLocator, "");
 
 			zWaitForBusyOverlay();
 
@@ -709,7 +709,7 @@ public class PageTasks extends AbsTab {
 							" dynamic " + dynamic + " optionLocator " + optionLocator + " not present!");
 				}
 
-				this.zClickAt(optionLocator, "");
+				this.sClickAt(optionLocator, "");
 
 				zWaitForBusyOverlay();
 			}

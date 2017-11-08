@@ -355,8 +355,8 @@ public class PageMail extends AbsTab {
 		return (page);
 	}
 
-	public AbsPage zClickButton(Button button) throws HarnessException {
-		logger.info(myPageName() + " zClickButton("+ button +")");
+	public AbsPage zPressButton(Button button) throws HarnessException {
+		logger.info(myPageName() + " zPressButton("+ button +")");
 		tracer.trace("Click page button "+ button);
 
 		AbsPage page = null;
@@ -518,10 +518,10 @@ public class PageMail extends AbsTab {
 				// We don't know the window title at this point (However, the test case should.)
 				// Don't check that the page is active, let the test case do that.
 
-				this.zClickAt(pulldownLocator, "0,0");
+				this.sClickAt(pulldownLocator, "0,0");
 				zWaitForBusyOverlay();
 
-				this.zClickAt(optionLocator, "0,0");
+				this.sClickAt(optionLocator, "0,0");
 				zWaitForBusyOverlay();
 
 				return (page);
@@ -637,9 +637,9 @@ public class PageMail extends AbsTab {
 					throw new HarnessException(pulldownLocator + " not present!");
 				}
 
-				// 8.0 change ... need zClickAt()
-				// this.zClick(pulldownLocator);
-				this.zClickAt(pulldownLocator, "0,0");
+				// 8.0 change ... need sClickAt()
+				// this.sClick(pulldownLocator);
+				this.sClickAt(pulldownLocator, "0,0");
 
 				// Need to wait for the menu to be drawn
 				SleepUtil.sleepMedium();
@@ -651,7 +651,7 @@ public class PageMail extends AbsTab {
 					throw new HarnessException(optionLocator + " not present!");
 				}
 
-				this.zClick(optionLocator);
+				this.sClick(optionLocator);
 
 				// If the app is busy, wait for it to become active
 				zWaitForBusyOverlay();
@@ -678,14 +678,14 @@ public class PageMail extends AbsTab {
 						+ " not present!");
 			}
 
-			// 8.0 change ... need zClickAt()
-			// this.zClick(pulldownLocator);
+			// 8.0 change ... need sClickAt()
+			// this.sClick(pulldownLocator);
 
 			if (pulldownLocator.equals(Locators.IcsLinkInBody)) {
 				this.zRightClickAt(pulldownLocator, "0,0");
 			} else {
 				SleepUtil.sleepSmall();
-				this.zClickAt(pulldownLocator, "0,0");
+				this.sClickAt(pulldownLocator, "0,0");
 			}
 
 
@@ -701,10 +701,10 @@ public class PageMail extends AbsTab {
 							+ optionLocator + " not present!");
 				}
 
-				// 8.0 change ... need zClickAt()
-				// this.zClick(optionLocator);
+				// 8.0 change ... need sClickAt()
+				// this.sClick(optionLocator);
 
-				this.zClickAt(optionLocator, "0,0");
+				this.sClickAt(optionLocator, "0,0");
 				SleepUtil.sleepSmall();
 
 				// If the app is busy, wait for it to become active
@@ -1039,7 +1039,7 @@ public class PageMail extends AbsTab {
 			}
 
 			// click on the option
-			this.zClickAt(optionLocator,"");
+			this.sClickAt(optionLocator,"");
 
 			this.zWaitForBusyOverlay();
 
@@ -1228,7 +1228,7 @@ public class PageMail extends AbsTab {
 					throw new HarnessException(pulldownLocator + " not present!");
 				}
 
-				this.zClickAt(pulldownLocator,"");
+				this.sClickAt(pulldownLocator,"");
 				zWaitForBusyOverlay();
 
 				if (!this.sIsElementPresent(optionLocator)) {
@@ -1242,7 +1242,7 @@ public class PageMail extends AbsTab {
 				// Sometimes the menu isn't drawn right away.  Wait for it.
 				GeneralUtility.waitForElementPresent(this, dynamicLocator);
 
-				this.zClickAt(dynamicLocator,"");
+				this.sClickAt(dynamicLocator,"");
 				zWaitForBusyOverlay();
 
 				return (page);
@@ -1266,7 +1266,7 @@ public class PageMail extends AbsTab {
 						+ " not present!");
 			}
 
-			this.zClickAt(pulldownLocator,"");
+			this.sClickAt(pulldownLocator,"");
 
 			// If the app is busy, wait for it to become active
 			zWaitForBusyOverlay();
@@ -1280,7 +1280,7 @@ public class PageMail extends AbsTab {
 							+ " not present!");
 				}
 				this.sMouseOver(optionLocator);
-				//this.zClickAt(optionLocator,"");
+				//this.sClickAt(optionLocator,"");
 
 				// If the app is busy, wait for it to become active
 				zWaitForBusyOverlay();
@@ -1293,7 +1293,7 @@ public class PageMail extends AbsTab {
 					throw new HarnessException(dynamicLocator+ " not present!");
 				}
 				//	this.sMouseOver(dynamicLocator);
-				this.zClickAt(dynamicLocator,"");
+				this.sClickAt(dynamicLocator,"");
 				SleepUtil.sleepMedium();
 
 				// If the app is busy, wait for it to become active
@@ -1377,7 +1377,7 @@ public class PageMail extends AbsTab {
 				throw new HarnessException("Button " + pulldown + " pulldownLocator " + pulldownLocator + " not present!");
 			}
 
-			this.zClickAt(pulldownLocator,"");
+			this.sClickAt(pulldownLocator,"");
 
 			// If the app is busy, wait for it to become active
 			zWaitForBusyOverlay();
@@ -1391,7 +1391,7 @@ public class PageMail extends AbsTab {
 					throw new HarnessException(" dynamic " + dynamic + " optionLocator " + optionLocator + " not present!");
 				}
 
-				this.zClickAt(optionLocator,"");
+				this.sClickAt(optionLocator,"");
 
 				// If the app is busy, wait for it to become active
 				zWaitForBusyOverlay();
@@ -1438,14 +1438,14 @@ public class PageMail extends AbsTab {
 
 
 			// Click on the item
-			this.zClickAt(itemlocator, "");
+			this.sClickAt(itemlocator, "");
 
 			// Now the ContextMenu is opened
 			// Click on the specified option
 
 			if ( option == Button.B_MARK_CONVERSATION_UNREAD) {
 
-				this.zClickAt(pulldownLocatorActionItem,"");
+				this.sClickAt(pulldownLocatorActionItem,"");
 				optionLocator = Locators.Mark_Conversation_Unread ;
 				page = null;
 
@@ -1453,7 +1453,7 @@ public class PageMail extends AbsTab {
 
 			} else if ( option == Button.B_MARK_CONVERSATION_READ) {
 
-				this.zClickAt(pulldownLocatorActionItem,"");
+				this.sClickAt(pulldownLocatorActionItem,"");
 				optionLocator = Locators.Mark_Conversation_Read ;
 				page = null;
 
@@ -1462,7 +1462,7 @@ public class PageMail extends AbsTab {
 
 			} else if ( option == Button.B_FLAG_CONVERSATION ) {
 
-				this.zClickAt(pulldownLocatorActionItem,"");
+				this.sClickAt(pulldownLocatorActionItem,"");
 				optionLocator = Locators.Flag_Conversation;
 				page = null;
 
@@ -1470,7 +1470,7 @@ public class PageMail extends AbsTab {
 
 			} else if ( option == Button.B_UNFLAG_CONVERSATION ) {
 
-				this.zClickAt(pulldownLocatorActionItem,"");
+				this.sClickAt(pulldownLocatorActionItem,"");
 				optionLocator = Locators.Unflag_Conversation;
 				page = null;
 
@@ -1478,20 +1478,20 @@ public class PageMail extends AbsTab {
 
 			} else if (option == Button.B_MOVE_MESSAGE) {
 
-				this.zClickAt(pulldownLocatorActionItem,"");
+				this.sClickAt(pulldownLocatorActionItem,"");
 				optionLocator = Locators.Move_Message;
 				page = null;
 				
 			} else if (option == Button.B_MOVE_CONVERSATION) {
 
-				this.zClickAt(pulldownLocatorActionItem,"");
+				this.sClickAt(pulldownLocatorActionItem,"");
 				optionLocator = Locators.Move_Message;
 				page = null;
 				// FALLTHROUGH
 
 			} else if (option == Button.B_TAG_MESSAGE) {
 
-				this.zClickAt(pulldownLocatorActionItem,"");
+				this.sClickAt(pulldownLocatorActionItem,"");
 				optionLocator = Locators.Tag_Message;
 
 				page = null;
@@ -1500,7 +1500,7 @@ public class PageMail extends AbsTab {
 
 			} else if (option == Button.B_TAG_CONVERSATION) {
 
-				this.zClickAt(pulldownLocatorActionItem,"");
+				this.sClickAt(pulldownLocatorActionItem,"");
 				optionLocator = Locators.Tag_Conversation;
 
 				page = null;
@@ -1508,13 +1508,13 @@ public class PageMail extends AbsTab {
 				// FALLTHROUGH
 			} else if (option == Button.B_TAG_CONVERSATION) {
 
-				this.zClickAt(pulldownLocatorActionItem,"");
+				this.sClickAt(pulldownLocatorActionItem,"");
 				optionLocator = Locators.Tag_Conversation;
 				page = null;
 
 			} else if (option == Button.B_SPAM_MESSAGE) {
 
-				this.zClickAt(pulldownLocatorActionItem,"");
+				this.sClickAt(pulldownLocatorActionItem,"");
 				optionLocator = Locators.Spam_Message;
 
 				page = null;
@@ -1522,7 +1522,7 @@ public class PageMail extends AbsTab {
 				// FALLTHROUGH
 			} else if (option == Button.B_NOT_SPAM_MESSAGE) {
 
-				this.zClickAt(pulldownLocatorActionItem,"");
+				this.sClickAt(pulldownLocatorActionItem,"");
 				optionLocator = Locators.NotSpam_Message;
 
 				page = null;
@@ -1531,7 +1531,7 @@ public class PageMail extends AbsTab {
 
 			} else if (option == Button.B_SWITCH_TO_MESSAGE_VIEW) {
 
-				this.zClickAt(pulldownLocatorActionItem,"");
+				this.sClickAt(pulldownLocatorActionItem,"");
 				optionLocator = Locators.Switch_To_Message_View;
 
 				page = null;
@@ -1539,28 +1539,28 @@ public class PageMail extends AbsTab {
 
 			} else if (option == Button.B_SWITCH_TO_CONVERSATION_VIEW) {
 
-				this.zClickAt(pulldownLocatorActionItem,"");
+				this.sClickAt(pulldownLocatorActionItem,"");
 				optionLocator = Locators.Switch_To_Conversation_View;
 				page = null;
 
 
 			} else if ( option == Button.B_REPLY_MAIL ) {
 
-				this.zClickAt(pulldownLocatorReply, "");
+				this.sClickAt(pulldownLocatorReply, "");
 				optionLocator = Locators.ReplyMenu;
 				page = null;
 
 				// FALLTHROUGH
 			} else if ( option == Button.B_REPLY_TO_ALL ) {
 
-				this.zClickAt(pulldownLocatorReply, "");
+				this.sClickAt(pulldownLocatorReply, "");
 				optionLocator = Locators.ReplyAllMenu;
 				page = null;
 
 				// FALLTHROUGH
 			} else if ( option == null ) {
 
-				this.zClickAt(pulldownLocatorReply, "");
+				this.sClickAt(pulldownLocatorReply, "");
 				optionLocator = null;
 				page = null;
 
@@ -1568,7 +1568,7 @@ public class PageMail extends AbsTab {
 				// FALLTHROUGH
 			} else if ( option == Button.B_FORWARD_MAIL ) {
 
-				this.zClickAt(pulldownLocatorReply, "");
+				this.sClickAt(pulldownLocatorReply, "");
 				optionLocator = Locators.ForwardMenu;
 				page = new FormMailNew(this.MyApplication);
 
@@ -1579,7 +1579,7 @@ public class PageMail extends AbsTab {
 			}
 
 			// click on the option
-			this.zClickAt(optionLocator,"");
+			this.sClickAt(optionLocator,"");
 
 			this.zWaitForBusyOverlay();
 
@@ -1646,7 +1646,7 @@ public class PageMail extends AbsTab {
 			page = null;
 			
 			// click on the option
-		}this.zClickAt(optionLocator,"");
+		}this.sClickAt(optionLocator,"");
 		SleepUtil.sleepMedium();
 
 
@@ -1713,7 +1713,7 @@ public class PageMail extends AbsTab {
 
 		if ( option == Button.B_MARK_CONVERSATION_UNREAD) {
 
-			this.zClickAt(pulldownLocatorActionItem,"");
+			this.sClickAt(pulldownLocatorActionItem,"");
 			optionLocator = Locators.Mark_Conversation_Unread ;
 			page = null;
 
@@ -1721,13 +1721,13 @@ public class PageMail extends AbsTab {
 
 		}	else if ( option == Button.B_MARK_CONVERSATION_READ) {
 
-			this.zClickAt(pulldownLocatorActionItem,"");
+			this.sClickAt(pulldownLocatorActionItem,"");
 			optionLocator = Locators.Mark_Conversation_Read ;
 			page = null;
 
 		} else if ( option == Button.B_REPLY_MAIL ) {
 
-			this.zClickAt(pulldownLocatorReply, "");
+			this.sClickAt(pulldownLocatorReply, "");
 			optionLocator = Locators.ReplyMenu;
 			page = null;
 
@@ -1736,7 +1736,7 @@ public class PageMail extends AbsTab {
 
 		} else if ( option == Button.B_FLAG_CONVERSATION ) {
 
-			this.zClickAt(pulldownLocatorActionItem,"");
+			this.sClickAt(pulldownLocatorActionItem,"");
 			optionLocator = Locators.Flag_Conversation;
 			page = null;
 
@@ -1744,7 +1744,7 @@ public class PageMail extends AbsTab {
 
 		} else if ( option == Button.B_UNFLAG_CONVERSATION ) {
 
-			this.zClickAt(pulldownLocatorActionItem,"");
+			this.sClickAt(pulldownLocatorActionItem,"");
 			optionLocator = Locators.Unflag_Conversation;
 			page = null;
 
@@ -1752,7 +1752,7 @@ public class PageMail extends AbsTab {
 
 		} else if (option == Button.B_MOVE_CONVERSATION) {
 
-			this.zClickAt(pulldownLocatorActionItem,"");
+			this.sClickAt(pulldownLocatorActionItem,"");
 			optionLocator = Locators.Move_Conversation;
 			page = null;
 
@@ -1760,7 +1760,7 @@ public class PageMail extends AbsTab {
 
 		} else if (option == Button.B_TAG_CONVERSATION) {
 
-			this.zClickAt(pulldownLocatorActionItem,"");
+			this.sClickAt(pulldownLocatorActionItem,"");
 			optionLocator = Locators.Tag_Conversation;
 
 			page = null;
@@ -1769,7 +1769,7 @@ public class PageMail extends AbsTab {
 
 		} else if (option == Button.B_SPAM_MESSAGE) {
 
-			this.zClickAt(pulldownLocatorActionItem,"");
+			this.sClickAt(pulldownLocatorActionItem,"");
 			optionLocator = Locators.Spam_Message;
 
 			page = null;
@@ -1777,7 +1777,7 @@ public class PageMail extends AbsTab {
 			// FALLTHROUGH
 		} else if (option == Button.B_NOT_SPAM_MESSAGE) {
 
-			this.zClickAt(pulldownLocatorActionItem,"");
+			this.sClickAt(pulldownLocatorActionItem,"");
 			optionLocator = Locators.NotSpam_Message;
 
 			page = null;
@@ -1786,7 +1786,7 @@ public class PageMail extends AbsTab {
 
 		} else if (option == Button.B_SWITCH_TO_MESSAGE_VIEW) {
 
-			this.zClickAt(pulldownLocatorActionItem,"");
+			this.sClickAt(pulldownLocatorActionItem,"");
 			optionLocator = Locators.Switch_To_Message_View;
 
 			page = null;
@@ -1794,28 +1794,28 @@ public class PageMail extends AbsTab {
 
 		} else if (option == Button.B_SWITCH_TO_CONVERSATION_VIEW) {
 
-			this.zClickAt(pulldownLocatorActionItem,"");
+			this.sClickAt(pulldownLocatorActionItem,"");
 			optionLocator = Locators.Switch_To_Conversation_View;
 			page = null;
 
 
 		} else if ( option == Button.B_REPLY_MAIL ) {
 
-			this.zClickAt(pulldownLocatorReply, "");
+			this.sClickAt(pulldownLocatorReply, "");
 			optionLocator = Locators.ReplyMenu;
 			page = null;
 
 			// FALLTHROUGH
 		} else if ( option == Button.B_REPLY_TO_ALL ) {
 
-			this.zClickAt(pulldownLocatorReply, "");
+			this.sClickAt(pulldownLocatorReply, "");
 			optionLocator = Locators.ReplyAllMenu;
 			page = null;
 
 			// FALLTHROUGH
 		} else if ( option == null ) {
 
-			this.zClickAt(pulldownLocatorReply, "");
+			this.sClickAt(pulldownLocatorReply, "");
 			optionLocator = null;
 			page = null;
 
@@ -1823,7 +1823,7 @@ public class PageMail extends AbsTab {
 			// FALLTHROUGH
 		} else if ( option == Button.B_FORWARD_MAIL ) {
 
-			this.zClickAt(pulldownLocatorReply, "");
+			this.sClickAt(pulldownLocatorReply, "");
 			optionLocator = Locators.ForwardMenu;
 			page = new FormMailNew(this.MyApplication);
 
@@ -1837,7 +1837,7 @@ public class PageMail extends AbsTab {
 		}
 
 		// Click the option
-		this.zClickAt(optionLocator,"");
+		this.sClickAt(optionLocator,"");
 		this.zWaitForBusyOverlay();
 		SleepUtil.sleepSmall();
 
@@ -1880,7 +1880,7 @@ public class PageMail extends AbsTab {
 		// Seems that the client can't handle filling out the new mail form too quickly
 		// Click in the "To" fields, etc, to make sure the client is ready
 		this.sFocus(locator);
-		this.zClickAt(locator, "");
+		this.sClickAt(locator, "");
 		this.zWaitForBusyOverlay();
 
 		// Enter text
@@ -1889,18 +1889,18 @@ public class PageMail extends AbsTab {
 	}
 	
 	
-	public void zClickAddressBubble(Field field) throws HarnessException {
+	public void sClickAddressBubble(Field field) throws HarnessException {
 		if (field == Field.From) {
 			SleepUtil.sleepMedium();
 			this.sFocus(Locators.zFromHdrAddressBubble);
 			this.sClick(Locators.zFromHdrAddressBubble);
-			this.zClick(Locators.zFromHdrAddressBubble);
+			this.sClick(Locators.zFromHdrAddressBubble);
 			SleepUtil.sleepMedium();
 		} else if (field == Field.Organizer) {
 			SleepUtil.sleepMedium();
 			this.sFocus(Locators.zOrganizerHdrAddressBubble);
 			this.sClick(Locators.zOrganizerHdrAddressBubble);
-			this.zClick(Locators.zOrganizerHdrAddressBubble);
+			this.sClick(Locators.zOrganizerHdrAddressBubble);
 			SleepUtil.sleepMedium();
 		}
 		
@@ -1935,7 +1935,7 @@ public class PageMail extends AbsTab {
 			page = null;	
 		}
 		
-		this.zClickAt(optionLocator,"");
+		this.sClickAt(optionLocator,"");
 		SleepUtil.sleepMedium();
 
 		this.zWaitForBusyOverlay();

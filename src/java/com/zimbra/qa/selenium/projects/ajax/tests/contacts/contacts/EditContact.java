@@ -176,7 +176,7 @@ public class EditContact extends AjaxCommonTest  {
         dialog.zWaitForActive();
 
 	    // Click No in popup dialog
-        dialog.zClickButton(Button.B_NO);
+        dialog.zPressButton(Button.B_NO);
 
         // Verification
         ContactItem actual = ContactItem.importFromSOAP(app.zGetActiveAccount(), "#firstname:"+ contact.firstName);
@@ -214,7 +214,7 @@ public class EditContact extends AjaxCommonTest  {
         dialog.zWaitForActive();
 
 	    // Click No in popup dialog
-        dialog.zClickButton(Button.B_CANCEL);
+        dialog.zPressButton(Button.B_CANCEL);
 
         // Click save
         form.zToolbarPressButton(Button.B_SAVE);
@@ -255,7 +255,7 @@ public class EditContact extends AjaxCommonTest  {
         dialog.zWaitForActive();
 
 	    // Click No in popup dialog
-        dialog.zClickButton(Button.B_YES);
+        dialog.zPressButton(Button.B_YES);
 
         // Verification
         ContactItem actual = ContactItem.importFromSOAP(app.zGetActiveAccount(), "#firstname:"+ firstname);

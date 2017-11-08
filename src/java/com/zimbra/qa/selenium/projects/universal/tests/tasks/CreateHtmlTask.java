@@ -100,7 +100,7 @@ public class CreateHtmlTask extends UniversalCommonTest {
 		ZAssert.assertNotNull(warning, "Verify the dialog is opened");
 
 		//Click Yes button of warning dialog
-		warning.zClickButton(Button.B_YES);
+		warning.zPressButton(Button.B_YES);
 
 		//Verify the html content of the task body		
 		TaskItem task = TaskItem.importFromSOAP(app.zGetActiveAccount(), subject);

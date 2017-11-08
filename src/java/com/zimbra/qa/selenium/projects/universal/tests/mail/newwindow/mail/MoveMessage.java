@@ -41,7 +41,7 @@ public class MoveMessage extends PrefGroupMailByMessageTest {
 		if (dialog.zIsActive()) {
 			logger.warn(dialog.myPageName()
 					+ " was still active.  Cancelling ...");
-			dialog.zClickButton(Button.B_CANCEL);
+			dialog.zPressButton(Button.B_CANCEL);
 		}
 
 	}
@@ -104,7 +104,7 @@ public class MoveMessage extends PrefGroupMailByMessageTest {
 			// Click move
 			DialogCreateFolder dialog = (DialogCreateFolder) app.zPageMail.zToolbarPressPulldown(Button.B_MOVE, Button.O_NEW_FOLDER);
 			dialog.zEnterFolderName(foldername);
-			dialog.zClickButton(Button.B_OK);
+			dialog.zPressButton(Button.B_OK);
 
 		} finally {
 			app.zPageMain.zCloseWindow(window, windowTitle, app);

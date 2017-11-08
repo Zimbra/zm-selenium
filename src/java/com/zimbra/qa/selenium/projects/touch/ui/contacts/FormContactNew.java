@@ -517,7 +517,7 @@ public class FormContactNew extends AbsForm {
 			   
 			   this.sClickAt(pulldownLocator, "0,0");
 			   this.sMouseOver(optionLocator);
-			   this.zClick(optionLocator);
+			   this.sClick(optionLocator);
 				
 			   return (page);
 			   
@@ -596,7 +596,7 @@ public class FormContactNew extends AbsForm {
 			   }
 			
 			   this.sMouseOver(optionLocator);
-			   this.zClick(optionLocator);
+			   this.sClick(optionLocator);
 			
 			   return (page);
 			   

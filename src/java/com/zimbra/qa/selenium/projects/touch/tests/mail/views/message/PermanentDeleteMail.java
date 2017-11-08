@@ -81,7 +81,7 @@ public class PermanentDeleteMail extends PrefGroupMailByMessageTest {
 		app.zPageMail.zToolbarPressButton(Button.B_DELETE);
 		
 		// Click on Yes
-		app.zPageMail.zClickButton(Button.B_YES);
+		app.zPageMail.zPressButton(Button.B_YES);
         
 		// Verify message is deleted from trash folder 
 		MailItem actual = MailItem.importFromSOAP(app.zGetActiveAccount(), "in:trash "+ subject);

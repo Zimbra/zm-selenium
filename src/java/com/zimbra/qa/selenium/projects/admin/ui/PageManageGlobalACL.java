@@ -94,10 +94,10 @@ public class PageManageGlobalACL extends AbsTab {
 		}
 
 		// Click on Addresses -> Accounts
-		zClickAt(Locators.CONFIGURE_ICON,"");
+		sClickAt(Locators.CONFIGURE_ICON,"");
 		zWaitForWorkInProgressDialogInVisible();
 		sIsElementPresent(Locators.GLOBALACL);
-		zClickAt(Locators.GLOBALACL, "");
+		sClickAt(Locators.GLOBALACL, "");
 		zWaitForWorkInProgressDialogInVisible();
 		zWaitForActive();
 
@@ -131,7 +131,7 @@ public class PageManageGlobalACL extends AbsTab {
 				if(this.sGetText(locator).trim().equalsIgnoreCase(item))
 				{
 					if(action == Action.A_LEFTCLICK) {
-						zClick(locator);
+						sClick(locator);
 						break;
 					} else if(action == Action.A_RIGHTCLICK) {
 						zRightClick(locator);

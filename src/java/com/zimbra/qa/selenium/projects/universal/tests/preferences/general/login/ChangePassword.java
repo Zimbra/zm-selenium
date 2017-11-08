@@ -64,7 +64,7 @@ public class ChangePassword extends UniversalCommonTest {
 		dialog.zSetNewPassword(password);
 		dialog.zSetConfirmPassword(password);
 		
-		dialog.zClickButton(Button.B_SAVE);
+		dialog.zPressButton(Button.B_SAVE);
 		dialog.zCloseWindow();
 				
 		// Confirm that the new password is in use

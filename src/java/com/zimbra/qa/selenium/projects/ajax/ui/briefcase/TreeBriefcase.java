@@ -111,7 +111,7 @@ public class TreeBriefcase extends AbsTree {
 
 		zWaitForElementVisible(optionLocator);
 
-		zClickAt(optionLocator, "");
+		sClickAt(optionLocator, "");
 
 		this.zWaitForBusyOverlay();
 
@@ -180,7 +180,7 @@ public class TreeBriefcase extends AbsTree {
 		if (!this.sIsElementPresent(locator))
 			throw new HarnessException("Unable to locate folder in the tree " + locator);
 
-		zClickAt(locator, "0,0");
+		sClickAt(locator, "0,0");
 
 		zWaitForBusyOverlay();
 
@@ -206,7 +206,7 @@ public class TreeBriefcase extends AbsTree {
 				throw new HarnessException("Unable to locate folder in the tree " + locator);
 			}
 
-			this.zClickAt(locator, "0,0");
+			this.sClickAt(locator, "0,0");
 
 			zWaitForBusyOverlay();
 
@@ -234,7 +234,7 @@ public class TreeBriefcase extends AbsTree {
 			throw new HarnessException("locator was null for button " + button);
 		}
 
-		this.zClickAt(locator, "0,0");
+		this.sClickAt(locator, "0,0");
 		zWaitForBusyOverlay();
 
 		if (page != null) {
@@ -301,7 +301,7 @@ public class TreeBriefcase extends AbsTree {
 						+ pulldownLocator + " not present!");
 			}
 
-			this.zClickAt(pulldownLocator, "0,0");
+			this.sClickAt(pulldownLocator, "0,0");
 
 			zWaitForBusyOverlay();
 
@@ -312,7 +312,7 @@ public class TreeBriefcase extends AbsTree {
 							+ optionLocator + " not present!");
 				}
 
-				this.zClickAt(optionLocator, "0,0");
+				this.sClickAt(optionLocator, "0,0");
 
 				zWaitForBusyOverlay();
 			}

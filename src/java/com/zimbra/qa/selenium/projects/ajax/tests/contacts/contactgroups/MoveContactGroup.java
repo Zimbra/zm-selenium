@@ -88,8 +88,8 @@ public class MoveContactGroup extends AjaxCommonTest {
 		DialogMove dialogContactMove = (DialogMove) app.zPageContacts.zListItem(Action.A_RIGHTCLICK, Button.B_MOVE, group.getName());
 
 		// enter the moved folder
-		dialogContactMove.zClickTreeFolder(folder);
-		dialogContactMove.zClickButton(Button.B_OK);
+		dialogContactMove.sClickTreeFolder(folder);
+		dialogContactMove.zPressButton(Button.B_OK);
 
 		// Verification
 		ContactGroupItem actual = ContactGroupItem.importFromSOAP(app.zGetActiveAccount(), "is:anywhere #nickname:" + group.getName());
@@ -124,9 +124,9 @@ public class MoveContactGroup extends AjaxCommonTest {
 		SleepUtil.sleepMedium();
 
 		// enter the moved folder
-		dialogContactMove.zClickTreeFolder(folder);
+		dialogContactMove.sClickTreeFolder(folder);
 		SleepUtil.sleepMedium();
-		dialogContactMove.zClickButton(Button.B_OK);
+		dialogContactMove.zPressButton(Button.B_OK);
 
 		// Verification
 		ContactGroupItem actual = ContactGroupItem.importFromSOAP(app.zGetActiveAccount(), "is:anywhere #nickname:" + group.getName());
@@ -163,8 +163,8 @@ public class MoveContactGroup extends AjaxCommonTest {
 		DialogMove dialogMove = (DialogMove) formContactGroupNew.zToolbarPressButton(Button.B_CHOOSE_ADDRESSBOOK);
 
 		// enter the moved folder
-		dialogMove.zClickTreeFolder(folder);
-		dialogMove.zClickButton(Button.B_OK);
+		dialogMove.sClickTreeFolder(folder);
+		dialogMove.zPressButton(Button.B_OK);
 
 		// Click Save button
 		formContactGroupNew.zToolbarPressButton(Button.B_SAVE);

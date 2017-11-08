@@ -52,7 +52,7 @@ public class WizardMigrationCoexistance extends AbsWizard {
 
 	
 	public boolean zCloseWizard() throws HarnessException {
-		this.zClickAt("css=td[id$='zdlg__UNDEFINE_button1_title']" ,"");
+		this.sClickAt("css=td[id$='zdlg__UNDEFINE_button1_title']" ,"");
 		return true;
 	}
 }

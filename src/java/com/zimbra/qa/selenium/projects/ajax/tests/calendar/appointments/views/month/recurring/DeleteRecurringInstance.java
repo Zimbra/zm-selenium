@@ -87,9 +87,9 @@ public class DeleteRecurringInstance extends AjaxCommonTest {
 		app.zPageCalendar.zListItem(Action.A_LEFTCLICK, apptSubject);
 
 		DialogWarning dialogSeriesOrInstance = (DialogWarning)app.zPageCalendar.zToolbarPressButton(Button.B_DELETE);
-		dialogSeriesOrInstance.zClickButton(Button.B_DELETE_THIS_INSTANCE);
-		DialogWarning confirmDelete = (DialogWarning)dialogSeriesOrInstance.zClickButton(Button.B_OK);
-		confirmDelete.zClickButton(Button.B_YES);
+		dialogSeriesOrInstance.zPressButton(Button.B_DELETE_THIS_INSTANCE);
+		DialogWarning confirmDelete = (DialogWarning)dialogSeriesOrInstance.zPressButton(Button.B_OK);
+		confirmDelete.zPressButton(Button.B_YES);
 
 		// Verify correct no. of recurring instances are present in calendar view after deleting an instance
 		ZAssert.assertGreaterThanEqualTo(app.zPageCalendar.zGetAppointmentCountMonthView(apptSubject), 5, "Verify correct no. of recurring instances are present in calendar view after deleting an instance");

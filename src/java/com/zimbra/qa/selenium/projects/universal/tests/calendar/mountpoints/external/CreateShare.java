@@ -64,7 +64,7 @@ public class CreateShare extends CalendarWorkWeekTest {
 		dialog.zSetShareWith(ShareWith.ExternalGuests);
 		dialog.zSetEmailAddress(ZimbraAccount.Account10().EmailAddress);
 		dialog.zSetMessageType(ShareMessageType.AddNoteToStandardMsg, message);
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 
 		// Search for the mail in recepients inbox
 		MailItem received = MailItem.importFromSOAP(ZimbraAccount.Account10(),

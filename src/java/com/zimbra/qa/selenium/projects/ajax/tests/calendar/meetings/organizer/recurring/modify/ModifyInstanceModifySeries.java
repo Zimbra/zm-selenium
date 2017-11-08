@@ -90,8 +90,8 @@ public class ModifyInstanceModifySeries extends AjaxCommonTest {
 		app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
 		app.zPageCalendar.zToolbarPressButton(Button.B_NEXT_PAGE);
 		DialogOpenRecurringItem openRecurring = (DialogOpenRecurringItem) app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, apptSubject);
-		openRecurring.zClickButton(Button.B_OPEN_THIS_INSTANCE);
-		openRecurring.zClickButton(Button.B_OK);
+		openRecurring.zPressButton(Button.B_OPEN_THIS_INSTANCE);
+		openRecurring.zPressButton(Button.B_OK);
 
 		FormApptNew apptForm = new FormApptNew(app);
 		apptForm.zVerifyDisabledControlInOpenInstance();
@@ -107,8 +107,8 @@ public class ModifyInstanceModifySeries extends AjaxCommonTest {
 		app.zPageCalendar.zToolbarPressButton(Button.B_NEXT_PAGE);
 
 		openRecurring = (DialogOpenRecurringItem) app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, apptSubject);
-		openRecurring.zClickButton(Button.B_OPEN_THIS_INSTANCE);
-		openRecurring.zClickButton(Button.B_OK);
+		openRecurring.zPressButton(Button.B_OPEN_THIS_INSTANCE);
+		openRecurring.zPressButton(Button.B_OK);
 
 		apptForm = new FormApptNew(app);
 		apptForm.zVerifyDisabledControlInOpenInstance();
@@ -127,11 +127,11 @@ public class ModifyInstanceModifySeries extends AjaxCommonTest {
 
 		app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_SERIES_MENU, Button.O_DELETE_MENU, apptSubject);
 		DialogConfirmationDeleteAppointment dialog = (DialogConfirmationDeleteAppointment) new DialogConfirmationDeleteAppointment(app, app.zPageCalendar);
-		dialog.zClickButton(Button.B_DELETE_THIS_AND_FUTURE_OCCURRENCES);
+		dialog.zPressButton(Button.B_DELETE_THIS_AND_FUTURE_OCCURRENCES);
 		SleepUtil.sleepMedium();
-        dialog.zClickButton(Button.B_YES);
+        dialog.zPressButton(Button.B_YES);
         DialogConfirmDeleteOrganizer dialog2 = (DialogConfirmDeleteOrganizer) new DialogConfirmDeleteOrganizer(app, app.zPageCalendar);
-		dialog2.zClickButton(Button.B_SEND_CANCELLATION);
+		dialog2.zPressButton(Button.B_SEND_CANCELLATION);
 		SleepUtil.sleepVeryLong();
 		app.zGetActiveAccount().soapSend(
 				"<SearchRequest xmlns='urn:zimbraMail' types='appointment' calExpandInstStart='"+ startUTC.addDays(-10).toMillis() +"' calExpandInstEnd='"+ endUTC.addDays(10).toMillis() +"'>"
@@ -201,8 +201,8 @@ public class ModifyInstanceModifySeries extends AjaxCommonTest {
 
 		app.zPageCalendar.zToolbarPressButton(Button.B_NEXT_PAGE);
 		DialogOpenRecurringItem openRecurring = (DialogOpenRecurringItem) app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, apptSubject);
-		openRecurring.zClickButton(Button.B_OPEN_THIS_INSTANCE);
-		openRecurring.zClickButton(Button.B_OK);
+		openRecurring.zPressButton(Button.B_OPEN_THIS_INSTANCE);
+		openRecurring.zPressButton(Button.B_OK);
 
 		FormApptNew apptForm = new FormApptNew(app);
 		apptForm.zVerifyDisabledControlInOpenInstance();
@@ -220,8 +220,8 @@ public class ModifyInstanceModifySeries extends AjaxCommonTest {
 		app.zPageCalendar.zToolbarPressButton(Button.B_NEXT_PAGE);
 
 		openRecurring = (DialogOpenRecurringItem) app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, apptSubject);
-		openRecurring.zClickButton(Button.B_OPEN_THIS_INSTANCE);
-		openRecurring.zClickButton(Button.B_OK);
+		openRecurring.zPressButton(Button.B_OPEN_THIS_INSTANCE);
+		openRecurring.zPressButton(Button.B_OK);
 
 		apptForm = new FormApptNew(app);
 		apptForm.zVerifyDisabledControlInOpenInstance();
@@ -233,8 +233,8 @@ public class ModifyInstanceModifySeries extends AjaxCommonTest {
 
 		app.zPageCalendar.zToolbarPressButton(Button.B_NEXT_PAGE);
 		openRecurring = (DialogOpenRecurringItem) app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, apptSubject);
-		openRecurring.zClickButton(Button.B_OPEN_THE_SERIES);
-		openRecurring.zClickButton(Button.B_OK);
+		openRecurring.zPressButton(Button.B_OPEN_THE_SERIES);
+		openRecurring.zPressButton(Button.B_OK);
 
 		apptForm = new FormApptNew(app);
 		apptForm.zRepeat(Button.O_EVERY_WEEK_MENU, Button.B_EVERY_X_RADIO_BUTTON, "", Button.B_END_BY_DATE_RADIO_BUTTON, "01/01/2020");

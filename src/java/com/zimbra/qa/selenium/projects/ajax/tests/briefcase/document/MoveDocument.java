@@ -157,13 +157,13 @@ public class MoveDocument extends FeatureBriefcaseTest {
 		DialogMove chooseFolder = (DialogMove) app.zPageBriefcase.zKeyboardShortcut(shortcut);
 
 		// Choose destination folder and Click OK on Confirmation dialog
-		chooseFolder.zClickTreeFolder(subFolders[1]);
+		chooseFolder.sClickTreeFolder(subFolders[1]);
 
 		// Click OK on Confirmation dialog
 		app.zPageBriefcase
-				.zClick("//div[@id='ChooseFolderDialog_buttons']//td[contains(@id,'OK_')]//td[contains(@id,'_title')]");
+				.sClick("//div[@id='ChooseFolderDialog_buttons']//td[contains(@id,'OK_')]//td[contains(@id,'_title')]");
 
-		// app.zPageBriefcase.zClickAt("css=div[id=ChooseFolderDialog_button2]","0,0");
+		// app.zPageBriefcase.sClickAt("css=div[id=ChooseFolderDialog_button2]","0,0");
 
 		// Select briefcase folder
 		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseRootFolder, true);
@@ -231,11 +231,11 @@ public class MoveDocument extends FeatureBriefcaseTest {
 				docItem);
 
 		// Choose folder on Confirmation dialog
-		chooseFolder.zClickTreeFolder(subFolderItem);
+		chooseFolder.sClickTreeFolder(subFolderItem);
 
 		// Click OK on Confirmation dialog
 		app.zPageBriefcase
-				.zClick("//div[@id='ChooseFolderDialog_buttons']//td[contains(@id,'OK_')]//td[contains(@id,'_title')]");
+				.sClick("//div[@id='ChooseFolderDialog_buttons']//td[contains(@id,'OK_')]//td[contains(@id,'_title')]");
 
 		// Select briefcase folder
 		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseFolder, false);
@@ -260,7 +260,7 @@ public class MoveDocument extends FeatureBriefcaseTest {
 		DialogMove dialog = new DialogMove(app, ((AppAjaxClient) app).zPageBriefcase);
 		if (dialog.zIsActive()) {
 			logger.warn(dialog.myPageName() + " was still active.  Cancelling ...");
-			dialog.zClickButton(Button.B_CANCEL);
+			dialog.zPressButton(Button.B_CANCEL);
 		}
 
 	}

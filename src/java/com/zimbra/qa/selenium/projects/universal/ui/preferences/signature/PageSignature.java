@@ -127,7 +127,7 @@ public class PageSignature extends AbsTab {
 
 		// Default behavior, process the locator by clicking on it
 
-		this.zClickAt(locator, "");
+		this.sClickAt(locator, "");
 
 		// If the app is busy, wait for it to become active
 		this.zWaitForBusyOverlay();

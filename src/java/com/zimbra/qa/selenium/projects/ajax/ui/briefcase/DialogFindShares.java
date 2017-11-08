@@ -61,8 +61,8 @@ public class DialogFindShares extends AbsDialog {
 	}
 
 	@Override
-	public AbsPage zClickButton(Button button) throws HarnessException {
-		logger.info(myPageName() + " zClickButton(" + button + ")");
+	public AbsPage zPressButton(Button button) throws HarnessException {
+		logger.info(myPageName() + " zPressButton(" + button + ")");
 
 		tracer.trace("Click dialog button " + button);
 
@@ -80,7 +80,7 @@ public class DialogFindShares extends AbsDialog {
 			throw new HarnessException("Button " + button + " locator " + locator + " not present!");
 		}
 
-		this.zClickAt(locator, "0,0");
+		this.sClickAt(locator, "0,0");
 
 		this.zWaitForBusyOverlay();
 
@@ -97,12 +97,12 @@ public class DialogFindShares extends AbsDialog {
 		return (this.sGetText(locator));
 	}
 
-	public void zClickTreeFolder(FolderItem folder) throws HarnessException {
+	public void sClickTreeFolder(FolderItem folder) throws HarnessException {
 		if (folder == null) {
-			throw new HarnessException("zClickTreeFolder(FolderItem): folder must not be null");
+			throw new HarnessException("sClickTreeFolder(FolderItem): folder must not be null");
 		}
 
-		logger.info(myPageName() + " zClickTreeFolder(" + folder + ")");
+		logger.info(myPageName() + " sClickTreeFolder(" + folder + ")");
 
 		tracer.trace("Click on tree folder with name " + folder.getName());
 
@@ -111,7 +111,7 @@ public class DialogFindShares extends AbsDialog {
 		if (!this.sIsElementPresent(locator))
 			throw new HarnessException("unable to find folder in tree " + locator);
 
-		this.zClick(locator);
+		this.sClick(locator);
 
 		SleepUtil.sleepSmall();
 	}

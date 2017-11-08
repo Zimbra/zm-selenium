@@ -88,8 +88,8 @@ public class Delete extends AjaxCommonTest {
 		app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_DELETE, apptSubject);
 
 		DialogConfirmationDeclineAppointment declineAppt = (DialogConfirmationDeclineAppointment) new DialogConfirmationDeclineAppointment(app, app.zPageCalendar);
-		declineAppt.zClickButton(Button.B_DONT_NOTIFY_ORGANIZER);
-		declineAppt.zClickButton(Button.B_YES);
+		declineAppt.zPressButton(Button.B_DONT_NOTIFY_ORGANIZER);
+		declineAppt.zPressButton(Button.B_YES);
 
 
 		// -------------- Verification at organizer side --------------
@@ -180,8 +180,8 @@ public class Delete extends AjaxCommonTest {
 		app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_DELETE, apptSubject);
 
 		DialogConfirmationDeclineAppointment declineAppt = (DialogConfirmationDeclineAppointment) new DialogConfirmationDeclineAppointment(app, app.zPageCalendar);
-		declineAppt.zClickButton(Button.B_NOTIFY_ORGANIZER);
-		declineAppt.zClickButton(Button.B_YES);
+		declineAppt.zPressButton(Button.B_NOTIFY_ORGANIZER);
+		declineAppt.zPressButton(Button.B_YES);
 
 
 		// -------------- Verification at organizer side --------------
@@ -327,7 +327,7 @@ public class Delete extends AjaxCommonTest {
 		app.zPageCalendar.zListItem(Action.A_LEFTCLICK, Button.B_DELETE, apptSubject);
 
 		DialogConfirmationDeclineAppointment deleteAppt = (DialogConfirmationDeclineAppointment) new DialogConfirmationDeclineAppointment(app, app.zPageCalendar);
-		deleteAppt.zClickButton(Button.B_NO);
+		deleteAppt.zPressButton(Button.B_NO);
 		app.zPageCalendar.zListItem(Action.A_LEFTCLICK, apptSubject);
 
 		// Don't notify organizer and notify organizer logic is covered in above tests

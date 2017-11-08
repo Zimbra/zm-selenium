@@ -128,7 +128,7 @@ public class CreateMountpoint extends UniversalCommonTest{
 		ZAssert.assertNotNull(dialog, "Verify that the accept share dialog opens");
 		
 		// Click OK on the dialog
-		dialog.zClickButton(Button.B_YES);
+		dialog.zPressButton(Button.B_YES);
 		
 				
 		// Verify that the new mountpoint is present

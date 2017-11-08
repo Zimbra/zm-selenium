@@ -80,10 +80,10 @@ public class FormEditDomain extends AbsForm {
 	public void zSubmit() throws HarnessException {
 		sClickAt(Locators.SAVE_BUTTON,"");
 		SleepUtil.sleepSmall();
-		zClickAt(Locators.CLOSE_BUTTON,"0,0");
+		sClickAt(Locators.CLOSE_BUTTON,"0,0");
 	}
 
-	public void zClickTreeItem(String treeItem) throws HarnessException {
+	public void zSelectTreeItem(String treeItem) throws HarnessException {
 		sClickAt("css=td:contains('" + treeItem + "')", "");
 	}
 
@@ -100,7 +100,7 @@ public class FormEditDomain extends AbsForm {
 	public void setLogoURL(String URL) throws HarnessException {
 		for(int i=12;i>=0;i--) {
 			if (sIsElementPresent(Locators.DOMAIN_EDIT_THEMES)) {
-				zClickAt(Locators.DOMAIN_EDIT_THEMES,"0,0");
+				sClickAt(Locators.DOMAIN_EDIT_THEMES,"0,0");
 				sType(Locators.DOMAIN_LOGO_URL, URL);
 				return;
 			}

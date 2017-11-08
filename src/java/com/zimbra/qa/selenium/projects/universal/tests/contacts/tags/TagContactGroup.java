@@ -68,7 +68,7 @@ public class TagContactGroup extends UniversalCommonTest  {
 		//click Tag Contact->New Tag	
         DialogTag dialogTag = (DialogTag) app.zPageContacts.zListItem(Action.A_RIGHTCLICK, Button.B_TAG, Button.O_TAG_NEWTAG , group.getName());        
     	dialogTag.zSetTagName(tagName);
-		dialogTag.zClickButton(Button.B_OK);		
+		dialogTag.zPressButton(Button.B_OK);		
 		
 		//-- Verification
 		
@@ -101,7 +101,7 @@ public class TagContactGroup extends UniversalCommonTest  {
 		// Click Tag Group on context menu
         DialogTag dialogTag = (DialogTag) app.zPageContacts.zListItem(Action.A_RIGHTCLICK, Button.B_TAG, Button.O_TAG_NEWTAG , group.getName());        
 		dialogTag.zSetTagName(tagName);
-		dialogTag.zClickButton(Button.B_OK);		
+		dialogTag.zPressButton(Button.B_OK);		
 		
 		//-- Verification
 		

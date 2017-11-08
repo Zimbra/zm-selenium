@@ -76,7 +76,7 @@ public class CreateRetentionPolicy extends AdminCommonTest {
 		form.selectRetentionRange(Button.O_DAYS);
 
 		// Click on OK button
-		form.zClickOkButton();
+		form.sClickOkButton();
 
 		// Get retention policy information
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(

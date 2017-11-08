@@ -473,327 +473,7 @@ public class AutoCompleteContacts extends PrefGroupMailByMessageTest {
 
 		DialogWarning dialog = (DialogWarning)mailform.zToolbarPressButton(Button.B_CANCEL);
 		if ( dialog.zIsActive() ) {
-			dialog.zClickButton(Button.B_NO);
-		}
-	}
-
-
-	@Bugs(ids = "47045")
-	@Test (description = "Autocomplete including a period/dot '.' in the string",
-			groups = { "functional", "L3" })
-
-	public void AutoCompleteContactsBug47045A() throws HarnessException {
-
-		// Create a contact
-		ZimbraAccount contact = new ZimbraAccount();
-		contact.provision();
-		contact.authenticate();
-
-		String firstname = "Michael" + ConfigProperties.getUniqueString();
-		String lastname = "Williams" + ConfigProperties.getUniqueString();
-
-		app.zGetActiveAccount().soapSend(
-					"<CreateContactRequest xmlns='urn:zimbraMail'>"
-				+		"<cn>"
-				+			"<a n='firstName'>"+ firstname +"</a>"
-				+			"<a n='lastName'>"+ lastname +"</a>"
-				+			"<a n='email'>"+ contact.EmailAddress +"</a>"
-				+		"</cn>"
-				+	"</CreateContactRequest>");
-
-		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
-
-		// Message properties
-		String subject = "subject" + ConfigProperties.getUniqueString();
-		String body = "body" + ConfigProperties.getUniqueString();
-
-		// Open the new mail form
-		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
-		ZAssert.assertNotNull(mailform, "Verify the new form opened");
-
-		// Fill out the form with the data
-		mailform.zFillField(Field.Subject, subject);
-		mailform.zFillField(Field.Body, body);
-
-		// Auto complete a name based on email address such as "user@domain."
-		String value = contact.EmailAddress.substring(0, contact.EmailAddress.indexOf('.') + 1);
-		List<AutocompleteEntry> entries = mailform.zAutocompleteFillField(Field.To, value);
-		AutocompleteEntry found = null;
-		for (AutocompleteEntry entry : entries) {
-			if ( entry.getAddress().contains(contact.EmailAddress) ) {
-				found = entry;
-				break;
-			}
-		}
-		ZAssert.assertNotNull(found, "Verify the autocomplete entry exists in the returned list");
-		mailform.zAutocompleteSelectItem(found);
-
-		// Send the message
-		mailform.zSubmit();
-
-		// Log into the destination account and make sure the message is received
-		MailItem received = MailItem.importFromSOAP(contact, "subject:("+ subject +")");
-		ZAssert.assertNotNull(received, "Verify the message is received correctly");
-	}
-
-
-	@Bugs(ids = "47045")
-	@Test (description = "Autocomplete including a period/dot '.' in the string",
-			groups = { "functional", "L3" })
-
-	public void AutoCompleteContactsBug47045B() throws HarnessException {
-
-		// Create a contact
-		ZimbraAccount contact = new ZimbraAccount();
-		contact.provision();
-		contact.authenticate();
-
-		String firstname = "Michael" + ConfigProperties.getUniqueString();
-		String lastname = "Williams" + ConfigProperties.getUniqueString();
-
-		app.zGetActiveAccount().soapSend(
-					"<CreateContactRequest xmlns='urn:zimbraMail'>"
-				+		"<cn>"
-				+			"<a n='firstName'>"+ firstname +"</a>"
-				+			"<a n='lastName'>"+ lastname +"</a>"
-				+			"<a n='email'>"+ contact.EmailAddress +"</a>"
-				+		"</cn>"
-				+	"</CreateContactRequest>");
-
-		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
-
-		// Message properties
-		String subject = "subject" + ConfigProperties.getUniqueString();
-		String body = "body" + ConfigProperties.getUniqueString();
-
-		// Open the new mail form
-		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
-		ZAssert.assertNotNull(mailform, "Verify the new form opened");
-
-		// Fill out the form with the data
-		mailform.zFillField(Field.Subject, subject);
-		mailform.zFillField(Field.Body, body);
-
-		// Auto complete a name based on email address such as "user@domain.c"
-		String value = contact.EmailAddress.substring(0, contact.EmailAddress.indexOf('.') + 2);
-		List<AutocompleteEntry> entries = mailform.zAutocompleteFillField(Field.To, value);
-		AutocompleteEntry found = null;
-		for (AutocompleteEntry entry : entries) {
-			if ( entry.getAddress().contains(contact.EmailAddress) ) {
-				found = entry;
-				break;
-			}
-		}
-		ZAssert.assertNotNull(found, "Verify the autocomplete entry exists in the returned list");
-		mailform.zAutocompleteSelectItem(found);
-
-		// Send the message
-		mailform.zSubmit();
-
-		// Log into the destination account and make sure the message is received
-		MailItem received = MailItem.importFromSOAP(contact, "subject:("+ subject +")");
-		ZAssert.assertNotNull(received, "Verify the message is received correctly");
-	}
-
-
-	@Test (description = "Autocomplete should not match trashed contacts",
-			groups = { "functional", "L2" })
-
-	public void AutoCompleteContacts_Bug47044A() throws HarnessException {
-
-		// Create a contact
-		ZimbraAccount contact = new ZimbraAccount();
-		contact.provision();
-		contact.authenticate();
-
-		String firstname = "Richard" + ConfigProperties.getUniqueString();
-		String lastname = "Moore" + ConfigProperties.getUniqueString();
-
-		// Create a contact
-		app.zGetActiveAccount().soapSend(
-					"<CreateContactRequest xmlns='urn:zimbraMail'>"
-				+		"<cn>"
-				+			"<a n='firstName'>"+ firstname +"</a>"
-				+			"<a n='lastName'>"+ lastname +"</a>"
-				+			"<a n='email'>"+ contact.EmailAddress +"</a>"
-				+		"</cn>"
-				+	"</CreateContactRequest>");
-		String contactID = app.zGetActiveAccount().soapSelectValue("//mail:cn", "id");
-
-		// Move to trash
-		app.zGetActiveAccount().soapSend(
-					"<ItemActionRequest xmlns='urn:zimbraMail'>"
-				+		"<action op='move' l='"+ FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Trash).getId() +"' id='"+ contactID + "'/>"
-				+	"</ItemActionRequest>");
-
-		// Refresh changes
-		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
-
-		// Message properties
-		String subject = "subject" + ConfigProperties.getUniqueString();
-		String body = "body" + ConfigProperties.getUniqueString();
-
-		// Open the new mail form
-		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
-		ZAssert.assertNotNull(mailform, "Verify the new form opened");
-
-		// Fill out the form with the data
-		mailform.zFillField(Field.Subject, subject);
-		mailform.zFillField(Field.Body, body);
-
-		List<AutocompleteEntry> entries = mailform.zAutocompleteFillField(Field.To, firstname);
-		AutocompleteEntry found = null;
-		for (AutocompleteEntry entry : entries) {
-			if ( entry.getAddress().contains(contact.EmailAddress) ) {
-				found = entry;
-				break;
-			}
-		}
-
-		ZAssert.assertNull(found, "Verify contacts in trash are not matched");
-
-		// Cancel the compose
-		DialogWarning dialog = (DialogWarning)mailform.zToolbarPressButton(Button.B_CANCEL);
-		if ( dialog.zIsActive() ) {
-			dialog.zClickButton(Button.B_NO);
-		}
-	}
-
-
-	@Test (description = "Autocomplete should not match deleted contacts",
-			groups = { "functional", "L2" })
-
-	public void AutoCompleteContacts_Bug47044B() throws HarnessException {
-
-		// Create a contact
-		ZimbraAccount contact = new ZimbraAccount();
-		contact.provision();
-		contact.authenticate();
-
-		String firstname = "Richard" + ConfigProperties.getUniqueString();
-		String lastname = "Moore" + ConfigProperties.getUniqueString();
-
-		// Create a contact
-		app.zGetActiveAccount().soapSend(
-					"<CreateContactRequest xmlns='urn:zimbraMail'>"
-				+		"<cn>"
-				+			"<a n='firstName'>"+ firstname +"</a>"
-				+			"<a n='lastName'>"+ lastname +"</a>"
-				+			"<a n='email'>"+ contact.EmailAddress +"</a>"
-				+		"</cn>"
-				+	"</CreateContactRequest>");
-		String contactID = app.zGetActiveAccount().soapSelectValue("//mail:cn", "id");
-
-		// Move to trash
-		app.zGetActiveAccount().soapSend(
-					"<ItemActionRequest xmlns='urn:zimbraMail'>"
-				+		"<action op='delete' id='"+ contactID + "'/>"
-				+	"</ItemActionRequest>");
-
-
-		// Refresh changes
-		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
-
-		// Message properties
-		String subject = "subject" + ConfigProperties.getUniqueString();
-		String body = "body" + ConfigProperties.getUniqueString();
-
-		// Open the new mail form
-		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
-		ZAssert.assertNotNull(mailform, "Verify the new form opened");
-
-		// Fill out the form with the data
-		mailform.zFillField(Field.Subject, subject);
-		mailform.zFillField(Field.Body, body);
-
-		List<AutocompleteEntry> entries = mailform.zAutocompleteFillField(Field.To, firstname);
-		AutocompleteEntry found = null;
-		for (AutocompleteEntry entry : entries) {
-			if ( entry.getAddress().contains(contact.EmailAddress) ) {
-				found = entry;
-				break;
-			}
-		}
-
-		ZAssert.assertNull(found, "Verify contacts in trash are not matched");
-
-		// Cancel the compose
-		DialogWarning dialog = (DialogWarning)mailform.zToolbarPressButton(Button.B_CANCEL);
-		if ( dialog.zIsActive() ) {
-			dialog.zClickButton(Button.B_NO);
-		}
-	}
-
-
-	@Bugs(ids = "47044")
-	@Test (description = "Autocomplete should not match contacts in trashed addressbook",
-			groups = { "functional", "L3" })
-
-	public void AutoCompleteContacts_Bug47044C() throws HarnessException {
-
-		// Create a contact
-		ZimbraAccount contact = new ZimbraAccount();
-		contact.provision();
-		contact.authenticate();
-
-		String firstname = "Richard" + ConfigProperties.getUniqueString();
-		String lastname = "Moore" + ConfigProperties.getUniqueString();
-
-		String foldername = "addressbook" + ConfigProperties.getUniqueString();
-
-		// Create an addressbook
-		app.zGetActiveAccount().soapSend(
-					"<CreateFolderRequest xmlns='urn:zimbraMail'>"
-				+		"<folder name='"+ foldername +"' l='"+ FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Contacts).getId() +"' view='contact'/>"
-				+	"</CreateFolderRequest>");
-		String folderID = app.zGetActiveAccount().soapSelectValue("//mail:folder", "id");
-
-		// Create a contact
-		app.zGetActiveAccount().soapSend(
-					"<CreateContactRequest xmlns='urn:zimbraMail'>"
-				+		"<cn l='"+ folderID +"'>"
-				+			"<a n='firstName'>"+ firstname +"</a>"
-				+			"<a n='lastName'>"+ lastname +"</a>"
-				+			"<a n='email'>"+ contact.EmailAddress +"</a>"
-				+		"</cn>"
-				+	"</CreateContactRequest>");
-
-		// Move the addressbook to trash
-		app.zGetActiveAccount().soapSend(
-					"<ItemActionRequest xmlns='urn:zimbraMail'>"
-				+		"<action op='move' id='"+ folderID + "' l='"+ FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Trash).getId() +"'/>"
-				+	"</ItemActionRequest>");
-
-		// Refresh changes
-		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
-
-		// Message properties
-		String subject = "subject" + ConfigProperties.getUniqueString();
-		String body = "body" + ConfigProperties.getUniqueString();
-
-		// Open the new mail form
-		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
-		ZAssert.assertNotNull(mailform, "Verify the new form opened");
-
-		// Fill out the form with the data
-		mailform.zFillField(Field.Subject, subject);
-		mailform.zFillField(Field.Body, body);
-
-		List<AutocompleteEntry> entries = mailform.zAutocompleteFillField(Field.To, firstname);
-		AutocompleteEntry found = null;
-		for (AutocompleteEntry entry : entries) {
-			if ( entry.getAddress().contains(contact.EmailAddress) ) {
-				found = entry;
-				break;
-			}
-		}
-
-		ZAssert.assertNull(found, "Verify contacts in an addresbook in trash are not matched");
-
-		// Cancel the compose
-		DialogWarning dialog = (DialogWarning)mailform.zToolbarPressButton(Button.B_CANCEL);
-		if ( dialog.zIsActive() ) {
-			dialog.zClickButton(Button.B_NO);
+			dialog.zPressButton(Button.B_NO);
 		}
 	}
 
@@ -886,7 +566,327 @@ public class AutoCompleteContacts extends PrefGroupMailByMessageTest {
 		// Cancel the compose
 		DialogWarning dialog = (DialogWarning)mailform.zToolbarPressButton(Button.B_CANCEL);
 		if ( dialog.zIsActive() ) {
-			dialog.zClickButton(Button.B_NO);
+			dialog.zPressButton(Button.B_NO);
+		}
+	}
+
+
+	@Bugs(ids = "47045")
+	@Test (description = "Autocomplete including a period/dot '.' in the string",
+			groups = { "functional", "L3" })
+
+	public void AutoCompleteContactsBug47045_11() throws HarnessException {
+
+		// Create a contact
+		ZimbraAccount contact = new ZimbraAccount();
+		contact.provision();
+		contact.authenticate();
+
+		String firstname = "Michael" + ConfigProperties.getUniqueString();
+		String lastname = "Williams" + ConfigProperties.getUniqueString();
+
+		app.zGetActiveAccount().soapSend(
+					"<CreateContactRequest xmlns='urn:zimbraMail'>"
+				+		"<cn>"
+				+			"<a n='firstName'>"+ firstname +"</a>"
+				+			"<a n='lastName'>"+ lastname +"</a>"
+				+			"<a n='email'>"+ contact.EmailAddress +"</a>"
+				+		"</cn>"
+				+	"</CreateContactRequest>");
+
+		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
+
+		// Message properties
+		String subject = "subject" + ConfigProperties.getUniqueString();
+		String body = "body" + ConfigProperties.getUniqueString();
+
+		// Open the new mail form
+		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
+		ZAssert.assertNotNull(mailform, "Verify the new form opened");
+
+		// Fill out the form with the data
+		mailform.zFillField(Field.Subject, subject);
+		mailform.zFillField(Field.Body, body);
+
+		// Auto complete a name based on email address such as "user@domain."
+		String value = contact.EmailAddress.substring(0, contact.EmailAddress.indexOf('.') + 1);
+		List<AutocompleteEntry> entries = mailform.zAutocompleteFillField(Field.To, value);
+		AutocompleteEntry found = null;
+		for (AutocompleteEntry entry : entries) {
+			if ( entry.getAddress().contains(contact.EmailAddress) ) {
+				found = entry;
+				break;
+			}
+		}
+		ZAssert.assertNotNull(found, "Verify the autocomplete entry exists in the returned list");
+		mailform.zAutocompleteSelectItem(found);
+
+		// Send the message
+		mailform.zSubmit();
+
+		// Log into the destination account and make sure the message is received
+		MailItem received = MailItem.importFromSOAP(contact, "subject:("+ subject +")");
+		ZAssert.assertNotNull(received, "Verify the message is received correctly");
+	}
+
+
+	@Bugs(ids = "47045")
+	@Test (description = "Autocomplete including a period/dot '.' in the string",
+			groups = { "functional", "L3" })
+
+	public void AutoCompleteContactsBug47045_12() throws HarnessException {
+
+		// Create a contact
+		ZimbraAccount contact = new ZimbraAccount();
+		contact.provision();
+		contact.authenticate();
+
+		String firstname = "Michael" + ConfigProperties.getUniqueString();
+		String lastname = "Williams" + ConfigProperties.getUniqueString();
+
+		app.zGetActiveAccount().soapSend(
+					"<CreateContactRequest xmlns='urn:zimbraMail'>"
+				+		"<cn>"
+				+			"<a n='firstName'>"+ firstname +"</a>"
+				+			"<a n='lastName'>"+ lastname +"</a>"
+				+			"<a n='email'>"+ contact.EmailAddress +"</a>"
+				+		"</cn>"
+				+	"</CreateContactRequest>");
+
+		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
+
+		// Message properties
+		String subject = "subject" + ConfigProperties.getUniqueString();
+		String body = "body" + ConfigProperties.getUniqueString();
+
+		// Open the new mail form
+		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
+		ZAssert.assertNotNull(mailform, "Verify the new form opened");
+
+		// Fill out the form with the data
+		mailform.zFillField(Field.Subject, subject);
+		mailform.zFillField(Field.Body, body);
+
+		// Auto complete a name based on email address such as "user@domain.c"
+		String value = contact.EmailAddress.substring(0, contact.EmailAddress.indexOf('.') + 2);
+		List<AutocompleteEntry> entries = mailform.zAutocompleteFillField(Field.To, value);
+		AutocompleteEntry found = null;
+		for (AutocompleteEntry entry : entries) {
+			if ( entry.getAddress().contains(contact.EmailAddress) ) {
+				found = entry;
+				break;
+			}
+		}
+		ZAssert.assertNotNull(found, "Verify the autocomplete entry exists in the returned list");
+		mailform.zAutocompleteSelectItem(found);
+
+		// Send the message
+		mailform.zSubmit();
+
+		// Log into the destination account and make sure the message is received
+		MailItem received = MailItem.importFromSOAP(contact, "subject:("+ subject +")");
+		ZAssert.assertNotNull(received, "Verify the message is received correctly");
+	}
+
+
+	@Test (description = "Autocomplete should not match trashed contacts",
+			groups = { "functional", "L2" })
+
+	public void AutoCompleteContacts_Bug47044_13() throws HarnessException {
+
+		// Create a contact
+		ZimbraAccount contact = new ZimbraAccount();
+		contact.provision();
+		contact.authenticate();
+
+		String firstname = "Richard" + ConfigProperties.getUniqueString();
+		String lastname = "Moore" + ConfigProperties.getUniqueString();
+
+		// Create a contact
+		app.zGetActiveAccount().soapSend(
+					"<CreateContactRequest xmlns='urn:zimbraMail'>"
+				+		"<cn>"
+				+			"<a n='firstName'>"+ firstname +"</a>"
+				+			"<a n='lastName'>"+ lastname +"</a>"
+				+			"<a n='email'>"+ contact.EmailAddress +"</a>"
+				+		"</cn>"
+				+	"</CreateContactRequest>");
+		String contactID = app.zGetActiveAccount().soapSelectValue("//mail:cn", "id");
+
+		// Move to trash
+		app.zGetActiveAccount().soapSend(
+					"<ItemActionRequest xmlns='urn:zimbraMail'>"
+				+		"<action op='move' l='"+ FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Trash).getId() +"' id='"+ contactID + "'/>"
+				+	"</ItemActionRequest>");
+
+		// Refresh changes
+		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
+
+		// Message properties
+		String subject = "subject" + ConfigProperties.getUniqueString();
+		String body = "body" + ConfigProperties.getUniqueString();
+
+		// Open the new mail form
+		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
+		ZAssert.assertNotNull(mailform, "Verify the new form opened");
+
+		// Fill out the form with the data
+		mailform.zFillField(Field.Subject, subject);
+		mailform.zFillField(Field.Body, body);
+
+		List<AutocompleteEntry> entries = mailform.zAutocompleteFillField(Field.To, firstname);
+		AutocompleteEntry found = null;
+		for (AutocompleteEntry entry : entries) {
+			if ( entry.getAddress().contains(contact.EmailAddress) ) {
+				found = entry;
+				break;
+			}
+		}
+
+		ZAssert.assertNull(found, "Verify contacts in trash are not matched");
+
+		// Cancel the compose
+		DialogWarning dialog = (DialogWarning)mailform.zToolbarPressButton(Button.B_CANCEL);
+		if ( dialog.zIsActive() ) {
+			dialog.zPressButton(Button.B_NO);
+		}
+	}
+
+
+	@Test (description = "Autocomplete should not match deleted contacts",
+			groups = { "functional", "L2" })
+
+	public void AutoCompleteContacts_Bug47044_14() throws HarnessException {
+
+		// Create a contact
+		ZimbraAccount contact = new ZimbraAccount();
+		contact.provision();
+		contact.authenticate();
+
+		String firstname = "Richard" + ConfigProperties.getUniqueString();
+		String lastname = "Moore" + ConfigProperties.getUniqueString();
+
+		// Create a contact
+		app.zGetActiveAccount().soapSend(
+					"<CreateContactRequest xmlns='urn:zimbraMail'>"
+				+		"<cn>"
+				+			"<a n='firstName'>"+ firstname +"</a>"
+				+			"<a n='lastName'>"+ lastname +"</a>"
+				+			"<a n='email'>"+ contact.EmailAddress +"</a>"
+				+		"</cn>"
+				+	"</CreateContactRequest>");
+		String contactID = app.zGetActiveAccount().soapSelectValue("//mail:cn", "id");
+
+		// Move to trash
+		app.zGetActiveAccount().soapSend(
+					"<ItemActionRequest xmlns='urn:zimbraMail'>"
+				+		"<action op='delete' id='"+ contactID + "'/>"
+				+	"</ItemActionRequest>");
+
+
+		// Refresh changes
+		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
+
+		// Message properties
+		String subject = "subject" + ConfigProperties.getUniqueString();
+		String body = "body" + ConfigProperties.getUniqueString();
+
+		// Open the new mail form
+		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
+		ZAssert.assertNotNull(mailform, "Verify the new form opened");
+
+		// Fill out the form with the data
+		mailform.zFillField(Field.Subject, subject);
+		mailform.zFillField(Field.Body, body);
+
+		List<AutocompleteEntry> entries = mailform.zAutocompleteFillField(Field.To, firstname);
+		AutocompleteEntry found = null;
+		for (AutocompleteEntry entry : entries) {
+			if ( entry.getAddress().contains(contact.EmailAddress) ) {
+				found = entry;
+				break;
+			}
+		}
+
+		ZAssert.assertNull(found, "Verify contacts in trash are not matched");
+
+		// Cancel the compose
+		DialogWarning dialog = (DialogWarning)mailform.zToolbarPressButton(Button.B_CANCEL);
+		if ( dialog.zIsActive() ) {
+			dialog.zPressButton(Button.B_NO);
+		}
+	}
+
+
+	@Bugs(ids = "47044")
+	@Test (description = "Autocomplete should not match contacts in trashed addressbook",
+			groups = { "functional", "L3" })
+
+	public void AutoCompleteContacts_Bug47044_15() throws HarnessException {
+
+		// Create a contact
+		ZimbraAccount contact = new ZimbraAccount();
+		contact.provision();
+		contact.authenticate();
+
+		String firstname = "Richard" + ConfigProperties.getUniqueString();
+		String lastname = "Moore" + ConfigProperties.getUniqueString();
+
+		String foldername = "addressbook" + ConfigProperties.getUniqueString();
+
+		// Create an addressbook
+		app.zGetActiveAccount().soapSend(
+					"<CreateFolderRequest xmlns='urn:zimbraMail'>"
+				+		"<folder name='"+ foldername +"' l='"+ FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Contacts).getId() +"' view='contact'/>"
+				+	"</CreateFolderRequest>");
+		String folderID = app.zGetActiveAccount().soapSelectValue("//mail:folder", "id");
+
+		// Create a contact
+		app.zGetActiveAccount().soapSend(
+					"<CreateContactRequest xmlns='urn:zimbraMail'>"
+				+		"<cn l='"+ folderID +"'>"
+				+			"<a n='firstName'>"+ firstname +"</a>"
+				+			"<a n='lastName'>"+ lastname +"</a>"
+				+			"<a n='email'>"+ contact.EmailAddress +"</a>"
+				+		"</cn>"
+				+	"</CreateContactRequest>");
+
+		// Move the addressbook to trash
+		app.zGetActiveAccount().soapSend(
+					"<ItemActionRequest xmlns='urn:zimbraMail'>"
+				+		"<action op='move' id='"+ folderID + "' l='"+ FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Trash).getId() +"'/>"
+				+	"</ItemActionRequest>");
+
+		// Refresh changes
+		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
+
+		// Message properties
+		String subject = "subject" + ConfigProperties.getUniqueString();
+		String body = "body" + ConfigProperties.getUniqueString();
+
+		// Open the new mail form
+		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
+		ZAssert.assertNotNull(mailform, "Verify the new form opened");
+
+		// Fill out the form with the data
+		mailform.zFillField(Field.Subject, subject);
+		mailform.zFillField(Field.Body, body);
+
+		List<AutocompleteEntry> entries = mailform.zAutocompleteFillField(Field.To, firstname);
+		AutocompleteEntry found = null;
+		for (AutocompleteEntry entry : entries) {
+			if ( entry.getAddress().contains(contact.EmailAddress) ) {
+				found = entry;
+				break;
+			}
+		}
+
+		ZAssert.assertNull(found, "Verify contacts in an addresbook in trash are not matched");
+
+		// Cancel the compose
+		DialogWarning dialog = (DialogWarning)mailform.zToolbarPressButton(Button.B_CANCEL);
+		if ( dialog.zIsActive() ) {
+			dialog.zPressButton(Button.B_NO);
 		}
 	}
 }

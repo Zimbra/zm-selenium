@@ -48,7 +48,7 @@ public class DeleteTag extends PrefGroupMailByMessageTest {
 		ZAssert.assertNotNull(dialog, "Verify the warning dialog opened");
 
 		// Click "Yes" to confirm
-		dialog.zClickButton(Button.B_YES);
+		dialog.zPressButton(Button.B_YES);
 
 		// To check whether deleted tag is exist
 		app.zGetActiveAccount().soapSend("<GetTagRequest xmlns='urn:zimbraMail'/>");

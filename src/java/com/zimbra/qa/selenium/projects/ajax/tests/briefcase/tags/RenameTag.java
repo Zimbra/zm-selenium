@@ -65,7 +65,7 @@ public class RenameTag extends FeatureBriefcaseTest {
 		// Set the new name, click OK
 		SleepUtil.sleepMedium();
 		dialog.zSetNewName(name2);
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 
 		// Select briefcase folder
 		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseFolder, false);

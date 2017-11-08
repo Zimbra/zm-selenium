@@ -77,10 +77,10 @@ public class DeleteResource extends AdminCommonTest {
 		DialogForDeleteOperation dialog = (DialogForDeleteOperation) app.zPageManageResources.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_DELETE);
 
 		// Click Yes in Confirmation dialog
-		dialog.zClickButton(Button.B_YES);
+		dialog.zPressButton(Button.B_YES);
 
 		// Click Ok on "Delete Items" dialog
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 		
 		// Get the list of displayed accounts
 		List<AccountItem> accounts = app.zPageManageResources.zListGetAccounts();
@@ -135,10 +135,10 @@ public class DeleteResource extends AdminCommonTest {
 		DialogForDeleteOperation dialog = (DialogForDeleteOperation) app.zPageManageResources.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_DELETE);
 
 		// Click Yes in Confirmation dialog
-		dialog.zClickButton(Button.B_YES);
+		dialog.zPressButton(Button.B_YES);
 
 		// Click Ok on "Delete Items" dialog
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 		
 		// Get the list of displayed accounts
 		List<AccountItem> accounts = app.zPageManageResources.zListGetAccounts();
@@ -193,10 +193,10 @@ public class DeleteResource extends AdminCommonTest {
 		DialogForDeleteOperation dialog = (DialogForDeleteOperation) app.zPageManageResources.zToolbarPressButton(Button.B_TREE_DELETE);
 
 		// Click Yes in Confirmation dialog
-		dialog.zClickButton(Button.B_YES);
+		dialog.zPressButton(Button.B_YES);
 
 		// Click Ok on "Delete Items" dialog
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 		
 		// Get the list of displayed accounts
 		List<AccountItem> accounts = app.zPageManageResources.zListGetAccounts();
@@ -249,10 +249,10 @@ public class DeleteResource extends AdminCommonTest {
 		DialogForDeleteOperation dialog = (DialogForDeleteOperation) app.zPageManageResources.zToolbarPressButton(Button.B_TREE_DELETE);
 
 		// Click Yes in Confirmation dialog
-		dialog.zClickButton(Button.B_YES);
+		dialog.zPressButton(Button.B_YES);
 
 		// Click Ok on "Delete Items" dialog
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 		
 		// Get the list of displayed accounts
 		List<AccountItem> accounts = app.zPageManageResources.zListGetAccounts();

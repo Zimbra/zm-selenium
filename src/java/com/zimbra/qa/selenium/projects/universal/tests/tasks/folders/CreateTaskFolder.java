@@ -59,7 +59,7 @@ public class CreateTaskFolder extends UniversalCommonTest {
 		DialogCreateTaskFolder createTaskFolderDialog =(DialogCreateTaskFolder)app.zTreeTasks.zPressPulldown(Button.B_TREE_FOLDERS_OPTIONS, Button.B_TREE_NEWTASKLIST);
 		
 		createTaskFolderDialog.zEnterFolderName(_folderName);
-		createTaskFolderDialog.zClickButton(Button.B_OK);
+		createTaskFolderDialog.zPressButton(Button.B_OK);
 		
 		_folderIsCreated = true;
 		
@@ -87,7 +87,7 @@ public class CreateTaskFolder extends UniversalCommonTest {
 		DialogCreateTaskFolder createTaskFolderDialog =(DialogCreateTaskFolder)app.zPageTasks.zToolbarPressPulldown(Button.B_NEW, Button.O_NEW_TASK_FOLDER);
 		
 		createTaskFolderDialog.zEnterFolderName(_folderName);
-		createTaskFolderDialog.zClickButton(Button.B_OK);
+		createTaskFolderDialog.zPressButton(Button.B_OK);
 		
 		_folderIsCreated = true;
 		

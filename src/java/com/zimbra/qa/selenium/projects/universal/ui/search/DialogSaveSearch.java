@@ -81,8 +81,8 @@ public class DialogSaveSearch extends AbsDialog {
 	
 	
 	@Override
-	public AbsPage zClickButton(Button button) throws HarnessException {
-		logger.info(myPageName() + " zClickButton("+ button +")");
+	public AbsPage zPressButton(Button button) throws HarnessException {
+		logger.info(myPageName() + " zPressButton("+ button +")");
 
 		tracer.trace("Click dialog button "+ button);
 
@@ -107,7 +107,7 @@ public class DialogSaveSearch extends AbsDialog {
 			throw new HarnessException("Button "+ button +" locator "+ locator +" not present!");
 		}
 		
-		this.zClick(locator);
+		this.sClick(locator);
 		
 		// If the app is busy, wait for it to become active
 		this.zWaitForBusyOverlay();
@@ -132,8 +132,8 @@ public class DialogSaveSearch extends AbsDialog {
 	 * @param folder
 	 * @throws HarnessException
 	 */
-	public void zClickTreeFolder(FolderItem folder) throws HarnessException {
-		logger.info(myPageName() + " zClickTreeFolder("+ folder +")");
+	public void sClickTreeFolder(FolderItem folder) throws HarnessException {
+		logger.info(myPageName() + " sClickTreeFolder("+ folder +")");
 		
 		tracer.trace("Click on tree folder with name "+ folder.getName());
 
@@ -143,7 +143,7 @@ public class DialogSaveSearch extends AbsDialog {
 			throw new HarnessException("unable to find folder in tree "+ locator);
 		
 		// For some reason, the text doesn't get entered on the first try
-		this.zClick(locator);
+		this.sClick(locator);
 		
 		// Is this sleep necessary?
 		SleepUtil.sleepSmall();
@@ -170,7 +170,7 @@ public class DialogSaveSearch extends AbsDialog {
 		
 		// For some reason, the text doesn't get entered on the first try
 		this.sFocus(locator);
-		this.zClick(locator);
+		this.sClick(locator);
 		this.sType(locator, folder);
 		//zKeyboard.zTypeCharacters(folder);
 

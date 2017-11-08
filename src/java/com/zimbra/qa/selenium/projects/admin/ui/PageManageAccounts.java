@@ -292,7 +292,7 @@ public class PageManageAccounts extends AbsTab {
 
 		// Default behavior, process the locator by clicking on it
 		//
-		this.zClickAt(locator,"");
+		this.sClickAt(locator,"");
 		SleepUtil.sleepMedium();
 
 
@@ -383,7 +383,7 @@ public class PageManageAccounts extends AbsTab {
 				throw new HarnessException("Button " + pulldown + " option " + option + " pulldownLocator " + pulldownLocator + " not present!");
 			}
 
-			this.zClickAt(pulldownLocator,"");
+			this.sClickAt(pulldownLocator,"");
 			SleepUtil.sleepMedium();
 
 			// If the app is busy, wait for it to become active
@@ -396,7 +396,7 @@ public class PageManageAccounts extends AbsTab {
 					throw new HarnessException("Button " + pulldown + " option " + option + " optionLocator " + optionLocator + " not present!");
 				}
 
-				this.zClickAt(optionLocator,"");
+				this.sClickAt(optionLocator,"");
 				SleepUtil.sleepMedium();
 				// If the app is busy, wait for it to become active
 				//zWaitForBusyOverlay();

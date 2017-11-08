@@ -74,7 +74,7 @@ public class EditResource extends AdminCommonTest {
 		FormEditResource form = (FormEditResource) app.zPageManageResources.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_EDIT);
 		
 		//Click on General Information tab.
-		form.zClickTreeItem(FormEditResource.TreeItem.PROPERTIES);
+		form.zSelectTreeItem(FormEditResource.TreeItem.PROPERTIES);
 
 		//Edit the name.
 		String editedName = "editedResource_" + ConfigProperties.getUniqueString();
@@ -138,7 +138,7 @@ public class EditResource extends AdminCommonTest {
 		FormEditResource form = (FormEditResource) app.zPageManageResources.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_EDIT);
 		
 		//Click on General Information tab.
-		//form.zClickTreeItem(FormEditResource.TreeItem.PROPERTIES);
+		//form.zSelectTreeItem(FormEditResource.TreeItem.PROPERTIES);
 
 		//Edit the name.
 		String editedName = "editedResource_" + ConfigProperties.getUniqueString();
@@ -192,7 +192,7 @@ public class EditResource extends AdminCommonTest {
 		FormEditResource form = (FormEditResource) app.zPageManageResources.zToolbarPressButton(Button.B_TREE_EDIT);
 		
 		//Click on General Information tab.
-		form.zClickTreeItem(FormEditResource.TreeItem.PROPERTIES);
+		form.zSelectTreeItem(FormEditResource.TreeItem.PROPERTIES);
 
 		//Edit the name.
 		String editedName = "editedResource_" + ConfigProperties.getUniqueString();
@@ -245,7 +245,7 @@ public class EditResource extends AdminCommonTest {
 		FormEditResource form = (FormEditResource) app.zPageManageResources.zToolbarPressButton(Button.B_TREE_EDIT);
 		
 		//Click on General Information tab.
-		form.zClickTreeItem(FormEditResource.TreeItem.PROPERTIES);
+		form.zSelectTreeItem(FormEditResource.TreeItem.PROPERTIES);
 
 		//Edit the name.
 		String editedName = "editedResource_" + ConfigProperties.getUniqueString();
@@ -302,7 +302,7 @@ public class EditResource extends AdminCommonTest {
 		FormEditResource form = (FormEditResource) app.zPageSearchResults.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_EDIT);
 		
 		//Click on General Information tab.
-		form.zClickTreeItem(FormEditResource.TreeItem.PROPERTIES);
+		form.zSelectTreeItem(FormEditResource.TreeItem.PROPERTIES);
 
 		//Edit the name.
 		String editedName = "editedResource_" + ConfigProperties.getUniqueString();
@@ -359,7 +359,7 @@ public class EditResource extends AdminCommonTest {
 		FormEditResource form = (FormEditResource) app.zPageSearchResults.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_EDIT);
 		
 		//Click on General Information tab.
-		form.zClickTreeItem(FormEditResource.TreeItem.PROPERTIES);
+		form.zSelectTreeItem(FormEditResource.TreeItem.PROPERTIES);
 
 		//Edit the name.
 		String editedName = "editedResource_" + ConfigProperties.getUniqueString();
@@ -416,7 +416,7 @@ public class EditResource extends AdminCommonTest {
 		FormEditResource form = (FormEditResource) app.zPageSearchResults.zToolbarPressButton(Button.B_TREE_EDIT);
 		
 		//Click on General Information tab.
-		form.zClickTreeItem(FormEditResource.TreeItem.PROPERTIES);
+		form.zSelectTreeItem(FormEditResource.TreeItem.PROPERTIES);
 
 		//Edit the name.
 		String editedName = "editedResource_" + ConfigProperties.getUniqueString();
@@ -473,7 +473,7 @@ public class EditResource extends AdminCommonTest {
 		FormEditResource form = (FormEditResource) app.zPageSearchResults.zToolbarPressButton(Button.B_TREE_EDIT);
 		
 		//Click on General Information tab.
-		form.zClickTreeItem(FormEditResource.TreeItem.PROPERTIES);
+		form.zSelectTreeItem(FormEditResource.TreeItem.PROPERTIES);
 
 		//Edit the name.
 		String editedName = "editedResource_" + ConfigProperties.getUniqueString();

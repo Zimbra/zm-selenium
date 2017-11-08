@@ -88,7 +88,7 @@ public class DocumentBriefcaseEdit extends AbsForm {
 
 			this.sMouseOver(nameFieldLocator);
 			this.sFocus(nameFieldLocator);
-			this.zClickAt(nameFieldLocator, "0,0");
+			this.sClickAt(nameFieldLocator, "0,0");
 			this.clearField(nameFieldLocator);
 			this.sType(nameFieldLocator, value);
 			logger.info("typed: " + value);
@@ -103,7 +103,7 @@ public class DocumentBriefcaseEdit extends AbsForm {
 			WebElement we = getElement(iframeLocator);
 			this.sMouseOver(iframeLocator);
 			this.sFocus(iframeLocator);
-			this.zClickAt(iframeLocator, "0,0");
+			this.sClickAt(iframeLocator, "0,0");
 
 			this.executeScript("var bodytext=\"" + value + "\";"
 					+ "var iframe_body=arguments[0].contentWindow.document.body;"
@@ -133,7 +133,7 @@ public class DocumentBriefcaseEdit extends AbsForm {
 			throw new HarnessException("Save & Close button is not visible " + Locators.zSaveAndCloseIconBtn);
 
 		// Click on it
-		zClickAt(Locators.zSaveAndCloseIconBtn, "0,0");
+		sClickAt(Locators.zSaveAndCloseIconBtn, "0,0");
 
 		// add version notes
 		DialogAddVersionNotes dlgAddNotes = new DialogAddVersionNotes(MyApplication,

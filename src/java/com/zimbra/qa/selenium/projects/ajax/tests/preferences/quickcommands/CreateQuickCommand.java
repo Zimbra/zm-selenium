@@ -57,7 +57,7 @@ public class CreateQuickCommand extends AjaxCommonTest {
 		dialog.zSetQuickCommandActionActive(1, true);
 		dialog.zSetQuickCommandActionOperation(1, QuickCommandOperation.MarkAs);
 		dialog.zSetQuickCommandActionTarget(1, QuickCommandTarget.MarkAsFlagged);
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 
 		app.zGetActiveAccount().soapSend(
 					"<GetPrefsRequest xmlns='urn:zimbraAccount'>"

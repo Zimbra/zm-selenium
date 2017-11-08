@@ -190,7 +190,7 @@ public class PageMain extends AbsTab {
 				locator = css + " td[id$='_left_icon']:nth-of-type("+ i +")";
 				if ( !sIsElementPresent(locator) ) 
 					throw new HarnessException("Unable to find compose tab close icon "+ locator);
-				this.zClick(locator);
+				this.sClick(locator);
 			}
 		}
 	}

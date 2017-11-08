@@ -87,8 +87,8 @@ public class RecurringDaily extends CalendarWorkWeekTest {
 		app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
 		app.zPageCalendar.zToolbarPressButton(Button.B_NEXT_PAGE);
 		DialogOpenRecurringItem openRecurring = (DialogOpenRecurringItem) app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, apptSubject);
-		openRecurring.zClickButton(Button.B_OPEN_THE_SERIES);
-		openRecurring.zClickButton(Button.B_OK);		
+		openRecurring.zPressButton(Button.B_OPEN_THE_SERIES);
+		openRecurring.zPressButton(Button.B_OK);		
 		
 		FormApptNew apptForm = new FormApptNew(app);
 

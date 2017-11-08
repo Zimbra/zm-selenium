@@ -123,7 +123,7 @@ public class PageManageSearch extends AbsTab {
 		}
 
 		// Click on Search
-		zClickAt(Locators.SEARCH_MENU,"");
+		sClickAt(Locators.SEARCH_MENU,"");
 		zWaitForWorkInProgressDialogInVisible();
 		//SleepUtil.sleepLong();
 		zWaitForActive();
@@ -157,12 +157,12 @@ public class PageManageSearch extends AbsTab {
 		return null;
 	}
 
-	public void zClickTreeItemOfSearch(String treeItem) throws HarnessException {
+	public void zSelectTreeItemOfSearch(String treeItem) throws HarnessException {
 		sClickAt(treeItem, "");
 		SleepUtil.sleepMedium();
 	}
 
-	public void zClickTreeItem(String treeItem) throws HarnessException {
+	public void zSelectTreeItem(String treeItem) throws HarnessException {
 		sClickAt("css=td:contains('" + treeItem + "')", "");
 		SleepUtil.sleepMedium();
 	}

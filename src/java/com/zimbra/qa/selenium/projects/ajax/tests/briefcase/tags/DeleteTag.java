@@ -61,7 +61,7 @@ public class DeleteTag extends FeatureBriefcaseTest {
 		ZAssert.assertNotNull(dialog, "Verify the warning dialog opened");
 
 		// Click "Yes" to confirm
-		dialog.zClickButton(Button.B_YES);
+		dialog.zPressButton(Button.B_YES);
 
 		// Select briefcase folder
 		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseFolder, false);

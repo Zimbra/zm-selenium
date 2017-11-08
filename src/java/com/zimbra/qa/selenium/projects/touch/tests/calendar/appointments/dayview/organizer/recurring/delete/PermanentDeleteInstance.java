@@ -86,12 +86,12 @@ public class PermanentDeleteInstance extends CalendarWorkWeekTest {
 		// Delete instance and verify corresponding UI
         app.zPageCalendar.zListItem(Action.A_LEFTCLICK, Button.O_OPEN_INSTANCE_MENU, apptSubject);
         app.zPageCalendar.zToolbarPressButton(Button.B_DELETE);
-        app.zPageMail.zClickButton(Button.B_YES);
+        app.zPageMail.zPressButton(Button.B_YES);
         
         app.zPageCalendar.zSelectFolder("Trash");
         app.zPageCalendar.zListItem(Action.A_LEFTCLICK, Button.O_OPEN_INSTANCE_MENU, apptSubject);
         app.zPageCalendar.zToolbarPressButton(Button.B_DELETE);
-        app.zPageMail.zClickButton(Button.B_YES);
+        app.zPageMail.zPressButton(Button.B_YES);
 
  		app.zGetActiveAccount().soapSend(
  				"<SearchRequest xmlns='urn:zimbraMail' types='appointment' calExpandInstStart='"+ startUTC.addDays(-7).toMillis() +"' calExpandInstEnd='"+ endUTC.addDays(7).toMillis() +"'>"

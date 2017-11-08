@@ -65,9 +65,9 @@ public class DeleteFolder extends PrefGroupMailByMessageTest {
 				
 		// Select the folder from the list and Delete
 		PageCreateFolder createFolderPage = new PageCreateFolder(app, startingPage);
-		createFolderPage.zClickButton(Button.B_EDIT);
+		createFolderPage.zPressButton(Button.B_EDIT);
 		createFolderPage.zSelectFolder(folderName);
-		createFolderPage.zClickButton(Button.B_DELETE);
+		createFolderPage.zPressButton(Button.B_DELETE);
 
         //-- Verification
         

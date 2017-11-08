@@ -72,7 +72,7 @@ public class EmptyFolder extends PrefGroupMailByMessageTest {
 		ZAssert.assertNotNull(dialog,"Verify the warning dialog pops up - Are you sure you want to delete all items?");
 
 		// Dismiss it
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 
 		List<MailItem> messages = app.zPageMail.zListGetMessages();
 		ZAssert.assertNotNull(messages, "Verify the message list exists");

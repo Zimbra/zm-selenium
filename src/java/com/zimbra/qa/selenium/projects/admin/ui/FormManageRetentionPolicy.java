@@ -89,7 +89,7 @@ public class FormManageRetentionPolicy extends AbsForm {
 
 	}
 
-	public void zClickTreeItem(String treeItem) throws HarnessException {
+	public void zSelectTreeItem(String treeItem) throws HarnessException {
 		sClickAt("css=td:contains('" + treeItem + "')", "");
 	}
 
@@ -152,7 +152,7 @@ public class FormManageRetentionPolicy extends AbsForm {
 	}
 
 
-	public void zClickOkButton() throws HarnessException {
+	public void sClickOkButton() throws HarnessException {
 		if (!this.sIsElementPresent(Locators.OK_BUTTON)) {
 			throw new HarnessException("Locator"+ Locators.OK_BUTTON + " not present!");
 		}

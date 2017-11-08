@@ -51,7 +51,7 @@ public class SendMailWithzimbraPrefUseKeyboardShortcutsFalse extends PrefGroupMa
 		mailform.zFillField(FormMailNew.Field.Body, "body" + ConfigProperties.getUniqueString());
 
 		mailform.sFocus(FormMailNew.Locators.zToField);
-		mailform.zClick(FormMailNew.Locators.zToField);
+		mailform.sClick(FormMailNew.Locators.zToField);
 		mailform.zWaitForBusyOverlay();
 		mailform.zKeyboard.zTypeCharacters(ZimbraAccount.AccountA().EmailAddress);
 

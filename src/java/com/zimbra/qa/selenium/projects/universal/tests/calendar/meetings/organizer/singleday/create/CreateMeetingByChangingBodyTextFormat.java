@@ -113,7 +113,7 @@ public class CreateMeetingByChangingBodyTextFormat extends CalendarWorkWeekTest 
 		
 		//Changed text format to plain text.
 		DialogWarning dialog = (DialogWarning)apptForm.zToolbarPressPulldown(Button.B_OPTIONS, Button.O_FORMAT_AS_PLAIN_TEXT);
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 
 		ZAssert.assertStringContains(apptForm.zGetApptBodyHtml(), apptContent, "Verify content is not lost");
 		apptForm.zToolbarPressButton(Button.B_SAVEANDCLOSE);

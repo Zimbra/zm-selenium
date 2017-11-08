@@ -80,7 +80,7 @@ public class TreeCalendar extends AbsTree {
 				page = null;
 
 				zRightClick(actionLocator);
-				zClick(optionLocator);
+				sClick(optionLocator);
 				this.zWaitForBusyOverlay();
 
 				return (page);
@@ -149,7 +149,7 @@ public class TreeCalendar extends AbsTree {
 			optionLocator += " div[id^='DETACH_WIN'] td[id$='_title']";
 
 			this.zRightClick(actionLocator);
-			this.zClickAt(optionLocator,"");
+			this.sClickAt(optionLocator,"");
 			
 			page = null;
 			
@@ -176,7 +176,7 @@ public class TreeCalendar extends AbsTree {
 			throw new HarnessException("locator is null for action " + action);
 
 		// Default behavior. Click the locator
-		this.zClickAt(optionLocator,"");
+		this.sClickAt(optionLocator,"");
 		this.zWaitForBusyOverlay();
 		
 		return page;
@@ -198,7 +198,7 @@ public class TreeCalendar extends AbsTree {
 		if ( action == Action.A_LEFTCLICK ) {
 
 			// Select the folder
-			this.zClick(optionLocator);
+			this.sClick(optionLocator);
 
 			// return a context menu
 			return null;
@@ -207,7 +207,7 @@ public class TreeCalendar extends AbsTree {
 
 			// Select tag
 			this.zRightClick(optionLocator);
-			this.zClick(Locators.RenameTagMenu);
+			this.sClick(Locators.RenameTagMenu);
 
 			return null;
 		
@@ -215,7 +215,7 @@ public class TreeCalendar extends AbsTree {
 
 			// Select tag
 			this.zRightClick(optionLocator);
-			this.zClick(Locators.DeleteTagMenu);
+			this.sClick(Locators.DeleteTagMenu);
 			
 			return null;
 
@@ -307,9 +307,9 @@ public class TreeCalendar extends AbsTree {
 				throw new HarnessException("Button " + pulldown + " option " + option + " pulldownLocator " + pulldownLocator + " not present!");
 			}
 
-			// 8.0 change ... need zClickAt()
-			// this.zClick(pulldownLocator);
-			this.zClickAt(pulldownLocator, "0,0");
+			// 8.0 change ... need sClickAt()
+			// this.sClick(pulldownLocator);
+			this.sClickAt(pulldownLocator, "0,0");
 
 			// If the app is busy, wait for it to become active
 			zWaitForBusyOverlay();
@@ -321,9 +321,9 @@ public class TreeCalendar extends AbsTree {
 					throw new HarnessException("Button " + pulldown + " option " + option + " optionLocator " + optionLocator + " not present!");
 				}
 
-				// 8.0 change ... need zClickAt()
-				// this.zClick(optionLocator);
-				this.zClickAt(optionLocator, "0,0");
+				// 8.0 change ... need sClickAt()
+				// this.sClick(optionLocator);
+				this.sClickAt(optionLocator, "0,0");
 
 				// If the app is busy, wait for it to become active
 				zWaitForBusyOverlay();
@@ -365,7 +365,7 @@ public class TreeCalendar extends AbsTree {
 			locator = "css=TODO#TODO";
 			page = null;
 
-			// Use sClick, not default zClick
+			// Use sClick, not default sClick
 			this.sClick(locator);
 
 			// If the app is busy, wait for that to finish
@@ -389,7 +389,7 @@ public class TreeCalendar extends AbsTree {
 		}
 
 		// Click it
-		this.zClick(locator);
+		this.sClick(locator);
 
 		// If the app is busy, wait for that to finish
 		this.zWaitForBusyOverlay();
@@ -408,7 +408,7 @@ public class TreeCalendar extends AbsTree {
 		if ( action == Action.A_LEFTCLICK ) {
 
 			// Select the folder
-			this.zClick(locator);
+			this.sClick(locator);
 
 			// return a context menu
 			return null;

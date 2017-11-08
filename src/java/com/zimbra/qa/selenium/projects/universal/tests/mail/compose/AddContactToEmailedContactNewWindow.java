@@ -77,7 +77,7 @@ public class AddContactToEmailedContactNewWindow extends PrefGroupMailByMessageT
 		// UI verification 
 		// Go to emailed contacts folder
 		app.zPageContacts.zNavigateTo();
-		app.zTreeContacts.zClickAt("css=td[id='zti__main_Contacts__13_textCell']:contains('Emailed Contacts')", "");
+		app.zTreeContacts.sClickAt("css=td[id='zti__main_Contacts__13_textCell']:contains('Emailed Contacts')", "");
 
 		ZAssert.assertFalse(app.zTreeContacts.sIsElementPresent("css=div[id^='zlif__CNS-main__']:contains('"+ receiver.DisplayName + "')"), "Verify that receiver contact is present in emailed contact list");
 

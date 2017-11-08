@@ -67,7 +67,7 @@ public class CreateTask extends UniversalCommonTest {
 		DialogAssistant assistant = (DialogAssistant) app.zPageTasks.zKeyboardShortcut(Shortcut.S_ASSISTANT);
 		assistant.zEnterCommand(command);
 		//Click OK button
-		assistant.zClickButton(Button.B_OK);
+		assistant.zPressButton(Button.B_OK);
 		
 		//Verify created task
 		TaskItem task = TaskItem.importFromSOAP(app.zGetActiveAccount(), subject);
@@ -99,7 +99,7 @@ public class CreateTask extends UniversalCommonTest {
 			assistant.zEnterCommand(command);
 			
 			//Click More Details button
-			assistant.zClickButton(Button.B_MORE_DETAILS);
+			assistant.zPressButton(Button.B_MORE_DETAILS);
 			app.zPageTasks.zToolbarPressButton(Button.B_SAVE);
 			
 			//Verify created task			

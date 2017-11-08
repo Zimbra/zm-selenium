@@ -49,7 +49,7 @@ public class WizardChangePassword extends AbsWizard {
 		sType(Locators.zConfirmPassword,"test1234");
 		SleepUtil.sleepSmall();
 
-		zClickAt(Locators.zdlg_OK,"");
+		sClickAt(Locators.zdlg_OK,"");
 		return item;
 
 	}

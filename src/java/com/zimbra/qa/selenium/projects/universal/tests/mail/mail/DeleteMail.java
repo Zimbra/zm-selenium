@@ -453,7 +453,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 		
 		// Click shift-delete
 		DialogWarning dialog = (DialogWarning)app.zPageMail.zKeyboardShortcut(Shortcut.S_MAIL_HARDELETE);
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 			
 		
 		// Verify the message is no longer in the mailbox
@@ -525,7 +525,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 		app.zPageMail.zListItem(Action.A_MAIL_CHECKBOX, mail3.dSubject);
 		
 		DialogWarning dialog = (DialogWarning)app.zPageMail.zKeyboardShortcut(Shortcut.S_MAIL_HARDELETE);
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 			
 		
 		// Verify the message is no longer in the mailbox
@@ -611,7 +611,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 											app,
 											((AppUniversalClient) app).zPageMail);
 			ZAssert.assertTrue(dialog.zIsActive(), "Verify the warning dialog opens");
-			dialog.zClickButton(Button.B_OK);
+			dialog.zPressButton(Button.B_OK);
 		
 		} finally {
 		
@@ -722,7 +722,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 											app,
 											((AppUniversalClient) app).zPageMail);
 			ZAssert.assertTrue(dialog.zIsActive(), "Verify the warning dialog opens");
-			dialog.zClickButton(Button.B_OK);
+			dialog.zPressButton(Button.B_OK);
 
 		} finally {
 			

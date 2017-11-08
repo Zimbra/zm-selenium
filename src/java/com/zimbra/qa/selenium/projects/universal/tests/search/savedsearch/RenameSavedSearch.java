@@ -68,7 +68,7 @@ public class RenameSavedSearch extends UniversalCommonTest  {
 		
 		// Rename the search
 		dialog.zSetNewName(name2);
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 
 
 		// Verify the saved search exists in the folder tree

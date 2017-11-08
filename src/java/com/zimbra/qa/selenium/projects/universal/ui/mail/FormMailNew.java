@@ -621,7 +621,7 @@ public class FormMailNew extends AbsForm {
 		DialogWarning dialog = new DialogWarning(DialogWarning.DialogWarningID.ComposeOptionsChangeWarning,
 				MyApplication, ((AppUniversalClient) MyApplication).zPageMail);
 		if (dialog.zIsActive()) {
-			dialog.zClickButton(Button.B_OK);
+			dialog.zPressButton(Button.B_OK);
 		}
 	}
 
@@ -652,7 +652,7 @@ public class FormMailNew extends AbsForm {
 				throw new HarnessException("Field is not present field=" + field + " locator=" + locator);
 
 			this.sFocus(locator);
-			this.zClick(locator);
+			this.sClick(locator);
 			this.zWaitForBusyOverlay();
 
 			this.sType(locator, value);
@@ -672,7 +672,7 @@ public class FormMailNew extends AbsForm {
 				throw new HarnessException("Field is not present field=" + field + " locator=" + locator);
 
 			this.sFocus(locator);
-			this.zClick(locator);
+			this.sClick(locator);
 			this.zWaitForBusyOverlay();
 
 			this.sType(locator, value);
@@ -695,7 +695,7 @@ public class FormMailNew extends AbsForm {
 				throw new HarnessException("Field is not present field=" + field + " locator=" + locator);
 
 			this.sFocus(locator);
-			this.zClick(locator);
+			this.sClick(locator);
 			this.zWaitForBusyOverlay();
 
 			this.sType(locator, value);
@@ -732,7 +732,7 @@ public class FormMailNew extends AbsForm {
 						throw new HarnessException("Unable to locate compose body");
 
 					this.sFocus(locator);
-					this.zClick(locator);
+					this.sClick(locator);
 					this.sType(locator, value);
 					// this.zKeyboard.zTypeCharacters(value);
 
@@ -752,7 +752,7 @@ public class FormMailNew extends AbsForm {
 				logger.info("FormMailNew.zFillField: Text Compose");
 
 				this.sFocus(locator);
-				this.zClick(locator);
+				this.sClick(locator);
 				this.zWaitForBusyOverlay();
 				this.sType(locator, value);
 
@@ -777,7 +777,7 @@ public class FormMailNew extends AbsForm {
 						throw new HarnessException("Unable to locate compose body");
 
 					this.sFocus(locator);
-					this.zClick(locator);
+					this.sClick(locator);
 					this.zWaitForBusyOverlay();
 					this.sType(locator, value);
 
@@ -810,7 +810,7 @@ public class FormMailNew extends AbsForm {
 						throw new HarnessException("Unable to locate compose body");
 
 					this.sFocus(locator);
-					this.zClick(locator);
+					this.sClick(locator);
 					this.zWaitForBusyOverlay();
 					this.sType(locator, value);
 
@@ -831,7 +831,7 @@ public class FormMailNew extends AbsForm {
 							throw new HarnessException("Unable to locate compose body");
 
 						this.sFocus(locator);
-						this.zClickAt(locator, "");
+						this.sClickAt(locator, "");
 
 						zTypeFormattedText(locator, value);
 
@@ -861,7 +861,7 @@ public class FormMailNew extends AbsForm {
 							throw new HarnessException("Unable to locate compose body");
 
 						this.sFocus(locator);
-						this.zClick(locator);
+						this.sClick(locator);
 
 						// this.sType(locator, value);
 						this.zKeyboard.zTypeCharacters(value);
@@ -896,7 +896,7 @@ public class FormMailNew extends AbsForm {
 			throw new HarnessException("Field is not present field=" + field + " locator=" + locator);
 
 		this.sFocus(locator);
-		this.zClickAt(locator, "0,0");
+		this.sClickAt(locator, "0,0");
 		this.zWaitForBusyOverlay();
 
 		this.sType(locator, value);

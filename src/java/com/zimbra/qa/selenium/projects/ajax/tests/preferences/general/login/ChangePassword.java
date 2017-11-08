@@ -62,7 +62,7 @@ public class ChangePassword extends AjaxCommonTest {
 			window.zSetOldPassword(app.zGetActiveAccount().Password);
 			window.zSetNewPassword(password);
 			window.zSetConfirmPassword(password);
-			window.zClickButton(Button.B_SAVE);
+			window.zPressButton(Button.B_SAVE);
 
 		} finally {
 			app.zPageMain.zCloseWindow(window, windowTitle, app);

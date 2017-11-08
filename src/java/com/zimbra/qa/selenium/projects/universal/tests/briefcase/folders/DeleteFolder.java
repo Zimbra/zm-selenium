@@ -171,7 +171,7 @@ public class DeleteFolder extends FeatureBriefcaseTest {
 				.zToolbarPressButton(Button.B_DELETE, briefcaseSubFolder);
 
 		// Click OK on Confirmation dialog
-		deleteConfirm.zClickButton(Button.B_YES);
+		deleteConfirm.zPressButton(Button.B_YES);
 
 		// refresh briefcase page
 		app.zTreeBriefcase

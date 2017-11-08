@@ -373,7 +373,7 @@ public class GetTask extends UniversalCommonTest {
 		taskNew.zFillField(com.zimbra.qa.selenium.projects.universal.ui.tasks.FormTaskNew.Field.Body, newcontent);
 
 		//Click Save
-		app.zPageTasks.zClickAt("css=div[id^='ztb__TKE']  tr[id^='ztb__TKE'] td[id$='_title']:contains('Save')", "0,0");
+		app.zPageTasks.sClickAt("css=div[id^='ztb__TKE']  tr[id^='ztb__TKE'] td[id$='_title']:contains('Save')", "0,0");
 		SleepUtil.sleepMedium();
 		
 		//Verify new task

@@ -104,7 +104,7 @@ public class FlagMail extends PrefGroupMailByMessageTest {
 			if ( active ) {
 				// To make sure the client doesn't get confused, close the dialog before
 				// doing verification
-				dialog.zClickButton(Button.B_OK);
+				dialog.zPressButton(Button.B_OK);
 			}
 			
 			ZAssert.assertFalse(active, "Verify the PERM DENIED Error Dialog is not active");
@@ -198,7 +198,7 @@ public class FlagMail extends PrefGroupMailByMessageTest {
 			if ( active ) {
 				// To make sure the client doesn't get confused, close the dialog before
 				// doing verification
-				dialog.zClickButton(Button.B_OK);
+				dialog.zPressButton(Button.B_OK);
 			}
 			
 			ZAssert.assertFalse(active, "Verify the PERM DENIED Error Dialog is not active");
@@ -298,7 +298,7 @@ public class FlagMail extends PrefGroupMailByMessageTest {
 			if ( active ) {
 				// To make sure the client doesn't get confused, close the dialog before
 				// doing verification
-				dialog.zClickButton(Button.B_OK);
+				dialog.zPressButton(Button.B_OK);
 			}
 			
 		

@@ -121,7 +121,7 @@ public class DialogShareFind extends AbsDialog {
 		
 		// To activate the Search button, need to focus/click
 		this.sFocus(locator);
-		this.zClickAt(locator, "");
+		this.sClickAt(locator, "");
 		this.zKeyboard.zTypeCharacters(email);
 		if (!(sGetValue(locator).equalsIgnoreCase(email))) {
 			this.sType(locator, email);
@@ -215,7 +215,7 @@ public class DialogShareFind extends AbsDialog {
 			page = null;
 
 			// https://bugzilla.zimbra.com/show_bug.cgi?id=63350#c5
-			// this.zClickAt(locator, "0,0");
+			// this.sClickAt(locator, "0,0");
 			this.sClick(locator);
 			
 			this.zWaitForBusyOverlay();
@@ -239,7 +239,7 @@ public class DialogShareFind extends AbsDialog {
 
 
 		// Default behavior.  Click the locator
-		zClickAt(locator,"");
+		sClickAt(locator,"");
 
 		// If there is a busy overlay, wait for that to finish
 		this.zWaitForBusyOverlay();
@@ -256,8 +256,8 @@ public class DialogShareFind extends AbsDialog {
 
 
 	@Override
-	public AbsPage zClickButton(Button button) throws HarnessException {
-		logger.info(myPageName() + " zClickButton("+ button +")");
+	public AbsPage zPressButton(Button button) throws HarnessException {
+		logger.info(myPageName() + " zPressButton("+ button +")");
 
 		String locator = null;
 		AbsPage page = null;

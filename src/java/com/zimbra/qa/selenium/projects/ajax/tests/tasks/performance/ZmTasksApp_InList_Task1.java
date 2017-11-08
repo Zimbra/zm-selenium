@@ -66,7 +66,7 @@ public class ZmTasksApp_InList_Task1 extends AjaxCommonTest {
 		"</CreateTaskRequest>");
 
 		PerfToken token = PerfMetrics.startTimestamp(PerfKey.ZmTasksApp, logMessage);
-		app.zPageContacts.zClickAt("css=td[id='zb__App__Tasks_title']","");
+		app.zPageContacts.sClickAt("css=td[id='zb__App__Tasks_title']","");
 		PerfMetrics.waitTimestamp(token);
 
 		// Wait for the app to load
@@ -90,7 +90,7 @@ public class ZmTasksApp_InList_Task1 extends AjaxCommonTest {
 		rest.doPost();
 
 		PerfToken token = PerfMetrics.startTimestamp(PerfKey.ZmTasksApp, "Load the Tasks app, 100 tasks in list");
-		app.zPageContacts.zClickAt("css=td[id='zb__App__Tasks_title']","");
+		app.zPageContacts.sClickAt("css=td[id='zb__App__Tasks_title']","");
 		PerfMetrics.waitTimestamp(token);
 
 		// Wait for the app to load

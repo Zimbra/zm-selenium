@@ -86,8 +86,8 @@ public class DeleteInstance extends AjaxCommonTest {
         app.zPageCalendar.zListItem(Action.A_LEFTCLICK, apptSubject);
 
         DialogWarning dialogSeriesOrInstance = (DialogWarning)app.zPageCalendar.zToolbarPressButton(Button.B_DELETE);
-        DialogWarning confirmDelete = (DialogWarning)dialogSeriesOrInstance.zClickButton(Button.B_OK);
-        confirmDelete.zClickButton(Button.B_YES);
+        DialogWarning confirmDelete = (DialogWarning)dialogSeriesOrInstance.zPressButton(Button.B_OK);
+        confirmDelete.zPressButton(Button.B_YES);
 
 		// On the server, verify the appointment is in the trash
 		app.zGetActiveAccount().soapSend(
@@ -160,7 +160,7 @@ public class DeleteInstance extends AjaxCommonTest {
         app.zPageCalendar.zListItem(Action.A_LEFTCLICK, apptSubject);
 
         DialogWarning dialogSeriesOrInstance = (DialogWarning)app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_INSTANCE_MENU, Button.O_DELETE_MENU, apptSubject);;
-        dialogSeriesOrInstance.zClickButton(Button.B_YES);
+        dialogSeriesOrInstance.zPressButton(Button.B_YES);
 
 		// On the server, verify the appointment is in the trash
 		app.zGetActiveAccount().soapSend(
@@ -243,8 +243,8 @@ public class DeleteInstance extends AjaxCommonTest {
         app.zPageCalendar.zListItem(Action.A_LEFTCLICK, apptSubject);
 
         DialogWarning dialogSeriesOrInstance = (DialogWarning)app.zPageCalendar.zKeyboardKeyEvent(keyEvent);
-        DialogWarning confirmDelete = (DialogWarning)dialogSeriesOrInstance.zClickButton(Button.B_OK);
-        confirmDelete.zClickButton(Button.B_YES);
+        DialogWarning confirmDelete = (DialogWarning)dialogSeriesOrInstance.zPressButton(Button.B_OK);
+        confirmDelete.zPressButton(Button.B_YES);
 
 		// On the server, verify the appointment is in the trash
 		app.zGetActiveAccount().soapSend(

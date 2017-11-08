@@ -42,13 +42,13 @@ public class SimpleFormContactGroupNew extends AbsForm {
 	@Override
 	public void zSubmit() throws HarnessException {
 		logger.info("SimpleFormContactNew.zSubmit()");
-		zClick(BUTTON_SAVE);
+		sClick(BUTTON_SAVE);
 		zWaitForBusyOverlay();
 	}
 
 	public void zCancel() throws HarnessException {
 		logger.info("SimpleFormContactNew.zCancel()");
-		zClick(BUTTON_CANCEL);
+		sClick(BUTTON_CANCEL);
 		zWaitForBusyOverlay();
 	}
 

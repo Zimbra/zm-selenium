@@ -85,7 +85,7 @@ public class UndoMoveMessage extends PrefGroupMailByMessageTest {
 
 		// Click undo
 		Toaster toaster = app.zPageMain.zGetToaster();
-		toaster.zClickUndo();
+		toaster.sClickUndo();
 
 		// Verify the message is back in the correct folder
 		MailItem undone = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");

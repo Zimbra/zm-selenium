@@ -83,7 +83,7 @@ public class SeparateWindowDialogRedirect extends AbsDialogSeparateWindow {
 			throw new HarnessException("Field is not present field=" + field + " locator=" + locator);
 
 		MyWindow.sFocus(locator);
-		MyWindow.zClickAt(locator, "");
+		MyWindow.sClickAt(locator, "");
 		MyWindow.zWaitForBusyOverlay();
 
 		// Enter text
@@ -93,8 +93,8 @@ public class SeparateWindowDialogRedirect extends AbsDialogSeparateWindow {
 
 	}
 
-	public AbsPage zClickButton(Button button) throws HarnessException {
-		logger.info(myPageName() + " zClickButton(" + button + ")");
+	public AbsPage zPressButton(Button button) throws HarnessException {
+		logger.info(myPageName() + " zPressButton(" + button + ")");
 
 		tracer.trace("Click dialog button " + button);
 
@@ -105,7 +105,7 @@ public class SeparateWindowDialogRedirect extends AbsDialogSeparateWindow {
 
 			locator = Locators.ButtonOkButtonLocator;
 
-			MyWindow.zClickAt(locator, "");
+			MyWindow.sClickAt(locator, "");
 
 			MyWindow.zWaitForBusyOverlay();
 
@@ -137,7 +137,7 @@ public class SeparateWindowDialogRedirect extends AbsDialogSeparateWindow {
 			throw new HarnessException("Button " + button + " locator " + locator + " not present!");
 		}
 
-		MyWindow.zClickAt(locator, "");
+		MyWindow.sClickAt(locator, "");
 
 		MyWindow.zWaitForBusyOverlay();
 

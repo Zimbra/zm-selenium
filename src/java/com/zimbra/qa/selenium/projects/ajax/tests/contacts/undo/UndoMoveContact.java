@@ -65,7 +65,7 @@ public class UndoMoveContact extends AjaxCommonTest {
 		// Click undo from the toaster message
         Toaster toast = app.zPageMain.zGetToaster();
 		toast.zWaitForActive();
-		toast.zClickUndo();
+		toast.sClickUndo();
 
 		// Verify contact come back into Contacts folder
 		ContactItem actual = ContactItem.importFromSOAP(app.zGetActiveAccount(), "#firstname:"+ contact.firstName);

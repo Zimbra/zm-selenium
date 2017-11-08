@@ -69,7 +69,7 @@ public class ChangeColorTaskFolder extends UniversalCommonTest {
 		
 		// Change the color, click OK
 		dialog.zSetNewColor(FolderColor.Blue);
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 
 		// Check the color
 		app.zGetActiveAccount().soapSend("<GetFolderRequest xmlns='urn:zimbraMail'>" + "<folder id='"

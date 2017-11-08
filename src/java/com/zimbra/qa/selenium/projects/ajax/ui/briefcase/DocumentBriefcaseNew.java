@@ -92,7 +92,7 @@ public class DocumentBriefcaseNew extends AbsForm {
 
 			this.sMouseOver(nameFieldLocator);
 			this.sFocus(nameFieldLocator);
-			this.zClickAt(nameFieldLocator, "0,0");
+			this.sClickAt(nameFieldLocator, "0,0");
 			this.sType(nameFieldLocator, value);
 			logger.info("typed: " + value);
 
@@ -106,7 +106,7 @@ public class DocumentBriefcaseNew extends AbsForm {
 			WebElement we = getElement(iframeLocator);
 			this.sMouseOver(iframeLocator);
 			this.sFocus(iframeLocator);
-			this.zClickAt(iframeLocator, "0,0");
+			this.sClickAt(iframeLocator, "0,0");
 			this.executeScript("var bodytext=\"" + value + "\";" + "var iframe_locator=\"" + iframeLocator + "\";"
 					+ "var iframe_body=arguments[0].contentWindow.document.body;"
 					+ "if (navigator.userAgent.indexOf('Firefox')!=-1 || navigator.userAgent.indexOf('Chrome')!=-1) {iframe_body.innerHTML=bodytext;}"
@@ -133,10 +133,10 @@ public class DocumentBriefcaseNew extends AbsForm {
 			throw new HarnessException("Save & Close button is not visible " + Locators.zSaveAndCloseIconBtn);
 
 		if (!(sIsElementPresent(Locators.zEnableVersionNotes) && sIsChecked(Locators.zEnableVersionNotes))) {
-			zClickAt(Locators.zSaveAndCloseIconBtn, "0,0");
+			sClickAt(Locators.zSaveAndCloseIconBtn, "0,0");
 
 		} else {
-			zClickAt(Locators.zSaveAndCloseIconBtn, "0,0");
+			sClickAt(Locators.zSaveAndCloseIconBtn, "0,0");
 
 			// add version notes
 			DialogAddVersionNotes dlgAddNotes = new DialogAddVersionNotes(MyApplication,

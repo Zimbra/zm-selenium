@@ -97,7 +97,7 @@ public class ModifyByChangingOrganiser extends AjaxCommonTest {
 		SleepUtil.sleepMedium();
 
 		DialogWarning dialog = (DialogWarning)app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, Button.B_OPEN_THE_SERIES, Button.O_EDIT, subject);
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 
 		FormApptNew apptForm = new FormApptNew(app);
         String locator = "css=td[id$='_folderSelect'] td[id$='_select_container']";

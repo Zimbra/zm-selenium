@@ -96,10 +96,10 @@ public class PageManageRights extends AbsTab {
 		}
 
 		// Click on Addresses -> Accounts
-		zClickAt(Locators.CONFIGURE_ICON,"");
+		sClickAt(Locators.CONFIGURE_ICON,"");
 		zWaitForWorkInProgressDialogInVisible();
 		sIsElementPresent(Locators.RIGHT);
-		zClickAt(Locators.RIGHT, "");
+		sClickAt(Locators.RIGHT, "");
 		zWaitForWorkInProgressDialogInVisible();
 		zWaitForActive();
 	}
@@ -223,7 +223,7 @@ public class PageManageRights extends AbsTab {
 				throw new HarnessException("Button " + pulldown + " option " + option + " pulldownLocator " + pulldownLocator + " not present!");
 			}
 
-			this.zClickAt(pulldownLocator,"");
+			this.sClickAt(pulldownLocator,"");
 			SleepUtil.sleepSmall();
 
 			if (optionLocator != null) {
@@ -233,7 +233,7 @@ public class PageManageRights extends AbsTab {
 					throw new HarnessException("Button " + pulldown + " option " + option + " optionLocator " + optionLocator + " not present!");
 				}
 
-				this.zClickAt(optionLocator,"");
+				this.sClickAt(optionLocator,"");
 				SleepUtil.sleepSmall();
 
 			}

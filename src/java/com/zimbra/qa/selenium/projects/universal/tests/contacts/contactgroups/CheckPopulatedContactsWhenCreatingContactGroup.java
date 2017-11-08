@@ -85,7 +85,7 @@ public class CheckPopulatedContactsWhenCreatingContactGroup extends UniversalCom
 		dialog.zWaitForActive();
 
 		// Click No: Don't save changes
-		dialog.zClickButton(Button.B_NO);
+		dialog.zPressButton(Button.B_NO);
 		
 	}
 	

@@ -141,7 +141,7 @@ public abstract class AbsWizard extends AbsPage {
 		
 		if (sIsElementPresent(buttonPath)) {
 			SleepUtil.sleepMedium();
-			zClickAt(buttonPath,"");
+			sClickAt(buttonPath,"");
 		}
 			
 

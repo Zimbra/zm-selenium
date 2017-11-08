@@ -44,7 +44,7 @@ public class ShortcutDialog extends UniversalCommonTest {
 		ZAssert.assertStringContains(dialog.sGetShortcutsDialogBody("css=div[class='ZmShortcutsPanel']"), "Conversation List View", "Verify Conversation List View Shortcuts in New window view");
 		ZAssert.assertStringContains(dialog.sGetShortcutsDialogBody("css=div[class='ZmShortcutsPanel']"), "Previous button", "Verify Previous button Shortcut in New window view");
 		
-		dialog.zClickButton(Button.B_CLOSE);
+		dialog.zPressButton(Button.B_CLOSE);
 	}
 	
 
@@ -60,7 +60,7 @@ public class ShortcutDialog extends UniversalCommonTest {
 		String windowTitle = "Zimbra";
 		
 		try {
-			window = (SeparateWindow) dialog.zClickButton(Button.B_NEWWINDOW);
+			window = (SeparateWindow) dialog.zPressButton(Button.B_NEWWINDOW);
 			window.zWaitForActive();
 			window.sSelectWindow(windowTitle);
 

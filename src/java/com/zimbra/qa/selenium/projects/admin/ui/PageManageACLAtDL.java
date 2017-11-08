@@ -160,7 +160,7 @@ public class PageManageACLAtDL extends AbsTab {
 		}
 
 		// Default behavior, process the locator by clicking on it
-		this.zClickAt(locator,"");
+		this.sClickAt(locator,"");
 		SleepUtil.sleepMedium();
 
 		// If page was specified, make sure it is active
@@ -173,8 +173,8 @@ public class PageManageACLAtDL extends AbsTab {
 	}
 
 
-	public AbsPage zClickButton(Button button) throws HarnessException {
-		logger.info(myPageName() + " zClickButton(" + button + ")");
+	public AbsPage zPressButton(Button button) throws HarnessException {
+		logger.info(myPageName() + " zPressButton(" + button + ")");
 
 		tracer.trace("Click dialog button " + button);
 		if ( button == null )
@@ -274,7 +274,7 @@ public class PageManageACLAtDL extends AbsTab {
 				throw new HarnessException("Button " + pulldown + " option " + option + " pulldownLocator " + pulldownLocator + " not present!");
 			}
 
-			this.zClickAt(pulldownLocator,"");
+			this.sClickAt(pulldownLocator,"");
 			SleepUtil.sleepMedium();
 
 			// If the app is busy, wait for it to become active
@@ -287,7 +287,7 @@ public class PageManageACLAtDL extends AbsTab {
 					throw new HarnessException("Button " + pulldown + " option " + option + " optionLocator " + optionLocator + " not present!");
 				}
 
-				this.zClickAt(optionLocator,"");
+				this.sClickAt(optionLocator,"");
 
 			}
 

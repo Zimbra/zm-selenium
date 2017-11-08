@@ -64,7 +64,7 @@ public class RenameFolder extends PrefGroupMailByMessageTest {
 		// Set the name, click OK
 		String name2 = "folder" + ConfigProperties.getUniqueString();
 		dialog.zSetNewName(name2);
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 
 		// Get all the folders and verify the new name appears and the old name disappears
 		app.zGetActiveAccount().soapSend("<GetFolderRequest xmlns = 'urn:zimbraMail'/>");
@@ -106,14 +106,14 @@ public class RenameFolder extends PrefGroupMailByMessageTest {
 		// Set the name, click OK
 		String name2 = "folder:folder" + ConfigProperties.getUniqueString();
 		dialog.zSetNewName(name2);
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 
 		DialogError error = app.zPageMain.zGetErrorDialog(DialogErrorID.InvalidFolderName);
 		ZAssert.assertTrue(error.zIsActive(), "Verify the error dialog appears");
 
-		error.zClickButton(Button.B_OK);
+		error.zPressButton(Button.B_OK);
 		if ( dialog.zIsActive() ) {
-			dialog.zClickButton(Button.B_CANCEL);
+			dialog.zPressButton(Button.B_CANCEL);
 		}
 	}
 
@@ -146,7 +146,7 @@ public class RenameFolder extends PrefGroupMailByMessageTest {
 
 		// Set the name, click OK
 		dialog.zSetNewName(foldername);
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 
 		// Get all the folders and verify the new name appears and the old name disappears
 		app.zGetActiveAccount().soapSend("<GetFolderRequest xmlns = 'urn:zimbraMail'/>");

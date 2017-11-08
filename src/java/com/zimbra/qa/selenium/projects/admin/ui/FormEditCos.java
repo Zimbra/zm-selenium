@@ -96,10 +96,10 @@ public class FormEditCos extends AbsForm {
 	public void zSubmit() throws HarnessException {
 		sClickAt(Locators.SAVE_BUTTON,"");
 		SleepUtil.sleepSmall();
-		zClickAt(Locators.CLOSE_BUTTON,"0,0");
+		sClickAt(Locators.CLOSE_BUTTON,"0,0");
 	}
 
-	public void zClickTreeItem(String treeItem) throws HarnessException {
+	public void zSelectTreeItem(String treeItem) throws HarnessException {
 		sClickAt("css=td:contains('" + treeItem + "')", "");
 	}
 
@@ -246,7 +246,7 @@ public class FormEditCos extends AbsForm {
 		SleepUtil.sleepSmall();
 		zType(Locators.ALIAS_DOMAIN_NAME,domain);
 		SleepUtil.sleepSmall();
-		zClick(Locators.zdlg_OK);
+		sClick(Locators.zdlg_OK);
 		SleepUtil.sleepSmall();	
 	}
 

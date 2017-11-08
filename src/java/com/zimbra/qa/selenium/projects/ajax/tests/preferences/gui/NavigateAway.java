@@ -45,7 +45,7 @@ public class NavigateAway extends AjaxCommonTest {
 
 		boolean isVisible = true;
 
-		app.zPagePreferences.zClick(PageMain.Locators.zMailApp);
+		app.zPagePreferences.sClick(PageMain.Locators.zMailApp);
 		app.zPagePreferences.zWaitForBusyOverlay();
 
 		// Check for the warning dialog
@@ -54,7 +54,7 @@ public class NavigateAway extends AjaxCommonTest {
 		isVisible = warning.zIsActive();
 
 		if ( isVisible ) {
-			warning.zClickButton(Button.B_NO);
+			warning.zPressButton(Button.B_NO);
 		}
 		logger.info("navigateAwayCheckWarning: finish");
 

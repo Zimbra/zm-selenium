@@ -64,7 +64,7 @@ public class CreateFilter extends UniversalCommonTest {
 		dialog.zAddFilterAction(FilterAction.MoveIntoFolder,folderName);
 
 		// Save
-		dialog.zClickButton(Button.B_OK);		
+		dialog.zPressButton(Button.B_OK);		
 		
 		// Verify the filter is created through SOAP
 		app.zGetActiveAccount().soapSend("<GetFilterRulesRequest xmlns='urn:zimbraMail'/>");
@@ -113,7 +113,7 @@ public class CreateFilter extends UniversalCommonTest {
 		dialog.zAddFilterAction(FilterAction.TagWith,folderName);
 
 		// Save
-		dialog.zClickButton(Button.B_OK);		
+		dialog.zPressButton(Button.B_OK);		
 		
 		// Verify the filter is created through SOAP
 		app.zGetActiveAccount().soapSend("<GetOutgoingFilterRulesRequest xmlns='urn:zimbraMail'/>");

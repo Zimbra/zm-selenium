@@ -52,7 +52,7 @@ public class CreateContact extends AjaxCommonTest {
 
 		if (ConfigProperties.getStringProperty(ConfigProperties.getLocalHost() + ".coverage.enabled",
 				ConfigProperties.getStringProperty("coverage.enabled")).contains("true") == true) {
-			app.zPageContacts.zClickAt(
+			app.zPageContacts.sClickAt(
 					"css=div#" + formContactNew.getToolbarID() + " div[id$='__SAVE'] td[id$='_title']", "0,0");
 		} else {
 			formContactNew.zSubmit();

@@ -119,7 +119,7 @@ public class EditCos extends AdminCommonTest {
 		FormEditCos form = (FormEditCos) app.zPageManageCOS.zToolbarPressButton(Button.B_TREE_EDIT);
 
 		//Click on General Information tab.
-		form.zClickTreeItem(FormEditCos.TreeItem.GENERAL_INFORMATION);
+		form.zSelectTreeItem(FormEditCos.TreeItem.GENERAL_INFORMATION);
 
 		//Edit the name.
 		String editedName = "editedCos_" + ConfigProperties.getUniqueString();
@@ -176,7 +176,7 @@ public class EditCos extends AdminCommonTest {
 		FormEditCos form = (FormEditCos) app.zPageSearchResults.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_EDIT);
 
 		//Click on General Information tab.
-		form.zClickTreeItem(FormEditCos.TreeItem.GENERAL_INFORMATION);
+		form.zSelectTreeItem(FormEditCos.TreeItem.GENERAL_INFORMATION);
 
 		//Edit the name.
 		String editedName = "editedCos_" + ConfigProperties.getUniqueString();

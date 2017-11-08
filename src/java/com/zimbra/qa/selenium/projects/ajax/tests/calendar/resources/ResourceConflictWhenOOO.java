@@ -121,7 +121,7 @@ public class ResourceConflictWhenOOO extends AjaxCommonTest {
 		ZAssert.assertTrue(dialogContent.contains(apptLocation + " (Busy)"), "Verify that the dialog shows location name on conflict warning");
 
 		// Save appt with location conflict
-		dialog.zClickButton(Button.B_SAVE_WITH_CONFLICT);
+		dialog.zPressButton(Button.B_SAVE_WITH_CONFLICT);
 
 		// Verify that location with conflict and subject are present in the appointment
 		AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ apptSubject2 +")");

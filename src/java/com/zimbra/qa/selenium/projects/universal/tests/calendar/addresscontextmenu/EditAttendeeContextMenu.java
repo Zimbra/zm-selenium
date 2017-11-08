@@ -53,7 +53,7 @@ public class EditAttendeeContextMenu extends PrefGroupMailByMessageTest {
 		app.zPageMail.zEditAddressContextMenu();
 
 		app.zPageCalendar.sFocus(FormApptNew.Locators.AttendeeField);
-		app.zPageCalendar.zClick(FormApptNew.Locators.AttendeeField);
+		app.zPageCalendar.sClick(FormApptNew.Locators.AttendeeField);
 		app.zPageCalendar.zType(FormApptNew.Locators.AttendeeField,"test@test.com");
 		app.zPageCalendar.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
 		

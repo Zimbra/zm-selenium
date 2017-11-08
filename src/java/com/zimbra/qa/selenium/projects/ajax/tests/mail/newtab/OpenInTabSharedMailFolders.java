@@ -173,7 +173,7 @@ public class OpenInTabSharedMailFolders extends PrefGroupMailByMessageTest {
 		app.zTreeMail.zRightClickAt(locator,"");
 
 		// Click on Open in tab option
-		app.zTreeMail.zClickAt(OpenInTab, "");
+		app.zTreeMail.sClickAt(OpenInTab, "");
 
 		// Remember to close the search view
 		try {

@@ -67,8 +67,8 @@ public class DialogAddToCalendar extends AbsDialog {
 	}
 
 	@Override
-	public AbsPage zClickButton(Button button) throws HarnessException {
-		logger.info(myPageName() + " zClickButton(" + button + ")");
+	public AbsPage zPressButton(Button button) throws HarnessException {
+		logger.info(myPageName() + " zPressButton(" + button + ")");
 
 		tracer.trace("Click dialog button " + button);
 
@@ -79,7 +79,7 @@ public class DialogAddToCalendar extends AbsDialog {
 
 			locator = Locators.zOkButton;
 
-			this.zClick(locator);
+			this.sClick(locator);
 
 			this.zWaitForBusyOverlay();
 
@@ -123,8 +123,8 @@ public class DialogAddToCalendar extends AbsDialog {
 		return (this.sGetText(locator));
 	}
 
-	public void zClickTreeFolder(FolderItem folder) throws HarnessException {
-		logger.info(myPageName() + " zClickTreeFolder(" + folder + ")");
+	public void sClickTreeFolder(FolderItem folder) throws HarnessException {
+		logger.info(myPageName() + " sClickTreeFolder(" + folder + ")");
 
 		if (folder == null)
 			throw new HarnessException("folder must not be null");
@@ -137,7 +137,7 @@ public class DialogAddToCalendar extends AbsDialog {
 		if (!this.sIsElementPresent(locator))
 			throw new HarnessException("unable to find folder in tree " + locator);
 
-		this.zClick(locator);
+		this.sClick(locator);
 
 		this.zWaitForBusyOverlay();
 
@@ -154,7 +154,7 @@ public class DialogAddToCalendar extends AbsDialog {
 		if (!this.sIsElementPresent(locator))
 			throw new HarnessException("unable to find folder in tree " + locator);
 
-		this.zClick(locator);
+		this.sClick(locator);
 		this.zWaitForBusyOverlay();
 
 	}

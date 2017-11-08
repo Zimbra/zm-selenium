@@ -39,6 +39,6 @@ public class OpenAssistant extends PrefGroupMailByMessageTest {
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
 		DialogAssistant assistant = (DialogAssistant)app.zPageMail.zKeyboardShortcut(Shortcut.S_ASSISTANT);
-		assistant.zClickButton(Button.B_CANCEL);
+		assistant.zPressButton(Button.B_CANCEL);
 	}
 }

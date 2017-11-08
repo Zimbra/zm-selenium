@@ -98,7 +98,7 @@ public class DeleteAppointment extends AjaxCommonTest {
 		ZAssert.assertNotNull(dialog, "Verify the dialog appears correctly");
 
 		// Click Yes on the confirmation
-		dialog.zClickButton(Button.B_YES);
+		dialog.zPressButton(Button.B_YES);
 
 		// On the server, verify the appointment is in the trash
 		app.zGetActiveAccount().soapSend(
@@ -172,7 +172,7 @@ public class DeleteAppointment extends AjaxCommonTest {
 		ZAssert.assertNotNull(dialog, "Verify the dialog appears correctly");
 
 		// Click Yes on the confirmation
-		dialog.zClickButton(Button.B_YES);
+		dialog.zPressButton(Button.B_YES);
 
 		// On the server, verify the appointment is in the trash
 		app.zGetActiveAccount().soapSend(
@@ -257,7 +257,7 @@ public class DeleteAppointment extends AjaxCommonTest {
 		ZAssert.assertNotNull(dialog, "Verify the dialog appears correctly");
 
 		// Click Yes on the confirmation
-		dialog.zClickButton(Button.B_YES);
+		dialog.zPressButton(Button.B_YES);
 
 		// On the server, verify the appointment is in the trash
 		app.zGetActiveAccount().soapSend(
@@ -331,7 +331,7 @@ public class DeleteAppointment extends AjaxCommonTest {
 		ZAssert.assertNotNull(dialog, "Verify the dialog appears correctly");
 
 		// Click Yes on the confirmation
-		dialog.zClickButton(Button.B_YES);
+		dialog.zPressButton(Button.B_YES);
 
 		// On the server, verify the appointment is in the trash
 		app.zGetActiveAccount().soapSend(
@@ -449,7 +449,7 @@ public class DeleteAppointment extends AjaxCommonTest {
 		ZAssert.assertNotNull(dialog, "Verify the dialog appears correctly");
 
 		// Click Yes on the confirmation
-		dialog.zClickButton(Button.B_YES);
+		dialog.zPressButton(Button.B_YES);
 
 		// On the server, verify the appointment is in the trash
 		app.zGetActiveAccount().soapSend(
@@ -555,7 +555,7 @@ public class DeleteAppointment extends AjaxCommonTest {
 		// Right click the item, select delete
 		DialogConfirmDeleteAppointment dialog = (DialogConfirmDeleteAppointment)app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_DELETE, subject);
 		ZAssert.assertNotNull(dialog, "Verify the dialog appears correctly");
-		dialog.zClickButton(Button.B_YES);
+		dialog.zPressButton(Button.B_YES);
 
 		// On the server, verify the appointment is in the trash
 		app.zGetActiveAccount().soapSend(
@@ -627,7 +627,7 @@ public class DeleteAppointment extends AjaxCommonTest {
 		// Type shift-delete
 		DialogConfirmDeleteAppointment dialog = (DialogConfirmDeleteAppointment)app.zPageCalendar.zKeyboardShortcut(Shortcut.S_MAIL_HARDELETE);
 		ZAssert.assertNotNull(dialog, "Verify the dialog appears correctly");
-		dialog.zClickButton(Button.B_YES);
+		dialog.zPressButton(Button.B_YES);
 
 		// Verify the appointment is gone
 		AppointmentItem found = null;
@@ -739,7 +739,7 @@ public class DeleteAppointment extends AjaxCommonTest {
 		// Click delete
 		DialogConfirmDeleteAppointment dialog = (DialogConfirmDeleteAppointment)app.zPageCalendar.zKeyboardShortcut(Shortcut.S_MAIL_HARDELETE);
 		ZAssert.assertNotNull(dialog, "Verify the dialog appears correctly");
-		dialog.zClickButton(Button.B_YES);
+		dialog.zPressButton(Button.B_YES);
 
 		// Verify the appointment is gone
 		AppointmentItem found1 = null;

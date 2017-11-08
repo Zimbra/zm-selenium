@@ -170,7 +170,7 @@ public class TreeMail extends AbsTree {
 		}
 
 		// Default behavior. Click the locator
-		zClickAt(optionLocator,"");
+		sClickAt(optionLocator,"");
 
 		// If there is a busy overlay, wait for that to finish
 		this.zWaitForBusyOverlay();
@@ -239,7 +239,7 @@ public class TreeMail extends AbsTree {
 			throw new HarnessException("locator is null for option " + option);
 
 		// Default behavior. Click the locator
-		zClick(optionLocator);
+		sClick(optionLocator);
 
 		// If there is a busy overlay, wait for that to finish
 		this.zWaitForBusyOverlay();
@@ -351,7 +351,7 @@ public class TreeMail extends AbsTree {
 		}
 		
 		// Default behavior. Click the locator
-		zClickAt(optionLocator,"");
+		sClickAt(optionLocator,"");
 
 		// If there is a busy overlay, wait for that to finish
 		this.zWaitForBusyOverlay();
@@ -422,7 +422,7 @@ public class TreeMail extends AbsTree {
 		}
 
 		// Default behavior.  Click the locator
-		zClickAt(locator,"");
+		sClickAt(locator,"");
 
 		// If there is a busy overlay, wait for that to finish
 		this.zWaitForBusyOverlay();
@@ -468,7 +468,7 @@ public class TreeMail extends AbsTree {
 		locator = "css=td#zti__main_Mail__"+ savedSearch.getId() + "_textCell";
 
 		// Default behavior.  Click the locator
-		zClickAt(locator,"");
+		sClickAt(locator,"");
 
 		// If the app is busy, wait until it is ready again
 		this.zWaitForBusyOverlay();
@@ -541,9 +541,9 @@ public class TreeMail extends AbsTree {
 				throw new HarnessException("Button " + pulldown + " option " + option + " pulldownLocator " + pulldownLocator + " not present!");
 			}
 
-			// 8.0 change ... need zClickAt()
-			// this.zClick(pulldownLocator);
-			this.zClickAt(pulldownLocator, "0,0");
+			// 8.0 change ... need sClickAt()
+			// this.sClick(pulldownLocator);
+			this.sClickAt(pulldownLocator, "0,0");
 
 			// If the app is busy, wait for it to become active
 			zWaitForBusyOverlay();
@@ -555,9 +555,9 @@ public class TreeMail extends AbsTree {
 					throw new HarnessException("Button " + pulldown + " option " + option + " optionLocator " + optionLocator + " not present!");
 				}
 
-				// 8.0 change ... need zClickAt()
-				// this.zClick(optionLocator);
-				this.zClickAt(optionLocator, "0,0");
+				// 8.0 change ... need sClickAt()
+				// this.sClick(optionLocator);
+				this.sClickAt(optionLocator, "0,0");
 
 				// If the app is busy, wait for it to become active
 				zWaitForBusyOverlay();
@@ -653,7 +653,7 @@ public class TreeMail extends AbsTree {
 	public AbsPage zPressButton(Button button) throws HarnessException {
 		SleepUtil.sleepMedium();
 		
-		logger.info(myPageName() + " zClickButton("+ button +")");
+		logger.info(myPageName() + " zPressButton("+ button +")");
 		tracer.trace("Click page button "+ button);
 
 		AbsPage page = null;
@@ -1057,7 +1057,7 @@ public class TreeMail extends AbsTree {
 		}
 
 		// Default behavior
-		this.zClick(locator);
+		this.sClick(locator);
 
 		this.zWaitForBusyOverlay();
 

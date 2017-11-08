@@ -43,7 +43,7 @@ public class MoveMessage extends PrefGroupMailByMessageTest {
 		DialogMove dialog = new DialogMove(app, ((AppAjaxClient)app).zPageMail);
 		if ( dialog.zIsActive() ) {
 			logger.warn(dialog.myPageName() +" was still active.  Cancelling ...");
-			dialog.zClickButton(Button.B_CANCEL);
+			dialog.zPressButton(Button.B_CANCEL);
 		}
 	}
 

@@ -47,7 +47,7 @@ public class ZmContactsAppFolders extends AjaxCommonTest {
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 		PerfToken token = PerfMetrics.startTimestamp(PerfKey.ZmContactsAppOverviewPanel, "Load the contacts app, 1 addressbook");
 
-		app.zPageContacts.zClickAt("css=td[id='zb__App__Contacts_title']","");
+		app.zPageContacts.sClickAt("css=td[id='zb__App__Contacts_title']","");
 		PerfMetrics.waitTimestamp(token);
 
 		// Wait for the app to load
@@ -73,7 +73,7 @@ public class ZmContactsAppFolders extends AjaxCommonTest {
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 		PerfToken token = PerfMetrics.startTimestamp(PerfKey.ZmContactsAppOverviewPanel, "Load the contacts app, 100 addressbooks");
 
-		app.zPageContacts.zClickAt("css=td[id='zb__App__Contacts_title']","");
+		app.zPageContacts.sClickAt("css=td[id='zb__App__Contacts_title']","");
 		PerfMetrics.waitTimestamp(token);
 
 		// Wait for the app to load

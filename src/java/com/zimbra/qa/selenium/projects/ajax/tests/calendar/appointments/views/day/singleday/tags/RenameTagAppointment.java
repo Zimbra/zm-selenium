@@ -73,7 +73,7 @@ public class RenameTagAppointment extends AjaxCommonTest {
 		DialogRenameTag dialog = (DialogRenameTag) app.zTreeCalendar.zTreeItem(
 				Action.A_RIGHTCLICK, Button.B_RENAME, tag);
 		dialog.zSetNewName(renameTag1);
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
         app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
 
         // Verify applied tag for appointment

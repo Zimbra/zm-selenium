@@ -75,7 +75,7 @@ public class SignatureVcard extends AjaxCommonTest {
 		SleepUtil.sleepMedium();
 
 		// Click Search button
-		selectContactDialog.zClickButton(Button.B_SEARCH);
+		selectContactDialog.zPressButton(Button.B_SEARCH);
 		SleepUtil.sleepMedium();
 
 		// Verify contact shows in search list
@@ -83,7 +83,7 @@ public class SignatureVcard extends AjaxCommonTest {
 		SleepUtil.sleepMedium();
 
 		// Click OK
-		selectContactDialog.zClickButton(Button.B_OK);
+		selectContactDialog.zPressButton(Button.B_OK);
 
 		// Click Save
 		signew.zSubmit();

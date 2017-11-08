@@ -387,7 +387,7 @@ public class AutoCompleteGAL extends PrefGroupMailByMessageTest {
 				
 		DialogWarning dialog = (DialogWarning)mailform.zToolbarPressButton(Button.B_CANCEL);
 		if ( dialog.zIsActive() ) {
-			dialog.zClickButton(Button.B_NO);
+			dialog.zPressButton(Button.B_NO);
 		}
 		
 	}
@@ -639,7 +639,7 @@ public class AutoCompleteGAL extends PrefGroupMailByMessageTest {
 		// Cancel the compose
 		DialogWarning dialog = (DialogWarning)mailform.zToolbarPressButton(Button.B_CANCEL);
 		if ( dialog.zIsActive() ) {
-			dialog.zClickButton(Button.B_NO);
+			dialog.zPressButton(Button.B_NO);
 		}
 
 	}

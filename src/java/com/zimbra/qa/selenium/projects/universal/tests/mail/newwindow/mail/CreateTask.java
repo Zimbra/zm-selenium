@@ -79,7 +79,7 @@ public class CreateTask extends PrefGroupMailByMessageTest {
 			ZAssert.assertTrue(window.zIsActive(), "Verify the window is active");
 			
 			window.zToolbarPressPulldown(Button.B_ACTIONS, Button.O_CREATE_TASK);
-			app.zPageMail.zClickAt("css=div[id^='ztb__TKE']  tr[id^='ztb__TKE'] td[id$='_title']:contains('Save')", "");
+			app.zPageMail.sClickAt("css=div[id^='ztb__TKE']  tr[id^='ztb__TKE'] td[id$='_title']:contains('Save')", "");
 			SleepUtil.sleepMedium();
 
 		} finally {

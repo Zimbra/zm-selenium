@@ -45,12 +45,12 @@ public class EditQuickCommand extends AjaxQuickCommandTest {
 		// Select the quick command
 		String locator = "css=div[id='zl__QCV__rows'] div[id^='zli__QCV__'] td[id$='_na']:contains('"+ this.getQuickCommand01().getName() +"')";
 		ZAssert.assertTrue(app.zTreePreferences.sIsElementPresent(locator), "Verify quick command 1 is in the list");
-		app.zTreePreferences.zClickAt(locator, "");
+		app.zTreePreferences.sClickAt(locator, "");
 		app.zTreePreferences.zWaitForBusyOverlay();
 
 		// Click "Edit"
 		DialogEditQuickCommand dialog = (DialogEditQuickCommand)app.zPagePreferences.zToolbarPressButton(Button.B_EDIT_QUICK_COMMAND);
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 
 		// Get the quick commands from the server.  Verify the edited quick command is there.
 		throw new HarnessException("implement me!");

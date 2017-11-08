@@ -79,7 +79,7 @@ public class ModifyDLByAddingListOwnersAndOwnerDeletesDL extends UniversalCommon
 
 		app.zPageContacts.zToolbarPressButton(Button.B_DELETE);
 		DialogWarning warning = new DialogWarning(DialogWarning.DialogWarningID.DeleteItem, app, app.zPageContacts);
-		warning.zClickButton(Button.B_OK);
+		warning.zPressButton(Button.B_OK);
 
 		app.zGetActiveAccount().soapSend(
 				"<GetDistributionListRequest xmlns='urn:zimbraAccount' needOwners='1'>"

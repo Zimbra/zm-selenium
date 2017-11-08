@@ -183,7 +183,7 @@ public class UnTagMessage extends PrefGroupMailByMessageTest {
 			DialogError dialog = app.zPageMain.zGetErrorDialog(DialogError.DialogErrorID.Zimbra);
 			ZAssert.assertNotNull(dialog, "Verify the PERM DENIED Error Dialog is created");
 			ZAssert.assertTrue(dialog.zIsActive(), "Verify the PERM DENIED Error Dialog is active");
-			dialog.zClickButton(Button.B_OK);
+			dialog.zPressButton(Button.B_OK);
 
 		} finally {
 			app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Inbox));

@@ -43,7 +43,7 @@ public class ZmMailAppComposeText extends AjaxCommonTest {
 	public void ZmMailAppComposeText_01() throws HarnessException {
 
 		PerfToken token = PerfMetrics.startTimestamp(PerfKey.ZmMailAppCompose,"Load the compose window in text view");
-		app.zPageMail.zClickAt("css=div[id$='__NEW_MENU'] td[id$='__NEW_MENU_title']","");
+		app.zPageMail.sClickAt("css=div[id$='__NEW_MENU'] td[id$='__NEW_MENU_title']","");
 
 		PerfMetrics.waitTimestamp(token);
 	}

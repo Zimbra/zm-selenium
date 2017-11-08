@@ -25,6 +25,7 @@ import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.DialogSendUpdatetoAttendees;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew.Field;
+import com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail;
 
 public class ResetStatusAfterUpdatingAttendee extends AjaxCommonTest {
 
@@ -33,6 +34,13 @@ public class ResetStatusAfterUpdatingAttendee extends AjaxCommonTest {
 		super.startingPage = app.zPageCalendar;
 	}
 
+
+	@BeforeClass(groups = { "always" })
+	public void BeforeClass() throws HarnessException {
+		logger.info("BeforeClass: start");
+		ZimbraAccount.ResetAccountZCS();
+		logger.info("BeforeClass: finish");
+	}
 
 	@Bugs(ids = "49881")
 	@Test (description = "Check reset status of meeting after Updating attendee",
@@ -77,8 +85,10 @@ public class ResetStatusAfterUpdatingAttendee extends AjaxCommonTest {
         app.zPageMain.zLogout();
 		app.zPageLogin.zLogin(ZimbraAccount.Account1());
 
-		app.zPageCalendar.zNavigateTo();
-		app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_ACCEPT_MENU, apptSubject);
+		// Accept invite
+		DisplayMail display = (DisplayMail)app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);
+		display.zPressButton(Button.B_ACCEPT);
+
 		app.zPageMain.zLogout();
 		app.zPageLogin.zLogin(ZimbraAccount.AccountZCS());
 
@@ -90,9 +100,8 @@ public class ResetStatusAfterUpdatingAttendee extends AjaxCommonTest {
         apptForm.zSubmit();
 
         DialogSendUpdatetoAttendees sendUpdateDialog = (DialogSendUpdatetoAttendees) new DialogSendUpdatetoAttendees(app, app.zPageCalendar);
-        sendUpdateDialog.zClickButton(Button.B_SEND_UPDATES_ONLY_TO_ADDED_OR_REMOVED_ATTENDEES);
-        sendUpdateDialog.zClickButton(Button.B_OK);
-        SleepUtil.sleepLong(); //Testing temporarily
+        sendUpdateDialog.zPressButton(Button.B_SEND_UPDATES_ONLY_TO_ADDED_OR_REMOVED_ATTENDEES);
+        sendUpdateDialog.zPressButton(Button.B_OK);
 
 		// Check that the organizer shows the attendee as "Accepted" ---
 		app.zGetActiveAccount().soapSend(

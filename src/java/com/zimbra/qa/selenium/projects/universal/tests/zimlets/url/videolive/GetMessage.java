@@ -57,7 +57,7 @@ public class GetMessage extends UniversalCommonTest {
 		ZAssert.assertTrue(present, "Verify the youtube thumbnail is present");
 		
 		// Click on the image
-		app.zPageMail.zClickAt(locator, "");
+		app.zPageMail.sClickAt(locator, "");
 		app.zPageMail.zWaitForBusyOverlay();
 		
 		SleepUtil.sleep(5000);

@@ -96,7 +96,7 @@ public class CheckInFile extends FeatureBriefcaseTest {
 		ZAssert.assertTrue(dlg.zIsActive(), "Verify the 'Check In File to Briefcase' dialog is displayed");
 
 		// Dismiss dialog by clicking on Cancel button
-		dlg.zClickButton(Button.B_CANCEL);
+		dlg.zPressButton(Button.B_CANCEL);
 
 		// Delete file upon test completion
 		app.zPageBriefcase.deleteFileById(id);

@@ -145,7 +145,7 @@ public class DialogEditFolder extends com.zimbra.qa.selenium.projects.universal.
 				throw new HarnessException("actionLocator is not present! "+ this.sGetHtmlSource());
 			}
 
-			zClick(actionLocator);
+			sClick(actionLocator);
 			this.zWaitForBusyOverlay();
 
 		}
@@ -157,7 +157,7 @@ public class DialogEditFolder extends com.zimbra.qa.selenium.projects.universal.
 				throw new HarnessException("optionLocator is not present! "+ this.sGetHtmlSource());
 			}
 
-			zClick(optionLocator);
+			sClick(optionLocator);
 			this.zWaitForBusyOverlay();
 
 		}
@@ -178,7 +178,7 @@ public class DialogEditFolder extends com.zimbra.qa.selenium.projects.universal.
 
 		// For some reason, the text doesn't get entered on the first try
 //		this.sFocus(locator);
-//		this.zClick(locator);
+//		this.sClick(locator);
 //		zKeyboard.zTypeCharacters(folder);
 //		if (!(sGetValue(locator).equalsIgnoreCase(folder))) {
 //			sType(locator, folder);

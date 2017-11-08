@@ -83,8 +83,8 @@ public class ChangeLocationOfOneInstance extends AjaxCommonTest {
 
 		// --------------- Modify first instance by adding location ----------------------------------------------------
 		DialogOpenRecurringItem openRecurring = (DialogOpenRecurringItem) app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, apptSubject);
-		openRecurring.zClickButton(Button.B_OPEN_THIS_INSTANCE);
-		openRecurring.zClickButton(Button.B_OK);
+		openRecurring.zPressButton(Button.B_OPEN_THIS_INSTANCE);
+		openRecurring.zPressButton(Button.B_OK);
 
 		FormApptNew apptForm = new FormApptNew(app);
 		apptForm.zVerifyDisabledControlInOpenInstance();

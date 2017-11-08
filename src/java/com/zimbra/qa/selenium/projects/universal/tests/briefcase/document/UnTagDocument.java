@@ -118,7 +118,7 @@ public class UnTagDocument extends FeatureBriefcaseTest {
 		 * app.zPageBriefcase .zToolbarPressPulldown(Button.B_TAG,
 		 * Button.O_TAG_NEWTAG, null);
 		 * 
-		 * dialogTag.zSetTagName(tagName); dialogTag.zClickButton(Button.B_OK);
+		 * dialogTag.zSetTagName(tagName); dialogTag.zPressButton(Button.B_OK);
 		 */
 
 		account.soapSend("<CreateTagRequest xmlns='urn:zimbraMail'>"

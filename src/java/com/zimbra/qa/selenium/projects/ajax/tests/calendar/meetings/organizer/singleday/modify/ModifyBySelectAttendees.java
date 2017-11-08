@@ -82,12 +82,12 @@ public class ModifyBySelectAttendees extends AjaxCommonTest {
 
         DialogFindAttendees dialogFindAttendees = (DialogFindAttendees) new DialogFindAttendees(app, app.zPageCalendar);
         dialogFindAttendees.zType(Locators.ContactPickerSerachField, ZimbraAccount.AccountB().EmailAddress);
-        dialogFindAttendees.zClickButton(Button.B_SEARCH);
+        dialogFindAttendees.zPressButton(Button.B_SEARCH);
         dialogFindAttendees.zWaitForBusyOverlay();
-        dialogFindAttendees.zClick(Locators.ContactPickerFirstContact);
-        dialogFindAttendees.zClickButton(Button.B_CHOOSE_CONTACT_FROM_PICKER);
+        dialogFindAttendees.sClick(Locators.ContactPickerFirstContact);
+        dialogFindAttendees.zPressButton(Button.B_CHOOSE_CONTACT_FROM_PICKER);
         dialogFindAttendees.zWaitForBusyOverlay();
-        dialogFindAttendees.zClickButton(Button.B_OK);
+        dialogFindAttendees.zPressButton(Button.B_OK);
         apptForm.zSubmit();
 
         // Verify attendee1 receives meeting invitation message

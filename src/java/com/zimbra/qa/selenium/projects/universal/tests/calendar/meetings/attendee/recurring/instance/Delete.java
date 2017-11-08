@@ -80,8 +80,8 @@ public class Delete extends CalendarWorkWeekTest {
 
 		app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_INSTANCE_MENU, Button.O_DELETE_MENU, apptSubject);
 		DialogConfirmationDeclineAppointment declineAppt = (DialogConfirmationDeclineAppointment) new DialogConfirmationDeclineAppointment(app, app.zPageCalendar);
-		declineAppt.zClickButton(Button.B_NOTIFY_ORGANIZER);
-		declineAppt.zClickButton(Button.B_YES);
+		declineAppt.zPressButton(Button.B_NOTIFY_ORGANIZER);
+		declineAppt.zPressButton(Button.B_YES);
 
 		// ---------------- Verification at organizer & invitee side both -------------------------------------       
 

@@ -86,7 +86,7 @@ public class EditFile extends FeatureBriefcaseTest {
 				+ ConfigProperties.getUniqueString();
 
 		app.zPageBriefcase.rename(fileName2);
-		app.zPageBriefcase.zClick("css=div[id='zl__BDLV-main__rows']");	
+		app.zPageBriefcase.sClick("css=div[id='zl__BDLV-main__rows']");	
 		// Verify document name through GUI
 		ZAssert.assertTrue(app.zPageBriefcase
 				.waitForPresentInListView(fileName2),
@@ -256,14 +256,14 @@ public class EditFile extends FeatureBriefcaseTest {
 		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseFolder, true);
 		
 		if (!app.zPageBriefcase.sIsElementPresent(nodeExpanded)) {
-			app.zPageBriefcase.zClickAt(nodeCollapsed, "");
+			app.zPageBriefcase.sClickAt(nodeCollapsed, "");
 		}
 		
 		app.zPageBriefcase.zListItem(Action.A_RIGHTCLICK, Button.O_RESTORE_AS_CURRENT_VERSION, locator);
 		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseFolder, true);
 		
 		if (!app.zPageBriefcase.sIsElementPresent(nodeExpanded)) {
-			app.zPageBriefcase.zClickAt(nodeCollapsed, "");
+			app.zPageBriefcase.sClickAt(nodeCollapsed, "");
 		}
 
         ZAssert.assertTrue(app.zPageCalendar.sIsElementPresent("css=tr[id^='zlif__BDLV-main__'] div[id^='zlif__BDLV-main__']:contains('#3: " + notesV1 + "')"), "'Notes' is restored");
@@ -315,7 +315,7 @@ public class EditFile extends FeatureBriefcaseTest {
 		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseFolder, true);
 		
 		if (!app.zPageBriefcase.sIsElementPresent(nodeExpanded)) {
-			app.zPageBriefcase.zClickAt(nodeCollapsed, "");
+			app.zPageBriefcase.sClickAt(nodeCollapsed, "");
 		}
 		
 		// Right click on File, select Rename

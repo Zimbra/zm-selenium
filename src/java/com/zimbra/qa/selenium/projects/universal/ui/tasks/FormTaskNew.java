@@ -164,7 +164,7 @@ public class FormTaskNew extends AbsForm {
 			throw new HarnessException("locator was null for button "+ button);
 
 		// Click it
-		this.zClickAt(locator,"0,0");
+		this.sClickAt(locator,"0,0");
 		// this.sClickAt(locator, "0,0");
 		
 		SleepUtil.sleepMedium();
@@ -276,9 +276,9 @@ public class FormTaskNew extends AbsForm {
 
 				//Intentionally adding this code.
 				SleepUtil.sleepMedium();
-				this.zClickAt(pulldownLocator,"");
+				this.sClickAt(pulldownLocator,"");
 				SleepUtil.sleepMedium();
-				this.zClickAt(optionLocator,"");
+				this.sClickAt(optionLocator,"");
 				SleepUtil.sleepMedium();
 				return (page);
 
@@ -299,7 +299,7 @@ public class FormTaskNew extends AbsForm {
 			}
 
 			SleepUtil.sleepMedium();
-			this.zClickAt(pulldownLocator,"");
+			this.sClickAt(pulldownLocator,"");
 			SleepUtil.sleepMedium();
 
 
@@ -312,7 +312,7 @@ public class FormTaskNew extends AbsForm {
 					throw new HarnessException("Button "+ pulldown +" option "+ option +" optionLocator "+ optionLocator +" not present!");
 				}
 
-				this.zClickAt(optionLocator,"");
+				this.sClickAt(optionLocator,"");
 
 				this.zWaitForBusyOverlay();
 
@@ -407,7 +407,7 @@ public class FormTaskNew extends AbsForm {
 		} else if (field == Field.DueDate) {
 			locator = "css=input[id$='_endDateField']";
 			this.sFocus(locator);
-			this.zClickAt(locator,"0,0");
+			this.sClickAt(locator,"0,0");
 			sType(locator, value);
 			return;
 			

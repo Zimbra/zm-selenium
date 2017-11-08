@@ -69,7 +69,7 @@ public class DeleteDomain extends AdminCommonTest {
 		DialogForDeleteOperationDomain dialog = (DialogForDeleteOperationDomain) app.zPageManageDomains.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_DELETE);
 
 		// Click Yes in Confirmation dialog
-		dialog.zClickButton(Button.B_YES);
+		dialog.zPressButton(Button.B_YES);
 
 		// Verify the domain do not exists in the ZCS
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
@@ -114,7 +114,7 @@ public class DeleteDomain extends AdminCommonTest {
 		DialogForDeleteOperationDomain dialog = (DialogForDeleteOperationDomain) app.zPageManageDomains.zToolbarPressButton((Button.B_TREE_DELETE));
 
 		// Click Yes in Confirmation dialog
-		dialog.zClickButton(Button.B_YES);
+		dialog.zPressButton(Button.B_YES);
 
 		// Verify the domain do not exists in the ZCS
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
@@ -178,7 +178,7 @@ public class DeleteDomain extends AdminCommonTest {
 		DialogForDeleteOperationDomain dialog = (DialogForDeleteOperationDomain) app.zPageManageDomains.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_DELETE);
 
 		// Click Yes in Confirmation dialog
-		dialog.zClickButton(Button.B_YES);
+		dialog.zPressButton(Button.B_YES);
 
 		// Verify the domain do not exists in the ZCS
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
@@ -238,7 +238,7 @@ public class DeleteDomain extends AdminCommonTest {
 		DialogForDeleteOperationDomain dialog = (DialogForDeleteOperationDomain) app.zPageManageDomains.zToolbarPressButton(Button.B_TREE_DELETE);
 
 		// Click Yes in Confirmation dialog
-		dialog.zClickButton(Button.B_YES);
+		dialog.zPressButton(Button.B_YES);
 
 		// Verify the domain do not exists in the ZCS
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(

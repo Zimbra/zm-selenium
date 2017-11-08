@@ -489,7 +489,7 @@ public class DeleteTask extends UniversalCommonTest {
 		
 		// Click shift-delete
 			DialogWarning dialog = (DialogWarning)app.zPageTasks.zKeyboardShortcut(Shortcut.S_TASK_HARDELETE);
-				dialog.zClickButton(Button.B_OK);
+				dialog.zPressButton(Button.B_OK);
 		
 		//Verify the task is no longer present in tasks folder
 		List<TaskItem> tasks = app.zPageTasks.zGetTasks();
@@ -596,7 +596,7 @@ public class DeleteTask extends UniversalCommonTest {
 	//	app.zPageTasks.zKeyboardShortcut(Shortcut.S_TASK_HARDELETE);
 		
 		DialogWarning dialog = (DialogWarning)app.zPageTasks.zKeyboardShortcut(Shortcut.S_TASK_HARDELETE);
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 		
 		//Verify the task is no longer present in tasks/trash folder
 		app.zGetActiveAccount().soapSend(
@@ -725,7 +725,7 @@ public class DeleteTask extends UniversalCommonTest {
 		// Select the item
 		app.zPageTasks.zListItem(Action.A_LEFTCLICK, subject);
 		ZAssert.assertTrue(app.zPageTasks.sIsElementPresent(Locators.zAttachmentsLabel),"Verify Attachments: label");
-		//app.zPageTasks.zClickAt(Locators.zEditButton, "0,0");
+		//app.zPageTasks.sClickAt(Locators.zEditButton, "0,0");
 		//Press Edit tool bar button
 		FormTaskNew taskedit = (FormTaskNew) app.zPageTasks.zToolbarPressButton(Button.B_EDIT);
 		SleepUtil.sleepMedium();

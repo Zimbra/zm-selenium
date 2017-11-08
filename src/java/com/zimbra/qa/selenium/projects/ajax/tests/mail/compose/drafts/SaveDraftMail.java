@@ -105,7 +105,7 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 		DialogWarning warning = (DialogWarning) app.zPageMail.zKeyboardShortcut(shortcut);
 		ZAssert.assertNotNull(warning, "Verify the dialog is opened");
 
-		warning.zClickButton(Button.B_YES);
+		warning.zPressButton(Button.B_YES);
 		warning.zWaitForClose(); // Make sure the dialog is dismissed
 
 		// Get the message from the server
@@ -143,7 +143,7 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 		mailform.zToolbarPressButton(Button.B_CANCEL);
 
 		if (app.zPageMail.sIsElementPresent(Locators.zSaveWarningDialog)) {
-			app.zPageMail.zClickAt("css=div[id='YesNoCancel_button5']", "");
+			app.zPageMail.sClickAt("css=div[id='YesNoCancel_button5']", "");
 		}
 
 		// Get the message from the server
@@ -185,7 +185,7 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 		mailform.zToolbarPressButton(Button.B_CANCEL);
 
 		if (app.zPageMail.sIsElementPresent(Locators.zSaveWarningDialog)) {
-			app.zPageMail.zClickAt("css=div[id='YesNoCancel_button5']", "");
+			app.zPageMail.sClickAt("css=div[id='YesNoCancel_button5']", "");
 		}
 
 		// Get the message from the server
@@ -232,7 +232,7 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 		mailform.zToolbarPressButton(Button.B_CANCEL);
 
 		if (app.zPageMail.sIsElementPresent(Locators.zSaveWarningDialog)) {
-			app.zPageMail.zClickAt("css=div[id='YesNoCancel_button5']", "");
+			app.zPageMail.sClickAt("css=div[id='YesNoCancel_button5']", "");
 		}
 
 		// Get the message from the server
@@ -276,7 +276,7 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 		SleepUtil.sleepMedium();
 
 		if (app.zPageMail.sIsElementPresent(Locators.zSaveWarningDialog)) {
-			app.zPageMail.zClickAt("css=div[id='YesNoCancel_button5']", "");
+			app.zPageMail.sClickAt("css=div[id='YesNoCancel_button5']", "");
 		}
 
 		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
@@ -332,7 +332,7 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 		mailform.zToolbarPressButton(Button.B_CANCEL);
 
 		if (app.zPageMail.sIsElementPresent(Locators.zSaveWarningDialog)) {
-			app.zPageMail.zClickAt("css=div[id='YesNoCancel_button5']", "");
+			app.zPageMail.sClickAt("css=div[id='YesNoCancel_button5']", "");
 		}
 
 		// Get the message from the server
@@ -374,7 +374,7 @@ public class SaveDraftMail extends PrefGroupMailByMessageTest {
 		mailform.zToolbarPressButton(Button.B_CANCEL);
 
 		if (app.zPageMail.sIsElementPresent(Locators.zSaveWarningDialog)) {
-			app.zPageMail.zClickAt("css=div[id='YesNoCancel_button5']", "");
+			app.zPageMail.sClickAt("css=div[id='YesNoCancel_button5']", "");
 		}
 
 		// Get the message from the server

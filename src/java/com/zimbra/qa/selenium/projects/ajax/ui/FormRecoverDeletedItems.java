@@ -116,7 +116,7 @@ public class FormRecoverDeletedItems extends AbsForm {
 		if (!this.sIsElementPresent(locator))
 			throw new HarnessException("locator was not present for button " + button);
 
-		this.zClick(locator);
+		this.sClick(locator);
 
 		this.zWaitForBusyOverlay();
 
@@ -164,7 +164,7 @@ public class FormRecoverDeletedItems extends AbsForm {
 			throw new HarnessException("Field is not present field=" + field + " locator=" + locator);
 
 		this.sFocus(locator);
-		this.zClick(locator);
+		this.sClick(locator);
 		this.zWaitForBusyOverlay();
 
 		// Enter text
@@ -210,7 +210,7 @@ public class FormRecoverDeletedItems extends AbsForm {
 
 		if (action == Action.A_LEFTCLICK) {
 
-			this.zClick(itemLocator);
+			this.sClick(itemLocator);
 
 			this.zWaitForBusyOverlay();
 

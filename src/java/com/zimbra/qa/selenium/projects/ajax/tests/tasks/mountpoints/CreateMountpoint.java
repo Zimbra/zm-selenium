@@ -124,7 +124,7 @@ public class CreateMountpoint extends AjaxCommonTest{
 		ZAssert.assertNotNull(dialog, "Verify that the accept share dialog opens");
 
 		// Click OK on the dialog
-		dialog.zClickButton(Button.B_YES);
+		dialog.zPressButton(Button.B_YES);
 
 		// Verify that the new mountpoint is present
 		FolderItem folder = FolderItem.importFromSOAP(Owner,ownerFoldername);

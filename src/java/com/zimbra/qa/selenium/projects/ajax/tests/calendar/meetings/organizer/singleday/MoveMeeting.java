@@ -90,7 +90,7 @@ public class MoveMeeting extends AjaxCommonTest {
 
         // Move appt from toolbar menu
         app.zPageCalendar.zToolbarPressButton(Button.O_MOVE_MENU);
-        app.zPageCalendar.zClickAt(Locators.MoveFolderOption + name1 + "')" , "");
+        app.zPageCalendar.sClickAt(Locators.MoveFolderOption + name1 + "')" , "");
         app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
 
 		//-- Server verification

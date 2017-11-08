@@ -129,7 +129,7 @@ public class DisplayConversationMessage extends DisplayMail {
 		if ( !this.sIsElementPresent(locator) )
 			throw new HarnessException("locator is not present for button "+ button +" : "+ locator);
 
-		this.zClick(locator);
+		this.sClick(locator);
 
 		this.zWaitForBusyOverlay();
 
@@ -173,7 +173,7 @@ public class DisplayConversationMessage extends DisplayMail {
 		// Seems that the client can't handle filling out the new mail form too quickly
 		// Click in the "To" fields, etc, to make sure the client is ready
 		this.sFocus(locator);
-		this.zClick(locator);
+		this.sClick(locator);
 		this.zWaitForBusyOverlay();
 
 		// Enter text

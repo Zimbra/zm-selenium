@@ -67,7 +67,7 @@ public class ZimbraPrefCalendarFirstDayOfWeek extends UniversalCommonTest {
 		app.zPagePreferences.zToolbarPressButton(Button.B_SAVE);
 		DialogWarning dialog = (DialogWarning) new DialogWarning(DialogWarning.DialogWarningID.ReloadApplication, app, app.zPagePreferences);
 		ZAssert.assertNotNull(dialog, "Dialog is present");
-		dialog.zClickButton(Button.B_YES);
+		dialog.zPressButton(Button.B_YES);
 		
 		app.zPageCalendar.zNavigateTo();
 		ZAssert.assertStringContains(app.zPageCalendar.zReturnDayOfWorkWeek(1), "Tue", "First day matched");

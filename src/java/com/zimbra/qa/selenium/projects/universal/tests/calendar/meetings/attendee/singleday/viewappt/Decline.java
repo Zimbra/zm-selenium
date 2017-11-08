@@ -76,8 +76,8 @@ public class Decline extends CalendarWorkWeekTest {
 		
 		// Select "Don't notify organizer"
 		DialogConfirmationDeclineAppointment declineAppt = (DialogConfirmationDeclineAppointment) new DialogConfirmationDeclineAppointment(app, app.zPageCalendar);
-		declineAppt.zClickButton(Button.B_DONT_NOTIFY_ORGANIZER);
-		declineAppt.zClickButton(Button.B_YES);
+		declineAppt.zPressButton(Button.B_DONT_NOTIFY_ORGANIZER);
+		declineAppt.zPressButton(Button.B_YES);
 		
 		// Verify "Declined" value saved properly in the dropdown
 		app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_OPEN_MENU, apptSubject);
@@ -182,8 +182,8 @@ public class Decline extends CalendarWorkWeekTest {
 		
 		// Select "Notify organizer"
 		DialogConfirmationDeclineAppointment declineAppt = (DialogConfirmationDeclineAppointment) new DialogConfirmationDeclineAppointment(app, app.zPageCalendar);
-		declineAppt.zClickButton(Button.B_NOTIFY_ORGANIZER);
-		declineAppt.zClickButton(Button.B_YES);
+		declineAppt.zPressButton(Button.B_NOTIFY_ORGANIZER);
+		declineAppt.zPressButton(Button.B_YES);
 		
 		// Verify "Declined" value saved properly in the dropdown
 		app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_OPEN_MENU, apptSubject);

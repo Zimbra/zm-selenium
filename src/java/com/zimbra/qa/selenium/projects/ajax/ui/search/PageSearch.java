@@ -111,7 +111,7 @@ public class PageSearch extends AbsTab {
 			return; // Already closed
 		}
 
-		this.zClickAt(locator, "");
+		this.sClickAt(locator, "");
 		this.zWaitForBusyOverlay();
 
 		return;
@@ -284,7 +284,7 @@ public class PageSearch extends AbsTab {
 
 			}
 
-			this.zClick(pulldownLocator);
+			this.sClick(pulldownLocator);
 
 			this.zWaitForBusyOverlay();
 
@@ -295,7 +295,7 @@ public class PageSearch extends AbsTab {
 							+ optionLocator + " not present!");
 				}
 
-				this.zClick(optionLocator);
+				this.sClick(optionLocator);
 
 				this.zWaitForBusyOverlay();
 
@@ -401,7 +401,7 @@ public class PageSearch extends AbsTab {
 						"Button " + pulldown + " pulldownLocator " + pulldownLocator + " not present!");
 			}
 
-			this.zClickAt(pulldownLocator, "");
+			this.sClickAt(pulldownLocator, "");
 
 			zWaitForBusyOverlay();
 
@@ -414,7 +414,7 @@ public class PageSearch extends AbsTab {
 							" dynamic " + dynamic + " optionLocator " + optionLocator + " not present!");
 				}
 
-				this.zClickAt(optionLocator, "");
+				this.sClickAt(optionLocator, "");
 
 				zWaitForBusyOverlay();
 			}
@@ -498,7 +498,7 @@ public class PageSearch extends AbsTab {
 
 		if (action == Action.A_LEFTCLICK) {
 
-			this.zClickAt(itemlocator, "");
+			this.sClickAt(itemlocator, "");
 
 			this.zWaitForBusyOverlay();
 
@@ -543,7 +543,7 @@ public class PageSearch extends AbsTab {
 			if (image.equals("ImgCheckboxChecked"))
 				throw new HarnessException("Trying to check box, but it was already enabled");
 
-			this.zClick(selectlocator);
+			this.sClick(selectlocator);
 
 			this.zWaitForBusyOverlay();
 
@@ -559,7 +559,7 @@ public class PageSearch extends AbsTab {
 			if (image.equals("ImgCheckboxUnchecked"))
 				throw new HarnessException("Trying to uncheck box, but it was already disabled");
 
-			this.zClick(selectlocator);
+			this.sClick(selectlocator);
 
 			this.zWaitForBusyOverlay();
 
@@ -575,7 +575,7 @@ public class PageSearch extends AbsTab {
 			if (image.equals("ImgNodeExpanded"))
 				throw new HarnessException("Trying to expand, but conversation was alread expanded");
 
-			this.zClick(selectlocator);
+			this.sClick(selectlocator);
 
 			this.zWaitForBusyOverlay();
 
@@ -591,7 +591,7 @@ public class PageSearch extends AbsTab {
 			if (image.equals("ImgNodeCollapsed"))
 				throw new HarnessException("Trying to collapse, but conversation was alread collapsed");
 
-			this.zClick(selectlocator);
+			this.sClick(selectlocator);
 
 			this.zWaitForBusyOverlay();
 
@@ -601,7 +601,7 @@ public class PageSearch extends AbsTab {
 
 			String flaglocator = itemlocator + " div[id$='__fg']";
 
-			this.zClick(flaglocator);
+			this.sClick(flaglocator);
 
 			this.zWaitForBusyOverlay();
 

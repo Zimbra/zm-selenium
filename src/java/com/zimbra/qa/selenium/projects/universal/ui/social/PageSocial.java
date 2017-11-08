@@ -48,7 +48,7 @@ public class PageSocial extends AbsTab {
 	private boolean zDismissWelcomeDialog() throws HarnessException {
 		DialogSocialZimletWelcome dialog = new DialogSocialZimletWelcome(MyApplication, ((AppUniversalClient) MyApplication).zPageSocial);
 		if ( dialog.zIsActive() ) {
-			dialog.zClickButton(Button.B_OK);
+			dialog.zPressButton(Button.B_OK);
 			return (true);
 		}
 		return (false);
@@ -95,7 +95,7 @@ public class PageSocial extends AbsTab {
 
 		logger.info("Navigate to "+ this.myPageName());
 
-		this.zClick(PageMain.Locators.zSocialTab);
+		this.sClick(PageMain.Locators.zSocialTab);
 		SleepUtil.sleepSmall();
 
 		this.zWaitForBusyOverlay();

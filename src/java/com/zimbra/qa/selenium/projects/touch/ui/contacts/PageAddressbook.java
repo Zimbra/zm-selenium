@@ -484,7 +484,7 @@ public class PageAddressbook extends AbsTab {
 			throw new HarnessException("Button is not present locator="+ locator +" button="+ button);
 
 		// Click it
-		zClickAt(locator,"0,0");
+		sClickAt(locator,"0,0");
 
 		zWaitForBusyOverlay();
 
@@ -599,7 +599,7 @@ public class PageAddressbook extends AbsTab {
 			}
 			else {
 			    //others
-			    zClickAt(pulldownLocator,"");
+			    sClickAt(pulldownLocator,"");
 			}
 
 			zWaitForBusyOverlay();
@@ -609,7 +609,7 @@ public class PageAddressbook extends AbsTab {
 				zWaitForElementPresent(optionLocator);
 
 				if (!zIsElementDisabled(optionLocator)) {
-				   zClick(optionLocator);
+				   sClick(optionLocator);
 				   zWaitForBusyOverlay();
 				}
 
@@ -690,7 +690,7 @@ public class PageAddressbook extends AbsTab {
 			}
 			else {
 			    //others
-			    zClickAt(pulldownLocator,"");
+			    sClickAt(pulldownLocator,"");
 			}
 
 			zWaitForBusyOverlay();
@@ -700,7 +700,7 @@ public class PageAddressbook extends AbsTab {
 				zWaitForElementPresent(optionLocator);
 
 				if (!zIsElementDisabled(optionLocator)) {
-				   zClick(optionLocator);
+				   sClick(optionLocator);
 				   zWaitForBusyOverlay();
 				}
 
@@ -788,7 +788,7 @@ public class PageAddressbook extends AbsTab {
 
 			//central coordinate "x,y"
 			String center= sGetElementWidth(pulldownLocator)/2 + "," + sGetElementHeight(pulldownLocator)/2;
-			zClickAt(pulldownLocator,center);
+			sClickAt(pulldownLocator,center);
 
 			zWaitForBusyOverlay();
 
@@ -816,7 +816,7 @@ public class PageAddressbook extends AbsTab {
 				zWaitForElementPresent(optionLocator);
 
 				if (zIsVisiblePerPosition(optionLocator,0,0)) {
-				   zClick(optionLocator);
+				   sClick(optionLocator);
 				   zWaitForBusyOverlay();
 				}
 
@@ -868,7 +868,7 @@ public class PageAddressbook extends AbsTab {
 
 			//central coordinate "x,y"
 			String center= sGetElementWidth(pulldownLocator)/2 + "," + sGetElementHeight(pulldownLocator)/2;
-			zClickAt(pulldownLocator,center);
+			sClickAt(pulldownLocator,center);
 
 			zWaitForBusyOverlay();
 
@@ -914,7 +914,7 @@ public class PageAddressbook extends AbsTab {
 						zWaitForElementPresent(subOptionLocator);
 
 						//if (zIsVisiblePerPosition(subOptionLocator,0,0)) {
-						   zClick(subOptionLocator);
+						   sClick(subOptionLocator);
 						   zWaitForBusyOverlay();
 						//}
 				   }
@@ -1231,7 +1231,7 @@ public class PageAddressbook extends AbsTab {
             sMouseOver(locator);
             SleepUtil.sleepSmall();
             //jClick(locator);
-            //zClickAt(locator, "0,0");
+            //sClickAt(locator, "0,0");
              sClickAt(locator, "0,0");
      	//}
        zWaitForBusyOverlay();
@@ -1291,7 +1291,7 @@ public class PageAddressbook extends AbsTab {
 				    // Left Click "Tag"
 					this.sMouseOver(tagContactLocator);
 					SleepUtil.sleepMedium();
-					zClickAt(tagContactLocator, "");
+					sClickAt(tagContactLocator, "");
 					SleepUtil.sleepMedium();
 					zWaitForBusyOverlay();
 
@@ -1314,14 +1314,14 @@ public class PageAddressbook extends AbsTab {
 						zWaitForBusyOverlay();
 
 					    // Left Click "<tag name>"
-						zClickAt(locator, "");
+						sClickAt(locator, "");
 						zWaitForBusyOverlay();
 
 
 					} else {
 
 					    // No sub menu, just Left Click "Remove Tag"
-						zClickAt(removeTagLocator, "");
+						sClickAt(removeTagLocator, "");
 						zWaitForBusyOverlay();
 
 
@@ -1397,7 +1397,7 @@ public class PageAddressbook extends AbsTab {
 			}
 
 			// Left click the sub-option
-			this.zClickAt(itemLocator, "");
+			this.sClickAt(itemLocator, "");
 			this.zWaitForBusyOverlay();
 
         }
@@ -1431,7 +1431,7 @@ public class PageAddressbook extends AbsTab {
 				cmi=CONTEXT_MENU.CONTACT_EDIT;
 				page = newFormSelected();
 				// select the item only
-				zClickAt(contactLocator,"0,0");
+				sClickAt(contactLocator,"0,0");
 			}
 
 			else if (option == Button.B_NEW) {
@@ -1475,7 +1475,7 @@ public class PageAddressbook extends AbsTab {
 		}
 
 
-		zClickAt(locator,"0,0");
+		sClickAt(locator,"0,0");
 
 		zWaitForBusyOverlay();
 
@@ -1505,7 +1505,7 @@ public class PageAddressbook extends AbsTab {
 
 		if ( action == Action.A_LEFTCLICK ) {
 			//click
-			zClick(contactLocator);
+			sClick(contactLocator);
 			zWaitForBusyOverlay();
 
 			ArrayList<String> selectedContactArrayList=getSelectedContactLocator();
@@ -1531,7 +1531,7 @@ public class PageAddressbook extends AbsTab {
 			contactLocator=contactLocator + " div.ImgCheckboxUnchecked";
 
 			//check the box
-			zClick(contactLocator);
+			sClick(contactLocator);
 
 			//zWaitForBusyOverlay();
 

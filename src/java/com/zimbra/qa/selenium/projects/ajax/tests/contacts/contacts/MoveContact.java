@@ -91,8 +91,8 @@ public class MoveContact extends AjaxCommonTest {
 		DialogMove dialogContactMove = (DialogMove) app.zPageContacts.zKeyboardShortcut(Shortcut.S_MOVE);
 
 		// enter the moved folder
-		dialogContactMove.zClickTreeFolder(folder);
-		dialogContactMove.zClickButton(Button.B_OK);
+		dialogContactMove.sClickTreeFolder(folder);
+		dialogContactMove.zPressButton(Button.B_OK);
 
 		// Verify
 		ContactItem actual = ContactItem.importFromSOAP(app.zGetActiveAccount(), "#firstname:" + contact.firstName);
@@ -128,8 +128,8 @@ public class MoveContact extends AjaxCommonTest {
 				contact.fileAs);
 
 		// enter the moved folder
-		dialogContactMove.zClickTreeFolder(folder);
-		dialogContactMove.zClickButton(Button.B_OK);
+		dialogContactMove.sClickTreeFolder(folder);
+		dialogContactMove.zPressButton(Button.B_OK);
 
 		// Verify
 		ContactItem actual = ContactItem.importFromSOAP(app.zGetActiveAccount(), "#firstname:" + contact.firstName);
@@ -221,8 +221,8 @@ public class MoveContact extends AjaxCommonTest {
 		DialogMove dialogContactMove = (DialogMove) formContactNew.zToolbarPressButton(Button.B_MOVE);
 
 		// enter the moved folder
-		dialogContactMove.zClickTreeFolder(folder);
-		dialogContactMove.zClickButton(Button.B_OK);
+		dialogContactMove.sClickTreeFolder(folder);
+		dialogContactMove.zPressButton(Button.B_OK);
 
 		// Click Save
 		formContactNew.zSubmit();

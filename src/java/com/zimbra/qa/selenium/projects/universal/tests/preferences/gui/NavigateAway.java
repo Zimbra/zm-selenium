@@ -55,7 +55,7 @@ public class NavigateAway extends UniversalCommonTest {
 		// This may cause problems if mail is not enabled for this account, but
 		// let's assume that configuration is very rare.
 		//
-		app.zPagePreferences.zClick(PageMain.Locators.zMailApp);
+		app.zPagePreferences.sClick(PageMain.Locators.zMailApp);
 
 		app.zPagePreferences.zWaitForBusyOverlay();
 		
@@ -68,7 +68,7 @@ public class NavigateAway extends UniversalCommonTest {
 			
 			// If the warning dialog is visible, discard
 			// changes and throw exception
-			warning.zClickButton(Button.B_NO);
+			warning.zPressButton(Button.B_NO);
 		}
 		
 		logger.info("navigateAwayCheckWarning: finish");

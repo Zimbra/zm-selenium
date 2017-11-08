@@ -80,7 +80,7 @@ public class SMSNotificationViaEmail extends AjaxCommonTest {
 			ZAssert.assertTrue(dialog.zIsActive(), "Verify that the information dialog is displayed");
 
 			// Click OK on the dialog
-			dialog.zClickButton(Button.B_OK);
+			dialog.zPressButton(Button.B_OK);
 
 			// Check the mailbox of other user for mail containing the verification code
 			MailItem received = MailItem.importFromSOAP(ZimbraAccount.Account3(), "in:inbox content:(verification)");

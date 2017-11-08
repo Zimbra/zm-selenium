@@ -61,7 +61,7 @@ public class UndeployAdminExtensions extends AdminCommonTest {
 		DialogForUndeployAdminExtension dialog = (DialogForUndeployAdminExtension) app.zPageManageAdminExtensions.zToolbarPressPulldown(Button.B_GEAR_BOX,Button.B_UNDEPLOY_ZIMLET);
 		
 		// Click Yes in Confirmation dialog
-		dialog.zClickButton(Button.B_YES);
+		dialog.zPressButton(Button.B_YES);
 		
 		// Verify the admin extension is not listed on zimlet page
 		boolean isUndeploySuccessful = app.zPageManageAdminExtensions.zVerifyAdminExtensionName(adminExtensionName);

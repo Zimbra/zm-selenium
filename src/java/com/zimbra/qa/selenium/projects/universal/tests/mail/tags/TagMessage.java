@@ -69,7 +69,7 @@ public class TagMessage extends PrefGroupMailByMessageTest {
 		DialogTag dialogTag = (DialogTag) app.zPageMail.zToolbarPressPulldown(
 				Button.B_TAG, Button.O_TAG_NEWTAG);
 		dialogTag.zSetTagName(tagName);
-		dialogTag.zClickButton(Button.B_OK);
+		dialogTag.zPressButton(Button.B_OK);
 
 		// Make sure the tag was created on the server (get the tag ID)
 		app.zGetActiveAccount().soapSend(

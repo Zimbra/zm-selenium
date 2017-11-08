@@ -51,7 +51,7 @@ public class DialogAssistant extends AbsDialog {
 	}
 
 	@Override
-	public AbsPage zClickButton(Button button) throws HarnessException {
+	public AbsPage zPressButton(Button button) throws HarnessException {
 
 		if ( button == null )
 			throw new HarnessException("button cannot be null");
@@ -98,7 +98,7 @@ public class DialogAssistant extends AbsDialog {
 		}
 
 		// Click it
-		zClickAt(locator,"0,0");
+		sClickAt(locator,"0,0");
 		
 		// If the app is busy, wait for it to become active
 		zWaitForBusyOverlay();
@@ -129,7 +129,7 @@ public class DialogAssistant extends AbsDialog {
 			throw new HarnessException("Unable to locate command area");
 		
 		this.sFocus(locator);
-		this.zClick(locator);
+		this.sClick(locator);
 		this.zKeyboard.zTypeCharacters(command); // Need to use keyboard for some reason, to activate the OK button
 		this.zWaitForBusyOverlay();
 

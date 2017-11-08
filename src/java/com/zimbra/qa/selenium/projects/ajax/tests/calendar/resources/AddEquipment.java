@@ -145,9 +145,9 @@ public class AddEquipment extends AjaxCommonTest {
 
         DialogFindEquipment dialogFindEquipment = (DialogFindEquipment) new DialogFindEquipment(app, app.zPageCalendar);
         dialogFindEquipment.zType(Locators.EquipmentName, apptEquipment);
-        dialogFindEquipment.zClickButton(Button.B_SEARCH_EQUIPMENT);
-        dialogFindEquipment.zClickButton(Button.B_SELECT_EQUIPMENT);
-        dialogFindEquipment.zClickButton(Button.B_OK);
+        dialogFindEquipment.zPressButton(Button.B_SEARCH_EQUIPMENT);
+        dialogFindEquipment.zPressButton(Button.B_SELECT_EQUIPMENT);
+        dialogFindEquipment.zPressButton(Button.B_OK);
         apptForm.zSubmitWithResources();
 
         // Verify equipment present in the appointment

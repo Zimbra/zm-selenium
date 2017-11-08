@@ -110,8 +110,8 @@ public class Dumpster extends PrefGroupMailByMessageTest {
 		
 		// Click "Recover To" subfolder
 		DialogMove dialog = (DialogMove) form.zToolbarPressButton(Button.B_RECOVER_TO);
-		dialog.zClickTreeFolder(subfolder);
-		dialog.zClickButton(Button.B_OK);
+		dialog.sClickTreeFolder(subfolder);
+		dialog.zPressButton(Button.B_OK);
 
 		// Dismiss the 'Recover deleted items' dialog
 		form.zToolbarPressButton(Button.B_CLOSE);

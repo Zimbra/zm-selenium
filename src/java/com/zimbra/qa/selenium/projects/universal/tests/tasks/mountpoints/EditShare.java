@@ -80,7 +80,7 @@ public class EditShare extends UniversalCommonTest {
 		dialog.zSetEmailAddress(ZimbraAccount.AccountA().EmailAddress);
 
 		// Send it
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 
 		// Make sure that AccountA now has the share
 		ZimbraAccount.AccountA().soapSend(
@@ -108,20 +108,20 @@ public class EditShare extends UniversalCommonTest {
 		ZAssert.assertNotNull(editdialog, "Verify the sharing dialog pops up");
 
 		//Click Edit link on Edit properties dialog
-		DialogShare sharedialog = (DialogShare)editdialog.zClickButton(Button.O_EDIT_LINK);
+		DialogShare sharedialog = (DialogShare)editdialog.zPressButton(Button.O_EDIT_LINK);
 		ZAssert.assertTrue(sharedialog.zIsActive(), "Verify that the Share dialog is active ");
 
 		//Select Admin radio button
 		sharedialog.zSetRole(ShareRole.Admin);
 
 		//click ok
-		sharedialog.zClickButton(Button.B_OK);
+		sharedialog.zPressButton(Button.B_OK);
 
 		//Verify Edit properties  dialog is active
 		ZAssert.assertTrue(editdialog.zIsActive(), "Verify that the Edit Folder Properties dialog is active ");
 
 		//click ok button from edit Folder properties dialog
-		editdialog.zClickButton(Button.B_OK);		
+		editdialog.zPressButton(Button.B_OK);		
 		
 		ZimbraAccount.AccountA().soapSend(
 				"<GetShareInfoRequest xmlns='urn:zimbraAccount'>"

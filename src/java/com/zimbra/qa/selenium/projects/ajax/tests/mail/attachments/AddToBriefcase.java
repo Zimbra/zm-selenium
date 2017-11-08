@@ -90,7 +90,7 @@ public class AddToBriefcase extends PrefGroupMailByMessageTest {
 		// Click to "Briefcase"
 		DialogAddToBriefcase dialog = (DialogAddToBriefcase)display.zListAttachmentItem(Button.B_BRIEFCASE, item);
 		dialog.zChooseBriefcaseFolder(folder.getId());
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 
 		// Verification
 		app.zGetActiveAccount().soapSend(
@@ -166,7 +166,7 @@ public class AddToBriefcase extends PrefGroupMailByMessageTest {
 
 			DialogAddToBriefcase dialog = (DialogAddToBriefcase)app.zPageMail.zToolbarPressButton(Button.B_BRIEFCASE);
 			dialog.zChooseBriefcaseFolder(folder.getId());
-			dialog.zClickButton(Button.B_OK);
+			dialog.zPressButton(Button.B_OK);
 			SleepUtil.sleepLong(); //sometime client takes longer time to add the file
 
         } finally {

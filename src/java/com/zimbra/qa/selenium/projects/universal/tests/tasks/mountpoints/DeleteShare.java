@@ -80,7 +80,7 @@ public class DeleteShare extends UniversalCommonTest {
 		dialog.zSetEmailAddress(ZimbraAccount.AccountA().EmailAddress);
 
 		// Send it
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 
 		// Make sure that AccountA now has the share
 		ZimbraAccount.AccountA().soapSend(
@@ -108,17 +108,17 @@ public class DeleteShare extends UniversalCommonTest {
 		ZAssert.assertNotNull(editdialog, "Verify the sharing dialog pops up");
 
 		//Click Revoke link on Edit properties dialog
-		DialogShareRevoke sharedialog = (DialogShareRevoke)editdialog.zClickButton(Button.O_REVOKE_LINK);		
+		DialogShareRevoke sharedialog = (DialogShareRevoke)editdialog.zPressButton(Button.O_REVOKE_LINK);		
 		ZAssert.assertTrue(sharedialog.zIsActive(), "Verify that the Share dialog is active ");
 		
 		//click Yes
-		sharedialog.zClickButton(Button.B_YES);
+		sharedialog.zPressButton(Button.B_YES);
 		
 		//Verify Edit properties  dialog is active
 		ZAssert.assertTrue(editdialog.zIsActive(), "Verify that the Edit Folder Properties dialog is active ");
 
 		//click ok button from edit Folder properties dialog
-		editdialog.zClickButton(Button.B_OK);		
+		editdialog.zPressButton(Button.B_OK);		
 
 		ZimbraAccount.AccountA().soapSend(
 				"<GetShareInfoRequest xmlns='urn:zimbraAccount'>"

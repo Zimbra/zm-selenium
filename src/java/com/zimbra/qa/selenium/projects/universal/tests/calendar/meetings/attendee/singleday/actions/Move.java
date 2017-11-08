@@ -88,8 +88,8 @@ public class Move extends CalendarWorkWeekTest {
         
         // Right Click -> Move context menu
         DialogMove dialog = (DialogMove)app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.B_MOVE, apptSubject);
-		dialog.zClickTreeFolder(subfolder1);
-		dialog.zClickButton(Button.B_OK);
+		dialog.sClickTreeFolder(subfolder1);
+		dialog.zPressButton(Button.B_OK);
 
 		//-- Server verification
 		AppointmentItem newAppointment = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ apptSubject +")");

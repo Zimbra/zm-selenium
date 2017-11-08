@@ -94,7 +94,7 @@ public class TagFile extends FeatureBriefcaseTest {
 
 		SleepUtil.sleepSmall();
 		dialogTag.zSetTagName(tagName);
-		dialogTag.zClickButton(Button.B_OK);
+		dialogTag.zPressButton(Button.B_OK);
 
 		
 

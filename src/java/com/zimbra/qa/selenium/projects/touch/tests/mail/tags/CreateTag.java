@@ -52,7 +52,7 @@ public class CreateTag extends PrefGroupMailByMessageTest {
 		PageCreateTag createtagPage = (PageCreateTag) app.zTreeMail.zPressButton(Button.B_NEW_TAG);
 		
 		createtagPage.zEnterTagName(tagName);
-		createtagPage.zClickButton(Button.B_SAVE);
+		createtagPage.zPressButton(Button.B_SAVE);
 
 		// Make sure the tag was created on the ZCS server
 		TagItem tag = TagItem.importFromSOAP(app.zGetActiveAccount(),tagName);
@@ -85,18 +85,18 @@ public class CreateTag extends PrefGroupMailByMessageTest {
 		
 		//Create a tag item
 		createtagPage.zEnterTagName(tagName);
-		createtagPage.zClickButton(Button.B_SAVE);
+		createtagPage.zPressButton(Button.B_SAVE);
 		
 		//Try to create duplicate tag
 		app.zTreeMail.zPressButton(Button.B_NEW_TAG);
 		createtagPage.zEnterTagName(tagName);
-		createtagPage.zClickButton(Button.B_SAVE);
+		createtagPage.zPressButton(Button.B_SAVE);
 		
 		//Verify error dialog is displayed
 		createtagPage.zVerifyDialogText(errorMessage);
 		
 		//Click on OK button 
-		createtagPage.zClickButton(Button.B_OK);
+		createtagPage.zPressButton(Button.B_OK);
 		
 		// Verify existing tag
 		TagItem tag = TagItem.importFromSOAP(app.zGetActiveAccount(),tagName);

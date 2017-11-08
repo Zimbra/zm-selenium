@@ -53,7 +53,7 @@ public class CreateFolder extends FeatureBriefcaseTest {
 				.zPressPulldown(Button.B_TREE_FOLDERS_OPTIONS, Button.B_TREE_NEWFOLDER);
 
 		createFolderDialog.zEnterFolderName(_folderName);
-		createFolderDialog.zClickButton(Button.B_OK);
+		createFolderDialog.zPressButton(Button.B_OK);
 
 		_folderIsCreated = true;
 
@@ -92,7 +92,7 @@ public class CreateFolder extends FeatureBriefcaseTest {
 
 		// Fill out the form with the basic details
 		createFolderDialog.zEnterFolderName(_folderName);
-		createFolderDialog.zClickButton(Button.B_OK);
+		createFolderDialog.zPressButton(Button.B_OK);
 
 		_folderIsCreated = true;
 
@@ -123,7 +123,7 @@ public class CreateFolder extends FeatureBriefcaseTest {
 				.zTreeItem(Action.A_RIGHTCLICK, Button.B_TREE_NEWFOLDER, briefcaseRootFolder);
 
 		createFolderDialog.zEnterFolderName(_folderName);
-		createFolderDialog.zClickButton(Button.B_OK);
+		createFolderDialog.zPressButton(Button.B_OK);
 
 		_folderIsCreated = true;
 
@@ -161,7 +161,7 @@ public class CreateFolder extends FeatureBriefcaseTest {
 
 		// Fill out the form with the basic details
 		dialog.zEnterFolderName(_folderName);
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 
 		_folderIsCreated = true;
 

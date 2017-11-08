@@ -78,7 +78,7 @@ public class ModifyDisposal extends PrefGroupMailByMessageTest {
 		dialog.zDisposalSetRangeValue(6);
 
 		// Save
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 		
 		
 		//-- Verification

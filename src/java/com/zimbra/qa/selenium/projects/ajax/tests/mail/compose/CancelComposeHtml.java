@@ -56,7 +56,7 @@ public class CancelComposeHtml extends PrefGroupMailByMessageTest {
 		ZAssert.assertNotNull(warning, "Verify the dialog is returned");
 
 		// Dismiss the dialog
-		warning.zClickButton(Button.B_NO);
+		warning.zPressButton(Button.B_NO);
 		warning.zWaitForClose();
 	}
 
@@ -92,7 +92,7 @@ public class CancelComposeHtml extends PrefGroupMailByMessageTest {
 		DialogWarning warning =(DialogWarning)app.zPageMail.zKeyboardShortcut(shortcut);
 		ZAssert.assertNotNull(warning, "Verify the dialog is opened");
 
-		warning.zClickButton(Button.B_NO);
+		warning.zPressButton(Button.B_NO);
 		warning.zWaitForClose();
 
 		List<MailItem> messages = app.zPageMail.zListGetMessages();

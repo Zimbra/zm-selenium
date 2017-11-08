@@ -249,11 +249,11 @@ public class FormApptNew extends AbsForm {
 		zToolbarPressButton(Button.B_SHOW);
 		SleepUtil.sleepSmall();
 		this
-				.zClickAt(
+				.sClickAt(
 						"css=td[id$='_scheduler'] td[id$='_SELECT_'] td[id$='_dropdown']",
 						"");
 		this
-				.zClickAt(
+				.sClickAt(
 						"css=div[class='DwtMenu ZHasIcon'] td[id$='_title']:contains('Optional Attendee')",
 						"");
 		this.zType("css=td[id$='_scheduler'] td[id$='_NAME_'] input", attendee);
@@ -268,11 +268,11 @@ public class FormApptNew extends AbsForm {
 		zToolbarPressButton(Button.B_SHOW);
 		SleepUtil.sleepSmall();
 		this
-				.zClickAt(
+				.sClickAt(
 						"css=td[id$='_scheduler'] td[id$='_SELECT_'] td[id$='_dropdown']",
 						"");
 		this
-				.zClickAt(
+				.sClickAt(
 						"css=div[class='DwtMenu ZHasIcon'] td[id$='_title']:contains('Location')",
 						"");
 		this.zType("css=td[id$='_scheduler'] td[id$='_NAME_'] input", location);
@@ -286,11 +286,11 @@ public class FormApptNew extends AbsForm {
 		zToolbarPressButton(Button.B_SHOW);
 		SleepUtil.sleepSmall();
 		this
-				.zClickAt(
+				.sClickAt(
 						"css=td[id$='_scheduler'] td[id$='_SELECT_'] td[id$='_dropdown']",
 						"");
 		this
-				.zClickAt(
+				.sClickAt(
 						"css=div[class='DwtMenu ZHasIcon'] td[id$='_title']:contains('Equipment')",
 						"");
 		this
@@ -358,8 +358,8 @@ public class FormApptNew extends AbsForm {
 	public void zRemoveLocation(String location) throws HarnessException {
 		this.zRightClickAt("css=td[id$='_location'] span:contains('" + location
 				+ "')", "");
-		this.zClickAt(Locators.DeleteZimletContextMenu, "");
-		this.zClickAt("css=input[id$='_location_input']", "");
+		this.sClickAt(Locators.DeleteZimletContextMenu, "");
+		this.sClickAt("css=input[id$='_location_input']", "");
 		SleepUtil.sleepMedium();
 	}
 	
@@ -414,7 +414,7 @@ public class FormApptNew extends AbsForm {
 			locator = Locators.SaveButton;
 
 			// Click on send
-			this.zClick(locator);
+			this.sClick(locator);
 
 			this.zWaitForBusyOverlay();
 

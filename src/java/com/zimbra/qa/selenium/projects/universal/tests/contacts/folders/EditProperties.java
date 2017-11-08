@@ -61,7 +61,7 @@ public class EditProperties extends UniversalCommonTest {
 		ZAssert.assertNotNull(dialog, "Verify the dialog opened");
 
 		dialog.zSetNewColor(FolderColor.Blue);
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 
 		// -- Verification
 
@@ -91,7 +91,7 @@ public class EditProperties extends UniversalCommonTest {
 		ZAssert.assertNotNull(dialog, "Verify the dialog opened");
 
 		dialog.zSetNewColor(FolderColor.Green);
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 
 		// -- Verification
 
@@ -127,7 +127,7 @@ public class EditProperties extends UniversalCommonTest {
 		ZAssert.assertNotNull(dialog, "Verify the dialog opened");
 
 		dialog.zSetNewColor(FolderColor.Red);
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 
 		// -- Verification
 
@@ -164,7 +164,7 @@ public class EditProperties extends UniversalCommonTest {
 		ZAssert.assertNotNull(dialog, "Verify the dialog opened");
 
 		dialog.zSetNewName(newname);
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 
 		// -- Verification
 
@@ -204,7 +204,7 @@ public class EditProperties extends UniversalCommonTest {
 		ZAssert.assertNotNull(dialog, "Verify the dialog opened");
 
 		dialog.zSetNewName(newname);
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 
 		// -- Verification
 
@@ -245,7 +245,7 @@ public class EditProperties extends UniversalCommonTest {
 
 		dialog.zSetNewColor(FolderColor.Yellow);
 		dialog.zSetNewName(newname);
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 
 		// -- Verification
 
@@ -287,7 +287,7 @@ public class EditProperties extends UniversalCommonTest {
 
 		dialog.zSetNewColor(FolderColor.Orange);
 		dialog.zSetNewName(newname);
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 
 		// -- Verification
 

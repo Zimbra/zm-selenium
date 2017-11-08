@@ -70,7 +70,7 @@ public class RemoveDelegate extends UniversalCommonTest {
 		if ( (errorDialog != null) && (errorDialog.zIsActive()) ) {
 
 		    // Dismiss the dialog and carry on
-		    errorDialog.zClickButton(Button.B_OK);
+		    errorDialog.zPressButton(Button.B_OK);
 		}
 		
 		// Navigate to preferences -> notifications
@@ -79,19 +79,19 @@ public class RemoveDelegate extends UniversalCommonTest {
 		// Select the grant in the list
 		String itemLocator = "css=div[id$='_PRIMARY'] div[id$='__na_name']:contains('"+ delegate.EmailAddress +"')";
 		ZAssert.assertTrue(app.zPagePreferences.sIsElementPresent(itemLocator), "Verify the delegate item is present in the list");
-		app.zPagePreferences.zClickAt(itemLocator, "");
+		app.zPagePreferences.sClickAt(itemLocator, "");
 
 		// See http://bugzilla.zimbra.com/show_bug.cgi?id=74282
 		// TODO: Maybe this button should be abstracted?
 		String buttonLocator = "css=div[id$='_PRIMARY'] td[id$='_title']:contains('Remove')";
 		ZAssert.assertTrue(app.zPagePreferences.sIsElementPresent(buttonLocator), "Verify the add delegate button is present");
-		app.zPagePreferences.zClickAt(buttonLocator, "");
+		app.zPagePreferences.sClickAt(buttonLocator, "");
 		
 		SleepUtil.sleepSmall();
 		
 		// Wait for the dialog to appear (?)
 //		DialogDelegate dialog = new DialogDelegate(app, app.zPagePreferences);
-//		dialog.zClickButton(Button.B_OK);
+//		dialog.zPressButton(Button.B_OK);
 		
 		
 		//-- Verification

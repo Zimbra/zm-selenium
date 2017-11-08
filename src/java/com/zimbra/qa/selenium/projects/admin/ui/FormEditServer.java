@@ -84,10 +84,10 @@ public class FormEditServer extends AbsForm {
 	public void zSubmit() throws HarnessException {
 		sClickAt(Locators.SAVE_BUTTON,"");
 		SleepUtil.sleepSmall();
-		zClickAt(Locators.CLOSE_BUTTON,"0,0");
+		sClickAt(Locators.CLOSE_BUTTON,"0,0");
 	}
 
-	public void zClickTreeItem(String treeItem) throws HarnessException {
+	public void zSelectTreeItem(String treeItem) throws HarnessException {
 		sClickAt("css=td:contains('" + treeItem + "')", "");
 	}
 

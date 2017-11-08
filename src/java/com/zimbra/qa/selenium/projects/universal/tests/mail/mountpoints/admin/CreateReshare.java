@@ -96,7 +96,7 @@ public class CreateReshare extends PrefGroupMailByMessageTest {
 		dialog.zSetEmailAddress(Destination.EmailAddress);
 		
 		// Send it
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 		
 		// Make sure that AccountA now has the share
 		Destination.soapSend(

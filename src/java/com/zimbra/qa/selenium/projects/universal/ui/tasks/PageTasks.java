@@ -195,7 +195,7 @@ public class PageTasks extends AbsTab{
 		if (action == Action.A_LEFTCLICK) {
 
 			// Left-Click on the item
-			this.zClick(itemLocator);
+			this.sClick(itemLocator);
 
 			this.zWaitForBusyOverlay();
 
@@ -234,7 +234,7 @@ public class PageTasks extends AbsTab{
 
 			// Left-Click on the flag field
 
-			this.zClick(selectlocator);
+			this.sClick(selectlocator);
 			this.zWaitForBusyOverlay();
 
 			// No page to return
@@ -260,7 +260,7 @@ public class PageTasks extends AbsTab{
 
 			// Left-Click on the flag field
 
-			this.zClick(selectlocator);
+			this.sClick(selectlocator);
 			this.zWaitForBusyOverlay();
 
 			// No page to return
@@ -669,13 +669,13 @@ public class PageTasks extends AbsTab{
 				pulldownLocator = "css=div#"+ PrintTaskDropDown + " td[id$='_dropdown']";
 			}
 			//pulldownLocator = Locators.zPrintTaskDropDown;
-			this.zClickAt(pulldownLocator,"");
+			this.sClickAt(pulldownLocator,"");
 			zWaitForBusyOverlay();
 
 			if (option== Button.O_PRINT_TASKFOLDER) {
 				// Click the pulldown option, if specified
 				optionLocator = Locators.zPrintTaskFolder;
-				this.zClickAt(optionLocator,"");
+				this.sClickAt(optionLocator,"");
 				zWaitForBusyOverlay();
 			}
 
@@ -712,7 +712,7 @@ public class PageTasks extends AbsTab{
 						+ " not present!");
 			}
 
-			this.zClickAt(pulldownLocator,"");
+			this.sClickAt(pulldownLocator,"");
 			SleepUtil.sleepMedium();
 			// If the app is busy, wait for it to become active
 			zWaitForBusyOverlay();
@@ -726,7 +726,7 @@ public class PageTasks extends AbsTab{
 							+ optionLocator + " not present!");
 				}
 
-				this.zClickAt(optionLocator,"");
+				this.sClickAt(optionLocator,"");
 
 				// If the app is busy, wait for it to become active
 				zWaitForBusyOverlay();
@@ -808,7 +808,7 @@ public class PageTasks extends AbsTab{
 						+ " not present!");
 			}
 
-			this.zClickAt(pulldownLocator, "");
+			this.sClickAt(pulldownLocator, "");
 
 			// If the app is busy, wait for it to become active
 			zWaitForBusyOverlay();
@@ -824,7 +824,7 @@ public class PageTasks extends AbsTab{
 							+ " not present!");
 				}
 
-				this.zClickAt(optionLocator, "");
+				this.sClickAt(optionLocator, "");
 
 				// If the app is busy, wait for it to become active
 				zWaitForBusyOverlay();

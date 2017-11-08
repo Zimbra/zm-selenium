@@ -46,6 +46,6 @@ public class Cancel extends PrefGroupMailByMessageTest {
 		DialogShareFind dialog = (DialogShareFind)app.zTreeMail.zPressPulldown(Button.B_TREE_FOLDERS_OPTIONS, Button.B_TREE_FIND_SHARES);
 
 		// Close the dialog box
-		dialog.zClickButton(Button.B_CANCEL);
+		dialog.zPressButton(Button.B_CANCEL);
 	}
 }

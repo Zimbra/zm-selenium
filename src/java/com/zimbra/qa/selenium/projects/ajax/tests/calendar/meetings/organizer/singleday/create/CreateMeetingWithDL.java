@@ -71,12 +71,12 @@ public class CreateMeetingWithDL extends AjaxCommonTest {
 
         DialogFindAttendees dialogFindAttendees = (DialogFindAttendees) new DialogFindAttendees(app, app.zPageCalendar);
         dialogFindAttendees.zFillField(Field.ContactPickerSerachField, distribution.EmailAddress);
-        dialogFindAttendees.zClickButton(Button.B_SEARCH);
+        dialogFindAttendees.zPressButton(Button.B_SEARCH);
         dialogFindAttendees.zWaitForBusyOverlay();
 
         // Choose the contact and choose it
-        dialogFindAttendees.zClickButton(Button.B_CHOOSE_CONTACT_FROM_PICKER);
-        dialogFindAttendees.zClickButton(Button.B_OK);
+        dialogFindAttendees.zPressButton(Button.B_CHOOSE_CONTACT_FROM_PICKER);
+        dialogFindAttendees.zPressButton(Button.B_OK);
 		apptForm.zSubmit();
 
         // Verify attendee1 of DL receives meeting invitation message

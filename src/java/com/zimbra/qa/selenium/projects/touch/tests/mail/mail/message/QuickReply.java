@@ -63,7 +63,7 @@ public class QuickReply extends PrefGroupMailByMessageTest {
 		app.zPageMail.zFillField(Field.Body, reply);
 		SleepUtil.sleepSmall();
 		
-		app.zPageMail.zClickButton(Button.B_SEND);
+		app.zPageMail.zPressButton(Button.B_SEND);
 		
 		// Verify message in Sent
 		MailItem sent = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +") from:("+ app.zGetActiveAccount().EmailAddress +")");
@@ -107,7 +107,7 @@ public class QuickReply extends PrefGroupMailByMessageTest {
 		// Send quick Reply
 		app.zPageMail.zFillField(Field.Body, reply);
 		
-		app.zPageMail.zClickButton(Button.B_SEND);
+		app.zPageMail.zPressButton(Button.B_SEND);
 		
 		// Verify message in Sent
 		MailItem sent = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +") from:("+ app.zGetActiveAccount().EmailAddress +")");

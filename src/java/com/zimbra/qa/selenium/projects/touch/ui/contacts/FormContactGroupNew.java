@@ -146,7 +146,7 @@ public class FormContactGroupNew extends AbsForm {
 			// If no pending changes, the dialog will not appear.
 			// Click the button and blindly return the page (no checking for active)
 			
-			this.zClick(locator);
+			this.sClick(locator);
 			
 			return (page);
 			
@@ -203,7 +203,7 @@ public class FormContactGroupNew extends AbsForm {
 		}
 		
 		// Click it
-		this.zClickAt(locator,"");
+		this.sClickAt(locator,"");
 		
 		SleepUtil.sleepMedium();
 
@@ -252,7 +252,7 @@ public class FormContactGroupNew extends AbsForm {
 				throw new HarnessException("Button "+ pulldown +" option "+ option +" pulldownLocator "+ pulldownLocator +" not present!");
 			}
 			
-			this.zClick(pulldownLocator);
+			this.sClick(pulldownLocator);
 
 			this.zWaitForBusyOverlay();
 
@@ -287,7 +287,7 @@ public class FormContactGroupNew extends AbsForm {
 				throw new HarnessException("Button "+ pulldown +" option "+ option +" optionLocator "+ optionLocator +" not present!");
 			}
 			
-			this.zClick(optionLocator);
+			this.sClick(optionLocator);
 
 			this.zWaitForBusyOverlay();
 
@@ -508,7 +508,7 @@ public class FormContactGroupNew extends AbsForm {
 		}
 		
 		//select contact dropdown 
-		zClick(dropdown + postfix);
+		sClick(dropdown + postfix);
 		SleepUtil.sleepSmall();		
 		
 		
@@ -526,7 +526,7 @@ public class FormContactGroupNew extends AbsForm {
 		app.zPageAddressbook.zKeyboardKeyEvent(KeyEvent.VK_ENTER);		
 
 		
-		//formGroup.zClick(FormContactGroupNew.Locators.zDropdownSelectContacts);
+		//formGroup.sClick(FormContactGroupNew.Locators.zDropdownSelectContacts);
 		
 		
 		return ;

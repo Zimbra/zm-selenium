@@ -54,7 +54,7 @@ public class ZimbraPrefSkinSerenity extends UniversalCommonTest {
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.General);
 		String locator = "css=td[id='Prefs_Select_SKIN_NAME_dropdown']>div";
 		
-		app.zPagePreferences.zClickAt(locator,"");
+		app.zPagePreferences.sClickAt(locator,"");
 		
 		String Skinlocator="css=div[id^='Prefs_Select_SKIN_NAME_Menu'] td[id$='_title']:contains('Bare')";
 	
@@ -63,7 +63,7 @@ public class ZimbraPrefSkinSerenity extends UniversalCommonTest {
 				"Verify the 'Bare' theme selection is present");
 		
 		// Click on the "Bare" theme
-		app.zPagePreferences.zClick(Skinlocator);
+		app.zPagePreferences.sClick(Skinlocator);
 		app.zPagePreferences.zWaitForBusyOverlay();
 		
 		app.zPagePreferences.zToolbarPressButton(Button.B_SAVE);

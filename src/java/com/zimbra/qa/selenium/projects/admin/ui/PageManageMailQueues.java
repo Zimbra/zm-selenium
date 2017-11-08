@@ -82,10 +82,10 @@ public class PageManageMailQueues extends AbsTab {
 		}
 
 		// Click on Addresses -> Accounts
-		zClickAt(Locators.MONITOR_ICON,"");
+		sClickAt(Locators.MONITOR_ICON,"");
 		zWaitForWorkInProgressDialogInVisible();
 		sIsElementPresent(Locators.MAIL_QUEUES);
-		zClickAt(Locators.MAIL_QUEUES, "");
+		sClickAt(Locators.MAIL_QUEUES, "");
 		zWaitForWorkInProgressDialogInVisible();
 		zWaitForActive();
 	}

@@ -89,11 +89,11 @@ public class DeleteSeries extends CalendarWorkWeekTest {
 		
 		app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_SERIES_MENU, Button.O_DELETE_MENU, apptSubject);
 		DialogConfirmationDeleteAppointment dialog = (DialogConfirmationDeleteAppointment) new DialogConfirmationDeleteAppointment(app, app.zPageCalendar);
-		dialog.zClickButton(Button.B_DELETE_THIS_AND_FUTURE_OCCURRENCES);	
+		dialog.zPressButton(Button.B_DELETE_THIS_AND_FUTURE_OCCURRENCES);	
 		SleepUtil.sleepMedium();
-        dialog.zClickButton(Button.B_YES);
+        dialog.zPressButton(Button.B_YES);
         DialogConfirmDeleteOrganizer dialog2 = (DialogConfirmDeleteOrganizer) new DialogConfirmDeleteOrganizer(app, app.zPageCalendar);
-		dialog2.zClickButton(Button.B_SEND_CANCELLATION);
+		dialog2.zPressButton(Button.B_SEND_CANCELLATION);
 
 		app.zGetActiveAccount().soapSend(
 				"<SearchRequest xmlns='urn:zimbraMail' types='appointment' calExpandInstStart='"+ startUTC.addDays(-10).toMillis() +"' calExpandInstEnd='"+ endUTC.addDays(10).toMillis() +"'>"
@@ -157,11 +157,11 @@ public class DeleteSeries extends CalendarWorkWeekTest {
 		
 		app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_SERIES_MENU, Button.O_DELETE_MENU, apptSubject);
 		DialogConfirmationDeleteAppointment dialog = (DialogConfirmationDeleteAppointment) new DialogConfirmationDeleteAppointment(app, app.zPageCalendar);
-		dialog.zClickButton(Button.B_DELETE_THIS_AND_FUTURE_OCCURRENCES);	
+		dialog.zPressButton(Button.B_DELETE_THIS_AND_FUTURE_OCCURRENCES);	
 		SleepUtil.sleepMedium();
-        dialog.zClickButton(Button.B_YES);
+        dialog.zPressButton(Button.B_YES);
         DialogConfirmDeleteOrganizer dialog2 = (DialogConfirmDeleteOrganizer) new DialogConfirmDeleteOrganizer(app, app.zPageCalendar);
-		dialog2.zClickButton(Button.B_SEND_CANCELLATION);
+		dialog2.zPressButton(Button.B_SEND_CANCELLATION);
 
 		app.zGetActiveAccount().soapSend(
 				"<SearchRequest xmlns='urn:zimbraMail' types='appointment' calExpandInstStart='"+ startUTC.addDays(-10).toMillis() +"' calExpandInstEnd='"+ endUTC.addDays(10).toMillis() +"'>"

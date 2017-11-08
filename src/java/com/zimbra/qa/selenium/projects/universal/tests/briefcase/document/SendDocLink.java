@@ -96,7 +96,7 @@ public class SendDocLink extends FeatureBriefcaseTest {
 					Button.B_ACTIONS, Button.O_SEND_LINK, docItem);
 	
 		// Click Yes on confirmation dialog
-		FormMailNew mailform = (FormMailNew) confDlg.zClickButton(Button.B_YES);
+		FormMailNew mailform = (FormMailNew) confDlg.zPressButton(Button.B_YES);
 
 		// Verify the new mail form is opened
 		ZAssert.assertTrue(mailform.zIsActive(), "Verify the new form opened");
@@ -114,7 +114,7 @@ public class SendDocLink extends FeatureBriefcaseTest {
 		// temporary: check if dialog exists since it was implemented recently on send link 
 		if (warningDlg.zIsActive()) {
 			// Dismiss the dialog
-			warningDlg.zClickButton(Button.B_NO);
+			warningDlg.zPressButton(Button.B_NO);
 
 			// Make sure the dialog is dismissed
 			warningDlg.zWaitForClose();
@@ -170,7 +170,7 @@ public class SendDocLink extends FeatureBriefcaseTest {
 				Action.A_RIGHTCLICK, Button.O_SEND_LINK, docItem);
 
 		// Click Yes on confirmation dialog
-		FormMailNew mailform = (FormMailNew) confDlg.zClickButton(Button.B_YES);
+		FormMailNew mailform = (FormMailNew) confDlg.zPressButton(Button.B_YES);
 
 		// Verify the new mail form is opened
 		ZAssert.assertTrue(mailform.zIsActive(), "Verify the new form opened");
@@ -188,7 +188,7 @@ public class SendDocLink extends FeatureBriefcaseTest {
 		// temporary: check if dialog exists since it was implemented recently on send link 
 		if (warningDlg.zIsActive()) {
 			// Dismiss the dialog
-			warningDlg.zClickButton(Button.B_NO);
+			warningDlg.zPressButton(Button.B_NO);
 
 			// Make sure the dialog is dismissed
 			warningDlg.zWaitForClose();

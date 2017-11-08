@@ -74,13 +74,13 @@ public class ShowSharedFolderThroughDLAndAccept extends AjaxCommonTest {
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.Sharing);
 
 		// Click "show folders shared with me through a DL'
-		app.zPagePreferences.zClick("css=label[id$='group_text_right']:contains('Show folders shared with me through a distribution list')"); // Select share with me through DL option
+		app.zPagePreferences.sClick("css=label[id$='group_text_right']:contains('Show folders shared with me through a distribution list')");
 
 		// Accept the share from active account
 		app.zPagePreferences.zWaitForBusyOverlay();
-		app.zPagePreferences.sClick("css=div[id='zl__SVP__rows'] a[id$='_accept']"); //Accept locator
+		app.zPagePreferences.sClick("css=div[id='zl__SVP__rows'] a[id$='_accept']");
 		SleepUtil.sleepSmall();
-		app.zPagePreferences.sClick("css=td[id='ZmAcceptShare_button5_title']"); // 'Yes' button locator
+		app.zPagePreferences.sClick("css=td[id='ZmAcceptShare_button5_title']"); // Yes button locator
 		SleepUtil.sleepMedium();
 
 		// SOAP verification

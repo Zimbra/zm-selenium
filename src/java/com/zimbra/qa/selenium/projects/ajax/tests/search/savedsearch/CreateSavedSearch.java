@@ -52,7 +52,7 @@ public class CreateSavedSearch extends AjaxCommonTest  {
 
 			// Save the search
 			dialog.zEnterFolderName(name);
-			dialog.zClickButton(Button.B_OK);
+			dialog.zPressButton(Button.B_OK);
 
 		} finally {
 			app.zPageSearch.zClose();

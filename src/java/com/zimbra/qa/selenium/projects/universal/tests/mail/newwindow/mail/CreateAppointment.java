@@ -80,9 +80,9 @@ public class CreateAppointment extends PrefGroupMailByMessageTest {
 
 			window.zToolbarPressPulldown(Button.B_ACTIONS, Button.O_CREATE_APPOINTMENT);
 			SleepUtil.sleepMedium();
-			app.zPageMail.zClickAt(DialogAddAttendees.Locators.zYesButton,"");
+			app.zPageMail.sClickAt(DialogAddAttendees.Locators.zYesButton,"");
 			SleepUtil.sleepLong();
-			app.zPageMail.zClickAt("css=div[id^='ztb__APPT-'] td[id$='_SEND_INVITE_title']", "");
+			app.zPageMail.sClickAt("css=div[id^='ztb__APPT-'] td[id$='_SEND_INVITE_title']", "");
 			SleepUtil.sleepMedium();
 
 		} finally {

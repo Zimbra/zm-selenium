@@ -210,8 +210,8 @@ public class TagMessage extends PrefGroupMailByMessageTest {
 			// Tag the item (shortcut)
 			// Maybe a bug? ... the tag dialog opens: https://bugzilla.zimbra.com/show_bug.cgi?id=79887
 			DialogTagPicker dialogTag = (DialogTagPicker)app.zPageMail.zKeyboardShortcut(Shortcut.S_MAIL_TAG);
-			dialogTag.zClickTreeTag(tag);
-			dialogTag.zClickButton(Button.B_OK);
+			dialogTag.sClickTreeTag(tag);
+			dialogTag.zPressButton(Button.B_OK);
 	
 			// SEE bug: http://bugzilla.zimbra.com/show_bug.cgi?id=79887
 			
@@ -222,7 +222,7 @@ public class TagMessage extends PrefGroupMailByMessageTest {
 			DialogError dialog = app.zPageMain.zGetErrorDialog(DialogError.DialogErrorID.Zimbra);
 			ZAssert.assertNotNull(dialog, "Verify the PERM DENIED Error Dialog is created");
 			ZAssert.assertTrue(dialog.zIsActive(), "Verify the PERM DENIED Error Dialog is active");
-			dialog.zClickButton(Button.B_OK);
+			dialog.zPressButton(Button.B_OK);
 
 		} finally {
 			

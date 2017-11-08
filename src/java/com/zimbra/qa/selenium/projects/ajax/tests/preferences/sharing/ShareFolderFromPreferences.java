@@ -42,15 +42,15 @@ public class ShareFolderFromPreferences extends AjaxCommonTest {
 
 		// Select share button and Share inbox
 		app.zPagePreferences.zFolderPressPulldown(Button.O_SHARE_FOLDER_TYPE);
-		app.zPagePreferences.zClick("css=td[id='zti__ZmChooseFolderDialog_Mail__2_textCell']"); //Locator for selecting inbox in share dialog
+		app.zPagePreferences.sClick("css=td[id='zti__ZmChooseFolderDialog_Mail__2_textCell']"); //Locator for selecting inbox in share dialog
 		SleepUtil.sleepSmall();
-		app.zPagePreferences.zClick("css=td[id='ChooseFolderDialog_button2_title']:contains('OK')"); //Locator for selecting Ok button in share dialog
+		app.zPagePreferences.sClick("css=td[id='ChooseFolderDialog_button2_title']:contains('OK')");
 		SleepUtil.sleepMedium();
 
 		// Enter email and share with managers rights
 		app.zPagePreferences.zSetEmailAddress(ZimbraAccount.AccountA().EmailAddress);
 		app.zPagePreferences.zSetRole(ShareRole.Manager);
-		app.zPagePreferences.zClickButton(Button.B_OK);
+		app.zPagePreferences.zPressButton(Button.B_OK);
 
 		// Make sure that AccountA now has the share
 		ZimbraAccount.AccountA().soapSend(

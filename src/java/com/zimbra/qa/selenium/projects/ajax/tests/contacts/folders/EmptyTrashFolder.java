@@ -66,7 +66,7 @@ public class EmptyTrashFolder extends AjaxCommonTest {
 		DialogWarning dialogWarning = (DialogWarning) app.zTreeContacts.zTreeItem(Action.A_RIGHTCLICK, Button.B_TREE_FOLDER_EMPTY, trash);
 
 		// Click OK
-		dialogWarning.zClickButton(Button.B_OK);
+		dialogWarning.zPressButton(Button.B_OK);
 
 		// Verify Trash folder is empty
 		ContactItem actualContact = ContactItem.importFromSOAP(app.zGetActiveAccount(),
@@ -116,7 +116,7 @@ public class EmptyTrashFolder extends AjaxCommonTest {
 		DialogWarning dialogWarning = (DialogWarning) app.zTreeContacts.zTreeItem(Action.A_RIGHTCLICK, Button.B_TREE_FOLDER_EMPTY, trash);
 
 		// Click OK
-		dialogWarning.zClickButton(Button.B_CANCEL);
+		dialogWarning.zPressButton(Button.B_CANCEL);
 
 		// Verify Trash folder is empty
 		ContactItem actualContact = ContactItem.importFromSOAP(app.zGetActiveAccount(),

@@ -86,7 +86,7 @@ public class AttachBriefcaseFileAndSendMail extends PrefGroupMailByMessageTest {
 		SleepUtil.sleepMedium();
 		dialog.sClick("css=div[id='zv__BCI'] div[id^='zli__BCI__'] tr td:contains('" + docName + "')");
 		SleepUtil.sleepSmall();
-		dialog.zClickButton(Button.B_ATTACH);
+		dialog.zPressButton(Button.B_ATTACH);
 		SleepUtil.sleepLong();
 		mailform.zSubmit();
 

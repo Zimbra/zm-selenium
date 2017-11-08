@@ -59,13 +59,13 @@ public class MoveFolder extends PrefGroupMailByMessageTest {
 				
 		// Select the folder from the list
 		PageCreateFolder createFolderPage = new PageCreateFolder(app, startingPage);
-		createFolderPage.zClickButton(Button.B_EDIT);
+		createFolderPage.zPressButton(Button.B_EDIT);
 		createFolderPage.zSelectFolder(folderName1);
 		
 		// Moving folder to another folder
-		createFolderPage.zClickButton(Button.B_LOCATION);
+		createFolderPage.zPressButton(Button.B_LOCATION);
 		createFolderPage.zSelectFolder(folderName);
-		createFolderPage.zClickButton(Button.B_SAVE);
+		createFolderPage.zPressButton(Button.B_SAVE);
 		
         // Verification
 		
@@ -76,7 +76,7 @@ public class MoveFolder extends PrefGroupMailByMessageTest {
 		ZAssert.assertEquals(actual.getParentId(), addressbook.getId(), "Verify the subfolder's parent is now the other subfolder");
 
         // UI Verify the folder is in the other Subfolder
-		createFolderPage.zClickButton(Button.B_SUBFOLDER_ICON);
+		createFolderPage.zPressButton(Button.B_SUBFOLDER_ICON);
 		ZAssert.assertTrue(createFolderPage.zVerifyFolderExists(folderName1), "Verify folder name exist");
 	}	
 }

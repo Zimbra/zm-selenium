@@ -177,7 +177,7 @@ public class EditContactGroup extends UniversalCommonTest  {
 		dialog.zWaitForActive();
 
 		// Click No: Don't save changes
-		dialog.zClickButton(Button.B_NO);
+		dialog.zPressButton(Button.B_NO);
 
 		//-- Verification
 
@@ -221,7 +221,7 @@ public class EditContactGroup extends UniversalCommonTest  {
 		dialog.zWaitForActive();
 
 		// Click Cancel: Save changes?
-		dialog.zClickButton(Button.B_CANCEL);
+		dialog.zPressButton(Button.B_CANCEL);
 
 		// Click Save
 		formContactGroupNew.zToolbarPressButton(Button.B_SAVE);
@@ -263,7 +263,7 @@ public class EditContactGroup extends UniversalCommonTest  {
 		dialog.zWaitForActive();
 
 		// Click Yes: Don't save changes
-		dialog.zClickButton(Button.B_YES);
+		dialog.zPressButton(Button.B_YES);
 
 		//-- Verification
 		ContactGroupItem actual = ContactGroupItem.importFromSOAP(app.zGetActiveAccount(), "#nickname:"+ newname);

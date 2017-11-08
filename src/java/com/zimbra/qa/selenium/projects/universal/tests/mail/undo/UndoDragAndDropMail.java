@@ -85,7 +85,7 @@ public class UndoDragAndDropMail extends PrefGroupMailByMessageTest {
 
 		// Click undo
 		Toaster toaster = app.zPageMain.zGetToaster();
-		toaster.zClickUndo();
+		toaster.sClickUndo();
 
 		MailItem undone = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
 		ZAssert.assertEquals(undone.dFolderId, inbox.getId(), "Verify the message is now in the inbox");

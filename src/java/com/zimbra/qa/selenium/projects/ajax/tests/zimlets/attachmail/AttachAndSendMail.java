@@ -77,10 +77,10 @@ public class AttachAndSendMail extends PrefGroupMailByMessageTest {
 		ZAssert.assertTrue(dialog.zIsActive(), "Attach Mail dialog gets open and active");
 
 		// Click on Inbox folder
-		dialog.zClick(Locators.zAttachInboxFolder);
+		dialog.sClick(Locators.zAttachInboxFolder);
 		SleepUtil.sleepMedium();
 		dialog.sClick("css=div[id='zv__BCI'] tr[id^='zlif__BCI__'] div[class='AttachMailRowDiv'] span[class='AttachMailSubject']");
-		dialog.zClickButton(Button.B_ATTACH);
+		dialog.zPressButton(Button.B_ATTACH);
 		SleepUtil.sleepMedium();
 		mailform.zSubmit();
 

@@ -97,7 +97,7 @@ public class CreateACopy extends AjaxCommonTest {
 
 		// Copy appointment
 		DialogInformational dlgInfo = (DialogInformational)app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, Button.O_CREATE_A_COPY_MENU, apptSubject);
-		dlgInfo.zClickButton(Button.B_OK);
+		dlgInfo.zPressButton(Button.B_OK);
 
 		// Create a copy functionality already convered in viewer -> actions -> CreateACopy.java
 

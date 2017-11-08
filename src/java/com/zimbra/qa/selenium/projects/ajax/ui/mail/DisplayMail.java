@@ -404,9 +404,9 @@ public class DisplayMail extends AbsDisplay {
 		}
 
 		// Click to dropdown and corresponding option
-		zClickAt(pulldownLocator, "");
+		sClickAt(pulldownLocator, "");
 		zWaitForBusyOverlay();
-		zClick(optionLocator);
+		sClick(optionLocator);
 		zWaitForBusyOverlay();
 		if (page != null) {
 			page.zWaitForActive();
@@ -450,9 +450,9 @@ public class DisplayMail extends AbsDisplay {
 		}
 
 		// Click to dropdown and corresponding option
-		zClickAt(pulldownLocator, "");
+		sClickAt(pulldownLocator, "");
 		zWaitForBusyOverlay();
-		zClick(optionLocator);
+		sClick(optionLocator);
 		zWaitForBusyOverlay();
 
 		if (page != null) {
@@ -616,7 +616,7 @@ public class DisplayMail extends AbsDisplay {
 		if (!this.sIsElementPresent(locator))
 			throw new HarnessException("locator is not present for button " + button + " : " + locator);
 
-		this.zClick(locator);
+		this.sClick(locator);
 
 		this.zWaitForBusyOverlay();
 
@@ -856,7 +856,7 @@ public class DisplayMail extends AbsDisplay {
 			try {
 				String bodyLocator = "css=div[class='ZmComposeView'] textarea[id$='_body']";
 				this.sFocus(bodyLocator);
-				this.zClick(bodyLocator);
+				this.sClick(bodyLocator);
 				logger.info(this.sGetValue(bodyLocator));
 				String BodyText = this.sGetValue(bodyLocator);
 				return (BodyText);
@@ -869,7 +869,7 @@ public class DisplayMail extends AbsDisplay {
 
 			String locator = Locators.zSubjectField;
 			this.sFocus(locator);
-			this.zClick(locator);
+			this.sClick(locator);
 			logger.info(this.sGetValue(locator));
 			String Subject = this.sGetValue(locator);
 			return (Subject);

@@ -142,7 +142,7 @@ public class FwdReplyTextSignatureAboveIncludeMsg extends UniversalCommonTest {
 		DisplayMail actual = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 
 		// Reply the item
-		// app.zPageMail.zClickAt(Locators.zReplyToolbarButton, "0,0");
+		// app.zPageMail.sClickAt(Locators.zReplyToolbarButton, "0,0");
 		actual.zPressButton(Button.B_REPLY);
 		ZAssert.assertTrue(actual.zGetMailPropertyAsText(DisplayMail.Field.Subject).contains("Re"),
 				"Verify Reply Window");
@@ -188,7 +188,7 @@ public class FwdReplyTextSignatureAboveIncludeMsg extends UniversalCommonTest {
 		DisplayMail actual = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 
 		// Reply the item
-		// app.zPageMail.zClickAt(Locators.zReplyAllToolbarButton, "0,0");
+		// app.zPageMail.sClickAt(Locators.zReplyAllToolbarButton, "0,0");
 		actual.zPressButton(Button.B_REPLYALL);
 		ZAssert.assertTrue(actual.zGetMailPropertyAsText(DisplayMail.Field.Subject).contains("Re"),
 				"Verify ReplyAll Window");

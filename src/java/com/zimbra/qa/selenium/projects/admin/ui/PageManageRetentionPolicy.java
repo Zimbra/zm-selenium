@@ -109,12 +109,12 @@ public class PageManageRetentionPolicy extends AbsTab {
 		}
 
 		// Click on Addresses -> Accounts
-		zClickAt(Locators.CONFIGURE_ICON,"");
+		sClickAt(Locators.CONFIGURE_ICON,"");
 		zWaitForWorkInProgressDialogInVisible();
 		sIsElementPresent(Locators.GLOBAL_SETTING);
-		zClickAt(Locators.GLOBAL_SETTING, "");
+		sClickAt(Locators.GLOBAL_SETTING, "");
 		zWaitForWorkInProgressDialogInVisible();
-		zClickAt(Locators.GLOBAL_SETTINGS_RETENTION_POLICY, "");
+		sClickAt(Locators.GLOBAL_SETTINGS_RETENTION_POLICY, "");
 		zWaitForWorkInProgressDialogInVisible();
 		zWaitForActive();
 	}
@@ -148,7 +148,7 @@ public class PageManageRetentionPolicy extends AbsTab {
 				if(this.sGetText(locator).trim().equalsIgnoreCase(item))
 				{
 					if(action == Action.A_LEFTCLICK) {
-						zClick(locator);
+						sClick(locator);
 						break;
 					} else if(action == Action.A_RIGHTCLICK) {
 						zRightClick(locator);
@@ -222,7 +222,7 @@ public class PageManageRetentionPolicy extends AbsTab {
 
 		// Default behavior, process the locator by clicking on it
 		//
-		this.zClickAt(locator,"");
+		this.sClickAt(locator,"");
 
 
 
@@ -283,7 +283,7 @@ public class PageManageRetentionPolicy extends AbsTab {
 				throw new HarnessException("Button " + pulldown + " option " + option + " pulldownLocator " + pulldownLocator + " not present!");
 			}
 
-			this.zClickAt(pulldownLocator,"");
+			this.sClickAt(pulldownLocator,"");
 			SleepUtil.sleepMedium();
 
 			// If the app is busy, wait for it to become active
@@ -296,7 +296,7 @@ public class PageManageRetentionPolicy extends AbsTab {
 					throw new HarnessException("Button " + pulldown + " option " + option + " optionLocator " + optionLocator + " not present!");
 				}
 
-				this.zClickAt(optionLocator,"");
+				this.sClickAt(optionLocator,"");
 
 				// If the app is busy, wait for it to become active
 				//zWaitForBusyOverlay();
@@ -402,8 +402,8 @@ public class PageManageRetentionPolicy extends AbsTab {
 		return found;
 	}
 
-	public AbsPage zClickButton(Button button) throws HarnessException {
-		logger.info(myPageName() + " zClickButton(" + button + ")");
+	public AbsPage zPressButton(Button button) throws HarnessException {
+		logger.info(myPageName() + " zPressButton(" + button + ")");
 
 		tracer.trace("Click dialog button " + button);
 		if ( button == null )

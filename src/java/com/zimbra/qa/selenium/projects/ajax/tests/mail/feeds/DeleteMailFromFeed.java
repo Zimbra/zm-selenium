@@ -153,7 +153,7 @@ public class DeleteMailFromFeed extends PrefGroupMailByMessageTest {
 
 		// Click shift-delete
 		DialogWarning dialog = (DialogWarning)app.zPageMail.zKeyboardShortcut(Shortcut.S_MAIL_HARDELETE);
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 		ZAssert.assertFalse(app.zPageMail.zVerifyMailExists(feedMailSubject),"The deleted feed mail is present in feed folder even after deletion!");
 
 		// Verify that the deleted feed mail is not present is Trash as well

@@ -60,7 +60,7 @@ public class ManageContactGroupUsingRightClickContextMenu extends AjaxCommonTest
 				contact.firstName);
 
 		dialog.zEnterGroupName(groupname);
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 
 		// Verify the contact group is created
 		ContactGroupItem actual = ContactGroupItem.importFromSOAP(app.zGetActiveAccount(), groupname);
@@ -190,7 +190,7 @@ public class ManageContactGroupUsingRightClickContextMenu extends AjaxCommonTest
 				contact3.getName());
 
 		dialog.zEnterGroupName(groupname);
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 
 		// Verify the contact group is created
 		ContactGroupItem actual = ContactGroupItem.importFromSOAP(app.zGetActiveAccount(), groupname);
@@ -242,7 +242,7 @@ public class ManageContactGroupUsingRightClickContextMenu extends AjaxCommonTest
 				contact.getName());
 
 		dialog.zEnterGroupName(groupname);
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 
 		// Verify the contact group is created
 		ContactGroupItem actual = ContactGroupItem.importFromSOAP(app.zGetActiveAccount(), groupname);
