@@ -106,8 +106,8 @@ public class ModifyByAddingAttendees extends CalendarWorkWeekTest {
         apptForm.zFillField(Field.Attendees, apptAttendee2);
         apptForm.zSubmit();
         DialogSendUpdatetoAttendees sendUpdateDialog = (DialogSendUpdatetoAttendees) new DialogSendUpdatetoAttendees(app, app.zPageCalendar);
-        sendUpdateDialog.zClickButton(Button.B_SEND_UPDATES_ONLY_TO_ADDED_OR_REMOVED_ATTENDEES);
-        sendUpdateDialog.zClickButton(Button.B_OK);
+        sendUpdateDialog.zPressButton(Button.B_SEND_UPDATES_ONLY_TO_ADDED_OR_REMOVED_ATTENDEES);
+        sendUpdateDialog.zPressButton(Button.B_OK);
         
         //Verify that attendee is present in the attendee field
         apptForm = (FormApptNew)app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, apptSubject);

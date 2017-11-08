@@ -48,7 +48,7 @@ public class ZmContactsItem_BasicContact1 extends AjaxCommonTest{
       app.zTreeContacts.zTreeItem(Action.A_LEFTCLICK, contactFolder);
       PerfToken token = PerfMetrics.startTimestamp(PerfKey.ZmContactsItem, "Load the basic contact view");
 
-      app.zPageContacts.zClickAt("css=div[id='zv__CNS-main'] li[id^='zli__CNS-main'] div[id$='__fileas']:contains('"+contactItem.fileAs+"')","");
+      app.zPageContacts.sClickAt("css=div[id='zv__CNS-main'] li[id^='zli__CNS-main'] div[id$='__fileas']:contains('"+contactItem.fileAs+"')","");
       PerfMetrics.waitTimestamp(token);
    }
 }

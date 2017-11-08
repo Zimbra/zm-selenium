@@ -81,7 +81,7 @@ public class RemoveAttachment extends PrefGroupMailByMessageTest {
 
 		// Click remove
 		DialogWarning dialog = (DialogWarning)display.zListAttachmentItem(Button.B_REMOVE, item);
-		dialog.zClickButton(Button.B_YES);
+		dialog.zPressButton(Button.B_YES);
 
 		// Verify the message no longer has an attachment
 		account.soapSend(
@@ -147,7 +147,7 @@ public class RemoveAttachment extends PrefGroupMailByMessageTest {
 
 		// Click remove
 		DialogWarning dialog = (DialogWarning)display.zPressButton(Button.B_REMOVE_ALL);
-		dialog.zClickButton(Button.B_YES);
+		dialog.zPressButton(Button.B_YES);
 
 		// Verify the message no longer has an attachment
 		account.soapSend(
@@ -225,7 +225,7 @@ public class RemoveAttachment extends PrefGroupMailByMessageTest {
 
 		// Click remove
 		DialogWarning dialog = (DialogWarning)display.zListAttachmentItem(Button.B_REMOVE, item);
-		dialog.zClickButton(Button.B_YES);
+		dialog.zPressButton(Button.B_YES);
 
 		// Verify the message no longer has an attachment
 		account.soapSend(
@@ -293,7 +293,7 @@ public class RemoveAttachment extends PrefGroupMailByMessageTest {
 
 		// Click remove
 		DialogWarning dialog = (DialogWarning)display.zPressButton(Button.B_REMOVE_ALL);
-		dialog.zClickButton(Button.B_YES);
+		dialog.zPressButton(Button.B_YES);
 
 		// Verify the message no longer has an attachment
 		account.soapSend(
@@ -369,7 +369,7 @@ public class RemoveAttachment extends PrefGroupMailByMessageTest {
 
 		// Click remove
 		DialogWarning dialog = (DialogWarning) display.zListAttachmentItem(Button.B_REMOVE, item);
-		dialog.zClickButton(Button.B_YES);
+		dialog.zPressButton(Button.B_YES);
 
 		// Verification through UI
 

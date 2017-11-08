@@ -219,11 +219,11 @@ public class PageMain extends AbsTab {
 
 				SeparateWindow window = new SeparateWindow(this.MyApplication);
 
-				this.zClickAt(pulldownLocator, "0,0");
+				this.sClickAt(pulldownLocator, "0,0");
 				this.zWaitForBusyOverlay();
 				SleepUtil.sleepSmall();
 
-				this.zClickAt(optionLocator, "0,0");
+				this.sClickAt(optionLocator, "0,0");
 				this.zWaitForBusyOverlay();
 				SleepUtil.sleepMedium();
 

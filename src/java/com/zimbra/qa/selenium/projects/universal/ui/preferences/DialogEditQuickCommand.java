@@ -99,8 +99,8 @@ public class DialogEditQuickCommand extends AbsDialog {
 
 
 	@Override
-	public AbsPage zClickButton(Button button) throws HarnessException {
-		logger.info(myPageName() + " zClickButton("+ button +")");
+	public AbsPage zPressButton(Button button) throws HarnessException {
+		logger.info(myPageName() + " zPressButton("+ button +")");
 
 		String locator = null;
 		AbsPage page = null;
@@ -117,7 +117,7 @@ public class DialogEditQuickCommand extends AbsDialog {
 			throw new HarnessException("Button "+ button +" not implemented");
 		}
 
-		zClick(locator);
+		sClick(locator);
 		zWaitForBusyOverlay();
 
 		return (page);
@@ -261,7 +261,7 @@ public class DialogEditQuickCommand extends AbsDialog {
 				throw new HarnessException("zSetQuickCommandType() " + pulldownLocator + " not present");
 			}
 
-			this.zClickAt(pulldownLocator, "0,0");
+			this.sClickAt(pulldownLocator, "0,0");
 
 			// If the app is busy, wait for it to become active
 			zWaitForBusyOverlay();
@@ -272,7 +272,7 @@ public class DialogEditQuickCommand extends AbsDialog {
 					throw new HarnessException("zSetQuickCommandType() " + optionLocator + " not present");
 				}
 
-				this.zClickAt(optionLocator, "0,0");
+				this.sClickAt(optionLocator, "0,0");
 
 				// If the app is busy, wait for it to become active
 				zWaitForBusyOverlay();
@@ -354,7 +354,7 @@ public class DialogEditQuickCommand extends AbsDialog {
 				throw new HarnessException("zSetQuickCommandActionOperation() " + pulldownLocator + " not present");
 			}
 
-			this.zClickAt(pulldownLocator, "0,0");
+			this.sClickAt(pulldownLocator, "0,0");
 
 			// If the app is busy, wait for it to become active
 			zWaitForBusyOverlay();
@@ -366,7 +366,7 @@ public class DialogEditQuickCommand extends AbsDialog {
 					throw new HarnessException("zSetQuickCommandActionOperation() " + optionLocator + " not present");
 				}
 
-				this.zClickAt(optionLocator, "0,0");
+				this.sClickAt(optionLocator, "0,0");
 
 				// If the app is busy, wait for it to become active
 				zWaitForBusyOverlay();
@@ -426,7 +426,7 @@ public class DialogEditQuickCommand extends AbsDialog {
 				+ StringUtils.repeat(" tr", index) 
 				+ " td[id$='_valueContainer'] td[id$='_title']";
 			
-			zClickAt(locator, "");
+			sClickAt(locator, "");
 			
 			zWaitForBusyOverlay();
 			
@@ -459,7 +459,7 @@ public class DialogEditQuickCommand extends AbsDialog {
 				throw new HarnessException("zSetQuickCommandActionTarget() " + pulldownLocator + " not present");
 			}
 
-			this.zClickAt(pulldownLocator, "0,0");
+			this.sClickAt(pulldownLocator, "0,0");
 
 			// If the app is busy, wait for it to become active
 			zWaitForBusyOverlay();
@@ -470,7 +470,7 @@ public class DialogEditQuickCommand extends AbsDialog {
 					throw new HarnessException("zSetQuickCommandActionTarget() " + optionLocator + " not present");
 				}
 
-				this.zClickAt(optionLocator, "0,0");
+				this.sClickAt(optionLocator, "0,0");
 
 				// If the app is busy, wait for it to become active
 				zWaitForBusyOverlay();

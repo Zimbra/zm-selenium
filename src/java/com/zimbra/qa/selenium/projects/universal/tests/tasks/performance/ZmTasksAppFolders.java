@@ -55,7 +55,7 @@ public class ZmTasksAppFolders extends UniversalCommonTest {
 		// Currently in the mail app
 		// Navigate to the addressbook
 		//app.zPageTasks.zNavigateTo();
-		 app.zPageContacts.zClickAt("css=td[id='zb__App__Tasks_title']","");
+		 app.zPageContacts.sClickAt("css=td[id='zb__App__Tasks_title']","");
 
 		PerfMetrics.waitTimestamp(token);
 
@@ -87,7 +87,7 @@ public class ZmTasksAppFolders extends UniversalCommonTest {
 		// Currently in the mail app
 		// Navigate to the addressbook
 		//app.zPageTasks.zNavigateTo();
-		app.zPageContacts.zClickAt("css=td[id='zb__App__Tasks_title']","");
+		app.zPageContacts.sClickAt("css=td[id='zb__App__Tasks_title']","");
 
 		PerfMetrics.waitTimestamp(token);
 

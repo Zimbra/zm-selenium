@@ -51,7 +51,7 @@ public class AddDelegate extends UniversalCommonTest {
 
 		ZAssert.assertTrue(app.zPagePreferences.sIsElementPresent(buttonLocator),
 				"Verify the add delegate button is present");
-		app.zPagePreferences.zClickAt(buttonLocator, "");
+		app.zPagePreferences.sClickAt(buttonLocator, "");
 
 		// Wait for the dialog to appear
 		DialogDelegate dialog = new DialogDelegate(app, app.zPagePreferences);
@@ -59,7 +59,7 @@ public class AddDelegate extends UniversalCommonTest {
 
 		dialog.zSetEmailAddress(delegate.EmailAddress);
 		dialog.zCheckRight(DialogDelegate.Rights.SendAs);
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 
 		// -- Verification
 		app.zGetActiveAccount().soapSend("<GetRightsRequest xmlns='urn:zimbraAccount' >" + "<ace right='sendAs'/>"
@@ -95,7 +95,7 @@ public class AddDelegate extends UniversalCommonTest {
 
 		ZAssert.assertTrue(app.zPagePreferences.sIsElementPresent(buttonLocator),
 				"Verify the add delegate button is present");
-		app.zPagePreferences.zClickAt(buttonLocator, "");
+		app.zPagePreferences.sClickAt(buttonLocator, "");
 
 		// Wait for the dialog to appear
 		DialogDelegate dialog = new DialogDelegate(app, app.zPagePreferences);
@@ -103,7 +103,7 @@ public class AddDelegate extends UniversalCommonTest {
 
 		dialog.zSetEmailAddress(delegate.EmailAddress);
 		dialog.zCheckRight(DialogDelegate.Rights.SendOnBehalfOf);
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 
 		// -- Verification
 		app.zGetActiveAccount().soapSend("<GetRightsRequest xmlns='urn:zimbraAccount' >" + "<ace right='sendAs'/>"

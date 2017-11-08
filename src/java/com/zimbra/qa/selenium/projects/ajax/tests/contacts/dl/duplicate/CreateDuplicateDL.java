@@ -72,6 +72,6 @@ public class CreateDuplicateDL extends AjaxCommonTest  {
 		// Verification
 		DialogError error = new DialogError(DialogErrorID.Zimbra, app, app.zPageContacts);
 		ZAssert.assertEquals(error.zGetWarningContent(), "Create distribution list failed", "Verify error message when try to create duplicate distribution list");
-		error.zClickButton(Button.B_OK);
+		error.zPressButton(Button.B_OK);
 	}
 }

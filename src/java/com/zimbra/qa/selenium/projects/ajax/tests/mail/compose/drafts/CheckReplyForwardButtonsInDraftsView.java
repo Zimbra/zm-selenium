@@ -74,7 +74,7 @@ public class CheckReplyForwardButtonsInDraftsView extends PrefGroupMailByMessage
 		// Creat new tag
 		DialogTag dialogTag = (DialogTag) app.zPageMail.zToolbarPressPulldown(Button.B_TAG, Button.O_TAG_NEWTAG);
 		dialogTag.zSetTagName(tagName);
-		dialogTag.zClickButton(Button.B_OK);
+		dialogTag.zPressButton(Button.B_OK);
 
 		// Refresh current view
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);

@@ -76,7 +76,7 @@ public class RenameTaskFolder extends AjaxCommonTest {
 
 		String name2 = "1" + ConfigProperties.getUniqueString();
 		dlgRename.zSetNewName(name2);
-		dlgRename.zClickButton(Button.B_OK);
+		dlgRename.zPressButton(Button.B_OK);
 
 		app.zGetActiveAccount().soapSend("<GetFolderRequest xmlns = 'urn:zimbraMail'/>");
 
@@ -118,13 +118,13 @@ public class RenameTaskFolder extends AjaxCommonTest {
 
 		String name2 = "2:" + ConfigProperties.getUniqueString();
 		dlgRename.zSetNewName(name2);
-		dlgRename.zClickButton(Button.B_OK);
+		dlgRename.zPressButton(Button.B_OK);
 
 		DialogError error = app.zPageMain.zGetErrorDialog(DialogErrorID.InvalidFolderName);
 		ZAssert.assertTrue(error.zIsActive(), "Verify the error dialog appears");
 
-		error.zClickButton(Button.B_OK);
-		dlgRename.zClickButton(Button.B_CANCEL);
+		error.zPressButton(Button.B_OK);
+		dlgRename.zPressButton(Button.B_CANCEL);
 	}
 
 
@@ -159,7 +159,7 @@ public class RenameTaskFolder extends AjaxCommonTest {
 
 		// Change the name, click OK
 		dialog.zSetNewName(name2);
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 
 		app.zGetActiveAccount().soapSend("<GetFolderRequest xmlns = 'urn:zimbraMail'/>");
 

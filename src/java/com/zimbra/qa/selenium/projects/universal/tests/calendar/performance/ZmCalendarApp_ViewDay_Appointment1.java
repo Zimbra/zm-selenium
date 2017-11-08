@@ -69,7 +69,7 @@ public class ZmCalendarApp_ViewDay_Appointment1 extends CalendarWorkWeekTest {
 
 		// Go to calendar
 		//app.zPageCalendar.zNavigateTo();
-		app.zPageCalendar.zClickAt("css=td[id='zb__App__Calendar_title']","");
+		app.zPageCalendar.sClickAt("css=td[id='zb__App__Calendar_title']","");
 
 		PerfMetrics.waitTimestamp(token);
 				
@@ -101,7 +101,7 @@ public class ZmCalendarApp_ViewDay_Appointment1 extends CalendarWorkWeekTest {
 
 		// Go to calendar
 		//app.zPageCalendar.zNavigateTo();
-		app.zPageCalendar.zClickAt("css=td[id='zb__App__Calendar_title']","");
+		app.zPageCalendar.sClickAt("css=td[id='zb__App__Calendar_title']","");
 		PerfMetrics.waitTimestamp(token);
 				
 		// Wait for the app to load
@@ -138,7 +138,7 @@ public class ZmCalendarApp_ViewDay_Appointment1 extends CalendarWorkWeekTest {
 
 		// Go to calendar
 	//	app.zPageCalendar.zNavigateTo();
-		app.zPageCalendar.zClickAt("css=td[id='zb__App__Calendar_title']","");
+		app.zPageCalendar.sClickAt("css=td[id='zb__App__Calendar_title']","");
 
 		PerfMetrics.waitTimestamp(token);
 				

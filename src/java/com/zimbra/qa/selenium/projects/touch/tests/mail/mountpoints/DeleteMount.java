@@ -69,9 +69,9 @@ public class DeleteMount extends PrefGroupMailByMessageTest{
 
 		// Delete the mount folder
 		PageCreateFolder createFolderPage = new PageCreateFolder(app, startingPage);
-		createFolderPage.zClickButton(Button.B_EDIT);
+		createFolderPage.zPressButton(Button.B_EDIT);
 		createFolderPage.zSelectMountFolder(mountpointname);
-		createFolderPage.zClickButton(Button.B_DELETE);
+		createFolderPage.zPressButton(Button.B_DELETE);
 
 		//-- Verification
 		// SOAP

@@ -67,10 +67,10 @@ public class RemoveTrustedDomain extends UniversalCommonTest {
 		
 		// Select the email address
 		String locator = "css=td[id$='_LISTVIEW'] td:contains("+ domain1 +")";
-		app.zPagePreferences.zClick(locator);
+		app.zPagePreferences.sClick(locator);
 		
 		// Click "Remove"
-		app.zPagePreferences.zClick("css=td[id$='_REMOVE_BUTTON'] td[id$='_title']");
+		app.zPagePreferences.sClick("css=td[id$='_REMOVE_BUTTON'] td[id$='_title']");
 		
 		// Click "Save"
 		app.zPagePreferences.zToolbarPressButton(Button.B_SAVE);

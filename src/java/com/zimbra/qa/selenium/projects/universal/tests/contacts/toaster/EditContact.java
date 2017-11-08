@@ -63,7 +63,7 @@ public class EditContact extends UniversalCommonTest {
 				ConfigProperties.getStringProperty("coverage.enabled")).contains("true") == true) {
 			// this method won't wait for some sec after submitting data so
 			// toast message disappears and testcase fails (JS COVERAGE)
-			app.zPageContacts.zClickAt("css=div#" + form.getToolbarID() + " div[id$='__SAVE'] td[id$='_title']", "0,0");
+			app.zPageContacts.sClickAt("css=div#" + form.getToolbarID() + " div[id$='__SAVE'] td[id$='_title']", "0,0");
 		} else {
 			form.zSubmit();
 		}
@@ -99,7 +99,7 @@ public class EditContact extends UniversalCommonTest {
 				ConfigProperties.getStringProperty("coverage.enabled")).contains("true") == true) {
 			// this method won't wait for some sec after submitting data so
 			// toast message disappears and testcase fails (JS COVERAGE)
-			app.zPageContacts.zClickAt("css=div#" + form.getToolbarID() + " div[id$='__SAVE'] td[id$='_title']", "0,0");
+			app.zPageContacts.sClickAt("css=div#" + form.getToolbarID() + " div[id$='__SAVE'] td[id$='_title']", "0,0");
 		} else {
 			form.zSubmit();
 		}
@@ -134,7 +134,7 @@ public class EditContact extends UniversalCommonTest {
 				ConfigProperties.getStringProperty("coverage.enabled")).contains("true") == true) {
 			// this method won't wait for some sec after submitting data so
 			// toast message disappears and testcase fails (JS COVERAGE)
-			app.zPageContacts.zClickAt("css=div#" + form.getToolbarID() + " div[id$='__SAVE'] td[id$='_title']", "0,0");
+			app.zPageContacts.sClickAt("css=div#" + form.getToolbarID() + " div[id$='__SAVE'] td[id$='_title']", "0,0");
 		} else {
 			form.zSubmit();
 		}

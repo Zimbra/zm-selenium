@@ -61,9 +61,9 @@ public class ModifyTimeSuggestionPreference extends AjaxCommonTest {
 
 		apptForm.zToolbarPressPulldown(Button.B_OPTIONS, Button.O_SUGGESTION_PREFERENCES);
 		DialogSuggestionPreferences dialogSuggestionPref = (DialogSuggestionPreferences) new DialogSuggestionPreferences(app, app.zPageCalendar);
-		dialogSuggestionPref.zClickButton(Button.B_ONLY_INCLUDE_MY_WORKING_HOURS);
-		dialogSuggestionPref.zClickButton(Button.B_ONLY_INCLUDE_OTHER_ATTENDEES_WORKING_HOURS);
-		dialogSuggestionPref.zClickButton(Button.B_OK);
+		dialogSuggestionPref.zPressButton(Button.B_ONLY_INCLUDE_MY_WORKING_HOURS);
+		dialogSuggestionPref.zPressButton(Button.B_ONLY_INCLUDE_OTHER_ATTENDEES_WORKING_HOURS);
+		dialogSuggestionPref.zPressButton(Button.B_OK);
 
 		apptForm.zToolbarPressButton(Button.B_SUGGESTATIME);
 		apptForm

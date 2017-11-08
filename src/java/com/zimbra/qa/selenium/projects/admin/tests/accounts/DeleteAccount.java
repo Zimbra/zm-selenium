@@ -77,10 +77,10 @@ public class DeleteAccount extends AdminCommonTest {
 		DialogForDeleteOperation dialog = (DialogForDeleteOperation) app.zPageManageAccounts.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_DELETE);
 
 		// Click Yes in Confirmation dialog
-		dialog.zClickButton(Button.B_YES);
+		dialog.zPressButton(Button.B_YES);
 
 		// Click Ok on "Delete Items" dialog
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 
 
 		// Verify the account exists in the ZCS
@@ -130,10 +130,10 @@ public class DeleteAccount extends AdminCommonTest {
 		DialogForDeleteOperation dialog = (DialogForDeleteOperation) app.zPageManageAccounts.zToolbarPressButton(Button.B_TREE_DELETE);
 
 		// Click Yes in Confirmation dialog
-		dialog.zClickButton(Button.B_YES);
+		dialog.zPressButton(Button.B_YES);
 
 		// Click Ok on "Delete Items" dialog
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 
 
 		// Verify the account exists in the ZCS
@@ -185,10 +185,10 @@ public class DeleteAccount extends AdminCommonTest {
 		DialogForDeleteOperation dialog = (DialogForDeleteOperation) app.zPageSearchResults.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_DELETE);
 
 		// Click Yes in Confirmation dialog
-		dialog.zClickButton(Button.B_YES);
+		dialog.zPressButton(Button.B_YES);
 
 		// Click Ok on "Delete Items" dialog
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 
 
 		// Verify the account exists in the ZCS
@@ -239,10 +239,10 @@ public class DeleteAccount extends AdminCommonTest {
 		DialogForDeleteOperation dialog = (DialogForDeleteOperation) app.zPageSearchResults.zToolbarPressButton(Button.B_TREE_DELETE);
 
 		// Click Yes in Confirmation dialog
-		dialog.zClickButton(Button.B_YES);
+		dialog.zPressButton(Button.B_YES);
 
 		// Click Ok on "Delete Items" dialog
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 
 
 		// Verify the account exists in the ZCS

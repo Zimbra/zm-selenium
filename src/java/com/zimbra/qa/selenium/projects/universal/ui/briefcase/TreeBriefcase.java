@@ -130,7 +130,7 @@ public class TreeBriefcase extends AbsTree {
 		zWaitForElementVisible(optionLocator);		
 		
 		// Default behavior. Click the locator
-		zClickAt(optionLocator,"");
+		sClickAt(optionLocator,"");
  
 		// If there is a busy overlay, wait for that to finish
 		this.zWaitForBusyOverlay();
@@ -211,7 +211,7 @@ public class TreeBriefcase extends AbsTree {
 					+ locator);
 
 		// Default behavior. Click the locator
-		zClickAt(locator, "0,0");
+		sClickAt(locator, "0,0");
 
 		// If there is a busy overlay, wait for that to finish
 		zWaitForBusyOverlay();
@@ -240,7 +240,7 @@ public class TreeBriefcase extends AbsTree {
 						"Unable to locate folder in the tree " + locator);
 			}
 
-			this.zClickAt(locator, "0,0");
+			this.sClickAt(locator, "0,0");
 
 			zWaitForBusyOverlay();
 
@@ -269,7 +269,7 @@ public class TreeBriefcase extends AbsTree {
 		}
 
 		// Click it
-		this.zClickAt(locator, "0,0");
+		this.sClickAt(locator, "0,0");
 
 		// If the app is busy, wait for that to finish
 		zWaitForBusyOverlay();
@@ -356,9 +356,9 @@ public class TreeBriefcase extends AbsTree {
 						+ " not present!");
 			}
 
-			// 8.0 change ... need zClickAt()
-			// this.zClick(pulldownLocator);
-			this.zClickAt(pulldownLocator, "0,0");
+			// 8.0 change ... need sClickAt()
+			// this.sClick(pulldownLocator);
+			this.sClickAt(pulldownLocator, "0,0");
 
 			// If the app is busy, wait for it to become active
 			zWaitForBusyOverlay();
@@ -372,9 +372,9 @@ public class TreeBriefcase extends AbsTree {
 							+ optionLocator + " not present!");
 				}
 
-				// 8.0 change ... need zClickAt()
-				// this.zClick(optionLocator);
-				this.zClickAt(optionLocator, "0,0");
+				// 8.0 change ... need sClickAt()
+				// this.sClick(optionLocator);
+				this.sClickAt(optionLocator, "0,0");
 
 				// If the app is busy, wait for it to become active
 				zWaitForBusyOverlay();

@@ -50,8 +50,8 @@ public class DialogDelegate extends AbsDialog {
 	}
 
 	@Override
-	public AbsPage zClickButton(Button button) throws HarnessException {
-		logger.info(myPageName() + " zClickButton(" + button + ")");
+	public AbsPage zPressButton(Button button) throws HarnessException {
+		logger.info(myPageName() + " zPressButton(" + button + ")");
 
 		String locator = null;
 
@@ -65,7 +65,7 @@ public class DialogDelegate extends AbsDialog {
 			throw new HarnessException("Button " + button + " not implemented");
 		}
 
-		this.zClick(locator);
+		this.sClick(locator);
 		zWaitForBusyOverlay();
 		SleepUtil.sleepSmall();
 
@@ -112,7 +112,7 @@ public class DialogDelegate extends AbsDialog {
 		}
 
 		this.sFocus(locator);
-		this.zClick(locator);
+		this.sClick(locator);
 		this.zWaitForBusyOverlay();
 		this.sType(locator, email);
 		SleepUtil.sleepSmall();

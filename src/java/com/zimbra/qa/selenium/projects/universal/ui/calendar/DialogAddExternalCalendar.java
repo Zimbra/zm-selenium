@@ -47,8 +47,8 @@ public class DialogAddExternalCalendar extends AbsDialog {
 	}
 
 	@Override
-	public AbsPage zClickButton(Button button) throws HarnessException {
-		logger.info(myPageName() + " zClickButton(" + button + ")");
+	public AbsPage zPressButton(Button button) throws HarnessException {
+		logger.info(myPageName() + " zPressButton(" + button + ")");
 
 		tracer.trace("Click dialog button " + button);
 		if ( button == null )
@@ -84,7 +84,7 @@ public class DialogAddExternalCalendar extends AbsDialog {
 					+ locator + " not present!");
 		}
 
-		this.zClickAt(locator,"0,0");
+		this.sClickAt(locator,"0,0");
 
 		// If the app is busy, wait for it to become active
 		this.zWaitForBusyOverlay();

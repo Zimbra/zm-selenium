@@ -58,8 +58,8 @@ public class DialogPasswordRequired extends AbsDialog {
 	}
 
 	@Override
-	public AbsPage zClickButton(Button button) throws HarnessException {
-		logger.info(myPageName() + " zClickButton(" + button + ")");
+	public AbsPage zPressButton(Button button) throws HarnessException {
+		logger.info(myPageName() + " zPressButton(" + button + ")");
 		tracer.trace("Click dialog button " + button);
 
 		String locator = null;
@@ -73,7 +73,7 @@ public class DialogPasswordRequired extends AbsDialog {
 		if (!this.sIsElementPresent(locator)) {
 			throw new HarnessException("Button " + button + " locator " + locator + " not present!");
 		}
-		this.zClickAt(locator, "0,0");
+		this.sClickAt(locator, "0,0");
 		SleepUtil.sleepMedium();
 
 		return (null);
@@ -90,7 +90,7 @@ public class DialogPasswordRequired extends AbsDialog {
 			throw new HarnessException("unable to find body field " + locator);
 
 		this.sFocus(locator);
-		this.zClickAt(locator, "0,0");
+		this.sClickAt(locator, "0,0");
 		this.sFocus(locator);
 		this.zKeyboard.zTypeCharacters(password);
 		SleepUtil.sleepSmall();

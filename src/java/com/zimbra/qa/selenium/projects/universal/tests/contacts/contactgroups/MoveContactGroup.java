@@ -100,8 +100,8 @@ public class MoveContactGroup extends UniversalCommonTest {
 				group.getName());
 
 		// enter the moved folder
-		dialogContactMove.zClickTreeFolder(folder);
-		dialogContactMove.zClickButton(Button.B_OK);
+		dialogContactMove.sClickTreeFolder(folder);
+		dialogContactMove.zPressButton(Button.B_OK);
 
 		// -- Verification
 
@@ -142,9 +142,9 @@ public class MoveContactGroup extends UniversalCommonTest {
 		SleepUtil.sleepMedium();
 
 		// enter the moved folder
-		dialogContactMove.zClickTreeFolder(folder);
+		dialogContactMove.sClickTreeFolder(folder);
 		SleepUtil.sleepMedium();
-		dialogContactMove.zClickButton(Button.B_OK);
+		dialogContactMove.zPressButton(Button.B_OK);
 
 		// -- Verification
 
@@ -187,8 +187,8 @@ public class MoveContactGroup extends UniversalCommonTest {
 		DialogMove dialogMove = (DialogMove) formContactGroupNew.zToolbarPressButton(Button.B_CHOOSE_ADDRESSBOOK);
 
 		// enter the moved folder
-		dialogMove.zClickTreeFolder(folder);
-		dialogMove.zClickButton(Button.B_OK);
+		dialogMove.sClickTreeFolder(folder);
+		dialogMove.zPressButton(Button.B_OK);
 
 		// click Save button
 		formContactGroupNew.zToolbarPressButton(Button.B_SAVE);

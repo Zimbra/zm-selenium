@@ -96,7 +96,7 @@ public class PageMail extends AbsTab {
 
 		tracer.trace("Navigate to "+ this.myPageName());
 
-		this.zClick(PageMain.Locators.zAppbarMail);
+		this.sClick(PageMain.Locators.zAppbarMail);
 
 		this.zWaitForBusyOverlayHTML();
 
@@ -332,7 +332,7 @@ public class PageMail extends AbsTab {
 				throw new HarnessException("Button "+ pulldown +" option "+ option +" pulldownLocator "+ pulldownLocator +" not present!");
 			}
 
-			this.zClick(pulldownLocator);
+			this.sClick(pulldownLocator);
 
 			// If the app is busy, wait for it to become active
 			this.zWaitForBusyOverlayHTML();
@@ -345,7 +345,7 @@ public class PageMail extends AbsTab {
 					throw new HarnessException("Button "+ pulldown +" option "+ option +" optionLocator "+ optionLocator +" not present!");
 				}
 
-				this.zClick(optionLocator);
+				this.sClick(optionLocator);
 
 				// If the app is busy, wait for it to become active
 				this.zWaitForBusyOverlayHTML();

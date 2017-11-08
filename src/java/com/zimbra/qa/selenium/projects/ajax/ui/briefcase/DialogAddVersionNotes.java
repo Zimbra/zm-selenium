@@ -58,8 +58,8 @@ public class DialogAddVersionNotes extends AbsDialog {
 	}
 
 	@Override
-	public AbsPage zClickButton(Button button) throws HarnessException {
-		logger.info(myPageName() + " zClickButton(" + button + ")");
+	public AbsPage zPressButton(Button button) throws HarnessException {
+		logger.info(myPageName() + " zPressButton(" + button + ")");
 		tracer.trace("Click dialog button " + button);
 
 		String locator = null;
@@ -78,7 +78,7 @@ public class DialogAddVersionNotes extends AbsDialog {
 			throw new HarnessException("Button " + button + " locator " + locator + " not present!");
 		}
 
-		this.zClickAt(locator, "0,0");
+		this.sClickAt(locator, "0,0");
 
 		return (null);
 	}
@@ -97,7 +97,7 @@ public class DialogAddVersionNotes extends AbsDialog {
 			throw new HarnessException("unable to find body field " + locator);
 
 		this.sFocus(locator);
-		this.zClickAt(locator, "0,0");
+		this.sClickAt(locator, "0,0");
 		this.sType(locator, notes);
 	}
 
@@ -109,7 +109,7 @@ public class DialogAddVersionNotes extends AbsDialog {
 			if (zIsActive()) {
 				zEnterVersionNotes("notes" + ConfigProperties.getUniqueString());
 
-				zClickButton(Button.B_OK);
+				zPressButton(Button.B_OK);
 			}
 		}
 	}

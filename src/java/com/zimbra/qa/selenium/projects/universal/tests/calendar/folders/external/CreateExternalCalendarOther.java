@@ -56,18 +56,18 @@ public class CreateExternalCalendarOther extends CalendarWorkWeekTest {
 
 		// Fill out the dialog
 		dialog.zSetSourceType(DialogAddExternalCalendar.SourceType.Other);
-		dialog.zClickButton(Button.B_NEXT);
+		dialog.zPressButton(Button.B_NEXT);
 
 		// Fill out the external calendar
 		dialog.zSetSourceEmailAddress(icalAccount.EmailAddress);
 		dialog.zSetSourcePassword(icalAccount.Password);
 		dialog.zSetSourceServer(icalAccount.zGetAccountStoreHost());
-		dialog.zClickButton(Button.B_NEXT);
+		dialog.zPressButton(Button.B_NEXT);
 		
 		DialogCreateCalendarFolder dailog2 = new DialogCreateCalendarFolder(app, ((AppUniversalClient) app).zPageCalendar);
 		dailog2.zWaitForActive();
 		dailog2.zEnterFolderName(calendarname);
-		dailog2.zClickButton(Button.B_OK);
+		dailog2.zPressButton(Button.B_OK);
 		
 		
 		// Make sure the folder was created on the ZCS server
@@ -91,7 +91,7 @@ public class CreateExternalCalendarOther extends CalendarWorkWeekTest {
 //
 //		// Fill out the dialog
 //		dialog.zEnterFolderName(calendarname);
-//		dialog.zClickButton(Button.B_OK);
+//		dialog.zPressButton(Button.B_OK);
 //
 //		
 //		// Make sure the folder was created on the ZCS server
@@ -117,7 +117,7 @@ public class CreateExternalCalendarOther extends CalendarWorkWeekTest {
 //
 //		// Fill out the dialog
 //		dialog.zEnterFolderName(calendarname);
-//		dialog.zClickButton(Button.B_OK);
+//		dialog.zPressButton(Button.B_OK);
 //
 //		
 //		// Make sure the folder was created on the ZCS server
@@ -141,7 +141,7 @@ public class CreateExternalCalendarOther extends CalendarWorkWeekTest {
 //
 //		// Fill out the form with the basic details
 //		dialog.zEnterFolderName(calendarname);
-//		dialog.zClickButton(Button.B_OK);
+//		dialog.zPressButton(Button.B_OK);
 //
 //		
 //		// Make sure the folder was created on the ZCS server

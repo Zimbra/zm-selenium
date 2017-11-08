@@ -62,7 +62,7 @@ public class RenameTag extends PrefGroupMailByMessageTest  {
 		createtagPage.zEnterTagName(newTagName);
 	
 		//Click on Save
-		createtagPage.zClickButton(Button.B_SAVE);
+		createtagPage.zPressButton(Button.B_SAVE);
 			
 		// UI verification
 		ZAssert.assertTrue(createtagPage.zVerifyTagExists(newTagName), "Verify created tag visible in tag pane");

@@ -114,7 +114,7 @@ public class DeleteAppointment extends UniversalCommonTest {
 		ZAssert.assertNotNull(dialog, "Verify the dialog appears correctly");
 
 		// Click Yes on the confirmation
-		dialog.zClickButton(Button.B_YES);
+		dialog.zPressButton(Button.B_YES);
 
 		
 		
@@ -201,7 +201,7 @@ public class DeleteAppointment extends UniversalCommonTest {
 		ZAssert.assertNotNull(dialog, "Verify the dialog appears correctly");
 
 		// Click Yes on the confirmation
-		dialog.zClickButton(Button.B_YES);
+		dialog.zPressButton(Button.B_YES);
 
 
 		// On the server, verify the appointment is in the trash
@@ -294,7 +294,7 @@ public class DeleteAppointment extends UniversalCommonTest {
 		ZAssert.assertNotNull(dialog, "Verify the dialog appears correctly");
 
 		// Click Yes on the confirmation
-		dialog.zClickButton(Button.B_YES);
+		dialog.zPressButton(Button.B_YES);
 
 
 		// On the server, verify the appointment is in the trash
@@ -376,7 +376,7 @@ public class DeleteAppointment extends UniversalCommonTest {
 		ZAssert.assertNotNull(dialog, "Verify the dialog appears correctly");
 
 		// Click Yes on the confirmation
-		dialog.zClickButton(Button.B_YES);
+		dialog.zPressButton(Button.B_YES);
 
 
 		// On the server, verify the appointment is in the trash
@@ -499,7 +499,7 @@ public class DeleteAppointment extends UniversalCommonTest {
 		ZAssert.assertNotNull(dialog, "Verify the dialog appears correctly");
 		
 		// Click Yes on the confirmation
-		dialog.zClickButton(Button.B_YES);
+		dialog.zPressButton(Button.B_YES);
 
 
 		// On the server, verify the appointment is in the trash
@@ -621,7 +621,7 @@ public class DeleteAppointment extends UniversalCommonTest {
 		DialogConfirmDeleteAppointment dialog = (DialogConfirmDeleteAppointment)app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_DELETE, subject);
 		ZAssert.assertNotNull(dialog, "Verify the dialog appears correctly");
 
-		dialog.zClickButton(Button.B_YES);
+		dialog.zPressButton(Button.B_YES);
 
 
 		// On the server, verify the appointment is in the trash
@@ -702,7 +702,7 @@ public class DeleteAppointment extends UniversalCommonTest {
 		DialogConfirmDeleteAppointment dialog = (DialogConfirmDeleteAppointment)app.zPageCalendar.zKeyboardShortcut(Shortcut.S_MAIL_HARDELETE);
 		ZAssert.assertNotNull(dialog, "Verify the dialog appears correctly");
 
-		dialog.zClickButton(Button.B_YES);
+		dialog.zPressButton(Button.B_YES);
 
 
 		// Verify the appointment is gone
@@ -817,7 +817,7 @@ public class DeleteAppointment extends UniversalCommonTest {
 		DialogConfirmDeleteAppointment dialog = (DialogConfirmDeleteAppointment)app.zPageCalendar.zKeyboardShortcut(Shortcut.S_MAIL_HARDELETE);
 		ZAssert.assertNotNull(dialog, "Verify the dialog appears correctly");
 
-		dialog.zClickButton(Button.B_YES);
+		dialog.zPressButton(Button.B_YES);
 
 
 		// Verify the appointment is gone

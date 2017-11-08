@@ -74,7 +74,7 @@ public class EditProperties extends FeatureBriefcaseTest {
 		
 		dialog.zSetNewName(subFolderName2);
 		
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 
 		// Get all the folders and verify the new name appears and the old name disappears
 				account.soapSend("<GetFolderRequest xmlns = 'urn:zimbraMail'/>");

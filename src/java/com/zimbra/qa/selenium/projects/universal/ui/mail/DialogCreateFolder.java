@@ -76,8 +76,8 @@ public class DialogCreateFolder extends AbsDialog {
 	}
 
 	@Override
-	public AbsPage zClickButton(Button button) throws HarnessException {
-		logger.info(myPageName() + " zClickButton(" + button + ")");
+	public AbsPage zPressButton(Button button) throws HarnessException {
+		logger.info(myPageName() + " zPressButton(" + button + ")");
 
 		tracer.trace("Click dialog button " + button);
 
@@ -124,8 +124,8 @@ public class DialogCreateFolder extends AbsDialog {
 	 * @param folder
 	 * @throws HarnessException
 	 */
-	public void zClickTreeFolder(FolderItem folder) throws HarnessException {
-		logger.info(myPageName() + " zClickTreeFolder(" + folder + ")");
+	public void sClickTreeFolder(FolderItem folder) throws HarnessException {
+		logger.info(myPageName() + " sClickTreeFolder(" + folder + ")");
 
 		if (folder == null)
 			throw new HarnessException("folder must not be null");
@@ -138,7 +138,7 @@ public class DialogCreateFolder extends AbsDialog {
 		if (!this.sIsElementPresent(locator))
 			throw new HarnessException("unable to find folder in tree " + locator);
 
-		this.zClick(locator);
+		this.sClick(locator);
 
 		this.zWaitForBusyOverlay();
 
@@ -191,7 +191,7 @@ public class DialogCreateFolder extends AbsDialog {
 
 	}
 
-	public void zClickSubscribeFeed(boolean b) throws HarnessException {
+	public void sClickSubscribeFeed(boolean b) throws HarnessException {
 		String locator = "css=input[id='CreateNewFolderDialog_remote']";
 
 		if (!this.sIsElementPresent(locator)) {

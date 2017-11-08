@@ -89,8 +89,8 @@ public class DeleteHtmlSignature extends UniversalCommonTest {
 		FormSignatureNew signew = new FormSignatureNew(app);
 
 		// Select created signature signature
-		pagesig.zClick(Locators.zSignatureListView);
-		app.zPageSignature.zClick("//td[contains(text(),'" + signature.getName() + "')]");
+		pagesig.sClick(Locators.zSignatureListView);
+		app.zPageSignature.sClick("//td[contains(text(),'" + signature.getName() + "')]");
 
 		// Click Delete button
 		app.zPageSignature.zToolbarPressButton(Button.B_DELETE);

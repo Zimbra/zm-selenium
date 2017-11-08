@@ -54,12 +54,12 @@ public class ZimbraPrefMailPollingIntervalAsMailArrives extends UniversalCommonT
 		// Click pulldown for "Check New Mail:"
 		// See https://bugzilla.zimbra.com/show_bug.cgi?id=81992
 		// See https://bugzilla.zimbra.com/attachment.cgi?id=48826
-		//	app.zPagePreferences.zClickAt("css=div.ZmPreferencesPage td.ZOptionsField td[id$='_select_container'] td[id$='dropdown'] div.ImgSelectPullDownArrow", "");
+		//	app.zPagePreferences.sClickAt("css=div.ZmPreferencesPage td.ZOptionsField td[id$='_select_container'] td[id$='dropdown'] div.ImgSelectPullDownArrow", "");
 
-		app.zPagePreferences.zClickAt("css=td[id='Prefs_Select_POLLING_INTERVAL_dropdown']>div", "");
+		app.zPagePreferences.sClickAt("css=td[id='Prefs_Select_POLLING_INTERVAL_dropdown']>div", "");
 		// Click "As Mail Arrives"
 		// See https://bugzilla.zimbra.com/attachment.cgi?id=48828
-		app.zPagePreferences.zClickAt("css=div[id^='Prefs_Select_POLLING_INTERVAL_Menu'] td[id$='_title']:contains('As new mail arrives')", "");
+		app.zPagePreferences.sClickAt("css=div[id^='Prefs_Select_POLLING_INTERVAL_Menu'] td[id$='_title']:contains('As new mail arrives')", "");
 
 		// Click save
 		app.zPagePreferences.zToolbarPressButton(Button.B_SAVE);

@@ -61,7 +61,7 @@ public class DialogDeleteTag extends AbsDialog {
 	}
 
 	@Override
-	public AbsPage zClickButton(Button button) throws HarnessException {
+	public AbsPage zPressButton(Button button) throws HarnessException {
 		if (button == null)
 			throw new HarnessException("button cannot be null");
 
@@ -84,7 +84,7 @@ public class DialogDeleteTag extends AbsDialog {
 			throw new HarnessException("no logic defined for button " + button);
 		}
 
-		zClickAt(locator, "0,0");
+		sClickAt(locator, "0,0");
 		zWaitForBusyOverlay();
 
 		if (page != null) {

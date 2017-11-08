@@ -52,7 +52,7 @@ public class WizardConfigureAuthentication extends AbsWizard {
 
 	
 	public boolean zCloseWizard() throws HarnessException {
-		this.zClickAt("css=td[id$='zdlg__AUTH_CONFIG_button1_title']" ,"");
+		this.sClickAt("css=td[id$='zdlg__AUTH_CONFIG_button1_title']" ,"");
 		return true;
 	}
 }

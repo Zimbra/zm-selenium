@@ -58,10 +58,10 @@ public class DeleteTag extends PrefGroupMailByMessageTest  {
 		createtagPage.zSelectTag(tagName);
 		
 		// Click on delete button
-		createtagPage.zClickButton(Button.B_DELETE);
+		createtagPage.zPressButton(Button.B_DELETE);
 	
 		//Click on Yes
-		createtagPage.zClickButton(Button.B_YES);
+		createtagPage.zPressButton(Button.B_YES);
 			
 		// To check whether deleted tag is not exist
 		app.zGetActiveAccount().soapSend("<GetTagRequest xmlns='urn:zimbraMail'/>");
@@ -100,10 +100,10 @@ public class DeleteTag extends PrefGroupMailByMessageTest  {
 		createtagPage.zSelectTag(tagName);
 		
 		// Click on delete button
-		createtagPage.zClickButton(Button.B_DELETE);
+		createtagPage.zPressButton(Button.B_DELETE);
 	
 		//Click on Yes
-		createtagPage.zClickButton(Button.B_NO);
+		createtagPage.zPressButton(Button.B_NO);
 			
 		// To check whether tag is exist
 		// Make sure the tag is existed on the ZCS server

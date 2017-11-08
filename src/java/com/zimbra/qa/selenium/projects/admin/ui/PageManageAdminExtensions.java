@@ -86,10 +86,10 @@ public class PageManageAdminExtensions extends AbsTab {
 		}
 
 		// Click on configure > Admin extensions
-		zClickAt(Locators.CONFIGURE_ICON,"");
+		sClickAt(Locators.CONFIGURE_ICON,"");
 		zWaitForWorkInProgressDialogInVisible();
 		zWaitForElementPresent(Locators.ADMIN_EXTENSION);
-		zClickAt(Locators.ADMIN_EXTENSION, "");
+		sClickAt(Locators.ADMIN_EXTENSION, "");
 		SleepUtil.sleepMedium();
 		zWaitForWorkInProgressDialogInVisible();
 		zWaitForActive();	
@@ -166,7 +166,7 @@ public class PageManageAdminExtensions extends AbsTab {
 					throw new HarnessException("Button " + pulldown + " option " + option + " optionLocator " + optionLocator + " not present!");
 				}
 
-				this.zClickAt(optionLocator,"");
+				this.sClickAt(optionLocator,"");
 				SleepUtil.sleepLong();
 
 			}

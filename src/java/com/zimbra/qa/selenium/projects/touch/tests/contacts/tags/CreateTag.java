@@ -52,13 +52,13 @@ public class CreateTag extends TouchCommonTest {
 		PageCreateTag createTagPage = new PageCreateTag((AppTouchClient) app , this.startingPage);
 		
 		//Click on edit button
-		createTagPage.zClickButton(Button.B_EDIT);
+		createTagPage.zPressButton(Button.B_EDIT);
 		//Click on new tag button
-		createTagPage.zClickButton(Button.B_NEW_TAG);
+		createTagPage.zPressButton(Button.B_NEW_TAG);
 		//Enter tag name
 		createTagPage.zEnterTagName(tagName);
 		//Click on Save
-		createTagPage.zClickButton(Button.B_SAVE);
+		createTagPage.zPressButton(Button.B_SAVE);
 
 		// Make sure the tag was created on the ZCS server
 		TagItem tag = TagItem.importFromSOAP(app.zGetActiveAccount(),tagName);
@@ -90,30 +90,30 @@ public class CreateTag extends TouchCommonTest {
 		PageCreateTag createTagPage = new PageCreateTag((AppTouchClient) app , this.startingPage);
 		
 		//Click on edit button
-		createTagPage.zClickButton(Button.B_EDIT);
+		createTagPage.zPressButton(Button.B_EDIT);
 		//Click on new tag button
-		createTagPage.zClickButton(Button.B_NEW_TAG);
+		createTagPage.zPressButton(Button.B_NEW_TAG);
 		//Enter tag name
 		createTagPage.zEnterTagName(tagName);
 		//Click on Save
-		createTagPage.zClickButton(Button.B_SAVE);
+		createTagPage.zPressButton(Button.B_SAVE);
 		
 		//Try to create duplicate tag
 		//Click on edit button
-		createTagPage.zClickButton(Button.B_EDIT);
+		createTagPage.zPressButton(Button.B_EDIT);
 		//Click on new tag button
-		createTagPage.zClickButton(Button.B_NEW_TAG);
+		createTagPage.zPressButton(Button.B_NEW_TAG);
 		//Enter tag name
 		createTagPage.zEnterTagName(tagName);
 		//Click on Save
-		createTagPage.zClickButton(Button.B_SAVE);
+		createTagPage.zPressButton(Button.B_SAVE);
 		
 		
 		//Verify error dialog is displayed
 		createTagPage.zVerifyDialogText(errorMessage);
 		
 		//Click on OK button 
-		createTagPage.zClickButton(Button.B_OK);
+		createTagPage.zPressButton(Button.B_OK);
 		
 		// Verify existing tag
 		TagItem tag = TagItem.importFromSOAP(app.zGetActiveAccount(),tagName);

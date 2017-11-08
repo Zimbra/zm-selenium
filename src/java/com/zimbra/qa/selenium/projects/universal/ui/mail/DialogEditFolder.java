@@ -91,8 +91,8 @@ public class DialogEditFolder extends AbsDialog {
 	}
 
 	@Override
-	public AbsPage zClickButton(Button button) throws HarnessException {
-		logger.info(myPageName() + " zClickButton(" + button + ")");
+	public AbsPage zPressButton(Button button) throws HarnessException {
+		logger.info(myPageName() + " zPressButton(" + button + ")");
 
 		tracer.trace("Click dialog button " + button);
 
@@ -151,7 +151,7 @@ public class DialogEditFolder extends AbsDialog {
 			throw new HarnessException("Button " + button + " not implemented");
 		}
 
-		this.zClick(locator);
+		this.sClick(locator);
 		this.zWaitForBusyOverlay();
 		SleepUtil.sleepSmall();
 		
@@ -207,22 +207,22 @@ public class DialogEditFolder extends AbsDialog {
 			actionLocator = Locators.zEditColor;
 			optionLocator = Locators.zMoreColors;
 			
-			zClickAt(actionLocator,"");
+			sClickAt(actionLocator,"");
 			this.zWaitForBusyOverlay();
-			zClick(optionLocator);
+			sClick(optionLocator);
 			this.zWaitForBusyOverlay();
 			
 			optionLocator = Locators.zCustomColors;
-			zClick(optionLocator);
+			sClick(optionLocator);
 			
 		} else if (color == FolderColor.Gray) {
 
 			actionLocator = Locators.zEditPropertiesDialogDropDown;
 			optionLocator = Locators.zGrayColorId;
 
-			zClick(actionLocator);
+			sClick(actionLocator);
 			this.zWaitForBusyOverlay();
-			zClick(optionLocator);
+			sClick(optionLocator);
 
 		} else if (color == FolderColor.Blue) {
 
@@ -231,34 +231,34 @@ public class DialogEditFolder extends AbsDialog {
 
 			sClickAt(actionLocator, "");
 			this.zWaitForBusyOverlay();
-			zClick(optionLocator);
+			sClick(optionLocator);
 
 		} else if (color == FolderColor.Cyan) {
 
 			actionLocator = Locators.zEditPropertiesDialogDropDown;
 			optionLocator = Locators.zCyanColorId;
 
-			zClick(actionLocator);
+			sClick(actionLocator);
 			this.zWaitForBusyOverlay();
-			zClick(optionLocator);
+			sClick(optionLocator);
 
 		} else if (color == FolderColor.Green) {
 
 			actionLocator = Locators.zEditPropertiesDialogDropDown;
 			optionLocator = Locators.zGreenColorId;
 
-			zClick(actionLocator);
+			sClick(actionLocator);
 			this.zWaitForBusyOverlay();
-			zClick(optionLocator);
+			sClick(optionLocator);
 
 		} else if (color == FolderColor.Purple) {
 
 			actionLocator = Locators.zEditPropertiesDialogDropDown;
 			optionLocator = Locators.zPurpleColorId;
 
-			zClick(actionLocator);
+			sClick(actionLocator);
 			this.zWaitForBusyOverlay();
-			zClick(optionLocator);
+			sClick(optionLocator);
 
 		} else {
 			throw new HarnessException("color " + color	+ " not yet implemented");
@@ -282,9 +282,9 @@ public class DialogEditFolder extends AbsDialog {
 			actionLocator = Locators.zBlueColorId;
 			optionLocator = Locators.zGreenColorId;
 
-			zClick(actionLocator);
+			sClick(actionLocator);
 			this.zWaitForBusyOverlay();
-			zClick(optionLocator);
+			sClick(optionLocator);
 
 		} else {
 			throw new HarnessException("color " + color	+ " not yet implemented");
@@ -320,7 +320,7 @@ public class DialogEditFolder extends AbsDialog {
 		}
 		
 		// Click on the tab
-		this.zClickAt(locator, "");
+		this.sClickAt(locator, "");
 		this.zWaitForBusyOverlay();
 	}
 	

@@ -124,7 +124,7 @@ public class FormContactGroupNew extends AbsForm {
 			page = new DialogWarning(DialogWarning.DialogWarningID.CancelCreateContact, this.MyApplication,
 					((AppAjaxClient) this.MyApplication).zPageContacts);
 
-			this.zClick(locator);
+			this.sClick(locator);
 
 			return (page);
 
@@ -168,7 +168,7 @@ public class FormContactGroupNew extends AbsForm {
 		}
 
 		// Click it
-		this.zClickAt(locator, "");
+		this.sClickAt(locator, "");
 
 		SleepUtil.sleepMedium();
 
@@ -209,7 +209,7 @@ public class FormContactGroupNew extends AbsForm {
 						+ pulldownLocator + " not present!");
 			}
 
-			this.zClick(pulldownLocator);
+			this.sClick(pulldownLocator);
 			SleepUtil.sleepMedium();
 			this.zWaitForBusyOverlay();
 
@@ -237,7 +237,7 @@ public class FormContactGroupNew extends AbsForm {
 						+ optionLocator + " not present!");
 			}
 
-			this.zClick(optionLocator);
+			this.sClick(optionLocator);
 
 			this.zWaitForBusyOverlay();
 
@@ -435,7 +435,7 @@ public class FormContactGroupNew extends AbsForm {
 		}
 
 		// select contact dropdown
-		zClick(dropdown + postfix);
+		sClick(dropdown + postfix);
 		SleepUtil.sleepSmall();
 
 		// assume contact is one arrow key down away from top
@@ -451,7 +451,7 @@ public class FormContactGroupNew extends AbsForm {
 
 		app.zPageContacts.zKeyboardKeyEvent(KeyEvent.VK_ENTER);
 
-		// formGroup.zClick(FormContactGroupNew.Locators.zDropdownSelectContacts);
+		// formGroup.sClick(FormContactGroupNew.Locators.zDropdownSelectContacts);
 
 		return;
 	}

@@ -81,7 +81,7 @@ public class PermanentDeleteMail extends PrefGroupMailByConversationTest {
 		app.zPageMail.zToolbarPressButton(Button.B_DELETE);
 		
 		// Click on Yes
-		app.zPageMail.zClickButton(Button.B_YES);
+		app.zPageMail.zPressButton(Button.B_YES);
         
 		// Verify message is deleted from trash folder 
 		MailItem actual = MailItem.importFromSOAP(app.zGetActiveAccount(), "in:trash "+ subject);
@@ -142,7 +142,7 @@ public class PermanentDeleteMail extends PrefGroupMailByConversationTest {
 		app.zPageMail.zToolbarPressButton(Button.B_DELETE);
 		
 		// Click on No on warning dialog
-		app.zPageMail.zClickButton(Button.B_NO);
+		app.zPageMail.zPressButton(Button.B_NO);
         
 		// Verify the mail is not deleted from Trash folder
 		MailItem actual= MailItem.importFromSOAP(app.zGetActiveAccount(), "in:trash "+ subject);

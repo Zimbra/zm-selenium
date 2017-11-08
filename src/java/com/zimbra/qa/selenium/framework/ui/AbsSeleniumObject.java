@@ -75,7 +75,7 @@ import org.openqa.selenium.interactions.internal.Locatable;
  * {@link #sClick(String)}.
  * <p>
  * Zimbra specific methods start with a lower case "z", such as the
- * Zimbra-specific implementation of click {@link #zClick(String)}, which
+ * Zimbra-specific implementation of click {@link #sClick(String)}, which
  * performs the more stable action of MOUSE_DOWN followed by MOUSE_UP.
  * <p>
  *
@@ -209,12 +209,13 @@ public abstract class AbsSeleniumObject {
 	}
 
 
-	public void zClick(String locator, WebElement... elements) throws HarnessException {
+	@SuppressWarnings("unused")
+	private void zClick(String locator, WebElement... elements) throws HarnessException {
 		sClick(locator, elements);
 	}
 
-
-	public void zClickAt(String locator, String coord, WebElement... elements) throws HarnessException {
+	@SuppressWarnings("unused")
+	private void zClickAt(String locator, String coord, WebElement... elements) throws HarnessException {
 		sClickAt(locator, coord, elements);
 	}
 

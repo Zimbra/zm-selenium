@@ -64,13 +64,13 @@ public class AcceptShareFromPreferences extends AjaxCommonTest {
 		app.zPagePreferences.sType("css=div#Prefs_Pages_Sharing_shareForm div[id$='_owner'] input", ZimbraAccount.AccountB().EmailAddress);
 
 		// Click "Find Shares"
-		app.zPagePreferences.zClick("css=div[id$='_findButton'] td[id$='_title']");
+		app.zPagePreferences.sClick("css=div[id$='_findButton'] td[id$='_title']");
 
 		// Select Accept and Yes to accept the share
 		app.zPagePreferences.zWaitForBusyOverlay();
-		app.zPagePreferences.sClick("css=div[id='zl__SVP__rows'] a[id$='_accept']"); //Accept locator
+		app.zPagePreferences.sClick("css=div[id='zl__SVP__rows'] a[id$='_accept']");
 		SleepUtil.sleepSmall();
-		app.zPagePreferences.sClick("css=td[id='ZmAcceptShare_button5_title']"); // 'Yes' button locator
+		app.zPagePreferences.sClick("css=td[id='ZmAcceptShare_button5_title']"); //Yes button locator
 		SleepUtil.sleepMedium();
 
 		// Make sure that Active Account now has the share

@@ -78,10 +78,10 @@ public class DeleteAlias extends AdminCommonTest {
 		DialogForDeleteOperation dialog = (DialogForDeleteOperation) app.zPageManageAliases.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_DELETE);
 
 		// Click Yes in Confirmation dialog
-		dialog.zClickButton(Button.B_YES);
+		dialog.zPressButton(Button.B_YES);
 
 		// Click Ok on "Delete Items" dialog
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 
 		// Get the list of displayed accounts
 		List<AccountItem> accounts = app.zPageManageAliases.zListGetAccounts();
@@ -136,10 +136,10 @@ public class DeleteAlias extends AdminCommonTest {
 		DialogForDeleteOperation dialog = (DialogForDeleteOperation) app.zPageManageAliases.zToolbarPressButton(Button.B_TREE_DELETE);
 
 		// Click Yes in Confirmation dialog
-		dialog.zClickButton(Button.B_YES);
+		dialog.zPressButton(Button.B_YES);
 
 		// Click Ok on "Delete Items" dialog
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 
 		// Get the list of displayed accounts
 		List<AccountItem> accounts = app.zPageManageAliases.zListGetAccounts();
@@ -196,10 +196,10 @@ public class DeleteAlias extends AdminCommonTest {
 		DialogForDeleteOperation dialog = (DialogForDeleteOperation) app.zPageSearchResults.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_DELETE);
 
 		// Click Yes in Confirmation dialog
-		dialog.zClickButton(Button.B_YES);
+		dialog.zPressButton(Button.B_YES);
 
 		// Click Ok on "Delete Items" dialog
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 
 		// Get the list of displayed accounts
 		List<AccountItem> accounts = app.zPageSearchResults.zListGetAccounts();
@@ -256,10 +256,10 @@ public class DeleteAlias extends AdminCommonTest {
 		DialogForDeleteOperation dialog = (DialogForDeleteOperation) app.zPageSearchResults.zToolbarPressButton(Button.B_TREE_DELETE);
 
 		// Click Yes in Confirmation dialog
-		dialog.zClickButton(Button.B_YES);
+		dialog.zPressButton(Button.B_YES);
 
 		// Click Ok on "Delete Items" dialog
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 
 		// Get the list of displayed accounts
 		List<AccountItem> accounts = app.zPageSearchResults.zListGetAccounts();

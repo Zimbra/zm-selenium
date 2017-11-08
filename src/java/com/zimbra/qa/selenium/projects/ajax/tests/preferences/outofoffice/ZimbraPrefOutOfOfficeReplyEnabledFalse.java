@@ -60,7 +60,7 @@ public class ZimbraPrefOutOfOfficeReplyEnabledFalse extends AjaxCommonTest {
 		DialogOOOAlert alert = new DialogOOOAlert(app, ((AppAjaxClient) app).zPageMail);
 		ZAssert.assertTrue(alert.zIsActive(), "Verify turn off auto-reply alert dialog is displayed");
 		alert.zCheckboxSet(true);
-		alert.zClickButton(Button.B_YES);
+		alert.zPressButton(Button.B_YES);
 
 		// Navigate to preferences -> mail -> Out of Office
 		app.zPagePreferences.zNavigateTo();

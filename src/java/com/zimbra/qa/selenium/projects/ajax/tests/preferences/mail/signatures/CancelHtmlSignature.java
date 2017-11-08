@@ -61,7 +61,7 @@ public class CancelHtmlSignature extends AjaxCommonTest {
 		ZAssert.assertNotNull(warning, "Verify the dialog is returned");
 
 		// Click on No button
-		warning.zClickButton(Button.B_NO);
+		warning.zPressButton(Button.B_NO);
 
 		// Verify canceled html signature name from SignatureListView
 		app.zPagePreferences.zNavigateTo();

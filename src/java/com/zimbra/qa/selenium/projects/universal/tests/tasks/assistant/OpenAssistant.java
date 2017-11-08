@@ -53,7 +53,7 @@ public class OpenAssistant extends UniversalCommonTest {
 		app.zPageTasks.zToolbarPressButton(Button.B_REFRESH);
 
 		DialogAssistant assistant = (DialogAssistant) app.zPageTasks.zKeyboardShortcut(Shortcut.S_ASSISTANT);
-		assistant.zClickButton(Button.B_CANCEL);
+		assistant.zPressButton(Button.B_CANCEL);
 	}
 
 }

@@ -56,7 +56,7 @@ public abstract class AbsDialog extends AbsPage {
 	/**
 	 * Click on a button in the dialog
 	 **/
-	public abstract AbsPage zClickButton(Button button) throws HarnessException;
+	public abstract AbsPage zPressButton(Button button) throws HarnessException;
 	
 	/**
 	 * Wait for this dialog to close

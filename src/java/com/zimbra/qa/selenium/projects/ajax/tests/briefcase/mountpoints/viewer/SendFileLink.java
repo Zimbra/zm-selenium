@@ -90,7 +90,7 @@ public class SendFileLink extends FeatureBriefcaseTest {
 		app.zPageBriefcase.zToolbarPressButton(Button.B_REFRESH);
 
 		String locator = "css=td[id^=zti__main_Briefcase__]:contains('" + mountpointname + "')";
-		app.zPageBriefcase.zClick(locator);
+		app.zPageBriefcase.sClick(locator);
 
 		// Refersh Page
 		app.zPageBriefcase.zToolbarPressButton(Button.B_REFRESH);
@@ -102,7 +102,7 @@ public class SendFileLink extends FeatureBriefcaseTest {
 					Button.B_ACTIONS, Button.O_SEND_LINK, fileItem);
 
 		// Click Yes on confirmation dialog
-		FormMailNew mailform = (FormMailNew) confDlg.zClickButton(Button.B_YES);
+		FormMailNew mailform = (FormMailNew) confDlg.zPressButton(Button.B_YES);
 
 		// Verify the new mail form is opened
 		ZAssert.assertTrue(mailform.zIsActive(), "Verify the new form opened");
@@ -114,7 +114,7 @@ public class SendFileLink extends FeatureBriefcaseTest {
 		ZAssert.assertNotNull(warning, "Verify the dialog is returned");
 
 		// Dismiss the dialog
-		warning.zClickButton(Button.B_NO);
+		warning.zPressButton(Button.B_NO);
 
 		// Delete file upon test completion
 		app.zPageBriefcase.deleteFileByName(fileItem.getName());

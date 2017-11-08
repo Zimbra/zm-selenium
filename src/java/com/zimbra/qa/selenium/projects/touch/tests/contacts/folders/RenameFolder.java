@@ -51,12 +51,12 @@ public class RenameFolder extends PrefGroupMailByMessageTest {
 				
 		// Selecting an existing folder
 		PageCreateFolder createFolderPage = new PageCreateFolder(app, startingPage);
-		createFolderPage.zClickButton(Button.B_EDIT);
+		createFolderPage.zPressButton(Button.B_EDIT);
 		createFolderPage.zSelectFolder(folderName);
 		
 		// Renaming an existing folder
 		createFolderPage.zEnterFolderName(renamedfolder);
-		createFolderPage.zClickButton(Button.B_SAVE);
+		createFolderPage.zPressButton(Button.B_SAVE);
 
         //-- Verification
               	

@@ -64,7 +64,7 @@ public abstract class AbsToaster extends AbsSeleniumObject {
 	 * @return
 	 * @throws HarnessException
 	 */
-	public void zClickUndo() throws HarnessException {
+	public void sClickUndo() throws HarnessException {
 		sClick(Locators.ToastUndoLocatorCSS);
 		SleepUtil.sleepMedium();
 		zWaitForBusyOverlay();

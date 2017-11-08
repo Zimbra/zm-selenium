@@ -77,7 +77,7 @@ public class TagFile extends FeatureBriefcaseTest {
 
 		SleepUtil.sleepSmall();
 		dialogTag.zSetTagName(tagName);
-		dialogTag.zClickButton(Button.B_OK);
+		dialogTag.zPressButton(Button.B_OK);
 
 		// Make sure the tag was created on the server (get the tag ID)
 		account.soapSend("<GetTagRequest xmlns='urn:zimbraMail'/>");

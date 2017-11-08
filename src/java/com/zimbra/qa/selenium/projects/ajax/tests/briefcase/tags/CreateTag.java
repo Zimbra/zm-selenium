@@ -48,7 +48,7 @@ public class CreateTag extends FeatureBriefcaseTest {
 
 		// Fill out the input field
 		dialog.zSetTagName(name);
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 
 		// Make sure the tag was created on the server
 		TagItem tag = TagItem.importFromSOAP(account, name);
@@ -81,7 +81,7 @@ public class CreateTag extends FeatureBriefcaseTest {
 		SleepUtil.sleepMedium();
 		// Fill out the input field
 		dialog.zSetTagName(name);
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 
 		// Select briefcase folder tags section after creating a new tag
 		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseFolder, false);
@@ -127,7 +127,7 @@ public class CreateTag extends FeatureBriefcaseTest {
 		SleepUtil.sleepMedium();
 		// Fill out the input field
 		dialog.zSetTagName(name2);
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 
 		// Select briefcase folder tags section after creating a new tag
 		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseFolder, false);
@@ -162,7 +162,7 @@ public class CreateTag extends FeatureBriefcaseTest {
 		SleepUtil.sleepMedium();
 		// Fill out the input field
 		dialog.zSetTagName(name);
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 
 		// Select briefcase folder tags section after creating a new tag
 		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseFolder, false);

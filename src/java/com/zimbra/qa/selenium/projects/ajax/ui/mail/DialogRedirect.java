@@ -70,8 +70,8 @@ public class DialogRedirect extends AbsDialog {
 	}
 
 	@Override
-	public AbsPage zClickButton(Button button) throws HarnessException {
-		logger.info(myPageName() + " zClickButton(" + button + ")");
+	public AbsPage zPressButton(Button button) throws HarnessException {
+		logger.info(myPageName() + " zPressButton(" + button + ")");
 
 		tracer.trace("Click dialog button " + button);
 
@@ -82,7 +82,7 @@ public class DialogRedirect extends AbsDialog {
 
 			locator = Locators.ButtonOkButtonLocator;
 
-			this.zClick(locator);
+			this.sClick(locator);
 
 			this.zWaitForBusyOverlay();
 
@@ -112,7 +112,7 @@ public class DialogRedirect extends AbsDialog {
 			throw new HarnessException("Button " + button + " locator " + locator + " not present!");
 		}
 
-		this.zClick(locator);
+		this.sClick(locator);
 
 		this.zWaitForBusyOverlay();
 
@@ -167,7 +167,7 @@ public class DialogRedirect extends AbsDialog {
 			throw new HarnessException("Field is not present field=" + field + " locator=" + locator);
 
 		this.sFocus(locator);
-		this.zClick(locator);
+		this.sClick(locator);
 		this.zWaitForBusyOverlay();
 
 		// Enter text

@@ -63,7 +63,7 @@ public class CreateShare extends PrefGroupMailByMessageTest {
 		dialog.zSetEmailAddress(externalEmail);
 
 		// Send it
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 
 		// Verify the account has shared the folder
 		app.zGetActiveAccount().soapSend(

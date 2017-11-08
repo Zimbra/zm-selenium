@@ -83,7 +83,7 @@ public class AutoShareRemoval extends UniversalCommonTest {
 		ZAssert.assertStringContains(app.zPagePreferences.sGetText("css=td[id='MessageDialog_1_Msg'] li"), ownerFoldername, "Verify 'ok/cancel' button is displayed in message prompt");
 
 		// Click 'OK' button at message prompt to revoke folder
-		app.zPageMain.zClick("css=td[id='OkCancel_button2_title']"); //OK button locator
+		app.zPageMain.sClick("css=td[id='OkCancel_button2_title']"); //OK button locator
 		SleepUtil.sleepSmall();
 		
 		// UI verification

@@ -60,7 +60,7 @@ public class SignatureBodyHtmlToText extends UniversalCommonTest {
 
 		// Select text format from drop down
 		DialogWarning dialog = (DialogWarning) signew.zSelectFormat("text");
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 		SleepUtil.sleepMedium();
 
 		ZAssert.assertStringContains(signew.zGetSignatureBodyText(), sigBody, "Verify the text content signature body");

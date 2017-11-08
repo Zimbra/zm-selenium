@@ -79,7 +79,7 @@ public class SearchDraftMail extends PrefGroupMailByConversationTest {
 		ZAssert.assertEquals(draft.dBodyText, body, "Verify the body field is correct");
 		ZAssert.assertEquals(draft.dFolderId, draftsFolder.getId(), "Verify the draft is saved in the drafts folder");
 		
-		app.zPageMail.zClickButton(Button.B_BACK);
+		app.zPageMail.zPressButton(Button.B_BACK);
 		
 	}
 	

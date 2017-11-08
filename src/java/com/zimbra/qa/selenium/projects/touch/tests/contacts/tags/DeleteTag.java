@@ -57,16 +57,16 @@ public class DeleteTag extends TouchCommonTest  {
 		PageCreateTag createTagPage = new PageCreateTag((AppTouchClient) app , this.startingPage);
 		
 		//Click on edit button
-		createTagPage.zClickButton(Button.B_EDIT);
+		createTagPage.zPressButton(Button.B_EDIT);
 		
 		//Select tag
 		createTagPage.zSelectTag(tagName);
 		
 		// Click on delete button
-		createTagPage.zClickButton(Button.B_DELETE);
+		createTagPage.zPressButton(Button.B_DELETE);
 	
 		//Click on Yes
-		createTagPage.zClickButton(Button.B_YES);
+		createTagPage.zPressButton(Button.B_YES);
 			
 		// To check whether deleted tag is not exist
 		app.zGetActiveAccount().soapSend("<GetTagRequest xmlns='urn:zimbraMail'/>");
@@ -103,16 +103,16 @@ public class DeleteTag extends TouchCommonTest  {
 		PageCreateTag createTagPage = new PageCreateTag((AppTouchClient) app , this.startingPage);
 		
 		//Click on edit button
-		createTagPage.zClickButton(Button.B_EDIT);
+		createTagPage.zPressButton(Button.B_EDIT);
 		
 		//Select tag
 		createTagPage.zSelectTag(tagName);
 		
 		// Click on delete button
-		createTagPage.zClickButton(Button.B_DELETE);
+		createTagPage.zPressButton(Button.B_DELETE);
 	
 		//Click on Yes
-		createTagPage.zClickButton(Button.B_NO);
+		createTagPage.zPressButton(Button.B_NO);
 			
 		// To check whether tag is exist
 		// Make sure the tag is existed on the ZCS server

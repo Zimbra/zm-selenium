@@ -66,7 +66,7 @@ public class ZmMailItem extends UniversalCommonTest {
 	//	css=ul[id='zl__TV-main__rows'] li[id^='zli__TV-main__'] [id$='__su']:contains('23')
 		//app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 		
-		app.zPageMail.zClickAt("css=ul[id='zl__TV-main__rows'] li[id^='zli__TV-main__']  div span[id$='__su']:contains('"+subject+"')","");
+		app.zPageMail.sClickAt("css=ul[id='zl__TV-main__rows'] li[id^='zli__TV-main__']  div span[id$='__su']:contains('"+subject+"')","");
 
 		PerfMetrics.waitTimestamp(token);
 
@@ -90,7 +90,7 @@ public class ZmMailItem extends UniversalCommonTest {
 
 		// Select the message so that it shows in the reading pane
 		//app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
-		app.zPageMail.zClickAt("css=ul[id='zl__TV-main__rows'] li[id^='zli__TV-main__']  div span[id$='__su']:contains('"+subject+"')","");
+		app.zPageMail.sClickAt("css=ul[id='zl__TV-main__rows'] li[id^='zli__TV-main__']  div span[id$='__su']:contains('"+subject+"')","");
 
 		PerfMetrics.waitTimestamp(token);
 
@@ -111,7 +111,7 @@ public class ZmMailItem extends UniversalCommonTest {
 
 		// Select the message so that it shows in the reading pane
 	//	app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
-		app.zPageMail.zClickAt("css=ul[id='zl__TV-main__rows'] li[id^='zli__TV-main__']  div span[id$='__su']:contains('"+subject+"')","");
+		app.zPageMail.sClickAt("css=ul[id='zl__TV-main__rows'] li[id^='zli__TV-main__']  div span[id$='__su']:contains('"+subject+"')","");
 
 		PerfMetrics.waitTimestamp(token);
 	}
@@ -132,7 +132,7 @@ public class ZmMailItem extends UniversalCommonTest {
 
 		// Select the message so that it shows in the reading pane
 		//app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
-		app.zPageMail.zClickAt("css=ul[id='zl__TV-main__rows'] li[id^='zli__TV-main__']  div span[id$='__su']:contains('"+subject+"')","");
+		app.zPageMail.sClickAt("css=ul[id='zl__TV-main__rows'] li[id^='zli__TV-main__']  div span[id$='__su']:contains('"+subject+"')","");
 
 		PerfMetrics.waitTimestamp(token);
 	}

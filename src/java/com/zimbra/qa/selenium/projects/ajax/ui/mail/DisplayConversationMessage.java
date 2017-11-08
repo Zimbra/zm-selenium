@@ -110,7 +110,7 @@ public class DisplayConversationMessage extends DisplayMail {
 		if (!this.sIsElementPresent(locator))
 			throw new HarnessException("locator is not present for button " + button + " : " + locator);
 
-		this.zClick(locator);
+		this.sClick(locator);
 
 		this.zWaitForBusyOverlay();
 
@@ -145,7 +145,7 @@ public class DisplayConversationMessage extends DisplayMail {
 			throw new HarnessException("Field is not present field=" + field + " locator=" + locator);
 
 		this.sFocus(locator);
-		this.zClick(locator);
+		this.sClick(locator);
 		this.zWaitForBusyOverlay();
 
 		// Enter text

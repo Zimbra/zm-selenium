@@ -58,7 +58,7 @@ public class ZmContactsItem_BasicContact1 extends UniversalCommonTest{
 
       // Select the contact
    //  app.zPageContacts.zListItem(Action.A_LEFTCLICK, contactItem.fileAs);;       
-      app.zPageContacts.zClickAt("css=div[id='zv__CNS-main'] li[id^='zli__CNS-main'] div[id$='__fileas']:contains('"+contactItem.fileAs+"')","");
+      app.zPageContacts.sClickAt("css=div[id='zv__CNS-main'] li[id^='zli__CNS-main'] div[id$='__fileas']:contains('"+contactItem.fileAs+"')","");
       PerfMetrics.waitTimestamp(token);
 
    }

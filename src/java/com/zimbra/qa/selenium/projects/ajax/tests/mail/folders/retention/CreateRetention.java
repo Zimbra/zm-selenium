@@ -60,7 +60,7 @@ public class CreateRetention extends PrefGroupMailByMessageTest {
 				2);
 
 		// Save
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 
 		// Verify the retention policy on the folder
 		app.zGetActiveAccount().soapSend(
@@ -115,7 +115,7 @@ public class CreateRetention extends PrefGroupMailByMessageTest {
 				2);
 
 		// Save
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 
 		// Verify the retention policy on the folder
 		app.zGetActiveAccount().soapSend(

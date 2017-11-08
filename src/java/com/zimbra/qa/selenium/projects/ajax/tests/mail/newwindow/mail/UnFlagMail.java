@@ -39,7 +39,7 @@ public class UnFlagMail extends PrefGroupMailByMessageTest {
 	@Test (description = "Unflag from new window ,action menu -> UnFlag",
 			groups = { "functional", "L2" })
 
-	public void UnFlagrFromNewWindow_01() throws HarnessException {
+	public void UnFlagFromNewWindow_01() throws HarnessException {
 
 		// Create the message data to be sent
 		String subject = "subject"+ ConfigProperties.getUniqueString();
@@ -114,7 +114,7 @@ public class UnFlagMail extends PrefGroupMailByMessageTest {
 	@Test (description = "Un Flag mail from new window ,using shortcut 'mf'",
 			groups = { "functional", "L2" })
 
-	public void UnFlagrFromNewWindow_02() throws HarnessException {
+	public void UnFlagFromNewWindow_02() throws HarnessException {
 
 		// Create the message data to be sent
 		String subject = "subject"+ ConfigProperties.getUniqueString();

@@ -142,7 +142,7 @@ public class CreateContact extends UniversalCommonTest {
 		DialogWarning dialogWarning = (DialogWarning) formContactNew.zToolbarPressButton(Button.B_CANCEL);
 
 		// Click Yes in popup dialog
-		dialogWarning.zClickButton(Button.B_YES);
+		dialogWarning.zPressButton(Button.B_YES);
 
 		// Verify contact created
 		ContactItem actual = ContactItem.importFromSOAP(app.zGetActiveAccount(), "#firstname:" + contact.firstName);
@@ -175,7 +175,7 @@ public class CreateContact extends UniversalCommonTest {
 		DialogWarning dialogWarning = (DialogWarning) formContactNew.zToolbarPressButton(Button.B_CANCEL);
 
 		// Click Yes in popup dialog
-		dialogWarning.zClickButton(Button.B_NO);
+		dialogWarning.zPressButton(Button.B_NO);
 
 		// -- Data Verification
 
@@ -208,7 +208,7 @@ public class CreateContact extends UniversalCommonTest {
 		DialogWarning dialogWarning = (DialogWarning) formContactNew.zToolbarPressButton(Button.B_CANCEL);
 
 		// Click Yes in popup dialog
-		dialogWarning.zClickButton(Button.B_CANCEL);
+		dialogWarning.zPressButton(Button.B_CANCEL);
 
 		// Verify the contact form comes back
 		ZAssert.assertTrue(formContactNew.zIsActive(), "Verify the contact form comes back");

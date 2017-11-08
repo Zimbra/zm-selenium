@@ -134,14 +134,14 @@ public class AddOptionalAttendee extends AjaxCommonTest {
 
         // Type optional attendee name in search box & perform search
         dialogFindAttendees.zType(Locators.ContactPickerSerachField, apptOptionalAttendee);
-        dialogFindAttendees.zClickButton(Button.B_SEARCH);
+        dialogFindAttendees.zPressButton(Button.B_SEARCH);
         dialogFindAttendees.zWaitForBusyOverlay();
 
         // Add optional attendee  and resend the appointment
-        dialogFindAttendees.zClick(Locators.ContactPickerFirstContact);
-        dialogFindAttendees.zClickButton(Button.B_CHOOSE_CONTACT_FROM_PICKER);
+        dialogFindAttendees.sClick(Locators.ContactPickerFirstContact);
+        dialogFindAttendees.zPressButton(Button.B_CHOOSE_CONTACT_FROM_PICKER);
         dialogFindAttendees.zWaitForBusyOverlay();
-        dialogFindAttendees.zClickButton(Button.B_OK);
+        dialogFindAttendees.zPressButton(Button.B_OK);
         apptForm.zSubmit();
 
         // Verify optional attendee receives meeting invitation message

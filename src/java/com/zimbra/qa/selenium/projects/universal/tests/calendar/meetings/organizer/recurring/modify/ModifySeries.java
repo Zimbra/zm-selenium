@@ -80,8 +80,8 @@ public class ModifySeries extends CalendarWorkWeekTest {
 		// --------------- Login to attendee & modify series ----------------------------------------------------
 
 		DialogOpenRecurringItem openRecurring = (DialogOpenRecurringItem) app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, apptSubject);
-		openRecurring.zClickButton(Button.B_OPEN_THE_SERIES);
-		openRecurring.zClickButton(Button.B_OK);
+		openRecurring.zPressButton(Button.B_OPEN_THE_SERIES);
+		openRecurring.zPressButton(Button.B_OK);
 		
 		FormApptNew apptForm = new FormApptNew(app);		
 		apptForm.zRepeat(Button.O_EVERY_WEEK_MENU, Button.B_EVERY_X_RADIO_BUTTON, Button.B_NO_END_DATE_RADIO_BUTTON);
@@ -182,8 +182,8 @@ public class ModifySeries extends CalendarWorkWeekTest {
 		// --------------- Login to attendee & modify series ----------------------------------------------------
 
 		DialogOpenRecurringItem openRecurring = (DialogOpenRecurringItem) app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, apptSubject);
-		openRecurring.zClickButton(Button.B_OPEN_THE_SERIES);
-		openRecurring.zClickButton(Button.B_OK);
+		openRecurring.zPressButton(Button.B_OPEN_THE_SERIES);
+		openRecurring.zPressButton(Button.B_OK);
 		
 		FormApptNew apptForm = new FormApptNew(app);
 		apptForm.zFillField(Field.Subject, modifiedSubject);
@@ -288,8 +288,8 @@ public class ModifySeries extends CalendarWorkWeekTest {
 		// --------------- Login to attendee & modify series ----------------------------------------------------
 
 		DialogOpenRecurringItem openRecurring = (DialogOpenRecurringItem) app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, apptSubject);
-		openRecurring.zClickButton(Button.B_OPEN_THE_SERIES);
-		openRecurring.zClickButton(Button.B_OK);
+		openRecurring.zPressButton(Button.B_OPEN_THE_SERIES);
+		openRecurring.zPressButton(Button.B_OK);
 		
 		FormApptNew apptForm = new FormApptNew(app);
 		apptForm.zFillField(Field.Subject, modifiedSubject);
@@ -394,8 +394,8 @@ public class ModifySeries extends CalendarWorkWeekTest {
 		// --------------- Login to attendee & modify series ----------------------------------------------------
 
 		DialogOpenRecurringItem openRecurring = (DialogOpenRecurringItem) app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, apptSubject);
-		openRecurring.zClickButton(Button.B_OPEN_THE_SERIES);
-		openRecurring.zClickButton(Button.B_OK);
+		openRecurring.zPressButton(Button.B_OPEN_THE_SERIES);
+		openRecurring.zPressButton(Button.B_OK);
 		
 		FormApptNew apptForm = new FormApptNew(app);		
 		apptForm.zRepeat(Button.O_EVERY_WEEK_MENU, Button.B_EVERY_X_RADIO_BUTTON, "Tuesday", Button.B_END_BY_DATE_RADIO_BUTTON, "01/02/2020");
@@ -500,8 +500,8 @@ public class ModifySeries extends CalendarWorkWeekTest {
 		// Verify appointment exists in current view
         ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
 		DialogOpenRecurringItem openRecurring = (DialogOpenRecurringItem) app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, apptSubject);
-		openRecurring.zClickButton(Button.B_OPEN_THE_SERIES);
-		openRecurring.zClickButton(Button.B_OK);
+		openRecurring.zPressButton(Button.B_OPEN_THE_SERIES);
+		openRecurring.zPressButton(Button.B_OK);
 		
 		FormApptNew apptForm = new FormApptNew(app);		
 		apptForm.zRepeat(Button.O_EVERY_DAY_MENU, Button.B_EVERY_X_DAYS_RADIO_BUTTON, "2", Button.B_END_AFTER_X_OCCURRENCES_RADIO_BUTTON, "10");
@@ -509,8 +509,8 @@ public class ModifySeries extends CalendarWorkWeekTest {
         apptForm.zSubmit();
         
 		openRecurring = (DialogOpenRecurringItem) app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, apptSubject);
-		openRecurring.zClickButton(Button.B_OPEN_THE_SERIES);
-		openRecurring.zClickButton(Button.B_OK);
+		openRecurring.zPressButton(Button.B_OPEN_THE_SERIES);
+		openRecurring.zPressButton(Button.B_OK);
 		ZAssert.assertStringContains(app.zPageCalendar.zGetRecurringLink(), "Every 2 days. End after 10 occurrence(s)", "Recurring link: Verify the appointment data");
 
         

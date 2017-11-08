@@ -91,10 +91,10 @@ public class PageManageAdvancedStatistics extends AbsTab {
 		}
 
 		// Click on Addresses -> Accounts
-		zClickAt(Locators.MONITOR_ICON,"");
+		sClickAt(Locators.MONITOR_ICON,"");
 		zWaitForWorkInProgressDialogInVisible();
 		sIsElementPresent("css=td:contains('"+Locators.ADVANCED_STATISTICS+"')");
-		zClickAt("css=td:contains('"+Locators.ADVANCED_STATISTICS+"')", "");
+		sClickAt("css=td:contains('"+Locators.ADVANCED_STATISTICS+"')", "");
 		zWaitForWorkInProgressDialogInVisible();
 		zWaitForActive();
 

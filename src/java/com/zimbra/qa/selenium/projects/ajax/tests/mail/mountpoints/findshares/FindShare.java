@@ -76,7 +76,7 @@ public class FindShare extends PrefGroupMailByMessageTest {
 
 		// Find shares from the user
 		dialog.zSetFindEmail(Owner.EmailAddress);
-		dialog.zClickButton(Button.B_SEARCH);
+		dialog.zPressButton(Button.B_SEARCH);
 
 		// Check the folder item
 		List<String> items = dialog.zListGetFolders();
@@ -93,7 +93,7 @@ public class FindShare extends PrefGroupMailByMessageTest {
 
 		// Check the box and add the share
 		dialog.zTreeItem(Action.A_TREE_CHECKBOX, found);
-		dialog.zClickButton(Button.B_ADD);
+		dialog.zPressButton(Button.B_ADD);
 
 		// Verify the mountpoint exists
 		app.zGetActiveAccount().soapSend(

@@ -99,10 +99,10 @@ public class PageManageVoiceChatService extends AbsTab {
 		}
 
 		// Click on Addresses -> Accounts
-		zClickAt(Locators.CONFIGURE_ICON,"");
+		sClickAt(Locators.CONFIGURE_ICON,"");
 		zWaitForWorkInProgressDialogInVisible();
 		sIsElementPresent(Locators.VOICECHATSERVICE);
-		zClickAt(Locators.VOICECHATSERVICE, "");
+		sClickAt(Locators.VOICECHATSERVICE, "");
 		zWaitForWorkInProgressDialogInVisible();
 		zWaitForActive();
 
@@ -136,7 +136,7 @@ public class PageManageVoiceChatService extends AbsTab {
 				if(this.sGetText(locator).trim().equalsIgnoreCase(item))
 				{
 					if(action == Action.A_LEFTCLICK) {
-						zClick(locator);
+						sClick(locator);
 						break;
 					} else if(action == Action.A_RIGHTCLICK) {
 						zRightClick(locator);
@@ -219,7 +219,7 @@ public class PageManageVoiceChatService extends AbsTab {
 				throw new HarnessException("Button " + pulldown + " option " + option + " pulldownLocator " + pulldownLocator + " not present!");
 			}
 
-			this.zClickAt(pulldownLocator,"");
+			this.sClickAt(pulldownLocator,"");
 			SleepUtil.sleepMedium();
 			SleepUtil.sleepLong();
 
@@ -233,7 +233,7 @@ public class PageManageVoiceChatService extends AbsTab {
 					throw new HarnessException("Button " + pulldown + " option " + option + " optionLocator " + optionLocator + " not present!");
 				}
 
-				this.zClickAt(optionLocator,"");
+				this.sClickAt(optionLocator,"");
 
 				// If the app is busy, wait for it to become active
 				//zWaitForBusyOverlay();

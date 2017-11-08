@@ -108,7 +108,7 @@ public class TreeMail extends AbsTree {
 		}
 
 		// Default behavior.  Click the locator
-		zClick(locator);
+		sClick(locator);
 
 		return (page);
 	}

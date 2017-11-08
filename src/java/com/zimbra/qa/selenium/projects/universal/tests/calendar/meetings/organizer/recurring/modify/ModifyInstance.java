@@ -86,8 +86,8 @@ public class ModifyInstance extends CalendarWorkWeekTest {
 		// --------------- Login to attendee & modify first instance ----------------------------------------------------
 
 		DialogOpenRecurringItem openRecurring = (DialogOpenRecurringItem) app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, apptSubject);
-		openRecurring.zClickButton(Button.B_OPEN_THIS_INSTANCE);
-		openRecurring.zClickButton(Button.B_OK);
+		openRecurring.zPressButton(Button.B_OPEN_THIS_INSTANCE);
+		openRecurring.zPressButton(Button.B_OK);
 		
 		FormApptNew apptForm = new FormApptNew(app);
 		apptForm.zVerifyDisabledControlInOpenInstance();

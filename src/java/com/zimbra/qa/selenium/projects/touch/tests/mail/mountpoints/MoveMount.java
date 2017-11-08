@@ -87,13 +87,13 @@ public class MoveMount extends PrefGroupMailByMessageTest {
 
 		// Select the mount folder from the list
 		PageCreateFolder createFolderPage = new PageCreateFolder(app, startingPage);
-		createFolderPage.zClickButton(Button.B_EDIT);
+		createFolderPage.zPressButton(Button.B_EDIT);
 		createFolderPage.zSelectFolder(mountpointname);
 
 		// Moving folder to another folder
-		createFolderPage.zClickButton(Button.B_LOCATION);
+		createFolderPage.zPressButton(Button.B_LOCATION);
 		createFolderPage.zSelectFolder(folderName);
-		createFolderPage.zClickButton(Button.B_SAVE);
+		createFolderPage.zPressButton(Button.B_SAVE);
 
 		// Click Get Mail button
 		app.zPageMain.zRefreshMainUI();	

@@ -85,7 +85,7 @@ public class Delete extends CalendarWorkWeekTest {
 		// Select mounted calendar folder and DECLINE the appointment
 		app.zPageCalendar.zSelectFolder(mountPointName);
 	//	app.zPageCalendar.zListItem(Action.A_LEFTCLICK, Button.O_DELETE, apptSubject);
-        app.zPageMail.zClickButton(Button.B_YES);       
+        app.zPageMail.zPressButton(Button.B_YES);       
 
 		// -------------- Verification at organizer side --------------
 		
@@ -232,7 +232,7 @@ public class Delete extends CalendarWorkWeekTest {
 		// Select mounted calendar folder and DELETE the appointment
 		app.zPageCalendar.zSelectFolder(mountPointName);
 		app.zPageCalendar.zListItem(Action.A_LEFTCLICK, Button.B_DELETE, apptSubject);
-        app.zPageMail.zClickButton(Button.B_YES);       
+        app.zPageMail.zPressButton(Button.B_YES);       
 		
 		// Verify meeting invite is deleted from the shared calendar
 		AppointmentItem sharedAppt = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ apptSubject +")");

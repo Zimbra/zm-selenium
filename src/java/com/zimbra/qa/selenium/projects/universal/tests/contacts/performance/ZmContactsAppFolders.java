@@ -52,7 +52,7 @@ public class ZmContactsAppFolders extends UniversalCommonTest {
 		// Currently in the mail app
 		// Navigate to the addressbook
 		//app.zPageContacts.zNavigateTo();
-		app.zPageContacts.zClickAt("css=td[id='zb__App__Contacts_title']","");
+		app.zPageContacts.sClickAt("css=td[id='zb__App__Contacts_title']","");
 
 		PerfMetrics.waitTimestamp(token);
 
@@ -84,7 +84,7 @@ public class ZmContactsAppFolders extends UniversalCommonTest {
 		// Currently in the mail app
 		// Navigate to the addressbook
 		//app.zPageContacts.zNavigateTo();
-		app.zPageContacts.zClickAt("css=td[id='zb__App__Contacts_title']","");
+		app.zPageContacts.sClickAt("css=td[id='zb__App__Contacts_title']","");
 
 		PerfMetrics.waitTimestamp(token);
 

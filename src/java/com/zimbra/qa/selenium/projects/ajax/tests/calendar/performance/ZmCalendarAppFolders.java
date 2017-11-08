@@ -48,7 +48,7 @@ public class ZmCalendarAppFolders extends AjaxCommonTest {
 
 		PerfToken token = PerfMetrics.startTimestamp(PerfKey.ZmCalendarAppOverviewPanel, "Load the calendar app, 1 calendar");
 
-		app.zPageCalendar.zClickAt("css=td[id='zb__App__Calendar_title']","");
+		app.zPageCalendar.sClickAt("css=td[id='zb__App__Calendar_title']","");
 
 		PerfMetrics.waitTimestamp(token);
 
@@ -76,7 +76,7 @@ public class ZmCalendarAppFolders extends AjaxCommonTest {
 
 		PerfToken token = PerfMetrics.startTimestamp(PerfKey.ZmCalendarAppOverviewPanel, "Load the calendar app, 100 calendars");
 
-		app.zPageCalendar.zClickAt("css=td[id='zb__App__Calendar_title']","");
+		app.zPageCalendar.sClickAt("css=td[id='zb__App__Calendar_title']","");
 
 		PerfMetrics.waitTimestamp(token);
 

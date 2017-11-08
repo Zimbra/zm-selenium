@@ -91,8 +91,8 @@ public class MoveMountpoint extends PrefGroupMailByMessageTest {
 
 		// Move the folder using context menu
 		DialogMove dialog = (DialogMove)app.zTreeMail.zTreeItem(Action.A_RIGHTCLICK, Button.B_MOVE, mountpoint);
-		dialog.zClickTreeFolder(folder);
-		dialog.zClickButton(Button.B_OK);
+		dialog.sClickTreeFolder(folder);
+		dialog.zPressButton(Button.B_OK);
 
 		// Verify the mountpoint is now in the other subfolder
 		mountpoint = FolderMountpointItem.importFromSOAP(app.zGetActiveAccount(), mountpointFoldername);

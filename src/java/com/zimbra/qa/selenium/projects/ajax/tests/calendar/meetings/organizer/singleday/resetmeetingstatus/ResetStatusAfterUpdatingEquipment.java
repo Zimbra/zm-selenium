@@ -89,7 +89,6 @@ public class ResetStatusAfterUpdatingEquipment extends AjaxCommonTest {
         apptForm.zRemoveEquipment(apptEquipment1);
         apptForm.zFillField(Field.Equipment, apptEquipment2);
 		apptForm.zSubmitWithResources();
-		SleepUtil.sleepLong(); //Testing temporarily
 
 		// Check that the organizer shows the attendee as "Accepted" ---
 		app.zGetActiveAccount().soapSend(

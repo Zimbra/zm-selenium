@@ -42,7 +42,7 @@ public class CreateFolder extends AjaxCommonTest {
 	   	// New Addressbook button
 		DialogCreateFolder createFolderDialog = (DialogCreateFolder) app.zTreeContacts.zPressButton(Button.B_TREE_NEWADDRESSBOOK);
 		createFolderDialog.zEnterFolderName(folderName);
-		createFolderDialog.zClickButton(Button.B_OK);
+		createFolderDialog.zPressButton(Button.B_OK);
 
 		// Make sure the folder was created on the server
 		FolderItem folder = FolderItem.importFromSOAP(app.zGetActiveAccount(),folderName);
@@ -65,7 +65,7 @@ public class CreateFolder extends AjaxCommonTest {
 		// Right click on root -> New Addressbook
 		DialogCreateFolder createFolderDialog = (DialogCreateFolder) app.zTreeContacts.zTreeItem(Action.A_RIGHTCLICK, Button.B_TREE_NEWFOLDER,folderItem);
 		createFolderDialog.zEnterFolderName(folderName);
-		createFolderDialog.zClickButton(Button.B_OK);
+		createFolderDialog.zPressButton(Button.B_OK);
 
 		// Make sure the folder was created on the server
 		FolderItem folder = FolderItem.importFromSOAP(app.zGetActiveAccount(),folderName);
@@ -92,7 +92,7 @@ public class CreateFolder extends AjaxCommonTest {
 		// Right click on Contacts -> New Addressbook
 		DialogCreateFolder createFolderDialog = (DialogCreateFolder) app.zTreeContacts.zTreeItem(Action.A_RIGHTCLICK, Button.B_TREE_NEWFOLDER,folderItem);
 		createFolderDialog.zEnterFolderName(folderName);
-		createFolderDialog.zClickButton(Button.B_OK);
+		createFolderDialog.zPressButton(Button.B_OK);
 
 		// Make sure the folder was created on the server
 		FolderItem folder = FolderItem.importFromSOAP(app.zGetActiveAccount(),folderName);
@@ -112,7 +112,7 @@ public class CreateFolder extends AjaxCommonTest {
 		// New -> Addressbook
 		DialogCreateFolder createFolderDialog = (DialogCreateFolder) app.zPageContacts.zToolbarPressPulldown(Button.B_NEW, Button.O_NEW_CONTACTS_FOLDER);
 		createFolderDialog.zEnterFolderName(folderName);
-		createFolderDialog.zClickButton(Button.B_OK);
+		createFolderDialog.zPressButton(Button.B_OK);
 
 		// Make sure the folder was created on the server
 		FolderItem folder = FolderItem.importFromSOAP(app.zGetActiveAccount(),folderName);

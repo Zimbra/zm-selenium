@@ -50,7 +50,7 @@ public class DragAndDropDialog extends AjaxCommonTest {
 		app.zPageMain.zDragAndDrop(locatorSource, locatorDestination);
 
 		// Close the dialog
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 
 		//-- VERIFICATION
 

@@ -102,7 +102,7 @@ public class FormEditDistributionList extends AbsForm {
 		SleepUtil.sleepMedium();
 	}
 
-	public void zClickTreeItem(String treeItem) throws HarnessException {
+	public void zSelectTreeItem(String treeItem) throws HarnessException {
 		sClickAt("css=div[id^='zti__AppAdmin__Home__dlLstHV'] div[class='ZTreeItemTextCell']:contains('" + treeItem + "')", "");
 	}
 
@@ -231,7 +231,7 @@ public class FormEditDistributionList extends AbsForm {
 		}
 
 		this.sFocus(Locators.REPLY_TO_ADDRESS);
-		this.zClick(Locators.REPLY_TO_ADDRESS);
+		this.sClick(Locators.REPLY_TO_ADDRESS);
 		this.zWaitForBusyOverlay();
 		this.sType(Locators.REPLY_TO_ADDRESS, email);
 		SleepUtil.sleepSmall();
@@ -246,7 +246,7 @@ public class FormEditDistributionList extends AbsForm {
 		this.clearField(Locators.ALIAS_NAME);		
 		sType(Locators.ALIAS_NAME,cn);
 		SleepUtil.sleepSmall();
-		zClick(Locators.zdlg_OK);
+		sClick(Locators.zdlg_OK);
 		SleepUtil.sleepSmall();	
 	}
 	
@@ -271,7 +271,7 @@ public class FormEditDistributionList extends AbsForm {
 			}
 		}
 		SleepUtil.sleepSmall();
-		zClick(Locators.zdlg_OK);
+		sClick(Locators.zdlg_OK);
 		SleepUtil.sleepSmall();	
 	}
 	

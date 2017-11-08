@@ -72,7 +72,7 @@ public class ModifyFolderRetention extends PrefGroupMailByMessageTest {
 		dialog.zRetentionSetRangeValue(6);
 
 		// Save
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 
 		// Verify the retention policy on the folder
 		app.zGetActiveAccount().soapSend(

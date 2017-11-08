@@ -78,7 +78,7 @@ public class Cancel extends AjaxCommonTest {
         DialogWarning dialog = (DialogWarning)app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_CANCEL_MENU, apptSubject);
 
         // Click Send Cancellation
-		dialog.zClickButton(Button.B_SEND_CANCELLATION);
+		dialog.zPressButton(Button.B_SEND_CANCELLATION);
 
 		// Verify the meeting disappears from the view
 		ZAssert.assertEquals(app.zPageCalendar.zIsAppointmentExists(apptSubject), false, "Verify meeting is deleted from organizer's calendar");
@@ -144,7 +144,7 @@ public class Cancel extends AjaxCommonTest {
         DialogWarning dialog = (DialogWarning)app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_CANCEL_MENU, apptSubject);
 
         // Click Send Cancellation
-		dialog.zClickButton(Button.B_SEND_CANCELLATION);
+		dialog.zPressButton(Button.B_SEND_CANCELLATION);
 
 		// Verify the meeting disappears from the view
 		ZAssert.assertEquals(app.zPageCalendar.zIsAppointmentExists(apptSubject), false, "Verify meeting is deleted from organizer's calendar");

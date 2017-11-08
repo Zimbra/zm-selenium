@@ -83,7 +83,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 			DialogWarning warning = (DialogWarning) app.zPageMain.zGetWarningDialog(DialogWarningID.DeleteItemWithinRetentionPeriod);
 			warning.zWaitForActive();
 
-			warning.zClickButton(Button.B_OK);
+			warning.zPressButton(Button.B_OK);
 
 		} finally {
 			app.zTreeMail.zTreeItem(Action.A_LEFTCLICK,
@@ -150,7 +150,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 			DialogWarning warning = (DialogWarning) app.zPageMain.zGetWarningDialog(DialogWarningID.DeleteItemWithinRetentionPeriod);
 			warning.zWaitForActive();
 
-			warning.zClickButton(Button.B_CANCEL);
+			warning.zPressButton(Button.B_CANCEL);
 
 		} finally {
 			app.zTreeMail.zTreeItem(Action.A_LEFTCLICK,
@@ -209,11 +209,11 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 			app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 
 			DialogWarning dialog = (DialogWarning) app.zPageMail.zKeyboardShortcut(Shortcut.S_MAIL_HARDELETE);
-			dialog.zClickButton(Button.B_OK);
+			dialog.zPressButton(Button.B_OK);
 
 			DialogWarning warning = (DialogWarning) app.zPageMain.zGetWarningDialog(DialogWarningID.PermanentlyDeleteTheItem);
 			warning.zWaitForActive();
-			warning.zClickButton(Button.B_OK);
+			warning.zPressButton(Button.B_OK);
 
 		} finally {
 			app.zTreeMail.zTreeItem(Action.A_LEFTCLICK,
@@ -271,7 +271,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 			app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 
 			DialogWarning dialog = (DialogWarning) app.zPageMail.zKeyboardShortcut(Shortcut.S_MAIL_HARDELETE);
-			dialog.zClickButton(Button.B_CANCEL);
+			dialog.zPressButton(Button.B_CANCEL);
 
 		} finally {
 			app.zTreeMail.zTreeItem(Action.A_LEFTCLICK,

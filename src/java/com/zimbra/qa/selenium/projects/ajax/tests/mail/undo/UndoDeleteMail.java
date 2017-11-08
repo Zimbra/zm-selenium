@@ -75,7 +75,7 @@ public class UndoDeleteMail extends PrefGroupMailByMessageTest {
 
 		// Click "undo"
 		Toaster toast = app.zPageMain.zGetToaster();
-		toast.zClickUndo();
+		toast.sClickUndo();
 
 		MailItem undone = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +") is:anywhere");
 		ZAssert.assertEquals(undone.dFolderId, inbox.getId(), "Verify message is back in inbox");

@@ -96,10 +96,10 @@ public class PageManageServers extends AbsTab {
 		}
 
 		// Click on Addresses -> Accounts
-		zClickAt(Locators.CONFIGURE_ICON,"");
+		sClickAt(Locators.CONFIGURE_ICON,"");
 		zWaitForWorkInProgressDialogInVisible();
 		sIsElementPresent(Locators.SERVER);
-		zClickAt(Locators.SERVER, "");
+		sClickAt(Locators.SERVER, "");
 		zWaitForWorkInProgressDialogInVisible();
 		//SleepUtil.sleepSmall();
 		zWaitForActive();
@@ -135,7 +135,7 @@ public class PageManageServers extends AbsTab {
 				if(this.sGetText(locator).trim().contains(item))
 				{
 					if(action == Action.A_LEFTCLICK) {
-						zClick(locator);
+						sClick(locator);
 						break;
 					} else if(action == Action.A_RIGHTCLICK) {
 						zRightClick(locator);
@@ -194,7 +194,7 @@ public class PageManageServers extends AbsTab {
 				throw new HarnessException("Button " + pulldown + " option " + option + " pulldownLocator " + pulldownLocator + " not present!");
 			}
 
-			this.zClickAt(pulldownLocator,"");
+			this.sClickAt(pulldownLocator,"");
 			SleepUtil.sleepSmall();
 
 			// If the app is busy, wait for it to become active
@@ -207,7 +207,7 @@ public class PageManageServers extends AbsTab {
 					throw new HarnessException("Button " + pulldown + " option " + option + " optionLocator " + optionLocator + " not present!");
 				}
 
-				this.zClickAt(optionLocator,"");
+				this.sClickAt(optionLocator,"");
 
 				// If the app is busy, wait for it to become active
 				//zWaitForBusyOverlay();
@@ -264,7 +264,7 @@ public class PageManageServers extends AbsTab {
 		}
 
 		// Default behavior, process the locator by clicking on it
-		this.zClickAt(locator,"");
+		this.sClickAt(locator,"");
 		SleepUtil.sleepMedium();
 
 		// If page was specified, make sure it is active

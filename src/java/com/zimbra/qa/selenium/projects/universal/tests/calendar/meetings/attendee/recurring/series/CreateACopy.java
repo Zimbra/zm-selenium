@@ -88,7 +88,7 @@ public class CreateACopy extends CalendarWorkWeekTest {
         
         // Copy appointment
         DialogInformational dialog = (DialogInformational)app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_SERIES_MENU, Button.O_CREATE_A_COPY_MENU, apptSubject);;
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 		
         FormApptNew form = new FormApptNew(app);
         form.zFillField(Field.Subject, newSubject);

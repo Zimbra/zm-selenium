@@ -74,7 +74,7 @@ public class DeleteFile extends FeatureBriefcaseTest {
 		DialogConfirm deleteConfirm = (DialogConfirm) app.zPageBriefcase.zToolbarPressButton(Button.B_DELETE, fileItem);
 
 		// Click OK on Confirmation dialog
-		deleteConfirm.zClickButton(Button.B_YES);
+		deleteConfirm.zPressButton(Button.B_YES);
 
 		// Select briefcase folder
 		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseFolder, false);
@@ -125,7 +125,7 @@ public class DeleteFile extends FeatureBriefcaseTest {
 		DialogConfirm deleteConfirm = (DialogConfirm) app.zPageBriefcase.zKeyboardShortcut(shortcut);
 
 		// Click OK on Confirmation dialog
-		deleteConfirm.zClickButton(Button.B_YES);
+		deleteConfirm.zPressButton(Button.B_YES);
 
 		// Select briefcase folder
 		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseFolder, false);
@@ -182,7 +182,7 @@ public class DeleteFile extends FeatureBriefcaseTest {
 		DialogConfirm deleteConfirm = (DialogConfirm) app.zPageBriefcase.zKeyboardShortcut(shortcut);
 
 		// Click OK on Confirmation dialog
-		deleteConfirm.zClickButton(Button.B_YES);
+		deleteConfirm.zPressButton(Button.B_YES);
 
 		// Select briefcase folder
 		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseFolder, false);
@@ -234,7 +234,7 @@ public class DeleteFile extends FeatureBriefcaseTest {
 				fileItem);
 
 		// Click OK on Confirmation dialog
-		deleteConfirm.zClickButton(Button.B_YES);
+		deleteConfirm.zPressButton(Button.B_YES);
 
 		// Select briefcase folder
 		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseFolder, false);
@@ -274,7 +274,7 @@ public class DeleteFile extends FeatureBriefcaseTest {
 		DialogConfirm deleteConfirm = (DialogConfirm) app.zPageBriefcase
 				.zToolbarPressButton(Button.B_DELETE, fileItem);
 
-		deleteConfirm.zClickButton(Button.B_YES);
+		deleteConfirm.zPressButton(Button.B_YES);
 
 		app.zTreeBriefcase
 				.zTreeItem(Action.A_LEFTCLICK, briefcaseFolder, false);
@@ -297,7 +297,7 @@ public class DeleteFile extends FeatureBriefcaseTest {
 		DialogConfirm deleteConfirm2 = (DialogConfirm) app.zPageBriefcase.zToolbarPressButton(Button.B_DELETE,
 				fileItem);
 
-		deleteConfirm2.zClickButton(Button.B_YES);
+		deleteConfirm2.zPressButton(Button.B_YES);
 
 		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseFolder, false);
 

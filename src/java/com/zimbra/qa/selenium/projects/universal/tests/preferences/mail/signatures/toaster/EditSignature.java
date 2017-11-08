@@ -82,8 +82,8 @@ public class EditSignature extends UniversalCommonTest {
 		FormSignatureNew signew = new FormSignatureNew(app);
 
 		// Select signature which is to be edit
-		signew.zClick(Locators.zSignatureListView);
-		signew.zClick("//td[contains(text(),'" + signature.getName() + "')]");
+		signew.sClick(Locators.zSignatureListView);
+		signew.sClick("//td[contains(text(),'" + signature.getName() + "')]");
 
 		// Verify Body contents
 		PageSignature pagesig = new PageSignature(app);

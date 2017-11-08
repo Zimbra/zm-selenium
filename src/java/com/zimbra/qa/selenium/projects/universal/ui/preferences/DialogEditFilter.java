@@ -66,8 +66,8 @@ public class DialogEditFilter extends AbsDialog {
 
 
 	@Override
-	public AbsPage zClickButton(Button button) throws HarnessException {
-		logger.info(myPageName() + " zClickButton("+ button +")");
+	public AbsPage zPressButton(Button button) throws HarnessException {
+		logger.info(myPageName() + " zPressButton("+ button +")");
 
 		String locator = null;
 		AbsPage page = null;
@@ -84,7 +84,7 @@ public class DialogEditFilter extends AbsDialog {
 			throw new HarnessException("Button "+ button +" not implemented");
 		}
 
-		zClick(locator);
+		sClick(locator);
 		zWaitForBusyOverlay();
 
 		return (page);
@@ -183,11 +183,11 @@ public class DialogEditFilter extends AbsDialog {
 			
 		// Click the pulldown to activate the menu
 		String locator = "css=div[id='ZmFilterRuleDialog_condition'] td[id$='_select_container'] td[id$='_dropdown'] div[class='ImgSelectPullDownArrow']";
-		this.zClick(locator);
+		this.sClick(locator);
 		
 		//Select the option 'All'		
 		locator="css=div#FilterRuleGroupCondition_0_Menu_1_option_2";
-		this.zClick(locator);
+		this.sClick(locator);
 		
 		} else if (!(type.equals(Condition.All)) && !(type.equals(Condition.Any))) {
 			
@@ -222,7 +222,7 @@ public class DialogEditFilter extends AbsDialog {
 
 			// Click the "+" to add a new row
 			locator = rowLocator + ":nth-child("+i+") div[class='ImgPlus']";
-			this.zClick(locator);
+			this.sClick(locator);
 			this.zWaitForBusyOverlay();
 
 			this.IsFirstCriteria = false;

@@ -47,7 +47,7 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 
 		DialogAssistant assistant = (DialogAssistant)app.zPageMail.zKeyboardShortcut(Shortcut.S_ASSISTANT);
 		assistant.zEnterCommand(command);
-		assistant.zClickButton(Button.B_OK);
+		assistant.zPressButton(Button.B_OK);
 		
 		ZimbraAccount.AccountA().soapSend(
 					"<SearchRequest xmlns='urn:zimbraMail' types='message'>"

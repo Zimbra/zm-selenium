@@ -105,7 +105,7 @@ public class UploadFile extends FeatureBriefcaseTest {
 
 				zUpload(filePath);
 
-				dlg.zClickButton(Button.B_OK);
+				dlg.zPressButton(Button.B_OK);
 
 				// Click on created File
 				app.zPageBriefcase.zListItem(Action.A_BRIEFCASE_CHECKBOX, fileItem);

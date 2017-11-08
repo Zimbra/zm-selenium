@@ -69,11 +69,11 @@ public class SendLater extends PrefGroupMailByMessageTest {
 		DialogSendLater dialog = (DialogSendLater)mailform.zToolbarPressPulldown(Button.B_SEND, Button.O_SEND_SEND_LATER);
 
 		// Don't change the default information.  Just click OK.
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 		
 		DialogWarning warning = (DialogWarning) app.zPageMain.zGetWarningDialog(DialogWarningID.SelectedTimeIsInPast);
 		if ( warning.zIsActive() ) {
-			warning.zClickButton(Button.B_OK);
+			warning.zPressButton(Button.B_OK);
 		}
 		
 		// Difficult to determine how to verify.  If we searched drafts, the message already
@@ -108,7 +108,7 @@ public class SendLater extends PrefGroupMailByMessageTest {
 
 		// Enter the dialog information
 		dialog.zFill(calendar);		
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 		
 		
 		// Verify the message is queue'ed to send later

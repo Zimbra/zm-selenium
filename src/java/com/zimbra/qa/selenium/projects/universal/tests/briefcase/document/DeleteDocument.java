@@ -95,7 +95,7 @@ public class DeleteDocument extends FeatureBriefcaseTest {
 				.zToolbarPressButton(Button.B_DELETE, docItem);
 
 		// Click OK on Confirmation dialog
-		deleteConfirm.zClickButton(Button.B_YES);
+		deleteConfirm.zPressButton(Button.B_YES);
 
 		// refresh briefcase page
 		app.zTreeBriefcase
@@ -176,7 +176,7 @@ public class DeleteDocument extends FeatureBriefcaseTest {
 				.zKeyboardShortcut(shortcut);
 
 		// Click OK on Confirmation dialog
-		deleteConfirm.zClickButton(Button.B_YES);
+		deleteConfirm.zPressButton(Button.B_YES);
 
 		// refresh briefcase page
 		app.zTreeBriefcase
@@ -239,7 +239,7 @@ public class DeleteDocument extends FeatureBriefcaseTest {
 				.zKeyboardShortcut(shortcut);
 
 		// Click OK on Confirmation dialog
-		deleteConfirm.zClickButton(Button.B_YES);
+		deleteConfirm.zPressButton(Button.B_YES);
 
 		// refresh briefcase page
 		app.zTreeBriefcase
@@ -297,7 +297,7 @@ public class DeleteDocument extends FeatureBriefcaseTest {
 				.zListItem(Action.A_RIGHTCLICK, Button.O_DELETE, docItem);
 
 		// Click OK on Confirmation dialog
-		deleteConfirm.zClickButton(Button.B_YES);
+		deleteConfirm.zPressButton(Button.B_YES);
 
 		// refresh briefcase page
 		app.zTreeBriefcase
@@ -369,7 +369,7 @@ public class DeleteDocument extends FeatureBriefcaseTest {
 				.zToolbarPressButton(Button.B_DELETE, docItems[0]);
 
 		// Click OK on Confirmation dialog
-		deleteConfirm.zClickButton(Button.B_YES);
+		deleteConfirm.zPressButton(Button.B_YES);
 
 		// refresh briefcase page
 		app.zTreeBriefcase
@@ -452,7 +452,7 @@ public class DeleteDocument extends FeatureBriefcaseTest {
 		DialogConfirm deleteConfirm = (DialogConfirm) app.zPageBriefcase.zToolbarPressButton(Button.B_DELETE, docItem);
 
 		// Click OK on Confirmation dialog
-		deleteConfirm.zClickButton(Button.B_YES);
+		deleteConfirm.zPressButton(Button.B_YES);
 
 		// refresh briefcase page
 		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseFolder, false);
@@ -503,7 +503,7 @@ public class DeleteDocument extends FeatureBriefcaseTest {
 		deleteConfirm = (DialogConfirm) app.zPageBriefcase.zToolbarPressButton(Button.B_DELETE, docItem);
 
 		// Click OK on Confirmation dialog
-		deleteConfirm.zClickButton(Button.B_YES);
+		deleteConfirm.zPressButton(Button.B_YES);
 
 		// refresh briefcase page
 		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseFolder, false);
@@ -586,14 +586,14 @@ public class DeleteDocument extends FeatureBriefcaseTest {
 		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseFolder, true);
 		
 		if (!app.zPageBriefcase.sIsElementPresent(nodeExpanded)) {
-			app.zPageBriefcase.zClickAt(nodeCollapsed, "");
+			app.zPageBriefcase.sClickAt(nodeCollapsed, "");
 		}
 		
 		// Delete Document using Right Click Context Menu
 		DialogConfirm deleteConfirm = (DialogConfirm) app.zPageBriefcase.zListItem(Action.A_RIGHTCLICK, Button.O_DELETE, locator);
 		ZAssert.assertTrue(app.zPageBriefcase.sIsElementPresent(dialogText), "Verify that text is correct");
 		// Click OK on Confirmation dialog
-		deleteConfirm.zClickButton(Button.B_YES);
+		deleteConfirm.zPressButton(Button.B_YES);
 
 		// refresh briefcase page
 		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseFolder, false);

@@ -61,7 +61,7 @@ public class EditContactGroup extends AjaxCommonTest {
 
 		if (ConfigProperties.getStringProperty(ConfigProperties.getLocalHost() + ".coverage.enabled",
 				ConfigProperties.getStringProperty("coverage.enabled")).contains("true") == true) {
-			app.zPageContacts.zClickAt(
+			app.zPageContacts.sClickAt(
 					"css=div#" + formContactGroupNew.getToolbarID() + " div[id$='__SAVE'] td[id$='_title']", "0,0");
 
 		} else {
@@ -99,7 +99,7 @@ public class EditContactGroup extends AjaxCommonTest {
 
 		if (ConfigProperties.getStringProperty(ConfigProperties.getLocalHost() + ".coverage.enabled",
 				ConfigProperties.getStringProperty("coverage.enabled")).contains("true") == true) {
-			app.zPageContacts.zClickAt(
+			app.zPageContacts.sClickAt(
 					"css=div#" + formContactGroupNew.getToolbarID() + " div[id$='__SAVE'] td[id$='_title']", "0,0");
 		} else {
 			formContactGroupNew.zSubmit();
@@ -136,7 +136,7 @@ public class EditContactGroup extends AjaxCommonTest {
 
 		if (ConfigProperties.getStringProperty(ConfigProperties.getLocalHost() + ".coverage.enabled",
 				ConfigProperties.getStringProperty("coverage.enabled")).contains("true") == true) {
-			app.zPageContacts.zClickAt(
+			app.zPageContacts.sClickAt(
 					"css=div#" + formContactGroupNew.getToolbarID() + " div[id$='__SAVE'] td[id$='_title']", "0,0");
 		} else {
 			formContactGroupNew.zSubmit();

@@ -91,7 +91,7 @@ public class WizardBackup extends AbsWizard {
 			{
 				if(this.sGetText(locator).trim().equalsIgnoreCase(email))
 				{
-					zClick(locator);
+					sClick(locator);
 					SleepUtil.sleepMedium();
 				} else {
 					logger.info("Element is not present!");
@@ -157,7 +157,7 @@ public class WizardBackup extends AbsWizard {
 				{
 					if(this.sGetText(locator).trim().equalsIgnoreCase(email))
 					{
-						zClick(locator);
+						sClick(locator);
 						SleepUtil.sleepMedium();
 					} else {
 						logger.info("Element is not present!");
@@ -185,7 +185,7 @@ public class WizardBackup extends AbsWizard {
 
 
 	public boolean zCloseWizard() throws HarnessException {
-		this.zClickAt("css=td[id$='zdlg__UNDEFINE_button1_title']" ,"");
+		this.sClickAt("css=td[id$='zdlg__UNDEFINE_button1_title']" ,"");
 		return true;
 	}
 }

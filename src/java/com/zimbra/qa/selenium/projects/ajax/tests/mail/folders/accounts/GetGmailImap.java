@@ -84,7 +84,7 @@ public class GetGmailImap extends PrefGroupMailByMessageTest {
 		// If the datasource has never been synced, then an empty title bar appears
 		app.zTreeMail.zRightClickAt("css=div[id='zov__main_Mail'] td[id$='_textCell']:contains("+ foldername +")", "");
 		app.zTreeMail.zWaitForBusyOverlay();
-		app.zTreeMail.zClickAt(Locators.ContextMenuTVFoldersCSS + " div[id^='SYNC'] td[id$='_title']", "");
+		app.zTreeMail.sClickAt(Locators.ContextMenuTVFoldersCSS + " div[id^='SYNC'] td[id$='_title']", "");
 		app.zTreeMail.zWaitForBusyOverlay();
 
 		// Sync is asynchronous, so we have to wait for the toaster
@@ -104,7 +104,7 @@ public class GetGmailImap extends PrefGroupMailByMessageTest {
 		String externalInbox = app.zGetActiveAccount().soapSelectValue("//mail:folder[@name='"+ foldername +"']//mail:folder[@name='Inbox']", "id");
 
 		// Click on the Inbox
-		app.zTreeMail.zClickAt("css=td[id='zti__main_Mail__" + externalInbox +"_textCell']", "");
+		app.zTreeMail.sClickAt("css=td[id='zti__main_Mail__" + externalInbox +"_textCell']", "");
 
 		String listLocator = null;
 		String rowLocator = null;

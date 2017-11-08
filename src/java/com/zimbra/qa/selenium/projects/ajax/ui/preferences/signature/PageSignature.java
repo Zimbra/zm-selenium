@@ -124,7 +124,7 @@ public class PageSignature extends AbsTab {
 			throw new HarnessException("locator was null for button " + button);
 		}
 
-		this.zClickAt(locator, "");
+		this.sClickAt(locator, "");
 		this.zWaitForBusyOverlay();
 
 		return (page);

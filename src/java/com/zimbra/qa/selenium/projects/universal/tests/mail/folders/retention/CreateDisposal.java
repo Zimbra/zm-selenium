@@ -67,7 +67,7 @@ public class CreateDisposal extends PrefGroupMailByMessageTest {
 				2);
 
 		// Save
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 		
 		
 		//-- Verification
@@ -133,7 +133,7 @@ public class CreateDisposal extends PrefGroupMailByMessageTest {
 				2);
 
 		// Save
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 		
 		
 		//-- Verification

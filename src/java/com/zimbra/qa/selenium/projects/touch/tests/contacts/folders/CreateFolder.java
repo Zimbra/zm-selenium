@@ -43,7 +43,7 @@ public class CreateFolder extends PrefGroupMailByMessageTest {
 		PageCreateFolder createFolderPage = (PageCreateFolder) app.zTreeMail.zPressButton(Button.B_NEW_FOLDER);
 	
 		createFolderPage.zEnterFolderName(folderName);
-		createFolderPage.zClickButton(Button.B_SAVE);
+		createFolderPage.zPressButton(Button.B_SAVE);
 
 		// Make sure the folder was created on the ZCS server
 		FolderItem folder = FolderItem.importFromSOAP(app.zGetActiveAccount(),folderName);

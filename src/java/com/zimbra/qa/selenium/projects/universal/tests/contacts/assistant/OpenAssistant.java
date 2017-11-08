@@ -36,7 +36,7 @@ public class OpenAssistant extends UniversalCommonTest {
 	public void OpenAssistant_01() throws HarnessException {
 		
 		DialogAssistant assistant = (DialogAssistant)app.zPageContacts.zKeyboardShortcut(Shortcut.S_ASSISTANT);
-		assistant.zClickButton(Button.B_CANCEL);
+		assistant.zPressButton(Button.B_CANCEL);
 		
 	}
 }

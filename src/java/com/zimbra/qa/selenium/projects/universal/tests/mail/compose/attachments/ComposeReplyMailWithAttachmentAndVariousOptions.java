@@ -116,7 +116,7 @@ public class ComposeReplyMailWithAttachmentAndVariousOptions extends PrefGroupMa
 				ZAssert.assertNotNull(warning, "Verify the dialog is returned");
 
 				// Dismiss the dialog
-				warning.zClickButton(Button.B_NO);
+				warning.zPressButton(Button.B_NO);
 				warning.zWaitForClose();
 
 			} finally {
@@ -192,7 +192,7 @@ public class ComposeReplyMailWithAttachmentAndVariousOptions extends PrefGroupMa
 				ZAssert.assertNotNull(warning, "Verify the dialog is returned");
 
 				// Dismiss the dialog
-				warning.zClickButton(Button.B_NO);
+				warning.zPressButton(Button.B_NO);
 				warning.zWaitForClose();
 
 
@@ -276,7 +276,7 @@ public class ComposeReplyMailWithAttachmentAndVariousOptions extends PrefGroupMa
 				ZAssert.assertNotNull(warning, "Verify the dialog is returned");
 
 				// Dismiss the dialog
-				warning.zClickButton(Button.B_NO);
+				warning.zPressButton(Button.B_NO);
 				warning.zWaitForClose();
 
 			} finally {

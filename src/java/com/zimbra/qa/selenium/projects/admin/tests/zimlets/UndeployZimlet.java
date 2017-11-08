@@ -61,7 +61,7 @@ public class UndeployZimlet extends AdminCommonTest {
 		DialogForUndeployZimlet dialog = (DialogForUndeployZimlet) app.zPageManageZimlets.zToolbarPressPulldown(Button.B_GEAR_BOX,Button.B_UNDEPLOY_ZIMLET);
 		
 		// Click Yes in Confirmation dialog
-		dialog.zClickButton(Button.B_YES);
+		dialog.zPressButton(Button.B_YES);
 		
 		// Verify the zimlet is not listed on zimlet page
 		boolean isUndeploySuccessful = app.zPageManageZimlets.zVerifyZimletName(zimletName);

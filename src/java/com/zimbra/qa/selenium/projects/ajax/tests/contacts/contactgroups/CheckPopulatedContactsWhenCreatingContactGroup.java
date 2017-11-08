@@ -81,6 +81,6 @@ public class CheckPopulatedContactsWhenCreatingContactGroup extends AjaxCommonTe
 		dialog.zWaitForActive();
 
 		// Click No: Don't save changes
-		dialog.zClickButton(Button.B_NO);
+		dialog.zPressButton(Button.B_NO);
 	}
 }

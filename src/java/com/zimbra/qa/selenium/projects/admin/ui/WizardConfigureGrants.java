@@ -99,12 +99,12 @@ public class WizardConfigureGrants extends AbsWizard {
 	}
 	
 	public boolean zCloseWizard() throws HarnessException {
-		this.zClickAt(Locators.ADD_AND_FINISH_BUTTON, "");
+		this.sClickAt(Locators.ADD_AND_FINISH_BUTTON, "");
 		return true;
 	}
 	
 	public boolean zCloseEditACEWizard() throws HarnessException {
-		this.zClickAt(Locators.EDIT_AND_FINISH_BUTTON, "");
+		this.sClickAt(Locators.EDIT_AND_FINISH_BUTTON, "");
 		return true;
 	}
 	

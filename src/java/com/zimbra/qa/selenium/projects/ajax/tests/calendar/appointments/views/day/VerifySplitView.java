@@ -95,7 +95,7 @@ public class VerifySplitView extends AjaxCommonTest {
 		SleepUtil.sleepSmall();
 
 		if (!app.zPageCalendar.sIsElementPresent(mergeLocator)) {
-			app.zPageCalendar.zClickAt(splitLocator, "");
+			app.zPageCalendar.sClickAt(splitLocator, "");
 			SleepUtil.sleepMedium();
 		}
 

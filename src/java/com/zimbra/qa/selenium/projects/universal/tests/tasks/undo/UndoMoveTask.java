@@ -94,7 +94,7 @@ public class UndoMoveTask extends UniversalCommonTest {
 
 		// Click undo
 		Toaster toaster = app.zPageMain.zGetToaster();
-		toaster.zClickUndo();
+		toaster.sClickUndo();
 
 		// refresh tasks page
 		app.zTreeTasks.zTreeItem(Action.A_LEFTCLICK, taskFolder);

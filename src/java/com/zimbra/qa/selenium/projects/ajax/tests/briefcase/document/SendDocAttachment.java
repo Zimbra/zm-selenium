@@ -94,9 +94,9 @@ public class SendDocAttachment extends FeatureBriefcaseTest {
 		ZAssert.assertNotNull(warningDlg, "Verify the dialog is returned");
 
 		// Dismiss the dialog
-		//warningDlg.zClickButton(Button.B_NO);
+		//warningDlg.zPressButton(Button.B_NO);
 		// Click No on warning dialog
-		app.zPageBriefcase.zClick("//div[@id='YesNoCancel']//td[contains(@id,'No_')]//td[contains(@id,'_title')]");
+		app.zPageBriefcase.sClick("//div[@id='YesNoCancel']//td[contains(@id,'No_')]//td[contains(@id,'_title')]");
 
 
 		// Make sure the dialog is dismissed
@@ -159,9 +159,9 @@ public class SendDocAttachment extends FeatureBriefcaseTest {
 		ZAssert.assertNotNull(warningDlg, "Verify the dialog is returned");
 
 		// Dismiss the dialog
-		//warningDlg.zClickButton(Button.B_NO);
+		//warningDlg.zPressButton(Button.B_NO);
 		// Click No on warning dialog
-		app.zPageBriefcase.zClick("//div[@id='YesNoCancel']//td[contains(@id,'No_')]//td[contains(@id,'_title')]");
+		app.zPageBriefcase.sClick("//div[@id='YesNoCancel']//td[contains(@id,'No_')]//td[contains(@id,'_title')]");
 
 		warningDlg.zWaitForClose(); // Make sure the dialog is dismissed
 

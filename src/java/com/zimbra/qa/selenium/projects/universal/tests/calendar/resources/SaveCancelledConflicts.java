@@ -107,7 +107,7 @@ public class SaveCancelledConflicts extends CalendarWorkWeekTest {
 		ZAssert.assertTrue(dialogContent.contains("The selected resources/location cannot be scheduled for the following instances"), "Verify that the dialog shows expected text");
 		ZAssert.assertTrue(dialogContent.contains(apptLocation + " (Busy)"), "Verify that the dialog shows location name on conflict warning");
 		dialog.zPressButton(Button.B_CANCEL_INSTANCE_LINK);
-		dialog.zClickButton(Button.B_SAVE_WITH_CONFLICT);
+		dialog.zPressButton(Button.B_SAVE_WITH_CONFLICT);
         
         // Verify that the appointment is saved
 		AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ apptSubject2 +")");

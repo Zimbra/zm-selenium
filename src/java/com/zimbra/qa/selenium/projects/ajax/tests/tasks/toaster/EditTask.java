@@ -96,7 +96,7 @@ public class EditTask extends AjaxCommonTest{
 		app.zPageTasks.sUncheck(Locators.zEditAttachmentCheckbox);
 
 		if (ConfigProperties.getStringProperty(ConfigProperties.getLocalHost() + ".coverage.enabled", ConfigProperties.getStringProperty("coverage.enabled")).contains("true") == true) {
-			app.zPageTasks.zClickAt("css=div[id^='ztb__TKE']  tr[id^='ztb__TKE'] td[id$='_title']:contains('Save')", "0,0");
+			app.zPageTasks.sClickAt("css=div[id^='ztb__TKE']  tr[id^='ztb__TKE'] td[id$='_title']:contains('Save')", "0,0");
 		} else {
 			taskedit.zSubmit();
 		}

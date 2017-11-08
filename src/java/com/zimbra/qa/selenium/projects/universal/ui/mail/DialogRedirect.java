@@ -94,8 +94,8 @@ public class DialogRedirect extends AbsDialog {
 	}
 
 	@Override
-	public AbsPage zClickButton(Button button) throws HarnessException {
-		logger.info(myPageName() + " zClickButton("+ button +")");
+	public AbsPage zPressButton(Button button) throws HarnessException {
+		logger.info(myPageName() + " zPressButton("+ button +")");
 
 		tracer.trace("Click dialog button "+ button);
 
@@ -107,7 +107,7 @@ public class DialogRedirect extends AbsDialog {
 
 			locator = Locators.ButtonOkButtonLocator;
 
-			this.zClick(locator);
+			this.sClick(locator);
 
 			this.zWaitForBusyOverlay();
 
@@ -142,7 +142,7 @@ public class DialogRedirect extends AbsDialog {
 			throw new HarnessException("Button "+ button +" locator "+ locator +" not present!");
 		}
 
-		this.zClick(locator);
+		this.sClick(locator);
 
 		this.zWaitForBusyOverlay();
 
@@ -207,7 +207,7 @@ public class DialogRedirect extends AbsDialog {
 		// Seems that the client can't handle filling out the new mail form too quickly
 		// Click in the "To" fields, etc, to make sure the client is ready
 		this.sFocus(locator);
-		this.zClick(locator);
+		this.sClick(locator);
 		this.zWaitForBusyOverlay();
 
 		// Enter text

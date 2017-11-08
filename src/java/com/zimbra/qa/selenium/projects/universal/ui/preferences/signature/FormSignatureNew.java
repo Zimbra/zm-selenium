@@ -111,7 +111,7 @@ public class FormSignatureNew extends AbsForm {
 			throw new HarnessException("Button is not present locator=" + locator + " button=" + button);
 
 		// Click it
-		this.zClickAt(locator, "");
+		this.sClickAt(locator, "");
 		this.zWaitForBusyOverlay();
 		SleepUtil.sleepSmall();
 
@@ -161,7 +161,7 @@ public class FormSignatureNew extends AbsForm {
 		} else if (field == Field.SignatureBody) {
 			locator = Locators.signatureBody;
 			this.sFocus(locator);
-			this.zClickAt(locator, "");
+			this.sClickAt(locator, "");
 			clearField(locator);
 			sType(locator, value);
 			return;
@@ -180,7 +180,7 @@ public class FormSignatureNew extends AbsForm {
 		if (!this.sIsElementPresent(locator))
 			throw new HarnessException("Field is not present field=" + field + " locator=" + locator);
 
-		this.zClickAt(locator, "");
+		this.sClickAt(locator, "");
 		sType(locator, value);
 		this.zWaitForBusyOverlay();
 
@@ -191,17 +191,17 @@ public class FormSignatureNew extends AbsForm {
 		if (format.equals("html")) {
 			boolean isExists = this.sIsElementPresent(Locators.formatAsText);
 			if (isExists) {
-				this.zClick(Locators.formatAsText);
+				this.sClick(Locators.formatAsText);
 
 			} else {
-				this.zClick(Locators.formatAsHtml);
+				this.sClick(Locators.formatAsHtml);
 			}
-			this.zClick(Locators.formatAsHtml);
+			this.sClick(Locators.formatAsHtml);
 			return page;
 		} else {
 
-			this.zClick(Locators.formatAsHtml);
-			this.zClick(Locators.formatAsText);
+			this.sClick(Locators.formatAsHtml);
+			this.sClick(Locators.formatAsText);
 			page = new DialogWarning(DialogWarning.DialogWarningID.ComposeOptionsChangeWarning, this.MyApplication,
 					((AppUniversalClient) this.MyApplication).zPagePreferences);
 			return page;

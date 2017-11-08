@@ -51,7 +51,7 @@ public class ZmBriefcaseAppFolders extends FeatureBriefcaseTest {
 		// Currently in the mail app
 		// Navigate to the addressbook
 		// app.zPageBriefcase.zNavigateTo();
-		app.zPageBriefcase.zClickAt("css=td[id='zb__App__Briefcase_title']", "");
+		app.zPageBriefcase.sClickAt("css=td[id='zb__App__Briefcase_title']", "");
 
 		PerfMetrics.waitTimestamp(token);
 
@@ -82,7 +82,7 @@ public class ZmBriefcaseAppFolders extends FeatureBriefcaseTest {
 		// Currently in the mail app
 		// Navigate to the addressbook
 		// app.zPageBriefcase.zNavigateTo();
-		app.zPageBriefcase.zClickAt("css=td[id='zb__App__Briefcase_title']", "");
+		app.zPageBriefcase.sClickAt("css=td[id='zb__App__Briefcase_title']", "");
 
 		PerfMetrics.waitTimestamp(token);
 

@@ -62,7 +62,7 @@ public class DialogInformational extends AbsDialog {
 	}
 
 	@Override
-	public AbsPage zClickButton(Button button) throws HarnessException {
+	public AbsPage zPressButton(Button button) throws HarnessException {
 		if (button == null)
 			throw new HarnessException("button cannot be null");
 

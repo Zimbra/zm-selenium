@@ -81,7 +81,7 @@ public class UndoDeleteTask extends AjaxCommonTest {
 
 		// Click "undo"
 		Toaster toast = app.zPageMain.zGetToaster();
-		toast.zClickUndo();
+		toast.sClickUndo();
 
 		app.zTreeTasks.zTreeItem(Action.A_LEFTCLICK, taskFolder);
 

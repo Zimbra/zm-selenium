@@ -46,7 +46,7 @@ public class AddTrustedEmail extends AjaxCommonTest {
 		app.zPagePreferences.sType("css=td[id$='_EMAIL_ADDRESS'] input", email);
 
 		// Click "Add"
-		app.zPagePreferences.zClick("css=td[id$='_ADD_BUTTON'] td[id$='_title']");
+		app.zPagePreferences.sClick("css=td[id$='_ADD_BUTTON'] td[id$='_title']");
 
 		// Click "Save"
 		app.zPagePreferences.zToolbarPressButton(Button.B_SAVE);

@@ -71,10 +71,10 @@ public class DeleteDistributionList extends AdminCommonTest {
 		DialogForDeleteOperation dialog = (DialogForDeleteOperation) app.zPageManageDistributionList.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_DELETE);
 
 		// Click Yes in Confirmation dialog
-		dialog.zClickButton(Button.B_YES);
+		dialog.zPressButton(Button.B_YES);
 
 		// Click Ok on "Delete Items" dialog
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 
 
 		// Verify the dl does not exists in the ZCS
@@ -122,10 +122,10 @@ public class DeleteDistributionList extends AdminCommonTest {
 		DialogForDeleteOperation dialog = (DialogForDeleteOperation) app.zPageManageDistributionList.zToolbarPressButton(Button.B_TREE_DELETE);
 
 		// Click Yes in Confirmation dialog
-		dialog.zClickButton(Button.B_YES);
+		dialog.zPressButton(Button.B_YES);
 
 		// Click Ok on "Delete Items" dialog
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 
 
 		// Verify the dl does not exists in the ZCS

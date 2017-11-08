@@ -61,8 +61,8 @@ public class DialogRenameTag extends AbsDialog {
 	}
 	
 	@Override
-	public AbsPage zClickButton(Button button) throws HarnessException {
-		logger.info(myPageName() + " zClickButton("+ button +")");
+	public AbsPage zPressButton(Button button) throws HarnessException {
+		logger.info(myPageName() + " zPressButton("+ button +")");
 
 		String locator = null;
 		
@@ -81,7 +81,7 @@ public class DialogRenameTag extends AbsDialog {
 			throw new HarnessException("Button "+ button +" locator "+ locator +" not present!");
 		}
 		
-		zClickAt(locator,"0,0");
+		sClickAt(locator,"0,0");
 		this.zWaitForBusyOverlay();
 		SleepUtil.sleepSmall();
 		

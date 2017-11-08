@@ -86,7 +86,7 @@ public class DeleteInstance extends CalendarWorkWeekTest {
 		// Delete instance and verify corresponding UI
         app.zPageCalendar.zListItem(Action.A_LEFTCLICK, Button.O_OPEN_INSTANCE_MENU, apptSubject);
         app.zPageCalendar.zToolbarPressButton(Button.B_DELETE);
-        app.zPageMail.zClickButton(Button.B_YES);
+        app.zPageMail.zPressButton(Button.B_YES);
         SleepUtil.sleepMedium();
 
 		// Verify appointment is removed

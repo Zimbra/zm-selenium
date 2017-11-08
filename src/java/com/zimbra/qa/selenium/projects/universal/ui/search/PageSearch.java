@@ -121,7 +121,7 @@ public class PageSearch extends AbsTab {
 			return; // Already closed
 		}
 
-		this.zClickAt(locator, "");
+		this.sClickAt(locator, "");
 		this.zWaitForBusyOverlay();
 
 		return;
@@ -311,7 +311,7 @@ public class PageSearch extends AbsTab {
 				// present!");
 			}
 
-			this.zClick(pulldownLocator);
+			this.sClick(pulldownLocator);
 
 			// If the app is busy, wait for it to become active
 			this.zWaitForBusyOverlay();
@@ -324,7 +324,7 @@ public class PageSearch extends AbsTab {
 							+ optionLocator + " not present!");
 				}
 
-				this.zClick(optionLocator);
+				this.sClick(optionLocator);
 
 				// If the app is busy, wait for it to become active
 				this.zWaitForBusyOverlay();
@@ -447,7 +447,7 @@ public class PageSearch extends AbsTab {
 						"Button " + pulldown + " pulldownLocator " + pulldownLocator + " not present!");
 			}
 
-			this.zClickAt(pulldownLocator, "");
+			this.sClickAt(pulldownLocator, "");
 
 			// If the app is busy, wait for it to become active
 			zWaitForBusyOverlay();
@@ -462,7 +462,7 @@ public class PageSearch extends AbsTab {
 							" dynamic " + dynamic + " optionLocator " + optionLocator + " not present!");
 				}
 
-				this.zClickAt(optionLocator, "");
+				this.sClickAt(optionLocator, "");
 
 				// If the app is busy, wait for it to become active
 				zWaitForBusyOverlay();
@@ -553,7 +553,7 @@ public class PageSearch extends AbsTab {
 		if (action == Action.A_LEFTCLICK) {
 
 			// Left-Click on the item
-			this.zClickAt(itemlocator, "");
+			this.sClickAt(itemlocator, "");
 
 			this.zWaitForBusyOverlay();
 
@@ -601,7 +601,7 @@ public class PageSearch extends AbsTab {
 				throw new HarnessException("Trying to check box, but it was already enabled");
 
 			// Left-Click on the flag field
-			this.zClick(selectlocator);
+			this.sClick(selectlocator);
 
 			this.zWaitForBusyOverlay();
 
@@ -619,7 +619,7 @@ public class PageSearch extends AbsTab {
 				throw new HarnessException("Trying to uncheck box, but it was already disabled");
 
 			// Left-Click on the flag field
-			this.zClick(selectlocator);
+			this.sClick(selectlocator);
 
 			this.zWaitForBusyOverlay();
 
@@ -637,7 +637,7 @@ public class PageSearch extends AbsTab {
 				throw new HarnessException("Trying to expand, but conversation was alread expanded");
 
 			// Left-Click on the flag field
-			this.zClick(selectlocator);
+			this.sClick(selectlocator);
 
 			this.zWaitForBusyOverlay();
 
@@ -655,7 +655,7 @@ public class PageSearch extends AbsTab {
 				throw new HarnessException("Trying to collapse, but conversation was alread collapsed");
 
 			// Left-Click on the flag field
-			this.zClick(selectlocator);
+			this.sClick(selectlocator);
 
 			this.zWaitForBusyOverlay();
 
@@ -668,7 +668,7 @@ public class PageSearch extends AbsTab {
 			String flaglocator = itemlocator + " div[id$='__fg']";
 
 			// Left-Click on the flag field
-			this.zClick(flaglocator);
+			this.sClick(flaglocator);
 
 			this.zWaitForBusyOverlay();
 

@@ -51,7 +51,7 @@ public class ZimbraFeatureChangePasswordEnabledTrue extends UniversalCommonTest 
 		// Click the account pulldown to see the menu
 		String locator = "css=td[id='skin_dropMenu'] td[id$='_dropdown']";
 
-		app.zPageMain.zClickAt(locator, "");
+		app.zPageMain.sClickAt(locator, "");
 
 		// Look for the menu
 		locator = "css=div[id^='POPUP'] div#documentation td[id$='_title']";

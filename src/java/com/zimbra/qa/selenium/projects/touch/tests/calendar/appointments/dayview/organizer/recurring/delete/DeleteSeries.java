@@ -85,7 +85,7 @@ public class DeleteSeries extends CalendarWorkWeekTest {
 		// Delete instance and verify corresponding UI
         app.zPageCalendar.zListItem(Action.A_LEFTCLICK, Button.O_OPEN_SERIES_MENU, apptSubject);
         app.zPageCalendar.zToolbarPressButton(Button.B_DELETE);
-        app.zPageMail.zClickButton(Button.B_YES);
+        app.zPageMail.zPressButton(Button.B_YES);
 
 		
 		// Verify appointment is in Trash folder

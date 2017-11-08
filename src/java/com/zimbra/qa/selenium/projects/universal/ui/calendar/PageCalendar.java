@@ -513,7 +513,7 @@ public class PageCalendar extends AbsTab {
 		if ( action == Action.A_LEFTCLICK ) {
 
 			// Left-Click on the item
-			this.zClickAt(locator,"");
+			this.sClickAt(locator,"");
 			this.zWaitForBusyOverlay();
 
 			page = null;
@@ -554,7 +554,7 @@ public class PageCalendar extends AbsTab {
 
 
 			// Left-Click on the flag field
-			this.zClick(selectLocator);
+			this.sClick(selectLocator);
 
 			this.zWaitForBusyOverlay();
 
@@ -698,7 +698,7 @@ public class PageCalendar extends AbsTab {
 
 		if ( action == Action.A_LEFTCLICK ) {
 
-			this.zClickAt(locator, "");
+			this.sClickAt(locator, "");
 			this.zWaitForBusyOverlay();
 
 			page = null;
@@ -760,7 +760,7 @@ public class PageCalendar extends AbsTab {
 
 		if ( action == Action.A_LEFTCLICK ) {
 
-			this.zClickAt(locator, "");
+			this.sClickAt(locator, "");
 			this.zWaitForBusyOverlay();
 
 			page = null;
@@ -784,8 +784,8 @@ public class PageCalendar extends AbsTab {
 			
 			DialogOpenRecurringItem openRecurring = new DialogOpenRecurringItem(Confirmation.OPENRECURRINGITEM, MyApplication, ((AppUniversalClient) MyApplication).zPageCalendar);
 			if ( openRecurring.zIsActive() ) {
-				openRecurring.zClickButton(Button.B_OPEN_THE_SERIES);
-				openRecurring.zClickButton(Button.B_OK);
+				openRecurring.zPressButton(Button.B_OPEN_THE_SERIES);
+				openRecurring.zPressButton(Button.B_OK);
 			}
 			page = new FormApptNew(this.MyApplication);
 			if ( page.zIsActive() ) {
@@ -829,7 +829,7 @@ public class PageCalendar extends AbsTab {
 
 				if ( optionLocator != null ) {
 
-					this.zClickAt(optionLocator, "");
+					this.sClickAt(optionLocator, "");
 					SleepUtil.sleepSmall();
 					this.zWaitForBusyOverlay();
 
@@ -841,7 +841,7 @@ public class PageCalendar extends AbsTab {
 				optionLocator = Locators.TentativeMenu;
 				if ( optionLocator != null ) {
 
-					this.zClickAt(optionLocator, "");
+					this.sClickAt(optionLocator, "");
 					SleepUtil.sleepSmall();
 					this.zWaitForBusyOverlay();
 
@@ -854,7 +854,7 @@ public class PageCalendar extends AbsTab {
 
 				if ( optionLocator != null ) {
 
-					this.zClickAt(optionLocator, "");
+					this.sClickAt(optionLocator, "");
 					SleepUtil.sleepSmall();
 					this.zWaitForBusyOverlay();
 
@@ -975,7 +975,7 @@ public class PageCalendar extends AbsTab {
 				throw new HarnessException("implement action:"+ action + " option:"+ option);
 			}
 
-			this.zClickAt(optionLocator,"");
+			this.sClickAt(optionLocator,"");
 			this.zWaitForBusyOverlay();
 
 		} else {
@@ -1069,7 +1069,7 @@ public class PageCalendar extends AbsTab {
 
 		if (action == Action.A_LEFTCLICK) {
 
-			this.zClickAt(locator, "");
+			this.sClickAt(locator, "");
 			this.zWaitForBusyOverlay();
 			SleepUtil.sleepSmall();
 
@@ -1078,7 +1078,7 @@ public class PageCalendar extends AbsTab {
 				optionLocator = Locators.DeleteButton;
 
 				if ( optionLocator != null ) {
-					this.zClickAt(optionLocator, "");
+					this.sClickAt(optionLocator, "");
 					SleepUtil.sleepSmall();
 					this.zWaitForBusyOverlay();
 				}
@@ -1105,7 +1105,7 @@ public class PageCalendar extends AbsTab {
 				}
 
 				if ( optionLocator != null ) {
-					this.zClickAt(optionLocator, "");
+					this.sClickAt(optionLocator, "");
 					SleepUtil.sleepSmall();
 					this.zWaitForBusyOverlay();
 				}
@@ -1140,7 +1140,7 @@ public class PageCalendar extends AbsTab {
 				optionLocator = Locators.OpenMenu;
 
 				if ( optionLocator != null ) {
-					this.zClickAt(optionLocator, "");
+					this.sClickAt(optionLocator, "");
 					SleepUtil.sleepMedium();
 				}
 
@@ -1160,7 +1160,7 @@ public class PageCalendar extends AbsTab {
 
 				if ( optionLocator != null ) {
 
-					this.zClickAt(optionLocator, "");
+					this.sClickAt(optionLocator, "");
 					SleepUtil.sleepSmall();
 					this.zWaitForBusyOverlay();
 
@@ -1173,7 +1173,7 @@ public class PageCalendar extends AbsTab {
 
 				if ( optionLocator != null ) {
 
-					this.zClickAt(optionLocator, "");
+					this.sClickAt(optionLocator, "");
 					SleepUtil.sleepSmall();
 					this.zWaitForBusyOverlay();
 
@@ -1186,7 +1186,7 @@ public class PageCalendar extends AbsTab {
 
 				if ( optionLocator != null ) {
 
-					this.zClickAt(optionLocator, "");
+					this.sClickAt(optionLocator, "");
 					SleepUtil.sleepSmall();
 					this.zWaitForBusyOverlay();
 
@@ -1267,7 +1267,7 @@ public class PageCalendar extends AbsTab {
 
 				if ( optionLocator != null ) {
 
-					this.zClickAt(optionLocator, "");
+					this.sClickAt(optionLocator, "");
 					SleepUtil.sleepSmall();
 					this.zWaitForBusyOverlay();
 
@@ -1280,7 +1280,7 @@ public class PageCalendar extends AbsTab {
 
 				if ( optionLocator != null ) {
 
-					this.zClickAt(optionLocator, "");
+					this.sClickAt(optionLocator, "");
 					SleepUtil.sleepSmall();
 					this.zWaitForBusyOverlay();
 
@@ -1292,7 +1292,7 @@ public class PageCalendar extends AbsTab {
 				optionLocator = Locators.ReplyMenu;
 
 				if ( optionLocator != null ) {
-					this.zClickAt(optionLocator, "");
+					this.sClickAt(optionLocator, "");
 					SleepUtil.sleepSmall();
 					this.zWaitForBusyOverlay();
 				}
@@ -1304,7 +1304,7 @@ public class PageCalendar extends AbsTab {
 				optionLocator = Locators.ReplyToAllMenu;
 
 				if ( optionLocator != null ) {
-					this.zClickAt(optionLocator, "");
+					this.sClickAt(optionLocator, "");
 					SleepUtil.sleepSmall();
 					this.zWaitForBusyOverlay();
 				}
@@ -1316,7 +1316,7 @@ public class PageCalendar extends AbsTab {
 				optionLocator = Locators.ForwardMenu;
 
 				if ( optionLocator != null ) {
-					this.zClickAt(optionLocator, "");
+					this.sClickAt(optionLocator, "");
 					SleepUtil.sleepLong();
 					this.zWaitForBusyOverlay();
 				}
@@ -1330,7 +1330,7 @@ public class PageCalendar extends AbsTab {
 
 				page = new DialogMove(MyApplication,((AppUniversalClient) MyApplication).zPageCalendar);
 
-				this.zClickAt(optionLocator,"");
+				this.sClickAt(optionLocator,"");
 
 
 
@@ -1340,7 +1340,7 @@ public class PageCalendar extends AbsTab {
 
 				page = new SeparateWindow(this.MyApplication);
 				((SeparateWindow)page).zInitializeWindowNames();
-				this.zClickAt(optionLocator,"");
+				this.sClickAt(optionLocator,"");
 				this.zWaitForBusyOverlay();
 
 				return (page);
@@ -1350,7 +1350,7 @@ public class PageCalendar extends AbsTab {
 				optionLocator = Locators.CreateACopyMenu;
 
 				if ( optionLocator != null ) {
-					this.zClickAt(optionLocator, "");
+					this.sClickAt(optionLocator, "");
 					this.zWaitForBusyOverlay();
 					SleepUtil.sleepSmall();
 				}
@@ -1365,7 +1365,7 @@ public class PageCalendar extends AbsTab {
 			} else if ( option == Button.O_OPEN) {
 
 				optionLocator = Locators.OpenMenu;
-				this.zClickAt(optionLocator, "");
+				this.sClickAt(optionLocator, "");
 				SleepUtil.sleepMedium();
 				page = new FormApptNew(this.MyApplication);
 				return page;
@@ -1381,13 +1381,13 @@ public class PageCalendar extends AbsTab {
 			SleepUtil.sleepMedium();
 
 			if (option == Button.O_NEEDS_ACTION_MENU || option == Button.O_ACCEPTED_MENU || option == Button.O_TENTATIVE_MENU || option == Button.O_DECLINED_MENU) {
-				this.zClickAt(Locators.NeedsActionButton_ViewAppt, "10,20");
+				this.sClickAt(Locators.NeedsActionButton_ViewAppt, "10,20");
 
 			} else if (option == Button.O_NEW_TAG || option == Button.O_REMOVE_TAG) {
 				zWaitForElementAppear(Locators.NewTagMenu_ViewAppt); //http://bugzilla.zimbra.com/show_bug.cgi?id=79016
 
 				if (option == Button.O_REMOVE_TAG) {
-					this.zClickAt(Locators.TagButton_ViewAppt, "");
+					this.sClickAt(Locators.TagButton_ViewAppt, "");
 				}
 
 			} else if (option == Button.O_EDIT || option == Button.O_CREATE_A_COPY_MENU ||	option == Button.O_REPLY_MENU ||
@@ -1395,7 +1395,7 @@ public class PageCalendar extends AbsTab {
 					option == Button.O_DELETE_MENU || option == Button.O_SHOW_ORIGINAL_MENU) {
 				zWaitForElementAppear(Locators.ActionsButton_ViewAppt);
 
-				this.zClickAt(Locators.ActionsButton_ViewAppt, "");
+				this.sClickAt(Locators.ActionsButton_ViewAppt, "");
 			}
 
 			SleepUtil.sleepSmall();
@@ -1404,7 +1404,7 @@ public class PageCalendar extends AbsTab {
 
 				optionLocator = Locators.NeedsActionMenu_ViewAppt;
 
-				this.zClickAt(optionLocator, "");
+				this.sClickAt(optionLocator, "");
 				this.zWaitForBusyOverlay();
 				page = null;
 
@@ -1412,7 +1412,7 @@ public class PageCalendar extends AbsTab {
 
 				optionLocator = Locators.AcceptedMenu_ViewAppt;
 
-				this.zClickAt(optionLocator, "");
+				this.sClickAt(optionLocator, "");
 				this.zWaitForBusyOverlay();
 
 				page = null;
@@ -1421,7 +1421,7 @@ public class PageCalendar extends AbsTab {
 
 				optionLocator = Locators.TentativeMenu_ViewAppt;
 
-				this.zClickAt(optionLocator, "");
+				this.sClickAt(optionLocator, "");
 				this.zWaitForBusyOverlay();
 
 				page = null;
@@ -1435,7 +1435,7 @@ public class PageCalendar extends AbsTab {
 					optionLocator = Locators.DeclinedMenu_ViewAppt;
 				}
 
-				this.zClickAt(optionLocator, "");
+				this.sClickAt(optionLocator, "");
 				this.zWaitForBusyOverlay();
 
 				page = null;
@@ -1444,7 +1444,7 @@ public class PageCalendar extends AbsTab {
 
 				optionLocator = Locators.NewTagMenu_ViewAppt;
 
-				this.zClickAt(optionLocator, "");
+				this.sClickAt(optionLocator, "");
 				this.zWaitForBusyOverlay();
 
 				page = new DialogTag(MyApplication, ((AppUniversalClient) MyApplication).zPageCalendar);
@@ -1453,7 +1453,7 @@ public class PageCalendar extends AbsTab {
 
 				optionLocator = Locators.RemoveTagMenu_ViewAppt;
 
-				this.zClickAt(optionLocator, "");
+				this.sClickAt(optionLocator, "");
 				this.zWaitForBusyOverlay();
 
 				page = null;
@@ -1462,7 +1462,7 @@ public class PageCalendar extends AbsTab {
 
 				optionLocator = Locators.EditMenu_ViewAppt;
 
-				this.zClickAt(optionLocator, "");
+				this.sClickAt(optionLocator, "");
 				this.zWaitForBusyOverlay();
 
 				page = new DialogWarning(DialogWarning.DialogWarningID.ZmMsgDialog, MyApplication, ((AppUniversalClient) MyApplication).zPageCalendar);
@@ -1471,7 +1471,7 @@ public class PageCalendar extends AbsTab {
 
 				optionLocator = Locators.CreateACopyMenu_ViewAppt;
 
-				this.zClickAt(optionLocator, "");
+				this.sClickAt(optionLocator, "");
 				this.zWaitForBusyOverlay();
 
 				page = new DialogInformational(DialogInformational.DialogWarningID.InformationalDialog, MyApplication, ((AppUniversalClient) MyApplication).zPageCalendar);
@@ -1480,7 +1480,7 @@ public class PageCalendar extends AbsTab {
 
 				optionLocator = Locators.ReplyMenu_ViewAppt;
 
-				this.zClickAt(optionLocator, "");
+				this.sClickAt(optionLocator, "");
 				this.zWaitForBusyOverlay();
 
 				page = new FormMailNew(this.MyApplication);
@@ -1489,7 +1489,7 @@ public class PageCalendar extends AbsTab {
 
 				optionLocator = Locators.ReplyToAllMenu_ViewAppt;
 
-				this.zClickAt(optionLocator, "");
+				this.sClickAt(optionLocator, "");
 				this.zWaitForBusyOverlay();
 
 				page = new FormMailNew(this.MyApplication);
@@ -1498,7 +1498,7 @@ public class PageCalendar extends AbsTab {
 
 				optionLocator = Locators.ForwardMenu_ViewAppt;
 
-				this.zClickAt(optionLocator, "");
+				this.sClickAt(optionLocator, "");
 				this.zWaitForBusyOverlay();
 
 				page = null;
@@ -1507,7 +1507,7 @@ public class PageCalendar extends AbsTab {
 
 				optionLocator = Locators.ProposeNewTimeMenu_ViewAppt;
 
-				this.zClickAt(optionLocator, "");
+				this.sClickAt(optionLocator, "");
 				this.zWaitForBusyOverlay();
 
 				page = new FormApptNew(this.MyApplication);
@@ -1516,7 +1516,7 @@ public class PageCalendar extends AbsTab {
 
 				optionLocator = Locators.DeleteMenu_ViewAppt;
 
-				this.zClickAt(optionLocator, "");
+				this.sClickAt(optionLocator, "");
 				this.zWaitForBusyOverlay();
 
 				page = new DialogConfirmationDeclineAppointment(MyApplication, ((AppUniversalClient) MyApplication).zPageCalendar);
@@ -1527,7 +1527,7 @@ public class PageCalendar extends AbsTab {
 
 				page = new SeparateWindow(this.MyApplication);
 				((SeparateWindow)page).zInitializeWindowNames();
-				this.zClickAt(optionLocator, "");
+				this.sClickAt(optionLocator, "");
 				this.zWaitForBusyOverlay();
 
 				return (page);
@@ -1774,8 +1774,8 @@ public class PageCalendar extends AbsTab {
 			}*/
 
 			DialogOpenRecurringItem openRecurring = new DialogOpenRecurringItem(null, MyApplication, null);
-			openRecurring.zClickButton(Button.B_OPEN_THE_SERIES);
-			openRecurring.zClickButton(Button.B_OK);
+			openRecurring.zPressButton(Button.B_OPEN_THE_SERIES);
+			openRecurring.zPressButton(Button.B_OK);
 
 			page = new FormApptNew(this.MyApplication);
 			if ( page.zIsActive() ) {
@@ -1793,7 +1793,7 @@ public class PageCalendar extends AbsTab {
 			zWaitForElementAppear(Locators.NewTagMenu_ViewAppt); //http://bugzilla.zimbra.com/show_bug.cgi?id=79016
 
 			if (subOption == Button.O_REMOVE_TAG) {
-				this.zClickAt(Locators.TagButton_ViewAppt, "");
+				this.sClickAt(Locators.TagButton_ViewAppt, "");
 			}
 
 		} else if (subOption == Button.O_EDIT || subOption == Button.O_CREATE_A_COPY_MENU ||	subOption == Button.O_REPLY_MENU ||
@@ -1801,7 +1801,7 @@ public class PageCalendar extends AbsTab {
 				subOption == Button.O_DELETE_MENU || subOption == Button.O_SHOW_ORIGINAL_MENU) {
 			zWaitForElementAppear(Locators.ActionsButton_ViewAppt);
 
-			this.zClickAt(Locators.ActionsButton_ViewAppt, "");
+			this.sClickAt(Locators.ActionsButton_ViewAppt, "");
 		}
 
 		SleepUtil.sleepSmall();
@@ -1810,7 +1810,7 @@ public class PageCalendar extends AbsTab {
 
 			optionLocator = Locators.NeedsActionMenu_ViewAppt;
 
-			this.zClickAt(optionLocator, "");
+			this.sClickAt(optionLocator, "");
 			this.zWaitForBusyOverlay();
 			page = null;
 
@@ -1818,7 +1818,7 @@ public class PageCalendar extends AbsTab {
 
 			optionLocator = Locators.AcceptedMenu_ViewAppt;
 
-			this.zClickAt(optionLocator, "");
+			this.sClickAt(optionLocator, "");
 			this.zWaitForBusyOverlay();
 
 			page = null;
@@ -1827,7 +1827,7 @@ public class PageCalendar extends AbsTab {
 
 			optionLocator = Locators.TentativeMenu_ViewAppt;
 
-			this.zClickAt(optionLocator, "");
+			this.sClickAt(optionLocator, "");
 			this.zWaitForBusyOverlay();
 
 			page = null;
@@ -1841,7 +1841,7 @@ public class PageCalendar extends AbsTab {
 				optionLocator = Locators.DeclinedMenu_ViewAppt;
 			}
 
-			this.zClickAt(optionLocator, "");
+			this.sClickAt(optionLocator, "");
 			this.zWaitForBusyOverlay();
 
 			page = null;
@@ -1850,7 +1850,7 @@ public class PageCalendar extends AbsTab {
 
 			optionLocator = Locators.NewTagMenu_ViewAppt;
 
-			this.zClickAt(optionLocator, "");
+			this.sClickAt(optionLocator, "");
 			this.zWaitForBusyOverlay();
 
 			page = new DialogTag(MyApplication, ((AppUniversalClient) MyApplication).zPageCalendar);
@@ -1859,7 +1859,7 @@ public class PageCalendar extends AbsTab {
 
 			optionLocator = Locators.RemoveTagMenu_ViewAppt;
 
-			this.zClickAt(optionLocator, "");
+			this.sClickAt(optionLocator, "");
 			this.zWaitForBusyOverlay();
 
 			page = null;
@@ -1868,7 +1868,7 @@ public class PageCalendar extends AbsTab {
 
 			optionLocator = Locators.EditMenu_ViewAppt;
 
-			this.zClickAt(optionLocator, "");
+			this.sClickAt(optionLocator, "");
 			this.zWaitForBusyOverlay();
 
 			page = new DialogWarning(DialogWarning.DialogWarningID.ZmMsgDialog, MyApplication, ((AppUniversalClient) MyApplication).zPageCalendar);
@@ -1877,7 +1877,7 @@ public class PageCalendar extends AbsTab {
 
 			optionLocator = Locators.CreateACopyMenu_ViewAppt;
 
-			this.zClickAt(optionLocator, "");
+			this.sClickAt(optionLocator, "");
 			this.zWaitForBusyOverlay();
 
 			page = new DialogInformational(DialogInformational.DialogWarningID.InformationalDialog, MyApplication, ((AppUniversalClient) MyApplication).zPageCalendar);
@@ -1886,7 +1886,7 @@ public class PageCalendar extends AbsTab {
 
 			optionLocator = Locators.ReplyMenu_ViewAppt;
 
-			this.zClickAt(optionLocator, "");
+			this.sClickAt(optionLocator, "");
 			this.zWaitForBusyOverlay();
 
 			page = new FormMailNew(this.MyApplication);
@@ -1895,7 +1895,7 @@ public class PageCalendar extends AbsTab {
 
 			optionLocator = Locators.ReplyToAllMenu_ViewAppt;
 
-			this.zClickAt(optionLocator, "");
+			this.sClickAt(optionLocator, "");
 			this.zWaitForBusyOverlay();
 
 			page = new FormMailNew(this.MyApplication);
@@ -1904,7 +1904,7 @@ public class PageCalendar extends AbsTab {
 
 			optionLocator = Locators.ForwardMenu_ViewAppt;
 
-			this.zClickAt(optionLocator, "");
+			this.sClickAt(optionLocator, "");
 			this.zWaitForBusyOverlay();
 
 			page = null;
@@ -1913,7 +1913,7 @@ public class PageCalendar extends AbsTab {
 
 			optionLocator = Locators.ProposeNewTimeMenu_ViewAppt;
 
-			this.zClickAt(optionLocator, "");
+			this.sClickAt(optionLocator, "");
 			this.zWaitForBusyOverlay();
 
 			page = new FormApptNew(this.MyApplication);
@@ -1922,7 +1922,7 @@ public class PageCalendar extends AbsTab {
 
 			optionLocator = Locators.DeleteMenu_ViewAppt;
 
-			this.zClickAt(optionLocator, "");
+			this.sClickAt(optionLocator, "");
 			this.zWaitForBusyOverlay();
 
 			page = new DialogConfirmationDeclineAppointment(MyApplication, ((AppUniversalClient) MyApplication).zPageCalendar);
@@ -1932,7 +1932,7 @@ public class PageCalendar extends AbsTab {
 			optionLocator = Locators.ShowOriginalMenu_ViewAppt;
 
 			page = new SeparateWindow(this.MyApplication);
-			this.zClickAt(optionLocator, "");
+			this.sClickAt(optionLocator, "");
 			this.zWaitForBusyOverlay();
 
 			return (page);
@@ -2006,7 +2006,7 @@ public class PageCalendar extends AbsTab {
 		} else if (button == Button.B_DELETE) {
 
 			locator = Locators.DeleteButton;
-			this.zClickAt(locator, "");
+			this.sClickAt(locator, "");
 			this.zWaitForBusyOverlay();
 
 			Stafpostqueue sp = new Stafpostqueue();
@@ -2379,13 +2379,13 @@ public class PageCalendar extends AbsTab {
 				throw new HarnessException("Button " + pulldown + " option " + option + " pulldownLocator " + pulldownLocator + " not present!");
 			}
 
-			zClickAt(pulldownLocator, "0,0");
+			sClickAt(pulldownLocator, "0,0");
 
 			zWaitForBusyOverlay();
 
 			if (optionLocator != null) {
 
-				zClick(optionLocator);
+				sClick(optionLocator);
 				zWaitForBusyOverlay();
 
 			}
@@ -2872,7 +2872,7 @@ public class PageCalendar extends AbsTab {
 			throw new HarnessException("Unable to determine locator : " + locator);
 		}
 
-		this.zClickAt(locator, "");
+		this.sClickAt(locator, "");
 		this.zWaitForBusyOverlay();
 
 		return (page);
@@ -2895,7 +2895,7 @@ public class PageCalendar extends AbsTab {
 			throw new HarnessException("Unable to determine locator : " + locator);
 		}
 
-		this.zClickAt(locator, "");
+		this.sClickAt(locator, "");
 		this.zWaitForBusyOverlay();
 
 		return (page);
@@ -2916,7 +2916,7 @@ public class PageCalendar extends AbsTab {
 			if (isElementPresent == false) {
 				SleepUtil.sleepMedium();
 				if (locator == Locators.NewTagMenu_ViewAppt) {
-					this.zClickAt(Locators.TagButton_ViewAppt, "");
+					this.sClickAt(Locators.TagButton_ViewAppt, "");
 				}
 			} else if (isElementPresent == true) {
 				return;
@@ -2927,7 +2927,7 @@ public class PageCalendar extends AbsTab {
 		}
 	}
 
-	public boolean zClickToRefreshOnceIfApptDoesntExists (String apptSubject) throws HarnessException {
+	public boolean sClickToRefreshOnceIfApptDoesntExists (String apptSubject) throws HarnessException {
 
 		SleepUtil.sleepMedium();
 

@@ -39,8 +39,8 @@ public class DialogConfirmDeleteRecurringAppointment extends DialogWarning {
 		logger.info("new " + DialogConfirmDeleteRecurringAppointment.class.getCanonicalName());
 	}
 
-	public AbsPage zClickButton(Button button) throws HarnessException {
-		logger.info(myPageName() + " zClickButton(" + button + ")");
+	public AbsPage zPressButton(Button button) throws HarnessException {
+		logger.info(myPageName() + " zPressButton(" + button + ")");
 
 		AbsPage page = null;
 		String locator = null;
@@ -68,7 +68,7 @@ public class DialogConfirmDeleteRecurringAppointment extends DialogWarning {
 		} else if (button == Button.B_OK) {
 
 			// Execute the super steps
-			super.zClickButton(button);
+			super.zPressButton(button);
 			SleepUtil.sleepMedium();
 
 			page = new DialogConfirmDeleteSeries(MyApplication, ((AppAjaxClient) MyApplication).zPageCalendar);
@@ -89,6 +89,6 @@ public class DialogConfirmDeleteRecurringAppointment extends DialogWarning {
 			return (null);
 
 		}
-		return (super.zClickButton(button));
+		return (super.zPressButton(button));
 	}
 }

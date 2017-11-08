@@ -93,7 +93,7 @@ public class GetAppointment extends CalendarWorkWeekTest {
 		DialogWarning dialog = (DialogWarning)app.zPageCalendar.zToolbarPressButton(Button.B_DELETE);
 
 		// Click Send Cancellation
-		dialog.zClickButton(Button.B_YES);
+		dialog.zPressButton(Button.B_YES);
 
 		// Verify meeting disappears from the view
 		ZAssert.assertFalse(app.zPageCalendar.zIsAppointmentExists(apptSubject), "Verify appointment is deleted from organizer's calendar");

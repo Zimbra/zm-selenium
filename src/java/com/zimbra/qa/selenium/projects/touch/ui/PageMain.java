@@ -200,7 +200,7 @@ public class PageMain extends AbsTab {
 
 		// Default behavior, process the locator by clicking on it
 		//
-		this.zClick(locator);
+		this.sClick(locator);
 		SleepUtil.sleepSmall();
 
 		// If the app is busy, wait for it to become active
@@ -251,10 +251,10 @@ public class PageMain extends AbsTab {
 				//SeparateWindow window = new SeparateWindow(this.MyApplication);
 				//window.zInitializeWindowNames();
 
-				this.zClickAt(pulldownLocator, "0,0");
+				this.sClickAt(pulldownLocator, "0,0");
 				this.zWaitForBusyOverlay();
 
-				this.zClickAt(optionLocator, "0,0");
+				this.sClickAt(optionLocator, "0,0");
 				this.zWaitForBusyOverlay();
 
 				//return (window);
@@ -287,7 +287,7 @@ public class PageMain extends AbsTab {
 				throw new HarnessException("Button " + pulldown + " option " + option + " pulldownLocator " + pulldownLocator + " not present!");
 			}
 
-			this.zClickAt(pulldownLocator, "0,0");
+			this.sClickAt(pulldownLocator, "0,0");
 
 			// If the app is busy, wait for it to become active
 			zWaitForBusyOverlay();
@@ -299,7 +299,7 @@ public class PageMain extends AbsTab {
 					throw new HarnessException("Button " + pulldown + " option " + option + " optionLocator " + optionLocator + " not present!");
 				}
 
-				this.zClickAt(optionLocator, "0,0");
+				this.sClickAt(optionLocator, "0,0");
 
 				// If the app is busy, wait for it to become active
 				zWaitForBusyOverlay();

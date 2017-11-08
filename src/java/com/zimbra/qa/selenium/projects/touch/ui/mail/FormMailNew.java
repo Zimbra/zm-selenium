@@ -243,7 +243,7 @@ public class FormMailNew extends AbsForm {
 				throw new HarnessException("pulldownLocator not present! "+ pulldownLocator);
 			}
 			
-			this.zClick(pulldownLocator);
+			this.sClick(pulldownLocator);
 
 			this.zWaitForBusyOverlay();
 			
@@ -254,7 +254,7 @@ public class FormMailNew extends AbsForm {
 					throw new HarnessException("optionLocator not present! "+ optionLocator);
 				}
 				
-				this.zClick(optionLocator);
+				this.sClick(optionLocator);
 
 				this.zWaitForBusyOverlay();
 
@@ -368,7 +368,7 @@ public class FormMailNew extends AbsForm {
 			throw new HarnessException("Field is not present field="+ field +" locator="+ locator);
 		
 		this.sFocus(locator);
-		this.zClick(locator);
+		this.sClick(locator);
 		this.sType(locator, value);
 
 	}

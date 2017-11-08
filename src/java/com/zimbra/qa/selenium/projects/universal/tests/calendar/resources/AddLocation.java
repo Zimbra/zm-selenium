@@ -80,11 +80,11 @@ public class AddLocation extends CalendarWorkWeekTest {
         DialogFindLocation dialogFindLocation = (DialogFindLocation) new DialogFindLocation(app, app.zPageCalendar);
         dialogFindLocation.zType(Locators.LocationName, apptLocation1);
         SleepUtil.sleepSmall(); 
-        dialogFindLocation.zClickButton(Button.B_SEARCH_LOCATION);
+        dialogFindLocation.zPressButton(Button.B_SEARCH_LOCATION);
         SleepUtil.sleepMedium(); 
-        dialogFindLocation.zClickButton(Button.B_SELECT_LOCATION);
+        dialogFindLocation.zPressButton(Button.B_SELECT_LOCATION);
         SleepUtil.sleepMedium();
-        dialogFindLocation.zClickButton(Button.B_OK);
+        dialogFindLocation.zPressButton(Button.B_OK);
         apptForm.zSubmitWithResources();
         
         // Verify location in the appointment is not null

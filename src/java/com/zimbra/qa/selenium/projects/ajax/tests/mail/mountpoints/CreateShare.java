@@ -62,7 +62,7 @@ public class CreateShare extends PrefGroupMailByMessageTest {
 		dialog.zSetEmailAddress(ZimbraAccount.AccountA().EmailAddress);
 
 		// Send it
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 
 		// Make sure that AccountA now has the share
 		ZimbraAccount.AccountA().soapSend(
@@ -113,7 +113,7 @@ public class CreateShare extends PrefGroupMailByMessageTest {
 		dialog.zSetRole(ShareRole.Manager);
 
 		// Send it
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 
 		// Make sure that AccountA now has the share
 		ZimbraAccount.AccountA().soapSend(

@@ -68,7 +68,7 @@ public class TreeTasks extends AbsTree {
 			if (!this.sIsElementPresent(locator)) {
 				throw new HarnessException("Unable to locate folder in the tree " + locator);
 			}
-			this.zClickAt(locator, "0,0");
+			this.sClickAt(locator, "0,0");
 			zWaitForBusyOverlay();
 			SleepUtil.sleepSmall();
 
@@ -82,7 +82,7 @@ public class TreeTasks extends AbsTree {
 			throw new HarnessException("locator was null for button " + button);
 		}
 
-		this.zClickAt(locator,"");
+		this.sClickAt(locator,"");
 		this.zWaitForBusyOverlay();
 		SleepUtil.sleepSmall();
 
@@ -146,7 +146,7 @@ public class TreeTasks extends AbsTree {
 						+ pulldownLocator + " not present!");
 			}
 
-			this.zClickAt(pulldownLocator, "0,0");
+			this.sClickAt(pulldownLocator, "0,0");
 			zWaitForBusyOverlay();
 
 			if (optionLocator != null) {
@@ -156,7 +156,7 @@ public class TreeTasks extends AbsTree {
 							+ optionLocator + " not present!");
 				}
 
-				this.zClickAt(optionLocator, "0,0");
+				this.sClickAt(optionLocator, "0,0");
 				zWaitForBusyOverlay();
 			}
 
@@ -194,7 +194,7 @@ public class TreeTasks extends AbsTree {
 			throw new HarnessException("Action "+ action +" not yet implemented");
 		}
 		
-		zClick(locator);
+		sClick(locator);
 		this.zWaitForBusyOverlay();
 		SleepUtil.sleepSmall();
 
@@ -333,7 +333,7 @@ public class TreeTasks extends AbsTree {
 		if (optionLocator == null)
 			throw new HarnessException("locator is null for option " + option);
 
-		zClickAt(optionLocator, "");
+		sClickAt(optionLocator, "");
 		this.zWaitForBusyOverlay();
 		SleepUtil.sleepSmall();
 

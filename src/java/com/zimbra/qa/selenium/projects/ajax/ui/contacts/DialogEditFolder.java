@@ -114,7 +114,7 @@ public class DialogEditFolder extends com.zimbra.qa.selenium.projects.ajax.ui.ma
 				throw new HarnessException("actionLocator is not present! " + this.sGetHtmlSource());
 			}
 
-			zClick(actionLocator);
+			sClick(actionLocator);
 			this.zWaitForBusyOverlay();
 
 		}
@@ -125,7 +125,7 @@ public class DialogEditFolder extends com.zimbra.qa.selenium.projects.ajax.ui.ma
 				throw new HarnessException("optionLocator is not present! " + this.sGetHtmlSource());
 			}
 
-			zClick(optionLocator);
+			sClick(optionLocator);
 			this.zWaitForBusyOverlay();
 
 		}

@@ -88,7 +88,7 @@ public class TagTask extends AjaxCommonTest{
 
 		// Fill Name  and Press OK button
 		dialogtag.zSetTagName(tagName);
-		dialogtag.zClickButton(Button.B_OK);
+		dialogtag.zPressButton(Button.B_OK);
 
 		// Make sure the tag was created on the server (get the tag ID)
 		app.zGetActiveAccount().soapSend("<GetTagRequest xmlns='urn:zimbraMail'/>");;
@@ -123,7 +123,7 @@ public class TagTask extends AjaxCommonTest{
 		DialogTag dialogtag = new DialogTag(app, ((AppAjaxClient)app).zPageTasks);
 		if (dialogtag.zIsActive()) {
 			logger.warn(dialogtag.myPageName() + " was still active.  Cancelling ...");
-			dialogtag.zClickButton(Button.B_CANCEL);
+			dialogtag.zPressButton(Button.B_CANCEL);
 		}
 	}
 }

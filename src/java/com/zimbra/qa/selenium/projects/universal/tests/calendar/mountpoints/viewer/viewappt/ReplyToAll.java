@@ -105,7 +105,7 @@ public class ReplyToAll extends CalendarWorkWeekTest {
         mailComposeForm.zFillField(Field.Body, replyContent);
         mailComposeForm.zToolbarPressButton(Button.B_CANCEL);
         DialogWarning dlgWarning = (DialogWarning) new DialogWarning(DialogWarning.DialogWarningID.SaveChanges, app, this.startingPage);
-		dlgWarning.zClickButton(Button.B_NO);
+		dlgWarning.zPressButton(Button.B_NO);
 		
 		// Clicking to Yes is already covered in viewer -> actions -> ReplyToAll.java
 

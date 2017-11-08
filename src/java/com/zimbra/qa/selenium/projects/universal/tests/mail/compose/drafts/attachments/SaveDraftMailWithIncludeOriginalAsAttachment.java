@@ -121,7 +121,7 @@ public class SaveDraftMailWithIncludeOriginalAsAttachment extends PrefGroupMailB
 		SleepUtil.sleepSmall();
 		mailform.zFillField(Field.Body, body);
 		DialogWarning dialog = (DialogWarning) mailform.zToolbarPressPulldown(Button.B_OPTIONS, Button.O_FORMAT_AS_PLAIN_TEXT);
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 		SleepUtil.sleepSmall();
 
 		// Save the message

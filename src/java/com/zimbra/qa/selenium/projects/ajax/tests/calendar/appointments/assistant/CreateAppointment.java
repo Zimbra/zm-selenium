@@ -57,7 +57,7 @@ public class CreateAppointment extends AjaxCommonTest {
 
 		DialogAssistant assistant = (DialogAssistant)app.zPageCalendar.zKeyboardShortcut(Shortcut.S_ASSISTANT);
 		assistant.zEnterCommand(command);
-		assistant.zClickButton(Button.B_OK);
+		assistant.zPressButton(Button.B_OK);
 
 		app.zGetActiveAccount().soapSend(
 						"<SearchRequest xmlns='urn:zimbraMail' types='appointment' calExpandInstStart='"+ start.getTimeInMillis() +"' calExpandInstEnd='"+ finish.getTimeInMillis() +"'>"
@@ -97,7 +97,7 @@ public class CreateAppointment extends AjaxCommonTest {
 
 		DialogAssistant assistant = (DialogAssistant)app.zPageCalendar.zKeyboardShortcut(Shortcut.S_ASSISTANT);
 		assistant.zEnterCommand(command);
-		assistant.zClickButton(Button.B_OK);
+		assistant.zPressButton(Button.B_OK);
 
 		app.zGetActiveAccount().soapSend(
 						"<SearchRequest xmlns='urn:zimbraMail' types='appointment' calExpandInstStart='"+ start.getTimeInMillis() +"' calExpandInstEnd='"+ finish.getTimeInMillis() +"'>"

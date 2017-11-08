@@ -91,7 +91,7 @@ public class Delete extends CalendarWorkWeekTest {
 		// Select mounted calendar folder and DELETE the appointment
 		app.zPageCalendar.zSelectFolder(mountPointName);
 		app.zPageCalendar.zListItem(Action.A_LEFTCLICK, Button.B_DELETE, apptSubject);
-        app.zPageMail.zClickButton(Button.B_YES);       
+        app.zPageMail.zPressButton(Button.B_YES);       
 
 		// Verify permission denied dialog
 		ZAssert.assertEquals(app.zPageCalendar.zVerifyPermissionDeniedDialog(), true, "Verify permission denied dialog text");

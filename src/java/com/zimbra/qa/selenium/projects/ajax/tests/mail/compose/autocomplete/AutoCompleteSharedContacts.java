@@ -41,6 +41,7 @@ public class AutoCompleteSharedContacts extends PrefGroupMailByMessageTest {
 		super.startingAccountPreferences.put("zimbraPrefSharedAddrBookAutoCompleteEnabled", "TRUE");
 	}
 
+
 	@BeforeMethod(alwaysRun = true)
 	public void CreateSharedContacts() throws HarnessException {
 
@@ -122,6 +123,7 @@ public class AutoCompleteSharedContacts extends PrefGroupMailByMessageTest {
 				break;
 			}
 		}
+
 		ZAssert.assertNotNull(found, "Verify the autocomplete entry exists in the returned list");
 		mailform.zAutocompleteSelectItem(found);
 
@@ -162,6 +164,7 @@ public class AutoCompleteSharedContacts extends PrefGroupMailByMessageTest {
 				break;
 			}
 		}
+
 		ZAssert.assertNotNull(found, "Verify the autocomplete entry exists in the returned list");
 		mailform.zAutocompleteSelectItem(found);
 
@@ -202,6 +205,7 @@ public class AutoCompleteSharedContacts extends PrefGroupMailByMessageTest {
 				break;
 			}
 		}
+
 		ZAssert.assertNotNull(found, "Verify the autocomplete entry exists in the returned list");
 		mailform.zAutocompleteSelectItem(found);
 
@@ -242,6 +246,7 @@ public class AutoCompleteSharedContacts extends PrefGroupMailByMessageTest {
 				break;
 			}
 		}
+
 		ZAssert.assertNotNull(found, "Verify the autocomplete entry exists in the returned list");
 		mailform.zAutocompleteSelectItem(found);
 
@@ -282,6 +287,7 @@ public class AutoCompleteSharedContacts extends PrefGroupMailByMessageTest {
 				break;
 			}
 		}
+
 		ZAssert.assertNotNull(found, "Verify the autocomplete entry exists in the returned list");
 		mailform.zAutocompleteSelectItem(found);
 
@@ -322,6 +328,7 @@ public class AutoCompleteSharedContacts extends PrefGroupMailByMessageTest {
 				break;
 			}
 		}
+
 		ZAssert.assertNotNull(found, "Verify the autocomplete entry exists in the returned list");
 		mailform.zAutocompleteSelectItem(found);
 
@@ -338,9 +345,10 @@ public class AutoCompleteSharedContacts extends PrefGroupMailByMessageTest {
 			groups = { "functional", "L2" })
 
 	public void AutoCompleteSharedContacts_08() throws HarnessException {
-		int count = 3;
 
+		int count = 3;
 		String firstname = "William" + ConfigProperties.getUniqueString();
+
 		for (int i = 0; i < count; i++) {
 
 			// Create a contact
@@ -376,17 +384,16 @@ public class AutoCompleteSharedContacts extends PrefGroupMailByMessageTest {
 
 		// Auto complete a name
 		List<AutocompleteEntry> entries = mailform.zAutocompleteFillField(Field.To, firstname);
-
 		ZAssert.assertEquals(entries.size(), count, "Verify the correct number of results were returned");
 
-		mailform.zAutocompleteSelectItem(entries.get(1));
+		mailform.zAutocompleteSelectItem(entries.get(0));
 
 		// Send the message
 		mailform.zSubmit();
 
-		// Log into the destination account and make sure the message is received
-		MailItem received = MailItem.importFromSOAP(Contact, "subject:("+ subject +")");
-		ZAssert.assertNotNull(received, "Verify the message is received correctly");
+		// Check sent message
+		MailItem sent = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
+		ZAssert.assertNotNull(sent, "Verify the message is sent successfully");
 	}
 
 
@@ -411,12 +418,11 @@ public class AutoCompleteSharedContacts extends PrefGroupMailByMessageTest {
 
 		// Auto complete a name
 		List<AutocompleteEntry> entries = mailform.zAutocompleteFillField(Field.To, "nomatchstring");
-
 		ZAssert.assertEquals(entries.size(), 0, "Verify zero results were returned");
 
 		DialogWarning dialog = (DialogWarning)mailform.zToolbarPressButton(Button.B_CANCEL);
 		if ( dialog.zIsActive() ) {
-			dialog.zClickButton(Button.B_NO);
+			dialog.zPressButton(Button.B_NO);
 		}
 	}
 }

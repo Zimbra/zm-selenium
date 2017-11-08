@@ -138,7 +138,7 @@ public class FormRecoverDeletedItems extends AbsForm {
 			throw new HarnessException("locator was not present for button "+ button);
 
 		// Click it
-		this.zClick(locator);
+		this.sClick(locator);
 
 		// if the app is busy, wait for it to become active again
 		this.zWaitForBusyOverlay();
@@ -207,7 +207,7 @@ public class FormRecoverDeletedItems extends AbsForm {
 		// Seems that the client can't handle filling out the new mail form too quickly
 		// Click in the "To" fields, etc, to make sure the client is ready
 		this.sFocus(locator);
-		this.zClick(locator);
+		this.sClick(locator);
 		this.zWaitForBusyOverlay();
 
 		// Enter text
@@ -272,7 +272,7 @@ public class FormRecoverDeletedItems extends AbsForm {
 		if ( action == Action.A_LEFTCLICK ) {
 
 			// Left-Click on the item
-			this.zClick(itemLocator);
+			this.sClick(itemLocator);
 
 			this.zWaitForBusyOverlay();
 

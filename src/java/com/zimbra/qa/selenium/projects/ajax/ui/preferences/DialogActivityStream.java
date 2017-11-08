@@ -42,8 +42,8 @@ public class DialogActivityStream extends AbsDialog {
 		super(application, tab);
 	}
 
-	public AbsPage zClickCheckbox(Button button, boolean status) throws HarnessException {
-		logger.info(myPageName() + " zClickCheckbox(" + button + ", " + status + ")");
+	public AbsPage sClickCheckbox(Button button, boolean status) throws HarnessException {
+		logger.info(myPageName() + " sClickCheckbox(" + button + ", " + status + ")");
 
 		String locator = null;
 		AbsPage page = null;
@@ -64,8 +64,8 @@ public class DialogActivityStream extends AbsDialog {
 	}
 
 	@Override
-	public AbsPage zClickButton(Button button) throws HarnessException {
-		logger.info(myPageName() + " zClickButton(" + button + ")");
+	public AbsPage zPressButton(Button button) throws HarnessException {
+		logger.info(myPageName() + " zPressButton(" + button + ")");
 
 		String locator = null;
 		AbsPage page = null;
@@ -82,7 +82,7 @@ public class DialogActivityStream extends AbsDialog {
 			throw new HarnessException("Button " + button + " not implemented");
 		}
 
-		zClick(locator);
+		sClick(locator);
 		zWaitForBusyOverlay();
 
 		return (page);
@@ -137,7 +137,7 @@ public class DialogActivityStream extends AbsDialog {
 		// Click the pulldown to activate the menu
 		String locator = "css=div[id='ZmFilterRuleDialog_condition'] td[id$='_select_container'] td[id$='_dropdown'] div[class='ImgSelectPullDownArrow']";
 
-		this.zClick(locator);
+		this.sClick(locator);
 		this.zWaitForBusyOverlay();
 
 		throw new HarnessException("see https://bugzilla.zimbra.com/show_bug.cgi?id=63823");
@@ -168,7 +168,7 @@ public class DialogActivityStream extends AbsDialog {
 
 			// Click the "+" to add a new row
 			locator = rowLocator + ":nth-child(" + i + ") div[class='ImgPlus']";
-			this.zClick(locator);
+			this.sClick(locator);
 			this.zWaitForBusyOverlay();
 
 			this.IsFirstCriteria = false;

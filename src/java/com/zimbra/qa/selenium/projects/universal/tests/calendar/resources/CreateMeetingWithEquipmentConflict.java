@@ -96,7 +96,7 @@ public class CreateMeetingWithEquipmentConflict extends CalendarWorkWeekTest {
 		ZAssert.assertTrue(dialogContent.contains(apptEquipment + " (Busy)"), "Verify that the dialog shows Equipment name on conflict warning");
 
         // Save appt with Equipment conflict 
-		dialog.zClickButton(Button.B_SAVE_WITH_CONFLICT);
+		dialog.zPressButton(Button.B_SAVE_WITH_CONFLICT);
 
         // Verify that equipment with conflict and subject are present in the appointment
 		AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ apptSubject2 +")");
@@ -172,7 +172,7 @@ public class CreateMeetingWithEquipmentConflict extends CalendarWorkWeekTest {
 		
 		// Save appointment with Equipment conflict
         ZAssert.assertTrue(dialog.zIsActive(), "Verify 'Conflicting Resource' dialog is Open");
-        dialog.zClickButton(Button.B_SAVE_WITH_CONFLICT);
+        dialog.zPressButton(Button.B_SAVE_WITH_CONFLICT);
         
         // Verify that modified Equipment and subject are present in the appointment
 		AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ apptSubject2 +")");
@@ -248,7 +248,7 @@ public class CreateMeetingWithEquipmentConflict extends CalendarWorkWeekTest {
 		ZAssert.assertTrue(dialogContent.contains(apptEquipment + " (Busy)"), "Verify that the dialog shows Equipment name on conflict warning");
 
         // Verify Canceling the 'Conflicting Resource' closes the dialog
-		dialog.zClickButton(Button.B_CANCEL_CONFLICT);
+		dialog.zPressButton(Button.B_CANCEL_CONFLICT);
         ZAssert.assertFalse(dialog.zIsActive(), "Verify 'Conflicting Resource' dialog is closed");
         
         // Verify new appt page is still open

@@ -71,9 +71,9 @@ public class DialogTagPicker extends AbsDialog {
 		
 	}
 	
-	public void zClickTreeTag(TagItem tag) throws HarnessException {
+	public void sClickTreeTag(TagItem tag) throws HarnessException {
 
-		logger.info(myPageName() + " zClickTreeTag(" + tag + ")");
+		logger.info(myPageName() + " sClickTreeTag(" + tag + ")");
 
 		if (tag == null) {
 			throw new HarnessException("tag must not be null");
@@ -92,14 +92,14 @@ public class DialogTagPicker extends AbsDialog {
 		}
 
 		// Click the tag
-		this.zClick(locator);
+		this.sClick(locator);
 		this.zWaitForBusyOverlay();
 
 	}
 
 	@Override
-	public AbsPage zClickButton(Button button) throws HarnessException {
-		logger.info(myPageName() + " zClickButton("+ button +")");
+	public AbsPage zPressButton(Button button) throws HarnessException {
+		logger.info(myPageName() + " zPressButton("+ button +")");
 
 		String locator = null;
 		
@@ -128,14 +128,14 @@ public class DialogTagPicker extends AbsDialog {
 			throw new HarnessException("Button "+ button +" locator "+ locator +" not present!");
 		}
 		
-		zClickAt(locator, "");
+		sClickAt(locator, "");
 		
 		zWaitForBusyOverlay();
 		return (null);
 	}
 
 	public void zSubmit() throws HarnessException {
-		   zClickButton(Button.B_OK);
+		   zPressButton(Button.B_OK);
 	}
 
 	@Override

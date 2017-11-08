@@ -93,7 +93,7 @@ public class AddToCalendar extends PrefGroupMailByMessageTest {
 		// Click to "Add to Calendar"
 		DialogAddToCalendar dialog = (DialogAddToCalendar)display.zListAttachmentItem(Button.B_ADD_TO_CALENDAR, item);
 		dialog.zChooseCalendarFolder(folder.getId());
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 		
 		//-- Verification
 		app.zGetActiveAccount().soapSend(
@@ -155,7 +155,7 @@ public class AddToCalendar extends PrefGroupMailByMessageTest {
 			
 			DialogAddToCalendar dialog = (DialogAddToCalendar)app.zPageMail.zToolbarPressButton(Button.B_ADD_TO_CALENDAR);
 			dialog.zChooseCalendarFolder(folder.getId());
-			dialog.zClickButton(Button.B_OK);
+			dialog.zPressButton(Button.B_OK);
 			SleepUtil.sleepLong(); //sometime client takes longer time to add the appointment
 			
         } finally {
@@ -227,13 +227,13 @@ public class AddToCalendar extends PrefGroupMailByMessageTest {
 			app.zPageCalendar.zWaitForElementAppear("id=zv__MSG__MSG-1_attLinks_2_calendar");
 			
 			DialogAddToCalendar dialog = (DialogAddToCalendar)app.zPageMail.zToolbarPressButton(Button.B_ADD_TO_CALENDAR);
-			dialog.zClickButton(Button.B_NEW);
+			dialog.zPressButton(Button.B_NEW);
 			
 			DialogCreateCalendarFolder createCalendardialog = new DialogCreateCalendarFolder(app, app.zPageMail);
 			SleepUtil.sleepSmall();
 			if (createCalendardialog.zIsActive()) {
 				createCalendardialog.zEnterFolderName(foldername);
-				createCalendardialog.zClickButton(Button.B_OK);
+				createCalendardialog.zPressButton(Button.B_OK);
 			} else {
 				throw new HarnessException("New calendar dialog not opened on clicking New button");
 			}
@@ -241,7 +241,7 @@ public class AddToCalendar extends PrefGroupMailByMessageTest {
 			// Make sure the folder was created on the server
 			FolderItem folder = FolderItem.importFromSOAP(ZimbraAccount.AccountZCS(),foldername);
 			dialog.zChooseCalendarFolder(folder.getId());
-			dialog.zClickButton(Button.B_OK);
+			dialog.zPressButton(Button.B_OK);
 			SleepUtil.sleepLong(); //sometime client takes longer time to add the appointment
 			
         } finally {
@@ -297,7 +297,7 @@ public class AddToCalendar extends PrefGroupMailByMessageTest {
 			
 			DialogAddToCalendar dialog = (DialogAddToCalendar)app.zPageMail.zToolbarPressButton(Button.B_ADD_TO_CALENDAR);
 			dialog.zChooseCalendarFolder(folder.getId());
-			dialog.zClickButton(Button.B_OK);
+			dialog.zPressButton(Button.B_OK);
 			SleepUtil.sleepLong(); //sometime client takes longer time to add the appointment
 			
         } finally {
@@ -400,7 +400,7 @@ public class AddToCalendar extends PrefGroupMailByMessageTest {
 		// Click to "Add to Calendar"
 		DialogAddToCalendar dialog = (DialogAddToCalendar)display.zListAttachmentItem(Button.B_ADD_TO_CALENDAR, item);
 		dialog.zChooseCalendarFolder(mountfolderid);
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 		
 		//-- Verification
 		app.zGetActiveAccount().soapSend(
@@ -438,7 +438,7 @@ public class AddToCalendar extends PrefGroupMailByMessageTest {
 
 		// Adding additional code to go to Cal tab and click explicitly on Calendar header, so that new folder will create in upper level.
 		app.zPageCalendar.zNavigateTo();				
-		app.zPageCalendar.zClickAt(PageCalendar.Locators.Cal_FirstOverviewHeader,"");
+		app.zPageCalendar.sClickAt(PageCalendar.Locators.Cal_FirstOverviewHeader,"");
 		
 		// Navigate to Mail Tab again		
 		app.zPageMail.zNavigateTo();
@@ -449,7 +449,7 @@ public class AddToCalendar extends PrefGroupMailByMessageTest {
 		app.zPageMail.zDisplayMailRightClick("body div span a", Button.B_CREATE_NEW_CALENDAR);
 		DialogCreateFolder dialog = new DialogCreateFolder(app, app.zPageCalendar);
 		dialog.zEnterFolderName(newCalFolder);
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 		SleepUtil.sleepLong(); //client takes longer time
 
 		// Make sure the folder was created on the ZCS server

@@ -249,13 +249,13 @@ public class BubbleEmailAddress extends AbsBubble {
 				if (optionLocator != null) {
 
 					// Click on the context menu
-					this.zClickAt(optionLocator, "");
+					this.sClickAt(optionLocator, "");
 					this.zWaitForBusyOverlay();
 
 					if (subOptionLocator != null) {
 
 						// Click on the context menu
-						this.zClickAt(optionLocator, "");
+						this.sClickAt(optionLocator, "");
 						this.zWaitForBusyOverlay();
 
 					}

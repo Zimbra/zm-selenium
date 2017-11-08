@@ -156,8 +156,8 @@ public class MoveFile extends FeatureBriefcaseTest {
 		DialogMove chooseFolder = (DialogMove) app.zPageBriefcase.zKeyboardShortcut(shortcut);
 
 		// Choose destination folder and Click OK on Confirmation dialog
-		chooseFolder.zClickTreeFolder(subFolders[1]);
-		app.zPageBriefcase.zClickAt("css=div[id=ChooseFolderDialog_button2]", "0,0");
+		chooseFolder.sClickTreeFolder(subFolders[1]);
+		app.zPageBriefcase.sClickAt("css=div[id=ChooseFolderDialog_button2]", "0,0");
 
 		// Click on sub-folder1 in tree view
 		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, subFolders[0], false);
@@ -224,8 +224,8 @@ public class MoveFile extends FeatureBriefcaseTest {
 				fileItem);
 
 		// Click OK on Confirmation dialog
-		chooseFolder.zClickTreeFolder(subFolderItem);
-		chooseFolder.zClickButton(Button.B_OK);
+		chooseFolder.sClickTreeFolder(subFolderItem);
+		chooseFolder.zPressButton(Button.B_OK);
 
 		// Select briefcase folder
 		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, folderItem, false);
@@ -252,7 +252,7 @@ public class MoveFile extends FeatureBriefcaseTest {
 		DialogMove dialog = new DialogMove(app, ((AppAjaxClient) app).zPageBriefcase);
 		if (dialog.zIsActive()) {
 			logger.warn(dialog.myPageName() + " was still active.  Cancelling ...");
-			dialog.zClickButton(Button.B_CANCEL);
+			dialog.zPressButton(Button.B_CANCEL);
 		}
 
 	}

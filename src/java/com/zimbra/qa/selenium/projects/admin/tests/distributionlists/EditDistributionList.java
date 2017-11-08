@@ -73,7 +73,7 @@ public class EditDistributionList extends AdminCommonTest {
 		//FormEditDistributionList form = (FormEditDistributionList) app.zPageManageDistributionList.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_EDIT);
 
 		//Click on General Information tab.
-		form.zClickTreeItem(FormEditDistributionList.TreeItem.MEMBERS);
+		form.zSelectTreeItem(FormEditDistributionList.TreeItem.MEMBERS);
 
 		//Edit the name.
 		String editedName = "editedDL_" + ConfigProperties.getUniqueString();
@@ -125,7 +125,7 @@ public class EditDistributionList extends AdminCommonTest {
 		FormEditDistributionList form = (FormEditDistributionList) app.zPageManageDistributionList.zToolbarPressButton(Button.B_TREE_EDIT);
 
 		//Click on General Information tab.
-		form.zClickTreeItem(FormEditDistributionList.TreeItem.MEMBERS);
+		form.zSelectTreeItem(FormEditDistributionList.TreeItem.MEMBERS);
 
 		//Edit the name.
 		String editedName = "editedDL_" + ConfigProperties.getUniqueString();
@@ -179,7 +179,7 @@ public class EditDistributionList extends AdminCommonTest {
 		//FormEditDistributionList form = (FormEditDistributionList) app.zPageManageDistributionList.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_EDIT);
 
 		//Click on General Information tab.
-		form.zClickTreeItem(FormEditDistributionList.TreeItem.MEMBERS);
+		form.zSelectTreeItem(FormEditDistributionList.TreeItem.MEMBERS);
 
 		//Edit the name.
 		String editedName = "editedDL_" + ConfigProperties.getUniqueString();
@@ -236,7 +236,7 @@ public class EditDistributionList extends AdminCommonTest {
 		//FormEditDistributionList form = (FormEditDistributionList) app.zPageManageDistributionList.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_EDIT);
 
 		//Click on General Information tab.
-		form.zClickTreeItem(FormEditDistributionList.TreeItem.MEMBERS);
+		form.zSelectTreeItem(FormEditDistributionList.TreeItem.MEMBERS);
 
 		//Edit the name.
 		String editedName = "editedDL_" + ConfigProperties.getUniqueString();
@@ -297,7 +297,7 @@ public class EditDistributionList extends AdminCommonTest {
 		FormEditDistributionList form = (FormEditDistributionList) app.zPageManageDistributionList.zToolbarPressPulldown(Button.B_GEAR_BOX,Button.O_EDIT);
 
 		//Click on General Information tab.
-		form.zClickTreeItem(FormEditDistributionList.TreeItem.MEMBERS);
+		form.zSelectTreeItem(FormEditDistributionList.TreeItem.MEMBERS);
 
 		//Edit the name.
 		String editedName = "editedDL_" + ConfigProperties.getUniqueString();
@@ -356,7 +356,7 @@ public class EditDistributionList extends AdminCommonTest {
 		FormEditDistributionList form = (FormEditDistributionList) app.zPageManageDistributionList.zToolbarPressButton(Button.B_TREE_EDIT);
 
 		//Click on General Information tab.
-		form.zClickTreeItem(FormEditDistributionList.TreeItem.MEMBERS);
+		form.zSelectTreeItem(FormEditDistributionList.TreeItem.MEMBERS);
 
 		//Edit the name.
 		String editedName = "editedDL_" + ConfigProperties.getUniqueString();

@@ -90,7 +90,7 @@ public class ZimbraFeatureContactsDetailedSearchEnabled extends PrefGroupMailByM
 			ZAssert.assertTrue(selectAddress.sIsElementPresent(Locators.SearchResultArea+":contains('" + department + "')"),"Verify that search result containing the department name is displayed ");
 	
 			//Selecting the first addresses from the search result and moving to recipient box		
-			selectAddress.zClick(Locators.ContactPickerFirstContact);
+			selectAddress.sClick(Locators.ContactPickerFirstContact);
 			selectAddress.zToolbarPressButton(Button.B_TO);
 	
 			//Verify that  the selected address has been moved to recipient box and department name is displayed in recipient box as well
@@ -160,7 +160,7 @@ public class ZimbraFeatureContactsDetailedSearchEnabled extends PrefGroupMailByM
 	        
 	        //Enter department to search
 	        dialogFindAttendees.zFillField(com.zimbra.qa.selenium.projects.universal.ui.calendar.DialogFindAttendees.Field.Department, department);
-			dialogFindAttendees.zClickButton(Button.B_SEARCH);
+			dialogFindAttendees.zPressButton(Button.B_SEARCH);
 
 			//Check that correct addresses are filtered out		
 			ZAssert.assertTrue(dialogFindAttendees.sIsElementPresent(Locators.SearchResultArea+":contains('" + account1.EmailAddress + "')"),"Verify that correct addresses are filtered out");
@@ -170,8 +170,8 @@ public class ZimbraFeatureContactsDetailedSearchEnabled extends PrefGroupMailByM
 			ZAssert.assertTrue(dialogFindAttendees.sIsElementPresent(Locators.SearchResultArea+":contains('" + department + "')"),"Verify that search result containing the department name is displayed ");
 
 			//Selecting the first addresses from the search result and moving to recipient box		
-	        dialogFindAttendees.zClickButton(Button.B_SELECT_FIRST_CONTACT);
-	        dialogFindAttendees.zClickButton(Button.B_CHOOSE_CONTACT_FROM_PICKER);
+	        dialogFindAttendees.zPressButton(Button.B_SELECT_FIRST_CONTACT);
+	        dialogFindAttendees.zPressButton(Button.B_CHOOSE_CONTACT_FROM_PICKER);
 
 			//Verify that  the selected address has been moved to recipient box and department name is displayed in recipient box as well
 			ZAssert.assertTrue(dialogFindAttendees.sIsElementPresent("css=div[id='ZmContactPicker'] div[class='DwtChooserListView'] div[id^='zli__DWT'] td:contains('" + department + "')"), "Verify that department is visible in recipient box as well");

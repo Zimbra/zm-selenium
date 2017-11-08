@@ -177,8 +177,8 @@ public class MoveTask extends UniversalCommonTest {
 				
 		// Click the Move keyboard shortcut
 		DialogMove chooseFolder = (DialogMove) app.zPageTasks.zKeyboardShortcut(Shortcut.S_MOVE);
-		chooseFolder.zClickTreeFolder(subFolder);
-		chooseFolder.zClickButton(Button.B_OK);
+		chooseFolder.sClickTreeFolder(subFolder);
+		chooseFolder.zPressButton(Button.B_OK);
 
 		// refresh tasks page
 		app.zTreeTasks.zTreeItem(Action.A_LEFTCLICK, taskFolder);
@@ -262,8 +262,8 @@ public class MoveTask extends UniversalCommonTest {
 				
 		// Click the Move keyboard shortcut
 		DialogMove chooseFolder = (DialogMove) app.zPageTasks.zListItem(Action.A_RIGHTCLICK, Button.O_MOVE_MENU, subject);
-		chooseFolder.zClickTreeFolder(subFolder);
-		chooseFolder.zClickButton(Button.B_OK);
+		chooseFolder.sClickTreeFolder(subFolder);
+		chooseFolder.zPressButton(Button.B_OK);
 
 		// refresh tasks page
 		app.zTreeTasks.zTreeItem(Action.A_LEFTCLICK, taskFolder);
@@ -334,7 +334,7 @@ public class MoveTask extends UniversalCommonTest {
 		DialogCreateTaskFolder createTaskFolderDialog =(DialogCreateTaskFolder)app.zPageTasks.zToolbarPressPulldown(Button.B_MOVE, Button.O_NEW_TASK_FOLDER);
 		
 		createTaskFolderDialog.zEnterFolderName(name);
-		createTaskFolderDialog.zClickButton(Button.B_OK);
+		createTaskFolderDialog.zPressButton(Button.B_OK);
 
 		// refresh tasks page
 		app.zTreeTasks.zTreeItem(Action.A_LEFTCLICK, taskFolder);
@@ -382,7 +382,7 @@ public class MoveTask extends UniversalCommonTest {
 		if (dialog.zIsActive()) {
 			logger.warn(dialog.myPageName()
 					+ " was still active.  Cancelling ...");
-			dialog.zClickButton(Button.B_CANCEL);
+			dialog.zPressButton(Button.B_CANCEL);
 		}
 
 	}

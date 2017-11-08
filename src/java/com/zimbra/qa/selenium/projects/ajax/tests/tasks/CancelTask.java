@@ -78,7 +78,7 @@ public class CancelTask extends AjaxCommonTest {
 		ZAssert.assertNotNull(warning, "Verify the dialog is returned");
 
 		// Click No button of warning dialog
-		warning.zClickButton(Button.B_NO);
+		warning.zPressButton(Button.B_NO);
 
 		List<TaskItem> tasks = app.zPageTasks.zGetTasks();
 
@@ -117,7 +117,7 @@ public class CancelTask extends AjaxCommonTest {
 		ZAssert.assertNotNull(warning, "Verify the dialog is opened");
 
 		// Click No button of warning dialog
-		warning.zClickButton(Button.B_NO);
+		warning.zPressButton(Button.B_NO);
 
 		List<TaskItem> tasks = app.zPageTasks.zGetTasks();
 
@@ -157,23 +157,23 @@ public class CancelTask extends AjaxCommonTest {
 
 		//1st attempt
 		// Click NEW button
-		app.zPageTasks.zClickAt(Locators.zNewTask,"");
+		app.zPageTasks.sClickAt(Locators.zNewTask,"");
 		SleepUtil.sleepMedium();
 		app.zPageTasks.zToolbarPressButton(Button.B_Attachment);
-		//app.zPageTasks.zClickAt(Locators.zAttachButton, "");
+		//app.zPageTasks.sClickAt(Locators.zAttachButton, "");
 		SleepUtil.sleepMedium();
 		ZAssert.assertTrue(app.zPageTasks.sIsElementPresent(Locators.zAttachmentInputBox),"Verify Attachment input box ");
-		app.zPageTasks.zClickAt(FormTaskNew.Locators.zCancelTask,"");
+		app.zPageTasks.sClickAt(FormTaskNew.Locators.zCancelTask,"");
 		ZAssert.assertTrue(app.zPageTasks.sGetEval("window.appCtxt.getCurrentViewType()").equalsIgnoreCase("TKL"),"Verify List view is open");
 
 		//2nd attempt
-		app.zPageTasks.zClickAt(Locators.zNewTask,"");
+		app.zPageTasks.sClickAt(Locators.zNewTask,"");
 		SleepUtil.sleepMedium();
 		app.zPageTasks.zToolbarPressButton(Button.B_Attachment);
-		//app.zPageTasks.zClickAt(Locators.zAttachButton, "");
+		//app.zPageTasks.sClickAt(Locators.zAttachButton, "");
 		SleepUtil.sleepMedium();
 		ZAssert.assertTrue(app.zPageTasks.sIsElementPresent(Locators.zAttachmentInputBox),"Verify Attachment input box ");
-		app.zPageTasks.zClickAt(FormTaskNew.Locators.zCancelTask,"");
+		app.zPageTasks.sClickAt(FormTaskNew.Locators.zCancelTask,"");
 		ZAssert.assertTrue(app.zPageTasks.sGetEval("window.appCtxt.getCurrentViewType()").equalsIgnoreCase("TKL"),"Verify List view is open");
 	}
 }

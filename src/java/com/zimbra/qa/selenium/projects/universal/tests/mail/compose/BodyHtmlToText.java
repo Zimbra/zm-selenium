@@ -54,7 +54,7 @@ public class BodyHtmlToText extends PrefGroupMailByMessageTest {
 		// change html to Plain format.
 
 		DialogWarning dialog = (DialogWarning) mailform.zToolbarPressPulldown(Button.B_OPTIONS, Button.O_FORMAT_AS_PLAIN_TEXT);
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 		SleepUtil.sleepMedium();
 
 		// Verify Body contents remain same or does not lost.

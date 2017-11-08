@@ -69,6 +69,6 @@ public class FindSharesWithFeatureDisabled extends FeatureBriefcaseTest {
 				"Verify Find Shares dialog is opened");
 
 		// Dismiss the dialog
-		dialog.zClickButton(Button.B_CANCEL);
+		dialog.zPressButton(Button.B_CANCEL);
 	}
 }

@@ -48,7 +48,7 @@ public class CreateCalendar extends AjaxCommonTest {
 
 		// Fill out the dialog
 		dialog.zEnterFolderName(calendarname);
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 
 		// Make sure the folder was created on the ZCS server
 		FolderItem folder = FolderItem.importFromSOAP(app.zGetActiveAccount(), calendarname);
@@ -70,7 +70,7 @@ public class CreateCalendar extends AjaxCommonTest {
 
 		// Fill out the dialog
 		dialog.zEnterFolderName(calendarname);
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 
 
 		// Make sure the folder was created on the ZCS server
@@ -96,7 +96,7 @@ public class CreateCalendar extends AjaxCommonTest {
 
 		// Fill out the dialog
 		dialog.zEnterFolderName(calendarname);
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 
 		// Make sure the folder was created on the ZCS server
 		FolderItem folder = FolderItem.importFromSOAP(app.zGetActiveAccount(), calendarname);
@@ -120,7 +120,7 @@ public class CreateCalendar extends AjaxCommonTest {
 
 		// Fill out the form with the basic details
 		dialog.zEnterFolderName(calendarname);
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 
 		// Make sure the folder was created on the ZCS server
 		FolderItem folder = FolderItem.importFromSOAP(app.zGetActiveAccount(), calendarname);

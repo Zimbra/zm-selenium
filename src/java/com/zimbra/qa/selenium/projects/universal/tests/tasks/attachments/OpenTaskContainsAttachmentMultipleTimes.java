@@ -112,7 +112,7 @@ public class OpenTaskContainsAttachmentMultipleTimes extends UniversalCommonTest
 		ZAssert.assertTrue(app.zPageTasks.sIsElementPresent("css=div[class='ZmTaskEditView'] tr[id$='_attachment_container'] div td a[class='AttLink']:contains('"+fileName+"')")," Verify only one Attachment present");
 		ZAssert.assertFalse(app.zPageTasks.sIsElementPresent("xpath=//div[contains(@class,'ZmTaskEditView')]//tr[contains(@id,'_attachment_container')]/td/fieldset/form/div/div[2]"),"Verify Duplicate attachment is not present");
 
-		app.zPageTasks.zClickAt(com.zimbra.qa.selenium.projects.universal.ui.tasks.FormTaskNew.Locators.zCloseButton, "0,0");
+		app.zPageTasks.sClickAt(com.zimbra.qa.selenium.projects.universal.ui.tasks.FormTaskNew.Locators.zCloseButton, "0,0");
 		//After closing Task list view should show.
 		ZAssert.assertTrue(app.zPageTasks.sGetEval("window.appCtxt.getCurrentViewType()").equalsIgnoreCase("TKL"),"Verify List view is open");
 
@@ -128,7 +128,7 @@ public class OpenTaskContainsAttachmentMultipleTimes extends UniversalCommonTest
 		ZAssert.assertFalse(app.zPageTasks.sIsElementPresent("xpath=//div[contains(@class,'ZmTaskEditView')]//tr[contains(@id,'_attachment_container')]/td/fieldset/form/div/div[2]"),"Verify Duplicate attachment is not present");
 
 		//Close Edit window
-		app.zPageTasks.zClickAt(com.zimbra.qa.selenium.projects.universal.ui.tasks.FormTaskNew.Locators.zCloseButton, "0,0");
+		app.zPageTasks.sClickAt(com.zimbra.qa.selenium.projects.universal.ui.tasks.FormTaskNew.Locators.zCloseButton, "0,0");
 
 		//After closing Task list view should show.
 		ZAssert.assertTrue(app.zPageTasks.sGetEval("window.appCtxt.getCurrentViewType()").equalsIgnoreCase("TKL"),"Verify List view is open");

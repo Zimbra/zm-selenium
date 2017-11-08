@@ -63,7 +63,7 @@ public class UndoDeleteContactGroup extends UniversalCommonTest {
 		// Click undo from the toaster message
 		Toaster toast = app.zPageMain.zGetToaster();
 		toast.zWaitForActive();
-		toast.zClickUndo();
+		toast.sClickUndo();
 
 		//Verify contact group come back into Contacts folder		
 		ContactGroupItem actual = ContactGroupItem.importFromSOAP(app.zGetActiveAccount(), "is:anywhere #nickname:"+ group.getName());
@@ -91,7 +91,7 @@ public class UndoDeleteContactGroup extends UniversalCommonTest {
 		// Click undo from the toaster message
 		Toaster toast = app.zPageMain.zGetToaster();
 		toast.zWaitForActive();
-		toast.zClickUndo();
+		toast.sClickUndo();
 
 		//Verify contact group come back into Contacts folder		
 		ContactGroupItem actual = ContactGroupItem.importFromSOAP(app.zGetActiveAccount(), "is:anywhere #nickname:"+ group.getName());
@@ -121,7 +121,7 @@ public class UndoDeleteContactGroup extends UniversalCommonTest {
 		// Click undo from the toaster message
 		Toaster toast = app.zPageMain.zGetToaster();
 		toast.zWaitForActive();
-		toast.zClickUndo();
+		toast.sClickUndo();
 
 		//Verify contact group come back into Contacts folder		
 		ContactGroupItem actual = ContactGroupItem.importFromSOAP(app.zGetActiveAccount(), "is:anywhere #nickname:"+ group.getName());
@@ -152,7 +152,7 @@ public class UndoDeleteContactGroup extends UniversalCommonTest {
 		// Click undo from the toaster message
 		Toaster toast = app.zPageMain.zGetToaster();
 		toast.zWaitForActive();
-		toast.zClickUndo();
+		toast.sClickUndo();
 
 		//Verify contact group come back into Contacts folder		
 		ContactGroupItem actual = ContactGroupItem.importFromSOAP(app.zGetActiveAccount(), "is:anywhere #nickname:"+ group.getName());
@@ -186,7 +186,7 @@ public class UndoDeleteContactGroup extends UniversalCommonTest {
 		// Click undo from the toaster message
 		Toaster toast = app.zPageMain.zGetToaster();
 		toast.zWaitForActive();
-		toast.zClickUndo();
+		toast.sClickUndo();
 
 		//Verify 3 contact groups are come back into Contacts folder
 
@@ -227,7 +227,7 @@ public class UndoDeleteContactGroup extends UniversalCommonTest {
 		// Click undo from the toaster message
 		Toaster toast = app.zPageMain.zGetToaster();
 		toast.zWaitForActive();
-		toast.zClickUndo();
+		toast.sClickUndo();
 
 		//Verify contact group as well as contact come back into Contacts folder		
 		ContactGroupItem actual = ContactGroupItem.importFromSOAP(app.zGetActiveAccount(), "is:anywhere #nickname:"+ group.getName());

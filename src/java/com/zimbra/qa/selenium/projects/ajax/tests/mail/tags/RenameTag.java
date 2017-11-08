@@ -57,7 +57,7 @@ public class RenameTag extends PrefGroupMailByMessageTest {
 
 		// Set the new name, click OK
 		dialog.zSetNewName(name2);
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 
 		// Verify the tag is no longer found
 		app.zGetActiveAccount().soapSend("<GetTagRequest xmlns='urn:zimbraMail'/>");

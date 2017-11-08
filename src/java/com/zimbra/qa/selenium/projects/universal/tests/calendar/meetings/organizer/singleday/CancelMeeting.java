@@ -85,7 +85,7 @@ public class CancelMeeting extends CalendarWorkWeekTest {
         
         // Wait for the "Send Cancellation" dialog
         // Click Send Cancellation
-		dialog.zClickButton(Button.B_SEND_CANCELLATION);
+		dialog.zPressButton(Button.B_SEND_CANCELLATION);
 		
 		//-- Verification
 		
@@ -159,7 +159,7 @@ public class CancelMeeting extends CalendarWorkWeekTest {
         
         // Wait for the "Send Cancellation" dialog
         // Click Send Cancellation
-		dialog.zClickButton(Button.B_SEND_CANCELLATION);
+		dialog.zPressButton(Button.B_SEND_CANCELLATION);
 		
 		//-- Verification
 		
@@ -225,7 +225,7 @@ public class CancelMeeting extends CalendarWorkWeekTest {
 
         // Wait for the "Send Cancellation" dialog
         // Click Send Cancellation
-		dialog.zClickButton(Button.B_CANCEL);
+		dialog.zPressButton(Button.B_CANCEL);
 		
 		//-- Verification
 		ZAssert.assertTrue(app.zPageCalendar.zIsAppointmentExists(apptSubject), "Verify meeting is not deleted from organizer's calendar");
@@ -285,7 +285,7 @@ public class CancelMeeting extends CalendarWorkWeekTest {
         // Wait for the "Send Cancellation" dialog
         // Click Edit Cancellation
         // When the form opens, simply click "SEND" (don't edit content)
-        FormMailNew mailComposeForm = (FormMailNew)dialog.zClickButton(Button.B_EDIT_CANCELLATION);
+        FormMailNew mailComposeForm = (FormMailNew)dialog.zPressButton(Button.B_EDIT_CANCELLATION);
 		mailComposeForm.zSubmit();
 		
 		//-- Verification
@@ -350,7 +350,7 @@ public class CancelMeeting extends CalendarWorkWeekTest {
         // Wait for the "Send Cancellation" dialog
         // Click Edit Cancellation
         // When the form opens, simply click "SEND" (don't edit content)
-        FormMailNew mailComposeForm = (FormMailNew)dialog.zClickButton(Button.B_EDIT_CANCELLATION);
+        FormMailNew mailComposeForm = (FormMailNew)dialog.zPressButton(Button.B_EDIT_CANCELLATION);
 		mailComposeForm.zFillField(Field.Body, " " + modifyApptBody);		
 		mailComposeForm.zSubmit();
 		

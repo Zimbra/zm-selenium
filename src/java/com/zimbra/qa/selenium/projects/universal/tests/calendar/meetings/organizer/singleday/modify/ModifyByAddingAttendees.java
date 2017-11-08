@@ -74,8 +74,8 @@ public class ModifyByAddingAttendees extends CalendarWorkWeekTest {
         apptForm.zFillField(Field.Attendees, apptAttendee2);
         apptForm.zSubmit();
         DialogSendUpdatetoAttendees sendUpdateDialog = (DialogSendUpdatetoAttendees) new DialogSendUpdatetoAttendees(app, app.zPageCalendar);
-        sendUpdateDialog.zClickButton(Button.B_SEND_UPDATES_ONLY_TO_ADDED_OR_REMOVED_ATTENDEES);
-        sendUpdateDialog.zClickButton(Button.B_OK);
+        sendUpdateDialog.zPressButton(Button.B_SEND_UPDATES_ONLY_TO_ADDED_OR_REMOVED_ATTENDEES);
+        sendUpdateDialog.zPressButton(Button.B_OK);
  
         // Verify that attendee2 present in the appointment
         AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ apptSubject +")");
@@ -154,8 +154,8 @@ public class ModifyByAddingAttendees extends CalendarWorkWeekTest {
         apptForm.zFillField(Field.Attendees, apptAttendee2);
         apptForm.zSubmit();
         DialogSendUpdatetoAttendees sendUpdateDialog = (DialogSendUpdatetoAttendees) new DialogSendUpdatetoAttendees(app, app.zPageCalendar);
-        sendUpdateDialog.zClickButton(Button.B_SEND_UPDATES_TO_ALL_ATTENDEES);
-        sendUpdateDialog.zClickButton(Button.B_OK);
+        sendUpdateDialog.zPressButton(Button.B_SEND_UPDATES_TO_ALL_ATTENDEES);
+        sendUpdateDialog.zPressButton(Button.B_OK);
         
         // Verify attendee1 receives meeting invitation message
 		ZimbraAccount.AccountA().soapSend(
@@ -236,8 +236,8 @@ public class ModifyByAddingAttendees extends CalendarWorkWeekTest {
         apptForm.zFillField(Field.Attendees, distribution.EmailAddress);
         apptForm.zSubmit();
         DialogSendUpdatetoAttendees sendUpdateDialog = (DialogSendUpdatetoAttendees) new DialogSendUpdatetoAttendees(app, app.zPageCalendar);
-        sendUpdateDialog.zClickButton(Button.B_SEND_UPDATES_ONLY_TO_ADDED_OR_REMOVED_ATTENDEES);
-        sendUpdateDialog.zClickButton(Button.B_OK);
+        sendUpdateDialog.zPressButton(Button.B_SEND_UPDATES_ONLY_TO_ADDED_OR_REMOVED_ATTENDEES);
+        sendUpdateDialog.zPressButton(Button.B_OK);
       
         // Verify that attendee2 present in the appointment
         AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ apptSubject +")");

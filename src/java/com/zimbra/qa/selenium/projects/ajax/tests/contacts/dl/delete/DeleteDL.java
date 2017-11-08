@@ -67,7 +67,7 @@ public class DeleteDL extends AjaxCommonTest  {
 
 		app.zPageContacts.zToolbarPressButton(Button.B_DELETE);
 		DialogWarning warning = new DialogWarning(DialogWarning.DialogWarningID.DeleteItem, app, app.zPageContacts);
-		warning.zClickButton(Button.B_OK);
+		warning.zPressButton(Button.B_OK);
 
 		app.zGetActiveAccount().soapSend(
 				"<GetDistributionListRequest xmlns='urn:zimbraAccount' needOwners='1'>"
@@ -127,7 +127,7 @@ public class DeleteDL extends AjaxCommonTest  {
 		app.zPageContacts.zListItem(Action.A_RIGHTCLICK, Button.O_DELETE_MENU, fullDLName);
 
 		DialogWarning warning = new DialogWarning(DialogWarning.DialogWarningID.DeleteItem, app, app.zPageContacts);
-		warning.zClickButton(Button.B_OK);
+		warning.zPressButton(Button.B_OK);
 
 		app.zGetActiveAccount().soapSend(
 				"<GetDistributionListRequest xmlns='urn:zimbraAccount' needOwners='1'>"

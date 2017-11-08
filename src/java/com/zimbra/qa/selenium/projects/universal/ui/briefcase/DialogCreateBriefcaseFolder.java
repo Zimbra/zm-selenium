@@ -69,8 +69,8 @@ public class DialogCreateBriefcaseFolder extends AbsDialog {
 	}
 
 	@Override
-	public AbsPage zClickButton(Button button) throws HarnessException {
-		logger.info(myPageName() + " zClickButton(" + button + ")");
+	public AbsPage zPressButton(Button button) throws HarnessException {
+		logger.info(myPageName() + " zPressButton(" + button + ")");
 
 		tracer.trace("Click dialog button " + button);
 
@@ -117,12 +117,12 @@ public class DialogCreateBriefcaseFolder extends AbsDialog {
 	 * @param folder
 	 * @throws HarnessException
 	 */
-	public void zClickTreeFolder(FolderItem folder) throws HarnessException {
+	public void sClickTreeFolder(FolderItem folder) throws HarnessException {
 		if (folder == null) {
-			throw new HarnessException("zClickTreeFolder(FolderItem): folder must not be null");
+			throw new HarnessException("sClickTreeFolder(FolderItem): folder must not be null");
 		}
 
-		logger.info(myPageName() + " zClickTreeFolder(" + folder + ")");
+		logger.info(myPageName() + " sClickTreeFolder(" + folder + ")");
 
 		tracer.trace("Click on tree briefcase with name " + folder.getName());
 
@@ -132,7 +132,7 @@ public class DialogCreateBriefcaseFolder extends AbsDialog {
 		if (!this.sIsElementPresent(locator))
 			throw new HarnessException("unable to find folder in tree " + locator);
 
-		this.zClickAt(locator, "0,0");
+		this.sClickAt(locator, "0,0");
 
 		this.zWaitForBusyOverlay();
 
@@ -158,7 +158,7 @@ public class DialogCreateBriefcaseFolder extends AbsDialog {
 
 		// For some reason, the text doesn't get entered on the first try
 		this.sFocus(locator);
-		this.zClickAt(locator, "0,0");
+		this.sClickAt(locator, "0,0");
 		this.clearField(locator);
 		this.sType(locator, folder);
 

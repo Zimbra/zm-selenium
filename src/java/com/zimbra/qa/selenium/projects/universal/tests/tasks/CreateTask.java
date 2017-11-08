@@ -85,7 +85,7 @@ public class CreateTask extends UniversalCommonTest {
 		
 		//Work around by typing using keyboard otherwise warning dialog won't come
 		taskNew.sFocus(Locators.zTaskBodyField);
-		taskNew.zClick(Locators.zTaskBodyField);
+		taskNew.sClick(Locators.zTaskBodyField);
 		taskNew.zKeyboard.zTypeCharacters(body);
 				
 		//Click Escape shortcut 'Esc'	
@@ -93,7 +93,7 @@ public class CreateTask extends UniversalCommonTest {
 		ZAssert.assertNotNull(warning, "Verify the dialog is opened");
 
 		//Click Yes button of warning dialog
-		warning.zClickButton(Button.B_YES);
+		warning.zPressButton(Button.B_YES);
 		
 		SleepUtil.sleepMedium();
 		// Refresh the tasks view
@@ -337,7 +337,7 @@ public class CreateTask extends UniversalCommonTest {
 		//form.zFillField(Field.Body, body);
 		//Work around by typing using keyboard otherwise it won't save task
 		form.sFocus(Locators.zTaskBodyField);
-		form.zClick(Locators.zTaskBodyField);
+		form.sClick(Locators.zTaskBodyField);
 		form.zKeyboard.zTypeCharacters(body);
 
 		// Change the priority

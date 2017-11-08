@@ -71,8 +71,8 @@ public class Delete extends AjaxCommonTest {
 
 		// --------------- Login to attendee & delete the invitation ----------------------------------------------------
 		DialogConfirmationDeclineAppointment declineAppt = (DialogConfirmationDeclineAppointment) app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, Button.O_DELETE_MENU, apptSubject);
-		declineAppt.zClickButton(Button.B_DONT_NOTIFY_ORGANIZER);
-		declineAppt.zClickButton(Button.B_YES);
+		declineAppt.zPressButton(Button.B_DONT_NOTIFY_ORGANIZER);
+		declineAppt.zPressButton(Button.B_YES);
 		SleepUtil.sleepMedium();
 
 		// Verify appointment is deleted and read-only view closed
@@ -164,8 +164,8 @@ public class Delete extends AjaxCommonTest {
 
 		// --------------- Login to attendee & delete the invitation ----------------------------------------------------
 		DialogConfirmationDeclineAppointment declineAppt = (DialogConfirmationDeclineAppointment) app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, Button.O_DELETE_MENU, apptSubject);
-		declineAppt.zClickButton(Button.B_NOTIFY_ORGANIZER);
-		declineAppt.zClickButton(Button.B_YES);
+		declineAppt.zPressButton(Button.B_NOTIFY_ORGANIZER);
+		declineAppt.zPressButton(Button.B_YES);
 
 		// Verify appointment is deleted and read-only view closed
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);

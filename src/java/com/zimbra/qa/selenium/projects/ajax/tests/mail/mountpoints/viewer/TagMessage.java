@@ -179,14 +179,14 @@ public class TagMessage extends PrefGroupMailByMessageTest {
 
 			// Tag the item (shortcut)
 			DialogTagPicker dialogTag = (DialogTagPicker)app.zPageMail.zKeyboardShortcut(Shortcut.S_MAIL_TAG);
-			dialogTag.zClickTreeTag(tag);
-			dialogTag.zClickButton(Button.B_OK);
+			dialogTag.sClickTreeTag(tag);
+			dialogTag.zPressButton(Button.B_OK);
 
 			// A "Permission Denied" error popup should occur
 			DialogError dialog = app.zPageMain.zGetErrorDialog(DialogError.DialogErrorID.Zimbra);
 			ZAssert.assertNotNull(dialog, "Verify the PERM DENIED Error Dialog is created");
 			ZAssert.assertTrue(dialog.zIsActive(), "Verify the PERM DENIED Error Dialog is active");
-			dialog.zClickButton(Button.B_OK);
+			dialog.zPressButton(Button.B_OK);
 
 		} finally {
 			app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Inbox));

@@ -75,7 +75,7 @@ public class AddIndirectMemberOfDistributionList extends AdminCommonTest {
 		FormEditDistributionList form = (FormEditDistributionList) app.zPageManageDistributionList.zToolbarPressPulldown(Button.B_GEAR_BOX,Button.O_EDIT);
 		
 		// Select Member of of tree element
-		form.zClickTreeItem(TreeItem.MEMBER_OF);
+		form.zSelectTreeItem(TreeItem.MEMBER_OF);
 		
 		// Check the message displayed inside the Direct member of box
 		ZAssert.assertEquals(form.sGetText(Locators.DirectMemberOf),"Not a direct member of any distribution list","Verify that Loading... text is not present");
@@ -125,7 +125,7 @@ public class AddIndirectMemberOfDistributionList extends AdminCommonTest {
 		form = (FormEditDistributionList) app.zPageManageDistributionList.zToolbarPressPulldown(Button.B_GEAR_BOX,Button.O_EDIT);
 
 		// Select Member of of tree element
-		form.zClickTreeItem(TreeItem.MEMBER_OF);
+		form.zSelectTreeItem(TreeItem.MEMBER_OF);
 		
 		// Check the content of inside the Direct member of box
 		ZAssert.assertEquals(form.sGetText(Locators.DirectMemberOf),dl2.getEmailAddress(),"Verify that" + dl2.getEmailAddress() + "is added to the direct member of list");

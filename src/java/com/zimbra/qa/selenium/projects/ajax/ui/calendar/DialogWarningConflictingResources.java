@@ -40,16 +40,19 @@ public class DialogWarningConflictingResources extends DialogWarning {
 		return text;
 	}
 
-	public void zPressButton(Button button) throws HarnessException {
-		logger.info(myPageName() + " zClickButton(" + button + ")");
+	public AbsPage zPressButton(Button button) throws HarnessException {
+		logger.info(myPageName() + " zPressButton(" + button + ")");
 		String locator = null;
 
 		if (button == Button.B_CANCEL_INSTANCE_LINK) {
-
 			locator = Locators.CancelInstanceLink;
-
-			sClick(locator);
-			this.zWaitForBusyOverlay();
+		} else {
+			return (super.zPressButton(button));
 		}
+
+		sClick(locator);
+		this.zWaitForBusyOverlay();
+
+		return null;
 	}
 }

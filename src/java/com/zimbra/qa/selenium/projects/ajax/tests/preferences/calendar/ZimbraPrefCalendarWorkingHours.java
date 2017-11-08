@@ -83,7 +83,7 @@ public class ZimbraPrefCalendarWorkingHours extends AjaxCommonTest {
 		app.zPagePreferences.zToolbarPressButton(Button.B_SAVE);
 		DialogWarning dialog = (DialogWarning) new DialogWarning(DialogWarning.DialogWarningID.ReloadApplication, app, app.zPagePreferences);
 		ZAssert.assertNotNull(dialog, "Dialog is present");
-		dialog.zClickButton(Button.B_YES);
+		dialog.zPressButton(Button.B_YES);
 
 		// Verify the preference value
 		app.zGetActiveAccount().soapSend(

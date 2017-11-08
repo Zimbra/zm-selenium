@@ -74,7 +74,7 @@ public class DeleteAppointment extends UniversalCommonTest {
 		DialogConfirmDeleteAppointment dialog = (DialogConfirmDeleteAppointment)app.zPageCalendar.zToolbarPressButton(Button.B_DELETE);
 
 		// Send the notification immediately
-		dialog.zClickButton(Button.B_YES);
+		dialog.zPressButton(Button.B_YES);
 
 		
 		

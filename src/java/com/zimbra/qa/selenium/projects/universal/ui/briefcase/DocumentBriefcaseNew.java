@@ -100,7 +100,7 @@ public class DocumentBriefcaseNew extends AbsForm {
 
 			this.sMouseOver(nameFieldLocator);
 			this.sFocus(nameFieldLocator);
-			this.zClickAt(nameFieldLocator,"0,0");
+			this.sClickAt(nameFieldLocator,"0,0");
 			this.sType(nameFieldLocator, value);
 			logger.info("typed: " + value);
 
@@ -115,7 +115,7 @@ public class DocumentBriefcaseNew extends AbsForm {
 				WebElement we = getElement(iframeLocator);
 				this.sMouseOver(iframeLocator);
 				this.sFocus(iframeLocator);
-				this.zClickAt(iframeLocator,"0,0");
+				this.sClickAt(iframeLocator,"0,0");
 				this.executeScript("var bodytext=\""
 							+ value
 							+ "\";"
@@ -150,12 +150,12 @@ public class DocumentBriefcaseNew extends AbsForm {
 
 		if (!(sIsElementPresent(Locators.zEnableVersionNotes) && sIsChecked(Locators.zEnableVersionNotes))) {
 			// Click on it
-			zClickAt(Locators.zSaveAndCloseIconBtn,"0,0");
+			sClickAt(Locators.zSaveAndCloseIconBtn,"0,0");
 		} else {
 			// Click on it
 			// this.sMouseDown(Locators.zSaveAndCloseIconBtn);
 			// this.sMouseUp(Locators.zSaveAndCloseIconBtn);
-			zClickAt(Locators.zSaveAndCloseIconBtn,"0,0");
+			sClickAt(Locators.zSaveAndCloseIconBtn,"0,0");
 
 				// add version notes
 				DialogAddVersionNotes dlgAddNotes = new DialogAddVersionNotes(

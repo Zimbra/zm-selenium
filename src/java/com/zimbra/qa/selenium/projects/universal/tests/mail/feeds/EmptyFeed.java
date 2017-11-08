@@ -62,7 +62,7 @@ public class EmptyFeed extends PrefGroupMailByMessageTest {
 		ZAssert.assertNotNull(dialog,"Verify the warning dialog pops up - Are you sure you want to delete all items?");
 
 		// Dismiss it
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 
 	}
 }

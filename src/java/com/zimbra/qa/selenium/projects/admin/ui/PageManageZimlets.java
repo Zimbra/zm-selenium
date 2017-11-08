@@ -126,10 +126,10 @@ public class PageManageZimlets extends AbsTab {
 		}
 
 		// Click on Addresses -> Accounts
-		zClickAt(Locators.CONFIGURE_ICON,"");
+		sClickAt(Locators.CONFIGURE_ICON,"");
 		zWaitForWorkInProgressDialogInVisible();
 		zWaitForElementPresent(Locators.ZIMLET);
-		zClickAt(Locators.ZIMLET, "");
+		sClickAt(Locators.ZIMLET, "");
 		SleepUtil.sleepLong();
 		zWaitForWorkInProgressDialogInVisible();
 		zWaitForActive();	
@@ -203,7 +203,7 @@ public class PageManageZimlets extends AbsTab {
 					throw new HarnessException("Button " + pulldown + " option " + option + " optionLocator " + optionLocator + " not present!");
 				}
 
-				this.zClickAt(optionLocator,"");
+				this.sClickAt(optionLocator,"");
 				SleepUtil.sleepLong();
 
 			}

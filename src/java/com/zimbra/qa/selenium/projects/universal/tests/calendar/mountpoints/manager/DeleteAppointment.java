@@ -105,7 +105,7 @@ public class DeleteAppointment extends CalendarWorkWeekTest {
 		
 		// Cancel the appointment
 		DialogWarning dialog = (DialogWarning)app.zPageCalendar.zToolbarPressButton(Button.B_DELETE);
-		dialog.zClickButton(Button.B_SEND_CANCELLATION);
+		dialog.zPressButton(Button.B_SEND_CANCELLATION);
 		
 		// Verify meeting invite is deleted from the shared calendar
 		AppointmentItem sharedAppt = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ apptSubject +")");
@@ -201,7 +201,7 @@ public class DeleteAppointment extends CalendarWorkWeekTest {
 		
 		// Delete shared calendar appointment using shortcut key
 		DialogConfirmDeleteOrganizer dialog = (DialogConfirmDeleteOrganizer)app.zPageCalendar.zKeyboardKeyEvent(keyEvent);
-		dialog.zClickButton(Button.B_EDIT_CANCELLATION);
+		dialog.zPressButton(Button.B_EDIT_CANCELLATION);
 		
 		FormMailNew mailComposeForm = new FormMailNew(app);
 		mailComposeForm.zFillField(Field.Body, modifyApptBody);		

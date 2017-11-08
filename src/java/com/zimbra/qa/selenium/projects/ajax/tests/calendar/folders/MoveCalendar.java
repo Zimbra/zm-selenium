@@ -67,8 +67,8 @@ public class MoveCalendar extends AjaxCommonTest {
 
 		// Move the folder using context menu
 		DialogMove dialog = (DialogMove)app.zTreeCalendar.zTreeItem(Action.A_RIGHTCLICK, Button.B_MOVE, subfolder1);
-		dialog.zClickTreeFolder(subfolder2);
-		dialog.zClickButton(Button.B_OK);
+		dialog.sClickTreeFolder(subfolder2);
+		dialog.zPressButton(Button.B_OK);
 
 		// Verify the folder is now in the other subfolder
 		subfolder1 = FolderItem.importFromSOAP(app.zGetActiveAccount(), name1);

@@ -75,7 +75,7 @@ public class EmptyTrashFolder extends UniversalCommonTest {
 				Button.B_TREE_FOLDER_EMPTY, trash);
 
 		// Click OK
-		dialogWarning.zClickButton(Button.B_OK);
+		dialogWarning.zPressButton(Button.B_OK);
 
 		// -- Verification
 
@@ -133,7 +133,7 @@ public class EmptyTrashFolder extends UniversalCommonTest {
 				Button.B_TREE_FOLDER_EMPTY, trash);
 
 		// Click OK
-		dialogWarning.zClickButton(Button.B_CANCEL);
+		dialogWarning.zPressButton(Button.B_CANCEL);
 
 		// -- Verification
 

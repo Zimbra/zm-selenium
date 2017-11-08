@@ -104,7 +104,7 @@ public class PageManageBackups extends AbsTab {
 		}
 
 		// Click on Tools and Migration -> Downloads
-		zClick(Locators.TOOLS_AND_MIGRATION_ICON);
+		sClick(Locators.TOOLS_AND_MIGRATION_ICON);
 		zWaitForWorkInProgressDialogInVisible();
 		SleepUtil.sleep(5000);
 		zWaitForElementPresent(Locators.BACKUP);
@@ -187,7 +187,7 @@ public class PageManageBackups extends AbsTab {
 					throw new HarnessException("Button " + pulldown + " option " + option + " optionLocator " + optionLocator + " not present!");
 				}
 
-				this.zClickAt(optionLocator,"");
+				this.sClickAt(optionLocator,"");
 				SleepUtil.sleepLong();
 
 			}
@@ -227,7 +227,7 @@ public class PageManageBackups extends AbsTab {
 				if (this.sGetText(locator).trim().equalsIgnoreCase(item))
 				{
 					if (action == Action.A_LEFTCLICK) {
-						zClick(locator);
+						sClick(locator);
 						break;
 					}else if (action == Action.A_DOUBLECLICK) {
 						sDoubleClick(locator);

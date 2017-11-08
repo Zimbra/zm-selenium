@@ -81,8 +81,8 @@ public class DeleteTextSignature extends AjaxCommonTest {
 		FormSignatureNew signew = new FormSignatureNew(app);
 
 		// Select signature which is to be Delete
-		signew.zClick(Locators.zSignatureListView);
-		signew.zClick("//td[contains(text(),'" + signature.getName() + "')]");
+		signew.sClick(Locators.zSignatureListView);
+		signew.sClick("//td[contains(text(),'" + signature.getName() + "')]");
 
 		// Click Delete button
 		app.zPageSignature.zToolbarPressButton(Button.B_DELETE);

@@ -61,7 +61,7 @@ public class ModifyLocationSuggestionPreference extends AjaxCommonTest {
 		apptForm.zToolbarPressPulldown(Button.B_OPTIONS, Button.O_SUGGESTION_PREFERENCES);
 		DialogSuggestionPreferences dialogSuggestionPref = (DialogSuggestionPreferences) new DialogSuggestionPreferences(app, app.zPageCalendar);
 		dialogSuggestionPref.zType(Button.F_NAME_EDIT_FIELD, apptLocation1);
-		dialogSuggestionPref.zClickButton(Button.B_OK);
+		dialogSuggestionPref.zPressButton(Button.B_OK);
 
 		// Verify apptLocation1 shows & apptLocation2 doesn't show in suggestion pane
 		apptForm.zToolbarPressButton(Button.B_SUGGESTALOCATION);

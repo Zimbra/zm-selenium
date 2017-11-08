@@ -70,7 +70,7 @@ public class Reshare extends AjaxCommonTest {
 		dialog.zSetEmailAddress(ZimbraAccount.Account8().EmailAddress);
 
 		// Send it
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 
         app.zPageMail.zNavigateTo();
 		// Refresh current view

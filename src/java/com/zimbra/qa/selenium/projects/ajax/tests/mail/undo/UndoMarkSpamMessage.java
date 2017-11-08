@@ -75,7 +75,7 @@ public class UndoMarkSpamMessage extends PrefGroupMailByMessageTest {
 
 		// Click undo
 		Toaster toaster = app.zPageMain.zGetToaster();
-		toaster.zClickUndo();
+		toaster.sClickUndo();
 
 		// Get the mail item for the new message
 		// Need 'is:anywhere' to include the spam folder

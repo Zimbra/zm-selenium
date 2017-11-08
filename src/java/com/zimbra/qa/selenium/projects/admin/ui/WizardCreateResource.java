@@ -77,7 +77,7 @@ public class WizardCreateResource extends AbsWizard {
 				sClick(Locators.zdlg_RESOURCE_TYPE_EQUIPMENT);
 			}
 		} else {
-			zClickAt(Locators.zdlg_RESOURCE_TYPE,"");
+			sClickAt(Locators.zdlg_RESOURCE_TYPE,"");
 
 		}
 

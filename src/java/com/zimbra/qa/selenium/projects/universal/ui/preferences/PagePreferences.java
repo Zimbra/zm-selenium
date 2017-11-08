@@ -32,7 +32,6 @@ import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZDate;
-import com.zimbra.qa.selenium.framework.util.staf.Stafpostqueue;
 import com.zimbra.qa.selenium.projects.universal.ui.AppUniversalClient;
 import com.zimbra.qa.selenium.projects.universal.ui.DialogInformational;
 import com.zimbra.qa.selenium.projects.universal.ui.DialogShare.ShareRole;
@@ -399,7 +398,7 @@ public class PagePreferences extends AbsTab {
 				throw new HarnessException("zNavigateAway() locator is not present " + locator);
 			}
 
-			zClick(locator);
+			sClick(locator);
 
 		} else {
 			logger.debug("zNavigateAway(" + savechanges + ") - dialog did not show");
@@ -573,7 +572,7 @@ public class PagePreferences extends AbsTab {
 			throw new HarnessException("Button is not present locator=" + locator + " button=" + button);
 
 		// Click it
-		this.zClick(locator);
+		this.sClick(locator);
 		this.zWaitForBusyOverlay();
 
 		if (page != null) {
@@ -600,7 +599,7 @@ public class PagePreferences extends AbsTab {
 					throw new HarnessException("pulldownLocator not present! " + Locators.zStartWeekOn);
 				}
 
-				this.zClick(Locators.zStartWeekOn);
+				this.sClick(Locators.zStartWeekOn);
 
 				this.zWaitForBusyOverlay();
 
@@ -612,7 +611,7 @@ public class PagePreferences extends AbsTab {
 							throw new HarnessException("optionLocator not present! " + Locators.zStartWeekOnTuesday);
 						}
 
-						this.zClick(Locators.zStartWeekOnTuesday);
+						this.sClick(Locators.zStartWeekOnTuesday);
 
 						this.zWaitForBusyOverlay();
 					}
@@ -626,7 +625,7 @@ public class PagePreferences extends AbsTab {
 					throw new HarnessException("pulldownLocator not present! " + Locators.zDefaultAppointmentDuration);
 				}
 
-				this.zClick(Locators.zDefaultAppointmentDuration);
+				this.sClick(Locators.zDefaultAppointmentDuration);
 
 				this.zWaitForBusyOverlay();
 
@@ -638,7 +637,7 @@ public class PagePreferences extends AbsTab {
 							throw new HarnessException("optionLocator not present! " + Locators.zAppointmentDuration90);
 						}
 
-						this.zClick(Locators.zAppointmentDuration90);
+						this.sClick(Locators.zAppointmentDuration90);
 
 						this.zWaitForBusyOverlay();
 					}
@@ -668,7 +667,7 @@ public class PagePreferences extends AbsTab {
 					throw new HarnessException("pulldownLocator not present! " + Locators.zShareFolderType);
 				}
 
-				this.zClick(Locators.zShareFolderType);
+				this.sClick(Locators.zShareFolderType);
 				this.zWaitForBusyOverlay();
 				SleepUtil.sleepSmall();
 			}
@@ -680,7 +679,7 @@ public class PagePreferences extends AbsTab {
 					throw new HarnessException("pulldownLocator not present! " + Locators.zTimezone);
 				}
 
-				this.zClick(Locators.zTimezone);
+				this.sClick(Locators.zTimezone);
 				this.zWaitForBusyOverlay();
 				SleepUtil.sleepSmall();
 
@@ -829,7 +828,7 @@ public class PagePreferences extends AbsTab {
 			throw new HarnessException("Button is not present locator=" + locator + " button=" + button);
 
 		// Click it
-		this.zClick(locator);
+		this.sClick(locator);
 
 		this.zWaitForBusyOverlay();
 
@@ -1227,7 +1226,7 @@ public class PagePreferences extends AbsTab {
 		// quickly
 		// Click in the "To" fields, etc, to make sure the client is ready
 		this.sFocus(locator);
-		this.zClick(locator);
+		this.sClick(locator);
 		this.zWaitForBusyOverlay();
 
 		// this.zKeyboard.zTypeCharacters(email);
@@ -1238,35 +1237,6 @@ public class PagePreferences extends AbsTab {
 		this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_TAB);
 		SleepUtil.sleepMedium();
 		this.zWaitForBusyOverlay();
-
-	}
-
-	public AbsPage zClickButton(Button button) throws HarnessException {
-		logger.info(myPageName() + " zClickButton(" + button + ")");
-
-		String locator = null;
-
-		if (button == Button.B_OK) {
-
-			locator = "css=div[id='" + Locators.zDialogShareId + "'] td[id^='OK'] td[id$='_title']";
-
-		} else if (button == Button.B_CANCEL) {
-
-			locator = "css=div[id='" + Locators.zDialogShareId + "'] td[id^='Cancel'] td[id$='_title']";
-
-		} else {
-			throw new HarnessException("Button " + button + " not implemented");
-		}
-
-		this.zClick(locator);
-		SleepUtil.sleepSmall();
-		zWaitForBusyOverlay();
-
-		// This dialog sends a message, so we need to check the queue
-		Stafpostqueue sp = new Stafpostqueue();
-		sp.waitForPostqueue();
-
-		return (null);
 
 	}
 

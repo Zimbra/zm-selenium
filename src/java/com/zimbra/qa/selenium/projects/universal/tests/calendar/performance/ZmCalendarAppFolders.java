@@ -58,7 +58,7 @@ public class ZmCalendarAppFolders extends CalendarWorkWeekTest {
 		// Navigate to the addressbook
 		//app.zPageCalendar.zNavigateTo();
 		
-		app.zPageCalendar.zClickAt("css=td[id='zb__App__Calendar_title']","");
+		app.zPageCalendar.sClickAt("css=td[id='zb__App__Calendar_title']","");
 
 		PerfMetrics.waitTimestamp(token);
 
@@ -91,7 +91,7 @@ public class ZmCalendarAppFolders extends CalendarWorkWeekTest {
 		// Navigate to the addressbook
 		//app.zPageCalendar.zNavigateTo();
 		
-		app.zPageCalendar.zClickAt("css=td[id='zb__App__Calendar_title']","");
+		app.zPageCalendar.sClickAt("css=td[id='zb__App__Calendar_title']","");
 
 		PerfMetrics.waitTimestamp(token);
 

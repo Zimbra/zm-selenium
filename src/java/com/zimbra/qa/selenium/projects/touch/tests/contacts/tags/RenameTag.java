@@ -57,7 +57,7 @@ public class RenameTag extends TouchCommonTest  {
 		PageCreateTag createTagPage = new PageCreateTag((AppTouchClient) app , this.startingPage);
 		
 		//Click on edit button
-		createTagPage.zClickButton(Button.B_EDIT);
+		createTagPage.zPressButton(Button.B_EDIT);
 		
 		//Select tag
 		createTagPage.zSelectTag(tagName);
@@ -66,7 +66,7 @@ public class RenameTag extends TouchCommonTest  {
 		createTagPage.zEnterTagName(newTagName);
 	
 		//Click on Save
-		createTagPage.zClickButton(Button.B_SAVE);
+		createTagPage.zPressButton(Button.B_SAVE);
 			
 		// UI verification
 		ZAssert.assertTrue(createTagPage.zVerifyTagExists(newTagName), "Verify created tag visible in tag pane");

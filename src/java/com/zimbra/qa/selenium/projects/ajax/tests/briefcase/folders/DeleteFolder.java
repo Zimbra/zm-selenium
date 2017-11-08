@@ -143,7 +143,7 @@ public class DeleteFolder extends FeatureBriefcaseTest {
 				briefcaseSubFolder);
 
 		// Click OK on Confirmation dialog
-		deleteConfirm.zClickButton(Button.B_YES);
+		deleteConfirm.zPressButton(Button.B_YES);
 
 		// Select briefcase folder
 		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseRootFolder, false);

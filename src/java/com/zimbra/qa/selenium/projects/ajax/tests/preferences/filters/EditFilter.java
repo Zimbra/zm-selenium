@@ -80,7 +80,7 @@ public class EditFilter extends AjaxCommonTest {
 		dialog.zAddFilterAction(FilterAction.Discard);
 
 		// Save
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 
 		// Verify the filter is created
 		app.zGetActiveAccount().soapSend("<GetFilterRulesRequest xmlns='urn:zimbraMail'/>");
@@ -130,7 +130,7 @@ public class EditFilter extends AjaxCommonTest {
 		dialog.zAddFilterAction(FilterAction.Discard);
 
 		// Save
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 
 		// Verify the filter is created
 		app.zGetActiveAccount().soapSend("<GetOutgoingFilterRulesRequest xmlns='urn:zimbraMail'/>");

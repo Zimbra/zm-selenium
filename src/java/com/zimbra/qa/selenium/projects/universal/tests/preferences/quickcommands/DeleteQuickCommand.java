@@ -51,12 +51,12 @@ public class DeleteQuickCommand extends UniversalQuickCommandTest {
 		// Select the quick command
 		String locator = "css=div[id='zl__QCV__rows'] div[id^='zli__QCV__'] td[id$='_na']:contains('"+ name +"')";
 		ZAssert.assertTrue(app.zTreePreferences.sIsElementPresent(locator), "Verify quick command "+ name +" is in the list");
-		app.zTreePreferences.zClickAt(locator, "");
+		app.zTreePreferences.sClickAt(locator, "");
 		app.zTreePreferences.zWaitForBusyOverlay();
 		
 		// Click "Delete"
 		DialogWarning dialog = (DialogWarning)app.zPagePreferences.zToolbarPressButton(Button.B_DELETE_QUICK_COMMAND);
-		dialog.zClickButton(Button.B_YES);
+		dialog.zPressButton(Button.B_YES);
 
 		// Verify the item no longer appears in the list
 		ZAssert.assertFalse(app.zTreePreferences.sIsElementPresent(locator), "Verify quick command "+ name +" is not in the list");

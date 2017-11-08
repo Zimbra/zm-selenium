@@ -82,7 +82,7 @@ public class DeleteFilter extends UniversalCommonTest {
 		DialogWarning warning = (DialogWarning)app.zPagePreferences.zToolbarPressButton(Button.B_DELETE_IN_FILTER);		
 
 		//Select Yes on the warning to delete the filter
-		warning.zClickButton(Button.B_YES);			
+		warning.zPressButton(Button.B_YES);			
 
 		// Verify the filter is deleted from the server
 		app.zGetActiveAccount().soapSend(
@@ -143,7 +143,7 @@ public class DeleteFilter extends UniversalCommonTest {
 		DialogWarning warning = (DialogWarning)app.zPagePreferences.zToolbarPressButton(Button.B_DELETE_OUT_FILTER);		
 
 		//Select Yes on the warning to delete the filter
-		warning.zClickButton(Button.B_YES);			
+		warning.zPressButton(Button.B_YES);			
 
 		// Verify the filter is deleted from the server
 		app.zGetActiveAccount().soapSend(

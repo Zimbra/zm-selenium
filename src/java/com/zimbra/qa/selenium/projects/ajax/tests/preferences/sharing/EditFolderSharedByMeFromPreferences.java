@@ -70,10 +70,10 @@ public class EditFolderSharedByMeFromPreferences extends AjaxCommonTest {
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.Sharing);
 
 		// Select Edit and then change the rights to manager. Select OK
-		app.zPagePreferences.sClick("css=div[id ='zl__SVG__rows'] a[id$='_edit' ]"); //Edit link locator
+		app.zPagePreferences.sClick("css=div[id ='zl__SVG__rows'] a[id$='_edit' ]");
 		SleepUtil.sleepSmall();
 		app.zPagePreferences.zSetRole(ShareRole.Manager);
-		app.zPagePreferences.zClickButton(Button.B_OK);
+		app.zPagePreferences.zPressButton(Button.B_OK);
 		SleepUtil.sleepMedium();
 
 		// SOAP verification

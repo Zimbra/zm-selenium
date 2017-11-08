@@ -76,7 +76,7 @@ public class DeleteAppointment extends CalendarWorkWeekTest {
         
         // Press the delete button
         DialogConfirmDeleteAppointment dlgConfirm = (DialogConfirmDeleteAppointment)app.zPageCalendar.zToolbarPressButton(Button.B_DELETE);
-		dlgConfirm.zClickButton(Button.B_YES);
+		dlgConfirm.zPressButton(Button.B_YES);
 		dlgConfirm.zWaitForClose();
 		
 		
@@ -124,7 +124,7 @@ public class DeleteAppointment extends CalendarWorkWeekTest {
         
         // Right click -> Delete
         DialogConfirmDeleteAppointment dlgConfirm = (DialogConfirmDeleteAppointment)app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_DELETE, apptSubject);
-		dlgConfirm.zClickButton(Button.B_YES);
+		dlgConfirm.zPressButton(Button.B_YES);
 		dlgConfirm.zWaitForClose();
 		
 		
@@ -183,7 +183,7 @@ public class DeleteAppointment extends CalendarWorkWeekTest {
         
         // Delete appointment using keyboard Del and Backspace key
         DialogConfirmDeleteAppointment dlgConfirm = (DialogConfirmDeleteAppointment)app.zPageCalendar.zKeyboardKeyEvent(keyEvent);
-		dlgConfirm.zClickButton(Button.B_YES);
+		dlgConfirm.zPressButton(Button.B_YES);
 		
 		
 		//-- Verification

@@ -83,7 +83,7 @@ public class WizardCreateAccount extends AbsWizard {
 		clickFinish(AbsWizard.Locators.ACCOUNT_DIALOG);
 
 		// Need to dismiss the "account created" dialog.
-		//zClick(Locators.zdlg_OK);
+		//sClick(Locators.zdlg_OK);
 		//throw new HarnessException("See http://bugzilla.zimbra.com/show_bug.cgi?id=59013");
 
 		return (account);
@@ -113,7 +113,7 @@ public class WizardCreateAccount extends AbsWizard {
 	}
 
 	public boolean zCloseWizard() throws HarnessException {
-		this.zClickAt("css=td[id$='zdlg__NEW_ACCT_button1_title']" ,"");
+		this.sClickAt("css=td[id$='zdlg__NEW_ACCT_button1_title']" ,"");
 		return true;
 	}
 

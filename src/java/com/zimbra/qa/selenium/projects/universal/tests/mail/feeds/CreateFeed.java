@@ -43,10 +43,10 @@ public class CreateFeed extends PrefGroupMailByMessageTest {
 		DialogCreateFolder createFolderDialog = (DialogCreateFolder)app.zTreeMail.zPressButton(Button.B_TREE_NEWFOLDER);
 
 		createFolderDialog.zEnterFolderName(foldername);
-		createFolderDialog.zClickSubscribeFeed(true);
+		createFolderDialog.sClickSubscribeFeed(true);
 		createFolderDialog.zEnterFeedURL(new URL(feed));
 
-		createFolderDialog.zClickButton(Button.B_OK);
+		createFolderDialog.zPressButton(Button.B_OK);
 
 		// Make sure the folder was created on the ZCS server
 		FolderItem folder = FolderItem.importFromSOAP(app.zGetActiveAccount(), foldername);

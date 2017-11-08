@@ -39,8 +39,8 @@ public class DialogConfirmationDeleteAppointment extends DialogWarning {
 	}
 
 	
-	public AbsPage zClickButton(Button button) throws HarnessException {
-		logger.info(myPageName() + " zClickButton(" + button + ")");
+	public AbsPage zPressButton(Button button) throws HarnessException {
+		logger.info(myPageName() + " zPressButton(" + button + ")");
 		
 		
 		AbsPage page = null;
@@ -66,7 +66,7 @@ public class DialogConfirmationDeleteAppointment extends DialogWarning {
 		
 		}
 		
-		return ( super.zClickButton(button) );
+		return ( super.zPressButton(button) );
 		
 	}
 

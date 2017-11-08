@@ -44,7 +44,7 @@ public class CreateContact extends AjaxCommonTest {
 
 		DialogAssistant assistant = (DialogAssistant)app.zPageContacts.zKeyboardShortcut(Shortcut.S_ASSISTANT);
 		assistant.zEnterCommand(command);
-		assistant.zClickButton(Button.B_OK);
+		assistant.zPressButton(Button.B_OK);
 
 	    // verify contact created
 		List<ContactItem> contacts = app.zPageContacts.zListGetContacts();

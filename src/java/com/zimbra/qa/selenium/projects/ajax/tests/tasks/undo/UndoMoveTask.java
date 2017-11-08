@@ -91,7 +91,7 @@ public class UndoMoveTask extends AjaxCommonTest {
 
 		// Click undo
 		Toaster toaster = app.zPageMain.zGetToaster();
-		toaster.zClickUndo();
+		toaster.sClickUndo();
 
 		// Refresh tasks page
 		app.zTreeTasks.zTreeItem(Action.A_LEFTCLICK, taskFolder);

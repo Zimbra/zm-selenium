@@ -38,7 +38,7 @@ public class OpenAssistant extends AjaxCommonTest {
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
 		DialogAssistant assistant = (DialogAssistant)app.zPageCalendar.zKeyboardShortcut(Shortcut.S_ASSISTANT);
-		assistant.zClickButton(Button.B_CANCEL);
+		assistant.zPressButton(Button.B_CANCEL);
 
 	}
 }

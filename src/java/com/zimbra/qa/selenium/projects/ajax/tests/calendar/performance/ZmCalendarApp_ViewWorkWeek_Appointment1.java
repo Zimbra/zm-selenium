@@ -55,7 +55,7 @@ public class ZmCalendarApp_ViewWorkWeek_Appointment1 extends AjaxCommonTest {
 		PerfToken token = PerfMetrics.startTimestamp(PerfKey.ZmCalendarApp, "Load the calendar app, work week view, initial load");
 
 		// Go to calendar
-		app.zPageCalendar.zClickAt("css=td[id='zb__App__Calendar_title']","");
+		app.zPageCalendar.sClickAt("css=td[id='zb__App__Calendar_title']","");
 
 		PerfMetrics.waitTimestamp(token);
 
@@ -87,7 +87,7 @@ public class ZmCalendarApp_ViewWorkWeek_Appointment1 extends AjaxCommonTest {
 		PerfToken token = PerfMetrics.startTimestamp(PerfKey.ZmCalendarApp, "Load the calendar app, work week view, 1 appointment");
 
 		// Go to calendar
-		app.zPageCalendar.zClickAt("css=td[id='zb__App__Calendar_title']","");
+		app.zPageCalendar.sClickAt("css=td[id='zb__App__Calendar_title']","");
 
 		PerfMetrics.waitTimestamp(token);
 
@@ -133,7 +133,7 @@ public class ZmCalendarApp_ViewWorkWeek_Appointment1 extends AjaxCommonTest {
 		PerfToken token = PerfMetrics.startTimestamp(PerfKey.ZmCalendarApp, "Load the calendar app, work week view, 100 appointment");
 
 		// Go to calendar
-		app.zPageCalendar.zClickAt("css=td[id='zb__App__Calendar_title']","");
+		app.zPageCalendar.sClickAt("css=td[id='zb__App__Calendar_title']","");
 
 		PerfMetrics.waitTimestamp(token);
 

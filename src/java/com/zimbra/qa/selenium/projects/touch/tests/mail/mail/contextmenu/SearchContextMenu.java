@@ -73,7 +73,7 @@ public class SearchContextMenu extends CalendarWorkWeekTest {
 
 		// Click on To address bubble
 		SleepUtil.sleepMedium();
-		app.zPageMail.zClickAddressBubble(Field.From);
+		app.zPageMail.sClickAddressBubble(Field.From);
 
 		//Click on search option
 		app.zPageMail.zMsgHdrContextListItem(Button.B_SEARCH);
@@ -83,7 +83,7 @@ public class SearchContextMenu extends CalendarWorkWeekTest {
 		ZAssert.assertTrue(app.zPageMail.zVerifyMessageExists(subject), "Verify message exists after search");
 		ZAssert.assertTrue(app.zPageMail.sIsElementPresent(locator), "Verify the search results page opened up");
 		
-		app.zPageMail.zClickButton(Button.B_BACK);
+		app.zPageMail.zPressButton(Button.B_BACK);
 		
 	}
 
@@ -125,7 +125,7 @@ public class SearchContextMenu extends CalendarWorkWeekTest {
 
 		// Click on organizer bubble
 		SleepUtil.sleepMedium();
-		app.zPageMail.zClickAddressBubble(Field.Organizer);
+		app.zPageMail.sClickAddressBubble(Field.Organizer);
 
 		//Click on search option
 		app.zPageMail.zMsgHdrContextListItem(Button.B_SEARCH);
@@ -135,7 +135,7 @@ public class SearchContextMenu extends CalendarWorkWeekTest {
 		ZAssert.assertTrue(app.zPageMail.zVerifyMessageExists(apptSubject), "Verify message exists after search");
 		ZAssert.assertTrue(app.zPageMail.sIsElementPresent(locator), "Verify the search results page opened up");
 		
-		app.zPageMail.zClickButton(Button.B_BACK);
+		app.zPageMail.zPressButton(Button.B_BACK);
 
 	}
 }

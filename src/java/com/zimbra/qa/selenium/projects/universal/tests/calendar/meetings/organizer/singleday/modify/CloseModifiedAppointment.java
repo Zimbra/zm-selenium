@@ -83,9 +83,9 @@ public class CloseModifiedAppointment extends CalendarWorkWeekTest {
         apptForm.zToolbarPressButton(Button.B_CLOSE);
         
         DialogConfirmModification confirmClose = (DialogConfirmModification) new DialogConfirmModification(app, app.zPageCalendar);
-        confirmClose.zClickButton(Button.B_SAVE_MODIFICATION);
+        confirmClose.zPressButton(Button.B_SAVE_MODIFICATION);
         DialogSendUpdatetoAttendees sendUpdateDialog = (DialogSendUpdatetoAttendees) new DialogSendUpdatetoAttendees(app, app.zPageCalendar);
-        sendUpdateDialog.zClickButton(Button.B_OK);
+        sendUpdateDialog.zPressButton(Button.B_OK);
 
         // Verify if an attendee is removed from appt and attendee gets update
         AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ apptSubject +")");
@@ -156,8 +156,8 @@ public class CloseModifiedAppointment extends CalendarWorkWeekTest {
         apptForm.zToolbarPressButton(Button.B_CLOSE);
         
         DialogConfirmModification confirmClose = (DialogConfirmModification) new DialogConfirmModification(app, app.zPageCalendar);
-        confirmClose.zClickButton(Button.B_DISCARD_CLOSE);
-        confirmClose.zClickButton(Button.B_SAVE_MODIFICATION);
+        confirmClose.zPressButton(Button.B_DISCARD_CLOSE);
+        confirmClose.zPressButton(Button.B_SAVE_MODIFICATION);
         SleepUtil.sleepSmall();
         
         // Verify 'Save Appointment' dialog is closed
@@ -227,8 +227,8 @@ public class CloseModifiedAppointment extends CalendarWorkWeekTest {
         apptForm.zToolbarPressButton(Button.B_CLOSE);
         
         DialogConfirmModification confirmClose = (DialogConfirmModification) new DialogConfirmModification(app, app.zPageCalendar);
-        confirmClose.zClickButton(Button.B_DONTSAVE_KEEP_OPEN);
-        confirmClose.zClickButton(Button.B_SAVE_MODIFICATION);    
+        confirmClose.zPressButton(Button.B_DONTSAVE_KEEP_OPEN);
+        confirmClose.zPressButton(Button.B_SAVE_MODIFICATION);    
         
         // Verify 'Save Appointment' dialog is closed
         ZAssert.assertFalse(confirmClose.zIsActive(), "Verify 'Save Appointment' dialog is closed");

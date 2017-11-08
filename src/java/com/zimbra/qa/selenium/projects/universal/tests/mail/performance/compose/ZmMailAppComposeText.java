@@ -49,7 +49,7 @@ public class ZmMailAppComposeText extends UniversalCommonTest {
 
 		// Click the new button
 		//app.zPageMail.zToolbarPressButton(Button.B_NEW);
-		app.zPageMail.zClickAt("css=div[id$='__NEW_MENU'] td[id$='__NEW_MENU_title']","");
+		app.zPageMail.sClickAt("css=div[id$='__NEW_MENU'] td[id$='__NEW_MENU_title']","");
 
 		PerfMetrics.waitTimestamp(token);
 

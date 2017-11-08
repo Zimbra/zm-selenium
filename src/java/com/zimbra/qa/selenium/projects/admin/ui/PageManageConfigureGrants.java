@@ -136,7 +136,7 @@ public class PageManageConfigureGrants extends AbsTab {
 		}
 
 		// Default behavior, process the locator by clicking on it
-		this.zClickAt(locator,"");
+		this.sClickAt(locator,"");
 
 		// If page was specified, make sure it is active
 		if ( page != null ) {
@@ -148,8 +148,8 @@ public class PageManageConfigureGrants extends AbsTab {
 	}
 	
 
-	public AbsPage zClickButton(Button button) throws HarnessException {
-		logger.info(myPageName() + " zClickButton(" + button + ")");
+	public AbsPage zPressButton(Button button) throws HarnessException {
+		logger.info(myPageName() + " zPressButton(" + button + ")");
 
 		tracer.trace("Click dialog button " + button);
 		if ( button == null )
@@ -260,7 +260,7 @@ public class PageManageConfigureGrants extends AbsTab {
 			}
 			
 			this.sFocus(pulldownLocator);
-			this.zClickAt(pulldownLocator,"");
+			this.sClickAt(pulldownLocator,"");
 			SleepUtil.sleepMedium();
 
 			if (optionLocator != null) {
@@ -270,7 +270,7 @@ public class PageManageConfigureGrants extends AbsTab {
 					throw new HarnessException("Button " + pulldown + " option " + option + " optionLocator " + optionLocator + " not present!");
 				}
 
-				this.zClickAt(optionLocator,"");
+				this.sClickAt(optionLocator,"");
 
 			}
 
@@ -309,7 +309,7 @@ public class PageManageConfigureGrants extends AbsTab {
 				if(this.sGetText(locator).trim().equalsIgnoreCase(item))
 				{
 					if(action == Action.A_LEFTCLICK) {
-						zClick(locator);
+						sClick(locator);
 						break;
 					} else if(action == Action.A_RIGHTCLICK) {
 						zRightClick(locator);

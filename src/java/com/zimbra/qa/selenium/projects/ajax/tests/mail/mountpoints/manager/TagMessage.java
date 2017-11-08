@@ -100,7 +100,7 @@ public class TagMessage extends PrefGroupMailByMessageTest {
 			// Click new tag
 			DialogTag dialogTag = (DialogTag) app.zPageMail.zToolbarPressPulldown(Button.B_TAG, Button.O_TAG_NEWTAG);
 			dialogTag.zSetTagName(tagName);
-			dialogTag.zClickButton(Button.B_OK);
+			dialogTag.zPressButton(Button.B_OK);
 
 		} finally {
 			app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Inbox));
@@ -197,8 +197,8 @@ public class TagMessage extends PrefGroupMailByMessageTest {
 
 			// Tag the item
 			DialogTagPicker dialogTag = (DialogTagPicker)app.zPageMail.zKeyboardShortcut(Shortcut.S_MAIL_TAG);
-			dialogTag.zClickTreeTag(tag);
-			dialogTag.zClickButton(Button.B_OK);
+			dialogTag.sClickTreeTag(tag);
+			dialogTag.zPressButton(Button.B_OK);
 
 		} finally {
 			app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Inbox));

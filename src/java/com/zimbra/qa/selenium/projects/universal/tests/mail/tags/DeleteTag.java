@@ -55,7 +55,7 @@ public class DeleteTag extends PrefGroupMailByMessageTest {
 		
 		
 		// Click "Yes" to confirm
-		dialog.zClickButton(Button.B_YES);
+		dialog.zPressButton(Button.B_YES);
 
 
 		// To check whether deleted tag is exist

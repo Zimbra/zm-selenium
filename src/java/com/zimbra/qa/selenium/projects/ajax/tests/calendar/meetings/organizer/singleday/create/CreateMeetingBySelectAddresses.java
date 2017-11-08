@@ -62,10 +62,10 @@ public class CreateMeetingBySelectAddresses extends AjaxCommonTest {
         AppointmentItem apptSearchForm = new AppointmentItem();
         apptSearchForm.setAttendeeName(apptAttendee1);
         dialogFindAttendees.zFill(apptSearchForm);
-        dialogFindAttendees.zClickButton(Button.B_SEARCH);
-        dialogFindAttendees.zClickButton(Button.B_SELECT_FIRST_CONTACT);
-        dialogFindAttendees.zClickButton(Button.B_CHOOSE_CONTACT_FROM_PICKER);
-        dialogFindAttendees.zClickButton(Button.B_OK);
+        dialogFindAttendees.zPressButton(Button.B_SEARCH);
+        dialogFindAttendees.zPressButton(Button.B_SELECT_FIRST_CONTACT);
+        dialogFindAttendees.zPressButton(Button.B_CHOOSE_CONTACT_FROM_PICKER);
+        dialogFindAttendees.zPressButton(Button.B_OK);
         apptForm.zSubmit();
 
         // Verify attendee1 receives meeting invitation message

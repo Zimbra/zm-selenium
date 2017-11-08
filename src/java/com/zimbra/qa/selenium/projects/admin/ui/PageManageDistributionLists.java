@@ -111,12 +111,12 @@ public class PageManageDistributionLists extends AbsTab {
 			return;
 		}
 
-		zClickAt(Locators.MANAGE_ACCOUNTS_ICON,"");
+		sClickAt(Locators.MANAGE_ACCOUNTS_ICON,"");
 		zWaitForWorkInProgressDialogInVisible();
 		//SleepUtil.sleepLong();
 		sIsElementPresent(Locators.DISTRIBUTION_LISTS);
 		//SleepUtil.sleepLong();
-		zClickAt(Locators.DISTRIBUTION_LISTS,"");
+		sClickAt(Locators.DISTRIBUTION_LISTS,"");
 		zWaitForWorkInProgressDialogInVisible();
 		zWaitForActive();
 		//SleepUtil.sleepMedium();
@@ -142,7 +142,7 @@ public class PageManageDistributionLists extends AbsTab {
 			for (int a1 = 1; a1 <= 5; a1++) { 
 				String p0  = rowsLocator + ":nth-child("+m+")";
 				if (this.sIsElementPresent(p0)) {
-					zClick(p0);
+					sClick(p0);
 					this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_DOWN);
 					m=m+20;
 				}
@@ -166,7 +166,7 @@ public class PageManageDistributionLists extends AbsTab {
 				if (this.sGetText(locator).trim().equalsIgnoreCase(item))
 				{
 					if (action == Action.A_LEFTCLICK) {
-						zClick(locator);
+						sClick(locator);
 						break;
 					} else if (action == Action.A_RIGHTCLICK) {
 						zRightClick(locator);
@@ -241,7 +241,7 @@ public class PageManageDistributionLists extends AbsTab {
 
 		// Default behavior, process the locator by clicking on it
 		//
-		this.zClick(locator);
+		this.sClick(locator);
 
 		// If page was specified, make sure it is active
 		if ( page != null ) {
@@ -321,7 +321,7 @@ public class PageManageDistributionLists extends AbsTab {
 					throw new HarnessException("Button " + pulldown + " option " + option + " optionLocator " + optionLocator + " not present!");
 				}
 
-				this.zClickAt(optionLocator,"0,0");
+				this.sClickAt(optionLocator,"0,0");
 				SleepUtil.sleepMedium();
 
 				// If the app is busy, wait for it to become active
@@ -358,7 +358,7 @@ public class PageManageDistributionLists extends AbsTab {
 			for (int a1 = 1; a1 <= 5; a1++) { 
 				String p0  = rowsLocator + "["+ m +"]";
 				if (this.sIsElementPresent(p0)) {
-					zClick(p0);
+					sClick(p0);
 					this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_DOWN);
 					m=m+20;
 				}

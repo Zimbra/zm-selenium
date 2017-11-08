@@ -73,7 +73,7 @@ public class PermanentDeleteContact extends TouchCommonTest  {
         app.zPageAddressbook.zToolbarPressPulldown(Button.B_ACTIONS,Button.B_DELETE);
         
         // Click on Yes
-      	app.zPageMail.zClickButton(Button.B_YES);
+      	app.zPageMail.zPressButton(Button.B_YES);
       			
         // Verify contact is removed from trash
 		ContactItem actual = ContactItem.importFromSOAP(app.zGetActiveAccount(), "is:anywhere #firstname:"+ contact.firstName);

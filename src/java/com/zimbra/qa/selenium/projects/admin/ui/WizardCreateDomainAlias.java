@@ -58,7 +58,7 @@ public class WizardCreateDomainAlias extends AbsWizard {
 				sType("zdlgv__UNDEFINE"+i+Locators.DOMAIN_ALIAS_NAME, domainAlias);
 				sClick("zdlgv__UNDEFINE"+i+Locators.TARGET_DOMAIN_NAME);
 				sType("zdlgv__UNDEFINE"+i+Locators.TARGET_DOMAIN_NAME, targetDomain);
-				zClick("zdlg__UNDEFINE"+i+Locators.zdlg_OK);
+				sClick("zdlg__UNDEFINE"+i+Locators.zdlg_OK);
 				break;
 			}
 		}
@@ -77,7 +77,7 @@ public class WizardCreateDomainAlias extends AbsWizard {
 		for(int i=10;i>=1;i--) {
 			if (sIsElementPresent("zdlgv__UNDEFINE"+i+Locators.TARGET_DOMAIN_NAME)) {
 				sType("zdlgv__UNDEFINE"+i+Locators.TARGET_DOMAIN_NAME, targetDomain);
-				zClick("zdlg__UNDEFINE"+i+Locators.zdlg_OK);
+				sClick("zdlg__UNDEFINE"+i+Locators.zdlg_OK);
 				break;
 			}
 		}

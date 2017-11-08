@@ -83,7 +83,7 @@ public class DialogShareFind extends AbsDialog {
 
 		// To activate the Search button, need to focus/click
 		this.sFocus(locator);
-		this.zClickAt(locator, "");
+		this.sClickAt(locator, "");
 		this.zKeyboard.zTypeCharacters(email);
 		if (!(sGetValue(locator).equalsIgnoreCase(email))) {
 			this.sType(locator, email);
@@ -165,7 +165,7 @@ public class DialogShareFind extends AbsDialog {
 		if (locator == null)
 			throw new HarnessException("locator is null for action " + action);
 
-		zClickAt(locator, "");
+		sClickAt(locator, "");
 
 		this.zWaitForBusyOverlay();
 
@@ -178,8 +178,8 @@ public class DialogShareFind extends AbsDialog {
 	}
 
 	@Override
-	public AbsPage zClickButton(Button button) throws HarnessException {
-		logger.info(myPageName() + " zClickButton(" + button + ")");
+	public AbsPage zPressButton(Button button) throws HarnessException {
+		logger.info(myPageName() + " zPressButton(" + button + ")");
 
 		String locator = null;
 		AbsPage page = null;

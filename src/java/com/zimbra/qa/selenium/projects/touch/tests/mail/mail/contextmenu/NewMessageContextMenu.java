@@ -72,7 +72,7 @@ public class NewMessageContextMenu extends CalendarWorkWeekTest {
 
 		// Click on To address bubble
 		SleepUtil.sleepMedium();
-		app.zPageMail.zClickAddressBubble(Field.From);
+		app.zPageMail.sClickAddressBubble(Field.From);
 
 		//Click on new message
 		app.zPageMail.zMsgHdrContextListItem(Button.B_NEW_MAIL);
@@ -138,7 +138,7 @@ public class NewMessageContextMenu extends CalendarWorkWeekTest {
 
 		// Click on organizer bubble
 		SleepUtil.sleepMedium();
-		app.zPageMail.zClickAddressBubble(Field.Organizer);
+		app.zPageMail.sClickAddressBubble(Field.Organizer);
 
 		// Click on new message
 		app.zPageMail.zMsgHdrContextListItem(Button.B_NEW_MAIL);

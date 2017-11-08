@@ -64,7 +64,7 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 
 		// Rt-click to message and hit 'Create Appointment'
 		DialogAddAttendees dlgAddAttendees = (DialogAddAttendees) app.zPageMail.zListItem(Action.A_RIGHTCLICK, Button.O_CREATE_APPOINTMENT, subject);
-		dlgAddAttendees.zClickButton(Button.B_YES);
+		dlgAddAttendees.zPressButton(Button.B_YES);
 
 		FormApptNew apptForm = new FormApptNew(app);
 		apptForm.zFillField(Field.StartDate, startUTC);
@@ -86,7 +86,7 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 		// Open appointment again and check from the UI side
 		app.zPageCalendar.zNavigateTo();
 		app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
-		if (app.zPageCalendar.zClickToRefreshOnceIfApptDoesntExists(subject) == false) {
+		if (app.zPageCalendar.sClickToRefreshOnceIfApptDoesntExists(subject) == false) {
 			app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
 		}
 		app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, subject);
@@ -125,7 +125,7 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 
 		// Rt-click to message and hit 'Create Appointment'
 		DialogAddAttendees dlgAddAttendees = (DialogAddAttendees) app.zPageMail.zListItem(Action.A_RIGHTCLICK, Button.O_CREATE_APPOINTMENT, subject);
-		dlgAddAttendees.zClickButton(Button.B_YES);
+		dlgAddAttendees.zPressButton(Button.B_YES);
 
 		FormApptNew apptForm = new FormApptNew(app);
 		apptForm.zFillField(Field.StartDate, startUTC);
@@ -146,7 +146,7 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 
 		// Open appointment again and check from the UI side
 		app.zPageCalendar.zNavigateTo();
-		if (app.zPageCalendar.zClickToRefreshOnceIfApptDoesntExists(subject) == false) {
+		if (app.zPageCalendar.sClickToRefreshOnceIfApptDoesntExists(subject) == false) {
 			app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
 		}
 		app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, subject);
@@ -185,7 +185,7 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 
 		// Rt-click to message and hit 'Create Appointment'
 		DialogAddAttendees dlgAddAttendees = (DialogAddAttendees) app.zPageMail.zListItem(Action.A_RIGHTCLICK, Button.O_CREATE_APPOINTMENT, subject);
-		dlgAddAttendees.zClickButton(Button.B_NO);
+		dlgAddAttendees.zPressButton(Button.B_NO);
 
 		FormApptNew apptForm = new FormApptNew(app);
 		apptForm.zFillField(Field.StartDate, startUTC);
@@ -206,7 +206,7 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 
 		// Open appointment again and check from the UI side
 		app.zPageCalendar.zNavigateTo();
-		if (app.zPageCalendar.zClickToRefreshOnceIfApptDoesntExists(subject) == false) {
+		if (app.zPageCalendar.sClickToRefreshOnceIfApptDoesntExists(subject) == false) {
 			app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
 		}
 		app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, subject);
@@ -245,7 +245,7 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 
 		// Rt-click to message and hit 'Create Appointment'
 		DialogAddAttendees dlgAddAttendees = (DialogAddAttendees) app.zPageMail.zListItem(Action.A_RIGHTCLICK, Button.O_CREATE_APPOINTMENT, subject);
-		dlgAddAttendees.zClickButton(Button.B_NO);
+		dlgAddAttendees.zPressButton(Button.B_NO);
 
 		FormApptNew apptForm = new FormApptNew(app);
 		apptForm.zFillField(Field.StartDate, startUTC);
@@ -266,7 +266,7 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 
 		// Open appointment again and check from the UI side
 		app.zPageCalendar.zNavigateTo();
-		if (app.zPageCalendar.zClickToRefreshOnceIfApptDoesntExists(subject) == false) {
+		if (app.zPageCalendar.sClickToRefreshOnceIfApptDoesntExists(subject) == false) {
 			app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
 		}
 		app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, subject);
@@ -304,7 +304,7 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 
 		// Rt-click to message and hit 'Create Appointment'
 		DialogAddAttendees dlgAddAttendees = (DialogAddAttendees) app.zPageMail.zListItem(Action.A_RIGHTCLICK, Button.O_CREATE_APPOINTMENT, subject);
-		dlgAddAttendees.zClickButton(Button.B_YES);
+		dlgAddAttendees.zPressButton(Button.B_YES);
 
 		FormApptNew apptForm = new FormApptNew(app);
 		apptForm.zFillField(Field.StartDate, startUTC);
@@ -325,7 +325,7 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 
 		// Open appointment again and check from the UI side
 		app.zPageCalendar.zNavigateTo();
-		if (app.zPageCalendar.zClickToRefreshOnceIfApptDoesntExists(subject) == false) {
+		if (app.zPageCalendar.sClickToRefreshOnceIfApptDoesntExists(subject) == false) {
 			app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
 		}
 		app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, subject);
@@ -363,7 +363,7 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 
 		// Rt-click to message and hit 'Create Appointment'
 		DialogAddAttendees dlgAddAttendees = (DialogAddAttendees) app.zPageMail.zListItem(Action.A_RIGHTCLICK, Button.O_CREATE_APPOINTMENT, subject);
-		dlgAddAttendees.zClickButton(Button.B_YES);
+		dlgAddAttendees.zPressButton(Button.B_YES);
 
 		FormApptNew apptForm = new FormApptNew(app);
 		apptForm.zFillField(Field.StartDate, startUTC);
@@ -384,7 +384,7 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 
 		// Open appointment again and check from the UI side
 		app.zPageCalendar.zNavigateTo();
-		if (app.zPageCalendar.zClickToRefreshOnceIfApptDoesntExists(subject) == false) {
+		if (app.zPageCalendar.sClickToRefreshOnceIfApptDoesntExists(subject) == false) {
 			app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
 		}
 		app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, subject);
@@ -423,7 +423,7 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 
 		// Rt-click to message and hit 'Create Appointment'
 		DialogAddAttendees dlgAddAttendees = (DialogAddAttendees) app.zPageMail.zListItem(Action.A_RIGHTCLICK, Button.O_CREATE_APPOINTMENT, subject);
-		dlgAddAttendees.zClickButton(Button.B_YES);
+		dlgAddAttendees.zPressButton(Button.B_YES);
 
 		FormApptNew apptForm = new FormApptNew(app);
 		apptForm.zFillField(Field.StartDate, startUTC);
@@ -443,7 +443,7 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 
 		// Open appointment again and check from the UI side
 		app.zPageCalendar.zNavigateTo();
-		if (app.zPageCalendar.zClickToRefreshOnceIfApptDoesntExists(subject) == false) {
+		if (app.zPageCalendar.sClickToRefreshOnceIfApptDoesntExists(subject) == false) {
 			app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
 		}
 		app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, subject);
@@ -483,7 +483,7 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 
 		// Rt-click to message and hit 'Create Appointment'
 		DialogAddAttendees dlgAddAttendees = (DialogAddAttendees) app.zPageMail.zListItem(Action.A_RIGHTCLICK, Button.O_CREATE_APPOINTMENT, subject);
-		dlgAddAttendees.zClickButton(Button.B_NO);
+		dlgAddAttendees.zPressButton(Button.B_NO);
 
 		FormApptNew apptForm = new FormApptNew(app);
 		apptForm.zFillField(Field.StartDate, startUTC);
@@ -504,7 +504,7 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 
 		// Open appointment again and check from the UI side
 		app.zPageCalendar.zNavigateTo();
-		if (app.zPageCalendar.zClickToRefreshOnceIfApptDoesntExists(subject) == false) {
+		if (app.zPageCalendar.sClickToRefreshOnceIfApptDoesntExists(subject) == false) {
 			app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
 		}
 		app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, subject);
@@ -542,7 +542,7 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 
 		// Rt-click to message and hit 'Create Appointment'
 		DialogAddAttendees dlgAddAttendees = (DialogAddAttendees) app.zPageMail.zListItem(Action.A_RIGHTCLICK, Button.O_CREATE_APPOINTMENT, subject);
-		dlgAddAttendees.zClickButton(Button.B_YES);
+		dlgAddAttendees.zPressButton(Button.B_YES);
 
 		FormApptNew apptForm = new FormApptNew(app);
 		apptForm.zFillField(Field.StartDate, startUTC);
@@ -563,7 +563,7 @@ public class CreateMeetingUsingMessage extends CalendarWorkWeekTest {
 
 		// Open appointment again and check from the UI side
 		app.zPageCalendar.zNavigateTo();
-		if (app.zPageCalendar.zClickToRefreshOnceIfApptDoesntExists(subject) == false) {
+		if (app.zPageCalendar.sClickToRefreshOnceIfApptDoesntExists(subject) == false) {
 			app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
 		}
 		app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, subject);

@@ -65,7 +65,7 @@ public class AcceptShareFromPreferences extends UniversalCommonTest {
 		app.zPagePreferences.sType("css=div#Prefs_Pages_Sharing_shareForm div[id$='_owner'] input", ZimbraAccount.AccountB().EmailAddress);
 
 		// Click "Find Shares"
-		app.zPagePreferences.zClick("css=div[id$='_findButton'] td[id$='_title']");
+		app.zPagePreferences.sClick("css=div[id$='_findButton'] td[id$='_title']");
 
 		// Select Accept and Yes to accept the share
 		app.zPagePreferences.zWaitForBusyOverlay();

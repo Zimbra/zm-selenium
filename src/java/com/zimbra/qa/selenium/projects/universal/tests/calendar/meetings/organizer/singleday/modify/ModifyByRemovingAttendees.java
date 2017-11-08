@@ -76,8 +76,8 @@ public class ModifyByRemovingAttendees extends CalendarWorkWeekTest {
         apptForm.zRemoveAttendee(apptAttendee2);
         apptForm.zSubmit();
         DialogSendUpdatetoAttendees sendUpdateDialog = (DialogSendUpdatetoAttendees) new DialogSendUpdatetoAttendees(app, app.zPageCalendar);
-        sendUpdateDialog.zClickButton(Button.B_SEND_UPDATES_ONLY_TO_ADDED_OR_REMOVED_ATTENDEES);
-        sendUpdateDialog.zClickButton(Button.B_OK);
+        sendUpdateDialog.zPressButton(Button.B_SEND_UPDATES_ONLY_TO_ADDED_OR_REMOVED_ATTENDEES);
+        sendUpdateDialog.zPressButton(Button.B_OK);
         
         // Verify that attendee2 doesn't present in the appointment
         AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ apptSubject +")");
@@ -157,8 +157,8 @@ public class ModifyByRemovingAttendees extends CalendarWorkWeekTest {
         apptForm.zRemoveAttendee(apptAttendee2);
         apptForm.zSubmit();
         DialogSendUpdatetoAttendees sendUpdateDialog = (DialogSendUpdatetoAttendees) new DialogSendUpdatetoAttendees(app, app.zPageCalendar);
-        sendUpdateDialog.zClickButton(Button.B_SEND_UPDATES_TO_ALL_ATTENDEES);
-        sendUpdateDialog.zClickButton(Button.B_OK);
+        sendUpdateDialog.zPressButton(Button.B_SEND_UPDATES_TO_ALL_ATTENDEES);
+        sendUpdateDialog.zPressButton(Button.B_OK);
 
         // Verify meeting invite appears to attendee1
 		ZimbraAccount.AccountA().soapSend(

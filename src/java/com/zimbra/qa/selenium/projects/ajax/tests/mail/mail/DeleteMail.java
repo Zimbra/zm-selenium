@@ -454,7 +454,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 
 		// Click shift-delete
 		DialogWarning dialog = (DialogWarning)app.zPageMail.zKeyboardShortcut(Shortcut.S_MAIL_HARDELETE);
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 
 		// Verify the message is no longer in the mailbox
 		app.zGetActiveAccount().soapSend(
@@ -525,7 +525,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 		app.zPageMail.zListItem(Action.A_MAIL_CHECKBOX, mail3.dSubject);
 
 		DialogWarning dialog = (DialogWarning)app.zPageMail.zKeyboardShortcut(Shortcut.S_MAIL_HARDELETE);
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 
 		// Verify the message is no longer in the mailbox
 		app.zGetActiveAccount().soapSend(
@@ -600,7 +600,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 											app,
 											((AppAjaxClient) app).zPageMail);
 			ZAssert.assertTrue(dialog.zIsActive(), "Verify the warning dialog opens");
-			dialog.zClickButton(Button.B_OK);
+			dialog.zPressButton(Button.B_OK);
 
 		} finally {
 			app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Inbox));
@@ -696,7 +696,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 			DialogWarning dialog = new DialogWarning(DialogWarning.DialogWarningID.PermanentlyDeleteTheItem,
 											app, ((AppAjaxClient) app).zPageMail);
 			ZAssert.assertTrue(dialog.zIsActive(), "Verify the warning dialog opens");
-			dialog.zClickButton(Button.B_OK);
+			dialog.zPressButton(Button.B_OK);
 
 		} finally {
 			app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Inbox));

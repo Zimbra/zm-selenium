@@ -62,7 +62,7 @@ public class CreateSavedSearch extends UniversalCommonTest  {
 			
 			// Save the search
 			dialog.zEnterFolderName(name);
-			dialog.zClickButton(Button.B_OK);
+			dialog.zPressButton(Button.B_OK);
 		
 		} finally {
 			

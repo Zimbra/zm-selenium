@@ -56,7 +56,7 @@ public class ZimbraPrefCalendarReminderEmail extends UniversalCommonTest {
 		
 		// To activate the Search button, need to focus/click
 		app.zPagePreferences.sFocus(locator);
-		app.zPagePreferences.zClick(locator);
+		app.zPagePreferences.sClick(locator);
 		app.zPagePreferences.sType(locator, destination.EmailAddress);
 
 		// Click save

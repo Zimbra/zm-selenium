@@ -86,7 +86,7 @@ public class EditFilter extends UniversalCommonTest {
 		dialog.zAddFilterAction(FilterAction.Discard);
 
 		// Save
-		dialog.zClickButton(Button.B_OK);		
+		dialog.zPressButton(Button.B_OK);		
 		
 		// Verify the filter is created
 		app.zGetActiveAccount().soapSend(
@@ -140,7 +140,7 @@ public class EditFilter extends UniversalCommonTest {
 		dialog.zAddFilterAction(FilterAction.Discard);
 
 		// Save
-		dialog.zClickButton(Button.B_OK);		
+		dialog.zPressButton(Button.B_OK);		
 		
 		// Verify the filter is created
 		app.zGetActiveAccount().soapSend(

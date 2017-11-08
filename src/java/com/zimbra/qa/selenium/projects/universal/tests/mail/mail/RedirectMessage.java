@@ -64,7 +64,7 @@ public class RedirectMessage extends PrefGroupMailByMessageTest {
 		// Click redirect
 		DialogRedirect dialog = (DialogRedirect)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_REDIRECT);
 		dialog.zFillField(Field.To, ZimbraAccount.AccountB().EmailAddress);
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 		
 		// Verify the redirected message is received
 		MailItem received = MailItem.importFromSOAP(ZimbraAccount.AccountB(), "subject:("+ subject +")");
@@ -107,7 +107,7 @@ public class RedirectMessage extends PrefGroupMailByMessageTest {
 		// Click redirect
 		DialogRedirect dialog = (DialogRedirect)app.zPageMail.zListItem(Action.A_RIGHTCLICK, Button.B_REDIRECT, mail.dSubject);
 		dialog.zFillField(Field.To, ZimbraAccount.AccountB().EmailAddress);
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 		
 		// Verify the redirected message is received
 		MailItem received = MailItem.importFromSOAP(ZimbraAccount.AccountB(), "subject:("+ subject +")");

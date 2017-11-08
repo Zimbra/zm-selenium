@@ -79,7 +79,7 @@ public class CheckEditedMessageAfterCancellingMeetingInvite extends AjaxCommonTe
         // Cancel the appointment by modifying body value
         app.zPageCalendar.zListItem(Action.A_LEFTCLICK, apptSubject);
         DialogWarning dialog = (DialogWarning)app.zPageCalendar.zToolbarPressButton(Button.B_DELETE);
-        FormMailNew mailComposeForm = (FormMailNew)dialog.zClickButton(Button.B_EDIT_CANCELLATION);
+        FormMailNew mailComposeForm = (FormMailNew)dialog.zPressButton(Button.B_EDIT_CANCELLATION);
         mailComposeForm.zFillField(Field.Body, editApptBody);
 		mailComposeForm.zSubmit();
 

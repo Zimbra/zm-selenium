@@ -70,7 +70,7 @@ public class AddressContextMenuOptions extends PrefGroupMailByMessageTest {
 		
 		// Click on from address bubble
 		SleepUtil.sleepMedium();
-		app.zPageMail.zClickAddressBubble(Field.From);
+		app.zPageMail.sClickAddressBubble(Field.From);
 		
 		//Verify AddtoContact/New message/Search menus
 		ZAssert.assertTrue(app.zPageMail.zVerifyAllAddressContextMenu(""),

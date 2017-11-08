@@ -56,7 +56,7 @@ public class Cancel extends PrefGroupMailByMessageTest {
 		
 		
 		// Close the dialog box
-		dialog.zClickButton(Button.B_CANCEL);
+		dialog.zPressButton(Button.B_CANCEL);
 
 	}
 

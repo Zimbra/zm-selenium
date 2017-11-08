@@ -60,7 +60,7 @@ public class ZimbraPrefOutOfOfficeReplyEnabledFalse extends UniversalCommonTest 
 		DialogOOOAlert alert = new DialogOOOAlert(app, ((AppUniversalClient) app).zPageMail);
 		ZAssert.assertTrue(alert.zIsActive(), "Verify turn off auto-reply alert dialog is displayed");
 		alert.zCheckboxSet(true);
-		alert.zClickButton(Button.B_YES);
+		alert.zPressButton(Button.B_YES);
 
 		/* GUI steps */
 

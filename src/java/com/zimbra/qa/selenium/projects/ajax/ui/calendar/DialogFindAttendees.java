@@ -68,8 +68,8 @@ public class DialogFindAttendees extends DialogWarning {
 	}
 
 	@Override
-	public AbsPage zClickButton(Button button) throws HarnessException {
-		logger.info(myPageName() + " zClickButton(" + button + ")");
+	public AbsPage zPressButton(Button button) throws HarnessException {
+		logger.info(myPageName() + " zPressButton(" + button + ")");
 
 		tracer.trace("Click dialog button " + button);
 		if (button == null)
@@ -96,7 +96,7 @@ public class DialogFindAttendees extends DialogWarning {
 			page = null;
 
 		} else if (button == Button.B_CHOOSE_CONTACT_FROM_PICKER) {
-			this.zClick(Locators.ContactPickerFirstContact);
+			this.sClick(Locators.ContactPickerFirstContact);
 			locator = Locators.SelectContactFromPicker;
 			page = null;
 
@@ -105,7 +105,7 @@ public class DialogFindAttendees extends DialogWarning {
 			page = null;
 
 		} else {
-			return (super.zClickButton(button));
+			return (super.zPressButton(button));
 		}
 
 		if (locator == null) {

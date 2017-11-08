@@ -78,7 +78,7 @@ public class Edit extends AjaxCommonTest {
 
 		// --------------- Login to attendee & open the invitation ----------------------------------------------------
 		DialogWarning dialog = (DialogWarning)app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, Button.O_EDIT, apptSubject);
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 
 		FormApptNew form = new FormApptNew(app);
         form.zFillField(Field.Subject, newSubject);

@@ -39,8 +39,8 @@ public class DialogAttach extends AbsDialog {
 	}
 
 	@Override
-	public AbsPage zClickButton(Button button) throws HarnessException {
-		logger.info(myPageName() + " zClickButton(" + button + ")");
+	public AbsPage zPressButton(Button button) throws HarnessException {
+		logger.info(myPageName() + " zPressButton(" + button + ")");
 
 		AbsPage page = null;
 		String locator = null;
@@ -57,7 +57,7 @@ public class DialogAttach extends AbsDialog {
 			throw new HarnessException("Button " + button + " not implemented");
 		}
 
-		this.zClick(locator);
+		this.sClick(locator);
 		this.zWaitForBusyOverlay();
 
 		return (page);

@@ -44,7 +44,7 @@ public class AboutDialog extends UniversalCommonTest {
 		//-- VERIFICATION
 		ZAssert.assertTrue(dialog.zIsActive(), "Verify the About dialog opens");
 		
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 
 	}
 

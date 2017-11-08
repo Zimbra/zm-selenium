@@ -41,8 +41,8 @@ public class ZimbraPrefMailPollingIntervalAsMailArrives extends AjaxCommonTest {
 		// Navigate to preferences -> mail -> displaying messages
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.Mail);
 
-		app.zPagePreferences.zClickAt("css=td[id='Prefs_Select_POLLING_INTERVAL_dropdown']>div", "");
-		app.zPagePreferences.zClickAt("css=div[id^='Prefs_Select_POLLING_INTERVAL_Menu'] td[id$='_title']:contains('As new mail arrives')", "");
+		app.zPagePreferences.sClickAt("css=td[id='Prefs_Select_POLLING_INTERVAL_dropdown']>div", "");
+		app.zPagePreferences.sClickAt("css=div[id^='Prefs_Select_POLLING_INTERVAL_Menu'] td[id$='_title']:contains('As new mail arrives')", "");
 
 		// Click save
 		app.zPagePreferences.zToolbarPressButton(Button.B_SAVE);

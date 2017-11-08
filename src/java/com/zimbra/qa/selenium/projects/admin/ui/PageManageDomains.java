@@ -154,7 +154,7 @@ public class PageManageDomains extends AbsTab {
 			for (int a1 = 1; a1 <= 8; a1++) { 
 				String p0  = rowsLocator + ":nth-child("+m+")";
 				if (this.sIsElementPresent(p0)) {
-					zClick(p0);
+					sClick(p0);
 					this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_DOWN);
 					m=m+20;
 				}
@@ -181,7 +181,7 @@ public class PageManageDomains extends AbsTab {
 				{
 					if (action == Action.A_LEFTCLICK) {
 						SleepUtil.sleepMedium();
-						zClickAt(locator,"");
+						sClickAt(locator,"");
 						break;
 					} else if (action == Action.A_RIGHTCLICK) {
 						zRightClick(locator);
@@ -292,7 +292,7 @@ public class PageManageDomains extends AbsTab {
 		//
 
 
-		this.zClickAt(locator,"");
+		this.sClickAt(locator,"");
 
 
 
@@ -477,10 +477,10 @@ public class PageManageDomains extends AbsTab {
 		AbsPage page = null;
 
 		//Click on accounts limit tab
-		this.zClickAt(Locators.DOMAIN_ACCOUNTS_LIMITS,"");
+		this.sClickAt(Locators.DOMAIN_ACCOUNTS_LIMITS,"");
 
 		//Click on Add button
-		this.zClickAt(Locators.DOMAIN_ACCOUNTS_LIMITS_ADD,"");
+		this.sClickAt(Locators.DOMAIN_ACCOUNTS_LIMITS_ADD,"");
 
 		SleepUtil.sleepLong();
 
@@ -498,7 +498,7 @@ public class PageManageDomains extends AbsTab {
 		}
 
 		//Click on OK button
-		this.zClickAt(Locators.DOMAIN_ACCOUNTS_LIMITS_AT_COS_OK,"");
+		this.sClickAt(Locators.DOMAIN_ACCOUNTS_LIMITS_AT_COS_OK,"");
 
 		// Return the specified page, or null if not set
 		return (page);
@@ -516,7 +516,7 @@ public class PageManageDomains extends AbsTab {
 
 
 		//Click on accounts limit tab
-		this.zClickAt(Locators.DOMAIN_ACCOUNTS_LIMITS,"");
+		this.sClickAt(Locators.DOMAIN_ACCOUNTS_LIMITS,"");
 
 		SleepUtil.sleepMedium();
 
@@ -542,7 +542,7 @@ public class PageManageDomains extends AbsTab {
 		AbsPage page = null;
 
 		//Click on accounts limit tab
-		this.zClickAt(Locators.DOMAIN_ACCOUNTS_LIMITS,"");
+		this.sClickAt(Locators.DOMAIN_ACCOUNTS_LIMITS,"");
 
 		SleepUtil.sleepMedium();
 
@@ -574,7 +574,7 @@ public class PageManageDomains extends AbsTab {
 		AbsPage page = null;
 
 		//Click on accounts limit tab
-		this.zClickAt(Locators.DOMAIN_ACCOUNTS_LIMITS,"");
+		this.sClickAt(Locators.DOMAIN_ACCOUNTS_LIMITS,"");
 
 		if ( button == Button.B_ACCOUNTS_LIMIT_PER_DOMAIN ) {
 
@@ -585,7 +585,7 @@ public class PageManageDomains extends AbsTab {
 		} else if ( button == Button.B_ACCOUNTS_LIMIT_PER_COS ) {
 
 			//Click on Add button
-			this.zClickAt(Locators.DOMAIN_ACCOUNTS_LIMITS_ADD,"");
+			this.sClickAt(Locators.DOMAIN_ACCOUNTS_LIMITS_ADD,"");
 
 			SleepUtil.sleepLong();
 
@@ -601,7 +601,7 @@ public class PageManageDomains extends AbsTab {
 				this.sType(Locators.DOMAIN_ACCOUNTS_LIMITS_COS_LIMIT, limit);
 
 				//Click on OK button
-				this.zClickAt(Locators.DOMAIN_ACCOUNTS_LIMITS_AT_COS_OK,"");
+				this.sClickAt(Locators.DOMAIN_ACCOUNTS_LIMITS_AT_COS_OK,"");
 			} 
 			page = this;
 		}

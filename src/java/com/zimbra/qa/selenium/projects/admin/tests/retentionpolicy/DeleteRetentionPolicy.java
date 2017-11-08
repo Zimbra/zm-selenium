@@ -83,7 +83,7 @@ public class DeleteRetentionPolicy extends AdminCommonTest {
 		app.zPageManageRetentionPolicy.zToolbarPressButton( Button.B_DELETE);
 
 		// Click Yes in Confirmation dialog
-		app.zPageManageRetentionPolicy.zClickButton(Button.B_YES);
+		app.zPageManageRetentionPolicy.zPressButton(Button.B_YES);
 		SleepUtil.sleepMedium();
 
 		// Verify policy not exists on UI

@@ -100,7 +100,7 @@ public class FlagMail extends PrefGroupMailByMessageTest {
 			boolean active = dialog.zIsActive();
 
 			if ( active ) {
-				dialog.zClickButton(Button.B_OK);
+				dialog.zPressButton(Button.B_OK);
 			}
 
 			ZAssert.assertFalse(active, "Verify the PERM DENIED Error Dialog is not active");
@@ -185,7 +185,7 @@ public class FlagMail extends PrefGroupMailByMessageTest {
 			boolean active = dialog.zIsActive();
 
 			if ( active ) {
-				dialog.zClickButton(Button.B_OK);
+				dialog.zPressButton(Button.B_OK);
 			}
 
 			ZAssert.assertFalse(active, "Verify the PERM DENIED Error Dialog is not active");
@@ -275,7 +275,7 @@ public class FlagMail extends PrefGroupMailByMessageTest {
 			boolean active = dialog.zIsActive();
 
 			if ( active ) {
-				dialog.zClickButton(Button.B_OK);
+				dialog.zPressButton(Button.B_OK);
 			}
 
 		} finally {

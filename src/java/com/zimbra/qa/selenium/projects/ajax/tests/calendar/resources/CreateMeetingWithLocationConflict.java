@@ -99,7 +99,7 @@ public class CreateMeetingWithLocationConflict extends AjaxCommonTest {
 		ZAssert.assertTrue(dialogContent.contains(apptLocation + " (Busy)"), "Verify that the dialog shows location name on conflict warning");
 
         // Save appt with location conflict
-		dialog.zClickButton(Button.B_SAVE_WITH_CONFLICT);
+		dialog.zPressButton(Button.B_SAVE_WITH_CONFLICT);
 
         // Verify that location with conflict and subject are present in the appointment
 		AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ apptSubject2 +")");
@@ -175,7 +175,7 @@ public class CreateMeetingWithLocationConflict extends AjaxCommonTest {
 		ZAssert.assertTrue(dialogContent.contains(apptLocation + " (Busy)"), "Verify that the dialog shows location name on conflict warning");
 
         // Verify Canceling the 'Conflicting Resource' closes the dialog
-		dialog.zClickButton(Button.B_CANCEL_CONFLICT);
+		dialog.zPressButton(Button.B_CANCEL_CONFLICT);
         ZAssert.assertFalse(dialog.zIsActive(), "Verify 'Conflicting Resource' dialog is closed");
 
         // Verify new appt page is still open
@@ -256,7 +256,7 @@ public class CreateMeetingWithLocationConflict extends AjaxCommonTest {
 
 		// Save appointment with Location conflict
         ZAssert.assertTrue(dialog.zIsActive(), "Verify 'Conflicting Resource' dialog is Open");
-        dialog.zClickButton(Button.B_SAVE_WITH_CONFLICT);
+        dialog.zPressButton(Button.B_SAVE_WITH_CONFLICT);
 		SleepUtil.sleepMedium();
 
         // Verify that modified location and subject are present in the appointment

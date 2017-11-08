@@ -57,7 +57,7 @@ public class CopyAddressContextMenu extends PrefGroupMailByMessageTest {
 
 		app.zPageMail.zCopyAddressContextMenu();
 		app.zPageMail.sFocus(FormMailNew.Locators.zCcField);
-		app.zPageMail.zClick(FormMailNew.Locators.zCcField);	
+		app.zPageMail.sClick(FormMailNew.Locators.zCcField);	
 
 		/* Incomplete test case.. need to find clikcable event while doing copy*/
 		//FormMailNew.Locators.CcField

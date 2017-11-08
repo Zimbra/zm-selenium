@@ -56,7 +56,7 @@ public class CancelTextSignature extends UniversalCommonTest {
 		ZAssert.assertNotNull(warning, "Verify the dialog is returned");
 
 		// click on No button
-		warning.zClickButton(Button.B_NO);
+		warning.zPressButton(Button.B_NO);
 
 		// Verify canceled signature name from SignatureListView
 		app.zPagePreferences.zNavigateTo();

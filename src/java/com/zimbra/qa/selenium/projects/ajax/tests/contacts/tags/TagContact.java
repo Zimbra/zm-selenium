@@ -64,7 +64,7 @@ public class TagContact extends ContactsPrefShowSelectionCheckbox {
 		// Click Tag Contact->New Tag
 		DialogTag dialogTag = (DialogTag) app.zPageContacts.zToolbarPressPulldown(Button.B_TAG, Button.O_TAG_NEWTAG);
 		dialogTag.zSetTagName(tagName);
-		dialogTag.zClickButton(Button.B_OK);
+		dialogTag.zPressButton(Button.B_OK);
 
 		// Verification
 		app.zGetActiveAccount().soapSend("<GetContactsRequest xmlns='urn:zimbraMail' >" + "<cn id='" + contact.getId() + "'/>" + "</GetContactsRequest>");
@@ -95,7 +95,7 @@ public class TagContact extends ContactsPrefShowSelectionCheckbox {
 		DialogTag dialogTag = (DialogTag) app.zPageContacts.zListItem(Action.A_RIGHTCLICK, Button.B_TAG,
 				Button.O_TAG_NEWTAG, contact.fileAs);
 		dialogTag.zSetTagName(tagName);
-		dialogTag.zClickButton(Button.B_OK);
+		dialogTag.zPressButton(Button.B_OK);
 
 		// Verification
 		app.zGetActiveAccount().soapSend("<GetContactsRequest xmlns='urn:zimbraMail' >" + "<cn id='" + contact.getId() + "'/>" + "</GetContactsRequest>");

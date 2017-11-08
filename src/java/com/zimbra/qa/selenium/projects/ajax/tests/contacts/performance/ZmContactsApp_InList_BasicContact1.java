@@ -51,7 +51,7 @@ public class ZmContactsApp_InList_BasicContact1 extends AjaxCommonTest {
 	   ContactItem.createContactItem(app.zGetActiveAccount());
 
 	   PerfToken token = PerfMetrics.startTimestamp(PerfKey.ZmContactsApp, logMessage);
-	   app.zPageContacts.zClickAt("css=td[id='zb__App__Contacts_title']","");
+	   app.zPageContacts.sClickAt("css=td[id='zb__App__Contacts_title']","");
 	   PerfMetrics.waitTimestamp(token);
 
 	   // Wait for the app to load
@@ -75,7 +75,7 @@ public class ZmContactsApp_InList_BasicContact1 extends AjaxCommonTest {
       rest.doPost();
 
       PerfToken token = PerfMetrics.startTimestamp(PerfKey.ZmContactsApp, "Load the Address Book app, 100 contacts in list");
-      app.zPageContacts.zClickAt("css=td[id='zb__App__Contacts_title']","");
+      app.zPageContacts.sClickAt("css=td[id='zb__App__Contacts_title']","");
       PerfMetrics.waitTimestamp(token);
 
       // Wait for the app to load

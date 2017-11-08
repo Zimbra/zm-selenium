@@ -47,8 +47,8 @@ public class DisableActivityStream extends UniversalCommonTest {
 		app.zPagePreferences.zNavigateTo();
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.MailFilters);
 		DialogActivityStream dialog = (DialogActivityStream)app.zPagePreferences.zToolbarPressButton(Button.B_ACTIVITY_STREAM_SETTINGS);
-		dialog.zClickCheckbox(Button.B_ACTIVITY_STREAM_ENABLE, true);
-		dialog.zClickButton(Button.B_SAVE);
+		dialog.sClickCheckbox(Button.B_ACTIVITY_STREAM_ENABLE, true);
+		dialog.zPressButton(Button.B_SAVE);
 
 	}
 	
@@ -72,10 +72,10 @@ public class DisableActivityStream extends UniversalCommonTest {
 		DialogActivityStream dialog = (DialogActivityStream)app.zPagePreferences.zToolbarPressButton(Button.B_ACTIVITY_STREAM_SETTINGS);
 		
 		// Check "Enable"
-		dialog.zClickCheckbox(Button.B_ACTIVITY_STREAM_ENABLE, false);
+		dialog.sClickCheckbox(Button.B_ACTIVITY_STREAM_ENABLE, false);
 		
 		// Save
-		dialog.zClickButton(Button.B_SAVE);
+		dialog.zPressButton(Button.B_SAVE);
 		
 				
 		

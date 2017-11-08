@@ -443,7 +443,7 @@ public class FormContactDistributionListNew extends AbsForm {
 		}
 
 		// select contact dropdown
-		zClick(dropdown + postfix);
+		sClick(dropdown + postfix);
 		SleepUtil.sleepSmall();
 
 		// assume contact is one arrow key down away from top

@@ -42,10 +42,10 @@ public class EnableActivityStream extends AjaxCommonTest {
 		DialogActivityStream dialog = (DialogActivityStream)app.zPagePreferences.zToolbarPressButton(Button.B_ACTIVITY_STREAM_SETTINGS);
 
 		// Check "Enable"
-		dialog.zClickCheckbox(Button.B_ACTIVITY_STREAM_ENABLE, true);
+		dialog.sClickCheckbox(Button.B_ACTIVITY_STREAM_ENABLE, true);
 
 		// Save
-		dialog.zClickButton(Button.B_SAVE);
+		dialog.zPressButton(Button.B_SAVE);
 
 		// Verification
 		app.zGetActiveAccount().soapSend("<GetFilterRulesRequest xmlns='urn:zimbraMail'/>");

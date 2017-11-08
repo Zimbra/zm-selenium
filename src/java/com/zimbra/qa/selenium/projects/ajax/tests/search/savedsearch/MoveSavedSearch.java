@@ -61,7 +61,7 @@ public class MoveSavedSearch extends AjaxCommonTest  {
 
 		// Move saved search foldersearch14764622635854
 		dialog.zEnterFolderName(name2);
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 
 		// Verify the saved search exists under the other saved search
 		item1 = SavedSearchFolderItem.importFromSOAP(app.zGetActiveAccount(), name1);

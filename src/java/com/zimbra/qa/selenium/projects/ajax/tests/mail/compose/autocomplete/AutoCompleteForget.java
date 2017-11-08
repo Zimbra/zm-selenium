@@ -96,7 +96,7 @@ public class AutoCompleteForget extends PrefGroupMailByMessageTest {
 		// Cancel the compose
 		DialogWarning dialog = (DialogWarning)mailform.zToolbarPressButton(Button.B_CANCEL);
 		if ( dialog.zIsActive() ) {
-			dialog.zClickButton(Button.B_NO);
+			dialog.zPressButton(Button.B_NO);
 		}
 
 		// Open the new mail form
@@ -121,7 +121,7 @@ public class AutoCompleteForget extends PrefGroupMailByMessageTest {
 		// Cancel the compose
 		dialog = (DialogWarning)mailform.zToolbarPressButton(Button.B_CANCEL);
 		if ( dialog.zIsActive() ) {
-			dialog.zClickButton(Button.B_NO);
+			dialog.zPressButton(Button.B_NO);
 		}
 	}
 
@@ -189,7 +189,7 @@ public class AutoCompleteForget extends PrefGroupMailByMessageTest {
 		// Cancel the compose
 		DialogWarning dialog = (DialogWarning)mailform.zToolbarPressButton(Button.B_CANCEL);
 		if ( dialog.zIsActive() ) {
-			dialog.zClickButton(Button.B_NO);
+			dialog.zPressButton(Button.B_NO);
 		}
 	}
 
@@ -261,7 +261,7 @@ public class AutoCompleteForget extends PrefGroupMailByMessageTest {
 		// Cancel the compose
 		DialogWarning dialog = (DialogWarning)mailform.zToolbarPressButton(Button.B_CANCEL);
 		if ( dialog.zIsActive() ) {
-			dialog.zClickButton(Button.B_NO);
+			dialog.zPressButton(Button.B_NO);
 		}
 	}
 
@@ -396,7 +396,7 @@ public class AutoCompleteForget extends PrefGroupMailByMessageTest {
 		// Cancel the compose
 		DialogWarning dialog = (DialogWarning)mailform.zToolbarPressButton(Button.B_CANCEL);
 		if ( dialog.zIsActive() ) {
-			dialog.zClickButton(Button.B_NO);
+			dialog.zPressButton(Button.B_NO);
 		}
 
 		// Compose again, verify contact1 (one message) is higher than contact2 (forgotten)
@@ -430,7 +430,7 @@ public class AutoCompleteForget extends PrefGroupMailByMessageTest {
 		// Cancel the compose
 		dialog = (DialogWarning)mailform.zToolbarPressButton(Button.B_CANCEL);
 		if ( dialog.zIsActive() ) {
-			dialog.zClickButton(Button.B_NO);
+			dialog.zPressButton(Button.B_NO);
 		}
 	}
 
@@ -563,7 +563,7 @@ public class AutoCompleteForget extends PrefGroupMailByMessageTest {
 		// Cancel the compose
 		DialogWarning dialog = (DialogWarning)mailform.zToolbarPressButton(Button.B_CANCEL);
 		if ( dialog.zIsActive() ) {
-			dialog.zClickButton(Button.B_NO);
+			dialog.zPressButton(Button.B_NO);
 		}
 
 		// Compose again, verify contact1 (one message) is higher than contact2 (forgotten)
@@ -597,7 +597,7 @@ public class AutoCompleteForget extends PrefGroupMailByMessageTest {
 		// Cancel the compose
 		dialog = (DialogWarning)mailform.zToolbarPressButton(Button.B_CANCEL);
 		if ( dialog.zIsActive() ) {
-			dialog.zClickButton(Button.B_NO);
+			dialog.zPressButton(Button.B_NO);
 		}
 	}
 }

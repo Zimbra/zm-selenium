@@ -51,8 +51,8 @@ public class DialogMove extends AbsDialog {
 	}
 
 	@Override
-	public AbsPage zClickButton(Button button) throws HarnessException {
-		logger.info(myPageName() + " zClickButton(" + button + ")");
+	public AbsPage zPressButton(Button button) throws HarnessException {
+		logger.info(myPageName() + " zPressButton(" + button + ")");
 
 		AbsPage page = null;
 		String locator = null;
@@ -129,9 +129,9 @@ public class DialogMove extends AbsDialog {
 	 * @param folder
 	 * @throws HarnessException
 	 */
-	public void zClickTreeFolder(FolderItem folder) throws HarnessException {
+	public void sClickTreeFolder(FolderItem folder) throws HarnessException {
 
-		logger.info(myPageName() + " zClickTreeFolder(" + folder + ")");
+		logger.info(myPageName() + " sClickTreeFolder(" + folder + ")");
 
 		if (folder == null)
 

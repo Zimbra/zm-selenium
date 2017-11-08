@@ -344,7 +344,7 @@ public class QuickAddAppointment extends AbsTab {
 
 	public void zSubmit() throws HarnessException {
 		logger.info("PageCalendar.submit()");
-		this.zClickAt(Locators.OKButtonQuickAdd, "");
+		this.sClickAt(Locators.OKButtonQuickAdd, "");
 		SleepUtil.sleepMedium();
 	}
 
@@ -367,7 +367,7 @@ public class QuickAddAppointment extends AbsTab {
 	public void zNavigateTo() throws HarnessException {
 	}
 
-	public AbsPage zClick(Button button) throws HarnessException {
+	public AbsPage sClick(Button button) throws HarnessException {
 		SleepUtil.sleepSmall();
 		if (button.equals(Button.B_SUGGESTALOCATION)) {
 			this.sClickAt("css=div[id$='_suggest_location']:contains('Suggest a location')", "");
@@ -382,7 +382,7 @@ public class QuickAddAppointment extends AbsTab {
 		return null;
 	}
 
-	public AbsPage zClick(Button button, String value) throws HarnessException {
+	public AbsPage sClick(Button button, String value) throws HarnessException {
 		SleepUtil.sleepSmall();
 		if (button.equals(Button.B_SUGGESTEDLOCATION)) {
 			this.sClickAt("css=div[id$='_suggest_view'] div[id^='zli__CSLP__DWT']:contains('" + value + "')", "");

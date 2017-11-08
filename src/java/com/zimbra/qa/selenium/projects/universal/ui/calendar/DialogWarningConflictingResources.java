@@ -58,8 +58,8 @@ public class DialogWarningConflictingResources extends DialogWarning {
 		return text;
 	}
 	
-	public void zPressButton(Button button) throws HarnessException {
-		logger.info(myPageName() + " zClickButton(" + button + ")");
+	public AbsPage zPressButton(Button button) throws HarnessException {
+		logger.info(myPageName() + " zPressButton(" + button + ")");
 		//AbsPage page = null;
 		//String text = null;
 		String locator = null;
@@ -71,7 +71,7 @@ public class DialogWarningConflictingResources extends DialogWarning {
 			sClick(locator);
 			this.zWaitForBusyOverlay();
 			}
-		 // return text;  
+		return null;
 	}
 }
 

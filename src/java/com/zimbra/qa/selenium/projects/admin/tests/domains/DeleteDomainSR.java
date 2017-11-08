@@ -69,7 +69,7 @@ public class DeleteDomainSR extends AdminCommonTest {
 		app.zPageSearchResults.zListItem(Action.A_LEFTCLICK, domain.getName());
 
 		// Click on gear icon
-		app.zPageSearchResults.zClickAt(Locators.GEAR_ICON,"");
+		app.zPageSearchResults.sClickAt(Locators.GEAR_ICON,"");
 		boolean isPresent = app.zPageSearchResults.zVerifyDisabled("DeleteTreeMenu");
 		ZAssert.assertTrue(isPresent, "Verify the delete domain button is disabled at Search results");
 		

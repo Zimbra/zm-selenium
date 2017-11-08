@@ -79,7 +79,7 @@ public class TreeCalendar extends AbsTree {
 				page = new DialogCreateFolder(MyApplication, ((AppAjaxClient) MyApplication).zPageCalendar);
 
 				zRightClick(actionLocator);
-				zClick(optionLocator);
+				sClick(optionLocator);
 				this.zWaitForBusyOverlay();
 
 				if (page != null) {
@@ -139,7 +139,7 @@ public class TreeCalendar extends AbsTree {
 			optionLocator += " div[id^='DETACH_WIN'] td[id$='_title']";
 
 			this.zRightClick(actionLocator);
-			this.zClickAt(optionLocator, "");
+			this.sClickAt(optionLocator, "");
 
 			page = new SeparateWindow(this.MyApplication);
 			((SeparateWindow) page).zInitializeWindowNames();
@@ -163,7 +163,7 @@ public class TreeCalendar extends AbsTree {
 		if (actionLocator == null)
 			throw new HarnessException("locator is null for action " + action);
 
-		this.zClickAt(optionLocator, "");
+		this.sClickAt(optionLocator, "");
 		this.zWaitForBusyOverlay();
 
 		if (page != null) {
@@ -203,7 +203,7 @@ public class TreeCalendar extends AbsTree {
 
 		if (action == Action.A_LEFTCLICK) {
 
-			this.zClick(optionLocator);
+			this.sClick(optionLocator);
 
 			return (new ContextMenu(MyApplication));
 
@@ -211,7 +211,7 @@ public class TreeCalendar extends AbsTree {
 
 			// Select tag
 			this.zRightClick(optionLocator);
-			this.zClick(Locators.RenameTagMenu);
+			this.sClick(Locators.RenameTagMenu);
 
 			return (new DialogRenameTag(MyApplication, ((AppAjaxClient) MyApplication).zPageCalendar));
 
@@ -219,7 +219,7 @@ public class TreeCalendar extends AbsTree {
 
 			// Select tag
 			this.zRightClick(optionLocator);
-			this.zClick(Locators.DeleteTagMenu);
+			this.sClick(Locators.DeleteTagMenu);
 
 			return (new DialogDeleteTag(DialogDeleteTagID.DeleteTag, MyApplication,
 					((AppAjaxClient) MyApplication).zPageCalendar));
@@ -318,7 +318,7 @@ public class TreeCalendar extends AbsTree {
 						+ pulldownLocator + " not present!");
 			}
 
-			this.zClickAt(pulldownLocator, "0,0");
+			this.sClickAt(pulldownLocator, "0,0");
 
 			zWaitForBusyOverlay();
 
@@ -329,7 +329,7 @@ public class TreeCalendar extends AbsTree {
 							+ optionLocator + " not present!");
 				}
 
-				this.zClickAt(optionLocator, "0,0");
+				this.sClickAt(optionLocator, "0,0");
 
 				zWaitForBusyOverlay();
 			}
@@ -369,7 +369,7 @@ public class TreeCalendar extends AbsTree {
 			locator = "css=TODO#TODO";
 			page = new DialogShareFind(MyApplication, ((AppAjaxClient) MyApplication).zPageCalendar);
 
-			// Use sClick, not default zClick
+			// Use sClick, not default sClick
 			this.sClick(locator);
 
 			this.zWaitForBusyOverlay();
@@ -391,7 +391,7 @@ public class TreeCalendar extends AbsTree {
 			throw new HarnessException("no logic defined for button " + button);
 		}
 
-		this.zClick(locator);
+		this.sClick(locator);
 
 		this.zWaitForBusyOverlay();
 
@@ -408,7 +408,7 @@ public class TreeCalendar extends AbsTree {
 
 		if (action == Action.A_LEFTCLICK) {
 
-			this.zClick(locator);
+			this.sClick(locator);
 
 			return (new ContextMenu(MyApplication));
 

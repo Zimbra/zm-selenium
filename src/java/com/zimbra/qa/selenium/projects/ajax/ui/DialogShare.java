@@ -104,7 +104,7 @@ public class DialogShare extends AbsDialog {
 		// quickly
 		// Click in the "To" fields, etc, to make sure the client is ready
 		this.sFocus(locator);
-		this.zClick(locator);
+		this.sClick(locator);
 		this.zWaitForBusyOverlay();
 
 		// this.zKeyboard.zTypeCharacters(email);
@@ -176,10 +176,10 @@ public class DialogShare extends AbsDialog {
 
 		if (type == ShareMessageType.AddNoteToStandardMsg) {
 
-			zClickAt(Locators.zShareMessageDropDown, "");
-			zClick(Locators.zAddNoteToStandardMessage);
+			sClickAt(Locators.zShareMessageDropDown, "");
+			sClick(Locators.zAddNoteToStandardMessage);
 			this.sFocus(Locators.zShareMessageNote);
-			this.zClick(Locators.zShareMessageNote);
+			this.sClick(Locators.zShareMessageNote);
 			this.zWaitForBusyOverlay();
 
 			// this.zKeyboard.zTypeCharacters(message);
@@ -189,14 +189,14 @@ public class DialogShare extends AbsDialog {
 		}
 
 		else if (type == ShareMessageType.DoNotSendMsg) {
-			zClickAt(Locators.zShareMessageDropDown, "");
-			zClick(Locators.zDoNotSendMailAboutThisShare);
+			sClickAt(Locators.zShareMessageDropDown, "");
+			sClick(Locators.zDoNotSendMailAboutThisShare);
 		}
 	}
 
 	@Override
-	public AbsPage zClickButton(Button button) throws HarnessException {
-		logger.info(myPageName() + " zClickButton(" + button + ")");
+	public AbsPage zPressButton(Button button) throws HarnessException {
+		logger.info(myPageName() + " zPressButton(" + button + ")");
 
 		String locator = null;
 

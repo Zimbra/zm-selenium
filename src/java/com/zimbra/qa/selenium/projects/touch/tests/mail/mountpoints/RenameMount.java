@@ -72,10 +72,10 @@ public class RenameMount extends PrefGroupMailByMessageTest{
 
 		// Select the folder from the list and Rename
 		PageCreateFolder createFolderPage = new PageCreateFolder(app, startingPage);
-		createFolderPage.zClickButton(Button.B_EDIT);
+		createFolderPage.zPressButton(Button.B_EDIT);
 		createFolderPage.zSelectFolder(mountpointname);
 		createFolderPage.zEnterFolderName(renameMountFolder);
-		createFolderPage.zClickButton(Button.B_SAVE);
+		createFolderPage.zPressButton(Button.B_SAVE);
 		app.zPageMain.zRefreshMainUI();
 		createFolderPage.zSelectOrganizer();
 

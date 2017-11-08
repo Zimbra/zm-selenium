@@ -38,8 +38,8 @@ public class Dialog2FactorAuthEnable extends AbsDialog {
 	}
 
 	@Override
-	public AbsPage zClickButton(Button button) throws HarnessException {
-		logger.info(myPageName() + " zClickButton("+ button +")");
+	public AbsPage zPressButton(Button button) throws HarnessException {
+		logger.info(myPageName() + " zPressButton("+ button +")");
 
 		String locator = null;
 
@@ -94,7 +94,7 @@ public class Dialog2FactorAuthEnable extends AbsDialog {
 			throw new HarnessException("Secret key locator "+ locator +" is not present");
 		}
 
-		this.zClickAt(locator, "");
+		this.sClickAt(locator, "");
 		this.zKeyboard.zTypeCharacters(totpCode);
 		SleepUtil.sleepMedium();
 	}
@@ -124,7 +124,7 @@ public class Dialog2FactorAuthEnable extends AbsDialog {
 			throw new HarnessException("Password "+ locator +" is not present");
 		}
 
-		this.zClickAt(locator, "");
+		this.sClickAt(locator, "");
 		this.zKeyboard.zTypeCharacters(password);
 		SleepUtil.sleepSmall();
 	}

@@ -60,13 +60,13 @@ public class EditDelegate extends UniversalCommonTest {
 		String itemLocator = "css=div[id$='_PRIMARY'] div[id$='__na_name']:contains('" + delegate.EmailAddress + "')";
 		ZAssert.assertTrue(app.zPagePreferences.sIsElementPresent(itemLocator),
 				"Verify the delegate item is present in the list");
-		app.zPagePreferences.zClickAt(itemLocator, "");
+		app.zPagePreferences.sClickAt(itemLocator, "");
 
 		// See http://bugzilla.zimbra.com/show_bug.cgi?id=74282
 		String buttonLocator = "css=div[id$='_PRIMARY'] td[id$='_title']:contains('Edit Permissions')";
 		ZAssert.assertTrue(app.zPagePreferences.sIsElementPresent(buttonLocator),
 				"Verify the add delegate button is present");
-		app.zPagePreferences.zClickAt(buttonLocator, "");
+		app.zPagePreferences.sClickAt(buttonLocator, "");
 
 		// Wait for the dialog to appear
 		DialogDelegate dialog = new DialogDelegate(app, app.zPagePreferences);
@@ -75,7 +75,7 @@ public class EditDelegate extends UniversalCommonTest {
 		// Send As is already checked
 		// Also, check Send On Behalf Of
 		dialog.zCheckRight(DialogDelegate.Rights.SendOnBehalfOf);
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 
 		SleepUtil.sleepSmall();
 
@@ -128,7 +128,7 @@ public class EditDelegate extends UniversalCommonTest {
 		if ((errorDialog != null) && (errorDialog.zIsActive())) {
 
 			// Dismiss the dialog and carry on
-			errorDialog.zClickButton(Button.B_OK);
+			errorDialog.zPressButton(Button.B_OK);
 		}
 
 		// Navigate to preferences -> notifications
@@ -138,27 +138,27 @@ public class EditDelegate extends UniversalCommonTest {
 		String itemLocator = "css=div[id$='_PRIMARY'] div[id$='__na_name']:contains('" + delegate.EmailAddress + "')";
 		ZAssert.assertTrue(app.zPagePreferences.sIsElementPresent(itemLocator),
 				"Verify the delegate item is present in the list");
-		app.zPagePreferences.zClickAt(itemLocator, "");
+		app.zPagePreferences.sClickAt(itemLocator, "");
 
 		// See http://bugzilla.zimbra.com/show_bug.cgi?id=74282
 		String buttonLocator = "css=div[id$='_PRIMARY'] td[id$='_title']:contains('Edit Permissions')";
 		ZAssert.assertTrue(app.zPagePreferences.sIsElementPresent(buttonLocator),
 				"Verify the add delegate button is present");
-		app.zPagePreferences.zClickAt(buttonLocator, "");
+		app.zPagePreferences.sClickAt(buttonLocator, "");
 
 		// Wait for the dialog to appear
 		DialogDelegate dialog = new DialogDelegate(app, app.zPagePreferences);
 		dialog.zWaitForActive();
 
 		dialog.zCheckRight(DialogDelegate.Rights.SendOnBehalfOf);
-		dialog.zClickButton(Button.B_OK);
-		app.zPagePreferences.zClickAt(itemLocator, "");
-		app.zPagePreferences.zClickAt(buttonLocator, "");
+		dialog.zPressButton(Button.B_OK);
+		app.zPagePreferences.sClickAt(itemLocator, "");
+		app.zPagePreferences.sClickAt(buttonLocator, "");
 		dialog.zWaitForActive();
 		dialog.zUnCheckRight(DialogDelegate.Rights.SendAs);
 		// SleepUtil.sleepMedium();
 		SleepUtil.sleepLong();
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 		// SleepUtil.sleepMedium();
 		SleepUtil.sleepLong();
 
@@ -214,20 +214,20 @@ public class EditDelegate extends UniversalCommonTest {
 		String itemLocator = "css=div[id$='_PRIMARY'] div[id$='__na_name']:contains('" + delegate.EmailAddress + "')";
 		ZAssert.assertTrue(app.zPagePreferences.sIsElementPresent(itemLocator),
 				"Verify the delegate item is present in the list");
-		app.zPagePreferences.zClickAt(itemLocator, "");
+		app.zPagePreferences.sClickAt(itemLocator, "");
 
 		// See http://bugzilla.zimbra.com/show_bug.cgi?id=74282
 		String buttonLocator = "css=div[id$='_PRIMARY'] td[id$='_title']:contains('Edit Permissions')";
 		ZAssert.assertTrue(app.zPagePreferences.sIsElementPresent(buttonLocator),
 				"Verify the add delegate button is present");
-		app.zPagePreferences.zClickAt(buttonLocator, "");
+		app.zPagePreferences.sClickAt(buttonLocator, "");
 
 		// Wait for the dialog to appear
 		DialogDelegate dialog = new DialogDelegate(app, app.zPagePreferences);
 		dialog.zWaitForActive();
 
 		dialog.zUnCheckRight(DialogDelegate.Rights.SendAs);
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 
 		// -- Verification
 		app.zGetActiveAccount().soapSend("<GetRightsRequest xmlns='urn:zimbraAccount' >" + "<ace right='sendAs'/>"
@@ -279,20 +279,20 @@ public class EditDelegate extends UniversalCommonTest {
 		String itemLocator = "css=div[id$='_PRIMARY'] div[id$='__na_name']:contains('" + delegate.EmailAddress + "')";
 		ZAssert.assertTrue(app.zPagePreferences.sIsElementPresent(itemLocator),
 				"Verify the delegate item is present in the list");
-		app.zPagePreferences.zClickAt(itemLocator, "");
+		app.zPagePreferences.sClickAt(itemLocator, "");
 
 		// See http://bugzilla.zimbra.com/show_bug.cgi?id=74282
 		String buttonLocator = "css=div[id$='_PRIMARY'] td[id$='_title']:contains('Edit Permissions')";
 		ZAssert.assertTrue(app.zPagePreferences.sIsElementPresent(buttonLocator),
 				"Verify the add delegate button is present");
-		app.zPagePreferences.zClickAt(buttonLocator, "");
+		app.zPagePreferences.sClickAt(buttonLocator, "");
 
 		// Wait for the dialog to appear
 		DialogDelegate dialog = new DialogDelegate(app, app.zPagePreferences);
 		dialog.zWaitForActive();
 
 		dialog.zCheckRight(DialogDelegate.Rights.SendAs);
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 
 		// -- Verification
 		app.zGetActiveAccount().soapSend("<GetRightsRequest xmlns='urn:zimbraAccount' >" + "<ace right='sendAs'/>"
@@ -341,7 +341,7 @@ public class EditDelegate extends UniversalCommonTest {
 		if ((errorDialog != null) && (errorDialog.zIsActive())) {
 
 			// Dismiss the dialog and carry on
-			errorDialog.zClickButton(Button.B_OK);
+			errorDialog.zPressButton(Button.B_OK);
 		}
 
 		// Navigate to preferences -> notifications
@@ -351,25 +351,25 @@ public class EditDelegate extends UniversalCommonTest {
 		String itemLocator = "css=div[id$='_PRIMARY'] div[id$='__na_name']:contains('" + delegate.EmailAddress + "')";
 		ZAssert.assertTrue(app.zPagePreferences.sIsElementPresent(itemLocator),
 				"Verify the delegate item is present in the list");
-		app.zPagePreferences.zClickAt(itemLocator, "");
+		app.zPagePreferences.sClickAt(itemLocator, "");
 
 		// See http://bugzilla.zimbra.com/show_bug.cgi?id=74282
 		String buttonLocator = "css=div[id$='_PRIMARY'] td[id$='_title']:contains('Edit Permissions')";
 		ZAssert.assertTrue(app.zPagePreferences.sIsElementPresent(buttonLocator),
 				"Verify the add delegate button is present");
-		app.zPagePreferences.zClickAt(buttonLocator, "");
+		app.zPagePreferences.sClickAt(buttonLocator, "");
 
 		// Wait for the dialog to appear
 		DialogDelegate dialog = new DialogDelegate(app, app.zPagePreferences);
 		dialog.zWaitForActive();
 
 		dialog.zCheckRight(DialogDelegate.Rights.SendAs);
-		dialog.zClickButton(Button.B_OK);
-		app.zPagePreferences.zClickAt(itemLocator, "");
-		app.zPagePreferences.zClickAt(buttonLocator, "");
+		dialog.zPressButton(Button.B_OK);
+		app.zPagePreferences.sClickAt(itemLocator, "");
+		app.zPagePreferences.sClickAt(buttonLocator, "");
 		dialog.zWaitForActive();
 		dialog.zUnCheckRight(DialogDelegate.Rights.SendOnBehalfOf);
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 
 		// -- Verification
 		app.zGetActiveAccount().soapSend("<GetRightsRequest xmlns='urn:zimbraAccount' >" + "<ace right='sendAs'/>"
@@ -420,20 +420,20 @@ public class EditDelegate extends UniversalCommonTest {
 		String itemLocator = "css=div[id$='_PRIMARY'] div[id$='__na_name']:contains('" + delegate.EmailAddress + "')";
 		ZAssert.assertTrue(app.zPagePreferences.sIsElementPresent(itemLocator),
 				"Verify the delegate item is present in the list");
-		app.zPagePreferences.zClickAt(itemLocator, "");
+		app.zPagePreferences.sClickAt(itemLocator, "");
 
 		// See http://bugzilla.zimbra.com/show_bug.cgi?id=74282
 		String buttonLocator = "css=div[id$='_PRIMARY'] td[id$='_title']:contains('Edit Permissions')";
 		ZAssert.assertTrue(app.zPagePreferences.sIsElementPresent(buttonLocator),
 				"Verify the add delegate button is present");
-		app.zPagePreferences.zClickAt(buttonLocator, "");
+		app.zPagePreferences.sClickAt(buttonLocator, "");
 
 		// Wait for the dialog to appear
 		DialogDelegate dialog = new DialogDelegate(app, app.zPagePreferences);
 		dialog.zWaitForActive();
 
 		dialog.zUnCheckRight(DialogDelegate.Rights.SendOnBehalfOf);
-		dialog.zClickButton(Button.B_OK);
+		dialog.zPressButton(Button.B_OK);
 
 		// -- Verification
 		app.zGetActiveAccount().soapSend("<GetRightsRequest xmlns='urn:zimbraAccount' >" + "<ace right='sendAs'/>"

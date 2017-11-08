@@ -86,7 +86,7 @@ public class UndoDeleteTask extends UniversalCommonTest {
 
 		// Click "undo"
 		Toaster toast = app.zPageMain.zGetToaster();	
-		toast.zClickUndo();
+		toast.sClickUndo();
 
 		app.zTreeTasks.zTreeItem(Action.A_LEFTCLICK, taskFolder);
 		//Verify Task come back into Task folder

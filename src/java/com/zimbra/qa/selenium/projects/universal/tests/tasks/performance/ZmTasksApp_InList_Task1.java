@@ -74,7 +74,7 @@ public class ZmTasksApp_InList_Task1 extends UniversalCommonTest {
             logMessage);
 
      // app.zPageTasks.zNavigateTo();//id=zb__App__Tasks_title
-      app.zPageContacts.zClickAt("css=td[id='zb__App__Tasks_title']","");
+      app.zPageContacts.sClickAt("css=td[id='zb__App__Tasks_title']","");
 
       PerfMetrics.waitTimestamp(token);
 
@@ -100,7 +100,7 @@ public class ZmTasksApp_InList_Task1 extends UniversalCommonTest {
 			   "Load the Tasks app, 100 tasks in list");
 
 	   // app.zPageTasks.zNavigateTo();
-	   app.zPageContacts.zClickAt("css=td[id='zb__App__Tasks_title']","");
+	   app.zPageContacts.sClickAt("css=td[id='zb__App__Tasks_title']","");
 
 	   PerfMetrics.waitTimestamp(token);
 

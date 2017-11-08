@@ -73,8 +73,8 @@ public class DialogEditProperties extends AbsDialog {
 	}
 
 	@Override
-	public AbsPage zClickButton(Button button) throws HarnessException {
-		logger.info(myPageName() + " zClickButton(" + button + ")");
+	public AbsPage zPressButton(Button button) throws HarnessException {
+		logger.info(myPageName() + " zPressButton(" + button + ")");
 
 		tracer.trace("Click dialog button " + button);
 
@@ -138,7 +138,7 @@ public class DialogEditProperties extends AbsDialog {
 			throw new HarnessException("Button " + button + " not implemented");
 		}
 
-		this.zClick(locator);
+		this.sClick(locator);
 
 		this.zWaitForBusyOverlay();
 
@@ -173,7 +173,7 @@ public class DialogEditProperties extends AbsDialog {
 
 		// For some reason, the text doesn't get entered on the first try
 		this.sFocus(locator);
-		this.zClick(locator);
+		this.sClick(locator);
 		this.clearField(locator);
 		this.sType(locator, folder);
 		this.zWaitForBusyOverlay();
@@ -202,40 +202,40 @@ public class DialogEditProperties extends AbsDialog {
 			actionLocator = Locators.zEditPropertiesDialogDropDown;
 			optionLocator = Locators.zGrayColorId;
 
-			zClick(actionLocator);
-			zClick(optionLocator);
+			sClick(actionLocator);
+			sClick(optionLocator);
 
 		} else if (color == FolderColor.Blue) {
 
 			actionLocator = Locators.zEditPropertiesDialogDropDown;
 			optionLocator = Locators.zBlueColorId;
 
-			zClick(actionLocator);
-			zClick(optionLocator);
+			sClick(actionLocator);
+			sClick(optionLocator);
 
 		} else if (color == FolderColor.Cyan) {
 
 			actionLocator = Locators.zEditPropertiesDialogDropDown;
 			optionLocator = Locators.zCyanColorId;
 
-			zClick(actionLocator);
-			zClick(optionLocator);
+			sClick(actionLocator);
+			sClick(optionLocator);
 
 		} else if (color == FolderColor.Green) {
 
 			actionLocator = Locators.zEditPropertiesDialogDropDown;
 			optionLocator = Locators.zGreenColorId;
 
-			zClick(actionLocator);
-			zClick(optionLocator);
+			sClick(actionLocator);
+			sClick(optionLocator);
 
 		} else if (color == FolderColor.Purple) {
 
 			actionLocator = Locators.zEditPropertiesDialogDropDown;
 			optionLocator = Locators.zPurpleColorId;
 
-			zClick(actionLocator);
-			zClick(optionLocator);
+			sClick(actionLocator);
+			sClick(optionLocator);
 
 		} else {
 			throw new HarnessException("color " + color + " not yet implemented");
