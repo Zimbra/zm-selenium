@@ -116,7 +116,7 @@ public class SignatureVcard extends AjaxCommonTest {
 		Assert.assertTrue(app.zPageMail.sIsElementPresent("css=a[class='AttLink']"), "vcf attachment link present");
 
 		// Verify Signature present in body
-		Assert.assertTrue(app.zPageMail.zVerifyContentPresentInComposedBody("css=body[id='tinymce'] div[data-marker='__SIG_PRE__']", sigBody));
+		Assert.assertTrue(app.zPageMail.zVerifyContentPresentInComposedBody(sigBody));
 
 		// Send the message
 		mailform.zSubmit();
@@ -129,6 +129,6 @@ public class SignatureVcard extends AjaxCommonTest {
 		Assert.assertTrue(app.zPageMail.sIsElementPresent("css=a[class='AttLink']"), "vcf attachment link present");
 
 		// Verify Signature present in body
-		Assert.assertTrue(app.zPageMail.zVerifyContentPresentInDisplayMail("css=body[id='tinymce'] div[data-marker='__SIG_PRE__']", sigBody));
+		Assert.assertTrue(app.zPageMail.zVerifyContentPresentInDisplayMail(sigBody));
 	}
 }

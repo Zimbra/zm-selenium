@@ -81,7 +81,7 @@ public class RevokeShareFromPreferences extends AjaxCommonTest {
 			id = app.zPagePreferences.sGetEval("return window.document.getElementById('zl__SVG__rows').children[" + i + "].children[0].children[0].children[0].children[0].id");
 			if (app.zPagePreferences.sGetText("css=td[id='" + id + "']").equals(ZimbraAccount.AccountB().EmailAddress)) {
 				optionLocator = "css=div[id ='zl__SVG__rows'] a[id='" + id.replace("wi", "revoke") + "']";
-				app.zPagePreferences.sClickAt(optionLocator, "0,0");
+				app.zPagePreferences.sClick(optionLocator);
 				SleepUtil.sleepMedium();
 				break;
 			}

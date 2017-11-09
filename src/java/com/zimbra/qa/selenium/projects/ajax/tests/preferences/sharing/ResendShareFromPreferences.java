@@ -81,7 +81,7 @@ public class ResendShareFromPreferences extends AjaxCommonTest {
 			id = app.zPagePreferences.sGetEval("return window.document.getElementById('zl__SVG__rows').children[" + i + "].children[0].children[0].children[0].children[0].id");
 			if (app.zPagePreferences.sGetText("css=td[id='" + id + "']").equals(ZimbraAccount.Account9().EmailAddress)) {
 				optionLocator = "css=div[id ='zl__SVG__rows'] a[id='" + id.replace("wi", "resend") + "']";
-				app.zPagePreferences.sClickAt(optionLocator, "0,0");
+				app.zPagePreferences.sClick(optionLocator);
 				SleepUtil.sleepMedium();
 				break;
 			}

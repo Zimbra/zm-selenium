@@ -90,7 +90,7 @@ public class DiscardMessageAutomatically extends PrefGroupMailByMessageTest {
 		ZAssert.assertNull(found, "Verify the message is no longer in the inbox");
 
 		// UI verification
-		app.zTreeMail.sClickAt(("css=td[id='zti__main_Mail__5_textCell']:contains('Sent')"), ""); // Go to sent folder
+		app.zTreeMail.sClick("css=td[id='zti__main_Mail__5_textCell']:contains('Sent')"); // Go to sent folder
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 	}
 }

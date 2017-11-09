@@ -414,11 +414,11 @@ public class PageMail extends AbsTab {
 		}
 	}
 
-	public boolean zVerifyContentPresentInDisplayMail(String locator, String content) throws HarnessException {
+	public boolean zVerifyContentPresentInDisplayMail(String content) throws HarnessException {
 		try {
 			webDriver().switchTo().defaultContent();
 			webDriver().switchTo().frame(0);
-			we = webDriver().findElement(By.cssSelector("html div"));
+			we = webDriver().findElement(By.cssSelector("html body"));
 			if (we.getText().contains(content)) {
 				return true;
 			} else {
@@ -430,7 +430,7 @@ public class PageMail extends AbsTab {
 		}
 	}
 
-	public boolean zVerifyContentPresentInComposedBody(String locator, String content) throws HarnessException {
+	public boolean zVerifyContentPresentInComposedBody(String content) throws HarnessException {
 		try {
 			webDriver().switchTo().defaultContent();
 			webDriver().switchTo().frame("ZmHtmlEditor2_body_ifr");

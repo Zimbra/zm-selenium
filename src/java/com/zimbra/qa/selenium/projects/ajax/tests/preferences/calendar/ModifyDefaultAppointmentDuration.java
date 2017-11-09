@@ -55,9 +55,9 @@ public class ModifyDefaultAppointmentDuration extends AjaxCommonTest {
 		 SleepUtil.sleepMedium();
 
 		 // Modify appointment duration
-		 app.zPagePreferences.sClickAt("css=td[id='Prefs_Select_CAL_DEFAULT_APPT_DURATION_dropdown']", "");
+		 app.zPagePreferences.sClick("css=td[id='Prefs_Select_CAL_DEFAULT_APPT_DURATION_dropdown']");
 		 SleepUtil.sleepSmall();
-		 app.zPagePreferences.sClickAt("css=div[id^='Prefs_Select_CAL_DEFAULT_APPT_DURATION_Menu'] td[id$='_title']:contains('30')", "");
+		 app.zPagePreferences.sClick("css=div[id^='Prefs_Select_CAL_DEFAULT_APPT_DURATION_Menu'] td[id$='_title']:contains('30')");
 		 SleepUtil.sleepSmall();
 		 app.zPagePreferences.zToolbarPressButton(Button.B_SAVE);
 		 SleepUtil.sleepSmall();

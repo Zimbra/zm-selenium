@@ -557,7 +557,7 @@ public class PagePreferences extends AbsTab {
 			throw new HarnessException("locator was null for option " + option);
 		}
 
-		this.sClickAt(locator, "");
+		this.sClick(locator);
 		this.zWaitForBusyOverlay();
 
 	}

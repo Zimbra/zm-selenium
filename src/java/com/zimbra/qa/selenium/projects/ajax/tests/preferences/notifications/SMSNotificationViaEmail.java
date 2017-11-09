@@ -63,7 +63,7 @@ public class SMSNotificationViaEmail extends AjaxCommonTest {
 
 			// Select the carrier option as 'Custom'
 			app.zPagePreferences.sClick(Locators.zCarrierPullDown);
-			app.zPagePreferences.sClickAt(Locators.zCarrierOptionCustom,"0,0");
+			app.zPagePreferences.sClick(Locators.zCarrierOptionCustom);
 
 			// Enter email address for SMS notification
 			app.zPagePreferences.sType(Locators.zSMSEmailUsername, ZimbraAccount.Account3().EmailAddress.split("@")[0]);
@@ -71,7 +71,7 @@ public class SMSNotificationViaEmail extends AjaxCommonTest {
 
 			// Select the carrier option as 'Custom' again to enable the button
 			app.zPagePreferences.sClick(Locators.zCarrierPullDown);
-			app.zPagePreferences.sClickAt(Locators.zCarrierOptionCustom,"0,0");
+			app.zPagePreferences.sClick(Locators.zCarrierOptionCustom);
 
 			// Click Send verification code button to send the verification code to the entered email address
 			DialogInformational dialog = (DialogInformational) app.zPagePreferences.zPressButton(Button.B_SEND_VERIFICATION_CODE);
@@ -90,7 +90,7 @@ public class SMSNotificationViaEmail extends AjaxCommonTest {
 
 			// This needs to be done again to enable the Validate code button
 			app.zPagePreferences.sClick(Locators.zCarrierPullDown);
-			app.zPagePreferences.sClickAt(Locators.zCarrierOptionCustom,"0,0");
+			app.zPagePreferences.sClick(Locators.zCarrierOptionCustom);
 
 			// Click on Validate code button
 			app.zPagePreferences.zPressButton(Button.B_VALIDATE_CODE);
