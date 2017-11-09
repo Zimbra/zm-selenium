@@ -69,8 +69,8 @@ public class CreateMeetingUsingMessage extends AjaxCommonTest {
 
 		FormApptNew apptForm = new FormApptNew(app);
 		apptForm.zFillField(Field.StartDate, startUTC);
-		apptForm.zFillField(Field.EndDate, endUTC);
 		apptForm.zFillField(Field.StartTime, startUTC);
+		apptForm.zFillField(Field.EndDate, endUTC);
 		apptForm.zFillField(Field.EndTime, endUTC);
 		ZAssert.assertEquals(apptForm.zGetApptSubject(), subject, "Verify populated appointment subject from message");
 		ZAssert.assertStringContains(apptForm.zGetApptBodyHtml(), "Bold and Italics", "Verify populated appointment body from message");
@@ -130,8 +130,8 @@ public class CreateMeetingUsingMessage extends AjaxCommonTest {
 
 		FormApptNew apptForm = new FormApptNew(app);
 		apptForm.zFillField(Field.StartDate, startUTC);
-		apptForm.zFillField(Field.EndDate, endUTC);
 		apptForm.zFillField(Field.StartTime, startUTC);
+		apptForm.zFillField(Field.EndDate, endUTC);
 		apptForm.zFillField(Field.EndTime, endUTC);
 		ZAssert.assertEquals(apptForm.zGetApptSubject(), subject, "Verify populated appointment subject from message");
 		ZAssert.assertStringContains(apptForm.zGetApptBodyHtml(), content, "Verify populated appointment body from message");
@@ -190,8 +190,8 @@ public class CreateMeetingUsingMessage extends AjaxCommonTest {
 
 		FormApptNew apptForm = new FormApptNew(app);
 		apptForm.zFillField(Field.StartDate, startUTC);
-		apptForm.zFillField(Field.EndDate, endUTC);
 		apptForm.zFillField(Field.StartTime, startUTC);
+		apptForm.zFillField(Field.EndDate, endUTC);
 		apptForm.zFillField(Field.EndTime, endUTC);
 		ZAssert.assertEquals(apptForm.zGetApptSubject(), subject, "Verify populated appointment subject from message");
 		ZAssert.assertStringContains(apptForm.zGetApptBodyValue(), fullContent, "Verify populated appointment body from message");
@@ -250,8 +250,8 @@ public class CreateMeetingUsingMessage extends AjaxCommonTest {
 
 		FormApptNew apptForm = new FormApptNew(app);
 		apptForm.zFillField(Field.StartDate, startUTC);
-		apptForm.zFillField(Field.EndDate, endUTC);
 		apptForm.zFillField(Field.StartTime, startUTC);
+		apptForm.zFillField(Field.EndDate, endUTC);
 		apptForm.zFillField(Field.EndTime, endUTC);
 		ZAssert.assertEquals(apptForm.zGetApptSubject(), subject, "Verify populated appointment subject from message");
 		ZAssert.assertStringContains(apptForm.zGetApptBodyValue(), fullContent, "Verify populated appointment body from message");
@@ -309,8 +309,8 @@ public class CreateMeetingUsingMessage extends AjaxCommonTest {
 
 		FormApptNew apptForm = new FormApptNew(app);
 		apptForm.zFillField(Field.StartDate, startUTC);
-		apptForm.zFillField(Field.EndDate, endUTC);
 		apptForm.zFillField(Field.StartTime, startUTC);
+		apptForm.zFillField(Field.EndDate, endUTC);
 		apptForm.zFillField(Field.EndTime, endUTC);
 		ZAssert.assertEquals(apptForm.zGetApptSubject(), subject, "Verify populated appointment subject from message");
 		ZAssert.assertStringContains(apptForm.zGetApptBodyHtml(), content, "Verify populated appointment body from message");
@@ -368,8 +368,8 @@ public class CreateMeetingUsingMessage extends AjaxCommonTest {
 
 		FormApptNew apptForm = new FormApptNew(app);
 		apptForm.zFillField(Field.StartDate, startUTC);
-		apptForm.zFillField(Field.EndDate, endUTC);
 		apptForm.zFillField(Field.StartTime, startUTC);
+		apptForm.zFillField(Field.EndDate, endUTC);
 		apptForm.zFillField(Field.EndTime, endUTC);
 		ZAssert.assertEquals(apptForm.zGetApptSubject(), subject, "Verify populated appointment subject from message");
 		ZAssert.assertStringContains(apptForm.zGetApptBodyHtml(), content, "Verify populated appointment body from message");
@@ -428,10 +428,11 @@ public class CreateMeetingUsingMessage extends AjaxCommonTest {
 
 		FormApptNew apptForm = new FormApptNew(app);
 		apptForm.zFillField(Field.StartDate, startUTC);
-		apptForm.zFillField(Field.EndDate, endUTC);
 		apptForm.zFillField(Field.StartTime, startUTC);
+		apptForm.zFillField(Field.EndDate, endUTC);
 		apptForm.zFillField(Field.EndTime, endUTC);
 		ZAssert.assertEquals(apptForm.zGetApptSubject(), subject, "Verify populated appointment subject from message");
+		ZAssert.assertStringContains(apptForm.zGetApptBodyValue(), fullContent, "Verify populated appointment body from message");
 		apptForm.zSubmit();
 
 		// Verify appointment exists on the server
@@ -488,8 +489,8 @@ public class CreateMeetingUsingMessage extends AjaxCommonTest {
 
 		FormApptNew apptForm = new FormApptNew(app);
 		apptForm.zFillField(Field.StartDate, startUTC);
-		apptForm.zFillField(Field.EndDate, endUTC);
 		apptForm.zFillField(Field.StartTime, startUTC);
+		apptForm.zFillField(Field.EndDate, endUTC);
 		apptForm.zFillField(Field.EndTime, endUTC);
 		ZAssert.assertEquals(apptForm.zGetApptSubject(), subject, "Verify populated appointment subject from message");
 		ZAssert.assertStringContains(apptForm.zGetApptBodyValue(), fullContent, "Verify populated appointment body from message");
@@ -547,8 +548,8 @@ public class CreateMeetingUsingMessage extends AjaxCommonTest {
 
 		FormApptNew apptForm = new FormApptNew(app);
 		apptForm.zFillField(Field.StartDate, startUTC);
-		apptForm.zFillField(Field.EndDate, endUTC);
 		apptForm.zFillField(Field.StartTime, startUTC);
+		apptForm.zFillField(Field.EndDate, endUTC);
 		apptForm.zFillField(Field.EndTime, endUTC);
 		ZAssert.assertEquals(apptForm.zGetApptSubject(), subject, "Verify populated appointment subject from message");
 		apptForm.zSubmit();
