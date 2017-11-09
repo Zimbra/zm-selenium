@@ -47,13 +47,13 @@ public class AddDelegate extends AjaxCommonTest {
 		String buttonLocator = "css=div[id$='_PRIMARY'] td[id$='_title']:contains('Add Delegate')";
 
 		ZAssert.assertTrue(app.zPagePreferences.sIsElementPresent(buttonLocator), "Verify the add delegate button is present");
-		app.zPagePreferences.sClickAt(buttonLocator, "");
+		app.zPagePreferences.sClick(buttonLocator);
 
 		// Wait for the dialog to appear
 		DialogDelegate dialog = new DialogDelegate(app, app.zPagePreferences);
 		dialog.zWaitForActive();
 
-		dialog.zSetEmailAddress(delegate.EmailAddress);
+		dialog.zSetEmailAddress(delegate.EmailAddress + "\n");
 		dialog.zCheckRight(DialogDelegate.Rights.SendAs);
 		dialog.zPressButton(Button.B_OK);
 
@@ -86,7 +86,7 @@ public class AddDelegate extends AjaxCommonTest {
 		String buttonLocator = "css=div[id$='_PRIMARY'] td[id$='_title']:contains('Add Delegate')";
 
 		ZAssert.assertTrue(app.zPagePreferences.sIsElementPresent(buttonLocator), "Verify the add delegate button is present");
-		app.zPagePreferences.sClickAt(buttonLocator, "");
+		app.zPagePreferences.sClick(buttonLocator);
 
 		// Wait for the dialog to appear
 		DialogDelegate dialog = new DialogDelegate(app, app.zPagePreferences);

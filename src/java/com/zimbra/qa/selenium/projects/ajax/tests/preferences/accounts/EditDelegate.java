@@ -129,13 +129,13 @@ public class EditDelegate extends AjaxCommonTest {
 		String itemLocator = "css=div[id$='_PRIMARY'] div[id$='__na_name']:contains('" + delegate.EmailAddress + "')";
 		ZAssert.assertTrue(app.zPagePreferences.sIsElementPresent(itemLocator),
 				"Verify the delegate item is present in the list");
-		app.zPagePreferences.sClickAt(itemLocator, "");
+		app.zPagePreferences.sClick(itemLocator);
 
 		// See http://bugzilla.zimbra.com/show_bug.cgi?id=74282
 		String buttonLocator = "css=div[id$='_PRIMARY'] td[id$='_title']:contains('Edit Permissions')";
 		ZAssert.assertTrue(app.zPagePreferences.sIsElementPresent(buttonLocator),
 				"Verify the add delegate button is present");
-		app.zPagePreferences.sClickAt(buttonLocator, "");
+		app.zPagePreferences.sClick(buttonLocator);
 
 		// Wait for the dialog to appear
 		DialogDelegate dialog = new DialogDelegate(app, app.zPagePreferences);
@@ -199,13 +199,13 @@ public class EditDelegate extends AjaxCommonTest {
 		String itemLocator = "css=div[id$='_PRIMARY'] div[id$='__na_name']:contains('" + delegate.EmailAddress + "')";
 		ZAssert.assertTrue(app.zPagePreferences.sIsElementPresent(itemLocator),
 				"Verify the delegate item is present in the list");
-		app.zPagePreferences.sClickAt(itemLocator, "");
+		app.zPagePreferences.sClick(itemLocator);
 
 		// See http://bugzilla.zimbra.com/show_bug.cgi?id=74282
 		String buttonLocator = "css=div[id$='_PRIMARY'] td[id$='_title']:contains('Edit Permissions')";
 		ZAssert.assertTrue(app.zPagePreferences.sIsElementPresent(buttonLocator),
 				"Verify the add delegate button is present");
-		app.zPagePreferences.sClickAt(buttonLocator, "");
+		app.zPagePreferences.sClick(buttonLocator);
 
 		// Wait for the dialog to appear
 		DialogDelegate dialog = new DialogDelegate(app, app.zPagePreferences);
@@ -262,13 +262,13 @@ public class EditDelegate extends AjaxCommonTest {
 		String itemLocator = "css=div[id$='_PRIMARY'] div[id$='__na_name']:contains('" + delegate.EmailAddress + "')";
 		ZAssert.assertTrue(app.zPagePreferences.sIsElementPresent(itemLocator),
 				"Verify the delegate item is present in the list");
-		app.zPagePreferences.sClickAt(itemLocator, "");
+		app.zPagePreferences.sClick(itemLocator);
 
 		// See http://bugzilla.zimbra.com/show_bug.cgi?id=74282
 		String buttonLocator = "css=div[id$='_PRIMARY'] td[id$='_title']:contains('Edit Permissions')";
 		ZAssert.assertTrue(app.zPagePreferences.sIsElementPresent(buttonLocator),
 				"Verify the add delegate button is present");
-		app.zPagePreferences.sClickAt(buttonLocator, "");
+		app.zPagePreferences.sClick(buttonLocator);
 
 		// Wait for the dialog to appear
 		DialogDelegate dialog = new DialogDelegate(app, app.zPagePreferences);
@@ -332,13 +332,13 @@ public class EditDelegate extends AjaxCommonTest {
 		String itemLocator = "css=div[id$='_PRIMARY'] div[id$='__na_name']:contains('" + delegate.EmailAddress + "')";
 		ZAssert.assertTrue(app.zPagePreferences.sIsElementPresent(itemLocator),
 				"Verify the delegate item is present in the list");
-		app.zPagePreferences.sClickAt(itemLocator, "");
+		app.zPagePreferences.sClick(itemLocator);
 
 		// See http://bugzilla.zimbra.com/show_bug.cgi?id=74282
 		String buttonLocator = "css=div[id$='_PRIMARY'] td[id$='_title']:contains('Edit Permissions')";
 		ZAssert.assertTrue(app.zPagePreferences.sIsElementPresent(buttonLocator),
 				"Verify the add delegate button is present");
-		app.zPagePreferences.sClickAt(buttonLocator, "");
+		app.zPagePreferences.sClick(buttonLocator);
 
 		// Wait for the dialog to appear
 		DialogDelegate dialog = new DialogDelegate(app, app.zPagePreferences);
@@ -400,13 +400,13 @@ public class EditDelegate extends AjaxCommonTest {
 		String itemLocator = "css=div[id$='_PRIMARY'] div[id$='__na_name']:contains('" + delegate.EmailAddress + "')";
 		ZAssert.assertTrue(app.zPagePreferences.sIsElementPresent(itemLocator),
 				"Verify the delegate item is present in the list");
-		app.zPagePreferences.sClickAt(itemLocator, "");
+		app.zPagePreferences.sClick(itemLocator);
 
 		// See http://bugzilla.zimbra.com/show_bug.cgi?id=74282
 		String buttonLocator = "css=div[id$='_PRIMARY'] td[id$='_title']:contains('Edit Permissions')";
 		ZAssert.assertTrue(app.zPagePreferences.sIsElementPresent(buttonLocator),
 				"Verify the add delegate button is present");
-		app.zPagePreferences.sClickAt(buttonLocator, "");
+		app.zPagePreferences.sClick(buttonLocator);
 
 		// Wait for the dialog to appear
 		DialogDelegate dialog = new DialogDelegate(app, app.zPagePreferences);
