@@ -54,6 +54,8 @@ import com.zimbra.qa.selenium.framework.core.ClientSessionFactory;
 import com.zimbra.qa.selenium.framework.core.ExecuteHarnessMain;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
+import com.zimbra.qa.selenium.projects.admin.ui.PageLogin;
+import com.zimbra.qa.selenium.projects.admin.ui.PageMain;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import org.openqa.selenium.interactions.Mouse;
 import org.openqa.selenium.interactions.HasInputDevices;
@@ -872,10 +874,11 @@ public abstract class AbsSeleniumObject {
 
 	// Refreshes UI till loading completes successfully
 	public void zRefreshMainUI() throws HarnessException {
-		logger.info("Refresh UI of logged in user");
+		logger.info("Refresh UI");
 		webDriver().navigate().refresh();
 
 		if (ConfigProperties.getAppType().toString().equals("AJAX")) {
+
 			if (ConfigProperties.getStringProperty("server.host").contains("zimbra.com")) {
 				zWaitTillElementPresent(com.zimbra.qa.selenium.projects.ajax.ui.mail.PageMail.Locators.zMailZimletsPane);
 			} else {
@@ -883,6 +886,7 @@ public abstract class AbsSeleniumObject {
 			}
 
 		} else if (ConfigProperties.getAppType().toString().equals("UNIVERSAL")) {
+
 			if (ConfigProperties.getStringProperty("server.host").contains("zimbra.com")) {
 				zWaitTillElementPresent(com.zimbra.qa.selenium.projects.universal.ui.mail.PageMail.Locators.zMailZimletsPane);
 			} else {
@@ -890,9 +894,20 @@ public abstract class AbsSeleniumObject {
 			}
 
 		} else if (ConfigProperties.getAppType().name().equals("ADMIN")) {
-			zWaitTillElementPresent(com.zimbra.qa.selenium.projects.admin.ui.PageMain.Locators.zHelpButton);
+
+			boolean loginPagePresent = false, mainUIPresent = false;
+			for (int i=0; i<=10; i++) {
+				loginPagePresent = zIsVisiblePerPosition(PageLogin.Locators.zLoginButtonContainer, 10, 10);
+				mainUIPresent = zIsVisiblePerPosition(PageMain.Locators.zHelpButton, 10, 10);
+				if (loginPagePresent == true || mainUIPresent == true) {
+					break;
+				}
+				SleepUtil.sleepMedium();
+			}
+			if (loginPagePresent == false && mainUIPresent == false) {
+				throw new HarnessException("Neither login page nor main UI locator present");
+			}
 		}
-		SleepUtil.sleepMedium();
 	}
 
 

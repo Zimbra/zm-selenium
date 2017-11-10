@@ -456,9 +456,9 @@ public class AjaxCommonTest {
 							StandardOpenOption.APPEND);
 				}
 			}
-
 		}
 
+		// Get test PASSED/FAILED status
 		if (testResult.getStatus() == ITestResult.FAILURE){
 			ZimbraAccount.ResetAccountZCS();
 		}
