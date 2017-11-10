@@ -44,19 +44,26 @@ public class CreateMeetingWithMultilineBody extends AjaxCommonTest {
 		final String dSubject = "subject" + ConfigProperties.getUniqueString();
 		final String dBodyHtmlBold = "<strong>BoldString</strong>";
 		final String dBodyHtmlItalic = "<br></div><div><span id=\"_mce_caret\"><em>ItalicString</em>";
-		final String dBodyHtmlRedColorText = "</span></span><br></div><div><span id=\"_mce_caret\"><span style=\"color: rgb(255, 0, 0);\">RedColorText</span><span id=\"_mce_caret\"></span></span>";
-		final String dBodyHtmlGreenBackgroundText = "<br></div><div><span id=\"_mce_caret\"><span style=\"background-color: rgb(0, 128, 0);\">GreenBackgroundText</span><span id=\"_mce_caret\"></span></span>";
+		String dBodyHtmlRedColorText = "</span></span><br></div><div><span id=\"_mce_caret\"><span style=\"color: rgb(255, 0, 0);\">RedColorText</span><span id=\"_mce_caret\"></span></span>";
+		String dBodyHtmlGreenBackgroundText = "<br></div><div><span id=\"_mce_caret\"><span style=\"background-color: rgb(0, 128, 0);\">GreenBackgroundText</span><span id=\"_mce_caret\"></span></span>";
+
+		if (ConfigProperties.getStringProperty("browser").equalsIgnoreCase("edge")) {
+			dBodyHtmlRedColorText = "</span></span><br></div><div><span id=\"_mce_caret\"><span style=\"color: #ff0000;\">RedColorText</span><span id=\"_mce_caret\"></span></span>";
+			dBodyHtmlGreenBackgroundText = "<br></div><div><span id=\"_mce_caret\"><span style=\"background-color: #008000;\">GreenBackgroundText</span><span id=\"_mce_caret\"></span></span>";
+		}
 
 		// Open the new appointment form
-		FormApptNew apptForm = (FormApptNew) app.zPageMail.zToolbarPressPulldown(Button.B_NEW, Button.O_NEW_APPOINTMENT);
+		FormApptNew apptForm = (FormApptNew) app.zPageMail.zToolbarPressPulldown(Button.B_NEW,
+				Button.O_NEW_APPOINTMENT);
 		ZAssert.assertNotNull(apptForm, "Verify the new form opened");
 
 		// Fill out the form with the data
 		apptForm.zFillField(Field.Subject, dSubject);
 		apptForm.zFillField(Field.Attendees, attendees);
 
-		// Scroll down in view so that font and background color selection fully visible on screen
-		apptForm.sGetEval("document.getElementsByClassName('mce-ico mce-i-bold')[0].scrollIntoView(true)") ;
+		// Scroll down in view so that font and background color selection fully
+		// visible on screen
+		apptForm.sGetEval("document.getElementsByClassName('mce-ico mce-i-bold')[0].scrollIntoView(true)");
 
 		// Enter multiline body HTML text
 		apptForm.sClick(Locators.zBoldButton);
@@ -83,21 +90,19 @@ public class CreateMeetingWithMultilineBody extends AjaxCommonTest {
 		// Send invite
 		apptForm.zSubmit();
 
-		ZimbraAccount.AccountC().soapSend(
-					"<SearchRequest types='message' xmlns='urn:zimbraMail'>"
-			+			"<query>subject:("+ dSubject +")</query>"
-			+		"</SearchRequest>");
+		ZimbraAccount.AccountC().soapSend("<SearchRequest types='message' xmlns='urn:zimbraMail'>" + "<query>subject:("
+				+ dSubject + ")</query>" + "</SearchRequest>");
 		String id = ZimbraAccount.AccountC().soapSelectValue("//mail:m", "id");
 
 		ZimbraAccount.AccountC().soapSend(
-					"<GetMsgRequest xmlns='urn:zimbraMail'>"
-			+			"<m id='"+ id +"' html='1'/>"
-			+		"</GetMsgRequest>");
+				"<GetMsgRequest xmlns='urn:zimbraMail'>" + "<m id='" + id + "' html='1'/>" + "</GetMsgRequest>");
 
 		String from = ZimbraAccount.AccountC().soapSelectValue("//mail:e[@t='f']", "a");
 		String to = ZimbraAccount.AccountC().soapSelectValue("//mail:e[@t='t']", "a");
 		String subject = ZimbraAccount.AccountC().soapSelectValue("//mail:su", null);
-		String html = ZimbraAccount.AccountC().soapSelectValue("//mail:mp[@ct='text/html']//mail:content", null).replace("\uFEFF", "");;
+		String html = ZimbraAccount.AccountC().soapSelectValue("//mail:mp[@ct='text/html']//mail:content", null)
+				.replace("\uFEFF", "");
+		;
 
 		// Verification
 		ZAssert.assertEquals(from, app.zGetActiveAccount().EmailAddress, "Verify the from field is correct");

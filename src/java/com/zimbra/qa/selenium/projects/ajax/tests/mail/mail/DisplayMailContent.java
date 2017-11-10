@@ -40,20 +40,22 @@ public class DisplayMailContent extends PrefGroupMailByMessageTest {
 	public void DisplayHTMLMailWithHTMLPref_01() throws HarnessException {
 
 		String multilineHtmlData = null;
-	 	if (ConfigProperties.getStringProperty("browser").contains("firefox")) {
-	 	 	 multilineHtmlData = "<div><span style=\"font-size: 14pt;\"><span style=\"font-family: &quot;comic sans ms&quot;,&quot;comic sans&quot;,sans-serif;\">Number list below</span>:</span></div>";
-	 	} else {
-	 	 	 multilineHtmlData = "<div><span style=\"font-size: 14pt;\"><span style=\"font-family: &quot;comic sans ms&quot;, &quot;comic sans&quot;, sans-serif;\">Number list below</span>:</span></div>";
-	 	}
+		if (ConfigProperties.getStringProperty("browser").contains("firefox")
+				|| ConfigProperties.getStringProperty("browser").contains("edge")) {
+			multilineHtmlData = "<div><span style=\"font-size: 14pt;\"><span style=\"font-family: &quot;comic sans ms&quot;,&quot;comic sans&quot;,sans-serif;\">Number list below</span>:</span></div>";
+		} else {
+			multilineHtmlData = "<div><span style=\"font-size: 14pt;\"><span style=\"font-family: &quot;comic sans ms&quot;, &quot;comic sans&quot;, sans-serif;\">Number list below</span>:</span></div>";
+		}
 
-		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email19/multilineHTMLcontent.txt";
+		final String mimeFile = ConfigProperties.getBaseDirectory()
+				+ "/data/public/mime/email19/multilineHTMLcontent.txt";
 		final String subject = "subject13214016725788";
 		final String boldContent = "<div><strong>BoldString</strong></div>";
 		final String italicContent = "<div><em>ItalicString</em></div>";
-		final String underlineContent ="<span style=\"text-decoration: underline;\">Underline text</span>";
-		final String colorFontContent ="<span style=\"color: rgb(255, 0, 0);\">Red color text</span></div>";
-		final String colorBackgroundContent ="<span style=\"background-color: rgb(51, 153, 102);\">Green background</span></div>";
-		final String numberedListContent ="<ol><li>point one</li><li>point two</li><li>point three</li></ol>";
+		final String underlineContent = "<span style=\"text-decoration: underline;\">Underline text</span>";
+		final String colorFontContent = "<span style=\"color: rgb(255, 0, 0);\">Red color text</span></div>";
+		final String colorBackgroundContent = "<span style=\"background-color: rgb(51, 153, 102);\">Green background</span></div>";
+		final String numberedListContent = "<ol><li>point one</li><li>point two</li><li>point three</li></ol>";
 
 		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
 
@@ -66,11 +68,16 @@ public class DisplayMailContent extends PrefGroupMailByMessageTest {
 		// Verify body content
 		ZAssert.assertStringContains(actual.zGetMailProperty(Field.Body), boldContent, "Verify bold text content");
 		ZAssert.assertStringContains(actual.zGetMailProperty(Field.Body), italicContent, "Verify italic text content");
-		ZAssert.assertStringContains(actual.zGetMailProperty(Field.Body), underlineContent, "Verify underline text content");
-		ZAssert.assertStringContains(actual.zGetMailProperty(Field.Body), colorFontContent, "Verify colored body text content");
-		ZAssert.assertStringContains(actual.zGetMailProperty(Field.Body), colorBackgroundContent, "Verify color background text content");
-		ZAssert.assertStringContains(actual.zGetMailProperty(Field.Body), multilineHtmlData, "Verify font family and size of text content");
-		ZAssert.assertStringContains(actual.zGetMailProperty(Field.Body), numberedListContent, "Verify numbered list text content");
+		ZAssert.assertStringContains(actual.zGetMailProperty(Field.Body), underlineContent,
+				"Verify underline text content");
+		ZAssert.assertStringContains(actual.zGetMailProperty(Field.Body), colorFontContent,
+				"Verify colored body text content");
+		ZAssert.assertStringContains(actual.zGetMailProperty(Field.Body), colorBackgroundContent,
+				"Verify color background text content");
+		ZAssert.assertStringContains(actual.zGetMailProperty(Field.Body), multilineHtmlData,
+				"Verify font family and size of text content");
+		ZAssert.assertStringContains(actual.zGetMailProperty(Field.Body), numberedListContent,
+				"Verify numbered list text content");
 	}
 
 

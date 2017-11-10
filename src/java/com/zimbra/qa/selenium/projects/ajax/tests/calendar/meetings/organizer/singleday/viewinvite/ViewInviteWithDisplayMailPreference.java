@@ -51,7 +51,8 @@ public class ViewInviteWithDisplayMailPreference extends AjaxCommonTest {
 	public void ViewHTMLInviteWithHTMLPreference_01() throws HarnessException {
 
 		String multiLineHtmlContent = null;
-		if (ConfigProperties.getStringProperty("browser").contains("firefox")) {
+		if (ConfigProperties.getStringProperty("browser").contains("firefox")
+				|| ConfigProperties.getStringProperty("browser").contains("edge")) {
 			multiLineHtmlContent = "<div><span style=\"font-family: &quot;comic sans ms&quot;,&quot;comic sans&quot;,sans-serif; font-size: 14pt;\">Number list below :";
 		} else {
 			multiLineHtmlContent = "<div><span style=\"font-family: &quot;comic sans ms&quot;, &quot;comic sans&quot;, sans-serif; font-size: 14pt;\">Number list below :";
@@ -61,41 +62,34 @@ public class ViewInviteWithDisplayMailPreference extends AjaxCommonTest {
 		final String subject = "multiline HTML body";
 		final String boldContent = "<div><strong>BoldString</strong></div>";
 		final String italicContent = "<div><em>ItalicString</em></div>";
-		final String underlineContent ="<div><span style=\"text-decoration: underline;\">Underline String</span></div>";
-		final String colorFontContent ="<div><span style=\"color: rgb(255, 0, 0);\">Red Color text</span></div>";
-		final String colorBackgroundContent ="<div><span style=\"background-color: rgb(0, 128, 0);\">Green Background</span></div>";
-		final String numberedListContent ="<ol><li>point one</li><li>point two</li><li>point three</li></ol>";
-		final String htmlContentForSOAP = XmlStringUtil.escapeXml("<html><body id='htmlmode'><h3>The following is a new meeting request:</h3><p><table border='0'><tr><th align=left>Subject:</th><td>multiline HTML body </td></tr><tr><th align=left>Organizer:</th><td>'foo' &lt;foo@example.com&gt; </td></tr></table><p><table border='0'><tr><th align=left>Location:</th><td>https://test.webex.com/testweb </td></tr><tr><th align=left>Time:</th><td>Monday, November 7, 2016, 1:30:00 PM - 2:00:00 PM GMT +05:30 Chennai, Kolkata, Mumbai, New Delhi </td></tr></table><p><table border='0'><tr><th align=left>Invitees:</th><td>bar@example.com </td></tr></table><div>*~*~*~*~*~*~*~*~*~*</div><br><div style='font-family: arial, helvetica, sans-serif; font-size: 12pt; color: #000000'><div><strong>BoldString</strong></div><div><em>ItalicString</em></div><div><span style='text-decoration: underline;' data-mce-style='text-decoration: underline;'>Underline String</span></div><div><span style='color: rgb(255, 0, 0);' data-mce-style='color: #ff0000;'>Red Color text</span></div><div><span style='background-color: rgb(0, 128, 0);' data-mce-style='background-color: #008000;'>Green Background</span></div><div><br data-mce-bogus='1'></div><div><span style='font-family: &quot;comic sans ms&quot;, &quot;comic sans&quot;, sans-serif; font-size: 14pt;' data-mce-style='font-family: 'comic sans ms', 'comic sans', sans-serif; font-size: 14pt;'>Number list below :</span>&nbsp;</div><div><br data-mce-bogus='1'></div><ol><li>point one</li><li>point two</li><li>point three</li></ol></div></body></html>");
+		final String underlineContent = "<div><span style=\"text-decoration: underline;\">Underline String</span></div>";
+		final String colorFontContent = "<div><span style=\"color: rgb(255, 0, 0);\">Red Color text</span></div>";
+		final String colorBackgroundContent = "<div><span style=\"background-color: rgb(0, 128, 0);\">Green Background</span></div>";
+		final String numberedListContent = "<ol><li>point one</li><li>point two</li><li>point three</li></ol>";
+		final String htmlContentForSOAP = XmlStringUtil.escapeXml(
+				"<html><body id='htmlmode'><h3>The following is a new meeting request:</h3><p><table border='0'><tr><th align=left>Subject:</th><td>multiline HTML body </td></tr><tr><th align=left>Organizer:</th><td>'foo' &lt;foo@example.com&gt; </td></tr></table><p><table border='0'><tr><th align=left>Location:</th><td>https://test.webex.com/testweb </td></tr><tr><th align=left>Time:</th><td>Monday, November 7, 2016, 1:30:00 PM - 2:00:00 PM GMT +05:30 Chennai, Kolkata, Mumbai, New Delhi </td></tr></table><p><table border='0'><tr><th align=left>Invitees:</th><td>bar@example.com </td></tr></table><div>*~*~*~*~*~*~*~*~*~*</div><br><div style='font-family: arial, helvetica, sans-serif; font-size: 12pt; color: #000000'><div><strong>BoldString</strong></div><div><em>ItalicString</em></div><div><span style='text-decoration: underline;' data-mce-style='text-decoration: underline;'>Underline String</span></div><div><span style='color: rgb(255, 0, 0);' data-mce-style='color: #ff0000;'>Red Color text</span></div><div><span style='background-color: rgb(0, 128, 0);' data-mce-style='background-color: #008000;'>Green Background</span></div><div><br data-mce-bogus='1'></div><div><span style='font-family: &quot;comic sans ms&quot;, &quot;comic sans&quot;, sans-serif; font-size: 14pt;' data-mce-style='font-family: 'comic sans ms', 'comic sans', sans-serif; font-size: 14pt;'>Number list below :</span>&nbsp;</div><div><br data-mce-bogus='1'></div><ol><li>point one</li><li>point two</li><li>point three</li></ol></div></body></html>");
 		final String plainTextContentForSOAP = "BoldString\nItalicString\nUnderline String\nRed Color text\nGreen Background\n\nNumber list below :\n\n\n1. point one\n2. point two\n3. point three";
 
 		// Absolute dates in UTC zone
 		Calendar now = Calendar.getInstance();
-		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 8, 0, 0);
-		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 9, 0, 0);
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH),
+				8, 0, 0);
+		ZDate endUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 9,
+				0, 0);
 		String tz = ZTimeZone.getLocalTimeZone().getID();
 
 		// Create invite from AccountB to the current login user
-		ZimbraAccount.AccountB().soapSend(
-				"<CreateAppointmentRequest xmlns='urn:zimbraMail'>" +
-					 "<m>"+
-						"<inv><comp method='REQUEST' type='event' status='CONF' draft='0' class='PUB' fb='B' loc='' transp='O' allDay='0' name='"+ subject +"'>"+
-						"<or a='"+ ZimbraAccount.AccountB().EmailAddress +"'/>" +
-						"<at a='"+ app.zGetActiveAccount().EmailAddress + "' role='REQ'  ptst='NE'  rsvp='1'/>"+
-						"<s d='"+ startUTC.toTimeZone(tz).toYYYYMMDDTHHMMSS() + "' tz='"+ tz +"'/>" +
-						"<e d='"+ endUTC.toTimeZone(tz).toYYYYMMDDTHHMMSS() +"' tz='"+ tz +"'/>" +
-					 "</comp></inv>" +
-					 "<e a='"+ app.zGetActiveAccount().EmailAddress +"' t='t'/>" +
-					 "<mp ct='multipart/alternative'>" +
-						"<mp ct='text/plain'>" +
-						"<content>"+ plainTextContentForSOAP +"</content>" +
-						"</mp>" +
-						"<mp ct='text/html'>" +
-						"<content>"+ htmlContentForSOAP +"</content>" +
-						"</mp>" +
-					 "</mp>" +
-					 "<su>"+ subject +"</su>" +
-					 "</m>" +
-			   "</CreateAppointmentRequest>");
+		ZimbraAccount.AccountB()
+				.soapSend("<CreateAppointmentRequest xmlns='urn:zimbraMail'>" + "<m>"
+						+ "<inv><comp method='REQUEST' type='event' status='CONF' draft='0' class='PUB' fb='B' loc='' transp='O' allDay='0' name='"
+						+ subject + "'>" + "<or a='" + ZimbraAccount.AccountB().EmailAddress + "'/>" + "<at a='"
+						+ app.zGetActiveAccount().EmailAddress + "' role='REQ'  ptst='NE'  rsvp='1'/>" + "<s d='"
+						+ startUTC.toTimeZone(tz).toYYYYMMDDTHHMMSS() + "' tz='" + tz + "'/>" + "<e d='"
+						+ endUTC.toTimeZone(tz).toYYYYMMDDTHHMMSS() + "' tz='" + tz + "'/>" + "</comp></inv>" + "<e a='"
+						+ app.zGetActiveAccount().EmailAddress + "' t='t'/>" + "<mp ct='multipart/alternative'>"
+						+ "<mp ct='text/plain'>" + "<content>" + plainTextContentForSOAP + "</content>" + "</mp>"
+						+ "<mp ct='text/html'>" + "<content>" + htmlContentForSOAP + "</content>" + "</mp>" + "</mp>"
+						+ "<su>" + subject + "</su>" + "</m>" + "</CreateAppointmentRequest>");
 
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify appointment displayed in current view");
 
@@ -105,11 +99,16 @@ public class ViewInviteWithDisplayMailPreference extends AjaxCommonTest {
 		// Verify body content
 		ZAssert.assertStringContains(actual.zGetMailProperty(Field.Body), boldContent, "Verify bold text content");
 		ZAssert.assertStringContains(actual.zGetMailProperty(Field.Body), italicContent, "Verify italic text content");
-		ZAssert.assertStringContains(actual.zGetMailProperty(Field.Body), underlineContent, "Verify underline text content");
-		ZAssert.assertStringContains(actual.zGetMailProperty(Field.Body), colorFontContent, "Verify colored body text content");
-		ZAssert.assertStringContains(actual.zGetMailProperty(Field.Body), colorBackgroundContent, "Verify color background text content");
-		ZAssert.assertStringContains(actual.zGetMailProperty(Field.Body), multiLineHtmlContent, "Verify font family and size of text content");
-		ZAssert.assertStringContains(actual.zGetMailProperty(Field.Body), numberedListContent, "Verify numbered list text content");
+		ZAssert.assertStringContains(actual.zGetMailProperty(Field.Body), underlineContent,
+				"Verify underline text content");
+		ZAssert.assertStringContains(actual.zGetMailProperty(Field.Body), colorFontContent,
+				"Verify colored body text content");
+		ZAssert.assertStringContains(actual.zGetMailProperty(Field.Body), colorBackgroundContent,
+				"Verify color background text content");
+		ZAssert.assertTrue(actual.zGetMailProperty(Field.Body).contains(multiLineHtmlContent),
+				"Verify font family and size of text content");
+		ZAssert.assertStringContains(actual.zGetMailProperty(Field.Body), numberedListContent,
+				"Verify numbered list text content");
 	}
 
 
