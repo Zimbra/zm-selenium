@@ -942,7 +942,7 @@ public class FormApptNew extends AbsForm {
 						locator = "css=body[id='tinymce']";
 						this.sSelectFrame(
 								"css=div[class='ZmApptComposeView'] div[id$='_notes'] iframe[id$='_body_ifr']");
-						this.sClickAt(locator, "10,10");
+						this.sClick(locator);
 						this.sFocus(locator);
 						this.sType(locator, value);
 						// this.zKeyboard.zTypeCharacters(value);

@@ -40,11 +40,12 @@ public class DisplayMailContent extends PrefGroupMailByMessageTest {
 	public void DisplayHTMLMailWithHTMLPref_01() throws HarnessException {
 
 		String multilineHtmlData = null;
-	 	if (ConfigProperties.getStringProperty("browser").contains("firefox")) {
-	 	 	 multilineHtmlData = "<div><span style=\"font-size: 14pt;\"><span style=\"font-family: &quot;comic sans ms&quot;,&quot;comic sans&quot;,sans-serif;\">Number list below</span>:</span></div>";
-	 	} else {
-	 	 	 multilineHtmlData = "<div><span style=\"font-size: 14pt;\"><span style=\"font-family: &quot;comic sans ms&quot;, &quot;comic sans&quot;, sans-serif;\">Number list below</span>:</span></div>";
-	 	}
+		if (ConfigProperties.getStringProperty("browser").contains("firefox")
+				|| ConfigProperties.getStringProperty("browser").contains("edge")) {
+			multilineHtmlData = "<div><span style=\"font-size: 14pt;\"><span style=\"font-family: &quot;comic sans ms&quot;,&quot;comic sans&quot;,sans-serif;\">Number list below</span>:</span></div>";
+		} else {
+			multilineHtmlData = "<div><span style=\"font-size: 14pt;\"><span style=\"font-family: &quot;comic sans ms&quot;, &quot;comic sans&quot;, sans-serif;\">Number list below</span>:</span></div>";
+		}
 
 		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email19/multilineHTMLcontent.txt";
 		final String subject = "subject13214016725788";

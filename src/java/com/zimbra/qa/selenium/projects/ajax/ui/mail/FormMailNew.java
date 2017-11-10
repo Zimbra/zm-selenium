@@ -77,8 +77,11 @@ public class FormMailNew extends AbsForm {
 		public static final String zIncludeHeadersForward = "css=div[id$='_FORWARD_ATT__INCLUDE_HEADERS'] td[id$='_FORWARD_ATT__INCLUDE_HEADERS_title']";
 
 		public static final String zToField = "css=input[id^='zv__COMPOSE'][id$='_to_control']";
+		public static final String zToField_Edge = "css=textarea[id^='zv__COMPOSE'][id$='_to_control']";
 		public static final String zCcField = "css=input[id^=zv__COMPOSE][id$=_cc_control]";
+		public static final String zCcField_Edge = "css=textarea[id^=zv__COMPOSE][id$=_cc_control]";
 		public static final String zBccField = "css=input[id^=zv__COMPOSE][id$=_bcc_control]";
+		public static final String zBccField_Edge = "css=textarea[id^=zv__COMPOSE][id$=_bcc_control]";
 		public static final String zSubjectField = "css=div[id^=zv__COMPOSE] input[id$=_subject_control]";
 		public static final String zAttachmentField = "css=div[id$=_attachments_div]";
 		public static final String zAttachmentImage = "css=div[id$=_attachments_div] div[class='ImgAttachment']";
@@ -1040,15 +1043,27 @@ public class FormMailNew extends AbsForm {
 
 		if (field == Field.To) {
 
-			locator = Locators.zToField;
+			if (ConfigProperties.getStringProperty("browser").equals("edge")) {
+				locator = Locators.zToField_Edge;
+			} else {
+				locator = Locators.zToField;
+			}
 
 		} else if (field == Field.Cc) {
 
-			locator = Locators.zCcField;
+			if (ConfigProperties.getStringProperty("browser").equals("edge")) {
+				locator = Locators.zCcField_Edge;
+			} else {
+				locator = Locators.zCcField;
+			}
 
 		} else if (field == Field.Bcc) {
 
-			locator = Locators.zBccField;
+			if (ConfigProperties.getStringProperty("browser").equals("edge")) {
+				locator = Locators.zBccField_Edge;
+			} else {
+				locator = Locators.zBccField;
+			}
 
 			// Make sure the BCC field is showing
 			if (!zBccIsActive()) {

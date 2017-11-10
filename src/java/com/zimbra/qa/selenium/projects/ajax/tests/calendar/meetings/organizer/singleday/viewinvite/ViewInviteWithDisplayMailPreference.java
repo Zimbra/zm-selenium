@@ -51,7 +51,8 @@ public class ViewInviteWithDisplayMailPreference extends AjaxCommonTest {
 	public void ViewHTMLInviteWithHTMLPreference_01() throws HarnessException {
 
 		String multiLineHtmlContent = null;
-		if (ConfigProperties.getStringProperty("browser").contains("firefox")) {
+		if (ConfigProperties.getStringProperty("browser").contains("firefox")
+				|| ConfigProperties.getStringProperty("browser").contains("edge")) {
 			multiLineHtmlContent = "<div><span style=\"font-family: &quot;comic sans ms&quot;,&quot;comic sans&quot;,sans-serif; font-size: 14pt;\">Number list below :";
 		} else {
 			multiLineHtmlContent = "<div><span style=\"font-family: &quot;comic sans ms&quot;, &quot;comic sans&quot;, sans-serif; font-size: 14pt;\">Number list below :";

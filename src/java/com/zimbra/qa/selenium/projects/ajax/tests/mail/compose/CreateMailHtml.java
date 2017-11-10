@@ -88,8 +88,13 @@ public class CreateMailHtml extends PrefGroupMailByMessageTest {
 		final String dSubject = "subject" + ConfigProperties.getUniqueString();
 		final String dBodyHtmlBold = "<strong>BoldString</strong>";
 		final String dBodyHtmlItalic = "<br></div><div><span id=\"_mce_caret\"><em>ItalicString</em>";
-		final String dBodyHtmlRedColorText = "</span></span><br></div><div><span id=\"_mce_caret\"><span style=\"color: rgb(255, 0, 0);\">RedColorText</span><span id=\"_mce_caret\"></span></span>";
-		final String dBodyHtmlGreenBackgroundText = "<br></div><div><span id=\"_mce_caret\"><span style=\"background-color: rgb(0, 128, 0);\">GreenBackgroundText</span><span id=\"_mce_caret\"></span></span>";
+		String dBodyHtmlRedColorText = "</span></span><br></div><div><span id=\"_mce_caret\"><span style=\"color: rgb(255, 0, 0);\">RedColorText</span><span id=\"_mce_caret\"></span></span>";
+		String dBodyHtmlGreenBackgroundText = "<br></div><div><span id=\"_mce_caret\"><span style=\"background-color: rgb(0, 128, 0);\">GreenBackgroundText</span><span id=\"_mce_caret\"></span></span>";
+
+		if (ConfigProperties.getStringProperty("browser").equals("edge")) {
+			dBodyHtmlRedColorText = "</span></span><br></div><div><span id=\"_mce_caret\"><span style=\"color: #ff0000;\">RedColorText</span><span id=\"_mce_caret\"></span></span>";
+			dBodyHtmlGreenBackgroundText = "<br></div><div><span id=\"_mce_caret\"><span style=\"background-color: #008000;\">GreenBackgroundText</span><span id=\"_mce_caret\"></span></span>";
+		}
 
 		// Open the new mail form
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
