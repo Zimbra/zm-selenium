@@ -63,15 +63,15 @@ public class ComposeMsgWithTextSignature extends AjaxCommonTest {
 	 * text signature Send mail to self and verify signature through soap.
 	 */
 
-	@Bugs(ids = "78085")
-	@Test (description = " Compose Msg with text signature and Verify signature thropugh soap",
+	@Bugs (ids = "78085")
+	@Test (description = "Compose message with text signature and Verify signature thropugh soap",
 			groups = { "functional", "L3" })
 
 	public void ComposeMsgWithTextSignature_01() throws HarnessException {
 
 		// Signature is created
 		SignatureItem signature = SignatureItem.importFromSOAP(app.zGetActiveAccount(), this.sigName);
-		ZAssert.assertEquals(signature.getName(), this.sigName, "verified Text Signature is created");
+		ZAssert.assertEquals(signature.getName(), this.sigName, "Verify text signature is created");
 
 		// Create the message data to be sent
 		MailItem mail = new MailItem();

@@ -34,7 +34,7 @@ public class ReplyMailText extends PrefGroupMailByMessageTest {
 	@Test (description = "Reply a plain text mail using Text editor",
 			groups = { "smoke", "L1" })
 
-	public void replyPlainTextMail() throws HarnessException {
+	public void ReplyPlainTextMail_01() throws HarnessException {
 
 		String subject = "subject"+ ConfigProperties.getUniqueString();
 

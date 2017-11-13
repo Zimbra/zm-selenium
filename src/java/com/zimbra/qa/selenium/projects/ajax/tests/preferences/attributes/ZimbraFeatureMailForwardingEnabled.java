@@ -38,7 +38,7 @@ public class ZimbraFeatureMailForwardingEnabled extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids="98850")
+	@Bugs (ids = "98850")
 	@Test (description = "Verify preferences does not show 'Forward a copy to', if zimbraFeatureMailForwardingEnabled=FALSE",
 			groups = { "functional", "L2" })
 
@@ -62,7 +62,7 @@ public class ZimbraFeatureMailForwardingEnabled extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "71403")
+	@Bugs (ids = "71403")
 	@Test (description = "Bug 71403: Verify duplicate message lables do not exist in preferences (When a message arrives)",
 			groups = { "functional", "L2" })
 

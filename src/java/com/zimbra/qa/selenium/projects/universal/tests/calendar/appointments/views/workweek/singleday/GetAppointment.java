@@ -29,8 +29,8 @@ public class GetAppointment extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 	
-	@Bugs(ids = "69132")
-	@Test( description = "View a basic appointment in the work week view",
+	@Bugs (ids = "69132")
+	@Test (description = "View a basic appointment in the work week view",
 			groups = { "smoke", "L1" })
 	public void GetAppointment_01() throws HarnessException {
 		

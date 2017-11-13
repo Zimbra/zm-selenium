@@ -32,7 +32,7 @@ public class CreateACopy extends CalendarWorkWeekTest {
 		super.startingPage =  app.zPageCalendar;
 	}
 	
-	@Test( description = "Copy meeting invite and verify content",
+	@Test (description = "Copy meeting invite and verify content",
 			groups = { "smoke", "L1" })
 			
 	public void CopyMeeting_01() throws HarnessException {

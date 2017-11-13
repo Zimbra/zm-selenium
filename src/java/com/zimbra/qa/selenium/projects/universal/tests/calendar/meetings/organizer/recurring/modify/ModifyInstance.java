@@ -36,7 +36,7 @@ public class ModifyInstance extends CalendarWorkWeekTest {
 		
 	}
 	
-	@Test( description = "Modify series instance by adding one more attendee & modified subject/body", 
+	@Test (description = "Modify series instance by adding one more attendee & modified subject/body", 
 			groups = { "functional", "L2" })
 	public void ModifyInstance_01() throws HarnessException {
 

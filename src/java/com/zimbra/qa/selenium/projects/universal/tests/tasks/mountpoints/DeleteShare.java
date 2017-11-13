@@ -50,7 +50,7 @@ public class DeleteShare extends UniversalCommonTest {
 
 	}
 
-	@Test( description = "Share and Revoke folder ",
+	@Test (description = "Share and Revoke folder ",
 			groups = { "smoke", "L1"})
 	public void DeleteShare_01() throws HarnessException {
 

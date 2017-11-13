@@ -31,7 +31,7 @@ public class ArchiveMessage extends ArchiveZimletByMessageTest {
 	}
 
 
-	@Bugs(ids = "80238")
+	@Bugs (ids = "80238")
 	@Test (description = "Archive a message from new window",
 			groups = { "smoke-skip", "application-bug" })
 

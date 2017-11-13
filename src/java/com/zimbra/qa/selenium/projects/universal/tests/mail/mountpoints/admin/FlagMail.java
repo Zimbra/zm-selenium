@@ -35,7 +35,7 @@ public class FlagMail extends PrefGroupMailByMessageTest {
 		
 	}
 	
-	@Test( description = "Verify success on Flag a shared mail (admin share)",
+	@Test (description = "Verify success on Flag a shared mail (admin share)",
 			groups = { "functional", "L2" })
 	public void FlagMail_01() throws HarnessException {
 		String foldername = "folder" + ConfigProperties.getUniqueString();
@@ -114,7 +114,7 @@ public class FlagMail extends PrefGroupMailByMessageTest {
 	}
 
 	
-	@Test( description = "Verify Permission Denied on Flag (keyboard='mf') a shared mail (read-only share)",
+	@Test (description = "Verify Permission Denied on Flag (keyboard='mf') a shared mail (read-only share)",
 			groups = { "functional", "L2" })
 	public void FlagMail_02() throws HarnessException {
 		String foldername = "folder" + ConfigProperties.getUniqueString();

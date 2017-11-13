@@ -47,7 +47,7 @@ public class GetMessage extends UniversalCommonTest {
 		}};
 	}
 	
-	@Test( description = "Receive a mail with a basic emoticon",
+	@Test (description = "Receive a mail with a basic emoticon",
 			groups = { "functional", "L2" })
 	public void GetMessage_01() throws HarnessException {
 		

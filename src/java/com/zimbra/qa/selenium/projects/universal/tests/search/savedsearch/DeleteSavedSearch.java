@@ -41,7 +41,7 @@ public class DeleteSavedSearch extends UniversalCommonTest  {
 		
 	}
 	
-	@Test( description = "Delete a saved search",
+	@Test (description = "Delete a saved search",
 			groups = { "smoke","L0" })
 	public void DeleteSavedSearch_01() throws HarnessException {				
 

@@ -35,10 +35,10 @@ public class CreateContactGroup extends AjaxCommonTest {
 	}
 
 
-	@Test (description = "Create a basic contact group with 2 addresses.  New -> Contact Group and verify toast msg",
+	@Test (description = "Create a basic contact group with 2 addresses.  New -> Contact Group and verify toast message",
 			groups = { "functional", "L2" })
 
-	public void CreateContactGroupToastMsg_01() throws HarnessException {
+	public void CreateContactGroup_01() throws HarnessException {
 
 		String groupName = "group" + ConfigProperties.getUniqueString();
 		String member1 = "m" + ConfigProperties.getUniqueString() + "@example.com";
@@ -64,15 +64,15 @@ public class CreateContactGroup extends AjaxCommonTest {
 
 		// Verifying the toaster message
 		Toaster toast = app.zPageMain.zGetToaster();
-		String toastMsg = toast.zGetToastMessage();
-		ZAssert.assertStringContains(toastMsg, "Group Created", "Verify toast message: Group Created");
+		String toastMessage = toast.zGetToastMessage();
+		ZAssert.assertStringContains(toastMessage, "Group Created", "Verify toast message: Group Created");
 	}
 
 
-	@Test (description = "Create a contact group with existing contacts and verify toast msg",
+	@Test (description = "Create a contact group with existing contacts and verify toast message",
 			groups = { "functional", "L2" })
 
-	public void CreateContactGroupToastMsg_02() throws HarnessException {
+	public void CreateContactGroup_02() throws HarnessException {
 
 		// The contact group name
 		String groupName = "group" + ConfigProperties.getUniqueString();
@@ -110,7 +110,7 @@ public class CreateContactGroup extends AjaxCommonTest {
 
 		// Verifying the toaster message
 		Toaster toast = app.zPageMain.zGetToaster();
-		String toastMsg = toast.zGetToastMessage();
-		ZAssert.assertStringContains(toastMsg, "Group Created", "Verify toast message: Group Created");
+		String toastMessage = toast.zGetToastMessage();
+		ZAssert.assertStringContains(toastMessage, "Group Created", "Verify toast message: Group Created");
 	}
 }

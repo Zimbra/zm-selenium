@@ -32,7 +32,7 @@ public class DeleteFeed extends PrefGroupMailByMessageTest {
 		logger.info("New "+ DeleteFeed.class.getCanonicalName());
 	}
 
-	@Test( description = "Delete a feed folder - Right click, Delete", groups = { "smoke", "L1" })
+	@Test (description = "Delete a feed folder - Right click, Delete", groups = { "smoke", "L1" })
 
 	public void DeleteFeed_01() throws HarnessException, MalformedURLException {
 

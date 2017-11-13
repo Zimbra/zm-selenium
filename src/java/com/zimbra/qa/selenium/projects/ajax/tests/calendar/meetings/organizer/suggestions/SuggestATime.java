@@ -32,7 +32,7 @@ public class SuggestATime extends AjaxCommonTest {
 		super.startingPage = app.zPageCalendar;
 	}
 
-	@Bugs(ids = "73966,88287")
+	@Bugs (ids = "73966,88287")
 	@Test (description = "Suggest a free time while creating appointment",
 			groups = { "smoke", "L1" })
 

@@ -73,7 +73,7 @@ public class FromAlias extends PrefGroupMailByMessageTest {
 		
 	}
 
-	@Test( description = "Send a mail using an alias as From",
+	@Test (description = "Send a mail using an alias as From",
 			groups = { "functional", "L2" })
 	public void FromAlias_01() throws HarnessException {
 		

@@ -44,7 +44,7 @@ public class OwnerAccountMaintenance extends AjaxCommonTest {
 	@Test (description = "Login to the Ajax Client - with a mountpoint to a 'in-maintenance' account",
 			groups = { "functional", "L3" })
 
-	public void OwnerAccountMaintenance01() throws HarnessException {
+	public void OwnerAccountMaintenance_01() throws HarnessException {
 
 		String subject = "subject" + ConfigProperties.getUniqueString();
 		String foldername = "folder" + ConfigProperties.getUniqueString();

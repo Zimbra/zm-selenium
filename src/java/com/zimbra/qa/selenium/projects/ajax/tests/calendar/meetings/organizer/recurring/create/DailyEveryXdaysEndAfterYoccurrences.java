@@ -34,7 +34,7 @@ public class DailyEveryXdaysEndAfterYoccurrences extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "96566")
+	@Bugs (ids = "96566")
 	@Test (description = "Create daily recurring invite with attendee and location with particular week day & end after particular instances",
 			groups = { "sanity", "L0" })
 

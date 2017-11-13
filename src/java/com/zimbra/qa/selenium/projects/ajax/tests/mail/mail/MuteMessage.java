@@ -30,7 +30,7 @@ public class MuteMessage extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Bugs(ids = "38449")
+	@Bugs (ids = "38449")
 	@Test (description = "Mute a message (conversation) using Actions -> Mute",
 			groups = { "smoke-skip", "application-bug" })
 
@@ -67,7 +67,7 @@ public class MuteMessage extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Bugs( ids = "38449")
+	@Bugs (ids = "38449")
 	@Test (description = "Mute message, using 'Mute' shortcut key",
 			groups = { "functional-skip", "application-bug" })
 

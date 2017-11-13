@@ -269,7 +269,7 @@ public class AutoCompleteGAL extends PrefGroupMailByMessageTest {
 	@Test (description = "Autocomplete using the GAL - First Name and Last Initial",
 			groups = { "functional", "L3" })
 
-	public void AutoCompleteGAL_07() throws HarnessException {
+	public void AutoCompleteGAL_06() throws HarnessException {
 
 		// Message properties
 		String subject = "subject" + ConfigProperties.getUniqueString();
@@ -314,7 +314,7 @@ public class AutoCompleteGAL extends PrefGroupMailByMessageTest {
 	@Test (description = "Autocomplete using the GAL - Multiple Matches",
 			groups = { "functional", "L2" })
 
-	public void AutoCompleteGAL_08() throws HarnessException {
+	public void AutoCompleteGAL_07() throws HarnessException {
 
 		int count = 3;
 
@@ -353,7 +353,7 @@ public class AutoCompleteGAL extends PrefGroupMailByMessageTest {
 	@Test (description = "Autocomplete using the GAL - No Matches",
 			groups = { "functional", "L2" })
 
-	public void AutoCompleteGAL_09() throws HarnessException {
+	public void AutoCompleteGAL_08() throws HarnessException {
 
 		// Message properties
 		String subject = "subject" + ConfigProperties.getUniqueString();
@@ -379,11 +379,11 @@ public class AutoCompleteGAL extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Bugs( ids = "45815")
+	@Bugs (ids = "45815")
 	@Test (description = "Autocomplete using the GAL - Apostrophe character",
 			groups = { "functional", "L3" })
 
-	public void AutoCompleteGAL_10() throws HarnessException {
+	public void AutoCompleteGAL_09() throws HarnessException {
 
 		final String givenName = "Thomas" + ConfigProperties.getUniqueString();
 		final String sn = "O'Connor" + ConfigProperties.getUniqueString();
@@ -437,11 +437,11 @@ public class AutoCompleteGAL extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Bugs(ids = "47045")
+	@Bugs (ids = "47045")
 	@Test (description = "Autocomplete including a period/dot '.' in the string",
 			groups = { "functional", "L3" })
 
-	public void AutoCompleteGAL_Bug47045A() throws HarnessException {
+	public void AutoCompleteGAL_Bug47045_10() throws HarnessException {
 
 		if ( SampleAccount == null ) {
 			SampleAccount = new ZimbraAccount();
@@ -484,11 +484,11 @@ public class AutoCompleteGAL extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Bugs(ids = "47045")
+	@Bugs (ids = "47045")
 	@Test (description = "Autocomplete including a period/dot '.' in the string",
 			groups = { "functional", "L3" })
 
-	public void AutoCompleteGAL_Bug47045B() throws HarnessException {
+	public void AutoCompleteGAL_Bug47045_11() throws HarnessException {
 
 		if ( SampleAccount == null ) {
 			SampleAccount = new ZimbraAccount();
@@ -531,11 +531,11 @@ public class AutoCompleteGAL extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Bugs(ids = "40959, 65081")
+	@Bugs (ids = "40959, 65081")
 	@Test (description = "Autocomplete on 'mike m' should not return all 'mike' names, only those with last name starting with 'm'",
 			groups = { "functional", "L3" })
 
-	public void AutoCompleteGAL_Bug40959() throws HarnessException {
+	public void AutoCompleteGAL_Bug40959_12() throws HarnessException {
 
 		final String givenName1 = "Mike";
 		final String sn1 = "Carter" + ConfigProperties.getUniqueString();

@@ -38,8 +38,8 @@ public class CreateFilter extends UniversalCommonTest {
 		super.startingPage = app.zPagePreferences;
 	}
 
-	@Bugs(ids="97040")
-	@Test( description = "Create a basic Incoming Message Filter",	
+	@Bugs (ids = "97040")
+	@Test (description = "Create a basic Incoming Message Filter",	
 			groups = { "sanity", "L0" } )
     
 	public void CreateFilter_01() throws HarnessException {
@@ -82,7 +82,7 @@ public class CreateFilter extends UniversalCommonTest {
 	}
     
     
-    @Test( description = "Create a basic Outgoing Message Filter",	groups = { "smoke", "L1"  } )
+    @Test (description = "Create a basic Outgoing Message Filter",	groups = { "smoke", "L1"  } )
     
 	public void CreateFilter_02() throws HarnessException {
     	

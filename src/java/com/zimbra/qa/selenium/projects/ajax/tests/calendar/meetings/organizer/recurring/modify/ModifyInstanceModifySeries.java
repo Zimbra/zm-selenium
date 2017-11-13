@@ -38,7 +38,7 @@ public class ModifyInstanceModifySeries extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "66800")
+	@Bugs (ids = "66800")
 	@Test (description = "Delete series from third instance and onwards",
 			groups = { "functional", "L2" })
 
@@ -143,7 +143,7 @@ public class ModifyInstanceModifySeries extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "66800")
+	@Bugs (ids = "66800")
 	@Test (description = "Delete series from third instance and onwards",
 			groups = { "functional", "L2" })
 

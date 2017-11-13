@@ -37,7 +37,7 @@ public class ZimbraFeatureChangePasswordEnabledFalse extends AjaxCommonTest {
 		}};
 	}
 
-	@Bugs(ids="63439")
+	@Bugs (ids = "63439")
 	@Test(	description = "Verify the 'Change Password' option is not present in preferences",
 			groups = { "functional", "L2" })
 

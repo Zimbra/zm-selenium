@@ -31,7 +31,7 @@ public class ReplyMail extends PrefGroupMailByMessageTest {
 	}
 
 	
-	@Test( description = "Reply to a mail by pressing Reply button - in separate window",
+	@Test (description = "Reply to a mail by pressing Reply button - in separate window",
 			groups = { "smoke", "L1" })
 	
 	public void ReplyMailFromNewWindow_01() throws HarnessException {
@@ -97,7 +97,7 @@ public class ReplyMail extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Reply a  message , using keyboard shortcut (keyboard='r') - in a separate window",
+	@Test (description = "Reply a  message , using keyboard shortcut (keyboard='r') - in a separate window",
 			groups = { "smoke", "L1" })
 	public void ReplyMailFromNewWindow_02() throws HarnessException {
 
@@ -165,7 +165,7 @@ public class ReplyMail extends PrefGroupMailByMessageTest {
 	}
 	
 	
-	@Test( description = "Reply All a  message , using keyboard shortcut (keyboard='a') - in a separate window",
+	@Test (description = "Reply All a  message , using keyboard shortcut (keyboard='a') - in a separate window",
 			groups = { "smoke", "L1" })
 	
 	public void ReplyAllMailFromNewWindow_03() throws HarnessException {

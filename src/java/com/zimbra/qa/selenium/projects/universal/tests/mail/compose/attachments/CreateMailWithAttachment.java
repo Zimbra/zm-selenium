@@ -34,7 +34,7 @@ public class CreateMailWithAttachment extends PrefGroupMailByMessageTest {
 		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "html");
 	}
 
-	@Test( description = "Send a mail by adding attachment",
+	@Test (description = "Send a mail by adding attachment",
 			groups = { "sanity", "L0" })
 
 	public void CreateMailWithAttachment_01() throws HarnessException {

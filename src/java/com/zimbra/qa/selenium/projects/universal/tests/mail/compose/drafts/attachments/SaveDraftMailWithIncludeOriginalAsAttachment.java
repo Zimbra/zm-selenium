@@ -38,8 +38,8 @@ public class SaveDraftMailWithIncludeOriginalAsAttachment extends PrefGroupMailB
 	}
 
 	
-	@Bugs( ids = "104334")
-	@Test( description = "Reply to a mail with include original as attachment, format as HTML and save draft",
+	@Bugs (ids = "104334")
+	@Test (description = "Reply to a mail with include original as attachment, format as HTML and save draft",
 			groups = { "functional", "L2" })
 
 	public void SaveDraftMailWithIncludeOriginalAsAttachment_01() throws HarnessException {
@@ -87,8 +87,8 @@ public class SaveDraftMailWithIncludeOriginalAsAttachment extends PrefGroupMailB
 	}
 
 	
-	@Bugs( ids = "104334")
-	@Test( description = "Reply to a mail with include original as attachment, format as text and save draft",
+	@Bugs (ids = "104334")
+	@Test (description = "Reply to a mail with include original as attachment, format as text and save draft",
 			groups = { "functional", "L2" })
 
 	public void SaveDraftMailWithIncludeOriginalAsAttachment_02() throws HarnessException {

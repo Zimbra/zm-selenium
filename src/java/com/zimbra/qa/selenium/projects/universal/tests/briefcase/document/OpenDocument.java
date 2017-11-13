@@ -47,8 +47,8 @@ public class OpenDocument extends FeatureBriefcaseTest {
 		super.startingAccountPreferences.put("zimbraPrefBriefcaseReadingPaneLocation", "bottom");				
 	}
 
-	@Bugs(ids = "97124")
-	@Test( description = "Create document through SOAP - open & verify through GUI", 
+	@Bugs (ids = "97124")
+	@Test (description = "Create document through SOAP - open & verify through GUI", 
 			groups = { "smoke", "L0" })
 	public void OpenDocument_01() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
@@ -134,7 +134,7 @@ public class OpenDocument extends FeatureBriefcaseTest {
 		 */
 	}
 
-	@Test( description = "Create document through SOAP - Double click to open in new window & verify through GUI", groups = { "functional","L1" })
+	@Test (description = "Create document through SOAP - Double click to open in new window & verify through GUI", groups = { "functional","L1" })
 	public void OpenDocument_02() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
 
@@ -200,7 +200,7 @@ public class OpenDocument extends FeatureBriefcaseTest {
 		app.zPageBriefcase.deleteFileByName(docName);
 	}
 	
-	@Test( description = "Create document through SOAP - open using Right Click Context Menu & verify through GUI", groups = { "functional", "L2" })
+	@Test (description = "Create document through SOAP - open using Right Click Context Menu & verify through GUI", groups = { "functional", "L2" })
 	public void OpenDocument_03() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
 

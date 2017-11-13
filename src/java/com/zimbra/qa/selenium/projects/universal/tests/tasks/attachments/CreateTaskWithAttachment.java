@@ -42,8 +42,8 @@ public class CreateTaskWithAttachment extends PrefGroupMailByMessageTest {
 		}};
 	}
 
-	@Bugs(ids = "104231")
-	@Test( description = "Create task with attachment", 
+	@Bugs (ids = "104231")
+	@Test (description = "Create task with attachment", 
 		groups = { "sanity", "L0"})
 
 	public void CreateTaskWithAttachment_01() throws HarnessException {

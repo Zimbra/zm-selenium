@@ -40,7 +40,7 @@ public class GetAppointment extends CalendarWorkWeekTest {
 		super.startingAccountPreferences.put("zimbraPrefCalendarInitialView", "week");
 	}
 
-	@Test( description = "Verify the presence of appointment in Trash after deletion.",
+	@Test (description = "Verify the presence of appointment in Trash after deletion.",
 			groups = { "smoke", "L0" })
 	
 	public void GetAppointment_01() throws HarnessException {

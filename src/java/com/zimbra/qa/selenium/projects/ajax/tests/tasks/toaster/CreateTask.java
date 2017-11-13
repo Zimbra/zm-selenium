@@ -34,9 +34,9 @@ public class CreateTask extends AjaxCommonTest {
 
 		logger.info("New " + CreateTask.class.getCanonicalName());
 		super.startingPage = app.zPageTasks;
-		super.startingAccountPreferences = new HashMap<String, String>() { {
+		super.startingAccountPreferences = new HashMap<String, String>() {{
 			put("zimbraPrefTasksReadingPaneLocation", "bottom");
-		} };
+		}};
 	}
 
 
@@ -56,7 +56,7 @@ public class CreateTask extends AjaxCommonTest {
 
 		// Verifying the toaster message
 		Toaster toast = app.zPageMain.zGetToaster();
-		String toastMsg = toast.zGetToastMessage();
-		ZAssert.assertStringContains(toastMsg, "Task Saved","Verify toast message: Task Saved");
+		String toastMessage = toast.zGetToastMessage();
+		ZAssert.assertStringContains(toastMessage, "Task Saved","Verify toast message: Task Saved");
 	}
 }

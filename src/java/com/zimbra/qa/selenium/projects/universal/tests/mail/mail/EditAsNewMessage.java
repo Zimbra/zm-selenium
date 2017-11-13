@@ -35,7 +35,7 @@ public class EditAsNewMessage extends PrefGroupMailByMessageTest {
 	
 	
 	
-	@Test( description = "'Edit as new' message, using 'Actions -> Edit as New' toolbar button",
+	@Test (description = "'Edit as new' message, using 'Actions -> Edit as New' toolbar button",
 			groups = { "smoke", "L1" })
 	public void EditAsNewMessage_01() throws HarnessException {
 		
@@ -83,7 +83,7 @@ public class EditAsNewMessage extends PrefGroupMailByMessageTest {
 	}
 
 	
-	@Test( description = "'Edit as new' message, using 'Right Click' -> 'Edit as new'",
+	@Test (description = "'Edit as new' message, using 'Right Click' -> 'Edit as new'",
 			groups = { "functional", "L2" })
 	public void EditAsNewMessage_02() throws HarnessException {
 		

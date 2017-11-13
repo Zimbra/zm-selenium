@@ -45,7 +45,7 @@ public class DeployAdminExtensions extends AdminCommonTest {
 	 * 3. Verify extension is listed under admin extensions
 	 * @throws HarnessException
 	 */
-	@Bugs(ids="ZCS-1059")
+	@Bugs (ids = "ZCS-1059")
 	@Test(	description = "Deploy admin extension",
 			groups = { "smoke", "L1" })
 

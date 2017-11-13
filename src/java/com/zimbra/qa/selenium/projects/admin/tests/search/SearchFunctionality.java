@@ -406,7 +406,7 @@ public class SearchFunctionality extends AdminCommonTest {
 	 */
 	@Test (description = "Verify search functionality of maintenance accounts.",
 			groups = { "smoke", "L1" })
-			public void SearchFunctionality_9() throws HarnessException {
+			public void SearchFunctionality_09() throws HarnessException {
 	
 		// Create a new maintenance account in the Admin Console using SOAP
 		AccountItem account = new AccountItem("email" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));

@@ -45,7 +45,7 @@ public class OpenAssistant extends UniversalCommonTest {
  * Result:- Zimbra Assistant dialog should get open
  * @throws HarnessException
  */
-	@Test( description = "Open the assistant", 
+	@Test (description = "Open the assistant", 
 			groups = { "deprecated", "L4"})
 	public void OpenAssistant_01() throws HarnessException {
 

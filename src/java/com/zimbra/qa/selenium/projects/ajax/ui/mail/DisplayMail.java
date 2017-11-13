@@ -892,13 +892,13 @@ public class DisplayMail extends AbsDisplay {
 			indexOfOrignalMsg = displayedBody.indexOf("Original Message");
 		}
 
-		if (placeOfSignature.equals("AboveIncludedMsg")) {
+		if (placeOfSignature.equals("AboveIncludedMessage")) {
 			Assert.assertTrue(indexOfSignature <= indexOfOrignalMsg,
-					"The signature body " + signatureBody + " is  displayed above the Mail body");
+					"The signature body " + signatureBody + " is  displayed above the mail body");
 
-		} else if (placeOfSignature.equals("BelowIncludedMsg")) {
+		} else if (placeOfSignature.equals("BelowIncludedMessage")) {
 			Assert.assertTrue(indexOfSignature > indexOfOrignalMsg,
-					"The signature body " + signatureBody + " is  displayed below the Mail body");
+					"The signature body " + signatureBody + " is  displayed below the mail body");
 		}
 	}
 
@@ -912,13 +912,13 @@ public class DisplayMail extends AbsDisplay {
 		indexOfSignature = displayedBody.indexOf(signatureBody);
 		indexOfOrignalMsg = displayedBody.indexOf("From");
 
-		if (placeOfSignature.equals("AboveIncludedMsg")) {
+		if (placeOfSignature.equals("AboveIncludedMessage")) {
 			Assert.assertTrue(indexOfSignature <= indexOfOrignalMsg,
-					"The signature body " + signatureBody + " is  displayed above the Mail body");
+					"The signature body " + signatureBody + " is  displayed above the mail body");
 
-		} else if (placeOfSignature.equals("BelowIncludedMsg")) {
+		} else if (placeOfSignature.equals("BelowIncludedMessage")) {
 			Assert.assertTrue(indexOfSignature > indexOfOrignalMsg,
-					"The signature body " + signatureBody + " is  displayed below the Mail body");
+					"The signature body " + signatureBody + " is  displayed below the mail body");
 		}
 	}
 

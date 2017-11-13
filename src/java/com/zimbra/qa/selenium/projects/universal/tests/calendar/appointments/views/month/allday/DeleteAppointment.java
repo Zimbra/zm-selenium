@@ -48,8 +48,8 @@ public class DeleteAppointment extends UniversalCommonTest {
 
 	}
 	
-	@Bugs(ids = "69132")
-	@Test( description = "Delete an all-day appointment in the month view",
+	@Bugs (ids = "69132")
+	@Test (description = "Delete an all-day appointment in the month view",
 			groups = { "functional", "L2" })
 	public void DeleteAppointment_01() throws HarnessException {
 		

@@ -37,7 +37,7 @@ public class GetQuickCommand extends UniversalQuickCommandTest {
 
 	}
 
-	@Bugs(ids = "71389")	// Hold off on GUI implementation of Quick Commands in 8.X
+	@Bugs (ids = "71389")	// Hold off on GUI implementation of Quick Commands in 8.X
 	@Test(
 			description = "Get a list of basic Quick Commands",
 			groups = { "deprecated", "L4" }
@@ -53,7 +53,7 @@ public class GetQuickCommand extends UniversalQuickCommandTest {
 
 	}
 	
-	@Bugs(ids = "71389")	// Hold off on GUI implementation of Quick Commands in 8.X
+	@Bugs (ids = "71389")	// Hold off on GUI implementation of Quick Commands in 8.X
 	@Test(
 			description = "Verify the Quick Command data in the list",
 			groups = { "deprecated", "L4" }

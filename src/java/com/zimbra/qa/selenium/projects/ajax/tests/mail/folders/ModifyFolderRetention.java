@@ -32,7 +32,7 @@ public class ModifyFolderRetention extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Bugs( ids = "97126")
+	@Bugs (ids = "97126")
 	@Test (description = "Modify a basic retention (Context menu -> Edit -> Retention) (zimbraFeatureSharingEnabled=FALSE)",
 			groups = { "functional", "L3" } )
 

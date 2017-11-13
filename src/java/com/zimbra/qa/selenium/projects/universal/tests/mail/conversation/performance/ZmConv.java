@@ -47,7 +47,7 @@ public class ZmConv extends UniversalCommonTest {
 	}
 	
 	
-	@Test( description = "Measure the performance for conversation view, preview pane, text message, initial load",
+	@Test (description = "Measure the performance for conversation view, preview pane, text message, initial load",
 			groups = { "performance","L4" })
 	public void ZmMailItem_01() throws HarnessException {
 		

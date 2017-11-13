@@ -44,7 +44,7 @@ public class GetTask extends UniversalCommonTest {
 		}};
 	}
 	
-	@Test( description = "View a simple task",
+	@Test (description = "View a simple task",
 			groups = { "smoke", "L0"})
 
 	public void GetTask_01() throws HarnessException {
@@ -91,8 +91,8 @@ public class GetTask extends UniversalCommonTest {
 	
 	}
 
-	@Bugs(ids="72236")
-	@Test( description = "Verify Text Only Task that can display the body in the preview pane",
+	@Bugs (ids = "72236")
+	@Test (description = "Verify Text Only Task that can display the body in the preview pane",
 			groups = { "smoke", "L0"})
 
 	public void GetTask_02() throws HarnessException {
@@ -135,7 +135,7 @@ public class GetTask extends UniversalCommonTest {
 		ZAssert.assertStringContains(actual.zGetTaskProperty(Field.Body), content, "Verify the body matches");		
 	}
 
-	@Test( description = "Verify Multipart/alternative (text and html) task that can be display the body in preview pane",
+	@Test (description = "Verify Multipart/alternative (text and html) task that can be display the body in preview pane",
 			groups = { "smoke", "L0"})
 	
 	public void GetTask_03() throws HarnessException {
@@ -196,8 +196,8 @@ public class GetTask extends UniversalCommonTest {
 		ZAssert.assertStringContains(showOrigBody, bodyHtml,"Verify the content matches");	*/	
 	}
 
-	@Bugs(ids="72236")
-	@Test( description = "Get a task with all fields - verify task contents",
+	@Bugs (ids = "72236")
+	@Test (description = "Get a task with all fields - verify task contents",
 			groups = { "smoke", "L0"})
 
 	public void GetTask_04() throws HarnessException {
@@ -259,7 +259,7 @@ public class GetTask extends UniversalCommonTest {
 		ZAssert.assertStringContains(actual.zGetTaskProperty(Field.Body), content, "Verify the body matches");
 	}
 
-	@Test( description = "Click on task folder to receive any new tasks",
+	@Test (description = "Click on task folder to receive any new tasks",
 			groups = { "smoke", "L1"})
 
 	public void GetTask_05() throws HarnessException {
@@ -319,8 +319,8 @@ public class GetTask extends UniversalCommonTest {
 	 * 7.It should show Percentage field  with 100% value.
 	 * @throws HarnessException
 	 */
-	@Bugs(ids="63357")
-	@Test( description = "Task list view fields (Percentage) are not updated after editing ",
+	@Bugs (ids = "63357")
+	@Test (description = "Task list view fields (Percentage) are not updated after editing ",
 			groups = { "smoke", "L1"})
 
 	public void GetTask_06() throws HarnessException {
@@ -395,8 +395,8 @@ public class GetTask extends UniversalCommonTest {
 	 * @throws HarnessException
 	 */
 
-	@Bugs(ids="64681,72236")
-	@Test( description = "No refresh after task is marked complete in filter to-do list",
+	@Bugs (ids = "64681,72236")
+	@Test (description = "No refresh after task is marked complete in filter to-do list",
 			groups = { "functional", "L3"})
 
 	public void GetTask_07() throws HarnessException {
@@ -459,8 +459,8 @@ public class GetTask extends UniversalCommonTest {
 		ZAssert.assertNull(found, "Verify the task is no longer present for Mark as completed Tasks");
 	}
 	
-	@Bugs(ids="72236")
-	@Test( description = "Verify Html Only Task that can display the html body in the preview pane",
+	@Bugs (ids = "72236")
+	@Test (description = "Verify Html Only Task that can display the html body in the preview pane",
 			groups = { "smoke", "L1"})
 
 	public void GetTask_08() throws HarnessException {

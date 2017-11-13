@@ -94,7 +94,7 @@ public class GlobalHomeSearch extends AdminCommonTest {
 	 * 2. Verify the global search return the Account.
 	 * @throws HarnessException
 	 */
-	@Bugs( ids = "96768")
+	@Bugs (ids = "96768")
 	@Test (description = "Verify search functionality of Account Object.",
 			groups = { "functional", "L2" })
 			public void HomeSearchFunctionalityAccount_02() throws HarnessException {

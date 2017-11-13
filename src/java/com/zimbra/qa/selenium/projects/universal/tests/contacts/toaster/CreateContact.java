@@ -37,7 +37,7 @@ public class CreateContact extends UniversalCommonTest {
 
 	}
 
-	@Test(description = "Create a basic contact item by click New in page Addressbook and verify toast msg ", 
+	@Test (description = "Create a basic contact item by click New in page Addressbook and verify toast msg ", 
 			groups = {"functional", "L2"})
 
 	public void CreateContactToastMsg_01() throws HarnessException {

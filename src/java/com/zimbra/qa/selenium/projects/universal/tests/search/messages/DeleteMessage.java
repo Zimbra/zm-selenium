@@ -33,7 +33,7 @@ public class DeleteMessage extends PrefGroupMailByMessageTest {
 		
 	}
 	
-	@Test( description = "From search: Delete a mail using toolbar delete button",
+	@Test (description = "From search: Delete a mail using toolbar delete button",
 			groups = { "smoke","L1" })
 	public void DeleteMail_01() throws HarnessException {
 		

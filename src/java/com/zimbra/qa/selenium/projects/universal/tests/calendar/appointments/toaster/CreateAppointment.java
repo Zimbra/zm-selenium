@@ -31,7 +31,7 @@ public class CreateAppointment extends CalendarWorkWeekTest {
 	}
 	
 	
-	@Test( description = "Verify Toaster message on Create Appointment",
+	@Test (description = "Verify Toaster message on Create Appointment",
 			groups = { "smoke", "L1" } )
 	
 	public void Toaster_CreateAppointment_01() throws HarnessException {

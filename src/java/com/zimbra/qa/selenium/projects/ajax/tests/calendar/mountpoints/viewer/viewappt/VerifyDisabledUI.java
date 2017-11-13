@@ -112,7 +112,7 @@ public class VerifyDisabledUI extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "99947")
+	@Bugs (ids = "99947")
 	@Test (description = "Verify  disabled Create a copy, Move, Forward & Show Original menus for private appointment on mountpoint appointment (read-only share)",
 			groups = { "functional-skip", "application-bug" })
 

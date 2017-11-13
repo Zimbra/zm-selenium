@@ -33,8 +33,8 @@ public class OpenComposedMessageInNewWindow extends PrefGroupMailByMessageTest {
 		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "html");
 	}
 
-	@Bugs( ids = "89778")
-	@Test( description = "Send a mail using HTML editor - from a separate window using DETACH COMPOSE button",
+	@Bugs (ids = "89778")
+	@Test (description = "Send a mail using HTML editor - from a separate window using DETACH COMPOSE button",
 			groups = { "functional", "L2" })
 
 	public void OpenComposedMessageInNewWindow_01() throws HarnessException {

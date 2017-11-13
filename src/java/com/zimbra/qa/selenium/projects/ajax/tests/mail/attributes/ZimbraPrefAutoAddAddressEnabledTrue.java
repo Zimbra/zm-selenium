@@ -47,7 +47,7 @@ public class ZimbraPrefAutoAddAddressEnabledTrue extends AjaxCommonTest {
 	 * Verify receivers' addresses of out-going mails automatically added to "Emailed Contacts" folder
 	 */
 
-	@Test (description = " send message to 1 receiver, the address should be added into Emailed Contact",
+	@Test (description = "send message to 1 receiver, the address should be added into Emailed Contact",
 			groups = { "smoke", "L1" })
 
 	public void SendEmailTo1Receiver_01() throws HarnessException {
@@ -92,7 +92,7 @@ public class ZimbraPrefAutoAddAddressEnabledTrue extends AjaxCommonTest {
 	 * Verify receivers' addresses of out-going mails automatically added to "Emailed Contacts" folder
 	 */
 
-	@Test (description = " send message to 2 receiver, the addresses should be added into Emailed Contact",
+	@Test (description = "Send message to 2 receiver, the addresses should be added into Emailed Contact",
 			groups = { "functional", "L3" })
 
 	public void SendEmailTo2Receivers_02() throws HarnessException {

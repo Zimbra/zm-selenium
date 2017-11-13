@@ -35,8 +35,8 @@ public class TypingInSearchOpensSearchMenu extends PrefGroupMailByMessageTest {
 		super.startingAccountPreferences.put("zimbraPrefShowSelectionCheckbox",	"TRUE");
 	}
 	
-	@Bugs( ids = "102600" )
-	@Test( description = "Typing in: in search input and pressing down arrow >> it opens Search menu list as well", 
+	@Bugs (ids = "102600" )
+	@Test (description = "Typing in: in search input and pressing down arrow >> it opens Search menu list as well", 
 			groups = { "functional","L1" })
 	
 	public void TypingInSearchOpensSearchMenu_01() throws HarnessException {

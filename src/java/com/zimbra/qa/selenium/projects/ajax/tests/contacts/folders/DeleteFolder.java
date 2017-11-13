@@ -116,7 +116,7 @@ public class DeleteFolder extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "103601")
+	@Bugs (ids = "103601")
 	@Test (description = "Delete an addressbook folder- Use shortcut Del",
 			groups = { "functional-skip", "application-bug"})
 

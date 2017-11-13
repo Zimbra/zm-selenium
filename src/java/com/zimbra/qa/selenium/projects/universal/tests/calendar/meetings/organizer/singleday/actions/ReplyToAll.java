@@ -40,7 +40,7 @@ public class ReplyToAll extends CalendarWorkWeekTest {
 	    
 	}
 	
-	@Test( description = "Check when attendees get the reply when organizer ReplyAll to a meeting",
+	@Test (description = "Check when attendees get the reply when organizer ReplyAll to a meeting",
 			groups = { "functional", "L2" })
 	public void ReplyToAll_01() throws HarnessException {
 		
@@ -96,8 +96,8 @@ public class ReplyToAll extends CalendarWorkWeekTest {
 	}
 	
 	
-	@Bugs(ids = "57418")
-	@Test( description = "Verify if optional attendees appear as CC contact in the mail when organizer replies all to meeting",
+	@Bugs (ids = "57418")
+	@Test (description = "Verify if optional attendees appear as CC contact in the mail when organizer replies all to meeting",
 			groups = { "functional", "L2" })
 	public void ReplyToAll_02() throws HarnessException {
 		

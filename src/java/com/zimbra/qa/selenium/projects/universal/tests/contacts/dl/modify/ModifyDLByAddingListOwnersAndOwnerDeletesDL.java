@@ -35,7 +35,7 @@ public class ModifyDLByAddingListOwnersAndOwnerDeletesDL extends UniversalCommon
 		super.startingAccountPreferences = null;
 	}
 	
-	@Test( description = "Modify DL by adding list owners and owner deletes DL", 
+	@Test (description = "Modify DL by adding list owners and owner deletes DL", 
 			groups = { "functional", "L2"})
 
 	public void ModifyDLByAddingListOwnersAndOwnerDeletesDL_01() throws HarnessException {

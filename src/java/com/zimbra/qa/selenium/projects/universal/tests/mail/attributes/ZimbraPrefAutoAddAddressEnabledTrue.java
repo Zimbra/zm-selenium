@@ -48,7 +48,7 @@ public class ZimbraPrefAutoAddAddressEnabledTrue extends UniversalCommonTest {
 	 * Verify receivers' addresses of out-going mails automatically added to "Emailed Contacts" folder 
 	 * @throws HarnessException
 	 */
-	@Test( description = " send message to 1 receiver, the address should be added into Emailed Contact", groups = { "smoke", "L1" })
+	@Test (description = " send message to 1 receiver, the address should be added into Emailed Contact", groups = { "smoke", "L1" })
 	
 	public void SendEmailTo1Receiver_01() throws HarnessException {
 		

@@ -33,7 +33,7 @@ public class SendMailToContactGroup extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "97157")
+	@Bugs (ids = "97157")
 	@Test (description = "Right click then click New Email",
 			groups = { "smoke", "L0" })
 

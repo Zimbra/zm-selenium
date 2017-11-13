@@ -32,7 +32,7 @@ public class ForwardACopyTo extends PrefGroupMailByMessageTest {
 		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "html");
 	}
 	
-	@Test( description = "Set forward a copy to when receiving the message from preferences",	groups = { "functional", "L2" })
+	@Test (description = "Set forward a copy to when receiving the message from preferences",	groups = { "functional", "L2" })
 	
 	public void ForwardACopyTo_01() throws HarnessException {
 		

@@ -35,7 +35,7 @@ public class ForwardMail extends PrefGroupMailByMessageTest {
 
 	}
 
-	@Test( description = "Forward (on behalf of) to a message in a shared folder (admin rights)",
+	@Test (description = "Forward (on behalf of) to a message in a shared folder (admin rights)",
 			groups = { "functional", "L2" })
 	
 	public void ForwardMail_01() throws HarnessException {
@@ -134,8 +134,8 @@ public class ForwardMail extends PrefGroupMailByMessageTest {
 		ZAssert.assertEquals(sent.dSenderRecipient.dEmailAddress, app.zGetActiveAccount().EmailAddress, "Verify the 'Sender' field is correct");
 
 	}
-	@Bugs(ids="102475")
-	@Test( description = "Forward (on behalf of) to a message in a shared folder (admin rights)  - no SOBO rights",
+	@Bugs (ids = "102475")
+	@Test (description = "Forward (on behalf of) to a message in a shared folder (admin rights)  - no SOBO rights",
 			groups = { "functional", "L2" })
 	
 	public void ForwardMail_02() throws HarnessException {

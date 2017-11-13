@@ -39,7 +39,7 @@ public class DeleteContact extends UniversalCommonTest  {
 			}};
 	}
 		
-	@Test( description = "Delete a contact item",
+	@Test (description = "Delete a contact item",
 			groups = { "smoke", "L0"})
 	
 	public void ClickDeleteOnToolbar_01() throws HarnessException {
@@ -84,7 +84,7 @@ public class DeleteContact extends UniversalCommonTest  {
         ZAssert.assertNotNull(actual, "Verify the contact is in the trash");
    	}
 	
-	@Test( description = "Delete a contact item selected with checkbox",
+	@Test (description = "Delete a contact item selected with checkbox",
 			groups = { "functional", "L2" })
 	
 	public void DeleteContactSelectedWithCheckbox_02() throws HarnessException {
@@ -133,7 +133,7 @@ public class DeleteContact extends UniversalCommonTest  {
 	  };
 	}
 	
-	@Test( description = "Delete a contact item using keyboard short cut Del",
+	@Test (description = "Delete a contact item using keyboard short cut Del",
 			groups = { "functional", "L2"},
 			dataProvider = "DataProviderDeleteKeys")
 	
@@ -178,7 +178,7 @@ public class DeleteContact extends UniversalCommonTest  {
         ZAssert.assertNull(actual, "Verify the contact is deleted from the addressbook");    
    	}
 	
-	@Test( description = "Right click then click delete",
+	@Test (description = "Right click then click delete",
 			groups = { "smoke", "L0"})
 	
 	public void DeleteFromContextMenu_04() throws HarnessException {		
@@ -216,7 +216,7 @@ public class DeleteContact extends UniversalCommonTest  {
         ZAssert.assertNull(actual, "Verify the contact is deleted from the addressbook");
    	}
 	
-	@Test( description = "Delete multiple contact items",
+	@Test (description = "Delete multiple contact items",
 			groups = { "functional", "L2"})
 	
 	public void DeleteMultipleContacts_05() throws HarnessException {

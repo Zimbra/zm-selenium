@@ -75,7 +75,7 @@ public class CreateAppointment extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "53005")
+	@Bugs (ids = "53005")
 	@Test (description = "Verify location is saved when using assistant",
 			groups = { "deprecated" })
 

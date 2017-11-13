@@ -43,8 +43,8 @@ public class ShowHideDeclinedMeetings extends CalendarWorkWeekTest {
     this.startingAccountPreferences.put("zimbraFeatureGroupCalendarEnabled", "FALSE");
   }
   
-  @Bugs(ids="27661")
-  @Test( description="Allow declined meetings to be hidden/shown based on preference", groups={"functional", "L2"} )
+  @Bugs (ids = "27661")
+  @Test (description = "Allow declined meetings to be hidden/shown based on preference", groups={"functional", "L2"} )
   
   public void ShowHideDeclinedMeetings_01() throws HarnessException {
 	  

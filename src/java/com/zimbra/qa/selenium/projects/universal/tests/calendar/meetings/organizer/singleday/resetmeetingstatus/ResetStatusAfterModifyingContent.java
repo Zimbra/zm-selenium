@@ -34,8 +34,8 @@ public class ResetStatusAfterModifyingContent extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 	
-	@Bugs(ids = "49881")
-	@Test( description = "Check reset status of meeting after modifying Content",
+	@Bugs (ids = "49881")
+	@Test (description = "Check reset status of meeting after modifying Content",
 			groups = { "functional", "L2"})
 			
 	public void ResetStatusAfterModifyingContent_01() throws HarnessException {

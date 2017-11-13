@@ -33,8 +33,8 @@ public class CreateAppointment extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 
-	@Bugs(ids = "69132,95899,95900")
-	@Test( description = "Create simple all day appointment",
+	@Bugs (ids = "69132,95899,95900")
+	@Test (description = "Create simple all day appointment",
 			groups = { "smoke", "L0" }
 	)
 	public void CreateAllDayAppointment_01() throws HarnessException {
@@ -70,8 +70,8 @@ public class CreateAppointment extends CalendarWorkWeekTest {
 
 	}
 
-	@Bugs(ids = "104312")
-	@Test( description = "Create multi-day all day appointment in week view",
+	@Bugs (ids = "104312")
+	@Test (description = "Create multi-day all day appointment in week view",
 			groups = { "smoke", "L1" }
 	)
 	public void CreateAllDayAppointment_02() throws HarnessException {
@@ -109,7 +109,7 @@ public class CreateAppointment extends CalendarWorkWeekTest {
         
 	}
 
-	@Test( description = "Create simple all day appointment which occurs in past",
+	@Test (description = "Create simple all day appointment which occurs in past",
 			groups = { "smoke", "L0" }
 	)
 	public void CreateAllDayAppointment_03() throws HarnessException {

@@ -34,7 +34,7 @@ public class MoveCalendar extends CalendarWorkWeekTest {
 		
 	}
 	
-	@Test( description = "Move a calendar - Right click, Move",
+	@Test (description = "Move a calendar - Right click, Move",
 			groups = { "smoke", "L1" })
 	
 	public void MoveCalendar_01() throws HarnessException {

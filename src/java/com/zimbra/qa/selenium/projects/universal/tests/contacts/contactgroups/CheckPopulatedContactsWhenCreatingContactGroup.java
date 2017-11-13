@@ -36,8 +36,8 @@ public class CheckPopulatedContactsWhenCreatingContactGroup extends UniversalCom
 	}
 	
 	
-	@Bugs(ids = "65606,60652")
-	@Test( description = "Contacts are not populated while creating a new contact group",
+	@Bugs (ids = "65606,60652")
+	@Test (description = "Contacts are not populated while creating a new contact group",
 			groups = { "functional", "L2" })
 	
 	public void CheckPopulatedContactsWhenCreatingContactGroup_01() throws HarnessException {

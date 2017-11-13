@@ -39,7 +39,7 @@ public class DeleteAppointment extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 	
-	@Test( description = "Verify Delete button is enabled and functional on mountpoint appointment (manager share)",
+	@Test (description = "Verify Delete button is enabled and functional on mountpoint appointment (manager share)",
 			groups = { "functional", "L2" })
 			
 	public void DeleteAppointment_01() throws HarnessException {
@@ -123,7 +123,7 @@ public class DeleteAppointment extends CalendarWorkWeekTest {
 	}
 	
 	
-	@Bugs(ids = "104604")
+	@Bugs (ids = "104604")
 	
 	@DataProvider(name = "DataProviderShortcutKeys")
 	public Object[][] DataProviderShortcutKeys() {
@@ -133,7 +133,7 @@ public class DeleteAppointment extends CalendarWorkWeekTest {
 		};
 	}
 	
-	@Test( description = "Verify Delete keyboard shortcut is functional on mountpoint appointment (manager share)",
+	@Test (description = "Verify Delete keyboard shortcut is functional on mountpoint appointment (manager share)",
 			groups = { "functional", "L5" },
 			dataProvider = "DataProviderShortcutKeys")
 			

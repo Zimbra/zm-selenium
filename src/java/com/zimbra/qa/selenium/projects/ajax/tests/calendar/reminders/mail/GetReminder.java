@@ -33,7 +33,7 @@ public class GetReminder extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "69132")
+	@Bugs (ids = "69132")
 	@Test (description = "Verify reminder popup when in the mail app",
 			groups = { "smoke-skip", "L3-skip" })
 

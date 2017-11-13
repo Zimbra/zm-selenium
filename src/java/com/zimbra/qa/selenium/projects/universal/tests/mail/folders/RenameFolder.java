@@ -35,7 +35,7 @@ public class RenameFolder extends PrefGroupMailByMessageTest {
 	}
 	
 	
-	@Test( description = "Rename a folder - Context menu -> Rename",
+	@Test (description = "Rename a folder - Context menu -> Rename",
 			groups = { "smoke", "L1" })
 	
 	public void RenameFolder_01() throws HarnessException {
@@ -77,7 +77,7 @@ public class RenameFolder extends PrefGroupMailByMessageTest {
 	}
 
 	
-	@Test( description = "Rename a folder - set to an invalid name with ':'",
+	@Test (description = "Rename a folder - set to an invalid name with ':'",
 			groups = { "functional", "L2" })
 	
 	public void RenameFolder_02() throws HarnessException {
@@ -118,7 +118,7 @@ public class RenameFolder extends PrefGroupMailByMessageTest {
 	}
 
 	
-	@Test(description = "Get a folder with non-ASCII special characters", groups = {"functional", "L2" }, 
+	@Test (description = "Get a folder with non-ASCII special characters", groups = {"functional", "L2" }, 
 			dataProvider = "DataProviderSupportedCharsets")
 	
 	public void RenameFolder_03(ZCharset charset, String foldername) throws HarnessException {

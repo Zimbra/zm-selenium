@@ -33,7 +33,7 @@ public class Tentative extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 
-	@Bugs(ids = "95807")
+	@Bugs (ids = "95807")
 	@Test (description = "Mark invite as tentative using view appointment options", 
 			groups = { "sanity" })
 	

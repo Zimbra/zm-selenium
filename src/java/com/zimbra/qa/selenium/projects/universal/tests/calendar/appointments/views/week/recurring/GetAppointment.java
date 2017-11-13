@@ -42,8 +42,8 @@ public class GetAppointment extends CalendarWorkWeekTest {
 		
 	}
 	
-	@Bugs(ids = "69132")
-	@Test( description = "View a basic appointment in week view",
+	@Bugs (ids = "69132")
+	@Test (description = "View a basic appointment in week view",
 			groups = { "smoke", "L3" })
 	public void GetAppointment_01() throws HarnessException {
 		

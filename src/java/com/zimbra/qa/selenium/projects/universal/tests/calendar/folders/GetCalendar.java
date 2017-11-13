@@ -35,7 +35,7 @@ public class GetCalendar extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 	
-	@Test( description = "Get a calendar (under USER_ROOT)",
+	@Test (description = "Get a calendar (under USER_ROOT)",
 			groups = { "smoke", "L1" })
 	public void GetCalendar_01() throws HarnessException {
 		
@@ -73,7 +73,7 @@ public class GetCalendar extends CalendarWorkWeekTest {
 		
 	}	
 
-	@Test( description = "Get a calendar (under subcalendar)",
+	@Test (description = "Get a calendar (under subcalendar)",
 			groups = { "functional", "L2" })
 	public void GetCalendar_02() throws HarnessException {
 		
@@ -126,8 +126,8 @@ public class GetCalendar extends CalendarWorkWeekTest {
 		
 	}	
 
-	@Bugs(ids = "28846")
-	@Test( description = "Get a calendar (under subcalendar) - verify appointments appear",
+	@Bugs (ids = "28846")
+	@Test (description = "Get a calendar (under subcalendar) - verify appointments appear",
 			groups = { "functional", "L2" })
 	public void GetCalendar_03() throws HarnessException {
 		

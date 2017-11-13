@@ -66,7 +66,7 @@ public class DeleteTextSignature extends AjaxCommonTest {
 	 * through soap
 	 */
 
-	@Test (description = " Delete Text signature using Delete button and verify  through soap ",
+	@Test (description = "Delete Text signature using Delete button and verify  through soap ",
 			groups = { "smoke", "L1"  })
 
 	public void DeleteTextSignatures_01() throws HarnessException {
@@ -76,7 +76,7 @@ public class DeleteTextSignature extends AjaxCommonTest {
 
 		// Signature is created
 		SignatureItem signature = SignatureItem.importFromSOAP(app.zGetActiveAccount(), this.sigName);
-		ZAssert.assertEquals(signature.getName(), this.sigName, "verified Text Signature is created");
+		ZAssert.assertEquals(signature.getName(), this.sigName, "Verify text signature is created");
 
 		FormSignatureNew signew = new FormSignatureNew(app);
 

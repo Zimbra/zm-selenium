@@ -34,7 +34,7 @@ public class EditContactGroup extends AjaxCommonTest  {
 	}
 
 
-	@Bugs(ids="97157")
+	@Bugs (ids = "97157")
 	@Test (description = "Edit a contact group by click Edit on Toolbar button",
 			groups = { "smoke", "L0" })
 
@@ -65,7 +65,7 @@ public class EditContactGroup extends AjaxCommonTest  {
 	}
 
 
-	@Bugs(ids="97157")
+	@Bugs (ids = "97157")
 	@Test (description = "Edit a contact group by click Edit Group on Context Menu ",
 			groups = { "smoke", "L1" })
 
@@ -93,7 +93,7 @@ public class EditContactGroup extends AjaxCommonTest  {
 	}
 
 
-	@Bugs(ids="97157")
+	@Bugs (ids = "97157")
 	@Test (description = "Edit a contact group by double click on the contact group",
 			groups = { "smoke", "L1" })
 
@@ -192,7 +192,7 @@ public class EditContactGroup extends AjaxCommonTest  {
 	}
 
 
-	@Bugs(ids="97157")
+	@Bugs (ids = "97157")
 	@Test (description = "Cancel an edited contact by click Close, then click Cancel",
 			groups = { "functional", "L2" })
 
@@ -232,7 +232,7 @@ public class EditContactGroup extends AjaxCommonTest  {
 	}
 
 
-	@Bugs(ids="97157")
+	@Bugs (ids = "97157")
 	@Test (description = "Cancel an edited contact by click Close, then click Yes",
 		groups = { "functional", "L2" })
 

@@ -38,7 +38,7 @@ public class RecurringDaily extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "103157")
+	@Bugs (ids = "103157")
 	@Test (description = "Create daily recurring appointment and verify that start date and other details appear correct after opening",
 			groups = { "functional", "L2" })
 

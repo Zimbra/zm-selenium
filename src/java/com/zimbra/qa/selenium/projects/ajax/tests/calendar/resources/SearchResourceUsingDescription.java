@@ -36,7 +36,7 @@ public class SearchResourceUsingDescription extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "60134")
+	@Bugs (ids = "60134")
 	@Test (description = "Cannot search resource using 'description'",
 			groups = { "functional", "L2" } )
 

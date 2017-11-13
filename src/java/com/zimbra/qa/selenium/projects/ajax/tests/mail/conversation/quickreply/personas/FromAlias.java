@@ -33,7 +33,7 @@ public class FromAlias extends PrefGroupMailByConversationTest {
 	}
 
 
-	@Bugs(ids = "73698")
+	@Bugs (ids = "73698")
 	@Test (description = "Send a quick reply with alias as from",
 			groups = { "functional", "L2" })
 

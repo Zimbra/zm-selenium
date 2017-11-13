@@ -33,7 +33,7 @@ public class Accept extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 
-	@Bugs(ids = "96437")
+	@Bugs (ids = "96437")
 	@Test (description = "Accept a instance using view appointment options", 
 			groups = { "functional" })
 	

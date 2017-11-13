@@ -30,7 +30,7 @@ public class ViewContact extends UniversalCommonTest  {
 	}
 
 	//First Last 
-	@Test( description = "View a contact, file as First Last",
+	@Test (description = "View a contact, file as First Last",
 			groups = { "functional", "L2"})
 	
 	public void ViewContact_FileAsFirstLast_01() throws HarnessException {		         		
@@ -88,7 +88,7 @@ public class ViewContact extends UniversalCommonTest  {
 	}
 	
 	//Last, First
-	@Test( description = "View a contact, file as Last, First",
+	@Test (description = "View a contact, file as Last, First",
 			groups = { "functional", "L2"})
 	
 	public void ViewContact_FileAsLastFirst_02() throws HarnessException {		         		
@@ -146,7 +146,7 @@ public class ViewContact extends UniversalCommonTest  {
 	}
 	
 	//Company(Last, First)
-	@Test( description = "View a contact, file as Company(Last, First)",
+	@Test (description = "View a contact, file as Company(Last, First)",
 			groups = { "functional", "L2"})
 	
 	public void ViewContact_FileAsCompanyLastFirst_03() throws HarnessException {		         		
@@ -204,7 +204,7 @@ public class ViewContact extends UniversalCommonTest  {
 	}
 	
 	//Company
-	@Test( description = "View a contact, file as Company",
+	@Test (description = "View a contact, file as Company",
 			groups = { "functional", "L2"})
 	
 	public void ViewContact_FileAsCompany_04() throws HarnessException {		         		
@@ -262,7 +262,7 @@ public class ViewContact extends UniversalCommonTest  {
 	}
 	
 	//Last, First (Company)
-	@Test( description = "View a contact, file as Last, First (Company)",
+	@Test (description = "View a contact, file as Last, First (Company)",
 			groups = { "functional", "L2"})
 	
 	public void ViewContact_FileAsLastFirstCompany_05() throws HarnessException {		         		
@@ -320,7 +320,7 @@ public class ViewContact extends UniversalCommonTest  {
 	}
 
 	//First Last (Company)
-	@Test( description = "View a contact, file as First Last (Company)",
+	@Test (description = "View a contact, file as First Last (Company)",
 			groups = { "functional", "L2"})
 	
 	public void ViewContact_FileAsFirstLastCompany_06() throws HarnessException {		         		
@@ -378,7 +378,7 @@ public class ViewContact extends UniversalCommonTest  {
 	}
 	
 	//Company (First Last)
-	@Test( description = "View a contact, file as Company (First Last)",
+	@Test (description = "View a contact, file as Company (First Last)",
 			groups = { "functional", "L2"})
 	
 	public void ViewContact_FileAsCompanyFirstLast_07() throws HarnessException {		         		

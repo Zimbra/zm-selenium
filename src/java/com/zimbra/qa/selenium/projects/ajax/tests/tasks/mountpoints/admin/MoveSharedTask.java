@@ -49,10 +49,10 @@ public class MoveSharedTask extends AjaxCommonTest {
 	}
 
 
-	@Test (description = "Move task  from shared folder to local task folder (admin rights)",
+	@Test (description = "Move task from shared folder to local task folder (admin rights)",
 			groups = { "functional", "L2" })
 
-	public void MoveSharedTaskToLocalFolder() throws HarnessException {
+	public void MoveTaskFromSharedToLocalFolder_01() throws HarnessException {
 
 		String foldername = "tasklist" + ConfigProperties.getUniqueString();
 		String subject = "subject" + ConfigProperties.getUniqueString();
@@ -153,10 +153,10 @@ public class MoveSharedTask extends AjaxCommonTest {
 	}
 
 
-	@Test (description = "Move task from local task folder  to shared folder(admin rights)",
+	@Test (description = "Move task from local task folder to shared folder(admin rights)",
 			groups = { "functional", "L2" })
 
-	public void MoveTaskToSharedFolder() throws HarnessException {
+	public void MoveTaskFromLocalToSharedFolder_02() throws HarnessException {
 
 		String foldername = "tasklist" + ConfigProperties.getUniqueString();
 		String subject = "subject" + ConfigProperties.getUniqueString();

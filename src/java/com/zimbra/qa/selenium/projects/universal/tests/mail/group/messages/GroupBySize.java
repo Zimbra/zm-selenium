@@ -44,7 +44,7 @@ public class GroupBySize extends PrefGroupMailByMessageTest {
 	 * 3. Verify messages are grouped by From
 	 * @throws HarnessException
 	 */
-	@Test( description = "Group a list of messages by Size",
+	@Test (description = "Group a list of messages by Size",
 			groups = { "functional", "L2" })
 	public void GroupBySize_01() throws HarnessException {
 		

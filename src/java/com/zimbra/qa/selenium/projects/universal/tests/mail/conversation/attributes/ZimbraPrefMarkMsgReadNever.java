@@ -35,8 +35,8 @@ public class ZimbraPrefMarkMsgReadNever extends PrefGroupMailByConversationTest 
 		super.startingAccountPreferences.put("zimbraPrefMarkMsgRead", "-1");
     }
 	
-	@Bugs( ids = "78178")
-	@Test( description = "Verify a conversation (1 message) is not marked read if zimbraPrefMarkMsgRead=Never",
+	@Bugs (ids = "78178")
+	@Test (description = "Verify a conversation (1 message) is not marked read if zimbraPrefMarkMsgRead=Never",
 			groups = { "functional", "L2" })
 	public void MarkReadConversation_01() throws HarnessException {
 		
@@ -90,8 +90,8 @@ public class ZimbraPrefMarkMsgReadNever extends PrefGroupMailByConversationTest 
 	
     }
 
-	@Bugs( ids = "78178")
-	@Test( description = "Verify a conversation (multiple message) is not marked read if zimbraPrefMarkMsgRead=Never",
+	@Bugs (ids = "78178")
+	@Test (description = "Verify a conversation (multiple message) is not marked read if zimbraPrefMarkMsgRead=Never",
 			groups = { "functional", "L2" })
 	public void MarkReadConversation_02() throws HarnessException {
 

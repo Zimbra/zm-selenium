@@ -45,7 +45,7 @@ public class SendDocLink extends FeatureBriefcaseTest {
 		super.startingAccountPreferences.put("zimbraPrefBriefcaseReadingPaneLocation", "bottom");				
 	}
 
-	@Test( description = "Create document through SOAP - click Send Link, Cancel & verify through GUI", 
+	@Test (description = "Create document through SOAP - click Send Link, Cancel & verify through GUI", 
 			groups = { "functional", "L2" })
 	public void SendDocLink_01() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
@@ -124,7 +124,7 @@ public class SendDocLink extends FeatureBriefcaseTest {
 		app.zPageBriefcase.deleteFileByName(docItem.getName());
 	}
 
-	@Test( description = "Send document link using Right Click Context Menu & verify through GUI", 
+	@Test (description = "Send document link using Right Click Context Menu & verify through GUI", 
 			groups = { "functional", "L2" })
 	public void SendDocLink_02() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();

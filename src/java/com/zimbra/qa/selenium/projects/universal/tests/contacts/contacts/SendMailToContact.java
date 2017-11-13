@@ -34,7 +34,7 @@ public class SendMailToContact extends UniversalCommonTest {
 
 	}
 
-	@Test(description = "Right click then click New Email", 
+	@Test (description = "Right click then click New Email", 
 			groups = { "smoke", "L0"})
 	public void NewEmail_01() throws HarnessException {
 

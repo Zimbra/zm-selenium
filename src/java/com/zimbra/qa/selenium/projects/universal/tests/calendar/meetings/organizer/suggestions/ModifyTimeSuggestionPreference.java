@@ -33,7 +33,7 @@ public class ModifyTimeSuggestionPreference extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 		
-	@Test( description = "Create a meeting invite by modifying time suggestion preferences",
+	@Test (description = "Create a meeting invite by modifying time suggestion preferences",
 			groups = { "functional", "L2"})
 			
 	public void ModifyTimeSuggestionPreference_01() throws HarnessException {

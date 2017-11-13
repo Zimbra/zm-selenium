@@ -39,7 +39,7 @@ public class DragAndDropContactGroup extends UniversalCommonTest  {
 		
 	}
 	
-	@Test( description = "Move a contact group to folder Emailed Contacts by drag and drop",
+	@Test (description = "Move a contact group to folder Emailed Contacts by drag and drop",
 			groups = { "functional", "L2" })
 	
 	public void DnDToEmailedContacts_01() throws HarnessException {
@@ -76,7 +76,7 @@ public class DragAndDropContactGroup extends UniversalCommonTest  {
         ZAssert.assertEquals(actual.getFolderId(), folder.getId(), "Verify the contact group is in the sub addressbook");
    	}
 	
-	@Test( description = "Move a contact group to trash folder by drag and drop",
+	@Test (description = "Move a contact group to trash folder by drag and drop",
 			groups = { "smoke", "L1" })
 	
 	public void DnDToTrash_02() throws HarnessException {

@@ -78,7 +78,7 @@ public class ContactContextMenu extends UniversalCommonTest {
 		return createSelectAContactItem(firstName, lastName, email, tagIdArray);
 	}
 
-	@Test(description = "Right click a contact to show a menu", 
+	@Test (description = "Right click a contact to show a menu", 
 			groups = { "smoke", "L0"})
 	public void ShowContextMenu_01() throws HarnessException {
 
@@ -106,7 +106,7 @@ public class ContactContextMenu extends UniversalCommonTest {
 				"Verify print option in context menu");
 	}
 
-	@Test(description = "Right click then click New Email", 
+	@Test (description = "Right click then click New Email", 
 			groups = { "smoke", "L0"})
 	public void NewEmail_02() throws HarnessException {
 
@@ -130,7 +130,7 @@ public class ContactContextMenu extends UniversalCommonTest {
 		// TODO: Verify send email
 	}
 
-	@Test(description = "Right click then click Advanced Search", 
+	@Test (description = "Right click then click Advanced Search", 
 			groups = { "deprecated", "L4"})
 	public void AdvancedSearch_03() throws HarnessException {
 
@@ -147,7 +147,7 @@ public class ContactContextMenu extends UniversalCommonTest {
 		pageAdvancedSearch.zToolbarPressButton(Button.B_CLOSE);
 	}
 
-	@Test(description = "Right click then click Print", 
+	@Test (description = "Right click then click Print", 
 			groups = { "smoke-skip", "L4" })
 	public void Print_04() throws HarnessException {
 		ContactItem contactItem = createSelectARandomContactItem();
@@ -170,7 +170,7 @@ public class ContactContextMenu extends UniversalCommonTest {
 
 	}
 
-	@Test(description = "Right click then  click Find Emails->Received From contact", 
+	@Test (description = "Right click then  click Find Emails->Received From contact", 
 			groups = { "smoke" , "L1"})
 	public void FindEmailsReceivedFromContact_05() throws HarnessException {
 
@@ -210,7 +210,7 @@ public class ContactContextMenu extends UniversalCommonTest {
 
 	}
 
-	@Test(description = "Right click then  click Find Emails->Sent To contact", 
+	@Test (description = "Right click then  click Find Emails->Sent To contact", 
 			groups = { "smoke", "L1" })
 	public void FindEmailsSentToContact_06() throws HarnessException {
 

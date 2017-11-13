@@ -34,7 +34,7 @@ public class ReplyMailWithAnInlineAttachment extends PrefGroupMailByMessageTest 
 		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "html");
 	}
 
-	@Test( description = "Reply a mail  with an inline attachment by pressing Reply button>>attach>>Inline - in separate window",
+	@Test (description = "Reply a mail  with an inline attachment by pressing Reply button>>attach>>Inline - in separate window",
 			groups = { "smoke", "L1" })
 	
 	public void ReplyMailWithAnInlineAttachment_01() throws HarnessException {

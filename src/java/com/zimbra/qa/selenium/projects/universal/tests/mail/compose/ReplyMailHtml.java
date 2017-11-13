@@ -38,7 +38,7 @@ public class ReplyMailHtml extends PrefGroupMailByMessageTest {
 		
 	}
 	
-	@Test( description = "Reply to an html mail using html editor",
+	@Test (description = "Reply to an html mail using html editor",
 			groups = { "smoke", "L1" })
 	public void replyHtmlMail() throws HarnessException {
 		

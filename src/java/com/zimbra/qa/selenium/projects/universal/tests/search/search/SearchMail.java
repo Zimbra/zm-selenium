@@ -48,7 +48,7 @@ public class SearchMail extends PrefGroupMailByMessageTest {
 
 	}
 	
-	@Test( description = "Search for a message by subject",
+	@Test (description = "Search for a message by subject",
 			groups = { "functional","L2" })
 	public void SearchMail_01() throws HarnessException {
 		

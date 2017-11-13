@@ -32,7 +32,7 @@ public class SendOnBehalfOf extends PrefGroupMailByMessageTest {
 	}
 	
 	
-	@Test( description = "Send On Behalf Of another user",	groups = { "smoke", "L1" })
+	@Test (description = "Send On Behalf Of another user",	groups = { "smoke", "L1" })
 	
 	public void SendOnBehalfOf_01() throws HarnessException {
 		

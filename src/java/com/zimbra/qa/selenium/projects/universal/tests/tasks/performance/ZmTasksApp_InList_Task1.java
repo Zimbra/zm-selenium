@@ -49,7 +49,7 @@ public class ZmTasksApp_InList_Task1 extends UniversalCommonTest {
      };
    }
 
-   @Test( description = "Measure the time to load Tasks page with 1 task",
+   @Test (description = "Measure the time to load Tasks page with 1 task",
          groups = {"performance", "L4"}, dataProvider = "DataProvider_LoadingApp_1Task")
    public void ZmTasksApp_01(String logMessage) throws HarnessException {
 
@@ -82,7 +82,7 @@ public class ZmTasksApp_InList_Task1 extends UniversalCommonTest {
       app.zPageTasks.zWaitForActive();
    }
 
-   @Test( description="Measure the time to load Tasks page with 100 tasks",
+   @Test (description = "Measure the time to load Tasks page with 100 tasks",
          groups={"performance", "L4"})
    public void ZmTasksApp_02() throws HarnessException {
 

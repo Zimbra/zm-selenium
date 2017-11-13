@@ -44,7 +44,7 @@ public class DeleteDocument extends FeatureBriefcaseTest {
 		super.startingAccountPreferences.put("zimbraPrefShowSelectionCheckbox","TRUE");
 	}
 
-	@Test( description = "Create document through SOAP - delete & check trash", 
+	@Test (description = "Create document through SOAP - delete & check trash", 
 			groups = { "smoke", "L0" })
 	public void DeleteDocument_01() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
@@ -128,7 +128,7 @@ public class DeleteDocument extends FeatureBriefcaseTest {
 				"Verify the document was moved to the trash folder");
 	}
 
-	@Test( description = "Create document through SOAP - delete using Delete Key & verify through GUI", 
+	@Test (description = "Create document through SOAP - delete using Delete Key & verify through GUI", 
 			groups = { "functional", "L2" })
 	public void DeleteDocument_02() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
@@ -191,7 +191,7 @@ public class DeleteDocument extends FeatureBriefcaseTest {
 						"Verify document was deleted through GUI");
 	}
 
-	@Test( description = "Create document through SOAP - delete using Backspace Key & verify through GUI",
+	@Test (description = "Create document through SOAP - delete using Backspace Key & verify through GUI",
 			groups = { "functional","L3" })
 	public void DeleteDocument_03() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
@@ -254,7 +254,7 @@ public class DeleteDocument extends FeatureBriefcaseTest {
 						"Verify document was deleted through GUI");
 	}
 
-	@Test( description = "Create document through SOAP - delete using Right Click context menu & verify through GUI", 
+	@Test (description = "Create document through SOAP - delete using Right Click context menu & verify through GUI", 
 			groups = { "smoke", "L1" })
 	public void DeleteDocument_04() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
@@ -312,7 +312,7 @@ public class DeleteDocument extends FeatureBriefcaseTest {
 						"Verify document was deleted through GUI");
 	}
 
-	@Test( description = "Delete multiple documents(3) by selecting check box and delete using toolbar", 
+	@Test (description = "Delete multiple documents(3) by selecting check box and delete using toolbar", 
 			groups = { "functional", "L2" })
 	public void DeleteDocument_05() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
@@ -409,8 +409,8 @@ public class DeleteDocument extends FeatureBriefcaseTest {
 		}
 	}
 
-	@Bugs(ids = "43836")
-	@Test( description = "can not delete documents in briefcase with the same file name",
+	@Bugs (ids = "43836")
+	@Test (description = "can not delete documents in briefcase with the same file name",
 	groups = { "functional", "L3" })
 	public void DeleteDocument_06() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
@@ -526,8 +526,8 @@ public class DeleteDocument extends FeatureBriefcaseTest {
 		ZAssert.assertEquals(id, docId1,	"Verify the document was moved to the trash folder");
 	}
 
-	@Bugs(ids = "103343")
-	@Test( description = "Create document with 3 versions through SOAP - delete using Right Click context menu & verify through GUI",
+	@Bugs (ids = "103343")
+	@Test (description = "Create document with 3 versions through SOAP - delete using Right Click context menu & verify through GUI",
 	groups = { "functional", "L3" })
 	public void DeleteDocument_07() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();

@@ -44,7 +44,7 @@ public class ZmMailApp extends UniversalCommonTest {
 		
 	}
 	
-	@Test( description = "Measure the time to load the mail app, conversation view, initial load",
+	@Test (description = "Measure the time to load the mail app, conversation view, initial load",
 			groups = { "performance", "L4" })
 	public void ZmMailApp_01() throws HarnessException {
 		
@@ -65,7 +65,7 @@ public class ZmMailApp extends UniversalCommonTest {
 		
 	}
 
-	@Test( description = "Measure the time to load the mail app, conversation view, 1 conversation",
+	@Test (description = "Measure the time to load the mail app, conversation view, 1 conversation",
 			groups = { "performance", "L4" })
 	public void ZmMailApp_02() throws HarnessException {
 		
@@ -89,7 +89,7 @@ public class ZmMailApp extends UniversalCommonTest {
 		
 	}
 
-	@Test( description = "Measure the time to load the mail app, conversation view, 100 conversations",
+	@Test (description = "Measure the time to load the mail app, conversation view, 100 conversations",
 			groups = { "performance", "L4" })
 	public void ZmMailApp_03() throws HarnessException {
 		

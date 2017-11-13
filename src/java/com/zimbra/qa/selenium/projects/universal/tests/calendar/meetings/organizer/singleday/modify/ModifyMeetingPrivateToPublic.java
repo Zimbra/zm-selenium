@@ -38,7 +38,7 @@ public class ModifyMeetingPrivateToPublic extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 	
-	@Test( description = "Modify Meeting class from Private to Public", 
+	@Test (description = "Modify Meeting class from Private to Public", 
 			groups = { "functional", "L2" })
 	public void ModifyMeetingPrivateToPublic_01() throws HarnessException {
 
@@ -96,7 +96,7 @@ public class ModifyMeetingPrivateToPublic extends CalendarWorkWeekTest {
 		ZAssert.assertFalse(app.zPageCalendar.sIsElementPresent(Locators.ImgPrivateAppt), "Private Image is Not present");
 	}
 	
-	@Test( description = "Modify Meeting class from Public to Private", 
+	@Test (description = "Modify Meeting class from Public to Private", 
 			groups = { "functional", "L2" })
 	public void ModifyMeetingPublicToPrivate_02() throws HarnessException {
 

@@ -32,8 +32,8 @@ public class ReplyToAll extends CalendarWorkWeekTest {
 		super.startingPage =  app.zPageCalendar;
 	}
 	
-	@Bugs(ids = "106759,102475")
-	@Test( description = "View meeting invite by opening it and reply to all by sending message",
+	@Bugs (ids = "106759,102475")
+	@Test (description = "View meeting invite by opening it and reply to all by sending message",
 			groups = { "functional", "L2" })
 			
 	public void ReplyToAllMeeting_01() throws HarnessException {

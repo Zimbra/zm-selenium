@@ -42,7 +42,7 @@ public class DeleteTaskFolder extends UniversalCommonTest {
 		}};
 	}	
 	
-	@Test( description = "Delete Task list -right click delete", 
+	@Test (description = "Delete Task list -right click delete", 
 			groups = { "smoke", "L0"})
 	public void DeleteTaskFolder_01() throws HarnessException {
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);

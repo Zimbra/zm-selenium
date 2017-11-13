@@ -109,7 +109,7 @@ public class AddToCalendar extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Bugs(ids = "49734")
+	@Bugs (ids = "49734")
 	@Test (description = "JS error (t is undefined) while click to 'Add to Calendar' when viewing in separate window",
 			groups = { "functional", "L2" })
 
@@ -175,7 +175,7 @@ public class AddToCalendar extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Bugs(ids = "51442")
+	@Bugs (ids = "51442")
 	@Test (description = "Js error (ZmNewCalendarDialog is not defined) while pressing New Calendar from new window and can't open new calendar dialog",
 			groups = { "functional", "L2" })
 
@@ -259,7 +259,7 @@ public class AddToCalendar extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Bugs(ids = "49734")
+	@Bugs (ids = "49734")
 	@Test (description = "Bug 49734 - JS error (t is undefined) while click to 'Add to Calendar' when viewing in separate window",
 			groups = { "functional", "L3" })
 
@@ -313,7 +313,7 @@ public class AddToCalendar extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Bugs(ids = "107000")
+	@Bugs (ids = "107000")
 	@Test (description = "Bug 77131 - Cannot 'add to calendar' an ics into a shared calendar",
 			groups = { "functional-skip", "application-bug" })
 
@@ -409,7 +409,7 @@ public class AddToCalendar extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Bugs(ids = "102578")
+	@Bugs (ids = "102578")
 	@Test (description = "Links in email messages to .ics files should provide method to add to calendar",
 			groups = { "functional-skip", "application-bug" })
 

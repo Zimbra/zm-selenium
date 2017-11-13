@@ -33,7 +33,7 @@ public class SendMailFromAccountWithDisabledAddressBook extends PrefGroupMailByM
 	}
 
 
-	@Bugs( ids = "48923")
+	@Bugs (ids = "48923")
 	@Test (description = "Send a mail from an account having Contacts disabled",
 			groups = { "functional", "L2" } )
 

@@ -31,7 +31,7 @@ public class ReceiveReadReceipt extends PrefGroupMailByMessageTest {
 		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "text");
 	}
 	
-	@Test( description = "Receive/view a read receipt",
+	@Test (description = "Receive/view a read receipt",
 			groups = { "functional", "L2" })
 	public void CreateMailText_01() throws HarnessException {
 		

@@ -34,7 +34,7 @@ public class DeleteMountpoint extends UniversalCommonTest {
 		
 	}
 	
-	@Test( description = "Delete a mountpoint to a shared addressbook (right click -> Delete)",
+	@Test (description = "Delete a mountpoint to a shared addressbook (right click -> Delete)",
 			groups = { "smoke", "L1"})
 	public void DeleteMountpoint_01() throws HarnessException {
 		

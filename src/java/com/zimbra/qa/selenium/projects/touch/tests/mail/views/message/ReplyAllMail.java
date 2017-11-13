@@ -30,8 +30,8 @@ public class ReplyAllMail extends PrefGroupMailByMessageTest {
 		logger.info("New "+ ReplyAllMail.class.getCanonicalName());		
 	}
 	
-	@Bugs( ids = "85534")
-	@Test( description = "Reply all to message and verify it",
+	@Bugs (ids = "85534")
+	@Test (description = "Reply all to message and verify it",
 			groups = { "sanity" })
 			
 	public void ReplyAllMail_01() throws HarnessException {

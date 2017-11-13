@@ -202,7 +202,7 @@ public class DeleteSeries extends AjaxCommonTest {
 		};
 	}
 
-	@Bugs(ids = "69132")
+	@Bugs (ids = "69132")
 	@Test (description = "Delete entire series appointment (every week) using keyboard shortcuts Del & Backspace",
 			groups = { "functional", "L2" },
 			dataProvider = "DataProviderShortcutKeys")

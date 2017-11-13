@@ -34,7 +34,7 @@ public class TypingInSearchOpensSearchMenu extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Bugs( ids = "102600" )
+	@Bugs (ids = "102600" )
 	@Test (description = "Typing in: in search input and pressing down arrow >> it opens Search menu list as well",
 			groups = { "functional","L1" })
 

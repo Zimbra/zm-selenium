@@ -33,7 +33,7 @@ public class CreateMailHtml extends PrefGroupMailByMessageTest {
 		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "html");
 	}
 	
-	@Test( description = "Send a mail using HTML editor", 
+	@Test (description = "Send a mail using HTML editor", 
 			groups = { "sanity", "L0" })
 	
 	public void CreateMailHtml_01() throws HarnessException {
@@ -76,7 +76,7 @@ public class CreateMailHtml extends PrefGroupMailByMessageTest {
 		ZAssert.assertStringContains(html, mail.dBodyHtml, "Verify the html content");
 	}
 	
-	@Test( description = "Send a mail multiline body content using HTML editor", 
+	@Test (description = "Send a mail multiline body content using HTML editor", 
 			groups = { "sanity", "L0" })
 	
 	public void CreateMultilineContentMailHtml_02() throws HarnessException {

@@ -26,7 +26,7 @@ public class DeleteMail extends PrefGroupMailByConversationTest {
 		logger.info("New "+ DeleteMail.class.getCanonicalName());
 	}
 	
-	@Test( description = "Search message by subject and delete it in conversation view",
+	@Test (description = "Search message by subject and delete it in conversation view",
 			groups = { "functional"})
 	
 	public void DeleteMail_01() throws HarnessException, AWTException {

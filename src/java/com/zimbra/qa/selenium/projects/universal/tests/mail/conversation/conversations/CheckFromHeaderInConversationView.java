@@ -51,8 +51,8 @@ public class CheckFromHeaderInConversationView extends UniversalCommonTest {
 
 	}
 
-	@Bugs(ids = "67986,64067,47288,16213")
-	@Test(description = "Conversation list should show From=<blank>", groups = { "functional", "L2" })
+	@Bugs (ids = "67986,64067,47288,16213")
+	@Test (description = "Conversation list should show From=<blank>", groups = { "functional", "L2" })
 
 	public void CheckFromHeaderInConversationView_01() throws HarnessException {
 

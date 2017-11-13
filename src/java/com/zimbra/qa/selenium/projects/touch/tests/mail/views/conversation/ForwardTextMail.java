@@ -30,8 +30,8 @@ public class ForwardTextMail extends PrefGroupMailByConversationTest {
 		logger.info("New "+ ForwardTextMail.class.getCanonicalName());
 	}
 	
-	@Bugs( ids = "85534")
-	@Test( description = "Forward a text mail and verify subject, from and to fields",
+	@Bugs (ids = "85534")
+	@Test (description = "Forward a text mail and verify subject, from and to fields",
 			groups = { "sanity" })
 			
 	public void ForwardTextMail_01() throws HarnessException {
@@ -84,7 +84,7 @@ public class ForwardTextMail extends PrefGroupMailByConversationTest {
 		
 	}
 	
-	@Test( description = "Forward a text mail and verify body content",
+	@Test (description = "Forward a text mail and verify body content",
 			groups = { "sanity" })
 			
 	public void ForwardTextMail_02() throws HarnessException {

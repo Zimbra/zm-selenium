@@ -33,7 +33,7 @@ public class CreateQuickCommand extends AjaxCommonTest {
 		super.startingPage = app.zPagePreferences;
 	}
 
-	@Bugs(ids = "71389")
+	@Bugs (ids = "71389")
 	@Test(	description = "Create a basic Quick Command",
 			groups = { "deprecated" })
 

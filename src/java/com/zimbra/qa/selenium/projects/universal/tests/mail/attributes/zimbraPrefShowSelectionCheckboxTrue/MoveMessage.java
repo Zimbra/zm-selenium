@@ -47,7 +47,7 @@ public class MoveMessage extends PrefGroupMailByMessageTest {
 	}
 	
 
-	@Test( description = "Move all mails by selecting 'select all', then clicking toolbar 'Move' button",
+	@Test (description = "Move all mails by selecting 'select all', then clicking toolbar 'Move' button",
 			groups = { "functional", "L2" })
 	
 	public void MoveMessage_01() throws HarnessException {
@@ -112,8 +112,8 @@ public class MoveMessage extends PrefGroupMailByMessageTest {
 	}
 
 	
-	@Bugs(ids = "106905")
-	@Test( description = "Move all mails by selecting 'shift-select all', then clicking toolbar 'Move' button",
+	@Bugs (ids = "106905")
+	@Test (description = "Move all mails by selecting 'shift-select all', then clicking toolbar 'Move' button",
 			groups = { "functional", "L3" })
 	
 	public void MoveMessage_02() throws HarnessException {

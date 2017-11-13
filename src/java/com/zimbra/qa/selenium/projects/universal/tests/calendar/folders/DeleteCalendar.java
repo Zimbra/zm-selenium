@@ -36,7 +36,7 @@ public class DeleteCalendar extends CalendarWorkWeekTest {
 		
 	}
 	
-	@Test( description = "Delete a calendar - Right click, Delete",
+	@Test (description = "Delete a calendar - Right click, Delete",
 			groups = { "smoke", "L1" })
 	public void DeleteCalendar_01() throws HarnessException {
 		

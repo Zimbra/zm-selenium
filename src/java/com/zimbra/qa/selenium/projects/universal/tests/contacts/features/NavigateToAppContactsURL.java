@@ -37,7 +37,7 @@ public class NavigateToAppContactsURL extends UniversalCommonTest {
 
 	}
 
-	@Test(description = "?app=contacts in url", 
+	@Test (description = "?app=contacts in url", 
 			groups = { "smoke", "L1"})
 
 	public void NavigateToAppContactsURL_01() throws HarnessException {

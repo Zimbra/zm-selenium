@@ -31,7 +31,7 @@ public class DragAndDropContact extends UniversalCommonTest  {
 		
 	}
 	
-	@Test( description = "Move a contact item to sub-addressbook",
+	@Test (description = "Move a contact item to sub-addressbook",
 			groups = { "smoke", "L0"})
 	
 	public void DragAndDropContact_01() throws HarnessException {
@@ -82,7 +82,7 @@ public class DragAndDropContact extends UniversalCommonTest  {
         ZAssert.assertEquals(actual.getFolderId(), folder.getId(), "Verify the contact is in the Trash folder");
    	}
 		
-	@Test( description = "Move a contact item to trash folder by drag and drop",
+	@Test (description = "Move a contact item to trash folder by drag and drop",
 			groups = { "functional", "L2"})
 	
 	public void DnDToTrash_02() throws HarnessException {

@@ -32,7 +32,7 @@ public class ReplyToConversationWithDraft extends PrefGroupMailByConversationTes
 	}
 
 
-	@Bugs(ids = "97098")
+	@Bugs (ids = "97098")
 	@Test (description = "Reply to a conversation with a draft",
 			groups = { "functional", "L2" })
 
@@ -89,7 +89,7 @@ public class ReplyToConversationWithDraft extends PrefGroupMailByConversationTes
 	}
 
 
-	@Bugs(ids = "81920")
+	@Bugs (ids = "81920")
 	@Test (description = "Reply to a conversation with a trashed message",
 			groups = { "functional", "L3" })
 
@@ -143,7 +143,7 @@ public class ReplyToConversationWithDraft extends PrefGroupMailByConversationTes
 	}
 
 
-	@Bugs(ids = "81920")
+	@Bugs (ids = "81920")
 	@Test (description = "Reply to a conversation with a spammed message",
 			groups = { "functional", "L3" })
 
@@ -197,7 +197,7 @@ public class ReplyToConversationWithDraft extends PrefGroupMailByConversationTes
 	}
 
 
-	@Bugs(ids = "81920")
+	@Bugs (ids = "81920")
 	@Test (description = "Reply to a conversation with a sent message",
 			groups = { "functional", "L2" })
 

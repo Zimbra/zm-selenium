@@ -38,7 +38,7 @@ public class ModifySeriesDate extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 	
-	@Bugs(ids = "101532")
+	@Bugs (ids = "101532")
 	@Test (description = "Modify series invite date and verify it",
 			groups = { "functional" })
 

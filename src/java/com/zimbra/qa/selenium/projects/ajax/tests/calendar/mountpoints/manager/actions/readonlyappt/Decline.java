@@ -33,7 +33,7 @@ public class Decline extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "81647")
+	@Bugs (ids = "81647")
 	@Test (description = "Assistant right clicks to calendar invite from shared calendar and declines the invite OBO boss (Don't notify organizer)",
 			groups = { "smoke", "L1" })
 

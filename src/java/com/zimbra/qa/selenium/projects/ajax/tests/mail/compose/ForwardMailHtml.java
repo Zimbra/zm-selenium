@@ -34,7 +34,7 @@ public class ForwardMailHtml extends PrefGroupMailByMessageTest {
 	@Test (description = "Forward an html mail using html editor",
 			groups = { "smoke", "L1" })
 
-	public void ForwardMailHtml_01l() throws HarnessException {
+	public void ForwardMailHtml_01() throws HarnessException {
 
 		String subject = "subject"+ ConfigProperties.getUniqueString();
 		String bodyText = "text" + ConfigProperties.getUniqueString();

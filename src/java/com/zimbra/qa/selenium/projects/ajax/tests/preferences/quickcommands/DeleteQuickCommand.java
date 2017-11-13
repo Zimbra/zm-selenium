@@ -31,7 +31,7 @@ public class DeleteQuickCommand extends AjaxQuickCommandTest {
 	}
 
 
-	@Bugs(ids = "71389")
+	@Bugs (ids = "71389")
 	@Test(	description = "Delete a Quick Command",
 			groups = { "deprecated" })
 

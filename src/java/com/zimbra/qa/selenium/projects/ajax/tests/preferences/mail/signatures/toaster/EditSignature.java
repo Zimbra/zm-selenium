@@ -62,17 +62,17 @@ public class EditSignature extends AjaxCommonTest {
 	 * Test case : Create signature through soap Edit it through GUI and Verify toast message
 	 */
 
-	@Test (description = " Edit Text singature and verify toast msg",
+	@Test (description = "Edit Text singature and verify toast message",
 			groups = { "functional", "L3"  })
 
-	public void EditTextSignatureToastMsg_01() throws HarnessException {
+	public void EditTextSignature_01() throws HarnessException {
 
 		String sigEditName = "editsigname" + ConfigProperties.getUniqueString();
 		String sigEditBody = "editsigbody" + ConfigProperties.getUniqueString();
 
 		// Signature is created
 		SignatureItem signature = SignatureItem.importFromSOAP(app.zGetActiveAccount(), this.sigName);
-		ZAssert.assertEquals(signature.getName(), this.sigName, "verified Text Signature is created");
+		ZAssert.assertEquals(signature.getName(), this.sigName, "Verify text signature is created");
 
 		// Click on Mail/signature
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.MailSignatures);
@@ -95,7 +95,7 @@ public class EditSignature extends AjaxCommonTest {
 
 		// Verifying the toaster message
 		Toaster toast = app.zPageMain.zGetToaster();
-		String toastMsg = toast.zGetToastMessage();
-		ZAssert.assertStringContains(toastMsg, "Preferences Saved", "Verify toast message: Preferences Saved");
+		String toastMessage = toast.zGetToastMessage();
+		ZAssert.assertStringContains(toastMessage, "Preferences Saved", "Verify toast message: Preferences Saved");
 	}
 }

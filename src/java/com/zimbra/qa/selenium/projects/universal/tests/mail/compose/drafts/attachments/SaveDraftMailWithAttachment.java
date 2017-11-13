@@ -36,7 +36,7 @@ public class SaveDraftMailWithAttachment extends PrefGroupMailByMessageTest {
 		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "html");
 	}
 
-	@Test( description = "Save draft a mail with attachment and send a mail",
+	@Test (description = "Save draft a mail with attachment and send a mail",
 			groups = { "sanity", "L0" })
 
 	public void SaveDraftMailWithAttachment_01() throws HarnessException {
@@ -113,7 +113,7 @@ public class SaveDraftMailWithAttachment extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Open existing saved draft with attachment and send a mail",
+	@Test (description = "Open existing saved draft with attachment and send a mail",
 			groups = { "functional", "L2" })
 
 	public void OpenExistingSavedDraftMailWithAttachment_02() throws HarnessException {

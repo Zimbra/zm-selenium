@@ -32,8 +32,8 @@ public class ResetStatusAfterUpdatingEquipment extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 	
-	@Bugs(ids = "49881")
-	@Test( description = "Check reset status of meeting after Updating Equipment",
+	@Bugs (ids = "49881")
+	@Test (description = "Check reset status of meeting after Updating Equipment",
 			groups = { "functional", "L2"})
 			
 	public void ResetStatusAfterUpdatingEquipment_01() throws HarnessException {

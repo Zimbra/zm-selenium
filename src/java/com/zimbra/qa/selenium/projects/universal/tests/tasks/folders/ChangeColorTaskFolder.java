@@ -44,7 +44,7 @@ public class ChangeColorTaskFolder extends UniversalCommonTest {
 	}
 	
 	
-	@Test( description = "Edit a folder, change the color (Context menu -> Edit)", 
+	@Test (description = "Edit a folder, change the color (Context menu -> Edit)", 
 			groups = { "functional", "L2"})
 	
 	public void ChangeColorTaskFolder_01() throws HarnessException {

@@ -33,7 +33,7 @@ public class SortPerFolder extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Bugs(ids = "30319")
+	@Bugs (ids = "30319")
 	@Test (description = "Sort a list of messages by subject in folderA and by From in folderB",
 			groups = { "functional", "L2" })
 

@@ -34,7 +34,7 @@ public class DeleteAppointment extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "69132")
+	@Bugs (ids = "69132")
 	@Test (description = "Delete an appointment using Delete toolbar button",
 			groups = { "smoke", "L1" })
 
@@ -79,7 +79,7 @@ public class DeleteAppointment extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "69132")
+	@Bugs (ids = "69132")
 	@Test (description = "Delete an appointment using context menu",
 			groups = { "functional", "L2" })
 
@@ -131,7 +131,7 @@ public class DeleteAppointment extends AjaxCommonTest {
 		};
 	}
 
-	@Bugs(ids = "69132")
+	@Bugs (ids = "69132")
 	@Test (description = "Delete an appointment using keyboard shortcuts (Del & Backspace)",
 			groups = { "functional", "L2" },
 			dataProvider = "DataProviderShortcutKeys")

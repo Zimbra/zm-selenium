@@ -34,7 +34,7 @@ public class OpenComposedMessageInNewWindow extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Bugs( ids = "89778")
+	@Bugs (ids = "89778")
 	@Test (description = "Send a mail using HTML editor - from a separate window using DETACH COMPOSE button",
 			groups = { "functional", "L2" })
 

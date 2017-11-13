@@ -38,7 +38,7 @@ public class AppMail extends PrefGroupMailByMessageTest {
 
 	}
 
-	@Test( description = "?app=mail in url",
+	@Test (description = "?app=mail in url",
 			groups = { "smoke", "L1" })
 	public void AppMail_01() throws HarnessException {
 

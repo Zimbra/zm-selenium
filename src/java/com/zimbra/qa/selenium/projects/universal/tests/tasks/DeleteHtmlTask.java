@@ -42,7 +42,7 @@ public class DeleteHtmlTask extends UniversalCommonTest {
 		
 	}
 	
-	@Test( description = "Delete a Html task using toolbar delete button",
+	@Test (description = "Delete a Html task using toolbar delete button",
 			groups = { "smoke", "L0"})
 	public void DeleteHtmlTask_01() throws HarnessException {
 		
@@ -101,7 +101,7 @@ public class DeleteHtmlTask extends UniversalCommonTest {
 	
 	}
 
-	@Test( description = "Delete a Html task using checkbox and toolbar delete button",
+	@Test (description = "Delete a Html task using checkbox and toolbar delete button",
 			groups = { "smoke", "L0"})
 	public void DeleteHtmlTask_02() throws HarnessException {
 		
@@ -172,7 +172,7 @@ public class DeleteHtmlTask extends UniversalCommonTest {
 	  };
 	}
 	
-	@Test( description = "Delete a html task by selecting and typing 'delete' keyboard",
+	@Test (description = "Delete a html task by selecting and typing 'delete' keyboard",
 			groups = { "smoke", "L0"},
 			dataProvider = "DataProviderDeleteKeys")
 	public void DeleteHtmlTask_03(String name, int keyEvent) throws HarnessException {
@@ -237,8 +237,8 @@ public class DeleteHtmlTask extends UniversalCommonTest {
 	
 	}
 	
-	@Bugs(ids="56467")
-	@Test( description = "Delete a Html task by selecting and typing '.t' shortcut",
+	@Bugs (ids = "56467")
+	@Test (description = "Delete a Html task by selecting and typing '.t' shortcut",
 			groups = { "functional", "L3"} )
 	public void DeleteHtmlTask_04() throws HarnessException {
 		
@@ -302,7 +302,7 @@ public class DeleteHtmlTask extends UniversalCommonTest {
 	
 	}
 
-	@Test( description = "Delete multiple Html tasks (3) by select and toolbar delete",
+	@Test (description = "Delete multiple Html tasks (3) by select and toolbar delete",
 			groups = { "functional", "L3"})
 	public void DeleteHtmlTask_05() throws HarnessException {
 		
@@ -430,7 +430,7 @@ public class DeleteHtmlTask extends UniversalCommonTest {
 
 	}
 
-	@Test( description = "Delete a html task using context menu delete button",
+	@Test (description = "Delete a html task using context menu delete button",
 			groups = { "smoke", "L0"})
 	public void DeleteHtmlTask_06() throws HarnessException {
 
@@ -493,7 +493,7 @@ public class DeleteHtmlTask extends UniversalCommonTest {
 	
 	}
 	
-	@Test( description = "Create Html task through SOAP - delete using Backspace Key & verify through GUI",
+	@Test (description = "Create Html task through SOAP - delete using Backspace Key & verify through GUI",
 			groups = { "functional", "L3"} )
 	public void DeleteHtmlTask_07() throws HarnessException {
 		

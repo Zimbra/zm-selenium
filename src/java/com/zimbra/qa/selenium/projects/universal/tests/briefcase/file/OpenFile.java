@@ -47,7 +47,7 @@ public class OpenFile extends FeatureBriefcaseTest {
 		super.startingAccountPreferences.put("zimbraPrefBriefcaseReadingPaneLocation", "bottom");			
 	}
 
-	@Test( description = "Upload file through RestUtil - open & verify through GUI", 
+	@Test (description = "Upload file through RestUtil - open & verify through GUI", 
 			groups = { "smoke", "L0" })
 	public void OpenFile_01() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();

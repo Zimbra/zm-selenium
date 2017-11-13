@@ -36,8 +36,8 @@ public class CreateMeeting extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 
-	@Bugs(ids = "95899,95900,46442")
-	@Test( description = "Create basic meeting invite with one attendee",
+	@Bugs (ids = "95899,95900,46442")
+	@Test (description = "Create basic meeting invite with one attendee",
 			groups = { "sanity", "L0" })
 
 	public void CreateMeeting_01() throws HarnessException {
@@ -97,7 +97,7 @@ public class CreateMeeting extends CalendarWorkWeekTest {
 	}
 
 
-	@Test( description = "Verify new appointment creation is based on mail compose preference set to TEXT",
+	@Test (description = "Verify new appointment creation is based on mail compose preference set to TEXT",
 			groups = { "smoke", "L1" })
 
 	public void CreateMeeting_02() throws HarnessException {
@@ -136,7 +136,7 @@ public class CreateMeeting extends CalendarWorkWeekTest {
 	}
 
 
-	@Test( description = "Create basic meeting invite with required and optional attendee",
+	@Test (description = "Create basic meeting invite with required and optional attendee",
 			groups = { "functional", "L2" })
 
 	public void CreateMeeting_03() throws HarnessException {

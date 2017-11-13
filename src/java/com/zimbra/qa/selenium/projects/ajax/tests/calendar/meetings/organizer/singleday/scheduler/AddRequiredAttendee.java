@@ -34,7 +34,7 @@ public class AddRequiredAttendee extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "77711")
+	@Bugs (ids = "77711")
 	@DataProvider(name = "DataProviderShortcutKeys")
 	public Object[][] DataProviderShortcutKeys() {
 		return new Object[][] {

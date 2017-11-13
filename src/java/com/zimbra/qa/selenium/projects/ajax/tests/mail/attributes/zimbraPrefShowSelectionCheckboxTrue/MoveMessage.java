@@ -105,7 +105,7 @@ public class MoveMessage extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Bugs(ids = "106905")
+	@Bugs (ids = "106905")
 	@Test (description = "Move all mails by selecting 'shift-select all', then clicking toolbar 'Move' button",
 			groups = { "functional", "L3" })
 

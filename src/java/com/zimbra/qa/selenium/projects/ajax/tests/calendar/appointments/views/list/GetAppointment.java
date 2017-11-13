@@ -40,7 +40,7 @@ public class GetAppointment extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "69132")
+	@Bugs (ids = "69132")
 	@Test (description = "View a basic appointment in the list view",
 			groups = { "functional", "L2" })
 	

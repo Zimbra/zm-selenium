@@ -34,11 +34,11 @@ public class EditContactGroup extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "97157")
-	@Test (description = "Edit a contact group by click Edit on Toolbar button and verify Toast msg",
+	@Bugs (ids = "97157")
+	@Test (description = "Edit a contact group by click Edit on Toolbar button and verify toast message",
 			groups = { "functional", "L2" })
 
-	public void EditContactGroupToastMsg_01() throws HarnessException {
+	public void EditContactGroup_01() throws HarnessException {
 
 		// A new group name
 		String newname = "edit" + ConfigProperties.getUniqueString();
@@ -70,16 +70,16 @@ public class EditContactGroup extends AjaxCommonTest {
 
 		// Verifying the toaster message
 		Toaster toast = app.zPageMain.zGetToaster();
-		String toastMsg = toast.zGetToastMessage();
-		ZAssert.assertStringContains(toastMsg, "Group Saved", "Verify toast message: Group Saved bug:97157");
+		String toastMessage = toast.zGetToastMessage();
+		ZAssert.assertStringContains(toastMessage, "Group Saved", "Verify toast message: Group Saved bug:97157");
 	}
 
 
-	@Bugs(ids = "97157")
-	@Test (description = "Edit a contact group by click Edit Group on Context Menu and verify toast msg",
+	@Bugs (ids = "97157")
+	@Test (description = "Edit a contact group by click Edit Group on Context Menu and verify toast message",
 			groups = { "functional", "L2" })
 
-	public void EditContactGroupToastMsg_02() throws HarnessException {
+	public void EditContactGroup_02() throws HarnessException {
 
 		// A new group name
 		String newname = "edit" + ConfigProperties.getUniqueString();
@@ -107,16 +107,16 @@ public class EditContactGroup extends AjaxCommonTest {
 
 		// Verifying the toaster message
 		Toaster toast = app.zPageMain.zGetToaster();
-		String toastMsg = toast.zGetToastMessage();
-		ZAssert.assertStringContains(toastMsg, "Group Saved", "Verify toast message: Group Saved bug:97157");
+		String toastMessage = toast.zGetToastMessage();
+		ZAssert.assertStringContains(toastMessage, "Group Saved", "Verify toast message: Group Saved bug:97157");
 	}
 
 
-	@Bugs(ids = "97157")
-	@Test (description = "Edit a contact group by double click on the contact group and verify toast msg  ",
+	@Bugs (ids = "97157")
+	@Test (description = "Edit a contact group by double click on the contact group and verify toast message  ",
 			groups = { "functional", "L2" })
 
-	public void EditContactGroupToastMsg_03() throws HarnessException {
+	public void EditContactGroup_03() throws HarnessException {
 
 		// A new group name
 		String newname = "edit" + ConfigProperties.getUniqueString();
@@ -144,7 +144,7 @@ public class EditContactGroup extends AjaxCommonTest {
 
 		// Verifying the toaster message
 		Toaster toast = app.zPageMain.zGetToaster();
-		String toastMsg = toast.zGetToastMessage();
-		ZAssert.assertStringContains(toastMsg, "Group Saved", "Verify toast message: Group Saved bug:97157");
+		String toastMessage = toast.zGetToastMessage();
+		ZAssert.assertStringContains(toastMessage, "Group Saved", "Verify toast message: Group Saved bug:97157");
 	}
 }

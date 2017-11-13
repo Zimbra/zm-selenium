@@ -33,7 +33,7 @@ public class AcceptShareFromPreferences extends UniversalCommonTest {
 			
 	}
 
-	@Test( description = "Accept shared folder from preferences/sharing", groups = { "functional", "L2" })
+	@Test (description = "Accept shared folder from preferences/sharing", groups = { "functional", "L2" })
 
 	public void AcceptShare_01() throws HarnessException {
 

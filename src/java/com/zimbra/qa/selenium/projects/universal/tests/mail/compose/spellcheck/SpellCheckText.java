@@ -32,7 +32,7 @@ public class SpellCheckText extends PrefGroupMailByMessageTest {
 	}
 	
 	
-	@Test( description = "Spell check an Text message",
+	@Test (description = "Spell check an Text message",
 			groups = { "functional", "L2" })
 	
 	public void SpellCheckText_01() throws HarnessException {

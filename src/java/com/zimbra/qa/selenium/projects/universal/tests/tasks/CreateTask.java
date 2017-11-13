@@ -45,7 +45,7 @@ public class CreateTask extends UniversalCommonTest {
 		}};
 	}
 	
-	@Test( description = "Create Simple task through GUI - verify through soap", 
+	@Test (description = "Create Simple task through GUI - verify through soap", 
 			groups = { "sanity", "L0"})
 	
 	public void CreateTask_01() throws HarnessException {
@@ -67,7 +67,7 @@ public class CreateTask extends UniversalCommonTest {
 
 	}
 	
-	@Test( description = "Create new task using keyboard shortcut Esc- Verify through Soap", 
+	@Test (description = "Create new task using keyboard shortcut Esc- Verify through Soap", 
 			groups = { "smoke", "L0"})
 	
 	public void CreateTask_02() throws HarnessException {
@@ -105,7 +105,7 @@ public class CreateTask extends UniversalCommonTest {
 
 	}
 	
-	@Test( description = "Create task using New menu pulldown  - verify through SOAP",	
+	@Test (description = "Create task using New menu pulldown  - verify through SOAP",	
 			groups = { "smoke", "L0"})
 	
 	public void CreateTask_03() throws HarnessException {
@@ -132,7 +132,7 @@ public class CreateTask extends UniversalCommonTest {
 
 	}
 	
-	@Test( description = "Create new task using NK keyboard shortcut key", 
+	@Test (description = "Create new task using NK keyboard shortcut key", 
 			groups = { "smoke", "L0"})
 	
 	public void CreateTask_04() throws HarnessException {
@@ -166,7 +166,7 @@ public class CreateTask extends UniversalCommonTest {
 
 	}
 	
-	@Test( description = "Create Tasks, using 'Right Click' Mail subject -> 'Create Task'-Verify through Soap", 
+	@Test (description = "Create Tasks, using 'Right Click' Mail subject -> 'Create Task'-Verify through Soap", 
 			groups = { "smoke", "L0"})
 	
 	public void CreateTask_05() throws HarnessException {
@@ -208,7 +208,7 @@ public class CreateTask extends UniversalCommonTest {
 		ZAssert.assertEquals(task.getName(), subject, "Verify task subject");
 	}
 	
-	@Test( description = "Create Simple task with attachment through RestUtil - verify through GUI", 
+	@Test (description = "Create Simple task with attachment through RestUtil - verify through GUI", 
 			groups = { "smoke", "L0"})
 	
 	public void CreateTask_06() throws HarnessException {
@@ -254,7 +254,7 @@ public class CreateTask extends UniversalCommonTest {
 		
 	}
 	
-	@Test( description = "Create Simple task  with attachment through RestUtil - verify through soap",
+	@Test (description = "Create Simple task  with attachment through RestUtil - verify through soap",
 			groups = { "smoke", "L0"})
 	
 	public void CreateTask_07() throws HarnessException {
@@ -317,7 +317,7 @@ public class CreateTask extends UniversalCommonTest {
 	  };
 	}
 
-	@Test( description = "Create a task with different priorities high/normal/low", 
+	@Test (description = "Create a task with different priorities high/normal/low", 
 			groups = { "smoke", "L1"},	dataProvider = "DataProvidePriorities")
 	
 	public void CreateTask_10(Button option, String verify) throws HarnessException {

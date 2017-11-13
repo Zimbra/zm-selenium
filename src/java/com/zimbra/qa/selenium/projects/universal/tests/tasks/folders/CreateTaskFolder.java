@@ -44,7 +44,7 @@ public class CreateTaskFolder extends UniversalCommonTest {
 		}};
 	}	
 
-	@Test( description = "Create a new tasklist by clicking 'Create a new task' on task folders tree", 
+	@Test (description = "Create a new tasklist by clicking 'Create a new task' on task folders tree", 
 			groups = { "sanity", "L0"})
 	
 	public void CreateTaskFolder_01() throws HarnessException {
@@ -74,7 +74,7 @@ public class CreateTaskFolder extends UniversalCommonTest {
 		ZAssert.assertEquals(folder.getName(), _folderName,"Verify the server and client folder names match");
 	}
 	
-	@Test( description = "Create a new tasklist using tasks app New -> New Task Folder", 
+	@Test (description = "Create a new tasklist using tasks app New -> New Task Folder", 
 			groups = { "functional", "L2"})
 	public void CreateTaskFolder_02() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();

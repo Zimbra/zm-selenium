@@ -106,7 +106,7 @@ public class EditDocument extends FeatureBriefcaseTest {
 	}
 
 
-	@Bugs(ids = "97124")
+	@Bugs (ids = "97124")
 	@Test (description = "Create document through SOAP - edit text & name & verify through GUI",
 			groups = { "smoke", "L2" })
 
@@ -193,7 +193,7 @@ public class EditDocument extends FeatureBriefcaseTest {
 	}
 
 
-	@Bugs(ids = "97124")
+	@Bugs (ids = "97124")
 	@Test (description = "Create document & edit text through SOAP & verify through GUI",
 			groups = { "smoke", "L3" })
 

@@ -47,8 +47,8 @@ public class DeleteTagAppointment extends UniversalCommonTest {
 		}};
 	}
 
-	@Bugs(ids = "75711")
-	@Test( description = "Apply tag to appointment and delete same tag in day view",
+	@Bugs (ids = "75711")
+	@Test (description = "Apply tag to appointment and delete same tag in day view",
 			groups = { "functional", "L2" })
 	public void DeleteTagAppointment_01() throws HarnessException {
 		
@@ -88,7 +88,7 @@ public class DeleteTagAppointment extends UniversalCommonTest {
 		
 	}
 	
-	@Test( description = "Apply tag to appointment and delete tagged appointment in day view",
+	@Test (description = "Apply tag to appointment and delete tagged appointment in day view",
 			groups = { "functional", "L2" })
 	public void DeleteTagAppointment_02() throws HarnessException {
 		
@@ -126,8 +126,8 @@ public class DeleteTagAppointment extends UniversalCommonTest {
 		
 	}
 
-	@Bugs(ids = "67035")
-	@Test( description = "Apply tag to appointment, delete the tag and verify that the appointment is still visible",
+	@Bugs (ids = "67035")
+	@Test (description = "Apply tag to appointment, delete the tag and verify that the appointment is still visible",
 			groups = { "functional", "L2" })
 	public void DeleteTagAppointment_03() throws HarnessException {
 		

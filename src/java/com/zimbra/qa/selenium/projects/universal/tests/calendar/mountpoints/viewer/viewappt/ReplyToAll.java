@@ -33,7 +33,7 @@ public class ReplyToAll extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 	
-	@Test( description = "Grantee replies all to appointment from grantor's calendar (Actions -> Reply to All)",
+	@Test (description = "Grantee replies all to appointment from grantor's calendar (Actions -> Reply to All)",
 			groups = { "functional", "L2" })
 			
 	public void ReplyToAll_01() throws HarnessException {

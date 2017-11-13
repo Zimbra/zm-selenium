@@ -34,7 +34,7 @@ public class ModifyDLDisplayNameAndDescription extends UniversalCommonTest  {
 		super.startingPage = app.zPageContacts;
 	}
 	
-	@Test( description = "Modify DL display name and description", 
+	@Test (description = "Modify DL display name and description", 
 			groups = { "functional", "L2"})
 
 	public void ModifyDLDisplayNameAndDescription_01 () throws HarnessException {

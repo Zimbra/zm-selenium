@@ -41,7 +41,7 @@ public class UndoMoveTask extends AjaxCommonTest {
 	}
 
 
-	@Bugs( ids = "96832")
+	@Bugs (ids = "96832")
 	@Test (description = "Undo moved task",
 			groups = { "smoke", "L1" })
 

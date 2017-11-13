@@ -32,7 +32,7 @@ public class CreateAllDayAppointment extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "107050")
+	@Bugs (ids = "107050")
 	@Test (description = "Create all day appointment using quick add dialog",
 			groups = { "smoke", "L0" } )
 

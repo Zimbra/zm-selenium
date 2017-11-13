@@ -39,7 +39,7 @@ public class CreateFolder extends FeatureBriefcaseTest {
 		super.startingAccountPreferences.put("zimbraPrefBriefcaseReadingPaneLocation", "bottom");
 	}
 
-	@Test( description = "Create a new folder by clicking 'Create a new briefcase' on folders tree", 
+	@Test (description = "Create a new folder by clicking 'Create a new briefcase' on folders tree", 
 			groups = { "sanity", "L0" })
 	
 	public void CreateFolder_01() throws HarnessException {
@@ -71,8 +71,8 @@ public class CreateFolder extends FeatureBriefcaseTest {
 		ZAssert.assertEquals(folder.getName(), _folderName, "Verify the server and client folder names match");
 	}
 	
-	@Bugs(ids = "67061")
-	@Test( description = "According to Comment#1 in the bug 67061 Create a new folder using 'nf' keyboard shortcut is for mail only", 
+	@Bugs (ids = "67061")
+	@Test (description = "According to Comment#1 in the bug 67061 Create a new folder using 'nf' keyboard shortcut is for mail only", 
 	groups = { "functional-skip", "L4" })
 	public void CreateFolder_02() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
@@ -113,7 +113,7 @@ public class CreateFolder extends FeatureBriefcaseTest {
 				"Verify the server and client folder names match");
 	}
 
-	@Test( description = "Create a new folder using context menu from root folder", 
+	@Test (description = "Create a new folder using context menu from root folder", 
 			groups = { "functional", "L2" })
 	public void CreateFolder_03() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
@@ -147,7 +147,7 @@ public class CreateFolder extends FeatureBriefcaseTest {
 				"Verify the server and client folder names match");
 	}
 
-	@Test( description = "Create a new Briefcase folder using Briefcase app toolbar pulldown: New -> New Briefcase", 
+	@Test (description = "Create a new Briefcase folder using Briefcase app toolbar pulldown: New -> New Briefcase", 
 			groups = { "functional", "L2" })
 	public void CreateFolder_04() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();

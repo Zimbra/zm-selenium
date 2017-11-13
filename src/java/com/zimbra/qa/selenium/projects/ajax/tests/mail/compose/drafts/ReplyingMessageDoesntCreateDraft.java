@@ -34,7 +34,7 @@ public class ReplyingMessageDoesntCreateDraft extends PrefGroupMailByMessageTest
 	}
 
 
-	@Bugs( ids = "67686, 69384")
+	@Bugs (ids = "67686, 69384")
 	@Test (description = "Verify bug 67686",
 			groups = { "functional", "L2" })
 

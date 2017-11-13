@@ -39,7 +39,7 @@ public class TagMessage extends PrefGroupMailByMessageTest {
 		
 	}
 	
-	@Test( description = "Verify success on Tag a shared mail (admin share)",
+	@Test (description = "Verify success on Tag a shared mail (admin share)",
 			groups = { "functional", "L2" })
 	public void TagMessage_01() throws HarnessException {
 		
@@ -149,8 +149,8 @@ public class TagMessage extends PrefGroupMailByMessageTest {
 
 	}
 
-	@Bugs(ids="79948")
-	@Test( description = "Verify success on Tag (keyboard='t') a shared mail (admin share)",
+	@Bugs (ids = "79948")
+	@Test (description = "Verify success on Tag (keyboard='t') a shared mail (admin share)",
 			groups = { "functional", "L2" })
 	public void TagMessage_02() throws HarnessException {
 		

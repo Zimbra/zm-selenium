@@ -155,7 +155,7 @@ public class GetContactGroup extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "100227")
+	@Bugs (ids = "100227")
 	@Test (description = "Click Alphabetbar button Z: Verify only contact groups started with Z|z is listed",
 			groups = { "functional", "L2" })
 

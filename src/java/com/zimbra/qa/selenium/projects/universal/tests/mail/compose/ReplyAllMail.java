@@ -41,7 +41,7 @@ public class ReplyAllMail extends PrefGroupMailByMessageTest {
 		
 	}
 	
-	@Test( description = "Reply to all (test account in To field)",
+	@Test (description = "Reply to all (test account in To field)",
 			groups = { "functional", "L2" })
 	public void ReplyMail_01() throws HarnessException {
 
@@ -135,7 +135,7 @@ public class ReplyAllMail extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Reply to all (test account in Cc field)",
+	@Test (description = "Reply to all (test account in Cc field)",
 			groups = { "functional", "L2" })
 	public void ReplyMail_02() throws HarnessException {
 
@@ -230,7 +230,7 @@ public class ReplyAllMail extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Reply to all from the sent folder (test account in From field)",
+	@Test (description = "Reply to all from the sent folder (test account in From field)",
 			groups = { "functional", "L2" })
 	public void ReplyMail_03() throws HarnessException {
 
@@ -351,8 +351,8 @@ public class ReplyAllMail extends PrefGroupMailByMessageTest {
 		
 	}
 
-	@Bugs( ids = "79880")
-	@Test( description = "Verify user account is not To/Cc when mismatched case)",
+	@Bugs (ids = "79880")
+	@Test (description = "Verify user account is not To/Cc when mismatched case)",
 			groups = { "functional", "L3" })
 	public void ReplyMail_04() throws HarnessException {
 
@@ -411,8 +411,8 @@ public class ReplyAllMail extends PrefGroupMailByMessageTest {
 
 	}
 	
-	@Bugs( ids = "79880")
-	@Test( description = "Verify user account is not To/Cc when mismatched case)",
+	@Bugs (ids = "79880")
+	@Test (description = "Verify user account is not To/Cc when mismatched case)",
 			groups = { "functional", "L3" })
 	public void ReplyMail_05() throws HarnessException {
 

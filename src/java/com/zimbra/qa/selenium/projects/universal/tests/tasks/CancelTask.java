@@ -57,7 +57,7 @@ public class CancelTask extends UniversalCommonTest {
 	 * Task should not show in list 
 	 * @throws HarnessException
 	 */
-	@Test( description = "Cancel composing of new task through GUI", 
+	@Test (description = "Cancel composing of new task through GUI", 
 			groups = { "functional", "L3"})
 	public void CancelTask_01() throws HarnessException {
 
@@ -95,7 +95,7 @@ public class CancelTask extends UniversalCommonTest {
 
 	}
 	
-	@Test( description = "Cancel composing of new task using Esc shortcut", groups = { "functional", "L3"})
+	@Test (description = "Cancel composing of new task using Esc shortcut", groups = { "functional", "L3"})
 	public void CancelTask_02() throws HarnessException {
 
 		Shortcut shortcut = Shortcut.S_ESCAPE;
@@ -146,8 +146,8 @@ public class CancelTask extends UniversalCommonTest {
 	 * Compose task with empty attachment should get cancelled every time whenever
 	 * user click on cancel 
 	 */
-	@Bugs(ids = "74670")
-	@Test( description = "cancelling empty attachment task in 2nd attempt", 
+	@Bugs (ids = "74670")
+	@Test (description = "cancelling empty attachment task in 2nd attempt", 
 			groups = { "functional", "L3"})
 	public void Bug_74670() throws HarnessException {
 

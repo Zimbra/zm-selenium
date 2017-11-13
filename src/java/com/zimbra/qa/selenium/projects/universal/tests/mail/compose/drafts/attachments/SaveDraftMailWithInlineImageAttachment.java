@@ -37,7 +37,7 @@ public class SaveDraftMailWithInlineImageAttachment extends PrefGroupMailByMessa
 		super.startingAccountPreferences.put("zimbraPrefForwardReplyInOriginalFormat", "FALSE");
 	}
 
-	@Test( description = "Save draft a mail with inline attachment and send a mail",
+	@Test (description = "Save draft a mail with inline attachment and send a mail",
 			groups = { "smoke", "L1" })
 
 	public void SaveDraftAndSendMailWithInlineImageAttachment_01() throws HarnessException {
@@ -116,7 +116,7 @@ public class SaveDraftMailWithInlineImageAttachment extends PrefGroupMailByMessa
 	}
 
 
-	@Test( description = "Open existing saved draft with attachment and send a mail with inline image attachment",
+	@Test (description = "Open existing saved draft with attachment and send a mail with inline image attachment",
 			groups = { "functional", "L2" })
 
 	public void OpenExistingSavedDraftAndSendMailWithInlineImageAttachment_02() throws HarnessException {

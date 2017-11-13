@@ -88,7 +88,7 @@ public class NavigateAway extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids="98364,101596")
+	@Bugs (ids = "98364,101596")
 	@Test(	description = "If no changes made, verify that navigating away from preferences pages do not prompt 'Save Changes?'",
 			groups = { "functional", "L3" },
 			dataProvider = "DataProviderPreferencePageToLocator")
@@ -118,7 +118,7 @@ public class NavigateAway extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "103549")
+	@Bugs (ids = "103549")
 	@Test (description = "Set calendar custom work week and navigate away without saving",
 			groups = { "functional", "L2" })
 
@@ -137,7 +137,7 @@ public class NavigateAway extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "103549")
+	@Bugs (ids = "103549")
 	@Test (description = "Change default appointment duration and navigate away without saving",
 			groups = { "functional", "L3" })
 

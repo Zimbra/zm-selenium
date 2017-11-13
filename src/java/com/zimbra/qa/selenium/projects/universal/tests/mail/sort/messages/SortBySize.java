@@ -36,7 +36,7 @@ public class SortBySize extends PrefGroupMailByMessageTest {
 		super.startingAccountPreferences.put("zimbraPrefReadingPaneLocation", "bottom");
 	}
 	
-	@Test( description = "Sort a list of messages by size (large->small)",
+	@Test (description = "Sort a list of messages by size (large->small)",
 			groups = { "functional", "L2" })
 	public void SortBySize_01() throws HarnessException {
 		
@@ -133,7 +133,7 @@ public class SortBySize extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Sort a list of messages by size (small->large)",
+	@Test (description = "Sort a list of messages by size (small->large)",
 			groups = { "functional", "L2" })
 	public void SortBySize_02() throws HarnessException {
 		

@@ -52,7 +52,7 @@ public class TrustedDomainConvView extends AjaxCommonTest {
 	 * 2.In conversation View Inject mail with external image
 	 * 3.Verify To,From,Subject through soap
 	 * 4.Click on same mail
-	 * 5.Yellow color Warning msg Info bar should not present for trusted domain
+	 * 5.Yellow color Warning message Info bar should not present for trusted domain
 	 */
 
 	@Test (description = "Verify Display Image link in Trusted doamin for conversation view",

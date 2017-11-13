@@ -46,7 +46,7 @@ public class SendFileAttachment extends FeatureBriefcaseTest {
 		super.startingAccountPreferences.put("zimbraPrefBriefcaseReadingPaneLocation", "bottom");				
 	}
 
-	@Test( description = "Upload file through RestUtil - click Send as attachment, Cancel & verify through GUI", 
+	@Test (description = "Upload file through RestUtil - click Send as attachment, Cancel & verify through GUI", 
 			groups = { "functional", "L3" })
 	public void SendFileAttachment_01() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
@@ -116,7 +116,7 @@ public class SendFileAttachment extends FeatureBriefcaseTest {
 		app.zPageBriefcase.deleteFileByName(fileItem.getName());
 	}
 
-	@Test( description = "Send File as attachment using Right Click Context Menu & verify through GUI", 
+	@Test (description = "Send File as attachment using Right Click Context Menu & verify through GUI", 
 			groups = { "functional", "L2" })
 	public void SendFileAttachment_02() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();

@@ -35,7 +35,7 @@ public class ChangeLocationOfOneInstance extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "52682")
+	@Bugs (ids = "52682")
 	@Test (description = "Can't change location of one instance", 
 			groups = { "functional", "L2" } )
 

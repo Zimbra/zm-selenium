@@ -37,8 +37,8 @@ public class EditContactGroup extends UniversalCommonTest {
 
 	}
 
-	@Bugs(ids = "97157")
-	@Test(description = "Edit a contact group by click Edit on Toolbar button and verify Toast msg", 
+	@Bugs (ids = "97157")
+	@Test (description = "Edit a contact group by click Edit on Toolbar button and verify Toast msg", 
 			groups = {"functional", "L2"})
 	public void EditContactGroupToastMsg_01() throws HarnessException {
 
@@ -76,8 +76,8 @@ public class EditContactGroup extends UniversalCommonTest {
 		ZAssert.assertStringContains(toastMsg, "Group Saved", "Verify toast message: Group Saved bug:97157");
 	}
 
-	@Bugs(ids = "97157")
-	@Test(description = "Edit a contact group by click Edit Group on Context Menu and verify toast msg", 
+	@Bugs (ids = "97157")
+	@Test (description = "Edit a contact group by click Edit Group on Context Menu and verify toast msg", 
 			groups = {"functional", "L2"})
 	public void EditContactGroupToastMsg_02() throws HarnessException {
 
@@ -113,8 +113,8 @@ public class EditContactGroup extends UniversalCommonTest {
 
 	}
 
-	@Bugs(ids = "97157")
-	@Test(description = "Edit a contact group by double click on the contact group and verify toast msg  ", 
+	@Bugs (ids = "97157")
+	@Test (description = "Edit a contact group by double click on the contact group and verify toast msg  ", 
 			groups = {"functional", "L2"})
 	public void EditContactGroupToastMsg_03() throws HarnessException {
 

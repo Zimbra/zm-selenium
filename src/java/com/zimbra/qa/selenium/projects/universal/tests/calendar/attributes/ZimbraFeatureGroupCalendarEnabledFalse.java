@@ -43,7 +43,7 @@ public class ZimbraFeatureGroupCalendarEnabledFalse extends CalendarWorkWeekTest
 		super.startingPage = app.zPageCalendar;
 	}
 	
-	@Bugs(ids = "56440")
+	@Bugs (ids = "56440")
 	@Test(
 			description = "If zimbraFeatureGroupCalendarEnabled to FALSE then check if user can edit existing appt", 
 			groups = { "functional", "L2" })

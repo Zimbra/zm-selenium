@@ -35,8 +35,8 @@ public class Decline extends CalendarWorkWeekTest {
 		
 	}
 	
-	@Bugs(ids = "95961")
-	@Test( description = "Rt-click to appointment from the calendar app and Decline the meeting invite (Series)", 
+	@Bugs (ids = "95961")
+	@Test (description = "Rt-click to appointment from the calendar app and Decline the meeting invite (Series)", 
 			groups = { "smoke", "L1" })
 	
 	public void DeclineMeeting_01() throws HarnessException {

@@ -35,8 +35,8 @@ public class EditReplyDecline extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 	
-	@Bugs(ids = "80559")
-	@Test( description = "Assistant right clicks to calendar invite from shared calendar and declines the invite OBO boss (Notify organizer)",
+	@Bugs (ids = "80559")
+	@Test (description = "Assistant right clicks to calendar invite from shared calendar and declines the invite OBO boss (Notify organizer)",
 			groups = { "functional", "L5" })
 			
 	public void EditReplyDecline_01() throws HarnessException {

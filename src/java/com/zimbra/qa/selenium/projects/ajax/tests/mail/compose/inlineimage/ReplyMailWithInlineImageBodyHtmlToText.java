@@ -44,7 +44,7 @@ public class ReplyMailWithInlineImageBodyHtmlToText extends PrefGroupMailByMessa
 	}
 
 
-	@Bugs(ids = "104342,106133")
+	@Bugs (ids = "104342,106133")
 	@Test (description = "Verify that in reply compose screen, inline attachment shows as an attachment when changing format to from HTML to Plain Text",
 			groups = { "functional-skip", "application-bug" })
 

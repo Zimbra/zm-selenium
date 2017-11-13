@@ -342,7 +342,7 @@ public class DeleteDocument extends FeatureBriefcaseTest {
 	}
 
 
-	@Bugs(ids = "43836")
+	@Bugs (ids = "43836")
 	@Test (description = "can not delete documents in briefcase with the same file name",
 			groups = { "functional", "L3" })
 
@@ -458,7 +458,7 @@ public class DeleteDocument extends FeatureBriefcaseTest {
 	}
 
 
-	@Bugs(ids = "103343")
+	@Bugs (ids = "103343")
 	@Test (description = "Create document with 3 versions through SOAP - delete using Right Click context menu & verify through GUI", 
 			groups = { "functional", "L3" })
 

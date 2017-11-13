@@ -13,7 +13,7 @@ public class RevokeShareFromPreferences extends UniversalCommonTest {
 	public RevokeShareFromPreferences() {			
 	}
 
-	@Test( description = "Revoke share folder from preferences", groups = { "functional", "L2" })
+	@Test (description = "Revoke share folder from preferences", groups = { "functional", "L2" })
 
 	public void RevokeShareFromPreferences_01() throws HarnessException {
 

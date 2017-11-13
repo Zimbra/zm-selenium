@@ -33,8 +33,8 @@ public class Tag extends CalendarWorkWeekTest {
 		
 	}
 	
-	@Bugs(ids = "63455,79016")
-	@Test( description = "View meeting invite by opening it and apply tag to the appointment", 
+	@Bugs (ids = "63455,79016")
+	@Test (description = "View meeting invite by opening it and apply tag to the appointment", 
 			groups = { "functional", "L2" })
 
 	public void TagMeeting_01() throws HarnessException {
@@ -104,8 +104,8 @@ public class Tag extends CalendarWorkWeekTest {
 
 	}
 	
-	@Bugs(ids = "63455,79016")
-	@Test( description = "Open meeting invite by double-clicking it, apply tag and remove it later", 
+	@Bugs (ids = "63455,79016")
+	@Test (description = "Open meeting invite by double-clicking it, apply tag and remove it later", 
 			groups = { "functional", "L2" })
 			
 	public void TagMeeting_02() throws HarnessException {

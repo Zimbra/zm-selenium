@@ -30,7 +30,7 @@ public class GetPrimaryAccount extends UniversalCommonTest {
 		super.startingPage = app.zPagePreferences;
 	}
 
-	@Test(description = "View the accounts preference page shows the default primary account", groups = {
+	@Test (description = "View the accounts preference page shows the default primary account", groups = {
 			"functional", "L3" })
 	public void GetPrimaryAccount_01() throws HarnessException {
 

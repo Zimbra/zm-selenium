@@ -36,7 +36,7 @@ public class ReplyMailWithAttachment extends PrefGroupMailByMessageTest {
 		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "text");
 	}
 
-	@Test( description = "Reply to a mail with attachment - Verify existing attachment not sent",
+	@Test (description = "Reply to a mail with attachment - Verify existing attachment not sent",
 			groups = { "sanity", "L0" })
 
 	public void ReplyMailWithAttachment_01() throws HarnessException {

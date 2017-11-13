@@ -33,8 +33,8 @@ public class ResetStatusAfterModifyingCalendar extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 	
-	@Bugs(ids = "98476,49881")
-	@Test( description = "Check reset status of meeting after modifying calendar",
+	@Bugs (ids = "98476,49881")
+	@Test (description = "Check reset status of meeting after modifying calendar",
 			groups = { "functional", "L5"})
 			
 	public void ResetStatusAfterModifyingCalendar_01() throws HarnessException {

@@ -33,7 +33,7 @@ public class Decline extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 	
-	@Bugs(ids = "95807")
+	@Bugs (ids = "95807")
 	@Test (description = "Decline a meeting using view appointment options", 
 			groups = { "sanity" })
 	

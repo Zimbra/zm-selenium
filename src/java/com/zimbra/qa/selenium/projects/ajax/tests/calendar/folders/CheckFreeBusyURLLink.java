@@ -43,7 +43,7 @@ public class CheckFreeBusyURLLink extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "60277")
+	@Bugs (ids = "60277")
 	@Test (description = "Verify free busy link is accessible and no error is thrown",
 			groups = { "functional", "L2" }, dataProvider = "DataProviderFB")
 

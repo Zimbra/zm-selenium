@@ -97,7 +97,7 @@ public class CancelCompose extends TouchCommonTest {
 		
 	}
 	
-	@Bugs( ids = "83978")
+	@Bugs (ids = "83978")
 	@Test (description = "Compose message, specify subject, body and send a mail after saving as draft",
 			groups = { "obsolete" }) // obsolete testcase because UI has been changed (after saving draft, dialog is closed)
 		

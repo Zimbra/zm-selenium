@@ -43,7 +43,7 @@ public class SendFileLink extends FeatureBriefcaseTest {
 	}
 
 
-	@Bugs(ids="46371")
+	@Bugs (ids = "46371")
 	@Test (description = "Briefcase linking problems upon renames",
 			groups = { "functional", "L2" })
 

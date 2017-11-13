@@ -41,7 +41,7 @@ public class DeclineProposeNewTime extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "69132,96556,96748")
+	@Bugs (ids = "69132,96556,96748")
 	@Test (description = "Receive meeting invite -> Propose New Time to organizer and organizer declines the new time using message view",
 			groups = { "functional", "L2" })
 

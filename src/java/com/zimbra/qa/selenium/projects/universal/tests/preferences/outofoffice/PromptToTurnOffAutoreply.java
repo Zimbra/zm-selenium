@@ -48,8 +48,8 @@ public class PromptToTurnOffAutoreply extends UniversalCommonTest {
 	}
 
 	
-	@Bugs(ids = "51990")
-	@Test(description = "Enable auto-reply message - Verify after login  alert dialog promts to turn off auto-reply", priority = 4, groups = {
+	@Bugs (ids = "51990")
+	@Test (description = "Enable auto-reply message - Verify after login  alert dialog promts to turn off auto-reply", priority = 4, groups = {
 			"functional", "L3" })
 	
 	public void PromptToTurnOffAutoreply_01() throws HarnessException {

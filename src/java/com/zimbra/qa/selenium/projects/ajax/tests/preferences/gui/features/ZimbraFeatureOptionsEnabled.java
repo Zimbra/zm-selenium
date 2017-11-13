@@ -45,7 +45,7 @@ public class ZimbraFeatureOptionsEnabled extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids="62011")
+	@Bugs (ids = "62011")
 	@Test (description = "Load the Preferences tab with just Preferences enabled",
 			groups = { "deprecated" })
 

@@ -32,8 +32,8 @@ public class NavigateToToday extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 	
-	@Bugs(ids = "78821")
-	@Test( description = "Verify clicking on Today button highlights today when moved to next week",
+	@Bugs (ids = "78821")
+	@Test (description = "Verify clicking on Today button highlights today when moved to next week",
 			groups = { "smoke", "L1" })
 	
 	public void NavigateToToday_01() throws HarnessException {
@@ -90,7 +90,7 @@ public class NavigateToToday extends CalendarWorkWeekTest {
        ZAssert.assertEquals(today, mydate , "todays date is presnt in the view");
 	}
 	
-	@Test( description = "Verify clicking on Today button highlights today",
+	@Test (description = "Verify clicking on Today button highlights today",
 			groups = { "smoke", "L1" })
 	
 	public void NavigateToToday_02() throws HarnessException {

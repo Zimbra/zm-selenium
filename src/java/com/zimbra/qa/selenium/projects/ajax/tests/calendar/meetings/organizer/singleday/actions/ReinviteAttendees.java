@@ -32,7 +32,7 @@ public class ReinviteAttendees extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "21181")
+	@Bugs (ids = "21181")
 	@Test (description = "Resend a meeting invite using context menu",
 			groups = { "smoke", "L1" })
 

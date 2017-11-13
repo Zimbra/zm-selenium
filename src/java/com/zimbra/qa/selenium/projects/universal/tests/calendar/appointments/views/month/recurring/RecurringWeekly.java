@@ -45,7 +45,7 @@ public class RecurringWeekly extends CalendarWorkWeekTest {
 			}};
 	}
 	
-	@Test( description = "Verify the display of a weekly recurring appointment in month view.",
+	@Test (description = "Verify the display of a weekly recurring appointment in month view.",
 			groups = { "functional", "L2" })
 			
 	public void RecurringWeekly_01() throws HarnessException, ParseException {

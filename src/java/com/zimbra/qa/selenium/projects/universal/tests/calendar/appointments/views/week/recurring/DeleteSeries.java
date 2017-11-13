@@ -44,7 +44,7 @@ public class DeleteSeries extends CalendarWorkWeekTest {
 		
 	}
 	
-	@Bugs(ids = "69132")
+	@Bugs (ids = "69132")
 	@Test(
 			description = "Delete entire series of recurring appointment (every day) using toolbar button in week view", 
 			groups = { "smoke", "L3" } )
@@ -135,7 +135,7 @@ public class DeleteSeries extends CalendarWorkWeekTest {
         
 	}
 	
-	@Bugs(ids = "69132")
+	@Bugs (ids = "69132")
 	@Test(
 			description = "Delete entire series of recurring appointment (every week) using context menu in week view", 
 			groups = { "smoke", "L3" } )
@@ -229,8 +229,8 @@ public class DeleteSeries extends CalendarWorkWeekTest {
 		};
 	}
 
-	@Bugs(ids = "69132")
-	@Test( description = "Delete entire series appointment (every week) using keyboard shortcuts Del & Backspace in week view",
+	@Bugs (ids = "69132")
+	@Test (description = "Delete entire series appointment (every week) using keyboard shortcuts Del & Backspace in week view",
 			groups = { "functional", "L3" },
 			dataProvider = "DataProviderShortcutKeys")
 			

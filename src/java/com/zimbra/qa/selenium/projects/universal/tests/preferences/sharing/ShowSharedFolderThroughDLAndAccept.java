@@ -39,7 +39,7 @@ import com.zimbra.qa.selenium.projects.universal.ui.preferences.TreePreferences.
 				
 		}
 
-		@Test( description = "Accept share folder with user through a distribution list", groups = { "functional", "L2" })
+		@Test (description = "Accept share folder with user through a distribution list", groups = { "functional", "L2" })
 
 		public void ShowSharedFolderThroughDLAndAccept_01() throws HarnessException {
 

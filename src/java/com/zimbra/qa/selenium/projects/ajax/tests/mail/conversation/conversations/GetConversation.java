@@ -32,7 +32,7 @@ public class GetConversation extends PrefGroupMailByConversationTest {
 	@Test (description = "Receive a conversation",
 			groups = { "smoke", "L1" })
 
-	public void GetConversation01() throws HarnessException {
+	public void GetConversation_01() throws HarnessException {
 
 		// Create the message data to be sent
 		String subject = "subject" + ConfigProperties.getUniqueString();

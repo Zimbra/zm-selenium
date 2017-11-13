@@ -35,7 +35,7 @@ public class CreateMailWithInlineImageAttachment extends PrefGroupMailByMessageT
 		super.startingAccountPreferences.put("zimbraPrefForwardReplyInOriginalFormat", "FALSE");
 	}
 
-	@Test( description = "Send a mail by adding inline image attachment",
+	@Test (description = "Send a mail by adding inline image attachment",
 			groups = { "sanity", "L0" })
 
 	public void CreateMailWithInlineImageAttachment_01() throws HarnessException {

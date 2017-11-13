@@ -32,10 +32,10 @@ public class EditContact extends AjaxCommonTest {
 	}
 
 
-	@Test (description = "Edit a contact item, click Edit on toolbar and verify toast msg",
+	@Test (description = "Edit a contact item, click Edit on toolbar and verify toast message",
 			groups = { "functional", "L2" })
 
-	public void EditContactToastMsg_01() throws HarnessException {
+	public void EditContact_01() throws HarnessException {
 
 		// Create a contact
 		ContactItem contact = ContactItem.createContactItem(app.zGetActiveAccount());
@@ -65,15 +65,15 @@ public class EditContact extends AjaxCommonTest {
 
 		// Verifying the toaster message
 		Toaster toast = app.zPageMain.zGetToaster();
-		String toastMsg = toast.zGetToastMessage();
-		ZAssert.assertStringContains(toastMsg, "Contact Saved", "Verify toast message: Contact Saved");
+		String toastMessage = toast.zGetToastMessage();
+		ZAssert.assertStringContains(toastMessage, "Contact Saved", "Verify toast message: Contact Saved");
 	}
 
 
-	@Test (description = "Edit a contact item, Right click then click Edit and verify toast msg",
+	@Test (description = "Edit a contact item, Right click then click Edit and verify toast message",
 			groups = { "functional", "L2" })
 
-	public void EditContactToastMsg_02() throws HarnessException {
+	public void EditContact_02() throws HarnessException {
 
 		// Create a contact
 		ContactItem contact = ContactItem.createContactItem(app.zGetActiveAccount());
@@ -101,15 +101,15 @@ public class EditContact extends AjaxCommonTest {
 
 		// Verifying the toaster message
 		Toaster toast = app.zPageMain.zGetToaster();
-		String toastMsg = toast.zGetToastMessage();
-		ZAssert.assertStringContains(toastMsg, "Contact Saved", "Verify toast message: Contact Saved");
+		String toastMessage = toast.zGetToastMessage();
+		ZAssert.assertStringContains(toastMessage, "Contact Saved", "Verify toast message: Contact Saved");
 	}
 
 
-	@Test (description = "Edit a contact item, double click the contact and verify toast msg",
+	@Test (description = "Edit a contact item, double click the contact and verify toast message",
 			groups = { "functional", "L2" })
 
-	public void EditContactToastMsg_03() throws HarnessException {
+	public void EditContact_03() throws HarnessException {
 
 		// Create a contact
 		ContactItem contact = ContactItem.createContactItem(app.zGetActiveAccount());
@@ -136,8 +136,8 @@ public class EditContact extends AjaxCommonTest {
 
 		// Verifying the toaster message
 		Toaster toast = app.zPageMain.zGetToaster();
-		String toastMsg = toast.zGetToastMessage();
-		ZAssert.assertStringContains(toastMsg, "Contact Saved", "Verify toast message: Contact Saved");
+		String toastMessage = toast.zGetToastMessage();
+		ZAssert.assertStringContains(toastMessage, "Contact Saved", "Verify toast message: Contact Saved");
 
 	}
 }

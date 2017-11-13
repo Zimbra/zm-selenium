@@ -230,8 +230,8 @@ public class CreateContactGroup extends AjaxCommonTest  {
 	}
 
 
-	@Bugs(ids = "77968,70905,66623")
-	@Test (description="Create a new contact group from GAL search result",
+	@Bugs (ids = "77968,70905,66623")
+	@Test (description = "Create a new contact group from GAL search result",
 		groups= { "smoke", "L0" } )
 
 	public void CreateContactGroupFromGALSearchResult_05() throws HarnessException{

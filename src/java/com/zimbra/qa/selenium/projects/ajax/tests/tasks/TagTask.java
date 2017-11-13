@@ -47,7 +47,7 @@ public class TagTask extends AjaxCommonTest{
 	}
 
 
-	@Bugs( ids = "96832")
+	@Bugs (ids = "96832")
 	@Test (description = "Tag a Task using Toolbar -> Tag -> New Tag",
 			groups = { "smoke", "L1" })
 

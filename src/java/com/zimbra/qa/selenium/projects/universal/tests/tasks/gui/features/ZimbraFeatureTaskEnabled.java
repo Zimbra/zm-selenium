@@ -60,7 +60,7 @@ public class ZimbraFeatureTaskEnabled extends UniversalCommonTest {
 
 	}
 	
-	@Test( description = "Load the Task tab with just Tasks enabled",
+	@Test (description = "Load the Task tab with just Tasks enabled",
 			groups = { "functional-skip", "L4"})
 	public void ZimbraFeatureTaskEnabled_01() throws HarnessException {
 		

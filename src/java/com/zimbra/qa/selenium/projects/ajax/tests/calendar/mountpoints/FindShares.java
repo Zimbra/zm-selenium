@@ -38,7 +38,7 @@ public class FindShares extends AjaxCommonTest {
 		
 	}
 	
-	@Bugs(ids = "82125,84339")
+	@Bugs (ids = "82125,84339")
 	@Test (description = "Search for a share using 'Find Shares' and add it",
 			groups = { "functional", "L2" })
 			

@@ -57,8 +57,8 @@ public class ZimbraFeatureOptionsEnabled extends UniversalCommonTest {
 	 * See http://bugzilla.zimbra.com/show_bug.cgi?id=62011 - WONTFIX
 	 * @throws HarnessException
 	 */
-	@Bugs(ids="62011")	
-	@Test( description = "Load the Preferences tab with just Preferences enabled", groups = { "deprecated", "L4" })
+	@Bugs (ids = "62011")	
+	@Test (description = "Load the Preferences tab with just Preferences enabled", groups = { "deprecated", "L4" })
 	public void ZimbraFeatureOptionsEnabled_01() throws HarnessException {
 		
 		// Go to "General"

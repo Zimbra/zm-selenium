@@ -43,8 +43,8 @@ public class CreateMeetingInSharedCalendarWithMailFeatureDisabled extends Calend
 	  logger.info("New " + CreateMeetingInSharedCalendarWithMailFeatureDisabled.class.getCanonicalName());
   }
   
-  @Bugs(ids="71542")
-  @Test( description="Unable to create appointment in shared calendars if mail feature is disabled", 
+  @Bugs (ids = "71542")
+  @Test (description = "Unable to create appointment in shared calendars if mail feature is disabled", 
   		groups={"functional", "L2"} )
   
   public void CreateMeetingInSharedCalendarWithMailFeatureDisabled_01() throws HarnessException {

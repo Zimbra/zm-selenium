@@ -30,7 +30,7 @@ public class ArchiveConversation extends ArchiveZimletByConversationTest {
 		logger.info("New "+ ArchiveConversation.class.getCanonicalName());
 	}
 	
-	@Test( description = "Archive a conversation",
+	@Test (description = "Archive a conversation",
 			groups = { "smoke","L0" })
 	public void ArchiveConversation_01() throws HarnessException {
 		
@@ -55,8 +55,8 @@ public class ArchiveConversation extends ArchiveZimletByConversationTest {
 		}
 	}
 
-	@Bugs(ids = "89122")
-	@Test( description = "Archive a single message in a conversation",
+	@Bugs (ids = "89122")
+	@Test (description = "Archive a single message in a conversation",
 			groups = { "smoke","L0" })
 	public void ArchiveConversation_02() throws HarnessException {
 		

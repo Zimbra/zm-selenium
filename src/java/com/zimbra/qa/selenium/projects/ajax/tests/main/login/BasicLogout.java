@@ -31,7 +31,7 @@ public class BasicLogout extends AjaxCommonTest {
 	@Test (description = "Logout of the Ajax Client",
 			groups = { "sanity", "L0" })
 
-	public void BasicLogout01() throws HarnessException {
+	public void BasicLogout_01() throws HarnessException {
 
 		// Login
 		app.zPageMain.zLogout();

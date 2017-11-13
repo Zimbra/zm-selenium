@@ -32,7 +32,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Bugs( ids = "65915")
+	@Bugs (ids = "65915")
 	@Test (description = "Delete a mail with zimbraDumpsterEnabled=TRUE",
 			groups = { "smoke", "L1" })
 

@@ -47,7 +47,7 @@ public class OwnerAccountDeleted extends UniversalCommonTest {
 	}
 	
 	
-	@Test( description = "Login to the Universal Client - with a mountpoint to a deleted account",
+	@Test (description = "Login to the Universal Client - with a mountpoint to a deleted account",
 			groups = { "functional", "L3"})
 	public void OwnerAccountDeleted01() throws HarnessException {
 		

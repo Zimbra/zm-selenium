@@ -35,10 +35,10 @@ public class CreateSignature extends AjaxCommonTest {
 	}
 
 
-	@Test (description = "Create Simple text signature and verify Toast Msg through GUI",
+	@Test (description = "Create Simple text signature and verify toast message through GUI",
 		groups = { "functional", "L3"  })
 
-	public void CreateTextSignatureToastMsg_01() throws HarnessException {
+	public void CreateTextSignature_01() throws HarnessException {
 
 		String sigName = "signame" + ConfigProperties.getUniqueString();
 		String sigBody = "sigbody" + ConfigProperties.getUniqueString();
@@ -56,15 +56,15 @@ public class CreateSignature extends AjaxCommonTest {
 
 		// Verifying the toaster message
 		Toaster toast = app.zPageMain.zGetToaster();
-		String toastMsg = toast.zGetToastMessage();
-		ZAssert.assertStringContains(toastMsg, "Preferences Saved", "Verify toast message: Preferences Saved");
+		String toastMessage = toast.zGetToastMessage();
+		ZAssert.assertStringContains(toastMessage, "Preferences Saved", "Verify toast message: Preferences Saved");
 	}
 
 
-	@Test (description = "Create Simple Html signature and verify Toast Msg through GUI",
+	@Test (description = "Create Simple Html signature and verify toast message through GUI",
 			groups = { "functional", "L3"  })
 
-	public void CreateHtmlSignatureToastMsg_02() throws HarnessException {
+	public void CreateHtmlSignature_02() throws HarnessException {
 
 		String sigName = "signame" + ConfigProperties.getUniqueString();
 		String sigBody = "sigbody" + ConfigProperties.getUniqueString();
@@ -85,7 +85,7 @@ public class CreateSignature extends AjaxCommonTest {
 
 		// Verifying the toaster message
 		Toaster toast = app.zPageMain.zGetToaster();
-		String toastMsg = toast.zGetToastMessage();
-		ZAssert.assertStringContains(toastMsg, "Preferences Saved", "Verify toast message: Preferences Saved");
+		String toastMessage = toast.zGetToastMessage();
+		ZAssert.assertStringContains(toastMessage, "Preferences Saved", "Verify toast message: Preferences Saved");
 	}
 }

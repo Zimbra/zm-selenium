@@ -72,7 +72,7 @@ public class SendLater extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Bugs(ids="ZCS-700")
+	@Bugs (ids = "ZCS-700")
 	@Test (description = "Send a mail later using Send -> Send Later - specify time in future",
 			groups = { "smoke", "L1" })
 

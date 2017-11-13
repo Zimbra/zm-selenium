@@ -37,7 +37,7 @@ public class CreateMeeting extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "95899,95900,46442")
+	@Bugs (ids = "95899,95900,46442")
 	@Test (description = "Create basic meeting invite with one attendee",
 			groups = { "sanity", "L0" })
 

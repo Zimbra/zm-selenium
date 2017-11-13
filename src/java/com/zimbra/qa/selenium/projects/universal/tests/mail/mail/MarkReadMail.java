@@ -33,7 +33,7 @@ public class MarkReadMail extends PrefGroupMailByMessageTest {
 		super.startingAccountPreferences.put("zimbraPrefMarkMsgRead", "" + delaySeconds);
 	}
 	
-	@Test( description = "Mark a message as read by clicking on it then waiting",
+	@Test (description = "Mark a message as read by clicking on it then waiting",
 			groups = { "smoke", "L1" })
 	
 	public void MarkReadMail_01() throws HarnessException {
@@ -73,7 +73,7 @@ public class MarkReadMail extends PrefGroupMailByMessageTest {
 		
 	}
 
-	@Test( description = "Verify that if the message is not read for less than zimbraPrefMarkMsgRead, it is not read",
+	@Test (description = "Verify that if the message is not read for less than zimbraPrefMarkMsgRead, it is not read",
 			groups = { "functional", "L2" })
 	
 	public void MarkReadMail_02() throws HarnessException {
@@ -125,7 +125,7 @@ public class MarkReadMail extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Mark a message as read by clicking on it, then using 'mr' hotkeys",
+	@Test (description = "Mark a message as read by clicking on it, then using 'mr' hotkeys",
 			groups = { "functional", "L2" })
 	
 	public void MarkReadMail_03() throws HarnessException {
@@ -162,7 +162,7 @@ public class MarkReadMail extends PrefGroupMailByMessageTest {
 		
 	}
 
-	@Test( description = "Mark a message as read by context menu -> mark read",
+	@Test (description = "Mark a message as read by context menu -> mark read",
 			groups = { "functional", "L2" })
 	
 			public void MarkReadMail_04() throws HarnessException {

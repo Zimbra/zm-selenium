@@ -34,7 +34,7 @@ public class MoveMeeting extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 
-	@Test( description = "Move meeting invite using toolbar menu as organizer",
+	@Test (description = "Move meeting invite using toolbar menu as organizer",
 			groups = { "functional", "L2"})
 			
 	public void MoveMeeting_01() throws HarnessException {

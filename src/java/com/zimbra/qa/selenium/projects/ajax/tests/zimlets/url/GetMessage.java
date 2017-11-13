@@ -194,7 +194,7 @@ public class GetMessage extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids="86667")
+	@Bugs (ids = "86667")
 	@Test (description = "Receive a mail with a url in subject reference bug 86667",
 			groups = { "deprecated" })
 
@@ -233,7 +233,7 @@ public class GetMessage extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "29018,67927")
+	@Bugs (ids = "29018,67927")
 	@Test (description = "Receive a mail with a URL in angled brackets",
 			groups = { "functional", "L2" })
 

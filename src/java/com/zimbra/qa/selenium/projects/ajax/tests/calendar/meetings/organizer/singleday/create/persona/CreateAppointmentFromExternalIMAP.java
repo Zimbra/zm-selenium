@@ -35,7 +35,7 @@ public class CreateAppointmentFromExternalIMAP extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "50096,104525")
+	@Bugs (ids = "50096,104525")
 	@Test (description = "Appt. invite received from primary account though external account selected while creating appointment",
 			groups = { "smoke-skip", "application-bug" })
 

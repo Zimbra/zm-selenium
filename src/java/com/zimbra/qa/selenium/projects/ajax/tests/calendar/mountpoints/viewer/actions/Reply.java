@@ -34,7 +34,7 @@ public class Reply extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "82558")
+	@Bugs (ids = "82558")
 	@Test (description = "Grantee replies to appointment from grantor's calendar",
 			groups = { "functional-skip", "application-bug" })
 

@@ -49,7 +49,7 @@ public class EditTask extends AjaxCommonTest{
 	@Test (description = "Unchecked Attachment from edit window and - verify Toast message",
 			groups = { "smoke", "L1" })
 
-	public void EditTaskToastMsg() throws HarnessException {
+	public void EditTaskToast_01() throws HarnessException {
 
 		String subject = "task" + ConfigProperties.getUniqueString();
 
@@ -103,7 +103,7 @@ public class EditTask extends AjaxCommonTest{
 
 		// Verifying the toaster message
 		Toaster toast = app.zPageMain.zGetToaster();
-		String toastMsg = toast.zGetToastMessage();
-		ZAssert.assertStringContains(toastMsg, "Task Saved","Verify toast message: Task Saved");
+		String toastMessage = toast.zGetToastMessage();
+		ZAssert.assertStringContains(toastMessage, "Task Saved","Verify toast message: Task Saved");
 	}
 }

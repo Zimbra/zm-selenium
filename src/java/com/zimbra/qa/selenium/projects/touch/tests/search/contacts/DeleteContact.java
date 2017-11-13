@@ -32,7 +32,7 @@ public class DeleteContact extends TouchCommonTest  {
 	super.startingPage = app.zPageAddressbook;
 }
 
-	@Test( description = "Search contact using email address and then Delete it",
+	@Test (description = "Search contact using email address and then Delete it",
 		groups = { "smoke" })
 
 	public void DeleteContact_01() throws HarnessException, AWTException {

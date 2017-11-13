@@ -33,7 +33,7 @@ public class CreateAppointment extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "69132,95899,95900")
+	@Bugs (ids = "69132,95899,95900")
 	@Test (description = "Create simple all day appointment",
 			groups = { "smoke", "L0" } )
 
@@ -71,7 +71,7 @@ public class CreateAppointment extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "104312")
+	@Bugs (ids = "104312")
 	@Test (description = "Create multi-day all day appointment in week view",
 			groups = { "smoke", "L1" } )
 

@@ -74,7 +74,7 @@ public class ManageContactGroupUsingRightClickContextMenu extends AjaxCommonTest
 	}
 
 
-	@Bugs(ids = "77882")
+	@Bugs (ids = "77882")
 	@Test (description = "Add a contact to an existing group",
 			groups = { "smoke", "L0" })
 
@@ -108,7 +108,7 @@ public class ManageContactGroupUsingRightClickContextMenu extends AjaxCommonTest
 	}
 
 
-	@Bugs(ids = "77882")
+	@Bugs (ids = "77882")
 	@Test (description = "Add 3 contacts to an existing group",
 			groups = { "functional", "L2" })
 
@@ -214,7 +214,7 @@ public class ManageContactGroupUsingRightClickContextMenu extends AjaxCommonTest
 	}
 
 
-	@Bugs(ids = "65500,15646")
+	@Bugs (ids = "65500,15646")
 	@Test (description = "Create a contact group with 1 contact + 1 group",
 			groups = { "functional", "L2" })
 
@@ -264,7 +264,7 @@ public class ManageContactGroupUsingRightClickContextMenu extends AjaxCommonTest
 	}
 
 
-	@Bugs(ids = "77882,15646")
+	@Bugs (ids = "77882,15646")
 	@Test (description = "Add 1 contact + 1 group to an existing group",
 			groups = { "functional", "L2" })
 

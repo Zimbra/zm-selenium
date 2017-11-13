@@ -48,7 +48,7 @@ public class ZmMailItem extends UniversalCommonTest {
 	}
 	
 	
-	@Test( description = "Measure the performance for preview pane, text message, initial load",
+	@Test (description = "Measure the performance for preview pane, text message, initial load",
 			groups = { "performance", "L4" })
 	public void ZmMailItem_01() throws HarnessException {
 		
@@ -72,7 +72,7 @@ public class ZmMailItem extends UniversalCommonTest {
 
 	}
 
-	@Test( description = "Measure the performance for preview pane, text message, 1 message",
+	@Test (description = "Measure the performance for preview pane, text message, 1 message",
 			groups = { "performance", "L4" })
 	public void ZmMailItem_02() throws HarnessException {
 		
@@ -96,7 +96,7 @@ public class ZmMailItem extends UniversalCommonTest {
 
 	}
 	
-	@Test( description = "Measure the performance for preview pane,  message with 1 attachment",
+	@Test (description = "Measure the performance for preview pane,  message with 1 attachment",
 			groups = { "performance", "L4" })
 	public void ZmMailItem_03() throws HarnessException {
 		
@@ -117,7 +117,7 @@ public class ZmMailItem extends UniversalCommonTest {
 	}
 	
 	
-	@Test( description = "Measure the performance for preview pane,  message with 3 attachment",
+	@Test (description = "Measure the performance for preview pane,  message with 3 attachment",
 			groups = { "performance", "L4" })
 	public void ZmMailItem_04() throws HarnessException {
 		

@@ -52,7 +52,7 @@ public class DeleteAppointment extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "69132")
+	@Bugs (ids = "69132")
 	@Test (description = "Delete an appointment in the list view - Toolbar Delete",
 			groups = { "functional", "L2" })
 
@@ -126,7 +126,7 @@ public class DeleteAppointment extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "69132")
+	@Bugs (ids = "69132")
 	@Test (description = "Delete an appt using checkbox and toolbar delete button",
 			groups = { "functional", "L2" })
 
@@ -209,7 +209,7 @@ public class DeleteAppointment extends AjaxCommonTest {
 		};
 	}
 
-	@Bugs(ids = "69132")
+	@Bugs (ids = "69132")
 	@Test (description = "Delete a appt by selecting and typing 'delete' keyboard",
 			groups = { "functional", "L2" },
 			dataProvider = "DataProviderDeleteKeys")
@@ -285,7 +285,7 @@ public class DeleteAppointment extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "72444")
+	@Bugs (ids = "72444")
 	@Test (description = "Delete a appt by selecting and typing '.t' shortcut",
 			groups = { "functional-skip", "application-bug" } )
 
@@ -359,7 +359,7 @@ public class DeleteAppointment extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "69132,79524")
+	@Bugs (ids = "69132,79524")
 	@Test (description = "Delete multiple appts (3) by select and toolbar delete",
 			groups = { "functional", "L2" } )
 
@@ -510,7 +510,7 @@ public class DeleteAppointment extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "69132")
+	@Bugs (ids = "69132")
 	@Test (description = "Delete a appt using context menu delete button",
 			groups = { "functional", "L2" })
 
@@ -583,7 +583,7 @@ public class DeleteAppointment extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "102051")
+	@Bugs (ids = "102051")
 	@Test (description = "Hard-delete a appt by selecting and typing 'shift-del' shortcut",
 			groups = { "functional-skip", "application-bug" } )
 
@@ -653,7 +653,7 @@ public class DeleteAppointment extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "102051")
+	@Bugs (ids = "102051")
 	@Test (description = "Hard-delete multiple appts (3) by selecting and typing 'shift-del' shortcut",
 			groups = { "functional-skip", "application-bug" })
 

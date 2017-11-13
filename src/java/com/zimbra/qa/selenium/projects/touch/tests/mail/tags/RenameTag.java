@@ -38,7 +38,7 @@ public class RenameTag extends PrefGroupMailByMessageTest  {
 	 * @throws HarnessException
 	 */
 	
-	@Test( description = "Rename a tag item", 
+	@Test (description = "Rename a tag item", 
 			groups = { "sanity" })
 	
 	public void RenameTag_01() throws HarnessException {

@@ -33,7 +33,7 @@ public class CheckForwardingMeetingDoesntSendInvite extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "56465")
+	@Bugs (ids = "56465")
 	@Test (description = "Bug 56465 - Forwarding of Calendar events sending invites to all attendees",
 			groups = { "functional", "L2" })
 

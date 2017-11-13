@@ -37,7 +37,7 @@ public class Address extends PrefGroupMailByMessageTest {
 		
 	}
 	
-	@Test( description = "Hover over GAL address",
+	@Test (description = "Hover over GAL address",
 			groups = { "functional", "L2" })
 	public void Address_01() throws HarnessException {
 		
@@ -82,7 +82,7 @@ public class Address extends PrefGroupMailByMessageTest {
 		
 	}
 
-	@Test( description = "Hover over External (non-GAL) address",
+	@Test (description = "Hover over External (non-GAL) address",
 			groups = { "functional", "L2" })
 	public void Address_02() throws HarnessException {
 		

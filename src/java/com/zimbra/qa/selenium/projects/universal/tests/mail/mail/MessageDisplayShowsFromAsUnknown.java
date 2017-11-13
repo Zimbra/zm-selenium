@@ -47,8 +47,8 @@ public class MessageDisplayShowsFromAsUnknown extends UniversalCommonTest {
 		}};
 	}
 	
-	@Bugs( ids = "16213")
-	@Test( description = "Verify bug 16213 - Message display should show From=Unknown",
+	@Bugs (ids = "16213")
+	@Test (description = "Verify bug 16213 - Message display should show From=Unknown",
 			groups = { "functional", "L2" })
 	
 	public void MessageDisplayShowsFromAsUnknown_01() throws HarnessException {

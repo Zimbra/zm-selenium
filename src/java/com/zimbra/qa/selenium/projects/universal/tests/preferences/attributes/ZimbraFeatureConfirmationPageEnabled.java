@@ -36,8 +36,8 @@ public class ZimbraFeatureConfirmationPageEnabled extends PrefGroupMailByMessage
 		super.startingAccountPreferences.put("ZimbraFeatureConfirmationPageEnabled", "TRUE");
 	}
 	
-	@Bugs(ids = "21979")
-	@Test( description = "Send a message and confirm the confirmation page",
+	@Bugs (ids = "21979")
+	@Test (description = "Send a message and confirm the confirmation page",
 			groups = { "functional", "L2" })
 	public void ZimbraFeatureConfirmationPageEnabled01() throws HarnessException {
 		

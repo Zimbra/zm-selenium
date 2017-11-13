@@ -44,7 +44,7 @@ public class GetGmailImap extends PrefGroupMailByMessageTest {
 	 * @throws HarnessException
 	 */
 
-	@Test( description = "View an external Gmail - IMAP",
+	@Test (description = "View an external Gmail - IMAP",
 			groups = { "smoke", "L1" })
 
 	public void GetExternalGmailIMAP_01() throws HarnessException {

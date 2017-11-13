@@ -138,7 +138,7 @@ public class Decline extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "96565")
+	@Bugs (ids = "96565")
 	@Test (description = "View meeting invite by opening it and Decline the invitation by selecting 'Notify organizer'",
 			groups = { "functional", "L2" })
 

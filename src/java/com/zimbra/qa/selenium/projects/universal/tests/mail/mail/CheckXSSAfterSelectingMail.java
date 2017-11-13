@@ -36,8 +36,8 @@ public class CheckXSSAfterSelectingMail extends PrefGroupMailByMessageTest {
 		logger.info("New "+ CheckXSSAfterSelectingMail.class.getCanonicalName());
 	}
 	
-	@Bugs( ids = "102637" )	
-	@Test( description = "Persistent XSS: unsafe content not filtered by defange", groups = { "functional", "L2" })
+	@Bugs (ids = "102637" )	
+	@Test (description = "Persistent XSS: unsafe content not filtered by defange", groups = { "functional", "L2" })
 	
 	public void CheckXSSAfterSelectingMail_01() throws HarnessException {
 

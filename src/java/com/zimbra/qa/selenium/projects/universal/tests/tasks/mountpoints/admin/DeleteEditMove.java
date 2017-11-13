@@ -49,7 +49,7 @@ public class DeleteEditMove extends UniversalCommonTest {
 
 	}
 
-	@Test( description = "Verify Delete Edit Move button are visible on mountpoint task (admin rights)",
+	@Test (description = "Verify Delete Edit Move button are visible on mountpoint task (admin rights)",
 			groups = { "functional", "L3"})
 			public void DeleteEditMove_01() throws HarnessException {
 

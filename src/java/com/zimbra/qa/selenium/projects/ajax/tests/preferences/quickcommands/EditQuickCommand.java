@@ -33,7 +33,7 @@ public class EditQuickCommand extends AjaxQuickCommandTest {
 	}
 
 
-	@Bugs(ids = "71389")
+	@Bugs (ids = "71389")
 	@Test(	description = "Edit a basic Quick Command",
 			groups = { "deprecated" })
 

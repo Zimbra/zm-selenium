@@ -214,7 +214,7 @@ public class UniversalQuickCommandTest extends UniversalCommonTest {
 	 * Set up basic quick commands for all combinations 
 	 * @throws HarnessException
 	 */
-	@Bugs(ids = "71389")	// Hold off on GUI implementation of Quick Commands in 8.X
+	@Bugs (ids = "71389")	// Hold off on GUI implementation of Quick Commands in 8.X
 //	@BeforeClass( groups = { "always" } )
 	public void addQuickCommands() throws HarnessException {
 		logger.info("addQuickCommands: start");

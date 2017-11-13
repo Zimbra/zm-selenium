@@ -40,7 +40,7 @@ public class CreateCalendar extends CalendarWorkWeekTest {
 	}
 
 
-	@Test( description = "Create a new calendar by clicking 'new folder' on folder tree", 
+	@Test (description = "Create a new calendar by clicking 'new folder' on folder tree", 
 			groups = { "sanity", "L0" })
 	
 	public void CreateCalendar_01() throws HarnessException {
@@ -65,7 +65,7 @@ public class CreateCalendar extends CalendarWorkWeekTest {
 		
 	}
 
-	@Test( description = "Create a new calendar using keyboard shortcuts", 
+	@Test (description = "Create a new calendar using keyboard shortcuts", 
 			groups = { "functional", "L2" })
 	public void CreateCalendar_02() throws HarnessException {
 
@@ -89,7 +89,7 @@ public class CreateCalendar extends CalendarWorkWeekTest {
 
 	}
 
-	@Test( description = "Create a new folder using context menu from root folder", 
+	@Test (description = "Create a new folder using context menu from root folder", 
 			groups = { "functional", "L2" })
 	public void CreateCalendar_03() throws HarnessException {
 
@@ -115,7 +115,7 @@ public class CreateCalendar extends CalendarWorkWeekTest {
 		
 	}
 
-	@Test( description = "Create a new folder using mail app New -> New Folder", 
+	@Test (description = "Create a new folder using mail app New -> New Folder", 
 			groups = { "functional", "L2" })
 	public void CreateCalendar_04() throws HarnessException {
 

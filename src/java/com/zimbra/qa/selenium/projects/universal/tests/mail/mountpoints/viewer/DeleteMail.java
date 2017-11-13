@@ -38,7 +38,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 		
 	}
 	
-	@Test( description = "Verify Delete button is disabled and non-functional on mountpoint message (read-only share)",
+	@Test (description = "Verify Delete button is disabled and non-functional on mountpoint message (read-only share)",
 			groups = { "functional", "L2" })
 	public void DeleteMail_01() throws HarnessException {
 		String foldername = "folder" + ConfigProperties.getUniqueString();
@@ -127,7 +127,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 	}
 
 	
-	@Test( description = "Verify Delete keyboard shortcut is non-functional on mountpoint message (read-only share)",
+	@Test (description = "Verify Delete keyboard shortcut is non-functional on mountpoint message (read-only share)",
 			groups = { "functional", "L2" })
 	public void DeleteMail_02() throws HarnessException {
 		String foldername = "folder" + ConfigProperties.getUniqueString();

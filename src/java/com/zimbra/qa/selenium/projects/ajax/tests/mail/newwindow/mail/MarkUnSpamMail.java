@@ -32,7 +32,7 @@ public class MarkUnSpamMail extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Bugs( ids = "103950")
+	@Bugs (ids = "103950")
 	@Test (description = "Mark a message as not spam, using 'Not Spam' toolbar button - in a separate window",
 			groups = { "smoke", "L1" })
 

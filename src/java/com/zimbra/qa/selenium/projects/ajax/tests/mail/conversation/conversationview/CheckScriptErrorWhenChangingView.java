@@ -32,7 +32,7 @@ public class CheckScriptErrorWhenChangingView extends PrefGroupMailByConversatio
 	}
 
 
-	@Bugs( ids = "102767")
+	@Bugs (ids = "102767")
 	@Test (description = "Script Error: this._listView[this._currentViewId].getLimit is not a function while clicking in View >> Message View",
 			groups = { "functional", "L2" })
 

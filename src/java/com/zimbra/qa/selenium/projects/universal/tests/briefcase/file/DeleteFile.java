@@ -46,7 +46,7 @@ public class DeleteFile extends FeatureBriefcaseTest {
 		super.startingAccountPreferences.put("zimbraPrefBriefcaseReadingPaneLocation", "bottom");	
 	}		
 
-	@Test( description = "Upload file through RestUtil - delete & verify through GUI", 
+	@Test (description = "Upload file through RestUtil - delete & verify through GUI", 
 			groups = { "smoke", "L1" })
 	public void DeleteFile_01() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
@@ -117,7 +117,7 @@ public class DeleteFile extends FeatureBriefcaseTest {
 				"Verify document was deleted through GUI");
 	}
 
-	@Test( description = "Upload file through RestUtil - delete using Delete Key & check trash", 
+	@Test (description = "Upload file through RestUtil - delete using Delete Key & check trash", 
 			groups = { "functional", "L2" })
 	public void DeleteFile_02() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
@@ -197,7 +197,7 @@ public class DeleteFile extends FeatureBriefcaseTest {
 				+ fileName + " id: " + id);		
 	}
 	
-	@Test( description = "Upload file through RestUtil - delete using <Backspace> Key & check trash", 
+	@Test (description = "Upload file through RestUtil - delete using <Backspace> Key & check trash", 
 			groups = { "functional", "L2" })
 	public void DeleteFile_03() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
@@ -277,7 +277,7 @@ public class DeleteFile extends FeatureBriefcaseTest {
 				+ fileName + " id: " + id);		
 	}
 	
-	@Test( description = "Upload file through RestUtil - delete using Right Click context menu", 
+	@Test (description = "Upload file through RestUtil - delete using Right Click context menu", 
 			groups = { "functional", "L2" })
 	public void DeleteFile_04() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
@@ -335,8 +335,8 @@ public class DeleteFile extends FeatureBriefcaseTest {
 				"Verify file was deleted through GUI");		
 	}
 
-	@Bugs(ids = "46889")
-	@Test( description = "Cannot delete uploaded file if it was already deleted once before", 
+	@Bugs (ids = "46889")
+	@Test (description = "Cannot delete uploaded file if it was already deleted once before", 
 	groups = { "functional", "L2" })
 	public void DeleteFile_05() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();

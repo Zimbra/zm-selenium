@@ -39,7 +39,7 @@ public class ApplyQuickCommandMessage extends AjaxQuickCommandTest {
 
 	}
 
-	@Bugs(ids = "71389")
+	@Bugs (ids = "71389")
 	@Test (description = "Apply a Quick Command to a message",
 			groups = { "functional-skip" })
 

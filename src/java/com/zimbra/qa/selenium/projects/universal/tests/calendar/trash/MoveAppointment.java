@@ -40,7 +40,7 @@ public class MoveAppointment extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 
-	@Test( description = "Verify the move of an appointment from trash to Calendar",
+	@Test (description = "Verify the move of an appointment from trash to Calendar",
 			groups = { "sanity", "L1" })
 
 	public void MoveAppointment_01() throws HarnessException {

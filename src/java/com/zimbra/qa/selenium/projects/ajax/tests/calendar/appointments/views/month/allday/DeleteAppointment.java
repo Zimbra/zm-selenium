@@ -39,7 +39,7 @@ public class DeleteAppointment extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "69132")
+	@Bugs (ids = "69132")
 	@Test (description = "Delete an all-day appointment in the month view",
 			groups = { "functional", "L2" })
 

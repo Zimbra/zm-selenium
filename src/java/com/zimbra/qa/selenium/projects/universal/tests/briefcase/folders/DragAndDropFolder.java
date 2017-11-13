@@ -30,7 +30,7 @@ public class DragAndDropFolder extends FeatureBriefcaseTest {
 		super.startingPage = app.zPageBriefcase;
 	}
 	
-	@Test(description = "Drag one briefcase sub-folder and Drop into other", 
+	@Test (description = "Drag one briefcase sub-folder and Drop into other", 
 			groups = { "functional", "L2" })
 	
 	public void DragAndDropFolder_01() throws HarnessException {

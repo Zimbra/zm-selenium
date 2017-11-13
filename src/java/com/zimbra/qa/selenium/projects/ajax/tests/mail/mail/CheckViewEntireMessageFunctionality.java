@@ -32,7 +32,7 @@ public class CheckViewEntireMessageFunctionality extends PrefGroupMailByMessageT
 	}
 
 
-	@Bugs( ids = "102052")
+	@Bugs (ids = "102052")
 	@Test (description = "Can't read long message due to missing of 'View entire message' link",
 			groups = { "smoke", "L1" })
 

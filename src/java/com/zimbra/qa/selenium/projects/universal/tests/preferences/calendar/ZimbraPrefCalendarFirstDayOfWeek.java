@@ -36,7 +36,7 @@ public class ZimbraPrefCalendarFirstDayOfWeek extends UniversalCommonTest {
 	}
 
 	// Need to skip this test completely till bug 77465 get fixed otherwise automation may stuck at browser navigate away dialog 
-	@Bugs(ids = "101729,103862")
+	@Bugs (ids = "101729,103862")
 	@Test(
 			description = "Set First day of the week and verify that first day is set correctly", 
 			groups = { "functional", "L2" })

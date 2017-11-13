@@ -46,7 +46,7 @@ public class ResetPassword extends AdminCommonTest {
 	 *3. Log in to Admin Console with testadmin account, enter password.
 	 * @throws HarnessException
 	 */
-	   @Bugs( ids = "72655")
+	   @Bugs (ids = "72655")
 	   @Test (description = "Edit password  -- manage account > Select account > Options > Edit > change password",
 			groups = { "functional", "L2" })
 			public void ResetPassword_01() throws HarnessException {

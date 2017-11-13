@@ -29,7 +29,7 @@ public class CreateMail extends PrefGroupMailByMessageTest {
 		logger.info("New "+ CreateMail.class.getCanonicalName());
 	}
 
-	@Bugs( ids = "21624")
+	@Bugs (ids = "21624")
 	@Test (description = "Create a mail using the deep link URL",
 			groups = { "smoke", "L1" })
 
@@ -103,7 +103,7 @@ public class CreateMail extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Bugs( ids = "82734")
+	@Bugs (ids = "82734")
 	@Test (description = "Create a mail with two 'to' adn two 'cc' addresses using the deep link URL",
 			groups = { "functional-skip", "application-bug" })
 
@@ -242,7 +242,7 @@ public class CreateMail extends PrefGroupMailByMessageTest {
 		};
 	}
 
-	@Bugs( ids = "76182,80816")
+	@Bugs (ids = "76182,80816")
 	@Test (description = "Create a mail with to with angled brackets, i.e. to=First Last<email@domain.com>",
 			dataProvider = "DataProviderMailtoBrackets",
 			groups = { "functional", "L3" })

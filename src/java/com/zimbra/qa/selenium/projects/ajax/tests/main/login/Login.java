@@ -33,7 +33,7 @@ public class Login extends AjaxCommonTest {
 	@Test (description = "Login to the Ajax Client",
 			groups = { "sanity", "L0" })
 
-	public void Login01() throws HarnessException {
+	public void Login_01() throws HarnessException {
 
 		// Login
 		app.zPageLogin.zLogin(ZimbraAccount.AccountZCS());
@@ -47,7 +47,7 @@ public class Login extends AjaxCommonTest {
 	@Test (description = "Login to the Ajax Client, with a mounted folder",
 			groups = { "functional", "L3" })
 
-	public void Login02() throws HarnessException {
+	public void Login_02() throws HarnessException {
 
 		String foldername = "folder" + ConfigProperties.getUniqueString();
 		String subject = "subject" + ConfigProperties.getUniqueString();
@@ -111,11 +111,11 @@ public class Login extends AjaxCommonTest {
 	}
 
 
-	@Bugs( ids = "59847")
+	@Bugs (ids = "59847")
 	@Test (description = "Login to the Ajax Client, with a mounted folder of a deleted account",
 			groups = { "functional", "L3" })
 
-	public void Login03() throws HarnessException {
+	public void Login_03() throws HarnessException {
 
 		// Create Account2
 		ZimbraAccount account = new ZimbraAccount();
@@ -199,12 +199,12 @@ public class Login extends AjaxCommonTest {
 				  };
 		}
 
-	@Bugs( ids = "66788")
+	@Bugs (ids = "66788")
 	@Test (description = "Change the zimbraMailURL and login", priority=5,
 			groups = { "functional-skip", "L3-skip" },
 			dataProvider = "DataProvider_zimbraMailURL")
 
-	public void Login04(String zimbraMailURLtemp, String notused) throws HarnessException {
+	public void Login_04(String zimbraMailURLtemp, String notused) throws HarnessException {
 
 		String zimbraMailURL = null;
 

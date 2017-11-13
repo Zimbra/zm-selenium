@@ -38,8 +38,8 @@ public class CheckEditedMessageAfterCancellingMeetingInvite extends CalendarWork
 		super.startingPage = app.zPageCalendar;
 	}
 
-	@Bugs(ids = "77548,35365")
-	@Test( description = "Text entered before cancellation message of a cancelled appointment ignored", groups = { "functional", "L2"} )
+	@Bugs (ids = "77548,35365")
+	@Test (description = "Text entered before cancellation message of a cancelled appointment ignored", groups = { "functional", "L2"} )
 	
 	public void CheckEditedMessageAfterCancellingMeetingInvite_01() throws HarnessException {
 		

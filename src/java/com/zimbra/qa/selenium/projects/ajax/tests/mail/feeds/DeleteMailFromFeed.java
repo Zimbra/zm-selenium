@@ -38,7 +38,7 @@ public class DeleteMailFromFeed extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Bugs( ids = "102261")
+	@Bugs (ids = "102261")
 	@Test (description = "Verify the deletion of a mail from feed folder",
 			groups = { "functional", "L2" })
 

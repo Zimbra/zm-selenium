@@ -31,7 +31,7 @@ public class UndoDragAndDropMail extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Undo a Drag and Drop a message from Inbox to subfolder",
+	@Test (description = "Undo a Drag and Drop a message from Inbox to subfolder",
 			groups = { "functional", "L2" })
 
 	public void Undo_DragAndDropMail_01() throws HarnessException {

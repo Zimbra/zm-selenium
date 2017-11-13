@@ -31,7 +31,7 @@ public class AddTrustedEmail extends AjaxCommonTest {
 	}
 
 
-	@Bugs ( ids = "101356")
+	@Bugs (ids = "101356")
 	@Test (description = "Add a trusted email address",
 			groups = { "smoke", "L1" } )
 

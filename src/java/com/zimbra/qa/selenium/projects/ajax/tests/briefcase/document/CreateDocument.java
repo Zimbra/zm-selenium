@@ -50,7 +50,7 @@ public class CreateDocument extends FeatureBriefcaseTest {
 	}
 
 
-	@Bugs(ids = "97124")
+	@Bugs (ids = "97124")
 	@Test (description = "Create document through GUI - verify through GUI",
 		groups = { "sanity", "L0" })
 
@@ -189,7 +189,7 @@ public class CreateDocument extends FeatureBriefcaseTest {
 	}
 
 
-	@Bugs(ids="81299")
+	@Bugs (ids = "81299")
 	@Test (description = "Create document using New menu pulldown menu - verify through SOAP & RestUtil",
 			groups = { "smoke", "L1" })
 

@@ -90,7 +90,7 @@ public class GetTask extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids="72236")
+	@Bugs (ids = "72236")
 	@Test (description = "Verify Text Only Task that can display the body in the preview pane",
 			groups = { "smoke", "L0" })
 
@@ -187,7 +187,7 @@ public class GetTask extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids="72236")
+	@Bugs (ids = "72236")
 	@Test (description = "Get a task with all fields - verify task contents",
 			groups = { "smoke", "L0" })
 
@@ -307,7 +307,7 @@ public class GetTask extends AjaxCommonTest {
 	 * @throws HarnessException
 	 */
 
-	@Bugs(ids="63357")
+	@Bugs (ids = "63357")
 	@Test (description = "Task list view fields (Percentage) are not updated after editing ",
 			groups = { "smoke", "L1" })
 
@@ -384,7 +384,7 @@ public class GetTask extends AjaxCommonTest {
 	 * @throws HarnessException
 	 */
 
-	@Bugs(ids="64681,72236")
+	@Bugs (ids = "64681,72236")
 	@Test (description = "No refresh after task is marked complete in filter to-do list",
 			groups = { "functional", "L3" })
 
@@ -447,7 +447,7 @@ public class GetTask extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids="72236")
+	@Bugs (ids = "72236")
 	@Test (description = "Verify Html Only Task that can display the html body in the preview pane",
 			groups = { "smoke", "L1" })
 

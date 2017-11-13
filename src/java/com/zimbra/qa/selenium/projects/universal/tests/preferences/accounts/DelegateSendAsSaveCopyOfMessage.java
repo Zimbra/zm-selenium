@@ -31,7 +31,7 @@ public class DelegateSendAsSaveCopyOfMessage extends PrefGroupMailByMessageTest 
 		super.startingPage = app.zPageMail;
 	}
 
-	@Test(description = "Save a copy of sent messages to owner's Sent folder", groups = { "functional", "L3" })
+	@Test (description = "Save a copy of sent messages to owner's Sent folder", groups = { "functional", "L3" })
 
 	public void DelegateSendAsSaveCopyOfMessage_01() throws HarnessException {
 
@@ -79,7 +79,7 @@ public class DelegateSendAsSaveCopyOfMessage extends PrefGroupMailByMessageTest 
 
 	}
 
-	@Test(description = "Save a copy of sent messages to delegate's Sent folder", groups = { "functional", "L3" })
+	@Test (description = "Save a copy of sent messages to delegate's Sent folder", groups = { "functional", "L3" })
 
 	public void DelegateSendAsSaveCopyOfMessage_02() throws HarnessException {
 
@@ -127,7 +127,7 @@ public class DelegateSendAsSaveCopyOfMessage extends PrefGroupMailByMessageTest 
 
 	}
 
-	@Test(description = "Save a copy of sent messages to delegate's Sent folder and granter's Sent folder", groups = {
+	@Test (description = "Save a copy of sent messages to delegate's Sent folder and granter's Sent folder", groups = {
 			"functional", "L3" })
 
 	public void DelegateSendAsSaveCopyOfMessage_03() throws HarnessException {
@@ -176,7 +176,7 @@ public class DelegateSendAsSaveCopyOfMessage extends PrefGroupMailByMessageTest 
 
 	}
 
-	@Test(description = "Don't save a copy of sent messages", groups = { "functional", "L3" })
+	@Test (description = "Don't save a copy of sent messages", groups = { "functional", "L3" })
 
 	public void DelegateSendAsSaveCopyOfMessage_04() throws HarnessException {
 

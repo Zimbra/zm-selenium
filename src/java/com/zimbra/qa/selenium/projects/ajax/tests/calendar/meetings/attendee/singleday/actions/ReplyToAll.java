@@ -33,7 +33,7 @@ public class ReplyToAll extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "102475")
+	@Bugs (ids = "102475")
 	@Test (description = "Verify organizer and rest of the attendee receives message while one of the attendee replies to all",
 			groups = { "functional", "L2" })
 

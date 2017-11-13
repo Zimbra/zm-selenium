@@ -42,7 +42,7 @@ public class ZimbraPrefIncludeTrashInSearchTrue extends UniversalCommonTest {
 	}
 
 
-	@Test( description = "Verify that mails in trash are also included in search when 'zimbraPrefIncludeTrashInSearch' is TRUE",
+	@Test (description = "Verify that mails in trash are also included in search when 'zimbraPrefIncludeTrashInSearch' is TRUE",
 			groups = { "functional", "L2" })
 	public void ZimbraPrefIncludeTrashInSearchTrue_01() throws HarnessException {
 

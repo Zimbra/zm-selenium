@@ -44,7 +44,7 @@ public class GroupByDate extends PrefGroupMailByMessageTest {
 	 * 3. Verify messages are grouped by From
 	 * @throws HarnessException
 	 */
-	@Test( description = "Group a list of messages by Date",
+	@Test (description = "Group a list of messages by Date",
 			groups = { "functional", "L2" })
 	public void GroupByDate_01() throws HarnessException {
 		

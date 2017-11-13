@@ -113,7 +113,7 @@ public class Forward extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids="50663")
+	@Bugs (ids = "50663")
 	@Test (description = "Forward a meeting invite after accepting it",
 			groups = { "functional", "L2" })
 
@@ -199,7 +199,7 @@ public class Forward extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids="100340")
+	@Bugs (ids = "100340")
 	@Test (description = "forwarding invite shows html source in meeting notes section",
 			groups = { "functional", "L2" })
 
@@ -247,7 +247,7 @@ public class Forward extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids="100340")
+	@Bugs (ids = "100340")
 	@Test (description = "forwarding invite shows html source in meeting notes section",
 			groups = { "functional", "L2" })
 

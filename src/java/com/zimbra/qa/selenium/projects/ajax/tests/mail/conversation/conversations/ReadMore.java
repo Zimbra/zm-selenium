@@ -32,7 +32,7 @@ public class ReadMore extends PrefGroupMailByConversationTest {
 	@Test (description = "Use the 'Read More' button to scroll through the conversation content",
 			groups = { "functional", "L2" })
 
-	public void ViewMail_01() throws HarnessException {
+	public void ReadMore_01() throws HarnessException {
 
 		final String subject = "ReadMore13674340693103";
 		final String mimeFolder = ConfigProperties.getBaseDirectory() + "/data/public/mime/email11";

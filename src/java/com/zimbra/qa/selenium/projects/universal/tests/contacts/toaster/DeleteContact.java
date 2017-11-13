@@ -46,7 +46,7 @@ public class DeleteContact extends UniversalCommonTest {
 
 	}
 
-	@Test(description = "Delete a contact item from toolbar and verify toast msg", 
+	@Test (description = "Delete a contact item from toolbar and verify toast msg", 
 			groups = { "functional", "L2"})
 	public void DeleteContactToastMsg_01() throws HarnessException {
 
@@ -79,7 +79,7 @@ public class DeleteContact extends UniversalCommonTest {
 				"Verify toast message: Contact Moved to Trash");
 	}
 
-	@Test(description = "Delete a contact item selected with checkbox and  verify toast msg", 
+	@Test (description = "Delete a contact item selected with checkbox and  verify toast msg", 
 			groups = { "functional", "L2"})
 	public void DeleteContactToastMsg_02() throws HarnessException {
 
@@ -119,7 +119,7 @@ public class DeleteContact extends UniversalCommonTest {
 				new Object[] { "VK_BACK_SPACE", KeyEvent.VK_BACK_SPACE }, };
 	}
 
-	@Test(description = "Delete a contact item using keyboard short cut Del and verify toast mesg", 
+	@Test (description = "Delete a contact item using keyboard short cut Del and verify toast mesg", 
 			groups = {"functional", "L2"}, dataProvider = "DataProviderDeleteKeys")
 	public void DeleteContactToastMsg_03(String name, int keyEvent) throws HarnessException {
 
@@ -153,7 +153,7 @@ public class DeleteContact extends UniversalCommonTest {
 				"Verify toast message: Contact Moved to Trash");
 	}
 
-	@Test(description = "Right click then click delete and verify toast msg", 
+	@Test (description = "Right click then click delete and verify toast msg", 
 			groups = { "functional", "L2"})
 	public void DeleteContactToastMsg_04() throws HarnessException {
 
@@ -184,7 +184,7 @@ public class DeleteContact extends UniversalCommonTest {
 				"Verify toast message: Contact Moved to Trash");
 	}
 
-	@Test(description = "Delete multiple contact items and verify toast msg", 
+	@Test (description = "Delete multiple contact items and verify toast msg", 
 			groups = { "functional", "L2"})
 	public void DeleteContactToastMsg_05() throws HarnessException {
 

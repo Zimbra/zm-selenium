@@ -37,8 +37,8 @@ public class CreateMountpoint extends PrefGroupMailByMessageTest {
 		logger.info("New "+ CreateMountpoint.class.getCanonicalName());
 	}
 	
-	@Bugs( ids = "101616,106661")
-	@Test( description = "Receive an invitation to a shared folder, accept it - in a separate window",
+	@Bugs (ids = "101616,106661")
+	@Test (description = "Receive an invitation to a shared folder, accept it - in a separate window",
 			groups = { "smoke", "L1" })
 	
 	public void CreateMountpoint_01() throws HarnessException {

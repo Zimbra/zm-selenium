@@ -33,7 +33,7 @@ public class NavigateToToday extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "78821")
+	@Bugs (ids = "78821")
 	@Test (description = "Verify clicking on Today button highlights today when moved to next week",
 			groups = { "smoke", "L1" })
 

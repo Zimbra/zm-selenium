@@ -35,8 +35,8 @@ public class Move extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 	
-	@Bugs(ids = "102771")
-	@Test( description = "Move meeting invite using context menu",
+	@Bugs (ids = "102771")
+	@Test (description = "Move meeting invite using context menu",
 			groups = { "functional", "L2" })
 
 	public void MoveMeeting_01() throws HarnessException {

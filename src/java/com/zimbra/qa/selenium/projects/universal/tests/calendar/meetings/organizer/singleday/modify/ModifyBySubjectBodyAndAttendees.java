@@ -33,8 +33,8 @@ public class ModifyBySubjectBodyAndAttendees extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 	
-	@Bugs(ids = "69132")
-	@Test( description = "Modify meeting subject, body and attendees",
+	@Bugs (ids = "69132")
+	@Test (description = "Modify meeting subject, body and attendees",
 			groups = { "smoke", "L1" })
 			
 	public void ModifyMeetingBySubjectBodyAndAttendees_01() throws HarnessException {

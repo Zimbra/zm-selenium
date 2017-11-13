@@ -35,8 +35,8 @@ public class SearchResourceUsingDescription extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 
-	@Bugs(ids = "60134")
-	@Test( description = "Cannot search resource using 'description'", groups = { "functional", "L2" } )
+	@Bugs (ids = "60134")
+	@Test (description = "Cannot search resource using 'description'", groups = { "functional", "L2" } )
 	
 	public void SearchResourceUsingDescription_01() throws HarnessException {
 		

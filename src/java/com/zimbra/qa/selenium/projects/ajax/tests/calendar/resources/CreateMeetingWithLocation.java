@@ -33,7 +33,7 @@ public class CreateMeetingWithLocation extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "69132")
+	@Bugs (ids = "69132")
 	@Test (description = "Create simple meeting with location resource", 
 			groups = { "smoke", "L1" })
 
@@ -76,7 +76,7 @@ public class CreateMeetingWithLocation extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "69132")
+	@Bugs (ids = "69132")
 	@Test (description = "Create simple meeting with two location resource", 
 			groups = { "functional", "L2" })
 

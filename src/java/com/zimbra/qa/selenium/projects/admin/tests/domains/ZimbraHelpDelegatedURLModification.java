@@ -34,7 +34,7 @@ public class ZimbraHelpDelegatedURLModification extends AdminCommonTest {
 	}
 
 
-	@Bugs(ids="ZCS-3526,105789")
+	@Bugs (ids = "ZCS-3526,105789")
 	@Test (description = "Verify that zimbra delegated admin help page is opened as per the value set in attribute zimbraHelpDelegatedURL",
 			groups = { "functional", "L3" })
 

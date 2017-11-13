@@ -31,7 +31,7 @@ public class ReplyMailWithAttachment extends PrefGroupMailByMessageTest {
 		logger.info("New "+ ReplyMailWithAttachment.class.getCanonicalName());
 	}
 
-	@Test( description = "Reply to a mail  with an attachment by pressing Reply button>>attach - in separate window",
+	@Test (description = "Reply to a mail  with an attachment by pressing Reply button>>attach - in separate window",
 			groups = { "smoke", "L1" })
 	
 	public void ReplyMailWithAttachment_01() throws HarnessException {

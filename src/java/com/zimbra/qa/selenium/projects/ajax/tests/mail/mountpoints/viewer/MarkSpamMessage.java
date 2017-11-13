@@ -111,7 +111,7 @@ public class MarkSpamMessage extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Bugs(ids = "63796")
+	@Bugs (ids = "63796")
 	@Test (description = "Verify Permission Denied on Spam (keyboard='ms') a shared mail (read-only share)",
 			groups = { "functional", "L2" })
 

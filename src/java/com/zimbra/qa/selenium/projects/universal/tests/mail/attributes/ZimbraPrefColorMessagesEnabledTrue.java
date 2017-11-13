@@ -32,7 +32,7 @@ public class ZimbraPrefColorMessagesEnabledTrue extends PrefGroupMailByMessageTe
 	}
 
 	
-	@Test( description = "ZimbraPrefColorMessagesEnabledTrue=TRUE: Display messages with 1 tag",
+	@Test (description = "ZimbraPrefColorMessagesEnabledTrue=TRUE: Display messages with 1 tag",
 			groups = { "functional", "L2" })
 	public void ZimbraPrefColorMessagesEnabledTrue_01() throws HarnessException {
 		
@@ -106,7 +106,7 @@ public class ZimbraPrefColorMessagesEnabledTrue extends PrefGroupMailByMessageTe
 		
 	}
 	
-	@Test( description = "ZimbraPrefColorMessagesEnabledTrue=TRUE: Display messages with 2 tags",
+	@Test (description = "ZimbraPrefColorMessagesEnabledTrue=TRUE: Display messages with 2 tags",
 			groups = { "functional", "L3" })
 	public void ZimbraPrefColorMessagesEnabledTrue_02() throws HarnessException {
 		

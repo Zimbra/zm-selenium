@@ -42,8 +42,8 @@ public class GetAppointment extends UniversalCommonTest {
 
 	}
 	
-	@Bugs(ids = "69132")
-	@Test( description = "View a basic appointment in the list view",
+	@Bugs (ids = "69132")
+	@Test (description = "View a basic appointment in the list view",
 			groups = { "functional", "L2" })
 	public void GetAppointment_01() throws HarnessException {
 		
@@ -96,7 +96,7 @@ public class GetAppointment extends UniversalCommonTest {
 	    
 	}
 
-	@Test( description = "Verify all fields show up in List View",
+	@Test (description = "Verify all fields show up in List View",
 			groups = { "functional", "L2" })
 	public void GetAppointment_02() throws HarnessException {
 		

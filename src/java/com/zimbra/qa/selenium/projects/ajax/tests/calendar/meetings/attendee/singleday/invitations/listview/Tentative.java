@@ -36,7 +36,7 @@ public class Tentative extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "69342")
+	@Bugs (ids = "69342")
 	@Test (description = "Rt-click to appointment from the calendar app and mark as Tentative",
 			groups = { "smoke", "L1" })
 

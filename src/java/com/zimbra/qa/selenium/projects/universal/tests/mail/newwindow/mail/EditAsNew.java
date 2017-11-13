@@ -40,7 +40,7 @@ public class EditAsNew extends PrefGroupMailByMessageTest {
 
 	}
 
-	@Test( description = "Edit as new' message, using 'Actions -> Edit as New' from new window ",
+	@Test (description = "Edit as new' message, using 'Actions -> Edit as New' from new window ",
 			groups = { "functional", "L2" })
 	public void EditAsNewFromNewWindow_01() throws HarnessException {
 

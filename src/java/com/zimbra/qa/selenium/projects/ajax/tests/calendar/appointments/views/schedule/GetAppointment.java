@@ -31,7 +31,7 @@ public class GetAppointment extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "69132,68610")
+	@Bugs (ids = "69132,68610")
 	@Test (description = "View a basic appointment in the schedule view",
 			groups = { "deprecated" })
 

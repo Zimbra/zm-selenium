@@ -34,7 +34,7 @@ public class MarkUnReadMail extends PrefGroupMailByMessageTest {
 		super.startingAccountPreferences.put("zimbraPrefMarkMsgRead", "" + delaySeconds);
 	}
 	
-	@Test( description = "Mark a message as unread by clicking on it, then using 'mu' hotkeys",
+	@Test (description = "Mark a message as unread by clicking on it, then using 'mu' hotkeys",
 			groups = { "smoke", "L1" })
 	
 	public void MarkUnReadMail_01() throws HarnessException {
@@ -75,7 +75,7 @@ public class MarkUnReadMail extends PrefGroupMailByMessageTest {
 		ZAssert.assertStringContains(mail.getFlags(), "u", "Verify the message is marked read in the server");
 	}
 
-	@Test( description = "Mark a message as read by context menu -> mark unread",
+	@Test (description = "Mark a message as read by context menu -> mark unread",
 			groups = { "functional", "L2" })
 	
 	public void MarkUnReadMail_02() throws HarnessException {

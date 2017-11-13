@@ -41,7 +41,7 @@ public class ZimbraPrefCalendarAlwaysShowMiniCalTRUE extends UniversalCommonTest
 		};
 	}
 
-	@Bugs(ids = "78547")
+	@Bugs (ids = "78547")
 	@Test(
 			description = "Set zimbraPrefCalendarAlwaysShowMiniCal to 'TRUE'",
 			groups = { "functional", "L3" }

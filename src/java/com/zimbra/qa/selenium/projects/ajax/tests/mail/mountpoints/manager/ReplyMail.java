@@ -32,7 +32,7 @@ public class ReplyMail extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Bugs( ids = "86168")
+	@Bugs (ids = "86168")
 	@Test (description = "Reply (on behalf of) to a message in a shared folder (manager rights)",
 			groups = { "functional", "L2" })
 
@@ -126,7 +126,7 @@ public class ReplyMail extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Bugs(ids="102475")
+	@Bugs (ids = "102475")
 	@Test (description = "Reply (on behalf of) to a message in a shared folder (manager rights) - no SOBO rights",
 			groups = { "functional", "L2" })
 

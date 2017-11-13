@@ -34,7 +34,7 @@ public class ResetStatusAfterModifyingCalendar extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "98476,49881")
+	@Bugs (ids = "98476,49881")
 	@Test (description = "Check reset status of meeting after modifying calendar",
 			groups = { "functional-skip", "application-bug"})
 

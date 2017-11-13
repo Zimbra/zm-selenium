@@ -44,7 +44,7 @@ public class OwnerAccountDeleted extends AjaxCommonTest {
 	@Test (description = "Login to the Ajax Client - with a mountpoint to a deleted account",
 			groups = { "functional", "L3" })
 
-	public void OwnerAccountDeleted01() throws HarnessException {
+	public void OwnerAccountDeleted_01() throws HarnessException {
 
 		String subject = "subject" + ConfigProperties.getUniqueString();
 		String foldername = "folder" + ConfigProperties.getUniqueString();

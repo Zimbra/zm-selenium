@@ -48,7 +48,7 @@ public class RenameTaskFolder extends UniversalCommonTest {
 		}};
 	}
 	
-	@Test( description = "Rename Task list -right click Rename", 
+	@Test (description = "Rename Task list -right click Rename", 
 			groups = { "functional", "L2"})
 	
 	public void RenameTaskFolder_01() throws HarnessException {
@@ -88,8 +88,8 @@ public class RenameTaskFolder extends UniversalCommonTest {
 		ZAssert.assertEquals(eFolder2.length, 1, "Verify the new tasklist/folder name exists");
 	}
 	
-	@Bugs(ids="62365")
-	@Test( description = "Rename a tasklist - set to an invalid name with ':'", 
+	@Bugs (ids = "62365")
+	@Test (description = "Rename a tasklist - set to an invalid name with ':'", 
 		groups = { "functional", "L3"})
 	
 	public void RenameTaskFolder_02() throws HarnessException {
@@ -127,7 +127,7 @@ public class RenameTaskFolder extends UniversalCommonTest {
 		dlgRename.zPressButton(Button.B_CANCEL);
 	}
 	
-	@Test( description = "Rename Task list -right click Edit, Change name(Context menu -> Edit)", 
+	@Test (description = "Rename Task list -right click Edit, Change name(Context menu -> Edit)", 
 			groups = { "functional", "L3"})
 	
 	public void RenameTaskFolder_03() throws HarnessException {

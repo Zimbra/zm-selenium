@@ -33,8 +33,8 @@ public class Forward extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 	
-	@Bugs(ids = "95961")
-	@Test( description = "Forward entire series by changing content",
+	@Bugs (ids = "95961")
+	@Test (description = "Forward entire series by changing content",
 			groups = { "smoke", "L1" })
 			
 	public void ForwardMeeting_01() throws HarnessException {

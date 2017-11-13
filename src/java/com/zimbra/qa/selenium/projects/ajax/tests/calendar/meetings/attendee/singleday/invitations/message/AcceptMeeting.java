@@ -68,7 +68,7 @@ public class AcceptMeeting extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "69132,96556")
+	@Bugs (ids = "69132,96556")
 	@Test (description = "Accept a meeting using Accept button from invitation message",
 			groups = { "sanity", "L0" })
 

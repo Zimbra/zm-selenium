@@ -33,7 +33,7 @@ public class AutoCompleteDL extends UniversalCommonTest  {
 		
 	}
 
-	@Test( description = "Auto complete DL and send mail to DL", 
+	@Test (description = "Auto complete DL and send mail to DL", 
 			groups = { "smoke", "L0"})
 
 	public void AutoCompleteDL_01() throws HarnessException {

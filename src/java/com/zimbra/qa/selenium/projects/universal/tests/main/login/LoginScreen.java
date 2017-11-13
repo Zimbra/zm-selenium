@@ -41,7 +41,7 @@ public class LoginScreen extends UniversalCommonTest {
 
 	}
 
-	@Test( description = "Verify the label text on the universal client login screen",
+	@Test (description = "Verify the label text on the universal client login screen",
 			groups = { "smoke", "L0"})
 	public void LoginScreen01() throws HarnessException {
 		
@@ -53,7 +53,7 @@ public class LoginScreen extends UniversalCommonTest {
 	}
 	
 	
-	@Test( description = "Verify the copyright on the login screen contains the current year",
+	@Test (description = "Verify the copyright on the login screen contains the current year",
 			groups = { "functional","L2" })
 
 	public void LoginScreen02() throws HarnessException {
@@ -69,7 +69,7 @@ public class LoginScreen extends UniversalCommonTest {
 
 	}
 
-	@Test( description = "Verify initial focus on the login screen should be in username",
+	@Test (description = "Verify initial focus on the login screen should be in username",
 			groups = { "functional","L2" })
 	public void LoginScreen03() throws HarnessException {
 		
@@ -91,8 +91,8 @@ public class LoginScreen extends UniversalCommonTest {
 		
 	}
 
-	@Bugs(ids = "50457")
-	@Test( description = "Verify 'web client' rather than 'collaboration suite'",
+	@Bugs (ids = "50457")
+	@Test (description = "Verify 'web client' rather than 'collaboration suite'",
 			groups = { "functional", "L2" })
 	public void LoginScreen04() throws HarnessException {
 		

@@ -36,7 +36,7 @@ public class SessionTimeout extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Bugs(ids = "75133")
+	@Bugs (ids = "75133")
 	@Test (description = "Verify content is saved when compose is interupted by zimbraMailIdleSessionTimeout",
 			groups = { "smoke", "L1" })
 
@@ -69,7 +69,6 @@ public class SessionTimeout extends PrefGroupMailByMessageTest {
 		MailItem draft = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
 		ZAssert.assertNotNull(draft, "Verify the draft exists");
 
-		// TODO: add checks for TO, Subject, Body
 		ZAssert.assertEquals(draft.dSubject, subject, "Verify the subject field is correct");
 		ZAssert.assertStringContains(draft.dBodyText, body, "Verify the body field is correct");
 	}

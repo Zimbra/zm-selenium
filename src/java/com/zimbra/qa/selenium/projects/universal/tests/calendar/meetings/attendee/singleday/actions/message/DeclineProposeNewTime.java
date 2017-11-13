@@ -37,7 +37,7 @@ public class DeclineProposeNewTime extends CalendarWorkWeekTest {
 		
 	}
 	
-	@Test( description = "Rt-click to appointment -> Propose New Time and decline the new time using message view", 
+	@Test (description = "Rt-click to appointment -> Propose New Time and decline the new time using message view", 
 			groups = { "functional", "L2" })
 	public void DeclineProposeNewTime_01() throws HarnessException {
 

@@ -35,7 +35,7 @@ public class ZimbraPrefCalendarWorkingHours extends UniversalCommonTest {
 	}
 
 	// Need to skip this test completely till bug 77465 get fixed otherwise automation may stuck at browser navigate away dialog 
-	@Bugs(ids = "77465")
+	@Bugs (ids = "77465")
 	@Test(
 			description = "Set calendar custom working hours and verify accordingly", 
 			groups = { "functional", "L2" })
@@ -70,8 +70,8 @@ public class ZimbraPrefCalendarWorkingHours extends UniversalCommonTest {
 		app.zPageMain.zLogout();
 	}
 
-	@Bugs(ids = "103862")
-	@Test( description = "Verify that modifying 'Work Week:' preference prompts for UI refresh", 
+	@Bugs (ids = "103862")
+	@Test (description = "Verify that modifying 'Work Week:' preference prompts for UI refresh", 
 			groups = { "functional", "L2" })
 	
 	public void ZimbraPrefCalendarWorkingHours_02() throws HarnessException {

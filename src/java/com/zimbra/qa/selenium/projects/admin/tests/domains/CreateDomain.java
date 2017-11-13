@@ -44,7 +44,7 @@ public class CreateDomain extends AdminCommonTest {
 	 * 2. Verify domain is created using SOAP.
 	 * @throws HarnessException
 	 */
-	@Bugs( ids = "58795")
+	@Bugs (ids = "58795")
 	@Test (description = "Create a simple domain",
 			groups = { "sanity", "L0" })
 			public void CreateDomain_01() throws HarnessException {

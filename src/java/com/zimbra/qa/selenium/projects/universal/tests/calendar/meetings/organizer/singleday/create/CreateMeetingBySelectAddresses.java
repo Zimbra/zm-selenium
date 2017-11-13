@@ -32,7 +32,7 @@ public class CreateMeetingBySelectAddresses extends CalendarWorkWeekTest {
 		super.startingPage =  app.zPageCalendar;
 	}
 	
-	@Test( description = "Compose appointment by selecting attendees using 'Select Addresses' dialog and send the appointment",
+	@Test (description = "Compose appointment by selecting attendees using 'Select Addresses' dialog and send the appointment",
 			groups = { "functional", "L2" })
 	public void CreateMeetingBySelectAttendees_01() throws HarnessException {
 		

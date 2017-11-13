@@ -31,7 +31,7 @@ public class AboutDialog extends UniversalCommonTest {
 	}
 	
 	
-	@Test( description = "Open the 'About' dialog",
+	@Test (description = "Open the 'About' dialog",
 			groups = { "smoke", "L0" })
 	
 	public void AboutDialog_01() throws HarnessException {

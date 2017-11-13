@@ -34,7 +34,7 @@ public class EditReplyAccept extends CalendarWorkWeekTest {
 		
 	}
 	
-	@Test( description = "Rt-click to appointment and Edit Reply -> Accept the meeting invite", 
+	@Test (description = "Rt-click to appointment and Edit Reply -> Accept the meeting invite", 
 			groups = { "smoke", "L1" })
 	public void AcceptMeeting_01() throws HarnessException {
 

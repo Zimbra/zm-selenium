@@ -36,7 +36,7 @@ public class AddToContactsContextMenu extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageMail;
 	}
 
-	@Bugs(ids = "95782")
+	@Bugs (ids = "95782")
 	@Test (description = "Click on organizer msg Header and verify context menu>> AddToContact", 
 	groups = { "functional" })
 

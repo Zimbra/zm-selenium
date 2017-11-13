@@ -37,7 +37,7 @@ public class ZmMailApp extends UniversalCommonTest {
 		
 	}
 	
-	@Test( description = "Measure the time to load the universal client",
+	@Test (description = "Measure the time to load the universal client",
 			groups = { "performance", "L4"})
 	public void ZmMailApp01() throws HarnessException {
 		

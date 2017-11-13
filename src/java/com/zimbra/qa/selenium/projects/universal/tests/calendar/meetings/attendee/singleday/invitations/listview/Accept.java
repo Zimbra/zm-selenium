@@ -37,8 +37,8 @@ public class Accept extends UniversalCommonTest {
 		}};
 	}
 	
-	@Bugs(ids = "69342")		
-	@Test( description = "Rt-click to appointment from the calendar app and Accept the meeting invite", 
+	@Bugs (ids = "69342")		
+	@Test (description = "Rt-click to appointment from the calendar app and Accept the meeting invite", 
 			groups = { "smoke", "L1" })
 	public void AcceptMeeting_01() throws HarnessException {
 

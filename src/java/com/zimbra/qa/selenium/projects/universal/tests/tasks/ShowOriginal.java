@@ -44,8 +44,8 @@ public class ShowOriginal extends UniversalCommonTest {
 
 	}
 
-	@Bugs(ids = "51017")
-	@Test( description = "Show Original Pop Up should Get Open With Proper Content", 
+	@Bugs (ids = "51017")
+	@Test (description = "Show Original Pop Up should Get Open With Proper Content", 
 		groups = { "smoke", "L2"})
 	
 	public void ShowOriginal_01() throws HarnessException {

@@ -35,7 +35,7 @@ public class CreateMailWithAttachment extends PrefGroupMailByMessageTest {
 		super.startingAccountPreferences.put("zimbraPrefComposeInNewWindow", "TRUE");
 	}
 
-	@Test( description = "Send a mail with an attachment - in a separate window",
+	@Test (description = "Send a mail with an attachment - in a separate window",
 			groups = {"sanity", "L0" })
 	
 	public void CreateMailWithAttachment_01() throws HarnessException {

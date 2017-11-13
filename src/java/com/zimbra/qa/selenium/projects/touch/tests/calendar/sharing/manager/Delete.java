@@ -33,7 +33,7 @@ public class Delete extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 	
-	@Bugs(ids = "95870")
+	@Bugs (ids = "95870")
 	@Test (description = "Assistant selects calendar invite from shared calendar and deletes the invite OBO boss",
 			groups = { "t" })
 

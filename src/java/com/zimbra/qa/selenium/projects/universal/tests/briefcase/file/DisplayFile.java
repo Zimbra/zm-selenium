@@ -39,7 +39,7 @@ public class DisplayFile extends FeatureBriefcaseTest {
 		super.startingAccountPreferences.put("zimbraPrefShowSelectionCheckbox","TRUE");
 	}
 
-	@Test( description = "Upload file through RestUtil - verify through GUI", 
+	@Test (description = "Upload file through RestUtil - verify through GUI", 
 			groups = { "smoke", "L0" })
 	public void DisplayFile_01() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
@@ -75,8 +75,8 @@ public class DisplayFile extends FeatureBriefcaseTest {
 
 	}
 
-	@Bugs(ids = "79994")
-	@Test( description = " german umlauts breaks briefcase", 
+	@Bugs (ids = "79994")
+	@Test (description = " german umlauts breaks briefcase", 
 	groups = { "deprecate", "L4" })
 	public void DisplayFile_02() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();

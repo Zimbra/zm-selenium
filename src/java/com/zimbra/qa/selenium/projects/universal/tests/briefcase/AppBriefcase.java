@@ -42,7 +42,7 @@ public class AppBriefcase extends FeatureBriefcaseTest {
 		super.startingAccountPreferences.put("zimbraPrefShowSelectionCheckbox","TRUE");
 	}
 
-	@Test( description = "?app=briefcase in url", 
+	@Test (description = "?app=briefcase in url", 
 			groups = { "smoke", "L1" })
 	public void AppBriefcase_01() throws HarnessException {
 		

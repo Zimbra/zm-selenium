@@ -20,7 +20,7 @@ public class AddContactToEmailedContactNewWindow extends PrefGroupMailByMessageT
 
 	}
 
-	@Test( description = "Bug 62727 - Sending email to from new window should register contact under email contact list ",
+	@Test (description = "Bug 62727 - Sending email to from new window should register contact under email contact list ",
 			groups = { "functional", "L3" })
 
 	public void AddContactToEmailedContactNewWindow_01() throws HarnessException {

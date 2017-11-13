@@ -36,7 +36,7 @@ public class CreateMeetingWithDL extends AjaxCommonTest {
 	}
 
 
-	@Test (description = " Create appointment with DL by choosing DL address from 'Select Addresses' dialog",
+	@Test (description = "Create appointment with DL by choosing DL address from 'Select Addresses' dialog",
 			groups = { "functional", "L2" })
 
 	public void CreateMeetingWithDL_01() throws HarnessException {

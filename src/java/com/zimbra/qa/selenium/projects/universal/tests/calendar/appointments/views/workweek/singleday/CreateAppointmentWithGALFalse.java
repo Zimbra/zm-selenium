@@ -35,8 +35,8 @@ public class CreateAppointmentWithGALFalse extends CalendarWorkWeekTest {
 		this.startingAccountPreferences.put("zimbraFeatureGalEnabled", "FALSE");
 	}
 
-	@Bugs(ids = "99777")
-	@Test( description = "Create a basic appointment this zimbraFeatureGalEnabled=FALSE", groups = { "functional", "L2" } )
+	@Bugs (ids = "99777")
+	@Test (description = "Create a basic appointment this zimbraFeatureGalEnabled=FALSE", groups = { "functional", "L2" } )
 	
 	public void CreateAppointmentWithGALFalse_01() throws HarnessException {
 		

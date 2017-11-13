@@ -35,7 +35,7 @@ public class ZmTasksAppFolders extends UniversalCommonTest {
 
 	}
 
-	@Test( description = "Measure the time to load the tasks app, 1 task list",
+	@Test (description = "Measure the time to load the tasks app, 1 task list",
 			groups = { "performance", "L4"})
 	public void ZmTasksAppFolders_01() throws HarnessException {
 
@@ -65,7 +65,7 @@ public class ZmTasksAppFolders extends UniversalCommonTest {
 
 	}
 
-	@Test( description = "Measure the time to load the tasks app, 100 task lists",
+	@Test (description = "Measure the time to load the tasks app, 100 task lists",
 			groups = { "performance", "L4"})
 	public void ZmTasksAppFolders_02() throws HarnessException {
 

@@ -36,8 +36,8 @@ public class Move extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 
-	@Bugs(ids = "95961")
-	@Test( description = "Move entire series to different calendar folder",
+	@Bugs (ids = "95961")
+	@Test (description = "Move entire series to different calendar folder",
 			groups = { "smoke", "L1" })
 			
 	public void MoveMeeting_01() throws HarnessException {

@@ -50,7 +50,7 @@ public class CreateMountpoint extends UniversalCommonTest{
 		
 	}
 	
-	@Test( description = "Receive an invitation to a shared folder, accept it.",
+	@Test (description = "Receive an invitation to a shared folder, accept it.",
 			groups = { "smoke", "L1"})
 	public void CreateMountpoint_01() throws HarnessException {
 		

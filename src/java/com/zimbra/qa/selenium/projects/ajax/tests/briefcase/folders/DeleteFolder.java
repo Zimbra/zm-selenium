@@ -109,7 +109,7 @@ public class DeleteFolder extends FeatureBriefcaseTest {
 	}
 
 
-	@Bugs(ids = "80600")
+	@Bugs (ids = "80600")
 	@Test (description = "Delete a briefcase sub-folder from list view and hitting toolbar delete button",
 			groups = { "functional", "L2" })
 

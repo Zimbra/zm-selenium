@@ -36,7 +36,7 @@ public class CheckAcceptDeclineButtonsForInvite extends PrefGroupMailByMessageTe
 	}
 
 
-	@Bugs( ids = "21013")
+	@Bugs (ids = "21013")
 	@Test (description = "Mail with ics attachment doesn't open appt (view-appt window breaks)",
 			groups = { "functional", "L2" })
 

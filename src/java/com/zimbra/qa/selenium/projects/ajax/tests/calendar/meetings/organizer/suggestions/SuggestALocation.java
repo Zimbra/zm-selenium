@@ -33,7 +33,7 @@ public class SuggestALocation extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "73966,88287,96567")
+	@Bugs (ids = "73966,88287,96567")
 	@Test (description = "Suggest a free location while creating appointment",
 			groups = { "smoke", "L1" })
 

@@ -43,8 +43,8 @@ public class Spanish extends PrefGroupMailByMessageTest {
 	
 	}
 	
-	@Bugs(ids = "48736")
-	@Test( description = "Autocomplete using Spanish characters in the name - local contact",
+	@Bugs (ids = "48736")
+	@Test (description = "Autocomplete using Spanish characters in the name - local contact",
 			groups = { "functional", "L2" })
 	public void AutoComplete_01() throws HarnessException {
 		
@@ -102,8 +102,8 @@ public class Spanish extends PrefGroupMailByMessageTest {
 		
 	}
 
-	@Bugs(ids = "48736")
-	@Test( description = "Autocomplete using Spanish characters in the name - GAL contact",
+	@Bugs (ids = "48736")
+	@Test (description = "Autocomplete using Spanish characters in the name - GAL contact",
 			groups = { "functional", "L2" })
 	public void AutoComplete_02() throws HarnessException {
 		
@@ -161,8 +161,8 @@ public class Spanish extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Bugs(ids = "65065")
-	@Test( description = "Autocomplete using Spanish characters in the name - local contact",
+	@Bugs (ids = "65065")
+	@Test (description = "Autocomplete using Spanish characters in the name - local contact",
 			groups = { "functional", "L2" })
 	public void AutoComplete_03() throws HarnessException {
 		

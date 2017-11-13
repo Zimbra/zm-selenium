@@ -41,7 +41,7 @@ public class OpenInTabMailFolder extends PrefGroupMailByMessageTest {
 		super.startingPage = app.zPageMail;
 	}
 
-	@Test( description = "Verify Open in new tab option for mail app - Inbox",
+	@Test (description = "Verify Open in new tab option for mail app - Inbox",
 			groups = { "smoke", "L1" })
 	public void OpenInTabMailFolder_01() throws HarnessException {
 
@@ -85,7 +85,7 @@ public class OpenInTabMailFolder extends PrefGroupMailByMessageTest {
 
 	}
 
-	@Test( description = "Verify Open in new tab option for mail app - Draft",
+	@Test (description = "Verify Open in new tab option for mail app - Draft",
 			groups = { "functional", "L2" })
 	public void OpenInTabMailFolder_02() throws HarnessException {
 
@@ -132,7 +132,7 @@ public class OpenInTabMailFolder extends PrefGroupMailByMessageTest {
 
 	}
 
-	@Test( description = "Verify Open in new tab option for mail app - Custom folder",
+	@Test (description = "Verify Open in new tab option for mail app - Custom folder",
 			groups = { "functional", "L2" })
 	public void OpenInTabMailFolder_03() throws HarnessException {
 

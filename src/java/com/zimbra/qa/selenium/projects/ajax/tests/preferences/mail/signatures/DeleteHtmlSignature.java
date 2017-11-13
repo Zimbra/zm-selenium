@@ -81,7 +81,7 @@ public class DeleteHtmlSignature extends AjaxCommonTest {
 
 		// Verify HTML Signature is created
 		SignatureItem signature = SignatureItem.importFromSOAP(app.zGetActiveAccount(), this.sigHtmlName);
-		ZAssert.assertEquals(signature.getName(), this.sigHtmlName, "verified Html Signature name ");
+		ZAssert.assertEquals(signature.getName(), this.sigHtmlName, "Verify html signature name");
 
 		PageSignature pagesig = new PageSignature(app);
 		FormSignatureNew signew = new FormSignatureNew(app);

@@ -37,8 +37,8 @@ public class CreateExternalCalendarOther extends CalendarWorkWeekTest {
 		
 	}
 
-	@Bugs(ids = "66576")
-	@Test( description = "Create a new external calendar (type=other) by clicking 'Gear' -> 'new folder' on folder tree", 
+	@Bugs (ids = "66576")
+	@Test (description = "Create a new external calendar (type=other) by clicking 'Gear' -> 'new folder' on folder tree", 
 			groups = { "functional", "L2" })
 	public void CreateExternalCalendarOther_01() throws HarnessException {
 
@@ -77,7 +77,7 @@ public class CreateExternalCalendarOther extends CalendarWorkWeekTest {
 		
 	}
 
-//	@Test( description = "Create a new external calendar (type=other) using keyboard shortcuts", 
+//	@Test (description = "Create a new external calendar (type=other) using keyboard shortcuts", 
 //			groups = { "functional" })
 //	public void CreateExternalCalendarOther_02() throws HarnessException {
 //
@@ -101,7 +101,7 @@ public class CreateExternalCalendarOther extends CalendarWorkWeekTest {
 //
 //	}
 //
-//	@Test( description = "Create a new external calendar (type=other)  using context menu from root folder", 
+//	@Test (description = "Create a new external calendar (type=other)  using context menu from root folder", 
 //			groups = { "functional" })
 //	public void CreateCalendar_03() throws HarnessException {
 //
@@ -127,7 +127,7 @@ public class CreateExternalCalendarOther extends CalendarWorkWeekTest {
 //		
 //	}
 //
-//	@Test( description = "Create a new external calendar (type=other)  using  mail app New -> New Folder", 
+//	@Test (description = "Create a new external calendar (type=other)  using  mail app New -> New Folder", 
 //			groups = { "functional" })
 //	public void CreateCalendar_04() throws HarnessException {
 //

@@ -30,8 +30,8 @@ public class ForwardHtmlMail extends PrefGroupMailByConversationTest {
 		logger.info("New "+ ForwardHtmlMail.class.getCanonicalName());
 	}
 	
-	@Bugs( ids = "85534")
-	@Test( description = "Forward a html mail and verify body content",
+	@Bugs (ids = "85534")
+	@Test (description = "Forward a html mail and verify body content",
 			groups = { "sanity" })
 			
 	public void ForwardHtmlMail_01() throws HarnessException {

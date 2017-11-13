@@ -115,7 +115,7 @@ public class GetAttachment extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Bugs(ids = "60769")
+	@Bugs (ids = "60769")
 	@Test (description = "Receive a message with an inline attachment",
 			groups = { "smoke", "L1" })
 

@@ -37,8 +37,8 @@ public class CreateACopy extends CalendarWorkWeekTest {
 	
 	}
 	
-	@Bugs(ids = "95961")
-	@Test( description = "Create a copy of meeting invite (Series)",
+	@Bugs (ids = "95961")
+	@Test (description = "Create a copy of meeting invite (Series)",
 			groups = { "functional", "L2" })
 			
 	public void CopyMeeting_01() throws HarnessException {

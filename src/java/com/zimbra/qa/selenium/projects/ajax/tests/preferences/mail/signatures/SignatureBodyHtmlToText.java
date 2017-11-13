@@ -38,7 +38,7 @@ public class SignatureBodyHtmlToText extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids="98736")
+	@Bugs (ids = "98736")
 	@Test (description = "Verify that body content of signature is not lost when changed from HTML to text",
 			groups = { "functional", "L3" })
 

@@ -28,7 +28,7 @@ public class BasicLogout extends UniversalCommonTest {
 		logger.info("New "+ BasicLogout.class.getCanonicalName());
 	}
 	
-	@Test( description = "Logout of the Universal Client", 
+	@Test (description = "Logout of the Universal Client", 
 			groups = { "sanity", "L0"})
 	
 	public void BasicLogout01() throws HarnessException {

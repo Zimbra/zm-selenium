@@ -34,11 +34,11 @@ public class CreateFilter extends PrefGroupMailByMessageTest {
 		super.startingAccountPreferences.put("zimbraPrefMarkMsgRead", "" + delaySeconds);
 	}
 
-	@Bugs(ids="88916")
+	@Bugs (ids = "88916")
 	@Test (description = "Verify Add Filter dialog from new window action menu -> Create Filter",
 			groups = { "functional", "L2" })
 
-	public void CreatefilterFromNewWindow() throws HarnessException {
+	public void CreateFilter_01() throws HarnessException {
 
 		// Create the message data to be sent
 		String subject = "subject" + ConfigProperties.getUniqueString();

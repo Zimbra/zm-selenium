@@ -31,7 +31,7 @@ public class OpenAttachmentFromEMLAttachedInMessage extends PrefGroupMailByMessa
 		super.startingAccountPreferences.put("zimbraFeatureViewInHtmlEnabled", "TRUE");
 	}
 
-	@Test( description = "Bug 80447 - Open attachment from an eml attached in message", groups = { "functional", "L2" })
+	@Test (description = "Bug 80447 - Open attachment from an eml attached in message", groups = { "functional", "L2" })
 
 	public void OpenAttachmentInForwardEmail_01() throws HarnessException, IOException {
 

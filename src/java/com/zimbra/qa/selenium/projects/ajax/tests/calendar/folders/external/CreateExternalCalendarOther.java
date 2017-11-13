@@ -33,7 +33,7 @@ public class CreateExternalCalendarOther extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "66576")
+	@Bugs (ids = "66576")
 	@Test (description = "Create a new external calendar (type=other) by clicking 'Gear' -> 'new folder' on folder tree",
 			groups = { "functional", "L2" })
 

@@ -34,7 +34,7 @@ public class RemoveAttendee extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 	
-	@Bugs(ids = "95600")
+	@Bugs (ids = "95600")
 	@Test (description = "Modify meeting by removing attendee",
 			groups = { "smoke" })
 			

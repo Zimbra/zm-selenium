@@ -43,8 +43,8 @@ public class ReplyMailWithInlineImageBodyHtmlToText extends PrefGroupMailByMessa
 		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "html");
 	}
 
-	@Bugs(ids = "104342,106133")
-	@Test( description = "Verify that in reply compose screen, inline attachment shows as an attachment when changing format to from HTML to Plain Text",
+	@Bugs (ids = "104342,106133")
+	@Test (description = "Verify that in reply compose screen, inline attachment shows as an attachment when changing format to from HTML to Plain Text",
 			groups = { "functional", "L5" })
 
 	public void ReplyMailWithInlineImageBodyHtmlToText_01() throws HarnessException {

@@ -37,7 +37,7 @@ public class EmptyTrashFolder extends UniversalCommonTest {
 
 	}
 
-	@Test(description = "Delete a contact, group, and folder permanently by Empty Trash folder on context menu", 
+	@Test (description = "Delete a contact, group, and folder permanently by Empty Trash folder on context menu", 
 			groups = {"smoke", "L1"})
 	public void ClickOK_02() throws HarnessException {
 
@@ -95,7 +95,7 @@ public class EmptyTrashFolder extends UniversalCommonTest {
 
 	}
 
-	@Test(description = "Cancel Empty Trash folder option", 
+	@Test (description = "Cancel Empty Trash folder option", 
 			groups = { "functional", "L2"})
 	public void ClickCancel_03() throws HarnessException {
 

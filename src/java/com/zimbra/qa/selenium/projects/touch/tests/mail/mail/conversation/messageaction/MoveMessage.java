@@ -81,7 +81,7 @@ import com.zimbra.qa.selenium.projects.touch.core.PrefGroupMailByConversationTes
 		}	
 		
 
-		@Bugs( ids = "83506")
+		@Bugs (ids = "83506")
 		@Test (description = "Move a mail into subfolder",
 					groups = { "smoke" })
 		public void MoveMessage_02() throws HarnessException {

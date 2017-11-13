@@ -71,8 +71,8 @@ public class DisplayFile extends FeatureBriefcaseTest {
 	}
 
 
-	@Bugs(ids = "79994")
-	@Test (description = " german umlauts breaks briefcase",
+	@Bugs (ids = "79994")
+	@Test (description = "german umlauts breaks briefcase",
 			groups = { "functional-skip", "L3-skip" })
 
 	public void DisplayFile_02() throws HarnessException {

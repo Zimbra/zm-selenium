@@ -118,7 +118,7 @@ public class HoverOverURL extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "82303")
+	@Bugs (ids = "82303")
 	@Test (description = "Hover over a URL with 'javascript' in the path.  Verify no change to JAVASCRIPT-BLOCKED",
 			groups = { "functional", "L2" })
 

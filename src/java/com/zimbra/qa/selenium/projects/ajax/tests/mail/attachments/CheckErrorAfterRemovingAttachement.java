@@ -36,7 +36,7 @@ public class CheckErrorAfterRemovingAttachement extends PrefGroupMailByMessageTe
 	}
 
 
-	@Bugs(ids = "88160")
+	@Bugs (ids = "88160")
 	@Test (description = "Bug 88160 - Remove an attachment from a mail and then delete mail",
 			groups = { "functional", "L2" })
 

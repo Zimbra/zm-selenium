@@ -34,7 +34,7 @@ public class CreateShare extends UniversalCommonTest  {
 
 	}
 	
-	@Test( description = "Share an addressbook - Viewer",
+	@Test (description = "Share an addressbook - Viewer",
 			groups = { "smoke", "L1"})
 	public void CreateShare_01() throws HarnessException {
 		

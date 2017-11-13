@@ -184,7 +184,7 @@ public class GetMessage extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids="86667")
+	@Bugs (ids = "86667")
 	@Test (description = "Receive a mail with a date in subject(as Per bug this is invalid test case",
 			groups = { "deprecated" })
 

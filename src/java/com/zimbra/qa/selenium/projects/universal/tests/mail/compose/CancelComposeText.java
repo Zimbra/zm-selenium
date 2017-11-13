@@ -35,7 +35,7 @@ public class CancelComposeText extends PrefGroupMailByMessageTest {
 		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "text");
 	}
 	
-	@Test( description = "Verify message dialog, when cancel a plain text draft (body filled)",
+	@Test (description = "Verify message dialog, when cancel a plain text draft (body filled)",
 			groups = { "functional", "L2" })
 	
 	public void CancelComposeText_01() throws HarnessException {
@@ -73,7 +73,7 @@ public class CancelComposeText extends PrefGroupMailByMessageTest {
 	 * @throws HarnessException
 	 */
 	
-	@Test( description = "Cancel Text composed mail using keyboard shortcut 'Escape'",
+	@Test (description = "Cancel Text composed mail using keyboard shortcut 'Escape'",
 			groups = { "functional", "L3" })
 	
 	public void CancelComposeText_02() throws HarnessException {

@@ -34,7 +34,7 @@ public class AutoCompleteDLExpandMembers extends UniversalCommonTest  {
 		
 	}
 
-	@Test( description = "Auto complete DL, expand members and send mail to all", 
+	@Test (description = "Auto complete DL, expand members and send mail to all", 
 			groups = { "functional", "L2"})
 
 	public void AutoCompleteDLExpandMembers_01() throws HarnessException {

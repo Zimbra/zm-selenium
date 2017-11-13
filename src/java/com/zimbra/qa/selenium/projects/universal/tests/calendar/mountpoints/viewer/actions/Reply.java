@@ -34,8 +34,8 @@ public class Reply extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 	
-	@Bugs(ids = "82558")
-	@Test( description = "Grantee replies to appointment from grantor's calendar",
+	@Bugs (ids = "82558")
+	@Test (description = "Grantee replies to appointment from grantor's calendar",
 			groups = { "functional", "L5" })
 	
 	public void Reply_01() throws HarnessException {

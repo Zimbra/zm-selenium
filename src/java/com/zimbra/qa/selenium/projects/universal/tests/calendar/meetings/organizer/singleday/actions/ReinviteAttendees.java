@@ -33,8 +33,8 @@ public class ReinviteAttendees extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 	
-	@Bugs(ids = "21181")
-	@Test( description = "Resend a meeting invite using context menu",
+	@Bugs (ids = "21181")
+	@Test (description = "Resend a meeting invite using context menu",
 			groups = { "smoke", "L1" })
 	public void ReinviteAttendees_01() throws HarnessException {
 		

@@ -29,11 +29,13 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZDate;
+import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.tasks.DisplayTask;
 import com.zimbra.qa.selenium.projects.ajax.ui.tasks.FormTaskNew;
 import com.zimbra.qa.selenium.projects.ajax.ui.tasks.FormTaskNew.Field;
+import com.zimbra.qa.selenium.projects.ajax.ui.tasks.PageTasks.Locators;
 
 public class EditTask extends AjaxCommonTest{
 
@@ -130,7 +132,7 @@ public class EditTask extends AjaxCommonTest{
 	 * @throws HarnessException
 	 */
 
-	@Bugs(ids="64647")
+	@Bugs (ids = "64647")
 	@Test (description = "Create task through SOAP - edit due date >> Refresh task >>verify Due Date in list view through GUI",
 			groups = { "smoke", "L1" })
 
@@ -256,5 +258,61 @@ public class EditTask extends AjaxCommonTest{
 		}
 
 		ZAssert.assertNull(foundoldtask, "Verify the old task no longer  present in the task list");
+	}
+
+
+	@Test (description = "Edit task and remove attachment",
+			groups = { "smoke", "L1" })
+
+	public void EditTask_04() throws HarnessException {
+
+		String subject = "task" + ConfigProperties.getUniqueString();
+
+		ZimbraAccount account = app.zGetActiveAccount();
+		FolderItem taskFolder = FolderItem.importFromSOAP(account,SystemFolder.Tasks);
+
+		// Create file item
+		String filePath = ConfigProperties.getBaseDirectory() + "/data/public/Files/Basic01/BasicExcel2007.xlsx";
+
+		// Upload file to server through RestUtil
+		String attachmentId = account.uploadFile(filePath);
+
+		app.zGetActiveAccount().soapSend(
+				"<CreateTaskRequest xmlns='urn:zimbraMail'>" +
+				"<m >" +
+				"<inv>" +
+				"<comp name='"+ subject +"'>" +
+				"<or a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
+				"</comp>" +
+				"</inv>" +
+				"<su>"+ subject +"</su>" +
+				"<mp ct='text/plain'>" +
+				"<content>content"+ ConfigProperties.getUniqueString() +"</content>" +
+				"</mp>" +
+				"<attach aid='"+attachmentId+"'>"+
+				"</attach>"+
+				"</m>" +
+		"</CreateTaskRequest>");
+
+		TaskItem task = TaskItem.importFromSOAP(app.zGetActiveAccount(), subject);
+		ZAssert.assertNotNull(task, "Verify the task is created");
+
+		// Refresh the tasks view
+		app.zTreeTasks.zTreeItem(Action.A_LEFTCLICK, taskFolder);
+
+		// Select the item
+		app.zPageTasks.zListItem(Action.A_LEFTCLICK, subject);
+		ZAssert.assertTrue(app.zPageTasks.sIsElementPresent(Locators.zAttachmentsLabel),"Verify Attachments label");
+
+		// Press Edit tool bar button
+		FormTaskNew taskedit = (FormTaskNew) app.zPageTasks.zToolbarPressButton(Button.B_EDIT);
+		SleepUtil.sleepMedium();
+
+		// Uncheck Attachment
+		app.zPageTasks.sUncheck(Locators.zEditAttachmentCheckbox);
+		taskedit.zSubmit();
+
+		// Verify Attachment not exist
+		ZAssert.assertFalse(app.zPageTasks.sIsElementPresent(Locators.zAttachmentsLabel),"Verify Attachments label");
 	}
 }

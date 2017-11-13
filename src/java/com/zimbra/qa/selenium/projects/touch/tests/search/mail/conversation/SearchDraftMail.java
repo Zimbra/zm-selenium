@@ -38,8 +38,8 @@ public class SearchDraftMail extends PrefGroupMailByConversationTest {
 
 	}
 	
-	@Bugs( ids = "93246")
-	@Test( description = "Bug 93246: Draft message content showing blank from search results",
+	@Bugs (ids = "93246")
+	@Test (description = "Bug 93246: Draft message content showing blank from search results",
 			groups = { "smoke" })
 			
 	public void SearchDraftMail_01() throws HarnessException, AWTException {

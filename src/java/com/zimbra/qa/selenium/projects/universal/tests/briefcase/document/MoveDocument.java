@@ -42,7 +42,7 @@ public class MoveDocument extends FeatureBriefcaseTest {
 		super.startingAccountPreferences.put("zimbraPrefBriefcaseReadingPaneLocation", "bottom");
 	}
 
-	@Test(description = "Create document through SOAP - move & verify through GUI", 
+	@Test (description = "Create document through SOAP - move & verify through GUI", 
 			groups = { "smoke", "L0" })
 	public void MoveDocument_01() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
@@ -119,7 +119,7 @@ public class MoveDocument extends FeatureBriefcaseTest {
 				"Verify document was moved to the selected folder");
 	}
 
-	@Test(description = "Move Document using 'm' keyboard shortcut", 
+	@Test (description = "Move Document using 'm' keyboard shortcut", 
 			groups = { "functional", "L3" })
 	public void MoveDocument_02() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
@@ -206,7 +206,7 @@ public class MoveDocument extends FeatureBriefcaseTest {
 				"Verify document was moved to the folder: " + subFolders[1].getName());
 	}
 
-	@Test(description = "Create document through SOAP - move using Right Click Context Menu & verify through GUI", 
+	@Test (description = "Create document through SOAP - move using Right Click Context Menu & verify through GUI", 
 			groups = {"functional", "L3" })
 
 	public void MoveDocument_03() throws HarnessException {

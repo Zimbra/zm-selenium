@@ -32,7 +32,7 @@ public class ModifyLocationSuggestionPreference extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 		
-	@Test( description = "Create a meeting invite by modifying location suggestion preferences",
+	@Test (description = "Create a meeting invite by modifying location suggestion preferences",
 			groups = { "functional", "L2"})
 			
 	public void ModifyLocationSuggestionPreference_01() throws HarnessException {

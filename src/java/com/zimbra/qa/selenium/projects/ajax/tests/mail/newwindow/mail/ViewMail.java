@@ -85,7 +85,7 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Bugs( ids = "86168")
+	@Bugs (ids = "86168")
 	@Test (description = "Receive a mail with Reply-To: specified",
 			groups = { "functional", "L2" })
 
@@ -132,7 +132,7 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Bugs( ids = "61575")
+	@Bugs (ids = "61575")
 	@Test (description = "Receive a mail with Resent-From: specified",
 			groups = { "functional", "L3" })
 

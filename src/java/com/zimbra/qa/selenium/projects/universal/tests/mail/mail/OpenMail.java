@@ -38,7 +38,7 @@ public class OpenMail extends PrefGroupMailByMessageTest {
 
 	}
 	
-	@Test( description = "Double click a mail",
+	@Test (description = "Double click a mail",
 			groups = { "smoke", "L1" })
 	public void OpenMail_01() throws HarnessException {
 		

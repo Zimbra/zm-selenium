@@ -316,7 +316,7 @@ public class CreateTask extends AjaxCommonTest {
 	@Test (description = "Create a task with different priorities high/normal/low",
 			groups = { "smoke", "L1"},	dataProvider = "DataProvidePriorities")
 
-	public void CreateTask_10(Button option, String verify) throws HarnessException {
+	public void CreateTask_08(Button option, String verify) throws HarnessException {
 
 		String subject = "task" + ConfigProperties.getUniqueString();
 		String body = "taskbody"+ ConfigProperties.getUniqueString();

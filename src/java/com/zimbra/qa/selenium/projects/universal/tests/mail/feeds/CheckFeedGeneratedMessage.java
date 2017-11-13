@@ -34,9 +34,9 @@ public class CheckFeedGeneratedMessage extends PrefGroupMailByMessageTest {
 		logger.info("New "+ CheckMailContentForSpecificMimes.class.getCanonicalName());
 	}
 
-	@Bugs( ids = "52121")
+	@Bugs (ids = "52121")
 	
-	@Test( description = "Verify bug 52121:  feed-generated messages do not render in UNIVERSAL client ", groups = { "functional", "L2" })
+	@Test (description = "Verify bug 52121:  feed-generated messages do not render in UNIVERSAL client ", groups = { "functional", "L2" })
 	
 	public void CheckFeedGeneratedMessage_01() throws HarnessException {
 		

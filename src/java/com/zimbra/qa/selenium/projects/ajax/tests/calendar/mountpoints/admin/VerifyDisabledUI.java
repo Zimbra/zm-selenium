@@ -32,7 +32,7 @@ public class VerifyDisabledUI extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "82558")
+	@Bugs (ids = "82558")
 	@Test (description = "Verify 'Share Calendar' menu & 'Reply' menu remains enabled on mountpoint appointment (admin share)",
 			groups = { "functional-skip", "application-bug" })
 

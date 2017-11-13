@@ -32,7 +32,7 @@ public class SearchContactGroup extends UniversalCommonTest {
 		super.startingPage = app.zPageContacts;
 	}
 
-	@Test(description = "Search for an existing contact group", 
+	@Test (description = "Search for an existing contact group", 
 			groups = { "functional","L2" })
 	public void SearchContactGroup_01() throws HarnessException {
 
@@ -67,8 +67,8 @@ public class SearchContactGroup extends UniversalCommonTest {
 
 	}
 
-	@Bugs(ids = "77950")
-	@Test(description = "Search for an existing contact group, by member",
+	@Bugs (ids = "77950")
+	@Test (description = "Search for an existing contact group, by member",
 			groups = { "deprecated","L4" })
 	public void SearchContactGroup_02() throws HarnessException {
 

@@ -46,7 +46,7 @@ public class ZimbraPrefShowSearchStringFalse extends UniversalCommonTest {
 	}
 	
 
-	@Test( description = "Change zimbraPrefShowSearchString setting FALSE",
+	@Test (description = "Change zimbraPrefShowSearchString setting FALSE",
 			groups = { "functional", "L2" })
 	public void PreferencesGeneralSearches_zimbraPrefShowSearchString_01() throws HarnessException {
 		

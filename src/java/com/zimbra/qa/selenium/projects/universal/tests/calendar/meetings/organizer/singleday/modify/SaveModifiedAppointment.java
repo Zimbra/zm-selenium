@@ -41,7 +41,7 @@ public class SaveModifiedAppointment extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 	
-	@Test( description = "Save modified appt and take action from warning dialog : Save Chnages and send updates", 
+	@Test (description = "Save modified appt and take action from warning dialog : Save Chnages and send updates", 
 			groups = { "functional", "L2"})
 	public void SaveModifiedAppointment_01() throws HarnessException {
 		
@@ -107,7 +107,7 @@ public class SaveModifiedAppointment extends CalendarWorkWeekTest {
 		
 	}
 	
-	@Test( description = "Save modified appt and take action from warning dialog : Discard and close", 
+	@Test (description = "Save modified appt and take action from warning dialog : Discard and close", 
 			groups = { "functional", "L2"})
 	public void SaveModifiedAppointment_02() throws HarnessException {
 
@@ -180,7 +180,7 @@ public class SaveModifiedAppointment extends CalendarWorkWeekTest {
         ZAssert.assertStringContains(modifyAppt.getAttendees(), apptAttendee1, "Attendees: Verify attendee2 is present in the meeting invite");
 	}
 	
-	@Test( description = "Save modified appt and take action from warning dialog : Dont save But keep open", 
+	@Test (description = "Save modified appt and take action from warning dialog : Dont save But keep open", 
 			groups = { "functional", "L2"})
 	public void SaveModifiedAppointment_03() throws HarnessException {
 		

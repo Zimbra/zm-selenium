@@ -135,7 +135,6 @@ public class CancelTask extends AjaxCommonTest {
 
 
 	/*
-	 * @steps
 	 * 1.Login to Web client
 	 * 2.Go to Task
 	 * 3.Click New Task
@@ -149,11 +148,11 @@ public class CancelTask extends AjaxCommonTest {
 	 * user click on cancel
 	 */
 
-	@Bugs(ids = "74670")
+	@Bugs (ids = "74670")
 	@Test (description = "cancelling empty attachment task in 2nd attempt",
 			groups = { "functional", "L3" })
 
-	public void Bug_74670() throws HarnessException {
+	public void CancelTask_Bug74670_03() throws HarnessException {
 
 		//1st attempt
 		// Click NEW button

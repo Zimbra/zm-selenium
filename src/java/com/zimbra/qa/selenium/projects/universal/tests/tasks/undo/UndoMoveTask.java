@@ -44,8 +44,8 @@ public class UndoMoveTask extends UniversalCommonTest {
 		}};
 	}
 	
-	@Bugs( ids = "96832")
-	@Test( description = "Undo moved task", groups = { "smoke", "L1"})
+	@Bugs (ids = "96832")
+	@Test (description = "Undo moved task", groups = { "smoke", "L1"})
 	public void UndoMoveTask_01() throws HarnessException {
 
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);

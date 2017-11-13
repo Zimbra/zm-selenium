@@ -57,8 +57,8 @@ import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
 	 * See http://bugzilla.zimbra.com/show_bug.cgi?id=61982 - WONTFIX
 	 * @throws HarnessException
 	 */
-	@Bugs(ids = "50123")
-	@Test( description = "Load the client with just Social enabled",
+	@Bugs (ids = "50123")
+	@Test (description = "Load the client with just Social enabled",
 			groups = { "deprecated", "L4" })
 	public void ZimbraZimletAvailableZimlets_01() throws HarnessException {
 		

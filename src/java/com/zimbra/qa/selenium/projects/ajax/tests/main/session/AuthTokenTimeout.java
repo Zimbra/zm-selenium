@@ -35,7 +35,7 @@ public class AuthTokenTimeout extends PrefGroupMailByMessageTest {
 		super.startingAccountPreferences.put("zimbraAuthTokenLifetime", "100s");
 	}
 
-	@Bugs(ids = "75133")
+	@Bugs (ids = "75133")
 	@Test (description = "Verify content is saved when Send is interupted by zimbraAuthTokenLifetime",
 			groups = { "smoke", "L1" })
 

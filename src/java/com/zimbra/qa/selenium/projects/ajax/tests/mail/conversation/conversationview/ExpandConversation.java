@@ -33,7 +33,7 @@ public class ExpandConversation extends PrefGroupMailByConversationTest {
 	@Test (description = "Expand a conversation",
 			groups = { "smoke", "L1" })
 
-	public void ExpandConversation01() throws HarnessException {
+	public void ExpandConversation_01() throws HarnessException {
 
 		// Create the message data to be sent
 		String subject = "subject" + ConfigProperties.getUniqueString();

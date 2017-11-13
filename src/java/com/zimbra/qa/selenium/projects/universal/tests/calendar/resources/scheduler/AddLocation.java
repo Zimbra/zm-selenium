@@ -33,7 +33,7 @@ public class AddLocation extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 	
-	@Bugs(ids = "77711")
+	@Bugs (ids = "77711")
 	@DataProvider(name = "DataProviderShortcutKeys")
 	public Object[][] DataProviderShortcutKeys() {
 		return new Object[][] {
@@ -41,7 +41,7 @@ public class AddLocation extends CalendarWorkWeekTest {
 	//			new Object[] { "VK_TAB", KeyEvent.VK_TAB },
 		};
 	}
-	@Test( description = "Add location from scheduler pane using keyboard Enter and Tab key",
+	@Test (description = "Add location from scheduler pane using keyboard Enter and Tab key",
 			groups = { "functional", "L2" },
 			dataProvider = "DataProviderShortcutKeys")
 	public void AddLocation_01(String name, int keyEvent) throws HarnessException {

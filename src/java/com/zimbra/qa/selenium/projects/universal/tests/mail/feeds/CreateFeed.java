@@ -30,7 +30,7 @@ public class CreateFeed extends PrefGroupMailByMessageTest {
 		logger.info("New "+ CreateFeed.class.getCanonicalName());
 	}
 
-	@Test( description = "Create a new feed by clicking 'new folder' on folder tree", groups = { "smoke", "L1" })
+	@Test (description = "Create a new feed by clicking 'new folder' on folder tree", groups = { "smoke", "L1" })
 
 	public void CreateFeed_01() throws HarnessException, MalformedURLException {
 

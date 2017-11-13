@@ -43,8 +43,8 @@ public class AcceptProposeNewTime extends CalendarWorkWeekTest {
 		};
 	}
 	
-	@Bugs(ids = "69132,96556,96748")
-	@Test( description = "Receive meeting invite -> Propose New Time to organizer and organizer accepts the new time using message view", 
+	@Bugs (ids = "69132,96556,96748")
+	@Test (description = "Receive meeting invite -> Propose New Time to organizer and organizer accepts the new time using message view", 
 			groups = { "functional", "L2" })
 	public void AcceptProposeNewTime_01() throws HarnessException {
 

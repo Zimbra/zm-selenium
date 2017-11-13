@@ -32,7 +32,7 @@ public class GetQuickCommand extends AjaxQuickCommandTest {
 	}
 
 
-	@Bugs(ids = "71389")
+	@Bugs (ids = "71389")
 	@Test(	description = "Get a list of basic Quick Commands",
 			groups = { "deprecated" })
 
@@ -47,7 +47,7 @@ public class GetQuickCommand extends AjaxQuickCommandTest {
 	}
 
 
-	@Bugs(ids = "71389")
+	@Bugs (ids = "71389")
 	@Test(	description = "Verify the Quick Command data in the list",
 			groups = { "deprecated" })
 

@@ -31,8 +31,8 @@ public class ForwardImageMail extends PrefGroupMailByConversationTest {
 		logger.info("New "+ ForwardImageMail.class.getCanonicalName());
 	}
 	
-	@Bugs( ids = "81331")
-	@Test( description = "Verify inline image present after hitting Forward from the mail",
+	@Bugs (ids = "81331")
+	@Test (description = "Verify inline image present after hitting Forward from the mail",
 			groups = { "smoke" })
 			
 	public void ForwardInlineImageMail_01() throws HarnessException {
@@ -53,8 +53,8 @@ public class ForwardImageMail extends PrefGroupMailByConversationTest {
 		
 	}
 	
-	@Bugs( ids = "81331")
-	@Test( description = "Forward a mail which contains inline image and verify it at the receipient side",
+	@Bugs (ids = "81331")
+	@Test (description = "Forward a mail which contains inline image and verify it at the receipient side",
 			groups = { "functional" })
 			
 	public void ForwardInlineImageMail_02() throws HarnessException {
@@ -100,8 +100,8 @@ public class ForwardImageMail extends PrefGroupMailByConversationTest {
 		
 	}
 	
-	@Bugs( ids = "81069")
-	@Test( description = "Verify external image present after hitting Forward from the mail",
+	@Bugs (ids = "81069")
+	@Test (description = "Verify external image present after hitting Forward from the mail",
 			groups = { "functional" })
 			
 	public void ForwardExternalImageMail_03() throws HarnessException {
@@ -123,8 +123,8 @@ public class ForwardImageMail extends PrefGroupMailByConversationTest {
 		
 	}
 	
-	@Bugs( ids = "81069")
-	@Test( description = "Forward a mail which contains external image and verify it at the receipient side",
+	@Bugs (ids = "81069")
+	@Test (description = "Forward a mail which contains external image and verify it at the receipient side",
 			groups = { "functional" })
 			
 	public void ForwardExternalImageMail_04() throws HarnessException {

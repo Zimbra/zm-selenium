@@ -37,7 +37,7 @@ public class ZimbraFeatureChangePasswordEnabledTrue extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "81522")
+	@Bugs (ids = "81522")
 	@Test (description = "Verify the 'Change Password' option is present in main -> account -> Change Password",
 			groups = { "functional", "L2" })
 

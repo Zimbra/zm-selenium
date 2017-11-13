@@ -42,7 +42,7 @@ public class ComposeForwardMailWithAttachmentAndVariousOptions extends PrefGroup
 	}
 
 
-	@Bugs(ids = "103903")
+	@Bugs (ids = "103903")
 	@Test (description = "Verify the presence of attachment while forwarding a mail and changing option from  'Include Original as an attachment' to 'Include Original message'",
 			groups = { "functional", "L2" })
 
@@ -127,7 +127,7 @@ public class ComposeForwardMailWithAttachmentAndVariousOptions extends PrefGroup
 	}
 
 
-	@Bugs(ids = "103903")
+	@Bugs (ids = "103903")
 	@Test (description = "Verify the presence of attachment while forwarding a mail and selecting 'Use Prefixes' option from Options'",
 			groups = { "functional", "L3" })
 
@@ -202,7 +202,7 @@ public class ComposeForwardMailWithAttachmentAndVariousOptions extends PrefGroup
 	}
 
 
-	@Bugs(ids = "103903")
+	@Bugs (ids = "103903")
 	@Test (description = "Verify the presence of attachment while forwarding a mail and selecting 'Include Headers' option from Options'",
 			groups = { "functional", "L3" })
 

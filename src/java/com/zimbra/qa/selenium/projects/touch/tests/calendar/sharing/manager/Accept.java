@@ -33,7 +33,7 @@ public class Accept extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 	
-	@Bugs(ids = "95870")
+	@Bugs (ids = "95870")
 	@Test (description = "Assistant selects calendar invite from shared calendar and accepts the invite OBO boss",
 			groups = { "smoke" })
 

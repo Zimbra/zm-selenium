@@ -36,7 +36,7 @@ public class MarkSpamMessage extends PrefGroupMailByMessageTest {
 		
 	}
 	
-	@Test( description = "Mark a message as spam, using 'Spam' toolbar button",
+	@Test (description = "Mark a message as spam, using 'Spam' toolbar button",
 			groups = { "smoke", "L1" })
 	public void MarkSpamMessage_01() throws HarnessException {
 		
@@ -83,7 +83,7 @@ public class MarkSpamMessage extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Mark a message as spam, using keyboard shortcut (keyboard='ms')",
+	@Test (description = "Mark a message as spam, using keyboard shortcut (keyboard='ms')",
 			groups = { "smoke", "L1" })
 	public void MarkSpamMessage_02() throws HarnessException {
 		
@@ -129,7 +129,7 @@ public class MarkSpamMessage extends PrefGroupMailByMessageTest {
 				
 	}
 
-	@Test( description = "Mark multiple messages (3) as spam by select and toolbar delete",
+	@Test (description = "Mark multiple messages (3) as spam by select and toolbar delete",
 			groups = { "functional", "L2" })
 	public void MarkSpamMessage_03() throws HarnessException {
 		

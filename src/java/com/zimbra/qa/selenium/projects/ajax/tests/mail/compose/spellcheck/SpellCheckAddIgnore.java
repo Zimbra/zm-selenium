@@ -37,7 +37,7 @@ public class SpellCheckAddIgnore extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Bugs(ids = "47151")
+	@Bugs (ids = "47151")
 	@Test (description = "Spell check a misspelled word and add it to spell-check dictionary",
 			groups = { "functional", "L3" })
 
@@ -95,7 +95,7 @@ public class SpellCheckAddIgnore extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Bugs(ids = "47151")
+	@Bugs (ids = "47151")
 	@Test (description = "Spell check a misspelled word and ignore it",
 			groups = { "functional", "L3" })
 

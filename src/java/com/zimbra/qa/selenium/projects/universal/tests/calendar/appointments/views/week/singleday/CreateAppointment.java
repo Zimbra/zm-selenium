@@ -48,7 +48,7 @@ public class CreateAppointment extends CalendarWorkWeekTest {
 	}
 
 	
-	@Test( description = "Create a basic appointment without an attendee in week view",
+	@Test (description = "Create a basic appointment without an attendee in week view",
 			groups = { "smoke", "L3" } )
 	
 	public void CreateAppointment_01() throws HarnessException {
@@ -78,7 +78,7 @@ public class CreateAppointment extends CalendarWorkWeekTest {
 	}
 	
 	
-	@Test( description = "Create appointment with all the fields and verify it",
+	@Test (description = "Create appointment with all the fields and verify it",
 			groups = { "functional", "L3" } )
 	
 	public void CreateAppointment_02() throws HarnessException {
@@ -135,7 +135,7 @@ public class CreateAppointment extends CalendarWorkWeekTest {
 	}
 	
 	
-	@Test( description = "Create private appointment in week view",
+	@Test (description = "Create private appointment in week view",
 			groups = { "functional", "L3" } )
 	
 	public void CreatePrivateAppointment_03() throws HarnessException {

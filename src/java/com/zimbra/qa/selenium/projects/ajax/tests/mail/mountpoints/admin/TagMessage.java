@@ -127,7 +127,7 @@ public class TagMessage extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Bugs(ids="79948")
+	@Bugs (ids = "79948")
 	@Test (description = "Verify success on Tag (keyboard='t') a shared mail (admin share)",
 			groups = { "functional", "L2" })
 

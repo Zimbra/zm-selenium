@@ -44,8 +44,8 @@ public class DeleteAppointment extends CalendarWorkWeekTest {
 		
 	}
 	
-	@Bugs(ids = "69132")
-	@Test( description = "Delete an appointment using Delete toolbar button in week view",
+	@Bugs (ids = "69132")
+	@Test (description = "Delete an appointment using Delete toolbar button in week view",
 			groups = { "smoke", "L3" })
 	public void DeleteAppointment_01() throws HarnessException {
 		
@@ -87,8 +87,8 @@ public class DeleteAppointment extends CalendarWorkWeekTest {
 		ZAssert.assertEquals(app.zPageCalendar.zIsAppointmentExists(apptSubject), false, "Verify appointment is deleted");
 	}
 	
-	@Bugs(ids = "69132")
-	@Test( description = "Delete an appointment using context menu in week view",
+	@Bugs (ids = "69132")
+	@Test (description = "Delete an appointment using context menu in week view",
 			groups = { "smoke", "L3" })
 	public void DeleteAppointment_02() throws HarnessException {
 		
@@ -137,8 +137,8 @@ public class DeleteAppointment extends CalendarWorkWeekTest {
 		};
 	}
 
-	@Bugs(ids = "69132")
-	@Test( description = "Delete an appointment using keyboard shortcuts (Del & Backspace) in week view",
+	@Bugs (ids = "69132")
+	@Test (description = "Delete an appointment using keyboard shortcuts (Del & Backspace) in week view",
 			groups = { "functional", "L3" },
 			dataProvider = "DataProviderShortcutKeys")
 	public void DeleteAppointment_03(String name, int keyEvent) throws HarnessException {

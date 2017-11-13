@@ -46,7 +46,7 @@ public class ShowOriginal extends CalendarWorkWeekTest {
 		};
 	}
 	
-	@Test( description = "check context menu for Show Original option and check of the its displayed", 
+	@Test (description = "check context menu for Show Original option and check of the its displayed", 
 			groups = { "smoke", "L1"})
 	
 	public void ShowOriginal_01() throws HarnessException {

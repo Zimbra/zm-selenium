@@ -31,7 +31,7 @@ public class MoveFolder extends UniversalCommonTest {
 		super.startingPage = app.zPageContacts;
 	}
 		
-	@Test( description = "Drag one folder from top level and Drop into sub folder", 
+	@Test (description = "Drag one folder from top level and Drop into sub folder", 
 			groups = { "smoke", "L1"})
 	
 	public void DnDFromTopLevelToSubFolder_01() throws HarnessException {

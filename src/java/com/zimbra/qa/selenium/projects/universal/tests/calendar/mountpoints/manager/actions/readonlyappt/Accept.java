@@ -32,8 +32,8 @@ public class Accept extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 	
-	@Bugs(ids = "81647")
-	@Test( description = "Assistant right clicks to calendar invite from shared calendar and accepts the invite OBO boss",
+	@Bugs (ids = "81647")
+	@Test (description = "Assistant right clicks to calendar invite from shared calendar and accepts the invite OBO boss",
 			groups = { "smoke", "L1" })
 			
 	public void Accept_01() throws HarnessException {

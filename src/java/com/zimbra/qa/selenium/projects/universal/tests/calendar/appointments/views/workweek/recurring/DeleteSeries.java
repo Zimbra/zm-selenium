@@ -33,7 +33,7 @@ public class DeleteSeries extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 	
-	@Bugs(ids = "69132")
+	@Bugs (ids = "69132")
 	@Test(
 			description = "Delete entire series of recurring appointment (every day) using toolbar button", 
 			groups = { "smoke", "L1" } )
@@ -120,7 +120,7 @@ public class DeleteSeries extends CalendarWorkWeekTest {
         
 	}
 	
-	@Bugs(ids = "69132")
+	@Bugs (ids = "69132")
 	@Test(
 			description = "Delete entire series of recurring appointment (every week) using context menu", 
 			groups = { "smoke", "L1" } )
@@ -209,8 +209,8 @@ public class DeleteSeries extends CalendarWorkWeekTest {
 		};
 	}
 
-	@Bugs(ids = "69132")
-	@Test( description = "Delete entire series appointment (every week) using keyboard shortcuts Del & Backspace",
+	@Bugs (ids = "69132")
+	@Test (description = "Delete entire series appointment (every week) using keyboard shortcuts Del & Backspace",
 			groups = { "functional", "L2" },
 			dataProvider = "DataProviderShortcutKeys")
 			

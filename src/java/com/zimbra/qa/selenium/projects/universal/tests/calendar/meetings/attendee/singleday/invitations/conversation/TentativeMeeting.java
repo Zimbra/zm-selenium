@@ -64,7 +64,7 @@ public class TentativeMeeting extends CalendarWorkWeekTest {
 
 	}
 	
-	@Bugs(ids = "69132")
+	@Bugs (ids = "69132")
 	@Test(
 			description = "Mark appointement as Tentative using Tentative button from invitation message", 
 			groups = { "smoke", "L1" })
@@ -160,7 +160,7 @@ public class TentativeMeeting extends CalendarWorkWeekTest {
 
 	}
 
-	@Bugs(ids = "69132")
+	@Bugs (ids = "69132")
 	@Test(
 			description = "Tentative meeting - Verify organizer gets notification message", 
 			groups = { "functional", "L2" })
@@ -219,7 +219,7 @@ public class TentativeMeeting extends CalendarWorkWeekTest {
 
 	}
 
-	@Bugs(ids = "69132")
+	@Bugs (ids = "69132")
 	@Test(
 			description = "Mark meeting as Tentative using 'Tentative -> Notify Organizer'", 
 			groups = { "functional", "L2" })
@@ -326,7 +326,7 @@ public class TentativeMeeting extends CalendarWorkWeekTest {
 		
 	}
 	
-	@Bugs(ids = "69132")
+	@Bugs (ids = "69132")
 	@Test(
 			description = "Mark meeting as tentative using 'Tentative -> Edit Reply' and verify modified content", 
 			groups = { "functional", "L2" })
@@ -432,7 +432,7 @@ public class TentativeMeeting extends CalendarWorkWeekTest {
 		
 	}
 	
-	@Bugs(ids = "69132,65356")
+	@Bugs (ids = "69132,65356")
 	@Test(
 			description = "Mark meeting as tentative using 'Tentative -> Don't Notify Organizer'", 
 			groups = { "functional", "L2" })

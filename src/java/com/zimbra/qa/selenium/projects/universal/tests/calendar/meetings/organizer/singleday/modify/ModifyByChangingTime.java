@@ -34,8 +34,8 @@ public class ModifyByChangingTime extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 	
-	@Bugs(ids = "102759")
-	@Test( description = "Rescheduled appointments do not show the correct time in the summary",
+	@Bugs (ids = "102759")
+	@Test (description = "Rescheduled appointments do not show the correct time in the summary",
 			groups = { "functional", "L2" })
 			
 	public void ModifyByChangingTime_01() throws HarnessException {

@@ -78,7 +78,7 @@ public class EditHtmlSignature extends AjaxCommonTest {
 
 		// HTML Signature is created
 		SignatureItem signature = SignatureItem.importFromSOAP(app.zGetActiveAccount(), this.sigName);
-		ZAssert.assertEquals(signature.getName(), this.sigName, "verified Html Signature name ");
+		ZAssert.assertEquals(signature.getName(), this.sigName, "Verify html signature name");
 
 		// Click on Mail/signature
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.MailSignatures);

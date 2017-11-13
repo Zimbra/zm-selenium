@@ -34,7 +34,7 @@ public class EditReplyTentative extends CalendarWorkWeekTest {
 		
 	}
 	
-	@Test( description = "Rt-click to appointment and Edit Reply -> Tentative the meeting invite", 
+	@Test (description = "Rt-click to appointment and Edit Reply -> Tentative the meeting invite", 
 			groups = { "smoke", "L1" })
 	public void TentativeMeeting_01() throws HarnessException {
 

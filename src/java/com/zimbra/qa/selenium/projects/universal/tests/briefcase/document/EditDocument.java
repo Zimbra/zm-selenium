@@ -47,7 +47,7 @@ public class EditDocument extends FeatureBriefcaseTest {
 		super.startingAccountPreferences.put("zimbraPrefBriefcaseReadingPaneLocation", "bottom");
 	}
 
-	@Test(description = "Create document through SOAP - edit name & verify through GUI", 
+	@Test (description = "Create document through SOAP - edit name & verify through GUI", 
 			groups = { "smoke", "L2" })
 
 	public void EditDocument_01() throws HarnessException {
@@ -109,8 +109,8 @@ public class EditDocument extends FeatureBriefcaseTest {
 		app.zPageBriefcase.deleteFileByName(docItem2.getName());
 	}
 
-	@Bugs(ids = "97124")
-	@Test(description = "Create document through SOAP - edit text & name & verify through GUI",
+	@Bugs (ids = "97124")
+	@Test (description = "Create document through SOAP - edit text & name & verify through GUI",
 	groups = { "smoke", "L2" })
 
 	public void EditDocument_02() throws HarnessException {
@@ -206,8 +206,8 @@ public class EditDocument extends FeatureBriefcaseTest {
 		app.zPageBriefcase.deleteFileByName(docItem2.getName());
 	}
 
-	@Bugs(ids = "97124")
-	@Test(description = "Create document & edit text through SOAP & verify through GUI", 
+	@Bugs (ids = "97124")
+	@Test (description = "Create document & edit text through SOAP & verify through GUI", 
 	groups = { "smoke", "L3" })
 
 	public void EditDocument_03() throws HarnessException {
@@ -284,7 +284,7 @@ public class EditDocument extends FeatureBriefcaseTest {
 		app.zPageBriefcase.deleteFileByName(docItem.getName());
 	}
 
-	@Test(description = "Create document through SOAP - Edit Document using Right Click Context Menu & verify through GUI", 
+	@Test (description = "Create document through SOAP - Edit Document using Right Click Context Menu & verify through GUI", 
 			groups = {"functional", "L2" })
 
 	public void EditDocument_04() throws HarnessException {

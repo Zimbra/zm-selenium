@@ -34,7 +34,7 @@ public class ChangeColorFeed extends PrefGroupMailByMessageTest {
 		logger.info("New " + ChangeColorFeed.class.getCanonicalName());
 	}
 
-	@Test( description = "Edit a feedfolder, change the color (Context menu -> Edit)", groups = { "functional", "L2" })
+	@Test (description = "Edit a feedfolder, change the color (Context menu -> Edit)", groups = { "functional", "L2" })
 
 	public void ChangeColorFeed_01() throws HarnessException, MalformedURLException {
 

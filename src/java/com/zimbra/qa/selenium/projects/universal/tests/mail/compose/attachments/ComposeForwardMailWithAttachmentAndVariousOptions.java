@@ -42,8 +42,8 @@ public class ComposeForwardMailWithAttachmentAndVariousOptions extends PrefGroup
 	}
 
 
-	@Bugs(ids = "103903")
-	@Test( description = "Verify the presence of attachment while forwarding a mail and changing option from  'Include Original as an attachment' to 'Include Original message'",
+	@Bugs (ids = "103903")
+	@Test (description = "Verify the presence of attachment while forwarding a mail and changing option from  'Include Original as an attachment' to 'Include Original message'",
 			groups = { "functional", "L2" })
 
 	public void ComposeForwardMailWithAttachmentAndVariousOptions_01() throws HarnessException {
@@ -131,8 +131,8 @@ public class ComposeForwardMailWithAttachmentAndVariousOptions extends PrefGroup
 	}
 
 
-	@Bugs(ids = "103903")
-	@Test( description = "Verify the presence of attachment while forwarding a mail and selecting 'Use Prefixes' option from Options'",
+	@Bugs (ids = "103903")
+	@Test (description = "Verify the presence of attachment while forwarding a mail and selecting 'Use Prefixes' option from Options'",
 			groups = { "functional", "L3" })
 
 	public void ComposeForwardMailWithAttachmentAndVariousOptions_02() throws HarnessException {
@@ -209,8 +209,8 @@ public class ComposeForwardMailWithAttachmentAndVariousOptions extends PrefGroup
 		}
 	}
 
-	@Bugs(ids = "103903")
-	@Test( description = "Verify the presence of attachment while forwarding a mail and selecting 'Include Headers' option from Options'",
+	@Bugs (ids = "103903")
+	@Test (description = "Verify the presence of attachment while forwarding a mail and selecting 'Include Headers' option from Options'",
 			groups = { "functional", "L3" })
 
 	public void ComposeForwardMailWithAttachmentAndVariousOptions_03() throws HarnessException {

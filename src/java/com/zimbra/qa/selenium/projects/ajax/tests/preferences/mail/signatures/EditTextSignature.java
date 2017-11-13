@@ -66,7 +66,7 @@ public class EditTextSignature extends AjaxCommonTest {
 	 * edit text signature through soap
 	 */
 
-	@Test (description = " Edit and verify text signature through soap",
+	@Test (description = "Edit and verify text signature through soap",
 			groups = { "smoke", "L1"  })
 
 	public void EditTextSignature_01() throws HarnessException {
@@ -76,7 +76,7 @@ public class EditTextSignature extends AjaxCommonTest {
 
 		// Signature is created
 		SignatureItem signature = SignatureItem.importFromSOAP(app.zGetActiveAccount(), this.sigName);
-		ZAssert.assertEquals(signature.getName(), this.sigName, "verified Text Signature is created");
+		ZAssert.assertEquals(signature.getName(), this.sigName, "Verify text signature is created");
 
 		// Click on Mail/signature
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.MailSignatures);

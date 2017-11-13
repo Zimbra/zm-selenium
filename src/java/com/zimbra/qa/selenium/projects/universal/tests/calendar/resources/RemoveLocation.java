@@ -32,8 +32,8 @@ public class RemoveLocation extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 	
-	@Bugs(ids = "77588,96593")
-	@Test( description = "Remove location from existing appointment and verify F/B",
+	@Bugs (ids = "77588,96593")
+	@Test (description = "Remove location from existing appointment and verify F/B",
 			groups = { "smoke", "L1" })
 	
 	public void RemoveLocation_01() throws HarnessException {

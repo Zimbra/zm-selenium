@@ -34,7 +34,7 @@ public class ZimbraCalResLocationDisplayName extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "57039")
+	@Bugs (ids = "57039")
 	@Test (description = "Verify the serach location dialog shows location display name for location",
 			groups = { "functional", "L2" })
 

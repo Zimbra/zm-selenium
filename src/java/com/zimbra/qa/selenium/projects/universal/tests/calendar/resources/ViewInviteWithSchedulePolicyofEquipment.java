@@ -33,7 +33,7 @@ public class ViewInviteWithSchedulePolicyofEquipment extends CalendarWorkWeekTes
 		super.startingPage = app.zPageCalendar;
 	}
 	
-	@Test(description = "Verify that invite appears correctly in resource's account when schedule policy is set to 'Manual accept, auto decline on conflict'",
+	@Test (description = "Verify that invite appears correctly in resource's account when schedule policy is set to 'Manual accept, auto decline on conflict'",
 			groups = { "smoke", "L1" })
 	
 	public void ManualAcceptAutoDeclineOnConflict_01() throws HarnessException {
@@ -103,7 +103,7 @@ public class ViewInviteWithSchedulePolicyofEquipment extends CalendarWorkWeekTes
 
 	}
 
-	@Test(description = "Verify that invite appears correctly in resource's account when schedule policy is set to 'Auto accept always'",
+	@Test (description = "Verify that invite appears correctly in resource's account when schedule policy is set to 'Auto accept always'",
 			groups = { "smoke", "L1" })
 	public void AutoAcceptAlways_02() throws HarnessException {
 		
@@ -169,7 +169,7 @@ public class ViewInviteWithSchedulePolicyofEquipment extends CalendarWorkWeekTes
 
 	}
 
-	@Test(description = "Verify that invite appears correctly in resource's account when schedule policy is set to 'No auto accept or decline'",
+	@Test (description = "Verify that invite appears correctly in resource's account when schedule policy is set to 'No auto accept or decline'",
 			groups = { "smoke", "L1" })
 	public void NoAutoAcceptOrDecline_03() throws HarnessException {
 		

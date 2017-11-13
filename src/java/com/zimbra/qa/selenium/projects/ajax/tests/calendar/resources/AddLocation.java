@@ -154,7 +154,7 @@ public class AddLocation extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "60789")
+	@Bugs (ids = "60789")
 	@Test (description = "Name lost when using autocomplete to enter location",
 			groups = { "smoke", "L1" } )
 

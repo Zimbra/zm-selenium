@@ -41,7 +41,7 @@ public class GetMail extends PrefGroupMailByMessageTest {
 	}
 	
 	
-	@Test( description = "Open message in separate window",
+	@Test (description = "Open message in separate window",
 			groups = { "smoke", "L1" })
 	
 	public void GetMail_01() throws HarnessException {
@@ -86,7 +86,7 @@ public class GetMail extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Open message in separate window - verify mail contents",
+	@Test (description = "Open message in separate window - verify mail contents",
 			groups = { "smoke", "L1" })
 
 	public void GetMail_02() throws HarnessException {
@@ -139,7 +139,7 @@ public class GetMail extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Open html message in separate window - verify mail contents",
+	@Test (description = "Open html message in separate window - verify mail contents",
 			groups = { "smoke", "L1" })
 
 	public void GetMail_03() throws HarnessException {

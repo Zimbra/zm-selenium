@@ -75,7 +75,7 @@ public class DownloadsTab extends AdminCommonTest {
 	}
 
 
-	@Bugs( ids = "100755")
+	@Bugs (ids = "100755")
 	@Test (description = "Verify the downloads links are accessible",
 			groups = { "functional", "L2" })
 

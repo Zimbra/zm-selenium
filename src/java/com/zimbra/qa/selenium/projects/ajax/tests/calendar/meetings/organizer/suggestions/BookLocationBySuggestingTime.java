@@ -33,7 +33,7 @@ public class BookLocationBySuggestingTime extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "73966,88287")
+	@Bugs (ids = "73966,88287")
 	@Test (description = "Suggest a free time and book location for selected time while creating new appointment",
 			groups = { "smoke", "L1" })
 

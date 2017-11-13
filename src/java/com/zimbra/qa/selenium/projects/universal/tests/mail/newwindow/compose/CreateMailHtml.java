@@ -32,8 +32,8 @@ public class CreateMailHtml extends PrefGroupMailByMessageTest {
 		super.startingAccountPreferences.put("zimbraPrefComposeInNewWindow", "TRUE");
 	}
 
-	@Bugs(ids = "101612")
-	@Test(description = "Send a mail using HTML editor - in a separate window", groups = { "sanity", "L0" })
+	@Bugs (ids = "101612")
+	@Test (description = "Send a mail using HTML editor - in a separate window", groups = { "sanity", "L0" })
 
 	public void CreateMailHtml_01() throws HarnessException {
 

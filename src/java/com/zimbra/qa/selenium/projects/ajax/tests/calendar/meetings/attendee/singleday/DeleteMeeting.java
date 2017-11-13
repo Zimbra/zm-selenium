@@ -115,7 +115,7 @@ public class DeleteMeeting extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "104604")
+	@Bugs (ids = "104604")
 	@Test (description = "Delete appointment in the week view - Notify Organizer",
 			groups = { "smoke", "L1" })
 

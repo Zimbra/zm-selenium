@@ -37,7 +37,7 @@ public class FolderTree extends UniversalCommonTest {
 		super.startingPage = app.zPageMail;
 	}
 	
-	@Test( description = "Verify the WebEx zimlet appears in the folder tree",
+	@Test (description = "Verify the WebEx zimlet appears in the folder tree",
 			groups = { "smoke", "L1" })
 	public void FolderTree_01() throws HarnessException {
 		ZimletItem webex = CoreZimletItem.getCoreZimlet(CoreZimletName.com_zimbra_webex, app);

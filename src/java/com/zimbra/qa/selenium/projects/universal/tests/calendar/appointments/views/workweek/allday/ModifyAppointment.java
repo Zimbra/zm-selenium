@@ -32,7 +32,7 @@ public class ModifyAppointment extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 
-	@Bugs(ids = "69132")
+	@Bugs (ids = "69132")
 	@Test(
 			description = "Modify all-day appointment with subject & body and verify it", 
 			groups = { "functional", "L2" })

@@ -39,7 +39,7 @@ public class MoveTask extends UniversalCommonTest {
 		}};
 	}
 	
-	@Test( description = "Verify Toaster message on moving Task", 
+	@Test (description = "Verify Toaster message on moving Task", 
 			groups = { "functional", "L3"})
 	public void MoveTask_01() throws HarnessException {
 

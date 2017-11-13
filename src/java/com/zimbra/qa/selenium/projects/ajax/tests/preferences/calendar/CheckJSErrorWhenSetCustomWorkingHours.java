@@ -34,7 +34,7 @@ public class CheckJSErrorWhenSetCustomWorkingHours extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "102406,50479")
+	@Bugs (ids = "102406,50479")
 	@Test (description = "When setting custom working hours, JS error",
 			groups = { "functional", "L2" })
 

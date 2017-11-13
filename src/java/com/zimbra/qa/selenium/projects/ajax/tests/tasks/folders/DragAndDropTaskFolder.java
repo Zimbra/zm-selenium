@@ -41,7 +41,7 @@ public class DragAndDropTaskFolder extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids="69661")
+	@Bugs (ids = "69661")
 	@Test (description = "Drag one Task folder and Drop into other",
 			groups = { "smoke", "L1" })
 

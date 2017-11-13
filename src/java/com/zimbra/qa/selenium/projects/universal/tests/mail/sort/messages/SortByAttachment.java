@@ -36,7 +36,7 @@ public class SortByAttachment extends PrefGroupMailByMessageTest {
 		super.startingAccountPreferences.put("zimbraPrefReadingPaneLocation", "bottom");
 	}
 	
-	@Test( description = "Sort a list of messages by attachment",
+	@Test (description = "Sort a list of messages by attachment",
 			groups = { "functional", "L2" })
 	public void SortByAttachment_01() throws HarnessException {
 		
@@ -133,7 +133,7 @@ public class SortByAttachment extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Sort a list of messages by attachment",
+	@Test (description = "Sort a list of messages by attachment",
 			groups = { "functional", "L2" })
 	public void SortByAttachment_02() throws HarnessException {
 		

@@ -34,7 +34,7 @@ public class Move extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "102771")
+	@Bugs (ids = "102771")
 	@Test (description = "Move meeting invite using context menu",
 			groups = { "functional", "L2" })
 

@@ -39,8 +39,8 @@ public class CreateAppointment extends CalendarWorkWeekTest {
 		};
 	}
 	
-	@Bugs(ids = "107050")
-	@Test( description = "Create basic appointment using quick add dialog",
+	@Bugs (ids = "107050")
+	@Test (description = "Create basic appointment using quick add dialog",
 			groups = { "smoke", "L0" } )
 	
 	public void CreateAppointment_01() throws HarnessException {
@@ -64,7 +64,7 @@ public class CreateAppointment extends CalendarWorkWeekTest {
 		ZAssert.assertEquals(actual.getSubject(), appt.getSubject(), "Subject: Verify the appointment data");
 	}
 
-	@Test( description = "Create basic appointment using quick add dialog in the past and verify the warning message",
+	@Test (description = "Create basic appointment using quick add dialog in the past and verify the warning message",
 			groups = { "smoke", "L1" } )
 	
 	public void CreateAppointment_02() throws HarnessException {
@@ -89,7 +89,7 @@ public class CreateAppointment extends CalendarWorkWeekTest {
 		ZAssert.assertEquals(actual.getSubject(), appt.getSubject(), "Subject: Verify the appointment data");
 	}
 
-	@Test( description = "Create appointment using quick add dialog and add date from date picker",
+	@Test (description = "Create appointment using quick add dialog and add date from date picker",
 			groups = { "sanity", "L0" } )
 	
 	public void CreateAppointment_03() throws HarnessException {

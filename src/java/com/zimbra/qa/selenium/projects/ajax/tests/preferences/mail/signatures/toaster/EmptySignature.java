@@ -36,7 +36,7 @@ public class EmptySignature extends AjaxCommonTest {
 	}
 
 
-	@Test (description = "Verify Toast Msg for Empty Signature Name",
+	@Test (description = "Verify toast message for Empty Signature Name",
 			groups = { "functional", "L2"  })
 
 	public void EmptySignature_01() throws HarnessException {
@@ -57,12 +57,12 @@ public class EmptySignature extends AjaxCommonTest {
 
 		// Verifying the toaster message
 		Toaster toast = app.zPageMain.zGetToaster();
-		String toastMsg = toast.zGetToastMessage();
-		ZAssert.assertStringContains(toastMsg, "Signature name is empty. It's required","Verify toast message:Signature name is empty. It's required");
+		String toastMessage = toast.zGetToastMessage();
+		ZAssert.assertStringContains(toastMessage, "Signature name is empty. It's required","Verify toast message:Signature name is empty. It's required");
 	}
 
 
-	@Test (description = "Verify Toast Msg for Empty Signature body (asp per bug comment#10)",
+	@Test (description = "Verify toast message for Empty Signature body (asp per bug comment#10)",
 			groups = { "deprecated" })
 
 	public void EmptySignature_02() throws HarnessException {
@@ -84,8 +84,8 @@ public class EmptySignature extends AjaxCommonTest {
 
 		// Verifying the toaster message
 		Toaster toast = app.zPageMain.zGetToaster();
-		String toastMsg = toast.zGetToastMessage();
-		ZAssert.assertStringContains(toastMsg, "Signature value is empty. It's required","Verify toast message:Signature value is empty. It's required");
+		String toastMessage = toast.zGetToastMessage();
+		ZAssert.assertStringContains(toastMessage, "Signature value is empty. It's required","Verify toast message:Signature value is empty. It's required");
 
 		// Select signature which is to be Delete
 		signew.sClick(Locators.zSignatureListView);

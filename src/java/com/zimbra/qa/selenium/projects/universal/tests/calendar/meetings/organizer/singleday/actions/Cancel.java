@@ -34,8 +34,8 @@ public class Cancel extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 	
-	@Bugs(ids = "69132")
-	@Test( description = "Cancel meeting using context menu",
+	@Bugs (ids = "69132")
+	@Test (description = "Cancel meeting using context menu",
 			groups = { "functional", "L2" })
 	public void CancelMeeting_01() throws HarnessException {
 		
@@ -102,8 +102,8 @@ public class Cancel extends CalendarWorkWeekTest {
 	}
 
 	
-	@Bugs(ids = "65749")
-	@Test( description = "Reply to Cancelled Appointments not using zimbraPrefFromAddress",
+	@Bugs (ids = "65749")
+	@Test (description = "Reply to Cancelled Appointments not using zimbraPrefFromAddress",
 			groups = { "functional", "L2" })
 	public void CancelMeeting_02() throws HarnessException {
 		

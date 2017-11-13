@@ -32,7 +32,7 @@ public class EditContact extends UniversalCommonTest  {
 		super.startingPage =  app.zPageContacts;
 	}	
 	
-	@Test( description = "Edit a contact item, click Edit on toolbar",
+	@Test (description = "Edit a contact item, click Edit on toolbar",
 			groups = { "smoke", "L0"})
 	
 	public void ClickToolbarEdit_01() throws HarnessException {
@@ -66,7 +66,7 @@ public class EditContact extends UniversalCommonTest  {
         ZAssert.assertEquals(actual.firstName, firstname, "Verify the new first name is saved");
 	}
 	
-	@Test( description = "Edit a contact item, Right click then click Edit",
+	@Test (description = "Edit a contact item, Right click then click Edit",
 			groups = { "smoke", "L1"})
 	
 	public void ClickContextMenuEdit_02() throws HarnessException {
@@ -99,7 +99,7 @@ public class EditContact extends UniversalCommonTest  {
         ZAssert.assertEquals(actual.firstName, firstname, "Verify the new first name is saved");
 	}
 	
-	@Test( description = "Edit a contact item, double click the contact",
+	@Test (description = "Edit a contact item, double click the contact",
 			groups = { "smoke", "L1" })
 	
 	public void DoubleClickContact_03() throws HarnessException {
@@ -130,7 +130,7 @@ public class EditContact extends UniversalCommonTest  {
         ZAssert.assertEquals(actual.firstName, firstname, "Verify the new first name is saved");
 	}
 	
-	@Test( description = "Cancel Editing a contact by click Close",
+	@Test (description = "Cancel Editing a contact by click Close",
 			groups = { "functional", "L2"})
 	
 	public void NoEditClickToolbarClose_04() throws HarnessException {
@@ -159,7 +159,7 @@ public class EditContact extends UniversalCommonTest  {
         ZAssert.assertNotNull(actual, "Verify the contact is found");
 	}
 		
-	@Test( description = "Cancel an edited contact by click Close, then click No",
+	@Test (description = "Cancel an edited contact by click Close, then click No",
 			groups = { "functional", "L2"})
 	
 	public void ClickToolbarCloseThenClickNo_05() throws HarnessException {
@@ -200,7 +200,7 @@ public class EditContact extends UniversalCommonTest  {
         ZAssert.assertNotNull(actual, "Verify the contact is found");
 	}
 	
-	@Test( description = "Cancel an edited contact by click Close, then click Cancel",
+	@Test (description = "Cancel an edited contact by click Close, then click Cancel",
 			groups = { "functional", "L2"})
 	
 	public void ClickToolbarCloseThenClickCancel_06() throws HarnessException {
@@ -244,7 +244,7 @@ public class EditContact extends UniversalCommonTest  {
         ZAssert.assertNotNull(actual, "Verify the contact is found");
     }
 	
-	@Test( description = "Cancel an edited contact by click Close, then click Yes",
+	@Test (description = "Cancel an edited contact by click Close, then click Yes",
 			groups = { "functional", "L2"})
 	
 	public void ClickToolbarCloseThenClickYes_07() throws HarnessException {

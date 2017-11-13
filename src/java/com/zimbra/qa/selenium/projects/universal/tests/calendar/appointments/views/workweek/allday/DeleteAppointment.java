@@ -36,8 +36,8 @@ public class DeleteAppointment extends CalendarWorkWeekTest {
 
 	}
 	
-	@Bugs(ids = "69132")
-	@Test( description = "Delete all-day appointment using Delete toolbar button",
+	@Bugs (ids = "69132")
+	@Test (description = "Delete all-day appointment using Delete toolbar button",
 			groups = { "smoke", "L1" })
 	public void DeleteAllDayAppointment_01() throws HarnessException {
 		
@@ -85,8 +85,8 @@ public class DeleteAppointment extends CalendarWorkWeekTest {
 			
 	}
 	
-	@Bugs(ids = "69132")
-	@Test( description = "Delete all-day appointment using context menu",
+	@Bugs (ids = "69132")
+	@Test (description = "Delete all-day appointment using context menu",
 			groups = { "smoke", "L1" })
 	public void DeleteAllDayAppointment_02() throws HarnessException {
 		
@@ -141,8 +141,8 @@ public class DeleteAppointment extends CalendarWorkWeekTest {
 		};
 	}
 
-	@Bugs(ids = "69132")
-	@Test( description = "Delete all-day appointment using keyboard shortcuts (Del & Backspace)",
+	@Bugs (ids = "69132")
+	@Test (description = "Delete all-day appointment using keyboard shortcuts (Del & Backspace)",
 			groups = { "functional", "L2" },
 			dataProvider = "DataProviderShortcutKeys")
 	public void DeleteAllDayAppointment_03(String name, int keyEvent) throws HarnessException {

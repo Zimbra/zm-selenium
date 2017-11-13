@@ -30,7 +30,7 @@ public class LoadSocialTab extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "50123")
+	@Bugs (ids = "50123")
 	@Test (description = "Basic test case: Load the Social tab",
 			groups = { "deprecated" })
 

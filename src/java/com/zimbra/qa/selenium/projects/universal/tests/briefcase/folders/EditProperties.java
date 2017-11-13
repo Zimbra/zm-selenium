@@ -35,7 +35,7 @@ public class EditProperties extends FeatureBriefcaseTest {
 		super.startingPage = app.zPageBriefcase;		
 	}
 
-	@Test( description = "Edit Properties - Rename folder using context menu", 
+	@Test (description = "Edit Properties - Rename folder using context menu", 
 			groups = { "functional", "L2" })
 	public void EditProperties_01() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();

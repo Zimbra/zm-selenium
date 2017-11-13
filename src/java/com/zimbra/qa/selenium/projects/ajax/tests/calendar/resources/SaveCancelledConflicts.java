@@ -44,7 +44,7 @@ public class SaveCancelledConflicts extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "77991,75434")
+	@Bugs (ids = "77991,75434")
 	@Test (description = "Unable to save when cancelling conflicts", 
 			groups = { "functional", "L2"} )
 

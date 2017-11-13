@@ -35,7 +35,7 @@ public class ZimbraFeatureContactsDetailedSearchEnabled extends PrefGroupMailByM
 	}
 
 
-	@Bugs(ids = "70708")
+	@Bugs (ids = "70708")
 	@Test (description = "Filter addresses using department name after selecting To: while composing mail",
 			groups = { "functional", "L2" })
 
@@ -99,7 +99,7 @@ public class ZimbraFeatureContactsDetailedSearchEnabled extends PrefGroupMailByM
 	}
 
 
-	@Bugs(ids = "70708")
+	@Bugs (ids = "70708")
 	@Test (description = "Filter addresses using department name after selecting To: while composing appointments",
 			groups = { "functional", "L2" })
 

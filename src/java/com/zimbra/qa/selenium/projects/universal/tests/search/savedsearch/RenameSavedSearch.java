@@ -40,7 +40,7 @@ public class RenameSavedSearch extends UniversalCommonTest  {
 		
 	}
 	
-	@Test( description = "Rename a saved search",
+	@Test (description = "Rename a saved search",
 			groups = { "smoke","L1" })
 	public void RenameSavedSearch_01() throws HarnessException {				
 				

@@ -53,8 +53,8 @@ public class AutoCompleteForget extends PrefGroupMailByMessageTest {
 	 * @throws HarnessException
 	 */
 	
-	@Bugs(ids = "102053")
-	@Test( description = "Forget an autocomplete address - invalid email",
+	@Bugs (ids = "102053")
+	@Test (description = "Forget an autocomplete address - invalid email",
 			groups = { "functional", "L5" })
 	
 	public void AutoCompleteForget_01() throws HarnessException {
@@ -136,7 +136,7 @@ public class AutoCompleteForget extends PrefGroupMailByMessageTest {
 		
 	}
 
-	@Test( description = "Verify the 'forget' link for Contacts",
+	@Test (description = "Verify the 'forget' link for Contacts",
 			groups = { "functional", "L2" })
 	public void AutoCompleteForget_02() throws HarnessException {
 		
@@ -204,8 +204,8 @@ public class AutoCompleteForget extends PrefGroupMailByMessageTest {
 		
 	}
 
-	@Bugs(ids = "97118")
-	@Test( description = "Verify the 'forget' link for GAL",
+	@Bugs (ids = "97118")
+	@Test (description = "Verify the 'forget' link for GAL",
 			groups = { "functional", "L3" })
 	
 	public void AutoCompleteForget_03() throws HarnessException {
@@ -287,8 +287,8 @@ public class AutoCompleteForget extends PrefGroupMailByMessageTest {
 	 * @throws HarnessException
 	 */
 	
-	@Bugs(ids = "97123")
-	@Test( description = "Verify 'forget' functionality resets the ranking order - Contacts",
+	@Bugs (ids = "97123")
+	@Test (description = "Verify 'forget' functionality resets the ranking order - Contacts",
 			groups = { "functional", "L2" })
 	
 	public void AutoCompleteForget_04() throws HarnessException {
@@ -461,8 +461,8 @@ public class AutoCompleteForget extends PrefGroupMailByMessageTest {
 	 * 6. Compose new message, verify Acontact comes before Bcontact
 	 * @throws HarnessException
 	 */
-	@Bugs(ids = "97118")
-	@Test( description = "Verify 'forget' functionality resets the ranking order - GAL",
+	@Bugs (ids = "97118")
+	@Test (description = "Verify 'forget' functionality resets the ranking order - GAL",
 			groups = { "functional", "L3" })
 	
 	public void AutoCompleteForget_05() throws HarnessException {

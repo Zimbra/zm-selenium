@@ -50,8 +50,8 @@ public class CheckCloseButtonInSharedFolder extends UniversalCommonTest {
 
 	}
 
-	@Bugs( ids = "73226")
-	@Test( description = "Verify Close button on Share Task Window and its functionality",	
+	@Bugs (ids = "73226")
+	@Test (description = "Verify Close button on Share Task Window and its functionality",	
 			groups = { "functional", "L2" })
 
 	public void CheckCloseButtonInSharedFolder_01() throws HarnessException {
@@ -128,8 +128,8 @@ public class CheckCloseButtonInSharedFolder extends UniversalCommonTest {
 
 	}
 
-	@Bugs( ids = "75277")
-	@Test( description = "Verify Close button on Share Task Window and its functionality",	
+	@Bugs (ids = "75277")
+	@Test (description = "Verify Close button on Share Task Window and its functionality",	
 	groups = { "smoke", "L1"})
 
 	public void CheckCloseButtonInSharedFolder_02() throws HarnessException {

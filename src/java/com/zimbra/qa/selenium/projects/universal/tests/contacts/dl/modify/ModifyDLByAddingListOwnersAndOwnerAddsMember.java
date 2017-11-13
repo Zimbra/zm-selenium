@@ -33,7 +33,7 @@ public class ModifyDLByAddingListOwnersAndOwnerAddsMember extends UniversalCommo
 		super.startingPage = app.zPageContacts;
 	}
 	
-	@Test( description = "Modify DL by adding list owners and owner adds one more member", 
+	@Test (description = "Modify DL by adding list owners and owner adds one more member", 
 			groups = { "functional", "L2"})
 
 	public void ModifyDLByAddingListOwnersAndOwnerAddsMember_01() throws HarnessException {

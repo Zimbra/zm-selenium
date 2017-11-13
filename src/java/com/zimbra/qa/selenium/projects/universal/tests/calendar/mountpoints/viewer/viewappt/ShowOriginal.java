@@ -31,7 +31,7 @@ public class ShowOriginal extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 	
-	@Test( description = "Grantee views show original of the appointment from grantor's calendar (Actions -> Show Original)",
+	@Test (description = "Grantee views show original of the appointment from grantor's calendar (Actions -> Show Original)",
 			groups = { "functional", "L2" })
 			
 	public void ShowOriginal_01() throws HarnessException {

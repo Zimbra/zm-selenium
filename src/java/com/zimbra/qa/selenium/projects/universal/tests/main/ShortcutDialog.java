@@ -30,7 +30,7 @@ public class ShortcutDialog extends UniversalCommonTest {
 	}
 
 
-	@Test( description = "Open the 'Shortcut' dialog >> Verify contents and Close Link", 
+	@Test (description = "Open the 'Shortcut' dialog >> Verify contents and Close Link", 
 		groups = { "functional", "L3"})
 	
 	public void Shortcutdialog_Close_01() throws HarnessException {
@@ -48,7 +48,7 @@ public class ShortcutDialog extends UniversalCommonTest {
 	}
 	
 
-	@Test( description = "Open the 'Shortcut' dialog >> Verify in New Window link and contents", 
+	@Test (description = "Open the 'Shortcut' dialog >> Verify in New Window link and contents", 
 		groups = { "functional", "L3" })
 	
 	public void Shortcutdialog_NewWindow_02() throws HarnessException {

@@ -35,8 +35,8 @@ public class DailyRecurringNoEndDate extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 	
-	@Bugs(ids = "96566")
-	@Test( description = "Create daily recurring invite with attendee and location with no end date, effective from today",
+	@Bugs (ids = "96566")
+	@Test (description = "Create daily recurring invite with attendee and location with no end date, effective from today",
 			groups = { "smoke", "L1" })
 			
 	public void DailyRecurringNoEndDate_01() throws HarnessException {

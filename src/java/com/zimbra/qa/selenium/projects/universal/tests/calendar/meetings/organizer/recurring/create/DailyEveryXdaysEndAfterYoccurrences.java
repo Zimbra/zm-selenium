@@ -33,8 +33,8 @@ public class DailyEveryXdaysEndAfterYoccurrences extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 	
-	@Bugs(ids = "96566")
-	@Test( description = "Create daily recurring invite with attendee and location with particular week day & end after particular instances",
+	@Bugs (ids = "96566")
+	@Test (description = "Create daily recurring invite with attendee and location with particular week day & end after particular instances",
 			groups = { "smoke", "L1" })
 			
 	public void DailyEveryXdaysEndAfterYoccurrences_01() throws HarnessException {

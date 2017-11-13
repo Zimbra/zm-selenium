@@ -44,7 +44,7 @@ public class DeleteInstance extends CalendarWorkWeekTest {
 		
 	}
 	
-	@Bugs(ids = "69132")
+	@Bugs (ids = "69132")
 	@Test(
 			description = "Delete instance of recurring appointment (every month) using toolbar button in week view", 
 			groups = { "functional", "L3" } )
@@ -128,7 +128,7 @@ public class DeleteInstance extends CalendarWorkWeekTest {
         
 	}
 	
-	@Bugs(ids = "69132")
+	@Bugs (ids = "69132")
 	@Test(
 			description = "Delete instance of recurring appointment (every year) using context menu in week view", 
 			groups = { "functional", "L3" } )
@@ -218,7 +218,7 @@ public class DeleteInstance extends CalendarWorkWeekTest {
 		};
 	}
 
-	@Bugs(ids = "69132")
+	@Bugs (ids = "69132")
 	@Test(
 			description = "Delete instance of series appointment (every week) using keyboard shortcuts Del & Backspace in week view",
 			groups = { "functional", "L3" },

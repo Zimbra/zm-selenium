@@ -29,7 +29,7 @@ public class PermanentDeleteMail extends PrefGroupMailByConversationTest {
 		logger.info("New "+ DeleteMail.class.getCanonicalName());
 	}
 	
-	@Test( description = "Delete a mail from trash in conversation view.",
+	@Test (description = "Delete a mail from trash in conversation view.",
 			groups = { "functional" })
 			
 	public void PermanentDeleteMail_01() throws HarnessException {
@@ -90,7 +90,7 @@ public class PermanentDeleteMail extends PrefGroupMailByConversationTest {
         
 	}
 	
-	@Test( description = "Cancel delete mail operation",
+	@Test (description = "Cancel delete mail operation",
 			groups = { "functional" })
 			
 	public void PermanentDeleteMail_02() throws HarnessException {

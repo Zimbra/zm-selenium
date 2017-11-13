@@ -39,7 +39,7 @@ public class VerifyMaximumSizeOfaFileUpload extends AdminCommonTest {
 	 * 2. Verify navigation path -- "Home --> Configure --> Global Settings" --> Verify fileUploadMaxSize field
 	 * @throws HarnessException
 	 */
-	@Bugs( ids = "81323")
+	@Bugs (ids = "81323")
 	@Test (description = "Verify field text in Global Settings > General Information = Maximum size of a file uploaded from the desktop (KB):",
 			groups = { "functional", "L2" })
 			public void VerifyMaximumSizeOfaFileUpload_01() throws HarnessException {

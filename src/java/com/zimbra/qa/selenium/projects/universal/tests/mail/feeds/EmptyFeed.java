@@ -32,7 +32,7 @@ public class EmptyFeed extends PrefGroupMailByMessageTest {
 		logger.info("New "+ EmptyFeed.class.getCanonicalName());
 	}
 
-	@Test( description = "Empty a feed folder (context menu)", groups = { "smoke", "L1" })
+	@Test (description = "Empty a feed folder (context menu)", groups = { "smoke", "L1" })
 
 	public void EmptyFeed_01() throws HarnessException, MalformedURLException {
 

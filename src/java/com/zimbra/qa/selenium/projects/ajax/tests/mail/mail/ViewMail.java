@@ -39,7 +39,7 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Bugs( ids = "57047" )
+	@Bugs (ids = "57047" )
 	@Test (description = "Receive a mail with Sender: specified",
 			groups = { "functional", "L2" })
 
@@ -108,7 +108,7 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Bugs( ids = "61575")
+	@Bugs (ids = "61575")
 	@Test (description = "Receive a mail with Resent-From: specified",
 			groups = { "functional", "L3" })
 
@@ -142,7 +142,7 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Bugs( ids = "102049")
+	@Bugs (ids = "102049")
 	@Test (description = "Receive a mail with only audio/wav content",
 			groups = { "functional", "L2" })
 
@@ -170,7 +170,7 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Bugs( ids = "66565")
+	@Bugs (ids = "66565")
 	@Test (description = "Receive a mail formatting in the subject",
 			groups = { "functional", "L2" })
 
@@ -200,7 +200,7 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Bugs( ids = "65933,65623")
+	@Bugs (ids = "65933,65623")
 	@Test (description = "Verify message with only HTML part",
 			groups = { "functional", "L2" })
 
@@ -223,7 +223,7 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Bugs( ids = "65933,65623")
+	@Bugs (ids = "65933,65623")
 	@Test (description = "Verify message with only HTML part and charset",
 			groups = { "functional", "L2" })
 
@@ -246,7 +246,7 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Bugs( ids = "65079")
+	@Bugs (ids = "65079")
 	@Test (description = "Verify message with only HTML part and charset",
 			groups = { "functional", "L2" })
 
@@ -335,7 +335,7 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Bugs(ids = "67854")
+	@Bugs (ids = "67854")
 	@Test (description = "Verify empty message shows 'no content'",
 			groups = { "functional", "L2" })
 
@@ -364,7 +364,7 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Bugs(ids = "72248")
+	@Bugs (ids = "72248")
 	@Test (description = "Verify multipart/alternative with only 1 part",
 			groups = { "functional", "L2" })
 
@@ -436,7 +436,7 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Bugs(ids = "96820")
+	@Bugs (ids = "96820")
 	@Test (description = "View very large message using 'View entire message' link",
 			groups = { "functional", "L3" } )
 

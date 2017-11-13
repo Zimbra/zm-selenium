@@ -33,8 +33,8 @@ public class ModifyFolderRetentionWhenSharingDisabled extends PrefGroupMailByMes
 	}
 
 	//Same test as in 'ModifyFolderRetension.java'
-	@Bugs( ids = "97126")
-	@Test( description = "Modify a basic retention (Context menu -> Edit -> Retention) (zimbraFeatureSharingEnabled=FALSE)", 
+	@Bugs (ids = "97126")
+	@Test (description = "Modify a basic retention (Context menu -> Edit -> Retention) (zimbraFeatureSharingEnabled=FALSE)", 
 			groups = { "functional", "L4" } )
 	
 	public void ModifyFolderRetentionWhenSharingDisabled_01() throws HarnessException {

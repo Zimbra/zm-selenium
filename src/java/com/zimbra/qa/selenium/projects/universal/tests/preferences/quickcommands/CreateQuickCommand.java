@@ -39,7 +39,7 @@ public class CreateQuickCommand extends UniversalCommonTest {
 	
 
 
-	@Bugs(ids = "71389")	// Hold off on GUI implementation of Quick Commands in 8.X
+	@Bugs (ids = "71389")	// Hold off on GUI implementation of Quick Commands in 8.X
 	@Test(
 			description = "Create a basic Quick Command",
 			groups = { "deprecated", "L4" }

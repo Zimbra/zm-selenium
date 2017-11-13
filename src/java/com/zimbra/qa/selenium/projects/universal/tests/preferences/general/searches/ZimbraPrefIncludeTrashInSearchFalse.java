@@ -46,7 +46,7 @@ public class ZimbraPrefIncludeTrashInSearchFalse extends UniversalCommonTest {
 	}
 	
 
-	@Test( description = "Verify zimbraPrefIncludeTrashInSearch setting when set to FALSE",
+	@Test (description = "Verify zimbraPrefIncludeTrashInSearch setting when set to FALSE",
 			groups = { "functional", "L2" })
 	public void ZimbraPrefIncludeTrashInSearchFalse_01() throws HarnessException {
 

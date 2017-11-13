@@ -40,7 +40,7 @@ public class PermanentDeleteInstance extends CalendarWorkWeekTest {
 		}};
 	}
 	
-	@Bugs(ids = "95735")
+	@Bugs (ids = "95735")
 	@Test (description = "Delete an instance of recurring invite", 
 			groups = { "functional" } )
 	

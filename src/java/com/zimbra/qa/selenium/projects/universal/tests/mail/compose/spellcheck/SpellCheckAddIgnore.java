@@ -37,8 +37,8 @@ public class SpellCheckAddIgnore extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Bugs(ids = "47151")
-	@Test( description = "Spell check a misspelled word and add it to spell-check dictionary",
+	@Bugs (ids = "47151")
+	@Test (description = "Spell check a misspelled word and add it to spell-check dictionary",
 			groups = { "functional", "L3" })
 
 	public void SpellCheckAddIgnore_01() throws HarnessException {
@@ -95,8 +95,8 @@ public class SpellCheckAddIgnore extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Bugs(ids = "47151")
-	@Test( description = "Spell check a misspelled word and ignore it",
+	@Bugs (ids = "47151")
+	@Test (description = "Spell check a misspelled word and ignore it",
 			groups = { "functional", "L3" })
 
 	public void SpellCheckAddIgnore_02() throws HarnessException {

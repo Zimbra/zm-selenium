@@ -40,7 +40,7 @@ public class RemoveTrustedDomain extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "101356")
+	@Bugs (ids = "101356")
 	@Test(	description = "Remove a trusted domain",
 			groups = { "smoke", "L1" })
 

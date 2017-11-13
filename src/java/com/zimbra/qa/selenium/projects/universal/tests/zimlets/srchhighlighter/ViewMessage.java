@@ -41,7 +41,7 @@ import com.zimbra.qa.selenium.projects.universal.ui.search.*;
 
 	}
 	
-	@Test( description = "Search for mail content.  Verify search terms are highlighted.",
+	@Test (description = "Search for mail content.  Verify search terms are highlighted.",
 			groups = { "functional", "L2" })
 	
 	public void ViewMessage_01() throws HarnessException {

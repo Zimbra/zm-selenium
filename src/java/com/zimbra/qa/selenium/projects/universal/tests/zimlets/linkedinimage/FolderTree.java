@@ -38,8 +38,8 @@ public class FolderTree extends UniversalCommonTest {
 		
 	}
 	
-	@Bugs( ids = "81078")
-	@Test( description = "Verify the LinkedIn zimlet appears in the folder tree",
+	@Bugs (ids = "81078")
+	@Test (description = "Verify the LinkedIn zimlet appears in the folder tree",
 			groups = { "deprecated", "L4" })
 	public void FolderTree_01() throws HarnessException {
 		

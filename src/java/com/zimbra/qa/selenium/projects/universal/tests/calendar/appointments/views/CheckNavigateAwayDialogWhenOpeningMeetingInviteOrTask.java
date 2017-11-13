@@ -45,8 +45,8 @@ public class CheckNavigateAwayDialogWhenOpeningMeetingInviteOrTask extends Calen
 		}};
 	}
 	
-	@Bugs(ids="50432")
-	@Test( description = "Bug 50432 - Unwanted navigate away dialog after opening appointment/task", 
+	@Bugs (ids = "50432")
+	@Test (description = "Bug 50432 - Unwanted navigate away dialog after opening appointment/task", 
 			groups = { "functional", "L2" })
 	
 	public void CheckNavigateAwayDialogWhenOpeningMeetingInviteOrTask_01() throws HarnessException {

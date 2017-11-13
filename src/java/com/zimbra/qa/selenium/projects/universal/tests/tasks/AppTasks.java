@@ -47,7 +47,7 @@ public class AppTasks extends PrefGroupMailByMessageTest {
 
 	}
 
-	@Test( description = "?app=tasks in url",
+	@Test (description = "?app=tasks in url",
 			groups = { "smoke", "L0"})
 	public void AppTasks_01() throws HarnessException {
 

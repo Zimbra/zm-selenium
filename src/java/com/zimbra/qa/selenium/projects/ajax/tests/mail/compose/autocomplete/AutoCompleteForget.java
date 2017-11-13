@@ -46,7 +46,7 @@ public class AutoCompleteForget extends PrefGroupMailByMessageTest {
 	 * 6. Verify the auto-complete does not suggest the address
 	 */
 
-	@Bugs(ids = "102053")
+	@Bugs (ids = "102053")
 	@Test (description = "Forget an autocomplete address - invalid email",
 			groups = { "functional-skip", "application-bug" })
 
@@ -194,7 +194,7 @@ public class AutoCompleteForget extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Bugs(ids = "97118")
+	@Bugs (ids = "97118")
 	@Test (description = "Verify the 'forget' link for GAL",
 			groups = { "functional", "L3" })
 
@@ -275,7 +275,7 @@ public class AutoCompleteForget extends PrefGroupMailByMessageTest {
 	 * 6. Compose new message, verify Acontact comes before Bcontact
 	 */
 
-	@Bugs(ids = "97123")
+	@Bugs (ids = "97123")
 	@Test (description = "Verify 'forget' functionality resets the ranking order - Contacts",
 			groups = { "functional", "L2" })
 
@@ -444,7 +444,7 @@ public class AutoCompleteForget extends PrefGroupMailByMessageTest {
 	 * 6. Compose new message, verify Acontact comes before Bcontact
 	 */
 
-	@Bugs(ids = "97118")
+	@Bugs (ids = "97118")
 	@Test (description = "Verify 'forget' functionality resets the ranking order - GAL",
 			groups = { "functional", "L3" })
 

@@ -62,7 +62,7 @@ public class SearchContactGroup extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "77950")
+	@Bugs (ids = "77950")
 	@Test (description = "Search for an existing contact group, by member",
 			groups = { "functional-skip","L3-skip" })
 

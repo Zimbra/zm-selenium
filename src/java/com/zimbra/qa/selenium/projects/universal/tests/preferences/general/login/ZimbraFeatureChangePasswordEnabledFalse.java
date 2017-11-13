@@ -50,7 +50,7 @@ public class ZimbraFeatureChangePasswordEnabledFalse extends UniversalCommonTest
 	/**
 	 * @throws HarnessException
 	 */
-	@Bugs(ids="63439")	
+	@Bugs (ids = "63439")	
 	@Test(
 			description = "Verify the 'Change Password' option is not present in preferences", 
 			groups = { "functional", "L2" }

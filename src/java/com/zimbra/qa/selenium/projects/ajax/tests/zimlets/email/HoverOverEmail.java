@@ -275,7 +275,7 @@ public class HoverOverEmail extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Bugs( ids = "80286" )
+	@Bugs (ids = "80286" )
 	@Test (description = "Hover over a GAL contact in a message body (zimbraFeatureGalEnabled=FALSE)",
 			groups = { "functional", "L2" })
 
@@ -372,7 +372,7 @@ public class HoverOverEmail extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Bugs( ids = "80286" )
+	@Bugs (ids = "80286" )
 	@Test (description = "Hover over an unknown email address (zimbraFeatureGalEnabled=FALSE)",
 			groups = { "functional", "L2" })
 

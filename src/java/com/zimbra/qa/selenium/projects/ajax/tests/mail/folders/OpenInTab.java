@@ -36,7 +36,7 @@ public class OpenInTab extends PrefGroupMailByMessageTest {
 	@Test (description = "Folder Context menu -> Open In Tab",
 			groups = { "smoke", "L1" })
 
-	public void OpenInTabFolder() throws HarnessException {
+	public void OpenInTab_01() throws HarnessException {
 
 		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
 		ZAssert.assertNotNull(inbox, "Verify the inbox is available");

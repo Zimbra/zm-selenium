@@ -33,7 +33,7 @@ public class FwdMailWithAnAttachment extends PrefGroupMailByMessageTest {
 		logger.info("New "+ FwdMailWithAnAttachment.class.getCanonicalName());
 	}
 
-	@Test( description = "Forward a mail  with an attachment by pressing Forward button>>attach - in separate window",
+	@Test (description = "Forward a mail  with an attachment by pressing Forward button>>attach - in separate window",
 			groups = { "smoke", "L1" })
 	
 	public void FwdMailWithAnAttachment_01() throws HarnessException {

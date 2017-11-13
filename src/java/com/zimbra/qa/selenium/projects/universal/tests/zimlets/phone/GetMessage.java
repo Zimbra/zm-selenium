@@ -44,7 +44,7 @@ public class GetMessage extends UniversalCommonTest {
 
 	}
 	
-	@Test( description = "Receive a mail with a basic US Phone number",
+	@Test (description = "Receive a mail with a basic US Phone number",
 			groups = { "smoke", "L0" })
 	public void GetMessage_01() throws HarnessException {
 		
@@ -85,7 +85,7 @@ public class GetMessage extends UniversalCommonTest {
 
 	}
 
-	@Test( description = "Receive a mail with two phone numbers in body",
+	@Test (description = "Receive a mail with two phone numbers in body",
 			groups = { "functional", "L2" })
 	public void GetMessage_02() throws HarnessException {
 		
@@ -130,7 +130,7 @@ public class GetMessage extends UniversalCommonTest {
 
 	}
 
-	@Test( description = "Validate the phone zimlet matches NANP phone numbers",
+	@Test (description = "Validate the phone zimlet matches NANP phone numbers",
 			groups = { "functional", "L3" })
 	public void GetMessage_03() throws HarnessException {
 
@@ -183,7 +183,7 @@ public class GetMessage extends UniversalCommonTest {
 
 	}
 
-	@Test( description = "Validate the phone zimlet matches NANP phone numbers",
+	@Test (description = "Validate the phone zimlet matches NANP phone numbers",
 			groups = { "functional", "L2" })
 	public void GetMessage_04() throws HarnessException {
 
@@ -232,7 +232,7 @@ public class GetMessage extends UniversalCommonTest {
 
 	}
 
-	@Test( description = "Receive a mail with a phone numbers in subject( reference bug 86667)",
+	@Test (description = "Receive a mail with a phone numbers in subject( reference bug 86667)",
 			groups = { "deprecated", "L4" })
 	public void GetMessage_05() throws HarnessException {
 		
@@ -270,8 +270,8 @@ public class GetMessage extends UniversalCommonTest {
 
 	}
 
-	@Bugs(ids = "73264")
-	@Test( description = "Receive a mail with an unformated number string - should not match",
+	@Bugs (ids = "73264")
+	@Test (description = "Receive a mail with an unformated number string - should not match",
 			groups = { "functional", "L3" })
 	public void GetMessage_06() throws HarnessException {
 		

@@ -33,8 +33,8 @@ public class DeleteAppointment extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 	
-	@Bugs(ids = "69132")
-	@Test( description = "Delete an appointment using Delete toolbar button",
+	@Bugs (ids = "69132")
+	@Test (description = "Delete an appointment using Delete toolbar button",
 			groups = { "smoke", "L1" })
 	public void DeleteAppointment_01() throws HarnessException {
 		
@@ -77,8 +77,8 @@ public class DeleteAppointment extends CalendarWorkWeekTest {
 
 	}
 	
-	@Bugs(ids = "69132")
-	@Test( description = "Delete an appointment using context menu",
+	@Bugs (ids = "69132")
+	@Test (description = "Delete an appointment using context menu",
 			groups = { "functional", "L2" })
 	public void DeleteAppointment_02() throws HarnessException {
 		
@@ -128,8 +128,8 @@ public class DeleteAppointment extends CalendarWorkWeekTest {
 		};
 	}
 
-	@Bugs(ids = "69132")
-	@Test( description = "Delete an appointment using keyboard shortcuts (Del & Backspace)",
+	@Bugs (ids = "69132")
+	@Test (description = "Delete an appointment using keyboard shortcuts (Del & Backspace)",
 			groups = { "functional", "L2" },
 			dataProvider = "DataProviderShortcutKeys")
 	public void DeleteAppointment_03(String name, int keyEvent) throws HarnessException {

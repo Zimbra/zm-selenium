@@ -32,8 +32,8 @@ public class ModifyMeetingByModifyingAttendees extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 	
-	@Bugs(ids = "58104, 100809")
-	@Test( description = "Blank row added in f/b scheduler after removing and adding attendee back from attendees field",
+	@Bugs (ids = "58104, 100809")
+	@Test (description = "Blank row added in f/b scheduler after removing and adding attendee back from attendees field",
 			groups = { "functional", "L2"})
 			
 	public void ModifyMeetingByModifyingAttendees_01() throws HarnessException {

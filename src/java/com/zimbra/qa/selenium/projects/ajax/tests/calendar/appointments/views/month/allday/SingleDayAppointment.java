@@ -41,7 +41,7 @@ public class SingleDayAppointment extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "69132")
+	@Bugs (ids = "69132")
 	@Test (description = "View a basic all-day appointment in the month view",
 			groups = { "smoke", "L1" })
 

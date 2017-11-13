@@ -38,7 +38,7 @@ public class BasicLogin extends AdminCommonTest {
 	
 	@Test (description = "Login to the Admin Console",
 			groups = { "sanity", "L0" })
-	public void BasicLogin01() throws HarnessException {
+	public void BasicLogin_01() throws HarnessException {
 		
 		// Login
 		app.zPageLogin.login(gAdmin);
@@ -50,7 +50,7 @@ public class BasicLogin extends AdminCommonTest {
 
 	@Test (description = "Login to the Admin Console as a different Admin Account",
 			groups = { "smoke", "L1" })
-	public void BasicLogin02() throws HarnessException {
+	public void BasicLogin_02() throws HarnessException {
 		
 		// Create a new AdminAccount
 		ZimbraAdminAccount account = new ZimbraAdminAccount("admin"+ ConfigProperties.getUniqueString() + "@" + ConfigProperties.getStringProperty("testdomain"));

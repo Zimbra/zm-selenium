@@ -36,7 +36,7 @@ public class RenameTag extends FeatureBriefcaseTest {
 		super.startingPage = app.zPageBriefcase;	
 	}
 
-	@Test( description = "Rename a tag - Right click, Rename", 
+	@Test (description = "Rename a tag - Right click, Rename", 
 			groups = { "functional", "L3" })
 	public void RenameTag_01() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();

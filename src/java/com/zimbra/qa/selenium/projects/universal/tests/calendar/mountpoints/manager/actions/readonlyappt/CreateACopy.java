@@ -35,8 +35,8 @@ public class CreateACopy extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 	
-	@Bugs(ids = "80322")
-	@Test( description = "Assistant right clicks to calendar invite from shared calendar and creates a copy of it",
+	@Bugs (ids = "80322")
+	@Test (description = "Assistant right clicks to calendar invite from shared calendar and creates a copy of it",
 			groups = { "functional", "L5" })
 			
 	public void CreateACopy_01() throws HarnessException {

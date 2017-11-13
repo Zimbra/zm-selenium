@@ -38,7 +38,7 @@ public class FindSharesWithFeatureDisabled extends FeatureBriefcaseTest {
 	}
 
 
-	@Bugs(ids = "60854")
+	@Bugs (ids = "60854")
 	@Test (description = "Click on Find Shares link when some of the Features are disabled - Verify Find Shares dialog is displayed",
 			groups = { "functional", "L3" })
 

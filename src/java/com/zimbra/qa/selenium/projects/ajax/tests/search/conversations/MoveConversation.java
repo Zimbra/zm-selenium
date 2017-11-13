@@ -34,7 +34,7 @@ public class MoveConversation extends PrefGroupMailByConversationTest {
 	@Test (description = "From search: Move a conversation to a subfolder",
 			groups = { "functional","L2" })
 
-	public void MoveConversation01() throws HarnessException {
+	public void MoveConversation_01() throws HarnessException {
 
 		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
 
@@ -73,11 +73,11 @@ public class MoveConversation extends PrefGroupMailByConversationTest {
 	}
 
 
-	@Bugs(ids = "77217")
+	@Bugs (ids = "77217")
 	@Test (description = "From search: Move a conversation in Trash to a subfolder",
 			groups = { "functional","L2" })
 
-	public void MoveConversation02() throws HarnessException {
+	public void MoveConversation_02() throws HarnessException {
 
 		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
 		FolderItem trash = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Trash);
@@ -131,11 +131,11 @@ public class MoveConversation extends PrefGroupMailByConversationTest {
 	}
 
 
-	@Bugs(ids = "80611")
+	@Bugs (ids = "80611")
 	@Test (description = "From search: Move a conversation in Sent to a subfolder",
 			groups = { "functional","L2" })
 
-	public void MoveConversation03() throws HarnessException {
+	public void MoveConversation_03() throws HarnessException {
 
 		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
 

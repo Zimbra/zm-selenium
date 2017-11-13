@@ -32,7 +32,7 @@ public class CheckXSSAfterSelectingMail extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Bugs( ids = "102637" )
+	@Bugs (ids = "102637" )
 	@Test (description = "Persistent XSS: unsafe content not filtered by defange",
 			groups = { "functional", "L2" })
 

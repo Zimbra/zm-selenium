@@ -58,8 +58,8 @@ public class ZimbraFeatureCalendarEnabled extends CalendarWorkWeekTest {
 	/**
 	 * @throws HarnessException
 	 */
-	@Bugs( ids = "86552")
-	@Test( description = "Load the mail tab with just Calendar enabled",
+	@Bugs (ids = "86552")
+	@Test (description = "Load the mail tab with just Calendar enabled",
 			groups = { "functional-skip", "L4" })
 	public void ZimbraFeatureCalendarEnabled_01() throws HarnessException {
 		

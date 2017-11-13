@@ -244,7 +244,7 @@ public class DeleteFile extends FeatureBriefcaseTest {
 	}
 
 
-	@Bugs(ids = "46889")
+	@Bugs (ids = "46889")
 	@Test (description = "Cannot delete uploaded file if it was already deleted once before",
 			groups = { "functional", "L2" })
 

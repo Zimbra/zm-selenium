@@ -39,7 +39,7 @@ public class AddIndirectMemberOfDistributionList extends AdminCommonTest {
 		super.startingPage = app.zPageManageDistributionList;
 	}
 	
-	@Bugs(ids = "99081")
+	@Bugs (ids = "99081")
 	@Test (description = "Edit DL - Add 'Indirect Member of' to DL",
 			groups = { "smoke", "L1" })
 

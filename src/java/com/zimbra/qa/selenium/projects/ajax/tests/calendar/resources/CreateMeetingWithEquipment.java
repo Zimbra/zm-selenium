@@ -36,7 +36,7 @@ public class CreateMeetingWithEquipment extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "69132")
+	@Bugs (ids = "69132")
 	@Test (description = "Create simple meeting with equipment",
 			groups = { "smoke", "L1" })
 

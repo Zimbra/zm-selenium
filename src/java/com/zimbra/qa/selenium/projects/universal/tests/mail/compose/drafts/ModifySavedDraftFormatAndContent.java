@@ -40,8 +40,8 @@ public class ModifySavedDraftFormatAndContent extends PrefGroupMailByMessageTest
 		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "text");
 	}
 
-	@Bugs(ids = "53373")
-	@Test( description = "Modify compose html draft mail and verify its format", groups = { "functional", "L2" })
+	@Bugs (ids = "53373")
+	@Test (description = "Modify compose html draft mail and verify its format", groups = { "functional", "L2" })
 	public void ReopenAndCheckFormat_01() throws HarnessException {
 
 		// Create the message data to be entered while composing mail

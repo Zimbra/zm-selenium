@@ -46,7 +46,7 @@ public class InvalidateSession extends AdminCommonTest {
 	 * 3. Verify invalidate session functionality
 	 * @throws HarnessException
 	 */
-	@Bugs( ids = "74482")
+	@Bugs (ids = "74482")
 	@Test (description = "Invalidate Session -- manage account > right click > Invalidate Session",
 			groups = { "smoke", "L1" })
 			public void InvalidateSession_01() throws HarnessException {

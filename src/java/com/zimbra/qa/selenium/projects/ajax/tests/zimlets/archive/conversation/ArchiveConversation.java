@@ -57,7 +57,7 @@ public class ArchiveConversation extends ArchiveZimletByConversationTest {
 	}
 
 
-	@Bugs(ids = "89122")
+	@Bugs (ids = "89122")
 	@Test (description = "Archive a single message in a conversation",
 			groups = { "smoke","L0" })
 

@@ -30,7 +30,7 @@ public class Close extends CalendarWorkWeekTest {
 		
 	}
 	
-	@Test( description = "View meeting invite by opening it and close it", 
+	@Test (description = "View meeting invite by opening it and close it", 
 			groups = { "functional", "L2" })
 			
 	public void CloseMeeting_01() throws HarnessException {

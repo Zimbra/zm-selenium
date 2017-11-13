@@ -39,7 +39,7 @@ public class ZimbraFeatureCalendarEnabled extends AjaxCommonTest {
 	}
 
 
-	@Bugs( ids = "86552")
+	@Bugs (ids = "86552")
 	@Test (description = "Load the mail tab with just Calendar enabled",
 			groups = { "functional-skip", "L3-skip" })
 

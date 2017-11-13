@@ -571,7 +571,7 @@ public class AutoCompleteContacts extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Bugs(ids = "47045")
+	@Bugs (ids = "47045")
 	@Test (description = "Autocomplete including a period/dot '.' in the string",
 			groups = { "functional", "L3" })
 
@@ -630,7 +630,7 @@ public class AutoCompleteContacts extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Bugs(ids = "47045")
+	@Bugs (ids = "47045")
 	@Test (description = "Autocomplete including a period/dot '.' in the string",
 			groups = { "functional", "L3" })
 
@@ -818,7 +818,7 @@ public class AutoCompleteContacts extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Bugs(ids = "47044")
+	@Bugs (ids = "47044")
 	@Test (description = "Autocomplete should not match contacts in trashed addressbook",
 			groups = { "functional", "L3" })
 

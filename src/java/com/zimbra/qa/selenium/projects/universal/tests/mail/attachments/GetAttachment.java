@@ -38,7 +38,7 @@ public class GetAttachment extends PrefGroupMailByMessageTest {
 		
 	}
 		
-	@Test( description = "Receive a message with one attachment",
+	@Test (description = "Receive a message with one attachment",
 			groups = { "smoke", "L1" })
 	public void GetAttachment_01() throws HarnessException {
 		
@@ -68,7 +68,7 @@ public class GetAttachment extends PrefGroupMailByMessageTest {
 		
 	}
 
-	@Test( description = "Receive a message with three attachments",
+	@Test (description = "Receive a message with three attachments",
 			groups = { "functional", "L2" })
 	public void GetAttachment_02() throws HarnessException {
 		
@@ -113,8 +113,8 @@ public class GetAttachment extends PrefGroupMailByMessageTest {
 		
 	}
 
-	@Bugs(ids = "60769")
-	@Test( description = "Receive a message with an inline attachment",
+	@Bugs (ids = "60769")
+	@Test (description = "Receive a message with an inline attachment",
 			groups = { "smoke", "L1" })
 	public void GetAttachment_03() throws HarnessException {
 		

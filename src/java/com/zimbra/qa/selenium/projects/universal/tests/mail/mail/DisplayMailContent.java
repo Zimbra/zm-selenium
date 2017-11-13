@@ -34,7 +34,7 @@ public class DisplayMailContent extends PrefGroupMailByMessageTest {
 	}
 	
 	
-	@Test( description = "Verify multiline body mail(HTML content) displayed properly when display mail pref set to HTML",
+	@Test (description = "Verify multiline body mail(HTML content) displayed properly when display mail pref set to HTML",
 			groups = { "sanity", "L0" })
 	
 	public void DisplayHTMLMailWithHTMLPref_01() throws HarnessException {
@@ -73,7 +73,7 @@ public class DisplayMailContent extends PrefGroupMailByMessageTest {
 		ZAssert.assertStringContains(actual.zGetMailProperty(Field.Body), numberedListContent, "Verify numbered list text content");
 	}
 
-	@Test( description = "Verify multiline body mail(HTML content) displayed properly when display mail pref set to PlainText",
+	@Test (description = "Verify multiline body mail(HTML content) displayed properly when display mail pref set to PlainText",
 			groups = { "sanity", "L0" })
 	
 	public void DisplayHTMLMailWithTextPref_02() throws HarnessException {
@@ -119,7 +119,7 @@ public class DisplayMailContent extends PrefGroupMailByMessageTest {
 		ZAssert.assertStringContains(actual.zGetMailProperty(Field.Body), multilineTextData, "Verify plain text content");
 	}
 	
-	@Test( description = "Verify multiline body mail(plain text content) displayed properly when display mail pref set to HTML",
+	@Test (description = "Verify multiline body mail(plain text content) displayed properly when display mail pref set to HTML",
 			groups = { "sanity", "L0" })
 	
 	public void DisplayTextMailWithHTMLPref_03() throws HarnessException {
@@ -174,7 +174,7 @@ public class DisplayMailContent extends PrefGroupMailByMessageTest {
 				
 	}
 		
-	@Test( description = "Verify multiline body mail(plain text content) displayed properly when display mail pref set to PlainText",
+	@Test (description = "Verify multiline body mail(plain text content) displayed properly when display mail pref set to PlainText",
 			groups = { "sanity", "L0" })
 	
 	public void DisplayTextMailWithTextPref_04() throws HarnessException {

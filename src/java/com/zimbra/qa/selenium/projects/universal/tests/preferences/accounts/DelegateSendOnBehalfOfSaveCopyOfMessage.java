@@ -34,7 +34,7 @@ public class DelegateSendOnBehalfOfSaveCopyOfMessage extends PrefGroupMailByMess
 
 	}
 
-	@Test( description = "Save a copy of sent messages to owner's Sent folder",
+	@Test (description = "Save a copy of sent messages to owner's Sent folder",
 			groups = { "functional", "L3" })
 	
 	public void DelegateSendOnBehalfOfSaveCopyOfMessage_01() throws HarnessException {
@@ -86,7 +86,7 @@ public class DelegateSendOnBehalfOfSaveCopyOfMessage extends PrefGroupMailByMess
 		
 	}
 	
-	@Test( description = "Save a copy of sent messages to delegate's Sent folder",
+	@Test (description = "Save a copy of sent messages to delegate's Sent folder",
 			groups = { "functional", "L3" })
 	
 	public void DelegateSendOnBehalfOfSaveCopyOfMessage_02() throws HarnessException {
@@ -139,7 +139,7 @@ public class DelegateSendOnBehalfOfSaveCopyOfMessage extends PrefGroupMailByMess
 		
 	}
 	
-	@Test( description = "Save a copy of sent messages to delegate's Sent folder and granter's Sent folder",
+	@Test (description = "Save a copy of sent messages to delegate's Sent folder and granter's Sent folder",
 			groups = { "functional", "L3" })
 	
 	public void DelegateSendOnBehalfOfSaveCopyOfMessage_03() throws HarnessException {
@@ -194,7 +194,7 @@ public class DelegateSendOnBehalfOfSaveCopyOfMessage extends PrefGroupMailByMess
 		
 	}
 	
-	@Test( description = "Don't save a copy of sent messages",
+	@Test (description = "Don't save a copy of sent messages",
 			groups = { "functional", "L3" })
 	
 	public void DelegateSendOnBehalfOfSaveCopyOfMessage_04() throws HarnessException {

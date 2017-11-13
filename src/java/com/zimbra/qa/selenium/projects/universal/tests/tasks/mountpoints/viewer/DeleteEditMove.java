@@ -49,7 +49,7 @@ public class DeleteEditMove extends UniversalCommonTest {
 		
 	}
 	
-	@Test( description = "Verify Delete Edit Move button is disabled on mountpoint task (read-only share)",
+	@Test (description = "Verify Delete Edit Move button is disabled on mountpoint task (read-only share)",
 			groups = { "functional", "L2"})
 	public void DeleteEditMove_01() throws HarnessException {
 		

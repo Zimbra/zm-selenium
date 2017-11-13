@@ -35,8 +35,8 @@ public class CreateShare extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 
-	@Bugs(ids = "46674")
-	@Test(description = "Share folder with external rights and add note to it", 
+	@Bugs (ids = "46674")
+	@Test (description = "Share folder with external rights and add note to it", 
 			groups = { "functional", "L2" })
 	public void CreateShare_01() throws HarnessException {
 

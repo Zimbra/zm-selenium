@@ -266,7 +266,7 @@ public class GetMessage extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "73264")
+	@Bugs (ids = "73264")
 	@Test (description = "Receive a mail with an unformated number string - should not match",
 			groups = { "functional", "L3" })
 

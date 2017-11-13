@@ -35,7 +35,7 @@ public class FolderTree extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "50123")
+	@Bugs (ids = "50123")
 	@Test (description = "Verify the LinkedIn zimlet appears in the folder tree",
 			groups = { "deprecated" })
 

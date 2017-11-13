@@ -34,8 +34,8 @@ public class ModifyCalendar extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 
-	@Bugs(ids = "102771")
-	@Test( description = "Modify meeting calendar",
+	@Bugs (ids = "102771")
+	@Test (description = "Modify meeting calendar",
 			groups = { "functional", "L2" })
 
 	public void ModifyMeetingCalendar_01() throws HarnessException {

@@ -38,7 +38,7 @@ public class MoveContactFromTrashToLocalFolder extends UniversalCommonTest  {
 		}};					
 	}
 	
-	@Test( description = "Bug 102685 - Delete a contact item then moved it back to contact folder from trash",	
+	@Test (description = "Bug 102685 - Delete a contact item then moved it back to contact folder from trash",	
 			groups = { "functional", "L2"})
 	
 	public void MoveContactFromTrashToLocalFolder_01() throws HarnessException {

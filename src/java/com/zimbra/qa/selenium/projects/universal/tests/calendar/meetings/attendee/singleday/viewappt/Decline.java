@@ -34,7 +34,7 @@ public class Decline extends CalendarWorkWeekTest {
 		
 	}
 	
-	@Test( description = "View meeting invite by opening it and Decline the invitation by selecting 'Don't notify organizer'", 
+	@Test (description = "View meeting invite by opening it and Decline the invitation by selecting 'Don't notify organizer'", 
 			groups = { "smoke", "L1" })
 			
 	public void DeclineMeeting_01() throws HarnessException {
@@ -138,8 +138,8 @@ public class Decline extends CalendarWorkWeekTest {
 
 	}
 	
-	@Bugs(ids = "96565")
-	@Test( description = "View meeting invite by opening it and Decline the invitation by selecting 'Notify organizer'", 
+	@Bugs (ids = "96565")
+	@Test (description = "View meeting invite by opening it and Decline the invitation by selecting 'Notify organizer'", 
 			groups = { "functional", "L2" })
 			
 	public void DeclineMeeting_02() throws HarnessException {

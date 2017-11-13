@@ -33,7 +33,7 @@ public class AddOptionalAttendee extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 	
-	@Bugs(ids = "77711,48196")
+	@Bugs (ids = "77711,48196")
 	@DataProvider(name = "DataProviderShortcutKeys")
 	public Object[][] DataProviderShortcutKeys() {
 		return new Object[][] {
@@ -41,7 +41,7 @@ public class AddOptionalAttendee extends CalendarWorkWeekTest {
 	//			new Object[] { "VK_TAB", KeyEvent.VK_TAB },
 		};
 	}
-	@Test( description = "Add optional attendee from scheduler pane using keyboard Enter and Tab key",
+	@Test (description = "Add optional attendee from scheduler pane using keyboard Enter and Tab key",
 			groups = { "functional", "L5"},
 			dataProvider = "DataProviderShortcutKeys")
 	public void AddOptionalAttendee_01(String name, int keyEvent) throws HarnessException {

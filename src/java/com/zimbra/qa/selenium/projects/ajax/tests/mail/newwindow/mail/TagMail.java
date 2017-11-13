@@ -32,7 +32,7 @@ public class TagMail extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Bugs(ids = "99519")
+	@Bugs (ids = "99519")
 	@Test (description = "Tag a message using Toolbar -> Tag -> Existing Tag - in a separate window",
 			groups = { "functional", "L3" })
 

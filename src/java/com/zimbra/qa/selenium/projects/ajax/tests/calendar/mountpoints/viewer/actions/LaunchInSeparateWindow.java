@@ -44,7 +44,7 @@ public class LaunchInSeparateWindow extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "106999")
+	@Bugs (ids = "106999")
 	@Test (description = "Grantee with view rights launches grantor's calendar with appt in the new window and clicks on the appt",
 			groups = { "functional", "L2" })
 
@@ -140,7 +140,7 @@ public class LaunchInSeparateWindow extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "106999")
+	@Bugs (ids = "106999")
 	@Test (description = "Grantee with view rights launches grantor's calendar in the new window",
 			groups = { "functional-skip", "application-bug" })
 
@@ -200,7 +200,7 @@ public class LaunchInSeparateWindow extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "106999")
+	@Bugs (ids = "106999")
 	@Test (description = "Grantee with view rights launches grantor's calendar with appt in the new window and clicks on the appt",
 			groups = { "functional-skip", "application-bug" })
 

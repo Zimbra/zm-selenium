@@ -30,7 +30,7 @@ public class ExpandFolder extends PrefGroupMailByMessageTest {
 		logger.info("New "+ ExpandFolder.class.getCanonicalName());
 	}
 	
-	@Test( description = "Expand a subfolder",
+	@Test (description = "Expand a subfolder",
 			groups = { "smoke", "L1" })
 	
 	public void ExpandFolder_01() throws HarnessException {
@@ -93,7 +93,7 @@ public class ExpandFolder extends PrefGroupMailByMessageTest {
 		ZAssert.assertStringContains(value, folder1.getId() + ":true", "Verify the mailbox metadata saves the folder as expanded");
 	}	
 
-	@Test( description = "Expand 2 subfolders",
+	@Test (description = "Expand 2 subfolders",
 			groups = { "functional", "L2" })
 	public void ExpandFolder_02() throws HarnessException {
 		
@@ -182,7 +182,7 @@ public class ExpandFolder extends PrefGroupMailByMessageTest {
 
 	}	
 
-	@Test( description = "Expand-All subfolders",
+	@Test (description = "Expand-All subfolders",
 			groups = { "functional", "L3" })
 	public void ExpandAllFolders_01() throws HarnessException {
 		

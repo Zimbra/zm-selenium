@@ -30,7 +30,7 @@ public class UndoDeleteMail extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Undo a delete",
+	@Test (description = "Undo a delete",
 			groups = { "smoke", "L1" })
 
 	public void Undo_DeleteMail_01() throws HarnessException {

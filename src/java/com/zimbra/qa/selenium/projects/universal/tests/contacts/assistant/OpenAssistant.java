@@ -30,7 +30,7 @@ public class OpenAssistant extends UniversalCommonTest {
 	}
 	
 	
-	@Test( description = "Open the assistant",
+	@Test (description = "Open the assistant",
 			groups = { "deprecated", "L4" })
 	
 	public void OpenAssistant_01() throws HarnessException {

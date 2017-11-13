@@ -83,7 +83,7 @@ public class MoveMessage extends PrefGroupMailByConversationTest{
 		ZAssert.assertEquals(folderId, pagemail.getId(), "Verify the subfolder ID that the message was moved into");
 	}	
 
-	@Bugs( ids = "83506")
+	@Bugs (ids = "83506")
 	@Test (description = "Move a mail into subfolder",
 	groups = { "smoke" })
 	public void MoveMail_02() throws HarnessException {

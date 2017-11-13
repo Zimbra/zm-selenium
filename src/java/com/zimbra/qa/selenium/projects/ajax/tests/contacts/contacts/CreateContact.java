@@ -262,7 +262,7 @@ public class CreateContact extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "99776")
+	@Bugs (ids = "99776")
 	@Test (description = "Create a contacts with non-ASCII special characters",
 			groups = { "functional", "L3"}, dataProvider = "DataProviderSupportedCharsets")
 
@@ -296,7 +296,7 @@ public class CreateContact extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "66497")
+	@Bugs (ids = "66497")
 	@Test (description = "Create contact by selecting birthday and anniversary date using date picker",
 			groups = { "functional", "L2" })
 

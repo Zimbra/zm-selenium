@@ -30,7 +30,7 @@ public class RedirectMessage extends PrefGroupMailByMessageTest {
 		logger.info("New "+ RedirectMessage.class.getCanonicalName());
 	}
 	
-	@Test( description = "Redirect message, using 'Redirect' toolbar button - in separate window",
+	@Test (description = "Redirect message, using 'Redirect' toolbar button - in separate window",
 			groups = { "smoke", "L1" })
 	public void RedirectMessage_01() throws HarnessException {
 		

@@ -38,7 +38,7 @@ public class ZimbraFeatureHtmlComposeEnabledFalse extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 	
-	@Bugs(ids = "59504")
+	@Bugs (ids = "59504")
 	@Test(
 			description = "If zimbraFeatureHtmlComposeEnabled to FALSE then check if user can create appt", 
 			groups = { "functional", "L2" })

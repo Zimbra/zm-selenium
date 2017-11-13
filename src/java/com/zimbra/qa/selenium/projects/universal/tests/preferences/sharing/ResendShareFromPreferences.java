@@ -13,7 +13,7 @@ public class ResendShareFromPreferences extends UniversalCommonTest {
 		super.startingPage = app.zPagePreferences;
 	}
 
-	@Test( description = "Resend share folder request from preferences", groups = { "functional", "L2" })
+	@Test (description = "Resend share folder request from preferences", groups = { "functional", "L2" })
 
 	public void ResendShareFromPreferences_01() throws HarnessException {
 

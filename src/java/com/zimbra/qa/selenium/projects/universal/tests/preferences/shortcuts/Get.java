@@ -29,7 +29,7 @@ public class Get extends UniversalCommonTest {
 		super.startingPage = app.zPagePreferences;
 	}
 
-	@Test(description = "View the shortcuts preference page", groups = { "functional", "L2" })
+	@Test (description = "View the shortcuts preference page", groups = { "functional", "L2" })
 	
 	public void Get_01() throws HarnessException {
 		

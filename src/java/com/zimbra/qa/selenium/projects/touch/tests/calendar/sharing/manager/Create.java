@@ -35,7 +35,7 @@ public class Create extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 	
-	@Bugs(ids = "95890")
+	@Bugs (ids = "95890")
 	@Test (description = "Create a basic meeting with attendee and location on shared mailbox",
 			groups = { "smoke" })
 

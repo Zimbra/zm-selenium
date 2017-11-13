@@ -33,7 +33,7 @@ public class DeleteFolder extends UniversalCommonTest {
 		super.startingPage = app.zPageContacts;
 	}
 
-	@Test(description = "Delete a top level addressbook - Right click, Delete", 
+	@Test (description = "Delete a top level addressbook - Right click, Delete", 
 			groups = { "smoke", "L1"})
 	public void DeleteTopLevelFolderFromContextmenu_01() throws HarnessException {
 
@@ -65,7 +65,7 @@ public class DeleteFolder extends UniversalCommonTest {
 
 	}
 
-	@Test(description = "Delete a sub folder - Right click, Delete", 
+	@Test (description = "Delete a sub folder - Right click, Delete", 
 			groups = { "functional", "L2"})
 	public void DeleteSubFolderFromContextmenu_02() throws HarnessException {
 
@@ -97,7 +97,7 @@ public class DeleteFolder extends UniversalCommonTest {
 
 	}
 
-	@Test(description = "Drag one sub folder to Trash folder", 
+	@Test (description = "Drag one sub folder to Trash folder", 
 			groups = { "functional", "L2"})
 	public void DnDFromSubFolderToTrash_03() throws HarnessException {
 
@@ -131,8 +131,8 @@ public class DeleteFolder extends UniversalCommonTest {
 
 	}
 
-	@Bugs(ids = "103601")
-	@Test(description = "Delete an addressbook folder- Use shortcut Del", 
+	@Bugs (ids = "103601")
+	@Test (description = "Delete an addressbook folder- Use shortcut Del", 
 	groups = { "functional", "L5"})
 	public void UseShortcutDel_04() throws HarnessException {
 

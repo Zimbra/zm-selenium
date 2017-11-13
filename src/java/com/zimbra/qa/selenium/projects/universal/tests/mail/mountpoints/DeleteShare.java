@@ -42,7 +42,7 @@ public class DeleteShare extends PrefGroupMailByMessageTest{
 	}
 
 
-	@Test( description = "Delete (Revoke) an existing share",
+	@Test (description = "Delete (Revoke) an existing share",
 			groups = { "smoke", "L1" })
 	public void DeleteShare_01() throws HarnessException {
 

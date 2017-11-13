@@ -35,8 +35,8 @@ public class CreateMeetingWithGALFeatureDisabled extends CalendarWorkWeekTest {
 		this.startingAccountPreferences.put("zimbraFeatureGalEnabled", "FALSE");
 	}
 
-	@Bugs(ids = "99777,65926")
-	@Test( description = "Create a basic appointment this zimbraFeatureGalEnabled=FALSE", 
+	@Bugs (ids = "99777,65926")
+	@Test (description = "Create a basic appointment this zimbraFeatureGalEnabled=FALSE", 
 			groups = { "smoke", "L1" } )
 	
 	public void CreateMeetingWithGALFeatureDisabled_01() throws HarnessException {
@@ -77,8 +77,8 @@ public class CreateMeetingWithGALFeatureDisabled extends CalendarWorkWeekTest {
 	}
 	
 	
-	@Bugs(ids = "99777,65926")
-	@Test( description = "Create a basic appointment this GAL features disabled", 
+	@Bugs (ids = "99777,65926")
+	@Test (description = "Create a basic appointment this GAL features disabled", 
 			groups = { "functional", "L2" } )
 	
 	public void CreateMeetingWithGALFeatureDisabled_02() throws HarnessException {

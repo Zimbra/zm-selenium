@@ -39,7 +39,7 @@ public class ReplyToMeetingInviteWithIncludeOriginalAsAttachment extends AjaxCom
 	}
 
 
-	@Bugs(ids = "50729")
+	@Bugs (ids = "50729")
 	@Test (description = "Bug 50729 - 'No such message exists' exception while replying to appointment via 'Include Original As Attachment'",
 			groups = { "functional", "L2" })
 

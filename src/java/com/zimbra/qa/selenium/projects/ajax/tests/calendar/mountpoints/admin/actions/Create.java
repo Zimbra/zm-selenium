@@ -36,7 +36,7 @@ public class Create extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "75771")
+	@Bugs (ids = "75771")
 	@Test (description = "Verify sending invite using OBO although user2 granted OBO rights to user1",
 			groups = { "functional","L2" })
 

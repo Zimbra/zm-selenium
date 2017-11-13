@@ -36,7 +36,7 @@ public class EditColumnView extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids="44785")
+	@Bugs (ids = "44785")
 	@Test (description = "Edit the columns to display in message view and verify that change is preserved in new session",
 			groups = { "functional", "L2" })
 

@@ -43,7 +43,7 @@ public class OpenLinkToMessage extends FeatureBriefcaseTest {
 	}
 
 
-	@Bugs(ids = "56802,64833,65939,67059")
+	@Bugs (ids = "56802,64833,65939,67059")
 	@Test (description = "Open link to the message - Verify List View Rows are displayed after message closed",
 			groups = { "functional", "L2" })
 

@@ -37,7 +37,7 @@ public class CreateReshare extends PrefGroupMailByMessageTest {
 	 * 3. Verify Account3 can view the folder contents
 	 */
 
-	@Bugs(ids = "68760")
+	@Bugs (ids = "68760")
 	@Test (description = "Reshare a folder that is shared as admin",
 			groups = { "functional", "L3" })
 

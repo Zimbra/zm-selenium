@@ -42,7 +42,7 @@ public class UnTagAppointment extends UniversalCommonTest {
 	}
 
 
-	@Test( description = "Untag an appointment using toolbar button in day view",
+	@Test (description = "Untag an appointment using toolbar button in day view",
 			groups = { "functional", "L2" })
 
 	public void UnTagAppointment_01() throws HarnessException {
@@ -81,7 +81,7 @@ public class UnTagAppointment extends UniversalCommonTest {
 	}
 
 
-	@Test( description = "Untag tagged appointment using context menu in day view",
+	@Test (description = "Untag tagged appointment using context menu in day view",
 			groups = { "functional", "L2" })
 
 	public void UnTagAppointment_02() throws HarnessException, AWTException {

@@ -42,7 +42,7 @@ public class CreateSavedSearch extends UniversalCommonTest  {
 		
 	}
 	
-	@Test( description = "Create a basic saved search",
+	@Test (description = "Create a basic saved search",
 			groups = { "sanity","L0" })
 	
 	public void CreateSavedSearch_01() throws HarnessException {				

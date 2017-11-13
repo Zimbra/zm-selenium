@@ -45,8 +45,8 @@ public class MoveTask extends UniversalCommonTest {
 		}};
 	}
 	
-	//@Bugs(ids="61471")
-	@Test( description = "Create task through SOAP - move & verify through GUI", 
+	//@Bugs (ids = "61471")
+	@Test (description = "Create task through SOAP - move & verify through GUI", 
 			groups = { "smoke", "L0"})
 	public void MoveTask_01() throws HarnessException {
 
@@ -129,7 +129,7 @@ public class MoveTask extends UniversalCommonTest {
 		
 	}
 	
-	@Test( description = "Move a task by selecting task, then click 'm' shortcut", 
+	@Test (description = "Move a task by selecting task, then click 'm' shortcut", 
 			groups = { "functional", "L2"})
 	public void MoveTask_02() throws HarnessException {
 
@@ -214,7 +214,7 @@ public class MoveTask extends UniversalCommonTest {
 		ZAssert.assertNotNull(movetask,	"Verify the task is moved to the selected folder");
 	}
 
-	@Test( description = "Create task through SOAP - move using Right Click Context Menu & verify through GUI", 
+	@Test (description = "Create task through SOAP - move using Right Click Context Menu & verify through GUI", 
 			groups = { "smoke", "L1"})
 	public void MoveTask_03() throws HarnessException {
 
@@ -299,7 +299,7 @@ public class MoveTask extends UniversalCommonTest {
 		ZAssert.assertNotNull(movetask,	"Verify the task is moved to the selected folder");
 	}
 	
-	@Test( description = "Move a task by using Move -> New folder & verify through GUI", 
+	@Test (description = "Move a task by using Move -> New folder & verify through GUI", 
 			groups = { "functional", "L2"})
 	public void MoveTask_04() throws HarnessException {
 

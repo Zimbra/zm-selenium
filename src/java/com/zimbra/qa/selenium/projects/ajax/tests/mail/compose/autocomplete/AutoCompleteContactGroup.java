@@ -102,7 +102,7 @@ public class AutoCompleteContactGroup extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Bugs(ids = "97112")
+	@Bugs (ids = "97112")
 	@Test (description = "Autocomplete using a Contact Group - Group Name",
 			groups = { "functional", "L2" })
 
@@ -145,7 +145,7 @@ public class AutoCompleteContactGroup extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Bugs(ids = "97112")
+	@Bugs (ids = "97112")
 	@Test (description = "Autocomplete using the Contacts - Partial First Name",
 			groups = { "functional", "L2" })
 

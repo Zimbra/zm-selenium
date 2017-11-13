@@ -42,7 +42,7 @@ public class OpenDocument extends FeatureBriefcaseTest {
 	}
 
 
-	@Bugs(ids = "97124")
+	@Bugs (ids = "97124")
 	@Test (description = "Create document through SOAP - open & verify through GUI",
 			groups = { "smoke", "L0" })
 

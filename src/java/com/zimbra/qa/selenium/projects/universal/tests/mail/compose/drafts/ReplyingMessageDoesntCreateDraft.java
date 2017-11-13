@@ -35,8 +35,8 @@ public class ReplyingMessageDoesntCreateDraft extends PrefGroupMailByMessageTest
 		logger.info("New "+ ReplyingMessageDoesntCreateDraft.class.getCanonicalName());
 	}
 
-	@Bugs( ids = "67686, 69384")
-	@Test( description = "Verify bug 67686", groups = { "functional", "L2" })
+	@Bugs (ids = "67686, 69384")
+	@Test (description = "Verify bug 67686", groups = { "functional", "L2" })
 	
 	public void ReplyingMessageDoesntCreateDraft_01() throws HarnessException {
 

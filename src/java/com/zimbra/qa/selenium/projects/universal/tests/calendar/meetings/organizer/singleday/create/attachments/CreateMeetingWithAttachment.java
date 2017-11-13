@@ -37,8 +37,8 @@ public class CreateMeetingWithAttachment extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 	
-	@Bugs(ids = "104231")	
-	@Test( description = "Create invite by attaching file", 
+	@Bugs (ids = "104231")	
+	@Test (description = "Create invite by attaching file", 
 		groups = { "sanity", "L0" })
 			
 	public void CreateMeetingWithAttachment_01() throws HarnessException {

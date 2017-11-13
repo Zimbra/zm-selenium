@@ -33,8 +33,8 @@ public class CheckJSErrorWhenSetCustomWorkingHours extends UniversalCommonTest {
 		super.startingPage = app.zPagePreferences;
 	}
 	
-	@Bugs(ids = "102406,50479")
-	@Test( description = "When setting custom working hours, JS error", groups = { "functional", "L2" })
+	@Bugs (ids = "102406,50479")
+	@Test (description = "When setting custom working hours, JS error", groups = { "functional", "L2" })
 	
 	public void CheckJSErrorWhenSetCustomWorkingHours_01() throws HarnessException {
 

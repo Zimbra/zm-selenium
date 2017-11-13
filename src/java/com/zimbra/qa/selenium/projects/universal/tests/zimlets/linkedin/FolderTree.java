@@ -39,8 +39,8 @@ public class FolderTree extends UniversalCommonTest {
 		
 	}
 	
-	@Bugs(ids = "50123")
-	@Test( description = "Verify the LinkedIn zimlet appears in the folder tree",
+	@Bugs (ids = "50123")
+	@Test (description = "Verify the LinkedIn zimlet appears in the folder tree",
 			groups = { "deprecated", "L4" })
 	public void FolderTree_01() throws HarnessException {
 		ZimletItem linkedin = CoreZimletItem.getCoreZimlet(CoreZimletName.com_zimbra_linkedin, app);

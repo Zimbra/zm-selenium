@@ -33,7 +33,7 @@ public class ModifyMeetingByModifyingAttendees extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "58104, 100809")
+	@Bugs (ids = "58104, 100809")
 	@Test (description = "Blank row added in f/b scheduler after removing and adding attendee back from attendees field",
 			groups = { "functional", "L2" })
 

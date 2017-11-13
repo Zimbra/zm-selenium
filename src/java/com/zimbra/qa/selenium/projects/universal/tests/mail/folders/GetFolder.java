@@ -39,7 +39,7 @@ public class GetFolder extends PrefGroupMailByMessageTest {
 		
 	}
 	
-	@Test( description = "Get a folder",
+	@Test (description = "Get a folder",
 			groups = { "smoke", "L1" })
 	public void GetFolder_01() throws HarnessException {
 		

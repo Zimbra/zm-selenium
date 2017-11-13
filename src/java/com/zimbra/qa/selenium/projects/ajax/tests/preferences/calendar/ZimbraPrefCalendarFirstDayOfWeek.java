@@ -35,7 +35,7 @@ public class ZimbraPrefCalendarFirstDayOfWeek extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "101729,103862")
+	@Bugs (ids = "101729,103862")
 	@Test (description = "Set First day of the week and verify that first day is set correctly",
 			groups = { "functional", "L2" })
 

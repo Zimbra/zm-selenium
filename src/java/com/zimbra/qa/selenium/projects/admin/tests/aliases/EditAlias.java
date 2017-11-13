@@ -84,7 +84,7 @@ public class EditAlias extends AdminCommonTest {
 	 * 3. Click on newly created alias
 	 * @throws HarnessException
 	 */
-	@Bugs( ids = "58191")
+	@Bugs (ids = "58191")
 	@Test (description = "Bug 58191 - JavaScript error while clicking on alias of resource",
 			groups = { "functional", "L2" })
 	public void EditAlias_02() throws HarnessException {

@@ -124,7 +124,7 @@ public class GetCalendar extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "28846")
+	@Bugs (ids = "28846")
 	@Test (description = "Get a calendar (under subcalendar) - verify appointments appear",
 			groups = { "functional", "L2" })
 

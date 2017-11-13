@@ -56,7 +56,7 @@ public class GetZimlets extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "50123")
+	@Bugs (ids = "50123")
 	@Test (description = "Verify the LinkedIn table text",
 			groups = { "deprecated" })
 
@@ -133,7 +133,7 @@ public class GetZimlets extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "50123")
+	@Bugs (ids = "50123")
 	@Test(	description = "Verify the Zimbra Social table text",
 			groups = { "deprecated" })
 

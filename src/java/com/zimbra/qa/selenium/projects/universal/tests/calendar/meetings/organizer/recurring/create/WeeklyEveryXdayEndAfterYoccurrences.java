@@ -32,7 +32,7 @@ public class WeeklyEveryXdayEndAfterYoccurrences extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 	
-	@Test( description = "Create weekly recurring invite with attendee and location with every Monday, end after 2 occurrences",
+	@Test (description = "Create weekly recurring invite with attendee and location with every Monday, end after 2 occurrences",
 			groups = { "smoke", "L1" })
 			
 	public void WeeklyEveryXdayEndAfterYoccurrences_01() throws HarnessException {

@@ -42,8 +42,8 @@ public class ZimbraFeatureChangePasswordEnabledTrue extends UniversalCommonTest 
 
 	}
 
-	@Bugs(ids = "81522")
-	@Test(description = "Verify the 'Change Password' option is present in main -> account -> Change Password", 
+	@Bugs (ids = "81522")
+	@Test (description = "Verify the 'Change Password' option is present in main -> account -> Change Password", 
 		groups = { "functional", "L2"})
 	
 	public void ZimbraFeatureChangePasswordEnabledFalse_01() throws HarnessException {

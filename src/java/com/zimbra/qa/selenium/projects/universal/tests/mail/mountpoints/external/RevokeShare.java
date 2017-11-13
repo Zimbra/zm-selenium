@@ -35,7 +35,7 @@ public class RevokeShare extends PrefGroupMailByMessageTest {
 		
 	}
 	
-	@Test( description = "Revoke a folder share - External",
+	@Test (description = "Revoke a folder share - External",
 			groups = { "smoke", "L1" })
 	public void RevokeShare_01() throws HarnessException {
 		

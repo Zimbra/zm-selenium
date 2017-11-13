@@ -34,7 +34,7 @@ public class SuggestALocation extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "107050")
+	@Bugs (ids = "107050")
 	@Test (description = "Suggest a free location while creating appointment from quick add dialog",
 			groups = { "functional", "L2" })
 

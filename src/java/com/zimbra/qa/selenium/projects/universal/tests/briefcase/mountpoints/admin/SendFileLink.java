@@ -50,8 +50,8 @@ public class SendFileLink extends FeatureBriefcaseTest {
 		super.startingAccountPreferences.put("zimbraPrefBriefcaseReadingPaneLocation", "bottom");
 	}
 	
-	@Bugs(ids="46371")
-	@Test( description = "Briefcase linking problems upon renames", 
+	@Bugs (ids = "46371")
+	@Test (description = "Briefcase linking problems upon renames", 
 	groups = { "functional", "L2" })
 	public void SendFileLink_01() throws HarnessException {
 

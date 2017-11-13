@@ -37,7 +37,7 @@ public class AutoCompleteSearchTerms extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Bugs( ids = "46718")
+	@Bugs (ids = "46718")
 	@Test (description = "Autocomplete using stop word - IT",
 			groups = { "functional", "L2" })
 
@@ -93,7 +93,7 @@ public class AutoCompleteSearchTerms extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Bugs( ids = "46950")
+	@Bugs (ids = "46950")
 	@Test (description = "Autocomplete using search term - And",
 			groups = { "functional", "L2" })
 

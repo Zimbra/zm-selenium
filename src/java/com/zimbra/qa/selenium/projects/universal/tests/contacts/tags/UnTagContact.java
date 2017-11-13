@@ -32,7 +32,7 @@ public class UnTagContact extends UniversalCommonTest  {
 		
 	}
 	
-	@Test( description = "Untag a contact by click Toolbar Tag, then select Remove Tag",
+	@Test (description = "Untag a contact by click Toolbar Tag, then select Remove Tag",
 			groups = { "smoke", "L1"})
 	public void ClickToolbarTagRemoveTag_01() throws HarnessException {
 		
@@ -72,7 +72,7 @@ public class UnTagContact extends UniversalCommonTest  {
 
    	}
 	   
-	@Test( description = "Untag a contact by click Tag->Remove Tag on context menu",
+	@Test (description = "Untag a contact by click Tag->Remove Tag on context menu",
 				groups = { "smoke", "L1"})
 	public void ClickContextMenuTagRemoveTag_02() throws HarnessException {
 		

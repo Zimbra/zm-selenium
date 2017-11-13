@@ -35,7 +35,7 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 
 	}
 
-	@Test(description = "Send a mail using Text editor - in a separate window", groups = { "sanity", "L0" })
+	@Test (description = "Send a mail using Text editor - in a separate window", groups = { "sanity", "L0" })
 	public void CreateMailText_01() throws HarnessException {
 
 		// Create the message data to be sent
@@ -99,7 +99,7 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 				new Object[] { Shortcut.S_NEWMESSAGE2_IN_NEW_WINDOW, Shortcut.S_NEWMESSAGE2_IN_NEW_WINDOW.getKeys() } };
 	}
 
-	@Test(description = "Send a mail using Text editor using keyboard shortcuts - in separate window", groups = {
+	@Test (description = "Send a mail using Text editor using keyboard shortcuts - in separate window", groups = {
 			"functional", "L2" }, dataProvider = "DataProvideNewMessageShortcuts")
 	public void CreateMailText_02(Shortcut shortcut, String keys) throws HarnessException {
 
@@ -145,7 +145,7 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 
 	}
 
-	@Test(description = "Send a mail with CC - in a separate window", groups = { "functional", "L2" })
+	@Test (description = "Send a mail with CC - in a separate window", groups = { "functional", "L2" })
 	public void CreateMailText_03() throws HarnessException {
 
 		// Create the message data to be sent
@@ -204,7 +204,7 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 
 	}
 
-	@Test(description = "Send a mail with BCC", groups = { "deprecated", "L4" })
+	@Test (description = "Send a mail with BCC", groups = { "deprecated", "L4" })
 	public void CreateMailText_04() throws HarnessException {
 
 		// Create the message data to be sent
@@ -261,7 +261,7 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 				new Object[] { Button.O_PRIORITY_NORMAL, "" }, new Object[] { Button.O_PRIORITY_LOW, "?" } };
 	}
 
-	@Test(description = "Send a mail with different priorities high/normal/low - in a separate window", groups = {
+	@Test (description = "Send a mail with different priorities high/normal/low - in a separate window", groups = {
 			"functional", "L2" }, dataProvider = "DataProvidePriorities")
 	public void CreateMailText_05(Button option, String verify) throws HarnessException {
 

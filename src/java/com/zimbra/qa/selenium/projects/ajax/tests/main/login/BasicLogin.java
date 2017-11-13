@@ -33,7 +33,7 @@ public class BasicLogin extends AjaxCommonTest {
 	@Test (description = "Login to the Ajax Client",
 			groups = { "sanity", "L0" })
 
-	public void BasicLogin01() throws HarnessException {
+	public void BasicLogin_01() throws HarnessException {
 
 		// Login
 		app.zPageLogin.zLogin(ZimbraAccount.AccountZCS());

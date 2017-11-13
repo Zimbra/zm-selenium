@@ -37,7 +37,7 @@ public class WeeklyRecurringNoEndDate extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 	
-	@Test( description = "Create weekly recurring invite with attendee and location with no end date, effective from today",
+	@Test (description = "Create weekly recurring invite with attendee and location with no end date, effective from today",
 			groups = { "smoke", "L1" })
 			
 	public void WeeklyRecurringNoEndDate_01() throws HarnessException {

@@ -37,7 +37,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Bugs( ids = "98054")
+	@Bugs (ids = "98054")
 	@Test (description = "Delete a mail using toolbar delete button",
 			groups = { "smoke", "L1" })
 
@@ -421,7 +421,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Bugs( ids = "53564")
+	@Bugs (ids = "53564")
 	@Test (description = "Hard-delete a mail by selecting and typing 'shift-del' shortcut",
 			groups = { "functional", "L2" } )
 
@@ -467,7 +467,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Bugs( ids = "53564")
+	@Bugs (ids = "53564")
 	@Test (description = "Hard-delete multiple messages (3) by selecting and typing 'shift-del' shortcut",
 			groups = { "functional", "L2" })
 
@@ -728,7 +728,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Bugs(ids = "79188")
+	@Bugs (ids = "79188")
 	@Test (description = "Delete a message from drafts",
 			groups = { "functional", "L2" })
 

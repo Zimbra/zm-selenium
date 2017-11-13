@@ -49,7 +49,7 @@ public class ViewMail extends AdminCommonTest {
 	 * 3. Verify view mail functionality
 	 * @throws HarnessException
 	 */
-	@Bugs( ids = "69155")
+	@Bugs (ids = "69155")
 	@Test (description = "View mail  -- manage account > right click > view mail",
 	groups = { "smoke", "L1" })
 	public void ViewMail_01() throws HarnessException {

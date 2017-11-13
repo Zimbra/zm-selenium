@@ -33,7 +33,7 @@ public class Reply extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "106759,102475")
+	@Bugs (ids = "106759,102475")
 	@Test (description = "View meeting invite by opening it and reply to organizer",
 			groups = { "functional", "L2" })
 

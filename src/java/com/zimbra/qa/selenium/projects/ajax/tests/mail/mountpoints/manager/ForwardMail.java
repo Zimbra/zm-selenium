@@ -124,7 +124,7 @@ public class ForwardMail extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Bugs(ids="102475")
+	@Bugs (ids = "102475")
 	@Test (description = "Forward (on behalf of) to a message in a shared folder (admin rights)  - no SOBO rights",
 			groups = { "functional", "L2" })
 

@@ -38,7 +38,7 @@ public class UnTagFile extends FeatureBriefcaseTest {
 		super.startingAccountPreferences.put("zimbraPrefBriefcaseReadingPaneLocation", "bottom");
 	}
 
-	@Test( description = "Remove a tag from a File using Toolbar -> Tag -> Remove Tag", 
+	@Test (description = "Remove a tag from a File using Toolbar -> Tag -> Remove Tag", 
 			groups = { "smoke", "L0" })
 	
 	public void UnTagFile_01() throws HarnessException {

@@ -44,7 +44,7 @@ public class PromptToTurnOffAutoreply extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "51990")
+	@Bugs (ids = "51990")
 	@Test (description = "Enable auto-reply message - Verify after login  alert dialog promts to turn off auto-reply", priority = 4,
 			groups = { "functional", "L3" })
 

@@ -33,7 +33,7 @@ public class OpenAttachment extends PrefGroupMailByMessageTest {
 	}
 	
 	
-	@Test( description = "Open a text attachment",
+	@Test (description = "Open a text attachment",
 			groups = { "functional", "L2" })
 
 	public void OpenTextAttachment_01() throws HarnessException {

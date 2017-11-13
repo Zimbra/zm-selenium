@@ -30,7 +30,7 @@ public class Login extends UniversalCommonTest {
 		
 	}
 	
-	@Test( description = "Login to the Universal Client", 
+	@Test (description = "Login to the Universal Client", 
 			groups = { "sanity", "L0"})
 	
 	public void Login01() throws HarnessException {
@@ -44,7 +44,7 @@ public class Login extends UniversalCommonTest {
 	}
 
 	
-	@Test( description = "Login to the Universal Client, with a mounted folder",
+	@Test (description = "Login to the Universal Client, with a mounted folder",
 			groups = { "functional", "L3" })
 	
 	public void Login02() throws HarnessException {
@@ -119,8 +119,8 @@ public class Login extends UniversalCommonTest {
 	}
 
 	
-	@Bugs( ids = "59847")
-	@Test( description = "Login to the Universal Client, with a mounted folder of a deleted account",
+	@Bugs (ids = "59847")
+	@Test (description = "Login to the Universal Client, with a mounted folder of a deleted account",
 			groups = { "functional", "L3" })
 	
 	public void Login03() throws HarnessException {
@@ -212,8 +212,8 @@ public class Login extends UniversalCommonTest {
 				  };
 		}
 
-	@Bugs( ids = "66788")
-	@Test( description = "Change the zimbraMailURL and login", priority=5, 
+	@Bugs (ids = "66788")
+	@Test (description = "Change the zimbraMailURL and login", priority=5, 
 			groups = { "inprogress", "L4" },
 			dataProvider = "DataProvider_zimbraMailURL")
 	

@@ -35,7 +35,7 @@ public class DeleteConversation extends PrefGroupMailByConversationTest {
 		super.startingAccountPreferences.put("zimbraPrefShowSelectionCheckbox", "TRUE");
 	}
 	
-	@Test( description = "Delete a conversation",
+	@Test (description = "Delete a conversation",
 			groups = { "smoke", "L1" })
 	public void DeleteConversation_01() throws HarnessException {
 		
@@ -67,7 +67,7 @@ public class DeleteConversation extends PrefGroupMailByConversationTest {
 	}
 
 	
-	@Test( description = "Delete a conversation using checkbox and toolbar delete button",
+	@Test (description = "Delete a conversation using checkbox and toolbar delete button",
 			groups = { "functional", "L2" })
 	public void DeleteConversation_02() throws HarnessException {
 		
@@ -102,7 +102,7 @@ public class DeleteConversation extends PrefGroupMailByConversationTest {
 	  };
 	}
 	
-	@Test( description = "Delete a conversation by selecting and typing 'delete' keyboard",
+	@Test (description = "Delete a conversation by selecting and typing 'delete' keyboard",
 			groups = { "functional", "L2" },
 			dataProvider = "DataProviderDeleteKeys")
 	public void DeleteConversation_03(String name, int keyEvent) throws HarnessException {
@@ -130,7 +130,7 @@ public class DeleteConversation extends PrefGroupMailByConversationTest {
 
 	}
 
-	@Test( description = "Delete a conversation by selecting and typing '.t' shortcut",
+	@Test (description = "Delete a conversation by selecting and typing '.t' shortcut",
 			groups = { "functional", "L3" } )
 	public void DeleteConversation_04() throws HarnessException {
 		
@@ -155,7 +155,7 @@ public class DeleteConversation extends PrefGroupMailByConversationTest {
 		}
 	}
 
-	@Test( description = "Delete multiple messages (3) by select and toolbar delete",
+	@Test (description = "Delete multiple messages (3) by select and toolbar delete",
 			groups = { "functional", "L2" })
 	public void DeleteConversation_05() throws HarnessException {
 		
@@ -196,7 +196,7 @@ public class DeleteConversation extends PrefGroupMailByConversationTest {
 	}
 
 
-	@Test( description = "Delete a mail using context menu delete button",
+	@Test (description = "Delete a mail using context menu delete button",
 			groups = { "functional", "L2" })
 	public void DeleteConversation_06() throws HarnessException {
 		
@@ -219,8 +219,8 @@ public class DeleteConversation extends PrefGroupMailByConversationTest {
 	}
 
 
-	@Bugs( ids = "53564")
-	@Test( description = "Hard-delete a mail by selecting and typing 'shift-del' shortcut",
+	@Bugs (ids = "53564")
+	@Test (description = "Hard-delete a mail by selecting and typing 'shift-del' shortcut",
 			groups = { "functional", "L2" } )
 	public void HardDeleteConversation_01() throws HarnessException {
 		
@@ -248,8 +248,8 @@ public class DeleteConversation extends PrefGroupMailByConversationTest {
 	}
 
 	
-	@Bugs( ids = "53564")
-	@Test( description = "Hard-delete multiple messages (3) by selecting and typing 'shift-del' shortcut",
+	@Bugs (ids = "53564")
+	@Test (description = "Hard-delete multiple messages (3) by selecting and typing 'shift-del' shortcut",
 			groups = { "functional", "L2" })
 	public void HardDeleteConversation_02() throws HarnessException {
 		
@@ -297,7 +297,7 @@ public class DeleteConversation extends PrefGroupMailByConversationTest {
 
 
 	
-	@Test( description = "Delete a conversation - 1 message in inbox, 1 message in sent, 1 message in subfolder",
+	@Test (description = "Delete a conversation - 1 message in inbox, 1 message in sent, 1 message in subfolder",
 			groups = { "functional", "L2" })
 	public void DeleteConversation_10() throws HarnessException {
 		
@@ -367,8 +367,8 @@ public class DeleteConversation extends PrefGroupMailByConversationTest {
 		
 	}
 
-	@Bugs(ids = "79188")
-	@Test( description = "Delete a conversation - 1 message in inbox, 1 message in draft",
+	@Bugs (ids = "79188")
+	@Test (description = "Delete a conversation - 1 message in inbox, 1 message in draft",
 			groups = { "functional", "L2" })
 	public void DeleteConversation_11() throws HarnessException {
 		
@@ -443,8 +443,8 @@ public class DeleteConversation extends PrefGroupMailByConversationTest {
 	}
 
 	
-	@Bugs( ids = "82704")
-	@Test( description = "Delete a conversation (1 message) that receives a new message : Delete Toolbar button",
+	@Bugs (ids = "82704")
+	@Test (description = "Delete a conversation (1 message) that receives a new message : Delete Toolbar button",
 			groups = { "functional", "L2" })
 	public void DeleteConversation_21() throws HarnessException {
 		
@@ -507,8 +507,8 @@ public class DeleteConversation extends PrefGroupMailByConversationTest {
 
 	}
 
-	@Bugs( ids = "82704")
-	@Test( description = "Delete a conversation (1 message) that receives a new message : Right click -> Delete",
+	@Bugs (ids = "82704")
+	@Test (description = "Delete a conversation (1 message) that receives a new message : Right click -> Delete",
 			groups = { "functional", "L2" })
 	public void DeleteConversation_22() throws HarnessException {
 		
@@ -568,8 +568,8 @@ public class DeleteConversation extends PrefGroupMailByConversationTest {
 
 	}
 
-	@Bugs( ids = "82704")
-	@Test( description = "Delete a conversation (2 messages) that receives a new message : Delete Toolbar button",
+	@Bugs (ids = "82704")
+	@Test (description = "Delete a conversation (2 messages) that receives a new message : Delete Toolbar button",
 			groups = { "functional", "L2" })
 	public void DeleteConversation_23() throws HarnessException {
 		
@@ -653,8 +653,8 @@ public class DeleteConversation extends PrefGroupMailByConversationTest {
 
 	}
 
-	@Bugs( ids = "82704")
-	@Test( description = "Delete a conversation (2 messages) that receives a new message : Right click -> Delete",
+	@Bugs (ids = "82704")
+	@Test (description = "Delete a conversation (2 messages) that receives a new message : Right click -> Delete",
 			groups = { "functional", "L2" })
 	public void DeleteConversation_24() throws HarnessException {
 		

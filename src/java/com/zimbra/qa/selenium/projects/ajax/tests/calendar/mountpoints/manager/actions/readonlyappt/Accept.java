@@ -32,7 +32,7 @@ public class Accept extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "81647")
+	@Bugs (ids = "81647")
 	@Test (description = "Assistant right clicks to calendar invite from shared calendar and accepts the invite OBO boss",
 			groups = { "smoke", "L1" })
 

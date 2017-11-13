@@ -88,7 +88,7 @@ public class RenameTaskFolder extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids="62365")
+	@Bugs (ids = "62365")
 	@Test (description = "Rename a tasklist - set to an invalid name with ':'",
 		groups = { "functional", "L3" })
 

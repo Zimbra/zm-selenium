@@ -194,7 +194,7 @@ public class AcceptMeeting extends CalendarWorkWeekTest {
 
 	}
 	
-	@Bugs(ids = "95782")
+	@Bugs (ids = "95782")
 	@Test (description = "Verify invite message is removed after accepting/declining appointment", 
 			groups = { "functional" })
 	

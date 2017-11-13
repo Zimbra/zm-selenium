@@ -37,7 +37,7 @@ public class EditPreferences extends AdminCommonTest {
 		super.startingPage = app.zPageManageDistributionList;
 	}
 
-	@Bugs(ids = "104654")
+	@Bugs (ids = "104654")
 	@Test (description = "Edit DL - Edit Preferences",
 	groups = { "smoke", "L1" })
 

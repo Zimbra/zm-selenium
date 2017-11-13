@@ -46,7 +46,7 @@ public class ZmCalendarApp_ViewWorkWeek_Appointment1 extends CalendarWorkWeekTes
 	}
 	
 	
-	@Test( description = "Measure the time to load the Calendar, work week view, initial load",
+	@Test (description = "Measure the time to load the Calendar, work week view, initial load",
 			groups = { "performance", "L4" })
 	public void ZmCalendarApp_01() throws HarnessException {
 		ZDate startDate = new ZDate(this.calendarWeekDayUTC.get(Calendar.YEAR), this.calendarWeekDayUTC.get(Calendar.MONTH) + 1, this.calendarWeekDayUTC.get(Calendar.DAY_OF_MONTH), this.calendarWeekDayUTC.get(Calendar.HOUR_OF_DAY), 0, 0);
@@ -79,7 +79,7 @@ public class ZmCalendarApp_ViewWorkWeek_Appointment1 extends CalendarWorkWeekTes
 		
 	}
 
-	@Test( description = "Measure the time to load the Calendar, work week view, 1 appointment",
+	@Test (description = "Measure the time to load the Calendar, work week view, 1 appointment",
 			groups = { "performance", "L4" })
 	public void ZmCalendarApp_02() throws HarnessException {
 
@@ -113,7 +113,7 @@ public class ZmCalendarApp_ViewWorkWeek_Appointment1 extends CalendarWorkWeekTes
 		
 	}
 
-	@Test( description = "Measure the time to load the Calendar, work week view, 100 appointments",
+	@Test (description = "Measure the time to load the Calendar, work week view, 100 appointments",
 			groups = { "performance", "L4" })
 	public void ZmCalendarApp_03() throws HarnessException {
 		

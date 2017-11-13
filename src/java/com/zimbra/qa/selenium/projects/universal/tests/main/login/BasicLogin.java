@@ -30,7 +30,7 @@ public class BasicLogin extends UniversalCommonTest {
 		super.startingPage = app.zPageLogin;
 	}
 	
-	@Test( description = "Login to the Universal Client",
+	@Test (description = "Login to the Universal Client",
 			groups = { "sanity", "L0"})
 	
 	public void BasicLogin01() throws HarnessException {

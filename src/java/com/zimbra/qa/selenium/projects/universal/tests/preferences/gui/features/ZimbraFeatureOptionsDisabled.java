@@ -51,7 +51,7 @@ public class ZimbraFeatureOptionsDisabled extends UniversalCommonTest {
 	 * See http://bugzilla.zimbra.com/show_bug.cgi?id=62011 - WONTFIX
 	 * @throws HarnessException
 	 */
-	@Bugs(ids="63652")	
+	@Bugs (ids = "63652")	
 	@Test(
 			description = "Load the app with Preferences tab disabled", 
 			groups = { "functional-skip", "L4" }

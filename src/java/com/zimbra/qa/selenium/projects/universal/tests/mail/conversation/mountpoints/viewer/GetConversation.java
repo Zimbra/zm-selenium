@@ -30,7 +30,7 @@ public class GetConversation extends PrefGroupMailByConversationTest {
 	}
 	
 	
-	@Test( description = "View a conversation in a mountpoint",
+	@Test (description = "View a conversation in a mountpoint",
 			groups = { "functional", "L2" })
 	
 	public void GetConversation_01() throws HarnessException {
@@ -104,7 +104,7 @@ public class GetConversation extends PrefGroupMailByConversationTest {
 	}
 	
 
-	@Test( description = "View the contents of a conversation in a mountpoint",
+	@Test (description = "View the contents of a conversation in a mountpoint",
 			groups = { "functional", "L2" })
 	
 	public void GetConversation_02() throws HarnessException {

@@ -171,7 +171,7 @@ public class EditFile extends FeatureBriefcaseTest {
 	}
 
 
-	@Bugs(ids = "54706")
+	@Bugs (ids = "54706")
 	@Test (description = "'Restore As Current Version' does not restore notes",
 		groups = { "functional", "L3" })
 
@@ -229,7 +229,7 @@ public class EditFile extends FeatureBriefcaseTest {
 	}
 
 
-	@Bugs(ids = "74644")
+	@Bugs (ids = "74644")
 	@Test (description = "Cannot rename the file's latest version",
 		groups = { "functional", "L3" })
 

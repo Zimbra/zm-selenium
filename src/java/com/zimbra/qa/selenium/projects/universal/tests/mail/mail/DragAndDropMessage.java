@@ -37,7 +37,7 @@ public class DragAndDropMessage extends PrefGroupMailByMessageTest {
 		
 	}
 	
-	@Test( description = "Drag and Drop a message from Inbox to subfolder",
+	@Test (description = "Drag and Drop a message from Inbox to subfolder",
 			groups = { "smoke", "L1" })
 	public void DragAndDropMessage_01() throws HarnessException {
 

@@ -49,10 +49,10 @@ public class UnTrustedDomainConvView extends AjaxCommonTest {
 	 * 2.In Conv View Inject mail with external image
 	 * 3.Verify To,From,Subject through soap
 	 * 4.Click on same mail
-	 * 5.Yellow color Warning Msg Info bar should show warning icon with 'Display Image' and Domain  link for untrusted domains.
+	 * 5.Yellow color Warning message Info bar should show warning icon with 'Display Image' and Domain  link for untrusted domains.
 	 */
 
-	@Bugs(ids="74691,64830")
+	@Bugs (ids = "74691,64830")
 	@Test (description = "Verify Display Image link in UnTrusted doamin for conversation view",
 			groups = { "sanity", "L0"  })
 

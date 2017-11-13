@@ -68,7 +68,7 @@ public class CreateFolder extends FeatureBriefcaseTest {
 	}
 
 
-	@Bugs(ids = "67061")
+	@Bugs (ids = "67061")
 	@Test (description = "According to Comment#1 in the bug 67061 Create a new folder using 'nf' keyboard shortcut is for mail only",
 			groups = { "functional-skip", "L3-skip" })
 

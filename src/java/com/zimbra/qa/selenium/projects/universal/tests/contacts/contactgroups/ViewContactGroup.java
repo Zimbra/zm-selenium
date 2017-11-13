@@ -36,7 +36,7 @@ public class ViewContactGroup extends UniversalCommonTest  {
 
 	}
 
-	@Test( description = "View a contact group", 
+	@Test (description = "View a contact group", 
 			groups = { "smoke", "L0" } )
 	
 	public void DisplayContactGroupInfo_01() throws HarnessException {

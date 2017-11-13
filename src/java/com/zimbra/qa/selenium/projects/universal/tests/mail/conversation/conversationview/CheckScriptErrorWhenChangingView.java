@@ -33,8 +33,8 @@ public class CheckScriptErrorWhenChangingView extends PrefGroupMailByConversatio
 		super.startingAccountPreferences.put("zimbraPrefShowSelectionCheckbox", "TRUE");
 	}
 	
-	@Bugs( ids = "102767")
-	@Test( description = "Script Error: this._listView[this._currentViewId].getLimit is not a function while clicking in View >> Message View",
+	@Bugs (ids = "102767")
+	@Test (description = "Script Error: this._listView[this._currentViewId].getLimit is not a function while clicking in View >> Message View",
 	groups = { "functional", "L2" })
 	
 	public void CheckScriptErrorWhenChangingView_01() throws HarnessException {

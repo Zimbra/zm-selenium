@@ -49,8 +49,8 @@ public class MultipleDayAppointment extends UniversalCommonTest {
 		}};
 	}
 
-	@Bugs(ids = "107583, 69132, ZCS-725")
-	@Test( description = "Verify the display of a multi-day all-day appointment in the month view",
+	@Bugs (ids = "107583, 69132, ZCS-725")
+	@Test (description = "Verify the display of a multi-day all-day appointment in the month view",
 	groups = { "functional", "L2" })
 	public void MultipleDayAppointment_01() throws HarnessException {
 		

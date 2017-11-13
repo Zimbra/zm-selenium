@@ -98,7 +98,7 @@ public class GetZimlets extends UniversalCommonTest {
 	}
 	
 	// IronMaiden: Bug 50123: 3 zimlets - Phone, Search Highlighter, Webex
-	@Bugs(ids = "50123")
+	@Bugs (ids = "50123")
 	@Test(
 			description = "Verify the LinkedIn table text",
 			groups = { "deprecated", "L4" }
@@ -185,7 +185,7 @@ public class GetZimlets extends UniversalCommonTest {
 	}
 
 	// IronMaiden: Bug 50123: 3 zimlets - Phone, Search Highlighter, Webex
-	@Bugs(ids = "50123")
+	@Bugs (ids = "50123")
 	@Test(
 			description = "Verify the Zimbra Social table text",
 			groups = { "deprecated", "L4" }

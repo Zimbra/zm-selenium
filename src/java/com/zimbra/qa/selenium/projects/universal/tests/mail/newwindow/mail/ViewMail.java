@@ -38,7 +38,7 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 		logger.info("New "+ ViewMail.class.getCanonicalName());
 	}
 	
-	@Test( description = "Receive a mail with Sender: specified",
+	@Test (description = "Receive a mail with Sender: specified",
 			groups = { "functional", "L2" })
 
 	public void ViewMail_01() throws HarnessException {
@@ -86,8 +86,8 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 	}
 
 	
-	@Bugs( ids = "86168")
-	@Test( description = "Receive a mail with Reply-To: specified",
+	@Bugs (ids = "86168")
+	@Test (description = "Receive a mail with Reply-To: specified",
 			groups = { "functional", "L2" })
 
 	public void ViewMail_02() throws HarnessException {
@@ -135,8 +135,8 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Bugs( ids = "61575")
-	@Test( description = "Receive a mail with Resent-From: specified",
+	@Bugs (ids = "61575")
+	@Test (description = "Receive a mail with Resent-From: specified",
 			groups = { "functional", "L3" })
 
 	public void ViewMail_03() throws HarnessException {
@@ -184,7 +184,7 @@ public class ViewMail extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test( description = "Verify multipart/alternative with text and html parts",
+	@Test (description = "Verify multipart/alternative with text and html parts",
 			groups = { "functional", "L2" })
 	public void ViewMail_04() throws HarnessException {
 		

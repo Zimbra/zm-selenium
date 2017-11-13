@@ -33,7 +33,7 @@ public class CreateDLFromPersonalContacts extends UniversalCommonTest  {
 		
 	}
 
-	@Test( description = "Create user DL with atleast 2 contacts from personal contacts", 
+	@Test (description = "Create user DL with atleast 2 contacts from personal contacts", 
 			groups = { "sanity", "L0"})
 
 	public void CreateDLFromPersonalContacts_01 () throws HarnessException {

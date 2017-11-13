@@ -36,7 +36,7 @@ public class MoveContactGroup extends UniversalCommonTest {
 
 	}
 
-	@Test(description = "Move a contact group to folder Emailed Contacts by click Move dropdown on toolbar", 
+	@Test (description = "Move a contact group to folder Emailed Contacts by click Move dropdown on toolbar", 
 			groups = {"smoke", "L0"})
 	public void MoveToEmailedContactsFromMoveDropdownOnToolbar_01() throws HarnessException {
 
@@ -75,7 +75,7 @@ public class MoveContactGroup extends UniversalCommonTest {
 
 	}
 
-	@Test(description = "Move a contact group to folder Emailed Contacts by click Move on Context menu", 
+	@Test (description = "Move a contact group to folder Emailed Contacts by click Move on Context menu", 
 			groups = {"functional", "L2"})
 	public void MoveToEmailedContactsClickMoveOnContextmenu_02() throws HarnessException {
 
@@ -115,7 +115,7 @@ public class MoveContactGroup extends UniversalCommonTest {
 
 	}
 
-	@Test(description = "Move a contact group to folder Emailed Contacts with shortcut m", 
+	@Test (description = "Move a contact group to folder Emailed Contacts with shortcut m", 
 			groups = { "functional", "L2"})
 	public void MoveToEmailedContactsClickShortcutm_03() throws HarnessException {
 
@@ -158,7 +158,7 @@ public class MoveContactGroup extends UniversalCommonTest {
 
 	}
 
-	@Test(description = "Move a group to folder Emailed Contacts by click toolbar Edit then open folder dropdown", 
+	@Test (description = "Move a group to folder Emailed Contacts by click toolbar Edit then open folder dropdown", 
 			groups = {"functional", "L2"})
 	public void MoveToEmailedContactsClickToolbarEditThenFolderDropdown_04() throws HarnessException {
 

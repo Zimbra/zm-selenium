@@ -47,7 +47,7 @@ public class OwnerAccountPending extends UniversalCommonTest {
 	}
 	
 	
-	@Test( description = "Login to the Universal Client - with a mountpoint to a 'pending' account",
+	@Test (description = "Login to the Universal Client - with a mountpoint to a 'pending' account",
 			groups = { "functional", "L3"})
 	public void OwnerAccountPending01() throws HarnessException {
 		

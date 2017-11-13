@@ -247,7 +247,7 @@ public class AcceptMeetingUsingDifferentCalendarFolder extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "69132,96556")
+	@Bugs (ids = "69132,96556")
 	@Test(	description = "Accept meeting using 'Accept -> Notify Organizer'",
 			groups = { "functional", "L2" })
 

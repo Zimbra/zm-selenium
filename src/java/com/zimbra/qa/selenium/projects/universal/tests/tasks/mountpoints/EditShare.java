@@ -50,7 +50,7 @@ public class EditShare extends UniversalCommonTest {
 
 	}
 
-	@Test( description = "Share and edit folder with admin rights",
+	@Test (description = "Share and edit folder with admin rights",
 			groups = { "smoke", "L1"})
 	public void EditShare_01() throws HarnessException {
 

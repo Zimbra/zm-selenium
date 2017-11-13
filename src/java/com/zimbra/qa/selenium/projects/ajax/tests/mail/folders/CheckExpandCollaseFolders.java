@@ -45,7 +45,7 @@ public class CheckExpandCollaseFolders extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Bugs( ids = "57468")
+	@Bugs (ids = "57468")
 	@Test (description = "Verify collapsed folders remain collapsed when getting mail",
 			groups = { "functional", "L2" })
 

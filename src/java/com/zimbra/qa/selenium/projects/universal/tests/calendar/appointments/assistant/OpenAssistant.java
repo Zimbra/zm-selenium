@@ -37,7 +37,7 @@ public class OpenAssistant extends CalendarWorkWeekTest {
 
 	}
 	
-	@Test( description = "Open the assistant",
+	@Test (description = "Open the assistant",
 			groups = { "deprecated", "L4" })
 	public void OpenAssistant_01() throws HarnessException {
 		

@@ -34,8 +34,8 @@ public class ResetStatusAfterAddingLocation extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 	
-	@Bugs(ids = "49881")
-	@Test( description = "Check reset status of meeting after adding Location",
+	@Bugs (ids = "49881")
+	@Test (description = "Check reset status of meeting after adding Location",
 			groups = { "functional", "L2"})
 			
 	public void ResetStatusAfterAddingLocation_01() throws HarnessException {

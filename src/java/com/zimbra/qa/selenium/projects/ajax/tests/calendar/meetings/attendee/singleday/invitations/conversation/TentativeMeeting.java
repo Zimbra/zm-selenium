@@ -216,7 +216,7 @@ public class TentativeMeeting extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "69132")
+	@Bugs (ids = "69132")
 	@Test(	description = "Mark meeting as Tentative using 'Tentative -> Notify Organizer'",
 			groups = { "functional", "L2" })
 
@@ -324,7 +324,7 @@ public class TentativeMeeting extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "69132")
+	@Bugs (ids = "69132")
 	@Test(	description = "Mark meeting as tentative using 'Tentative -> Edit Reply' and verify modified content",
 			groups = { "functional", "L2" })
 
@@ -431,7 +431,7 @@ public class TentativeMeeting extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "69132,65356")
+	@Bugs (ids = "69132,65356")
 	@Test(	description = "Mark meeting as tentative using 'Tentative -> Don't Notify Organizer'",
 			groups = { "functional", "L2" })
 

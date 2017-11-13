@@ -37,8 +37,8 @@ public class CheckReplyForwardButtonsInDraftsView extends PrefGroupMailByMessage
 		logger.info("New " + CheckReplyForwardButtonsInDraftsView.class.getCanonicalName());
 	}
 
-	@Bugs(ids = "83164")
-	@Test( description = "Verify reply/forward buttons remains disabled in Draft mode when searched using tag", groups = { "functional", "L2" })
+	@Bugs (ids = "83164")
+	@Test (description = "Verify reply/forward buttons remains disabled in Draft mode when searched using tag", groups = { "functional", "L2" })
 	
 	public void CheckReplyForwardButtonsInDraftsView_01() throws HarnessException {
 

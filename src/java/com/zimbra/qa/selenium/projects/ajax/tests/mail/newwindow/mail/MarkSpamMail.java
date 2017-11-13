@@ -32,7 +32,7 @@ public class MarkSpamMail extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Bugs( ids = "103950")
+	@Bugs (ids = "103950")
 	@Test (description = "Mark a message as spam, using 'Spam' toolbar button - in separate window",
 			groups = { "smoke", "L1" })
 
@@ -85,7 +85,7 @@ public class MarkSpamMail extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Bugs( ids = "103950")
+	@Bugs (ids = "103950")
 	@Test (description = "Mark a message as spam, using keyboard shortcut (keyboard='ms') - in a separate window",
 			groups = { "functional", "L2" })
 

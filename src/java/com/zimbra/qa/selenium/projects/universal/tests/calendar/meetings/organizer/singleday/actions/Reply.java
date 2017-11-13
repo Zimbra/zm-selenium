@@ -35,7 +35,7 @@ public class Reply extends CalendarWorkWeekTest {
 	     
 	}
 	
-	@Test( description = "Check Reply to a meeting is disabled for organizer ",
+	@Test (description = "Check Reply to a meeting is disabled for organizer ",
 			groups = { "functional", "L2" })
 	public void Reply_01() throws HarnessException {
 		

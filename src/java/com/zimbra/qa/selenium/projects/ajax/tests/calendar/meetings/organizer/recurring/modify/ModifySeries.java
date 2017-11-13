@@ -353,7 +353,7 @@ public class ModifySeries extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "100575")
+	@Bugs (ids = "100575")
 	@Test (description = "Modify series by setting end date",
 			groups = { "functional", "L2" })
 
@@ -460,7 +460,7 @@ public class ModifySeries extends AjaxCommonTest {
 		ZAssert.assertNotNull(messageId, "Verify attendee1 gets new email notification");
 	}
 
-	@Bugs(ids = "101610")
+	@Bugs (ids = "101610")
 	@Test (description = "Modifying daily custom series doesn't update new selection in custom repeat dialog ",
 			groups = { "functional-skip", "application-bug" })
 

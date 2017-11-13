@@ -47,8 +47,8 @@ public class FindShare extends PrefGroupMailByMessageTest {
 		
 	}
 	
-	@Bugs(ids = "82125,84339, 86717")
-	@Test( description = "Search for a share from another user.  Add it.",
+	@Bugs (ids = "82125,84339, 86717")
+	@Test (description = "Search for a share from another user.  Add it.",
 			groups = { "functional", "L2" })
 	public void CreateMountpoint_01() throws HarnessException {
 		

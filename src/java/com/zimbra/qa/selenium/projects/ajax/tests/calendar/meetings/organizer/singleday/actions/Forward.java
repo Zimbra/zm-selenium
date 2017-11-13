@@ -180,7 +180,7 @@ public class Forward extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "59724")
+	@Bugs (ids = "59724")
 	@Test (description = "Forwarding if a conf-room is already scheduled for same invite",
 			groups = { "functional", "L2" })
 
@@ -250,7 +250,7 @@ public class Forward extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids="100340")
+	@Bugs (ids = "100340")
 	@Test (description = "forwarding invite shows html source in meeting notes section",
 			groups = { "functional", "L2" })
 

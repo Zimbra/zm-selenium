@@ -36,7 +36,7 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "text");
 	}
 	
-	@Test( description = "Send a mail using Text editor", 
+	@Test (description = "Send a mail using Text editor", 
 			groups = { "sanity", "L0" })
 	
 	public void CreateMailText_01() throws HarnessException {
@@ -65,7 +65,7 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 		ZAssert.assertStringContains(received.dBodyText, mail.dBodyText, "Verify the body field is correct");
 	}
 	
-	@Test( description = "Send a multiline plain text mail using Text editor", 
+	@Test (description = "Send a multiline plain text mail using Text editor", 
 			groups = { "sanity", "L0" })
 	
 	public void CreateMailWithMultilineText_02() throws HarnessException {
@@ -112,7 +112,7 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 	}
 	
 	
-	@Test( description = "Send a mail using Text editor using keyboard shortcuts",
+	@Test (description = "Send a mail using Text editor using keyboard shortcuts",
 			groups = { "functional", "L2" },
 			dataProvider = "DataProvideNewMessageShortcuts")
 	
@@ -146,7 +146,7 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 	}
 
 	
-	@Test( description = "Send a mail with CC", groups = { "functional", "L3" })
+	@Test (description = "Send a mail with CC", groups = { "functional", "L3" })
 	
 	public void CreateMailText_04() throws HarnessException {
 		
@@ -190,7 +190,7 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 	}
 
 	
-	@Test( description = "Send a mail with BCC", groups = { "functional", "L3" })
+	@Test (description = "Send a mail with BCC", groups = { "functional", "L3" })
 	
 	public void CreateMailText_05() throws HarnessException {
 		
@@ -239,7 +239,7 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 	  };
 	}
 
-	@Test( description = "Send a mail with different priorities high/normal/low",
+	@Test (description = "Send a mail with different priorities high/normal/low",
 			groups = { "functional", "L2" },
 			dataProvider = "DataProvidePriorities")
 	
@@ -274,7 +274,7 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 		ZAssert.assertStringContains(received.getFlags(), verify, "Verify the correct priority was sent");
 	}
 	
-	@Test( description = "Send a mail to 100 recipients",
+	@Test (description = "Send a mail to 100 recipients",
 			groups = { "deprecated", "L4" } ) // The harness doesn't handle the postqueue for such a large message
 
 	public void CreateMailText_07() throws HarnessException {

@@ -32,7 +32,7 @@ public class CreateDuplicateDL extends UniversalCommonTest  {
 		super.startingPage = app.zPageContacts;
 	}
 
-	@Test( description = "Try to create duplicate DL", 
+	@Test (description = "Try to create duplicate DL", 
 			groups = { "functional", "L2"})
 
 	public void TryToCreateDuplicateDL_01 () throws HarnessException {

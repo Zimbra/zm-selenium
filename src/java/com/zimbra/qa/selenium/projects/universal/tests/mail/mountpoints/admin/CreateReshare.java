@@ -40,8 +40,8 @@ public class CreateReshare extends PrefGroupMailByMessageTest {
 	 * 2. Account2 re-shares the folder with Account3
 	 * 3. Verify Account3 can view the folder contents
 	 */
-	@Bugs(ids = "68760")
-	@Test( description = "Reshare a folder that is shared as admin",
+	@Bugs (ids = "68760")
+	@Test (description = "Reshare a folder that is shared as admin",
 			groups = { "functional", "L3" })
 	public void CreateReshare_01() throws HarnessException {
 

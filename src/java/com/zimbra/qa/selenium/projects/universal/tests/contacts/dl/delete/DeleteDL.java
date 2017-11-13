@@ -35,7 +35,7 @@ public class DeleteDL extends UniversalCommonTest  {
 		
 	}
 
-	@Test( description = "Delete DL using toolbar button", 
+	@Test (description = "Delete DL using toolbar button", 
 			groups = { "smoke", "L0"})
 
 	public void DeleteDLUsingToolbarButton_01() throws HarnessException {
@@ -95,7 +95,7 @@ public class DeleteDL extends UniversalCommonTest  {
 		ZAssert.assertFalse(found, "Verify deleted DL is not shown in UI");
 	}
 
-	@Test( description = "Delete DL using context menu", 
+	@Test (description = "Delete DL using context menu", 
 			groups = { "smoke", "L1"})
 
 	public void DeleteDLUsingContextMenu_02() throws HarnessException {

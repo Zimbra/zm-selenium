@@ -44,7 +44,7 @@ public class DragAndDropMessage extends UniversalCommonTest {
 	
 	}
 	
-	@Test( description = "Delete a message from a conversation",
+	@Test (description = "Delete a message from a conversation",
 			groups = { "smoke", "L1" })
 	public void DeleteConversation01() throws HarnessException {
 		

@@ -203,7 +203,7 @@ public class AjaxQuickCommandTest extends AjaxCommonTest {
 	 * Set up basic quick commands for all combinations 
 	 */
 
-	@Bugs(ids = "71389")
+	@Bugs (ids = "71389")
 	public void addQuickCommands() throws HarnessException {
 		logger.info("addQuickCommands: start");
 		

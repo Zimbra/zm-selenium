@@ -34,7 +34,7 @@ public class AddOptionalAttendee extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "77711,48196")
+	@Bugs (ids = "77711,48196")
 	@DataProvider(name = "DataProviderShortcutKeys")
 	public Object[][] DataProviderShortcutKeys() {
 		return new Object[][] {

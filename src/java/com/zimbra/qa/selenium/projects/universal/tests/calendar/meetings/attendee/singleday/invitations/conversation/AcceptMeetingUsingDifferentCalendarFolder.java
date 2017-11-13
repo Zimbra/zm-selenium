@@ -67,7 +67,7 @@ public class AcceptMeetingUsingDifferentCalendarFolder extends CalendarWorkWeekT
 
 	}
 	
-	@Bugs(ids = "69132")
+	@Bugs (ids = "69132")
 	@Test(
 			description = "Accept a meeting using Accept button from invitation message", 
 			groups = { "functional", "L2" })
@@ -172,7 +172,7 @@ public class AcceptMeetingUsingDifferentCalendarFolder extends CalendarWorkWeekT
 
 	}
 
-	@Bugs(ids = "69132")
+	@Bugs (ids = "69132")
 	@Test(
 			description = "Accept meeting - Verify organizer gets notification message", 
 			groups = { "functional", "L2" })
@@ -240,7 +240,7 @@ public class AcceptMeetingUsingDifferentCalendarFolder extends CalendarWorkWeekT
 
 	}
 
-	@Bugs(ids = "69132")
+	@Bugs (ids = "69132")
 	@Test(
 			description = "Accept meeting using 'Accept -> Notify Organizer'", 
 			groups = { "functional", "L2" })
@@ -361,7 +361,7 @@ public class AcceptMeetingUsingDifferentCalendarFolder extends CalendarWorkWeekT
 		
 	}
 	
-	@Bugs(ids = "69132")
+	@Bugs (ids = "69132")
 	@Test(
 			description = "Accept meeting using 'Accept -> Edit Reply' and verify modified content", 
 			groups = { "functional", "L2" })
@@ -481,7 +481,7 @@ public class AcceptMeetingUsingDifferentCalendarFolder extends CalendarWorkWeekT
 		
 	}
 	
-	@Bugs(ids = "69132,65356,80407")
+	@Bugs (ids = "69132,65356,80407")
 	@Test(
 			description = "Accept meeting using 'Accept -> Don't Notify Organizer'", 
 			groups = { "functional", "L5" })

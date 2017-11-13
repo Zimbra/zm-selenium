@@ -37,7 +37,7 @@ public class SendReadReceiptsPrompt extends PrefGroupMailByMessageTest {
 
 	}
 	
-	@Test( description = "zimbraPrefMailSendReadReceipts=prompt - verify prompt, verify receipt is sent",
+	@Test (description = "zimbraPrefMailSendReadReceipts=prompt - verify prompt, verify receipt is sent",
 			groups = { "functional", "L2" })
 	public void SendReadReceiptsPrompt_01() throws HarnessException {
 		
@@ -88,7 +88,7 @@ public class SendReadReceiptsPrompt extends PrefGroupMailByMessageTest {
 
 	}
 
-	@Test( description = "zimbraPrefMailSendReadReceipts=prompt - verify prompt, verify receipt is not sent",
+	@Test (description = "zimbraPrefMailSendReadReceipts=prompt - verify prompt, verify receipt is not sent",
 			groups = { "functional", "L2" })
 	public void SendReadReceiptsPrompt_02() throws HarnessException {
 

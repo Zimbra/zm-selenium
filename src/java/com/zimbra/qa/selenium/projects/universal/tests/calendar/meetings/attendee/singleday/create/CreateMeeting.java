@@ -33,7 +33,7 @@ public class CreateMeeting extends CalendarWorkWeekTest {
 		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "html");
 	}
 	
-	@Test( description = "Send a meeting invite by entering multiline body content with HTML compose preferences", 
+	@Test (description = "Send a meeting invite by entering multiline body content with HTML compose preferences", 
 			groups = { "sanity", "L0" })
 	
 	public void CreateMeetingWithHTMLComposePreference_01() throws HarnessException {
@@ -108,7 +108,7 @@ public class CreateMeeting extends CalendarWorkWeekTest {
 		ZAssert.assertStringContains(html, dBodyHtmlGreenBackgroundText, "Verify the html content");
 	}
 	
-	@Test( description = "Send a meeting invite by entering multiline body content with Plain text compose preferences", 
+	@Test (description = "Send a meeting invite by entering multiline body content with Plain text compose preferences", 
 			groups = { "sanity", "L0" })
 	
 	public void CreateMeetingWithPlainTextComposePreference_02() throws HarnessException {

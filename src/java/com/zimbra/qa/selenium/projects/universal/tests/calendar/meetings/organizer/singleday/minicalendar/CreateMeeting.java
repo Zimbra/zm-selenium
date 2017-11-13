@@ -35,8 +35,8 @@ public class CreateMeeting extends CalendarWorkWeekTest {
 	}
 	
 	
-	@Bugs(ids = "107050,81945")
-	@Test( description = "Create meeting invite from mini-calendar's date using quick add dialog",
+	@Bugs (ids = "107050,81945")
+	@Test (description = "Create meeting invite from mini-calendar's date using quick add dialog",
 			groups = { "smoke", "L1" } )
 	
 	public void CreateMeeting_01() throws HarnessException {

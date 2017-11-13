@@ -38,7 +38,7 @@ public class CreateFilter extends AjaxCommonTest {
 		super.startingPage = app.zPagePreferences;
 	}
 
-	@Bugs(ids="97040")
+	@Bugs (ids = "97040")
 	@Test (description = "Create a basic Incoming Message Filter",
 			groups = { "sanity", "L0" } )
 

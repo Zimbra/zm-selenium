@@ -37,8 +37,8 @@ public class ZimbraPrefMarkMsgReadNever extends PrefGroupMailByMessageTest {
 
 	}
 	
-	@Bugs( ids = "78178")
-	@Test( description = "Verify a message is not marked read if zimbraPrefMarkMsgRead=Never",
+	@Bugs (ids = "78178")
+	@Test (description = "Verify a message is not marked read if zimbraPrefMarkMsgRead=Never",
 			groups = { "functional", "L2" })
 	public void MarkReadMail_01() throws HarnessException {
 		

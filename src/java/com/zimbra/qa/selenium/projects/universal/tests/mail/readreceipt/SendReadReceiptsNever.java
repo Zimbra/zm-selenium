@@ -37,7 +37,7 @@ public class SendReadReceiptsNever extends PrefGroupMailByMessageTest {
 
 	}
 	
-	@Test( description = "zimbraPrefMailSendReadReceipts=never - verify read receipt is not sent",
+	@Test (description = "zimbraPrefMailSendReadReceipts=never - verify read receipt is not sent",
 			groups = { "functional", "L2" })
 	public void SendReadReceiptsNever_01() throws HarnessException {
 		

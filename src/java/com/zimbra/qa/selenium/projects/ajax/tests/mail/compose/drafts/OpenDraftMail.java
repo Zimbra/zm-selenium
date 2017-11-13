@@ -37,7 +37,7 @@ public class OpenDraftMail extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Bugs(ids = "49907")
+	@Bugs (ids = "49907")
 	@Test (description = "Open existing drafts in Reading Pane",
 			groups = { "functional", "L2" })
 

@@ -35,7 +35,7 @@ public class CreateMeetingWithEquipmentConflict extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "102271")
+	@Bugs (ids = "102271")
 	@Test (description = "Verify sending appt invite when Equipment resource has conflicts shows conflict dialog",
 			groups = { "functional-skip", "application-bug" })
 
@@ -109,7 +109,7 @@ public class CreateMeetingWithEquipmentConflict extends AjaxCommonTest {
     }
 
 
-	@Bugs(ids = "ZCS-3343")
+	@Bugs (ids = "ZCS-3343")
 	@Test (description = "Verify Saving meeting invite when Equipment resource has conflicts shows conflict dialog",
 			groups = { "functional", "L2" })
 

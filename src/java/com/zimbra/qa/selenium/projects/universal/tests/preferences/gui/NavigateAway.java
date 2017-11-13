@@ -107,7 +107,7 @@ public class NavigateAway extends UniversalCommonTest {
 	}
 
 
-	@Bugs(ids="98364,101596")
+	@Bugs (ids = "98364,101596")
 	@Test(
 			description = "If no changes made, verify that navigating away from preferences pages do not prompt 'Save Changes?'",
 			groups = { "functional", "L3" },
@@ -157,8 +157,8 @@ public class NavigateAway extends UniversalCommonTest {
 		
 	}
 
-	@Bugs(ids = "103549")
-	@Test( description = "Set calendar custom work week and navigate away without saving", 
+	@Bugs (ids = "103549")
+	@Test (description = "Set calendar custom work week and navigate away without saving", 
 			groups = { "functional", "L2" })
 	
 	public void NavigateAway_02() throws HarnessException {
@@ -175,8 +175,8 @@ public class NavigateAway extends UniversalCommonTest {
 		}
 	}
 
-	@Bugs(ids = "103549")
-	@Test( description = "Change default appointment duration and navigate away without saving", 
+	@Bugs (ids = "103549")
+	@Test (description = "Change default appointment duration and navigate away without saving", 
 			groups = { "functional", "L3" })
 	
 	public void NavigateAway_03() throws HarnessException {

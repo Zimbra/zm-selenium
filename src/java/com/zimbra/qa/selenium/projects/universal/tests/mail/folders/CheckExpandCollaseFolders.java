@@ -50,8 +50,8 @@ public class CheckExpandCollaseFolders extends PrefGroupMailByMessageTest {
 		logger.info("New "+ GetMail.class.getCanonicalName());
 	}
 
-	@Bugs( ids = "57468")
-	@Test( description = "Verify collapsed folders remain collapsed when getting mail",
+	@Bugs (ids = "57468")
+	@Test (description = "Verify collapsed folders remain collapsed when getting mail",
 			groups = { "functional", "L2" })
 	
 	public void CheckExpandCollaseFolders_01() throws HarnessException {

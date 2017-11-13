@@ -41,7 +41,7 @@ public class DragAndDropMessage extends AjaxCommonTest {
 	@Test (description = "Delete a message from a conversation",
 			groups = { "smoke", "L1" })
 
-	public void DeleteConversation01() throws HarnessException {
+	public void DeleteConversation_01() throws HarnessException {
 
 		// Create a subfolder
 		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);

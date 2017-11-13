@@ -55,7 +55,7 @@ public class CreateTask extends UniversalCommonTest {
  * 6.Task should get created
  * @throws HarnessException
  */
-	@Test( description = "Create Task using assistant", 
+	@Test (description = "Create Task using assistant", 
 			groups = { "deprecated", "L4"})
 	public void CreateTask_01() throws HarnessException {
 		String subject = "subject" + ConfigProperties.getUniqueString();
@@ -85,8 +85,8 @@ public class CreateTask extends UniversalCommonTest {
 	 * 6.Task should get created and show in the list
 	 * @throws HarnessException
 	 */
-		@Bugs(ids="63199")
-		@Test( description = "Create Task using assistant and save it", 
+		@Bugs (ids = "63199")
+		@Test (description = "Create Task using assistant and save it", 
 			groups = { "deprecated", "L4"})
 		public void CreateTask_02() throws HarnessException {
 			String subject = "subject" + ConfigProperties.getUniqueString();

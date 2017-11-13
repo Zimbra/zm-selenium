@@ -51,7 +51,7 @@ public class DeleteTask extends UniversalCommonTest {
 		
 	}
 	
-	@Test( description = "Delete a task using toolbar delete button",
+	@Test (description = "Delete a task using toolbar delete button",
 			groups = { "smoke", "L0"})
 	public void DeleteTask_01() throws HarnessException {
 		
@@ -105,7 +105,7 @@ public class DeleteTask extends UniversalCommonTest {
 	
 	}
 
-	@Test( description = "Delete a task using checkbox and toolbar delete button",
+	@Test (description = "Delete a task using checkbox and toolbar delete button",
 			groups = { "smoke", "L0"})
 	public void DeleteTask_02() throws HarnessException {
 		
@@ -168,7 +168,7 @@ public class DeleteTask extends UniversalCommonTest {
 	  };
 	}
 	
-	@Test( description = "Delete a task by selecting and typing 'delete' keyboard",
+	@Test (description = "Delete a task by selecting and typing 'delete' keyboard",
 			groups = { "smoke", "L1"},
 			dataProvider = "DataProviderDeleteKeys")
 	public void DeleteTask_03(String name, int keyEvent) throws HarnessException {
@@ -227,8 +227,8 @@ public class DeleteTask extends UniversalCommonTest {
 	
 	}
 	
-	@Bugs(ids="56467")
-	@Test( description = "Delete a task by selecting and typing '.t' shortcut",
+	@Bugs (ids = "56467")
+	@Test (description = "Delete a task by selecting and typing '.t' shortcut",
 			groups = { "functional", "L3"} )
 	public void DeleteTask_04() throws HarnessException {
 		
@@ -285,7 +285,7 @@ public class DeleteTask extends UniversalCommonTest {
 	
 	}
 
-	@Test( description = "Delete multiple tasks (3) by select and toolbar delete",
+	@Test (description = "Delete multiple tasks (3) by select and toolbar delete",
 			groups = { "functional", "L2"})
 	public void DeleteTask_05() throws HarnessException {
 		
@@ -390,7 +390,7 @@ public class DeleteTask extends UniversalCommonTest {
 
 	}
 
-	@Test( description = "Delete a task using context menu delete button",
+	@Test (description = "Delete a task using context menu delete button",
 			groups = { "smoke", "L0"})
 	public void DeleteTask_06() throws HarnessException {
 
@@ -447,8 +447,8 @@ public class DeleteTask extends UniversalCommonTest {
 	
 	}
 	
-	@Bugs(ids="61625")
-	@Test( description = "Hard-delete a task by selecting and typing 'shift-del' shortcut",
+	@Bugs (ids = "61625")
+	@Test (description = "Hard-delete a task by selecting and typing 'shift-del' shortcut",
 			groups = { "functional", "L2"})
 	public void HardDeleteTask_07() throws HarnessException {
 
@@ -517,8 +517,8 @@ public class DeleteTask extends UniversalCommonTest {
 
 	}
 
-	@Bugs(ids="61625")
-	@Test( description = "Hard-delete multiple tasks(3) by selecting and typing 'shift-del' shortcut",
+	@Bugs (ids = "61625")
+	@Test (description = "Hard-delete multiple tasks(3) by selecting and typing 'shift-del' shortcut",
 			groups = { "functional", "L3"})
 	public void HardDeleteTask_08() throws HarnessException {
 		
@@ -625,7 +625,7 @@ public class DeleteTask extends UniversalCommonTest {
 
 	}
 	
-	@Test( description = "Create task through SOAP - delete using Backspace Key & verify through GUI",
+	@Test (description = "Create task through SOAP - delete using Backspace Key & verify through GUI",
 			groups = { "functional", "L3"} )
 	public void DeleteTask_09() throws HarnessException {
 		
@@ -681,7 +681,7 @@ public class DeleteTask extends UniversalCommonTest {
 	
 	}
 	
-	@Test( description = "Delete Attachment from edit window and - verify through GUI", 
+	@Test (description = "Delete Attachment from edit window and - verify through GUI", 
 			groups = { "smoke", "L1"})
 	public void DeleteAttachment_10() throws HarnessException {
 

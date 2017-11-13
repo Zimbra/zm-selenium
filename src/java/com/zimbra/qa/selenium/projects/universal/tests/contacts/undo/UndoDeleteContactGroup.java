@@ -41,7 +41,7 @@ public class UndoDeleteContactGroup extends UniversalCommonTest {
 
 	}
 
-	@Test( description = "Undone deleted a contact group", 
+	@Test (description = "Undone deleted a contact group", 
 			groups = { "functional", "L3"})
 	public void UndoDeleteContactGroup_01() throws HarnessException {
 
@@ -72,7 +72,7 @@ public class UndoDeleteContactGroup extends UniversalCommonTest {
 
 	}
 
-	@Test( description = "Undone deleted contact group by clicking Delete on Context Menu", 
+	@Test (description = "Undone deleted contact group by clicking Delete on Context Menu", 
 			groups = { "functional", "L3"})
 	public void UndoDeleteContactGroup_02() throws HarnessException {
 
@@ -99,7 +99,7 @@ public class UndoDeleteContactGroup extends UniversalCommonTest {
 		ZAssert.assertEquals(actual.getFolderId(), contacts.getId(), "Verify the contact is back in the contacts folder");
 	}
 
-	@Test( description = "Undone deleted  contact group selected by checkbox", 
+	@Test (description = "Undone deleted  contact group selected by checkbox", 
 			groups = { "functional", "L3"})
 	public void UndoDeleteContactGroup_03()throws HarnessException {
 
@@ -130,7 +130,7 @@ public class UndoDeleteContactGroup extends UniversalCommonTest {
 
 	}
 
-	@Test( description = "undone deleted a contact group use shortcut Del", 
+	@Test (description = "undone deleted a contact group use shortcut Del", 
 			groups = { "functional", "L3"})
 	public void UndoDeleteContactGroup_04() throws HarnessException {
 
@@ -160,7 +160,7 @@ public class UndoDeleteContactGroup extends UniversalCommonTest {
 		ZAssert.assertEquals(actual.getFolderId(), contacts.getId(), "Verify the contact is back in the contacts folder");
 	}
 
-	@Test( description = "Undone deleted multiple contact groups at once", 
+	@Test (description = "Undone deleted multiple contact groups at once", 
 			groups = { "functional", "L3"})
 	public void UndoDeleteContactGroup_05() throws HarnessException {
 
@@ -204,7 +204,7 @@ public class UndoDeleteContactGroup extends UniversalCommonTest {
 
 	}
 
-	@Test( description = "Undone Deleted contact + contact group at once", 
+	@Test (description = "Undone Deleted contact + contact group at once", 
 			groups = { "functional", "L3"})
 	public void UndoDeleteContactGroup_06() throws HarnessException {
 

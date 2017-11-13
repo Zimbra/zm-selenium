@@ -50,7 +50,7 @@ public class CheckCloseButtonInSharedFolder extends AjaxCommonTest {
 	}
 
 
-	@Bugs( ids = "73226")
+	@Bugs (ids = "73226")
 	@Test (description = "Verify Close button on Share Task Window and its functionality",
 			groups = { "functional", "L2" })
 
@@ -127,7 +127,7 @@ public class CheckCloseButtonInSharedFolder extends AjaxCommonTest {
 	}
 
 
-	@Bugs( ids = "75277")
+	@Bugs (ids = "75277")
 	@Test (description = "Verify Close button on Share Task Window and its functionality",
 			groups = { "smoke", "L1" })
 

@@ -238,7 +238,7 @@ public class DeleteHtmlTask extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids="56467")
+	@Bugs (ids = "56467")
 	@Test (description = "Delete a Html task by selecting and typing '.t' shortcut",
 			groups = { "functional", "L3"} )
 

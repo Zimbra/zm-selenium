@@ -38,7 +38,7 @@ public class ZimbraFeatureOptionsDisabled extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids="63652")
+	@Bugs (ids = "63652")
 	@Test(	description = "Load the app with Preferences tab disabled",
 			groups = { "functional-skip", "L3-skip" })
 

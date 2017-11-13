@@ -40,7 +40,7 @@ public class PermanentDeleteSeries extends CalendarWorkWeekTest {
 		}};
 	}
 	
-	@Bugs(ids = "95735")
+	@Bugs (ids = "95735")
 	@Test (description = "Permanently delete entire series", 
 			groups = { "functional" } )
 	

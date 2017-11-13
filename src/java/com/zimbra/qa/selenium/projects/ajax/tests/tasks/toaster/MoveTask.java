@@ -87,7 +87,7 @@ public class MoveTask extends AjaxCommonTest {
 
 		// Verifying the toaster message
 		Toaster toast = app.zPageMain.zGetToaster();
-	   String toastMsg = toast.zGetToastMessage();
-	   ZAssert.assertStringContains(toastMsg, "1 task moved to", "Verify toast message: 1 task moved to");
+	   String toastMessage = toast.zGetToastMessage();
+	   ZAssert.assertStringContains(toastMessage, "1 task moved to", "Verify toast message: 1 task moved to");
 	}
 }

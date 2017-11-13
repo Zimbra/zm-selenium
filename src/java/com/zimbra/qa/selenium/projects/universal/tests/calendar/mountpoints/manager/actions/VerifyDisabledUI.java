@@ -32,8 +32,8 @@ public class VerifyDisabledUI extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 	
-	@Bugs(ids = "82558")
-	@Test( description = "Verify Share Calendar option remains disabled & Reply option is enabled on mountpoint appointment (manager share)",
+	@Bugs (ids = "82558")
+	@Test (description = "Verify Share Calendar option remains disabled & Reply option is enabled on mountpoint appointment (manager share)",
 			groups = { "functional", "L5" })
 			
 	public void VerifyDisabledUI_01() throws HarnessException {

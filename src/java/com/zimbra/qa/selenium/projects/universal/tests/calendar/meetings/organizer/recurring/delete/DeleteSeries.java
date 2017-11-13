@@ -40,7 +40,7 @@ public class DeleteSeries extends CalendarWorkWeekTest {
 	}
 	
 	// remove this test case and move below testcase to L2 from L5 once bug #75559 is resolved
-	@Test( description = "Delete series from third instance and onwards", 
+	@Test (description = "Delete series from third instance and onwards", 
 			groups = { "functional", "L2" })
 	public void DeleteSeries_01() throws HarnessException {
 
@@ -107,8 +107,8 @@ public class DeleteSeries extends CalendarWorkWeekTest {
 		
 	
 	
-	@Bugs(ids = "69920,75559")	
-	@Test( description = "Delete series from third instance and onwards", 
+	@Bugs (ids = "69920,75559")	
+	@Test (description = "Delete series from third instance and onwards", 
 			groups = { "functional", "L5" })
 	public void DeleteSeries_02() throws HarnessException {
 

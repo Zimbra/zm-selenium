@@ -43,7 +43,7 @@ public class MessageDisplayShowsFromAsUnknown extends AjaxCommonTest {
 	}
 
 
-	@Bugs( ids = "16213")
+	@Bugs (ids = "16213")
 	@Test (description = "Verify bug 16213 - Message display should show From=Unknown",
 			groups = { "functional", "L2" })
 

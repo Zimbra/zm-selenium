@@ -34,7 +34,7 @@ public class ZimbraHelpAdvancedURL extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "101023")
+	@Bugs (ids = "101023")
 	@Test (description = "Verify the product help URL", priority=5,
 		groups = { "functional", "L3" })
 
@@ -128,7 +128,7 @@ public class ZimbraHelpAdvancedURL extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "ZCS-3487")
+	@Bugs (ids = "ZCS-3487")
 	@Test (description = "Verify the product help URL as per the value set in attribute ZimbraHelpAdminURL at the global config", priority=5,
 			groups = { "functional", "L3" })
 

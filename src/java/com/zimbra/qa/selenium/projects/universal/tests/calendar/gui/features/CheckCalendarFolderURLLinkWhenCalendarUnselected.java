@@ -40,8 +40,8 @@ public class CheckCalendarFolderURLLinkWhenCalendarUnselected extends CalendarWo
 		super.startingPage = app.zPageCalendar;
 	}
 
-	@Bugs( ids = "49924")
-	@Test( description = "Bug 49924 - 'Direct link for Zimbra calendar fails when no calendars are checked'", 
+	@Bugs (ids = "49924")
+	@Test (description = "Bug 49924 - 'Direct link for Zimbra calendar fails when no calendars are checked'", 
 			groups = { "functional", "L2" })
 	
 	public void CheckCalendarFolderURLLinkWhenCalendarUnselected_01() throws HarnessException {

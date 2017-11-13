@@ -35,45 +35,10 @@ public class GetMail extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Test (description = "Receive a text mail - Right Click From Msg Header and verify all context menus",
-			groups = { "sanity", "L0" })
-
-	public void GetMail_VerifyMsgHdrContextmenu_01() throws HarnessException {
-
-		// Create the message data to be sent
-		String subject = "subject" + ConfigProperties.getUniqueString();
-
-		ZimbraAccount.AccountA().soapSend(
-				"<SendMsgRequest xmlns='urn:zimbraMail'>" +
-						"<m>" +
-						"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
-						"<e t='c' a='"+ ZimbraAccount.AccountB().EmailAddress +"'/>" +
-						"<su>"+ subject +"</su>" +
-						"<mp ct='text/plain'>" +
-						"<content>"+ "body" + ConfigProperties.getUniqueString() +"</content>" +
-						"</mp>" +
-						"</m>" +
-				"</SendMsgRequest>");
-
-		// Get all the SOAP data for later verification
-		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
-
-		// Refresh current view
-		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
-
-		// Select the message so that it shows in the reading pane
-		DisplayMail actual = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, mail.dSubject);
-		ZAssert.assertEquals(actual.zGetMailProperty(Field.From), ZimbraAccount.AccountA().EmailAddress, "Verify the From matches");
-
-		app.zPageMail.zRightClickAddressBubble(com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew.Field.From);
-		ZAssert.assertTrue(app.zPageMail.zVerifyAllAddressContextMenu("MessageHeader"),"Copy/FindEmails/New Email/AddtoContact/Goto URL/Create Filter menu should be exist");
-	}
-
-
 	@Test (description = "Receive a mail",
 			groups = { "smoke", "L1" })
 
-	public void GetMail_02() throws HarnessException {
+	public void GetMail_01() throws HarnessException {
 
 		// Create the message data to be sent
 		String subject = "subject" + ConfigProperties.getUniqueString();
@@ -115,7 +80,7 @@ public class GetMail extends PrefGroupMailByMessageTest {
 	@Test (description = "Receive a text mail - verify mail contents",
 			groups = { "smoke", "L1" })
 
-	public void GetMail_03() throws HarnessException {
+	public void GetMail_02() throws HarnessException {
 
 		// Create the message data to be sent
 		String subject = "subject" + ConfigProperties.getUniqueString();
@@ -155,7 +120,7 @@ public class GetMail extends PrefGroupMailByMessageTest {
 	@Test (description = "Receive an html mail - verify mail contents",
 			groups = { "smoke", "L1" })
 
-	public void GetMail_04() throws HarnessException {
+	public void GetMail_03() throws HarnessException {
 
 		// Create the message data to be sent
 		String subject = "subject" + ConfigProperties.getUniqueString();
@@ -206,7 +171,7 @@ public class GetMail extends PrefGroupMailByMessageTest {
 	@Test (description = "Click 'Get Mail' to receive any new messages",
 			groups = { "functional", "L2" })
 
-	public void GetMail_05() throws HarnessException {
+	public void GetMail_04() throws HarnessException {
 
 		// Create the message data to be sent
 		String subject = "subject" + ConfigProperties.getUniqueString();
@@ -245,7 +210,7 @@ public class GetMail extends PrefGroupMailByMessageTest {
 	@Test (description = "Verify new messages are polled based on the preference setting",
 			groups = { "functional", "L2" })
 
-	public void GetMail_06() throws HarnessException {
+	public void GetMail_05() throws HarnessException {
 
 		// Create the message data to be sent
 		String subject = "subject" + ConfigProperties.getUniqueString();
@@ -285,7 +250,7 @@ public class GetMail extends PrefGroupMailByMessageTest {
 	@Test (description = "Type keyboard shortcut (=) for 'Get Mail' to receive any new messages",
 			groups = { "functional", "L2" })
 
-	public void GetMail_07() throws HarnessException {
+	public void GetMail_06() throws HarnessException {
 
 		// Create the message data to be sent
 		String subject = "subject" + ConfigProperties.getUniqueString();

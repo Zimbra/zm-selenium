@@ -44,7 +44,7 @@ public class OwnerAccountClosed extends AjaxCommonTest {
 	@Test (description = "Login to the Ajax Client - with a mountpoint to a closed account",
 			groups = { "functional", "L3" })
 
-	public void OwnerAccountClosed01() throws HarnessException {
+	public void OwnerAccountClosed_01() throws HarnessException {
 
 		String subject = "subject" + ConfigProperties.getUniqueString();
 		String foldername = "folder" + ConfigProperties.getUniqueString();

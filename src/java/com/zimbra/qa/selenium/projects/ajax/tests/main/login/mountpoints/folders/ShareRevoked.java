@@ -45,7 +45,7 @@ public class ShareRevoked extends AjaxCommonTest {
 	@Test (description = "Login to the Ajax Client - with a mountpoint to a revoked share",
 			groups = { "functional", "L3" })
 
-	public void ShareRevoked01() throws HarnessException {
+	public void ShareRevoked_01() throws HarnessException {
 
 		String subject = "subject" + ConfigProperties.getUniqueString();
 		String foldername = "folder" + ConfigProperties.getUniqueString();

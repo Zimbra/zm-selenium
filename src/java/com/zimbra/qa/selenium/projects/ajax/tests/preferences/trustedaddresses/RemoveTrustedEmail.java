@@ -40,7 +40,7 @@ public class RemoveTrustedEmail extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "101356")
+	@Bugs (ids = "101356")
 	@Test(	description = "Remove a trusted email address",
 			groups = { "smoke", "L1" })
 

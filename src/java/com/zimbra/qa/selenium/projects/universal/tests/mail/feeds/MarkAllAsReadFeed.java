@@ -31,7 +31,7 @@ public class MarkAllAsReadFeed extends PrefGroupMailByMessageTest {
 		logger.info("New "+ MarkAllAsReadFeed.class.getCanonicalName());
 	}
 
-	@Test( description = "Mark all messages as read in folder (context menu)",	groups = { "smoke", "L1" })
+	@Test (description = "Mark all messages as read in folder (context menu)",	groups = { "smoke", "L1" })
 
 	public void MarkAllAsReadFolder_01() throws HarnessException, MalformedURLException {
 

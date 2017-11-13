@@ -32,7 +32,7 @@ public class Tag extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "63455,79016")
+	@Bugs (ids = "63455,79016")
 	@Test (description = "View meeting invite by opening it and apply tag to the appointment",
 			groups = { "functional", "L2" })
 
@@ -103,7 +103,7 @@ public class Tag extends AjaxCommonTest {
 
 	}
 
-	@Bugs(ids = "63455,79016")
+	@Bugs (ids = "63455,79016")
 	@Test (description = "Open meeting invite by double-clicking it, apply tag and remove it later",
 			groups = { "functional", "L2" })
 

@@ -33,7 +33,7 @@ public class DragAndDropConversation extends PrefGroupMailByConversationTest {
 	@Test (description = "Drag and Drop a conversation",
 			groups = { "smoke", "L1" })
 
-	public void DragAndDropConversation01() throws HarnessException {
+	public void DragAndDropConversation_01() throws HarnessException {
 
 		// Create a subfolder
 		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
@@ -111,7 +111,7 @@ public class DragAndDropConversation extends PrefGroupMailByConversationTest {
 	@Test (description = "Drag and Drop a conversation - verify sent messages are not moved",
 			groups = { "functional", "L3" })
 
-	public void DragAndDropConversation02() throws HarnessException {
+	public void DragAndDropConversation_02() throws HarnessException {
 
 		// Create a subfolder
 		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
@@ -201,7 +201,7 @@ public class DragAndDropConversation extends PrefGroupMailByConversationTest {
 	@Test (description = "Drag and Drop a conversation - verify trashed messages are not moved",
 			groups = { "functional", "L3" })
 
-	public void DragAndDropConversation03() throws HarnessException {
+	public void DragAndDropConversation_03() throws HarnessException {
 
 		// Create a subfolder
 		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);

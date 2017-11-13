@@ -37,7 +37,7 @@ public class ReplyMailWithInlineImageAttachment extends PrefGroupMailByMessageTe
 		super.startingAccountPreferences.put("zimbraPrefForwardReplyInOriginalFormat", "FALSE");
 	}
 
-	@Test( description = "Reply to a mail with attachment - Verify inline image sent",
+	@Test (description = "Reply to a mail with attachment - Verify inline image sent",
 			groups = { "smoke", "L1" })
 
 	public void ReplyMailWithInlineImageAttachment_01() throws HarnessException {

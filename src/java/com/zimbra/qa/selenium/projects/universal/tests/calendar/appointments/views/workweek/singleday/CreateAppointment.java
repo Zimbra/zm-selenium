@@ -36,7 +36,7 @@ public class CreateAppointment extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 		
-	@Test( description = "Create a basic appointment without an attendee",
+	@Test (description = "Create a basic appointment without an attendee",
 			groups = { "sanity", "L0" } )
 	
 	public void CreateAppointment_01() throws HarnessException {
@@ -65,7 +65,7 @@ public class CreateAppointment extends CalendarWorkWeekTest {
 		ZAssert.assertEquals(actual.getSubject(), appt.getSubject(), "Subject: Verify the appointment data");
 	}
 	
-	@Test( description = "Create appointment with all the fields and verify it",
+	@Test (description = "Create appointment with all the fields and verify it",
 			groups = { "smoke", "L1" } )
 	
 	public void CreateAppointment_02() throws HarnessException {
@@ -121,7 +121,7 @@ public class CreateAppointment extends CalendarWorkWeekTest {
 		ZAssert.assertEquals(actual.getContent(), appt.getContent(), "Content: Verify the appointment data");
 	}
 		
-	@Test( description = "Create private appointment",
+	@Test (description = "Create private appointment",
 			groups = { "functional", "L2"} )
 	
 	public void CreatePrivateAppointment_03() throws HarnessException {
@@ -154,7 +154,7 @@ public class CreateAppointment extends CalendarWorkWeekTest {
 		ZAssert.assertEquals(app.zGetActiveAccount().soapMatch("//mail:GetAppointmentResponse//mail:comp", "class", "PRI"), true, "");
 	}
 
-	@Test( description = "Create a basic appointment without an attendee in the past ",
+	@Test (description = "Create a basic appointment without an attendee in the past ",
 			groups = { "smoke", "L1" } )
 	
 	public void CreateAppointment_04() throws HarnessException {

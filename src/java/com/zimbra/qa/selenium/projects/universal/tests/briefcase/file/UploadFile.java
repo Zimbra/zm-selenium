@@ -41,7 +41,7 @@ public class UploadFile extends FeatureBriefcaseTest {
 		super.startingAccountPreferences.put("zimbraPrefShowSelectionCheckbox","TRUE");
 	}
 
-	@Test( description = "Upload file through RestUtil - verify through GUI", 
+	@Test (description = "Upload file through RestUtil - verify through GUI", 
 			groups = { "sanity", "L0" })
 	
 	public void UploadFile_01() throws HarnessException {
@@ -75,7 +75,7 @@ public class UploadFile extends FeatureBriefcaseTest {
 		app.zPageBriefcase.deleteFileByName(fileItem.getName());
 	}
 
-	@Test( description = "Upload file through GUI - verify through GUI", 
+	@Test (description = "Upload file through GUI - verify through GUI", 
 			groups = { "sanity", "L0" })
 	
 	public void UploadFile_02() throws HarnessException {
@@ -126,7 +126,7 @@ public class UploadFile extends FeatureBriefcaseTest {
 
 	}
 
-	@Test( description = "Upload file through RestUtil - verify through SOAP", 
+	@Test (description = "Upload file through RestUtil - verify through SOAP", 
 			groups = { "smoke", "L1" })
 	public void UploadFile_03() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();

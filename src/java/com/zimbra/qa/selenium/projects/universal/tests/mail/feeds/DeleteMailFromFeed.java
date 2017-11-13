@@ -39,8 +39,8 @@ public class DeleteMailFromFeed extends PrefGroupMailByMessageTest {
 		super.startingAccountPreferences.put("zimbraPrefShowSelectionCheckbox", "TRUE");
 	}
 
-	@Bugs( ids = "102261")
-	@Test( description = "Verify the deletion of a mail from feed folder", 
+	@Bugs (ids = "102261")
+	@Test (description = "Verify the deletion of a mail from feed folder", 
 			groups = { "functional", "L2" })
 
 	public void DeleteMailFromFeed_01() throws HarnessException, MalformedURLException {
@@ -85,7 +85,7 @@ public class DeleteMailFromFeed extends PrefGroupMailByMessageTest {
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(feedMailSubject),"The deleted feed mail is not present in trash!");
 	}
 	
-	@Test( description = "Verify the deletion of mutiple mails from feed folder using context menu delete button", 
+	@Test (description = "Verify the deletion of mutiple mails from feed folder using context menu delete button", 
 			groups = { "functional", "L3" })
 
 	public void DeleteMailFromFeed_02() throws HarnessException, MalformedURLException {
@@ -134,7 +134,7 @@ public class DeleteMailFromFeed extends PrefGroupMailByMessageTest {
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(feedMailSubject2),"The deleted feed mail is not present in trash!");
 	}
 	
-	@Test( description = "Verify the hard deletion of a mail from feed folder using 'shift-del' shortcut", 
+	@Test (description = "Verify the hard deletion of a mail from feed folder using 'shift-del' shortcut", 
 			groups = { "functional", "L3" })
 
 	public void DeleteMailFromFeed_03() throws HarnessException, MalformedURLException {

@@ -82,7 +82,7 @@ public class SearchAppointment extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "49386")
+	@Bugs (ids = "49386")
 	@Test (description = "Script error when searching in calendar list view",
 			groups = { "functional","L2" })
 

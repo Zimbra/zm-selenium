@@ -33,7 +33,7 @@ public class ZimbraPrefMarkMsgReadNever extends PrefGroupMailByConversationTest 
     }
 
 
-	@Bugs( ids = "78178")
+	@Bugs (ids = "78178")
 	@Test (description = "Verify a conversation (1 message) is not marked read if zimbraPrefMarkMsgRead=Never",
 			groups = { "functional", "L2" })
 
@@ -74,7 +74,7 @@ public class ZimbraPrefMarkMsgReadNever extends PrefGroupMailByConversationTest 
     }
 
 
-	@Bugs( ids = "78178")
+	@Bugs (ids = "78178")
 	@Test (description = "Verify a conversation (multiple message) is not marked read if zimbraPrefMarkMsgRead=Never",
 			groups = { "functional", "L2" })
 

@@ -34,7 +34,7 @@ public class CreateMeetingWithGALFeatureDisabled extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "99777,65926")
+	@Bugs (ids = "99777,65926")
 	@Test (description = "Create a basic appointment this zimbraFeatureGalEnabled=FALSE",
 			groups = { "smoke", "L1" } )
 
@@ -76,7 +76,7 @@ public class CreateMeetingWithGALFeatureDisabled extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "99777,65926")
+	@Bugs (ids = "99777,65926")
 	@Test (description = "Create a basic appointment this GAL features disabled",
 			groups = { "functional", "L2" } )
 

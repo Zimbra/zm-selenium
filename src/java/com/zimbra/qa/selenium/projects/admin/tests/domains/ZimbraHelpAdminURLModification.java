@@ -33,7 +33,7 @@ public class ZimbraHelpAdminURLModification extends AdminCommonTest {
 		logger.info("New "+ ZimbraHelpAdminURLModification.class.getCanonicalName());
 	}
 
-	@Bugs(ids="101023")
+	@Bugs (ids = "101023")
 	@Test (description = "Verify that zimbra admin help page is opened as per the value set in attribute ZimbraHelpAdminURL",
 			groups = { "functional", "L2" })
 
@@ -109,7 +109,7 @@ public class ZimbraHelpAdminURLModification extends AdminCommonTest {
 	}
 
 
-	@Bugs(ids="ZCS-3487")
+	@Bugs (ids = "ZCS-3487")
 	@Test (description = "Verify that zimbra admin help page is opened as per the value set in attribute ZimbraHelpAdminURL at the global config",
 			groups = { "functional", "L2" })
 

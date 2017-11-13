@@ -33,7 +33,7 @@ public class ModifyBySelectAttendees extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 
-	@Test( description = "modify appt and Add attendee to existing appointment from contact picker",
+	@Test (description = "modify appt and Add attendee to existing appointment from contact picker",
 			groups = { "functional", "L2" })
 	public void ModifyBySelectAttendees_01() throws HarnessException {
 		

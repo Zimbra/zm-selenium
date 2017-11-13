@@ -36,7 +36,7 @@ public class LaunchInSeparateWindow extends CalendarWorkWeekTest {
 	}
 	
 	// remove this test case and move below testcase to L2 from L5 once bug #106999 is resolved
-	@Test( description = "Grantee with view rights launches grantor's calendar with appt in the new window and clicks on the appt",
+	@Test (description = "Grantee with view rights launches grantor's calendar with appt in the new window and clicks on the appt",
 			groups = { "functional", "L2" })
 	
 	public void LaunchInSeparateWindow_01() throws HarnessException {
@@ -127,8 +127,8 @@ public class LaunchInSeparateWindow extends CalendarWorkWeekTest {
 		}
 	}
 	
-	@Bugs(ids = "106999")
-	@Test( description = "Grantee with view rights launches grantor's calendar in the new window",
+	@Bugs (ids = "106999")
+	@Test (description = "Grantee with view rights launches grantor's calendar in the new window",
 			groups = { "functional", "L5" })
 			
 	public void LaunchInSeparateWindow_02() throws HarnessException {
@@ -185,8 +185,8 @@ public class LaunchInSeparateWindow extends CalendarWorkWeekTest {
 	}
 
 	
-	@Bugs(ids = "106999")
-	@Test( description = "Grantee with view rights launches grantor's calendar with appt in the new window and clicks on the appt",
+	@Bugs (ids = "106999")
+	@Test (description = "Grantee with view rights launches grantor's calendar with appt in the new window and clicks on the appt",
 			groups = { "functional", "L5" })
 
 	public void LaunchInSeparateWindow_03() throws HarnessException {

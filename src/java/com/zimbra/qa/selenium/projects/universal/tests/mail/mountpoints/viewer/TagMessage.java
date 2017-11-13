@@ -36,7 +36,7 @@ public class TagMessage extends PrefGroupMailByMessageTest {
 		
 	}
 	
-	@Test( description = "Verify Permission Denied on Tag a shared mail (read-only share)",
+	@Test (description = "Verify Permission Denied on Tag a shared mail (read-only share)",
 			groups = { "functional", "L2" })
 	public void TagMessage_01() throws HarnessException {
 		
@@ -132,7 +132,7 @@ public class TagMessage extends PrefGroupMailByMessageTest {
 	}
 
 	
-	@Test( description = "Verify Permission Denied on Tag (keyboard='t') a shared mail (read-only share)",
+	@Test (description = "Verify Permission Denied on Tag (keyboard='t') a shared mail (read-only share)",
 			groups = { "deprecated", "L4" }) // See bug: http://bugzilla.zimbra.com/show_bug.cgi?id=79887
 	public void TagMessage_02() throws HarnessException {
 		

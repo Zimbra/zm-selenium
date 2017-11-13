@@ -36,7 +36,7 @@ public class EmptyFolder extends PrefGroupMailByMessageTest {
 
 	}
 
-	@Test( description = "Empty a folder (context menu)", groups = { "smoke", "L1" })
+	@Test (description = "Empty a folder (context menu)", groups = { "smoke", "L1" })
 	public void EmptyFolder_01() throws HarnessException {
 
 		String foldername = "folder"

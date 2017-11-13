@@ -33,8 +33,8 @@ public class BookLocationBySuggestingTime extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 	
-	@Bugs(ids = "73966,88287")
-	@Test( description = "Suggest a free time and book location for selected time while creating new appointment",
+	@Bugs (ids = "73966,88287")
+	@Test (description = "Suggest a free time and book location for selected time while creating new appointment",
 			groups = { "smoke", "L1"})
 	
 	public void BookLocationBySuggestingTime_01() throws HarnessException {

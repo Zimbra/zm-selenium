@@ -31,8 +31,8 @@ public class BasicRegistration extends UniversalCommonTest {
 	}
 	
 	
-	@Bugs(ids = "103011")
-	@Test( description = "Register as and external user", priority=3, 
+	@Bugs (ids = "103011")
+	@Test (description = "Register as and external user", priority=3, 
 		groups = { "smoke", "L0"})
 	
 	public void BasicRegistration_01() throws HarnessException {

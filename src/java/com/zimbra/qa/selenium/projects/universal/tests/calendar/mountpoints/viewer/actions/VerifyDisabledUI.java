@@ -31,7 +31,7 @@ public class VerifyDisabledUI extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 	
-	@Test( description = "Verify Share Calendar, Reinvite Attendees, Forward, Delete, Move & Tag Appointment right click menus are non-functional on mountpoint appointment (read-only share)",
+	@Test (description = "Verify Share Calendar, Reinvite Attendees, Forward, Delete, Move & Tag Appointment right click menus are non-functional on mountpoint appointment (read-only share)",
 			groups = { "functional", "L2" })
 			
 	public void VerifyDisabledUI_01() throws HarnessException {
@@ -112,8 +112,8 @@ public class VerifyDisabledUI extends CalendarWorkWeekTest {
 		
 	}
 
-	@Bugs(ids = "99947")
-	@Test( description = "Verify Share Calendar, Reinvite Attendees, Forward, Delete, Move & Tag Appointment right click menus are non-functional on mountpoint appointment (read-only share)",
+	@Bugs (ids = "99947")
+	@Test (description = "Verify Share Calendar, Reinvite Attendees, Forward, Delete, Move & Tag Appointment right click menus are non-functional on mountpoint appointment (read-only share)",
 			groups = { "functional", "L5" })
 			
 	public void VerifyDisabledUI_02() throws HarnessException {

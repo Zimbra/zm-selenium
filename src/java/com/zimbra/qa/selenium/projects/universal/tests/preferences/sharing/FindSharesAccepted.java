@@ -35,7 +35,7 @@ public class FindSharesAccepted extends UniversalCommonTest {
 		
 		
 	}
-	@Test( description = "View the sharing preference page - show accepted shares", groups = { "functional", "L2" }		)
+	@Test (description = "View the sharing preference page - show accepted shares", groups = { "functional", "L2" }		)
 	
 	public void FindSharesAccepted_01() throws HarnessException {
 

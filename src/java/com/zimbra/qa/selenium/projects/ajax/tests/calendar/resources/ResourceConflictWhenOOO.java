@@ -35,7 +35,7 @@ public class ResourceConflictWhenOOO extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "102271")
+	@Bugs (ids = "102271")
 	@Test (description = "Verify if OOO status of Location causes double booking",
 			groups = { "functional-skip", "application-bug" })
 

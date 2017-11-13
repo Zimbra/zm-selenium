@@ -79,8 +79,8 @@ public class DisplayDocument extends FeatureBriefcaseTest {
 	}
 
 
-	@Bugs(ids = "79994")
-	@Test (description = " german umlauts breaks briefcase ",
+	@Bugs (ids = "79994")
+	@Test (description = "german umlauts breaks briefcase ",
 			groups = { "functional", "L3" })
 
 	public void DisplayDocument_02() throws HarnessException {

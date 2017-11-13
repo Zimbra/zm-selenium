@@ -47,7 +47,7 @@ public class OwnerAccountLocked extends UniversalCommonTest {
 	}
 	
 	
-	@Test( description = "Login to the Universal Client - with a mountpoint to a 'locked' account",
+	@Test (description = "Login to the Universal Client - with a mountpoint to a 'locked' account",
 			groups = { "functional", "L3"})
 	public void OwnerAccountLocked01() throws HarnessException {
 		

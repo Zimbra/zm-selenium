@@ -57,21 +57,21 @@ public class DeleteSignature extends AjaxCommonTest {
 
 
 	/**
-	 * Test case :Delete Text signature using Delete button and verify toast msg
+	 * Test case :Delete Text signature using Delete button and verify toast message
 	 * throguh GUI
 	 */
 
-	@Test (description = " Delete Text signature using Delete button and verify toast msg throguh GUI ",
+	@Test (description = "Delete Text signature using Delete button and verify toast message throguh GUI ",
 			groups = { "functional", "L3" })
 
-	public void DeleteSignaturesToastMsg_01() throws HarnessException {
+	public void DeleteSignature_01() throws HarnessException {
 
 		// Click on Mail/signature
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.MailSignatures);
 
 		// Signature is created
 		SignatureItem signature = SignatureItem.importFromSOAP(app.zGetActiveAccount(), this.sigName);
-		ZAssert.assertEquals(signature.getName(), this.sigName, "verified Text Signature is created");
+		ZAssert.assertEquals(signature.getName(), this.sigName, "Verify text signature is created");
 
 		FormSignatureNew signew = new FormSignatureNew(app);
 
@@ -87,7 +87,7 @@ public class DeleteSignature extends AjaxCommonTest {
 
 		// Verifying the toaster message
 		Toaster toast = app.zPageMain.zGetToaster();
-		String toastMsg = toast.zGetToastMessage();
-		ZAssert.assertStringContains(toastMsg, "Preferences Saved", "Verify toast message: Preferences Saved");
+		String toastMessage = toast.zGetToastMessage();
+		ZAssert.assertStringContains(toastMessage, "Preferences Saved", "Verify toast message: Preferences Saved");
 	}
 }

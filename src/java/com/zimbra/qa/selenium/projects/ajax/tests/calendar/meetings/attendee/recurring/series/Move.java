@@ -35,7 +35,7 @@ public class Move extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "95961")
+	@Bugs (ids = "95961")
 	@Test (description = "Move entire series to different calendar folder",
 			groups = { "smoke", "L1" })
 

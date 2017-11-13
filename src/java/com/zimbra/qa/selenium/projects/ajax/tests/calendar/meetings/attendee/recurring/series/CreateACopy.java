@@ -34,7 +34,7 @@ public class CreateACopy extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "95961")
+	@Bugs (ids = "95961")
 	@Test (description = "Create a copy of meeting invite (Series)",
 			groups = { "functional", "L2" })
 

@@ -35,7 +35,7 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 		logger.info("New "+ CreateMailText.class.getCanonicalName());
 	}
 	
-	@Test( description = "Send a text mail using the Zimbra Assistant",
+	@Test (description = "Send a text mail using the Zimbra Assistant",
 			groups = { "deprecated", "L4" })
 	public void CreateMailText_01() throws HarnessException {
 		

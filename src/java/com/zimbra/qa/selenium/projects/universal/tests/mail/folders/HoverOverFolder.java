@@ -33,7 +33,7 @@ public class HoverOverFolder extends PrefGroupMailByMessageTest {
 		
 	}
 	
-	@Test( description = "Hover over a folder to show the tooltip",
+	@Test (description = "Hover over a folder to show the tooltip",
 			groups = { "functional", "L2" })
 	public void TooltipFolder_01() throws HarnessException {
 		
@@ -79,7 +79,7 @@ public class HoverOverFolder extends PrefGroupMailByMessageTest {
 
 	}	
 
-	@Test( description = "Hover over a folder - Verify contents",
+	@Test (description = "Hover over a folder - Verify contents",
 			groups = { "functional", "L2" })
 	public void TooltipFolder_02() throws HarnessException {
 		
@@ -153,7 +153,7 @@ public class HoverOverFolder extends PrefGroupMailByMessageTest {
 
 	}	
 
-	@Test( description = "Hover over an empty folder",
+	@Test (description = "Hover over an empty folder",
 			groups = { "functional", "L3" })
 	public void TooltipFolder_03() throws HarnessException {
 		
@@ -195,7 +195,7 @@ public class HoverOverFolder extends PrefGroupMailByMessageTest {
 	  };
 	}
 	
-	@Test( description = "Hover over the system folders",
+	@Test (description = "Hover over the system folders",
 			groups = { "functional", "L2" },
 			dataProvider = "DataProviderSystemFolders")
 	public void TooltipFolder_10(String foldername, SystemFolder foldertype) throws HarnessException {

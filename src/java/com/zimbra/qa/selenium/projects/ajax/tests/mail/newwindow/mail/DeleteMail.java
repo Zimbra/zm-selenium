@@ -33,7 +33,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Bugs( ids = "103950")
+	@Bugs (ids = "103950")
 	@Test (description = "Delete a message from a separate window",
 			groups = { "functional", "L2" })
 

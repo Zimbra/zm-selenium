@@ -59,7 +59,7 @@ public class DeclineMeeting extends AjaxCommonTest {
 	}
 
 
-	@Test (description = " From New Windoow Decline a meeting using Decline button from invitation message",
+	@Test (description = "From New Windoow Decline a meeting using Decline button from invitation message",
 			groups = { "functional", "L2" })
 
 	public void DeclineMeeting_01() throws HarnessException {
@@ -158,7 +158,7 @@ public class DeclineMeeting extends AjaxCommonTest {
 	}
 
 
-	@Test (description = " From New Window >>Decline meeting - Verify organizer gets notification message",
+	@Test (description = "Verify organizer gets notification message when declining meeting from new window",
 			groups = { "functional", "L2" })
 
 	public void DeclineMeeting_02() throws HarnessException {

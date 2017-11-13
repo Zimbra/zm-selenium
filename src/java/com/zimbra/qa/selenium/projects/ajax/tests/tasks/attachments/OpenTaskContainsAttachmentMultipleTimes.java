@@ -47,7 +47,7 @@ public class OpenTaskContainsAttachmentMultipleTimes extends AjaxCommonTest {
 	}
 
 
-	@Bugs( ids = "75283")
+	@Bugs (ids = "75283")
 	@Test (description = "Same attachment keeps on adding while opening same task multiple times",
 			groups = { "smoke", "L1" })
 

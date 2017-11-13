@@ -45,8 +45,8 @@ public class UndoDeleteTask extends UniversalCommonTest {
 
 	}
 	
-	@Bugs( ids = "96832")
-	@Test( description = "Undone deleted  task",groups = { "smoke", "L1"})
+	@Bugs (ids = "96832")
+	@Test (description = "Undone deleted  task",groups = { "smoke", "L1"})
 	public void UndoDeleteTask_01() throws HarnessException {
 
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);

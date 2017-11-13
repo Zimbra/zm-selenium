@@ -38,8 +38,8 @@ public class DeclineProposeNewTime extends CalendarWorkWeekTest {
 		
 	}
 	
-	@Bugs(ids = "69132,96556,96748")
-	@Test( description = "Receive meeting invite -> Propose New Time to organizer and organizer declines the new time using conversation view", 
+	@Bugs (ids = "69132,96556,96748")
+	@Test (description = "Receive meeting invite -> Propose New Time to organizer and organizer declines the new time using conversation view", 
 			groups = { "functional", "L2" })
 	public void DeclineProposeNewTime_01() throws HarnessException {
 

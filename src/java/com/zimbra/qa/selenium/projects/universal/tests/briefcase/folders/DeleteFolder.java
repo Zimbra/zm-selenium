@@ -35,7 +35,7 @@ public class DeleteFolder extends FeatureBriefcaseTest {
 		super.startingPage = app.zPageBriefcase;
 	}
 
-	@Test( description = "Delete a briefcase sub-folder - Right click, Delete", 
+	@Test (description = "Delete a briefcase sub-folder - Right click, Delete", 
 			groups = { "smoke", "L0" })
 	public void DeleteFolder_01() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
@@ -81,7 +81,7 @@ public class DeleteFolder extends FeatureBriefcaseTest {
 				"Verify the subfolder's parent is now the trash folder ID");
 	}
 
-	@Test( description = "Delete a a top level briefcase folder - Right click, Delete", 
+	@Test (description = "Delete a a top level briefcase folder - Right click, Delete", 
 			groups = { "smoke", "L1" })
 	public void DeleteFolder_02() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
@@ -130,8 +130,8 @@ public class DeleteFolder extends FeatureBriefcaseTest {
 				"Verify the deleted briefcase top level folder's parent is now the trash folder ID");
 	}
 
-	@Bugs(ids = "80600")
-	@Test( description = "Delete a briefcase sub-folder from list view and hitting toolbar delete button", 
+	@Bugs (ids = "80600")
+	@Test (description = "Delete a briefcase sub-folder from list view and hitting toolbar delete button", 
 			groups = { "functional", "L2" })
 	public void DeleteFolder_03() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();

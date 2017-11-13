@@ -32,7 +32,7 @@ public class ZmContactsAppFolders extends UniversalCommonTest {
 
 	}
 
-	@Test( description = "Measure the time to load the contacts app, 1 addressbook",
+	@Test (description = "Measure the time to load the contacts app, 1 addressbook",
 			groups = { "performance", "L4"})
 	public void ZmContactsAppFolders_01() throws HarnessException {
 
@@ -62,7 +62,7 @@ public class ZmContactsAppFolders extends UniversalCommonTest {
 
 	}
 
-	@Test( description = "Measure the time to load the contacts app, 100 addressbooks",
+	@Test (description = "Measure the time to load the contacts app, 100 addressbooks",
 			groups = { "performance", "L4"})
 	public void ZmContactsAppFolders_02() throws HarnessException {
 

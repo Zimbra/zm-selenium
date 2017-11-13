@@ -36,7 +36,7 @@ public class ForwardMailWithAttachment extends PrefGroupMailByMessageTest {
 		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "text");
 	}
 
-	@Test( description = "Forward a mail by adding attachment - Verify both attachment sent",
+	@Test (description = "Forward a mail by adding attachment - Verify both attachment sent",
 			groups = { "sanity", "L0" })
 
 	public void ForwardMailWithAttachment_01() throws HarnessException {

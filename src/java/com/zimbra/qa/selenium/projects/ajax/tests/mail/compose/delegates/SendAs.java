@@ -98,7 +98,7 @@ public class SendAs extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Bugs(ids="106931,102475")
+	@Bugs (ids = "106931,102475")
 	@Test (description = "Forward a mail with attachment as a delegate - Verify attachment sent",
 			groups = { "functional", "L2" })
 

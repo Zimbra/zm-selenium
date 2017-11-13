@@ -37,7 +37,7 @@ public class CancelMeeting extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "69132")
+	@Bugs (ids = "69132")
 	@Test (description = "Cancel meeting using Delete toolbar button",
 			groups = { "smoke", "L1" })
 
@@ -110,7 +110,7 @@ public class CancelMeeting extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "69132")
+	@Bugs (ids = "69132")
 	@Test (description = "Cancel meeting using keyboard shortcuts Del & Backspace",
 			groups = { "functional", "L2"},
 			dataProvider = "DataProviderShortcutKeys")
@@ -177,7 +177,7 @@ public class CancelMeeting extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "69132")
+	@Bugs (ids = "69132")
 	@Test (description = "Don't cancel the meeting (press Cancel button from cancellation dialog)",
 			groups = { "functional", "L2" })
 
@@ -236,7 +236,7 @@ public class CancelMeeting extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "69132")
+	@Bugs (ids = "69132")
 	@Test (description = "Cancel appointment without modifying cancellation message content",
 			groups = { "functional", "L2" })
 
@@ -302,7 +302,7 @@ public class CancelMeeting extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "69132,77548")
+	@Bugs (ids = "69132,77548")
 	@Test (description = "Modify meeting cancellation message while cancelling appointment",
 			groups = { "functional", "L2" })
 

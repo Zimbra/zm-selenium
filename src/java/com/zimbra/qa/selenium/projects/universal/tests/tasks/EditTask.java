@@ -54,7 +54,7 @@ public class EditTask extends UniversalCommonTest{
 		}};
 	}
 	
-	@Test( description = "Create task through SOAP - edit subject and verify through GUI",
+	@Test (description = "Create task through SOAP - edit subject and verify through GUI",
 			groups = { "smoke", "L0"})
 	
 	public void EditTask_01() throws HarnessException {
@@ -139,8 +139,8 @@ public class EditTask extends UniversalCommonTest{
 	 * @throws HarnessException
 	 */
 	
-	@Bugs(ids="64647")
-	@Test( description = "Create task through SOAP - edit due date >> Refresh task >>verify Due Date in list view through GUI",
+	@Bugs (ids = "64647")
+	@Test (description = "Create task through SOAP - edit due date >> Refresh task >>verify Due Date in list view through GUI",
 			groups = { "smoke", "L1"})
 	
 	public void EditTask_02() throws HarnessException {
@@ -196,7 +196,7 @@ public class EditTask extends UniversalCommonTest{
 		ZAssert.assertEquals(actual.zGetTaskListViewProperty(com.zimbra.qa.selenium.projects.universal.ui.tasks.DisplayTask.Field.DueDate), dueDate.toMM_DD_YYYY(), "Verify the due date matches after refresh");	
 	}
 	
-	@Test( description = "Create task through SOAP - Edit task using Right Click Context Menu & verify through GUI",
+	@Test (description = "Create task through SOAP - Edit task using Right Click Context Menu & verify through GUI",
 			groups = { "smoke", "L1"})
 	
 	public void EditTask_03() throws HarnessException {

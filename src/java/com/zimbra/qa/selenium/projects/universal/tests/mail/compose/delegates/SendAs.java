@@ -37,7 +37,7 @@ public class SendAs extends PrefGroupMailByMessageTest {
 		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "text");
 	}
 	
-	@Test( description = "Send As another user",
+	@Test (description = "Send As another user",
 			groups = { "smoke", "L1" })
 	public void SendAs_01() throws HarnessException {
 		
@@ -97,8 +97,8 @@ public class SendAs extends PrefGroupMailByMessageTest {
 		}
 	}
 	
-	@Bugs(ids="106931,102475")
-	@Test( description = "Forward a mail with attachment as a delegate - Verify attachment sent",
+	@Bugs (ids = "106931,102475")
+	@Test (description = "Forward a mail with attachment as a delegate - Verify attachment sent",
 			groups = { "functional", "L2" })
 	public void SendAs_02() throws HarnessException {
 		

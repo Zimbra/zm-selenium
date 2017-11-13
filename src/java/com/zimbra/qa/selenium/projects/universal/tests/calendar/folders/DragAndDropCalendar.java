@@ -36,7 +36,7 @@ public class DragAndDropCalendar extends CalendarWorkWeekTest{
 
 	}
 
-	@Test( description = "Drag one calendar and Drop into other",
+	@Test (description = "Drag one calendar and Drop into other",
 			groups = { "smoke", "L1" })
 	public void DragDropCalendar_01() throws HarnessException {
 

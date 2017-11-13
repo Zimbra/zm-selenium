@@ -31,8 +31,8 @@ public class ViewAppointment extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 
-	@Bugs(ids = "47629")
-	@Test( description = "HTML view of public shared calendar not showing appointments",
+	@Bugs (ids = "47629")
+	@Test (description = "HTML view of public shared calendar not showing appointments",
 			groups = { "sanity", "L0" })
 
 	public void ViewAppointment_01() throws HarnessException {

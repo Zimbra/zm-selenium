@@ -33,7 +33,7 @@ public class ResetStatusAfterModifyingSubject extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "49881")
+	@Bugs (ids = "49881")
 	@Test (description = "Check reset status of meeting after modifying subject",
 			groups = { "functional", "L2" })
 

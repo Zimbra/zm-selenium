@@ -37,7 +37,7 @@ public class EditContact extends UniversalCommonTest {
 
 	}
 
-	@Test(description = "Edit a contact item, click Edit on toolbar and verify toast msg",
+	@Test (description = "Edit a contact item, click Edit on toolbar and verify toast msg",
 			groups = { "functional", "L2"})
 	public void EditContactToastMsg_01() throws HarnessException {
 
@@ -75,7 +75,7 @@ public class EditContact extends UniversalCommonTest {
 
 	}
 
-	@Test(description = "Edit a contact item, Right click then click Edit and verify toast msg", 
+	@Test (description = "Edit a contact item, Right click then click Edit and verify toast msg", 
 			groups = {"functional", "L2"})
 	public void EditContactToastMsg_02() throws HarnessException {
 
@@ -111,7 +111,7 @@ public class EditContact extends UniversalCommonTest {
 
 	}
 
-	@Test(description = "Edit a contact item, double click the contact and verify toast msg", 
+	@Test (description = "Edit a contact item, double click the contact and verify toast msg", 
 			groups = { "functional", "L2"})
 	public void EditContactToastMsg_03() throws HarnessException {
 

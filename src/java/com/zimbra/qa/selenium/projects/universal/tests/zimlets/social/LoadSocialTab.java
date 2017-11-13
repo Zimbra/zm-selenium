@@ -38,8 +38,8 @@ import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
 	/**
 	 * @throws HarnessException
 	 */
-	@Bugs(ids = "50123")
-	@Test( description = "Basic test case: Load the Social tab",
+	@Bugs (ids = "50123")
+	@Test (description = "Basic test case: Load the Social tab",
 			groups = { "deprecated", "L4" })
 	public void LoadSocialTab_01() throws HarnessException {
 		

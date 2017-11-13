@@ -34,7 +34,7 @@ public class ModifyDLByAddingRemovingMembers extends UniversalCommonTest  {
 		super.startingAccountPreferences = null;
 	}
 	
-	@Test( description = "Modify DL by adding and removing members", 
+	@Test (description = "Modify DL by adding and removing members", 
 			groups = { "functional", "L2"})
 
 	public void ModifyDLByAddingRemovingMembers_01 () throws HarnessException {

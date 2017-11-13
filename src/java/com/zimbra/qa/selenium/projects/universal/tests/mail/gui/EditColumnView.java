@@ -36,8 +36,8 @@ public class EditColumnView extends UniversalCommonTest {
 		super.startingAccountPreferences.put("zimbraPrefGroupMailBy", "message");
 	}
 	
-	@Bugs(ids="44785")
-	@Test( description = "Edit the columns to display in message view and verify that change is preserved in new session", 
+	@Bugs (ids = "44785")
+	@Test (description = "Edit the columns to display in message view and verify that change is preserved in new session", 
 			groups = { "functional", "L2"})
 
 	public void EditColumnView_01() throws HarnessException {
@@ -90,7 +90,7 @@ public class EditColumnView extends UniversalCommonTest {
 		ZAssert.assertFalse(isPresent, "The " + Column.Flag.name() + " column is displayed in new session!" );
 	}
 	
-	@Test( description = "Edit the column to display in conversation view and verify that change is preserved in new session", 
+	@Test (description = "Edit the column to display in conversation view and verify that change is preserved in new session", 
 			groups = { "functional", "L3"})
 
 	public void EditColumnView_02() throws HarnessException {

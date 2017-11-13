@@ -48,7 +48,7 @@ public class ZmMailAppFwdCompose extends UniversalCommonTest {
 
 	}
 
-	@Test( description = "Measure the time to load Fwd-compose  window for simple message", groups = { "performance", "L4" })
+	@Test (description = "Measure the time to load Fwd-compose  window for simple message", groups = { "performance", "L4" })
 	public void ZmMailAppFwdCompose_01() throws HarnessException {
 
 		String mime = ConfigProperties.getBaseDirectory() + "/data/public/mime/email02/mime01.txt";
@@ -73,7 +73,7 @@ public class ZmMailAppFwdCompose extends UniversalCommonTest {
 	}
 	
 	
-	@Test( description = "Measure the time to load reply-compose  window for large conversation", groups = { "performance", "L4" })
+	@Test (description = "Measure the time to load reply-compose  window for large conversation", groups = { "performance", "L4" })
 	public void ZmMailAppFwdCompose_02() throws HarnessException {
 
 		String mime = ConfigProperties.getBaseDirectory() + "/data/public/mime/largeconversation_mime.txt";

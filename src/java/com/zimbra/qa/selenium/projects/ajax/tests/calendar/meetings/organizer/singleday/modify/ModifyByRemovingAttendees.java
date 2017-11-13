@@ -34,7 +34,7 @@ public class ModifyByRemovingAttendees extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "77588,77590")
+	@Bugs (ids = "77588,77590")
 	@Test (description = "Modify meeting by removing attendee and send updates only to added/removed attendees",
 			groups = { "smoke", "L1" })
 
@@ -103,7 +103,7 @@ public class ModifyByRemovingAttendees extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "77588,77590")
+	@Bugs (ids = "77588,77590")
 	@Test (description = "Modify meeting by removing attendee and send updates to all attendees",
 			groups = { "smoke", "L1" })
 

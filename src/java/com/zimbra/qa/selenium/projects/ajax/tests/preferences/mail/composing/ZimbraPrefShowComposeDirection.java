@@ -35,7 +35,7 @@ public class ZimbraPrefShowComposeDirection extends AjaxCommonTest {
 	}
 
 
-	@Bugs(ids = "ZCS-3528")
+	@Bugs (ids = "ZCS-3528")
 	@Test (description = "Verify the presence and working of direction buttons in compose mail screen",
 			groups = { "functional", "L3" })
 

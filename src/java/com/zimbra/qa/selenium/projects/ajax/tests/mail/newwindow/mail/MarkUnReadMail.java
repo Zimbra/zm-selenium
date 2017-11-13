@@ -86,7 +86,7 @@ public class MarkUnReadMail extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Bugs( ids = "103950")
+	@Bugs (ids = "103950")
 	@Test (description = "Mark a message as unread by action menu -> mark read",
 			groups = { "functional", "L2" })
 
@@ -141,7 +141,7 @@ public class MarkUnReadMail extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Bugs(ids = "64133")
+	@Bugs (ids = "64133")
 	@Test (description = "Verify mark unread is enabled in the separate window",
 			groups = { "functional", "L2" })
 

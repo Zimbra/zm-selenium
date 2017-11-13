@@ -39,7 +39,7 @@ public class UnTagMail extends PrefGroupMailByMessageTest {
 	}
 
 
-	@Bugs(ids = "99519")
+	@Bugs (ids = "99519")
 	@Test (description = "Un-Tag a message using Toolbar -> Tag -> Remove Tag - in a separate window",
 			groups = { "functional", "L3" })
 

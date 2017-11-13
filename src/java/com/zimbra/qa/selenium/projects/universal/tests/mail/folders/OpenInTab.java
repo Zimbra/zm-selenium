@@ -34,7 +34,7 @@ public class OpenInTab extends PrefGroupMailByMessageTest {
 
 	}
 
-	@Test( description = "Folder Context menu -> Open In Tab",
+	@Test (description = "Folder Context menu -> Open In Tab",
 			groups = { "smoke", "L1" })
 	public void OpenInTabFolder() throws HarnessException {
 		

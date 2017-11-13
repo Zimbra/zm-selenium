@@ -34,10 +34,10 @@ public class CreateContact extends AjaxCommonTest {
 	}
 
 
-	@Test (description = "Create a basic contact item by click New in page Addressbook and verify toast msg ",
+	@Test (description = "Create a basic contact item by click New in page Addressbook and verify toast message",
 			groups = { "functional", "L2" })
 
-	public void CreateContactToastMsg_01() throws HarnessException {
+	public void CreateContact_01() throws HarnessException {
 
 		String contactFirst = "First" + ConfigProperties.getUniqueString();
 		String contactLast = "Last" + ConfigProperties.getUniqueString();
@@ -60,7 +60,7 @@ public class CreateContact extends AjaxCommonTest {
 
 		// Verifying the toaster message
 		Toaster toast = app.zPageMain.zGetToaster();
-		String toastMsg = toast.zGetToastMessage();
-		ZAssert.assertStringContains(toastMsg, "Contact Created", "Verify toast message: Contact Created");
+		String toastMessage = toast.zGetToastMessage();
+		ZAssert.assertStringContains(toastMessage, "Contact Created", "Verify toast message: Contact Created");
 	}
 }

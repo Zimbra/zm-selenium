@@ -31,7 +31,7 @@ public class AddTrustedDomain extends AjaxCommonTest {
 	}
 
 
-	@Bugs ( ids = "101356")
+	@Bugs (ids = "101356")
 	@Test (description = "Add a trusted domain address",
 			groups = { "sanity", "L0" } )
 

@@ -35,7 +35,7 @@ public class PermanentDeleteAppointment extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 	
-	@Bugs(ids = "104559")
+	@Bugs (ids = "104559")
 	@Test (description = "Permanently delete all day appointment",
 			groups = { "smoke" })
 	

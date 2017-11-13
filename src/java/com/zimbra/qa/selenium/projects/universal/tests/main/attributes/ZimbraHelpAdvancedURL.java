@@ -34,8 +34,8 @@ public class ZimbraHelpAdvancedURL extends UniversalCommonTest {
 	}
 
 	
-	@Bugs(ids = "101023")
-	@Test(description = "Verify the product help URL", priority=5, 
+	@Bugs (ids = "101023")
+	@Test (description = "Verify the product help URL", priority=5, 
 		groups = { "functional", "L3"})
 
 	public void ZimbraHelpAdvancedURL_01() throws HarnessException {

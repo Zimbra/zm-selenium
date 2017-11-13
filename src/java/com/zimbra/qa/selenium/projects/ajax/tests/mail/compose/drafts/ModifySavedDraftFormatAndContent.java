@@ -39,7 +39,7 @@ public class ModifySavedDraftFormatAndContent extends PrefGroupMailByMessageTest
 	}
 
 
-	@Bugs(ids = "53373")
+	@Bugs (ids = "53373")
 	@Test (description = "Modify compose html draft mail and verify its format",
 			groups = { "functional", "L2" })
 

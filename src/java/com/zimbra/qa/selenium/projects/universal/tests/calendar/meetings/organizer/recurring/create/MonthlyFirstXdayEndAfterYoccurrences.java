@@ -32,7 +32,7 @@ public class MonthlyFirstXdayEndAfterYoccurrences extends CalendarWorkWeekTest {
 		super.startingPage = app.zPageCalendar;
 	}
 	
-	@Test( description = "Create monthly recurring invite with attendee and location with particular week & end date",
+	@Test (description = "Create monthly recurring invite with attendee and location with particular week & end date",
 			groups = { "functional", "L2" })
 			
 	public void MonthlyFirstXdayEndAfterYoccurrences_01() throws HarnessException {

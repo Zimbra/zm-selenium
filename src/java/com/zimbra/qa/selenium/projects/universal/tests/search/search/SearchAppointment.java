@@ -37,7 +37,7 @@ public class SearchAppointment extends UniversalCommonTest {
 		
 	}
 	
-	@Test( description = "Search for an appointment by subject",
+	@Test (description = "Search for an appointment by subject",
 			groups = { "functional","L2" })
 	
 	public void SearchAppointment_01() throws HarnessException {
@@ -82,8 +82,8 @@ public class SearchAppointment extends UniversalCommonTest {
 		ZAssert.assertNotNull(found, "Verify the appt list exists");
 	}
 
-	@Bugs(ids = "49386")
-	@Test( description = "Script error when searching in calendar list view", 
+	@Bugs (ids = "49386")
+	@Test (description = "Script error when searching in calendar list view", 
 			groups = { "functional","L2" })
 	
 	public void SearchAppointment_02() throws HarnessException {

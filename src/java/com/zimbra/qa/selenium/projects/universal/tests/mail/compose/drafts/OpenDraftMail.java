@@ -38,8 +38,8 @@ public class OpenDraftMail extends PrefGroupMailByMessageTest {
 		logger.info("New " + OpenDraftMail.class.getCanonicalName());
 	}
 
-	@Bugs(ids = "49907")
-	@Test( description = "Open existing drafts in Reading Pane", groups = { "functional", "L2" })
+	@Bugs (ids = "49907")
+	@Test (description = "Open existing drafts in Reading Pane", groups = { "functional", "L2" })
 	public void OpenDraftMail_01() throws HarnessException {
 
 		// Create the message data to be entered while composing mail

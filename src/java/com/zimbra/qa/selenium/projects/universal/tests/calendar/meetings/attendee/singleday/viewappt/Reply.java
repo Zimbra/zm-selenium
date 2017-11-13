@@ -32,8 +32,8 @@ public class Reply extends CalendarWorkWeekTest {
 		super.startingPage =  app.zPageCalendar;
 	}
 	
-	@Bugs(ids = "106759,102475")
-	@Test( description = "View meeting invite by opening it and reply to organizer",
+	@Bugs (ids = "106759,102475")
+	@Test (description = "View meeting invite by opening it and reply to organizer",
 			groups = { "functional", "L2" })
 			
 	public void ReplyMeeting_01() throws HarnessException {

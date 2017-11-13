@@ -32,7 +32,7 @@ public class MoveSavedSearch extends AjaxCommonTest  {
 	}
 
 
-	@Bugs( ids = "102547")
+	@Bugs (ids = "102547")
 	@Test (description = "Move a saved search",
 			groups = { "smoke","L0" })
 
