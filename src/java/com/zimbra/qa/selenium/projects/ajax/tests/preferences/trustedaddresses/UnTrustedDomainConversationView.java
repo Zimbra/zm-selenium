@@ -31,10 +31,10 @@ import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 
-public class UnTrustedDomainConvView extends AjaxCommonTest {
+public class UnTrustedDomainConversationView extends AjaxCommonTest {
 
 	@SuppressWarnings("serial")
-	public UnTrustedDomainConvView() throws HarnessException {
+	public UnTrustedDomainConversationView() throws HarnessException {
 		super.startingPage = app.zPageMail;
 		super.startingAccountPreferences = new HashMap<String, String>() {{
 			put("zimbraPrefGroupMailBy", "conversation");
@@ -56,7 +56,7 @@ public class UnTrustedDomainConvView extends AjaxCommonTest {
 	@Test (description = "Verify Display Image link in UnTrusted doamin for conversation view",
 			groups = { "sanity", "L0"  })
 
-	public void UnTrustedDomainConvView_01() throws HarnessException {
+	public void UnTrustedDomainConversationView_01() throws HarnessException {
 
 		final String subject = "TestTrustedAddress";
 		final String from = "admintest@testdoamin.com";
@@ -81,6 +81,6 @@ public class UnTrustedDomainConvView extends AjaxCommonTest {
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 
 		// Verify Warning info bar with other links
-		ZAssert.assertTrue(app.zPageMail.zHasWDDLinks(),"Verify Display Image,Domain link  and warning icon are present");
+		ZAssert.assertTrue(app.zPageMail.zHasWDDLinks(),"Verify Display Image, Domain link and warning icon are present");
 	}
 }

@@ -33,10 +33,10 @@ import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
 
-public class ReplyMessageWithTwoThreeLineTextSignature extends AjaxCommonTest {
+public class ReplyMessageWithMultiLineTextSignature extends AjaxCommonTest {
 
 	@SuppressWarnings("serial")
-	public ReplyMessageWithTwoThreeLineTextSignature() {
+	public ReplyMessageWithMultiLineTextSignature() {
 		super.startingPage = app.zPageMail;
 		super.startingAccountPreferences = new HashMap<String, String>() {{
 			put("zimbraPrefComposeFormat", "text");
@@ -52,10 +52,10 @@ public class ReplyMessageWithTwoThreeLineTextSignature extends AjaxCommonTest {
 	 */
 
 	@Bugs (ids = "45490")
-	@Test (description = "Reply message with text signature with multiple lines and Verify signature through soap",
+	@Test (description = "Reply message with text signature with multiple lines and verify signature through soap",
 			groups = { "functional", "L2" })
 
-	public void ReplyMessageWithTwoThreeLineTextSignature_01() throws HarnessException {
+	public void ReplyMessageWithMultiLineTextSignature_01() throws HarnessException {
 
 		String sigName = "signame" + ConfigProperties.getUniqueString();
 		String sigBody = "Signature" + ConfigProperties.getUniqueString() + "\n" + "sign line two" + "\n" + "sign line three";

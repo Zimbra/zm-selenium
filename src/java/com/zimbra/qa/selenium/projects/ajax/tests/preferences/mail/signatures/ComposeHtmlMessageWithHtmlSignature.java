@@ -19,36 +19,40 @@ package com.zimbra.qa.selenium.projects.ajax.tests.preferences.mail.signatures;
 import java.util.HashMap;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import com.zimbra.qa.selenium.framework.core.Bugs;
+import com.zimbra.common.soap.Element;
 import com.zimbra.qa.selenium.framework.items.MailItem;
 import com.zimbra.qa.selenium.framework.items.RecipientItem;
 import com.zimbra.qa.selenium.framework.items.SignatureItem;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
+import com.zimbra.qa.selenium.framework.util.XmlStringUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
 
-public class ComposeMsgWithTextSignature extends AjaxCommonTest {
+public class ComposeHtmlMessageWithHtmlSignature extends AjaxCommonTest {
 	String sigName = "signame" + ConfigProperties.getUniqueString();
-	String sigBody = "sigbody" + ConfigProperties.getUniqueString();
+	String sigBody = "signature<b>bold" + ConfigProperties.getUniqueString() + "</b>signature";
+	String contentHTML = XmlStringUtil.escapeXml("<html>" + "<head></head>" + "<body>" + sigBody + "</body>" + "</html>");
 
-	@SuppressWarnings("serial")
-	public ComposeMsgWithTextSignature() {
+	public ComposeHtmlMessageWithHtmlSignature() {
 		super.startingPage = app.zPageMail;
-		super.startingAccountPreferences = new HashMap<String, String>() { {
-				put("zimbraPrefComposeFormat", "text");
-		} };
+		super.startingAccountPreferences = new HashMap<String, String>() {
+			private static final long serialVersionUID = 1L; {
+				put("zimbraPrefComposeFormat", "html");
+			}
+		};
 	}
 
 	@BeforeMethod(groups = { "always" })
 	public void CreateSignature() throws HarnessException {
+		System.out.println(this.sigName);
 		ZimbraAccount.AccountZCS().authenticate();
 		ZimbraAccount.AccountZCS()
 				.soapSend("<CreateSignatureRequest xmlns='urn:zimbraAccount'>" + "<signature name='" + this.sigName
-						+ "' >" + "<content type='text/plain'>" + this.sigBody + "</content>" + "</signature>"
+						+ "' >" + "<content type='text/html'>'" + this.contentHTML + "'</content>" + "</signature>"
 						+ "</CreateSignatureRequest>");
 
 		// Refresh UI
@@ -57,17 +61,15 @@ public class ComposeMsgWithTextSignature extends AjaxCommonTest {
 		logger.info("CreateSignature: finish");
 	}
 
-
 	/**
-	 * Test case : Create signature through soap Compose text message and add
-	 * text signature Send mail to self and verify signature through soap.
+	 * Test case : Create html signature through soap Compose html message and
+	 * add html signature Send mail to self and verify signature through soap.
 	 */
 
-	@Bugs (ids = "78085")
-	@Test (description = "Compose message with text signature and Verify signature thropugh soap",
-			groups = { "functional", "L3" })
+	@Test (description = "Compose Html message with html signature and Verify signature through soap",
+			groups = { "functional", "L2" })
 
-	public void ComposeMsgWithTextSignature_01() throws HarnessException {
+	public void ComposeHtmlMessageWithHtmlSignature_01() throws HarnessException {
 
 		// Signature is created
 		SignatureItem signature = SignatureItem.importFromSOAP(app.zGetActiveAccount(), this.sigName);
@@ -77,7 +79,7 @@ public class ComposeMsgWithTextSignature extends AjaxCommonTest {
 		MailItem mail = new MailItem();
 		mail.dToRecipients.add(new RecipientItem(ZimbraAccount.AccountZCS()));
 		mail.dSubject = "subject" + ConfigProperties.getUniqueString();
-		mail.dBodyText = "body" + ConfigProperties.getUniqueString();
+		mail.dBodyHtml = "bodybold" + ConfigProperties.getUniqueString() + "body";
 
 		// Open the new mail form
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
@@ -92,15 +94,22 @@ public class ComposeMsgWithTextSignature extends AjaxCommonTest {
 		// Send the message
 		mailform.zSubmit();
 
-		MailItem received = MailItem.importFromSOAP(ZimbraAccount.AccountZCS(), "in:inbox subject:(" + mail.dSubject + ")");
+		ZimbraAccount.AccountZCS().soapSend("<SearchRequest xmlns='urn:zimbraMail' types='message'>"
+				+ "<query>in:inbox subject:(" + mail.dSubject + ")</query>" + "</SearchRequest>");
 
-		// Verify TO, Subject, Body, Signature
+		String id = ZimbraAccount.AccountZCS().soapSelectValue("//mail:SearchResponse/mail:m", "id");
+
+		ZimbraAccount.AccountZCS().soapSend(
+				"<GetMsgRequest xmlns='urn:zimbraMail'>" + "<m id='" + id + "' html='1'/>" + "</GetMsgRequest>");
+		Element getMsgResponse = ZimbraAccount.AccountZCS().soapSelectNode("//mail:GetMsgResponse", 1);
+		MailItem received = MailItem.importFromSOAP(getMsgResponse);
+
 		ZAssert.assertEquals(received.dFromRecipient.dEmailAddress, app.zGetActiveAccount().EmailAddress,
 				"Verify the from field is correct");
 		ZAssert.assertEquals(received.dToRecipients.get(0).dEmailAddress, ZimbraAccount.AccountZCS().EmailAddress,
 				"Verify the to field is correct");
 		ZAssert.assertEquals(received.dSubject, mail.dSubject, "Verify the subject field is correct");
-		ZAssert.assertStringContains(received.dBodyText, mail.dBodyText, "Verify the body content is correct");
-		ZAssert.assertStringContains(received.dBodyText, this.sigBody, "Verify the signature is correct");
+		ZAssert.assertStringContains(received.dBodyHtml.toLowerCase(),
+				mail.dBodyHtml.replace("<b>", "").replace("</b>", ""), "Verify the body content is correct");
 	}
 }
