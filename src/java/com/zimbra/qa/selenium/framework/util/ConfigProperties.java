@@ -14,32 +14,34 @@
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-//helper class for retrieving properties
 package com.zimbra.qa.selenium.framework.util;
 
 import java.io.File;
 import java.net.InetAddress;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Locale;
 import java.util.ResourceBundle;
 import org.apache.commons.configuration.ConfigurationException;
 import org.apache.commons.configuration.PropertiesConfiguration;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
+import com.zimbra.qa.selenium.framework.core.ExecuteHarnessMain;
 
 public class ConfigProperties {
 	private static final Logger logger = LogManager.getLogger(ConfigProperties.class);
-	
-	public static final String PropZimbraVersion = "zimbraserverversion"; 
+
+	public static final String PropZimbraVersion = "zimbraserverversion";
 	private static InetAddress localMachine;
 	private static ConfigProperties instance = null;
 	private File BaseDirectory = null;
-	private File PropertiesConfigurationFilename = null;	
+	private File PropertiesConfigurationFilename = null;
 	private PropertiesConfiguration configProp;
 
 	public static void setStringProperty(String key,String value) {
 		ConfigProperties.getInstance().getConfigProp().setProperty(key, value);
 	}
-	
+
 	public static String getStringProperty(String key, String defaultValue) {
 		return (ConfigProperties.getInstance().getConfigProp().getString(key, defaultValue));
 	}
@@ -47,7 +49,7 @@ public class ConfigProperties {
 	public static String getStringProperty(String key) {
 		return (getStringProperty(key, null));
 	}
-	
+
 	public static int getIntProperty(String key) {
 		return (getIntProperty(key, 0));
 	}
@@ -71,7 +73,7 @@ public class ConfigProperties {
 	public static PropertiesConfiguration getConfigProperties() {
 		return ConfigProperties.getInstance().getConfigProp();
 	}
-	
+
 	public static PropertiesConfiguration setConfigProperties(String filename) {
 		logger.info("setConfigProperties using: "+ filename);
 		ConfigProperties.getInstance().PropertiesConfigurationFilename = new File(filename);
@@ -84,13 +86,13 @@ public class ConfigProperties {
 			return (".");
 		return (ConfigProperties.getInstance().BaseDirectory.getAbsolutePath());
 	}
-	
+
 	public static File setBaseDirectory(String directory) {
 		logger.info("setWorkingDirectory using: "+ directory);
 		ConfigProperties.getInstance().BaseDirectory = new File(directory);
 		return (ConfigProperties.getInstance().BaseDirectory);
 	}
-	
+
 	private PropertiesConfiguration getConfigProp() {
 		return configProp;
 	}
@@ -156,7 +158,7 @@ public class ConfigProperties {
 		defaultProp.setProperty("server", "zqa-062.eng.zimbra.com");
 		defaultProp.setProperty("testOutputDirectory", "test-output");
 		//defaultProp.setProperty("adminName", "admin");
-		//defaultProp.setProperty("adminPwd", "test123"); 				
+		//defaultProp.setProperty("adminPwd", "test123");
 		defaultProp.setProperty("very_small_wait", "1000");
 		defaultProp.setProperty("small_wait", "1000");
 		defaultProp.setProperty("medium_wait", "2000");
@@ -176,7 +178,7 @@ public class ConfigProperties {
 	public enum AppType {
 		AJAX, HTML, MOBILE, TOUCH, ADMIN, UNIVERSAL
 	}
-	
+
 	private static AppType appType = AppType.AJAX;
 	public static void setAppType(AppType type) {
 		appType = type;
@@ -184,7 +186,7 @@ public class ConfigProperties {
 	public static AppType getAppType() {
 		return (appType);
 	}
-	
+
 	public static String getLocalHost() {
 		try {
 			localMachine = InetAddress.getLocalHost();
@@ -194,18 +196,18 @@ public class ConfigProperties {
 			return "127.0.0.1";
 		}
 	}
-	
+
 	private static final String CalculatedBrowser = "CalculatedBrowser";
-	
+
 	public static String getCalculatedBrowser() {
 		String browser = getStringProperty(CalculatedBrowser);
-		
+
 		if ( browser != null ) {
 			return (browser);
 		}
-				
+
 		browser = ConfigProperties.getStringProperty(ConfigProperties.getLocalHost() + ".browser",	ConfigProperties.getStringProperty("browser"));
-		
+
 		if (browser.charAt(0) == '*') {
 			browser = browser.substring(1);
 			if ((browser.indexOf(" ")) > 0) {
@@ -217,7 +219,7 @@ public class ConfigProperties {
 				browser = str;
 			}
 		}
-		
+
 		ConfigProperties.setStringProperty(CalculatedBrowser, browser);
 		return (browser);
 	}
@@ -226,20 +228,32 @@ public class ConfigProperties {
 		uri.addQuery("loginOp", "logout");
 		return (uri.toString());
 	}
-	
+
 	public static String getBaseURL() {
 		return (ZimbraURI.getBaseURI().toString());
 	}
-	
-	public static String zimbraGetVersionString() throws HarnessException {		
-		ZimbraAdminAccount.GlobalAdmin().soapSend("<GetVersionInfoRequest xmlns='urn:zimbraAdmin'/>");
-		String version = ZimbraAdminAccount.GlobalAdmin().soapSelectValue("//admin:info", "version");
-		if ( version == null )
-			throw new HarnessException("Unable to determine version from GetVersionInfoResponse "+ ZimbraAdminAccount.GlobalAdmin().soapLastResponse());
-			return (version);
+
+	public static String zimbraGetVersionString() throws HarnessException {
+		// Get zimbra server version
+		logger.info("Getting zimbra server version...");
+
+		String buildType;
+		for (String zimbraVersion : CommandLineUtility.runCommandOnZimbraServer("zmcontrol -v")) {
+			if (zimbraVersion.toLowerCase().contains("network")) {
+				buildType = "NETWORK";
+			} else {
+				buildType = "FOSS";
+			}
+
+			Date date = new Date();
+			SimpleDateFormat dateTimeFormat = new SimpleDateFormat("hh.mm");
+
+			ExecuteHarnessMain.zimbraVersion = zimbraVersion.replace("Release ", "").split(" ")[0] + "_" + buildType + "-" + dateTimeFormat.format(date);
+		}
+		return ExecuteHarnessMain.zimbraVersion;
 	}
-	
-	public static String zimbraGetReleaseString() throws HarnessException {		
+
+	public static String zimbraGetReleaseString() throws HarnessException {
 		ZimbraAdminAccount.GlobalAdmin().soapSend("<GetVersionInfoRequest xmlns='urn:zimbraAdmin'/>");
 		String release = ZimbraAdminAccount.GlobalAdmin().soapSelectValue("//admin:info", "release");
 		if ( release == null )
@@ -257,7 +271,7 @@ public class ConfigProperties {
 		logger.debug(br);
 		ResourceBundle zmMsg = (ResourceBundle) ConfigProperties.getInstance().getConfigProp().getProperty("zmMsg");
 		System.out.println(zmMsg.getLocale());
-		logger.debug(zmMsg.getLocale());				
+		logger.debug(zmMsg.getLocale());
 	}
 
 }

@@ -24,7 +24,6 @@ import java.lang.reflect.Method;
 import java.net.*;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.text.DecimalFormat;
@@ -36,6 +35,7 @@ import java.util.regex.*;
 import org.apache.commons.cli.*;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.WordUtils;
 import org.apache.log4j.*;
 import org.openqa.selenium.OutputType;
@@ -60,18 +60,24 @@ public class ExecuteHarnessMain {
 	private static HashMap<String, String> configMap = new HashMap<String, String>();
 
 	public static int testsTotal = 0;
-	public static int testsPass = 0;
+	public static int testsPassed = 0;
 	public static int testsFailed = 0;
 	public static int testsSkipped = 0;
 	public static int testsRetried = 0;
+	public static int testsCount = 0;
+	public static StringBuilder testsCountSummary = new StringBuilder();
+
 	public static int currentRunningTest = 1;
-	public static int totalTests = 0;
+	public static int retryLimit = 2;
+	public static Boolean isTestRetried = false;
 
 	public static Date testStartTime;
 	public static Date testEndTime;
 	public static int testTotalSeconds;
 	public static String testTotalMinutes;
 	protected AbsTab startingPage = null;
+
+	public static String zimbraVersion;
 
 	public ExecuteHarnessMain() {
 	}
@@ -84,11 +90,12 @@ public class ExecuteHarnessMain {
 	public String excludefilter = null;
 	public static ArrayList<String> groups = new ArrayList<String>(Arrays.asList("always", "sanity"));
 	public ArrayList<String> excludeGroups = new ArrayList<String>(Arrays.asList("skip", "performance"));
-	public static HashSet<String> RetriedTests = new HashSet<String>();
+	public static HashSet<String> retriedTests = new HashSet<String>();
 
 	private static final String OpenQABasePackage = "org.openqa";
 	public static final String SeleniumBasePackage = "com.zimbra.qa.selenium";
 	public static String testoutputfoldername = null;
+	public static File fTestOutputDirectory;
 	public static ResultListener currentResultListener = null;
 
 	// Zimbra server details
@@ -99,13 +106,6 @@ public class ExecuteHarnessMain {
 	public static int serverPort = 0;
 	public static ArrayList<String> storeServers = null;
 	public static ArrayList<String> mtaServers = null;
-
-	// Harness log
-	public static String logInfo;
-	public static String sHarnessLogFileName = StafIntegration.sHarnessLogFileName;
-	public static String sHarnessLogFileFolderPath, sHarnessLogFilePath;
-	public static Path pHarnessLogFilePath;
-	public static File fTestOutputDirectory, fHarnessLogFile, fHarnessLogFileFolder;
 
 	public static SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy-hhmmss");
 	public static String currentDateTime = simpleDateFormat.format(new Date());
@@ -336,9 +336,16 @@ public class ExecuteHarnessMain {
 			finish = new Date();
 		}
 
-		// calculate how long the tests took
+		// Calculate how long the tests took
 		long duration = finish.getTime() - start.getTime();
-		result.append("Duration: ").append(duration / 1000).append(" seconds\n");
+		int minutes = (int) ((duration / 1000 ) / 60 );
+		int hours = (int) ((duration / 1000 ) / 3600 );
+
+		if (hours == 0) {
+			result.append("Duration: ").append(hours).append(minutes).append(" minutes\n");
+		} else {
+			result.append("Duration: ").append(hours).append(" hours ").append(minutes).append(" minutes\n");
+		}
 		result.append("Browser: ").append(ConfigProperties.getStringProperty("browser")).append('\n');
 
 		return (result.toString());
@@ -462,7 +469,7 @@ public class ExecuteHarnessMain {
 												ConfigProperties.getStringProperty("server.host"))
 										.replace(".eng.zimbra.com", "").replace(".lab.zimbra.com", "")
 								+ ")" + " | " + "Total Tests: " + String.valueOf(testsTotal) + " (Passed: "
-								+ String.valueOf(testsPass) + ", Failed: " + String.valueOf(testsFailed) + ", Skipped: "
+								+ String.valueOf(testsPassed) + ", Failed: " + String.valueOf(testsFailed) + ", Skipped: "
 								+ String.valueOf(testsSkipped) + ", Retried: " + String.valueOf(testsRetried -testsFailed) + ")",
 						currentResultListener.getCustomResult(),
 						testoutputfoldername + "\\TestNG\\emailable-report.html",
@@ -474,7 +481,7 @@ public class ExecuteHarnessMain {
 		} finally {
 
 			testsTotal = 0;
-			testsPass = 0;
+			testsPassed = 0;
 			testsFailed = 0;
 			testsSkipped = 0;
 			testsRetried = 0;
@@ -711,6 +718,15 @@ public class ExecuteHarnessMain {
 		@Override
 		public void afterInvocation(IInvokedMethod method, ITestResult result) {
 
+			String testStatus;
+			Scanner scanner = null;
+
+			if (result.isSuccess()) {
+				testStatus = "PASSED";
+			} else {
+				testStatus = "FAILED";
+			}
+
 			if (method.isTestMethod()) {
 
 				try {
@@ -746,74 +762,111 @@ public class ExecuteHarnessMain {
 				testTotalSeconds = (int) ((testEndTime.getTime()-testStartTime.getTime())/1000);
 				testTotalMinutes = new DecimalFormat("##.##").format((float) Math.round(testTotalSeconds) / 60);
 
-				sHarnessLogFileFolderPath = testoutputfoldername + "\\debug\\projects";
-				sHarnessLogFilePath = sHarnessLogFileFolderPath + "\\" + sHarnessLogFileName;
-				pHarnessLogFilePath = Paths.get(sHarnessLogFileFolderPath, sHarnessLogFileName);
-				fHarnessLogFile = new File(sHarnessLogFilePath);
-				fHarnessLogFileFolder = new File(sHarnessLogFileFolderPath);
+				StafIntegration.sHarnessLogFileFolderPath = testoutputfoldername + "\\debug\\projects";
+				StafIntegration.sHarnessLogFilePath = StafIntegration.sHarnessLogFileFolderPath + "\\" + StafIntegration.sHarnessLogFileName;
+				StafIntegration.pHarnessLogFilePath = Paths.get(StafIntegration.sHarnessLogFileFolderPath, StafIntegration.sHarnessLogFileName);
+				StafIntegration.fHarnessLogFile = new File(StafIntegration.sHarnessLogFilePath);
+				StafIntegration.fHarnessLogFileFolder = new File(StafIntegration.sHarnessLogFileFolderPath);
 
+				// Test summary
 				try {
-					if (currentRunningTest == 1) {
-						Files.write(pHarnessLogFilePath,
-								Arrays.asList("\n\n# | Test | Start Time | End Time | Duration"), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+					Boolean testHeaderFound = false;
+					String testHeader = "# | Test | Start Time | End Time | Duration";
+
+					try {
+						scanner = new Scanner(StafIntegration.fHarnessLogFile);
+					} catch (FileNotFoundException e) {
+						e.printStackTrace();
 					}
 
-					byte[] bytes = Files.readAllBytes(Paths.get(sHarnessLogFilePath));
-					String harnessLogFile = new String(bytes);
+					while (scanner.hasNextLine()) {
+						if (scanner.nextLine().contains(testHeader)) {
+							testHeaderFound = true;
+							break;
+						}
+					}
 
-					// Check for duplication entry if test retried
-					if (harnessLogFile.indexOf(method.getTestMethod().toString()) >= 0) {
-						Files.write(pHarnessLogFilePath,
-								Arrays.asList(currentRunningTest++ + "/" + totalTests + " | " + method.getTestMethod() + " | " + testStartTime.toString().split(" ")[3] + " | "
-										+ testEndTime.toString().split(" ")[3] + " | " + testTotalMinutes), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+					if (!testHeaderFound) {
+						Files.write(StafIntegration.pHarnessLogFilePath,
+								Arrays.asList("\n" + testHeader), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
 					}
 
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
 
-				Boolean found = false;
-				Scanner scanner = null;
-				try {
-					scanner = new Scanner(fHarnessLogFile);
-				} catch (FileNotFoundException e) {
-					e.printStackTrace();
-				}
-				while (scanner.hasNextLine()) {
-					if (scanner.nextLine().contains(method.getTestMethod().toString())) {
-						found = true;
-						break;
-					}
-				}
-				if (!found) {
+				// Test data
+				if (testStatus.equals("PASSED") || isTestRetried.equals(true)) {
+
+					Boolean testDataFound = false;
+					String testLine = null;
+
 					try {
-						Files.write(pHarnessLogFilePath,
-								Arrays.asList(currentRunningTest++ + "/" + totalTests + " | " + method.getTestMethod() + " | " + testStartTime.toString().split(" ")[3] + " | "
-										+ testEndTime.toString().split(" ")[3] + " | " + testTotalMinutes), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
-					} catch (IOException e) {
+						scanner = new Scanner(StafIntegration.fHarnessLogFile);
+					} catch (FileNotFoundException e) {
 						e.printStackTrace();
+					}
+
+					while (scanner.hasNextLine()) {
+						if (scanner.nextLine().contains(method.getTestMethod().toString())) {
+							testDataFound = true;
+							break;
+						}
+					}
+
+					if (testDataFound) {
+
+						try {
+						    testLine = IOUtils.toString(new FileInputStream(StafIntegration.sHarnessLogFilePath), Charset.forName("UTF-8"));
+						} catch (IOException e) {
+						    e.printStackTrace();
+						}
+
+						testLine = testLine.replace("(FAILED) " + method.getTestMethod().toString(),
+								"(" + testStatus + ") " + method.getTestMethod().toString());
+
+						try {
+						    IOUtils.write(testLine, new FileOutputStream(StafIntegration.sHarnessLogFilePath), Charset.forName("UTF-8"));
+						} catch (IOException e) {
+						    e.printStackTrace();
+						}
+
+					} else {
+
+						try {
+							Files.write(StafIntegration.pHarnessLogFilePath,
+									Arrays.asList(currentRunningTest++ + "/" + testsCount + " | (" + testStatus + ") " + method.getTestMethod() + " | " + testStartTime.toString().split(" ")[3] + " | "
+											+ testEndTime.toString().split(" ")[3] + " | " + testTotalMinutes), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
 					}
 				}
 			}
 		}
-
 	}
 
 	public static class RetryAnalyzer implements IRetryAnalyzer {
-		int counter = 0;
-		int retryLimit = 2; //Number of time retries the testcase when it fails
+
+		int retryCounter = 0;
 
 		@Override
 		public boolean retry(ITestResult result) {
-			String fullname = result.getMethod().getMethod().getDeclaringClass().getName() + "." + result.getMethod().getMethod().getName();
-			RetriedTests.add(fullname);
-			if (counter == 1) {
-				testsRetried += 1;
+
+			String testPath = result.getMethod().getMethod().getDeclaringClass().getName() + "." + result.getMethod().getMethod().getName();
+
+			retriedTests.add(testPath);
+			if (retryCounter == 1) {
+				testsRetried++;
 			}
-			if (counter < retryLimit) {
-				counter++;
+
+			if (retryCounter < retryLimit) {
+				retryCounter++;
+				isTestRetried = true;
 				return true;
 			}
+
+			isTestRetried = false;
 			return false;
 		}
 	}
@@ -824,7 +877,7 @@ public class ExecuteHarnessMain {
 
 		@Override
 		public void transform(ITestAnnotation annotation, Class testClass, Constructor testConstructor, Method testMethod) {
-				annotation.setRetryAnalyzer(ExecuteHarnessMain.RetryAnalyzer.class);
+			annotation.setRetryAnalyzer(ExecuteHarnessMain.RetryAnalyzer.class);
 		}
 	}
 
@@ -878,27 +931,29 @@ public class ExecuteHarnessMain {
 		public String getResults() {
 			StringBuilder sb = new StringBuilder();
 
-			sb.append("Total Tests:   ").append(testsTotal).append('\n');
-			sb.append("Total Passed:  ").append(testsPass).append('\n');
-			sb.append("Total Failed:  ").append(testsFailed).append('\n');
-			sb.append("Total Skipped: ").append(testsSkipped).append('\n');
-			sb.append("Total Retried: ").append(testsRetried - testsFailed).append('\n');
+			testsCountSummary.append("Total Tests:   ").append(testsTotal).append('\n');
+			testsCountSummary.append("Total Passed:  ").append(testsPassed).append('\n');
+			testsCountSummary.append("Total Failed:  ").append(testsFailed).append('\n');
+			testsCountSummary.append("Total Skipped: ").append(testsSkipped).append('\n');
+			testsCountSummary.append("Total Retried: ").append(retriedTests.size()).append('\n');
+
+			sb.append(testsCountSummary);
 
 			if (!failedTests.isEmpty()) {
-				sb.append("\n\nFailed tests:\n");
+				sb.append("\nFailed tests:\n");
 				for (String s : failedTests) {
 					sb.append(s).append('\n');
 				}
 			}
 			if (!skippedTests.isEmpty()) {
-				sb.append("\n\nSkipped tests:\n");
+				sb.append("\nSkipped tests:\n");
 				for (String s : skippedTests) {
 					sb.append(s).append('\n');
 				}
 			}
-			if (!ExecuteHarnessMain.RetriedTests.isEmpty()){
-				sb.append("\n\nRetried tests:\n");
-				for (String s : ExecuteHarnessMain.RetriedTests) {
+			if (!retriedTests.isEmpty()){
+				sb.append("\nRetried tests:\n");
+				for (String s : retriedTests) {
 					sb.append(s).append('\n');
 				}
 			}
@@ -976,9 +1031,10 @@ public class ExecuteHarnessMain {
 			}
 
 			emailBody.append("Total Tests     :  ").append(testsTotal).append('\n');
-			emailBody.append("Total Passed    :  ").append(testsPass).append('\n');
+			emailBody.append("Total Passed    :  ").append(testsPassed).append('\n');
 			emailBody.append("Total Failed    :  ").append(testsFailed).append('\n');
 			emailBody.append("Total Skipped   :  ").append(testsSkipped).append('\n');
+			emailBody.append("Total Retried   :  ").append(testsRetried).append('\n');
 
 			if (!failedTests.isEmpty()) {
 				emailBody.append("\n\nFailed tests:\n");
@@ -1148,7 +1204,7 @@ public class ExecuteHarnessMain {
 					+ result.getMethod().getMethod().getName();
 			failedTests.add(fullname); // failedTests.add(fullname.replace("com.zimbra.qa.selenium.projects.",
 										// "main.projects."));
-			RetriedTests.remove(fullname);
+			retriedTests.remove(fullname);
 			getScreenCapture(result);
 		}
 
@@ -1171,11 +1227,14 @@ public class ExecuteHarnessMain {
 		@Override
 		public void onTestStart(ITestResult result) {
 			setRunningTestCase(result);
+
 			// Maintain retry testcases count
-			if(testsTotal==0)
+			if (testsTotal == 0) {
 				testsTotal++;
-			if(testsTotal == testsFailed+testsPass+testsSkipped)
+			}
+			if (testsTotal == testsFailed + testsPassed + testsSkipped) {
 				testsTotal++;
+			}
 		}
 
 		public static void captureScreen() {
@@ -1188,7 +1247,7 @@ public class ExecuteHarnessMain {
 
 		@Override
 		public void onTestSuccess(ITestResult result) {
-			testsPass++;
+			testsPassed++;
 		}
 
 		@Override
@@ -1347,8 +1406,8 @@ public class ExecuteHarnessMain {
 
 		if (totalZimbraServers == 0) {
 
-			logInfo = "-------------- Zimbra pre-configuration and required setup for " + project + " project --------------\n";
-			logger.info(logInfo);
+			StafIntegration.logInfo = "-------------- Zimbra pre-configuration and required setup for " + project + " project --------------\n";
+			logger.info(StafIntegration.logInfo);
 
 			// Get total zimbra servers
 			logger.info("Getting total zimbra servers...");
@@ -1381,67 +1440,65 @@ public class ExecuteHarnessMain {
 				serverPort = 80;
 			}
 
-			fTestOutputDirectory = new File(ConfigProperties.getStringProperty("testOutputDirectory"));
-			sHarnessLogFileFolderPath = fTestOutputDirectory.getAbsolutePath() + "/"
-					+ ConfigProperties.zimbraGetVersionString() + "/" + ConfigProperties.getAppType() + "/"
-					+ ConfigProperties.getStringProperty("browser") + "/" + ConfigProperties.getStringProperty("locale") + "/debug/projects";
-			sHarnessLogFilePath = sHarnessLogFileFolderPath + "\\" + sHarnessLogFileName;
-			pHarnessLogFilePath = Paths.get(sHarnessLogFileFolderPath, sHarnessLogFileName);
-			fHarnessLogFile = new File(sHarnessLogFilePath);
-			fHarnessLogFileFolder = new File(sHarnessLogFileFolderPath);
+			// Harness log
+			StafIntegration.sHarnessLogFileFolderPath = testoutputfoldername + "/debug/projects";
+			StafIntegration.sHarnessLogFilePath = StafIntegration.sHarnessLogFileFolderPath + "\\" + StafIntegration.sHarnessLogFileName;
+			StafIntegration.pHarnessLogFilePath = Paths.get(StafIntegration.sHarnessLogFileFolderPath, StafIntegration.sHarnessLogFileName);
+			StafIntegration.fHarnessLogFile = new File(StafIntegration.sHarnessLogFilePath);
+			StafIntegration.fHarnessLogFileFolder = new File(StafIntegration.sHarnessLogFileFolderPath);
 
 			// Create harness log folder and file
-			fHarnessLogFileFolder.mkdirs();
-			if (!fHarnessLogFile.exists()) {
-				fHarnessLogFile.createNewFile();
+			StafIntegration.fHarnessLogFileFolder.mkdirs();
+			if (!StafIntegration.fHarnessLogFile.exists()) {
+				StafIntegration.fHarnessLogFile.createNewFile();
 			}
 
-			Files.write(pHarnessLogFilePath, Arrays.asList(logInfo), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+			Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
 
 			// Get all zimbra servers
-			logInfo = "No. of zimbra server(s): " + totalZimbraServers;
-			logger.info(logInfo);
-			Files.write(pHarnessLogFilePath, Arrays.asList(logInfo), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+			StafIntegration.logInfo = "No. of zimbra server(s): " + totalZimbraServers;
+			logger.info(StafIntegration.logInfo);
+			Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
 
 			// Port details
-			logInfo = "Server admin port: " + adminPort + ", server port: " + serverPort;
-			logger.info(logInfo);
-			Files.write(pHarnessLogFilePath, Arrays.asList(logInfo), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+			StafIntegration.logInfo = "Server admin port: " + adminPort + ", server port: " + serverPort;
+			logger.info(StafIntegration.logInfo);
+			Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
 
 			// Multi node settings
 			if (totalZimbraServers >= 2) {
 				// Get all proxy servers
-				logInfo = "No. of proxy server(s): " + totalZimbraProxyServers;
-				logger.info(logInfo);
-				Files.write(pHarnessLogFilePath, Arrays.asList(logInfo), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
-				Files.write(pHarnessLogFilePath, Arrays.asList("Admin port: " + adminPort + ", Client port: " + serverPort),
+				StafIntegration.logInfo = "No. of proxy server(s): " + totalZimbraProxyServers;
+				logger.info(StafIntegration.logInfo);
+				Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+				Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList("Admin port: " + adminPort + ", Client port: " + serverPort),
 						Charset.forName("UTF-8"), StandardOpenOption.APPEND);
 
 				// Get all store servers
 				logger.info("Get all store servers...");
 				storeServers = CommandLineUtility.runCommandOnZimbraServer("zmprov -l gas mailbox");
-				logInfo = "Store server(s): " + storeServers;
-				logger.info(logInfo);
-				Files.write(pHarnessLogFilePath, Arrays.asList(logInfo), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+				StafIntegration.logInfo = "Store server(s): " + storeServers;
+				logger.info(StafIntegration.logInfo);
+				Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
 				if (storeServers.equals(null) || storeServers.isEmpty()) {
 					seleniumService.stopSeleniumExecution();
-					logInfo = "Couldn't get store servers (" + storeServers + ") using CLI command";
-					logger.info(logInfo);
-					Files.write(pHarnessLogFilePath, Arrays.asList(logInfo), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+					StafIntegration.logInfo = "Couldn't get store servers (" + storeServers + ") using CLI command";
+					logger.info(StafIntegration.logInfo);
+					Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
 					System.exit(0);
 				}
 
 				// Get all mta servers
 				logger.info("Get all mta servers...");
 				mtaServers = CommandLineUtility.runCommandOnZimbraServer("zmprov -l gas mta");
-				logInfo = "MTA server(s): " + mtaServers;
-				logger.info(logInfo);
-				Files.write(pHarnessLogFilePath, Arrays.asList(logInfo), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+				StafIntegration.logInfo = "MTA server(s): " + mtaServers;
+				logger.info(StafIntegration.logInfo);
+				Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
 				if (mtaServers.equals(null) || mtaServers.isEmpty()) {
 					seleniumService.stopSeleniumExecution();
-					logInfo = "Couldn't get mta servers (" + mtaServers + ") using CLI command";
-					logger.info(logInfo);
-					Files.write(pHarnessLogFilePath, Arrays.asList(logInfo), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+					StafIntegration.logInfo = "Couldn't get mta servers (" + mtaServers + ") using CLI command";
+					logger.info(StafIntegration.logInfo);
+					Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
 					System.exit(0);
 				}
 
@@ -1459,7 +1516,7 @@ public class ExecuteHarnessMain {
 				String licenseDirPath = ConfigProperties.getBaseDirectory() + "/data/private/license";
 				File licenseDir = new File(licenseDirPath);
 				if (!licenseDir.exists()) {
-					Files.write(pHarnessLogFilePath, Arrays.asList("Creating licence directory " + licenseDirPath), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+					Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList("Creating licence directory " + licenseDirPath), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
 					licenseDir.mkdirs();
 				}
 
@@ -1470,16 +1527,16 @@ public class ExecuteHarnessMain {
 			} else if (project.contains("ajax")) {
 
 				// Grant createDistList right to domain
-				logInfo = "Grant createDistList right to domain using CLI utility";
-				logger.info(logInfo);
-				Files.write(pHarnessLogFilePath, Arrays.asList(logInfo), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+				StafIntegration.logInfo = "Grant createDistList right to domain using CLI utility";
+				logger.info(StafIntegration.logInfo);
+				Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
 				CommandLineUtility.runCommandOnZimbraServer("zmprov grr domain " + ConfigProperties.getStringProperty("testdomain")
 								+ " dom " + ConfigProperties.getStringProperty("testdomain") + " createDistList");
 
 				// Disable zimbraSmimeOCSPEnabled attribute for S/MIME
-				logInfo = "Disable zimbraSmimeOCSPEnabled attribute for S/MIME using CLI utility";
-				logger.info(logInfo);
-				Files.write(pHarnessLogFilePath, Arrays.asList(logInfo), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+				StafIntegration.logInfo = "Disable zimbraSmimeOCSPEnabled attribute for S/MIME using CLI utility";
+				logger.info(StafIntegration.logInfo);
+				Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
 				CommandLineUtility.runCommandOnZimbraServer("zmprov mcf zimbraSmimeOCSPEnabled FALSE");
 
 			// Universal project settings
@@ -1495,20 +1552,20 @@ public class ExecuteHarnessMain {
 				}
 				if (!themeFound.equals(true)) {
 					seleniumService.stopSeleniumExecution();
-					logInfo = "Couldn't find or set " + universalUITheme + " theme for Univeral UI project";
-					logger.info(logInfo);
-					Files.write(pHarnessLogFilePath, Arrays.asList(logInfo), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+					StafIntegration.logInfo = "Couldn't find or set " + universalUITheme + " theme for Univeral UI project";
+					logger.info(StafIntegration.logInfo);
+					Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
 					System.exit(0);
 				} else {
-					logInfo = universalUITheme + " theme set for Univeral UI project";
-					logger.info(logInfo);
-					Files.write(pHarnessLogFilePath, Arrays.asList(logInfo), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+					StafIntegration.logInfo = universalUITheme + " theme set for Univeral UI project";
+					logger.info(StafIntegration.logInfo);
+					Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
 				}
 
 				// Modify COS to always use Clarity theme for Universal UI
-				logInfo = "Modify COS to always use Clarity theme for Universal UI";
-				logger.info(logInfo);
-				Files.write(pHarnessLogFilePath, Arrays.asList(logInfo), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+				StafIntegration.logInfo = "Modify COS to always use Clarity theme for Universal UI";
+				logger.info(StafIntegration.logInfo);
+				Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
 				CommandLineUtility.runCommandOnZimbraServer("zmprov mc default zimbraPrefSkin " + universalUITheme);
 
 				// Get modified COS value for check theme value for Universal UI
@@ -1516,9 +1573,9 @@ public class ExecuteHarnessMain {
 				for (String serverUniversalUITheme : CommandLineUtility.runCommandOnZimbraServer("zmprov gc default | grep zimbraPrefSkin")) {
 					if (!serverUniversalUITheme.split(": ")[1].trim().equals(universalUITheme)) {
 						seleniumService.stopSeleniumExecution();
-						logInfo = "Couldn't set " + universalUITheme + " theme for Univeral UI project";
-						logger.info(logInfo);
-						Files.write(pHarnessLogFilePath, Arrays.asList(logInfo), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+						StafIntegration.logInfo = "Couldn't set " + universalUITheme + " theme for Univeral UI project";
+						logger.info(StafIntegration.logInfo);
+						Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
 						System.exit(0);
 					}
 				}
@@ -1546,9 +1603,6 @@ public class ExecuteHarnessMain {
 	        	}
 	        }
 
-			// Zimbra Pre-configuration and required setup
-			zimbraPreConfiguration(ConfigProperties.getAppType().toString().toLowerCase());
-
 			// Create the harness object and execute it
 			ExecuteHarnessMain harness = new ExecuteHarnessMain();
 			if (harness.parseArgs(args)) {
@@ -1559,7 +1613,7 @@ public class ExecuteHarnessMain {
 					// Sum
 					sumTestsResult = harness.sumTestCounts();
 					String[] splitSumTestsResult = sumTestsResult.split("Number of matching test cases: ");
-					totalTests = Integer.parseInt(splitSumTestsResult[1]);
+					testsCount = Integer.parseInt(splitSumTestsResult[1]);
 
 					// Execute
 					executeTestsResult = harness.execute();
@@ -1572,18 +1626,15 @@ public class ExecuteHarnessMain {
 			DO_TEST_CASE_SUM = false;
 		}
 
-		logger.info(executeTestsResult);
-		System.out.println("*****\n" + executeTestsResult);
+		System.out.println("\n*****\n" + executeTestsResult);
 
 		try {
-			Files.write(pHarnessLogFilePath, Arrays.asList("\n\n" + executeTestsResult),
+			Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList("\n\n" + testsCountSummary),
 					Charset.forName("UTF-8"), StandardOpenOption.APPEND);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 
 		System.exit(0);
-
 	}
-
 }

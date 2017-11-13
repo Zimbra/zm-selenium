@@ -20,7 +20,6 @@ import java.io.*;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -46,18 +45,27 @@ import com.zimbra.qa.selenium.framework.util.ConfigProperties.AppType;
 public class StafIntegration implements STAFServiceInterfaceLevel30 {
     public static Logger mLog = Logger.getLogger(StafIntegration.class);
 
-	// STAF Specifics
-    private static final int kDeviceInvalidSerialNumber = 4001;
-    private String stafServiceName;
-    private STAFHandle stafServiceHandle;
-
-    // STAF log
+    // Harness log
 	public static String sHarnessLogFileName = "harness.log";
 	public static String sHarnessLogFileFolderPath;
 	public static String sHarnessLogFilePath;
 	public static Path pHarnessLogFilePath;
 	public static File fHarnessLogFile;
 	public static File fHarnessLogFileFolder;
+	public static String logInfo;
+
+	// STAF log
+	public static String sSTAFLogFileName = "STAF.log";
+	public static String sSTAFLogFileFolderPath;
+	public static String sSTAFLogFilePath;
+	public static Path pSTAFLogFilePath;
+	public static File fSTAFLogFile;
+	public static File fSTAFLogFileFolder;
+
+	// STAF Specifics
+    private static final int kDeviceInvalidSerialNumber = 4001;
+    private String stafServiceName;
+    private STAFHandle stafServiceHandle;
 
     // SERVICE Specifics
     private static class Parsers {
@@ -132,6 +140,22 @@ public class StafIntegration implements STAFServiceInterfaceLevel30 {
         String valueURL = request.optionValue(Arguments.argDesktopURL);
         String valueLog = request.optionValue(Arguments.argLog);
 
+        // Set the base folder name
+        ConfigProperties.setBaseDirectory(valueRoot);
+        ConfigProperties.setConfigProperties(valueConfig);
+
+        // Create test output directory
+        if (valueLog.contains(ConfigProperties.getStringProperty("testOutputDirectory"))) {
+			String seleniumDir = valueRoot.replace("/build/dist/SelNG", "");
+			if (valueLog.replace(seleniumDir, "").replaceAll("/", "").equals(ConfigProperties.getStringProperty("testOutputDirectory"))) {
+				try {
+					valueLog = seleniumDir + "/" + ConfigProperties.getStringProperty("testOutputDirectory") + "/" + ConfigProperties.zimbraGetVersionString();
+				} catch (HarnessException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+
         mLog.info("valueServer = " + valueServer);
         mLog.info("valueRoot = " + valueRoot);
         mLog.info("valueJarfile = " + valueJarfile);
@@ -152,70 +176,6 @@ public class StafIntegration implements STAFServiceInterfaceLevel30 {
         	// If no groups were specified, default to sanity
         	valueGroup = new ArrayList<String>(Arrays.asList("always", "sanity"));
             mLog.info("valueGroup=always,sanity");
-        }
-
-        // Set the base folder name
-        ConfigProperties.setBaseDirectory(valueRoot);
-
-        if ( (valueConfig != null) && (valueConfig.trim().length() > 0) ) {
-
-        	// Determine which remote host to grab the config.properties from
-        	String host = valueServer;
-        	if ( (valueConfigHost != null) && (valueConfigHost.trim().length() > 0) ) {
-        		host = valueConfigHost;
-        	}
-
-            // Set the config.properties values
-            try {
-
-	        	// Get the remote file and initialize the properties
-	        	StafDevProperties configProperties = new StafDevProperties();
-
-	        	// Get the remote file contents
-	        	configProperties.load(host, valueConfig, valueLog);
-
-				// Save the temp file in the log folder for the records
-				String filename = configProperties.save(valueLog);
-
-				// Tell the harness to load the temp file
-		        ConfigProperties.setConfigProperties(filename);
-
-            } catch (HarnessException e) {
-            	return (new STAFResult(STAFResult.JavaError, getStackTrace(e)));
-
-    		} catch (IOException e) {
-            	return (new STAFResult(STAFResult.JavaError, getStackTrace(e)));
-    		}
-
-        } else {
-
-            try {
-
-            	// Load the original properties
-    			StafProperties configProperties = new StafProperties(valueRoot + "/conf/config.properties");
-
-    			configProperties.setProperty("server.host", valueServer);
-    			configProperties.setProperty("adminName", "globaladmin@" + valueServer);
-
-    			configProperties.setProperty("seleniumMode", "Local");
-    			configProperties.setProperty("serverName", "localhost");
-    			configProperties.setProperty("serverPort", "4444");
-
-    			if ( valueURL != null )
-    				configProperties.setProperty("desktop.buildUrl", valueURL);
-
-    			// Save the temp file in the log folder for the records
-    			String filename = configProperties.save(valueLog);
-
-    			// Tell the harness to load the temp file
-    	        ConfigProperties.setConfigProperties(filename);
-
-    		} catch (FileNotFoundException e) {
-            	return (new STAFResult(STAFResult.JavaError, getStackTrace(e)));
-    		} catch (IOException e) {
-            	return (new STAFResult(STAFResult.JavaError, getStackTrace(e)));
-    		}
-
         }
 
         // Set the app type on the properties
@@ -300,19 +260,6 @@ public class StafIntegration implements STAFServiceInterfaceLevel30 {
 				return (parseResult);
 			}
 
-			// Harness log
-			sHarnessLogFileFolderPath = ExecuteHarnessMain.testoutputfoldername + "\\debug\\projects";
-			sHarnessLogFilePath = sHarnessLogFileFolderPath + "\\" + sHarnessLogFileName;
-			pHarnessLogFilePath = Paths.get(sHarnessLogFileFolderPath, sHarnessLogFileName);
-			fHarnessLogFile = new File(sHarnessLogFilePath);
-			fHarnessLogFileFolder = new File(sHarnessLogFileFolderPath);
-			fHarnessLogFileFolder.mkdirs();
-			try {
-				fHarnessLogFile.createNewFile();
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			}
-
 			// Count testcases
 			try {
 				sumTestsResult = harness.sumTestCounts();
@@ -322,7 +269,7 @@ public class StafIntegration implements STAFServiceInterfaceLevel30 {
 				return (new STAFResult(STAFResult.JavaError, getStackTrace(e)));
 			}
 			String[] splitSumTestsResult = sumTestsResult.split("Number of matching test cases: ");
-			ExecuteHarnessMain.totalTests = Integer.parseInt(splitSumTestsResult[1]);
+			ExecuteHarnessMain.testsCount = Integer.parseInt(splitSumTestsResult[1]);
 
 	        // Execute
 			try {
@@ -336,11 +283,12 @@ public class StafIntegration implements STAFServiceInterfaceLevel30 {
 
 		} catch (HarnessException e) {
 			return (new STAFResult(STAFResult.JavaError, getStackTrace(e)));
+
 		} finally {
 			serviceIsRunning = false;
 
 			try {
-				Files.write(pHarnessLogFilePath, Arrays.asList("\n\n" + resultString),
+				Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList("\n\n" + ExecuteHarnessMain.testsCountSummary),
 						Charset.forName("UTF-8"), StandardOpenOption.APPEND);
 			} catch (IOException e) {
 				e.printStackTrace();

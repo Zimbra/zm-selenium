@@ -20,7 +20,6 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.Arrays;
@@ -32,6 +31,7 @@ import com.ibm.staf.STAFMarshallingContext;
 import com.ibm.staf.STAFResult;
 import com.zimbra.qa.selenium.framework.core.ExecuteHarnessMain;
 import com.zimbra.qa.selenium.framework.util.*;
+import com.zimbra.qa.selenium.staf.StafIntegration;
 
 /**
  * A wrapper class to create STAF classes
@@ -50,14 +50,6 @@ public class StafAbstract {
 	protected STAFResult StafResult = null;
 	protected String StafResponse = null;
 
-	// STAF log
-	public String sHarnessLogFileName = "STAF.log";
-	public String sHarnessLogFileFolderPath;
-	public String sHarnessLogFilePath;
-	public Path pHarnessLogFilePath;
-	public File fHarnessLogFile;
-	public File fHarnessLogFileFolder;
-
 	public StafAbstract() {
 		logger.info("new "+ StafAbstract.class.getCanonicalName());
 
@@ -65,18 +57,19 @@ public class StafAbstract {
 		StafService = "PING";
 		StafParms = "PING";
 
-		// Harness log
-		sHarnessLogFileFolderPath = "C:\\";
-		sHarnessLogFilePath = sHarnessLogFileFolderPath + "\\" + sHarnessLogFileName;
-		pHarnessLogFilePath = Paths.get(sHarnessLogFileFolderPath, sHarnessLogFileName);
-		fHarnessLogFile = new File(sHarnessLogFilePath);
-		fHarnessLogFileFolder = new File(sHarnessLogFileFolderPath);
-		if (!fHarnessLogFileFolder.exists()) {
-			fHarnessLogFileFolder.mkdirs();
+		// STAF log
+		StafIntegration.sSTAFLogFileFolderPath = ExecuteHarnessMain.testoutputfoldername + "/debug/projects";
+		StafIntegration.sSTAFLogFilePath = StafIntegration.sSTAFLogFileFolderPath + "\\" + StafIntegration.sSTAFLogFileName;
+		StafIntegration.pSTAFLogFilePath = Paths.get(StafIntegration.sSTAFLogFileFolderPath, StafIntegration.sSTAFLogFileName);
+		StafIntegration.fSTAFLogFile = new File(StafIntegration.sSTAFLogFilePath);
+		StafIntegration.fSTAFLogFileFolder = new File(StafIntegration.sSTAFLogFileFolderPath);
+		if (!StafIntegration.fSTAFLogFileFolder.exists()) {
+			StafIntegration.fSTAFLogFileFolder.mkdirs();
 		}
 		try {
-			fHarnessLogFile.delete();
-			fHarnessLogFile.createNewFile();
+			if (!StafIntegration.fSTAFLogFile.exists()) {
+				StafIntegration.fSTAFLogFile.createNewFile();
+			}
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
@@ -209,7 +202,7 @@ public class StafAbstract {
 		logger.info("STAF Command: " + getStafCommand(StafServer));
 
 		try {
-			Files.write(pHarnessLogFilePath, Arrays.asList("STAF Command: " + getStafCommand(StafServer) + "\n"),
+			Files.write(StafIntegration.pSTAFLogFilePath, Arrays.asList("STAF Command: " + getStafCommand(StafServer) + "\n"),
 					Charset.forName("UTF-8"), StandardOpenOption.APPEND);
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -247,11 +240,11 @@ public class StafAbstract {
         try {
         	if (StafResult.rc == STAFResult.Ok) {
         		logger.info("STAF Response (success): " + StafResponse);
-				Files.write(pHarnessLogFilePath, Arrays.asList("STAF Response (success): " + StafResponse + "\n"),
+				Files.write(StafIntegration.pSTAFLogFilePath, Arrays.asList("STAF Response (success): " + StafResponse + "\n"),
 						Charset.forName("UTF-8"), StandardOpenOption.APPEND);
         	} else {
         		logger.info("STAF Response (failed): " + StafResponse);
-        		Files.write(pHarnessLogFilePath, Arrays.asList("STAF Response: (failed): " + StafResponse + "\n"),
+				Files.write(StafIntegration.pSTAFLogFilePath, Arrays.asList("STAF Response: (failed): " + StafResponse + "\n"),
 						Charset.forName("UTF-8"), StandardOpenOption.APPEND);
         	}
 		} catch (IOException e) {
