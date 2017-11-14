@@ -84,7 +84,7 @@ public class CreateMailText extends PrefGroupMailByMessageTest {
 		mailform.zFillField(Field.Subject, subject);
 
 		// Enter multiline plain text
-		mailform.sFocus(Locators.zPlainTextBodyField);
+		mailform.sClick(Locators.zPlainTextBodyField);
 		mailform.zKeyboard.zTypeCharacters("Plain text line 1");
 		mailform.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
 		mailform.zKeyboard.zTypeCharacters("Plain text line two");
