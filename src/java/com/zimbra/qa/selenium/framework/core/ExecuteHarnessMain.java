@@ -30,6 +30,7 @@ import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import java.util.jar.*;
 import java.util.regex.*;
 import org.apache.commons.cli.*;
@@ -336,17 +337,26 @@ public class ExecuteHarnessMain {
 			finish = new Date();
 		}
 
-		// Calculate how long the tests took
+		// Calculate how long the tests execution took
 		long duration = finish.getTime() - start.getTime();
-		int minutes = (int) ((duration / 1000 ) / 60 );
-		int hours = (int) ((duration / 1000 ) / 3600 );
 
-		if (hours == 0) {
-			result.append("Duration: ").append(hours).append(minutes).append(" minutes\n");
+		long days = TimeUnit.MILLISECONDS.toDays(duration);
+		duration -= TimeUnit.DAYS.toMillis(days);
+
+		long hours = TimeUnit.MILLISECONDS.toHours(duration);
+		duration -= TimeUnit.HOURS.toMillis(hours);
+
+		long minutes = TimeUnit.MILLISECONDS.toMinutes(duration);
+		duration -= TimeUnit.MINUTES.toMillis(minutes);
+
+		if (days >= 1) {
+			result.append("Duration: ").append(days).append(" day(s) ").append(hours).append(" hour(s)\n");
+		} else if (hours >= 1) {
+			result.append("Duration: ").append(hours).append(" hour(s) ").append(minutes).append(" minute(s)\n");
 		} else {
-			result.append("Duration: ").append(hours).append(" hours ").append(minutes).append(" minutes\n");
+			result.append("Duration: ").append(minutes).append(" minutes\n");
 		}
-		result.append("Browser: ").append(ConfigProperties.getStringProperty("browser")).append('\n');
+		result.append("Browser: ").append(ConfigProperties.getStringProperty("browser"));
 
 		return (result.toString());
 	}
@@ -1202,8 +1212,7 @@ public class ExecuteHarnessMain {
 			testsFailed++;
 			String fullname = result.getMethod().getMethod().getDeclaringClass().getName() + "."
 					+ result.getMethod().getMethod().getName();
-			failedTests.add(fullname); // failedTests.add(fullname.replace("com.zimbra.qa.selenium.projects.",
-										// "main.projects."));
+			failedTests.add(fullname + " " + Arrays.toString(result.getMethod().getGroups()));
 			retriedTests.remove(fullname);
 			getScreenCapture(result);
 		}
@@ -1216,8 +1225,7 @@ public class ExecuteHarnessMain {
 			testsSkipped++;
 			String fullname = result.getMethod().getMethod().getDeclaringClass().getName() + "."
 					+ result.getMethod().getMethod().getName();
-			skippedTests.add(fullname); // skippedTests.add(fullname.replace("com.zimbra.qa.selenium.projects.",
-										// "main.projects."));
+			skippedTests.add(fullname + " " + Arrays.toString(result.getMethod().getGroups()));
 			getScreenCapture(result);
 		}
 
