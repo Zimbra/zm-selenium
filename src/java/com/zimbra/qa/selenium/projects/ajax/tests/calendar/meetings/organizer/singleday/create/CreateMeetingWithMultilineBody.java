@@ -138,7 +138,7 @@ public class CreateMeetingWithMultilineBody extends AjaxCommonTest {
 		apptForm.zFillField(Field.Attendees, attendees);
 
 		// Enter multiline body plain text
-		apptForm.sFocus(Locators.zPlainTextBodyField);
+		apptForm.sClick(Locators.zPlainTextBodyField);
 		apptForm.zKeyboard.zTypeCharacters("Plain text line 1");
 		apptForm.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
 		apptForm.zKeyboard.zTypeCharacters("Plain text line two");
