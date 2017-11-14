@@ -295,6 +295,8 @@ public class ClientSession {
 			fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
 		} catch (IOException e) {
 			e.printStackTrace();
+		} finally {
+			fos.close();
 		}
 	}
 
