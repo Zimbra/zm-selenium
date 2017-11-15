@@ -122,6 +122,8 @@ public class ZimbraHelpAdminURLModification extends AdminCommonTest {
 					+	"<a n='zimbraHelpAdminURL'>https://www.bbc.com</a>"
 					+	"</ModifyConfigRequest>");
 
+			app.zPageMain.zRefreshMainUI();
+
 			String tempURL = null;
 			boolean found = false;
 
