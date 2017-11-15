@@ -159,6 +159,7 @@ public class PageManageCOS extends AbsTab {
 
 			}
 		}
+		SleepUtil.sleepMedium();
 		return page;
 	}
 
@@ -201,6 +202,11 @@ public class PageManageCOS extends AbsTab {
 			// Create the page
 			page = new WizardCreateCos(this);
 
+		} else if (button == Button.B_REFRESH) {
+
+			locator = PageMain.Locators.REFRESH_BUTTON;
+
+			page = null;
 
 		} else if (button == Button.B_TREE_DELETE) {
 
@@ -240,10 +246,7 @@ public class PageManageCOS extends AbsTab {
 		SleepUtil.sleepLong();
 		this.sClickAt(locator,"");
 
-		// If page was specified, make sure it is active
-		if ( page != null ) {
-			SleepUtil.sleepMedium();
-		}
+		SleepUtil.sleepMedium();
 
 		return (page);
 
@@ -314,6 +317,7 @@ public class PageManageCOS extends AbsTab {
 			}
 
 			this.sClickAt(pulldownLocator,"");
+			SleepUtil.sleepSmall();
 
 			// If the app is busy, wait for it to become active
 			//zWaitForBusyOverlay();
@@ -326,6 +330,7 @@ public class PageManageCOS extends AbsTab {
 				}
 				SleepUtil.sleepLong();
 				this.sClickAt(optionLocator,"");
+				SleepUtil.sleepSmall();
 
 				// If the app is busy, wait for it to become active
 				//zWaitForBusyOverlay();

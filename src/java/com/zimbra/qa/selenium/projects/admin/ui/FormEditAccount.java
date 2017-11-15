@@ -98,7 +98,7 @@ public class FormEditAccount extends AbsForm {
 	@Override
 	public void zSubmit() throws HarnessException {
 		sClickAt(Locators.SAVE_BUTTON,"");
-		SleepUtil.sleepSmall();
+		SleepUtil.sleepMedium();
 		sClick(Locators.Pull_DOWN);
 		SleepUtil.sleepSmall();
 		sClick(Locators.PULL_DOWN_CLOSE);

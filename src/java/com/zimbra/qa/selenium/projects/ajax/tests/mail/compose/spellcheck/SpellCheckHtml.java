@@ -47,7 +47,7 @@ public class SpellCheckHtml extends PrefGroupMailByMessageTest {
 
 		// Spell check
 		mailform.zToolbarPressButton(Button.B_SPELL_CHECK);
-		app.zPageMail.zDisplayMailClick(Locators.zMisspelledWordCss + ":contains('mispeled')");
+		app.zPageMail.zDisplayMailClick(Locators.zMisspelledWordCss + ":contains('mispeled')", "css");
 
 		// Verify the misspelled word is highlighted
 		ZAssert.assertFalse(mailform.sIsElementPresent("css=span[class='ZM-SPELLCHECK-MISSPELLED']:contains(words)"),

@@ -212,9 +212,34 @@ public class PageMain extends AbsTab {
 		return null;
 	}
 
-	@Override
 	public AbsPage zToolbarPressButton(Button button) throws HarnessException {
-		return null;
+
+		logger.info(myPageName() + " zToolbarPressButton("+ button +")");
+
+		tracer.trace("Press the "+ button +" button");
+
+		if ( button == null )
+			throw new HarnessException("Button cannot be null!");
+
+		String locator = null;
+		AbsPage page = null;
+
+		if (button == Button.B_REFRESH) {
+			locator = PageMain.Locators.REFRESH_BUTTON;
+			page = null;
+
+		} else {
+			throw new HarnessException("no logic defined for button "+ button);
+		}
+
+		if ( locator == null ) {
+			throw new HarnessException("locator was null for button "+ button);
+		}
+
+		this.sClickAt(locator,"");
+		SleepUtil.sleepMedium();
+
+		return (page);
 	}
 
 	@Override

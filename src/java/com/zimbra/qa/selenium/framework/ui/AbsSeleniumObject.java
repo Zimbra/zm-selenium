@@ -896,14 +896,19 @@ public abstract class AbsSeleniumObject {
 		} else if (ConfigProperties.getAppType().name().equals("ADMIN")) {
 
 			boolean loginPagePresent = false, mainUIPresent = false;
+			SleepUtil.sleepMedium();
 			for (int i=0; i<=10; i++) {
-				loginPagePresent = zIsVisiblePerPosition(PageLogin.Locators.zLoginButtonContainer, 10, 10);
-				mainUIPresent = zIsVisiblePerPosition(PageMain.Locators.zHelpButton, 10, 10);
-				if (loginPagePresent == true || mainUIPresent == true) {
+				if (zIsVisiblePerPosition(PageMain.Locators.zHelpButton, 10, 10) == true) {
+					mainUIPresent = true;
 					break;
+				} else if (zIsVisiblePerPosition(PageLogin.Locators.zLoginButtonContainer, 10, 10) == true) {
+					loginPagePresent = true;
+					break;
+				} else {
+					SleepUtil.sleepMedium();
 				}
-				SleepUtil.sleepMedium();
 			}
+			SleepUtil.sleepMedium();
 			if (loginPagePresent == false && mainUIPresent == false) {
 				throw new HarnessException("Neither login page nor main UI locator present");
 			}

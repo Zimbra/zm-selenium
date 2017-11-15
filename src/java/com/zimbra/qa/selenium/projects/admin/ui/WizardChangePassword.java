@@ -50,6 +50,7 @@ public class WizardChangePassword extends AbsWizard {
 		SleepUtil.sleepSmall();
 
 		sClickAt(Locators.zdlg_OK,"");
+		SleepUtil.sleepMedium();
 		return item;
 
 	}

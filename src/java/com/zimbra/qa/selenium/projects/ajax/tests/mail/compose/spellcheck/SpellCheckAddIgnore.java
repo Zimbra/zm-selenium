@@ -59,7 +59,7 @@ public class SpellCheckAddIgnore extends PrefGroupMailByMessageTest {
 		mailform.zToolbarPressButton(Button.B_SPELL_CHECK);
 
 		// Add misspelled word
-		app.zPageMail.zDisplayMailClick(Locators.zMisspelledWordCss + ":contains('" + misspelledWord + "')");
+		app.zPageMail.zDisplayMailClick(Locators.zMisspelledWordCss + ":contains('" + misspelledWord + "')", "css");
 		mailform.sClickAt(Locators.zAddMisspelledWord,"");
 		SleepUtil.sleepSmall();
 
@@ -117,7 +117,7 @@ public class SpellCheckAddIgnore extends PrefGroupMailByMessageTest {
 		mailform.zToolbarPressButton(Button.B_SPELL_CHECK);
 
 		// Click on the misspelled word
-		app.zPageMail.zDisplayMailClick(Locators.zMisspelledWordCss + ":contains('" + misspelledWord + "')");
+		app.zPageMail.zDisplayMailClick(Locators.zMisspelledWordCss + ":contains('" + misspelledWord + "')", "css");
 
 		// Ignore misspelled word
 		mailform.sClickAt(Locators.zIgnoreMisspelledWord,"0,0");

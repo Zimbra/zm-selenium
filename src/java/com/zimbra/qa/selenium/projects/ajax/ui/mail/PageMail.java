@@ -285,13 +285,17 @@ public class PageMail extends AbsTab {
 		}
 	}
 
-	public void zDisplayMailClick(String locator) throws HarnessException {
+	public void zDisplayMailClick(String locator, String locatorType) throws HarnessException {
 		try {
 			webDriver().switchTo().defaultContent();
 			webDriver().switchTo().frame(0);
-			we = getElement(locator);
+			if (locatorType.equals("link")) {
+				we = webDriver().findElement(By.linkText(locator));
+			} else {
+				we = getElement(locator);
+			}
 			we.click();
-			SleepUtil.sleepSmall();
+			SleepUtil.sleepMedium();
 
 		} finally {
 			webDriver().switchTo().defaultContent();
@@ -1413,7 +1417,7 @@ public class PageMail extends AbsTab {
 			page = null;
 
 		} else {
-			throw new HarnessException("implement me!  action = " + action);
+			throw new HarnessException("implement me! action = " + action);
 		}
 
 		if (page != null) {

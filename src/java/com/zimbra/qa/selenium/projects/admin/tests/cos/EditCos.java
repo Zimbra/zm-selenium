@@ -27,7 +27,6 @@ import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.admin.core.AdminCommonTest;
 import com.zimbra.qa.selenium.projects.admin.items.CosItem;
 import com.zimbra.qa.selenium.projects.admin.ui.FormEditCos;
-import com.zimbra.qa.selenium.projects.admin.ui.PageMain;
 import com.zimbra.qa.selenium.projects.admin.ui.PageSearchResults;
 
 public class EditCos extends AdminCommonTest {
@@ -62,8 +61,8 @@ public class EditCos extends AdminCommonTest {
 						+			"<name>" + cosName + "</name>"
 						+		"</CreateCosRequest>");
 
-		// Refresh the account list
-		app.zPageManageCOS.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
+		//Refresh the account list
+		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
 
 		// Click on account to be deleted.
 		app.zPageManageCOS.zListItem(Action.A_LEFTCLICK, cosName);
@@ -110,7 +109,7 @@ public class EditCos extends AdminCommonTest {
 						+		"</CreateCosRequest>");
 
 		// Refresh the account list
-		app.zPageManageCOS.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
+		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
 
 		// Click on account to be deleted.
 		app.zPageManageCOS.zListItem(Action.A_RIGHTCLICK, cosName);
