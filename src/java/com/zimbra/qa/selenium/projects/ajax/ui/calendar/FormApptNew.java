@@ -1443,4 +1443,64 @@ public class FormApptNew extends AbsForm {
 				+ "' and not(contains(@class,'DwtCalendarDay-grey'))]");
 
 	}
+
+	public void zSelectStartTimeFromDropdown(String Hour, String Minutes, String Meridiem) throws HarnessException {
+
+		String loc = "" + Hour + ":00 " + Meridiem + "";
+		if (Hour == "12") {
+			if (Meridiem == "AM") {
+				loc = "Midnight";
+			} else {
+				loc = "Noon";
+			}
+		}
+
+		this.sClick("css=td[id$='_startTimeSelect'] div[class='ImgSelectPullDownArrow']");
+
+		if (!sIsVisible("td[id$='_title']:contains(" + loc + ")")) {
+			for (int i = 0; i < 16; i++) {
+				sClick("div[class='DwtMenuScrollTop']>div[class='ImgUpArrowSmall']");
+			}
+			while (!sIsVisible("td[id$='_title']:contains(" + loc + ")")) {
+				sClick("div[class='DwtMenuScrollBottom']>div[class='ImgDownArrowSmall']");
+			}
+		}
+		sMouseOver("td[id$='_title']:contains(" + loc + ")");
+		if (Minutes == "00" && (loc == "Midnight" || loc == "Noon")) {
+			sClick("td[id$='_title']:contains(" + loc + ")");
+		} else {
+			sClick("td[id$='_title']:contains(" + Hour + ":" + Minutes + " " + Meridiem + ")");
+		}
+
+	}
+
+	public void zSelectEndTimeFromDropdown(String Hour, String Minutes, String Meridiem) throws HarnessException {
+
+		String loc = "" + Hour + ":00 " + Meridiem + "";
+		if (Hour == "12") {
+			if (Meridiem == "AM") {
+				loc = "Midnight";
+			} else {
+				loc = "Noon";
+			}
+		}
+
+		this.sClick("td[id$='_endTimeSelect'] div[class='ImgSelectPullDownArrow']");
+
+		if (!sIsVisible("td[id$='_title']:contains(" + loc + ")")) {
+			for (int i = 0; i < 16; i++) {
+				sClick("div[class='DwtMenuScrollTop']>div[class='ImgUpArrowSmall']");
+			}
+			while (!sIsVisible("td[id$='_title']:contains(" + loc + ")")) {
+				sClick("div[class='DwtMenuScrollBottom']>div[class='ImgDownArrowSmall']");
+			}
+		}
+		sMouseOver("td[id$='_title']:contains(" + loc + ")");
+		if (Minutes == "00" && (loc == "Midnight" || loc == "Noon")) {
+			sClick("td[id$='_title']:contains(" + loc + ")");
+		} else {
+			sClick("td[id$='_title']:contains(" + Hour + ":" + Minutes + " " + Meridiem + ")");
+		}
+
+	}
 }
