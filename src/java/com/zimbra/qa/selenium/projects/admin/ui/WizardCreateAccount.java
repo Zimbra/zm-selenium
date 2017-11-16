@@ -19,11 +19,14 @@
  */
 package com.zimbra.qa.selenium.projects.admin.ui;
 
-import java.awt.event.KeyEvent;
+import org.openqa.selenium.JavascriptExecutor;
+import com.zimbra.qa.selenium.framework.core.ExecuteHarnessMain;
 import com.zimbra.qa.selenium.framework.items.IItem;
 import com.zimbra.qa.selenium.framework.ui.AbsTab;
 import com.zimbra.qa.selenium.framework.ui.AbsWizard;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
+import com.zimbra.qa.selenium.framework.util.SleepUtil;
+import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.projects.admin.items.AccountItem;
 
 public class WizardCreateAccount extends AbsWizard {
@@ -33,6 +36,8 @@ public class WizardCreateAccount extends AbsWizard {
 		public static final String zdlg_DOMAIN_NAME="zdlgv__NEW_ACCT_name_3_display";
 		public static final String zdlg_LAST_NAME="zdlgv__NEW_ACCT_sn";
 		public static final String zdlg_OK="zdlg__MSG_button2_title";
+		public static final String server_AUTO_CHECKBOX="css=input[id='zdlgv__NEW_ACCT_automailserver']";
+		public static final String server_PULL_DOWN="div[id^='zdlgv__NEW_ACCT'][id*='_zimbraMailHost'] div[class='ImgSelectPullDownArrow']";
 	}
 
 	public WizardCreateAccount(AbsTab page) {
@@ -59,11 +64,6 @@ public class WizardCreateAccount extends AbsWizard {
 		zType(Locators.zdlg_DOMAIN_NAME,"");
 		zType(Locators.zdlg_DOMAIN_NAME,domain);
 
-		this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_TAB);
-		zType(Locators.zdlg_ACCT_NAME, CN);
-
-
-
 		for (String key : account.getAccountAttrs().keySet()) {
 
 			// TODO: Handle Previous/Next to find the input field, if necessary
@@ -79,7 +79,24 @@ public class WizardCreateAccount extends AbsWizard {
 			throw new HarnessException("Unknown account attribute key "+ key);
 
 		}
+		if (ExecuteHarnessMain.totalZimbraServers > 1) {
+			if (sIsVisible(Locators.server_AUTO_CHECKBOX)) {
 
+				// Scroll down to select server from dropdown
+				((JavascriptExecutor) webDriver())
+						.executeScript("var objdiv=document.getElementsByClassName('ZaXWizardDialogPageDiv')[0];"
+								+ "var obj = document.getElementById('zdlgv__NEW_ACCT_automailserver');"
+								+ "objdiv.scrollTo(0,obj.getBoundingClientRect().y - objdiv.getBoundingClientRect().y);");
+
+				sUncheck(Locators.server_AUTO_CHECKBOX);
+				sClick(Locators.server_PULL_DOWN);
+				SleepUtil.sleepSmall();
+				String storeServer = ExecuteHarnessMain.storeServers.get(1);
+				ZAssert.assertEquals(sGetCssCount("div[id^='zdlgv__NEW_ACCT_zimbraMailHost_choice_']"),
+						ExecuteHarnessMain.storeServers.size(), "Verify number of store server listed");
+				sClick("css=div[id^='zdlgv__NEW_ACCT_zimbraMailHost_choice_']:contains('" + storeServer + "')");
+			}
+		}
 		clickFinish(AbsWizard.Locators.ACCOUNT_DIALOG);
 
 		// Need to dismiss the "account created" dialog.
