@@ -1446,9 +1446,12 @@ public class FormApptNew extends AbsForm {
 
 	public void zSelectStartTimeFromDropdown(String Hour, String Minutes, String Meridiem) throws HarnessException {
 
+		if (Hour.equals("0")) {
+			Hour = "12";
+		}
 		String loc = "" + Hour + ":00 " + Meridiem + "";
-		if (Hour == "12") {
-			if (Meridiem == "AM") {
+		if (Hour.equals("12")) {
+			if (Meridiem.equals("AM")) {
 				loc = "Midnight";
 			} else {
 				loc = "Noon";
@@ -1459,14 +1462,14 @@ public class FormApptNew extends AbsForm {
 
 		if (!sIsVisible("td[id$='_title']:contains(" + loc + ")")) {
 			for (int i = 0; i < 16; i++) {
-				sClick("div[class='DwtMenuScrollTop']>div[class='ImgUpArrowSmall']");
+				sClick("div[class*='ZHasSubMenu'][style*='display: block'] div[class='DwtMenuScrollTop']>div[class='ImgUpArrowSmall']");
 			}
 			while (!sIsVisible("td[id$='_title']:contains(" + loc + ")")) {
-				sClick("div[class='DwtMenuScrollBottom']>div[class='ImgDownArrowSmall']");
+				sClick("div[class*='ZHasSubMenu'][style*='display: block'] div[class='DwtMenuScrollBottom']>div[class='ImgDownArrowSmall']");
 			}
 		}
 		sMouseOver("td[id$='_title']:contains(" + loc + ")");
-		if (Minutes == "00" && (loc == "Midnight" || loc == "Noon")) {
+		if (Minutes.equals("00") && (loc.equals("Midnight") || loc.equals("Noon"))) {
 			sClick("td[id$='_title']:contains(" + loc + ")");
 		} else {
 			sClick("td[id$='_title']:contains(" + Hour + ":" + Minutes + " " + Meridiem + ")");
@@ -1476,9 +1479,12 @@ public class FormApptNew extends AbsForm {
 
 	public void zSelectEndTimeFromDropdown(String Hour, String Minutes, String Meridiem) throws HarnessException {
 
+		if (Hour.equals("0")) {
+			Hour = "12";
+		}
 		String loc = "" + Hour + ":00 " + Meridiem + "";
-		if (Hour == "12") {
-			if (Meridiem == "AM") {
+		if (Hour.equals("12")) {
+			if (Meridiem.equals("AM")) {
 				loc = "Midnight";
 			} else {
 				loc = "Noon";
@@ -1489,14 +1495,14 @@ public class FormApptNew extends AbsForm {
 
 		if (!sIsVisible("td[id$='_title']:contains(" + loc + ")")) {
 			for (int i = 0; i < 16; i++) {
-				sClick("div[class='DwtMenuScrollTop']>div[class='ImgUpArrowSmall']");
+				sClick("div[class*='ZHasSubMenu'][style*='display: block'] div[class='DwtMenuScrollTop']>div[class='ImgUpArrowSmall']");
 			}
 			while (!sIsVisible("td[id$='_title']:contains(" + loc + ")")) {
-				sClick("div[class='DwtMenuScrollBottom']>div[class='ImgDownArrowSmall']");
+				sClick("div[class*='ZHasSubMenu'][style*='display: block'] div[class='DwtMenuScrollBottom']>div[class='ImgDownArrowSmall']");
 			}
 		}
 		sMouseOver("td[id$='_title']:contains(" + loc + ")");
-		if (Minutes == "00" && (loc == "Midnight" || loc == "Noon")) {
+		if (Minutes.equals("00") && (loc.equals("Midnight") || loc.equals("Noon"))) {
 			sClick("td[id$='_title']:contains(" + loc + ")");
 		} else {
 			sClick("td[id$='_title']:contains(" + Hour + ":" + Minutes + " " + Meridiem + ")");
