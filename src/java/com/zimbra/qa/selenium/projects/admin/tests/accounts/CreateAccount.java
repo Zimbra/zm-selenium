@@ -42,13 +42,13 @@ public class CreateAccount extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	
-	@Bugs( ids = "100779")
+	@Bugs (ids = "100779")
 	@Test (description = "Create a basic account using New->Account",
 			groups = { "sanity", "L0" })
 	
 	public void CreateAccount_01() throws HarnessException {
 
-		final String surName = "lastName" + ConfigProperties.getUniqueString();
+		String surName = "lastName" + ConfigProperties.getUniqueString();
 
 		AccountItem account = new AccountItem("email" + ConfigProperties.getUniqueString(), surName);
 
@@ -66,7 +66,7 @@ public class CreateAccount extends AdminCommonTest {
 
 		ZAssert.assertEquals(ZimbraAdminAccount.AdminConsoleAdmin().soapSelectValue("//admin:GetAccountResponse/admin:account","name"), account.getEmailAddress(), "Verify account name set successfully");
 		ZAssert.assertEquals(ZimbraAdminAccount.AdminConsoleAdmin().soapSelectValue("//admin:GetAccountResponse/admin:account/admin:a[@n='sn']",null), surName, "Verify account lastname set successfully");
-		ZAssert.assertEquals(ZimbraAdminAccount.AdminConsoleAdmin().soapSelectValue("//admin:GetAccountResponse/admin:account/admin:a[@n='zimbraMailHost']",null), account.zGetAccountStoreHost(), "Verify account email address set successfully");
+		ZAssert.assertEquals(ZimbraAdminAccount.AdminConsoleAdmin().soapSelectValue("//admin:GetAccountResponse/admin:account/admin:a[@n='zimbraMailHost']",null), account.zGetAccountStoreHost(), "Verify store host set successfully");
 	}
 	
 }
