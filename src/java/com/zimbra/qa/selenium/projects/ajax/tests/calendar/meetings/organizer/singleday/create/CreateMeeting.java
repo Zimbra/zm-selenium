@@ -27,6 +27,7 @@ import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
 import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
+import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew.Field;
 import com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail;
 
 public class CreateMeeting extends AjaxCommonTest {
@@ -186,5 +187,53 @@ public class CreateMeeting extends AjaxCommonTest {
 		// Verify the optional receives the invitation
 		invite = MailItem.importFromSOAP(ZimbraAccount.AccountB(), "subject:("+ appt.getSubject() +")");
 		ZAssert.assertNotNull(invite, "Verify the invite is received");
+	}
+
+
+	@Test (description = "Create basic meeting invite by selecting date from date picker and time from dropdown",
+			groups = { "sanity", "L0" })
+
+	public void CreateMeeting_04() throws HarnessException {
+
+		// Create appointment data
+		AppointmentItem appt = new AppointmentItem();
+
+		String apptSubject, apptAttendee1, apptContent;
+		Calendar now = Calendar.getInstance();
+		apptSubject = ConfigProperties.getUniqueString();
+		apptAttendee1 = ZimbraAccount.AccountA().EmailAddress;
+		apptContent = ConfigProperties.getUniqueString();
+
+		appt.setSubject(apptSubject);
+		appt.setAttendees(apptAttendee1);
+
+		FormApptNew apptForm = (FormApptNew) app.zPageCalendar.zToolbarPressButton(Button.B_NEW);
+		apptForm.zFillField(Field.Subject,apptSubject);
+		apptForm.zFillField(Field.Attendees, apptAttendee1);
+		apptForm.zFillField(Field.Body, apptContent);
+
+		//if it is last day of month than set appointment for same day
+		if (now.get(Calendar.DAY_OF_MONTH) == now.getActualMaximum(Calendar.DAY_OF_MONTH)) {
+			now.set(Calendar.DAY_OF_MONTH, now.get(Calendar.DAY_OF_MONTH) - 1);
+		}
+
+		String meridiem = null;
+		if (now.get(Calendar.AM_PM) == 0) {
+			meridiem = "AM";
+		} else {
+			meridiem = "PM";
+		}
+
+		apptForm.zSelectStartDateFromDatePicker(String.valueOf(now.get(Calendar.DAY_OF_MONTH) + 1));
+		apptForm.zSelectStartTimeFromDropdown(String.valueOf(now.get(Calendar.HOUR)), "00", meridiem);
+		apptForm.zSelectEndDateFromDatePicker(String.valueOf(now.get(Calendar.DAY_OF_MONTH) + 1));
+		apptForm.zSelectEndTimeFromDropdown(String.valueOf(now.get(Calendar.HOUR)), "15", meridiem);
+		apptForm.zSubmit();
+
+		// Verify the attendee receives the invitation
+		MailItem invite = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "subject:(" + appt.getSubject() + ")");
+		ZAssert.assertNotNull(invite, "Verify the invite is received");
+		ZAssert.assertEquals(invite.dSubject, appt.getSubject(), "Subject: Verify the appointment data");
+
 	}
 }
