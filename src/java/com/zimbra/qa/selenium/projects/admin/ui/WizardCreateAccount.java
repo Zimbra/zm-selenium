@@ -91,7 +91,7 @@ public class WizardCreateAccount extends AbsWizard {
 				sUncheck(Locators.server_AUTO_CHECKBOX);
 				sClick(Locators.server_PULL_DOWN);
 				SleepUtil.sleepSmall();
-				String storeServer = ExecuteHarnessMain.storeServers.get(1);
+				String storeServer = ExecuteHarnessMain.storeServers.get(0);
 				ZAssert.assertEquals(sGetCssCount("div[id^='zdlgv__NEW_ACCT_zimbraMailHost_choice_']"),
 						ExecuteHarnessMain.storeServers.size(), "Verify number of store server listed");
 				sClick("css=div[id^='zdlgv__NEW_ACCT_zimbraMailHost_choice_']:contains('" + storeServer + "')");
