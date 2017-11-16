@@ -112,6 +112,7 @@ public class ModifyMultipleDayAppointment extends AjaxCommonTest {
 		// Appointment subject
 		String subject = ConfigProperties.getUniqueString();
 		int noOfDays = 5;
+		ZimbraAccount attendee = new ZimbraAccount().provision();
 
 		// Start Date is 2 days ahead if current date is less than or equal to 21 else 8 days behind
 		Calendar now = Calendar.getInstance();
@@ -145,7 +146,7 @@ public class ModifyMultipleDayAppointment extends AjaxCommonTest {
         DialogFindAttendees dialogFindAttendees = (DialogFindAttendees) new DialogFindAttendees(app, app.zPageCalendar);
 
         // Type attendee email address in search box & perform search
-        dialogFindAttendees.zType(Locators.ContactPickerSerachField, ZimbraAccount.AccountA().EmailAddress);
+        dialogFindAttendees.zType(Locators.ContactPickerSerachField, attendee.EmailAddress);
         dialogFindAttendees.zPressButton(Button.B_SEARCH);
         dialogFindAttendees.zWaitForBusyOverlay();
 
@@ -160,7 +161,7 @@ public class ModifyMultipleDayAppointment extends AjaxCommonTest {
 		form.zToolbarPressButton(Button.B_SEND);
 
 		// Login to attendee's account and go to calendar
-		app.zPageLogin.zLogin(ZimbraAccount.AccountA());
+		app.zPageLogin.zLogin(attendee);
 		startingPage.zNavigateTo();
 
 		// Go to month view

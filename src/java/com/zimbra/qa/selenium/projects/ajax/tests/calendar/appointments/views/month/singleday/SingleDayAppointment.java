@@ -49,7 +49,7 @@ public class SingleDayAppointment extends AjaxCommonTest {
 
 		// Appointment data
 		String subject = "Appointment"+ ConfigProperties.getUniqueString();
-		ZDate startDate = new ZDate(Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH) + 1, Calendar.getInstance().get(Calendar.DAY_OF_MONTH) + 1, 10, 0, 0);
+		ZDate startDate = new ZDate(Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH) + 1, Calendar.getInstance().get(Calendar.DAY_OF_MONTH), 10, 0, 0);
 
 		// Create an appointment of duration 120 mins on next day
 		AppointmentItem.createAppointmentSingleDay(

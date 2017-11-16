@@ -3091,7 +3091,7 @@ public class PageCalendar extends AbsTab {
 		// Verify the total number of cells containing the appointment
 		if (elements.size() != 1) {
 			logger.error("number of dates which contain the appointment: " + elements.size()
-					+ " but it should be for 1 day only!");
+				+ " but it should be for 1 day only!");
 			return false;
 		}
 
@@ -3135,9 +3135,6 @@ public class PageCalendar extends AbsTab {
 		// Get all the calendar cells in the month which contain the appointment
 		List<WebElement> elements = getElements(
 				"//span[.='" + subject + "']//ancestor::td[@class='calendar_month_cells_td']");
-		// List<WebElement> elements =
-		// getElements("//table[@class='calendar_month_day_table']/following-sibling::table//div//span[contains(text(),'"
-		// + subject + "')]");
 
 		// Verify the total number of cells containing the appointment
 		if (elements.size() != noOfDays) {
@@ -3165,10 +3162,27 @@ public class PageCalendar extends AbsTab {
 		int cell_x, appt_x, cell_y, appt_y, height;
 		Point p;
 		WebElement element;
-
+		String dateCellLocator = "//td[@class='calendar_month_day_label'][.='" + Integer.parseInt(date.toDD())
+					+ "']//ancestor::td[@class='calendar_month_cells_td']";
+		
+		String apptLocator = "//td[@class='calendar_month_day_label'][.='" + Integer.parseInt(date.toDD())
+					+ "']//ancestor::table[@class='calendar_month_day_table']"
+					+ "/following-sibling::table//div//span[contains(text(),'" + subject
+					+ "')]//ancestor::table[@role='presentation']";
+		
+		// check if the date is current date and use different locator
+		if(Integer.parseInt(date.toDD()) == Calendar.getInstance().get(Calendar.DAY_OF_MONTH)) {
+			dateCellLocator = "//td[@class='calendar_month_day_label_today'][.='" + Integer.parseInt(date.toDD())
+					+ "']//ancestor::td[@class='calendar_month_cells_td']";
+			
+			apptLocator = "//td[@class='calendar_month_day_label_today'][.='" + Integer.parseInt(date.toDD())
+					+ "']//ancestor::table[@class='calendar_month_day_table']"
+					+ "/following-sibling::table//div//span[contains(text(),'" + subject
+					+ "')]//ancestor::table[@role='presentation']";
+		}
+		
 		// Get the position of day cell
-		element = getElement("//td[@class='calendar_month_day_label'][.='" + Integer.parseInt(date.toDD())
-				+ "']//ancestor::td[@class='calendar_month_cells_td']");
+		element = getElement(dateCellLocator);
 		p = element.getLocation();
 
 		// Get the height of the cell. Width of cell and appointment should be almost
@@ -3179,10 +3193,7 @@ public class PageCalendar extends AbsTab {
 		cell_y = p.y;
 
 		// Get the position of the appointment in the month view
-		element = getElement("//td[@class='calendar_month_day_label'][.='" + Integer.parseInt(date.toDD())
-				+ "']//ancestor::table[@class='calendar_month_day_table']"
-				+ "/following-sibling::table//div//span[contains(text(),'" + subject
-				+ "')]//ancestor::table[@role='presentation']");
+		element = getElement(apptLocator);
 		p = element.getLocation();
 
 		appt_x = p.x;
