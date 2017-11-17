@@ -38,15 +38,14 @@ public class CodeCoverage {
 	WebDriver webDriver = ClientSessionFactory.session().webDriver();
 
 	/**
-	 * The cumulative code coverage object A map with the application JS
-	 * filename as the key "source" points to the JS file source code (optional)
-	 * "coverage" points to an array of the source code usage with the "array
-	 * index" as the source code line number with "null" as "not applicable"
-	 * (i.e comments) with "0" as "not touched" with ">0" as "the number of
-	 * touches on that line"
+	 * The cumulative code coverage object A map with the application JS filename as
+	 * the key "source" points to the JS file source code (optional) "coverage"
+	 * points to an array of the source code usage with the "array index" as the
+	 * source code line number with "null" as "not applicable" (i.e comments) with
+	 * "0" as "not touched" with ">0" as "the number of touches on that line"
 	 */
 	protected JSONObject cumulativeCoverage = null;
-	
+
 	private String CODE_COVERAGE_DIRECTORY_PATH = "CODECOVERAGE";
 	private String CODE_COVERAGE_DIRECTORY_FILE = "jscoverage.json";
 	private String COVERAGE_SCRIPT = "";
@@ -70,9 +69,9 @@ public class CodeCoverage {
 	 * Write coverage.xml to the output folder
 	 */
 	public void writeXml() {
-		
+
 		if (isEnabled()) {
-			
+
 			if (cumulativeCoverage == null) {
 				logger.info("writeXml(): cumulativeCoverage was null");
 				return;
@@ -131,7 +130,8 @@ public class CodeCoverage {
 			try {
 
 				try {
-					writer = new XMLWriter(new FileWriter(CODE_COVERAGE_DIRECTORY_PATH + "/../coverage.xml", false), format);
+					writer = new XMLWriter(new FileWriter(CODE_COVERAGE_DIRECTORY_PATH + "/../coverage.xml", false),
+							format);
 					writer.write(doc);
 
 				} finally {
@@ -170,7 +170,8 @@ public class CodeCoverage {
 				try {
 
 					try {
-						out = new BufferedWriter(new FileWriter(new File(CODE_COVERAGE_DIRECTORY_PATH, CODE_COVERAGE_DIRECTORY_FILE)));
+						out = new BufferedWriter(
+								new FileWriter(new File(CODE_COVERAGE_DIRECTORY_PATH, CODE_COVERAGE_DIRECTORY_FILE)));
 						if (cumulativeCoverage != null) {
 							cumulativeCoverage.write(out);
 						}
@@ -204,7 +205,7 @@ public class CodeCoverage {
 	public void calculateCoverage(String method) throws HarnessException {
 
 		if (isEnabled()) {
-			
+
 			logger.info("calculateCoverage(" + method + ")");
 			Date start = new Date();
 			try {
@@ -214,10 +215,13 @@ public class CodeCoverage {
 					try {
 						logger.debug(COVERAGE_SCRIPT);
 						logger.info(((JavascriptExecutor) webDriver).executeScript(COVERAGE_SCRIPT));
-						cumulativeCoverage = (JSONObject) JSONSerializer.toJSON(((JavascriptExecutor) webDriver).executeScript("return " + COVERAGE_SCRIPT));
+						cumulativeCoverage = (JSONObject) JSONSerializer
+								.toJSON(((JavascriptExecutor) webDriver).executeScript("return " + COVERAGE_SCRIPT));
 
 					} catch (JSONException e) {
-						logger.error("JSONException: [" + ((JavascriptExecutor) webDriver).executeScript(COVERAGE_SCRIPT), e);
+						logger.error(
+								"JSONException: [" + ((JavascriptExecutor) webDriver).executeScript(COVERAGE_SCRIPT),
+								e);
 						cumulativeCoverage = null;
 						return;
 
@@ -235,11 +239,13 @@ public class CodeCoverage {
 
 					// Get the latest coverage
 					logger.debug("Getting updates to coverage object");
-					jsonCoverage = (JSONObject) JSONSerializer.toJSON(((JavascriptExecutor) webDriver).executeScript(COVERAGE_SCRIPT));
+					jsonCoverage = (JSONObject) JSONSerializer
+							.toJSON(((JavascriptExecutor) webDriver).executeScript(COVERAGE_SCRIPT));
 
 				} catch (JSONException e) {
 
-					logger.error("JSONException: [" + ((JavascriptExecutor) webDriver).executeScript(COVERAGE_SCRIPT), e);
+					logger.error("JSONException: [" + ((JavascriptExecutor) webDriver).executeScript(COVERAGE_SCRIPT),
+							e);
 					return;
 				}
 
@@ -292,7 +298,8 @@ public class CodeCoverage {
 
 			if (oldJSON == null) {
 
-				// No old coverage to compare to. Just count up the statistics in the new object and report it
+				// No old coverage to compare to. Just count up the statistics in the new object
+				// and report it
 				Iterator<?> iterator = newJSON.keys();
 				while (iterator.hasNext()) {
 					String key = (String) iterator.next();
@@ -313,7 +320,8 @@ public class CodeCoverage {
 
 			} else {
 
-				// Old coverage object exists, count up the differences between the old object and the new object
+				// Old coverage object exists, count up the differences between the old object
+				// and the new object
 
 				Iterator<?> iterator = newJSON.keys();
 				while (iterator.hasNext()) {
@@ -344,7 +352,7 @@ public class CodeCoverage {
 
 							if ((oldValue > 0) && (newValue > oldValue)) {
 								countDuplicates++;
-							}	
+							}
 						}
 
 					} else {
@@ -355,8 +363,9 @@ public class CodeCoverage {
 						// For all new lines covered, add 1
 						JSONArray coverage = newJSON.getJSONObject(key).getJSONArray("coverage");
 						for (int i = 0; i < coverage.size(); i++) {
-							
-							if ((!coverage.getString(i).equalsIgnoreCase("null")) && (Integer.parseInt(coverage.getString(i)) > 0)) {
+
+							if ((!coverage.getString(i).equalsIgnoreCase("null"))
+									&& (Integer.parseInt(coverage.getString(i)) > 0)) {
 								countLines++;
 							}
 
@@ -368,7 +377,8 @@ public class CodeCoverage {
 
 			}
 		} finally {
-			logger.info("CodeCoverage: files(" + countFiles + ") lines(" + countLines + ") duplicates("	+ countDuplicates + ")");
+			logger.info("CodeCoverage: files(" + countFiles + ") lines(" + countLines + ") duplicates("
+					+ countDuplicates + ")");
 		}
 	}
 
@@ -408,12 +418,12 @@ public class CodeCoverage {
 	}
 
 	private void updateSourceFiles() {
-		
+
 		if (cumulativeCoverage == null) {
 			logger.warn("updateSourceFiles(): cumulativeCoverage was null");
 			return;
 		}
-		
+
 		logger.debug("updateSourceFiles()");
 
 		Iterator<?> iterator = cumulativeCoverage.keys();
@@ -496,8 +506,6 @@ public class CodeCoverage {
 		}
 	}
 
-	
-
 	/**
 	 * Check if jscoverage is available on the server
 	 *
@@ -519,8 +527,8 @@ public class CodeCoverage {
 	/**
 	 * Instrument the code on the Zimbra server
 	 * <p>
-	 * STAF must be installed on the client and server. Code will be
-	 * instrumented and the server restarted.
+	 * STAF must be installed on the client and server. Code will be instrumented
+	 * and the server restarted.
 	 * 
 	 * @throws HarnessException
 	 */
@@ -529,15 +537,15 @@ public class CodeCoverage {
 		if (isEnabled() && instrumentServer) {
 			logger.info("instrumentServer()");
 
-			Date start = new Date();	
+			Date start = new Date();
 			try {
-	
+
 				if (ConfigProperties.getAppType().equals(AppType.AJAX)) {
 					instrumentServer(WebappsZimbra);
 				} else if (ConfigProperties.getAppType().equals(AppType.ADMIN)) {
 					instrumentServer(WebappsZimbraAdmin);
 				}
-	
+
 			} finally {
 				durationTotalUpdate(start, new Date());
 			}
@@ -561,13 +569,15 @@ public class CodeCoverage {
 			// Instrumentation could take some time, so increase the timeout
 			staf.setTimeout(200000);
 
-			// NULL characters in JS files prevent instrumentation. Hence remove NULL characters.
+			// NULL characters in JS files prevent instrumentation. Hence remove NULL
+			// characters.
 			// if ( ConfigProperties.getAppType().equals(AppType.ADMIN) ) {
-				staf.execute("find " + appfolder + "/js -type f -exec sed -i" + " 's/\\\\x0//g' {} +");
-				// staf.execute("sed -i " + "'s/\\\\x0//g' " + appfolder + "/js/Admin_all.js");
-				// staf.execute("sed -i " + "'s/\\\\x0//g' " + appfolder + "/js/zimbraAdmin/accounts/controller/ZaAccountListController.js");
+			staf.execute("find " + appfolder + "/js -type f -exec sed -i" + " 's/\\\\x0//g' {} +");
+			// staf.execute("sed -i " + "'s/\\\\x0//g' " + appfolder + "/js/Admin_all.js");
+			// staf.execute("sed -i " + "'s/\\\\x0//g' " + appfolder +
+			// "/js/zimbraAdmin/accounts/controller/ZaAccountListController.js");
 			// }
-			
+
 			staf.execute("chown -R zimbra:zimbra /opt/zimbra/mailboxd/webapps/zimbra/downloads");
 			staf.execute(jsCoverageTool + " --no-instrument=help/ " + appfolder + " " + WebappsInstrumented);
 			staf.resetTimeout();
@@ -593,23 +603,23 @@ public class CodeCoverage {
 	/**
 	 * Undo the instrumented code
 	 * <p>
-	 * STAF must be installed on the client and server. Code will be
-	 * instrumented and the server restarted.
+	 * STAF must be installed on the client and server. Code will be instrumented
+	 * and the server restarted.
 	 */
 	public void instrumentServerUndo() throws HarnessException {
-		
+
 		if (isEnabled() && instrumentServer) {
 			logger.info("instrumentServerUndo()");
-		
-			Date start = new Date();	
+
+			Date start = new Date();
 			try {
-	
+
 				if (ConfigProperties.getAppType().equals(AppType.AJAX)) {
 					instrumentServerUndo(WebappsZimbra);
 				} else if (ConfigProperties.getAppType().equals(AppType.ADMIN)) {
 					instrumentServerUndo(WebappsZimbraAdmin);
 				}
-	
+
 			} finally {
 				durationTotalUpdate(start, new Date());
 			}
@@ -658,15 +668,16 @@ public class CodeCoverage {
 	protected boolean instrumentServer = true;
 
 	/**
-	 * Return a map of URL query parameters, required to enable code coverage
-	 * from the Zimbra ajax app
+	 * Return a map of URL query parameters, required to enable code coverage from
+	 * the Zimbra ajax app
 	 * 
 	 * @return
 	 */
 	public Map<String, String> getQueryMap() {
 		Map<String, String> map = new HashMap<String, String>();
 
-		// Use the app property, if specified i.e. "coverage.query.AJAX" But, if not specified, default to the non-specific property i.e. "coverage.query"
+		// Use the app property, if specified i.e. "coverage.query.AJAX" But, if not
+		// specified, default to the non-specific property i.e. "coverage.query"
 		String property = ConfigProperties.getStringProperty("coverage.query", "");
 		String appPoperty = ConfigProperties.getStringProperty("coverage.query." + ConfigProperties.getAppType(), null);
 		if (appPoperty != null) {
@@ -692,7 +703,8 @@ public class CodeCoverage {
 		logger.info("new " + CodeCoverage.class.getCanonicalName());
 
 		if (!supportedAppTypes.contains(ConfigProperties.getAppType())) {
-			logger.info("CodeCoverage(): code coverage does not support type " + ConfigProperties.getAppType() + ". Disabling...");
+			logger.info("CodeCoverage(): code coverage does not support type " + ConfigProperties.getAppType()
+					+ ". Disabling...");
 			isDisabled = true;
 			return;
 		}
@@ -707,7 +719,8 @@ public class CodeCoverage {
 				if (this.getClass().getResource("/coverageScript.js") != null) {
 					stream = this.getClass().getResourceAsStream("/coverageScript.js");
 				} else {
-					stream = this.getClass().getResourceAsStream("/com/zimbra/qa/selenium/framework/util/coverage/coverageScript.js");
+					stream = this.getClass()
+							.getResourceAsStream("/com/zimbra/qa/selenium/framework/util/coverage/coverageScript.js");
 				}
 
 				if (stream == null) {
@@ -739,12 +752,14 @@ public class CodeCoverage {
 		// Get the settings from config.properties
 		jsCoverageTool = ConfigProperties.getStringProperty("coverage.tool", "/usr/local/bin/jscoverage");
 		enableSourceCodeReport = ConfigProperties.getStringProperty("coverage.reportsource").equalsIgnoreCase("true");
-		ConfigProperties.setStringProperty("selenium.maxpageload.msec", ConfigProperties.getStringProperty("coverage.maxpageload.msec"));
+		ConfigProperties.setStringProperty("selenium.maxpageload.msec",
+				ConfigProperties.getStringProperty("coverage.maxpageload.msec"));
 		instrumentServer = ConfigProperties.getStringProperty("coverage.instrument", "true").equalsIgnoreCase("true");
 
 	}
 
-	// Sometimes, there may be an exception that should disable code coverage metrics for the remainder of the run.
+	// Sometimes, there may be an exception that should disable code coverage
+	// metrics for the remainder of the run.
 	// In those cases, isDisabled will be flipped to true
 	private boolean isDisabled = false;
 
@@ -846,7 +861,5 @@ public class CodeCoverage {
 			}
 			return instance;
 		}
-
 	}
-
 }

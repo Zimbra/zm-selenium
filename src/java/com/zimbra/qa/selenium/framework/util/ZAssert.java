@@ -228,7 +228,8 @@ public class ZAssert {
 		trace(message);
 
 		message = "assertMatches" + message;
-		String details = String.format("%s -- (%s matches %s) [%s]", "assertMatches", pattern.toString(), input, message);
+		String details = String.format("%s -- (%s matches %s) [%s]", "assertMatches", pattern.toString(), input,
+				message);
 		logger.info(details);
 
 		try {
@@ -249,7 +250,8 @@ public class ZAssert {
 		trace(message);
 
 		message = "assertNotMatches" + message;
-		String details = String.format("%s -- (%s not matches %s) [%s]", "assertNotMatches", pattern.toString(), input,	message);
+		String details = String.format("%s -- (%s not matches %s) [%s]", "assertNotMatches", pattern.toString(), input,
+				message);
 		logger.info(details);
 
 		try {
@@ -276,7 +278,8 @@ public class ZAssert {
 		trace(message);
 
 		message = "assertStringContains: " + message;
-		String details = String.format("%s -- (%s contains %s) [%s]", "assertStringContains", actual, substring, message);
+		String details = String.format("%s -- (%s contains %s) [%s]", "assertStringContains", actual, substring,
+				message);
 		logger.info(details);
 
 		try {
@@ -303,7 +306,8 @@ public class ZAssert {
 		trace(message);
 
 		message = "assertStringDoesNotContain: " + message;
-		String details = String.format("%s -- (%s does not contain %s) [%s]", "assertStringDoesNotContain", actual,	substring, message);
+		String details = String.format("%s -- (%s does not contain %s) [%s]", "assertStringDoesNotContain", actual,
+				substring, message);
 		logger.info(details);
 
 		try {

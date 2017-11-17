@@ -26,6 +26,7 @@ public class HarnessException extends Exception {
 	private static final long serialVersionUID = 4657095353247341818L;
 
 	protected AbsTab startingPage = null;
+
 	public HarnessException(String message) {
 		super(message);
 		logger.error(message, this);

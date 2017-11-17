@@ -72,14 +72,14 @@ public class AdminCommonTest {
 
 	protected AppAdminConsole app = null;
 	protected AbsTab startingPage = null;
-	
+
 	protected final ZimbraAdminAccount gAdmin = ZimbraAdminAccount.AdminConsoleAdmin();
 	protected ZimbraAdminAccount startingAccount = null;
 
 	WebElement we = null;
 	private WebDriver webDriver = ClientSessionFactory.session().webDriver();
 	protected static Logger logger = LogManager.getLogger(AdminCommonTest.class);
-	
+
 	protected StafServicePROCESS staf = new StafServicePROCESS();
 	String sJavaScriptErrorsHtmlFileName = "Javascript-errors-report.html";
 
@@ -91,7 +91,7 @@ public class AdminCommonTest {
 		startingPage = app.zPageMain;
 		startingAccount = gAdmin;
 	}
-	
+
 	@BeforeSuite(groups = { "always" })
 	public void commonTestBeforeSuite() throws HarnessException {
 
@@ -174,7 +174,7 @@ public class AdminCommonTest {
 		}
 
 		zHandleNetworkModulesNGDialog();
-		
+
 		// Close all the dialogs left opened by the previous test
 		app.zPageMain.zHandleDialogs();
 
@@ -182,11 +182,11 @@ public class AdminCommonTest {
 		// as that user
 		if (startingAccount != null) {
 			logger.debug("commonTestBeforeMethod: startingAccount is defined");
-			
+
 			zHandleNetworkModulesNGDialog();
-			
+
 			if (!startingAccount.equals(app.zGetActiveAccount())) {
-				
+
 				//if (app.zPageMain.zIsActive()) {
 					//app.zPageMain.sOpen(ConfigProperties.getBaseURL());
 					//app.zPageMain.zWaitForActive();
@@ -218,7 +218,7 @@ public class AdminCommonTest {
 		}
 
 		zHandleNetworkModulesNGDialog();
-		
+
 		// If a startingPage is defined, then make sure we are on that page
 		if (startingPage != null) {
 			logger.debug("commonTestBeforeMethod: startingPage is defined");
@@ -238,11 +238,13 @@ public class AdminCommonTest {
 	}
 
 	public void zHandleNetworkModulesNGDialog(){
-		try{
-			ClientSessionFactory.session().webDriver().findElement(By.xpath("//div[contains(text(),' Network Modules NG Notification')]/ancestor::div[@class='DwtDialog'][not(@aria-hidden)]/descendant::td[contains(@id,'Close')]")).click();	
+		try {
+			ClientSessionFactory.session().webDriver().findElement(By.xpath(
+					"//div[contains(text(),' Network Modules NG Notification')]/ancestor::div[@class='DwtDialog'][not(@aria-hidden)]/descendant::td[contains(@id,'Close')]"))
+					.click();
 		}
-		catch(Exception e){
-			logger.info("Network Module NG Notification Dialog not found.");	
+		catch(Exception e) {
+			logger.info("Network Module NG Notification Dialog not found.");
 		}
 	}
 

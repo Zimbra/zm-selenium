@@ -25,15 +25,15 @@ import com.zimbra.qa.selenium.framework.util.SleepUtil;
 public class FormEditVoiceChatService extends AbsForm {
 
 	public static class TreeItem {
-		public static final String GENERAL_INFORMATION="General Information";
+		public static final String GENERAL_INFORMATION = "General Information";
 	}
 
 	public static class Locators {
-		public static final String NAME_TEXT_BOX="css=input#ztabv__UC_Service_";
-		public static final String SAVE_BUTTON="css=td[id^='zb__ZaCurrentAppBar__SAVE']";
-		public static final String CLOSE_BUTTON="css=td[id^='zb__ZaCurrentAppBar__CLOSE']";
-		public static final String Pull_DOWN="css=div[aria-controls='zm__zb_currentApp__MENU_POP'] div[class='ImgSelectPullDownArrow']";
-		public static final String PULL_DOWN_CLOSE="css=td[id='zmi__zb_currentApp__CLOSE_title']";
+		public static final String NAME_TEXT_BOX = "css=input#ztabv__UC_Service_";
+		public static final String SAVE_BUTTON = "css=td[id^='zb__ZaCurrentAppBar__SAVE']";
+		public static final String CLOSE_BUTTON = "css=td[id^='zb__ZaCurrentAppBar__CLOSE']";
+		public static final String Pull_DOWN = "css=div[aria-controls='zm__zb_currentApp__MENU_POP'] div[class='ImgSelectPullDownArrow']";
+		public static final String PULL_DOWN_CLOSE = "css=td[id='zmi__zb_currentApp__CLOSE_title']";
 	}
 
 	public FormEditVoiceChatService(AbsApplication application) {
@@ -47,16 +47,16 @@ public class FormEditVoiceChatService extends AbsForm {
 	public boolean zIsActive() throws HarnessException {
 
 		// Make sure the Admin Console is loaded in the browser
-		if ( !MyApplication.zIsLoaded() )
+		if (!MyApplication.zIsLoaded())
 			throw new HarnessException("Admin Console application is not active!");
 
 		boolean present = sIsElementPresent("");
-		if ( !present ) {
+		if (!present) {
 			return (false);
 		}
 
 		String attrs = sGetAttribute("");
-		if ( !attrs.contains("ZSelected") ) {
+		if (!attrs.contains("ZSelected")) {
 			return (false);
 		}
 
@@ -72,12 +72,12 @@ public class FormEditVoiceChatService extends AbsForm {
 	@Override
 	public void zFill(IItem item) throws HarnessException {
 	}
-	
+
 	@Override
 	public void zSubmit() throws HarnessException {
-		sClickAt(Locators.SAVE_BUTTON,"");
+		sClickAt(Locators.SAVE_BUTTON, "");
 		SleepUtil.sleepSmall();
-		sClickAt(Locators.CLOSE_BUTTON,"0,0");
+		sClickAt(Locators.CLOSE_BUTTON, "0,0");
 	}
 
 	public void zSelectTreeItem(String treeItem) throws HarnessException {
@@ -85,9 +85,9 @@ public class FormEditVoiceChatService extends AbsForm {
 	}
 
 	public void setName(String name) throws HarnessException {
-		for(int i=12;i>=0;i--) {
-			if (sIsElementPresent("css=input[id='ztabv__UC_Service_"+i+"_cn']")) {
-				sType("css=input[id='ztabv__UC_Service_"+i+"_cn']", name);
+		for (int i = 12; i >= 0; i--) {
+			if (sIsElementPresent("css=input[id='ztabv__UC_Service_" + i + "_cn']")) {
+				sType("css=input[id='ztabv__UC_Service_" + i + "_cn']", name);
 				SleepUtil.sleepSmall();
 				return;
 			}
@@ -95,6 +95,5 @@ public class FormEditVoiceChatService extends AbsForm {
 		sType("css=input[id='ztabv__UC_Service_cn']", name);
 		SleepUtil.sleepSmall();
 	}
-	
-}
 
+}

@@ -14,7 +14,6 @@
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-
 package com.zimbra.qa.selenium.framework.items;
 
 import org.apache.log4j.*;
@@ -22,7 +21,7 @@ import com.zimbra.common.soap.Element;
 import com.zimbra.qa.selenium.framework.util.*;
 
 /**
- * This class represents a mail message
+ * This class represents a task item
  *
  * @author Matt Rhoades
  *
@@ -66,19 +65,20 @@ public class TaskItem implements IItem {
 	}
 
 	public void setName(String name) {
-		gSubject=name;
+		gSubject = name;
 	}
+
 	public String getName() {
 		return (gSubject);
 	}
 
 	public void setPriority(String p) {
-		gPriority=p;
+		gPriority = p;
 	}
+
 	public String getPriority() {
 		return (gPriority);
 	}
-
 
 	public String gettaskBody() {
 
@@ -88,6 +88,7 @@ public class TaskItem implements IItem {
 	public void settaskBody(String taskBody) {
 		gtaskBody = taskBody;
 	}
+
 	public String getHtmlTaskBody() {
 
 		return gtaskHtmlBody;
@@ -96,21 +97,25 @@ public class TaskItem implements IItem {
 	public void setHtmlTaskBody(String taskHtmlBody) {
 		gtaskHtmlBody = taskHtmlBody;
 	}
+
 	public void populateTaskData() {
-		//taskSubject = "subject" + ConfigProperties.getUniqueString();
-		//taskBody = "Body" + ConfigProperties.getUniqueString();
+		// taskSubject = "subject" + ConfigProperties.getUniqueString();
+		// taskBody = "Body" + ConfigProperties.getUniqueString();
 	}
+
 	public String myId;
+
 	public String getId() {
 		return (myId);
 	}
+
 	public void setId(String id) {
-		myId=id;
+		myId = id;
 	}
 
 	public static TaskItem importFromSOAP(Element GetMsgResponse) throws HarnessException {
 
-		if ( GetMsgResponse == null )
+		if (GetMsgResponse == null)
 			throw new HarnessException("Element cannot be null");
 
 		TaskItem task = null;
@@ -118,24 +123,21 @@ public class TaskItem implements IItem {
 		try {
 
 			// Make sure we only have the GetMsgResponse part
-			Element getMsgResponse = ZimbraAccount.SoapClient.selectNode(
-					GetMsgResponse, "//mail:GetMsgResponse");
+			Element getMsgResponse = ZimbraAccount.SoapClient.selectNode(GetMsgResponse, "//mail:GetMsgResponse");
 
 			if (getMsgResponse == null)
-				throw new HarnessException(
-						"Element does not contain GetMsgResponse");
-			Element m = ZimbraAccount.SoapClient.selectNode(getMsgResponse,"//mail:comp");
+				throw new HarnessException("Element does not contain GetMsgResponse");
+			Element m = ZimbraAccount.SoapClient.selectNode(getMsgResponse, "//mail:comp");
 			if (m == null)
-				throw new HarnessException(
-						"Element does not contain an m element");
+				throw new HarnessException("Element does not contain an m element");
 
 			// Create the object
 			task = new TaskItem();
-			//Set task body
+			// Set task body
 			task.settaskBody(m.getAttribute("desc", null));
-			//Set task name
-			task.setName(m.getAttribute("name",null));
-			//Set task id
+			// Set task name
+			task.setName(m.getAttribute("name", null));
+			// Set task id
 			task.setId(m.getAttribute("calItemId", null));
 			task.setHtmlTaskBody(m.getAttribute("descHtml", null));
 			task.setPriority(m.getAttribute("priority", null));
@@ -144,8 +146,7 @@ public class TaskItem implements IItem {
 			return (task);
 
 		} catch (Exception e) {
-			throw new HarnessException("Could not parse GetMsgResponse: "
-					+ GetMsgResponse.prettyPrint(), e);
+			throw new HarnessException("Could not parse GetMsgResponse: " + GetMsgResponse.prettyPrint(), e);
 		} finally {
 			if (task != null)
 				logger.info(task.prettyPrint());
@@ -153,38 +154,29 @@ public class TaskItem implements IItem {
 
 	}
 
-	public static TaskItem importFromSOAP(ZimbraAccount account, String query)
-			throws HarnessException {
+	public static TaskItem importFromSOAP(ZimbraAccount account, String query) throws HarnessException {
 
 		try {
 
-			account
-					.soapSend("<SearchRequest xmlns='urn:zimbraMail' types='task' >"
-							+ "<query>"
-							+ query
-							+ "</query>"
-							+ "</SearchRequest>");
+			account.soapSend("<SearchRequest xmlns='urn:zimbraMail' types='task' >" + "<query>" + query + "</query>"
+					+ "</SearchRequest>");
 
-			Element[] results = account
-					.soapSelectNodes("//mail:SearchResponse/mail:task");
+			Element[] results = account.soapSelectNodes("//mail:SearchResponse/mail:task");
 			if (results.length != 1)
-				throw new HarnessException("Query should return 1 result, not "
-						+ results.length);
+				throw new HarnessException("Query should return 1 result, not " + results.length);
 
-			String invId = account.soapSelectValue(
-					"//mail:SearchResponse/mail:task", "invId");
+			String invId = account.soapSelectValue("//mail:SearchResponse/mail:task", "invId");
 
-			account.soapSend("<GetMsgRequest xmlns='urn:zimbraMail'>"
-					+ "<m id='" + invId + "' />" + "</GetMsgRequest>");
-			Element getMsgResponse = account.soapSelectNode(
-					"//mail:GetMsgResponse", 1);
+			account.soapSend(
+					"<GetMsgRequest xmlns='urn:zimbraMail'>" + "<m id='" + invId + "' />" + "</GetMsgRequest>");
+			Element getMsgResponse = account.soapSelectNode("//mail:GetMsgResponse", 1);
 
 			// Using the response, create this item
 			return (importFromSOAP(getMsgResponse));
 
 		} catch (Exception e) {
-			throw new HarnessException("Unable to import using SOAP query("
-					+ query + ") and account(" + account.EmailAddress + ")", e);
+			throw new HarnessException(
+					"Unable to import using SOAP query(" + query + ") and account(" + account.EmailAddress + ")", e);
 		}
 	}
 
@@ -206,5 +198,4 @@ public class TaskItem implements IItem {
 		sb.append("Due Date: ").append(gDueDate).append('\n');
 		return (sb.toString());
 	}
-
 }

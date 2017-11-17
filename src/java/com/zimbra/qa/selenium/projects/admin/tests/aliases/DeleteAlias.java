@@ -17,9 +17,7 @@
 package com.zimbra.qa.selenium.projects.admin.tests.aliases;
 
 import java.util.List;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
@@ -36,11 +34,10 @@ public class DeleteAlias extends AdminCommonTest {
 
 	public DeleteAlias() {
 		logger.info("New " + DeleteAlias.class.getCanonicalName());
-
-		//All test starts at alias page
-		super.startingPage=app.zPageManageAliases;		
+		super.startingPage=app.zPageManageAliases;
 	}
-	
+
+
 	/**
 	 * Testcase : Verify delete alias operation  -- Manage alias View
 	 * Steps :
@@ -51,13 +48,14 @@ public class DeleteAlias extends AdminCommonTest {
 	 * 5. Verify alias is deleted using SOAP.
 	 * @throws HarnessException
 	 */
+
 	@Test (description = "Verify delete alias operation  -- Manage alias View",
 			groups = { "smoke", "L1" })
-			public void DeleteAlias_01() throws HarnessException {
+
+	public void DeleteAlias_01() throws HarnessException {
 
 		AccountItem target = new AccountItem("email" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
 		AccountItem.createUsingSOAP(target);
-
 
 		// Create a new account in the Admin Console using SOAP
 		AliasItem alias = new AliasItem();
@@ -97,7 +95,8 @@ public class DeleteAlias extends AdminCommonTest {
 		}
 		ZAssert.assertNull(found, "Verify alias is deleted successfully");
 	}
-	
+
+
 	/**
 	 *
 	 * Testcase : Verify delete alias operation-- Manage alias View/Right Click Menu
@@ -109,13 +108,14 @@ public class DeleteAlias extends AdminCommonTest {
 	 * 5. Verify alias is deleted using SOAP.
 	 * @throws HarnessException
 	 */
+
 	@Test (description = "Verify delete alias operation-- Manage alias View/Right Click Menu",
 			groups = { "functional", "L2" })
-			public void DeleteAlias_02() throws HarnessException {
+
+	public void DeleteAlias_02() throws HarnessException {
 
 		AccountItem target = new AccountItem("email" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
 		AccountItem.createUsingSOAP(target);
-
 
 		// Create a new account in the Admin Console using SOAP
 		AliasItem alias = new AliasItem();
@@ -166,13 +166,14 @@ public class DeleteAlias extends AdminCommonTest {
 	 * 4. Verify account is deleted using SOAP.
 	 * @throws HarnessException
 	 */
+
 	@Test (description = "Verify delete alias operation - Search list view",
 			groups = { "functional", "L2" })
-			public void DeleteAlias_03() throws HarnessException {
+
+	public void DeleteAlias_03() throws HarnessException {
 
 		AccountItem target = new AccountItem("email" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
 		AccountItem.createUsingSOAP(target);
-
 
 		// Create a new account in the Admin Console using SOAP
 		AliasItem alias = new AliasItem();
@@ -215,7 +216,8 @@ public class DeleteAlias extends AdminCommonTest {
 		}
 		ZAssert.assertNull(found, "Verify alias is deleted successfully");
 	}
-	
+
+
 	/**
 	 *
 	 * Testcase : Verify delete alias operation - Search list view/Right Click menu.
@@ -226,9 +228,11 @@ public class DeleteAlias extends AdminCommonTest {
 	 * 4. Verify account is deleted using SOAP.
 	 * @throws HarnessException
 	 */
+
 	@Test (description = "Verify delete alias operation - Search list view/Right Click menu.",
 			groups = { "functional", "L3" })
-			public void DeleteAlias_04() throws HarnessException {
+
+	public void DeleteAlias_04() throws HarnessException {
 
 		AccountItem target = new AccountItem("email" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
 		AccountItem.createUsingSOAP(target);
@@ -275,5 +279,4 @@ public class DeleteAlias extends AdminCommonTest {
 		}
 		ZAssert.assertNull(found, "Verify alias is deleted successfully");
 	}
-
 }

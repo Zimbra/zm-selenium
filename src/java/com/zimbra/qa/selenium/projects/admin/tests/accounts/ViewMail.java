@@ -2,11 +2,11 @@
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
  * Copyright (C) 2011, 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
- * 
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
@@ -17,10 +17,8 @@
 package com.zimbra.qa.selenium.projects.admin.tests.accounts;
 
 import java.util.List;
-
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
@@ -33,14 +31,13 @@ import com.zimbra.qa.selenium.projects.admin.core.AdminCommonTest;
 import com.zimbra.qa.selenium.projects.admin.items.AccountItem;
 
 public class ViewMail extends AdminCommonTest {
+
 	public ViewMail() {
 		logger.info("New "+ ViewMail.class.getCanonicalName());
-
-		// All tests start at the "Accounts" page
 		super.startingPage = app.zPageManageAccounts;
 	}
-	
-	
+
+
 	/**
 	 * Testcase : View mail  -- manage account >> Gearbox >> View mail
 	 * Steps :
@@ -49,8 +46,10 @@ public class ViewMail extends AdminCommonTest {
 	 * 3. Verify account mailbox is opened up
 	 * @throws HarnessException
 	 */
+
 	@Test (description = " View mail  -- manage account >> Gearbox >> edit account >>  View mail",
 			groups = { "sanity", "L0" })
+
 	public void ViewMail_01() throws HarnessException {
 
 		// Create a new account in the admin Console using SOAP
@@ -74,9 +73,9 @@ public class ViewMail extends AdminCommonTest {
 		SleepUtil.sleepLong();
 
 		// Verify account mailbox is opened up
-		ZAssert.assertTrue(app.zPageMain.zIsActive(), "Verify account mailbox is opened up");		
+		ZAssert.assertTrue(app.zPageMain.zIsActive(), "Verify account mailbox is opened up");
 	}
-	
+
 
 	/**
 	 * Testcase : View mail  -- manage account >> right click >> View mail
@@ -86,9 +85,11 @@ public class ViewMail extends AdminCommonTest {
 	 * 3. Verify view mail functionality
 	 * @throws HarnessException
 	 */
+
 	@Bugs (ids = "69155")
 	@Test (description = "View mail  -- manage account > right click > view mail",
-	groups = { "sanity", "L0" })
+			groups = { "sanity", "L0" })
+
 	public void ViewMail_02() throws HarnessException {
 
 		// Create a new account in the admin Console using SOAP
@@ -102,9 +103,8 @@ public class ViewMail extends AdminCommonTest {
 		// Refresh the account list
 		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
 
-		// Right click on account 
+		// Right click on account
 		app.zPageManageAccounts.zListItem(Action.A_RIGHTCLICK, account.getEmailAddress());
-
 
 		// Right click account >>  view mail
 		app.zPageManageAccounts.zToolbarPressButton(Button.B_VIEW_MAIL);
@@ -113,7 +113,7 @@ public class ViewMail extends AdminCommonTest {
 		SleepUtil.sleepLong();
 
 		// Verify account mailbox is opened up
-		ZAssert.assertTrue(app.zPageMain.zIsActive(), "Verify account mailbox is opened up");		
+		ZAssert.assertTrue(app.zPageMain.zIsActive(), "Verify account mailbox is opened up");
 	}
 
 
@@ -121,17 +121,17 @@ public class ViewMail extends AdminCommonTest {
 	 * Testcase : Edit a basic account -- Search List View
 	 * Steps :
 	 * 1. Create an account using SOAP.
-	 * 2. Search account. 
+	 * 2. Search account.
 	 * 3. Select an Account.
 	 * 4. View mail
 	 * 5. Verify account mailbox is opened up
-	 * 
+	 *
 	 * @throws HarnessException
 	 */
-	
+
 	@Test (description = "Edit a basic account - Search List View",
 			groups = { "smoke", "L1" })
-	
+
 	public void ViewMail_03() throws HarnessException {
 
 		// Create a new account in the Admin Console using SOAP
@@ -151,9 +151,8 @@ public class ViewMail extends AdminCommonTest {
 		// Click search
 		app.zPageSearchResults.zToolbarPressButton(Button.B_SEARCH);
 
-		// Click on account 
+		// Click on account
 		app.zPageSearchResults.zListItem(Action.A_LEFTCLICK, account.getEmailAddress());
-
 
 		// Gearbox >> View mail
 		app.zPageManageAccounts.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.B_VIEW_MAIL);
@@ -162,7 +161,7 @@ public class ViewMail extends AdminCommonTest {
 		SleepUtil.sleepLong();
 
 		// Verify account mailbox is opened up
-		ZAssert.assertTrue(app.zPageMain.zIsActive(), "Verify account mailbox is opened up");		
+		ZAssert.assertTrue(app.zPageMain.zIsActive(), "Verify account mailbox is opened up");
 	}
 
 
@@ -170,15 +169,16 @@ public class ViewMail extends AdminCommonTest {
 	 * Testcase : Edit a basic account -- Search List View
 	 * Steps :
 	 * 1. Create an account using SOAP.
-	 * 2. Search account. 
+	 * 2. Search account.
 	 * 3. Select an Account.
 	 * 4. View mail
 	 * 5. Verify account mailbox is opened up
-	 * 
+	 *
 	 * @throws HarnessException
 	 */
 	@Test (description = "Edit a basic account - Search List View",
 			groups = { "smoke", "L1" })
+
 	public void ViewMail_04() throws HarnessException {
 
 		// Create a new account in the Admin Console using SOAP
@@ -199,8 +199,8 @@ public class ViewMail extends AdminCommonTest {
 		SleepUtil.sleepLong();
 
 		// Verify account mailbox is opened up
-		ZAssert.assertTrue(app.zPageMain.zIsActive(), "Verify account mailbox is opened up");		
-	}	
+		ZAssert.assertTrue(app.zPageMain.zIsActive(), "Verify account mailbox is opened up");
+	}
 
 
 	@AfterMethod( groups = { "always" } )
@@ -215,7 +215,7 @@ public class ViewMail extends AdminCommonTest {
 				app.zPageMain.sSelectWindow(id);
 				if (!(app.zPageMain.sGetTitle().contains("Zimbra Administration"))) {
 					logger.info("Closing window" +app.zPageMain.sGetTitle());
-					app.zPageMain.zSeparateWindowClose(app.zPageMain.sGetTitle());					
+					app.zPageMain.zSeparateWindowClose(app.zPageMain.sGetTitle());
 				}
 			}
 		}

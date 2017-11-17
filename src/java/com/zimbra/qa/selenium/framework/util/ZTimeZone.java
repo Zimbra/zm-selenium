@@ -27,30 +27,32 @@ public class ZTimeZone {
 	/**
 	 * Convert a timezone string identifier to a TimeZone object
 	 * <p>
+	 * 
 	 * @param timezone
 	 * @return the TimeZone object
-	 * @throws HarnessException, if the timezone cannot be found
+	 * @throws HarnessException,
+	 *             if the timezone cannot be found
 	 */
 	public static TimeZone getTimeZone(String timezone) throws HarnessException {
-		if ( timezone == null )
+		if (timezone == null)
 			throw new HarnessException("TimeZone string cannot be null");
 
-		for ( String t : TimeZone.getAvailableIDs() ) {
-			if ( t.equals(timezone) ) {
+		for (String t : TimeZone.getAvailableIDs()) {
+			if (t.equals(timezone)) {
 				// Found it
 				return (TimeZone.getTimeZone(timezone));
 			}
 		}
-		
-		throw new HarnessException("Unable to determine the TimeZone from the string: "+ timezone);
-	}
-	
-	public static TimeZone getLocalTimeZone() throws HarnessException {
-	       if ( ConfigProperties.getStringProperty("server.host").startsWith("pnq-") ) {
-	              return (TimeZone.getTimeZone(TimeZoneIndia.getID()));
 
-	       } else {
-	              return (TimeZone.getTimeZone(TimeZoneCST.getID()));
-	       }
+		throw new HarnessException("Unable to determine the TimeZone from the string: " + timezone);
+	}
+
+	public static TimeZone getLocalTimeZone() throws HarnessException {
+		if (ConfigProperties.getStringProperty("server.host").startsWith("pnq-")) {
+			return (TimeZone.getTimeZone(TimeZoneIndia.getID()));
+
+		} else {
+			return (TimeZone.getTimeZone(TimeZoneCST.getID()));
+		}
 	}
 }

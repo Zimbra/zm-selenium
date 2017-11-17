@@ -23,8 +23,6 @@ import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 
 /**
  * This class represents a new document item
- *
- *
  */
 public class LinkItem implements IItem {
 	protected static Logger logger = LogManager.getLogger(IItem.class);

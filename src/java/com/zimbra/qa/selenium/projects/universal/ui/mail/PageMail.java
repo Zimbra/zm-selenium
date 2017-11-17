@@ -1357,7 +1357,7 @@ public class PageMail extends AbsTab {
 		} else if (action == Action.A_RIGHTCLICK) {
 
 			// Right-Click on the item
-			this.zRightClick(itemlocator);
+			this.sRightClick(itemlocator);
 
 			// Return the displayed mail page object
 			page = new ContextMenu(MyApplication);
@@ -1521,7 +1521,7 @@ public class PageMail extends AbsTab {
 
 		if (action == Action.A_RIGHTCLICK) {
 
-			this.zRightClickAt(itemlocator, "");
+			this.sRightClickAt(itemlocator, "");
 
 			String optionLocator = "css=div[id^='zm__CLV-main__']";
 			if (zGetPropMailView() == PageMailView.BY_MESSAGE) {
@@ -2046,7 +2046,7 @@ public class PageMail extends AbsTab {
 
 		if (field == Field.To) {
 			try {
-				this.zRightClick(Locators.zToAddressBubble);
+				this.sRightClick(Locators.zToAddressBubble);
 			} catch (Exception ex) {
 				throw new HarnessException(ex);
 			}
@@ -2054,7 +2054,7 @@ public class PageMail extends AbsTab {
 		} else if (field == Field.Cc) {
 			try {
 				SleepUtil.sleepMedium();
-				this.zRightClick(
+				this.sRightClick(
 						"css=tr[id='zv__COMPOSE-1_cc_row'] td[id='zv__COMPOSE-1_cc_cell'] div div span[class^='addrBubble']>span");
 				SleepUtil.sleepSmall();
 			} catch (Exception ex) {
@@ -2064,7 +2064,7 @@ public class PageMail extends AbsTab {
 		} else if (field == Field.Bcc) {
 			SleepUtil.sleepMedium();
 			try {
-				this.zRightClick(
+				this.sRightClick(
 						"css=tr[id='zv__COMPOSE-1_bcc_row'] td[id='zv__COMPOSE-1_bcc_cell'] div div span[class^='addrBubble']>span");
 				SleepUtil.sleepSmall();
 			} catch (Exception ex) {
@@ -2074,7 +2074,7 @@ public class PageMail extends AbsTab {
 		} else if (field == Field.From) {
 			SleepUtil.sleepMedium();
 			try {
-				this.zRightClick(Locators.zFromHdrAddressBubble);
+				this.sRightClick(Locators.zFromHdrAddressBubble);
 			} catch (Exception ex) {
 				throw new HarnessException(ex);
 			}
@@ -2271,13 +2271,13 @@ public class PageMail extends AbsTab {
 			locator = Locators.zConversationViewHeaderSubject;
 			prefix = "zmi__CLV-main_header__";
 		}
-		zRightClick(locator);
+		sRightClick(locator);
 
 		if(action == Action.A_UNCHECKBOX) {
 
 			if(sIsElementPresent("//td[starts-with(@id,'" + prefix + "') and contains(text(),'" + column.name()  +"')]/parent::tr//div[@class='ImgMenuCheck']")) {
 				if(!(sIsVisible("//td[starts-with(@id,'" + prefix + "') and contains(text(),'" + column.name()  +"')]"))) {
-					zRightClick(locator);
+					sRightClick(locator);
 				}
 				List<WebElement> elements = getElements("//td[starts-with(@id,'" + prefix + "') and contains(text(),'" + column.name() +"')]");
 				elements.get(elements.size()-1).click();
@@ -2286,7 +2286,7 @@ public class PageMail extends AbsTab {
 
 			if(sIsElementPresent("//td[starts-with(@id,'" + prefix + "') and contains(text(),'" + column.name()  +"')]/parent::tr//div[@class='ImgBlank_9']")) {
 				if(!(sIsVisible("//td[starts-with(@id,'" + prefix + "') and contains(text(),'" + column.name()  +"')]"))) {
-					zRightClick(locator);
+					sRightClick(locator);
 				}
 				List<WebElement> elements = getElements("//td[starts-with(@id,'" + prefix + "') and contains(text(),'" + column.name() +"')]");
 				elements.get(elements.size()-1).click();

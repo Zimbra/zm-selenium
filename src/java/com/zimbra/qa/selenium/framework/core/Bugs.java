@@ -35,5 +35,4 @@ public @interface Bugs {
 	 * @return
 	 */
 	public String ids();
-
 }

@@ -33,13 +33,13 @@ public class EditPreferences extends AdminCommonTest {
 
 	public EditPreferences() {
 		logger.info("New "+ EditPreferences.class.getCanonicalName());
-		// All tests start at the "Distribution List" page
 		super.startingPage = app.zPageManageDistributionList;
 	}
 
+
 	@Bugs (ids = "104654")
 	@Test (description = "Edit DL - Edit Preferences",
-	groups = { "smoke", "L1" })
+			groups = { "smoke", "L1" })
 
 	public void EditPreferences_01() throws HarnessException {
 
@@ -68,7 +68,7 @@ public class EditPreferences extends AdminCommonTest {
 		// check Set the "Reply-to" field of email messages
 		form.zPreferencesCheckboxSet(Button.B_SET_REPLY_TO,true);
 
-		// set Display name in "Reply-to" message: 
+		// set Display name in "Reply-to" message:
 		form.zSetDisplayNameInReplyToMessage(displayName);
 
 		// set "Reply-to" address
@@ -93,7 +93,7 @@ public class EditPreferences extends AdminCommonTest {
 
 		Element response3 = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetDistributionListResponse/admin:dl/admin:a[@n='zimbraPrefReplyToAddress']", 1);
 		ZAssert.assertNotNull(response3, "Verify the distribution list is edited successfully");
-		ZAssert.assertStringContains(response3.toString(),dlEmailAddress, "Verify Reply-to address");	
+		ZAssert.assertStringContains(response3.toString(),dlEmailAddress, "Verify Reply-to address");
 		app.zPageMain.logout();
 	}
 }

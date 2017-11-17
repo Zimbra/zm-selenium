@@ -18,7 +18,6 @@ package com.zimbra.qa.selenium.projects.admin.items;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
-
 import com.zimbra.qa.selenium.framework.items.IItem;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
@@ -26,7 +25,7 @@ import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 public class GALItem implements IItem {
 
 	protected static Logger logger = LogManager.getLogger(IItem.class);
-	
+
 	protected GALMode newGALMod = null;
 	protected GALMode currentGALMod = null;
 	protected String dataSourceName = null;
@@ -35,89 +34,83 @@ public class GALItem implements IItem {
 	protected String ldapUrl = "10.15.6.1";
 	protected String ldapFilter = "dc=exchange2010,dc=lab";
 	protected String ldapSearchBase = "dc=exchange2010,dc=lab";
-	
+
 	public enum GALMode {
-		Internal,
-		External,
-		Both,
+		Internal, External, Both,
 	}
-	
-	public enum  ServerType {
-		LDAP,
-		ActiveDirectory,
+
+	public enum ServerType {
+		LDAP, ActiveDirectory,
 	}
+
 	public GALItem() {
 		super();
-		currentGALMod = GALMode.Internal;  // Internal GAL mode is the default GAl mode.
+		currentGALMod = GALMode.Internal; // Internal GAL mode is the default GAl mode.
 	}
-    
+
 	public GALMode getCurrentGALMode() {
 		return (currentGALMod);
 	}
-	
+
 	public void setCurrentGALMode(GALMode mode) {
 		currentGALMod = mode;
 	}
-	
+
 	public GALMode getNewGALMode() {
 		return (newGALMod);
 	}
-	
+
 	public void setNewGALMode(GALMode mode) {
 		newGALMod = mode;
 	}
-	
+
 	public String getDataSourceName() {
 		return (dataSourceName);
 	}
-	
+
 	public void setDataSourceName(String dataSrcName) {
 		dataSourceName = dataSrcName;
 	}
-	
+
 	public String getPollingIntervalDays() {
 		return (pollingIntervalDays);
 	}
-	
+
 	public void setPollingIntervalDays(String days) {
 		pollingIntervalDays = days;
 	}
-	
+
 	public ServerType getServerType() {
 		return (serverType);
 	}
-	
+
 	public void setServerType(ServerType sType) {
 		serverType = sType;
 	}
-	
+
 	public String getLDAPUrl() {
 		return ldapUrl;
 	}
-	
+
 	public String getLDAPFilter() {
 		return ldapFilter;
 	}
-	
+
 	public String getLDAPSearchBase() {
 		return ldapSearchBase;
 	}
-	
+
 	@Override
 	public String getName() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public void createUsingSOAP(ZimbraAccount account) throws HarnessException {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public String prettyPrint() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 }

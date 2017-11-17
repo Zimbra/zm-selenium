@@ -78,9 +78,9 @@ public class AliasItem implements IItem {
 
 	@SuppressWarnings("static-access")
 	public void setTarget(AccountItem account) throws HarnessException {
-		if ( (account.getEmailAddress() == null) || (account.getEmailAddress().trim().length() == 0) )
+		if ((account.getEmailAddress() == null) || (account.getEmailAddress().trim().length() == 0))
 			throw new HarnessException("AccountItem email address is not set");
-		if ( (account.Id == null) || (account.Id.trim().length() == 0) )
+		if ((account.Id == null) || (account.Id.trim().length() == 0))
 			throw new HarnessException("AccountItem ID is not set");
 
 		aliasTargetEmail = account.getEmailAddress();
@@ -89,17 +89,15 @@ public class AliasItem implements IItem {
 	}
 
 	public void setTargetAccountEmail(String emailAddress) throws HarnessException {
-		if ( (aliasTargetEmail != null) && (aliasTargetEmail.equals(emailAddress)) )
+		if ((aliasTargetEmail != null) && (aliasTargetEmail.equals(emailAddress)))
 			return; // Nothing to update
 
-		if ( (emailAddress == null) || (emailAddress.trim().length() == 0) )
+		if ((emailAddress == null) || (emailAddress.trim().length() == 0))
 			throw new HarnessException("emailAddress cannot be null or blank");
 
 		// Need to get the AccountID
-		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
-							"<GetAccountRequest xmlns='urn:zimbraAdmin'>"
-				+                "<account by='name'>"+ emailAddress +"</account>"
-                +            "</GetAccountRequest>");
+		ZimbraAdminAccount.AdminConsoleAdmin().soapSend("<GetAccountRequest xmlns='urn:zimbraAdmin'>"
+				+ "<account by='name'>" + emailAddress + "</account>" + "</GetAccountRequest>");
 		String id = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectValue("//admin:account", "id");
 
 		aliasTargetEmail = emailAddress;
@@ -111,17 +109,15 @@ public class AliasItem implements IItem {
 	}
 
 	public void setTargetAccountId(String id) throws HarnessException {
-		if ( (aliasTargetId != null) && (aliasTargetId.equals(id)) )
+		if ((aliasTargetId != null) && (aliasTargetId.equals(id)))
 			return; // Nothing to update
 
-		if ( (id == null) || (id.trim().length() == 0) )
+		if ((id == null) || (id.trim().length() == 0))
 			throw new HarnessException("id cannot be null or blank");
 
 		// Need to get the AccountID
-		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
-							"<GetAccountRequest xmlns='urn:zimbraAdmin'>"
-				+                "<account by='id'>"+ id +"</account>"
-                +            "</GetAccountRequest>");
+		ZimbraAdminAccount.AdminConsoleAdmin().soapSend("<GetAccountRequest xmlns='urn:zimbraAdmin'>"
+				+ "<account by='id'>" + id + "</account>" + "</GetAccountRequest>");
 		String emailAddress = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectValue("//admin:account", "name");
 
 		aliasTargetEmail = emailAddress;
@@ -132,6 +128,4 @@ public class AliasItem implements IItem {
 	public String getTargetAccountId() {
 		return (aliasTargetId);
 	}
-
-
 }

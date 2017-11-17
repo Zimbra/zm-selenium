@@ -19,7 +19,6 @@ package com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.organizer.s
 
 import java.awt.event.KeyEvent;
 import java.util.Calendar;
-import org.testng.SkipException;
 import org.testng.annotations.*;
 import com.zimbra.common.soap.Element;
 import com.zimbra.qa.selenium.framework.core.Bugs;

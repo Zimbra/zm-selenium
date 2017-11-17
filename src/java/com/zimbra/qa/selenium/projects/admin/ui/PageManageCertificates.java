@@ -14,9 +14,6 @@
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-/**
- *
- */
 package com.zimbra.qa.selenium.projects.admin.ui;
 
 import com.zimbra.qa.selenium.framework.items.IItem;
@@ -58,7 +55,7 @@ public class PageManageCertificates extends AbsTab {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see projects.admin.ui.AbsTab#isActive()
 	 */
 	@Override
@@ -85,7 +82,7 @@ public class PageManageCertificates extends AbsTab {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see projects.admin.ui.AbsTab#myPageName()
 	 */
 	@Override
@@ -95,7 +92,7 @@ public class PageManageCertificates extends AbsTab {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see projects.admin.ui.AbsTab#navigateTo()
 	 */
 	@Override
@@ -332,7 +329,7 @@ public class PageManageCertificates extends AbsTab {
 						sClick(locator);
 						break;
 					} else if (action == Action.A_RIGHTCLICK) {
-						zRightClick(locator);
+						sRightClick(locator);
 						break;
 					}
 

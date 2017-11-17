@@ -74,7 +74,7 @@ public class Reply extends AjaxCommonTest {
         ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
 
        // Check on the context menu 'Reply' option is disabled for organizer
-        app.zPageCalendar.zRightClickAt(app.zPageCalendar.zGetApptLocator(apptSubject),"");
+        app.zPageCalendar.sRightClickAt(app.zPageCalendar.zGetApptLocator(apptSubject),"");
         ZAssert.assertFalse(app.zPageCalendar.zIsElementDisabled(Locators.ReplyMenu), "Reply Menu is disabled for organiser");
 
 	}

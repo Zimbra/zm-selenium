@@ -27,8 +27,8 @@ import com.zimbra.qa.selenium.framework.util.SleepUtil;
 public class DialogForUndeployZimlet extends AbsDialog {
 
 	public static class Locators {
-		public static final String YES_BUTTON="css=td[id='zdlg__MSG__CTR_ZIMLV_removeConfirm_button5_title']";
-		public static final String NO_BUTTON="zdlg__MSG__CTR_ZIMLV_removeConfirm_button4_title";
+		public static final String YES_BUTTON = "css=td[id='zdlg__MSG__CTR_ZIMLV_removeConfirm_button5_title']";
+		public static final String NO_BUTTON = "zdlg__MSG__CTR_ZIMLV_removeConfirm_button4_title";
 	}
 
 	public DialogForUndeployZimlet(AbsApplication application, AbsTab page) {
@@ -45,7 +45,7 @@ public class DialogForUndeployZimlet extends AbsDialog {
 		logger.info(myPageName() + " zPressButton(" + button + ")");
 
 		tracer.trace("Click dialog button " + button);
-		if ( button == null )
+		if (button == null)
 			throw new HarnessException("button cannot be null");
 
 		String locator = null;
@@ -66,11 +66,10 @@ public class DialogForUndeployZimlet extends AbsDialog {
 
 		// Make sure the locator exists
 		if (!this.sIsElementPresent(locator)) {
-			throw new HarnessException("Button " + button + " locator "
-					+ locator + " not present!");
+			throw new HarnessException("Button " + button + " locator " + locator + " not present!");
 		}
-		
-		this.sClickAt(locator,"");
+
+		this.sClickAt(locator, "");
 		SleepUtil.sleepLong();
 
 		return (page);

@@ -69,9 +69,9 @@ import org.openqa.selenium.interactions.internal.Locatable;
  * test class level) way to access selenium methods.
  * <p>
  * It is intended that Pages, Forms, Trees, etc. will derive from
- * AbsSeleniumObject and call selenium methods using AbsSeleniumObject
- * methods. The class implementations should not use the {@link ClientSession}
- * objects directly.
+ * AbsSeleniumObject and call selenium methods using AbsSeleniumObject methods.
+ * The class implementations should not use the {@link ClientSession} objects
+ * directly.
  * <p>
  * Selenium methods start with a lower case "s", so that
  * {@link #sClick(String)}.
@@ -127,7 +127,7 @@ public abstract class AbsSeleniumObject {
 
 		if (BrowserUserAgent == null) {
 			BrowserUserAgent = sGetEval("return navigator.userAgent;");
-			logger.info("UserAgent: (navigator.userAgent;) >>>>>> "	+ BrowserUserAgent);
+			logger.info("UserAgent: (navigator.userAgent;) >>>>>> " + BrowserUserAgent);
 		}
 
 		if (BrowserMask == 0) {
@@ -144,14 +144,12 @@ public abstract class AbsSeleniumObject {
 		return ((BrowserMask & mask) == mask);
 	}
 
-
 	public boolean zIsVisiblePerPosition(String locator, int leftLimit, int topLimit) throws HarnessException {
 		return elementVisiblePerPosition(locator);
 	}
 
-
 	public void sClick(String locator, WebElement... elements) throws HarnessException {
-		logger.info("click(" + locator + ")");
+		logger.info("sClick(" + locator + ")");
 		SleepUtil.sleepVerySmall();
 
 		try {
@@ -167,7 +165,6 @@ public abstract class AbsSeleniumObject {
 			throw new HarnessException("Unable to click on locator " + locator, ex);
 		}
 	}
-
 
 	public void sClickAt(String locator, String coord, WebElement... elements) throws HarnessException {
 		logger.info("sClickAt(" + locator + "," + coord + ")");
@@ -190,7 +187,6 @@ public abstract class AbsSeleniumObject {
 		}
 	}
 
-
 	public void sClickJavaScript(String locator, WebElement... elements) throws HarnessException {
 		logger.info("sClickJavaScript(" + locator + ")");
 		SleepUtil.sleepVerySmall();
@@ -203,13 +199,12 @@ public abstract class AbsSeleniumObject {
 				we = getElement(locator);
 			}
 
-			((JavascriptExecutor)webDriver()).executeScript("arguments[0].click()", we);
+			((JavascriptExecutor) webDriver()).executeScript("arguments[0].click()", we);
 
 		} catch (Exception ex) {
-			throw new HarnessException("Unable to clickAt on locator " + locator, ex);
+			throw new HarnessException("Unable to clickJavaScript on locator " + locator, ex);
 		}
 	}
-
 
 	@SuppressWarnings("unused")
 	private void zClick(String locator, WebElement... elements) throws HarnessException {
@@ -220,10 +215,19 @@ public abstract class AbsSeleniumObject {
 	private void zClickAt(String locator, String coord, WebElement... elements) throws HarnessException {
 		sClickAt(locator, coord, elements);
 	}
+	
+	@SuppressWarnings("unused")
+	private void zRightClick(String locator, WebElement... elements) throws HarnessException {
+		sClick(locator, elements);
+	}
 
+	@SuppressWarnings("unused")
+	private void zRightClickAt(String locator, String coord, WebElement... elements) throws HarnessException {
+		sClickAt(locator, coord, elements);
+	}
 
-	public void zRightClick(String locator, WebElement... elements) throws HarnessException {
-		logger.info("zRightClick(" + locator + ")");
+	public void sRightClick(String locator, WebElement... elements) throws HarnessException {
+		logger.info("sRightClick(" + locator + ")");
 		SleepUtil.sleepVerySmall();
 
 		WebElement we = null;
@@ -238,14 +242,13 @@ public abstract class AbsSeleniumObject {
 			final Action rClick = builder.contextClick(we).build();
 			rClick.perform();
 
-		} catch(Exception ex) {
+		} catch (Exception ex) {
 			throw new HarnessException("Unable to rightClick on locator " + locator, ex);
 		}
 	}
 
-
-	public void zRightClickAt(String locator, String coord, WebElement... elements) throws HarnessException {
-		logger.info("zRightClickAt(" + locator + "," + coord + ")");
+	public void sRightClickAt(String locator, String coord, WebElement... elements) throws HarnessException {
+		logger.info("sRightClickAt(" + locator + "," + coord + ")");
 		SleepUtil.sleepVerySmall();
 
 		WebElement we = null;
@@ -260,37 +263,34 @@ public abstract class AbsSeleniumObject {
 			final Action rClick = builder.moveToElement(we).contextClick(we).build();
 			rClick.perform();
 
-		} catch(Exception ex) {
+		} catch (Exception ex) {
 			throw new HarnessException("Unable to rightClickAt on locator " + locator, ex);
 		}
 	}
 
-
 	public void zCheckboxSet(String locator, boolean status) throws HarnessException {
 		logger.info("zCheckboxSet(" + locator + ")");
 
-		if ( !this.sIsElementPresent(locator) ) {
+		if (!this.sIsElementPresent(locator)) {
 			throw new HarnessException(locator + " not present!");
 		}
 
-		if ( this.sIsChecked(locator) == status ) {
-			logger.debug("checkbox status matched.  not doing anything");
+		if (this.sIsChecked(locator) == status) {
+			logger.debug("Checkbox status matched");
 			return;
 		}
-		if ( status == true ) {
+		if (status == true) {
 			this.sCheck(locator);
 		} else {
 			this.sUncheck(locator);
 		}
 	}
 
-
 	public void zSelectWindow(String windowID) throws HarnessException {
 		logger.info("zSelectWindow(" + windowID + ")");
 		this.sSelectWindow(windowID);
 		this.sWindowFocus();
 	}
-
 
 	public String zGetHtml(String locator, WebElement... elements) throws HarnessException {
 		logger.info("zGetHtml(" + locator + ")");
@@ -315,7 +315,6 @@ public abstract class AbsSeleniumObject {
 
 	}
 
-
 	public void zType(String locator, String value, WebElement... elements) throws HarnessException {
 		logger.info("zType(" + locator + "," + value + ")");
 		SleepUtil.sleepVerySmall();
@@ -333,8 +332,7 @@ public abstract class AbsSeleniumObject {
 		SleepUtil.sleepVerySmall();
 	}
 
-
-	public void zTypeKeys(String locator, String value, WebElement... elements ) throws HarnessException {
+	public void zTypeKeys(String locator, String value, WebElement... elements) throws HarnessException {
 		logger.info("zTypeKeys(" + locator + "," + value + ")");
 		WebElement we = null;
 		if (elements != null && elements.length > 0) {
@@ -346,7 +344,6 @@ public abstract class AbsSeleniumObject {
 		sType(locator, value, we);
 		SleepUtil.sleepVerySmall();
 	}
-
 
 	public void zKeyDown(String keyCode) throws HarnessException {
 		logger.info("zKeyDown(" + keyCode + ")");
@@ -361,57 +358,36 @@ public abstract class AbsSeleniumObject {
 		}
 	}
 
-
 	public void zKeyEvent(String locator, String keyCode, String event) throws HarnessException {
 		logger.info("zKeyEvent(" + keyCode + ")");
 
 		if (this.zIsBrowserMatch(BrowserMasks.BrowserMaskIE)) {
-			executeScript(
-					"try {var el = arguments[0]; "
-							+ "var evObj = document.createEventObject(); "
-							+ "evObj.keyCode="
-							+ keyCode
-							+ "; evObj.repeat = false; "
-							+ "el.focus(); el.fireEvent(\"on"
-							+ event
-							+ "\", evObj);} catch (err) {return(err.message)}",
-							getElement(locator));
+			executeScript("try {var el = arguments[0]; " + "var evObj = document.createEventObject(); "
+					+ "evObj.keyCode=" + keyCode + "; evObj.repeat = false; " + "el.focus(); el.fireEvent(\"on" + event
+					+ "\", evObj);} catch (err) {return(err.message)}", getElement(locator));
 		} else if (this.zIsBrowserMatch(BrowserMasks.BrowserMaskFF)) {
 			executeScript(
-					"try {var el = arguments[0]; "
-							+ "var evo = document.createEvent('HTMLEvents'); "
-							+ "evo.initEvent('"
-							+ event
-							+ "', true, true, window, 1 ); evo.keyCode="
-							+ keyCode
+					"try {var el = arguments[0]; " + "var evo = document.createEvent('HTMLEvents'); "
+							+ "evo.initEvent('" + event + "', true, true, window, 1 ); evo.keyCode=" + keyCode
 							+ "; el.blur(); el.focus(); el.dispatchEvent(evo);} catch (err) {return(err.message)}",
-							getElement("css=html body"));
+					getElement("css=html body"));
 		} else {
 			executeScript(
-					"try {var el = arguments[0]; "
-							+ "var evo = document.createEvent('HTMLEvents'); "
-							+ "evo.initEvent('"
-							+ event
-							+ "', true, true, window, 1 ); evo.keyCode="
-							+ keyCode
+					"try {var el = arguments[0]; " + "var evo = document.createEvent('HTMLEvents'); "
+							+ "evo.initEvent('" + event + "', true, true, window, 1 ); evo.keyCode=" + keyCode
 							+ "; el.blur(); el.focus(); el.dispatchEvent(evo);} catch (err) {return(err.message)}",
-							getElement("css=html body"));
+					getElement("css=html body"));
 		}
 	}
-
 
 	public void zTypeFormattedText(String locator, String html) throws HarnessException {
 		logger.info("zTypeFormattedText(" + locator + ", " + html + ")");
 
-		executeScript("try {var bodytext=\""
-				+ html
-				+ "\";"
-				+ "var iframe_element=arguments[0];"
+		executeScript("try {var bodytext=\"" + html + "\";" + "var iframe_element=arguments[0];"
 				+ "var iframe_body=iframe_element.contentWindow.document.body;"
-				+ "iframe_body.innerHTML = bodytext;} catch (err) {return(err);}",getElement(locator));
+				+ "iframe_body.innerHTML = bodytext;} catch (err) {return(err);}", getElement(locator));
 
 	}
-
 
 	public void sFireEvent(String locator, String eventName, WebElement... elements) throws HarnessException {
 		logger.info("sFireEvent(" + eventName + ")");
@@ -425,11 +401,10 @@ public abstract class AbsSeleniumObject {
 		}
 
 		/*
-		JavascriptLibrary jsLib = new JavascriptLibrary();
-		jsLib.callEmbeddedSelenium(webDriver(), "doFireEvent", we, eventName);
+		 * JavascriptLibrary jsLib = new JavascriptLibrary();
+		 * jsLib.callEmbeddedSelenium(webDriver(), "doFireEvent", we, eventName);
 		 */
 	}
-
 
 	public String sGetEval(String script) throws HarnessException {
 		String value = null;
@@ -442,7 +417,6 @@ public abstract class AbsSeleniumObject {
 			return value;
 		}
 	}
-
 
 	public String sGetHtmlSource() throws HarnessException {
 		String htmlSource = null;
@@ -459,7 +433,6 @@ public abstract class AbsSeleniumObject {
 		return (htmlBody);
 	}
 
-
 	public int sGetElementHeight(String locator) throws HarnessException {
 		try {
 			int n = -1;
@@ -470,7 +443,6 @@ public abstract class AbsSeleniumObject {
 			throw new HarnessException(e);
 		}
 	}
-
 
 	public int sGetElementWidth(String locator) throws HarnessException {
 		try {
@@ -485,7 +457,6 @@ public abstract class AbsSeleniumObject {
 		}
 	}
 
-
 	public int sGetElementPositionLeft(String locator) throws HarnessException {
 		try {
 			int n = -1;
@@ -496,7 +467,6 @@ public abstract class AbsSeleniumObject {
 			throw new HarnessException(e);
 		}
 	}
-
 
 	public int sGetElementPositionTop(String locator) throws HarnessException {
 		try {
@@ -509,14 +479,12 @@ public abstract class AbsSeleniumObject {
 		}
 	}
 
-
 	public String sGetNextSiblingId(String id) throws HarnessException {
 		String sibLingid = null;
 		sibLingid = executeScript("return document.getElementById('" + id + "')" + ".nextSibling.id");
 		logger.info("sGetNextSiblingId( " + id + ") = " + sibLingid);
 		return (sibLingid);
 	}
-
 
 	public String sGetPreviousSiblingId(String id) throws HarnessException {
 		String sibLingid = null;
@@ -525,22 +493,19 @@ public abstract class AbsSeleniumObject {
 		return (sibLingid);
 	}
 
-
 	public String sGetSelectedId(String locator) throws HarnessException {
 		String id = null;
-		Select select =  new Select (getElement(locator));
+		Select select = new Select(getElement(locator));
 		WebElement we = select.getFirstSelectedOption();
 		id = we.getAttribute("id");
 		logger.info("getSelectedId(" + locator + ") = " + id);
 		return (id);
 	}
 
-
 	public void sClose() throws HarnessException {
 		logger.info("close()");
 		webDriver().close();
 	}
-
 
 	public void sDoubleClick(String locator, WebElement... elements) throws HarnessException {
 		logger.info("doubleClick(" + locator + ")");
@@ -552,34 +517,33 @@ public abstract class AbsSeleniumObject {
 			} else {
 				we = getElement(locator);
 			}
-			((JavascriptExecutor) webDriver()).executeScript("var evt = document.createEvent('MouseEvents');"+
-					"evt.initMouseEvent('dblclick',true, true, window, 0, 0, 0, 0, 0, false, false, false,"+
-					"false, 0,null); arguments[0].dispatchEvent(evt);", we);
+			((JavascriptExecutor) webDriver()).executeScript("var evt = document.createEvent('MouseEvents');"
+					+ "evt.initMouseEvent('dblclick',true, true, window, 0, 0, 0, 0, 0, false, false, false,"
+					+ "false, 0,null); arguments[0].dispatchEvent(evt);", we);
 
-		} catch(Exception ex) {
+		} catch (Exception ex) {
 			throw new HarnessException("Unable to doubleclick on locator " + locator, ex);
 		}
 	}
 
-
 	public String zGetCenterPoint(String locator) throws HarnessException {
 		int height = -1;
-		int width  = -1;
+		int width = -1;
 		height = sGetElementHeight(locator) / 2;
-		width =  sGetElementWidth(locator) / 2;
+		width = sGetElementWidth(locator) / 2;
 
 		String centerHeight = Integer.toString(height);
 		String centerWidth = Integer.toString(width);
 		return new StringBuilder("(").append(centerWidth).append(",").append(centerHeight).append(")").toString();
 	}
 
-
 	public void sWaitForPageToLoad() throws HarnessException {
 		String timeout = ConfigProperties.getStringProperty("selenium.maxpageload.msec", "20000");
 		logger.info("waitForPageToLoad(" + timeout + ")");
 
 		try {
-			Wait<WebDriver> wait = new FluentWait<WebDriver>(webDriver()).withTimeout(10, TimeUnit.SECONDS).pollingEvery(500, TimeUnit.MILLISECONDS).ignoring(NoSuchElementException.class);
+			Wait<WebDriver> wait = new FluentWait<WebDriver>(webDriver()).withTimeout(10, TimeUnit.SECONDS)
+					.pollingEvery(500, TimeUnit.MILLISECONDS).ignoring(NoSuchElementException.class);
 
 			try {
 				wait.until(new ExpectedCondition<Boolean>() {
@@ -587,7 +551,7 @@ public abstract class AbsSeleniumObject {
 						Boolean result = false;
 						String str;
 						str = executeScript("return document['readyState'] ? 'complete' == document.readyState : true");
-						if (str!=null && str.contentEquals("true")) {
+						if (str != null && str.contentEquals("true")) {
 							result = true;
 						}
 						return result;
@@ -602,7 +566,6 @@ public abstract class AbsSeleniumObject {
 		}
 	}
 
-
 	public void sMouseDown(String locator, WebElement... elements) throws HarnessException {
 		logger.info("mouseDown(" + locator + ")");
 
@@ -613,23 +576,22 @@ public abstract class AbsSeleniumObject {
 			} else {
 				we = getElement(locator);
 			}
-			Mouse mouse = ((HasInputDevices)webDriver()).getMouse();
-			mouse.mouseDown(((RemoteWebElement)we).getCoordinates());
+			Mouse mouse = ((HasInputDevices) webDriver()).getMouse();
+			mouse.mouseDown(((RemoteWebElement) we).getCoordinates());
 			SleepUtil.sleepVerySmall();
 
-		} catch(Exception ex) {
+		} catch (Exception ex) {
 			throw new HarnessException("Unable to mouseDown on locator " + locator, ex);
 		}
 	}
-
 
 	public void sMouseDownAt(String locator, String coordString) throws HarnessException {
 		logger.info("mouseDownAt(" + locator + ",'" + coordString + "')");
 
 		try {
-			Coordinates co =  ((RemoteWebElement)getElement(locator)).getCoordinates();
-			Mouse mouse = ((HasInputDevices)webDriver()).getMouse();
-			mouse.mouseMove(co,0,0);
+			Coordinates co = ((RemoteWebElement) getElement(locator)).getCoordinates();
+			Mouse mouse = ((HasInputDevices) webDriver()).getMouse();
+			mouse.mouseMove(co, 0, 0);
 			mouse.mouseDown(co);
 			SleepUtil.sleepVerySmall();
 
@@ -637,7 +599,6 @@ public abstract class AbsSeleniumObject {
 			throw new HarnessException("Unable to mouseDownAt on locator " + locator, ex);
 		}
 	}
-
 
 	public void sMouseDownRightAt(String locator, String coordString, WebElement... elements) throws HarnessException {
 		logger.info("mouseDownRightAt(" + locator + ",'" + coordString + "')");
@@ -651,14 +612,13 @@ public abstract class AbsSeleniumObject {
 				we = getElement(locator);
 			}
 			Actions action = new Actions(webDriver());
-			action.moveToElement(we,1,1).contextClick(we).build().perform();
+			action.moveToElement(we, 1, 1).contextClick(we).build().perform();
 			SleepUtil.sleepVerySmall();
 
 		} catch (WebDriverException ex) {
 			throw new HarnessException("Unable to mouseDownRightAt on locator " + locator, ex);
 		}
 	}
-
 
 	public void sMouseUpRightAt(String locator, String coordString, WebElement... elements) throws HarnessException {
 		logger.info("mouseUpRightAt(" + locator + ",'" + coordString + "')");
@@ -671,14 +631,13 @@ public abstract class AbsSeleniumObject {
 				we = getElement(locator);
 			}
 			Actions action = new Actions(webDriver());
-			action.moveToElement(we,0,0).release(we).build().perform();
+			action.moveToElement(we, 0, 0).release(we).build().perform();
 			SleepUtil.sleepVerySmall();
 
 		} catch (WebDriverException ex) {
 			throw new HarnessException("Unable to mouseUpRightAt on locator " + locator, ex);
 		}
 	}
-
 
 	public void sMouseOver(String locator, WebElement... elements) throws HarnessException {
 		logger.info("mouseOver(" + locator + ")");
@@ -698,7 +657,6 @@ public abstract class AbsSeleniumObject {
 		}
 	}
 
-
 	public void sMouseOut(String locator, WebElement... elements) throws HarnessException {
 		logger.info("mouseOut(" + locator + ")");
 
@@ -710,7 +668,7 @@ public abstract class AbsSeleniumObject {
 				we = getElement(locator);
 			}
 			Actions action = new Actions(webDriver());
-			action.clickAndHold(we).moveByOffset(1,1).build().perform();
+			action.clickAndHold(we).moveByOffset(1, 1).build().perform();
 			SleepUtil.sleepVerySmall();
 
 		} catch (WebDriverException ex) {
@@ -718,13 +676,12 @@ public abstract class AbsSeleniumObject {
 		}
 	}
 
-
 	public void sMouseUp(String locator) throws HarnessException {
 		logger.info("mouseUp(" + locator + ")");
 
 		try {
-			Coordinates co =  ((Locatable)getElement(locator)).getCoordinates();
-			Mouse mouse = ((HasInputDevices)webDriver()).getMouse();
+			Coordinates co = ((Locatable) getElement(locator)).getCoordinates();
+			Mouse mouse = ((HasInputDevices) webDriver()).getMouse();
 			mouse.mouseUp(co);
 			SleepUtil.sleepVerySmall();
 
@@ -732,7 +689,6 @@ public abstract class AbsSeleniumObject {
 			throw new HarnessException("Unable to mouseUp on locator " + locator, ex);
 		}
 	}
-
 
 	public void sMouseMoveAt(String locator, String coordString, WebElement... elements) throws HarnessException {
 		logger.info("mouseMoveAt(" + locator + ",'" + coordString + "')");
@@ -746,14 +702,13 @@ public abstract class AbsSeleniumObject {
 			}
 
 			Actions action = new Actions(webDriver());
-			action.moveToElement(we,0,0).build().perform();
+			action.moveToElement(we, 0, 0).build().perform();
 			SleepUtil.sleepVerySmall();
 
 		} catch (WebDriverException ex) {
 			throw new HarnessException("Unable to mouseMoveAt on locator " + locator, ex);
 		}
 	}
-
 
 	public void sMouseMove(String locator, WebElement... elements) throws HarnessException {
 		logger.info("mouseMove(" + locator + ")");
@@ -769,19 +724,18 @@ public abstract class AbsSeleniumObject {
 			action.moveToElement(we).build().perform();
 			SleepUtil.sleepVerySmall();
 
-		} catch(Exception ex) {
+		} catch (Exception ex) {
 			throw new HarnessException("Unable to mouseMove on locator " + locator, ex);
 		}
 	}
-
 
 	public void sMouseUpAt(String locator, String coordString) throws HarnessException {
 		logger.info("mouseUpAt(" + locator + ",'" + coordString + ")'");
 
 		try {
-			Coordinates co =  ((RemoteWebElement)getElement(locator)).getCoordinates();
-			Mouse mouse = ((HasInputDevices)webDriver()).getMouse();
-			mouse.mouseMove(co,0,0);
+			Coordinates co = ((RemoteWebElement) getElement(locator)).getCoordinates();
+			Mouse mouse = ((HasInputDevices) webDriver()).getMouse();
+			mouse.mouseMove(co, 0, 0);
 			mouse.mouseUp(co);
 			SleepUtil.sleepVerySmall();
 
@@ -789,7 +743,6 @@ public abstract class AbsSeleniumObject {
 			throw new HarnessException("Unable to mouseUpAt on locator " + locator, ex);
 		}
 	}
-
 
 	public void sMouseDownRight(String locator, WebElement... elements) throws HarnessException {
 		logger.info("mouseDownRight(" + locator + ")");
@@ -810,7 +763,6 @@ public abstract class AbsSeleniumObject {
 		}
 	}
 
-
 	public void sMouseUpRight(String locator, WebElement... elements) throws HarnessException {
 		logger.info("mouseUpRight(" + locator + ")");
 
@@ -830,7 +782,6 @@ public abstract class AbsSeleniumObject {
 		}
 	}
 
-
 	public void sFocus(String locator, WebElement... elements) throws HarnessException {
 		logger.info("focus(" + locator + ")");
 
@@ -841,8 +792,10 @@ public abstract class AbsSeleniumObject {
 			} else {
 				we = getElement(locator);
 			}
-			Capabilities cp =  ((RemoteWebDriver)webDriver()).getCapabilities();
-			if (cp.getBrowserName().equals(DesiredCapabilities.firefox().getBrowserName())||cp.getBrowserName().equals(DesiredCapabilities.chrome().getBrowserName())||cp.getBrowserName().equals(DesiredCapabilities.internetExplorer().getBrowserName())) {
+			Capabilities cp = ((RemoteWebDriver) webDriver()).getCapabilities();
+			if (cp.getBrowserName().equals(DesiredCapabilities.firefox().getBrowserName())
+					|| cp.getBrowserName().equals(DesiredCapabilities.chrome().getBrowserName())
+					|| cp.getBrowserName().equals(DesiredCapabilities.internetExplorer().getBrowserName())) {
 				executeScript("arguments[0].focus();", we);
 			}
 
@@ -850,7 +803,6 @@ public abstract class AbsSeleniumObject {
 			throw new HarnessException("Unable to focus on locator " + locator, ex);
 		}
 	}
-
 
 	public boolean sIsElementPresent(String locator) throws HarnessException {
 		boolean present;
@@ -863,14 +815,12 @@ public abstract class AbsSeleniumObject {
 		return (present);
 	}
 
-
 	// Refreshes UI without considering anything else
 	public void zRefreshUI() throws HarnessException {
 		logger.info("Refresh UI");
 		webDriver().navigate().refresh();
 		SleepUtil.sleepLongMedium();
 	}
-
 
 	// Refreshes UI till loading completes successfully
 	public void zRefreshMainUI() throws HarnessException {
@@ -880,7 +830,8 @@ public abstract class AbsSeleniumObject {
 		if (ConfigProperties.getAppType().toString().equals("AJAX")) {
 
 			if (ConfigProperties.getStringProperty("server.host").contains("zimbra.com")) {
-				zWaitTillElementPresent(com.zimbra.qa.selenium.projects.ajax.ui.mail.PageMail.Locators.zMailZimletsPane);
+				zWaitTillElementPresent(
+						com.zimbra.qa.selenium.projects.ajax.ui.mail.PageMail.Locators.zMailZimletsPane);
 			} else {
 				zWaitTillElementPresent(com.zimbra.qa.selenium.projects.ajax.ui.mail.PageMail.Locators.zMailTagsPane);
 			}
@@ -888,16 +839,18 @@ public abstract class AbsSeleniumObject {
 		} else if (ConfigProperties.getAppType().toString().equals("UNIVERSAL")) {
 
 			if (ConfigProperties.getStringProperty("server.host").contains("zimbra.com")) {
-				zWaitTillElementPresent(com.zimbra.qa.selenium.projects.universal.ui.mail.PageMail.Locators.zMailZimletsPane);
+				zWaitTillElementPresent(
+						com.zimbra.qa.selenium.projects.universal.ui.mail.PageMail.Locators.zMailZimletsPane);
 			} else {
-				zWaitTillElementPresent(com.zimbra.qa.selenium.projects.universal.ui.mail.PageMail.Locators.zMailTagsPane);
+				zWaitTillElementPresent(
+						com.zimbra.qa.selenium.projects.universal.ui.mail.PageMail.Locators.zMailTagsPane);
 			}
 
 		} else if (ConfigProperties.getAppType().name().equals("ADMIN")) {
 
 			boolean loginPagePresent = false, mainUIPresent = false;
 			SleepUtil.sleepMedium();
-			for (int i=0; i<=10; i++) {
+			for (int i = 0; i <= 10; i++) {
 				if (zIsVisiblePerPosition(PageMain.Locators.zHelpButton, 10, 10) == true) {
 					mainUIPresent = true;
 					break;
@@ -915,11 +868,10 @@ public abstract class AbsSeleniumObject {
 		}
 	}
 
-
-	// Refreshes UI till specified element gets visible 
+	// Refreshes UI till specified element gets visible
 	public Boolean zRefreshUITillElementPresent(String locator) throws HarnessException {
 		boolean present = false;
-		for (int i=1; i<=3; i++) {
+		for (int i = 1; i <= 3; i++) {
 			present = zIsVisiblePerPosition(locator, 10, 10);
 			if (present == true) {
 				logger.info(locator + " locator found successfully");
@@ -936,14 +888,12 @@ public abstract class AbsSeleniumObject {
 		return present;
 	}
 
-
 	public int sGetXpathCount(String xpath) throws HarnessException {
 		int count = 0;
 		count = getElements(By.xpath(xpath)).size();
 		logger.info("getXpathCount(" + xpath + ") = " + count);
 		return (count);
 	}
-
 
 	public int sGetCssCount(String css) throws HarnessException {
 		int count = 0;
@@ -952,14 +902,12 @@ public abstract class AbsSeleniumObject {
 		return (count);
 	}
 
-
 	public List<String> sGetAllWindowTitles() throws HarnessException {
 		logger.info("getAllWindowTitles()");
 		List<String> list = null;
-		list =  getAllWindowNames();
+		list = getAllWindowNames();
 		return list;
 	}
-
 
 	public List<String> sGetAllWindowIds() throws HarnessException {
 		logger.info("getAllWindowIds()");
@@ -968,34 +916,32 @@ public abstract class AbsSeleniumObject {
 		return list;
 	}
 
-
 	public List<String> sGetAllWindowNames() throws HarnessException {
 		logger.info("getAllWindowNames()");
 		List<String> list = null;
-		list =  getAllWindowNames();
+		list = getAllWindowNames();
 		return list;
 	}
-
 
 	public String sGetAttribute(String locator) throws WebDriverException {
 
 		try {
 			String attrs = null;
 
-			if (locator!=null && locator.lastIndexOf('@') + 1 < locator.length()) {
+			if (locator != null && locator.lastIndexOf('@') + 1 < locator.length()) {
 				String elementLocator = locator.substring(0, locator.lastIndexOf('@'));
 				if (elementLocator.length() > 1) {
 					try {
 						if (!elementLocator.startsWith("css=")) {
 							if (elementLocator.endsWith(")")) {
-								elementLocator = elementLocator.substring(0, elementLocator.length()-1);
+								elementLocator = elementLocator.substring(0, elementLocator.length() - 1);
 							}
 							if (elementLocator.startsWith("xpath=(")) {
 								elementLocator = elementLocator.substring(7, elementLocator.length());
 							}
 						}
 						WebElement we = getElement(elementLocator);
-						attrs = we.getAttribute(locator.substring(locator.lastIndexOf('@')+1));
+						attrs = we.getAttribute(locator.substring(locator.lastIndexOf('@') + 1));
 					} catch (Exception ex) {
 						logger.error(ex);
 					}
@@ -1011,24 +957,23 @@ public abstract class AbsSeleniumObject {
 		}
 	}
 
-
 	public String sGetCssValue(String locator) throws WebDriverException {
 
 		try {
 			String attrs = null;
 
-			if (locator!=null && locator.lastIndexOf('@') + 1 < locator.length()) {
+			if (locator != null && locator.lastIndexOf('@') + 1 < locator.length()) {
 				String elementLocator = locator.substring(0, locator.lastIndexOf('@'));
 				if (elementLocator.length() > 1) {
 					try {
 						if (elementLocator.endsWith(")")) {
-							elementLocator = elementLocator.substring(0, elementLocator.length()-1);
+							elementLocator = elementLocator.substring(0, elementLocator.length() - 1);
 						}
 						if (elementLocator.startsWith("xpath=(")) {
-							elementLocator = elementLocator.substring(7,elementLocator.length());
+							elementLocator = elementLocator.substring(7, elementLocator.length());
 						}
 						WebElement we = getElement(elementLocator);
-						attrs = we.getCssValue(locator.substring(locator.lastIndexOf('@')+1));
+						attrs = we.getCssValue(locator.substring(locator.lastIndexOf('@') + 1));
 					} catch (Exception ex) {
 						logger.error(ex);
 					}
@@ -1044,7 +989,6 @@ public abstract class AbsSeleniumObject {
 		}
 	}
 
-
 	public boolean sIsVisible(String locator) throws HarnessException {
 		boolean visible = false;
 		visible = elementVisible(locator);
@@ -1052,14 +996,12 @@ public abstract class AbsSeleniumObject {
 		return (visible);
 	}
 
-
 	public boolean zIsBusyOverlay() throws HarnessException {
 		boolean isBusyOverlay = true;
 		isBusyOverlay = Boolean.parseBoolean(executeScript("return top.appCtxt.getShell().getBusy()==true"));
 		logger.info("isBusyOverlay(" + ") = " + isBusyOverlay);
 		return (isBusyOverlay);
 	}
-
 
 	public void zWaitForBusyOverlay() throws HarnessException {
 		try {
@@ -1069,47 +1011,22 @@ public abstract class AbsSeleniumObject {
 		}
 	}
 
-
 	public void zWaitForBusyOverlayHTML() throws HarnessException {
 		sWaitForCondition("return top.appCtxt.getShell().getBusy()==false");
 	}
-
 
 	protected boolean sWaitForCondition(String condition) throws HarnessException {
 		logger.info("sWaitForCondition(" + condition + "), timeout=" + LoadDelay);
 		try {
 			boolean result = false;
 			final String script = condition;
-			result = (new WebDriverWait(webDriver(), LoadDelay/SleepUtil.SleepGranularity)).until(new ExpectedCondition<Boolean>() {
-				public Boolean apply(WebDriver d) {
-					if (d==null) {
-						return false;
-					} else {
-						return (Boolean) ((JavascriptExecutor) d).executeScript(script);
-					}
-				}
-			});
-			return result;
-		} catch (Exception ex) {
-			logger.info(condition + " never become true: " + ex);
-			return false;
-		}
-	}
-
-
-	public boolean sWaitForCondition(String condition, String timeout) throws HarnessException {
-		logger.info("sWaitForCondition(" + condition + "), timeout=" + timeout);
-		try {
-			boolean result = false;
-			final String script = condition;
-			result = (new WebDriverWait(webDriver(), Long.valueOf(timeout)/SleepUtil.SleepGranularity))
+			result = (new WebDriverWait(webDriver(), LoadDelay / SleepUtil.SleepGranularity))
 					.until(new ExpectedCondition<Boolean>() {
 						public Boolean apply(WebDriver d) {
-							if (d==null) {
+							if (d == null) {
 								return false;
 							} else {
-								return (Boolean) ((JavascriptExecutor) d)
-										.executeScript(script);
+								return (Boolean) ((JavascriptExecutor) d).executeScript(script);
 							}
 						}
 					});
@@ -1120,6 +1037,27 @@ public abstract class AbsSeleniumObject {
 		}
 	}
 
+	public boolean sWaitForCondition(String condition, String timeout) throws HarnessException {
+		logger.info("sWaitForCondition(" + condition + "), timeout=" + timeout);
+		try {
+			boolean result = false;
+			final String script = condition;
+			result = (new WebDriverWait(webDriver(), Long.valueOf(timeout) / SleepUtil.SleepGranularity))
+					.until(new ExpectedCondition<Boolean>() {
+						public Boolean apply(WebDriver d) {
+							if (d == null) {
+								return false;
+							} else {
+								return (Boolean) ((JavascriptExecutor) d).executeScript(script);
+							}
+						}
+					});
+			return result;
+		} catch (Exception ex) {
+			logger.info(condition + " never become true: " + ex);
+			return false;
+		}
+	}
 
 	public boolean zWaitForElementPresent(String locator) throws HarnessException {
 		logger.info("zWaitForElementPresent(" + locator + ")");
@@ -1127,12 +1065,11 @@ public abstract class AbsSeleniumObject {
 
 	}
 
-
 	public boolean zWaitTillElementPresent(String locator) throws HarnessException {
 		logger.info("zWaitTillElementPresent(" + locator + ")");
 
 		boolean present = false;
-		for (int i=0; i<=10; i++) {
+		for (int i = 0; i <= 10; i++) {
 			present = zIsVisiblePerPosition(locator, 10, 10);
 			if (present == true) {
 				SleepUtil.sleepSmall();
@@ -1147,12 +1084,10 @@ public abstract class AbsSeleniumObject {
 		return present;
 	}
 
-
 	public boolean zWaitForElementPresent(String locator, String timeout) throws HarnessException {
-		logger.info("zWaitForElementPresent(" + locator + ", " + timeout +")");
-		return waitForElementPresent(locator, true, Long.valueOf(timeout)/SleepUtil.SleepGranularity);
+		logger.info("zWaitForElementPresent(" + locator + ", " + timeout + ")");
+		return waitForElementPresent(locator, true, Long.valueOf(timeout) / SleepUtil.SleepGranularity);
 	}
-
 
 	public void zWaitForElementDeleted(String locator) throws HarnessException {
 		logger.info("zWaitForElementDeleted(" + locator + ")");
@@ -1163,19 +1098,16 @@ public abstract class AbsSeleniumObject {
 		}
 	}
 
-
 	public boolean zWaitForElementDeleted(String locator, String timeout) throws HarnessException {
-		logger.info("zWaitForElementDeleted(" + locator + ", " + timeout +")");
-		return waitForElementPresent(locator, false, Long.valueOf(timeout)/SleepUtil.SleepGranularity);
+		logger.info("zWaitForElementDeleted(" + locator + ", " + timeout + ")");
+		return waitForElementPresent(locator, false, Long.valueOf(timeout) / SleepUtil.SleepGranularity);
 	}
-
 
 	public boolean zIsElementDisabled(String cssLocator) throws HarnessException {
 		String locator = (cssLocator.startsWith("css=") ? "" : "css=") + cssLocator + "[class*=ZDisabled]";
 		logger.info("zIsElementDisabled(" + locator + ")");
 		return sIsElementPresent(locator);
 	}
-
 
 	public void zWaitForElementEnabled(String cssLocator) throws HarnessException {
 		logger.info("zWaitForElementEnabled(" + cssLocator + ")");
@@ -1188,7 +1120,6 @@ public abstract class AbsSeleniumObject {
 		throw new HarnessException("Element " + cssLocator + " never become enabled: ");
 	}
 
-
 	public void zWaitForElementVisible(String locator) throws HarnessException {
 		logger.info("zWaitForElementVisible(" + locator + ")");
 		for (int i = 0; i < 15; i++) {
@@ -1200,7 +1131,6 @@ public abstract class AbsSeleniumObject {
 		throw new HarnessException(locator + " - never visibled!");
 	}
 
-
 	public void zWaitForElementInvisible(String locator) throws HarnessException {
 		logger.info("zWaitForElementInvisible(" + locator + ")");
 		if (waitForElementVisible(locator, false, 15)) {
@@ -1209,12 +1139,10 @@ public abstract class AbsSeleniumObject {
 		throw new HarnessException(locator + "never invisible!");
 	}
 
-
 	public void zWaitForWindow(String name) throws HarnessException {
 		logger.info("zWaitForWindow(" + name + ")");
 		waitForWindowOpen(name, 60L);
 	}
-
 
 	public boolean zWaitForIframeText(String iframe, final String text) throws HarnessException {
 		logger.info("zWaitForIframeText(" + iframe + ", " + text + ")");
@@ -1223,16 +1151,10 @@ public abstract class AbsSeleniumObject {
 			final WebElement we = getElement(iframe);
 			ExpectedCondition<Boolean> ec = new ExpectedCondition<Boolean>() {
 				public Boolean apply(WebDriver driver) {
-					String result =  executeScript("var iframe = arguments[0];"
-							+ "var iframe_body = "
-							+ "iframe.contentWindow.document.body;"
-							+ "if (navigator.userAgent.indexOf('MSIE')!=-1) {"
-							+ "var result = iframe_body.innerHTML.indexOf('"
-							+ text
-							+ "') >= 0} else {"
-							+ "var result = iframe_body.textContent.indexOf('"
-							+ text
-							+ "') >= 0} return result",we);
+					String result = executeScript("var iframe = arguments[0];" + "var iframe_body = "
+							+ "iframe.contentWindow.document.body;" + "if (navigator.userAgent.indexOf('MSIE')!=-1) {"
+							+ "var result = iframe_body.innerHTML.indexOf('" + text + "') >= 0} else {"
+							+ "var result = iframe_body.textContent.indexOf('" + text + "') >= 0} return result", we);
 					if (result == null) {
 						return false;
 					} else {
@@ -1240,19 +1162,17 @@ public abstract class AbsSeleniumObject {
 					}
 				}
 			};
-			result =  waitForCondition(ec,10);
+			result = waitForCondition(ec, 10);
 			return result;
 		} catch (Exception ex) {
 			throw new HarnessException(iframe + " never opened : ", ex);
 		}
 	}
 
-
 	public boolean zIsWindowOpen(String name) throws HarnessException {
 		logger.info("zIsWindowOpen(" + name + ")");
 		return isWindowOpen(name);
 	}
-
 
 	public boolean zWaitForWindowClosed(String name) throws HarnessException {
 		logger.info("zWaitForWindowClosed(" + name + ")");
@@ -1266,7 +1186,6 @@ public abstract class AbsSeleniumObject {
 		}
 	}
 
-
 	public void sCheck(String locator) throws HarnessException {
 		logger.info("check(" + locator + ")");
 		WebElement we = getElement(locator);
@@ -1275,7 +1194,6 @@ public abstract class AbsSeleniumObject {
 		}
 	}
 
-
 	public void sUncheck(String locator) throws HarnessException {
 		logger.info("uncheck(" + locator + ")");
 		WebElement we = getElement(locator);
@@ -1283,7 +1201,6 @@ public abstract class AbsSeleniumObject {
 			we.click();
 		}
 	}
-
 
 	public boolean sIsChecked(String locator, WebElement... elements) throws HarnessException {
 		boolean checked = false;
@@ -1298,7 +1215,6 @@ public abstract class AbsSeleniumObject {
 		logger.info("isChecked(" + locator + ") = " + checked);
 		return (checked);
 	}
-
 
 	public String sGetText(String locator, WebElement... elements) throws HarnessException {
 		try {
@@ -1318,7 +1234,6 @@ public abstract class AbsSeleniumObject {
 		}
 	}
 
-
 	public String sGetValue(String locator, WebElement... elements) throws HarnessException {
 		String text = null;
 		WebElement we = null;
@@ -1333,7 +1248,6 @@ public abstract class AbsSeleniumObject {
 		return (text);
 	}
 
-
 	public String sGetShortcutsDialogBody(String locator) throws HarnessException {
 		String text;
 		WebElement el = getElement(locator);
@@ -1341,7 +1255,6 @@ public abstract class AbsSeleniumObject {
 		logger.info("sGetBodyText() = " + text);
 		return text;
 	}
-
 
 	public String sGetBodyText() throws HarnessException {
 		String text;
@@ -1351,14 +1264,12 @@ public abstract class AbsSeleniumObject {
 		return text;
 	}
 
-
 	public String sGetTitle() throws HarnessException {
 		String text = null;
 		text = webDriver().getTitle();
 		logger.info("getTitle() = " + text);
 		return text;
 	}
-
 
 	public void sType(String locator, String text, WebElement... elements) throws HarnessException {
 		try {
@@ -1378,7 +1289,6 @@ public abstract class AbsSeleniumObject {
 		}
 	}
 
-
 	public void sTypeDateTime(String locator, String text, WebElement... elements) throws HarnessException {
 		try {
 			logger.info("sTypeDateTime(" + locator + ", " + text + ")");
@@ -1396,7 +1306,6 @@ public abstract class AbsSeleniumObject {
 		}
 	}
 
-
 	public void sTypeKeys(String locator, String text, WebElement... elements) throws HarnessException {
 		try {
 			logger.info("sTypeKeys(" + locator + ", " + text + ")");
@@ -1409,7 +1318,7 @@ public abstract class AbsSeleniumObject {
 			}
 
 			final Actions builder = new Actions(webDriver());
-			final Action action = builder.sendKeys(we,text).build();
+			final Action action = builder.sendKeys(we, text).build();
 			action.perform();
 			SleepUtil.sleepVerySmall();
 
@@ -1418,14 +1327,12 @@ public abstract class AbsSeleniumObject {
 		}
 	}
 
-
 	public String sGetConfirmation() throws HarnessException {
 		String confirm = null;
 		logger.info("getConfirmation()");
 		confirm = webDriver().switchTo().alert().getText();
 		return confirm;
 	}
-
 
 	public void sKeyPressNative(String code) throws HarnessException {
 		logger.info("keyPressNative(" + code + ")");
@@ -1434,7 +1341,6 @@ public abstract class AbsSeleniumObject {
 		SleepUtil.sleepVerySmall();
 	}
 
-
 	public void sKeyPress(String locator, String code) throws HarnessException {
 		logger.info("keypress(" + code + ")");
 		Actions builder = new Actions(webDriver());
@@ -1442,22 +1348,19 @@ public abstract class AbsSeleniumObject {
 		SleepUtil.sleepVerySmall();
 	}
 
-
 	public void sKeyDown(String locator, String code) throws HarnessException {
 		logger.info("keyDown(" + code + ")");
 		Actions builder = new Actions(webDriver());
-		builder.keyDown(getElement(locator),Keys.valueOf(code)).build().perform();
+		builder.keyDown(getElement(locator), Keys.valueOf(code)).build().perform();
 		SleepUtil.sleepVerySmall();
 	}
-
 
 	public void sKeyUp(String locator, String code) throws HarnessException {
 		logger.info("keyUp(" + code + ")");
 		Actions builder = new Actions(webDriver());
-		builder.keyUp(getElement(locator),Keys.valueOf(code)).build().perform();
+		builder.keyUp(getElement(locator), Keys.valueOf(code)).build().perform();
 		SleepUtil.sleepVerySmall();
 	}
-
 
 	public void sKeyDownNative(String code) throws HarnessException {
 		logger.info("keyDownNative(" + code + ")");
@@ -1466,7 +1369,6 @@ public abstract class AbsSeleniumObject {
 		SleepUtil.sleepVerySmall();
 	}
 
-
 	public void sKeyUpNative(String code) throws HarnessException {
 		logger.info("keyUpNative(" + code + ")");
 		Actions builder = new Actions(webDriver());
@@ -1474,17 +1376,15 @@ public abstract class AbsSeleniumObject {
 		SleepUtil.sleepVerySmall();
 	}
 
-
 	public void sSelectDropDown(String selectLocator, String optionLocator) throws HarnessException {
 		logger.info("sSelectDropDown(" + selectLocator + ", " + optionLocator + ")");
-		Select select =  new Select (getElement(selectLocator));
+		Select select = new Select(getElement(selectLocator));
 		String option = optionLocator;
 		if (option.contains("value=")) {
 			option = option.split("value=")[1];
 		}
 		select.selectByValue(option);
 	}
-
 
 	public void sSelectFrame(String locator) throws HarnessException {
 		try {
@@ -1499,54 +1399,47 @@ public abstract class AbsSeleniumObject {
 		}
 	}
 
-
 	public void sSelectWindow(String windowTitle) throws HarnessException {
 		switchTo(windowTitle);
 	}
-
 
 	public void sDeleteAllVisibleCookies() {
 		logger.info("sDeleteAllVisibleCookies()");
 		webDriver().manage().deleteAllCookies();
 	}
 
-
 	public void sDeleteCookie(String name, String optionString) {
-		logger.info("sDeleteCookie("+ name +", "+ optionString +")");
+		logger.info("sDeleteCookie(" + name + ", " + optionString + ")");
 		webDriver().manage().deleteCookieNamed(name);
 	}
-
 
 	public void sOpen(String url) throws HarnessException {
 		logger.info("open(" + url + ")");
 		webDriver().navigate().to(url);
 	}
 
-
 	public void sOpenWindow(String url, String windowID) throws HarnessException {
 		logger.info("openWindow(" + url + ", " + windowID + ")");
 		webDriver().navigate().to(url);
 	}
 
-
 	public void sWaitForPopUp(String windowID, String timeout) throws HarnessException {
 		logger.info("sWaitForPopUp(" + windowID + ")");
-		waitForWindowOpen(windowID,Long.valueOf(timeout)/SleepUtil.SleepGranularity);
+		waitForWindowOpen(windowID, Long.valueOf(timeout) / SleepUtil.SleepGranularity);
 	}
-
 
 	public void sWindowFocus() throws HarnessException {
 		logger.info("sWindowFocus()");
 		executeScript("window.focus()");
 	}
 
-
 	public void sWindowMaximize() throws HarnessException {
 		logger.info("sWindowMaximize()");
 		webDriver().manage().window().setPosition(new Point(0, 0));
-		webDriver().manage().window().setSize(new Dimension((int)Toolkit.getDefaultToolkit().getScreenSize().getWidth(),(int)Toolkit.getDefaultToolkit().getScreenSize().getHeight()));
+		webDriver().manage().window()
+				.setSize(new Dimension((int) Toolkit.getDefaultToolkit().getScreenSize().getWidth(),
+						(int) Toolkit.getDefaultToolkit().getScreenSize().getHeight()));
 	}
-
 
 	public String sGetLocation() throws HarnessException {
 		String url = null;
@@ -1555,15 +1448,14 @@ public abstract class AbsSeleniumObject {
 		return url;
 	}
 
-
 	public String sGetWindowURL(String title) throws HarnessException {
 
 		String url = null;
-		Set <String> windows = webDriver().getWindowHandles();
+		Set<String> windows = webDriver().getWindowHandles();
 		String mainwindow = webDriver().getWindowHandle();
 
 		try {
-			for (String handle: windows) {
+			for (String handle : windows) {
 				webDriver().switchTo().window(handle);
 				logger.info("Switching to " + webDriver().getTitle());
 				if (webDriver().getTitle().equalsIgnoreCase(title)) {
@@ -1578,20 +1470,23 @@ public abstract class AbsSeleniumObject {
 		return url;
 	}
 
+	public void zDragAndDropBy(String locatorSource, String locatorDestination, int xOffset, int yOffset)
+			throws HarnessException {
 
-	public void zDragAndDropBy(String locatorSource, String locatorDestination, int xOffset, int yOffset) throws HarnessException {
-
-		if ( !this.sIsElementPresent(locatorSource) ) {
-			throw new HarnessException("locator (source) cannot be found: "+ locatorSource);
+		if (!this.sIsElementPresent(locatorSource)) {
+			throw new HarnessException("locator (source) cannot be found: " + locatorSource);
 		}
-		if ( !this.sIsElementPresent(locatorDestination) ) {
-			throw new HarnessException("locator (destination) cannot be found: "+ locatorDestination);
+		if (!this.sIsElementPresent(locatorDestination)) {
+			throw new HarnessException("locator (destination) cannot be found: " + locatorDestination);
 		}
 
 		SleepUtil.sleepMedium();
-		Coordinate source = new Coordinate(this.sGetElementPositionLeft(locatorSource), this.sGetElementPositionTop(locatorSource));
-		Coordinate destination = new Coordinate(this.sGetElementPositionLeft(locatorDestination), this.sGetElementPositionTop(locatorDestination));
-		Coordinate relative = new Coordinate((destination.X - source.X) + xOffset, (destination.Y - source.Y) + yOffset);
+		Coordinate source = new Coordinate(this.sGetElementPositionLeft(locatorSource),
+				this.sGetElementPositionTop(locatorSource));
+		Coordinate destination = new Coordinate(this.sGetElementPositionLeft(locatorDestination),
+				this.sGetElementPositionTop(locatorDestination));
+		Coordinate relative = new Coordinate((destination.X - source.X) + xOffset,
+				(destination.Y - source.Y) + yOffset);
 
 		logger.info("x,y coordinate of the objectToBeDragged=" + source);
 		logger.info("x,y coordinate of the objectToBeDroppedInto=" + destination);
@@ -1599,27 +1494,25 @@ public abstract class AbsSeleniumObject {
 		logger.info("x,y coordinate of the objectToBeDroppedInto relative to objectToBeDragged + offset = " + relative);
 
 		WebElement sourceElement = getElement(locatorSource);
-		(new Actions(webDriver())).dragAndDropBy(sourceElement,relative.X,relative.Y).build().perform();
+		(new Actions(webDriver())).dragAndDropBy(sourceElement, relative.X, relative.Y).build().perform();
 		(new Actions(webDriver())).release(sourceElement).build().perform();
 		this.zWaitForBusyOverlay();
 		SleepUtil.sleepMedium();
 	}
 
-
 	protected boolean zWaitForElementVisible(String locator, Boolean flag, String timeout) throws HarnessException {
-		logger.info("zWaitForElementVisible(" + locator + ", " + timeout +")");
-		Long wait = Long.valueOf(timeout)/SleepUtil.SleepGranularity;
+		logger.info("zWaitForElementVisible(" + locator + ", " + timeout + ")");
+		Long wait = Long.valueOf(timeout) / SleepUtil.SleepGranularity;
 		if (waitForElementVisible(locator, flag, wait)) {
 			return true;
 		}
 		throw new HarnessException(locator + " - wait for visisble timed out after " + wait + "s");
 	}
 
-
 	protected void typeKeys(Keys keys, String... locators) throws HarnessException {
 		if (locators != null && locators.length > 0) {
 			logger.info("typeKeys(" + keys + ")");
-			for(String locator : locators) {
+			for (String locator : locators) {
 				sendKeys(locator, keys);
 			}
 		} else {
@@ -1628,7 +1521,6 @@ public abstract class AbsSeleniumObject {
 			builder.sendKeys(keys).build().perform();
 		}
 	}
-
 
 	private void sendKeys(String locator, CharSequence keyValues, WebElement... elements) throws HarnessException {
 		logger.info("sendKeys(" + keyValues + ")");
@@ -1641,8 +1533,7 @@ public abstract class AbsSeleniumObject {
 		we.sendKeys(keyValues);
 	}
 
-
-	protected void clearField(String locator) throws HarnessException{
+	protected void clearField(String locator) throws HarnessException {
 		logger.info("clear(" + locator + ")");
 		WebElement we = getElement(locator);
 		we.clear();
@@ -1651,15 +1542,15 @@ public abstract class AbsSeleniumObject {
 	protected void clearDateTimeField(String locator) throws HarnessException {
 		logger.info("clearDateTimeField(" + locator + ")");
 		WebElement we = getElement(locator);
-		JavascriptExecutor js = (JavascriptExecutor)webDriver();
+		JavascriptExecutor js = (JavascriptExecutor) webDriver();
 
 		if (locator.contains("_startDate")) {
 			js.executeScript("document.querySelectorAll('[id$=_startDate]')[0].value=''");
-		}else if (locator.contains("_endDate")) {
+		} else if (locator.contains("_endDate")) {
 			js.executeScript("document.querySelectorAll('[id$=_endDate]')[0].value=''");
-		}else if (locator.contains("_startTime")) {
+		} else if (locator.contains("_startTime")) {
 			js.executeScript("document.querySelectorAll('[id$=_startTimeInput]')[0].value=''");
-		}else {
+		} else {
 			js.executeScript("document.querySelectorAll('[id$=_endTimeInput]')[0].value=''");
 		}
 		js.executeScript("arguments[0].click();", we);
@@ -1685,7 +1576,6 @@ public abstract class AbsSeleniumObject {
 			return value;
 		}
 	}
-
 
 	private static final class CssLocator {
 		private String locator;
@@ -1716,6 +1606,7 @@ public abstract class AbsSeleniumObject {
 		private void setPostText(String str) {
 			postText = str;
 		}
+
 		private String getText() {
 			return text;
 		}
@@ -1725,18 +1616,17 @@ public abstract class AbsSeleniumObject {
 		}
 	}
 
-
 	private WebElement findBy(By... bys) {
 		WebElement we = null;
 		if (bys != null) {
-			for(By by:bys) {
+			for (By by : bys) {
 				try {
 					if (we == null) {
 						we = webDriver().findElement(by);
 					} else {
 						we = we.findElement(by);
 					}
-				} catch(Exception ex) {
+				} catch (Exception ex) {
 					logger.info("findBy()" + ex);
 				}
 			}
@@ -1744,11 +1634,9 @@ public abstract class AbsSeleniumObject {
 		return we;
 	}
 
-
 	protected void clickBy(By... bys) {
 		findBy(bys).click();
 	}
-
 
 	private CssLocator configureCssLocator(String locator, String startSuffix, String containSuffix) {
 		String modLocator = locator;
@@ -1757,7 +1645,7 @@ public abstract class AbsSeleniumObject {
 		String postText = "";
 		CssLocator cssl = new CssLocator();
 
-		if (modLocator!= null) {
+		if (modLocator != null) {
 			if (modLocator.startsWith(startSuffix)) {
 				modLocator = modLocator.substring(startSuffix.length());
 			}
@@ -1766,13 +1654,13 @@ public abstract class AbsSeleniumObject {
 				String[] tokens = modLocator.split(containSuffix);
 				preText = tokens[0];
 				if (tokens.length > 1) {
-					if (tokens[1].startsWith("(")&& tokens[1].contains(")")) {
+					if (tokens[1].startsWith("(") && tokens[1].contains(")")) {
 						text = tokens[1].substring(tokens[1].indexOf('(') + 1, tokens[1].lastIndexOf(')'));
-						if (text.startsWith("'")&& text.endsWith("'")) {
+						if (text.startsWith("'") && text.endsWith("'")) {
 							text = text.substring(text.indexOf('\'') + 1, text.lastIndexOf('\''));
 						}
 					}
-					if (tokens[1].length()> tokens[1].lastIndexOf(')')) {
+					if (tokens[1].length() > tokens[1].lastIndexOf(')')) {
 						postText = tokens[1].substring(tokens[1].lastIndexOf(')') + 1);
 					}
 				}
@@ -1787,34 +1675,31 @@ public abstract class AbsSeleniumObject {
 		return cssl;
 	}
 
-
 	public CssLocator getCssLocator(String locator) {
 		logger.info("getCssLocator(" + locator + ")");
 		return configureCssLocator(locator, "css=", ":contains");
 	}
-
 
 	private List<WebElement> getElements(By by) {
 		logger.info("getElements()");
 		return webDriver().findElements(by);
 	}
 
-
-	protected WebElement getElement(String locator) throws HarnessException{
+	protected WebElement getElement(String locator) throws HarnessException {
 		WebElement we = getElementOrNull(locator);
 
-		if (we==null) {
-			throw new HarnessException("WebElement is null: " + locator );
+		if (we == null) {
+			throw new HarnessException("WebElement is null: " + locator);
 		} else {
 			return we;
 		}
 	}
 
-	protected List<WebElement> getElements(String locator) throws HarnessException{
+	protected List<WebElement> getElements(String locator) throws HarnessException {
 		List<WebElement> we = getElementsOrNull(locator);
 
-		if (we==null) {
-			throw new HarnessException("WebElement is null: " + locator );
+		if (we == null) {
+			throw new HarnessException("WebElement is null: " + locator);
 		} else {
 			return we;
 		}
@@ -1826,12 +1711,12 @@ public abstract class AbsSeleniumObject {
 		WebDriver driver = webDriver();
 		String modifiedLocator = locator;
 		if (modifiedLocator != null) {
-			if ( modifiedLocator.startsWith(startSuffix)) {
+			if (modifiedLocator.startsWith(startSuffix)) {
 				modifiedLocator = modifiedLocator.substring(startSuffix.length());
 			}
 			try {
 				element = driver.findElement(By.xpath(modifiedLocator));
-			} catch(Exception ex) {
+			} catch (Exception ex) {
 				logger.info("getElementByXPath()" + ex);
 			}
 		}
@@ -1844,12 +1729,12 @@ public abstract class AbsSeleniumObject {
 		WebDriver driver = webDriver();
 		String modifiedLocator = locator;
 		if (modifiedLocator != null) {
-			if ( modifiedLocator.startsWith(startSuffix)) {
+			if (modifiedLocator.startsWith(startSuffix)) {
 				modifiedLocator = modifiedLocator.substring(startSuffix.length());
 			}
 			try {
 				elements = driver.findElements(By.xpath(modifiedLocator));
-			} catch(Exception ex) {
+			} catch (Exception ex) {
 				logger.info("getElementsByXPath()" + ex);
 			}
 		}
@@ -1862,12 +1747,12 @@ public abstract class AbsSeleniumObject {
 		WebDriver driver = webDriver();
 		String modifiedLocator = locator;
 		if (modifiedLocator != null) {
-			if ( modifiedLocator.startsWith(startSuffix)) {
+			if (modifiedLocator.startsWith(startSuffix)) {
 				modifiedLocator = modifiedLocator.substring(startSuffix.length());
 			}
 			try {
 				element = driver.findElement(By.id(modifiedLocator));
-			} catch(Exception ex) {
+			} catch (Exception ex) {
 				logger.info("getElementById()" + ex);
 			}
 		}
@@ -1880,12 +1765,12 @@ public abstract class AbsSeleniumObject {
 		WebDriver driver = webDriver();
 		String modifiedLocator = locator;
 		if (modifiedLocator != null) {
-			if ( modifiedLocator.startsWith(startSuffix)) {
+			if (modifiedLocator.startsWith(startSuffix)) {
 				modifiedLocator = modifiedLocator.substring(startSuffix.length());
 			}
 			try {
 				elements = driver.findElements(By.id(modifiedLocator));
-			} catch(Exception ex) {
+			} catch (Exception ex) {
 				logger.info("getElementsByIds()" + ex);
 			}
 		}
@@ -1898,12 +1783,12 @@ public abstract class AbsSeleniumObject {
 		WebDriver driver = webDriver();
 		String modifiedLocator = locator;
 		if (modifiedLocator != null) {
-			if ( modifiedLocator.startsWith(startSuffix)) {
+			if (modifiedLocator.startsWith(startSuffix)) {
 				modifiedLocator = modifiedLocator.substring(startSuffix.length());
 			}
 			try {
 				element = driver.findElement(By.className(modifiedLocator));
-			} catch(Exception ex) {
+			} catch (Exception ex) {
 				logger.info("getElementById()" + ex);
 			}
 		}
@@ -1916,12 +1801,12 @@ public abstract class AbsSeleniumObject {
 		WebDriver driver = webDriver();
 		String modifiedLocator = locator;
 		if (modifiedLocator != null) {
-			if ( modifiedLocator.startsWith(startSuffix)) {
+			if (modifiedLocator.startsWith(startSuffix)) {
 				modifiedLocator = modifiedLocator.substring(startSuffix.length());
 			}
 			try {
 				elements = driver.findElements(By.className(modifiedLocator));
-			} catch(Exception ex) {
+			} catch (Exception ex) {
 				logger.info("getElementsByClassName()" + ex);
 			}
 		}
@@ -1952,8 +1837,8 @@ public abstract class AbsSeleniumObject {
 					while (it.hasNext()) {
 						WebElement el = it.next();
 						String returnedText = el.getText();
-						if (returnedText!=null && returnedText.contains(txt)) {
-							if (postText !=null && !postText.isEmpty()) {
+						if (returnedText != null && returnedText.contains(txt)) {
+							if (postText != null && !postText.isEmpty()) {
 								el = el.findElement(By.cssSelector(postText));
 							}
 							we = el;
@@ -1970,18 +1855,18 @@ public abstract class AbsSeleniumObject {
 	}
 
 	private List<WebElement> getElementsByCss(String locator) {
-		String startSuffix = "css=";		
+		String startSuffix = "css=";
 		List<WebElement> elements = null;
-		WebDriver driver = null;		
+		WebDriver driver = null;
 		driver = webDriver();
 		String modifiedLocator = locator;
 		if (modifiedLocator != null) {
-			if ( modifiedLocator.startsWith(startSuffix)) {
+			if (modifiedLocator.startsWith(startSuffix)) {
 				modifiedLocator = modifiedLocator.substring(startSuffix.length());
 			}
 			try {
 				elements = driver.findElements(By.cssSelector(modifiedLocator));
-			} catch(Exception ex) {
+			} catch (Exception ex) {
 				logger.info("getElementsByCss()" + ex);
 			}
 		}
@@ -2052,80 +1937,79 @@ public abstract class AbsSeleniumObject {
 		return el != null;
 	}
 
-
 	private boolean elementVisible(String locator) {
 		Boolean visible = false;
 		WebElement we = getElementOrNull(locator);
 
-		if ( we == null) {
-			logger.info("WebElement is null - " + locator );
+		if (we == null) {
+			logger.info("WebElement is null - " + locator);
 		} else {
 			visible = we.isDisplayed();
-			logger.info("locator: " + locator +  " - visible : " + (visible));
+			logger.info("locator: " + locator + " - visible : " + (visible));
 		}
 
 		return visible;
 	}
-
 
 	private boolean elementVisiblePerPosition(String locator) {
 		Boolean visible = false;
 		WebElement we = getElementOrNull(locator);
 
-		if ( we == null) {
-			logger.info("WebElement is null - " + locator );
+		if (we == null) {
+			logger.info("WebElement is null - " + locator);
 		} else {
 			visible = we.isDisplayed();
-			logger.info("locator: " + locator +  " - visible : " + (visible));
+			logger.info("locator: " + locator + " - visible : " + (visible));
 		}
 		return visible;
 	}
 
-
 	private boolean waitForElementPresent(final String locator, final boolean flag, long timeout) {
 		logger.info("waitForElementPresent(" + locator + ")");
 		Boolean present = false;
-		if (locator !=null && !locator.isEmpty()) {
+		if (locator != null && !locator.isEmpty()) {
 			try {
-				present = (new FluentWait<WebDriver>(webDriver()).withTimeout(timeout, TimeUnit.SECONDS).pollingEvery(500, TimeUnit.MILLISECONDS).ignoring(NoSuchElementException.class)).until(new ExpectedCondition<Boolean>() {
-					public Boolean apply(WebDriver d) {
-						if (flag) {
-							return elementPresent(locator);
-						} else {
-							return !elementPresent(locator);
-						}
-					}
-				});
-			} catch (TimeoutException  e) {
+				present = (new FluentWait<WebDriver>(webDriver()).withTimeout(timeout, TimeUnit.SECONDS)
+						.pollingEvery(500, TimeUnit.MILLISECONDS).ignoring(NoSuchElementException.class))
+								.until(new ExpectedCondition<Boolean>() {
+									public Boolean apply(WebDriver d) {
+										if (flag) {
+											return elementPresent(locator);
+										} else {
+											return !elementPresent(locator);
+										}
+									}
+								});
+			} catch (TimeoutException e) {
 				logger.info("waitForElementPresent() " + locator + " timed out after " + timeout + "s");
 			}
 		}
 		return present;
 	}
 
-
-	private boolean waitForElementVisible(final String locator, final boolean flag , long timeout) {
+	private boolean waitForElementVisible(final String locator, final boolean flag, long timeout) {
 		logger.info("waitForElementVisible(" + locator + ")");
 		Boolean visible = false;
-		if (locator !=null && !locator.isEmpty()) {
+		if (locator != null && !locator.isEmpty()) {
 			try {
-				visible = (new FluentWait<WebDriver>(webDriver()).withTimeout(timeout, TimeUnit.SECONDS).
-						pollingEvery(500, TimeUnit.MILLISECONDS).ignoring(NoSuchElementException.class).ignoring(MoveTargetOutOfBoundsException.class).ignoring(ElementNotVisibleException.class)).until(new ExpectedCondition<Boolean>() {
-							public Boolean apply(WebDriver d) {
-								if (flag) {
-									return elementVisiblePerPosition(locator);
-								} else {
-									return !elementVisiblePerPosition(locator);
-								}
-							}
-						});
-			} catch (TimeoutException  e) {
+				visible = (new FluentWait<WebDriver>(webDriver()).withTimeout(timeout, TimeUnit.SECONDS)
+						.pollingEvery(500, TimeUnit.MILLISECONDS).ignoring(NoSuchElementException.class)
+						.ignoring(MoveTargetOutOfBoundsException.class).ignoring(ElementNotVisibleException.class))
+								.until(new ExpectedCondition<Boolean>() {
+									public Boolean apply(WebDriver d) {
+										if (flag) {
+											return elementVisiblePerPosition(locator);
+										} else {
+											return !elementVisiblePerPosition(locator);
+										}
+									}
+								});
+			} catch (TimeoutException e) {
 				logger.info("waitForElementVisible() " + locator + " timed out after " + timeout + "s");
 			}
 		}
 		return visible;
 	}
-
 
 	private Boolean waitForCondition(ExpectedCondition<Boolean> condition, long timeout) {
 		logger.info("waitForCondition()");
@@ -2133,14 +2017,13 @@ public abstract class AbsSeleniumObject {
 		Boolean result = false;
 		try {
 			result = wait.until(condition);
-		} catch (TimeoutException  e) {
+		} catch (TimeoutException e) {
 			logger.info("waitForCondition() timed out after " + timeout + "s");
 		}
 		return result;
 	}
 
-
-	private List<String> getAllWindowNames() throws HarnessException{
+	private List<String> getAllWindowNames() throws HarnessException {
 		logger.info("getAllWindowNames()");
 
 		List<String> list = new ArrayList<String>();
@@ -2148,22 +2031,20 @@ public abstract class AbsSeleniumObject {
 		String currentWindowHandle = driver.getWindowHandle();
 		try {
 			Set<String> windowHandles = driver.getWindowHandles();
-			if (windowHandles!=null && !windowHandles.isEmpty()) {
+			if (windowHandles != null && !windowHandles.isEmpty()) {
 				for (String handle : windowHandles) {
-					if(!handle.equals(currentWindowHandle)) 
+					if (!handle.equals(currentWindowHandle))
 						list.add(driver.switchTo().window(handle).getTitle());
 				}
 			}
-		} catch(Exception ex) {
+		} catch (Exception ex) {
 			logger.error(ex);
-		}
-		finally {
+		} finally {
 			String currentWindowName = driver.switchTo().window(currentWindowHandle).getTitle();
 			logger.info("Switching to window: " + currentWindowName);
 		}
 		return list;
 	}
-
 
 	protected boolean switchTo(String name) throws HarnessException {
 		logger.info("switchTo(" + name + ")");
@@ -2189,12 +2070,14 @@ public abstract class AbsSeleniumObject {
 				for (String handle : handles) {
 					try {
 						windowName = webDriver().switchTo().window(handle).getTitle();
-						if(windowName.equals("")) {
+						if (windowName.equals("")) {
 							windowName = "selenium_blank";
 						}
 						url = webDriver().getCurrentUrl();
 
-						if (windowName != null && (windowName.equals(name) || url.contains("/" + name + "?")) && !(url.contains("//print/"))) { // Checking of "//print/" in URL is to avoid selection of print preview dialog in chrome  
+						if (windowName != null && (windowName.equals(name) || url.contains("/" + name + "?"))
+								&& !(url.contains("//print/"))) { // Checking of "//print/" in URL is to avoid selection
+																	// of print preview dialog in chrome
 							found = true;
 							logger.info("Found window: " + windowName);
 							break;
@@ -2219,7 +2102,6 @@ public abstract class AbsSeleniumObject {
 		return found;
 	}
 
-
 	private boolean isWindowOpen(String name) {
 		logger.info("isWindowOpen(" + name + ")");
 
@@ -2238,18 +2120,15 @@ public abstract class AbsSeleniumObject {
 		return found;
 	}
 
-
 	private boolean waitForWindowClosed(final String name, Long timeout, int... handlesSize) {
 		logger.info("waitForWindowClosed(" + name + ")");
 		return waitForWindow(name, false, timeout, handlesSize);
 	}
 
-
 	private boolean waitForWindowOpen(final String name, Long timeout, int... handlesSize) {
 		logger.info("waitForWindowOpen(" + name + ")");
 		return waitForWindow(name, true, timeout, handlesSize);
 	}
-
 
 	private boolean waitForWindow(final String name, final Boolean flag, Long timeout, int... handlesSize) {
 		logger.info("waitForWindow(" + name + ") ");
@@ -2259,9 +2138,11 @@ public abstract class AbsSeleniumObject {
 		if (handlesSize != null && handlesSize.length > 0) {
 			final int size = handlesSize[0];
 			try {
-				wait = new FluentWait<WebDriver>(webDriver()).withTimeout(5L, TimeUnit.SECONDS).pollingEvery(500, TimeUnit.MILLISECONDS);
+				wait = new FluentWait<WebDriver>(webDriver()).withTimeout(5L, TimeUnit.SECONDS).pollingEvery(500,
+						TimeUnit.MILLISECONDS);
 				wait.until(new ExpectedCondition<Boolean>() {
 					Boolean result = false;
+
 					public Boolean apply(WebDriver driver) {
 						if (flag) {
 							result = driver.getWindowHandles().size() > size;
@@ -2271,14 +2152,16 @@ public abstract class AbsSeleniumObject {
 							}
 						}
 						return result;
-					}});
+					}
+				});
 			} catch (Exception te) {
 				logger.info("wait for getWindowHandles().size differ from " + size + " timed out");
 			}
 		}
 
 		boolean status = false;
-		wait = new FluentWait<WebDriver>(webDriver()).withTimeout(timeout, TimeUnit.SECONDS).pollingEvery(500, TimeUnit.MILLISECONDS);
+		wait = new FluentWait<WebDriver>(webDriver()).withTimeout(timeout, TimeUnit.SECONDS).pollingEvery(500,
+				TimeUnit.MILLISECONDS);
 		try {
 			status = wait.until(new ExpectedCondition<Boolean>() {
 				public Boolean apply(WebDriver driver) {
@@ -2300,27 +2183,26 @@ public abstract class AbsSeleniumObject {
 		return status;
 	}
 
-
 	public void zScrollTo(int scrollTo) throws HarnessException {
 		logger.info("scrollTo(" + scrollTo + ") ");
-		JavascriptExecutor jse = (JavascriptExecutor)webDriver();
+		JavascriptExecutor jse = (JavascriptExecutor) webDriver();
 		jse.executeScript("window.scrollBy(0," + scrollTo + ")", "");
 	}
 
 	public boolean zWaitForWorkInProgressDialogInVisible() throws HarnessException {
 		boolean status = true;
 		SleepUtil.sleepSmall();
-		if(sIsElementPresent("css=div.DwtShellBusyDialog")) {
+		if (sIsElementPresent("css=div.DwtShellBusyDialog")) {
 			logger.info("'Work In Progress' dialog is displayed. Waiting for it to close...");
-			status = waitForElementPresent("css=div.DwtShellBusyDialog[aria-hidden='true']",true,20);
-			if(status) {
+			status = waitForElementPresent("css=div.DwtShellBusyDialog[aria-hidden='true']", true, 20);
+			if (status) {
 				SleepUtil.sleepSmall();
 				logger.info("'Work In Progress' dialog is closed");
 				return status;
 			} else {
 				logger.info("'Work In Progress' dialog is not closed on its own. Cancelling it!");
 				sClickAt("css=td[id^='Cancel Request_'] td[id$='_title']", "0,0");
-				//Click OK
+				// Click OK
 				sClickAt("css=div[id^='zdlg__ERR_'] td[id$='button2_title']", "0,0");
 				SleepUtil.sleepLong();
 			}

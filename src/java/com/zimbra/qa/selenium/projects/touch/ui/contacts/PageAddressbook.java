@@ -1064,7 +1064,7 @@ public class PageAddressbook extends AbsTab {
 			ContextMenuItem cmi=null;
 		    ContextMenuItem sub_cmi = null;
 
-		    zRightClickAt(getContactLocator(contact),"0,0");
+		    sRightClickAt(getContactLocator(contact),"0,0");
 
 
 			if (option == Button.B_TAG) {
@@ -1285,7 +1285,7 @@ public class PageAddressbook extends AbsTab {
 					locator = "css=div[id='REMOVE_TAG_MENU_TAG_MENU|MENU'] td[id=^Remove_tag_][id$=_title]:contains('" +  tagName + "')";
 
 				    // Right click on contact
-				    zRightClickAt(contactLocator,"0,0");
+				    sRightClickAt(contactLocator,"0,0");
 					zWaitForBusyOverlay();
 
 				    // Left Click "Tag"
@@ -1376,7 +1376,7 @@ public class PageAddressbook extends AbsTab {
 			}
 
         	// Right click on contact
-			zRightClickAt(contactLocator,"0,0");
+			sRightClickAt(contactLocator,"0,0");
 			this.zWaitForBusyOverlay();
 
 			if ( !this.sIsElementPresent(optionLocator) ) {
@@ -1452,7 +1452,7 @@ public class PageAddressbook extends AbsTab {
 				throw new HarnessException("option " + option + " not supported");
 			}
 
-		    zRightClickAt(contactLocator,"0,0");
+		    sRightClickAt(contactLocator,"0,0");
 
 
 		    locator = "css=div#zm__Contacts tr#"+ cmi.locator;
@@ -1552,7 +1552,7 @@ public class PageAddressbook extends AbsTab {
 		}
 		else if (action == Action.A_RIGHTCLICK ) {
 
-            zRightClickAt(contactLocator,"0,0");
+            sRightClickAt(contactLocator,"0,0");
             //zWaitForBusyOverlay();
             page = null;
 		}

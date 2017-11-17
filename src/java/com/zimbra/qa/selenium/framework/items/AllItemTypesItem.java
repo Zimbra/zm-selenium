@@ -33,43 +33,42 @@ public class AllItemTypesItem implements IItem {
 	public String tag = null;
 	public String imageType = null;
 	public String from = null;
-	public String attachment = null; //boolean??
+	public String attachment = null; // boolean??
 	public String subject = null;
 	public String date = null;
-
 
 	public AllItemTypesItem() {
 		super();
 	}
 
-
-	public AllItemTypesItem(String tag, String imageType, String from,String attachment, String subject, String date) {
-		this.tag       =tag;
-		this.imageType =imageType;
-		this.from      =from;
-		this.attachment=attachment;
-		this.subject   =subject;
-		this.date      =date;
+	public AllItemTypesItem(String tag, String imageType, String from, String attachment, String subject, String date) {
+		this.tag = tag;
+		this.imageType = imageType;
+		this.from = from;
+		this.attachment = attachment;
+		this.subject = subject;
+		this.date = date;
 
 	}
 
 	@Override
-    public String getName() {
-    	return "AllItemTypes: " + subject;
-    }
+	public String getName() {
+		return "AllItemTypes: " + subject;
+	}
 
 	@Override
 	public void createUsingSOAP(ZimbraAccount account) throws HarnessException {
 	}
 
 	private String myId;
+
 	public String getId() {
 		return (myId);
 	}
-	public void setId(String id) {
-		myId=id;
-	}
 
+	public void setId(String id) {
+		myId = id;
+	}
 
 	@Override
 	public String prettyPrint() {
@@ -77,13 +76,8 @@ public class AllItemTypesItem implements IItem {
 		sb.append(AllItemTypesItem.class.getSimpleName()).append('\n');
 
 		sb.append(String.format("Tag:(%s)\n Image Type:(%s)\n From:(%s)\n Attachment:(%s)\n Subject:(%s)\n Date:(%s)\n",
-				                 tag, imageType, from, attachment, subject,date));
+				tag, imageType, from, attachment, subject, date));
 
 		return (sb.toString());
 	}
-
-
-
 }
-
-

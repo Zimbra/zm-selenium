@@ -24,10 +24,10 @@ public class StafServicePROCESS extends StafAbstract {
 	private int StafTimeoutMillis = StafTimeoutMillisDefault;
 
 	public StafServicePROCESS() {
-		logger.info("new "+ StafServicePROCESS.class.getCanonicalName());
+		logger.info("new " + StafServicePROCESS.class.getCanonicalName());
 
 		StafService = "PROCESS";
-		StafParms = "START SHELL COMMAND \"ls\" RETURNSTDOUT RETURNSTDERR WAIT "+ StafTimeoutMillis;
+		StafParms = "START SHELL COMMAND \"ls\" RETURNSTDOUT RETURNSTDERR WAIT " + StafTimeoutMillis;
 
 	}
 
@@ -46,16 +46,19 @@ public class StafServicePROCESS extends StafAbstract {
 
 	/**
 	 * Execute the STAF request
+	 * 
 	 * @return
 	 * @throws HarnessException
 	 */
 	public boolean execute(String command) throws HarnessException {
-		if ( command.trim().startsWith("zm") ) {
-			StafParms = String.format("START SHELL COMMAND \"su - zimbra -c '/opt/zimbra/bin/%s'\" RETURNSTDOUT RETURNSTDERR WAIT %d", command, StafTimeoutMillis);
+		if (command.trim().startsWith("zm")) {
+			StafParms = String.format(
+					"START SHELL COMMAND \"su - zimbra -c '/opt/zimbra/bin/%s'\" RETURNSTDOUT RETURNSTDERR WAIT %d",
+					command, StafTimeoutMillis);
 		} else {
-			StafParms = String.format("START SHELL COMMAND \"%s\" RETURNSTDOUT RETURNSTDERR WAIT %d", command, StafTimeoutMillis);
+			StafParms = String.format("START SHELL COMMAND \"%s\" RETURNSTDOUT RETURNSTDERR WAIT %d", command,
+					StafTimeoutMillis);
 		}
 		return (super.execute());
-
 	}
 }

@@ -23,37 +23,28 @@ public class AttachmentItem {
 	protected static Logger logger = LogManager.getLogger(AttachmentItem.class);
 
 	public enum AttachmentIcon {
-		ImgGenericDoc,
-		ImgImageDoc,
-		ImgDoc,
-		ImgMSWordDoc,
-		ImgMSExcelDoc,
+		ImgGenericDoc, ImgImageDoc, ImgDoc, ImgMSWordDoc, ImgMSExcelDoc,
 	}
-	
+
 	private String locator = null;
 	private String name = null;
 	private AttachmentIcon icon = null;
-	
-	
-	public AttachmentItem() {
-		logger.info("new "+ AttachmentItem.class.getCanonicalName());
-	}
 
+	public AttachmentItem() {
+		logger.info("new " + AttachmentItem.class.getCanonicalName());
+	}
 
 	public void setLocator(String locator) {
 		this.locator = locator;
 	}
 
-
 	public String getLocator() {
 		return this.locator;
 	}
 
-
 	public void setAttachmentName(String attachmentName) {
 		name = attachmentName;
 	}
-
 
 	public String getAttachmentName() {
 		return name;
@@ -63,11 +54,9 @@ public class AttachmentItem {
 		icon = attachmentIcon;
 	}
 
-
 	public AttachmentIcon getAttachmentIcon() {
 		return icon;
 	}
-
 
 	public String prettyPrint() {
 		StringBuilder sb = new StringBuilder();
@@ -77,5 +66,4 @@ public class AttachmentItem {
 		sb.append("Locator: ").append(locator).append('\n');
 		return (sb.toString());
 	}
-	
 }

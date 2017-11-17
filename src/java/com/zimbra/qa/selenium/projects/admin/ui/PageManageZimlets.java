@@ -27,31 +27,34 @@ import com.zimbra.qa.selenium.framework.util.SleepUtil;
 
 /**
  * The "Manage Zimlets" has the same functionality as "Manage Admin Extensions"
+ *
  * @author Matt Rhoades
  *
  */
 public class PageManageZimlets extends AbsTab {
 
 	public static class Locators {
-		public static final String CONFIGURE_ICON="css=div.ImgAdministration";
-		public static final String ZIMLET="zti__AppAdmin__CONFIGURATION__ZIMLETS_textCell";
-		public static final String GEAR_ICON="css=div.ImgConfigure";
-		public static final String HOME="Home";
-		public static final String CONFIGURE="Configure";
-		public static final String ZIMLETS="Zimlets";
-		public static final String TOGGLE_STATUS="css=div[id='zmi__zb_currentApp__TOGGLE']";
-		public static final String DEPLOY_ZIMLET="css=div[id='zmi__zb_currentApp__DEPLOY_ZIMLET']";
-		public static final String UNDEPLOY_ZIMLET="css=div[id='zmi__zb_currentApp__DELETE']";
-		public static final String UPLOAD_ZIMLET ="css=input[name='zimletFile']";
-		public static final String UPLOAD_SUCESS_MESSAGE ="css=td[id$='uploadStatusMsg_2___container']";
-		public static final String DEPLOY_SUCESS_MESSAGE ="css=td[id$='deployStatusMsg_2___container']";	
+		public static final String CONFIGURE_ICON = "css=div.ImgAdministration";
+		public static final String ZIMLET = "zti__AppAdmin__CONFIGURATION__ZIMLETS_textCell";
+		public static final String GEAR_ICON = "css=div.ImgConfigure";
+		public static final String HOME = "Home";
+		public static final String CONFIGURE = "Configure";
+		public static final String ZIMLETS = "Zimlets";
+		public static final String TOGGLE_STATUS = "css=div[id='zmi__zb_currentApp__TOGGLE']";
+		public static final String DEPLOY_ZIMLET = "css=div[id='zmi__zb_currentApp__DEPLOY_ZIMLET']";
+		public static final String UNDEPLOY_ZIMLET = "css=div[id='zmi__zb_currentApp__DELETE']";
+		public static final String UPLOAD_ZIMLET = "css=input[name='zimletFile']";
+		public static final String UPLOAD_SUCESS_MESSAGE = "css=td[id$='uploadStatusMsg_2___container']";
+		public static final String DEPLOY_SUCESS_MESSAGE = "css=td[id$='deployStatusMsg_2___container']";
 	}
 
 	public PageManageZimlets(AbsApplication application) {
 		super(application);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 *
 	 * @see projects.admin.ui.AbsTab#myPageName()
 	 */
 	@Override
@@ -60,11 +63,10 @@ public class PageManageZimlets extends AbsTab {
 	}
 
 	@Override
-	public AbsPage zListItem(Action action, String item)
-			throws HarnessException {
-		logger.info(myPageName() + " zListItem("+ action +", "+ item +")");
+	public AbsPage zListItem(Action action, String item) throws HarnessException {
+		logger.info(myPageName() + " zListItem(" + action + ", " + item + ")");
 
-		tracer.trace(action +" on subject = "+ item);
+		tracer.trace(action + " on subject = " + item);
 
 		AbsPage page = null;
 		SleepUtil.sleepSmall();
@@ -72,30 +74,28 @@ public class PageManageZimlets extends AbsTab {
 		// How many items are in the table?
 		String rowsLocator = "css=div#zl__ZIMLET_MANAGE div[id$='__rows'] div[id^='zli__']";
 		int count = this.sGetCssCount(rowsLocator);
-		logger.debug(myPageName() + " zListGetAccounts: number of accounts: "+ count);
+		logger.debug(myPageName() + " zListGetAccounts: number of accounts: " + count);
 
 		count = this.sGetCssCount(rowsLocator);
-		
+
 		// Get each conversation's data from the table list
 		for (int i = 1; i <= count; i++) {
 			final String accountLocator = rowsLocator;
 			String locator;
 
 			// Email Address
-			locator = accountLocator +":nth-child("+i+")";
+			locator = accountLocator + ":nth-child(" + i + ")";
 			SleepUtil.sleepSmall();
-			
-			if (this.sIsElementPresent(locator))
-			{
+
+			if (this.sIsElementPresent(locator)) {
 				SleepUtil.sleepSmall();
-				if (this.sGetText(locator).trim().contains(item))
-				{
+				if (this.sGetText(locator).trim().contains(item)) {
 					if (action == Action.A_LEFTCLICK) {
 						sClick(locator);
 						SleepUtil.sleepLong();
 						break;
-					} else if(action == Action.A_RIGHTCLICK) {
-						zRightClick(locator);
+					} else if (action == Action.A_RIGHTCLICK) {
+						sRightClick(locator);
 						break;
 					}
 
@@ -106,33 +106,31 @@ public class PageManageZimlets extends AbsTab {
 	}
 
 	@Override
-	public AbsPage zListItem(Action action, Button option, String item)
-			throws HarnessException {
+	public AbsPage zListItem(Action action, Button option, String item) throws HarnessException {
 		return null;
 	}
 
 	@Override
-	public AbsPage zListItem(Action action, Button option, Button subOption,
-			String item) throws HarnessException {
+	public AbsPage zListItem(Action action, Button option, Button subOption, String item) throws HarnessException {
 		return null;
 	}
 
 	@Override
 	public void zNavigateTo() throws HarnessException {
 
-		if ( zIsActive() ) {
-			
+		if (zIsActive()) {
+
 			return;
 		}
 
 		// Click on Addresses -> Accounts
-		sClickAt(Locators.CONFIGURE_ICON,"");
+		sClickAt(Locators.CONFIGURE_ICON, "");
 		zWaitForWorkInProgressDialogInVisible();
 		zWaitForElementPresent(Locators.ZIMLET);
 		sClickAt(Locators.ZIMLET, "");
 		SleepUtil.sleepLong();
 		zWaitForWorkInProgressDialogInVisible();
-		zWaitForActive();	
+		zWaitForActive();
 	}
 
 	@Override
@@ -142,16 +140,15 @@ public class PageManageZimlets extends AbsTab {
 
 	@Override
 	public AbsPage zToolbarPressPulldown(Button pulldown, Button option) throws HarnessException {
-		logger.info(myPageName() + " zToolbarPressButtonWithPulldown("+ pulldown +", "+ option +")");
+		logger.info(myPageName() + " zToolbarPressButtonWithPulldown(" + pulldown + ", " + option + ")");
 
-		tracer.trace("Click pulldown "+ pulldown +" then "+ option);
+		tracer.trace("Click pulldown " + pulldown + " then " + option);
 
 		if (pulldown == null)
 			throw new HarnessException("Pulldown cannot be null!");
 
 		if (option == null)
 			throw new HarnessException("Option cannot be null!");
-
 
 		// Default behavior variables
 		String pulldownLocator = null; // If set, this will be expanded
@@ -173,16 +170,14 @@ public class PageManageZimlets extends AbsTab {
 			} else if (option == Button.B_UNDEPLOY_ZIMLET) {
 
 				optionLocator = Locators.UNDEPLOY_ZIMLET;
-				page = new DialogForUndeployZimlet(this.MyApplication,null);
-			
-			} 
-			else {
+				page = new DialogForUndeployZimlet(this.MyApplication, null);
+
+			} else {
 				throw new HarnessException("no logic defined for pulldown/option " + pulldown + "/" + option);
 			}
 
 		} else {
-			throw new HarnessException("no logic defined for pulldown/option "
-					+ pulldown + "/" + option);
+			throw new HarnessException("no logic defined for pulldown/option " + pulldown + "/" + option);
 		}
 
 		// Default behavior
@@ -190,20 +185,22 @@ public class PageManageZimlets extends AbsTab {
 
 			// Make sure the locator exists
 			if (!this.sIsElementPresent(pulldownLocator)) {
-				throw new HarnessException("Button " + pulldown + " option " + option + " pulldownLocator " + pulldownLocator + " not present!");
+				throw new HarnessException("Button " + pulldown + " option " + option + " pulldownLocator "
+						+ pulldownLocator + " not present!");
 			}
 
-			this.sClickAt(pulldownLocator,"");
+			this.sClickAt(pulldownLocator, "");
 			SleepUtil.sleepLong();
 
 			if (optionLocator != null) {
 
 				// Make sure the locator exists
 				if (!this.sIsElementPresent(optionLocator)) {
-					throw new HarnessException("Button " + pulldown + " option " + option + " optionLocator " + optionLocator + " not present!");
+					throw new HarnessException("Button " + pulldown + " option " + option + " optionLocator "
+							+ optionLocator + " not present!");
 				}
 
-				this.sClickAt(optionLocator,"");
+				this.sClickAt(optionLocator, "");
 				SleepUtil.sleepLong();
 
 			}
@@ -213,20 +210,19 @@ public class PageManageZimlets extends AbsTab {
 		// Return the specified page, or null if not set
 		return (page);
 	}
-	
+
 	public AbsPage zToolbarPressButton(Button button, IItem item) throws HarnessException {
-		logger.info(myPageName() + " zToolbarPressButton("+ button +")");
+		logger.info(myPageName() + " zToolbarPressButton(" + button + ")");
 
-		tracer.trace("Press the "+ button +" button");
+		tracer.trace("Press the " + button + " button");
 
-		if ( button == null )
+		if (button == null)
 			throw new HarnessException("Button cannot be null!");
-
 
 		// Default behavior variables
 		//
-		String locator = null;			// If set, this will be clicked
-		AbsPage page = null;	// If set, this page will be returned
+		String locator = null; // If set, this will be clicked
+		AbsPage page = null; // If set, this page will be returned
 
 		// Based on the button specified, take the appropriate action(s)
 		//
@@ -234,25 +230,22 @@ public class PageManageZimlets extends AbsTab {
 
 			locator = Locators.UPLOAD_ZIMLET;
 
-			//page = new DialogUploadFile(MyApplication, this);
+			// page = new DialogUploadFile(MyApplication, this);
 			page = new WizardDeployZimlet(this);
-		}
-		else {
-			throw new HarnessException("no logic defined for button "+ button);
+		} else {
+			throw new HarnessException("no logic defined for button " + button);
 		}
 
-		if ( locator == null ) {
-			throw new HarnessException("locator was null for button "+ button);
+		if (locator == null) {
+			throw new HarnessException("locator was null for button " + button);
 		}
 
 		// Default behavior, process the locator by clicking on it
 		//
-		this.sClickAt(locator,"");
-
-
+		this.sClickAt(locator, "");
 
 		// If page was specified, make sure it is active
-		if ( page != null ) {
+		if (page != null) {
 			SleepUtil.sleepMedium();
 		}
 
@@ -264,54 +257,54 @@ public class PageManageZimlets extends AbsTab {
 	public boolean zIsActive() throws HarnessException {
 
 		// Make sure the Admin Console is loaded in the browser
-		if ( !MyApplication.zIsLoaded() )
+		if (!MyApplication.zIsLoaded())
 			throw new HarnessException("Admin Console application is not active!");
 
-
 		boolean present = sIsElementPresent(Locators.GEAR_ICON);
-		if ( !present ) {
+		if (!present) {
 			return (false);
 		}
 
 		boolean visible = zIsVisiblePerPosition(Locators.GEAR_ICON, 0, 0);
-		if ( !visible ) {
-			logger.debug("isActive() visible = "+ visible);
+		if (!visible) {
+			logger.debug("isActive() visible = " + visible);
 			return (false);
 		}
 
 		return (true);
 
 	}
-	
-	public boolean zVerifyZimletIsDisabled (String item) throws HarnessException {
-		if(this.sIsElementPresent("css=div#zl__ZIMLET_MANAGE div[id$='__rows'] div[id$='__"+item+"']:contains('Disabled')"))
-			return true;
-		return false;
-	}
-	
-	public boolean zVerifyZimletName (String item) throws HarnessException {
-		if(this.sIsElementPresent("css=div#zl__ZIMLET_MANAGE div[id$='__rows'] div[id$='__"+item+"']"))
-			return true;
-		return false;
-	}
-	
-	public boolean zVerifyUploadSuccessMessage() throws HarnessException {
-			if (sIsElementPresent(Locators.UPLOAD_SUCESS_MESSAGE+":contains('Successfully')") ) {
-				return true;
-			}
 
+	public boolean zVerifyZimletIsDisabled(String item) throws HarnessException {
+		if (this.sIsElementPresent(
+				"css=div#zl__ZIMLET_MANAGE div[id$='__rows'] div[id$='__" + item + "']:contains('Disabled')"))
+			return true;
 		return false;
 	}
-	
-	public boolean zVerifyDeploySuccessMessage() throws HarnessException {
-		if (sIsElementPresent(Locators.DEPLOY_SUCESS_MESSAGE+":contains('Successfully')") ) {
+
+	public boolean zVerifyZimletName(String item) throws HarnessException {
+		if (this.sIsElementPresent("css=div#zl__ZIMLET_MANAGE div[id$='__rows'] div[id$='__" + item + "']"))
+			return true;
+		return false;
+	}
+
+	public boolean zVerifyUploadSuccessMessage() throws HarnessException {
+		if (sIsElementPresent(Locators.UPLOAD_SUCESS_MESSAGE + ":contains('Successfully')")) {
 			return true;
 		}
 
-	return false;
+		return false;
 	}
 
-	public boolean zVerifyHeader (String header) throws HarnessException {
+	public boolean zVerifyDeploySuccessMessage() throws HarnessException {
+		if (sIsElementPresent(Locators.DEPLOY_SUCESS_MESSAGE + ":contains('Successfully')")) {
+			return true;
+		}
+
+		return false;
+	}
+
+	public boolean zVerifyHeader(String header) throws HarnessException {
 		if (this.sIsElementPresent("css=span:contains('" + header + "')"))
 			return true;
 		return false;

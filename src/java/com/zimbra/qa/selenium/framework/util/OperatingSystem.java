@@ -25,7 +25,7 @@ public class OperatingSystem {
 	public static boolean isWindows() {
 		return (OperatingSystem.getSingleton().os.startsWith("windows"));
 	}
-	
+
 	public static boolean isWindows10() {
 		return (OperatingSystem.getSingleton().os.startsWith("windows 10"));
 	}

@@ -80,7 +80,7 @@ public class TreeCalendar extends AbsTree {
 				optionLocator = "css=table[class$='MenuTable'] td[id$='_title']:contains(New Calendar)";
 				page = new DialogCreateFolder(MyApplication, ((AppUniversalClient) MyApplication).zPageCalendar);
 
-				zRightClick(actionLocator);
+				sRightClick(actionLocator);
 				sClick(optionLocator);
 				this.zWaitForBusyOverlay();
 
@@ -106,7 +106,7 @@ public class TreeCalendar extends AbsTree {
 			optionLocator += " div[id^='DELETE_WITHOUT_SHORTCUT'] td[id$='_title']";
 			page = null;
 
-			this.zRightClick(actionLocator);
+			this.sRightClick(actionLocator);
 
 		} else if ((action == Action.A_RIGHTCLICK) && (option == Button.B_TREE_EDIT)) {
 
@@ -114,7 +114,7 @@ public class TreeCalendar extends AbsTree {
 			optionLocator += " div[id^='EDIT_PROPS'] td[id$='_title']";
 			page = new DialogEditFolder(MyApplication, ((AppUniversalClient) MyApplication).zPageCalendar);
 
-			this.zRightClick(actionLocator);
+			this.sRightClick(actionLocator);
 
 		} else if ((action == Action.A_RIGHTCLICK) && (option == Button.B_MOVE)) {
 
@@ -122,7 +122,7 @@ public class TreeCalendar extends AbsTree {
 			optionLocator += " div[id^='MOVE'] td[id$='_title']";
 			page = new DialogMove(MyApplication, ((AppUniversalClient) MyApplication).zPageCalendar);
 
-			this.zRightClick(actionLocator);
+			this.sRightClick(actionLocator);
 
 		} else if ((action == Action.A_RIGHTCLICK) && (option == Button.B_SHARE)) {
 
@@ -130,7 +130,7 @@ public class TreeCalendar extends AbsTree {
 			optionLocator += " div[id^='SHARE_CALENDAR'] td[id$='_title']";
 			page = new DialogShare(MyApplication, ((AppUniversalClient) MyApplication).zPageCalendar);
 
-			this.zRightClick(actionLocator);
+			this.sRightClick(actionLocator);
 
 		} else if ((action == Action.A_RIGHTCLICK) && (option == Button.B_RELOAD)) {
 
@@ -138,14 +138,14 @@ public class TreeCalendar extends AbsTree {
 			optionLocator += " div[id^='SYNC'] td[id$='_title']";
 			page = null;
 
-			this.zRightClick(actionLocator);
+			this.sRightClick(actionLocator);
 
 		} else if ((action == Action.A_RIGHTCLICK) && (option == Button.B_LAUNCH_IN_SEPARATE_WINDOW)) {
 
 			// Use default actionLocator
 			optionLocator += " div[id^='DETACH_WIN'] td[id$='_title']";
 
-			this.zRightClick(actionLocator);
+			this.sRightClick(actionLocator);
 			this.sClickAt(optionLocator, "");
 
 			page = new SeparateWindow(this.MyApplication);
@@ -161,7 +161,7 @@ public class TreeCalendar extends AbsTree {
 			optionLocator += " div[id^='RECOVER_DELETED_ITEMS'] td[id$='_title']";
 			page = null;
 
-			this.zRightClick(actionLocator);
+			this.sRightClick(actionLocator);
 
 		} else {
 			throw new HarnessException("No logic defined for action " + action + " with option " + option);
@@ -220,7 +220,7 @@ public class TreeCalendar extends AbsTree {
 		} else if (action == Action.A_RIGHTCLICK && option == Button.B_RENAME) {
 
 			// Select tag
-			this.zRightClick(optionLocator);
+			this.sRightClick(optionLocator);
 			this.sClick(Locators.RenameTagMenu);
 
 			return (new DialogRenameTag(MyApplication, ((AppUniversalClient) MyApplication).zPageCalendar));
@@ -228,7 +228,7 @@ public class TreeCalendar extends AbsTree {
 		} else if (action == Action.A_RIGHTCLICK && option == Button.B_DELETE) {
 
 			// Select tag
-			this.zRightClick(optionLocator);
+			this.sRightClick(optionLocator);
 			this.sClick(Locators.DeleteTagMenu);
 
 			return (new DialogDeleteTag(DialogDeleteTagID.DeleteTag, MyApplication,
@@ -450,7 +450,7 @@ public class TreeCalendar extends AbsTree {
 		} else if (action == Action.A_RIGHTCLICK) {
 
 			// Select the folder
-			this.zRightClick(locator);
+			this.sRightClick(locator);
 
 			// return a context menu
 			return (new ContextMenu(MyApplication));

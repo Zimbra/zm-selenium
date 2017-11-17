@@ -24,78 +24,78 @@ import javax.mail.internet.*;
 import javax.activation.*;
 
 public class SendEmail {
-	
-   public static void main(String [] args) {
-      
-	  // Sender's email ID needs to be mentioned
-	  String from = ConfigProperties.getConfigProperties().getString("emailFrom");
-	      
-	  // Recipient's email ID needs to be mentioned.
-      String to = ConfigProperties.getConfigProperties().getString("emailTo");
 
-      // Assuming you are sending email from localhost
-      String host = "email.corp.synacor.com";
+	public static void main(String[] args) {
 
-      // Get system properties
-      Properties properties = System.getProperties();
+		// Sender's email ID needs to be mentioned
+		String from = ConfigProperties.getConfigProperties().getString("emailFrom");
 
-      // Setup mail server
-      properties.setProperty("mail.transport.protocol", "smtp");
-      properties.setProperty("mail.host", host);
+		// Recipient's email ID needs to be mentioned.
+		String to = ConfigProperties.getConfigProperties().getString("emailTo");
 
-      // Get the default Session object.
-      Session session = Session.getDefaultInstance(properties);
+		// Assuming you are sending email from localhost
+		String host = "email.corp.synacor.com";
 
-      try {
-         // Create a default MimeMessage object.
-         MimeMessage message = new MimeMessage(session);
+		// Get system properties
+		Properties properties = System.getProperties();
 
-         // Set From: header field of the header.
-         message.setFrom(new InternetAddress(from));
+		// Setup mail server
+		properties.setProperty("mail.transport.protocol", "smtp");
+		properties.setProperty("mail.host", host);
 
-         // Set To: header field of the header.
-         message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
+		// Get the default Session object.
+		Session session = Session.getDefaultInstance(properties);
 
-         // Set Subject: header field
-         message.setSubject(args[0]);
+		try {
+			// Create a default MimeMessage object.
+			MimeMessage message = new MimeMessage(session);
 
-         // Create the message part 
-         BodyPart messageBodyPart = new MimeBodyPart();
+			// Set From: header field of the header.
+			message.setFrom(new InternetAddress(from));
 
-         // Fill the message
-         messageBodyPart.setText(args[1]);
-         
-         // Create a multipart message
-         Multipart multipart = new MimeMultipart();
+			// Set To: header field of the header.
+			message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
 
-         // Set text message part
-         multipart.addBodyPart(messageBodyPart);
+			// Set Subject: header field
+			message.setSubject(args[0]);
 
-         // Part two is attachment
-         messageBodyPart = new MimeBodyPart();
-         messageBodyPart.setDisposition(Part.ATTACHMENT);
-         messageBodyPart.setHeader("Content-Transfer-Encoding", "base64");
-         // addAttachment(multipart, args[2]);
+			// Create the message part
+			BodyPart messageBodyPart = new MimeBodyPart();
 
-         // Send the complete message parts
-         message.setContent(multipart);
+			// Fill the message
+			messageBodyPart.setText(args[1]);
 
-         // Send message
-         Transport.send(message);
-         System.out.println("Message sent successfully....");
-         
-      } catch (MessagingException mex) {
-         mex.printStackTrace();
-      }
-      
-   }
-   
-   @SuppressWarnings("unused")
-   private static void addAttachment(Multipart multipart, String filename) throws MessagingException {
-       DataSource source = new FileDataSource(filename);
-       BodyPart messageBodyPart = new MimeBodyPart();        
-       messageBodyPart.setDataHandler(new DataHandler(source));
-       messageBodyPart.setFileName("View result.html");
-       multipart.addBodyPart(messageBodyPart);
-   }
+			// Create a multipart message
+			Multipart multipart = new MimeMultipart();
+
+			// Set text message part
+			multipart.addBodyPart(messageBodyPart);
+
+			// Part two is attachment
+			messageBodyPart = new MimeBodyPart();
+			messageBodyPart.setDisposition(Part.ATTACHMENT);
+			messageBodyPart.setHeader("Content-Transfer-Encoding", "base64");
+			// addAttachment(multipart, args[2]);
+
+			// Send the complete message parts
+			message.setContent(multipart);
+
+			// Send message
+			Transport.send(message);
+			System.out.println("Message sent successfully....");
+
+		} catch (MessagingException mex) {
+			mex.printStackTrace();
+		}
+
+	}
+
+	@SuppressWarnings("unused")
+	private static void addAttachment(Multipart multipart, String filename) throws MessagingException {
+		DataSource source = new FileDataSource(filename);
+		BodyPart messageBodyPart = new MimeBodyPart();
+		messageBodyPart.setDataHandler(new DataHandler(source));
+		messageBodyPart.setFileName("View result.html");
+		multipart.addBodyPart(messageBodyPart);
+	}
 }

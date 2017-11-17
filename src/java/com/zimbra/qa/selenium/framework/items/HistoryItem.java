@@ -25,13 +25,13 @@ public class HistoryItem extends AItem {
 	private String historyItem = null;
 	private String historyTime = null;
 	private String ParentId = null;
-	
+
 	public HistoryItem() {
-		
+
 	}
-	
+
 	/**
-	 * @param historyLocator 
+	 * @param historyLocator
 	 */
 	public void setLocator(String locator) {
 		historyLocator = locator;
@@ -75,7 +75,7 @@ public class HistoryItem extends AItem {
 	public String getHistoryAction() {
 		return historyAction;
 	}
-	
+
 	public void setHistoryItem(String historyItem) {
 		this.historyItem = historyItem;
 	}
@@ -83,7 +83,7 @@ public class HistoryItem extends AItem {
 	public String getHistoryItem() {
 		return historyItem;
 	}
-	
+
 	public void setHistoryUser(String historyUser) {
 		this.historyUser = historyUser;
 	}
@@ -99,8 +99,7 @@ public class HistoryItem extends AItem {
 		sb.append("GUI Data:\n");
 		sb.append("HistoryText: ").append(getHistoryText()).append('\n');
 		sb.append("HistoryUser: ").append(getHistoryUser()).append('\n');
-		sb.append("HistoryTime: ").append(getHistoryTime()).append('\n');		
+		sb.append("HistoryTime: ").append(getHistoryTime()).append('\n');
 		return (sb.toString());
 	}
-
 }

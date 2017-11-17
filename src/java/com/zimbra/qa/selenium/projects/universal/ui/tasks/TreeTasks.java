@@ -187,7 +187,7 @@ public class TreeTasks extends AbsTree {
 		} else if ( action == Action.A_RIGHTCLICK ) {
 		   	locator = "zti__main_Tasks__" + f.getId() + "_textCell";
 
-			this.zRightClick(locator);
+			this.sRightClick(locator);
 			return (new ContextMenu(MyApplication));
 
 		} else {
@@ -233,7 +233,7 @@ public class TreeTasks extends AbsTree {
 		} else if (action == Action.A_RIGHTCLICK) {
 
 			actionLocator = "css=td[id^='zti__main_Tasks__']:contains('"+ t.getName() +"')";
-			this.zRightClickAt(actionLocator,"");
+			this.sRightClickAt(actionLocator,"");
 			page = new DialogTag(MyApplication,((AppUniversalClient) MyApplication).zPageTasks);
 
 		} else {
@@ -297,7 +297,7 @@ public class TreeTasks extends AbsTree {
 			actionLocator = "zti__main_Tasks__" + folderItem.getId() + "_textCell";
 
 			// Select the folder
-			this.zRightClickAt(actionLocator,"0,0");
+			this.sRightClickAt(actionLocator,"0,0");
 			this.zWaitForBusyOverlay();
 			SleepUtil.sleepSmall();
 

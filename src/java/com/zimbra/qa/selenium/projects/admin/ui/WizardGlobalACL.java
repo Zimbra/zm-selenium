@@ -14,9 +14,6 @@
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-/**
- *
- */
 package com.zimbra.qa.selenium.projects.admin.ui;
 
 import com.zimbra.qa.selenium.framework.items.IItem;
@@ -31,55 +28,54 @@ import com.zimbra.qa.selenium.projects.admin.items.AclItem;
  *
  */
 public class WizardGlobalACL extends AbsWizard {
-	
+
 	public static class Locators {
-		public static final String ACL_RIGHT_NAME ="css=input[id$='right_display']";
+		public static final String ACL_RIGHT_NAME = "css=input[id$='right_display']";
 		public static final String ACL_GRANTEE_NAME = "css=div[class='DwtDialog WindowOuterContainer'] table[class='dynselect_table'] input";
-		public static final String ACL_RIGHT_TYPE_SYSTEM_DEFINED="css=div[id$='right_type_choice_0']";
-		public static final String ACL_RIGHT_TYPE_CUSTOM="css=div[id$='right_type_choice_1']";
-		public static final String Pull_DOWN="css=div[id='zdlgv__EDIT_ACLundefined_right_type_arrow_button']";
-		public static final String SYSTEM_DEFINED_RIGHTS="css=div[id='zdlgv__EDIT_ACLundefined_right_type_choice_0']";
-		public static final String ADD_AND_FINISH_BUTTON="css=td[class='ZWidgetTitle']:contains('Add and Finish')";	
+		public static final String ACL_RIGHT_TYPE_SYSTEM_DEFINED = "css=div[id$='right_type_choice_0']";
+		public static final String ACL_RIGHT_TYPE_CUSTOM = "css=div[id$='right_type_choice_1']";
+		public static final String Pull_DOWN = "css=div[id='zdlgv__EDIT_ACLundefined_right_type_arrow_button']";
+		public static final String SYSTEM_DEFINED_RIGHTS = "css=div[id='zdlgv__EDIT_ACLundefined_right_type_choice_0']";
+		public static final String ADD_AND_FINISH_BUTTON = "css=td[class='ZWidgetTitle']:contains('Add and Finish')";
 	}
-	
+
 	public WizardGlobalACL(AbsTab page) {
 		super(page);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 *
 	 * @see projects.admin.ui.AbsWizard#completeWizard(projects.admin.clients.Item)
 	 */
 
 	public IItem zCompleteWizard(IItem item) throws HarnessException {
-		
-		AclItem acl = (AclItem)item;
+
+		AclItem acl = (AclItem) item;
 		String granteeAccount = acl.getGranteeAccountEmail();
-		String rightName= acl.getRightName();
+		String rightName = acl.getRightName();
 		sClick(Locators.ACL_GRANTEE_NAME);
 		sType(Locators.ACL_GRANTEE_NAME, granteeAccount);
 		SleepUtil.sleepMedium();
 		sClick(Locators.ACL_RIGHT_NAME);
-		sClick(Locators.Pull_DOWN);	
-		
-	/*	if (this.sIsElementPresent(Locators.Pull_DOWN) == true)
-		{
-			sClick(Locators.Pull_DOWN);	
-		}
-		else
-		{
-			throw new HarnessException("Element is not active!");
-		}*/
-	
-		sClick(Locators.SYSTEM_DEFINED_RIGHTS);	
-		
+		sClick(Locators.Pull_DOWN);
+
+		/*
+		 * if (this.sIsElementPresent(Locators.Pull_DOWN) == true) {
+		 * sClick(Locators.Pull_DOWN); } else { throw new
+		 * HarnessException("Element is not active!"); }
+		 */
+
+		sClick(Locators.SYSTEM_DEFINED_RIGHTS);
+
 		SleepUtil.sleepSmall();
-				
+
 		sType(Locators.ACL_RIGHT_NAME, rightName);
 		SleepUtil.sleepSmall();
-		
+
 		sClickAt(Locators.ADD_AND_FINISH_BUTTON, "");
 		SleepUtil.sleepLong();
-		
+
 		return item;
 
 	}

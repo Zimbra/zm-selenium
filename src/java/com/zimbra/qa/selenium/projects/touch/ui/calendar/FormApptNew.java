@@ -356,7 +356,7 @@ public class FormApptNew extends AbsForm {
 	}
 
 	public void zRemoveLocation(String location) throws HarnessException {
-		this.zRightClickAt("css=td[id$='_location'] span:contains('" + location
+		this.sRightClickAt("css=td[id$='_location'] span:contains('" + location
 				+ "')", "");
 		this.sClickAt(Locators.DeleteZimletContextMenu, "");
 		this.sClickAt("css=input[id$='_location_input']", "");

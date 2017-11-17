@@ -77,7 +77,7 @@ public class TreeBriefcase extends AbsTree {
 		zWaitForElementVisible(actionLocator);	
 
 		if (action == Action.A_RIGHTCLICK) {
-			this.zRightClickAt(actionLocator, "0,0");
+			this.sRightClickAt(actionLocator, "0,0");
 		} else {
 			throw new HarnessException("implement me! " + action
 					+ ": not implemented");
@@ -197,7 +197,7 @@ public class TreeBriefcase extends AbsTree {
 						"Unable to locate folder in the tree " + locator);
 
 			// Select the folder
-			this.zRightClickAt(locator, "0,0");
+			this.sRightClickAt(locator, "0,0");
 
 			// return a context menu
 			return (new ContextMenu(MyApplication));

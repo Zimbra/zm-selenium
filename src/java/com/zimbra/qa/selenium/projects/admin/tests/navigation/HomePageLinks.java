@@ -17,7 +17,6 @@
 package com.zimbra.qa.selenium.projects.admin.tests.navigation;
 
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
@@ -31,212 +30,198 @@ import com.zimbra.qa.selenium.projects.admin.ui.WizardInstallCertificate;
 import com.zimbra.qa.selenium.projects.admin.ui.WizardMigrationCoexistance;
 
 public class HomePageLinks extends AdminCommonTest {
-	
-	public HomePageLinks() {
-		logger.info("New "+ HomePageLinks.class.getCanonicalName());
 
-		// All tests start at the "HOME" page
+	public HomePageLinks() {
+		logger.info("New " + HomePageLinks.class.getCanonicalName());
 		super.startingPage = app.zPageMain;
 	}
-	
-	/**
-	 * Testcase :Navigate to Install License
-	 * Steps :
-	 * 1. Verify navigation path -- "Home --> Install Licenses Link"
-	 * @throws HarnessException
-	 */
-	@Test (description = "Navigate to Install License",
-			groups = { "functional-skip", "L3-skip" })
-			public void NavigateHomePageLinks_01() throws HarnessException {
-		
-		// click on Install license Link on Home page and check if it redirects to proper page
 
-		app.zPageMain.sClickAt(Locators.HomeInstallLicense,"");
-		boolean isNavigationSuccess = app.zPageMain.zVerifyHeader("License");
-		ZAssert.assertTrue(isNavigationSuccess, "Verify the install license page is opened");
-		app.zPageMain.logout();
-	}
-	
+
 	/**
-	 * Testcase : Navigate to Search page
-	 * Steps :
-	 * 1. Verify navigation path -- "Home --> Install License --> Install certificate Wizard"
+	 * Testcase : Navigate to Search page Steps : 1. Verify navigation path -- "Home
+	 * --> Install License --> Install certificate Wizard"
+	 *
 	 * @throws HarnessException
 	 */
+
 	@Test (description = "Navigate to Install certificate wizard",
 			groups = { "sanity", "L0" })
-			public void NavigateHomePageLinks_02() throws HarnessException {
 
-		WizardInstallCertificate wizard = 
-			(WizardInstallCertificate)app.zPageManageCertificates.zToolbarPressButton(Button.B_INSTALL_CERTIFICATE);
+	public void NavigateHomePageLinks_01() throws HarnessException {
+
+		WizardInstallCertificate wizard = (WizardInstallCertificate) app.zPageManageCertificates
+				.zToolbarPressButton(Button.B_INSTALL_CERTIFICATE);
 		ZAssert.assertNotNull(wizard.sGetTitle(), "Verify the install certificate wizard is opened");
-		
+
 		// close the wizard to proceed to next test
 		boolean isClosed = wizard.zCloseWizard();
 		ZAssert.assertTrue(isClosed, "Verify the install certificate wizard is closed");
 		app.zPageMain.logout();
 	}
-	
+
+
 	/**
-	 * Testcase : Navigate to Configure default COS from home page link
-	 * Steps :
-	 * 1. Verify navigation path -- "Home --> Configure Default COS"
+	 * Testcase : Navigate to Configure default COS from home page link Steps : 1.
+	 * Verify navigation path -- "Home --> Configure Default COS"
+	 *
 	 * @throws HarnessException
 	 */
+
 	@Test (description = "Navigate to Configure default COS",
 			groups = { "sanity", "L0" })
-			public void NavigateHomePageLinks_03() throws HarnessException {
-		
+
+	public void NavigateHomePageLinks_02() throws HarnessException {
+
 		/*
 		 * Verify navigation path -- "Home --> Configure Default COS""
 		 */
-		app.zPageMain.sClickAt(Locators.HomeConfigureDefaultCos,"");
+		app.zPageMain.sClickAt(Locators.HomeConfigureDefaultCos, "");
 		boolean isNavigationSuccess = app.zPageMain.zVerifyHeader("default");
 		ZAssert.assertTrue(isNavigationSuccess, "Verify the configure default COS page is opened");
 		app.zPageMain.logout();
-
 	}
-	
-	
-	
-	
+
+
 	/**
-	 * Testcase : Navigate to create Domain wizard from home page Link
-	 * Steps :
-	 * 1. Verify navigation path -- "Home --> create Domain wizard
+	 * Testcase : Navigate to create Domain wizard from home page Link Steps : 1.
+	 * Verify navigation path -- "Home --> create Domain wizard
+	 *
 	 * @throws HarnessException
 	 */
+
 	@Test (description = "Navigate to create Domain wizard",
 			groups = { "sanity", "L0" })
-			public void NavigateHomePageLinks_04() throws HarnessException {
-		
-		// Navigate back to home page 
 
-		WizardCreateDomain wizard = 
-			(WizardCreateDomain)app.zPageManageDomains.zToolbarPressButton(Button.B_HOME_DOMAIN);
+	public void NavigateHomePageLinks_03() throws HarnessException {
+
+		// Navigate back to home page
+		WizardCreateDomain wizard = (WizardCreateDomain) app.zPageManageDomains
+				.zToolbarPressButton(Button.B_HOME_DOMAIN);
 		ZAssert.assertNotNull(wizard.sGetTitle(), "Verify the new domain wizard is opened");
-		
+
 		// Close the wizard to proceed to next test
 		boolean isClosed = wizard.zCloseWizard();
 		ZAssert.assertTrue(isClosed, "Verify the  new domain wizard is closed");
 		app.zPageMain.logout();
-
-		
 	}
-	
+
 
 	/**
-	 * Testcase :Navigate to Configure GAL wizard from Home page link
-	 * Steps :
-	 * 1. Verify navigation path -- "Home --> Configure GAL wizard
+	 * Testcase :Navigate to Configure GAL wizard from Home page link Steps : 1.
+	 * Verify navigation path -- "Home --> Configure GAL wizard
+	 *
 	 * @throws HarnessException
 	 */
+
 	@Test (description = "Navigate to Configure GAL wizard",
 			groups = { "sanity", "L0" })
-			public void NavigateHomePageLinks_05() throws HarnessException {
 
-		// Navigate back to Home page 
-		
-		WizardConfigureGAL wizard = 
-			(WizardConfigureGAL)app.zPageManageCofigureGAL.zToolbarPressButton(Button.B_CONFIGURE_GAL);
+	public void NavigateHomePageLinks_04() throws HarnessException {
+
+		// Navigate back to Home page
+		WizardConfigureGAL wizard = (WizardConfigureGAL) app.zPageManageCofigureGAL
+				.zToolbarPressButton(Button.B_CONFIGURE_GAL);
 		ZAssert.assertNotNull(wizard.sGetTitle(), "Verify the  Configure GAL wizard is opened");
-		
+
 		// Close the wizard to proceed to next test
 		boolean isClosed = wizard.zCloseWizard();
 		ZAssert.assertTrue(isClosed, "Verify the Configure GAL wizard is closed");
 
 		app.zPageMain.logout();
-
 	}
-	
+
 
 	/**
 	 * Testcase :Navigate to Configure Authentication wizard from Home page link
-	 * Steps :
-	 * 1. Verify navigation path -- "Home --> Configure Authentication wizard
+	 * Steps : 1. Verify navigation path -- "Home --> Configure Authentication
+	 * wizard
+	 *
 	 * @throws HarnessException
 	 */
+
 	@Test (description = "Navigate to Configure Authentication wizard",
 			groups = { "sanity", "L0" })
-			public void NavigateHomePageLinks_06() throws HarnessException {
+
+	public void NavigateHomePageLinks_05() throws HarnessException {
 
 		// Navigate back to Home page
-		WizardConfigureAuthentication wizard = 
-			(WizardConfigureAuthentication)app.zPageManageCofigureAuthentication.zToolbarPressButton(Button.B_CONFIGURE_AUTHENTICATION);
+		WizardConfigureAuthentication wizard = (WizardConfigureAuthentication) app.zPageManageCofigureAuthentication
+				.zToolbarPressButton(Button.B_CONFIGURE_AUTHENTICATION);
 		ZAssert.assertNotNull(wizard.sGetTitle(), "Verify the  Configure Authentication wizard is opened");
-		
+
 		// Close the wizard to proceed to next test
 		boolean isClosed = wizard.zCloseWizard();
 		ZAssert.assertTrue(isClosed, "Verify the Configure Authentication wizard is closed");
 		app.zPageMain.logout();
-
 	}
-	
-	
+
+
 	/**
-	 * Testcase : Navigate to create account wizard from Home page Link
-	 * 	 * Steps :
-	 * 1. Verify navigation path -- "Home --> create account wizard from Home page Link
+	 * Testcase : Navigate to create account wizard from Home page Link * Steps : 1.
+	 * Verify navigation path -- "Home --> create account wizard from Home page Link
+	 *
 	 * @throws HarnessException
 	 */
+
 	@Test (description = "Navigate to create account wizard",
 			groups = { "sanity", "L0" })
-			public void NavigateHomePageLinks_07() throws HarnessException {
-	
+
+	public void NavigateHomePageLinks_06() throws HarnessException {
+
 		// Navigate back to Home page
-		WizardCreateAccount wizard = 
-			(WizardCreateAccount)app.zPageManageAccounts.zToolbarPressButton(Button.B_HOME_ACCOUNT);
+		WizardCreateAccount wizard = (WizardCreateAccount) app.zPageManageAccounts
+				.zToolbarPressButton(Button.B_HOME_ACCOUNT);
 		ZAssert.assertNotNull(wizard.sGetTitle(), "Verify the new account wizard is opened");
-		
+
 		// Close the wizard to proceed to next test
 		boolean isClosed = wizard.zCloseWizard();
 		ZAssert.assertTrue(isClosed, "Verify the  new account wizard is closed");
 		app.zPageMain.logout();
 	}
 
-	
+
 	/**
-	 * Testcase : Navigate to Configure manage accounts from Home page links
-	 * Steps :
-	 * 1. Verify navigation path -- "Home --> Configure manage accounts from Home page links
+	 * Testcase : Navigate to Configure manage accounts from Home page links Steps :
+	 * 1. Verify navigation path -- "Home --> Configure manage accounts from Home
+	 * page links
+	 *
 	 * @throws HarnessException
 	 */
+
 	@Test (description = "Navigate to Configure manage accounts",
 			groups = { "sanity", "L0" })
-			public void NavigateHomePageLinks_08() throws HarnessException {
-		
+
+	public void NavigateHomePageLinks_07() throws HarnessException {
+
 		// Navigate back to Home page
-	
-		app.zPageMain.sClickAt(Locators.HomeManageAccount,"");
+		app.zPageMain.sClickAt(Locators.HomeManageAccount, "");
 		boolean isNavigationSuccess = app.zPageMain.zVerifyHeader("Manage");
 		ZAssert.assertTrue(isNavigationSuccess, "Verify the manage accounts page is opened");
 		app.zPageMain.logout();
-
 	}
-	
-	
+
+
 	/**
 	 * Testcase : Navigate to migration and co Existance wizard from Home page Links
-	 * Steps :
-	 * 1. Verify navigation path -- "Home --> to migration and co Existance wizard from Home page Links
+	 * Steps : 1. Verify navigation path -- "Home --> to migration and co Existance
+	 * wizard from Home page Links
+	 *
 	 * @throws HarnessException
 	 */
+
 	@Test (description = "Navigate to migration and co Existance wizard",
 			groups = { "sanity", "L0" })
-			public void NavigateHomePageLinks_09() throws HarnessException {
-		
-		// Navigate Back to Home page
 
-		WizardMigrationCoexistance wizard = 
-			(WizardMigrationCoexistance)app.zPageManageMigrationCoexistance.zToolbarPressButton(Button.B_HOME_MIGRATION);
+	public void NavigateHomePageLinks_08() throws HarnessException {
+
+		// Navigate Back to Home page
+		WizardMigrationCoexistance wizard = (WizardMigrationCoexistance) app.zPageManageMigrationCoexistance
+				.zToolbarPressButton(Button.B_HOME_MIGRATION);
 		ZAssert.assertNotNull(wizard.sGetTitle(), "Verify the new account wizard is opened");
-		
+
 		// Close the wizard to proceed to next test
 		boolean isClosed = wizard.zCloseWizard();
 		ZAssert.assertTrue(isClosed, "Verify the migration and Coexistance wizard is closed");
 		app.zPageMain.logout();
-
-		
 	}
 }
-

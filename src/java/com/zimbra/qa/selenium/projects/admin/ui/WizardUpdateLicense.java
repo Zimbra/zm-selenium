@@ -14,9 +14,6 @@
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-/**
- *
- */
 package com.zimbra.qa.selenium.projects.admin.ui;
 
 import com.zimbra.qa.selenium.framework.items.IItem;
@@ -25,18 +22,16 @@ import com.zimbra.qa.selenium.framework.ui.AbsWizard;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 
-
 /**
  * @author Matt Rhoades
  *
  */
 public class WizardUpdateLicense extends AbsWizard {
-	
-	public static class Locators {
-		public static final String INSTALL_BUTTON="css=td[id$='_button13_title']";
-		public static final String NEXT_BUTTON="css=td[id$='_button12_title']";
 
-		
+	public static class Locators {
+		public static final String INSTALL_BUTTON = "css=td[id$='_button13_title']";
+		public static final String NEXT_BUTTON = "css=td[id$='_button12_title']";
+
 	}
 
 	public WizardUpdateLicense(AbsTab page) {
@@ -57,16 +52,12 @@ public class WizardUpdateLicense extends AbsWizard {
 	public boolean zIsActive() throws HarnessException {
 		return false;
 	}
-	
-	public void zUpdateLicenseWizard() throws HarnessException {
-		this.sClickAt(Locators.NEXT_BUTTON,"");
-		SleepUtil.sleepMedium();
-		
-		this.sClickAt(Locators.INSTALL_BUTTON,"");
-		SleepUtil.sleepVeryVeryLong();
-	
-	}
-	
-	
 
+	public void zUpdateLicenseWizard() throws HarnessException {
+		this.sClickAt(Locators.NEXT_BUTTON, "");
+		SleepUtil.sleepMedium();
+
+		this.sClickAt(Locators.INSTALL_BUTTON, "");
+		SleepUtil.sleepVeryVeryLong();
+	}
 }

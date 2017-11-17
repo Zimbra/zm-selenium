@@ -27,10 +27,10 @@ import com.zimbra.qa.selenium.projects.admin.items.DistributionListItem;
 public class WizardCreateDL extends AbsWizard {
 	public static class Locators {
 		public static final String zdlg_DL_NAME = "zdlgv__NEW_DL_name";
-		public static final String zdlg_DOMAIN_NAME="zdlgv__NEW_DL_name_2_display";
-		public static final String zdlg_Check_Dynamic_group ="css=input[id='zdlgv__NEW_DL_dlType']";
-		public static final String zdlg_Check_Right_Management ="css=input[id='zdlgv__NEW_DL_zimbraIsACLGroup']";
-		public static final String zdlg_MemberURL ="css=input[id='zdlgv__NEW_DL_memberURL']";
+		public static final String zdlg_DOMAIN_NAME = "zdlgv__NEW_DL_name_2_display";
+		public static final String zdlg_Check_Dynamic_group = "css=input[id='zdlgv__NEW_DL_dlType']";
+		public static final String zdlg_Check_Right_Management = "css=input[id='zdlgv__NEW_DL_zimbraIsACLGroup']";
+		public static final String zdlg_MemberURL = "css=input[id='zdlgv__NEW_DL_memberURL']";
 	}
 
 	public WizardCreateDL(AbsTab page) {
@@ -40,14 +40,14 @@ public class WizardCreateDL extends AbsWizard {
 	@Override
 	public IItem zCompleteWizard(IItem item) throws HarnessException {
 
-		if ( !(item instanceof DistributionListItem) )
-			throw new HarnessException("item must be an DistributionListItem, was "+ item.getClass().getCanonicalName());
+		if (!(item instanceof DistributionListItem))
+			throw new HarnessException(
+					"item must be an DistributionListItem, was " + item.getClass().getCanonicalName());
 
-		DistributionListItem dl = (DistributionListItem)item;
+		DistributionListItem dl = (DistributionListItem) item;
 
 		String CN = dl.getLocalName();
 		String domain = dl.getDomainName();
-
 
 		zType(Locators.zdlg_DL_NAME, CN);
 		SleepUtil.sleepSmall();
@@ -58,15 +58,14 @@ public class WizardCreateDL extends AbsWizard {
 		this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_TAB);
 		zType(Locators.zdlg_DL_NAME, CN);
 
-		
 		if (dl.getDynamicDL()) {
-		clickNext(AbsWizard.Locators.DL_DIALOG);
-		sClick(Locators.zdlg_Check_Dynamic_group);
-		SleepUtil.sleepMedium();
-		sClick(Locators.zdlg_Check_Right_Management);
-		zType(Locators.zdlg_MemberURL, dl.getMemberURL());
+			clickNext(AbsWizard.Locators.DL_DIALOG);
+			sClick(Locators.zdlg_Check_Dynamic_group);
+			SleepUtil.sleepMedium();
+			sClick(Locators.zdlg_Check_Right_Management);
+			zType(Locators.zdlg_MemberURL, dl.getMemberURL());
 		}
-		
+
 		clickFinish(AbsWizard.Locators.DL_DIALOG);
 
 		return (dl);

@@ -23,9 +23,9 @@ import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
 
-
 /**
  * This class defines the login page
+ *
  * @author Matt Rhoades
  *
  */
@@ -39,7 +39,7 @@ public class PageLogin extends AbsTab {
 		public static final String zLoginButtonContainer = "ZLoginButton";
 		public static final String zLoginLicenseContainer = "ZLoginLicenseContainer";
 		public static final String zLoginNewPassword = "css=input[id^='newpass1']";
-		public static final String zConfirmNewPassword ="css=input[id^='newpass2']";
+		public static final String zConfirmNewPassword = "css=input[id^='newpass2']";
 
 	}
 
@@ -63,47 +63,45 @@ public class PageLogin extends AbsTab {
 	public boolean zIsActive() throws HarnessException {
 
 		// Make sure the application is loaded first
-		if ( !MyApplication.zIsLoaded() )
+		if (!MyApplication.zIsLoaded())
 			throw new HarnessException("Admin Console application is not active!");
-
 
 		// Look for the login button.
 		boolean present = sIsElementPresent(Locators.zLoginButtonContainer);
-		if ( !present ) {
-			logger.debug("isActive() present = "+ present);
+		if (!present) {
+			logger.debug("isActive() present = " + present);
 			return (false);
 		}
 
-		boolean visible = zIsVisiblePerPosition(Locators.zLoginButtonContainer, 0 , 0);
-		if ( !visible ) {
-			logger.debug("isActive() visible = "+ visible);
+		boolean visible = zIsVisiblePerPosition(Locators.zLoginButtonContainer, 0, 0);
+		if (!visible) {
+			logger.debug("isActive() visible = " + visible);
 			return (false);
 		}
 
-		logger.debug("isActive() = "+ true);
+		logger.debug("isActive() = " + true);
 		return (true);
 	}
 
 	@Override
 	public void zNavigateTo() throws HarnessException {
 
-		if ( zIsActive() ) {
-			
+		if (zIsActive()) {
+
 			return;
 		}
 
-
 		// Logout
-		if ( ((AppAdminConsole)MyApplication).zPageMain.zIsActive() ) {
-			((AppAdminConsole)MyApplication).zPageMain.logout();
+		if (((AppAdminConsole) MyApplication).zPageMain.zIsActive()) {
+			((AppAdminConsole) MyApplication).zPageMain.logout();
 		}
 
 		zWaitForActive();
 	}
 
-
 	/**
 	 * Login as the GlobalAdmin
+	 *
 	 * @throws HarnessException
 	 */
 	public void login() throws HarnessException {
@@ -114,6 +112,7 @@ public class PageLogin extends AbsTab {
 
 	/**
 	 * Login as the specified account
+	 *
 	 * @param account
 	 * @throws HarnessException
 	 */
@@ -130,66 +129,66 @@ public class PageLogin extends AbsTab {
 
 		// Wait for the app to load
 		// sWaitForPageToLoad();
-		((AppAdminConsole)MyApplication).zPageMain.zWaitForActive();
+		((AppAdminConsole) MyApplication).zPageMain.zWaitForActive();
 
-		((AppAdminConsole)MyApplication).zSetActiveAccount(account);
+		((AppAdminConsole) MyApplication).zSetActiveAccount(account);
 
 		SleepUtil.sleep(10000);
 	}
 
 	/**
 	 * Fill the form with the specified user
+	 *
 	 * @throws HarnessException
 	 */
 	public void fillLoginFormFields(ZimbraAccount account) throws HarnessException {
 		logger.debug("fillFields(ZimbraAccount account)" + account.EmailAddress);
 
-		if ( !zIsActive() )
+		if (!zIsActive())
 			throw new HarnessException("LoginPage is not active");
 
 		sType(Locators.zLoginUserName, account.EmailAddress);
 		SleepUtil.sleepMedium();
 		sType(Locators.zLoginPassword, account.Password);
 	}
-	
+
 	/**
 	 * Fill the reset password form with the specified user
+	 *
 	 * @throws HarnessException
 	 */
-	public void fillResetLoginPasswordFormFields(String NewPassword , String ConfirmPassword ) throws HarnessException {
+	public void fillResetLoginPasswordFormFields(String NewPassword, String ConfirmPassword) throws HarnessException {
 		logger.debug("fillFields(ZimbraAccount account)" + NewPassword);
-		
+
 		SleepUtil.sleepSmall();
-		if ( !zIsActive() )
+		if (!zIsActive())
 			throw new HarnessException("LoginPage is not active");
-		
+
 		sType(Locators.zLoginNewPassword, NewPassword);
 		SleepUtil.sleepMedium();
 		sType(Locators.zConfirmNewPassword, ConfirmPassword);
-		
+
 		// Click the Login button
 		sClick(Locators.zLoginButtonContainer);
 
 		// Wait for the app to load
 		// sWaitForPageToLoad();
-		((AppAdminConsole)MyApplication).zPageMain.zWaitForActive();
+		((AppAdminConsole) MyApplication).zPageMain.zWaitForActive();
 		SleepUtil.sleep(10000);
 	}
-	
+
 	@Override
-	public AbsPage zListItem(Action action, String item)
-			throws HarnessException {
+	public AbsPage zListItem(Action action, String item) throws HarnessException {
 		return null;
 	}
 
 	@Override
-	public AbsPage zListItem(Action action, Button option, String item)
-			throws HarnessException {
+	public AbsPage zListItem(Action action, Button option, String item) throws HarnessException {
 		return null;
 	}
+
 	@Override
-	public AbsPage zListItem(Action action, Button option, Button subOption ,String item)
-			throws HarnessException {
+	public AbsPage zListItem(Action action, Button option, Button subOption, String item) throws HarnessException {
 		return null;
 	}
 
@@ -199,11 +198,8 @@ public class PageLogin extends AbsTab {
 	}
 
 	@Override
-	public AbsPage zToolbarPressPulldown(Button pulldown, Button option)
-			throws HarnessException {
+	public AbsPage zToolbarPressPulldown(Button pulldown, Button option) throws HarnessException {
 		return null;
 	}
-
-
 
 }

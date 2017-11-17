@@ -24,84 +24,50 @@ import java.sql.Statement;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
-
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
-
 import com.zimbra.common.soap.Element;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.OperatingSystem;
 import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 
-
 /**
-
-
-mysql> create table apps ( 
- id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
- name VARCHAR(256) 
- );
-mysql> insert into apps (name) VALUES ('AJAX');
-mysql> insert into apps (name) VALUES ('HTML');
-mysql> insert into apps (name) VALUES ('MOBILE');
-mysql> insert into apps (name) VALUES ('ADMIN');
-
-mysql> create table actions ( 
- id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
- name VARCHAR(256) 
- );
-mysql> insert into actions (name) VALUES ('ZmMailApp');
-
-mysql> create table builds ( 
- id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
- build VARCHAR(256) 
- );
-
-mysql> create table milestones ( 
- id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
- milestone VARCHAR(256) 
- );
-mysql> insert into milestones (milestone) VALUES ('GunsNRoses');
-mysql> insert into milestones (milestone) VALUES ('Helix');
-mysql> insert into milestones (milestone) VALUES ('IronMaiden');
-mysql> insert into milestones (milestone) VALUES ('JudasPriest');
-
-
-mysql> create table browsers ( 
- id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
- name VARCHAR(512) 
- );
-
-mysql> create table clients ( 
- id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
- name VARCHAR(256) 
- );
-
-mysql> create table messages ( 
- id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
- name VARCHAR(1024) 
- );
-
-mysql> create table perf (
- id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
- created TIMESTAMP(8),
- name VARCHAR(35),
- appid INT,
- buildid INT,
- browserid INT,
- clientid INT,
- milestoneid INT,
- start BIGINT,
- launched BIGINT,
- loaded BIGINT,
- delta BIGINT,
- delta_internal BIGINT,
- messageid INT
- );
-
+ * 
+ * 
+ * mysql> create table apps ( id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, name
+ * VARCHAR(256) ); mysql> insert into apps (name) VALUES ('AJAX'); mysql> insert
+ * into apps (name) VALUES ('HTML'); mysql> insert into apps (name) VALUES
+ * ('MOBILE'); mysql> insert into apps (name) VALUES ('ADMIN');
+ * 
+ * mysql> create table actions ( id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+ * name VARCHAR(256) ); mysql> insert into actions (name) VALUES ('ZmMailApp');
+ * 
+ * mysql> create table builds ( id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+ * build VARCHAR(256) );
+ * 
+ * mysql> create table milestones ( id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+ * milestone VARCHAR(256) ); mysql> insert into milestones (milestone) VALUES
+ * ('GunsNRoses'); mysql> insert into milestones (milestone) VALUES ('Helix');
+ * mysql> insert into milestones (milestone) VALUES ('IronMaiden'); mysql>
+ * insert into milestones (milestone) VALUES ('JudasPriest');
+ * 
+ * 
+ * mysql> create table browsers ( id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+ * name VARCHAR(512) );
+ * 
+ * mysql> create table clients ( id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+ * name VARCHAR(256) );
+ * 
+ * mysql> create table messages ( id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+ * name VARCHAR(1024) );
+ * 
+ * mysql> create table perf ( id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+ * created TIMESTAMP(8), name VARCHAR(35), appid INT, buildid INT, browserid
+ * INT, clientid INT, milestoneid INT, start BIGINT, launched BIGINT, loaded
+ * BIGINT, delta BIGINT, delta_internal BIGINT, messageid INT );
+ * 
  **/
-
 
 public class PerfDatabase {
 	private static final Logger logger = LogManager.getLogger(PerfDatabase.class);
@@ -120,9 +86,10 @@ public class PerfDatabase {
 		public static final String DELTA_INTERNAL = "delta_internal";
 		public static final String MESSAGEID = "messageid";
 	}
-	
+
 	/**
 	 * Insert a PerfData values into the database
+	 * 
 	 * @param data
 	 * @throws HarnessException
 	 */
@@ -134,7 +101,7 @@ public class PerfDatabase {
 		// A mapping of column names to values
 		HashMap<String, String> table = new HashMap<String, String>();
 
-		table.put(DbPerf.NAME, "'" + data.Key.toString() +"'");		// VARCHAR ... enclose in single quotes
+		table.put(DbPerf.NAME, "'" + data.Key.toString() + "'"); // VARCHAR ... enclose in single quotes
 		table.put(DbPerf.APPID, "" + PerfDatabase.getInstance().getAppType());
 		table.put(DbPerf.BUILDID, "" + PerfDatabase.getInstance().getBuildID());
 		table.put(DbPerf.MILESTONEID, "" + PerfDatabase.getInstance().getMilestoneID());
@@ -149,7 +116,7 @@ public class PerfDatabase {
 		table.put(DbPerf.DELTA, "" + "" + (Long.parseLong(data.FinishStamp) - data.StartStamp));
 
 		String deltaInternal = "0";
-		if ( data.LaunchStamp != null && !data.LaunchStamp.trim().equals("") ) {
+		if (data.LaunchStamp != null && !data.LaunchStamp.trim().equals("")) {
 			deltaInternal = "" + (Long.parseLong(data.FinishStamp) - Long.parseLong(data.LaunchStamp));
 		}
 		table.put(DbPerf.DELTA_INTERNAL, deltaInternal);
@@ -167,14 +134,13 @@ public class PerfDatabase {
 
 		String command = String.format("INSERT INTO perf (%s) VALUES (%s)", columns, values);
 		Statement statement = null;
-		
+
 		try {
 
 			statement = DatabaseConnection.getInstance().createStatement();
-			logger.info("Statement: "+ command);
+			logger.info("Statement: " + command);
 			int ret = statement.executeUpdate(command);
-			logger.info("Statement: ret="+ ret);
-
+			logger.info("Statement: ret=" + ret);
 
 		} catch (SQLException e) {
 			throw new HarnessException(command, e);
@@ -182,12 +148,11 @@ public class PerfDatabase {
 			DatabaseConnection.closeStatement(statement);
 		}
 
-
 	}
 
-		
 	/**
 	 * Get the ID corresponding to the app from the perf DB
+	 * 
 	 * @return
 	 * @throws HarnessException
 	 */
@@ -196,20 +161,22 @@ public class PerfDatabase {
 
 		String type = ConfigProperties.getAppType().toString().toLowerCase();
 		if (!appTable.containsKey(type)) {
-			throw new HarnessException("Unknown app type: "+ type +".  Maybe INSERT INTO apps ('name') VALUES ('"+ type +"') ?");
+			throw new HarnessException(
+					"Unknown app type: " + type + ".  Maybe INSERT INTO apps ('name') VALUES ('" + type + "') ?");
 		}
 
 		return (appTable.get(type));
 	}
 
 	private static HashMap<String, Integer> appTable = null;
+
 	protected synchronized void getAppTypeTable() throws HarnessException {
-		if ( appTable == null ) {
+		if (appTable == null) {
 			appTable = new HashMap<String, Integer>();
 
 			String query = "SELECT id, name FROM apps";
 			Statement statement = null;
-			
+
 			try {
 
 				statement = DatabaseConnection.getInstance().createStatement();
@@ -219,7 +186,7 @@ public class PerfDatabase {
 					Integer id = rs.getInt("id");
 					String name = rs.getString("name").toLowerCase();
 
-					logger.info("getAppTypeTable(): id="+ id +" name="+ name);
+					logger.info("getAppTypeTable(): id=" + id + " name=" + name);
 
 					appTable.put(name, id);
 
@@ -231,12 +198,12 @@ public class PerfDatabase {
 				DatabaseConnection.closeStatement(statement);
 			}
 
-
 		}
 	}
 
 	/**
 	 * Get the ID corresponding to the Build from the perf DB
+	 * 
 	 * @return
 	 * @throws HarnessException
 	 */
@@ -252,13 +219,14 @@ public class PerfDatabase {
 	}
 
 	private static HashMap<String, Integer> buildTable = null;
+
 	protected synchronized void getBuildTable() throws HarnessException {
-		if ( buildTable == null ) {
+		if (buildTable == null) {
 			buildTable = new HashMap<String, Integer>();
 
 			String query = "SELECT id, build FROM builds";
 			Statement statement = null;
-			
+
 			try {
 
 				statement = DatabaseConnection.getInstance().createStatement();
@@ -268,7 +236,7 @@ public class PerfDatabase {
 					Integer id = rs.getInt("id");
 					String build = rs.getString("build");
 
-					logger.info("getBuildTable(): id="+ id +" build="+ build);
+					logger.info("getBuildTable(): id=" + id + " build=" + build);
 
 					buildTable.put(build, id);
 
@@ -280,26 +248,24 @@ public class PerfDatabase {
 				DatabaseConnection.closeStatement(statement);
 			}
 
-
 		}
 	}
+
 	protected void insertBuild(String build) throws HarnessException {
 
-		if ( buildTable.containsKey(build) ) {
-			throw new HarnessException("buildTable already contains "+ build);
+		if (buildTable.containsKey(build)) {
+			throw new HarnessException("buildTable already contains " + build);
 		}
-		
+
 		String command = String.format("INSERT INTO builds (build) VALUES ('%s')", build);
 		Statement statement = null;
-		
 
 		try {
 
 			statement = DatabaseConnection.getInstance().createStatement();
-			logger.info("Statement: "+ command);
+			logger.info("Statement: " + command);
 			int ret = statement.executeUpdate(command);
-			logger.info("Statement: ret="+ ret);
-
+			logger.info("Statement: ret=" + ret);
 
 		} catch (SQLException e) {
 			throw new HarnessException(command, e);
@@ -313,15 +279,15 @@ public class PerfDatabase {
 
 	}
 
-
 	/**
 	 * Get the ID corresponding to the browser from the perf DB
+	 * 
 	 * @return
 	 * @throws HarnessException
 	 */
 	protected int getBrowserID() throws HarnessException {
 		getBrowserTable();
-		
+
 		String browser = ConfigProperties.getStringProperty("browser");
 
 		if (!browserTable.containsKey(browser)) {
@@ -332,13 +298,14 @@ public class PerfDatabase {
 	}
 
 	private static HashMap<String, Integer> browserTable = null;
+
 	protected synchronized void getBrowserTable() throws HarnessException {
-		if ( browserTable == null ) {
+		if (browserTable == null) {
 			browserTable = new HashMap<String, Integer>();
 
 			String query = "SELECT id, name FROM browsers";
 			Statement statement = null;
-			
+
 			try {
 
 				statement = DatabaseConnection.getInstance().createStatement();
@@ -348,7 +315,7 @@ public class PerfDatabase {
 					Integer id = rs.getInt("id");
 					String name = rs.getString("name");
 
-					logger.info("getBrowserTable(): id="+ id +" name="+ name);
+					logger.info("getBrowserTable(): id=" + id + " name=" + name);
 
 					browserTable.put(name, id);
 
@@ -360,26 +327,24 @@ public class PerfDatabase {
 				DatabaseConnection.closeStatement(statement);
 			}
 
-
 		}
 	}
+
 	protected void insertBrowser(String browser) throws HarnessException {
 
-		if ( browserTable.containsKey(browser) ) {
-			throw new HarnessException("browserTable already contains "+ browser);
+		if (browserTable.containsKey(browser)) {
+			throw new HarnessException("browserTable already contains " + browser);
 		}
-		
+
 		String command = String.format("INSERT INTO browsers (name) VALUES ('%s')", browser);
 		Statement statement = null;
-		
 
 		try {
 
 			statement = DatabaseConnection.getInstance().createStatement();
-			logger.info("Statement: "+ command);
+			logger.info("Statement: " + command);
 			int ret = statement.executeUpdate(command);
-			logger.info("Statement: ret="+ ret);
-
+			logger.info("Statement: ret=" + ret);
 
 		} catch (SQLException e) {
 			throw new HarnessException(command, e);
@@ -395,12 +360,13 @@ public class PerfDatabase {
 
 	/**
 	 * Get the ID corresponding to the client OS from the perf DB
+	 * 
 	 * @return
 	 * @throws HarnessException
 	 */
 	protected int getClientID() throws HarnessException {
 		getClientTable();
-		
+
 		String os = OperatingSystem.getOSType().toString();
 
 		if (!clientTable.containsKey(os)) {
@@ -411,13 +377,14 @@ public class PerfDatabase {
 	}
 
 	private static HashMap<String, Integer> clientTable = null;
+
 	protected synchronized void getClientTable() throws HarnessException {
-		if ( clientTable == null ) {
+		if (clientTable == null) {
 			clientTable = new HashMap<String, Integer>();
 
 			String query = "SELECT id, name FROM clients";
 			Statement statement = null;
-			
+
 			try {
 
 				statement = DatabaseConnection.getInstance().createStatement();
@@ -427,7 +394,7 @@ public class PerfDatabase {
 					Integer id = rs.getInt("id");
 					String name = rs.getString("name");
 
-					logger.info("getClientTable(): id="+ id +" name="+ name);
+					logger.info("getClientTable(): id=" + id + " name=" + name);
 
 					clientTable.put(name, id);
 
@@ -439,25 +406,24 @@ public class PerfDatabase {
 				DatabaseConnection.closeStatement(statement);
 			}
 
-
 		}
 	}
+
 	protected void insertClient(String os) throws HarnessException {
 
-		if ( clientTable.containsKey(os) ) {
-			throw new HarnessException("clientTable already contains "+ os);
+		if (clientTable.containsKey(os)) {
+			throw new HarnessException("clientTable already contains " + os);
 		}
-			
+
 		String command = String.format("INSERT INTO clients (name) VALUES ('%s')", os);
 		Statement statement = null;
 
 		try {
 
 			statement = DatabaseConnection.getInstance().createStatement();
-			logger.info("Statement: "+ command);
+			logger.info("Statement: " + command);
 			int ret = statement.executeUpdate(command);
-			logger.info("Statement: ret="+ ret);
-
+			logger.info("Statement: ret=" + ret);
 
 		} catch (SQLException e) {
 			throw new HarnessException(command, e);
@@ -473,6 +439,7 @@ public class PerfDatabase {
 
 	/**
 	 * Get the ID corresponding to the key from the perf DB
+	 * 
 	 * @return
 	 * @throws HarnessException
 	 */
@@ -487,15 +454,15 @@ public class PerfDatabase {
 	}
 
 	private static HashMap<String, Integer> actionTable = null;
+
 	protected synchronized void getActionTable() throws HarnessException {
-		if ( actionTable == null ) {
+		if (actionTable == null) {
 			actionTable = new HashMap<String, Integer>();
 
 			String query = "SELECT id, name FROM actions";
 			Statement statement = null;
-			
-			try {
 
+			try {
 
 				statement = DatabaseConnection.getInstance().createStatement();
 				ResultSet rs = statement.executeQuery(query);
@@ -504,7 +471,7 @@ public class PerfDatabase {
 					Integer id = rs.getInt("id");
 					String name = rs.getString("name");
 
-					logger.info("getActionTable(): id="+ id +" name="+ name);
+					logger.info("getActionTable(): id=" + id + " name=" + name);
 
 					actionTable.put(name, id);
 
@@ -516,26 +483,24 @@ public class PerfDatabase {
 				DatabaseConnection.closeStatement(statement);
 			}
 
-
 		}
 	}
+
 	protected void insertAction(String action) throws HarnessException {
 
-		if ( actionTable.containsKey(action) ) {
-			throw new HarnessException("actionTable already contains "+ action);
+		if (actionTable.containsKey(action)) {
+			throw new HarnessException("actionTable already contains " + action);
 		}
-		
+
 		String command = String.format("INSERT INTO actions (name) VALUES ('%s')", action);
 		Statement statement = null;
-		
 
 		try {
 
 			statement = DatabaseConnection.getInstance().createStatement();
-			logger.info("Statement: "+ command);
+			logger.info("Statement: " + command);
 			int ret = statement.executeUpdate(command);
-			logger.info("Statement: ret="+ ret);
-
+			logger.info("Statement: ret=" + ret);
 
 		} catch (SQLException e) {
 			throw new HarnessException(command, e);
@@ -550,38 +515,41 @@ public class PerfDatabase {
 	}
 
 	/**
-	 * Get the Milestone (string) corresponding to the version number from the perf DB
+	 * Get the Milestone (string) corresponding to the version number from the perf
+	 * DB
+	 * 
 	 * @return
 	 * @throws HarnessException
 	 */
 	protected int getMilestoneID() throws HarnessException {
 		getMilestoneTable();
 
-		if ( getVersionString().startsWith("6") ) {
+		if (getVersionString().startsWith("6")) {
 			return (milestoneTable.get("GunsNRoses"));
 		}
-		if ( getVersionString().startsWith("7") ) {
+		if (getVersionString().startsWith("7")) {
 			return (milestoneTable.get("Helix"));
 		}
-		if ( getVersionString().startsWith("8") ) {
+		if (getVersionString().startsWith("8")) {
 			return (milestoneTable.get("IronMaiden"));
 		}
-		if ( getVersionString().startsWith("9") ) {
+		if (getVersionString().startsWith("9")) {
 			return (milestoneTable.get("JudasPriest"));
 		}
 
-		throw new HarnessException("Unable to determine Milestone from version string: "+ getVersionString());
+		throw new HarnessException("Unable to determine Milestone from version string: " + getVersionString());
 
 	}
-	
+
 	private static HashMap<String, Integer> milestoneTable = null;
+
 	protected synchronized void getMilestoneTable() throws HarnessException {
-		if ( milestoneTable == null ) {
+		if (milestoneTable == null) {
 			milestoneTable = new HashMap<String, Integer>();
 
 			String query = "SELECT id, milestone FROM milestones";
 			Statement statement = null;
-			
+
 			try {
 
 				statement = DatabaseConnection.getInstance().createStatement();
@@ -591,7 +559,7 @@ public class PerfDatabase {
 					Integer id = rs.getInt("id");
 					String milestone = rs.getString("milestone");
 
-					logger.info("getActionTable(): id="+ id +" milestone="+ milestone);
+					logger.info("getActionTable(): id=" + id + " milestone=" + milestone);
 
 					milestoneTable.put(milestone, id);
 
@@ -603,26 +571,25 @@ public class PerfDatabase {
 				DatabaseConnection.closeStatement(statement);
 			}
 
-
 		}
 	}
 
-
 	protected String versionString = null;
+
 	protected String getVersionString() throws HarnessException {
-		if ( versionString == null ) {
+		if (versionString == null) {
 			ZimbraAdminAccount.GlobalAdmin().soapSend("<GetVersionInfoRequest xmlns='urn:zimbraAdmin'/>");
-			Element getVersionInfo = ZimbraAdminAccount.GlobalAdmin().soapSelectNode("//admin:GetVersionInfoResponse//admin:info", 1);
-			versionString = String.format("%s.%s.%s",
-					getVersionInfo.getAttribute("majorversion", "X"),
-					getVersionInfo.getAttribute("minorversion", "X"),
-					getVersionInfo.getAttribute("microversion", "X"));
+			Element getVersionInfo = ZimbraAdminAccount.GlobalAdmin()
+					.soapSelectNode("//admin:GetVersionInfoResponse//admin:info", 1);
+			versionString = String.format("%s.%s.%s", getVersionInfo.getAttribute("majorversion", "X"),
+					getVersionInfo.getAttribute("minorversion", "X"), getVersionInfo.getAttribute("microversion", "X"));
 		}
 		return (versionString);
 	}
 
 	/**
 	 * Get the ID corresponding to the key from the perf DB
+	 * 
 	 * @return
 	 * @throws HarnessException
 	 */
@@ -637,13 +604,14 @@ public class PerfDatabase {
 	}
 
 	private static HashMap<String, Integer> messageTable = null;
+
 	protected synchronized void getMessageTable() throws HarnessException {
-		if ( messageTable == null ) {
+		if (messageTable == null) {
 			messageTable = new HashMap<String, Integer>();
 
 			String query = "SELECT id, name FROM messages";
 			Statement statement = null;
-			
+
 			try {
 
 				statement = DatabaseConnection.getInstance().createStatement();
@@ -653,7 +621,7 @@ public class PerfDatabase {
 					Integer id = rs.getInt("id");
 					String name = rs.getString("name");
 
-					logger.info("getMessageTable(): id="+ id +" name="+ name);
+					logger.info("getMessageTable(): id=" + id + " name=" + name);
 
 					messageTable.put(name, id);
 
@@ -665,25 +633,24 @@ public class PerfDatabase {
 				DatabaseConnection.closeStatement(statement);
 			}
 
-
 		}
 	}
+
 	protected void insertMessage(String description) throws HarnessException {
 
-		if ( messageTable.containsKey(description) ) {
-			throw new HarnessException("messageTable already contains "+ description);
+		if (messageTable.containsKey(description)) {
+			throw new HarnessException("messageTable already contains " + description);
 		}
-		
+
 		String command = String.format("INSERT INTO messages (name) VALUES ('%s')", description);
 		Statement statement = null;
 
 		try {
 
 			statement = DatabaseConnection.getInstance().createStatement();
-			logger.info("Statement: "+ command);
+			logger.info("Statement: " + command);
 			int ret = statement.executeUpdate(command);
-			logger.info("Statement: ret="+ ret);
-
+			logger.info("Statement: ret=" + ret);
 
 		} catch (SQLException e) {
 			throw new HarnessException(command, e);
@@ -696,11 +663,11 @@ public class PerfDatabase {
 		getMessageTable();
 
 	}
-	
+
 	public static PerfDatabase getInstance() {
 		if (Instance == null) {
-			synchronized(PerfDatabase.class) {
-				if ( Instance == null) {
+			synchronized (PerfDatabase.class) {
+				if (Instance == null) {
 					Instance = new PerfDatabase();
 				}
 			}
@@ -708,28 +675,25 @@ public class PerfDatabase {
 		return (Instance);
 	}
 
-
 	private volatile static PerfDatabase Instance;
 
-	protected PerfDatabase() {	
-		logger.info("New "+ this.getClass().getCanonicalName());			
+	protected PerfDatabase() {
+		logger.info("New " + this.getClass().getCanonicalName());
 	}
 
 	protected static class DatabaseConnection {
 		private static final Logger logger = LogManager.getLogger(DatabaseConnection.class);
 
-
 		public static final String dbDefaultURL = "jdbc:mysql://10.20.140.198/perf";
 		public static final String dbDefaultUsername = "perf";
 		public static final String dbDefaultUserpass = "perf";
 
-
 		public Connection getConnection() throws SQLException {
 
-			if ( conn == null ) {
+			if (conn == null) {
 
 				conn = DriverManager.getConnection(dbURL, dbUsername, dbUserpass);
-				logger.info("Database connection established: "+ dbURL);
+				logger.info("Database connection established: " + dbURL);
 
 			}
 
@@ -741,9 +705,9 @@ public class PerfDatabase {
 			return (getConnection().createStatement());
 
 		}
-		
+
 		protected static void closeStatement(Statement s) {
-			if ( s == null ) {
+			if (s == null) {
 				return;
 			}
 			try {
@@ -755,8 +719,8 @@ public class PerfDatabase {
 
 		public static DatabaseConnection getInstance() throws HarnessException {
 			if (Instance == null) {
-				synchronized(DatabaseConnection.class) {
-					if ( Instance == null) {
+				synchronized (DatabaseConnection.class) {
+					if (Instance == null) {
 						Instance = new DatabaseConnection();
 					}
 				}
@@ -764,25 +728,18 @@ public class PerfDatabase {
 			return (Instance);
 		}
 
-
 		private volatile static DatabaseConnection Instance;
 		private Connection conn = null;
 		private String dbURL = null;
 		private String dbUsername = null;
 		private String dbUserpass = null;
 
-		protected DatabaseConnection() throws HarnessException {	
-			logger.info("New "+ this.getClass().getCanonicalName());			
+		protected DatabaseConnection() throws HarnessException {
+			logger.info("New " + this.getClass().getCanonicalName());
 
 			dbURL = ConfigProperties.getStringProperty("performance.metrics.db.url", dbDefaultURL);
 			dbUsername = ConfigProperties.getStringProperty("performance.metrics.db.username", dbDefaultUsername);
 			dbUserpass = ConfigProperties.getStringProperty("performance.metrics.db.userpass", dbDefaultUserpass);
-
-
 		}
-
-
 	}
-
-
 }

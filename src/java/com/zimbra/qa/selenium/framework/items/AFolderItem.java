@@ -33,7 +33,6 @@ public abstract class AFolderItem extends AItem {
 		return (_ParentId);
 	}
 
-
 	public void setName(String name) {
 		_Name = name;
 	}
@@ -61,6 +60,4 @@ public abstract class AFolderItem extends AItem {
 	public String getView() {
 		return null;
 	}
-
-
 }

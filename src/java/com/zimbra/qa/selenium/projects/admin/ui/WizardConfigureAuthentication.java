@@ -14,16 +14,12 @@
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-/**
- *
- */
 package com.zimbra.qa.selenium.projects.admin.ui;
 
 import com.zimbra.qa.selenium.framework.items.IItem;
 import com.zimbra.qa.selenium.framework.ui.AbsTab;
 import com.zimbra.qa.selenium.framework.ui.AbsWizard;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
-
 
 /**
  * @author Matt Rhoades
@@ -50,9 +46,8 @@ public class WizardConfigureAuthentication extends AbsWizard {
 		return false;
 	}
 
-	
 	public boolean zCloseWizard() throws HarnessException {
-		this.sClickAt("css=td[id$='zdlg__AUTH_CONFIG_button1_title']" ,"");
+		this.sClickAt("css=td[id$='zdlg__AUTH_CONFIG_button1_title']", "");
 		return true;
 	}
 }

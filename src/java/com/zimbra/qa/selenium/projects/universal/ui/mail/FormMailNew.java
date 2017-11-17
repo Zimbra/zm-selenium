@@ -506,7 +506,7 @@ public class FormMailNew extends AbsForm {
 							+ pulldownLocator + " not present!");
 				}
 
-				this.zRightClick(pulldownLocator);
+				this.sRightClick(pulldownLocator);
 				this.zWaitForBusyOverlay();
 
 				// Make sure the locator exists
@@ -533,7 +533,7 @@ public class FormMailNew extends AbsForm {
 							+ pulldownLocator + " not present!");
 				}
 
-				this.zRightClick(pulldownLocator);
+				this.sRightClick(pulldownLocator);
 				this.zWaitForBusyOverlay();
 
 				if (!this.sIsElementPresent(optionLocator)) {
@@ -1284,7 +1284,7 @@ public class FormMailNew extends AbsForm {
 	public boolean zVerifyDisabledSendLater() throws HarnessException {
 
 		String pulldownLocator = "css=div[id$='__SEND_MENU'] td[id$='__SEND_MENU_dropdown']>div";
-		this.zRightClick(pulldownLocator);
+		this.sRightClick(pulldownLocator);
 		this.zWaitForBusyOverlay();
 
 		if (this.sIsElementPresent(Locators.zSendLaterDisabled))

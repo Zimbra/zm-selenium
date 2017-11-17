@@ -14,9 +14,6 @@
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-/**
- *
- */
 package com.zimbra.qa.selenium.projects.admin.ui;
 
 import com.zimbra.qa.selenium.framework.ui.AbsApplication;
@@ -28,7 +25,6 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 
-
 /**
  * @author Matt Rhoades
  *
@@ -36,37 +32,38 @@ import com.zimbra.qa.selenium.framework.util.ZAssert;
 public class PageManageGlobalACL extends AbsTab {
 
 	public static class Locators {
-		public static final String CONFIGURE_ICON="css=div.ImgAdministration";
-		public static final String GLOBALACL="zti__AppAdmin__CONFIGURATION__GrantsHV_textCell";
-		public static final String GEAR_ICON="css=div.ImgConfigure";
-		public static final String HOME="Home";
-		public static final String CONFIGURE="Configure";
-		public static final String GLOBAL_ACL="Global ACL";
+		public static final String CONFIGURE_ICON = "css=div.ImgAdministration";
+		public static final String GLOBALACL = "zti__AppAdmin__CONFIGURATION__GrantsHV_textCell";
+		public static final String GEAR_ICON = "css=div.ImgConfigure";
+		public static final String HOME = "Home";
+		public static final String CONFIGURE = "Configure";
+		public static final String GLOBAL_ACL = "Global ACL";
 	}
 
 	public PageManageGlobalACL(AbsApplication application) {
 		super(application);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 *
 	 * @see projects.admin.ui.AbsTab#isActive()
 	 */
 	@Override
 	public boolean zIsActive() throws HarnessException {
 
 		// Make sure the Admin Console is loaded in the browser
-		if ( !MyApplication.zIsLoaded() )
+		if (!MyApplication.zIsLoaded())
 			throw new HarnessException("Admin Console application is not active!");
 
-
 		boolean present = sIsElementPresent(Locators.GEAR_ICON);
-		if ( !present ) {
+		if (!present) {
 			return (false);
 		}
 
 		boolean visible = zIsVisiblePerPosition(Locators.GEAR_ICON, 0, 0);
-		if ( !visible ) {
-			logger.debug("isActive() visible = "+ visible);
+		if (!visible) {
+			logger.debug("isActive() visible = " + visible);
 			return (false);
 		}
 
@@ -74,7 +71,9 @@ public class PageManageGlobalACL extends AbsTab {
 
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 *
 	 * @see projects.admin.ui.AbsTab#myPageName()
 	 */
 	@Override
@@ -82,19 +81,21 @@ public class PageManageGlobalACL extends AbsTab {
 		return (this.getClass().getName());
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 *
 	 * @see projects.admin.ui.AbsTab#navigateTo()
 	 */
 	@Override
 	public void zNavigateTo() throws HarnessException {
 
-		if ( zIsActive() ) {
+		if (zIsActive()) {
 
 			return;
 		}
 
 		// Click on Addresses -> Accounts
-		sClickAt(Locators.CONFIGURE_ICON,"");
+		sClickAt(Locators.CONFIGURE_ICON, "");
 		zWaitForWorkInProgressDialogInVisible();
 		sIsElementPresent(Locators.GLOBALACL);
 		sClickAt(Locators.GLOBALACL, "");
@@ -102,13 +103,12 @@ public class PageManageGlobalACL extends AbsTab {
 		zWaitForActive();
 
 	}
-	
-	@Override
-	public AbsPage zListItem(Action action, String item)
-			throws HarnessException {
-		logger.info(myPageName() + " zListItem("+ action +", "+ item +")");
 
-		tracer.trace(action +" on subject = "+ item);
+	@Override
+	public AbsPage zListItem(Action action, String item) throws HarnessException {
+		logger.info(myPageName() + " zListItem(" + action + ", " + item + ")");
+
+		tracer.trace(action + " on subject = " + item);
 
 		AbsPage page = null;
 		SleepUtil.sleepMedium();
@@ -116,25 +116,22 @@ public class PageManageGlobalACL extends AbsTab {
 		// How many items are in the table?
 		String rowsLocator = "css=div[id='zl'] div[id$='__rows'] div[id^='zli__']";
 		int count = this.sGetCssCount(rowsLocator);
-		logger.debug(myPageName() + " zListItem: number of results: "+ count);
+		logger.debug(myPageName() + " zListItem: number of results: " + count);
 
 		// Get each conversation's data from the table list
 		for (int i = 1; i <= count; i++) {
-			final String accountLocator = rowsLocator + ":nth-child("+i+")";
+			final String accountLocator = rowsLocator + ":nth-child(" + i + ")";
 			String locator;
 
 			locator = accountLocator + " td" + ":nth-child(1)";
 
-
-			if(this.sIsElementPresent(locator))
-			{
-				if(this.sGetText(locator).trim().equalsIgnoreCase(item))
-				{
-					if(action == Action.A_LEFTCLICK) {
+			if (this.sIsElementPresent(locator)) {
+				if (this.sGetText(locator).trim().equalsIgnoreCase(item)) {
+					if (action == Action.A_LEFTCLICK) {
 						sClick(locator);
 						break;
-					} else if(action == Action.A_RIGHTCLICK) {
-						zRightClick(locator);
+					} else if (action == Action.A_RIGHTCLICK) {
+						sRightClick(locator);
 						break;
 					}
 
@@ -144,15 +141,13 @@ public class PageManageGlobalACL extends AbsTab {
 		return page;
 	}
 
-
 	@Override
-	public AbsPage zListItem(Action action, Button option, String item)
-			throws HarnessException {
+	public AbsPage zListItem(Action action, Button option, String item) throws HarnessException {
 		return null;
 	}
+
 	@Override
-	public AbsPage zListItem(Action action, Button option, Button subOption ,String item)
-			throws HarnessException {
+	public AbsPage zListItem(Action action, Button option, Button subOption, String item) throws HarnessException {
 		return null;
 	}
 
@@ -162,39 +157,35 @@ public class PageManageGlobalACL extends AbsTab {
 	}
 
 	@Override
-	public AbsPage zToolbarPressPulldown(Button pulldown, Button option)
-			throws HarnessException {
+	public AbsPage zToolbarPressPulldown(Button pulldown, Button option) throws HarnessException {
 		return null;
 	}
 
 	public boolean zVerifyGranteeName(String item) throws HarnessException {
 
-		logger.info(myPageName() + " zVerifyPolicyName("+ item +")");
+		logger.info(myPageName() + " zVerifyPolicyName(" + item + ")");
 		boolean found = false;
 		SleepUtil.sleepMedium();
 
 		// How many items are in the table?
 		String rowsLocator = "css=div[id='zl'] div[id$='__rows'] div[id^='zli__']";
 		int count = this.sGetCssCount(rowsLocator);
-		logger.debug(myPageName() + " zVerifyPolicyName: number of policys: "+ count);
+		logger.debug(myPageName() + " zVerifyPolicyName: number of policys: " + count);
 
 		// Get each row data from the table list
 		for (int i = 1; i <= count; i++) {
-			final String accountLocator = rowsLocator + ":nth-child("+i+")";
+			final String accountLocator = rowsLocator + ":nth-child(" + i + ")";
 			String locator;
 			locator = accountLocator + " td" + ":nth-child(1)";
 
-			if(this.sIsElementPresent(locator))
-			{
-				if(this.sGetText(locator).trim().equalsIgnoreCase(item))
-				{
+			if (this.sIsElementPresent(locator)) {
+				if (this.sGetText(locator).trim().equalsIgnoreCase(item)) {
 					found = true;
 					break;
-				} else 
-				{
+				} else {
 					logger.info("search result not displayed in current view");
 				}
-			} 
+			}
 
 			if (found == true) {
 				SleepUtil.sleepSmall();
@@ -207,11 +198,10 @@ public class PageManageGlobalACL extends AbsTab {
 		return found;
 	}
 
-	public boolean zVerifyHeader (String header) throws HarnessException {
+	public boolean zVerifyHeader(String header) throws HarnessException {
 		if (this.sIsElementPresent("css=span:contains('" + header + "')"))
 			return true;
 		return false;
 	}
-
 
 }

@@ -14,9 +14,6 @@
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-/**
- *
- */
 package com.zimbra.qa.selenium.projects.admin.ui;
 
 import com.zimbra.qa.selenium.framework.ui.AbsApplication;
@@ -27,17 +24,17 @@ import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 
-
 /**
- * Admin Console -> Help 
+ * Admin Console -> Help
+ *
  * @author Pallavi Khairnar
  *
  */
 public class PageManageHelp extends AbsTab {
 
 	public static class Locators {
-		public static final String GEAR_ICON="css=div[id='skin_td_help'] div[class='ImgNodeExpandedWhite']";
-		public static final String HELP_CENTER="css=div[id='zaHelpCenter']";
+		public static final String GEAR_ICON = "css=div[id='skin_td_help'] div[class='ImgNodeExpandedWhite']";
+		public static final String HELP_CENTER = "css=div[id='zaHelpCenter']";
 	}
 
 	public PageManageHelp(AbsApplication application) {
@@ -47,7 +44,9 @@ public class PageManageHelp extends AbsTab {
 
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 *
 	 * @see projects.admin.ui.AbsTab#myPageName()
 	 */
 	@Override
@@ -55,25 +54,26 @@ public class PageManageHelp extends AbsTab {
 		return (this.getClass().getName());
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 *
 	 * @see projects.admin.ui.AbsTab#isActive()
 	 */
 	@Override
 	public boolean zIsActive() throws HarnessException {
 
 		// Make sure the Admin Console is loaded in the browser
-		if ( !MyApplication.zIsLoaded() )
+		if (!MyApplication.zIsLoaded())
 			throw new HarnessException("Admin Console application is not active!");
 
-
 		boolean present = sIsElementPresent(Locators.GEAR_ICON);
-		if ( !present ) {
+		if (!present) {
 			return (false);
 		}
 
 		boolean visible = zIsVisiblePerPosition(Locators.GEAR_ICON, 0, 0);
-		if ( !visible ) {
-			logger.debug("isActive() visible = "+ visible);
+		if (!visible) {
+			logger.debug("isActive() visible = " + visible);
 			return (false);
 		}
 
@@ -95,9 +95,9 @@ public class PageManageHelp extends AbsTab {
 
 	@Override
 	public AbsPage zToolbarPressPulldown(Button pulldown, Button option) throws HarnessException {
-		logger.info(myPageName() + " zToolbarPressButtonWithPulldown("+ pulldown +", "+ option +")");
+		logger.info(myPageName() + " zToolbarPressButtonWithPulldown(" + pulldown + ", " + option + ")");
 
-		tracer.trace("Click pulldown "+ pulldown +" then "+ option);
+		tracer.trace("Click pulldown " + pulldown + " then " + option);
 
 		if (pulldown == null)
 			throw new HarnessException("Pulldown cannot be null!");
@@ -105,17 +105,16 @@ public class PageManageHelp extends AbsTab {
 		if (option == null)
 			throw new HarnessException("Option cannot be null!");
 
-
-		String pulldownLocator = null; 
-		String optionLocator = null; 
-		AbsPage page = null; 
+		String pulldownLocator = null;
+		String optionLocator = null;
+		AbsPage page = null;
 		if (pulldown == Button.B_GEAR_BOX) {
 			pulldownLocator = Locators.GEAR_ICON;
 
 			if (option == Button.O_HELP_CENTRAL_ONLINE) {
 
 				optionLocator = Locators.HELP_CENTER;
-				
+
 			}
 
 			else {
@@ -123,8 +122,7 @@ public class PageManageHelp extends AbsTab {
 			}
 
 		} else {
-			throw new HarnessException("no logic defined for pulldown/option "
-					+ pulldown + "/" + option);
+			throw new HarnessException("no logic defined for pulldown/option " + pulldown + "/" + option);
 		}
 
 		// Default behavior
@@ -132,20 +130,22 @@ public class PageManageHelp extends AbsTab {
 
 			// Make sure the locator exists
 			if (!this.sIsElementPresent(pulldownLocator)) {
-				throw new HarnessException("Button " + pulldown + " option " + option + " pulldownLocator " + pulldownLocator + " not present!");
+				throw new HarnessException("Button " + pulldown + " option " + option + " pulldownLocator "
+						+ pulldownLocator + " not present!");
 			}
 
-			this.sClickAt(pulldownLocator,"");
+			this.sClickAt(pulldownLocator, "");
 			SleepUtil.sleepMedium();
 
 			if (optionLocator != null) {
 
 				// Make sure the locator exists
 				if (!this.sIsElementPresent(optionLocator)) {
-					throw new HarnessException("Button " + pulldown + " option " + option + " optionLocator " + optionLocator + " not present!");
+					throw new HarnessException("Button " + pulldown + " option " + option + " optionLocator "
+							+ optionLocator + " not present!");
 				}
 
-				this.sClickAt(optionLocator,"");
+				this.sClickAt(optionLocator, "");
 
 			}
 
@@ -159,7 +159,7 @@ public class PageManageHelp extends AbsTab {
 	@Override
 	public void zNavigateTo() throws HarnessException {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -173,16 +173,11 @@ public class PageManageHelp extends AbsTab {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
-	
+
 	public boolean zVerifyHelpCenterLink(String link) throws HarnessException {
 		if (this.sIsElementPresent("css=table[id$='helpDocsGroup_table'] a:contains('" + link + "')"))
 			return true;
 		return false;
 	}
-	
-}
-	
-	
 
-	
+}

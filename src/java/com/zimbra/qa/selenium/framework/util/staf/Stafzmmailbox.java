@@ -28,7 +28,7 @@ public class Stafzmmailbox extends StafServicePROCESS {
 	public Stafzmmailbox() {
 		super();
 
-		logger.info("new "+ Stafzmmailbox.class.getCanonicalName());
+		logger.info("new " + Stafzmmailbox.class.getCanonicalName());
 		StafService = "PROCESS";
 
 	}
@@ -41,14 +41,16 @@ public class Stafzmmailbox extends StafServicePROCESS {
 	protected String setCommand(String command) {
 
 		// Make sure the full path is specified
-		if ( command.trim().startsWith("zmmailbox") ) {
+		if (command.trim().startsWith("zmmailbox")) {
 			command = "/opt/zimbra/bin/" + command;
 		}
 		// Running a command as 'zimbra' user.
 		// We must convert the command to a special format
-		// START SHELL COMMAND "su - zimbra -c \'<cmd>\'" RETURNSTDOUT RETURNSTDERR WAIT 30000</params>
+		// START SHELL COMMAND "su - zimbra -c \'<cmd>\'" RETURNSTDOUT RETURNSTDERR WAIT
+		// 30000</params>
 
-		StafParms = String.format("START SHELL COMMAND \"su - zimbra -c '%s'\" RETURNSTDOUT RETURNSTDERR WAIT %d", command, this.getTimeout());
+		StafParms = String.format("START SHELL COMMAND \"su - zimbra -c '%s'\" RETURNSTDOUT RETURNSTDERR WAIT %d",
+				command, this.getTimeout());
 		return (getStafCommand());
 	}
 

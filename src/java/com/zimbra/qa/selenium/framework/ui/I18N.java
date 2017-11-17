@@ -241,6 +241,6 @@ public class I18N {
             country = localeString.substring(languageIndex+1, countryIndex);
             String variant = localeString.substring(countryIndex+1);
             return new Locale(language, country, variant);
-        }
-    }
+		}
+	}
 }

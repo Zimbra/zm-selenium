@@ -171,7 +171,7 @@ public class OpenInTabSharedMailFolders extends PrefGroupMailByMessageTest {
 		
 		//Click on subfolder
 		SleepUtil.sleep(5000);
-		app.zTreeMail.zRightClickAt(locator,"");
+		app.zTreeMail.sRightClickAt(locator,"");
 		
 		//Click on Open in tab option
 		app.zTreeMail.sClickAt(OpenInTab, "");

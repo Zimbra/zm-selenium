@@ -28,8 +28,6 @@ import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 
 /**
  * This class represents a new document item
- * 
- * 
  */
 public class DocumentItem implements IItem {
 	protected static Logger logger = LogManager.getLogger(IItem.class);
@@ -48,7 +46,6 @@ public class DocumentItem implements IItem {
 	 */
 	private String docId;
 
-	
 	/**
 	 * The status of this document
 	 */
@@ -79,12 +76,12 @@ public class DocumentItem implements IItem {
 	public DocumentItem(String name) {
 		docName = name;
 	}
-	
+
 	@Override
 	public String getName() {
 		return docName;
 	}
-	
+
 	/**
 	 * Populate DocumentItem data
 	 * 
@@ -100,7 +97,7 @@ public class DocumentItem implements IItem {
 	public String getId() {
 		return docId;
 	}
-	
+
 	/**
 	 * Set document id
 	 * 
@@ -135,44 +132,30 @@ public class DocumentItem implements IItem {
 		this.docText = text;
 	}
 
-	public String GetBriefcaseIdUsingSOAP(ZimbraAccount account)
-			throws HarnessException {
+	public String GetBriefcaseIdUsingSOAP(ZimbraAccount account) throws HarnessException {
 		if (briefcaseFolderID == null) {
 			try {
-				Element getFolderResponse = account
-						.soapSend("<GetFolderRequest xmlns='urn:zimbraMail'/>");
-				Element briefcase = ZimbraAccount.SoapClient.selectNode(
-						getFolderResponse,
+				Element getFolderResponse = account.soapSend("<GetFolderRequest xmlns='urn:zimbraMail'/>");
+				Element briefcase = ZimbraAccount.SoapClient.selectNode(getFolderResponse,
 						"//mail:folder/mail:folder[@name='Briefcase']");
 				briefcaseFolderID = briefcase.getAttribute("id");
 			} catch (Exception e) {
-				throw new HarnessException(
-						"Could not parse GetFolderRequest: ", e);
+				throw new HarnessException("Could not parse GetFolderRequest: ", e);
 			}
 		}
 		return briefcaseFolderID;
 	}
 
 	public void createUsingSOAP(ZimbraAccount account) throws HarnessException {
-		String contentHTML = XmlStringUtil.escapeXml("<html>" + "<body>"
-				+ docText + "</body>" + "</html>");
-		e = account
-				.soapSend("<SaveDocumentRequest requestId='0' xmlns='urn:zimbraMail'>"
-						+ "<doc name='"
-						+ docName
-						+ "' l='16' ct='application/x-zimbra-doc'>"
-						+ "<content>"
-						+ contentHTML
-						+ "</content>"
-						+ "</doc>"
-						+ "</SaveDocumentRequest>");
+		String contentHTML = XmlStringUtil.escapeXml("<html>" + "<body>" + docText + "</body>" + "</html>");
+		e = account.soapSend("<SaveDocumentRequest requestId='0' xmlns='urn:zimbraMail'>" + "<doc name='" + docName
+				+ "' l='16' ct='application/x-zimbra-doc'>" + "<content>" + contentHTML + "</content>" + "</doc>"
+				+ "</SaveDocumentRequest>");
 	}
 
-	public void createUsingSOAP(ZimbraAccount account, String attachmentId)
-			throws HarnessException {
-		account.soapSend("<SaveDocumentRequest xmlns='urn:zimbraMail'>"
-				+ "<doc l='16'>" + "<upload id='" + attachmentId + "'/>"
-				+ "</doc>" + "</SaveDocumentRequest>");
+	public void createUsingSOAP(ZimbraAccount account, String attachmentId) throws HarnessException {
+		account.soapSend("<SaveDocumentRequest xmlns='urn:zimbraMail'>" + "<doc l='16'>" + "<upload id='" + attachmentId
+				+ "'/>" + "</doc>" + "</SaveDocumentRequest>");
 
 		// account.soapSelectNodes("//mail:SaveDocumentResponse");
 
@@ -182,71 +165,58 @@ public class DocumentItem implements IItem {
 	}
 
 	public void importFromSOAP(Element response) throws HarnessException {
-		if ( response == null )
+		if (response == null)
 			throw new HarnessException("Element cannot be null");
-		
+
 		try {
 			// Make sure we only have the DocumentResponse part
-			Element getDocumentResponse = ZimbraAccount.SoapClient.selectNode(
-					response,
+			Element getDocumentResponse = ZimbraAccount.SoapClient.selectNode(response,
 					"//mail:SaveDocumentResponse | //mail:SearchResponse");
 			if (getDocumentResponse == null)
-				throw new HarnessException(
-						"Element does not contain GetSaveDocumentResponse");
+				throw new HarnessException("Element does not contain GetSaveDocumentResponse");
 
-			Element doc = ZimbraAccount.SoapClient.selectNode(
-					getDocumentResponse, "//mail:doc");
+			Element doc = ZimbraAccount.SoapClient.selectNode(getDocumentResponse, "//mail:doc");
 			if (doc == null)
-				throw new HarnessException(
-						"Element does not contain doc element");
+				throw new HarnessException("Element does not contain doc element");
 
 			// get the ID
 			doc.getAttribute("id", null);
 
 		} catch (Exception e) {
-			throw new HarnessException("Could not parse SaveDocumentResponse: "
-					+ response.prettyPrint(), e);
+			throw new HarnessException("Could not parse SaveDocumentResponse: " + response.prettyPrint(), e);
 		}
 
 	}
 
-	public void importFromSOAP(ZimbraAccount account, String query)
-			throws HarnessException {
+	public void importFromSOAP(ZimbraAccount account, String query) throws HarnessException {
 		try {
 			// Element search =
-			account
-					.soapSend("<SearchRequest xmlns='urn:zimbraMail' types='document'>"
-							+ "<query>"
-							+ query
-							+ "</query>"
-							+ "</SearchRequest>");
+			account.soapSend("<SearchRequest xmlns='urn:zimbraMail' types='document'>" + "<query>" + query + "</query>"
+					+ "</SearchRequest>");
 
-			Element[] results = account
-					.soapSelectNodes("//mail:SearchResponse/mail:doc");
+			Element[] results = account.soapSelectNodes("//mail:SearchResponse/mail:doc");
 			if (results.length != 1)
-				throw new HarnessException("Query should return 1 result, not "
-						+ results.length);
+				throw new HarnessException("Query should return 1 result, not " + results.length);
 
 			// String id =
 			account.soapSelectValue("//mail:SearchResponse/mail:doc", "id");
 
 			/*
-			 * account.soapSend( "<GetDocumentRequest xmlns='urn:zimbraMail'>" +
-			 * "<doc id='" + id + "'/>" + "</GetDocumentRequest>");
+			 * account.soapSend( "<GetDocumentRequest xmlns='urn:zimbraMail'>" + "<doc id='"
+			 * + id + "'/>" + "</GetDocumentRequest>");
 			 * 
 			 * Element getDocumentResponse =
 			 * account.soapSelectNode("//mail:GetDocumentResponse", 1);
 			 */
 
-			Element getDocumentResponse = account.soapSelectNode(
-					"//mail:SearchResponse", 1);
+			Element getDocumentResponse = account.soapSelectNode("//mail:SearchResponse", 1);
 
 			// Using the response, create this item
 			importFromSOAP(getDocumentResponse);
 
 		} catch (Exception e) {
-			throw new HarnessException("Unable to import using SOAP query("
-					+ query + ") and account(" + account.EmailAddress + ")", e);
+			throw new HarnessException(
+					"Unable to import using SOAP query(" + query + ") and account(" + account.EmailAddress + ")", e);
 		}
 	}
 
@@ -263,27 +233,17 @@ public class DocumentItem implements IItem {
 	 * Sample DocItem Driver
 	 * 
 	 * @param args
-	 * @throws HarnessException 
-	 * @throws ServiceException 
+	 * @throws HarnessException
+	 * @throws ServiceException
 	 */
 	public static void main(String[] args) throws HarnessException, XmlParseException {
 		DocumentItem d = new DocumentItem();
 		d.createUsingSOAP(ZimbraAccount.AccountA());
 
-		String envelopeString = "<soap:Envelope xmlns:soap='http://www.w3.org/2003/05/soap-envelope'>"
-				+ "<soap:Header>"
-				+ "<context xmlns='urn:zimbra'>"
-				+ "<change token='2'></change>"
-				+ "</context>"
-				+ "</soap:Header>"
-				+ "<soap:Body>"
-				+ "<SaveDocumentResponse requestId='0' xmlns='urn:zimbraMail'>"
-				+ "<doc name='"
-				+ d.docName
-				+ "' ver='1'/>"
-				+ "</SaveDocumentResponse>"
-				+ "</soap:Body>"
-				+ "</soap:Envelope>";
+		String envelopeString = "<soap:Envelope xmlns:soap='http://www.w3.org/2003/05/soap-envelope'>" + "<soap:Header>"
+				+ "<context xmlns='urn:zimbra'>" + "<change token='2'></change>" + "</context>" + "</soap:Header>"
+				+ "<soap:Body>" + "<SaveDocumentResponse requestId='0' xmlns='urn:zimbraMail'>" + "<doc name='"
+				+ d.docName + "' ver='1'/>" + "</SaveDocumentResponse>" + "</soap:Body>" + "</soap:Envelope>";
 
 		d = new DocumentItem();
 		d.importFromSOAP(Element.parseXML(envelopeString));
@@ -291,15 +251,12 @@ public class DocumentItem implements IItem {
 		System.out.println("Imported document item from SOAP");
 		System.out.println(d.prettyPrint());
 
-		String contentHTML = XmlStringUtil.escapeXml("<html>" + "<body>" + "t1"
-				+ "</body>" + "</html>");
+		String contentHTML = XmlStringUtil.escapeXml("<html>" + "<body>" + "t1" + "</body>" + "</html>");
 
-		ZimbraAccount.AccountA().soapSend(
-				"<SaveDocumentRequest requestId='0' xmlns='urn:zimbraMail'>" +
+		ZimbraAccount.AccountA().soapSend("<SaveDocumentRequest requestId='0' xmlns='urn:zimbraMail'>" +
 
-				"<doc name='d1' l='16' ct='application/x-zimbra-doc'>"
-						+ "<content>" + contentHTML + "</content>" + "</doc>"
-						+ "</SaveDocumentRequest>");
+				"<doc name='d1' l='16' ct='application/x-zimbra-doc'>" + "<content>" + contentHTML + "</content>"
+				+ "</doc>" + "</SaveDocumentRequest>");
 
 		d = new DocumentItem();
 		d.importFromSOAP(ZimbraAccount.AccountA(), "d1");

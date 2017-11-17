@@ -17,7 +17,6 @@
 package com.zimbra.qa.selenium.projects.admin.tests.distributionlists;
 
 import org.testng.annotations.Test;
-
 import com.zimbra.common.soap.Element;
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.ui.Action;
@@ -36,16 +35,16 @@ public class AddDirectMemberOfDistributionList extends AdminCommonTest {
 
 	public AddDirectMemberOfDistributionList() {
 		logger.info("New "+ AddDirectMemberOfDistributionList.class.getCanonicalName());
-		// All tests start at the "Distribution List" page
 		super.startingPage = app.zPageManageDistributionList;
 	}
-	
+
+
 	@Bugs (ids = "99081")
 	@Test (description = "Edit DL - Add 'Direct Member of' to DL",
 		   	groups = { "smoke", "L1" })
 
 	public void AddDirectMemberOfDistributionList_01() throws HarnessException {
-		
+
 		// Create two distribution lists in the Admin Console using SOAP
 		DistributionListItem dl1 = new DistributionListItem();
 		DistributionListItem dl2 = new DistributionListItem();
@@ -54,7 +53,7 @@ public class AddDirectMemberOfDistributionList extends AdminCommonTest {
 				"<CreateDistributionListRequest xmlns='urn:zimbraAdmin'>"
 						+			"<name>" + dl1.getEmailAddress() + "</name>"
 						+		"</CreateDistributionListRequest>");
-		
+
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<CreateDistributionListRequest xmlns='urn:zimbraAdmin'>"
 						+			"<name>" + dl2.getEmailAddress() + "</name>"
@@ -68,42 +67,42 @@ public class AddDirectMemberOfDistributionList extends AdminCommonTest {
 
 		// Open the Dl for editing
 		FormEditDistributionList form = (FormEditDistributionList) app.zPageManageDistributionList.zToolbarPressPulldown(Button.B_GEAR_BOX,Button.O_EDIT);
-		
+
 		// Select Member of of tree element
 		form.zSelectTreeItem(TreeItem.MEMBER_OF);
-		
+
 		// Check the message displayed inside the Direct member of box
 		ZAssert.assertEquals(form.sGetText(Locators.DirectMemberOf),"Not a direct member of any distribution list","Verify that Loading... text is not present");
 
 		// Check the message displayed inside the Indirect members of box
 		ZAssert.assertEquals(form.sGetText(Locators.IndirectMemberOf),"Not an indirect member of any distribution list","Verify that Loading... text is not present");
-		
+
 		// Add DL1 as direct member of DL2
 		form.zAddDistributionList(dl2);
-		
+
 		// Save the changes in DL
 		form.zSubmit();
-		
+
 		// Check the content of inside the Direct member of box
 		ZAssert.assertEquals(form.sGetText(Locators.DirectMemberOf),dl2.getEmailAddress(),"Verify that " + dl2.getEmailAddress() + "is added to the direct member of list");
-		
+
 		// Check the message displayed inside the Indirect members of box
 		ZAssert.assertEquals(form.sGetText(Locators.IndirectMemberOf),"Not an indirect member of any distribution list","Verify that Loading... text is not present");
-		
+
 		// Verify using SOAP that DL1 ia a member of DL2
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<GetDistributionListRequest xmlns='urn:zimbraAdmin'>" +
 				"<dl by='name'>"+ dl2.getEmailAddress() +"</dl>"+
 		"</GetDistributionListRequest>");
-		
+
 		Element dlMember = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetDistributionListResponse/admin:dl/admin:dlm", 1);
-		
+
 		ZAssert.assertEquals(dlMember.getText(), dl1.getEmailAddress(), "Verify that " + dl1.getEmailAddress() + "is a member of " + dl2.getEmailAddress());
-		
+
 		app.zPageManageDistributionList.zRefreshMainUI();
-		
+
 		startingPage.zNavigateTo();
-		
+
 		// Click on distribution list to be edited.
 		app.zPageManageDistributionList.zListItem(Action.A_LEFTCLICK, dl1.getEmailAddress());
 
@@ -112,12 +111,11 @@ public class AddDirectMemberOfDistributionList extends AdminCommonTest {
 
 		// Select Member of of tree element
 		form.zSelectTreeItem(TreeItem.MEMBER_OF);
-		
+
 		// Check the content of inside the Direct member of box
 		ZAssert.assertEquals(form.sGetText(Locators.DirectMemberOf),dl2.getEmailAddress(),"Verify that" + dl2.getEmailAddress() + "is added to the direct member of list");
 
 		// Check the message displayed inside the Indirect members of box
 		ZAssert.assertEquals(form.sGetText(Locators.IndirectMemberOf),"Not an indirect member of any distribution list","Verify that Loading... text is not present");
-
 	}
 }

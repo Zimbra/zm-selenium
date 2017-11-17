@@ -17,7 +17,6 @@
 package com.zimbra.qa.selenium.projects.admin.tests.distributionlists;
 
 import org.testng.annotations.Test;
-
 import com.zimbra.common.soap.Element;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
@@ -33,10 +32,9 @@ public class DeleteDistributionList extends AdminCommonTest {
 
 	public DeleteDistributionList() {
 		logger.info("New "+ DeleteDistributionList.class.getCanonicalName());
-
-		// All tests start at the "Distribution Lists" page
 		super.startingPage = app.zPageManageDistributionList;
 	}
+
 
 	/**
 	 * Testcase : Verify delete operation for DL - Manage distribution list view.
@@ -48,9 +46,11 @@ public class DeleteDistributionList extends AdminCommonTest {
 	 * 5. Verify dl is deleted using SOAP.
 	 * @throws HarnessException
 	 */
+
 	@Test (description = "Verify delete operation for distribution list - Manage distribution list view",
 			groups = { "smoke", "L1" })
-			public void DeleteDistributionList_01() throws HarnessException {
+
+	public void DeleteDistributionList_01() throws HarnessException {
 
 		// Create a new dl in the Admin Console using SOAP
 		DistributionListItem dl = new DistributionListItem();
@@ -76,7 +76,6 @@ public class DeleteDistributionList extends AdminCommonTest {
 		// Click Ok on "Delete Items" dialog
 		dialog.zPressButton(Button.B_OK);
 
-
 		// Verify the dl does not exists in the ZCS
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<GetDistributionListRequest xmlns='urn:zimbraAdmin'>" +
@@ -86,9 +85,9 @@ public class DeleteDistributionList extends AdminCommonTest {
 		Element response = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetDistributionListResponse/admin:dl", 1);
 		ZAssert.assertNull(response, "Verify the distribution list is deleted successfully");
 		app.zPageMain.logout();
-
 	}
-	
+
+
 	/**
 	 * Testcase : Verify delete operation for DL - Manage distribution list view/Right Click Menu.
 	 * Steps :
@@ -99,9 +98,11 @@ public class DeleteDistributionList extends AdminCommonTest {
 	 * 5. Verify dl is deleted using SOAP.
 	 * @throws HarnessException
 	 */
+
 	@Test (description = "Verify delete operation for distribution list -- Manage distribution list/Right Click Menu",
 			groups = { "smoke", "L1" })
-			public void DeleteDistributionList_02() throws HarnessException {
+
+	public void DeleteDistributionList_02() throws HarnessException {
 
 		// Create a new dl in the Admin Console using SOAP
 		DistributionListItem dl = new DistributionListItem();
@@ -127,7 +128,6 @@ public class DeleteDistributionList extends AdminCommonTest {
 		// Click Ok on "Delete Items" dialog
 		dialog.zPressButton(Button.B_OK);
 
-
 		// Verify the dl does not exists in the ZCS
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<GetDistributionListRequest xmlns='urn:zimbraAdmin'>" +
@@ -137,9 +137,5 @@ public class DeleteDistributionList extends AdminCommonTest {
 		Element response = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetDistributionListResponse/admin:dl", 1);
 		ZAssert.assertNull(response, "Verify the distribution list is deleted successfully");
 		app.zPageMain.logout();
-
 	}
-
-	
-	
 }

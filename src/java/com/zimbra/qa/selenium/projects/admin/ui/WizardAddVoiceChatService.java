@@ -14,9 +14,6 @@
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-/**
- *
- */
 package com.zimbra.qa.selenium.projects.admin.ui;
 
 import com.zimbra.qa.selenium.framework.items.IItem;
@@ -32,15 +29,14 @@ public class WizardAddVoiceChatService extends AbsWizard {
 		public static final String zdlg_ALIAS_NAME = "css=input[id='zdlgv__NEW_ALIAS_name_2']";
 		public static final String zdlg_ALIAS_DOMAIN_NAME = "css=input[id='zdlgv__NEW_ALIAS_name_3_display']";
 		public static final String zdlg_TARGET_ACCOUNT_NAME = "css=input[id='zdlgv__NEW_ALIAS_targetName_display']";
-		
+
 		public static final String zdlg_OK = "css=td[id^='zdlg__NEW_ALIAS_button']:contains('OK')";
 		public static final String ChooseVendorTitle = "css=td[id$='_title']:contains('Choose Voice/Chat Vendor')";
 		public static final String Service_dropdown = "css=div[id$='_zimbraUCProvider_arrow_button']";
 		public static final String CISCO = "css=div[id$='zimbraUCProvider_choice_0']";
 		public static final String OK = "css=td[id$='_button2_title']:contains('OK')";
 		public static final String zdlg_DISPLAY_NAME = "css=input[id$='_cn']";
-		
-		
+
 	}
 
 	public WizardAddVoiceChatService(AbsTab page) {
@@ -50,10 +46,11 @@ public class WizardAddVoiceChatService extends AbsWizard {
 	@Override
 	public IItem zCompleteWizard(IItem item) throws HarnessException {
 
-		if ( !(item instanceof VoiceChatServiceItem) )
-			throw new HarnessException("item must be an VoiceChatServiceItem, was "+ item.getClass().getCanonicalName());
+		if (!(item instanceof VoiceChatServiceItem))
+			throw new HarnessException(
+					"item must be an VoiceChatServiceItem, was " + item.getClass().getCanonicalName());
 
-		VoiceChatServiceItem serviceItem = (VoiceChatServiceItem)item;
+		VoiceChatServiceItem serviceItem = (VoiceChatServiceItem) item;
 
 		String displayName = serviceItem.getDisplayName();
 
@@ -66,7 +63,7 @@ public class WizardAddVoiceChatService extends AbsWizard {
 		}
 		sType(Locators.zdlg_DISPLAY_NAME, displayName);
 		SleepUtil.sleepSmall();
-		
+
 		sClick(Locators.OK);
 		return serviceItem;
 
@@ -81,12 +78,12 @@ public class WizardAddVoiceChatService extends AbsWizard {
 	public boolean zIsActive() throws HarnessException {
 
 		boolean present = sIsElementPresent(Locators.Service_dropdown);
-		if ( !present ) {
+		if (!present) {
 			return (false);
 		}
 
 		boolean visible = this.zIsVisiblePerPosition(Locators.Service_dropdown, 0, 0);
-		if ( !visible ) {
+		if (!visible) {
 			return (false);
 		}
 

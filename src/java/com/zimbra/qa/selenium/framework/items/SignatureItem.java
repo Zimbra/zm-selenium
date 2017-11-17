@@ -80,7 +80,7 @@ public class SignatureItem implements IItem {
 
 	public static SignatureItem importFromSOAP(Element sig) throws HarnessException {
 
-		if ( sig == null )
+		if (sig == null)
 			throw new HarnessException("Element cannot be null");
 
 		SignatureItem item = null;
@@ -88,11 +88,9 @@ public class SignatureItem implements IItem {
 		try {
 
 			// Make sure we only have the <tag/> part
-			Element t = ZimbraAccount.SoapClient.selectNode(sig,
-					"//acct:signature");
+			Element t = ZimbraAccount.SoapClient.selectNode(sig, "//acct:signature");
 			if (t == null)
-				throw new HarnessException(
-						"Element does not contain an <tag/> element");
+				throw new HarnessException("Element does not contain an <tag/> element");
 
 			// Create the object
 			item = new SignatureItem();
@@ -104,27 +102,23 @@ public class SignatureItem implements IItem {
 
 			Element contentBodyHtml = ZimbraAccount.SoapClient.selectNode(sig, "//acct:content[@type='text/html']");
 			Element contentBodyText = ZimbraAccount.SoapClient.selectNode(sig, "//acct:content[@type='text/plain']");
-			if ( contentBodyHtml != null ) {
+			if (contentBodyHtml != null) {
 				item.dBodyHtmlText = contentBodyHtml.getText().trim();
-			} else if ( contentBodyText != null ) {
+			} else if (contentBodyText != null) {
 				item.dBodyText = contentBodyText.getText().trim();
 			}
-
 
 			return (item);
 
 		} catch (Exception e) {
-			throw new HarnessException("Could not parse GetMsgResponse: "
-					+ sig.prettyPrint(), e);
+			throw new HarnessException("Could not parse GetMsgResponse: " + sig.prettyPrint(), e);
 		} finally {
 			if (item != null)
 				logger.info(item.prettyPrint());
 		}
-
 	}
 
-	public static SignatureItem importFromSOAP(ZimbraAccount account,
-			String name) throws HarnessException {
+	public static SignatureItem importFromSOAP(ZimbraAccount account, String name) throws HarnessException {
 
 		if (account == null)
 			throw new HarnessException("account cannot be null");
@@ -134,15 +128,13 @@ public class SignatureItem implements IItem {
 			throw new HarnessException("name cannot be empty: (" + name + ")");
 
 		try {
-			account
-					.soapSend("<GetSignaturesRequest xmlns='urn:zimbraAccount'/>");
-			Element[] results = account
-					.soapSelectNodes("//acct:signature[@name='" + name + "']");
+			account.soapSend("<GetSignaturesRequest xmlns='urn:zimbraAccount'/>");
+			Element[] results = account.soapSelectNodes("//acct:signature[@name='" + name + "']");
 			return (importFromSOAP(results[0]));
 
 		} catch (Exception e) {
-			throw new HarnessException("Unable to import using SOAP name("
-					+ name + ") and account(" + account.EmailAddress + ")", e);
+			throw new HarnessException(
+					"Unable to import using SOAP name(" + name + ") and account(" + account.EmailAddress + ")", e);
 		}
 	}
 
@@ -150,5 +142,4 @@ public class SignatureItem implements IItem {
 	public String prettyPrint() {
 		return null;
 	}
-
 }

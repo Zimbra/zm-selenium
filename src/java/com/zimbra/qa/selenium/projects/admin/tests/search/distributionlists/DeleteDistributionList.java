@@ -31,14 +31,14 @@ public class DeleteDistributionList extends AdminCommonTest {
 
 	public DeleteDistributionList() {
 		logger.info("New "+ DeleteDistributionList.class.getCanonicalName());
-
-		// All tests start at the "Distribution Lists" page
 		super.startingPage = app.zPageManageSearch;
 	}
 
+
 	@Test (description = "Verify delete operation for distribution list - Search distribution list view",
 			groups = { "smoke", "L1" })
-			public void DeleteDistributionList_01() throws HarnessException {
+
+	public void DeleteDistributionList_01() throws HarnessException {
 
 		// Create a new dl in the Admin Console using SOAP
 		DistributionListItem dl = new DistributionListItem();
@@ -54,7 +54,6 @@ public class DeleteDistributionList extends AdminCommonTest {
 
 		// Click search
 		app.zPageSearchResults.zToolbarPressButton(Button.B_SEARCH);
-
 
 		// Right Click on distribution list to be deleted.
 		app.zPageSearchResults.zListItem(Action.A_LEFTCLICK, dl.getEmailAddress());
@@ -68,19 +67,18 @@ public class DeleteDistributionList extends AdminCommonTest {
 		// Click Ok on "Delete Items" dialog
 		dialog.zPressButton(Button.B_OK);
 
-
 		// Verify the dl does not exists in the ZCS
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<GetDistributionListRequest xmlns='urn:zimbraAdmin'>" +
-				"<dl by='name'>"+dlEmailAddress+"</dl>"+
-		"</GetDistributionListRequest>");
+						"<dl by='name'>"+dlEmailAddress+"</dl>"+
+				"</GetDistributionListRequest>");
 
 		Element response = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetDistributionListResponse/admin:dl", 1);
 		ZAssert.assertNull(response, "Verify the distribution list is deleted successfully");
 		app.zPageMain.logout();
 	}
 
-	
+
 	/**
 	 * Testcase : Verify delete operation for DL - Search distribution list view/Right Click Menu.
 	 * Steps :
@@ -91,11 +89,12 @@ public class DeleteDistributionList extends AdminCommonTest {
 	 * 5. Verify dl is deleted using SOAP.
 	 * @throws HarnessException
 	 */
+
 	@Test (description = "Verify delete operation for distribution list - Search distribution list view/Right Click Menu.",
 			groups = { "functional", "L2" })
-			public void DeleteDistributionList_02() throws HarnessException {
 
-	
+	public void DeleteDistributionList_02() throws HarnessException {
+
 		// Create a new dl in the Admin Console using SOAP
 		DistributionListItem dl = new DistributionListItem();
 		String dlEmailAddress=dl.getEmailAddress();
@@ -111,7 +110,6 @@ public class DeleteDistributionList extends AdminCommonTest {
 		// Click search
 		app.zPageSearchResults.zToolbarPressButton(Button.B_SEARCH);
 
-
 		// Right Click on distribution list to be deleted.
 		app.zPageSearchResults.zListItem(Action.A_RIGHTCLICK, dl.getEmailAddress());
 
@@ -124,16 +122,14 @@ public class DeleteDistributionList extends AdminCommonTest {
 		// Click Ok on "Delete Items" dialog
 		dialog.zPressButton(Button.B_OK);
 
-
 		// Verify the dl does not exists in the ZCS
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<GetDistributionListRequest xmlns='urn:zimbraAdmin'>" +
-				"<dl by='name'>"+dlEmailAddress+"</dl>"+
-		"</GetDistributionListRequest>");
+						"<dl by='name'>"+dlEmailAddress+"</dl>"+
+				"</GetDistributionListRequest>");
 
 		Element response = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetDistributionListResponse/admin:dl", 1);
 		ZAssert.assertNull(response, "Verify the distribution list is deleted successfully");
 		app.zPageMain.logout();
-
 	}
 }

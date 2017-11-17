@@ -14,9 +14,6 @@
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-/**
- *
- */
 package com.zimbra.qa.selenium.projects.admin.ui;
 
 import com.zimbra.qa.selenium.framework.items.IItem;
@@ -25,7 +22,6 @@ import com.zimbra.qa.selenium.framework.ui.AbsWizard;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.projects.admin.items.DomainItem;
 
-
 /**
  * @author Matt Rhoades
  *
@@ -33,13 +29,11 @@ import com.zimbra.qa.selenium.projects.admin.items.DomainItem;
 public class WizardCreateDomain extends AbsWizard {
 
 	public static class Locators {
-		public static final String zdlg_DOMAIN_NAME="zdlgv__NEW_DOMAIN_zimbraDomainName";
-		public static final String MAIL_SERVER_DROPDOWN_old="css=div[id$='zimbraMailHost_arrow_button']/div";
-		public static final String MAIL_SERVER_DROPDOWN="css=div[id^='zdlgv__NEW_DOMAIN_gal_sync_accounts_set'][id$='zimbraMailHost_arrow_button']>div";
-		//public static final String MAIL_SERVER_DROPDOWN="css=div[id^='zdlgv__NEW_DOMAIN_zdlgv__NEW_DOMAIN_gal_sync_accounts_set_wizard'] div.ImgSelectPullDownArrow";
-
-		public static final String MAIL_SERVER_DROPDOWN_TABLE="css=div#___OSELECT_MENU___";
-		public static final String ADD_A_GAL_ACCOUNT_BUTTON="css=button.xform_button:contains('Add a GAL account')";
+		public static final String zdlg_DOMAIN_NAME = "zdlgv__NEW_DOMAIN_zimbraDomainName";
+		public static final String MAIL_SERVER_DROPDOWN_old = "css=div[id$='zimbraMailHost_arrow_button']/div";
+		public static final String MAIL_SERVER_DROPDOWN = "css=div[id^='zdlgv__NEW_DOMAIN_gal_sync_accounts_set'][id$='zimbraMailHost_arrow_button']>div";
+		public static final String MAIL_SERVER_DROPDOWN_TABLE = "css=div#___OSELECT_MENU___";
+		public static final String ADD_A_GAL_ACCOUNT_BUTTON = "css=button.xform_button:contains('Add a GAL account')";
 	}
 
 	public WizardCreateDomain(AbsTab page) {
@@ -49,24 +43,23 @@ public class WizardCreateDomain extends AbsWizard {
 	@Override
 	public IItem zCompleteWizard(IItem item) throws HarnessException {
 
-		if ( !(item instanceof DomainItem) )
-			throw new HarnessException("item must be an DomainItem, was "+ item.getClass().getCanonicalName());
+		if (!(item instanceof DomainItem))
+			throw new HarnessException("item must be an DomainItem, was " + item.getClass().getCanonicalName());
 
-
-		DomainItem domain = (DomainItem)item;
+		DomainItem domain = (DomainItem) item;
 
 		String domainName = domain.getName();
 
-
 		/**
-		 * If you use normal type method domain is taken as default domain name.
-		 * Below line of code is not grid friendly but this is only solution working currently.
+		 * If you use normal type method domain is taken as default domain name. Below
+		 * line of code is not grid friendly but this is only solution working
+		 * currently.
 		 */
-		zType(Locators.zdlg_DOMAIN_NAME,domainName);
+		zType(Locators.zdlg_DOMAIN_NAME, domainName);
 		clickNext(AbsWizard.Locators.DOMAIN_DIALOG);
-		//sClickAt(Locators.ADD_A_GAL_ACCOUNT_BUTTON,"");
+		// sClickAt(Locators.ADD_A_GAL_ACCOUNT_BUTTON,"");
 		sClick(Locators.MAIL_SERVER_DROPDOWN);
-		sClickAt(Locators.MAIL_SERVER_DROPDOWN_TABLE + " div:contains('" + "')", ""); //FIX-ME
+		sClickAt(Locators.MAIL_SERVER_DROPDOWN_TABLE + " div:contains('" + "')", ""); // FIX-ME
 		clickFinish(AbsWizard.Locators.DOMAIN_DIALOG);
 
 		return (domain);
@@ -83,7 +76,7 @@ public class WizardCreateDomain extends AbsWizard {
 	}
 
 	public boolean zCloseWizard() throws HarnessException {
-		this.sClickAt("css=td[id$='zdlg__NEW_DOMAIN_button1_title']" ,"");
+		this.sClickAt("css=td[id$='zdlg__NEW_DOMAIN_button1_title']", "");
 		return true;
 	}
 }

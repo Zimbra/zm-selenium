@@ -23,8 +23,6 @@ import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 
 /**
  * This class represents a new document item
- *
- *
  */
 public class FileItem implements IItem, IOctListViewItem {
 	protected static Logger logger = LogManager.getLogger(IItem.class);
@@ -41,11 +39,11 @@ public class FileItem implements IItem, IOctListViewItem {
 	public FileItem(String path) {
 		filePath = path;
 		if (filePath.contains("/")) {
-		    fileName = filePath.substring(filePath.lastIndexOf("/") + 1);
+			fileName = filePath.substring(filePath.lastIndexOf("/") + 1);
 		} else if (filePath.contains("\\")) {
-		    fileName = filePath.substring(filePath.lastIndexOf("\\") + 1);
+			fileName = filePath.substring(filePath.lastIndexOf("\\") + 1);
 		} else {
-		    fileName = filePath;
+			fileName = filePath;
 		}
 	}
 
@@ -62,7 +60,7 @@ public class FileItem implements IItem, IOctListViewItem {
 	/**
 	 * The file if
 	 */
-	//private String fileId;
+	// private String fileId;
 
 	/**
 	 * The status of this file
@@ -79,7 +77,8 @@ public class FileItem implements IItem, IOctListViewItem {
 	}
 
 	public void setFilePath(String path) {
-		filePath = path;;
+		filePath = path;
+		;
 	}
 
 	@Override
@@ -88,7 +87,8 @@ public class FileItem implements IItem, IOctListViewItem {
 	}
 
 	public void setFileName(String name) {
-		fileName = name;;
+		fileName = name;
+		;
 	}
 
 	@Override
@@ -104,10 +104,6 @@ public class FileItem implements IItem, IOctListViewItem {
 	public void createUsingSOAP(ZimbraAccount account) throws HarnessException {
 	}
 
-	/////////
-	// IListViewItem: Start
-	/////////
-
 	private String ListViewIcon = null;
 	private String ListViewName = null;
 
@@ -121,7 +117,6 @@ public class FileItem implements IItem, IOctListViewItem {
 		return (ListViewName);
 	}
 
-
 	@Override
 	public void setListViewIcon(String icon) throws HarnessException {
 		ListViewIcon = icon;
@@ -131,10 +126,4 @@ public class FileItem implements IItem, IOctListViewItem {
 	public void setListViewName(String name) throws HarnessException {
 		ListViewName = name;
 	}
-
-	/////////
-	// IListViewItem: End
-	/////////
-
-
 }

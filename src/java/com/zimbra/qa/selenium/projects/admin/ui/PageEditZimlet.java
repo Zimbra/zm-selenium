@@ -20,6 +20,7 @@ import com.zimbra.qa.selenium.framework.ui.AbsApplication;
 
 /**
  * The "Edit Zimlet" page has the same functionality as "Edit Admin Extension"
+ *
  * @author zimbra
  *
  */
@@ -29,13 +30,13 @@ public class PageEditZimlet extends PageEditAdminExtension {
 		super(application);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 *
 	 * @see projects.admin.ui.AbsTab#myPageName()
 	 */
 	@Override
 	public String myPageName() {
 		return (this.getClass().getName());
 	}
-
-
 }

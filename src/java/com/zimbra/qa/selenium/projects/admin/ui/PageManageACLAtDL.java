@@ -2,20 +2,17 @@
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
  * Copyright (C) 2011, 2012, 2013, 2014 Zimbra, Inc.
- * 
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
  * If not, see <http://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
- */
-/**
- *
  */
 package com.zimbra.qa.selenium.projects.admin.ui;
 
@@ -38,12 +35,12 @@ public class PageManageACLAtDL extends AbsTab {
 
 		// ** OverviewTreePanel -> Manage -> Aliases
 
-		public static final String GEAR_ICON="css=div[class=ImgConfigure]";
-		public static final String ACL_ADD ="css=td[id$='_dwt_button_14___container'] td:contains('Add')";
+		public static final String GEAR_ICON = "css=div[class=ImgConfigure]";
+		public static final String ACL_ADD = "css=td[id$='_dwt_button_14___container'] td:contains('Add')";
 		public static final String GRANTED_ACL = "css=td[id$='_grantsList___container'] div[id^='zl'] div[id$='_rows'] div";
-		public static final String YES_BUTTON="css=div[id^='zdlg__MSG__DWT'] td[id$='_button5_title']:contains('Yes')";
-		public static final String NO_BUTTON="zdlg__MSG__GLOBAL__confirm2btn_button4_title";
-		public static final String OK_BUTTON="css=td#zdlg__UNDEFINE";
+		public static final String YES_BUTTON = "css=div[id^='zdlg__MSG__DWT'] td[id$='_button5_title']:contains('Yes')";
+		public static final String NO_BUTTON = "zdlg__MSG__GLOBAL__confirm2btn_button4_title";
+		public static final String OK_BUTTON = "css=td#zdlg__UNDEFINE";
 		public static final String DOMAIN_EDIT_ACL_ADD = "css=td[id^='ztabv__DOAMIN_EDIT_dwt_button'] td[id$='title']:contains('Add')";
 		public static final String EDIT_ACL = "css=td[id$='_dwt_button_15___container'] td:contains('Edit')";
 		public static final String DELETE_ACL = "css=td[id$='_dwt_button_16___container'] td:contains('Delete')";
@@ -55,25 +52,26 @@ public class PageManageACLAtDL extends AbsTab {
 		super(application);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 *
 	 * @see projects.admin.ui.AbsTab#isActive()
 	 */
 	@Override
 	public boolean zIsActive() throws HarnessException {
 
 		// Make sure the Admin Console is loaded in the browser
-		if ( !MyApplication.zIsLoaded() )
+		if (!MyApplication.zIsLoaded())
 			throw new HarnessException("Admin Console application is not active!");
 
-
 		boolean present = sIsElementPresent(Locators.GEAR_ICON);
-		if ( !present ) {
+		if (!present) {
 			return (false);
 		}
 
 		boolean visible = zIsVisiblePerPosition(Locators.GEAR_ICON, 0, 0);
-		if ( !visible ) {
-			logger.debug("isActive() visible = "+ visible);
+		if (!visible) {
+			logger.debug("isActive() visible = " + visible);
 			return (false);
 		}
 
@@ -81,7 +79,9 @@ public class PageManageACLAtDL extends AbsTab {
 
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 *
 	 * @see projects.admin.ui.AbsTab#myPageName()
 	 */
 	@Override
@@ -89,37 +89,38 @@ public class PageManageACLAtDL extends AbsTab {
 		return (this.getClass().getName());
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 *
 	 * @see projects.admin.ui.AbsTab#navigateTo()
 	 */
 
 	@Override
-	public AbsPage zListItem(Action action, Button option, String item)
-			throws HarnessException {
+	public AbsPage zListItem(Action action, Button option, String item) throws HarnessException {
 		return null;
 	}
+
 	@Override
-	public AbsPage zListItem(Action action, Button option, Button subOption ,String item)
-			throws HarnessException {
+	public AbsPage zListItem(Action action, Button option, Button subOption, String item) throws HarnessException {
 		return null;
 	}
 
 	@Override
 	public AbsPage zToolbarPressButton(Button button) throws HarnessException {
-		logger.info(myPageName() + " zToolbarPressButton("+ button +")");
+		logger.info(myPageName() + " zToolbarPressButton(" + button + ")");
 
-		tracer.trace("Press the "+ button +" button");
+		tracer.trace("Press the " + button + " button");
 
-		if ( button == null )
+		if (button == null)
 			throw new HarnessException("Button cannot be null!");
 
-		String locator = null;			// If set, this will be clicked
-		AbsPage page = null;	// If set, this page will be returned
+		String locator = null; // If set, this will be clicked
+		AbsPage page = null; // If set, this page will be returned
 
 		// Based on the button specified, take the appropriate action(s)
 		//
 
-		if ( button == Button.B_ADD ) {
+		if (button == Button.B_ADD) {
 
 			// Add button
 			locator = Locators.ACL_ADD;
@@ -127,7 +128,7 @@ public class PageManageACLAtDL extends AbsTab {
 			// Create the page
 			page = new WizardAddACLAtDL(this);
 
-		}else if ( button == Button.B_ADD_ACL_AT_DOMAIN ) {
+		} else if (button == Button.B_ADD_ACL_AT_DOMAIN) {
 
 			// Add button
 			locator = Locators.DOMAIN_EDIT_ACL_ADD;
@@ -135,7 +136,7 @@ public class PageManageACLAtDL extends AbsTab {
 			// Create the page
 			page = new WizardAddACL(this);
 
-		}else if ( button == Button.B_EDIT ) {
+		} else if (button == Button.B_EDIT) {
 
 			// Add button
 			locator = Locators.EDIT_ACL;
@@ -143,28 +144,27 @@ public class PageManageACLAtDL extends AbsTab {
 			// Create the page
 			page = new WizardEditACLAtDL(this);
 
-		}else if ( button == Button.B_DELETE ) {
+		} else if (button == Button.B_DELETE) {
 
 			// Add button
 			locator = Locators.DELETE_ACL;
 
 			page = new DialogForDeleteOperationACL(this.MyApplication, null);
 
-		}
-		else {
-			throw new HarnessException("no logic defined for button "+ button);
+		} else {
+			throw new HarnessException("no logic defined for button " + button);
 		}
 
-		if ( locator == null ) {
-			throw new HarnessException("locator was null for button "+ button);
+		if (locator == null) {
+			throw new HarnessException("locator was null for button " + button);
 		}
 
 		// Default behavior, process the locator by clicking on it
-		this.sClickAt(locator,"");
+		this.sClickAt(locator, "");
 		SleepUtil.sleepMedium();
 
 		// If page was specified, make sure it is active
-		if ( page != null ) {
+		if (page != null) {
 			SleepUtil.sleepLong();
 		}
 
@@ -172,12 +172,11 @@ public class PageManageACLAtDL extends AbsTab {
 		return (page);
 	}
 
-
 	public AbsPage zPressButton(Button button) throws HarnessException {
 		logger.info(myPageName() + " zPressButton(" + button + ")");
 
 		tracer.trace("Click dialog button " + button);
-		if ( button == null )
+		if (button == null)
 			throw new HarnessException("button cannot be null");
 
 		String locator = null;
@@ -188,9 +187,9 @@ public class PageManageACLAtDL extends AbsTab {
 		} else if (button == Button.B_NO) {
 			locator = Locators.NO_BUTTON;
 		} else if (button == Button.B_OK) {
-			for(int i=0;i<=15;i++) {
-				if (sIsElementPresent(Locators.OK_BUTTON+i+"_button2_title")) {
-					locator=Locators.OK_BUTTON+i+"_button2_title";
+			for (int i = 0; i <= 15; i++) {
+				if (sIsElementPresent(Locators.OK_BUTTON + i + "_button2_title")) {
+					locator = Locators.OK_BUTTON + i + "_button2_title";
 					break;
 				}
 			}
@@ -205,36 +204,32 @@ public class PageManageACLAtDL extends AbsTab {
 
 		// Make sure the locator exists
 		if (!this.sIsElementPresent(locator)) {
-			throw new HarnessException("Button " + button + " locator "
-					+ locator + " not present!");
+			throw new HarnessException("Button " + button + " locator " + locator + " not present!");
 		}
 
-		this.sClickAt(locator,"");
+		this.sClickAt(locator, "");
 		SleepUtil.sleepLong();
 
 		return (page);
 	}
 
-
-	public boolean zVerifyHeader (String header) throws HarnessException {
-		if(this.sIsElementPresent("css=span:contains('" + header + "')"))
+	public boolean zVerifyHeader(String header) throws HarnessException {
+		if (this.sIsElementPresent("css=span:contains('" + header + "')"))
 			return true;
 		return false;
 	}
 
 	@Override
-	public AbsPage zListItem(Action action, String item)
-			throws HarnessException {
+	public AbsPage zListItem(Action action, String item) throws HarnessException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-
 	@Override
 	public AbsPage zToolbarPressPulldown(Button pulldown, Button option) throws HarnessException {
-		logger.info(myPageName() + " zToolbarPressButtonWithPulldown("+ pulldown +", "+ option +")");
+		logger.info(myPageName() + " zToolbarPressButtonWithPulldown(" + pulldown + ", " + option + ")");
 
-		tracer.trace("Click pulldown "+ pulldown +" then "+ option);
+		tracer.trace("Click pulldown " + pulldown + " then " + option);
 
 		if (pulldown == null)
 			throw new HarnessException("Pulldown cannot be null!");
@@ -242,10 +237,9 @@ public class PageManageACLAtDL extends AbsTab {
 		if (option == null)
 			throw new HarnessException("Option cannot be null!");
 
-
-		String pulldownLocator = null; 
-		String optionLocator = null; 
-		AbsPage page = null; 
+		String pulldownLocator = null;
+		String optionLocator = null;
+		AbsPage page = null;
 		if (pulldown == Button.B_GEAR_BOX) {
 			pulldownLocator = Locators.GEAR_ICON;
 
@@ -256,14 +250,12 @@ public class PageManageACLAtDL extends AbsTab {
 				// Create the page
 				page = new WizardGlobalACL(this);
 
-
-			}else {
+			} else {
 				throw new HarnessException("no logic defined for pulldown/option " + pulldown + "/" + option);
 			}
 
 		} else {
-			throw new HarnessException("no logic defined for pulldown/option "
-					+ pulldown + "/" + option);
+			throw new HarnessException("no logic defined for pulldown/option " + pulldown + "/" + option);
 		}
 
 		// Default behavior
@@ -271,23 +263,25 @@ public class PageManageACLAtDL extends AbsTab {
 
 			// Make sure the locator exists
 			if (!this.sIsElementPresent(pulldownLocator)) {
-				throw new HarnessException("Button " + pulldown + " option " + option + " pulldownLocator " + pulldownLocator + " not present!");
+				throw new HarnessException("Button " + pulldown + " option " + option + " pulldownLocator "
+						+ pulldownLocator + " not present!");
 			}
 
-			this.sClickAt(pulldownLocator,"");
+			this.sClickAt(pulldownLocator, "");
 			SleepUtil.sleepMedium();
 
 			// If the app is busy, wait for it to become active
-			//zWaitForBusyOverlay();
+			// zWaitForBusyOverlay();
 
 			if (optionLocator != null) {
 
 				// Make sure the locator exists
 				if (!this.sIsElementPresent(optionLocator)) {
-					throw new HarnessException("Button " + pulldown + " option " + option + " optionLocator " + optionLocator + " not present!");
+					throw new HarnessException("Button " + pulldown + " option " + option + " optionLocator "
+							+ optionLocator + " not present!");
 				}
 
-				this.sClickAt(optionLocator,"");
+				this.sClickAt(optionLocator, "");
 
 			}
 
@@ -300,7 +294,7 @@ public class PageManageACLAtDL extends AbsTab {
 
 	public boolean zVerifyACL(String item) throws HarnessException {
 
-		logger.info(myPageName() + " zVerifyACL("+ item +")");
+		logger.info(myPageName() + " zVerifyACL(" + item + ")");
 		boolean found = false;
 		SleepUtil.sleepMedium();
 
@@ -308,25 +302,22 @@ public class PageManageACLAtDL extends AbsTab {
 		String rowsLocator = "css=td[id$='_grantsList___container'] div[id$='__rows'] div[id^='zli__']";
 
 		int count = this.sGetCssCount(rowsLocator);
-		logger.debug(myPageName() + " zVerifyPolicyName: number of policys: "+ count);
+		logger.debug(myPageName() + " zVerifyPolicyName: number of policys: " + count);
 
 		// Get each row data from the table list
 		for (int i = 1; i <= count; i++) {
-			final String aclLocator = rowsLocator + ":nth-child("+i+")";
+			final String aclLocator = rowsLocator + ":nth-child(" + i + ")";
 			String locator;
 			locator = aclLocator + " td" + ":nth-child(3)";
 
-			if(this.sIsElementPresent(locator))
-			{
-				if(this.sGetText(locator).trim().equalsIgnoreCase(item))
-				{
+			if (this.sIsElementPresent(locator)) {
+				if (this.sGetText(locator).trim().equalsIgnoreCase(item)) {
 					found = true;
 					break;
-				} else 
-				{
+				} else {
 					logger.info("search result not displayed in current view");
 				}
-			} 
+			}
 
 			if (found == true) {
 				SleepUtil.sleepSmall();

@@ -18,7 +18,6 @@ package com.zimbra.qa.selenium.projects.ajax.tests.tasks.attachments;
 
 import java.awt.event.KeyEvent;
 import java.util.HashMap;
-import org.testng.SkipException;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.*;

@@ -28,7 +28,6 @@ import com.zimbra.qa.selenium.projects.admin.core.AdminCommonTest;
 import com.zimbra.qa.selenium.projects.admin.items.AccountItem;
 import com.zimbra.qa.selenium.projects.admin.ui.FormEditAccount;
 
-
 public class AddAlias extends AdminCommonTest {
 
 	public AddAlias() {
@@ -36,8 +35,9 @@ public class AddAlias extends AdminCommonTest {
 		super.startingPage = app.zPageManageAccounts;
 	}
 
+
 	/**
-	 * Testcase : Add Alias at account level 
+	 * Testcase : Add Alias at account level
 	 * Steps :
 	 * 1. Login to Admin Console and go to Manage > Accounts.
 	 * 2. Select any account from the list
@@ -45,6 +45,7 @@ public class AddAlias extends AdminCommonTest {
 	 * 4. Verify alias should be created without any error
 	 * @throws HarnessException
 	 */
+
 	@Test (description = "Edit account - Add Alias at account level ",
 			groups = { "smoke", "L1" })
 
@@ -71,11 +72,10 @@ public class AddAlias extends AdminCommonTest {
 		// Click on account to be Edited.
 		app.zPageManageAccounts.zListItem(Action.A_LEFTCLICK, account.getEmailAddress());
 
-
 		// Click on Edit button
 		FormEditAccount form = (FormEditAccount) app.zPageManageAccounts.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_EDIT);
 
-		// CLick on Aliases
+		// Click on Aliases
 		app.zPageEditAccount.zToolbarPressButton(Button.B_ALIASES);
 
 		// Click "Add"
@@ -93,9 +93,7 @@ public class AddAlias extends AdminCommonTest {
 						+			"<account by='name'>"+ account.getEmailAddress()+"</account>"
 						+		"</GetAccountRequest>");
 
-		Element email = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetAccountResponse/admin:account/admin:a[@n='zimbraMailAlias']", 1);		
+		Element email = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetAccountResponse/admin:account/admin:a[@n='zimbraMailAlias']", 1);
 		ZAssert.assertEquals(email.getText(), aliasEmail, "Verify the alias is associated with the correct account");
-
 	}
-
 }

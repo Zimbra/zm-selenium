@@ -14,9 +14,6 @@
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-/**
- *
- */
 package com.zimbra.qa.selenium.projects.admin.ui;
 
 import com.zimbra.qa.selenium.framework.ui.AbsApplication;
@@ -26,9 +23,9 @@ import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 
-
 /**
  * The PageEditSearch represents the "Saved Searches" page
+ *
  * @author Matt Rhoades
  *
  */
@@ -38,7 +35,9 @@ public class PageEditSearch extends AbsTab {
 		super(application);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 *
 	 * @see projects.admin.ui.AbsTab#isActive()
 	 */
 	@Override
@@ -46,7 +45,9 @@ public class PageEditSearch extends AbsTab {
 		throw new HarnessException("implement me");
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 *
 	 * @see projects.admin.ui.AbsTab#myPageName()
 	 */
 	@Override
@@ -54,7 +55,9 @@ public class PageEditSearch extends AbsTab {
 		return (this.getClass().getName());
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 *
 	 * @see projects.admin.ui.AbsTab#navigateTo()
 	 */
 	@Override
@@ -63,19 +66,17 @@ public class PageEditSearch extends AbsTab {
 	}
 
 	@Override
-	public AbsPage zListItem(Action action, String item)
-			throws HarnessException {
+	public AbsPage zListItem(Action action, String item) throws HarnessException {
 		return null;
 	}
 
 	@Override
-	public AbsPage zListItem(Action action, Button option, String item)
-			throws HarnessException {
+	public AbsPage zListItem(Action action, Button option, String item) throws HarnessException {
 		return null;
 	}
+
 	@Override
-	public AbsPage zListItem(Action action, Button option, Button subOption ,String item)
-			throws HarnessException {
+	public AbsPage zListItem(Action action, Button option, Button subOption, String item) throws HarnessException {
 		return null;
 	}
 
@@ -85,8 +86,7 @@ public class PageEditSearch extends AbsTab {
 	}
 
 	@Override
-	public AbsPage zToolbarPressPulldown(Button pulldown, Button option)
-			throws HarnessException {
+	public AbsPage zToolbarPressPulldown(Button pulldown, Button option) throws HarnessException {
 		return null;
 	}
 

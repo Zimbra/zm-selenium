@@ -20,7 +20,6 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Base64;
-
 import com.zimbra.qa.selenium.framework.ui.AbsApplication;
 import com.zimbra.qa.selenium.framework.ui.AbsPage;
 import com.zimbra.qa.selenium.framework.ui.AbsTab;
@@ -32,22 +31,23 @@ import com.zimbra.qa.selenium.framework.util.SleepUtil;
 
 /**
  * This class defines the Downloads page (click on "Downloads" in the header)
+ *
  * @author Matt Rhoades
  *
  */
 public class PageDownloads extends AbsTab {
 
 	public static class Locators {
-		
-		public static final String TOOLS_AND_MIGRATION_ICON="css=div.ImgToolsAndMigration";
-		public static final String DOWNLOADS="css=div[id^='zti__AppAdmin__magHV__download'][id$='div']";
-		public static final String HOME="Home";
-		public static final String TOOLS_AND_MIGRATION="Tools and Migration";
-		public static final String DOWNLOAD="Downloads";
+
+		public static final String TOOLS_AND_MIGRATION_ICON = "css=div.ImgToolsAndMigration";
+		public static final String DOWNLOADS = "css=div[id^='zti__AppAdmin__magHV__download'][id$='div']";
+		public static final String HOME = "Home";
+		public static final String TOOLS_AND_MIGRATION = "Tools and Migration";
+		public static final String DOWNLOAD = "Downloads";
 		public static final String IndexHtmlTitleLocator = "css=title:contains('Downloads')";
 		public static final String GoBackLink = "css=a:contains('Go back')";
 	}
-	
+
 	public PageDownloads(AbsApplication application) {
 		super(application);
 
@@ -58,20 +58,19 @@ public class PageDownloads extends AbsTab {
 	@Override
 	public void zNavigateTo() throws HarnessException {
 
+		if (zIsActive()) {
 
-		if ( zIsActive() ) {
-			
-			
 			return;
 		}
 
 		// Click on Tools and Migration -> Downloads
-		sClickAt(Locators.TOOLS_AND_MIGRATION_ICON,"");
+		sClickAt(Locators.TOOLS_AND_MIGRATION_ICON, "");
 		zWaitForWorkInProgressDialogInVisible();
-		if (sIsElementPresent(Locators.DOWNLOADS));
+		if (sIsElementPresent(Locators.DOWNLOADS))
+			;
 		sClickAt(Locators.DOWNLOADS, "");
 		zWaitForWorkInProgressDialogInVisible();
-		
+
 		zWaitForActive();
 	}
 
@@ -79,25 +78,23 @@ public class PageDownloads extends AbsTab {
 	public boolean zIsActive() throws HarnessException {
 
 		// Make sure the Admin Console is loaded in the browser
-		if ( !MyApplication.zIsLoaded() )
+		if (!MyApplication.zIsLoaded())
 			throw new HarnessException("Admin Console application is not active!");
 
-
 		boolean present = sIsElementPresent("css=span:contains('" + Locators.TOOLS_AND_MIGRATION + "')");
-		if ( !present ) {
+		if (!present) {
 			return (false);
 		}
 
 		boolean visible = zIsVisiblePerPosition("css=span:contains('" + Locators.TOOLS_AND_MIGRATION + "')", 0, 0);
-		if ( !visible ) {
-			logger.debug("isActive() visible = "+ visible);
+		if (!visible) {
+			logger.debug("isActive() visible = " + visible);
 			return (false);
 		}
 
 		return (true);
 
 	}
-
 
 	@Override
 	public AbsPage zListItem(Action action, String item) throws HarnessException {
@@ -129,50 +126,48 @@ public class PageDownloads extends AbsTab {
 		return (this.getClass().getName());
 	}
 
-	
 	/**
 	 * Open http://server.com/zimbra/downloads/index.html
-	 * @throws HarnessException 
+	 *
+	 * @throws HarnessException
 	 */
-	public boolean zOpenIndexHTML(String title) throws HarnessException {		
+	public boolean zOpenIndexHTML(String title) throws HarnessException {
 		boolean opened = true;
 		String base = ConfigProperties.getBaseURL();
 		String path = "/downloads/index.html";
-		String id = ConfigProperties.getUniqueString();		
+		String id = ConfigProperties.getUniqueString();
 		this.sOpenWindow(base + path, id);
 		SleepUtil.sleepSmall();
-		
-		//Check for the presence of 404 - Not Found page
-		if(sGetTitle().contains("404 - Not Found")) {
+
+		// Check for the presence of 404 - Not Found page
+		if (sGetTitle().contains("404 - Not Found")) {
 			opened = false;
-			zGoBack();		
-		} else if(sGetTitle().contains(title)) {
-			opened = true;					
+			zGoBack();
+		} else if (sGetTitle().contains(title)) {
+			opened = true;
 		}
 		return opened;
 	}
-	
 
-	public boolean zVerifyHeader (String header) throws HarnessException {
+	public boolean zVerifyHeader(String header) throws HarnessException {
 		if (this.sIsElementPresent("css=span:contains('" + header + "')"))
 			return true;
 		return false;
 	}
 
-	public int getAuthResponse(URL url) throws IOException{
+	public int getAuthResponse(URL url) throws IOException {
 		String userpassword = "admin" + ":" + "test123";
-        String encodedAuthorization = new String(Base64.getEncoder().encode(userpassword.getBytes()));
-        HttpURLConnection connection = (HttpURLConnection )url.openConnection();
-        connection.setRequestProperty("Authorization", "Basic " + encodedAuthorization);
-        int code = connection.getResponseCode();
+		String encodedAuthorization = new String(Base64.getEncoder().encode(userpassword.getBytes()));
+		HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+		connection.setRequestProperty("Authorization", "Basic " + encodedAuthorization);
+		int code = connection.getResponseCode();
 		return code;
 	}
-	
+
 	public void zGoBack() throws HarnessException {
 		logger.info("Download page is not opened. Navigating to previous page");
 		this.sClick(Locators.GoBackLink);
 		SleepUtil.sleepLong();
 	}
-
 
 }

@@ -215,7 +215,7 @@ public class PageTasks extends AbsTab{
 		} else if (action == Action.A_RIGHTCLICK) {
 
 			// Right-Click on the item
-			this.zRightClick(itemLocator);
+			this.sRightClick(itemLocator);
 
 			// Return the displayed mail page object
 			page = new ContextMenu(MyApplication);
@@ -360,7 +360,7 @@ public class PageTasks extends AbsTab{
 		if (action == Action.A_RIGHTCLICK) {
 
 			// Right-Click on the item
-			this.zRightClickAt(itemLocator,"");
+			this.sRightClickAt(itemLocator,"");
 			SleepUtil.sleepMedium();
 
 			String optionLocator = null;

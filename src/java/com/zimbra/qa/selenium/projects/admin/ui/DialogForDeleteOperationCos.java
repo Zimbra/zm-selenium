@@ -27,8 +27,8 @@ import com.zimbra.qa.selenium.framework.util.SleepUtil;
 public class DialogForDeleteOperationCos extends AbsDialog {
 
 	public static class Locators {
-		public static final String YES_BUTTON="zdlg__MSG__CTR_COSLV_removeConfirm_button5_title";
-		public static final String NO_BUTTON="zdlg__MSG__CTR_COSLV_removeConfirm_button4_title";
+		public static final String YES_BUTTON = "zdlg__MSG__CTR_COSLV_removeConfirm_button5_title";
+		public static final String NO_BUTTON = "zdlg__MSG__CTR_COSLV_removeConfirm_button4_title";
 	}
 
 	public DialogForDeleteOperationCos(AbsApplication application, AbsTab page) {
@@ -45,7 +45,7 @@ public class DialogForDeleteOperationCos extends AbsDialog {
 		logger.info(myPageName() + " zPressButton(" + button + ")");
 
 		tracer.trace("Click dialog button " + button);
-		if ( button == null )
+		if (button == null)
 			throw new HarnessException("button cannot be null");
 
 		String locator = null;
@@ -66,15 +66,14 @@ public class DialogForDeleteOperationCos extends AbsDialog {
 
 		// Make sure the locator exists
 		if (!this.sIsElementPresent(locator)) {
-			throw new HarnessException("Button " + button + " locator "
-					+ locator + " not present!");
+			throw new HarnessException("Button " + button + " locator " + locator + " not present!");
 		}
 
 		// if (zIsActive())
 		// zGetDisplayedText("css=div[class=" + Locators.zDialogContentClassId +
 		// "]");
 
-		this.sClickAt(locator,"0,0");
+		this.sClickAt(locator, "0,0");
 		SleepUtil.sleepLong();
 
 		return (page);

@@ -17,9 +17,7 @@
 package com.zimbra.qa.selenium.projects.admin.tests.cos;
 
 import java.util.List;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.common.soap.Element;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
@@ -35,12 +33,12 @@ import com.zimbra.qa.selenium.projects.admin.ui.PageMain;
 import com.zimbra.qa.selenium.projects.admin.ui.PageSearchResults.Locators;
 
 public class DeleteCos extends AdminCommonTest {
+
 	public DeleteCos() {
 		logger.info("New " + DeleteCos.class.getCanonicalName());
-
-		//All tests starts at "Cos" page
 		super.startingPage=app.zPageManageCOS;
 	}
+
 
 	/**
 	 * Testcase : Verify delete cos operation -- Manage Cos view.
@@ -51,9 +49,11 @@ public class DeleteCos extends AdminCommonTest {
 	 * 4. Verify cos is deleted using SOAP
 	 * @throws HarnessException
 	 */
+
 	@Test (description = "Verify delete cos operation -- Manage cos view",
 			groups = { "functional", "L2" })
-			public void DeleteCos_01() throws HarnessException {
+
+	public void DeleteCos_01() throws HarnessException {
 
 		// Create a new cos in the Admin Console using SOAP
 		CosItem cos = new CosItem();
@@ -69,7 +69,7 @@ public class DeleteCos extends AdminCommonTest {
 
 		// Click on account to be deleted.
 		app.zPageManageCOS.zListItem(Action.A_LEFTCLICK, cosName);
-		
+
 
 		// Click on Delete button
 		DialogForDeleteOperationCos dialog = (DialogForDeleteOperationCos) app.zPageManageCOS.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_DELETE);
@@ -83,10 +83,10 @@ public class DeleteCos extends AdminCommonTest {
 		                     "<cos by='name'>"+cosName+"</cos>"+
 		                   "</GetCosRequest>");
 		Element response = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetCosResponse/admin:cos", 1);
-		ZAssert.assertNull(response, "Verify the cos is edited successfully");	
+		ZAssert.assertNull(response, "Verify the cos is edited successfully");
 	}
-	
-	
+
+
 	/**
 	 * Testcase : Verify delete cos operation -- Manage COS list view/Right click menu.
 	 * Steps :
@@ -96,9 +96,11 @@ public class DeleteCos extends AdminCommonTest {
 	 * 4. Verify cos is deleted using SOAP
 	 * @throws HarnessException
 	 */
+
 	@Test (description = "Verify delete cos operation -- Manage COS list view/Right click menu",
 			groups = { "functional", "L2" })
-			public void DeleteCos_02() throws HarnessException {
+
+	public void DeleteCos_02() throws HarnessException {
 
 		// Create a new cos in the Admin Console using SOAP
 		CosItem cos = new CosItem();
@@ -114,7 +116,7 @@ public class DeleteCos extends AdminCommonTest {
 
 		// Click on account to be deleted.
 		app.zPageManageCOS.zListItem(Action.A_RIGHTCLICK, cosName);
-		
+
 
 		// Click on Delete button
 		DialogForDeleteOperationCos dialog = (DialogForDeleteOperationCos) app.zPageManageCOS.zToolbarPressButton(Button.B_TREE_DELETE);
@@ -128,9 +130,10 @@ public class DeleteCos extends AdminCommonTest {
 		                     "<cos by='name'>"+cosName+"</cos>"+
 		                   "</GetCosRequest>");
 		Element response = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetCosResponse/admin:cos", 1);
-		ZAssert.assertNull(response, "Verify the cos is edited successfully");	
+		ZAssert.assertNull(response, "Verify the cos is edited successfully");
 	}
-	
+
+
 	/**
 	 * Testcase : Verify delete cos operation -- Search list view.
 	 * Steps :
@@ -140,9 +143,11 @@ public class DeleteCos extends AdminCommonTest {
 	 * 4. Verify cos is deleted using SOAP
 	 * @throws HarnessException
 	 */
+
 	@Test (description = "Verify delete cos operation -- Search list view",
 			groups = { "functional-skip", "L3-skip" })
-			public void functional() throws HarnessException {
+
+	public void DeleteCos_03() throws HarnessException {
 
 		// Create a new cos in the Admin Console using SOAP
 		CosItem cos = new CosItem();
@@ -185,7 +190,8 @@ public class DeleteCos extends AdminCommonTest {
 		}
 		ZAssert.assertNull(found, "Verify the cos is deleted successfully");
 	}
-	
+
+
 	/**
 	 * Testcase : Verify delete cos operation -- Search list view/Right click menu.
 	 * Steps :
@@ -195,9 +201,11 @@ public class DeleteCos extends AdminCommonTest {
 	 * 4. Verify cos is deleted using SOAP
 	 * @throws HarnessException
 	 */
+
 	@Test (description = "Verify delete cos in -- Search list view/Right click menu",
 			groups = { "functional-skip", "L3-skip" })
-			public void DeleteCos_04() throws HarnessException {
+
+	public void DeleteCos_04() throws HarnessException {
 
 		// Create a new cos in the Admin Console using SOAP
 		CosItem cos = new CosItem();
@@ -240,11 +248,12 @@ public class DeleteCos extends AdminCommonTest {
 		}
 		ZAssert.assertNull(found, "Verify the cos is deleted successfully");
 	}
-	
-	
+
+
 	@Test (description = "Verify Delete COS operation via tree menu is disabled in search results",
 			groups = { "functional", "L3" })
-			public void DeleteCos_05() throws HarnessException {
+
+	public void DeleteCos_05() throws HarnessException {
 
 		// Create a new cos in the Admin Console using SOAP
 		CosItem cos = new CosItem();
@@ -262,15 +271,16 @@ public class DeleteCos extends AdminCommonTest {
 		app.zPageSearchResults.zToolbarPressButton(Button.B_SEARCH);
 		app.zPageSearchResults.zListItem(Action.A_LEFTCLICK, cos.getName());
 		app.zPageSearchResults.sClickAt(Locators.GEAR_ICON,"");
-		
+
 		// Verify delete cos tree menu is disabled
 		ZAssert.assertTrue(app.zPageSearchResults.zVerifyDisabled("DeleteTreeMenu"),"Verify Delete cos tree menu is disabled");
-		
 	}
+
 
 	@Test (description = "Verify Delete COS operation via context option is disabled inn search results",
 			groups = { "functional", "L3" })
-			public void DeleteCos_06() throws HarnessException {
+
+	public void DeleteCos_06() throws HarnessException {
 
 		// Create a new cos in the Admin Console using SOAP
 		CosItem cos = new CosItem();
@@ -286,7 +296,7 @@ public class DeleteCos extends AdminCommonTest {
 
 		// Click search
 		app.zPageSearchResults.zToolbarPressButton(Button.B_SEARCH);
-		
+
 		// Right Click on cos to be deleted.
 		app.zPageSearchResults.zListItem(Action.A_RIGHTCLICK, cos.getName());
 

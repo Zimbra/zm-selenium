@@ -35,6 +35,7 @@ public class LimitThemes extends AdminCommonTest {
 		super.startingPage = app.zPageManageAccounts;
 	}
 
+
 	@Test (description = "Edit account - Verify option 'Limit Themes available to this user to:'",
 			groups = { "smoke", "L1" })
 
@@ -49,7 +50,7 @@ public class LimitThemes extends AdminCommonTest {
 						+		"</CreateAccountRequest>");
 
 		String theme="Harmony";
-		
+
 		// Refresh the account list
 		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
 
@@ -59,7 +60,7 @@ public class LimitThemes extends AdminCommonTest {
 		// Click on themes tab
 		app.zPageEditAccount.zToolbarPressButton(Button.B_THEMES);
 
-		// Set available skin 
+		// Set available skin
 		form.zLimitThemes(theme);
 
 		// Save the changes
@@ -73,8 +74,5 @@ public class LimitThemes extends AdminCommonTest {
 		Element response = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetAccountResponse/admin:account/admin:a[@n='zimbraAvailableSkin']", 1);
 		ZAssert.assertNotNull(response, "Verify the account is edited successfully");
 		ZAssert.assertStringContains(response.toString(),"harmony", "Verify mail feature is disabled");
-
-	
 	}
-
 }

@@ -17,7 +17,6 @@
 package com.zimbra.qa.selenium.projects.admin.tests.domains;
 
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
@@ -40,17 +39,20 @@ public class ChangeGALConfiguration extends AdminCommonTest {
 		super.startingPage=app.zPageManageDomains;
 	}
 
+
 	/**
 	 * Testcase : Change the GAL mode of a domain from Internal to Both
 	 * Steps :
 	 * 1. Create a domain using SOAP with GAL mode as Internal
 	 * 2. Select the domain and Configure its GAL mode to Both
-	 * 3. Verify that an external data source is created after changing GAL mode. 
+	 * 3. Verify that an external data source is created after changing GAL mode.
 	 * @throws HarnessException
 	 */
+
 	@Bugs (ids = "96777")
 	@Test (description = "Verify GAL Configuration after chnaging GAL mode of a domain from internal to both",
-	groups = { "functional", "L2" })
+			groups = { "functional", "L2" })
+
 	public void ChangeGALConfiguration_01() throws HarnessException {
 
 		//External data source name
@@ -72,8 +74,8 @@ public class ChangeGALConfiguration extends AdminCommonTest {
 		app.zPageManageDomains.zListItem(Action.A_LEFTCLICK, domain.getName());
 
 		//Configure GAL for the domain
-		//Open GAL configuration wizard
-		WizardConfigureGAL wizard = 
+		// Open GAL configuration wizard
+		WizardConfigureGAL wizard =
 				(WizardConfigureGAL)app.zPageManageDomains.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_CONFIGURE_GAL);
 
 		//Create a GAL item for changing GAL mode
@@ -88,9 +90,9 @@ public class ChangeGALConfiguration extends AdminCommonTest {
 		//Fill the required fields
 		wizard.zCompleteWizard(gItem);
 
-		//Verification through IU
+		// Verification through IU
 
-		//Refresh the admin console
+		// Refresh the admin console
 		app.zPageManageDomains.zRefreshMainUI();
 		app.zPageMain.zWaitTillElementPresent(Locators.zLogoffDropDownArrow);
 		app.zPageManageDomains.zNavigateTo();
@@ -98,21 +100,21 @@ public class ChangeGALConfiguration extends AdminCommonTest {
 		// Double click domain to open it
 		app.zPageManageDomains.zListItem(Action.A_DOUBLECLICK, domain.getName());
 
-		//Open GAL page
+		// Open GAL page
 		app.zPageManageCofigureGAL.zNavigateTo();
 
-		//Verify GAL configuration through UI
+		// Verify GAL configuration through UI
 		ZAssert.assertTrue(app.zPageManageCofigureGAL.zVerifyGALConfigData(gItem), "Gal is not configured successfully, Displayed data is not correct!");
 
-		//Verify GAL configuration and data sources through SOAP
-		//Get galsync account id
+		// Verify GAL configuration and data sources through SOAP
+		// Get galsync account id
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<GetAccountRequest xmlns='urn:zimbraAdmin'>"
 						+			"<account by='name'>galsync@"+ domain.getName()  +"</account>"
 						+		"</GetAccountRequest>");
 		String accountId = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectValue("//admin:account", "id");
 
-		//Get data sources associated with the galsync account
+		// Get data sources associated with the galsync account
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<GetDataSourcesRequest xmlns='urn:zimbraAdmin'>"
 						+		"<id>" + accountId + "</id>"
@@ -123,16 +125,18 @@ public class ChangeGALConfiguration extends AdminCommonTest {
 		String externalDataSrcName = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectValue("//admin:dataSource[2]/admin:a[@n='zimbraDataSourceName']", null);
 		String externalGalType = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectValue("//admin:dataSource[2]/admin:a[@n='zimbraGalType']", null);
 
-		//Verification
+		// Verification
 		ZAssert.assertEquals(internalDataSrcName, "zimbra", "Internal GAL data source name is not correct!");
 		ZAssert.assertEquals(internalGalType, "zimbra", "Internal GAL type is not correct!");
 		ZAssert.assertEquals(externalDataSrcName, extDataSrc, "External GAL data source name is not correct!");
 		ZAssert.assertEquals(externalGalType, "ldap", "External GAL type is not correct!");
 	}
 
+
 	@Bugs (ids = "96777")
 	@Test (description = "Verify GAL Configuration after chnaging GAL mode of a domain from external to both",
-	groups = { "functional", "L2" })
+			groups = { "functional", "L2" })
+
 	public void ChangeGALConfiguration_02() throws HarnessException {
 
 		//data source name
@@ -153,7 +157,7 @@ public class ChangeGALConfiguration extends AdminCommonTest {
 						+		"<a n='zimbraGalLdapFilter'>dc=exchange2010,dc=lab</a>"
 						+		"<a n='zimbraGalAutoCompleteLdapFilter'>adAutoComplete</a>"
 						+		"<a n='zimbraAuthMech'>zimbra</a>"
-						+		"<a n='zimbraDomainStatus'>active</a>"			
+						+		"<a n='zimbraDomainStatus'>active</a>"
 						+	"</CreateDomainRequest>");
 
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
@@ -161,7 +165,7 @@ public class ChangeGALConfiguration extends AdminCommonTest {
 								+	" name='" + extDataSrc + "' folder='_" + extDataSrc + "' type='"+ "ldap" + "' domain='" + domain.getName() + "' "
 									+ "server='" + ConfigProperties.getStringProperty("server.host") + "'>"
 						+		"<account by='name'>galsync@"+ domain.getName()  +"</account>"
-						+		"<a n='zimbraDataSourcePollingInterval'>1m</a>"		
+						+		"<a n='zimbraDataSourcePollingInterval'>1m</a>"
 						+	"</CreateGalSyncAccountRequest>");
 
 
@@ -171,26 +175,26 @@ public class ChangeGALConfiguration extends AdminCommonTest {
 		// Select the domain for which GAL mode needs to changed.
 		app.zPageManageDomains.zListItem(Action.A_LEFTCLICK, domain.getName());
 
-		//Configure GAL for the domain
-		//Open GAL configuration wizard
-		WizardConfigureGAL wizard = 
+		// Configure GAL for the domain
+		// Open GAL configuration wizard
+		WizardConfigureGAL wizard =
 				(WizardConfigureGAL)app.zPageManageDomains.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_CONFIGURE_GAL);
 
-		//Create a GAL item for changing GAL mode
+		// Create a GAL item for changing GAL mode
 		GALItem gItem = new GALItem();
 
-		//Set the different values of the gal item
+		// Set the different values of the gal item
 		gItem.setCurrentGALMode(GALMode.External);
 		gItem.setNewGALMode(GALMode.Both);
 		gItem.setDataSourceName(intDataSrc);
 		gItem.setPollingIntervalDays("1");
 
-		//Fill the required fields
+		// Fill the required fields
 		wizard.zCompleteWizard(gItem);
 
-		//Verification through IU
+		// Verification through IU
 
-		//Refresh the admin console
+		// Refresh the admin console
 		app.zPageManageDomains.zRefreshMainUI();
 		app.zPageMain.zWaitTillElementPresent(Locators.zLogoffDropDownArrow);
 		app.zPageManageDomains.zNavigateTo();
@@ -198,32 +202,32 @@ public class ChangeGALConfiguration extends AdminCommonTest {
 		// Double click domain to open it
 		app.zPageManageDomains.zListItem(Action.A_DOUBLECLICK, domain.getName());
 
-		//Open GAL page
+		// Open GAL page
 		app.zPageManageCofigureGAL.zNavigateTo();
 
-		//Verify GAL configuration through UI
+		// Verify GAL configuration through UI
 		ZAssert.assertTrue(app.zPageManageCofigureGAL.zVerifyGALConfigData(gItem), "Gal is not configured successfully, Displayed data is not correct!");
 
-		//Verify GAL configuration and data sources through SOAP
-		//Get galsync account id
+		// Verify GAL configuration and data sources through SOAP
+		// Get galsync account id
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<GetAccountRequest xmlns='urn:zimbraAdmin'>"
 						+			"<account by='name'>galsync@"+ domain.getName()  +"</account>"
 						+		"</GetAccountRequest>");
 		String accountId = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectValue("//admin:account", "id");
 
-		//Get data sources associated with the galsync account
+		// Get data sources associated with the galsync account
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<GetDataSourcesRequest xmlns='urn:zimbraAdmin'>"
 						+		"<id>" + accountId + "</id>"
 						+	 "</GetDataSourcesRequest>");
-		//Data sources name and type
+		// Data sources name and type
 		String internalDataSrcName = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectValue("//admin:dataSource[2]/admin:a[@n='zimbraDataSourceName']", null);
 		String internalGalType = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectValue("//admin:dataSource[2]/admin:a[@n='zimbraGalType']", null);
 		String externalDataSrcName = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectValue("//admin:dataSource[1]/admin:a[@n='zimbraDataSourceName']", null);
 		String externalGalType = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectValue("//admin:dataSource[1]/admin:a[@n='zimbraGalType']", null);
 
-		//Verification
+		// Verification
 		ZAssert.assertEquals(internalDataSrcName, intDataSrc, "Internal GAL data source name is not correct!");
 		ZAssert.assertEquals(internalGalType, "zimbra", "Internal GAL type is not correct!");
 		ZAssert.assertEquals(externalDataSrcName, extDataSrc, "External GAL data source name is not correct!");

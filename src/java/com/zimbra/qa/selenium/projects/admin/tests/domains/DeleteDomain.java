@@ -30,12 +30,12 @@ import com.zimbra.qa.selenium.projects.admin.ui.DialogForDeleteOperationDomain;
 import com.zimbra.qa.selenium.projects.admin.ui.PageMain;
 
 public class DeleteDomain extends AdminCommonTest {
+
 	public DeleteDomain() {
 		logger.info("New" + DeleteDomain.class.getCanonicalName());
-
-		//All tests starts from domain page
 		this.startingPage=app.zPageManageDomains;
 	}
+
 
 	/**
 	 * Testcase : Verify delete domain operation --  Manage Domain List View
@@ -46,9 +46,11 @@ public class DeleteDomain extends AdminCommonTest {
 	 * 4. Verify domain is deleted using SOAP.
 	 * @throws HarnessException
 	 */
+
 	@Test (description = "Verify delete domain operation --  Manage Domain List View",
 			groups = { "smoke", "L1" })
-			public void DeleteDomain_01() throws HarnessException {
+
+	public void DeleteDomain_01() throws HarnessException {
 
 		// Create a new domain in the Admin Console using SOAP
 		DomainItem domain = new DomainItem();
@@ -58,13 +60,12 @@ public class DeleteDomain extends AdminCommonTest {
 				+			"<name>" + domain.getName() + "</name>"
 				+		"</CreateDomainRequest>");
 
-
 		// Refresh the domain list
 		app.zPageManageDomains.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
 
 		// Click on account to be deleted.
 		app.zPageManageDomains.zListItem(Action.A_LEFTCLICK, domain.getName());
-		
+
 		// Click on Delete button
 		DialogForDeleteOperationDomain dialog = (DialogForDeleteOperationDomain) app.zPageManageDomains.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_DELETE);
 
@@ -80,9 +81,9 @@ public class DeleteDomain extends AdminCommonTest {
 
 		Element response = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetDomainResponse/admin:domain", 1);
 		ZAssert.assertNull(response, "Verify the domain is deleted successfully");
-
 	}
-	
+
+
 	/**
 	 * Testcase : Verify delete domain operation  -- Manage Domain List View/Right Click Menu
 	 * Steps :
@@ -92,9 +93,11 @@ public class DeleteDomain extends AdminCommonTest {
 	 * 4. Verify domain is deleted using SOAP..
 	 * @throws HarnessException
 	 */
+
 	@Test (description = "Verify delete domain operation",
 			groups = { "functional", "L2" })
-			public void DeleteDomain_02() throws HarnessException {
+
+	public void DeleteDomain_02() throws HarnessException {
 
 		// Create a new domain in the Admin Console using SOAP
 		DomainItem domain = new DomainItem();
@@ -109,7 +112,7 @@ public class DeleteDomain extends AdminCommonTest {
 
 		// Click on account to be deleted.
 		app.zPageManageDomains.zListItem(Action.A_RIGHTCLICK, domain.getName());
-		
+
 		// Click on Delete button
 		DialogForDeleteOperationDomain dialog = (DialogForDeleteOperationDomain) app.zPageManageDomains.zToolbarPressButton((Button.B_TREE_DELETE));
 
@@ -122,11 +125,10 @@ public class DeleteDomain extends AdminCommonTest {
 				+	"<domain by='name'>" + domain.getName() + "</domain>"
 				+	"</GetDomainRequest>");
 
-
 		Element response = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetDomainResponse/admin:domain", 1);
 		ZAssert.assertNull(response, "Verify the domain is deleted successfully");
-
 	}
+
 
 	/**
 	 * Testcase : Verify delete domain alias operation - Manage Domain list view.
@@ -136,11 +138,12 @@ public class DeleteDomain extends AdminCommonTest {
 	 * 3. Verify domain alias is deleted using SOAP.
 	 * @throws HarnessException
 	 */
+
 	@Test (description = "Verify delete domain alias operation - Manage Domain list view",
 			groups = { "functional", "L2" })
-			public void DeleteDomain_03() throws HarnessException {
-		
-		
+
+	public void DeleteDomain_03() throws HarnessException {
+
 		String targetDomain = ConfigProperties.getStringProperty("testdomain");
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<GetDomainRequest xmlns='urn:zimbraAdmin'>"
@@ -151,28 +154,27 @@ public class DeleteDomain extends AdminCommonTest {
 		app.zPageManageDomains.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
 
 		String targetDomainID=ZimbraAdminAccount.AdminConsoleAdmin().soapSelectValue("//admin:GetDomainResponse/admin:domain", "id").toString();
-		
-		
+
 		// Create a new domain alias in the Admin Console using SOAP
 		DomainItem alias = new DomainItem();
 		String domainAliasName=alias.getName();
-		
+
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<CreateDomainRequest xmlns='urn:zimbraAdmin'>"
 				+ "<name>"+domainAliasName+"</name>"
 				+ "<a n='zimbraDomainType'>alias</a>"
 				+ "<a n='zimbraDomainAliasTargetId'>"+targetDomainID+"</a>"
 				+ "<a n='description'>"+"domain alias"+"</a>"
-				+ "<a n='zimbraMailCatchAllAddress'>@"+domainAliasName+"</a>" 
+				+ "<a n='zimbraMailCatchAllAddress'>@"+domainAliasName+"</a>"
 				+ "<a  n='zimbraMailCatchAllForwardingAddress'>@"+targetDomain+"</a>"
 				+ "</CreateDomainRequest>");
-				
+
 		// Refresh the domain list
 		app.zPageManageDomains.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
 
 		// Click on account to be deleted.
 		app.zPageManageDomains.zListItem(Action.A_LEFTCLICK, domainAliasName);
-		
+
 
 		// Click on Delete button
 		DialogForDeleteOperationDomain dialog = (DialogForDeleteOperationDomain) app.zPageManageDomains.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_DELETE);
@@ -191,6 +193,7 @@ public class DeleteDomain extends AdminCommonTest {
 		ZAssert.assertNull(response, "Verify the domain is deleted successfully");
 	}
 
+
 	/**
 	 * Testcase : Verify delete domain alias operation - Manage Domain list view.
 	 * Steps :
@@ -199,11 +202,12 @@ public class DeleteDomain extends AdminCommonTest {
 	 * 3. Verify domain alias is deleted using SOAP.
 	 * @throws HarnessException
 	 */
+
 	@Test (description = "Verify delete domain alias operation - Manage Domain list view",
 			groups = { "functional", "L2" })
-			public void DeleteDomain_04() throws HarnessException {
-		
-		
+
+	public void DeleteDomain_04() throws HarnessException {
+
 		String targetDomain = ConfigProperties.getStringProperty("testdomain");
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<GetDomainRequest xmlns='urn:zimbraAdmin'>"
@@ -211,28 +215,26 @@ public class DeleteDomain extends AdminCommonTest {
 				+	"</GetDomainRequest>");
 
 		String targetDomainID=ZimbraAdminAccount.AdminConsoleAdmin().soapSelectValue("//admin:GetDomainResponse/admin:domain", "id").toString();
-		
-		
+
 		// Create a new domain alias in the Admin Console using SOAP
 		DomainItem alias = new DomainItem();
 		String domainAliasName=alias.getName();
-		
+
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<CreateDomainRequest xmlns='urn:zimbraAdmin'>"
 				+ "<name>"+domainAliasName+"</name>"
 				+ "<a n='zimbraDomainType'>alias</a>"
 				+ "<a n='zimbraDomainAliasTargetId'>"+targetDomainID+"</a>"
 				+ "<a n='description'>"+"domain alias"+"</a>"
-				+ "<a n='zimbraMailCatchAllAddress'>@"+domainAliasName+"</a>" 
+				+ "<a n='zimbraMailCatchAllAddress'>@"+domainAliasName+"</a>"
 				+ "<a  n='zimbraMailCatchAllForwardingAddress'>@"+targetDomain+"</a>"
 				+ "</CreateDomainRequest>");
-				
+
 		// Refresh the domain list
 		app.zPageManageDomains.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
 
 		// Click on account to be deleted.
 		app.zPageManageDomains.zListItem(Action.A_RIGHTCLICK, domainAliasName);
-		
 
 		// Click on Delete button
 		DialogForDeleteOperationDomain dialog = (DialogForDeleteOperationDomain) app.zPageManageDomains.zToolbarPressButton(Button.B_TREE_DELETE);
@@ -246,10 +248,7 @@ public class DeleteDomain extends AdminCommonTest {
 				+	"<domain by='name'>" + domainAliasName + "</domain>"
 				+	"</GetDomainRequest>");
 
-
 		Element response = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetDomainResponse/admin:domain", 1);
 		ZAssert.assertNull(response, "Verify the domain is deleted successfully");
 	}
-	
-
 }

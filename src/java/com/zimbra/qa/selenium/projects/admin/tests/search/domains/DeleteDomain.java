@@ -14,7 +14,7 @@
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-package com.zimbra.qa.selenium.projects.admin.tests.domains;
+package com.zimbra.qa.selenium.projects.admin.tests.search.domains;
 
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.ui.Action;
@@ -27,15 +27,14 @@ import com.zimbra.qa.selenium.projects.admin.core.AdminCommonTest;
 import com.zimbra.qa.selenium.projects.admin.items.DomainItem;
 import com.zimbra.qa.selenium.projects.admin.ui.DA_PageManageAccounts.Locators;
 
-public class DeleteDomainSR extends AdminCommonTest {
-	public DeleteDomainSR() {
-		logger.info("New" + DeleteDomainSR.class.getCanonicalName());
+public class DeleteDomain extends AdminCommonTest {
 
-		//All tests starts from domain page
+	public DeleteDomain() {
+		logger.info("New" + DeleteDomain.class.getCanonicalName());
 		this.startingPage=app.zPageManageDomains;
 	}
 
-	
+
 	/**
 	 * Testcase : Verify delete domain operation --  Search List View
 	 * Steps :
@@ -46,9 +45,11 @@ public class DeleteDomainSR extends AdminCommonTest {
 	 * 5. Verify delete domain option is disabled at search results.
 	 * @throws HarnessException
 	 */
+
 	@Test (description = "Verify delete domain operation is absent from leftclick > gear icon --  Search List View",
 			groups = { "functional", "L2" })
-			public void DeleteDomain_05() throws HarnessException {
+
+	public void DeleteDomain_01() throws HarnessException {
 
 		// Create a new domain in the Admin Console using SOAP
 		DomainItem domain = new DomainItem();
@@ -57,7 +58,6 @@ public class DeleteDomainSR extends AdminCommonTest {
 				"<CreateDomainRequest xmlns='urn:zimbraAdmin'>"
 				+			"<name>" + domain.getName() + "</name>"
 				+		"</CreateDomainRequest>");
-
 
 		// Enter the search string to find the domain
 		app.zPageSearchResults.zAddSearchQuery(domain.getName());
@@ -72,9 +72,9 @@ public class DeleteDomainSR extends AdminCommonTest {
 		app.zPageSearchResults.sClickAt(Locators.GEAR_ICON,"");
 		boolean isPresent = app.zPageSearchResults.zVerifyDisabled("DeleteTreeMenu");
 		ZAssert.assertTrue(isPresent, "Verify the delete domain button is disabled at Search results");
-		
 	}
-	
+
+
 	/**
 	 * Testcase : Verify delete domain operation is disabled -- Search List View/Right Click Menu
 	 * Steps :
@@ -85,9 +85,11 @@ public class DeleteDomainSR extends AdminCommonTest {
 	 * 5. Verify option is disabled
 	 * @throws HarnessException
 	 */
+
 	@Test (description = " Verify delete domain operation is disabled -- Search List View/Right Click Menu",
 			groups = { "functional", "L3" })
-			public void DeleteDomain_06() throws HarnessException {
+
+	public void DeleteDomain_02() throws HarnessException {
 
 		// Create a new domain in the Admin Console using SOAP
 		DomainItem domain = new DomainItem();
@@ -96,7 +98,6 @@ public class DeleteDomainSR extends AdminCommonTest {
 				"<CreateDomainRequest xmlns='urn:zimbraAdmin'>"
 				+			"<name>" + domain.getName() + "</name>"
 				+		"</CreateDomainRequest>");
-
 
 		// Enter the search string to find the domain
 		app.zPageSearchResults.zAddSearchQuery(domain.getName());
@@ -109,8 +110,8 @@ public class DeleteDomainSR extends AdminCommonTest {
 
 		boolean isPresent = app.zPageSearchResults.zVerifyDisabled("DeleteTreeMenu");
 		ZAssert.assertTrue(isPresent, "Verify the delete domain button is disabled at Search results");
-		
 	}
+
 
 	/**
 	 * Testcase : Verify delete domain alias operation is disabled- Search list view.
@@ -121,11 +122,12 @@ public class DeleteDomainSR extends AdminCommonTest {
 	 * 4. Verify domain alias option is disabled
 	 * @throws HarnessException
 	 */
+
 	@Test (description = "Verify delete domain alias operation is disabled- Search list view.",
 			groups = { "functional", "L2" })
-			public void DeleteDomain_07() throws HarnessException {
-		
-		
+
+	public void DeleteDomain_03() throws HarnessException {
+
 		String targetDomain = ConfigProperties.getStringProperty("testdomain");
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<GetDomainRequest xmlns='urn:zimbraAdmin'>"
@@ -133,22 +135,21 @@ public class DeleteDomainSR extends AdminCommonTest {
 				+	"</GetDomainRequest>");
 
 		String targetDomainID=ZimbraAdminAccount.AdminConsoleAdmin().soapSelectValue("//admin:GetDomainResponse/admin:domain", "id").toString();
-		
-		
+
 		// Create a new domain alias in the Admin Console using SOAP
 		DomainItem alias = new DomainItem();
 		String domainAliasName=alias.getName();
-		
+
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<CreateDomainRequest xmlns='urn:zimbraAdmin'>"
 				+ "<name>"+domainAliasName+"</name>"
 				+ "<a n='zimbraDomainType'>alias</a>"
 				+ "<a n='zimbraDomainAliasTargetId'>"+targetDomainID+"</a>"
 				+ "<a n='description'>"+"domain alias"+"</a>"
-				+ "<a n='zimbraMailCatchAllAddress'>@"+domainAliasName+"</a>" 
+				+ "<a n='zimbraMailCatchAllAddress'>@"+domainAliasName+"</a>"
 				+ "<a  n='zimbraMailCatchAllForwardingAddress'>@"+targetDomain+"</a>"
 				+ "</CreateDomainRequest>");
-				
+
 		// Enter the search string to find the alias
 		app.zPageSearchResults.zAddSearchQuery(domainAliasName);
 
@@ -161,8 +162,8 @@ public class DeleteDomainSR extends AdminCommonTest {
 		// Click on Delete button
 		boolean isPresent = app.zPageSearchResults.zVerifyDisabled("DeleteTreeMenu");
 		ZAssert.assertTrue(isPresent, "Verify the delete domain button is disabled at Search results");
-		
 	}
+
 
 	/**
 	 * Testcase : Verify delete domain alias operation is disabled- Search list view.
@@ -173,11 +174,12 @@ public class DeleteDomainSR extends AdminCommonTest {
 	 * 4. Verify domain alias option is disabled
 	 * @throws HarnessException
 	 */
+
 	@Test (description = "Verify delete domain alias operation is disabled- Search list view.",
 			groups = { "functional", "L3" })
-			public void DeleteDomain_08() throws HarnessException {
-		
-		
+
+	public void DeleteDomain_04() throws HarnessException {
+
 		String targetDomain = ConfigProperties.getStringProperty("testdomain");
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<GetDomainRequest xmlns='urn:zimbraAdmin'>"
@@ -185,22 +187,21 @@ public class DeleteDomainSR extends AdminCommonTest {
 				+	"</GetDomainRequest>");
 
 		String targetDomainID=ZimbraAdminAccount.AdminConsoleAdmin().soapSelectValue("//admin:GetDomainResponse/admin:domain", "id").toString();
-		
-		
+
 		// Create a new domain alias in the Admin Console using SOAP
 		DomainItem alias = new DomainItem();
 		String domainAliasName=alias.getName();
-		
+
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<CreateDomainRequest xmlns='urn:zimbraAdmin'>"
 				+ "<name>"+domainAliasName+"</name>"
 				+ "<a n='zimbraDomainType'>alias</a>"
 				+ "<a n='zimbraDomainAliasTargetId'>"+targetDomainID+"</a>"
 				+ "<a n='description'>"+"domain alias"+"</a>"
-				+ "<a n='zimbraMailCatchAllAddress'>@"+domainAliasName+"</a>" 
+				+ "<a n='zimbraMailCatchAllAddress'>@"+domainAliasName+"</a>"
 				+ "<a  n='zimbraMailCatchAllForwardingAddress'>@"+targetDomain+"</a>"
 				+ "</CreateDomainRequest>");
-				
+
 		// Enter the search string to find the alias
 		app.zPageSearchResults.zAddSearchQuery(domainAliasName);
 
@@ -213,7 +214,5 @@ public class DeleteDomainSR extends AdminCommonTest {
 		// Click on Delete button
 		boolean isPresent = app.zPageSearchResults.zVerifyDisabled("DeleteTreeMenu");
 		ZAssert.assertTrue(isPresent, "Verify the delete domain button is disabled at Search results");
-	
-		}
-
+	}
 }

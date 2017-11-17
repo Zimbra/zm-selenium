@@ -17,7 +17,6 @@
 package com.zimbra.qa.selenium.projects.admin.tests.cos;
 
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
@@ -28,14 +27,13 @@ import com.zimbra.qa.selenium.projects.admin.items.CosItem;
 import com.zimbra.qa.selenium.projects.admin.ui.PageMain;
 
 public class GetCos extends AdminCommonTest {
-	
+
 	public GetCos() {
 		logger.info("New " + GetCos.class.getCanonicalName());
-		
-		//All tests starts at "Cos" page
 		super.startingPage=app.zPageManageCOS;
 	}
-	
+
+
 	/**
 	 * Testcase : Verify created cos is displayed in UI - Search list view.
 	 * Steps :
@@ -44,9 +42,11 @@ public class GetCos extends AdminCommonTest {
 	 * 3. Verify cos is present in the list.
 	 * @throws HarnessException
 	 */
-	@Test (description = "Verify created cos is displayed in UI - Manage COS list view.",
+
+	@Test (description = "Verify created cos is displayed in UI - Manage COS list view",
 			groups = { "smoke", "L1" })
-			public void GetCos_01() throws HarnessException {
+
+	public void GetCos_01() throws HarnessException {
 
 		// Create a new cos in the Admin Console using SOAP
 		CosItem cos = new CosItem();
@@ -58,14 +58,13 @@ public class GetCos extends AdminCommonTest {
 				+		"</CreateCosRequest>");
 
 		// Refresh the account list
-		app.zPageManageCOS.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");		
-		
+		app.zPageManageCOS.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
 		SleepUtil.sleepSmall();
-		
-		//Verify the presence of the created COS in UI 
-		ZAssert.assertTrue(app.zPageManageCOS.zIsCOSPresent(cosName), "Verify the cos is returned correctly");
 
+		// Verify the presence of the created COS in UI
+		ZAssert.assertTrue(app.zPageManageCOS.zIsCOSPresent(cosName), "Verify the cos is returned correctly");
 	}
+
 
 	/**
 	 * Testcase : Verify created cos is displayed in UI - Search list view.
@@ -75,9 +74,11 @@ public class GetCos extends AdminCommonTest {
 	 * 3. Verify cos is present in the list.
 	 * @throws HarnessException
 	 */
-	@Test (description = "Verify created cos is displayed in UI - Search list view.",
+
+	@Test (description = "Verify created cos is displayed in UI - Search list view",
 			groups = { "smoke", "L1" })
-			public void GetCos_02() throws HarnessException {
+
+	public void GetCos_02() throws HarnessException {
 
 		// Create a new cos in the Admin Console using SOAP
 		CosItem cos = new CosItem();
@@ -87,8 +88,7 @@ public class GetCos extends AdminCommonTest {
 						"<CreateCosRequest xmlns='urn:zimbraAdmin'>"
 				+			"<name>" + cosName + "</name>"
 				+		"</CreateCosRequest>");
-		
-		
+
 		SleepUtil.sleepSmall();
 
 		// Enter the search string to find the account
@@ -96,9 +96,8 @@ public class GetCos extends AdminCommonTest {
 
 		// Click search
 		app.zPageSearchResults.zToolbarPressButton(Button.B_SEARCH);
-		
-		//Verify the presence of the created COS in UI 
-		ZAssert.assertTrue(app.zPageManageCOS.zIsSearchCOSPresent(cosName), "Verify the cos is returned correctly");
 
+		// Verify the presence of the created COS in UI
+		ZAssert.assertTrue(app.zPageManageCOS.zIsSearchCOSPresent(cosName), "Verify the cos is returned correctly");
 	}
 }

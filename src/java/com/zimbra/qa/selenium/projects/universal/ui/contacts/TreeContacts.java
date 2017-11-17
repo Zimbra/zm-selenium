@@ -66,7 +66,7 @@ public class TreeContacts extends AbsTree {
 				throw new HarnessException("Unable to locator folder in tree " + locator);
 			}
 
-			this.zRightClickAt(locator, "");
+			this.sRightClickAt(locator, "");
 			zWaitForBusyOverlay();
 
 			return (null);
@@ -160,7 +160,7 @@ public class TreeContacts extends AbsTree {
 			}
 
 			// Default right-click behavior
-			zRightClickAt(actionLocator, "0,0");
+			sRightClickAt(actionLocator, "0,0");
 			zWaitForBusyOverlay();
 			SleepUtil.sleepSmall();
 
@@ -231,7 +231,7 @@ public class TreeContacts extends AbsTree {
 			}
 
 			if (actionLocator != null) {
-				zRightClickAt(actionLocator, "0,0");
+				sRightClickAt(actionLocator, "0,0");
 				zWaitForBusyOverlay();
 				SleepUtil.sleepSmall();
 			}
@@ -290,7 +290,7 @@ public class TreeContacts extends AbsTree {
 		} else if (action == Action.A_RIGHTCLICK) {
 
 			actionLocator = "css=td[id^='zti__main_Contacts__']:contains('" + t.getName() + "')";
-			this.zRightClickAt(actionLocator, "");
+			this.sRightClickAt(actionLocator, "");
 			SleepUtil.sleepSmall();
 			this.zWaitForBusyOverlay();
 
@@ -347,7 +347,7 @@ public class TreeContacts extends AbsTree {
 		} else if (action == Action.A_RIGHTCLICK) {
 
 			// Select the folder
-			zRightClickAt(locator, "0,0");
+			sRightClickAt(locator, "0,0");
 			zWaitForBusyOverlay();
 			SleepUtil.sleepSmall();
 			// return a context menu

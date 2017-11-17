@@ -40,17 +40,20 @@ public class EditFeatures extends AdminCommonTest {
 	 * Testcase : Edit account - Edit features
 	 * Steps :
 	 * 1. Create an account using SOAP.
-	 * 2. Edit account - uncheck mail and calendar features 
+	 * 2. Edit account - uncheck mail and calendar features
 	 * 3. Verify mail and calendar features attributes are changed using SOAP.
 	 * @throws HarnessException
 	 */
+
 	@Test (description = "Edit account - Edit features",
 			groups = { "smoke", "L1" })
 
 	public void EditFeatures_01() throws HarnessException {
 
 		// Create a new account in the Admin Console using SOAP
-		AccountItem account = new AccountItem("email" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
+		AccountItem account = new AccountItem("email" + ConfigProperties.getUniqueString(),
+				ConfigProperties.getStringProperty("testdomain"));
+
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<CreateAccountRequest xmlns='urn:zimbraAdmin'>"
 						+			"<name>" + account.getEmailAddress() + "</name>"
@@ -61,35 +64,34 @@ public class EditFeatures extends AdminCommonTest {
 		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
 
 		// Click on Edit button
-		FormEditAccount form = (FormEditAccount) app.zPageManageAccounts.zListItem(Action.A_RIGHTCLICK, Button.O_EDIT, account.getEmailAddress());
+		FormEditAccount form = (FormEditAccount) app.zPageManageAccounts.zListItem(Action.A_RIGHTCLICK, Button.O_EDIT,
+				account.getEmailAddress());
 
 		// Click on Features
 		app.zPageEditAccount.zToolbarPressButton(Button.B_FEATURES);
 
 		// Uncheck Mail
-		form.zFeatureCheckboxSet(Button.B_MAIL,false);
+		form.zFeatureCheckboxSet(Button.B_MAIL, false);
 
 		// Uncheck Calendar
-		form.zFeatureCheckboxSet(Button.B_CALENDAR,false);
+		form.zFeatureCheckboxSet(Button.B_CALENDAR, false);
 
 		// Save the changes
 		form.zSave();
 
-		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
-				"<GetAccountRequest xmlns='urn:zimbraAdmin'>"
-						+			"<account by='name'>"+ account.getEmailAddress() +"</account>"
-						+		"</GetAccountRequest>");
+		ZimbraAdminAccount.AdminConsoleAdmin().soapSend("<GetAccountRequest xmlns='urn:zimbraAdmin'>"
+				+ "<account by='name'>" + account.getEmailAddress() + "</account>" + "</GetAccountRequest>");
 
 		// Verify calendar feature is disabled
-		Element response1 = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetAccountResponse/admin:account/admin:a[@n='zimbraFeatureCalendarEnabled']", 1);
+		Element response1 = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode(
+				"//admin:GetAccountResponse/admin:account/admin:a[@n='zimbraFeatureCalendarEnabled']", 1);
 		ZAssert.assertNotNull(response1, "Verify the account is edited successfully");
-		ZAssert.assertStringContains(response1.toString(),"FALSE", "Verify calendar feature is disabled");
+		ZAssert.assertStringContains(response1.toString(), "FALSE", "Verify calendar feature is disabled");
 
 		// Verify mail feature is disabled
-		Element response2 = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetAccountResponse/admin:account/admin:a[@n='zimbraFeatureMailEnabled']", 1);
+		Element response2 = ZimbraAdminAccount.AdminConsoleAdmin()
+				.soapSelectNode("//admin:GetAccountResponse/admin:account/admin:a[@n='zimbraFeatureMailEnabled']", 1);
 		ZAssert.assertNotNull(response2, "Verify the account is edited successfully");
 		ZAssert.assertStringContains(response2.toString(),"FALSE", "Verify mail feature is disabled");
-
 	}
-
 }

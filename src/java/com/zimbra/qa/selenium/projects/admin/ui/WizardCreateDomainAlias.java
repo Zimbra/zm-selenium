@@ -14,9 +14,6 @@
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-/**
- *
- */
 package com.zimbra.qa.selenium.projects.admin.ui;
 
 import com.zimbra.qa.selenium.framework.items.IItem;
@@ -34,8 +31,8 @@ public class WizardCreateDomainAlias extends AbsWizard {
 	public static class Locators {
 		public static final String DOMAIN_ALIAS_DLG = "zdlgv__UNDEFINE1_zimbraDomainName";
 		public static final String DOMAIN_ALIAS_NAME = "_zimbraDomainName";
-		public static final String TARGET_DOMAIN_NAME="_zimbraDomainAliasTargetName";
-		public static final String zdlg_OK="_button2_title";
+		public static final String TARGET_DOMAIN_NAME = "_zimbraDomainAliasTargetName";
+		public static final String zdlg_OK = "_button2_title";
 	}
 
 	public WizardCreateDomainAlias(AbsTab page) {
@@ -45,20 +42,20 @@ public class WizardCreateDomainAlias extends AbsWizard {
 	@Override
 	public IItem zCompleteWizard(IItem item) throws HarnessException {
 
-		if ( !(item instanceof DomainItem) )
-			throw new HarnessException("item must be an AliasItem, was "+ item.getClass().getCanonicalName());
+		if (!(item instanceof DomainItem))
+			throw new HarnessException("item must be an AliasItem, was " + item.getClass().getCanonicalName());
 
-		DomainItem alias = (DomainItem)item;
+		DomainItem alias = (DomainItem) item;
 
 		String domainAlias = alias.getName();
 		String targetDomain = ConfigProperties.getStringProperty("testdomain");
 
-		for(int i=10;i>=1;i--) {
-			if (sIsElementPresent("zdlgv__UNDEFINE"+i+Locators.TARGET_DOMAIN_NAME)) {
-				sType("zdlgv__UNDEFINE"+i+Locators.DOMAIN_ALIAS_NAME, domainAlias);
-				sClick("zdlgv__UNDEFINE"+i+Locators.TARGET_DOMAIN_NAME);
-				sType("zdlgv__UNDEFINE"+i+Locators.TARGET_DOMAIN_NAME, targetDomain);
-				sClick("zdlg__UNDEFINE"+i+Locators.zdlg_OK);
+		for (int i = 10; i >= 1; i--) {
+			if (sIsElementPresent("zdlgv__UNDEFINE" + i + Locators.TARGET_DOMAIN_NAME)) {
+				sType("zdlgv__UNDEFINE" + i + Locators.DOMAIN_ALIAS_NAME, domainAlias);
+				sClick("zdlgv__UNDEFINE" + i + Locators.TARGET_DOMAIN_NAME);
+				sType("zdlgv__UNDEFINE" + i + Locators.TARGET_DOMAIN_NAME, targetDomain);
+				sClick("zdlg__UNDEFINE" + i + Locators.zdlg_OK);
 				break;
 			}
 		}
@@ -67,25 +64,23 @@ public class WizardCreateDomainAlias extends AbsWizard {
 
 	public IItem zSetTargetDomain(IItem item) throws HarnessException {
 
-		if ( !(item instanceof DomainItem) )
-			throw new HarnessException("item must be an AliasItem, was "+ item.getClass().getCanonicalName());
+		if (!(item instanceof DomainItem))
+			throw new HarnessException("item must be an AliasItem, was " + item.getClass().getCanonicalName());
 
-		DomainItem alias = (DomainItem)item;
+		DomainItem alias = (DomainItem) item;
 
 		String targetDomain = ConfigProperties.getStringProperty("server.host");
 
-		for(int i=10;i>=1;i--) {
-			if (sIsElementPresent("zdlgv__UNDEFINE"+i+Locators.TARGET_DOMAIN_NAME)) {
-				sType("zdlgv__UNDEFINE"+i+Locators.TARGET_DOMAIN_NAME, targetDomain);
-				sClick("zdlg__UNDEFINE"+i+Locators.zdlg_OK);
+		for (int i = 10; i >= 1; i--) {
+			if (sIsElementPresent("zdlgv__UNDEFINE" + i + Locators.TARGET_DOMAIN_NAME)) {
+				sType("zdlgv__UNDEFINE" + i + Locators.TARGET_DOMAIN_NAME, targetDomain);
+				sClick("zdlg__UNDEFINE" + i + Locators.zdlg_OK);
 				break;
 			}
 		}
 
-
 		return alias;
 	}
-
 
 	@Override
 	public String myPageName() {
@@ -96,12 +91,12 @@ public class WizardCreateDomainAlias extends AbsWizard {
 	public boolean zIsActive() throws HarnessException {
 
 		boolean present = sIsElementPresent(Locators.DOMAIN_ALIAS_DLG);
-		if ( !present ) {
+		if (!present) {
 			return (false);
 		}
 
 		boolean visible = this.zIsVisiblePerPosition(Locators.DOMAIN_ALIAS_DLG, 0, 0);
-		if ( !visible ) {
+		if (!visible) {
 			return (false);
 		}
 

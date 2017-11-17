@@ -17,9 +17,7 @@
 package com.zimbra.qa.selenium.projects.admin.tests.resources;
 
 import java.util.List;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
@@ -35,12 +33,10 @@ public class DeleteResource extends AdminCommonTest {
 
 	public DeleteResource() {
 		logger.info("New "+ DeleteResource.class.getCanonicalName());
-
-		// All tests start at the "Resources" page
 		super.startingPage = app.zPageManageResources;
-
 	}
-	
+
+
 	/**
 	 * Testcase : Verify delete resource operation -- Manage resource View -- Location
 	 * Steps :
@@ -51,14 +47,17 @@ public class DeleteResource extends AdminCommonTest {
 	 * 5. Verify resource is deleted using SOAP.
 	 * @throws HarnessException
 	 */
+
 	@Test (description = "Verify delete resource operation -- Manage resource View -- Location",
 			groups = { "smoke", "L1" })
+
 	public void DeleteResource_01() throws HarnessException {
-	// Create a new resource in the Admin Console using SOAP
+
 		this.startingPage.zNavigateTo();
-		
+
+		// Create a new resource in the Admin Console using SOAP
 		ResourceItem resource = new ResourceItem();
-		
+
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 						"<CreateCalendarResourceRequest xmlns='urn:zimbraAdmin'>"
 				 		+ "<name>" + resource.getEmailAddress() + "</name>"
@@ -66,10 +65,11 @@ public class DeleteResource extends AdminCommonTest {
 				 		+ "<a n=\"zimbraCalResType\">" + "Location" + "</a>"
 				 		+ "<password>test123</password>"
 				 		+ "</CreateCalendarResourceRequest>");
-		
+
 		// Refresh list to populate account.
 		app.zPageManageResources.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
 		this.startingPage.zNavigateTo();
+
 		// Click on account to be deleted.
 		app.zPageManageResources.zListItem(Action.A_LEFTCLICK, resource.getEmailAddress());
 
@@ -81,11 +81,11 @@ public class DeleteResource extends AdminCommonTest {
 
 		// Click Ok on "Delete Items" dialog
 		dialog.zPressButton(Button.B_OK);
-		
+
 		// Get the list of displayed accounts
 		List<AccountItem> accounts = app.zPageManageResources.zListGetAccounts();
 		ZAssert.assertNotNull(accounts, "Verify the resource list is returned");
-		
+
 		AccountItem found = null;
 		for (AccountItem a : accounts) {
 			logger.info("Looking for resource "+ resource.getEmailAddress() + " found: "+ a.getGEmailAddress());
@@ -95,9 +95,9 @@ public class DeleteResource extends AdminCommonTest {
 			}
 		}
 		ZAssert.assertNull(found, "Verify the resource is deleted successfully");
-
 	}
-	
+
+
 	/**
 	 * Testcase : Verify delete resource operation -- Manage resource View -- Equipment
 	 * Steps :
@@ -108,15 +108,17 @@ public class DeleteResource extends AdminCommonTest {
 	 * 5. Verify resource is deleted using SOAP.
 	 * @throws HarnessException
 	 */
+
 	@Test (description = "Verify delete resource operation -- Manage resource View -- Equipment",
 			groups = { "smoke", "L1" })
+
 	public void DeleteResource_02() throws HarnessException {
 
-	// Create a new resource in the Admin Console using SOAP
 		this.startingPage.zNavigateTo();
+
 		// Create a new resource in the Admin Console using SOAP
 		ResourceItem resource = new ResourceItem();
-		
+
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 						"<CreateCalendarResourceRequest xmlns='urn:zimbraAdmin'>"
 				 		+ "<name>" + resource.getEmailAddress() + "</name>"
@@ -124,10 +126,11 @@ public class DeleteResource extends AdminCommonTest {
 				 		+ "<a n=\"zimbraCalResType\">" + "Equipment" + "</a>"
 				 		+ "<password>test123</password>"
 				 		+ "</CreateCalendarResourceRequest>");
-		
+
 		// Refresh list to populate account.
 		app.zPageManageResources.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
 		this.startingPage.zNavigateTo();
+
 		// Click on account to be deleted.
 		app.zPageManageResources.zListItem(Action.A_LEFTCLICK, resource.getEmailAddress());
 
@@ -139,11 +142,11 @@ public class DeleteResource extends AdminCommonTest {
 
 		// Click Ok on "Delete Items" dialog
 		dialog.zPressButton(Button.B_OK);
-		
+
 		// Get the list of displayed accounts
 		List<AccountItem> accounts = app.zPageManageResources.zListGetAccounts();
 		ZAssert.assertNotNull(accounts, "Verify the resource list is returned");
-		
+
 		AccountItem found = null;
 		for (AccountItem a : accounts) {
 			logger.info("Looking for resource "+ resource.getEmailAddress() + " found: "+ a.getGEmailAddress());
@@ -153,9 +156,9 @@ public class DeleteResource extends AdminCommonTest {
 			}
 		}
 		ZAssert.assertNull(found, "Verify the resource is deleted successfully");
-
 	}
-	
+
+
 	/**
 	 * Testcase : Verify delete resource operation -- Manage resource View/Right Click Menu -- Location
 	 * Steps :
@@ -166,15 +169,17 @@ public class DeleteResource extends AdminCommonTest {
 	 * 5. Verify resource is deleted using SOAP.
 	 * @throws HarnessException
 	 */
+
 	@Test (description = "Verify delete resource operation -- Manage resource View/Right Click Menu -- Location",
 			groups = { "functional", "L2" })
+
 	public void DeleteResource_03() throws HarnessException {
 
 		this.startingPage.zNavigateTo();
 
 		// Create a new resource in the Admin Console using SOAP
 		ResourceItem resource = new ResourceItem();
-		
+
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 						"<CreateCalendarResourceRequest xmlns='urn:zimbraAdmin'>"
 				 		+ "<name>" + resource.getEmailAddress() + "</name>"
@@ -182,10 +187,11 @@ public class DeleteResource extends AdminCommonTest {
 				 		+ "<a n=\"zimbraCalResType\">" + "Location" + "</a>"
 				 		+ "<password>test123</password>"
 				 		+ "</CreateCalendarResourceRequest>");
-		
+
 		// Refresh list to populate account.
 		app.zPageManageResources.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
 		this.startingPage.zNavigateTo();
+
 		// Right Click on resource to be deleted.
 		app.zPageManageResources.zListItem(Action.A_RIGHTCLICK, resource.getEmailAddress());
 
@@ -197,11 +203,11 @@ public class DeleteResource extends AdminCommonTest {
 
 		// Click Ok on "Delete Items" dialog
 		dialog.zPressButton(Button.B_OK);
-		
+
 		// Get the list of displayed accounts
 		List<AccountItem> accounts = app.zPageManageResources.zListGetAccounts();
 		ZAssert.assertNotNull(accounts, "Verify the resource list is returned");
-		
+
 		AccountItem found = null;
 		for (AccountItem a : accounts) {
 			logger.info("Looking for resource "+ resource.getEmailAddress() + " found: "+ a.getGEmailAddress());
@@ -211,9 +217,9 @@ public class DeleteResource extends AdminCommonTest {
 			}
 		}
 		ZAssert.assertNull(found, "Verify the resource is deleted successfully");
-
 	}
-	
+
+
 	/**
 	 * Testcase : Verify delete resource operation -- Manage resource View/Right Click Menu -- Equipment
 	 * Steps :
@@ -224,13 +230,15 @@ public class DeleteResource extends AdminCommonTest {
 	 * 5. Verify resource is deleted using SOAP.
 	 * @throws HarnessException
 	 */
+
 	@Test (description = "Verify delete resource operation -- Manage resource View/Right Click Menu -- Equipment",
 			groups = { "functional", "L2" })
+
 	public void DeleteResource_04() throws HarnessException {
 
 		// Create a new resource in the Admin Console using SOAP
 		ResourceItem resource = new ResourceItem();
-		
+
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 						"<CreateCalendarResourceRequest xmlns='urn:zimbraAdmin'>"
 				 		+ "<name>" + resource.getEmailAddress() + "</name>"
@@ -238,10 +246,11 @@ public class DeleteResource extends AdminCommonTest {
 				 		+ "<a n=\"zimbraCalResType\">" + "Equipment" + "</a>"
 				 		+ "<password>test123</password>"
 				 		+ "</CreateCalendarResourceRequest>");
-		
+
 		// Refresh list to populate account.
 		app.zPageManageResources.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
 		this.startingPage.zNavigateTo();
+
 		// Right Click on resource to be deleted.
 		app.zPageManageResources.zListItem(Action.A_RIGHTCLICK, resource.getEmailAddress());
 
@@ -253,11 +262,11 @@ public class DeleteResource extends AdminCommonTest {
 
 		// Click Ok on "Delete Items" dialog
 		dialog.zPressButton(Button.B_OK);
-		
+
 		// Get the list of displayed accounts
 		List<AccountItem> accounts = app.zPageManageResources.zListGetAccounts();
 		ZAssert.assertNotNull(accounts, "Verify the resource list is returned");
-		
+
 		AccountItem found = null;
 		for (AccountItem a : accounts) {
 			logger.info("Looking for resource "+ resource.getEmailAddress() + " found: "+ a.getGEmailAddress());
@@ -267,6 +276,5 @@ public class DeleteResource extends AdminCommonTest {
 			}
 		}
 		ZAssert.assertNull(found, "Verify the resource is deleted successfully");
-
 	}
 }

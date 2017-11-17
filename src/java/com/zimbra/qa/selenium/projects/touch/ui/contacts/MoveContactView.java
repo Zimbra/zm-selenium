@@ -165,7 +165,7 @@ public class MoveContactView extends AbsTree {
 			}
 			
 			// Default right-click behavior
-			zRightClickAt(actionLocator,"0,0");
+			sRightClickAt(actionLocator,"0,0");
 			zWaitForBusyOverlay();
 
 			sClickAt(optionLocator, "0,0");
@@ -248,7 +248,7 @@ public class MoveContactView extends AbsTree {
 			
 			if ( actionLocator != null ) {
 
-				zRightClickAt(actionLocator,"0,0");
+				sRightClickAt(actionLocator,"0,0");
 				zWaitForBusyOverlay();
 
 			}
@@ -301,7 +301,7 @@ public class MoveContactView extends AbsTree {
 		} else if (action == Action.A_RIGHTCLICK) {
 
 			actionLocator = "css=td[id^='zti__main_Contacts__']:contains('"+ t.getName() +"')";
-			this.zRightClickAt(actionLocator,"");
+			this.sRightClickAt(actionLocator,"");
 			
 			this.zWaitForBusyOverlay();
 

@@ -14,9 +14,6 @@
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-/**
- *
- */
 package com.zimbra.qa.selenium.projects.admin.ui;
 
 import com.zimbra.qa.selenium.framework.items.IItem;
@@ -33,19 +30,21 @@ import com.zimbra.qa.selenium.projects.admin.items.AclItem;
 public class WizardEditACLAtDL extends AbsWizard {
 
 	public static class Locators {
-		public static final String ACL_RIGHT_NAME ="css=input[id$='right_display']";
+		public static final String ACL_RIGHT_NAME = "css=input[id$='right_display']";
 		public static final String ACL_GRANTEE_NAME = "css=div[class='DwtDialog']:not([aria-hidden='true']) div[class='DwtDialog WindowOuterContainer'] table[class='dynselect_table'] input[type='text'][id$='grantee_email_display']";
-		public static final String ACL_RIGHT_TYPE_SYSTEM_DEFINED="css=div[id$='right_type_choice_0']";
-		public static final String ACL_RIGHT_TYPE_CUSTOM="css=div[id$='right_type_choice_1']";
-		public static final String Pull_DOWN="css=div[id^='zdlgv__EDIT_ACL'][id*='_right_type'] div[class='ImgSelectPullDownArrow']";
-		public static final String EDIT_AND_FINISH_BUTTON="css=td[class='ZWidgetTitle']:contains('Edit and Finish')";	
+		public static final String ACL_RIGHT_TYPE_SYSTEM_DEFINED = "css=div[id$='right_type_choice_0']";
+		public static final String ACL_RIGHT_TYPE_CUSTOM = "css=div[id$='right_type_choice_1']";
+		public static final String Pull_DOWN = "css=div[id^='zdlgv__EDIT_ACL'][id*='_right_type'] div[class='ImgSelectPullDownArrow']";
+		public static final String EDIT_AND_FINISH_BUTTON = "css=td[class='ZWidgetTitle']:contains('Edit and Finish')";
 	}
 
 	public WizardEditACLAtDL(AbsTab page) {
 		super(page);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 *
 	 * @see projects.admin.ui.AbsWizard#completeWizard(projects.admin.clients.Item)
 	 */
 

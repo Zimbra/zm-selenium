@@ -30,13 +30,12 @@ import com.zimbra.qa.selenium.projects.admin.ui.FormEditCos;
 import com.zimbra.qa.selenium.projects.admin.ui.PageSearchResults;
 
 public class EditCos extends AdminCommonTest {
+
 	public EditCos() {
 		logger.info("New "+ EditCos.class.getCanonicalName());
-
-		// All tests start at the "Accounts" page
 		super.startingPage = app.zPageManageCOS;
-
 	}
+
 
 	/**
 	 * Testcase : Edit account name  - Manage Account View
@@ -48,8 +47,10 @@ public class EditCos extends AdminCommonTest {
 	 * 5. Verify cos is edited using SOAP.
 	 * @throws HarnessException
 	 */
+
 	@Test (description = "Edit Cos name  - Manage Cos View",
 			groups = { "functional", "L2" })
+
 	public void EditCos_01() throws HarnessException {
 
 		// Create a new cos in the Admin Console using SOAP
@@ -61,7 +62,7 @@ public class EditCos extends AdminCommonTest {
 						+			"<name>" + cosName + "</name>"
 						+		"</CreateCosRequest>");
 
-		//Refresh the account list
+		// Refresh the account list
 		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
 
 		// Click on account to be deleted.
@@ -70,11 +71,11 @@ public class EditCos extends AdminCommonTest {
 		// Click on Edit button
 		FormEditCos form = (FormEditCos) app.zPageManageCOS.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_EDIT);
 
-		//Edit the name.
+		// Edit the name
 		String editedName = "editedCos_" + ConfigProperties.getUniqueString();
 		form.setName(editedName);
 
-		//Submit the form.
+		// Submit
 		form.zSubmit();
 
 		// Verify the cos exists in the ZCS
@@ -83,20 +84,22 @@ public class EditCos extends AdminCommonTest {
 						"<cos by='name'>"+editedName+"</cos>"+
 				"</GetCosRequest>");
 		Element response = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetCosResponse/admin:cos", 1);
-		ZAssert.assertNotNull(response, "Verify the cos is edited successfully");	
+		ZAssert.assertNotNull(response, "Verify the cos is edited successfully");
 	}
 
 
 	/**
-	 * Testcase : Edit cos name -- right click 
+	 * Testcase : Edit cos name -- right click
 	 * Steps :
 	 * 1. Create an cos using SOAP.
 	 * 2. Edit the cos name using UI Right Click.
 	 * 3. Verify cos name is changed using SOAP.
 	 * @throws HarnessException
 	 */
+
 	@Test (description = "Edit cos name -- right click",
 			groups = { "functional", "L2" })
+
 	public void EditCos_02() throws HarnessException {
 
 		// Create a new cos in the Admin Console using SOAP
@@ -117,14 +120,14 @@ public class EditCos extends AdminCommonTest {
 		// Click on Edit button
 		FormEditCos form = (FormEditCos) app.zPageManageCOS.zToolbarPressButton(Button.B_TREE_EDIT);
 
-		//Click on General Information tab.
+		// Click on General Information tab
 		form.zSelectTreeItem(FormEditCos.TreeItem.GENERAL_INFORMATION);
 
-		//Edit the name.
+		// Edit the name
 		String editedName = "editedCos_" + ConfigProperties.getUniqueString();
 		form.setName(editedName);
 
-		//Submit the form.
+		// Submit
 		form.zSubmit();
 
 		// Verify the cos exists in the ZCS
@@ -136,6 +139,7 @@ public class EditCos extends AdminCommonTest {
 		ZAssert.assertNotNull(response, "https://bugzilla.zimbra.com/show_bug.cgi?id=79304");
 	}
 
+
 	/**
 	 * Testcase : Edit account name  - Manage Account View
 	 * Steps :k
@@ -146,8 +150,10 @@ public class EditCos extends AdminCommonTest {
 	 * 5. Verify cos is edited using SOAP.
 	 * @throws HarnessException
 	 */
+
 	@Test (description = "Edit Cos name  - Search Cos View",
 			groups = { "functional", "L3" })
+
 	public void EditCos_03() throws HarnessException {
 
 		// Create a new cos in the Admin Console using SOAP
@@ -169,19 +175,18 @@ public class EditCos extends AdminCommonTest {
 		// Click on cos
 		app.zPageSearchResults.zListItem(Action.A_LEFTCLICK, cos.getName());
 
-
 		// Click on Edit button
 		app.zPageSearchResults.setType(PageSearchResults.TypeOfObject.COS);
 		FormEditCos form = (FormEditCos) app.zPageSearchResults.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_EDIT);
 
-		//Click on General Information tab.
+		// Click on General Information tab
 		form.zSelectTreeItem(FormEditCos.TreeItem.GENERAL_INFORMATION);
 
-		//Edit the name.
+		// Edit the name
 		String editedName = "editedCos_" + ConfigProperties.getUniqueString();
 		form.setName(editedName);
 
-		//Submit the form.
+		// Submit
 		form.zSubmit();
 
 		// Verify the cos exists in the ZCS
@@ -191,19 +196,22 @@ public class EditCos extends AdminCommonTest {
 				"</GetCosRequest>");
 		Element response = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetCosResponse/admin:cos", 1);
 		ZAssert.assertNotNull(response, "Verify the cos is edited successfully");
-		app.zPageMain.logout();	
+		app.zPageMain.logout();
 	}
 
+
 	/**
-	 * Testcase : Edit cos name -- right click 
+	 * Testcase : Edit cos name -- right click
 	 * Steps :
 	 * 1. Create an cos using SOAP.
 	 * 2. Edit the cos name using UI Right Click.
 	 * 3. Verify cos name is changed using SOAP.
 	 * @throws HarnessException
 	 */
+
 	@Test (description = "Edit cos name -- right click",
 			groups = { "functional", "L3" })
+
 	public void EditCos_04() throws HarnessException {
 
 		// Create a new cos in the Admin Console using SOAP
@@ -220,22 +228,20 @@ public class EditCos extends AdminCommonTest {
 		// Enter the search string to find the account
 		app.zPageSearchResults.zAddSearchQuery(cosName);
 
-
 		// Click search
 		app.zPageSearchResults.zToolbarPressButton(Button.B_SEARCH);
 
 		// Click on cos
-		app.zPageSearchResults.zListItem(Action.A_RIGHTCLICK, cos.getName());		
+		app.zPageSearchResults.zListItem(Action.A_RIGHTCLICK, cos.getName());
 
 		// Click on Edit button
 		FormEditCos form = (FormEditCos) app.zPageSearchResults.zToolbarPressButton(Button.B_TREE_EDIT);
 
-
-		//Edit the name.
+		// Edit the name
 		String editedName = "editedCos_" + ConfigProperties.getUniqueString();
 		form.setName(editedName);
 
-		//Submit the form.
+		// Submit
 		form.zSubmit();
 
 		// Verify the cos exists in the ZCS
@@ -246,5 +252,4 @@ public class EditCos extends AdminCommonTest {
 		Element response = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetCosResponse/admin:cos", 1);
 		ZAssert.assertNotNull(response, "Verify the cos is edited successfully");
 	}
-
 }

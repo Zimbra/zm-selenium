@@ -11,19 +11,6 @@
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
-/*
- * ***** BEGIN LICENSE BLOCK *****
- * Zimbra Collaboration Suite Server
- * Copyright (C) 2012, 2013, 2014, 2016 Synacor, Inc.
- *
- * This program is free software: you can redistribute it and/or modify it under
- * the terms of the GNU General Public License as published by the Free Software Foundation,
- * version 2 of the License.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
- * You should have received a copy of the GNU General Public License along with this program.
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
@@ -47,16 +34,18 @@ public class EditRetentionPolicy extends AdminCommonTest {
 		logger.info("New "+ EditRetentionPolicy.class.getCanonicalName());
 	}
 
+
 	/**
 	 * Testcase : Create retention policy
 	 * Steps :
-	 * 1. Go to configure >> global settings >> retention policy >> Add new retention policy 
-	 * 2. Verify that new policy gets created successfully 
+	 * 1. Go to configure >> global settings >> retention policy >> Add new retention policy
+	 * 2. Verify that new policy gets created successfully
 	 * @throws HarnessException
 	 */
 
-	@Test(	description = "Edit retention policy",
+	@Test (description = "Edit retention policy",
 			groups = { "functional", "L2" })
+
 	public void EditRetentionPolicy_01() throws HarnessException {
 
 		final String policyName = "test_policy" + ConfigProperties.getUniqueString();
@@ -72,7 +61,6 @@ public class EditRetentionPolicy extends AdminCommonTest {
 						+ "</keep>"
 						+ "</CreateSystemRetentionPolicyRequest>");
 
-
 		// Refresh the list
 		app.zPageManageRetentionPolicy.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
 
@@ -82,7 +70,7 @@ public class EditRetentionPolicy extends AdminCommonTest {
 		// Click on account to be Edited.
 		app.zPageManageRetentionPolicy.zListItem(Action.A_LEFTCLICK, policyName);
 		SleepUtil.sleepMedium();
-		
+
 		// Click on edit
 		FormManageRetentionPolicy form = (FormManageRetentionPolicy) app.zPageManageRetentionPolicy.zToolbarPressButton( Button.B_EDIT);
 
@@ -108,9 +96,8 @@ public class EditRetentionPolicy extends AdminCommonTest {
 		// Verify the retention policy exists in the ZCS
 		String response = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectValue("//admin:GetSystemRetentionPolicyResponse/mail:retentionPolicy/mail:keep/mail:policy", "name");
 		ZAssert.assertNotNull(response, "Verify the retention policy is created successfully");
-		
+
 		// Verify policy exists on UI
 		ZAssert.assertTrue(app.zPageManageRetentionPolicy.zVerifyPolicyName(editedPolicyName), "Policy displayed on UI ");
 	}
 }
-

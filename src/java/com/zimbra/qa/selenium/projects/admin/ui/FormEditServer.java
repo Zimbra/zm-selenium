@@ -25,21 +25,21 @@ import com.zimbra.qa.selenium.framework.util.SleepUtil;
 public class FormEditServer extends AbsForm {
 
 	public static class TreeItem {
-		public static final String GENERAL_INFORMATION="General Information";
+		public static final String GENERAL_INFORMATION = "General Information";
 	}
 
 	public static class Locators {
-		public static final String NAME_TEXT_BOX="css=input#ztabv__ACCT_EDIT_";
-		public static final String DA_NAME_TEXT_BOX="css=input[id='ztabv__ACCT_EDIT_name_2']";
-		public static final String SAVE_BUTTON="css=td[id^='zb__ZaCurrentAppBar__SAVE']";
-		public static final String CLOSE_BUTTON="css=td[id^='zb__ZaCurrentAppBar__CLOSE']";
-		public static final String Pull_DOWN="css=div[aria-controls='zm__zb_currentApp__MENU_POP'] div[class='ImgSelectPullDownArrow']";
-		public static final String PULL_DOWN_CLOSE="css=td[id='zmi__zb_currentApp__CLOSE_title']";
+		public static final String NAME_TEXT_BOX = "css=input#ztabv__ACCT_EDIT_";
+		public static final String DA_NAME_TEXT_BOX = "css=input[id='ztabv__ACCT_EDIT_name_2']";
+		public static final String SAVE_BUTTON = "css=td[id^='zb__ZaCurrentAppBar__SAVE']";
+		public static final String CLOSE_BUTTON = "css=td[id^='zb__ZaCurrentAppBar__CLOSE']";
+		public static final String Pull_DOWN = "css=div[aria-controls='zm__zb_currentApp__MENU_POP'] div[class='ImgSelectPullDownArrow']";
+		public static final String PULL_DOWN_CLOSE = "css=td[id='zmi__zb_currentApp__CLOSE_title']";
 		public static final String PASSWORD = "css=input[id$='ztabv__ACCT_EDIT_password']";
-		public static final String CONFIRM_PASSWORD= "css=input[id$='ztabv__ACCT_EDIT_confirmPassword']";
-		public static final String zdlg_OK="css=td[id$='_button2_title']:contains('OK')";
-		public static final String DESCRIPTION="css=input[id^='ztabv__SERVER_EDIT_description']";
-		public static final String NOTES="css=textarea[id='ztabv__SERVER_EDIT_zimbraNotes']";
+		public static final String CONFIRM_PASSWORD = "css=input[id$='ztabv__ACCT_EDIT_confirmPassword']";
+		public static final String zdlg_OK = "css=td[id$='_button2_title']:contains('OK')";
+		public static final String DESCRIPTION = "css=input[id^='ztabv__SERVER_EDIT_description']";
+		public static final String NOTES = "css=textarea[id='ztabv__SERVER_EDIT_zimbraNotes']";
 	}
 
 	public FormEditServer(AbsApplication application) {
@@ -53,17 +53,16 @@ public class FormEditServer extends AbsForm {
 	public boolean zIsActive() throws HarnessException {
 
 		// Make sure the Admin Console is loaded in the browser
-		if ( !MyApplication.zIsLoaded() )
+		if (!MyApplication.zIsLoaded())
 			throw new HarnessException("Admin Console application is not active!");
 
-
 		boolean present = sIsElementPresent("");
-		if ( !present ) {
+		if (!present) {
 			return (false);
 		}
 
 		String attrs = sGetAttribute("");
-		if ( !attrs.contains("ZSelected") ) {
+		if (!attrs.contains("ZSelected")) {
 			return (false);
 		}
 
@@ -82,27 +81,23 @@ public class FormEditServer extends AbsForm {
 
 	@Override
 	public void zSubmit() throws HarnessException {
-		sClickAt(Locators.SAVE_BUTTON,"");
+		sClickAt(Locators.SAVE_BUTTON, "");
 		SleepUtil.sleepSmall();
-		sClickAt(Locators.CLOSE_BUTTON,"0,0");
+		sClickAt(Locators.CLOSE_BUTTON, "0,0");
 	}
 
 	public void zSelectTreeItem(String treeItem) throws HarnessException {
 		sClickAt("css=td:contains('" + treeItem + "')", "");
 	}
 
-
-	
 	public void setDescription(String desc) throws HarnessException {
 		sType(Locators.DESCRIPTION, desc);
 		SleepUtil.sleepSmall();
-		}
-	
+	}
+
 	public void setNotes(String notes) throws HarnessException {
 		sType(Locators.NOTES, notes);
 		SleepUtil.sleepSmall();
-		}
-	
-
 	}
 
+}

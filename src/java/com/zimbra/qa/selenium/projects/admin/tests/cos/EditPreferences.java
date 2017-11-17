@@ -33,20 +33,21 @@ public class EditPreferences extends AdminCommonTest {
 
 	public EditPreferences() {
 		logger.info("New "+ EditPreferences.class.getCanonicalName());
-		// All tests start at the "Cos" page
 		super.startingPage = app.zPageManageCOS;
 	}
 
+
 	/**
-	 * Testcase : Edit COS - Edit preferences at COS level 
+	 * Testcase : Edit COS - Edit preferences at COS level
 	 * Steps :
 	 * 1. Login to Admin Console and go to Configure > COS
 	 * 2. Select created COS from the list
-	 * 3. Select Edit, go to Preferences tab 
+	 * 3. Select Edit, go to Preferences tab
 	 * 4. Check/Uncheck some Preferences > Save
 	 * 5. Edited details should be saved without any errors
 	 * @throws HarnessException
 	 */
+
 	@Test (description = "Edit COS - Edit preferences at COS level",
 			groups = { "smoke", "L1" })
 
@@ -70,7 +71,7 @@ public class EditPreferences extends AdminCommonTest {
 		// Click on Edit button
 		FormEditCos form = (FormEditCos) app.zPageManageCOS.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_EDIT);
 
-		// CLick on preferences
+		// Click on preferences
 		app.zPageEditCOS.zToolbarPressButton(Button.B_PREFERENCES);
 		SleepUtil.sleepMedium();
 
@@ -96,7 +97,5 @@ public class EditPreferences extends AdminCommonTest {
 		Element response2 = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetCosResponse/admin:cos/admin:a[@n='zimbraPrefImapSearchFoldersEnabled']", 1);
 		ZAssert.assertNotNull(response2, "Verify the account is edited successfully");
 		ZAssert.assertStringContains(response2.toString(),"FALSE", "Verify show imap search folders preference is disabled");
-
 	}
-
 }

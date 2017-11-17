@@ -14,16 +14,12 @@
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-/**
- *
- */
 package com.zimbra.qa.selenium.projects.admin.ui;
 
 import com.zimbra.qa.selenium.framework.items.IItem;
 import com.zimbra.qa.selenium.framework.ui.AbsTab;
 import com.zimbra.qa.selenium.framework.ui.AbsWizard;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
-
 
 /**
  * @author Matt Rhoades
@@ -49,5 +45,4 @@ public class WizardAccountMigration extends AbsWizard {
 	public boolean zIsActive() throws HarnessException {
 		return false;
 	}
-
 }

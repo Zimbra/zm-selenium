@@ -27,9 +27,9 @@ import com.zimbra.qa.selenium.framework.util.SleepUtil;
 public class DialogForDeleteOperation extends AbsDialog {
 
 	public static class Locators {
-		public static final String YES_BUTTON="css=td[id='zdlg__MSG__GLOBAL__confirm2btn_button5_title']";
-		public static final String NO_BUTTON="zdlg__MSG__GLOBAL__confirm2btn_button4_title";
-		public static final String OK_BUTTON="css=td#zdlg__UNDEFINE";
+		public static final String YES_BUTTON = "css=td[id='zdlg__MSG__GLOBAL__confirm2btn_button5_title']";
+		public static final String NO_BUTTON = "zdlg__MSG__GLOBAL__confirm2btn_button4_title";
+		public static final String OK_BUTTON = "css=td#zdlg__UNDEFINE";
 	}
 
 	public DialogForDeleteOperation(AbsApplication application, AbsTab page) {
@@ -46,7 +46,7 @@ public class DialogForDeleteOperation extends AbsDialog {
 		logger.info(myPageName() + " zPressButton(" + button + ")");
 
 		tracer.trace("Click dialog button " + button);
-		if ( button == null )
+		if (button == null)
 			throw new HarnessException("button cannot be null");
 
 		String locator = null;
@@ -57,9 +57,10 @@ public class DialogForDeleteOperation extends AbsDialog {
 		} else if (button == Button.B_NO) {
 			locator = Locators.NO_BUTTON;
 		} else if (button == Button.B_OK) {
-			for(int i=0;i<=15;i++) {
-				if (sIsElementPresent(Locators.OK_BUTTON+i+"_button2_title") && sIsVisible(Locators.OK_BUTTON+i+"_button2_title")) {
-					locator=Locators.OK_BUTTON+i+"_button2_title";
+			for (int i = 0; i <= 15; i++) {
+				if (sIsElementPresent(Locators.OK_BUTTON + i + "_button2_title")
+						&& sIsVisible(Locators.OK_BUTTON + i + "_button2_title")) {
+					locator = Locators.OK_BUTTON + i + "_button2_title";
 					break;
 				}
 			}
@@ -74,15 +75,14 @@ public class DialogForDeleteOperation extends AbsDialog {
 
 		// Make sure the locator exists
 		if (!this.sIsElementPresent(locator)) {
-			throw new HarnessException("Button " + button + " locator "
-					+ locator + " not present!");
+			throw new HarnessException("Button " + button + " locator " + locator + " not present!");
 		}
 
 		// if (zIsActive())
 		// zGetDisplayedText("css=div[class=" + Locators.zDialogContentClassId +
 		// "]");
 
-		this.sClickAt(locator,"");
+		this.sClickAt(locator, "");
 		SleepUtil.sleepLong();
 
 		return (page);

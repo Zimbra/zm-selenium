@@ -79,7 +79,7 @@ public class TreeCalendar extends AbsTree {
 				optionLocator = "css=table[class$='MenuTable'] td[id$='_title']:contains(New Calendar)";
 				page = null;
 
-				zRightClick(actionLocator);
+				sRightClick(actionLocator);
 				sClick(optionLocator);
 				this.zWaitForBusyOverlay();
 
@@ -99,7 +99,7 @@ public class TreeCalendar extends AbsTree {
 			optionLocator += " div[id^='DELETE_WITHOUT_SHORTCUT'] td[id$='_title']";
 			page = null;
 
-			this.zRightClick(actionLocator);
+			this.sRightClick(actionLocator);
 
 			
 			
@@ -109,7 +109,7 @@ public class TreeCalendar extends AbsTree {
 			optionLocator += " div[id^='EDIT_PROPS'] td[id$='_title']";
 			page = null;
 
-			this.zRightClick(actionLocator);
+			this.sRightClick(actionLocator);
 
 			
 
@@ -119,7 +119,7 @@ public class TreeCalendar extends AbsTree {
 			optionLocator += " div[id^='MOVE'] td[id$='_title']";
 			page = null;
 
-			this.zRightClick(actionLocator);
+			this.sRightClick(actionLocator);
 
 			
 
@@ -129,7 +129,7 @@ public class TreeCalendar extends AbsTree {
 			optionLocator += " div[id^='SHARE_CALENDAR'] td[id$='_title']";
 			page = null;
 
-			this.zRightClick(actionLocator);
+			this.sRightClick(actionLocator);
 
 			
 
@@ -139,7 +139,7 @@ public class TreeCalendar extends AbsTree {
 			optionLocator += " div[id^='SYNC'] td[id$='_title']";
 			page = null;
 
-			this.zRightClick(actionLocator);
+			this.sRightClick(actionLocator);
 
 			
 
@@ -148,7 +148,7 @@ public class TreeCalendar extends AbsTree {
 			// Use default actionLocator
 			optionLocator += " div[id^='DETACH_WIN'] td[id$='_title']";
 
-			this.zRightClick(actionLocator);
+			this.sRightClick(actionLocator);
 			this.sClickAt(optionLocator,"");
 			
 			page = null;
@@ -163,7 +163,7 @@ public class TreeCalendar extends AbsTree {
 			optionLocator += " div[id^='RECOVER_DELETED_ITEMS'] td[id$='_title']";
 			page = null; // TODO
 
-			this.zRightClick(actionLocator);
+			this.sRightClick(actionLocator);
 
 			
 
@@ -206,7 +206,7 @@ public class TreeCalendar extends AbsTree {
 		} else if ( action == Action.A_RIGHTCLICK && option == Button.B_RENAME) {
 
 			// Select tag
-			this.zRightClick(optionLocator);
+			this.sRightClick(optionLocator);
 			this.sClick(Locators.RenameTagMenu);
 
 			return null;
@@ -214,7 +214,7 @@ public class TreeCalendar extends AbsTree {
 		} else if ( action == Action.A_RIGHTCLICK && option == Button.B_DELETE) {
 
 			// Select tag
-			this.zRightClick(optionLocator);
+			this.sRightClick(optionLocator);
 			this.sClick(Locators.DeleteTagMenu);
 			
 			return null;
@@ -416,7 +416,7 @@ public class TreeCalendar extends AbsTree {
 		} else if ( action == Action.A_RIGHTCLICK ) {
 
 			// Select the folder
-			this.zRightClick(locator);
+			this.sRightClick(locator);
 
 			// return a context menu
 			return null;

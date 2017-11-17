@@ -361,14 +361,14 @@ public class FormApptNew extends AbsForm {
 
 	public void zRemoveAttendee(String attendee) throws HarnessException {
 		SleepUtil.sleepSmall();
-		this.zRightClickAt("css=td[id$='_person'] span:contains('" + attendee + "')", "");
+		this.sRightClickAt("css=td[id$='_person'] span:contains('" + attendee + "')", "");
 		SleepUtil.sleepSmall();
 		this.sClickAt(Locators.DeleteZimletContextMenu, "");
 	}
 
 	public void zRemoveLocation(String location) throws HarnessException {
 		SleepUtil.sleepSmall();
-		this.zRightClickAt("css=td[id$='_location'] span:contains('" + location + "')", "");
+		this.sRightClickAt("css=td[id$='_location'] span:contains('" + location + "')", "");
 		this.sClickAt(Locators.DeleteZimletContextMenu, "");
 		this.sClickAt("css=input[id$='_location_input']", "");
 		SleepUtil.sleepMedium();
@@ -376,7 +376,7 @@ public class FormApptNew extends AbsForm {
 
 	public void zRemoveEquipment(String equipment) throws HarnessException {
 		SleepUtil.sleepSmall();
-		this.zRightClickAt("css=td[id$='resourcesData'] span:contains('" + equipment + "')", "");
+		this.sRightClickAt("css=td[id$='resourcesData'] span:contains('" + equipment + "')", "");
 		this.sClickAt(Locators.DeleteZimletContextMenu, "");
 		this.sClickAt("css=td[id$='resourcesData']", "");
 		SleepUtil.sleepMedium();

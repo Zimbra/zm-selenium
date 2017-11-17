@@ -17,7 +17,6 @@
 package com.zimbra.qa.selenium.projects.admin.tests.distributionlists;
 
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
@@ -35,16 +34,16 @@ public class AddIndirectMemberOfDistributionList extends AdminCommonTest {
 
 	public AddIndirectMemberOfDistributionList() {
 		logger.info("New "+ AddIndirectMemberOfDistributionList.class.getCanonicalName());
-		// All tests start at the "Distribution List" page
 		super.startingPage = app.zPageManageDistributionList;
 	}
-	
+
+
 	@Bugs (ids = "99081")
 	@Test (description = "Edit DL - Add 'Indirect Member of' to DL",
 			groups = { "smoke", "L1" })
 
 	public void AddIndirectMemberOfDistributionList_01() throws HarnessException {
-		
+
 		// Create three distribution lists in the Admin Console using SOAP
 		DistributionListItem dl1 = new DistributionListItem();
 		DistributionListItem dl2 = new DistributionListItem();
@@ -54,12 +53,12 @@ public class AddIndirectMemberOfDistributionList extends AdminCommonTest {
 				"<CreateDistributionListRequest xmlns='urn:zimbraAdmin'>"
 						+			"<name>" + dl1.getEmailAddress() + "</name>"
 						+		"</CreateDistributionListRequest>");
-		
+
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<CreateDistributionListRequest xmlns='urn:zimbraAdmin'>"
 						+			"<name>" + dl2.getEmailAddress() + "</name>"
 						+		"</CreateDistributionListRequest>");
-		
+
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<CreateDistributionListRequest xmlns='urn:zimbraAdmin'>"
 						+			"<name>" + dl3.getEmailAddress() + "</name>"
@@ -73,25 +72,25 @@ public class AddIndirectMemberOfDistributionList extends AdminCommonTest {
 
 		// Open the Dl for editing
 		FormEditDistributionList form = (FormEditDistributionList) app.zPageManageDistributionList.zToolbarPressPulldown(Button.B_GEAR_BOX,Button.O_EDIT);
-		
+
 		// Select Member of of tree element
 		form.zSelectTreeItem(TreeItem.MEMBER_OF);
-		
+
 		// Check the message displayed inside the Direct member of box
 		ZAssert.assertEquals(form.sGetText(Locators.DirectMemberOf),"Not a direct member of any distribution list","Verify that Loading... text is not present");
 
 		// Check the message displayed inside the Indirect members of box
 		ZAssert.assertEquals(form.sGetText(Locators.IndirectMemberOf),"Not an indirect member of any distribution list","Verify that Loading... text is not present");
-		
+
 		// Get id of DL2
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<GetDistributionListRequest xmlns='urn:zimbraAdmin'>" +
 				"<dl by='name'>"+ dl2.getEmailAddress() +"</dl>"+
 		"</GetDistributionListRequest>");
-		
+
 		String dl2Id = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectValue("//admin:GetDistributionListResponse/admin:dl", "id");
-		
-		// Add DL1 as direct member of DL2 
+
+		// Add DL1 as direct member of DL2
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<AddDistributionListMemberRequest xmlns='urn:zimbraAdmin'>"
 						+			"<id>" + dl2Id + "</id>"
@@ -102,22 +101,22 @@ public class AddIndirectMemberOfDistributionList extends AdminCommonTest {
 				"<GetDistributionListRequest xmlns='urn:zimbraAdmin'>" +
 				"<dl by='name'>"+ dl3.getEmailAddress() +"</dl>"+
 		"</GetDistributionListRequest>");
-		
+
 		String dl3Id = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectValue("//admin:GetDistributionListResponse/admin:dl", "id");
-		
-		// Add DL2 as direct member of DL3 
+
+		// Add DL2 as direct member of DL3
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<AddDistributionListMemberRequest xmlns='urn:zimbraAdmin'>"
 						+			"<id>" + dl3Id + "</id>"
 						+			"<dlm>" + dl2.getEmailAddress() + "</dlm>"
 						+		"</AddDistributionListMemberRequest>");
-		
-		
+
+
 		// Refresh to get the changes
 		app.zPageManageDistributionList.zRefreshMainUI();
-		
+
 		startingPage.zNavigateTo();
-		
+
 		// Click on distribution list to be edited.
 		app.zPageManageDistributionList.zListItem(Action.A_LEFTCLICK, dl1.getEmailAddress());
 
@@ -126,12 +125,11 @@ public class AddIndirectMemberOfDistributionList extends AdminCommonTest {
 
 		// Select Member of of tree element
 		form.zSelectTreeItem(TreeItem.MEMBER_OF);
-		
+
 		// Check the content of inside the Direct member of box
 		ZAssert.assertEquals(form.sGetText(Locators.DirectMemberOf),dl2.getEmailAddress(),"Verify that" + dl2.getEmailAddress() + "is added to the direct member of list");
 
 		// Check the message displayed inside the Indirect members of box
 		ZAssert.assertStringContains(form.sGetText(Locators.IndirectMemberOf),dl3.getEmailAddress(),"Verify that" + dl3.getEmailAddress() + "is added to the indirect member of list");
-
 	}
 }

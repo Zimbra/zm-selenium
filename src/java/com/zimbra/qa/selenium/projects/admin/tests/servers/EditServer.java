@@ -2,11 +2,11 @@
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
  * Copyright (C) 2011, 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
- * 
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
@@ -28,10 +28,9 @@ import com.zimbra.qa.selenium.projects.admin.core.AdminCommonTest;
 import com.zimbra.qa.selenium.projects.admin.ui.FormEditServer;
 
 public class EditServer extends AdminCommonTest {
+
 	public EditServer() {
 		logger.info("New "+ EditServer.class.getCanonicalName());
-
-		// All tests start at the "Server" page
 		super.startingPage = app.zPageManageServers;
 	}
 
@@ -44,10 +43,12 @@ public class EditServer extends AdminCommonTest {
 	 * 4. Verify details are edited successfully
 	 * @throws HarnessException
 	 */
+
 	@Test (description = "Edit Server from gear menu option",
 			groups = { "smoke", "L1" })
+
 	public void EditServer_01() throws HarnessException {
-		
+
 		String hostname = ConfigProperties.getStringProperty("server.host");
 
 		// Select server
@@ -58,10 +59,10 @@ public class EditServer extends AdminCommonTest {
 
 		String description = "description_" + ConfigProperties.getUniqueString();
 		String notes = "notes" + ConfigProperties.getUniqueString();
-		
+
 		// Edit description
 		form.setDescription(description);
-	
+
 		// Edit notes
 		form.setNotes(notes);
 
@@ -74,12 +75,11 @@ public class EditServer extends AdminCommonTest {
 						+		"</GetServerRequest>");
 
 		// Verify description is edited correctly
-		Element edited_description = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:a[@n='description']", 1);		
+		Element edited_description = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:a[@n='description']", 1);
 		ZAssert.assertEquals(edited_description.getText(),description, "Verify description is edited correctly!");
 
 		// Verify notes are edited correctly
-		Element edited_notes = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:a[@n='zimbraNotes']", 1);		
+		Element edited_notes = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:a[@n='zimbraNotes']", 1);
 		ZAssert.assertEquals(edited_notes.getText(),notes, "Verify notes are edited correctly!");
 	}
-
 }

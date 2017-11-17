@@ -64,8 +64,8 @@ public abstract class AbsTab extends AbsPage {
 	/**
 	 * Take action on list items
 	 *
-	 * (mainly applies to mail, contacts, tasks) For mail, item identifier is
-	 * the subject. For contacts, item identifier is the email. For tasks, item
+	 * (mainly applies to mail, contacts, tasks) For mail, item identifier is the
+	 * subject. For contacts, item identifier is the email. For tasks, item
 	 * identifier is the summary.
 	 *
 	 * @param action
@@ -75,22 +75,20 @@ public abstract class AbsTab extends AbsPage {
 	 * @return
 	 * @throws HarnessException
 	 */
-	public abstract AbsPage zListItem(Action action, String item)
-			throws HarnessException;
+	public abstract AbsPage zListItem(Action action, String item) throws HarnessException;
 
 	/**
-	 * Take action on list items with optional action (mainly right-click ->
-	 * context menu)
+	 * Take action on list items with optional action (mainly right-click -> context
+	 * menu)
 	 */
-	public abstract AbsPage zListItem(Action action, Button option, String item)
-			throws HarnessException;
+	public abstract AbsPage zListItem(Action action, Button option, String item) throws HarnessException;
 
 	/**
-	 * Take action on list items with optional action (mainly right-click ->
-	 * context menu-> sub menu)
+	 * Take action on list items with optional action (mainly right-click -> context
+	 * menu-> sub menu)
 	 */
-	public abstract AbsPage zListItem(Action action, Button option,
-			Button subOption, String item) throws HarnessException;
+	public abstract AbsPage zListItem(Action action, Button option, Button subOption, String item)
+			throws HarnessException;
 
 	/**
 	 * Click on a button
@@ -100,8 +98,7 @@ public abstract class AbsTab extends AbsPage {
 	 * @return Returns the resulting Page, Wizard, etc. or null
 	 * @throws HarnessException
 	 */
-	public abstract AbsPage zToolbarPressButton(Button button)
-			throws HarnessException;
+	public abstract AbsPage zToolbarPressButton(Button button) throws HarnessException;
 
 	/**
 	 * Click on a pulldown with the specified option in the pulldown
@@ -111,8 +108,7 @@ public abstract class AbsTab extends AbsPage {
 	 * @return Returns the resulting Page, Wizard, etc. or null
 	 * @throws HarnessException
 	 */
-	public abstract AbsPage zToolbarPressPulldown(Button pulldown, Button option)
-			throws HarnessException;
+	public abstract AbsPage zToolbarPressPulldown(Button pulldown, Button option) throws HarnessException;
 
 	/**
 	 * Use the keyboard to enter the specified keyboard shortcut
@@ -167,7 +163,6 @@ public abstract class AbsTab extends AbsPage {
 		return (page);
 	}
 
-
 	/**
 	 * Getting tagItem
 	 *
@@ -178,8 +173,7 @@ public abstract class AbsTab extends AbsPage {
 	 * @return Tag Item with the given tagName under given account
 	 * @throws HarnessException
 	 */
-	public TagItem zGetTagItem(ZimbraAccount account, String tagName)
-			throws HarnessException {
+	public TagItem zGetTagItem(ZimbraAccount account, String tagName) throws HarnessException {
 		if (account == null) {
 			throw new HarnessException("Account cannot be null");
 		} else if (tagName == null) {
@@ -205,8 +199,7 @@ public abstract class AbsTab extends AbsPage {
 	}
 
 	/**
-	 * Close a window based on browser title (and return focus on the main
-	 * window)
+	 * Close a window based on browser title (and return focus on the main window)
 	 *
 	 * @param title
 	 *            The browser title to close
@@ -241,20 +234,20 @@ public abstract class AbsTab extends AbsPage {
 
 			List<String> titles = this.sGetAllWindowIds();
 			logger.debug("Found " + titles.size() + " open windows");
-			String winId="";
-			if (titles.size()>1) {
-			for (int a=1;a<=titles.size();a++) {
-				logger.info("Found " + a );
+			String winId = "";
+			if (titles.size() > 1) {
+				for (int a = 1; a <= titles.size(); a++) {
+					logger.info("Found " + a);
 
-					winId=""+a;
-					this.sSelectWindow(winId);; // Select the window
-					this.sClose(); // Close the window
+					winId = "" + a;
+					this.sSelectWindow(winId);
+					this.sClose();
+				}
+				this.zSelectWindow("null");
+				logger.warn("Tried closing window" + winId + " but it was not found");
+
 			}
-			this.zSelectWindow("null");
-			logger.warn("Tried closing window" +  winId + " but it was not found");
-
-		}
-			} finally {
+		} finally {
 
 			this.zSelectWindow("null");
 

@@ -93,10 +93,9 @@ public class AppointmentItem implements IItem {
 		TheLocator = locator;
 	}
 
-	
 	public static AppointmentItem importFromSOAP(Element GetAppointmentResponse) throws HarnessException {
 
-		if ( GetAppointmentResponse == null )
+		if (GetAppointmentResponse == null)
 			throw new HarnessException("Element cannot be null");
 
 		AppointmentItem appt = null;
@@ -104,32 +103,33 @@ public class AppointmentItem implements IItem {
 		try {
 
 			// Make sure we only have the GetMsgResponse part
-			Element getAppointmentResponse = ZimbraAccount.SoapClient.selectNode(GetAppointmentResponse, "//mail:GetAppointmentResponse");
-			if ( getAppointmentResponse == null )
+			Element getAppointmentResponse = ZimbraAccount.SoapClient.selectNode(GetAppointmentResponse,
+					"//mail:GetAppointmentResponse");
+			if (getAppointmentResponse == null)
 				throw new HarnessException("Element does not contain GetAppointmentResponse");
 
 			Element m = ZimbraAccount.SoapClient.selectNode(getAppointmentResponse, "//mail:appt");
-			if ( m == null )
+			if (m == null)
 				throw new HarnessException("Element does not contain an appt element");
 
 			// Create the object
 			appt = new AppointmentItem();
 
-			if (m != null ) {
+			if (m != null) {
 
 				// Appointment id
 				appt.dApptID = m.getAttribute("id");
 			}
 
 			String parentFolder = m.getAttribute("l");
-			if ( parentFolder != null ) {
+			if (parentFolder != null) {
 
 				// Parent folder
 				appt.dFolder = parentFolder;
 			}
 
 			Element sElement = ZimbraAccount.SoapClient.selectNode(m, "//mail:s");
-			if ( sElement != null ) {
+			if (sElement != null) {
 
 				// Start time
 				appt.dStartTime = new ZDate(sElement);
@@ -137,7 +137,7 @@ public class AppointmentItem implements IItem {
 			}
 
 			Element eElement = ZimbraAccount.SoapClient.selectNode(m, "//mail:e");
-			if ( eElement != null ) {
+			if (eElement != null) {
 
 				// End time
 				appt.dEndTime = new ZDate(eElement);
@@ -145,7 +145,7 @@ public class AppointmentItem implements IItem {
 			}
 
 			Element compElement = ZimbraAccount.SoapClient.selectNode(m, "//mail:comp");
-			if ( compElement != null ) {
+			if (compElement != null) {
 
 				// Subject
 				appt.dSubject = compElement.getAttribute("name");
@@ -155,22 +155,22 @@ public class AppointmentItem implements IItem {
 
 				// Display
 				appt.dDisplay = compElement.getAttribute("fb");
-				
+
 				// All day
-				if ( appt.dAllDay != null ) {
+				if (appt.dAllDay != null) {
 					appt.dAllDay = compElement.getAttribute("allDay");
 				}
 			}
 
 			Element oElement = ZimbraAccount.SoapClient.selectNode(m, "//mail:or");
-			if ( oElement != null ) {
+			if (oElement != null) {
 
 				// Organizer
 				appt.dOrganizer = oElement.getAttribute("a");
 
 			}
 			Element mpElement = ZimbraAccount.SoapClient.selectNode(m, "//mail:mp");
-			if ( mpElement != null ) {
+			if (mpElement != null) {
 
 				// Get multipart
 				appt.dMultipart = mpElement;
@@ -178,27 +178,27 @@ public class AppointmentItem implements IItem {
 			// Parse the required attendees
 			ArrayList<String> attendees = new ArrayList<String>();
 			Element[] requiredElements = ZimbraAccount.SoapClient.selectNodes(m, "//mail:at[@role='REQ']");
-			for ( Element e : requiredElements ) {
+			for (Element e : requiredElements) {
 				attendees.add(e.getAttribute("a"));
 			}
-			if ( attendees.size() > 0 ) {
+			if (attendees.size() > 0) {
 				appt.dAttendees = AppointmentItem.StringListToCommaSeparated(attendees);
 			}
 
 			// Parse the optional attendees
 			ArrayList<String> optionals = new ArrayList<String>();
 			Element[] optionalElements = ZimbraAccount.SoapClient.selectNodes(m, "//mail:at[@role='OPT']");
-			for ( Element e : optionalElements ) {
+			for (Element e : optionalElements) {
 				optionals.add(e.getAttribute("a"));
 			}
-			if ( optionals.size() > 0 ) {
+			if (optionals.size() > 0) {
 				appt.dOptionals = AppointmentItem.StringListToCommaSeparated(optionals);
 			}
 
 			if (appt.dLocation == "") {
 
 				Element equipElement = ZimbraAccount.SoapClient.selectNode(m, "//mail:at[@cutype='RES']");
-				if ( equipElement != null ) {
+				if (equipElement != null) {
 
 					// Equipment
 					appt.dEquipment = equipElement.getAttribute("a");
@@ -208,7 +208,7 @@ public class AppointmentItem implements IItem {
 			} else if (appt.dLocation != null) {
 
 				Element equipElement = ZimbraAccount.SoapClient.selectNode(m, "//mail:at[@cutype='RES'][2]");
-				if ( equipElement != null ) {
+				if (equipElement != null) {
 
 					// Equipment
 					appt.dEquipment = equipElement.getAttribute("a");
@@ -217,7 +217,7 @@ public class AppointmentItem implements IItem {
 			}
 
 			Element descElement = ZimbraAccount.SoapClient.selectNode(m, "//mail:fr");
-			if ( descElement != null ) {
+			if (descElement != null) {
 
 				// Body
 				appt.dContent = descElement.getTextTrim();
@@ -227,15 +227,17 @@ public class AppointmentItem implements IItem {
 			return (appt);
 
 		} catch (Exception e) {
-			throw new HarnessException("Could not parse GetMsgResponse: "+ GetAppointmentResponse.prettyPrint(), e);
+			throw new HarnessException("Could not parse GetMsgResponse: " + GetAppointmentResponse.prettyPrint(), e);
 		} finally {
-			if ( appt != null )	logger.info(appt.prettyPrint());
+			if (appt != null)
+				logger.info(appt.prettyPrint());
 		}
 
 	}
 
 	/**
 	 * Get an AppointmentItem using start/end +/- 31 days
+	 * 
 	 * @param account
 	 * @param query
 	 * @return
@@ -243,48 +245,43 @@ public class AppointmentItem implements IItem {
 	 */
 	public static AppointmentItem importFromSOAP(ZimbraAccount account, String query) throws HarnessException {
 		Calendar now = Calendar.getInstance();
-		ZDate date = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
+		ZDate date = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12,
+				0, 0);
 		return (importFromSOAP(account, query, date.addDays(-31), date.addDays(31)));
 	}
 
-
 	/**
 	 * Get an AppointmentItem using soap
-	 * @param account
-	 * @param query
-	 * @param start
-	 * @param end
-	 * @return
-	 * @throws HarnessException
+	 *
 	 */
-	public static AppointmentItem importFromSOAP(ZimbraAccount account, String query, ZDate start, ZDate end) throws HarnessException {
+	public static AppointmentItem importFromSOAP(ZimbraAccount account, String query, ZDate start, ZDate end)
+			throws HarnessException {
 
 		try {
-			account.soapSend(
-					"<SearchRequest xmlns='urn:zimbraMail' types='appointment' calExpandInstStart='"+ start.toMillis() +"' calExpandInstEnd='"+ end.toMillis() +"'>" +
-						"<query>"+ query +"</query>" +
-					"</SearchRequest>");
+			account.soapSend("<SearchRequest xmlns='urn:zimbraMail' types='appointment' calExpandInstStart='"
+					+ start.toMillis() + "' calExpandInstEnd='" + end.toMillis() + "'>" + "<query>" + query + "</query>"
+					+ "</SearchRequest>");
 
 			Element[] results = account.soapSelectNodes("//mail:SearchResponse/mail:appt");
 			if (results.length != 1)
-				//throw new HarnessException("Query should return 1 result, not "+ results.length);
+				// throw new HarnessException("Query should return 1 result, not "+
+				// results.length);
 				return null;
 
 			String id = account.soapSelectValue("//mail:appt", "id");
 
-			account.soapSend(
-					"<GetAppointmentRequest xmlns='urn:zimbraMail' id='"+ id +"' includeContent='1'>" +
-	                "</GetAppointmentRequest>");
+			account.soapSend("<GetAppointmentRequest xmlns='urn:zimbraMail' id='" + id + "' includeContent='1'>"
+					+ "</GetAppointmentRequest>");
 			Element getAppointmentResponse = account.soapSelectNode("//mail:GetAppointmentResponse", 1);
 
 			// Using the response, create this item
 			return (importFromSOAP(getAppointmentResponse));
 
 		} catch (Exception e) {
-			throw new HarnessException("Unable to import using SOAP query("+ query +") and account("+ account.EmailAddress +")", e);
+			throw new HarnessException(
+					"Unable to import using SOAP query(" + query + ") and account(" + account.EmailAddress + ")", e);
 		}
 	}
-
 
 	@Override
 	public void createUsingSOAP(ZimbraAccount account) throws HarnessException {
@@ -356,7 +353,7 @@ public class AppointmentItem implements IItem {
 	}
 
 	public String getSubject() {
-		if ( dSubject == null ) {
+		if (dSubject == null) {
 			return (gSubject);
 		}
 		return (dSubject);
@@ -381,7 +378,7 @@ public class AppointmentItem implements IItem {
 	public String getAttendees() {
 		return (dAttendees);
 	}
-	
+
 	public String getToAttendees() {
 		return (dToAttendees);
 	}
@@ -467,7 +464,7 @@ public class AppointmentItem implements IItem {
 	}
 
 	public boolean setIsAllDay(boolean isAllDay) {
-		if ( (dAllDay != null && dAllDay.equals("1")) || (dAllDay == null && isAllDay == true)) {
+		if ((dAllDay != null && dAllDay.equals("1")) || (dAllDay == null && isAllDay == true)) {
 			dAllDay = "1";
 			return true;
 		} else {
@@ -714,6 +711,7 @@ public class AppointmentItem implements IItem {
 	public void setGAttachmentId(Element AttachmentId) {
 		dMultipart = AttachmentId;
 	}
+
 	public Element getGMultipart() {
 		return (dMultipart);
 	}
@@ -725,136 +723,128 @@ public class AppointmentItem implements IItem {
 	public void setAttendeeName(String AttendeeName) {
 		dAttendeeName = AttendeeName;
 	}
+
 	/**
 	 * Create a single-day appointment on the server
 	 *
-	 * @param account Appointment Organizer
-	 * @param start Start time of the appointment, which will be rounded to the nearest hour
-	 * @param duration Duration of the appointment, in minutes
-	 * @param timezone Timezone of the appointment (null if default)
-	 * @param subject Subject of the appointment
-	 * @param content Content of the appointment (text)
-	 * @param location Location of the appointment (null if none)
-	 * @param attendees List of attendees for the appointment
+	 * @param account
+	 *            Appointment Organizer
+	 * @param start
+	 *            Start time of the appointment, which will be rounded to the
+	 *            nearest hour
+	 * @param duration
+	 *            Duration of the appointment, in minutes
+	 * @param timezone
+	 *            Timezone of the appointment (null if default)
+	 * @param subject
+	 *            Subject of the appointment
+	 * @param content
+	 *            Content of the appointment (text)
+	 * @param location
+	 *            Location of the appointment (null if none)
+	 * @param attendees
+	 *            List of attendees for the appointment
 	 * @return
 	 * @throws HarnessException
 	 */
-	public static AppointmentItem createAppointmentSingleDay(ZimbraAccount account, ZDate startDate, int duration, TimeZone tz, String subject, String content, String location, List<ZimbraAccount> attendees)
-	throws HarnessException {
+	public static AppointmentItem createAppointmentSingleDay(ZimbraAccount account, ZDate startDate, int duration,
+			TimeZone tz, String subject, String content, String location, List<ZimbraAccount> attendees)
+			throws HarnessException {
 
 		// If location is null, don't specify the loc attribute
-		String loc = (location == null ? "" : "loc='"+ location + "'");
+		String loc = (location == null ? "" : "loc='" + location + "'");
 
 		String timezoneString = ZTimeZone.getLocalTimeZone().getID();
 
-
 		// Convert the calendar to a ZDate
-		
-		//ZDate beginning = new ZDate(start.get(Calendar.YEAR), start.get(Calendar.MONTH) + 1, start.get(Calendar.DAY_OF_MONTH), start.get(Calendar.HOUR_OF_DAY), 0, 0);
+
+		// ZDate beginning = new ZDate(start.get(Calendar.YEAR),
+		// start.get(Calendar.MONTH) + 1, start.get(Calendar.DAY_OF_MONTH),
+		// start.get(Calendar.HOUR_OF_DAY), 0, 0);
 		ZDate ending = startDate.addMinutes(duration);
 
-		account.soapSend(
-				"<CreateAppointmentRequest xmlns='urn:zimbraMail'>"
-			+		"<m l='10'>"
-			+			"<inv>"
-			+				"<comp name='"+ subject +"' "+ loc + " draft='0' status='CONF' class='PUB' transp='O' fb='B'>"
-			+					"<s d='"+ startDate.toTimeZone(timezoneString).toYYYYMMDDTHHMMSS() +"' tz='"+ timezoneString +"'/>"
-			+					"<e d='"+ ending.toTimeZone(timezoneString).toYYYYMMDDTHHMMSS() +"' tz='"+ timezoneString +"'/>"
-			+					"<or a='" + account.EmailAddress +"'/>"
-			+				"</comp>"
-			+			"</inv>"
-			+			"<su>"+ subject + "</su>"
-			+			"<mp ct='text/plain'>"
-			+				"<content>" + content + "</content>"
-			+			"</mp>"
-			+		"</m>"
-			+	"</CreateAppointmentRequest>");
+		account.soapSend("<CreateAppointmentRequest xmlns='urn:zimbraMail'>" + "<m l='10'>" + "<inv>" + "<comp name='"
+				+ subject + "' " + loc + " draft='0' status='CONF' class='PUB' transp='O' fb='B'>" + "<s d='"
+				+ startDate.toTimeZone(timezoneString).toYYYYMMDDTHHMMSS() + "' tz='" + timezoneString + "'/>"
+				+ "<e d='" + ending.toTimeZone(timezoneString).toYYYYMMDDTHHMMSS() + "' tz='" + timezoneString + "'/>"
+				+ "<or a='" + account.EmailAddress + "'/>" + "</comp>" + "</inv>" + "<su>" + subject + "</su>"
+				+ "<mp ct='text/plain'>" + "<content>" + content + "</content>" + "</mp>" + "</m>"
+				+ "</CreateAppointmentRequest>");
 
-		AppointmentItem result = AppointmentItem.importFromSOAP(account, "subject:("+ subject +")", startDate.addDays(-7), startDate.addDays(7));
+		AppointmentItem result = AppointmentItem.importFromSOAP(account, "subject:(" + subject + ")",
+				startDate.addDays(-7), startDate.addDays(7));
 
 		return (result);
-
 
 	}
 
 	/**
 	 * Create an all-day appointment on the server
 	 *
-	 * @param account The appointment organizer
-	 * @param date The appointment start date
-	 * @param duration The appointment duration (in days)
-	 * @param subject The appointment subject
-	 * @param content The appointment text content
-	 * @param location The appointment location (null if none)
-	 * @param attendees A list of attendees (null for none)
+	 * @param account
+	 *            The appointment organizer
+	 * @param date
+	 *            The appointment start date
+	 * @param duration
+	 *            The appointment duration (in days)
+	 * @param subject
+	 *            The appointment subject
+	 * @param content
+	 *            The appointment text content
+	 * @param location
+	 *            The appointment location (null if none)
+	 * @param attendees
+	 *            A list of attendees (null for none)
 	 * @return
 	 * @throws HarnessException
 	 */
-	public static AppointmentItem createAppointmentAllDay(ZimbraAccount account, Calendar date, int duration, String subject, String content, String location, List<ZimbraAccount> attendees)
-	throws HarnessException {
+	public static AppointmentItem createAppointmentAllDay(ZimbraAccount account, Calendar date, int duration,
+			String subject, String content, String location, List<ZimbraAccount> attendees) throws HarnessException {
 
 		// If location is null, don't specify the loc attribute
-		String loc = (location == null ? "" : "loc='"+ location + "'");
+		String loc = (location == null ? "" : "loc='" + location + "'");
 
 		// Convert the calendar to a ZDate
-		ZDate start = new ZDate(date.get(Calendar.YEAR), date.get(Calendar.MONTH) + 1, date.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
-		
-		//Getting attendees for adding them in appointment request
-		if(attendees!=null) {							//This check is required as some previously written tests sends attendees as null. 
+		ZDate start = new ZDate(date.get(Calendar.YEAR), date.get(Calendar.MONTH) + 1, date.get(Calendar.DAY_OF_MONTH),
+				12, 0, 0);
+
+		// Getting attendees for adding them in appointment request
+		if (attendees != null) { // This check is required as some previously written tests sends attendees as
+									// null.
 			String at = "";
-			for(int i=0;i < attendees.size();i++) {
+			for (int i = 0; i < attendees.size(); i++) {
 				at = at + "<at role='REQ' ptst='NE' rsvp='1' a='" + attendees.get(i).EmailAddress + "'/>";
 			}
-			account.soapSend(
-					"<CreateAppointmentRequest xmlns='urn:zimbraMail'>"
-							+		"<m l='10'>"
-							+			"<inv>"
-							+				"<comp allDay='1' name='"+ subject +"' "+ loc + " draft='0' status='CONF' class='PUB' transp='O' fb='F'>"
-							+					"<s d='" + start.toYYYYMMDD() +"'/>"
-							+					"<e d='" + start.addDays(duration > 0 ? duration - 1 : 0).toYYYYMMDD() +"'/>"
-							+					"<or a='" + account.EmailAddress +"'/>"
-							+					at
-							+ 				"</comp>"
-							+			"</inv>"
-							+			"<su>"+ subject + "</su>"
-							+			"<mp ct='text/plain'>"
-							+				"<content>" + content + "</content>"
-							+			"</mp>"
-							+		"</m>"
-							+	"</CreateAppointmentRequest>");
+			account.soapSend("<CreateAppointmentRequest xmlns='urn:zimbraMail'>" + "<m l='10'>" + "<inv>"
+					+ "<comp allDay='1' name='" + subject + "' " + loc
+					+ " draft='0' status='CONF' class='PUB' transp='O' fb='F'>" + "<s d='" + start.toYYYYMMDD() + "'/>"
+					+ "<e d='" + start.addDays(duration > 0 ? duration - 1 : 0).toYYYYMMDD() + "'/>" + "<or a='"
+					+ account.EmailAddress + "'/>" + at + "</comp>" + "</inv>" + "<su>" + subject + "</su>"
+					+ "<mp ct='text/plain'>" + "<content>" + content + "</content>" + "</mp>" + "</m>"
+					+ "</CreateAppointmentRequest>");
 		} else {
-			account.soapSend(
-					"<CreateAppointmentRequest xmlns='urn:zimbraMail'>"
-							+		"<m l='10'>"
-							+			"<inv>"
-							+				"<comp allDay='1' name='"+ subject +"' "+ loc + " draft='0' status='CONF' class='PUB' transp='O' fb='F'>"
-							+					"<s d='" + start.toYYYYMMDD() +"'/>"
-							+					"<e d='" + start.addDays(duration > 0 ? duration - 1 : 0).toYYYYMMDD() +"'/>"
-							+					"<or a='" + account.EmailAddress +"'/>"
-							+ 				"</comp>"
-							+			"</inv>"
-							+			"<su>"+ subject + "</su>"
-							+			"<mp ct='text/plain'>"
-							+				"<content>" + content + "</content>"
-							+			"</mp>"
-							+		"</m>"
-							+	"</CreateAppointmentRequest>");
+			account.soapSend("<CreateAppointmentRequest xmlns='urn:zimbraMail'>" + "<m l='10'>" + "<inv>"
+					+ "<comp allDay='1' name='" + subject + "' " + loc
+					+ " draft='0' status='CONF' class='PUB' transp='O' fb='F'>" + "<s d='" + start.toYYYYMMDD() + "'/>"
+					+ "<e d='" + start.addDays(duration > 0 ? duration - 1 : 0).toYYYYMMDD() + "'/>" + "<or a='"
+					+ account.EmailAddress + "'/>" + "</comp>" + "</inv>" + "<su>" + subject + "</su>"
+					+ "<mp ct='text/plain'>" + "<content>" + content + "</content>" + "</mp>" + "</m>"
+					+ "</CreateAppointmentRequest>");
 		}
-		AppointmentItem result = AppointmentItem.importFromSOAP(account, "subject:("+ subject +")", start.addDays(-7), start.addDays(7));
+		AppointmentItem result = AppointmentItem.importFromSOAP(account, "subject:(" + subject + ")", start.addDays(-7),
+				start.addDays(7));
 
 		return (result);
 
 	}
 
-
 	private static String StringListToCommaSeparated(List<String> strings) {
 		StringBuilder sb = new StringBuilder("");
 		String delimiter = ""; // First entry does not get a comma
-		for ( String s : strings ) {
+		for (String s : strings) {
 			sb.append(delimiter).append(s);
 			delimiter = ","; // Next entry, if any, will get a comma
 		}
 		return (sb.toString());
 	}
-
 }

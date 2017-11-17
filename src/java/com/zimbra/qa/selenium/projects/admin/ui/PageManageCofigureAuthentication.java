@@ -14,9 +14,6 @@
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-/**
- *
- */
 package com.zimbra.qa.selenium.projects.admin.ui;
 
 import com.zimbra.qa.selenium.framework.ui.AbsApplication;
@@ -26,7 +23,6 @@ import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
-
 
 /**
  * @author Matt Rhoades
@@ -42,7 +38,9 @@ public class PageManageCofigureAuthentication extends AbsTab {
 		super(application);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 *
 	 * @see projects.admin.ui.AbsTab#isActive()
 	 */
 	@Override
@@ -51,7 +49,9 @@ public class PageManageCofigureAuthentication extends AbsTab {
 
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 *
 	 * @see projects.admin.ui.AbsTab#myPageName()
 	 */
 	@Override
@@ -59,7 +59,9 @@ public class PageManageCofigureAuthentication extends AbsTab {
 		return (this.getClass().getName());
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 *
 	 * @see projects.admin.ui.AbsTab#navigateTo()
 	 */
 	@Override
@@ -68,65 +70,57 @@ public class PageManageCofigureAuthentication extends AbsTab {
 	}
 
 	@Override
-	public AbsPage zListItem(Action action, String item)
-			throws HarnessException {
+	public AbsPage zListItem(Action action, String item) throws HarnessException {
 		return null;
 	}
 
 	@Override
-	public AbsPage zListItem(Action action, Button option, String item)
-			throws HarnessException {
+	public AbsPage zListItem(Action action, Button option, String item) throws HarnessException {
 		return null;
 	}
+
 	@Override
-	public AbsPage zListItem(Action action, Button option, Button subOption ,String item)
-			throws HarnessException {
+	public AbsPage zListItem(Action action, Button option, Button subOption, String item) throws HarnessException {
 		return null;
 	}
 
 	@Override
 	public AbsPage zToolbarPressButton(Button button) throws HarnessException {
-		logger.info(myPageName() + " zToolbarPressButton("+ button +")");
+		logger.info(myPageName() + " zToolbarPressButton(" + button + ")");
 
-		tracer.trace("Press the "+ button +" button");
+		tracer.trace("Press the " + button + " button");
 
-		if ( button == null )
+		if (button == null)
 			throw new HarnessException("Button cannot be null!");
 
-
-		
 		//
-		String locator = null;			// If set, this will be clicked
-		AbsPage page = null;	// If set, this page will be returned
+		String locator = null; // If set, this will be clicked
+		AbsPage page = null; // If set, this page will be returned
 
 		// Based on the button specified, take the appropriate action(s)
 		//
 
-		if ( button == Button.B_CONFIGURE_AUTHENTICATION ) {
+		if (button == Button.B_CONFIGURE_AUTHENTICATION) {
 
 			// Install vertificate link on home page
 			locator = PageMain.Locators.HomeConfigureAuthentication;
 			// Create the page
 			page = new WizardConfigureAuthentication(this);
-			
 
-		} 
-		else {
-			throw new HarnessException("no logic defined for button "+ button);
+		} else {
+			throw new HarnessException("no logic defined for button " + button);
 		}
 
-		if ( locator == null ) {
-			throw new HarnessException("locator was null for button "+ button);
+		if (locator == null) {
+			throw new HarnessException("locator was null for button " + button);
 		}
 
 		// Default behavior, process the locator by clicking on it
 		//
-		this.sClickAt(locator,"");
-
-
+		this.sClickAt(locator, "");
 
 		// If page was specified, make sure it is active
-		if ( page != null ) {
+		if (page != null) {
 			SleepUtil.sleepMedium();
 		}
 
@@ -135,16 +129,14 @@ public class PageManageCofigureAuthentication extends AbsTab {
 	}
 
 	@Override
-	public AbsPage zToolbarPressPulldown(Button pulldown, Button option)
-			throws HarnessException {
+	public AbsPage zToolbarPressPulldown(Button pulldown, Button option) throws HarnessException {
 		return null;
 	}
 
-	public boolean zVerifyHeader (String header) throws HarnessException {
+	public boolean zVerifyHeader(String header) throws HarnessException {
 		if (this.sIsElementPresent("css=span:contains('" + header + "')"))
 			return true;
 		return false;
 	}
-
 
 }

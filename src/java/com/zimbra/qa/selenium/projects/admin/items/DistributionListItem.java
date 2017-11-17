@@ -18,7 +18,6 @@ package com.zimbra.qa.selenium.projects.admin.items;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
-
 import com.zimbra.qa.selenium.framework.items.IItem;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
@@ -28,7 +27,7 @@ public class DistributionListItem implements IItem {
 
 	protected static Logger logger = LogManager.getLogger(IItem.class);
 
-	protected static String Id=null;
+	protected static String Id = null;
 
 	protected String distributionListLocalName; // Email Address is LocalName@DomainName
 	protected String distributionListDomainName;
@@ -42,11 +41,11 @@ public class DistributionListItem implements IItem {
 		distributionListLocalName = "a_dl" + ConfigProperties.getUniqueString();
 		distributionListDomainName = ConfigProperties.getStringProperty("testdomain");
 		isDynamicDL = false;
-		isRightManagement=true;
-		memberURL="ldap:///??sub?";
-		//Id = null;
+		isRightManagement = true;
+		memberURL = "ldap:///??sub?";
+		// Id = null;
 	}
-	
+
 	public void createUsingSOAP(ZimbraAccount account) throws HarnessException {
 	}
 
@@ -61,10 +60,11 @@ public class DistributionListItem implements IItem {
 	public String getEmailAddress() {
 		return (distributionListLocalName + "@" + distributionListDomainName);
 	}
-	
+
 	public String prettyPrint() {
 		return null;
 	}
+
 	public void setLocalName(String name) {
 		distributionListLocalName = name;
 	}
@@ -80,27 +80,27 @@ public class DistributionListItem implements IItem {
 	public void setDynamicDL(boolean isDynamic) {
 		isDynamicDL = isDynamic;
 	}
-	
+
 	public boolean getRightManagement() {
 		return (isRightManagement);
-		}
-	
+	}
+
 	public void setRightManagement(boolean isRightMgmt) {
 		isRightManagement = isRightMgmt;
 	}
-	
+
 	public boolean getDynamicDL() {
 		return (isDynamicDL);
-		}
-	
+	}
+
 	public String getDomainName() {
 		return (distributionListDomainName);
 	}
-	
+
 	public String getMemberURL() {
 		return (memberURL);
-		}
-	
+	}
+
 	public void setMemberURL(String memURL) {
 		memberURL = memURL;
 	}

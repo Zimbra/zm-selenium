@@ -17,9 +17,7 @@
 package com.zimbra.qa.selenium.projects.admin.tests.resources;
 
 import java.util.List;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
@@ -30,16 +28,11 @@ import com.zimbra.qa.selenium.projects.admin.items.ResourceItem;
 import com.zimbra.qa.selenium.projects.admin.ui.PageMain;
 
 public class GetResource extends AdminCommonTest {
-	
 
 	public GetResource() {
 		logger.info("New "+ GetResource.class.getCanonicalName());
-
-		// All tests start at the "Resources" page
 		super.startingPage = app.zPageManageResources;
-
 	}
-
 
 
 	/**
@@ -52,13 +45,15 @@ public class GetResource extends AdminCommonTest {
 	 * 5. Verify resource is deleted using SOAP.
 	 * @throws HarnessException
 	 */
+
 	@Test (description = "Verify get resource operation -- Manage resource View -- Location",
 			groups = { "smoke", "L1" })
+
 	public void GetResource_01() throws HarnessException {
-	
+
 		// Create a new resource in the Admin Console using SOAP
 		ResourceItem resource = new ResourceItem();
-		
+
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 						"<CreateCalendarResourceRequest xmlns='urn:zimbraAdmin'>"
 				 		+ "<name>" + resource.getEmailAddress() + "</name>"
@@ -66,14 +61,14 @@ public class GetResource extends AdminCommonTest {
 				 		+ "<a n=\"zimbraCalResType\">" + "Location" + "</a>"
 				 		+ "<password>test123</password>"
 				 		+ "</CreateCalendarResourceRequest>");
-		
+
 		// Refresh list to populate account.
 		app.zPageManageResources.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
-		
+
 		// Get the list of displayed accounts
 		List<AccountItem> accounts = app.zPageManageResources.zListGetAccounts();
 		ZAssert.assertNotNull(accounts, "Verify the resource list is returned");
-		
+
 		AccountItem found = null;
 		for (AccountItem a : accounts) {
 			logger.info("Looking for resource "+ resource.getEmailAddress() + " found: "+ a.getGEmailAddress());
@@ -83,9 +78,7 @@ public class GetResource extends AdminCommonTest {
 			}
 		}
 		ZAssert.assertNotNull(found, "Verify the account is found");
-	
 	}
-
 
 
 	/**
@@ -98,13 +91,15 @@ public class GetResource extends AdminCommonTest {
 	 * 5. Verify resource is deleted using SOAP.
 	 * @throws HarnessException
 	 */
+
 	@Test (description = "Verify get resource operation -- Manage resource View -- Equipment",
 			groups = { "smoke", "L1" })
+
 	public void GetResource_02() throws HarnessException {
-	
+
 		// Create a new resource in the Admin Console using SOAP
 		ResourceItem resource = new ResourceItem();
-		
+
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 						"<CreateCalendarResourceRequest xmlns='urn:zimbraAdmin'>"
 				 		+ "<name>" + resource.getEmailAddress() + "</name>"
@@ -112,14 +107,14 @@ public class GetResource extends AdminCommonTest {
 				 		+ "<a n=\"zimbraCalResType\">" + "Equipment" + "</a>"
 				 		+ "<password>test123</password>"
 				 		+ "</CreateCalendarResourceRequest>");
-		
+
 		// Refresh list to populate account.
 		app.zPageManageResources.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
-	
+
 		// Get the list of displayed accounts
 		List<AccountItem> accounts = app.zPageManageResources.zListGetAccounts();
 		ZAssert.assertNotNull(accounts, "Verify the resource list is returned");
-		
+
 		AccountItem found = null;
 		for (AccountItem a : accounts) {
 			logger.info("Looking for resource "+ resource.getEmailAddress() + " found: "+ a.getGEmailAddress());
@@ -129,8 +124,8 @@ public class GetResource extends AdminCommonTest {
 			}
 		}
 		ZAssert.assertNotNull(found, "Verify the account is found");
-	
 	}
+
 
 	/**
 	 * Testcase : Verify created resource is displayed in UI.
@@ -139,13 +134,15 @@ public class GetResource extends AdminCommonTest {
 	 * 2. Verify resource is present in the list.
 	 * @throws HarnessException
 	 */
+
 	@Test (description = "Verify created resource is present in the resource list view",
 			groups = { "functional", "L2" })
+
 	public void GetResource_03() throws HarnessException {
 
 		// Create a new resource in the Admin Console using SOAP
 		ResourceItem resource = new ResourceItem();
-		
+
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 						"<CreateCalendarResourceRequest xmlns='urn:zimbraAdmin'>"
 				 		+ "<name>" + resource.getEmailAddress() + "</name>"
@@ -153,17 +150,17 @@ public class GetResource extends AdminCommonTest {
 				 		+ "<a n=\"zimbraCalResType\">" + "Location" + "</a>"
 				 		+ "<password>test123</password>"
 				 		+ "</CreateCalendarResourceRequest>");
-		
+
 		// Enter the search string to find the account
 		app.zPageSearchResults.zAddSearchQuery(resource.getEmailAddress());
-		
+
 		// Click search
 		app.zPageSearchResults.zToolbarPressButton(Button.B_SEARCH);
-		
+
 		// Get the list of displayed accounts
 		List<AccountItem> accounts = app.zPageSearchResults.zListGetAccounts();
 		ZAssert.assertNotNull(accounts, "Verify the resource list is returned");
-		
+
 		AccountItem found = null;
 		for (AccountItem a : accounts) {
 			logger.info("Looking for account "+ resource.getEmailAddress() + " found: "+ a.getGEmailAddress());
@@ -173,9 +170,9 @@ public class GetResource extends AdminCommonTest {
 			}
 		}
 		ZAssert.assertNotNull(found, "Verify the account is found");
-
 	}
-	
+
+
 	/**
 	 * Testcase : Verify created resource is displayed in UI.
 	 * Steps :
@@ -183,13 +180,15 @@ public class GetResource extends AdminCommonTest {
 	 * 2. Verify resource is present in the list.
 	 * @throws HarnessException
 	 */
+
 	@Test (description = "Verify created resource is present in the resource list view",
 			groups = { "functional", "L2" })
+
 	public void GetResource_04() throws HarnessException {
 
 		// Create a new resource in the Admin Console using SOAP
 		ResourceItem resource = new ResourceItem();
-		
+
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 						"<CreateCalendarResourceRequest xmlns='urn:zimbraAdmin'>"
 				 		+ "<name>" + resource.getEmailAddress() + "</name>"
@@ -197,17 +196,17 @@ public class GetResource extends AdminCommonTest {
 				 		+ "<a n=\"zimbraCalResType\">" + "Equipment" + "</a>"
 				 		+ "<password>test123</password>"
 				 		+ "</CreateCalendarResourceRequest>");
-		
+
 		// Enter the search string to find the account
 		app.zPageSearchResults.zAddSearchQuery(resource.getEmailAddress());
-		
+
 		// Click search
 		app.zPageSearchResults.zToolbarPressButton(Button.B_SEARCH);
-		
+
 		// Get the list of displayed accounts
 		List<AccountItem> accounts = app.zPageSearchResults.zListGetAccounts();
 		ZAssert.assertNotNull(accounts, "Verify the resource list is returned");
-		
+
 		AccountItem found = null;
 		for (AccountItem a : accounts) {
 			logger.info("Looking for account "+ resource.getEmailAddress() + " found: "+ a.getGEmailAddress());
@@ -217,7 +216,5 @@ public class GetResource extends AdminCommonTest {
 			}
 		}
 		ZAssert.assertNotNull(found, "Verify the account is found");
-
 	}
-
 }

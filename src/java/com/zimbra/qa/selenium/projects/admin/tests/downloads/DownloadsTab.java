@@ -33,7 +33,7 @@ public class DownloadsTab extends AdminCommonTest {
 		"//a[contains(text(),'Legacy PST Import Wizard')]",
 		//"//a[contains(text(),'User Instructions')]",
 	};
-	
+
 	public static String[] networkDownloadLinkLocators = {
 		"//a[contains(text(),'Zimbra Connector for Outlook MSI Customizer')]",
 		"//a[contains(text(),'Zimbra Connector for Outlook Branding MSI')]",

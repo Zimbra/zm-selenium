@@ -38,7 +38,7 @@ public class ConfigProperties {
 	private File PropertiesConfigurationFilename = null;
 	private PropertiesConfiguration configProp;
 
-	public static void setStringProperty(String key,String value) {
+	public static void setStringProperty(String key, String value) {
 		ConfigProperties.getInstance().getConfigProp().setProperty(key, value);
 	}
 
@@ -56,12 +56,13 @@ public class ConfigProperties {
 
 	public static int getIntProperty(String key, int defaultValue) {
 		String value = ConfigProperties.getInstance().getConfigProp().getString(key, null);
-		if ( value == null )
+		if (value == null)
 			return (defaultValue);
 		return (Integer.parseInt(value));
 	}
 
 	private static int counter = 0;
+
 	public static String getUniqueString() {
 		return ("" + System.currentTimeMillis() + (++counter));
 	}
@@ -75,7 +76,7 @@ public class ConfigProperties {
 	}
 
 	public static PropertiesConfiguration setConfigProperties(String filename) {
-		logger.info("setConfigProperties using: "+ filename);
+		logger.info("setConfigProperties using: " + filename);
 		ConfigProperties.getInstance().PropertiesConfigurationFilename = new File(filename);
 		ConfigProperties.getInstance().init();
 		return (ConfigProperties.getInstance().getConfigProp());
@@ -88,7 +89,7 @@ public class ConfigProperties {
 	}
 
 	public static File setBaseDirectory(String directory) {
-		logger.info("setWorkingDirectory using: "+ directory);
+		logger.info("setWorkingDirectory using: " + directory);
 		ConfigProperties.getInstance().BaseDirectory = new File(directory);
 		return (ConfigProperties.getInstance().BaseDirectory);
 	}
@@ -98,9 +99,9 @@ public class ConfigProperties {
 	}
 
 	private static ConfigProperties getInstance() {
-		if ( instance == null ) {
-			synchronized(ConfigProperties.class) {
-				if ( instance == null ) {
+		if (instance == null) {
+			synchronized (ConfigProperties.class) {
+				if (instance == null) {
 					instance = new ConfigProperties();
 					instance.init();
 				}
@@ -116,12 +117,12 @@ public class ConfigProperties {
 	private void init() {
 
 		// Load the config.properties values
-		if ( PropertiesConfigurationFilename == null ) {
+		if (PropertiesConfigurationFilename == null) {
 			logger.info("config.properties is default");
 			configProp = createDefaultProperties();
 		} else {
 			try {
-				logger.info("config.properties is "+ PropertiesConfigurationFilename.getAbsolutePath());
+				logger.info("config.properties is " + PropertiesConfigurationFilename.getAbsolutePath());
 				configProp = new PropertiesConfiguration();
 				configProp.load(PropertiesConfigurationFilename);
 			} catch (ConfigurationException e) {
@@ -150,15 +151,13 @@ public class ConfigProperties {
 		defaultProp.setProperty("intl", "us");
 		defaultProp.setProperty("testdomain", "testdomain.com");
 		defaultProp.setProperty("multiWindow", "true");
-		defaultProp.setProperty("objectDataFile","projects/zcs/data/objectdata.xml");
-		defaultProp.setProperty("testDataFile",	"projects/zcs/data/testdata.xml");
+		defaultProp.setProperty("objectDataFile", "projects/zcs/data/objectdata.xml");
+		defaultProp.setProperty("testDataFile", "projects/zcs/data/testdata.xml");
 		defaultProp.setProperty("serverMachineName", "localhost");
 		defaultProp.setProperty("serverport", "4444");
 		defaultProp.setProperty("mode", "http");
 		defaultProp.setProperty("server", "zqa-062.eng.zimbra.com");
 		defaultProp.setProperty("testOutputDirectory", "test-output");
-		//defaultProp.setProperty("adminName", "admin");
-		//defaultProp.setProperty("adminPwd", "test123");
 		defaultProp.setProperty("very_small_wait", "1000");
 		defaultProp.setProperty("small_wait", "1000");
 		defaultProp.setProperty("medium_wait", "2000");
@@ -180,9 +179,11 @@ public class ConfigProperties {
 	}
 
 	private static AppType appType = AppType.AJAX;
+
 	public static void setAppType(AppType type) {
 		appType = type;
 	}
+
 	public static AppType getAppType() {
 		return (appType);
 	}
@@ -202,11 +203,12 @@ public class ConfigProperties {
 	public static String getCalculatedBrowser() {
 		String browser = getStringProperty(CalculatedBrowser);
 
-		if ( browser != null ) {
+		if (browser != null) {
 			return (browser);
 		}
 
-		browser = ConfigProperties.getStringProperty(ConfigProperties.getLocalHost() + ".browser",	ConfigProperties.getStringProperty("browser"));
+		browser = ConfigProperties.getStringProperty(ConfigProperties.getLocalHost() + ".browser",
+				ConfigProperties.getStringProperty("browser"));
 
 		if (browser.charAt(0) == '*') {
 			browser = browser.substring(1);
@@ -214,7 +216,7 @@ public class ConfigProperties {
 				String str = browser.split(" ")[0];
 				int i;
 				if ((i = browser.lastIndexOf("\\")) > 0) {
-					str += "_" + browser.substring(i+1);
+					str += "_" + browser.substring(i + 1);
 				}
 				browser = str;
 			}
@@ -223,6 +225,7 @@ public class ConfigProperties {
 		ConfigProperties.setStringProperty(CalculatedBrowser, browser);
 		return (browser);
 	}
+
 	public static String getLogoutURL() {
 		ZimbraURI uri = new ZimbraURI(ZimbraURI.getBaseURI());
 		uri.addQuery("loginOp", "logout");
@@ -248,7 +251,8 @@ public class ConfigProperties {
 			Date date = new Date();
 			SimpleDateFormat dateTimeFormat = new SimpleDateFormat("hh.mm");
 
-			ExecuteHarnessMain.zimbraVersion = zimbraVersion.replace("Release ", "").split(" ")[0] + "_" + buildType + "-" + dateTimeFormat.format(date);
+			ExecuteHarnessMain.zimbraVersion = zimbraVersion.replace("Release ", "").split(" ")[0] + "_" + buildType
+					+ "-" + dateTimeFormat.format(date);
 		}
 		return ExecuteHarnessMain.zimbraVersion;
 	}
@@ -256,11 +260,11 @@ public class ConfigProperties {
 	public static String zimbraGetReleaseString() throws HarnessException {
 		ZimbraAdminAccount.GlobalAdmin().soapSend("<GetVersionInfoRequest xmlns='urn:zimbraAdmin'/>");
 		String release = ZimbraAdminAccount.GlobalAdmin().soapSelectValue("//admin:info", "release");
-		if ( release == null )
-			throw new HarnessException("Unable to determine version from GetVersionInfoResponse "+ ZimbraAdminAccount.GlobalAdmin().soapLastResponse());
+		if (release == null)
+			throw new HarnessException("Unable to determine version from GetVersionInfoResponse "
+					+ ZimbraAdminAccount.GlobalAdmin().soapLastResponse());
 		return (release);
 	}
-
 
 	public static void main(String[] args) {
 		System.setProperty("log4j.configuration", "file:///C:/log4j.properties");
@@ -273,5 +277,4 @@ public class ConfigProperties {
 		System.out.println(zmMsg.getLocale());
 		logger.debug(zmMsg.getLocale());
 	}
-
 }

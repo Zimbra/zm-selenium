@@ -14,9 +14,6 @@
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-/**
- *
- */
 package com.zimbra.qa.selenium.projects.admin.ui;
 
 import com.zimbra.qa.selenium.framework.ui.AbsApplication;
@@ -26,7 +23,6 @@ import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 
-
 /**
  * @author Matt Rhoades
  *
@@ -34,18 +30,20 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 public class PageManageServerStatus extends AbsTab {
 
 	public static class Locators {
-		public static final String MONITOR_ICON="css=div.ImgMonitor";
-		public static final String MAIL_QUEUES="css=td:contains('Mail Queues')";
-		public static final String HOME="Home";
-		public static final String MONITOR="Monitor";
-		public static final String SERVER_STATUS="Server Status";
+		public static final String MONITOR_ICON = "css=div.ImgMonitor";
+		public static final String MAIL_QUEUES = "css=td:contains('Mail Queues')";
+		public static final String HOME = "Home";
+		public static final String MONITOR = "Monitor";
+		public static final String SERVER_STATUS = "Server Status";
 	}
 
 	public PageManageServerStatus(AbsApplication application) {
 		super(application);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 *
 	 * @see projects.admin.ui.AbsTab#isActive()
 	 */
 	@Override
@@ -54,25 +52,25 @@ public class PageManageServerStatus extends AbsTab {
 
 		// Look for the Refresh Button
 		boolean present = sIsElementPresent(Locators.MAIL_QUEUES);
-		if ( !present ) {
-			logger.debug("isActive() present = "+ present);
+		if (!present) {
+			logger.debug("isActive() present = " + present);
 			return (false);
 		}
-
 
 		// Look for the Refresh Button.
 		boolean visible = zIsVisiblePerPosition(Locators.MAIL_QUEUES, 0, 0);
-		if ( !visible ) {
-			logger.debug("isActive() visible = "+ visible);
+		if (!visible) {
+			logger.debug("isActive() visible = " + visible);
 			return (false);
 		}
 
-		logger.debug("isActive() = "+ true);
+		logger.debug("isActive() = " + true);
 		return (true);
 	}
 
-
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 *
 	 * @see projects.admin.ui.AbsTab#myPageName()
 	 */
 	@Override
@@ -80,41 +78,40 @@ public class PageManageServerStatus extends AbsTab {
 		return (this.getClass().getName());
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 *
 	 * @see projects.admin.ui.AbsTab#navigateTo()
 	 */
 	@Override
 	public void zNavigateTo() throws HarnessException {
-		if ( zIsActive() ) {
-			
+		if (zIsActive()) {
+
 			return;
 		}
 
 		// Click on Addresses -> Accounts
-		sClickAt(Locators.MONITOR_ICON,"");
+		sClickAt(Locators.MONITOR_ICON, "");
 		zWaitForWorkInProgressDialogInVisible();
-		sIsElementPresent("css=td:contains('"+Locators.SERVER_STATUS+"')");
-		sClickAt("css=td:contains('"+Locators.SERVER_STATUS+"')", "");
+		sIsElementPresent("css=td:contains('" + Locators.SERVER_STATUS + "')");
+		sClickAt("css=td:contains('" + Locators.SERVER_STATUS + "')", "");
 		zWaitForWorkInProgressDialogInVisible();
 		zWaitForActive();
 
 	}
 
 	@Override
-	public AbsPage zListItem(Action action, String item)
-			throws HarnessException {
+	public AbsPage zListItem(Action action, String item) throws HarnessException {
 		return null;
 	}
 
 	@Override
-	public AbsPage zListItem(Action action, Button option, String item)
-			throws HarnessException {
+	public AbsPage zListItem(Action action, Button option, String item) throws HarnessException {
 		return null;
 	}
 
 	@Override
-	public AbsPage zListItem(Action action, Button option, Button subOption ,String item)
-			throws HarnessException {
+	public AbsPage zListItem(Action action, Button option, Button subOption, String item) throws HarnessException {
 		return null;
 	}
 
@@ -124,12 +121,11 @@ public class PageManageServerStatus extends AbsTab {
 	}
 
 	@Override
-	public AbsPage zToolbarPressPulldown(Button pulldown, Button option)
-			throws HarnessException {
+	public AbsPage zToolbarPressPulldown(Button pulldown, Button option) throws HarnessException {
 		return null;
 	}
 
-	public boolean zVerifyHeader (String header) throws HarnessException {
+	public boolean zVerifyHeader(String header) throws HarnessException {
 		if (this.sIsElementPresent("css=span:contains('" + header + "')"))
 			return true;
 		return false;

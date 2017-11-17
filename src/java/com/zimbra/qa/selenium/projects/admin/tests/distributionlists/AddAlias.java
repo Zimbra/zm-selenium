@@ -33,12 +33,12 @@ public class AddAlias extends AdminCommonTest {
 
 	public AddAlias() {
 		logger.info("New "+ AddAlias.class.getCanonicalName());
-		// All tests start at the "Distribution List" page
 		super.startingPage = app.zPageManageDistributionList;
 	}
 
+
 	@Test (description = "Edit DL - Add Alias",
-	groups = { "smoke", "L1" })
+			groups = { "smoke", "L1" })
 
 	public void AddAlias_01() throws HarnessException {
 
@@ -50,7 +50,7 @@ public class AddAlias extends AdminCommonTest {
 				"<CreateDistributionListRequest xmlns='urn:zimbraAdmin'>"
 						+			"<name>" + dlEmailAddress + "</name>"
 						+		"</CreateDistributionListRequest>");
-		
+
 		String hostname = ConfigProperties.getStringProperty("server.host");
 		String aliasLocalName = "alias" + ConfigProperties.getUniqueString();
 		String aliasDomainName = ConfigProperties.getStringProperty("testdomain");
@@ -83,10 +83,8 @@ public class AddAlias extends AdminCommonTest {
 						"<dl by='name'>"+dlEmailAddress+"</dl>"+
 				"</GetDistributionListRequest>");
 
-		Element email = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetDistributionListResponse/admin:dl/admin:a[@n='mail'][2]", 1);		
+		Element email = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetDistributionListResponse/admin:dl/admin:a[@n='mail'][2]", 1);
 		ZAssert.assertNotNull(email, "Verify the distribution list is edited successfully");
 		ZAssert.assertEquals(email.getText(), aliasEmail, "Verify the alias is associated with the correct account");
-	
-		
 	}
 }

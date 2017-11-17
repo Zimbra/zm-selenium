@@ -28,43 +28,42 @@ import com.zimbra.qa.selenium.projects.admin.items.DomainItem;
 import com.zimbra.qa.selenium.projects.admin.ui.PageMain;
 
 public class ViewAccounts extends AdminCommonTest {
+
 	public ViewAccounts() {
 		logger.info("New "+ ViewAccounts.class.getCanonicalName());
-
-		// All tests start at the "Accounts" page
 		super.startingPage = app.zPageManageDomains;
-
 	}
+
 
 	@Test (description = "Verify edit domain operation --  View Accounts",
 			groups = { "smoke", "L1" })
-			public void ViewAccounts_01() throws HarnessException {
-	
+
+	public void ViewAccounts_01() throws HarnessException {
+
 		// Create a new domain in the Admin Console using SOAP
 		DomainItem domain = new DomainItem();
 		String domainName=domain.getName();
-	
+
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<CreateDomainRequest xmlns='urn:zimbraAdmin'>"
 				+			"<name>" + domainName + "</name>"
 				+		"</CreateDomainRequest>");
-	
+
 		// Create admin account
 		String adminaccount = "admin"+ ConfigProperties.getUniqueString() +"@"+domainName;
 		ZimbraAdminAccount account = new ZimbraAdminAccount(adminaccount);
 		account.provision();
-	
+
 		// Refresh the domain list
 		app.zPageManageDomains.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
-	
+
 		// Click on Domain
 		app.zPageManageDomains.zListItem(Action.A_LEFTCLICK, domain.getName());
-		
+
 		// Click on View accounts
 		app.zPageManageDomains.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_VIEW_ACCOUNTS);
-			
+
 		// Verify domain account list is displyed on UI
 		ZAssert.assertTrue(app.zPageManageDomains.zVerifySearchResult(adminaccount), "Verify domain account list");
 	}
-
 }

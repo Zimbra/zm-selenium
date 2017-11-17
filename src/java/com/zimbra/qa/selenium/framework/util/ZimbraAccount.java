@@ -95,8 +95,8 @@ public class ZimbraAccount {
 	}
 
 	/*
-	 * Create an account with the email address <name>@<domain> The password is
-	 * set to config property "adminPwd"
+	 * Create an account with the email address <name>@<domain> The password is set
+	 * to config property "adminPwd"
 	 */
 	public ZimbraAccount(String email, String password) {
 
@@ -121,14 +121,15 @@ public class ZimbraAccount {
 		String ZimbraMailHost;
 
 		try {
-			ZimbraAdminAccount.GlobalAdmin().soapSend("<GetAccountRequest xmlns='urn:zimbraAdmin'>" + "<account by='name'>"
-					+ this.EmailAddress + "</account>" + "</GetAccountRequest>");
+			ZimbraAdminAccount.GlobalAdmin().soapSend("<GetAccountRequest xmlns='urn:zimbraAdmin'>"
+					+ "<account by='name'>" + this.EmailAddress + "</account>" + "</GetAccountRequest>");
 		} catch (HarnessException e) {
 			e.printStackTrace();
 		}
 
 		ZimbraAdminAccount.GlobalAdmin().soapSelectNodes("//admin:GetAccountResponse");
-		ZimbraMailHost = ZimbraAdminAccount.GlobalAdmin().soapSelectValue("//admin:account/admin:a[@n='zimbraMailHost']", null);
+		ZimbraMailHost = ZimbraAdminAccount.GlobalAdmin()
+				.soapSelectValue("//admin:account/admin:a[@n='zimbraMailHost']", null);
 		logger.info("Zimbra mail host for account " + this.EmailAddress + ": " + ZimbraMailHost);
 
 		return (ZimbraMailHost);
@@ -152,10 +153,12 @@ public class ZimbraAccount {
 		}
 		return (_AccountZCS);
 	}
+
 	public static synchronized void ResetAccountZCS() {
 		logger.warn("AccountZCS is being reset");
 		_AccountZCS = null;
 	}
+
 	private static ZimbraAccount _AccountZCS = null;
 
 	// Test accounts
@@ -330,20 +333,22 @@ public class ZimbraAccount {
 	@SuppressWarnings("serial")
 	private static final Map<String, String> accountAttrs = new HashMap<String, String>() {
 		{
-			if ( ConfigProperties.getStringProperty("server.host").startsWith("pnq-") ) {
+			if (ConfigProperties.getStringProperty("server.host").startsWith("pnq-")) {
 				put("zimbraPrefTimeZoneId", "Asia/Kolkata");
 
 			} else {
 				put("zimbraPrefTimeZoneId", "America/Chicago");
 			}
 
-			if (Calendar.getInstance().get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY ||
-				Calendar.getInstance().get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) {
+			if (Calendar.getInstance().get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY
+					|| Calendar.getInstance().get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) {
 				put("zimbraPrefCalendarInitialView", "week");
 			}
 
-			/* The following settings are specific to the test harness and deviate from the default settings to work around
-			 * Test harness issues/limitations */
+			/*
+			 * The following settings are specific to the test harness and deviate from the
+			 * default settings to work around Test harness issues/limitations
+			 */
 			put("zimbraPrefLocale", ConfigProperties.getStringProperty("locale"));
 			put("zimbraPrefClientType", "advanced");
 			put("zimbraFeatureTouchClientEnabled", "TRUE");
@@ -358,8 +363,8 @@ public class ZimbraAccount {
 	};
 
 	/**
-	 * Determines if the account already exists If yes, then the account
-	 * settings are reset based on the GetAccountResponse
+	 * Determines if the account already exists If yes, then the account settings
+	 * are reset based on the GetAccountResponse
 	 *
 	 * @throws HarnessException
 	 */
@@ -476,8 +481,7 @@ public class ZimbraAccount {
 	}
 
 	/**
-	 * Authenticates the account (using SOAP client AuthRequest) Sets the
-	 * authToken
+	 * Authenticates the account (using SOAP client AuthRequest) Sets the authToken
 	 */
 	public ZimbraAccount authenticate() {
 		try {
@@ -594,8 +598,8 @@ public class ZimbraAccount {
 	/**
 	 * Use ModifyAccountRequest to modify this account per specified preferences
 	 *
-	 * These preferences are the *account* preferences set by the administrator,
-	 * as compared to the *user* preferences set by the end-user.
+	 * These preferences are the *account* preferences set by the administrator, as
+	 * compared to the *user* preferences set by the end-user.
 	 *
 	 *
 	 * @param preferences
@@ -631,8 +635,8 @@ public class ZimbraAccount {
 	}
 
 	/**
-	 * Modify user preferences using ModifyPrefsRequest with the default SERVER
-	 * host destination type
+	 * Modify user preferences using ModifyPrefsRequest with the default SERVER host
+	 * destination type
 	 *
 	 * @param preferences
 	 *            Preferences to be modified through SOAP
@@ -774,8 +778,7 @@ public class ZimbraAccount {
 	 *
 	 * @param filename
 	 *            The full path to the upload file
-	 * @return the attachment id, to be used with SaveDocumentRequest, for
-	 *         example
+	 * @return the attachment id, to be used with SaveDocumentRequest, for example
 	 * @throws HarnessException
 	 */
 	public String uploadFile(String filename) throws HarnessException {
@@ -827,10 +830,10 @@ public class ZimbraAccount {
 	}
 
 	/**
-	 * Match an xpath or regex from the last SOAP response if xpath == null,
-	 * then use the root element value is element text. if attr != null, value is attr value if regex ==
-	 * null, return true if xpath matches. If regex != null, a regex to match
-	 * against the value
+	 * Match an xpath or regex from the last SOAP response if xpath == null, then
+	 * use the root element value is element text. if attr != null, value is attr
+	 * value if regex == null, return true if xpath matches. If regex != null, a
+	 * regex to match against the value
 	 *
 	 * @param xpath
 	 * @param attr
@@ -874,8 +877,7 @@ public class ZimbraAccount {
 	 *
 	 * @param xpath
 	 * @param attr
-	 * @return if attr == null, the element text. if attr != null, the attr
-	 *         text.
+	 * @return if attr == null, the element text. if attr != null, the attr text.
 	 */
 	public String soapSelectValue(String xpath, String attr) {
 		return (soapClient.selectValue(xpath, attr, 1));
@@ -1038,8 +1040,8 @@ public class ZimbraAccount {
 		}
 
 		/**
-		 * Send the specified Zimbra SOAP request to the specified host with the
-		 * default SOAP context
+		 * Send the specified Zimbra SOAP request to the specified host with the default
+		 * SOAP context
 		 *
 		 * @param request
 		 *            Request to be sent over SOAP
@@ -1058,8 +1060,8 @@ public class ZimbraAccount {
 		}
 
 		/**
-		 * Send a Zimbra SOAP context/request to the host with the default
-		 * SERVER type destination host
+		 * Send a Zimbra SOAP context/request to the host with the default SERVER type
+		 * destination host
 		 *
 		 * @param context
 		 * @param request
@@ -1095,9 +1097,8 @@ public class ZimbraAccount {
 		}
 
 		/**
-		 * For certain SOAP requests, such as SendMsgRequest, a message may wind
-		 * up in the postfix queue. Check that the queue is empty before
-		 * proceeding
+		 * For certain SOAP requests, such as SendMsgRequest, a message may wind up in
+		 * the postfix queue. Check that the queue is empty before proceeding
 		 *
 		 * @throws HarnessException
 		 */
@@ -1140,8 +1141,8 @@ public class ZimbraAccount {
 		}
 
 		/**
-		 * Return an array of elements from the last received SOAP response that
-		 * match the xpath
+		 * Return an array of elements from the last received SOAP response that match
+		 * the xpath
 		 *
 		 * @param xpath
 		 * @return
@@ -1151,8 +1152,7 @@ public class ZimbraAccount {
 		}
 
 		/**
-		 * Return the first matching element from the context that match the
-		 * xpath
+		 * Return the first matching element from the context that match the xpath
 		 *
 		 * @param context
 		 * @param xpath
@@ -1171,8 +1171,7 @@ public class ZimbraAccount {
 		 *
 		 * @param context
 		 * @param xpath
-		 * @return An Array of elements that match the xpath (empty array if
-		 *         none)
+		 * @return An Array of elements that match the xpath (empty array if none)
 		 * @throws HarnessException
 		 * @throws HarnessException
 		 */
@@ -1202,8 +1201,8 @@ public class ZimbraAccount {
 		}
 
 		/**
-		 * Return the element from the last received SOAP response that matches
-		 * the xpath
+		 * Return the element from the last received SOAP response that matches the
+		 * xpath
 		 *
 		 * @param xpath
 		 * @param index
@@ -1365,16 +1364,15 @@ public class ZimbraAccount {
 			return (null);
 		}
 		/*
-		 * protected Element[] getElementsFromPath(Element context, String path)
-		 * { org.dom4j.Element d4context = context.toXML(); org.dom4j.XPath
-		 * xpath = d4context.createXPath(path);
-		 * xpath.setNamespaceURIs(getURIs()); org.dom4j.Node node; List
-		 * dom4jElements = xpath.selectNodes(d4context);
+		 * protected Element[] getElementsFromPath(Element context, String path) {
+		 * org.dom4j.Element d4context = context.toXML(); org.dom4j.XPath xpath =
+		 * d4context.createXPath(path); xpath.setNamespaceURIs(getURIs());
+		 * org.dom4j.Node node; List dom4jElements = xpath.selectNodes(d4context);
 		 *
-		 * List<Element> zimbraElements = new ArrayList<Element>(); Iterator
-		 * iter = dom4jElements.iterator(); while (iter.hasNext()) { node =
-		 * (org.dom4j.Node)iter.next(); if (node instanceof org.dom4j.Element) {
-		 * Element zimbraElement = Element.convertDOM((org.dom4j.Element) node);
+		 * List<Element> zimbraElements = new ArrayList<Element>(); Iterator iter =
+		 * dom4jElements.iterator(); while (iter.hasNext()) { node =
+		 * (org.dom4j.Node)iter.next(); if (node instanceof org.dom4j.Element) { Element
+		 * zimbraElement = Element.convertDOM((org.dom4j.Element) node);
 		 * zimbraElements.add(zimbraElement); } }
 		 *
 		 * Element[] retVal = new Element[zimbraElements.size()];
@@ -1434,20 +1432,19 @@ public class ZimbraAccount {
 		}
 
 		/**
-		 * Create a new SoapHttpTransport object for the specified URI.
-		 * Supported schemes are http and https. The connection is not made
-		 * until invoke or connect is called.
+		 * Create a new SoapHttpTransport object for the specified URI. Supported
+		 * schemes are http and https. The connection is not made until invoke or
+		 * connect is called.
 		 *
-		 * Multiple threads using this transport must do their own
-		 * synchronization.
+		 * Multiple threads using this transport must do their own synchronization.
 		 */
 		public ProxySoapHttpTransport(String uri) {
 			this(uri, null, 0);
 		}
 
 		/**
-		 * Create a new SoapHttpTransport object for the specified URI, with
-		 * specific proxy information.
+		 * Create a new SoapHttpTransport object for the specified URI, with specific
+		 * proxy information.
 		 *
 		 * @param uri
 		 *            the origin server URL
@@ -1461,8 +1458,8 @@ public class ZimbraAccount {
 		}
 
 		/**
-		 * Create a new SoapHttpTransport object for the specified URI, with
-		 * specific proxy information including proxy auth credentials.
+		 * Create a new SoapHttpTransport object for the specified URI, with specific
+		 * proxy information including proxy auth credentials.
 		 *
 		 * @param uri
 		 *            the origin server URL
@@ -1490,9 +1487,9 @@ public class ZimbraAccount {
 		}
 
 		/**
-		 * Creates a new SoapHttpTransport that supports multiple connections to
-		 * the specified URI. Multiple threads can call the invoke() method
-		 * safely without synchronization.
+		 * Creates a new SoapHttpTransport that supports multiple connections to the
+		 * specified URI. Multiple threads can call the invoke() method safely without
+		 * synchronization.
 		 *
 		 * @param uri
 		 * @param maxConnections
@@ -1551,8 +1548,8 @@ public class ZimbraAccount {
 		}
 
 		/**
-		 * The number of miliseconds to wait when connecting or reading during a
-		 * invoke call.
+		 * The number of miliseconds to wait when connecting or reading during a invoke
+		 * call.
 		 * <p>
 		 * Default value is <code>0</code>, which means no mTimeout.
 		 */
@@ -1709,7 +1706,5 @@ public class ZimbraAccount {
 			throw new HarnessException("SendMsgRequest did not return SendMsgResponse");
 
 		logger.info("Done!");
-
 	}
-
 }

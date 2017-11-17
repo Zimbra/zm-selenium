@@ -36,13 +36,13 @@ public class PageEditAccount extends AbsTab {
 
 	public static class Locators {
 		public static final String ADD_BUTTON = "css=td[id$='dwt_button_5___container']:contains('Add')";
-		public static final String FEATURES="css=div[id^='zti__AppAdmin__Home__actLstHV'][id$='_textCell']:contains('Features')";
-		public static final String PREFERENCES="css=div[id^='zti__AppAdmin__Home__actLstHV'][id$='_textCell']:contains('Preferences')";
-		public static final String ALIASES="css=div[id^='zti__AppAdmin__Home__actLstHV'][id$='_textCell']:contains('Aliases')";
-		public static final String MOBILE_ACCESS="css=div[id^='zti__AppAdmin__Home__actLstHV'][id$='_textCell']:contains('Mobile Access')";
-		public static final String ARCHIVING="css=div[id^='zti__AppAdmin__Home__actLstHV'][id$='_textCell']:contains('Archiving')";
-		public static final String ZIMLETS="css=div[id^='zti__AppAdmin__Home__actLstHV'][id$='_textCell']:contains('Zimlets')";
-		public static final String THEMES="css=div[id^='zti__AppAdmin__Home__actLstHV'][id$='_textCell']:contains('Themes')";
+		public static final String FEATURES = "css=div[id^='zti__AppAdmin__Home__actLstHV'][id$='_textCell']:contains('Features')";
+		public static final String PREFERENCES = "css=div[id^='zti__AppAdmin__Home__actLstHV'][id$='_textCell']:contains('Preferences')";
+		public static final String ALIASES = "css=div[id^='zti__AppAdmin__Home__actLstHV'][id$='_textCell']:contains('Aliases')";
+		public static final String MOBILE_ACCESS = "css=div[id^='zti__AppAdmin__Home__actLstHV'][id$='_textCell']:contains('Mobile Access')";
+		public static final String ARCHIVING = "css=div[id^='zti__AppAdmin__Home__actLstHV'][id$='_textCell']:contains('Archiving')";
+		public static final String ZIMLETS = "css=div[id^='zti__AppAdmin__Home__actLstHV'][id$='_textCell']:contains('Zimlets')";
+		public static final String THEMES = "css=div[id^='zti__AppAdmin__Home__actLstHV'][id$='_textCell']:contains('Themes')";
 	}
 
 	public PageEditAccount(AbsApplication application) {
@@ -54,16 +54,16 @@ public class PageEditAccount extends AbsTab {
 	public boolean zIsActive() throws HarnessException {
 
 		// Make sure the Admin Console is loaded in the browser
-		if ( !MyApplication.zIsLoaded() )
+		if (!MyApplication.zIsLoaded())
 			throw new HarnessException("Admin Console application is not active!");
 
 		boolean present = sIsElementPresent(ztab__DOAMIN_EDIT__DWT192);
-		if ( !present ) {
+		if (!present) {
 			return (false);
 		}
 
 		String attrs = sGetAttribute(ztab__DOAMIN_EDIT__DWT192_classAttr);
-		if ( !attrs.contains("ZSelected") ) {
+		if (!attrs.contains("ZSelected")) {
 			return (false);
 		}
 
@@ -82,110 +82,102 @@ public class PageEditAccount extends AbsTab {
 	}
 
 	@Override
-	public AbsPage zListItem(Action action, String item)
-			throws HarnessException {
+	public AbsPage zListItem(Action action, String item) throws HarnessException {
 		return null;
 	}
 
 	@Override
-	public AbsPage zListItem(Action action, Button option, String item)
-			throws HarnessException {
+	public AbsPage zListItem(Action action, Button option, String item) throws HarnessException {
 		return null;
 	}
 
 	@Override
-	public AbsPage zListItem(Action action, Button option, Button subOption ,String item)
-			throws HarnessException {
+	public AbsPage zListItem(Action action, Button option, Button subOption, String item) throws HarnessException {
 		return null;
 	}
 
 	@Override
 	public AbsPage zToolbarPressButton(Button button) throws HarnessException {
 
-		logger.info(myPageName() + " zToolbarPressButton("+ button +")");
+		logger.info(myPageName() + " zToolbarPressButton(" + button + ")");
 
-		tracer.trace("Press the "+ button +" button");
+		tracer.trace("Press the " + button + " button");
 
-		if ( button == null )
+		if (button == null)
 			throw new HarnessException("Button cannot be null!");
 
-
 		//
-		String locator = null;			// If set, this will be clicked
-		AbsPage page = null;	// If set, this page will be returned
+		String locator = null; // If set, this will be clicked
+		AbsPage page = null; // If set, this page will be returned
 
 		// Based on the button specified, take the appropriate action(s)
 		//
 
 		if (button == Button.B_ADD) {
 
-			locator=Locators.ADD_BUTTON;
+			locator = Locators.ADD_BUTTON;
 
 			page = new FormEditAccount(this.MyApplication);
 		} else if (button == Button.B_FEATURES) {
 
-			locator=Locators.FEATURES;
+			locator = Locators.FEATURES;
 
 			page = new FormEditAccount(this.MyApplication);
 		} else if (button == Button.B_PREFERENCES) {
 
-			locator=Locators.PREFERENCES;
+			locator = Locators.PREFERENCES;
 
 			page = new FormEditAccount(this.MyApplication);
 		} else if (button == Button.B_ALIASES) {
 
-			locator=Locators.ALIASES;
+			locator = Locators.ALIASES;
 
 			page = new FormEditAccount(this.MyApplication);
-		}  else if (button == Button.B_MOBILE_ACCESS) {
+		} else if (button == Button.B_MOBILE_ACCESS) {
 
-			locator=Locators.MOBILE_ACCESS;
+			locator = Locators.MOBILE_ACCESS;
 
 			page = new FormEditAccount(this.MyApplication);
 		} else if (button == Button.B_ARCHIVING) {
 
-			locator=Locators.ARCHIVING;
+			locator = Locators.ARCHIVING;
 
 			page = new FormEditAccount(this.MyApplication);
 		} else if (button == Button.B_ZIMLETS) {
 
-			locator=Locators.ZIMLETS;
+			locator = Locators.ZIMLETS;
 
 			page = new FormEditAccount(this.MyApplication);
 		} else if (button == Button.B_THEMES) {
 
-			locator=Locators.THEMES;
+			locator = Locators.THEMES;
 
 			page = new FormEditAccount(this.MyApplication);
-		}
-		else {
-			throw new HarnessException("no logic defined for button "+ button);
+		} else {
+			throw new HarnessException("no logic defined for button " + button);
 		}
 
-		if ( locator == null ) {
-			throw new HarnessException("locator was null for button "+ button);
+		if (locator == null) {
+			throw new HarnessException("locator was null for button " + button);
 		}
 
 		// Default behavior, process the locator by clicking on it
 		//
-		this.sClickAt(locator,"");
+		this.sClickAt(locator, "");
 		SleepUtil.sleepMedium();
 
-
 		// If page was specified, make sure it is active
-		if ( page != null ) {
+		if (page != null) {
 			SleepUtil.sleepMedium();
 		}
 
-		//sMouseOut(locator);
+		// sMouseOut(locator);
 		return (page);
-
 
 	}
 
 	@Override
-	public AbsPage zToolbarPressPulldown(Button pulldown, Button option)
-			throws HarnessException {
+	public AbsPage zToolbarPressPulldown(Button pulldown, Button option) throws HarnessException {
 		return null;
 	}
 
@@ -193,38 +185,34 @@ public class PageEditAccount extends AbsTab {
 
 			throws HarnessException {
 
-
 		return null;
 	}
 
 	public boolean zVerifyACL(String item) throws HarnessException {
 
-		logger.info(myPageName() + " zVerifyACL("+ item +")");
+		logger.info(myPageName() + " zVerifyACL(" + item + ")");
 		boolean found = false;
 		SleepUtil.sleepMedium();
 
 		// How many items are in the table?
 		String rowsLocator = "css=td[id='ztabv__ACCT_EDIT_grantsList___container'] div[id$='__rows'] div[id^='zli__']";
 		int count = this.sGetCssCount(rowsLocator);
-		logger.debug(myPageName() + " zVerifyPolicyName: number of policys: "+ count);
+		logger.debug(myPageName() + " zVerifyPolicyName: number of policys: " + count);
 
 		// Get each row data from the table list
 		for (int i = 1; i <= count; i++) {
-			final String aclLocator = rowsLocator + ":nth-child("+i+")";
+			final String aclLocator = rowsLocator + ":nth-child(" + i + ")";
 			String locator;
 			locator = aclLocator + " td" + ":nth-child(3)";
 
-			if(this.sIsElementPresent(locator))
-			{
-				if(this.sGetText(locator).trim().equalsIgnoreCase(item))
-				{
+			if (this.sIsElementPresent(locator)) {
+				if (this.sGetText(locator).trim().equalsIgnoreCase(item)) {
 					found = true;
 					break;
-				} else 
-				{
+				} else {
 					logger.info("search result not displayed in current view");
 				}
-			} 
+			}
 
 			if (found == true) {
 				SleepUtil.sleepSmall();
@@ -236,6 +224,5 @@ public class PageEditAccount extends AbsTab {
 		}
 		return found;
 	}
-
 
 }

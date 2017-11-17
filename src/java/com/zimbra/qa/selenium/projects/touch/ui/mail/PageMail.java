@@ -682,7 +682,7 @@ public class PageMail extends AbsTab {
 			// this.sClick(pulldownLocator);
 
 			if (pulldownLocator.equals(Locators.IcsLinkInBody)) {
-				this.zRightClickAt(pulldownLocator, "0,0");
+				this.sRightClickAt(pulldownLocator, "0,0");
 			} else {
 				SleepUtil.sleepSmall();
 				this.sClickAt(pulldownLocator, "0,0");

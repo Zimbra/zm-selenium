@@ -28,46 +28,45 @@ public class UndeployAdminExtensions extends AdminCommonTest {
 
 	public UndeployAdminExtensions() {
 		logger.info("New " + UndeployAdminExtensions.class.getCanonicalName());
-
-		// All tests start at the "admin extension" page
 		super.startingPage = app.zPageManageAdminExtensions;
 	}
+
 
 	/**
 	 * Testcase : Undeploy admin extensions
 	 * 1. Go to Configure > admin extensions
-	 * 2. Select undeploy admin extensions from gear menu 
+	 * 2. Select undeploy admin extensions from gear menu
 	 * 3. Verify admin extension is undeployed and removed from Zimlet list
 	 * @throws HarnessException
 	 */
-	@Test(	description = "Deploy admin extension",
+
+	@Test (description = "Deploy admin extension",
 			groups = { "functional", "L1" })
 
 	public void UndeployAdminExtensions_01() throws HarnessException {
 
-		String adminExtensionName ="de_dieploegers_admin_vacation";
-		
+		String adminExtensionName = "de_dieploegers_admin_vacation";
+
 		// Verify Admin extension is present in admin console
 		boolean isAdminExtensionPresent = app.zPageManageAdminExtensions.zVerifyAdminExtensionName(adminExtensionName);
-		if ( !isAdminExtensionPresent ) {
-			throw new HarnessException("Admin Extension is not Present!");
-		}
-		else
-		{
-		// Click on admin extension
-		app.zPageManageAdminExtensions.zListItem(Action.A_LEFTCLICK, adminExtensionName);
-		
-		// Click on undeploy from gear menu option
-		DialogForUndeployAdminExtension dialog = (DialogForUndeployAdminExtension) app.zPageManageAdminExtensions.zToolbarPressPulldown(Button.B_GEAR_BOX,Button.B_UNDEPLOY_ZIMLET);
-		
-		// Click Yes in Confirmation dialog
-		dialog.zPressButton(Button.B_YES);
-		
-		// Verify the admin extension is not listed on zimlet page
-		boolean isUndeploySuccessful = app.zPageManageAdminExtensions.zVerifyAdminExtensionName(adminExtensionName);
-		ZAssert.assertFalse(isUndeploySuccessful, "Verify admin extension is undeployed!");
-		}
-		
-	}
 
+		if (!isAdminExtensionPresent) {
+			throw new HarnessException("Admin Extension is not Present!");
+
+		} else {
+			// Click on admin extension
+			app.zPageManageAdminExtensions.zListItem(Action.A_LEFTCLICK, adminExtensionName);
+
+			// Click on undeploy from gear menu option
+			DialogForUndeployAdminExtension dialog = (DialogForUndeployAdminExtension) app.zPageManageAdminExtensions
+					.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.B_UNDEPLOY_ZIMLET);
+
+			// Click Yes in Confirmation dialog
+			dialog.zPressButton(Button.B_YES);
+
+			// Verify the admin extension is not listed on zimlet page
+			boolean isUndeploySuccessful = app.zPageManageAdminExtensions.zVerifyAdminExtensionName(adminExtensionName);
+			ZAssert.assertFalse(isUndeploySuccessful, "Verify admin extension is undeployed!");
+		}
+	}
 }

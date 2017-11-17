@@ -14,13 +14,12 @@
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-
 package com.zimbra.qa.selenium.framework.ui;
 
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 
 /**
- * A <code>AbsDialogSeparateWindow</code> object represents a "popup dialog", 
+ * A <code>AbsDialogSeparateWindow</code> object represents a "popup dialog",
  * such as a new folder, new tag, error message, etc. - in a separate window
  * <p>
  * 
@@ -28,39 +27,34 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
  *
  */
 public abstract class AbsDialogSeparateWindow extends AbsSeparateWindow {
-	
+
 	protected AbsSeparateWindow MyWindow = null;
-	
+
 	public AbsDialogSeparateWindow(AbsApplication application, AbsSeparateWindow window) {
 		super(application);
-		
+
 		MyWindow = window;
-		
-		logger.info("new "+ AbsDialogSeparateWindow.class.getCanonicalName());
+
+		logger.info("new " + AbsDialogSeparateWindow.class.getCanonicalName());
 
 	}
-	
+
 	public AbsPage zPressButton(Button button) throws HarnessException {
 		throw new HarnessException("implement me!");
 	}
 
 	/**
-	 * Check if this dialog is active.
-	 * First, check that the separate window is active.
-	 * Second, check if the dialog is visible.
+	 * Check if this dialog is active. First, check that the separate window is
+	 * active. Second, check if the dialog is visible.
 	 * 
 	 */
 	public boolean zIsActive() throws HarnessException {
 		logger.info(myPageName() + " zIsActive()");
 
-		if ( !MyWindow.zIsActive() ) {
+		if (!MyWindow.zIsActive()) {
 			logger.debug("separate window is not active");
 			return (false);
 		}
-		
-		// Define whether this dialog is active in the extending class
-		
 		return (true);
 	}
-	
 }

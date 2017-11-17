@@ -17,7 +17,6 @@
 package com.zimbra.qa.selenium.projects.admin.tests.cos;
 
 import org.testng.annotations.Test;
-
 import com.zimbra.common.soap.Element;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
@@ -30,12 +29,12 @@ import com.zimbra.qa.selenium.projects.admin.ui.PageMain;
 import com.zimbra.qa.selenium.projects.admin.ui.WizardCreateCos;
 
 public class DuplicateCos extends AdminCommonTest {
+
 	public DuplicateCos() {
 		logger.info("New " + DuplicateCos.class.getCanonicalName());
-
-		//All tests starts at "Cos" page
 		super.startingPage=app.zPageManageCOS;
 	}
+
 
 	/**
 	 * Testcase : Verify delete cos operation -- Manage Cos view.
@@ -46,9 +45,11 @@ public class DuplicateCos extends AdminCommonTest {
 	 * 4. Verify cos is Duplicated using SOAP
 	 * @throws HarnessException
 	 */
+
 	@Test (description = "Verify Duplicate cos operation -- Manage cos view",
 			groups = { "functional", "L2" })
-			public void DuplicateCos_01() throws HarnessException {
+
+	public void DuplicateCos_01() throws HarnessException {
 
 		// Create a new cos in the Admin Console using SOAP
 		CosItem cos = new CosItem();
@@ -67,15 +68,13 @@ public class DuplicateCos extends AdminCommonTest {
 
 		// Click "New"
 		WizardCreateCos cosDialog = (WizardCreateCos) app.zPageManageCOS.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_DUPLICATE_COS);
-	
 
 		CosItem dupCos = new CosItem();
 		dupCos.setCosName("Duplicate of menu "+cosName);
-	
+
 		// Fill out the necessary input fields and submit
-		
 		cosDialog.zCompleteWizard(dupCos);
-		
+
 		// Verify the cos exists in the ZCS
 				ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<GetCosRequest xmlns='urn:zimbraAdmin'>" +
@@ -84,8 +83,8 @@ public class DuplicateCos extends AdminCommonTest {
 				Element response = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetCosResponse/admin:cos", 1);
 				ZAssert.assertNotNull(response, "Verify the duplicate cos is created successfully");
 	}
-	
-	
+
+
 	/**
 	 * Testcase : Verify delete cos operation -- Manage COS list view/Right click menu.
 	 * Steps :
@@ -94,9 +93,11 @@ public class DuplicateCos extends AdminCommonTest {
 	 * 3. Verify Duplicate cos is created using SOAP
 	 * @throws HarnessException
 	 */
+
 	@Test (description = "Verify Duplicate cos operation -- Search COS list view/Right click menu",
 			groups = { "functional", "L2" })
-			public void DuplicateCos_02() throws HarnessException {
+
+	public void DuplicateCos_02() throws HarnessException {
 
 		// Create a new cos in the Admin Console using SOAP
 		CosItem cos = new CosItem();
@@ -109,27 +110,26 @@ public class DuplicateCos extends AdminCommonTest {
 
 		// Refresh the account list
 		app.zPageManageCOS.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
-		
+
 		// Click on account to be Duplicated.
 		app.zPageManageCOS.zListItem(Action.A_RIGHTCLICK, cosname);
-		
+
 		// Click on Duplicate  button
 		WizardCreateCos form = (WizardCreateCos) app.zPageManageCOS.zToolbarPressButton(Button.O_DUPLICATE_COS);
-		
+
 		CosItem dupCos = new CosItem();
 		dupCos.setCosName("On rightclick Duplicate of "+cosname);
-	
+
 		// Fill out the necessary input fields and submit
-		
 		form.zCompleteWizard(dupCos);
-		
+
 		// Verify the duplicate cos exists in the ZCS
-				ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
-				"<GetCosRequest xmlns='urn:zimbraAdmin'>" +
-				                     "<cos by='name'>"+dupCos.getName()+"</cos>"+
-				                   "</GetCosRequest>");
-				
-				Element response = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetCosResponse/admin:cos", 1);
-				ZAssert.assertNotNull(response, "Verify the duplicate cos is created successfully");
+		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
+		"<GetCosRequest xmlns='urn:zimbraAdmin'>" +
+		                     "<cos by='name'>"+dupCos.getName()+"</cos>"+
+		                   "</GetCosRequest>");
+
+		Element response = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetCosResponse/admin:cos", 1);
+		ZAssert.assertNotNull(response, "Verify the duplicate cos is created successfully");
 	}
 }

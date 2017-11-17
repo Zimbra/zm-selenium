@@ -16,57 +16,54 @@
  */
 package com.zimbra.qa.selenium.framework.items;
 
-public class UploadProgressItem extends AItem{
+public class UploadProgressItem extends AItem {
 
-	public String uploadProgressBarLocator=null;
-	public String uploadFileName=null;
-	public String uploadFileSize=null;
-	public String uploadProgresSize=null;
-	public String uploadStop=null;
-	public String uploadBarValue=null;
+	public String uploadProgressBarLocator = null;
+	public String uploadFileName = null;
+	public String uploadFileSize = null;
+	public String uploadProgresSize = null;
+	public String uploadStop = null;
+	public String uploadBarValue = null;
 
-
-	public UploadProgressItem()
-	{
+	public UploadProgressItem() {
 
 	}
 
-	public void setLocator(String locator)
-	{
-		uploadProgressBarLocator=locator;
+	public void setLocator(String locator) {
+		uploadProgressBarLocator = locator;
 	}
-	public String getLocator()
-	{
+
+	public String getLocator() {
 		return uploadProgressBarLocator;
 	}
-	public void setFileName(String filename)
-	{
-		this.uploadFileName=filename;
+
+	public void setFileName(String filename) {
+		this.uploadFileName = filename;
 	}
-	public String getFileName()
-	{
+
+	public String getFileName() {
 		return this.uploadFileName;
 	}
-	public void setUploadFileSize(String fileSize)
-	{
+
+	public void setUploadFileSize(String fileSize) {
 		int index = fileSize.indexOf("of");
-		uploadFileSize=fileSize.substring(index+2, fileSize.length()).trim();
-		uploadProgresSize=fileSize.substring(0, index).trim();
+		uploadFileSize = fileSize.substring(index + 2, fileSize.length()).trim();
+		uploadProgresSize = fileSize.substring(0, index).trim();
 	}
-	public String getUploadFileSize()
-	{
+
+	public String getUploadFileSize() {
 		return this.uploadFileSize;
 	}
-	public void setUploadBarValue(String value)
-	{
-		uploadBarValue=value;
+
+	public void setUploadBarValue(String value) {
+		uploadBarValue = value;
 	}
-	public String getUploadBarValue()
-	{
+
+	public String getUploadBarValue() {
 		return this.uploadBarValue;
 	}
-	public String getUploadProgressSize()
-	{
+
+	public String getUploadProgressSize() {
 		return this.uploadProgresSize;
 	}
 

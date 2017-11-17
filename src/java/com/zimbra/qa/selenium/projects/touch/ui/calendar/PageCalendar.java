@@ -661,7 +661,7 @@ public class PageCalendar extends AbsTab {
 			
 		} else if ( action == Action.A_RIGHTCLICK ) {
 			
-			this.zRightClickAt(locator, "");
+			this.sRightClickAt(locator, "");
 			this.zWaitForBusyOverlay();
 
 			page = null;

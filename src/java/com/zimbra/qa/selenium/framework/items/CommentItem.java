@@ -24,13 +24,14 @@ public class CommentItem extends AItem {
 	private String CommentImage = null;
 	private String CommentTime = null;
 	private String ParentId = null;
-	
+
 	public CommentItem() {
-		
+
 	}
-	
+
 	/**
-	 * @param theLocator the theLocator to set
+	 * @param theLocator
+	 *            the theLocator to set
 	 */
 	public void setLocator(String locator) {
 		TheLocator = locator;
@@ -94,5 +95,4 @@ public class CommentItem extends AItem {
 		sb.append("CommentImage: ").append(getCommentImage()).append('\n');
 		return (sb.toString());
 	}
-
 }

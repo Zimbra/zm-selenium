@@ -481,7 +481,7 @@ public class PageSearch extends AbsTab {
 		} else if ( action == Action.A_RIGHTCLICK ) {
 
 			// Right-Click on the item
-			this.zRightClick(itemlocator);
+			this.sRightClick(itemlocator);
 
 			// Return the displayed mail page object
 			page = null;

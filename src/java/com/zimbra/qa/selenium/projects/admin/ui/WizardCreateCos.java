@@ -25,7 +25,7 @@ import com.zimbra.qa.selenium.projects.admin.items.CosItem;
 public class WizardCreateCos extends AbsWizard {
 
 	public static class Locators {
-		public static final String zdlg_COS_NAME="zdlgv__NEW_COS_cn";
+		public static final String zdlg_COS_NAME = "zdlgv__NEW_COS_cn";
 	}
 
 	public WizardCreateCos(AbsTab page) {
@@ -35,22 +35,21 @@ public class WizardCreateCos extends AbsWizard {
 	@Override
 	public IItem zCompleteWizard(IItem item) throws HarnessException {
 
-		if ( !(item instanceof CosItem) )
-			throw new HarnessException("item must be an COSItem, was "+ item.getClass().getCanonicalName());
+		if (!(item instanceof CosItem))
+			throw new HarnessException("item must be an COSItem, was " + item.getClass().getCanonicalName());
 
-
-		CosItem domain = (CosItem)item;
+		CosItem domain = (CosItem) item;
 
 		String cosName = domain.getName();
 
-
 		/**
-		 * If you use normal type method domain is taken as default domain name.
-		 * Below line of code is not grid friendly but this is only solution working currently.
+		 * If you use normal type method domain is taken as default domain name. Below
+		 * line of code is not grid friendly but this is only solution working
+		 * currently.
 		 */
-		zType(Locators.zdlg_COS_NAME,"");
+		zType(Locators.zdlg_COS_NAME, "");
 		this.zKeyboard.zTypeCharacters(cosName);
-		zType(Locators.zdlg_COS_NAME,cosName);
+		zType(Locators.zdlg_COS_NAME, cosName);
 
 		clickFinish(AbsWizard.Locators.COS_DIALOG);
 

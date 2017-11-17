@@ -95,7 +95,7 @@ public class TreeMail extends AbsTree {
 			}
 
 			GeneralUtility.waitForElementPresent(this, actionLocator);
-			this.zRightClickAt(actionLocator,"");
+			this.sRightClickAt(actionLocator,"");
 			this.zWaitForBusyOverlay();
 			
 			
@@ -200,7 +200,7 @@ public class TreeMail extends AbsTree {
 
 			GeneralUtility.waitForElementPresent(this, actionLocator);
 			// actionLocator= Locators.zTagsHeader;
-			this.zRightClick(actionLocator);
+			this.sRightClick(actionLocator);
 			this.zWaitForBusyOverlay();
 			
 			optionLocator = Locators.ContextMenuTVSearchesCSS; // css=div[id='ZmActionMenu_mail_SEARCH']
@@ -277,7 +277,7 @@ public class TreeMail extends AbsTree {
 
 			actionLocator = "css=td[id^='zti__main_Mail__']:contains('"+ t.getName() +"')";
 
-			this.zRightClickAt(actionLocator,"");
+			this.sRightClickAt(actionLocator,"");
 			
 			this.zWaitForBusyOverlay();
 
@@ -382,7 +382,7 @@ public class TreeMail extends AbsTree {
 			locator = "css=td[id='zti__main_Mail__"+ tag.getId() +"_textCell']";
 
 			// Select the folder
-			this.zRightClickAt(locator,"");
+			this.sRightClickAt(locator,"");
 
 			// return a context menu
 			//return (new ContextMenu(MyApplication));

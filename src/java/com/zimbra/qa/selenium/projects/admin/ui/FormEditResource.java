@@ -25,14 +25,14 @@ import com.zimbra.qa.selenium.framework.util.SleepUtil;
 public class FormEditResource extends AbsForm {
 
 	public static class TreeItem {
-		public static final String PROPERTIES="Properties";
+		public static final String PROPERTIES = "Properties";
 	}
 
 	public static class Locators {
-		public static final String NAME_TEXT_BOX="css=input#ztabv__RES_EDIT_";
-		public static final String DA_NAME_TEXT_BOX="css=input[id='ztabv__RES_EDIT_displayName_2']";
-		public static final String SAVE_BUTTON="css=td[id^='zb__ZaCurrentAppBar__SAVE_']:contains('Save')";
-		public static final String CLOSE_BUTTON="css=td[id^='zb__ZaCurrentAppBar__CLOSE']";
+		public static final String NAME_TEXT_BOX = "css=input#ztabv__RES_EDIT_";
+		public static final String DA_NAME_TEXT_BOX = "css=input[id='ztabv__RES_EDIT_displayName_2']";
+		public static final String SAVE_BUTTON = "css=td[id^='zb__ZaCurrentAppBar__SAVE_']:contains('Save')";
+		public static final String CLOSE_BUTTON = "css=td[id^='zb__ZaCurrentAppBar__CLOSE']";
 	}
 
 	public FormEditResource(AbsApplication application) {
@@ -46,17 +46,16 @@ public class FormEditResource extends AbsForm {
 	public boolean zIsActive() throws HarnessException {
 
 		// Make sure the Admin Console is loaded in the browser
-		if ( !MyApplication.zIsLoaded() )
+		if (!MyApplication.zIsLoaded())
 			throw new HarnessException("Admin Console application is not active!");
 
-
 		boolean present = sIsElementPresent("");
-		if ( !present ) {
+		if (!present) {
 			return (false);
 		}
 
 		String attrs = sGetAttribute("");
-		if ( !attrs.contains("ZSelected") ) {
+		if (!attrs.contains("ZSelected")) {
 			return (false);
 		}
 
@@ -75,9 +74,9 @@ public class FormEditResource extends AbsForm {
 
 	@Override
 	public void zSubmit() throws HarnessException {
-		sClickAt(Locators.SAVE_BUTTON,"");
+		sClickAt(Locators.SAVE_BUTTON, "");
 		SleepUtil.sleepSmall();
-		sClickAt(Locators.CLOSE_BUTTON,"0,0");
+		sClickAt(Locators.CLOSE_BUTTON, "0,0");
 	}
 
 	public void zSelectTreeItem(String treeItem) throws HarnessException {
@@ -85,18 +84,16 @@ public class FormEditResource extends AbsForm {
 	}
 
 	public void setName(String name) throws HarnessException {
-		for(int i=12;i>=0;i--) {
-			if (sIsElementPresent(Locators.NAME_TEXT_BOX+i+"_name_3")) {
-				sType(Locators.NAME_TEXT_BOX+i+"_name_3", name);
+		for (int i = 12; i >= 0; i--) {
+			if (sIsElementPresent(Locators.NAME_TEXT_BOX + i + "_name_3")) {
+				sType(Locators.NAME_TEXT_BOX + i + "_name_3", name);
 				return;
 			}
 		}
-		sType(Locators.NAME_TEXT_BOX+"name_3", name);
-		}
-	
-	
-	public void setNameAsDA(String name) throws HarnessException {
-		sType(Locators.DA_NAME_TEXT_BOX, name);
-		}
+		sType(Locators.NAME_TEXT_BOX + "name_3", name);
 	}
 
+	public void setNameAsDA(String name) throws HarnessException {
+		sType(Locators.DA_NAME_TEXT_BOX, name);
+	}
+}

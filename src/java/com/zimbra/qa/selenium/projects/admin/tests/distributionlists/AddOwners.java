@@ -33,12 +33,12 @@ public class AddOwners extends AdminCommonTest {
 
 	public AddOwners() {
 		logger.info("New "+ AddOwners.class.getCanonicalName());
-		// All tests start at the "Distribution List" page
 		super.startingPage = app.zPageManageDistributionList;
 	}
 
+
 	@Test (description = "Edit DL - Add Owner to DL",
-	groups = { "smoke", "L1" })
+			groups = { "smoke", "L1" })
 
 	public void AddOwner_01() throws HarnessException {
 
@@ -50,10 +50,10 @@ public class AddOwners extends AdminCommonTest {
 				"<CreateDistributionListRequest xmlns='urn:zimbraAdmin'>"
 						+			"<name>" + dlEmailAddress + "</name>"
 						+		"</CreateDistributionListRequest>");
-		
+
 		String hostname = ConfigProperties.getStringProperty("server.host");
 		String aliasDomainName = ConfigProperties.getStringProperty("testdomain");
-		
+
 		// Create owner account
 		AccountItem account = new AccountItem("email" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty(hostname));
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
@@ -89,8 +89,7 @@ public class AddOwners extends AdminCommonTest {
 						"<dl by='name'>"+dlEmailAddress+"</dl>"+
 				"</GetDistributionListRequest>");
 
-		String email = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectValue("//admin:GetDistributionListResponse/admin:dl/admin:owners/admin:owner", "name");		
+		String email = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectValue("//admin:GetDistributionListResponse/admin:dl/admin:owners/admin:owner", "name");
 		ZAssert.assertStringContains(email, account.getEmailAddress() , "Verify the alias is associated with the correct account");
-
 	}
 }

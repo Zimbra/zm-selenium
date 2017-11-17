@@ -2,11 +2,11 @@
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
  * Copyright (C) 2011, 2013, 2014 Zimbra, Inc.
- * 
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
@@ -27,11 +27,10 @@ public class AclItem implements IItem {
 	protected String aclGranteeEmail;
 	protected String aclGranteeID;
 	protected String GranteeType;
-	
+
 	public AclItem() {
 		super();
-
-			}
+	}
 
 	@Override
 	public void createUsingSOAP(ZimbraAccount account) throws HarnessException {
@@ -43,39 +42,35 @@ public class AclItem implements IItem {
 	}
 
 	public void setGranteeAccountEmail(String emailAddress) throws HarnessException {
-		if ( (aclGranteeEmail != null) && (aclGranteeEmail.equals(emailAddress)) )
+		if ((aclGranteeEmail != null) && (aclGranteeEmail.equals(emailAddress)))
 			return; // Nothing to update
 
-		if ( (emailAddress == null) || (emailAddress.trim().length() == 0) )
+		if ((emailAddress == null) || (emailAddress.trim().length() == 0))
 			throw new HarnessException("emailAddress cannot be null or blank");
 
 		// Need to get the AccountID
-		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
-							"<GetAccountRequest xmlns='urn:zimbraAdmin'>"
-				+                "<account by='name'>"+ emailAddress +"</account>"
-                +            "</GetAccountRequest>");
+		ZimbraAdminAccount.AdminConsoleAdmin().soapSend("<GetAccountRequest xmlns='urn:zimbraAdmin'>"
+				+ "<account by='name'>" + emailAddress + "</account>" + "</GetAccountRequest>");
 		String id = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectValue("//admin:account", "id");
 
 		aclGranteeEmail = emailAddress;
 		aclGranteeID = id;
 	}
-	
+
 	public String getGranteeAccountEmail() {
 		return (aclGranteeEmail);
 	}
 
 	public void setTargetAccountId(String id) throws HarnessException {
-		if ( (aclGranteeID != null) && (aclGranteeID.equals(id)) )
+		if ((aclGranteeID != null) && (aclGranteeID.equals(id)))
 			return; // Nothing to update
 
-		if ( (id == null) || (id.trim().length() == 0) )
+		if ((id == null) || (id.trim().length() == 0))
 			throw new HarnessException("id cannot be null or blank");
 
 		// Need to get the AccountID
-		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
-							"<GetAccountRequest xmlns='urn:zimbraAdmin'>"
-				+                "<account by='id'>"+ id +"</account>"
-                +            "</GetAccountRequest>");
+		ZimbraAdminAccount.AdminConsoleAdmin().soapSend("<GetAccountRequest xmlns='urn:zimbraAdmin'>"
+				+ "<account by='id'>" + id + "</account>" + "</GetAccountRequest>");
 		String emailAddress = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectValue("//admin:account", "name");
 
 		aclGranteeEmail = emailAddress;
@@ -86,48 +81,44 @@ public class AclItem implements IItem {
 	public String getTargetAccountId() {
 		return (aclGranteeID);
 	}
-	
+
 	public void setRightName(String name) {
 		RightName = name;
 	}
-	
+
 	public String getRightName() {
 		return (RightName);
 	}
-	
+
 	public void setGranteeType(String name) {
 		GranteeType = name;
 	}
-	
+
 	public String getGranteeType() {
 		return (GranteeType);
 	}
 
 	@Override
 	public String getName() {
-		// TODO Auto-generated method stub
 		return null;
 	}
-	
-	public void setTargetAccountEmail(String emailAddress) throws HarnessException {
-		if ( (aclGranteeEmail != null) && (aclGranteeEmail.equals(emailAddress)) )
-			return; // Nothing to update
 
-		if ( (emailAddress == null) || (emailAddress.trim().length() == 0) )
+	public void setTargetAccountEmail(String emailAddress) throws HarnessException {
+		if ((aclGranteeEmail != null) && (aclGranteeEmail.equals(emailAddress)))
+			return;
+
+		if ((emailAddress == null) || (emailAddress.trim().length() == 0))
 			throw new HarnessException("emailAddress cannot be null or blank");
 
-		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
-							"<GetAccountRequest xmlns='urn:zimbraAdmin'>"
-				+                "<account by='name'>"+ emailAddress +"</account>"
-                +            "</GetAccountRequest>");
+		ZimbraAdminAccount.AdminConsoleAdmin().soapSend("<GetAccountRequest xmlns='urn:zimbraAdmin'>"
+				+ "<account by='name'>" + emailAddress + "</account>" + "</GetAccountRequest>");
 		String id = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectValue("//admin:account", "id");
 
 		aclGranteeEmail = emailAddress;
 		aclGranteeID = id;
 	}
-	
+
 	public String getTargetAccountEmail() {
 		return (aclGranteeEmail);
 	}
-	
 }

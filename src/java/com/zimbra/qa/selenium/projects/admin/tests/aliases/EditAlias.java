@@ -1,4 +1,4 @@
-/*
+	/*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
  * Copyright (C) 2016 Synacor, Inc.
@@ -28,30 +28,28 @@ import com.zimbra.qa.selenium.projects.admin.core.AdminCommonTest;
 import com.zimbra.qa.selenium.projects.admin.items.*;
 import com.zimbra.qa.selenium.projects.admin.ui.PageMain;
 
-
-
 public class EditAlias extends AdminCommonTest {
-	
+
 	public EditAlias() {
 		logger.info("New " + EditAlias.class.getCanonicalName());
-		
-		// All tests start at the "Alias" page
 		super.startingPage=app.zPageManageAliases;
 	}
-	
+
+
 	/**
 	 * Testcase : Create a basic alias.
 	 * 1. Create a alias with GUI.
 	 * 2. Verify alias is created using SOAP.
 	 * @throws HarnessException
 	 */
+
 	@Test (description = "Edit a basic alias",
 			groups = { "smoke", "L1" })
+
 	public void EditAlias_01() throws HarnessException {
 
 		AccountItem target = new AccountItem("email" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
 		AccountItem.createUsingSOAP(target);
-
 
 		// Create a new account in the Admin Console using SOAP
 		AliasItem alias = new AliasItem();
@@ -64,10 +62,10 @@ public class EditAlias extends AdminCommonTest {
 
 		// Refresh the account list
 		app.zPageManageAliases.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
-		
+
 		// Click on alias to be edited.
 		app.zPageManageAliases.zListItem(Action.A_LEFTCLICK, alias.getEmailAddress());
-		
+
 		// Verify the alias exists in the ZCS
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 						"<GetAccountRequest xmlns='urn:zimbraAdmin'>"
@@ -76,7 +74,8 @@ public class EditAlias extends AdminCommonTest {
 		String email = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectValue("//admin:account", "name");
 		ZAssert.assertEquals(email, target.getEmailAddress(), "Verify the alias is associated with the correct account");
 	}
-	
+
+
 	/**
 	 * Testcase : Bug 58191 - JavaScript error while clicking on alias of resource
 	 * 1. Create a resource
@@ -84,11 +83,13 @@ public class EditAlias extends AdminCommonTest {
 	 * 3. Click on newly created alias
 	 * @throws HarnessException
 	 */
+
 	@Bugs (ids = "58191")
 	@Test (description = "Bug 58191 - JavaScript error while clicking on alias of resource",
 			groups = { "functional", "L2" })
+
 	public void EditAlias_02() throws HarnessException {
-	
+
 		//Create calendar resource
 		ResourceItem resource = new ResourceItem();
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
@@ -99,7 +100,7 @@ public class EditAlias extends AdminCommonTest {
 				 		+ "<password>test123</password>"
 				 		+ "</CreateCalendarResourceRequest>");
 		String resourceId = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectValue("//admin:CreateCalendarResourceResponse/admin:calresource", "id").toString();
-		
+
 		// Create a new alias for resource
 		AliasItem alias = new AliasItem();
 		String aliasEmailAddress=alias.getEmailAddress();
@@ -108,22 +109,20 @@ public class EditAlias extends AdminCommonTest {
 				+			"<id>" + resourceId  + "</id>"
 				+			"<alias>" + aliasEmailAddress + "</alias>"
 				+		"</AddAccountAliasRequest>");
-		
+
 		// Refresh the account list
 		app.zPageManageAliases.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
-		
-		// Click on alias 
+
+		// Click on alias
 		app.zPageManageAliases.zListItem(Action.A_LEFTCLICK, alias.getEmailAddress());
-		
+
     	// Verify the alias is associated with the correct resource
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<GetCalendarResourceRequest xmlns='urn:zimbraAdmin'>"
-				+ 		"<calresource by='name'>" +  alias.getEmailAddress()  + "</calresource>"  
+				+ 		"<calresource by='name'>" +  alias.getEmailAddress()  + "</calresource>"
 				+		"</GetCalendarResourceRequest>");
-		
-		Element email = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetCalendarResourceResponse/admin:calresource/admin:a[@n='zimbraMailAlias']", 1);		
+
+		Element email = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetCalendarResourceResponse/admin:calresource/admin:a[@n='zimbraMailAlias']", 1);
 	    ZAssert.assertEquals(email.getText(), aliasEmailAddress, "Verify the alias is associated with the correct resource");
-		 
 	}
-	
 }

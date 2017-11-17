@@ -832,7 +832,7 @@ public class PageContacts extends AbsTab {
 			ContextMenuItem cmi = null;
 			ContextMenuItem sub_cmi = null;
 
-			zRightClickAt(getContactLocator(contact), "0,0");
+			sRightClickAt(getContactLocator(contact), "0,0");
 
 			if (option == Button.B_TAG) {
 
@@ -966,7 +966,7 @@ public class PageContacts extends AbsTab {
 							+ tagName + "')]";
 
 					// Right click on contact
-					zRightClickAt(contactLocator, "0,0");
+					sRightClickAt(contactLocator, "0,0");
 					SleepUtil.sleepSmall();
 					zWaitForBusyOverlay();
 
@@ -1045,7 +1045,7 @@ public class PageContacts extends AbsTab {
 			}
 
 			// Right click on contact
-			zRightClickAt(contactLocator, "0,0");
+			sRightClickAt(contactLocator, "0,0");
 			SleepUtil.sleepSmall();
 			this.zWaitForBusyOverlay();
 
@@ -1130,7 +1130,7 @@ public class PageContacts extends AbsTab {
 				throw new HarnessException("option " + option + " not supported");
 			}
 
-			zRightClickAt(contactLocator, "0,0");
+			sRightClickAt(contactLocator, "0,0");
 			SleepUtil.sleepSmall();
 
 			locator = "css=div#zm__Contacts tr#" + cmi.locator;
@@ -1216,7 +1216,7 @@ public class PageContacts extends AbsTab {
 
 		} else if (action == Action.A_RIGHTCLICK) {
 
-			zRightClickAt(contactLocator, "0,0");
+			sRightClickAt(contactLocator, "0,0");
 			SleepUtil.sleepSmall();
 			zWaitForBusyOverlay();
 			return (new ContextMenu(MyApplication));

@@ -17,9 +17,7 @@
 package com.zimbra.qa.selenium.projects.admin.tests.distributionlists;
 
 import java.util.List;
-
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
@@ -33,10 +31,9 @@ public class GetDistributionList extends AdminCommonTest {
 
 	public GetDistributionList() {
 		logger.info("New "+ GetDistributionList.class.getCanonicalName());
-
-		// All tests start at the "Distribution Lists" page
 		super.startingPage = app.zPageManageDistributionList;
 	}
+
 
 	/**
 	 * Testcase : Verify created dl is displayed in UI  -- Manage dl View
@@ -46,9 +43,11 @@ public class GetDistributionList extends AdminCommonTest {
 	 * 3. Verify dl is present in the list
 	 * @throws HarnessException
 	 */
+
 	@Test (description = "Verify created dl is present in the list view",
 			groups = { "smoke", "L1" })
-			public void GetDistributionList_01() throws HarnessException {
+
+	public void GetDistributionList_01() throws HarnessException {
 
 		// Create a new dl in the Admin Console using SOAP
 		DistributionListItem dl = new DistributionListItem();
@@ -61,7 +60,7 @@ public class GetDistributionList extends AdminCommonTest {
 
 		// Refresh the list
 		app.zPageManageDistributionList.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
-		
+
 		// Get the list of displayed accounts
 		List<AccountItem> accounts = app.zPageManageDistributionList.zListGetAccounts();
 		ZAssert.assertNotNull(accounts, "Verify the dl list is returned");
@@ -76,7 +75,8 @@ public class GetDistributionList extends AdminCommonTest {
 		}
 		ZAssert.assertNotNull(found, "Verify the dl is returned correctly");
 	}
-		
+
+
 	/**
 	 * Testcase : Verify created admin dl is displayed in UI  -- Manage dl View
 	 * Steps :
@@ -85,9 +85,11 @@ public class GetDistributionList extends AdminCommonTest {
 	 * 3. Verify dl is present in the list
 	 * @throws HarnessException
 	 */
+
 	@Test (description = "Verify created admin dl is present in the list view",
 			groups = { "functional", "L2" })
-			public void GetDistributionList_02() throws HarnessException {
+
+	public void GetDistributionList_02() throws HarnessException {
 
 		// Create a new dl in the Admin Console using SOAP
 		DistributionListItem dl = new DistributionListItem();
@@ -101,7 +103,7 @@ public class GetDistributionList extends AdminCommonTest {
 
 		// Refresh the list
 		app.zPageManageDistributionList.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
-		
+
 		// Get the list of displayed accounts
 		List<AccountItem> accounts = app.zPageManageDistributionList.zListGetAccounts();
 		ZAssert.assertNotNull(accounts, "Verify the dl list is returned");
@@ -117,6 +119,7 @@ public class GetDistributionList extends AdminCommonTest {
 		ZAssert.assertNotNull(found, "Verify the dl is returned correctly");
 	}
 
+
 	/**
 	 * Testcase : Verify created dynamic admin dl is displayed in UI  -- Manage dl View
 	 * Steps :
@@ -125,9 +128,11 @@ public class GetDistributionList extends AdminCommonTest {
 	 * 3. Verify dl is present in the list
 	 * @throws HarnessException
 	 */
+
 	@Test (description = "Verify created dynamic admin dl is present in the list view",
 			groups = { "functional", "L2" })
-			public void GetDistributionList_03() throws HarnessException {
+
+	public void GetDistributionList_03() throws HarnessException {
 
 		// Create a new dl in the Admin Console using SOAP
 		DistributionListItem dl = new DistributionListItem();
@@ -142,7 +147,7 @@ public class GetDistributionList extends AdminCommonTest {
 
 		// Refresh the list
 		app.zPageManageDistributionList.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
-		
+
 		// Get the list of displayed accounts
 		List<AccountItem> accounts = app.zPageManageDistributionList.zListGetAccounts();
 		ZAssert.assertNotNull(accounts, "Verify the dl list is returned");
@@ -156,8 +161,8 @@ public class GetDistributionList extends AdminCommonTest {
 			}
 		}
 		ZAssert.assertNotNull(found, "Verify the dl is returned correctly");
-		
 	}
+
 
 	/**
 	 * Testcase : Verify created dl is displayed in UI - Search view.
@@ -167,9 +172,11 @@ public class GetDistributionList extends AdminCommonTest {
 	 * 2. Verify dl is present in the search list.
 	 * @throws HarnessException
 	 */
+
 	@Test (description = "Verify created dl is present in the list view  - Search view",
 			groups = { "functional", "L3" })
-			public void GetDistributionList_04() throws HarnessException {
+
+	public void GetDistributionList_04() throws HarnessException {
 
 		// Create a new dl in the Admin Console using SOAP
 		DistributionListItem dl = new DistributionListItem();
@@ -200,7 +207,4 @@ public class GetDistributionList extends AdminCommonTest {
 		}
 		ZAssert.assertNotNull(found, "Verify the dl is returned correctly");
 	}
-	
- 
-
 }

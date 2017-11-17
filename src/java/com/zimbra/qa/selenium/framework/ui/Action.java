@@ -17,8 +17,8 @@
 package com.zimbra.qa.selenium.framework.ui;
 
 /**
- * The <code>Action</code> class defines constants that represent
- * general actions in the client apps.
+ * The <code>Action</code> class defines constants that represent general
+ * actions in the client apps.
  * <p>
  * This class defines constants for
  * <ol>
@@ -27,16 +27,17 @@ package com.zimbra.qa.selenium.framework.ui;
  * </ol>
  * <p>
  * Action constant names start with "A_" and take the general format
- * <code>A_PAGE_ACTION</code>,
- * where "Page" is the application name such as MAIL, ADDRESSBOOK and
- * "Action" is the general description of the action.  For non-page
- * specific Actions, "Page" is not specified.
+ * <code>A_PAGE_ACTION</code>, where "Page" is the application name such as
+ * MAIL, ADDRESSBOOK and "Action" is the general description of the action. For
+ * non-page specific Actions, "Page" is not specified.
  * <p>
  * The action constants can be used in page methods, for example:
+ * 
  * <pre>
- * {@code
- * String subject = "foo123";
- * app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
+ * {
+ * 	&#64;code
+ * 	String subject = "foo123";
+ * 	app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
  * }
  * </pre>
  * <p>
@@ -63,7 +64,7 @@ public class Action {
 	public static final Action A_MAIL_UNFLAG = new Action("A_MAIL_UNFLAG");
 	public static final Action A_MAIL_EXPANDCONVERSATION = new Action("A_MAIL_EXPANDCONVERSATION");
 	public static final Action A_MAIL_COLLAPSECONVERSATION = new Action("A_MAIL_COLLAPSECONVERSATION");
-	
+
 	// Tree actions
 	public static final Action A_TREE_EXPAND = new Action("A_TREE_EXPAND");
 	public static final Action A_TREE_COLLAPSE = new Action("A_TREE_COLLAPSE");
@@ -72,13 +73,13 @@ public class Action {
 	// Briefcase page actions
 	public static final Action A_BRIEFCASE_CHECKBOX = new Action("A_BRIEFCASE_CHECKBOX");
 	public static final Action A_BRIEFCASE_HEADER_CHECKBOX = new Action("A_BRIEFCASE_HEADER_CHECKBOX");
-	
+
 	// Bubble actions
 	public static final Action A_EXPAND = new Action("A_EXPAND");
 	public static final Action A_REMOVE = new Action("A_REMOVE");
 
 	private final String ID;
-	
+
 	protected Action(String id) {
 		this.ID = id;
 	}
@@ -112,5 +113,4 @@ public class Action {
 			return false;
 		return true;
 	}
-
 }

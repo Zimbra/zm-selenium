@@ -18,7 +18,6 @@ package com.zimbra.qa.selenium.projects.ajax.tests.mail.compose.inlineimage;
 
 import java.awt.event.KeyEvent;
 import java.io.File;
-import org.testng.SkipException;
 import org.testng.annotations.Test;
 import com.zimbra.common.soap.Element;
 import com.zimbra.qa.selenium.framework.items.FolderItem;

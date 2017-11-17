@@ -31,13 +31,12 @@ import com.zimbra.qa.selenium.projects.admin.ui.FormEditDistributionList;
 import com.zimbra.qa.selenium.projects.admin.ui.PageMain;
 
 public class EditDistributionList extends AdminCommonTest {
+
 	public EditDistributionList() {
 		logger.info("New "+ EditDistributionList.class.getCanonicalName());
-
-		// All tests start at the "Accounts" page
 		super.startingPage = app.zPageManageDistributionList;
-
 	}
+
 
 	/**
 	 * Testcase : Edit Distribution List name - Manage Distribution List view
@@ -49,8 +48,10 @@ public class EditDistributionList extends AdminCommonTest {
 	 * 5. Verify dl is edit using SOAP.
 	 * @throws HarnessException
 	 */
+
 	@Test (description = "Edit Distribution List name - Manage Distribution List view",
 			groups = { "smoke", "L1" })
+
 	public void EditDistributionList_01() throws HarnessException {
 
 		// Create a new dl in the Admin Console using SOAP
@@ -72,14 +73,14 @@ public class EditDistributionList extends AdminCommonTest {
 		FormEditDistributionList form = (FormEditDistributionList) app.zPageManageDistributionList.zToolbarPressPulldown(Button.B_GEAR_BOX,Button.O_EDIT);
 		//FormEditDistributionList form = (FormEditDistributionList) app.zPageManageDistributionList.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_EDIT);
 
-		//Click on General Information tab.
+		// Click on General Information tab
 		form.zSelectTreeItem(FormEditDistributionList.TreeItem.MEMBERS);
 
-		//Edit the name.
+		// Edit the name
 		String editedName = "editedDL_" + ConfigProperties.getUniqueString();
 		form.setName(editedName);
 
-		//Submit the form.
+		// Submit
 		form.zSubmit();
 
 		// Verify the dl exists in the ZCS
@@ -92,6 +93,7 @@ public class EditDistributionList extends AdminCommonTest {
 		ZAssert.assertNotNull(response, "Verify the distribution list is edited successfully");
 	}
 
+
 	/**
 	 * Testcase : Edit Distribution List name - Manage Distribution List view + Right Click Menu
 	 * Steps :
@@ -102,8 +104,10 @@ public class EditDistributionList extends AdminCommonTest {
 	 * 5. Verify dl is edited using SOAP.
 	 * @throws HarnessException
 	 */
+
 	@Test (description = "Edit Distribution List name - Manage Distribution List view + Right Click Menu",
 			groups = { "functional", "L2" })
+
 	public void EditDistributionList_02() throws HarnessException {
 
 		// Create a new dl in the Admin Console using SOAP
@@ -124,14 +128,14 @@ public class EditDistributionList extends AdminCommonTest {
 		// Click on Edit button
 		FormEditDistributionList form = (FormEditDistributionList) app.zPageManageDistributionList.zToolbarPressButton(Button.B_TREE_EDIT);
 
-		//Click on General Information tab.
+		// Click on General Information tab
 		form.zSelectTreeItem(FormEditDistributionList.TreeItem.MEMBERS);
 
-		//Edit the name.
+		// Edit the name
 		String editedName = "editedDL_" + ConfigProperties.getUniqueString();
 		form.setName(editedName);
 
-		//Submit the form.
+		// Submit
 		form.zSubmit();
 
 		// Verify the dl exists in the ZCS
@@ -144,6 +148,7 @@ public class EditDistributionList extends AdminCommonTest {
 		ZAssert.assertNotNull(response, "https://bugzilla.zimbra.com/show_bug.cgi?id=74487");
 	}
 
+
 	/**
 	 * Testcase : Edit Admin Distribution List name - Manage Distribution List view
 	 * Steps :
@@ -154,8 +159,10 @@ public class EditDistributionList extends AdminCommonTest {
 	 * 5. Verify dl is edit using SOAP.
 	 * @throws HarnessException
 	 */
+
 	@Test (description = "Edit Admin Distribution List name - Manage Distribution List view",
 			groups = { "functional", "L2" })
+
 	public void EditDistributionList_03() throws HarnessException {
 
 		// Create a new dl in the Admin Console using SOAP
@@ -178,14 +185,14 @@ public class EditDistributionList extends AdminCommonTest {
 		FormEditDistributionList form = (FormEditDistributionList) app.zPageManageDistributionList.zToolbarPressPulldown(Button.B_GEAR_BOX,Button.O_EDIT);
 		//FormEditDistributionList form = (FormEditDistributionList) app.zPageManageDistributionList.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_EDIT);
 
-		//Click on General Information tab.
+		// Click on General Information tab
 		form.zSelectTreeItem(FormEditDistributionList.TreeItem.MEMBERS);
 
-		//Edit the name.
+		// Edit the name
 		String editedName = "editedDL_" + ConfigProperties.getUniqueString();
 		form.setName(editedName);
 
-		//Submit the form.
+		// Submit
 		form.zSubmit();
 
 		// Verify the dl exists in the ZCS
@@ -198,6 +205,7 @@ public class EditDistributionList extends AdminCommonTest {
 		ZAssert.assertNotNull(response, "Verify the distribution list is edited successfully");
 	}
 
+
 	/**
 	 * Testcase : Edit Dynamic Admin Distribution List name - Manage Distribution List view
 	 * Steps :
@@ -208,14 +216,16 @@ public class EditDistributionList extends AdminCommonTest {
 	 * 5. Verify dl is edit using SOAP.
 	 * @throws HarnessException
 	 */
+
 	@Test (description = "Edit Dynamic Admin Distribution List name - Manage Distribution List view",
 			groups = { "functional", "L2" })
+
 	public void EditDistributionList_04() throws HarnessException {
 
 		// Create a new dl in the Admin Console using SOAP
 		DistributionListItem dl = new DistributionListItem();
 		String dlEmailAddress=dl.getEmailAddress();
-		
+
 		String memberURL ="ldap:///??sub?";
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<CreateDistributionListRequest dynamic='1' xmlns='urn:zimbraAdmin'>"
@@ -235,14 +245,14 @@ public class EditDistributionList extends AdminCommonTest {
 		FormEditDistributionList form = (FormEditDistributionList) app.zPageManageDistributionList.zToolbarPressPulldown(Button.B_GEAR_BOX,Button.O_EDIT);
 		//FormEditDistributionList form = (FormEditDistributionList) app.zPageManageDistributionList.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_EDIT);
 
-		//Click on General Information tab.
+		// Click on General Information tab
 		form.zSelectTreeItem(FormEditDistributionList.TreeItem.MEMBERS);
 
-		//Edit the name.
+		// Edit the name
 		String editedName = "editedDL_" + ConfigProperties.getUniqueString();
 		form.setName(editedName);
 
-		//Submit the form.
+		// Submit
 		form.zSubmit();
 
 		// Verify the dl exists in the ZCS
@@ -256,8 +266,6 @@ public class EditDistributionList extends AdminCommonTest {
 	}
 
 
-	
-	
 	/**
 	 * Testcase : Edit dynamic Distribution List name - Manage Distribution List view
 	 * Steps :
@@ -268,13 +276,14 @@ public class EditDistributionList extends AdminCommonTest {
 	 * 5. Verify dl is edit using SOAP.
 	 * @throws HarnessException
 	 */
+
 	@Bugs (ids = "97150")
 	@Test (description = "Edit dynamic Distribution List name - Manage Distribution List view",
 			groups = { "functional", "L3" })
+
 	public void EditDistributionList_05() throws HarnessException {
 
 		// Create a new dynamic dl in the Admin Console using SOAP
-		
 		DistributionListItem dl = new DistributionListItem();
 		String dlEmailAddress=dl.getEmailAddress();
 		String memberURL ="ldap:///??sub?";
@@ -296,14 +305,14 @@ public class EditDistributionList extends AdminCommonTest {
 		// Click on Edit button
 		FormEditDistributionList form = (FormEditDistributionList) app.zPageManageDistributionList.zToolbarPressPulldown(Button.B_GEAR_BOX,Button.O_EDIT);
 
-		//Click on General Information tab.
+		// Click on General Information tab
 		form.zSelectTreeItem(FormEditDistributionList.TreeItem.MEMBERS);
 
-		//Edit the name.
+		// Edit the name
 		String editedName = "editedDL_" + ConfigProperties.getUniqueString();
 		form.setName(editedName);
 
-		//Submit the form.
+		// Submit
 		form.zSubmit();
 
 		// Verify the dl exists in the ZCS
@@ -327,13 +336,14 @@ public class EditDistributionList extends AdminCommonTest {
 	 * 5. Verify dl is edited using SOAP.
 	 * @throws HarnessException
 	 */
+
 	@Bugs (ids = "97150")
 	@Test (description = "Edit Dynamic Distribution List name - Manage Distribution List view + Right Click Menu",
 			groups = { "functional", "L3" })
+
 	public void EditDistributionList_06() throws HarnessException {
 
 		// Create a new dl in the Admin Console using SOAP
-		
 		DistributionListItem dl = new DistributionListItem();
 		String dlEmailAddress=dl.getEmailAddress();
 		String memberURL ="ldap:///??sub?";
@@ -355,14 +365,14 @@ public class EditDistributionList extends AdminCommonTest {
 		// Click on Edit button
 		FormEditDistributionList form = (FormEditDistributionList) app.zPageManageDistributionList.zToolbarPressButton(Button.B_TREE_EDIT);
 
-		//Click on General Information tab.
+		// Click on General Information tab
 		form.zSelectTreeItem(FormEditDistributionList.TreeItem.MEMBERS);
 
-		//Edit the name.
+		// Edit the name
 		String editedName = "editedDL_" + ConfigProperties.getUniqueString();
 		form.setName(editedName);
 
-		//Submit the form.
+		// Submit
 		form.zSubmit();
 		// Verify the edited dynamic dl exists in the ZCS
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
@@ -373,7 +383,4 @@ public class EditDistributionList extends AdminCommonTest {
 		Element response = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetDistributionListResponse/admin:dl", 1);
 		ZAssert.assertNotNull(response, "https://bugzilla.zimbra.com/show_bug.cgi?id=74487");
 	}
-
-
-	
 }

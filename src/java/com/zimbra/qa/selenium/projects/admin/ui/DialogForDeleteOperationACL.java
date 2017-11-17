@@ -27,8 +27,8 @@ import com.zimbra.qa.selenium.framework.util.SleepUtil;
 public class DialogForDeleteOperationACL extends AbsDialog {
 
 	public static class Locators {
-		public static final String YES_BUTTON="css=div[id^='zdlg__MSG__DWT'] td[id$='_button5_title']:contains('Yes')";
-		public static final String NO_BUTTON="css=div[id^='zdlg__MSG__DWT'] td[id$='_button4_title']:contains('No')";
+		public static final String YES_BUTTON = "css=div[id^='zdlg__MSG__DWT'] td[id$='_button5_title']:contains('Yes')";
+		public static final String NO_BUTTON = "css=div[id^='zdlg__MSG__DWT'] td[id$='_button4_title']:contains('No')";
 	}
 
 	public DialogForDeleteOperationACL(AbsApplication application, AbsTab page) {
@@ -45,7 +45,7 @@ public class DialogForDeleteOperationACL extends AbsDialog {
 		logger.info(myPageName() + " zPressButton(" + button + ")");
 
 		tracer.trace("Click dialog button " + button);
-		if ( button == null )
+		if (button == null)
 			throw new HarnessException("button cannot be null");
 
 		String locator = null;
@@ -66,11 +66,10 @@ public class DialogForDeleteOperationACL extends AbsDialog {
 
 		// Make sure the locator exists
 		if (!this.sIsElementPresent(locator)) {
-			throw new HarnessException("Button " + button + " locator "
-					+ locator + " not present!");
+			throw new HarnessException("Button " + button + " locator " + locator + " not present!");
 		}
-		
-		this.sClickAt(locator,"0,0");
+
+		this.sClickAt(locator, "0,0");
 		SleepUtil.sleepLong();
 
 		return (page);

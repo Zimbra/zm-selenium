@@ -24,14 +24,13 @@ import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.projects.admin.core.AdminCommonTest;
 
 public class HelpLinks extends AdminCommonTest {
-	
+
 	public HelpLinks() {
 		logger.info("New "+ HelpLinks.class.getCanonicalName());
-
-		// All tests start at the "HOME" page
 		super.startingPage = app.zPageMain;
 	}
-	
+
+
 	/**
 	 * Testcase : Navigate to Help > Help links
 	 * Steps :
@@ -39,30 +38,30 @@ public class HelpLinks extends AdminCommonTest {
 	 * 2. Verify links Zimbra Online Help, Administrators Guide, End Users Guide displayed by clicking on Help Center
 	 * @throws HarnessException
 	 */
+
 	@Test (description = "Verify Help Center links",
 			groups = { "sanity", "L0" })
-	
-		public void HelpLinks_01() throws HarnessException {
-		
+
+	public void HelpLinks_01() throws HarnessException {
+
 		// Navigate to Help > Help links
 		app.zPageManageHelp.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_HELP_CENTRAL_ONLINE);
 		SleepUtil.sleepMedium();
-		
+
 		// Verify "Zimbra Online Help" link is present
 		boolean isZimbraOnlineHelpLinkPresent = app.zPageManageHelp.zVerifyHelpCenterLink("Zimbra Online Help");
 		ZAssert.assertTrue(isZimbraOnlineHelpLinkPresent, "Verify Zimbra Online Help link is present");
 		SleepUtil.sleepSmall();
-		
+
 		// Verify "Administrators Guide" link is present
 		boolean isAdministratorGuideLinkPresent = app.zPageManageHelp.zVerifyHelpCenterLink("Administrators' Guide");
 		ZAssert.assertTrue(isAdministratorGuideLinkPresent, "Verify Zimbra Administrators' Guide link is present");
 		SleepUtil.sleepSmall();
-		
+
 		// Verify "End Users' Guide" link is present
 		boolean isEndUsersGuideLinkPresent = app.zPageManageHelp.zVerifyHelpCenterLink("End Users' Guide");
 		ZAssert.assertTrue(isEndUsersGuideLinkPresent, "Verify End Users' Guide link is present");
-	
-		app.zPageMain.logout();	
+
+		app.zPageMain.logout();
 	}
 }
-

@@ -25,24 +25,23 @@ import com.zimbra.qa.selenium.framework.util.SleepUtil;
 public class FormSearchMail extends AbsForm {
 
 	public static class TreeItem {
-		public static final String GENERAL_INFORMATION="General Information";
+		public static final String GENERAL_INFORMATION = "General Information";
 	}
 
 	public static class Locators {
-		public static final String QUERY_TEXT_BOX="css=input#_XForm_";
-		public static final String SAVE_BUTTON="css=td[id^='zb__ZaCurrentAppBar__SAVE']";
-		public static final String CLOSE_BUTTON="css=td[id^='zb__ZaCurrentAppBar__CLOSE']";
-		public static final String SERVER_NAME_ARROW="css=div[id$='_serverId_arrow_button']";	
-		public static final String SERVER_NAME="css=div#_XForm_";
-		public static final String TARGET_MAILBOX="css=input#_XForm_";
-		public static final String ALL_ACCOUNTS="css=input#_XForm_";
-		public static final String SELECTED_ACCOUNTS="css=input#_XForm_";
-		public static final String RUN_SEARCH="css=div[id^='zb__ZaCurrentAppBar']:contains('Run Search')";
-		public static final String ACCOUNT_NAME="css=input[id='_XForm_2_accountQuery']";
-		public static final String FIND_ACCOUNTS="css=td[id$='_dwt_button_3___container'] div:contains('Find accounts')";
-		public static final String ADD="css=td[id$='dwt_button_5___container'] div:contains('Add')";
-		public static final String SELECTED_ACCOUNTS1="css=input[id='_XForm_2_searchAll_2']";
-
+		public static final String QUERY_TEXT_BOX = "css=input#_XForm_";
+		public static final String SAVE_BUTTON = "css=td[id^='zb__ZaCurrentAppBar__SAVE']";
+		public static final String CLOSE_BUTTON = "css=td[id^='zb__ZaCurrentAppBar__CLOSE']";
+		public static final String SERVER_NAME_ARROW = "css=div[id$='_serverId_arrow_button']";
+		public static final String SERVER_NAME = "css=div#_XForm_";
+		public static final String TARGET_MAILBOX = "css=input#_XForm_";
+		public static final String ALL_ACCOUNTS = "css=input#_XForm_";
+		public static final String SELECTED_ACCOUNTS = "css=input#_XForm_";
+		public static final String RUN_SEARCH = "css=div[id^='zb__ZaCurrentAppBar']:contains('Run Search')";
+		public static final String ACCOUNT_NAME = "css=input[id='_XForm_2_accountQuery']";
+		public static final String FIND_ACCOUNTS = "css=td[id$='_dwt_button_3___container'] div:contains('Find accounts')";
+		public static final String ADD = "css=td[id$='dwt_button_5___container'] div:contains('Add')";
+		public static final String SELECTED_ACCOUNTS1 = "css=input[id='_XForm_2_searchAll_2']";
 
 	}
 
@@ -57,17 +56,16 @@ public class FormSearchMail extends AbsForm {
 	public boolean zIsActive() throws HarnessException {
 
 		// Make sure the Admin Console is loaded in the browser
-		if ( !MyApplication.zIsLoaded() )
+		if (!MyApplication.zIsLoaded())
 			throw new HarnessException("Admin Console application is not active!");
 
-
 		boolean present = sIsElementPresent("");
-		if ( !present ) {
+		if (!present) {
 			return (false);
 		}
 
 		String attrs = sGetAttribute("");
-		if ( !attrs.contains("ZSelected") ) {
+		if (!attrs.contains("ZSelected")) {
 			return (false);
 		}
 
@@ -86,7 +84,7 @@ public class FormSearchMail extends AbsForm {
 
 	@Override
 	public void zSubmit() throws HarnessException {
-		sClickAt(Locators.RUN_SEARCH,"");
+		sClickAt(Locators.RUN_SEARCH, "");
 		SleepUtil.sleepSmall();
 	}
 
@@ -95,57 +93,56 @@ public class FormSearchMail extends AbsForm {
 	}
 
 	public void setSearchQuery(String Query) throws HarnessException {
-		for(int i=12;i>=0;i--) {
-			if (sIsElementPresent(Locators.QUERY_TEXT_BOX+i+"_query_2")) {
-				sType(Locators.QUERY_TEXT_BOX+i+"_query_2", Query);
+		for (int i = 12; i >= 0; i--) {
+			if (sIsElementPresent(Locators.QUERY_TEXT_BOX + i + "_query_2")) {
+				sType(Locators.QUERY_TEXT_BOX + i + "_query_2", Query);
 				return;
 			}
 		}
-		sType(Locators.QUERY_TEXT_BOX+"_query_2", Query);
+		sType(Locators.QUERY_TEXT_BOX + "_query_2", Query);
 	}
 
 	public void SelectServerName(String serverName) throws HarnessException {
-		this.sClickAt(Locators.SERVER_NAME_ARROW,"");
-		for(int i=12;i>=0;i--) {
-			if (sIsElementPresent(Locators.SERVER_NAME+i+"_serverId_choice_0")) {
-				sClick(Locators.SERVER_NAME+i+"_serverId_choice_0");
+		this.sClickAt(Locators.SERVER_NAME_ARROW, "");
+		for (int i = 12; i >= 0; i--) {
+			if (sIsElementPresent(Locators.SERVER_NAME + i + "_serverId_choice_0")) {
+				sClick(Locators.SERVER_NAME + i + "_serverId_choice_0");
 				SleepUtil.sleepMedium();
 				return;
 			}
 		}
-		sClick(Locators.SERVER_NAME+"_serverId_choice_0");
+		sClick(Locators.SERVER_NAME + "_serverId_choice_0");
 	}
 
 	public void setTargetMailbox(String emailAddress) throws HarnessException {
-		for(int i=12;i>=0;i--) {
-			if (sIsElementPresent(Locators.TARGET_MAILBOX+i+"_targetMbx_2_display")) {
-				sType(Locators.TARGET_MAILBOX+i+"_targetMbx_2_display", emailAddress);
+		for (int i = 12; i >= 0; i--) {
+			if (sIsElementPresent(Locators.TARGET_MAILBOX + i + "_targetMbx_2_display")) {
+				sType(Locators.TARGET_MAILBOX + i + "_targetMbx_2_display", emailAddress);
 				SleepUtil.sleepMedium();
 				return;
 			}
 		}
 
-		sType(Locators.TARGET_MAILBOX+"_targetMbx_2_display", emailAddress);
+		sType(Locators.TARGET_MAILBOX + "_targetMbx_2_display", emailAddress);
 		SleepUtil.sleepMedium();
 	}
 
 	public void selectAccountsToSearch(String criteria) throws HarnessException {
-		if(criteria.equals("all")) {
-			for(int i=12;i>=0;i--) {
-				if (sIsElementPresent(Locators.ALL_ACCOUNTS+i+"_searchAll")) {
-					sClick(Locators.ALL_ACCOUNTS+i+"_searchAll");
+		if (criteria.equals("all")) {
+			for (int i = 12; i >= 0; i--) {
+				if (sIsElementPresent(Locators.ALL_ACCOUNTS + i + "_searchAll")) {
+					sClick(Locators.ALL_ACCOUNTS + i + "_searchAll");
 					return;
 				}
 			}
-			sClick(Locators.ALL_ACCOUNTS+"_searchAll");
-		} else if(criteria.equals("selected")) {
-			/*	for(int i=12;i>=0;i--) {
-				if (sIsElementPresent(Locators.ALL_ACCOUNTS+i+"_searchAll_2")) {
-					sClick(Locators.ALL_ACCOUNTS+i+"_searchAll_2");
-					return;
-				}
-				sClick(Locators.ALL_ACCOUNTS+"_searchAll_2");
-			}*/
+			sClick(Locators.ALL_ACCOUNTS + "_searchAll");
+		} else if (criteria.equals("selected")) {
+			/*
+			 * for(int i=12;i>=0;i--) { if
+			 * (sIsElementPresent(Locators.ALL_ACCOUNTS+i+"_searchAll_2")) {
+			 * sClick(Locators.ALL_ACCOUNTS+i+"_searchAll_2"); return; }
+			 * sClick(Locators.ALL_ACCOUNTS+"_searchAll_2"); }
+			 */
 
 			sClick(Locators.SELECTED_ACCOUNTS1);
 
@@ -163,21 +160,18 @@ public class FormSearchMail extends AbsForm {
 		// How many items are in the table?
 		String rowsLocator = "css=td[id$='_accountPool___container'] div[id^='zl'] div[id^='zli__']";
 		int count = this.sGetCssCount(rowsLocator);
-		logger.debug(myPageName() + " zListGetPolicy: number of policys: "+ count);
+		logger.debug(myPageName() + " zListGetPolicy: number of policys: " + count);
 
 		// Get each conversation's data from the table list
 		for (int i = 1; i <= count; i++) {
-			final String accountLocator = rowsLocator + ":nth-child("+i+")";
+			final String accountLocator = rowsLocator + ":nth-child(" + i + ")";
 			String locator;
 
 			// Email Address
 			locator = accountLocator + " td:nth-child(2)";
 
-
-			if(this.sIsElementPresent(locator))
-			{
-				if(this.sGetText(locator).trim().equalsIgnoreCase(email))
-				{
+			if (this.sIsElementPresent(locator)) {
+				if (this.sGetText(locator).trim().equalsIgnoreCase(email)) {
 					sClick(locator);
 					SleepUtil.sleepMedium();
 				} else {
@@ -192,9 +186,4 @@ public class FormSearchMail extends AbsForm {
 		}
 	}
 
-
 }
-
-
-
-

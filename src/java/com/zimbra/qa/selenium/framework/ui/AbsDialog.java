@@ -22,8 +22,8 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 
 /**
- * A <code>AbsDialog</code> object represents a "popup dialog", 
- * such as a new folder, new tag, error message, etc.
+ * A <code>AbsDialog</code> object represents a "popup dialog", such as a new
+ * folder, new tag, error message, etc.
  * <p>
  * 
  * @author Matt Rhoades
@@ -35,8 +35,7 @@ public abstract class AbsDialog extends AbsPage {
 
 	/**
 	 * Create this page object that exists in the specified application
-	 * @param application
-	 * @param page
+	 * 
 	 */
 	public AbsDialog(AbsApplication application, AbsTab page) {
 
@@ -47,57 +46,54 @@ public abstract class AbsDialog extends AbsPage {
 		logger.info("new " + AbsDialog.class.getCanonicalName());
 
 	}
-	
+
 	/**
 	 * Get the dialog displayed text
 	 */
 	public abstract String zGetDisplayedText(String locator) throws HarnessException;
-	
+
 	/**
 	 * Click on a button in the dialog
 	 **/
 	public abstract AbsPage zPressButton(Button button) throws HarnessException;
-	
+
 	/**
 	 * Wait for this dialog to close
-	 * @throws HarnessException
+	 * 
 	 */
-	public void zWaitForClose()  throws HarnessException {
+	public void zWaitForClose() throws HarnessException {
 		zWaitForClose(PageLoadDelay);
 	}
 
 	/**
 	 * Wait for this dialog to close
-	 * @throws HarnessException
+	 * 
 	 */
 	public void zWaitForClose(long millis) throws HarnessException {
-		
-		if ( !zIsActive() ) {
-			return; // Dialog closed
+
+		if (!zIsActive()) {
+			return;
 		}
-		
+
 		do {
 			SleepUtil.sleep(SleepUtil.SleepGranularity);
 			millis = millis - SleepUtil.SleepGranularity;
-			if ( !zIsActive() ) {
-				return; // Dialog closed
+			if (!zIsActive()) {
+				return;
 			}
 		} while (millis > SleepUtil.SleepGranularity);
-		
+
 		SleepUtil.sleep(millis);
-		if ( !zIsActive() ) {
-			return;	// Page became active
+		if (!zIsActive()) {
+			return;
 		}
 
 		throw new HarnessException("Dialog never closed");
 	}
-	
 
 	/**
 	 * Return the unique name for this page class
-	 * @return
+	 * 
 	 */
 	public abstract String myPageName();
-	
-
 }

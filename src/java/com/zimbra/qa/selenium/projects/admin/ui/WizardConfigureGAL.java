@@ -14,9 +14,6 @@
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-/**
- *
- */
 package com.zimbra.qa.selenium.projects.admin.ui;
 
 import com.zimbra.qa.selenium.framework.items.IItem;
@@ -59,70 +56,70 @@ public class WizardConfigureGAL extends AbsWizard {
 
 	@Override
 	public IItem zCompleteWizard(IItem item) throws HarnessException {
-		
-		if ( !(item instanceof GALItem) )
-			throw new HarnessException("item must be a GALItem, was "+ item.getClass().getCanonicalName());
-		
-		GALItem gal = (GALItem)item;
-		
-		//Check the current and new GAL modes
-		if(gal.getCurrentGALMode().equals(GALMode.Internal) && gal.getNewGALMode().equals(GALMode.Both)) {
-			
-			//Select GAL mode as 'both' and fill the required fields
+
+		if (!(item instanceof GALItem))
+			throw new HarnessException("item must be a GALItem, was " + item.getClass().getCanonicalName());
+
+		GALItem gal = (GALItem) item;
+
+		// Check the current and new GAL modes
+		if (gal.getCurrentGALMode().equals(GALMode.Internal) && gal.getNewGALMode().equals(GALMode.Both)) {
+
+			// Select GAL mode as 'both' and fill the required fields
 			sClick(Locators.GAL_MODE_DROPDOWN);
 			sClick(Locators.GAL_MODE_OPTION_BOTH);
 			zWaitForElementVisible(Locators.MAIL_SERVER_DROPDOWN);
-			
-			//Select the Mail Server
+
+			// Select the Mail Server
 			sClick(Locators.MAIL_SERVER_DROPDOWN);
 			sClick(Locators.MAIL_SERVER);
-	
+
 			clearField(Locators.EXT_DATA_SRC_NAME);
-			sType(Locators.EXT_DATA_SRC_NAME,gal.getDataSourceName());
-			sType(Locators.LDAP_URL,gal.getLDAPUrl());
+			sType(Locators.EXT_DATA_SRC_NAME, gal.getDataSourceName());
+			sType(Locators.LDAP_URL, gal.getLDAPUrl());
 			clearField(Locators.LDAP_FILTER);
-			sType(Locators.LDAP_FILTER,gal.getLDAPFilter());
+			sType(Locators.LDAP_FILTER, gal.getLDAPFilter());
 			clearField(Locators.LDAP_SEARCH_BASE);
 			sType(Locators.LDAP_SEARCH_BASE, gal.getLDAPSearchBase());
-			
-			//Select the server type
+
+			// Select the server type
 			sClick(Locators.SERVER_TYPE_DROPDOWN);
 			sClick(Locators.SERVER_TYPE_ACTIVE_DIRECTORY);
-			
-			//Click next 5 times
-			for(int i=0;i<5;i++) {
+
+			// Click next 5 times
+			for (int i = 0; i < 5; i++) {
 				sClick(Locators.NEXT_BUTTON);
 				SleepUtil.sleepSmall();
 			}
 			sClick(Locators.FINISH_BUTTON);
-			
-		} else if(gal.getCurrentGALMode().equals(GALMode.External) && gal.getNewGALMode().equals(GALMode.Both)) {
-			
-			//Select GAL mode as 'both' and fill the required fields
+
+		} else if (gal.getCurrentGALMode().equals(GALMode.External) && gal.getNewGALMode().equals(GALMode.Both)) {
+
+			// Select GAL mode as 'both' and fill the required fields
 			sClick(Locators.GAL_MODE_DROPDOWN);
 			sClick(Locators.GAL_MODE_OPTION_BOTH);
 			zWaitForElementPresent(Locators.INT_DATA_SRC_NAME);
-			
-			//Enter the internal data source name
-			sType(Locators.INT_DATA_SRC_NAME,gal.getDataSourceName());
-			
-			//Next
+
+			// Enter the internal data source name
+			sType(Locators.INT_DATA_SRC_NAME, gal.getDataSourceName());
+
+			// Next
 			sClick(Locators.NEXT_BUTTON);
-			
-			//Enter bind password
+
+			// Enter bind password
 			sType(Locators.CONFIRM_BIND_PASSWORD, "z1mbr4@123");
-			
-			//Click next 5 times
-			for(int i=0;i<5;i++) {
+
+			// Click next 5 times
+			for (int i = 0; i < 5; i++) {
 				sClick(Locators.NEXT_BUTTON);
 				SleepUtil.sleepSmall();
 			}
 			sClick(Locators.FINISH_BUTTON);
-			
+
 		} else {
 			throw new HarnessException("This change of GALMode is not implemented!");
 		}
-		
+
 		return gal;
 	}
 
@@ -137,7 +134,6 @@ public class WizardConfigureGAL extends AbsWizard {
 		return present;
 	}
 
-	
 	public boolean zCloseWizard() throws HarnessException {
 		this.sClick(Locators.WIZARD_MINIMIZE);
 		return true;

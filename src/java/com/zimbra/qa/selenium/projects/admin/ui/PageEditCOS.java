@@ -14,9 +14,6 @@
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-/**
- *
- */
 package com.zimbra.qa.selenium.projects.admin.ui;
 
 import com.zimbra.qa.selenium.framework.ui.AbsApplication;
@@ -34,20 +31,20 @@ import com.zimbra.qa.selenium.framework.util.SleepUtil;
 public class PageEditCOS extends AbsTab {
 
 	public static class Locators {
-		public static final String zArrowSelectSearchObject	="css=td[id*='dropdown'] div[class='ImgSelectPullDownArrow']";
-		public static final String zEnableTwoFactorAuth="css=td[id$='_zimbraFeatureTwoFactorAuthAvailable___container'] input";	
-		public static final String zRequiredTwoFactorAuth="css=td[id$='_zimbraFeatureTwoFactorAuthRequired___container'] input";
-		public static final String zTwoFactorAuthNumScratchCodes="css=td[id$='_zimbraTwoFactorAuthNumScratchCodes___container'] input";
-		public static final String zEnableApplicationPasscodes="css=td[id$='_zimbraFeatureAppSpecificPasswordsEnabled___container'] input";
-		public static final String COS_EDIT_ACL="css=div[id^='zti__AppAdmin__Home__actLstHV'] div[class='ZTreeItemTextCell']:contains('ACL')";
+		public static final String zArrowSelectSearchObject = "css=td[id*='dropdown'] div[class='ImgSelectPullDownArrow']";
+		public static final String zEnableTwoFactorAuth = "css=td[id$='_zimbraFeatureTwoFactorAuthAvailable___container'] input";
+		public static final String zRequiredTwoFactorAuth = "css=td[id$='_zimbraFeatureTwoFactorAuthRequired___container'] input";
+		public static final String zTwoFactorAuthNumScratchCodes = "css=td[id$='_zimbraTwoFactorAuthNumScratchCodes___container'] input";
+		public static final String zEnableApplicationPasscodes = "css=td[id$='_zimbraFeatureAppSpecificPasswordsEnabled___container'] input";
+		public static final String COS_EDIT_ACL = "css=div[id^='zti__AppAdmin__Home__actLstHV'] div[class='ZTreeItemTextCell']:contains('ACL')";
 		public static final String COS_EDIT_ACL_ADD = "css=td[id^='ztabv__COS_EDIT_dwt_button_'] td[id$='title']:contains('Add')";
 		public static final String COS_EDIT_ACL_GRANTEE_NAME = "css=div[class='DwtDialog WindowOuterContainer'] table[class='dynselect_table'] input[id^='zdlgv__EDIT_ACL'][id$='_grantee_email_display']";
-		public static final String FEATURES="css=div[id^='zti__AppAdmin__CONFIGURATION__COS'][id$='_textCell']:contains('Features')";
-		public static final String PREFERENCES="css=div[id^='zti__AppAdmin__CONFIGURATION__COS'][id$='_textCell']:contains('Preferences')";
+		public static final String FEATURES = "css=div[id^='zti__AppAdmin__CONFIGURATION__COS'][id$='_textCell']:contains('Features')";
+		public static final String PREFERENCES = "css=div[id^='zti__AppAdmin__CONFIGURATION__COS'][id$='_textCell']:contains('Preferences')";
 
-		public static final String ALIASES="css=div[id^='zti__AppAdmin__Home__actLstHV'][id$='_textCell']:contains('Aliases')";
-		public static final String MOBILE_ACCESS="css=div[id^='zti__AppAdmin__CONFIGURATION__COS'][id$='_textCell']:contains('Mobile Access')";
-		public static final String ARCHIVING="css=div[id^='zti__AppAdmin__Home__actLstHV'][id$='_textCell']:contains('Archiving')";
+		public static final String ALIASES = "css=div[id^='zti__AppAdmin__Home__actLstHV'][id$='_textCell']:contains('Aliases')";
+		public static final String MOBILE_ACCESS = "css=div[id^='zti__AppAdmin__CONFIGURATION__COS'][id$='_textCell']:contains('Mobile Access')";
+		public static final String ARCHIVING = "css=div[id^='zti__AppAdmin__Home__actLstHV'][id$='_textCell']:contains('Archiving')";
 		public static final String ADD_BUTTON = "css=td[id$='dwt_button_5___container']:contains('Add')";
 
 	}
@@ -56,7 +53,9 @@ public class PageEditCOS extends AbsTab {
 		super(application);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 *
 	 * @see projects.admin.ui.AbsTab#isActive()
 	 */
 	@Override
@@ -64,7 +63,9 @@ public class PageEditCOS extends AbsTab {
 		throw new HarnessException("implement me");
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 *
 	 * @see projects.admin.ui.AbsTab#myPageName()
 	 */
 	@Override
@@ -72,7 +73,9 @@ public class PageEditCOS extends AbsTab {
 		return (this.getClass().getName());
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 *
 	 * @see projects.admin.ui.AbsTab#navigateTo()
 	 */
 	@Override
@@ -81,26 +84,22 @@ public class PageEditCOS extends AbsTab {
 	}
 
 	@Override
-	public AbsPage zListItem(Action action, String item)
-			throws HarnessException {
+	public AbsPage zListItem(Action action, String item) throws HarnessException {
 		return null;
 	}
 
 	@Override
-	public AbsPage zListItem(Action action, Button option, String item)
-			throws HarnessException {
-		return null;
-	}
-	@Override
-	public AbsPage zListItem(Action action, Button option, Button subOption ,String item)
-			throws HarnessException {
+	public AbsPage zListItem(Action action, Button option, String item) throws HarnessException {
 		return null;
 	}
 
+	@Override
+	public AbsPage zListItem(Action action, Button option, Button subOption, String item) throws HarnessException {
+		return null;
+	}
 
 	@Override
-	public AbsPage zToolbarPressPulldown(Button pulldown, Button option)
-			throws HarnessException {
+	public AbsPage zToolbarPressPulldown(Button pulldown, Button option) throws HarnessException {
 		return null;
 
 	}
@@ -108,104 +107,99 @@ public class PageEditCOS extends AbsTab {
 	@Override
 	public AbsPage zToolbarPressButton(Button button) throws HarnessException {
 
-		logger.info(myPageName() + " zToolbarPressButton("+ button +")");
+		logger.info(myPageName() + " zToolbarPressButton(" + button + ")");
 
-		tracer.trace("Press the "+ button +" button");
+		tracer.trace("Press the " + button + " button");
 
-		if ( button == null )
+		if (button == null)
 			throw new HarnessException("Button cannot be null!");
 
-
 		//
-		String locator = null;			// If set, this will be clicked
-		AbsPage page = null;	// If set, this page will be returned
+		String locator = null; // If set, this will be clicked
+		AbsPage page = null; // If set, this page will be returned
 
 		// Based on the button specified, take the appropriate action(s)
 		//
 
 		if (button == Button.B_ADD) {
 
-			locator=Locators.ADD_BUTTON;
+			locator = Locators.ADD_BUTTON;
 
 			page = new FormEditAccount(this.MyApplication);
 		} else if (button == Button.B_FEATURES) {
 
-			locator=Locators.FEATURES;
+			locator = Locators.FEATURES;
 
 			page = new FormEditAccount(this.MyApplication);
 		} else if (button == Button.B_PREFERENCES) {
 
-			locator=Locators.PREFERENCES;
+			locator = Locators.PREFERENCES;
 
 			page = new FormEditAccount(this.MyApplication);
 		} else if (button == Button.B_ALIASES) {
 
-			locator=Locators.ALIASES;
+			locator = Locators.ALIASES;
 
 			page = new FormEditAccount(this.MyApplication);
-		}  else if (button == Button.B_MOBILE_ACCESS) {
+		} else if (button == Button.B_MOBILE_ACCESS) {
 
-			locator=Locators.MOBILE_ACCESS;
+			locator = Locators.MOBILE_ACCESS;
 
 			page = new FormEditAccount(this.MyApplication);
 		} else if (button == Button.B_ARCHIVING) {
 
-			locator=Locators.ARCHIVING;
+			locator = Locators.ARCHIVING;
 
 			page = new FormEditAccount(this.MyApplication);
-		} 
-		else {
-			throw new HarnessException("no logic defined for button "+ button);
+		} else {
+			throw new HarnessException("no logic defined for button " + button);
 		}
 
-		if ( locator == null ) {
-			throw new HarnessException("locator was null for button "+ button);
+		if (locator == null) {
+			throw new HarnessException("locator was null for button " + button);
 		}
 
 		// Default behavior, process the locator by clicking on it
 		//
-		this.sClickAt(locator,"");
+		this.sClickAt(locator, "");
 		SleepUtil.sleepMedium();
 
-
 		// If page was specified, make sure it is active
-		if ( page != null ) {
+		if (page != null) {
 			SleepUtil.sleepMedium();
 		}
 
-		//sMouseOut(locator);
+		// sMouseOut(locator);
 		return (page);
-
 
 	}
 
 	public AbsPage zPreferenceTextSet(Button button, String numscratchcodes) throws HarnessException {
-		logger.info(myPageName() + " zPreferenceSet("+ button +")");
-		tracer.trace("Click page button "+ button);
+		logger.info(myPageName() + " zPreferenceSet(" + button + ")");
+		tracer.trace("Click page button " + button);
 
 		AbsPage page = null;
 		String locator = null;
 
-		if ( button == Button.B_TWO_FACTOR_AUTH_NUM_SCRATCH_CODES ) {
+		if (button == Button.B_TWO_FACTOR_AUTH_NUM_SCRATCH_CODES) {
 
 			locator = Locators.zTwoFactorAuthNumScratchCodes;
 
 		} else {
-			throw new HarnessException("Button "+ button +" not implemented");
+			throw new HarnessException("Button " + button + " not implemented");
 		}
 
 		// Make sure the locator was set
-		if ( locator == null ) {
-			throw new HarnessException("Button "+ button +" not implemented");
+		if (locator == null) {
+			throw new HarnessException("Button " + button + " not implemented");
 		}
 
 		// Make sure the locator exists
-		if ( !this.sIsElementPresent(locator) ) {
+		if (!this.sIsElementPresent(locator)) {
 			throw new HarnessException(locator + " no present!");
 		}
 
-		else
-		{
+		else {
 			this.sType(locator, numscratchcodes);
 		}
 
@@ -213,49 +207,48 @@ public class PageEditCOS extends AbsTab {
 		return (page);
 	}
 
-
 	public AbsPage zPreferenceCheckboxSet(Button button, boolean status) throws HarnessException {
-		logger.info(myPageName() + " zPreferenceSet("+ button +")");
-		tracer.trace("Click page button "+ button);
+		logger.info(myPageName() + " zPreferenceSet(" + button + ")");
+		tracer.trace("Click page button " + button);
 
 		AbsPage page = null;
 		String locator = null;
 
 		SleepUtil.sleepSmall();
 
-		if ( button == Button.B_ENABLE_TWO_FACTOR_AUTH ) {
+		if (button == Button.B_ENABLE_TWO_FACTOR_AUTH) {
 
 			locator = Locators.zEnableTwoFactorAuth;
 
-		} else if ( button == Button.B_REQUIRED_TWO_FACTOR_AUTH ) {
+		} else if (button == Button.B_REQUIRED_TWO_FACTOR_AUTH) {
 
 			locator = Locators.zRequiredTwoFactorAuth;
 
-		} else if ( button == Button.B_ENABLE_APPLICATION_PASSCODES ) {
+		} else if (button == Button.B_ENABLE_APPLICATION_PASSCODES) {
 
 			locator = Locators.zEnableApplicationPasscodes;
 
 		} else {
-			throw new HarnessException("Button "+ button +" not implemented");
+			throw new HarnessException("Button " + button + " not implemented");
 		}
 
 		// Make sure the locator was set
-		if ( locator == null ) {
-			throw new HarnessException("Button "+ button +" not implemented");
+		if (locator == null) {
+			throw new HarnessException("Button " + button + " not implemented");
 		}
 
 		// Make sure the locator exists
-		if ( !this.sIsElementPresent(locator) ) {
-			throw new HarnessException("Button "+ button +" locator "+ locator +" not present!");
+		if (!this.sIsElementPresent(locator)) {
+			throw new HarnessException("Button " + button + " locator " + locator + " not present!");
 		}
 
-		if ( this.sIsChecked(locator) == status ) {
+		if (this.sIsChecked(locator) == status) {
 			logger.debug("checkbox status matched. not doing anything");
 			return (page);
 		}
 
-		if ( status == true ) {
-			this.sClickAt(locator,"");
+		if (status == true) {
+			this.sClickAt(locator, "");
 
 		} else {
 			this.sUncheck(locator);

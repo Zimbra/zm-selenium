@@ -33,6 +33,7 @@ public class ZimbraHelpAdminURLModification extends AdminCommonTest {
 		logger.info("New "+ ZimbraHelpAdminURLModification.class.getCanonicalName());
 	}
 
+
 	@Bugs (ids = "101023")
 	@Test (description = "Verify that zimbra admin help page is opened as per the value set in attribute ZimbraHelpAdminURL",
 			groups = { "functional", "L2" })
@@ -79,7 +80,7 @@ public class ZimbraHelpAdminURLModification extends AdminCommonTest {
 
 			app.zPageMain.sSelectWindow(id);
 				if (app.zPageMain.sGetTitle().contains("Not Found") || app.zPageMain.sGetTitle().contains("Help")) {
-					//Get the opened URL
+					// Get the opened URL
 					tempURL=app.zPageMain.sGetLocation();
 					found = true;
 					app.zPageMain.zSeparateWindowClose(app.zPageMain.sGetTitle());
@@ -146,7 +147,7 @@ public class ZimbraHelpAdminURLModification extends AdminCommonTest {
 					app.zPageMain.sSelectWindow(id);
 
 					if (app.zPageMain.sGetTitle().contains("BBC")) {
-						//Get the opened URL
+						// Get the opened URL
 						tempURL = app.zPageMain.sGetLocation();
 						found = true;
 						app.zPageMain.zSeparateWindowClose(app.zPageMain.sGetTitle());

@@ -17,7 +17,6 @@
 package com.zimbra.qa.selenium.projects.admin.tests.resources;
 
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.projects.admin.core.AdminCommonTest;
@@ -27,11 +26,10 @@ public class NavigateResource extends AdminCommonTest {
 
 	public NavigateResource() {
 		logger.info("New "+ NavigateResource.class.getCanonicalName());
-
-		// All tests start at the "Resource" page
 		super.startingPage = app.zPageManageResources;
 	}
-	
+
+
 	/**
 	 * Testcase : Navigate to Resource page
 	 * Steps :
@@ -39,15 +37,20 @@ public class NavigateResource extends AdminCommonTest {
 	 * 2. Verify navigation path -- "Home --> Manage --> Resources"
 	 * @throws HarnessException
 	 */
+
 	@Test (description = "Navigate to Resource",
 			groups = { "sanity", "L0" })
-			public void NavigateResource_01() throws HarnessException {
-		
+
+	public void NavigateResource_01() throws HarnessException {
+
 		/*
 		 * Verify navigation path -- "Home --> Manage Accounts --> Resources"
 		 */
-		ZAssert.assertTrue(app.zPageManageResources.zVerifyHeader(PageManageResources.Locators.HOME), "Verfiy the \"Home\" text exists in navigation path");
-		ZAssert.assertTrue(app.zPageManageResources.zVerifyHeader(PageManageResources.Locators.MANAGE), "Verfiy the \"Manage Accounts\" text exists in navigation path");
-		ZAssert.assertTrue(app.zPageManageResources.zVerifyHeader(PageManageResources.Locators.RESOURCE), "Verfiy the \"Resources\" text exists in navigation path");
+		ZAssert.assertTrue(app.zPageManageResources.zVerifyHeader(PageManageResources.Locators.HOME),
+				"Verfiy the 'Home' text exists in navigation path");
+		ZAssert.assertTrue(app.zPageManageResources.zVerifyHeader(PageManageResources.Locators.MANAGE),
+				"Verfiy the 'Manage Accounts' text exists in navigation path");
+		ZAssert.assertTrue(app.zPageManageResources.zVerifyHeader(PageManageResources.Locators.RESOURCE),
+				"Verfiy the 'Resources' text exists in navigation path");
 	}
 }

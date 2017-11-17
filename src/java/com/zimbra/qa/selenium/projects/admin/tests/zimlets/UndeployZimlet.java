@@ -28,45 +28,45 @@ public class UndeployZimlet extends AdminCommonTest {
 
 	public UndeployZimlet() {
 		logger.info("New " + UndeployZimlet.class.getCanonicalName());
-
-		// All tests start at the "zimlet" page
 		super.startingPage = app.zPageManageZimlets;
 	}
+
 
 	/**
 	 * Testcase : Undeploy Zimlet
 	 * 1. Go to Configure > Zimlet
-	 * 2. Select undeploy zimlet option from gear menu 
+	 * 2. Select undeploy zimlet option from gear menu
 	 * 3. Verify zimlet is undeployed and removed from Zimlet list
 	 * @throws HarnessException
 	 */
-	@Test(	description = "Deploy Zimlet",
+
+	@Test (description = "Deploy Zimlet",
 			groups = { "functional", "L1" })
 
 	public void UndeployZimlet_01() throws HarnessException {
 
 		String zimletName ="com_zimbra_dnd";
-		
+
 		// Verify the zimlet is present on zimlet page
 		boolean isZimletPresent = app.zPageManageZimlets.zVerifyZimletName(zimletName);
-		if ( !isZimletPresent ) {
+
+		if (!isZimletPresent) {
 			throw new HarnessException("Zimlet is not Present!");
-		}
-		else
-		{
-		// Click on Zimlets
-		app.zPageManageZimlets.zListItem(Action.A_LEFTCLICK, zimletName);
-		
-		// Click on undeploy from gear menu option
-		DialogForUndeployZimlet dialog = (DialogForUndeployZimlet) app.zPageManageZimlets.zToolbarPressPulldown(Button.B_GEAR_BOX,Button.B_UNDEPLOY_ZIMLET);
-		
-		// Click Yes in Confirmation dialog
-		dialog.zPressButton(Button.B_YES);
-		
-		// Verify the zimlet is not listed on zimlet page
-		boolean isUndeploySuccessful = app.zPageManageZimlets.zVerifyZimletName(zimletName);
-		ZAssert.assertFalse(isUndeploySuccessful, "Verify zimlet is undeployed!");
+
+		} else {
+			// Click on Zimlets
+			app.zPageManageZimlets.zListItem(Action.A_LEFTCLICK, zimletName);
+
+			// Click on undeploy from gear menu option
+			DialogForUndeployZimlet dialog = (DialogForUndeployZimlet) app.zPageManageZimlets
+					.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.B_UNDEPLOY_ZIMLET);
+
+			// Click Yes in Confirmation dialog
+			dialog.zPressButton(Button.B_YES);
+
+			// Verify the zimlet is not listed on zimlet page
+			boolean isUndeploySuccessful = app.zPageManageZimlets.zVerifyZimletName(zimletName);
+			ZAssert.assertFalse(isUndeploySuccessful, "Verify zimlet is undeployed!");
 		}
 	}
-
 }

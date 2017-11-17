@@ -31,9 +31,10 @@ public class LoginWithCsrfTokenCheckDisabled extends AdminCommonTest {
 		super.startingPage = app.zPageLogin;
 	}
 
-	
-	@Test (description = "Login to the admin console after disabling csrf check", priority=5, groups = { "smoke", "L1" })
-	
+
+	@Test (description = "Login to the admin console after disabling csrf check", priority=5,
+			groups = { "smoke", "L1" })
+
 	public void LoginWithCsrfTokenCheckDisabled_01() throws HarnessException {
 		try {
 
@@ -64,9 +65,9 @@ public class LoginWithCsrfTokenCheckDisabled extends AdminCommonTest {
 		}
 
 		finally {
-		
+
 			String zimbraCsrfTokenCheckEnabledValue = "TRUE";
-			
+
 			// Change zimbraCsrfTokenCheckEnabled value to false
 			ZimbraAdminAccount.GlobalAdmin().soapSend(
 					"<ModifyConfigRequest xmlns='urn:zimbraAdmin'>"
@@ -74,13 +75,12 @@ public class LoginWithCsrfTokenCheckDisabled extends AdminCommonTest {
 							+	"</ModifyConfigRequest>");
 
 			staf.execute("zmmailboxdctl restart");
-						
+
 			// Open the base URL
 			app.zPageLogin.sOpen(ConfigProperties.getBaseURL());
 			app.zPageLogin.login(gAdmin);
 			ZAssert.assertTrue(app.zPageMain.zIsActive(), "Verify that the account is logged in after zimbraCsrfTokenCheckEnabledValue as TRUE");
 			app.zPageMain.logout();
 		}
-
 	}
 }

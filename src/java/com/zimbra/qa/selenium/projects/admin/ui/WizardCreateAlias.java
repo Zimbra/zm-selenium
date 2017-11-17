@@ -14,9 +14,6 @@
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-/**
- *
- */
 package com.zimbra.qa.selenium.projects.admin.ui;
 
 import com.zimbra.qa.selenium.framework.items.IItem;
@@ -42,21 +39,22 @@ public class WizardCreateAlias extends AbsWizard {
 	@Override
 	public IItem zCompleteWizard(IItem item) throws HarnessException {
 
-		if ( !(item instanceof AliasItem) )
-			throw new HarnessException("item must be an AliasItem, was "+ item.getClass().getCanonicalName());
+		if (!(item instanceof AliasItem))
+			throw new HarnessException("item must be an AliasItem, was " + item.getClass().getCanonicalName());
 
-		AliasItem alias = (AliasItem)item;
+		AliasItem alias = (AliasItem) item;
 
 		String CN = alias.getLocalName();
 		String domain = alias.getDomainName();
-		String targetAccount = alias.getTargetAccountEmail();		
+		String targetAccount = alias.getTargetAccountEmail();
 		sType(Locators.zdlg_ALIAS_NAME, CN);
 		SleepUtil.sleepSmall();
-		this.clearField(Locators.zdlg_ALIAS_DOMAIN_NAME);		
-		sType(Locators.zdlg_ALIAS_DOMAIN_NAME,domain);	
+		this.clearField(Locators.zdlg_ALIAS_DOMAIN_NAME);
+		sType(Locators.zdlg_ALIAS_DOMAIN_NAME, domain);
 		sType(Locators.zdlg_TARGET_ACCOUNT_NAME, targetAccount);
 		SleepUtil.sleepSmall();
 		sClick(Locators.zdlg_OK);
+		SleepUtil.sleepMedium();
 		return alias;
 
 	}
@@ -70,12 +68,12 @@ public class WizardCreateAlias extends AbsWizard {
 	public boolean zIsActive() throws HarnessException {
 
 		boolean present = sIsElementPresent(Locators.zdlg_NEW_ALIAS);
-		if ( !present ) {
+		if (!present) {
 			return (false);
 		}
 
 		boolean visible = this.zIsVisiblePerPosition(Locators.zdlg_NEW_ALIAS, 0, 0);
-		if ( !visible ) {
+		if (!visible) {
 			return (false);
 		}
 

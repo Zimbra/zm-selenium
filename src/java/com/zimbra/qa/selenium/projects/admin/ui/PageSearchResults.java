@@ -19,7 +19,6 @@ package com.zimbra.qa.selenium.projects.admin.ui;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
-
 import com.zimbra.qa.selenium.framework.ui.AbsApplication;
 import com.zimbra.qa.selenium.framework.ui.AbsPage;
 import com.zimbra.qa.selenium.framework.ui.AbsTab;
@@ -30,27 +29,25 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.projects.admin.items.AccountItem;
 
-
-
 public class PageSearchResults extends AbsTab {
 	public static class Locators {
-		public static final String SEARCH_INPUT_TEXT_BOX="_XForm_query_display";
-		public static final String SEARCH_BUTTON="css=td.xform_container div.ImgSearch";
-		public static final String DELETE_BUTTON="css=td[id='zmi__zb_currentApp__DELETE_title']";
-		public static final String DELETE_BUTTON_DISABLED="css=div[id='zm__zb_currentApp__MENU_POP'] div[class='ImgDelete ZDisabledImage']";
-		public static final String RIGHT_CLICK_MENU_DELETE_BUTTON="css=div[id='zm__SCHLV__MENU_POP'] td[id='zmi__SCHLV__DELETE_title']";
-		public static final String RIGHT_CLICK_MENU_DELETE_BUTTON_DISABLED="css=div[id='zm__SCHLV__MENU_POP'] div[class='ImgDelete ZDisabledImage']";
-		public static final String RIGHT_CLICK_MENU_EDIT_BUTTON="css=div[id='zm__SCHLV__MENU_POP'] td[id='zmi__SCHLV__EDIT_title']";
-		public static final String EDIT_BUTTON="css=td[id='zmi__zb_currentApp__EDIT_title']";
-		public static final String GEAR_ICON="css=div.ImgConfigure";
-		public static final String zArrowSelectSearchObject		="css=td[id*='dropdown'] div[class='ImgSelectPullDownArrow']";
+		public static final String SEARCH_INPUT_TEXT_BOX = "_XForm_query_display";
+		public static final String SEARCH_BUTTON = "css=td.xform_container div.ImgSearch";
+		public static final String DELETE_BUTTON = "css=td[id='zmi__zb_currentApp__DELETE_title']";
+		public static final String DELETE_BUTTON_DISABLED = "css=div[id='zm__zb_currentApp__MENU_POP'] div[class='ImgDelete ZDisabledImage']";
+		public static final String RIGHT_CLICK_MENU_DELETE_BUTTON = "css=div[id='zm__SCHLV__MENU_POP'] td[id='zmi__SCHLV__DELETE_title']";
+		public static final String RIGHT_CLICK_MENU_DELETE_BUTTON_DISABLED = "css=div[id='zm__SCHLV__MENU_POP'] div[class='ImgDelete ZDisabledImage']";
+		public static final String RIGHT_CLICK_MENU_EDIT_BUTTON = "css=div[id='zm__SCHLV__MENU_POP'] td[id='zmi__SCHLV__EDIT_title']";
+		public static final String EDIT_BUTTON = "css=td[id='zmi__zb_currentApp__EDIT_title']";
+		public static final String GEAR_ICON = "css=div.ImgConfigure";
+		public static final String zArrowSelectSearchObject = "css=td[id*='dropdown'] div[class='ImgSelectPullDownArrow']";
 		public static final String zCosSearchObject = "css=div[id='zmi__SEARCH_COSES'] td[id='zmi__SEARCH_COSES_title']";
 		public static final String zDomainSearchObject = "css=div[id='zmi__SEARCH_DOMAINS'] td[id='zmi__SEARCH_DOMAINS_title']";
 		public static final String zAccountsSearchObject = "css=div[id='zmi__SEARCH_ACCOUNTS'] td[id='zmi__SEARCH_ACCOUNTS_title']";
 		public static final String zDLSearchObject = "css=div[id='zmi__SEARCH_DLS'] td[id='zmi__SEARCH_DLS_title']";
 		public static final String zAliasesSearchObject = "css=div[id='zmi__SEARCH_ALIASES'] td[id='zmi__SEARCH_ALIASES_title']";
 		public static final String zResourcesSearchObject = "css=div[id='zmi__SEARCH_RESOURCES'] td[id='zmi__SEARCH_RESOURCES_title']";
-		
+
 		public static final String zSearchTypeDropdown = "css=div[class^='ZaSearchFieldButton']";
 
 	}
@@ -62,21 +59,21 @@ public class PageSearchResults extends AbsTab {
 		public static final String DISTRIBUTION_LIST = "Distribution List";
 		public static final String COS = "Cos";
 		public static final String DOMAIN = "Domain";
-		public static final String DOMAIN_ALIAS="Domain Alias";
+		public static final String DOMAIN_ALIAS = "Domain Alias";
 	}
 
 	public String typeOfObject = "";
 
-//  Search Object from the dropdown in search panel
-	
+	// Search Object from the dropdown in search panel
+
 	public String S_ACCOUNT = "Account";
 	public String S_ALIAS = "ALIAS";
 	public String S_RESOURCE = "RESOURCE";
 	public String S_DISTRIBUTION_LIST = "Distribution List";
 	public String S_COS = "Cos";
 	public String S_DOMAIN = "Domain";
-	public String S_ALL_OBJECTS="All Objects";
-	
+	public String S_ALL_OBJECTS = "All Objects";
+
 	public String getType() {
 		return typeOfObject;
 	}
@@ -106,13 +103,14 @@ public class PageSearchResults extends AbsTab {
 
 	/**
 	 * Enter text into the query string field
+	 *
 	 * @param query
 	 * @throws HarnessException
 	 */
 	public void zAddSearchQuery(String query) throws HarnessException {
-		logger.info(myPageName() + " zAddSearchQuery("+ query +")");
+		logger.info(myPageName() + " zAddSearchQuery(" + query + ")");
 
-		tracer.trace("Search for the query "+ query);
+		tracer.trace("Search for the query " + query);
 
 		this.sType(Locators.SEARCH_INPUT_TEXT_BOX, query);
 
@@ -120,35 +118,32 @@ public class PageSearchResults extends AbsTab {
 
 	@Override
 	public AbsPage zListItem(Action action, String entity) throws HarnessException {
-		logger.info(myPageName() + " zListItem("+ action +", "+ entity +")");
+		logger.info(myPageName() + " zListItem(" + action + ", " + entity + ")");
 
-		tracer.trace(action +" on subject = "+ entity);
+		tracer.trace(action + " on subject = " + entity);
 
 		AbsPage page = null;
 
 		// How many items are in the table?
 		String rowsLocator = "css=div#zl__SEARCH_MANAGE div[id$='__rows'] div[id^='zli__']";
 		int count = this.sGetCssCount(rowsLocator);
-		logger.debug(myPageName() + " zListGetAccounts: number of accounts: "+ count);
+		logger.debug(myPageName() + " zListGetAccounts: number of accounts: " + count);
 
 		// Get each conversation's data from the table list
 		for (int i = 1; i <= count; i++) {
-			final String accountLocator = rowsLocator + ":nth-child("+i+")";
+			final String accountLocator = rowsLocator + ":nth-child(" + i + ")";
 			String locator;
 
 			// Email Address
 			locator = accountLocator + " td[id^='SEARCH_MANAGE_data_emailaddress']";
 
-
-			if (this.sIsElementPresent(locator))
-			{
-				if (this.sGetText(locator).trim().equalsIgnoreCase(entity))
-				{
+			if (this.sIsElementPresent(locator)) {
+				if (this.sGetText(locator).trim().equalsIgnoreCase(entity)) {
 					if (action == Action.A_LEFTCLICK) {
 						sClick(locator);
 						break;
 					} else if (action == Action.A_RIGHTCLICK) {
-						zRightClick(locator);
+						sRightClick(locator);
 						break;
 					}
 
@@ -158,82 +153,75 @@ public class PageSearchResults extends AbsTab {
 		return page;
 	}
 
-
 	@Override
-	public AbsPage zListItem(Action action, Button option, String item)
-	throws HarnessException {
+	public AbsPage zListItem(Action action, Button option, String item) throws HarnessException {
 		return null;
 	}
 
 	@Override
-	public AbsPage zListItem(Action action, Button option, Button subOption ,String item)
-	throws HarnessException {
+	public AbsPage zListItem(Action action, Button option, Button subOption, String item) throws HarnessException {
 		return null;
 	}
 
 	@Override
 	public AbsPage zToolbarPressButton(Button button) throws HarnessException {
 
-		logger.info(myPageName() + " zToolbarPressButton("+ button +")");
+		logger.info(myPageName() + " zToolbarPressButton(" + button + ")");
 
-		tracer.trace("Click button "+ button);
+		tracer.trace("Click button " + button);
 
-		if ( button == null )
+		if (button == null)
 			throw new HarnessException("Button cannot be null!");
 
-		String locator = null;	
-		AbsPage page = null;	
+		String locator = null;
+		AbsPage page = null;
 
 		// Based on the button specified, take the appropriate action(s)
 		//
 		SleepUtil.sleepSmall();
-		if ( button == Button.B_SEARCH ) {
+		if (button == Button.B_SEARCH) {
 
 			locator = Locators.SEARCH_BUTTON;
 			page = new PageSearchResults(MyApplication);
 
 			// Make sure the button exists
-			if ( !this.sIsElementPresent(locator) )
-				throw new HarnessException("Button is not present locator="+ locator +" button="+ button);
-
-			
+			if (!this.sIsElementPresent(locator))
+				throw new HarnessException("Button is not present locator=" + locator + " button=" + button);
 
 		} else if (button == Button.B_TREE_DELETE) {
 			locator = Locators.RIGHT_CLICK_MENU_DELETE_BUTTON;
 			page = new DialogForDeleteOperation(this.MyApplication, null);
 
 			// Make sure the button exists
-			if ( !this.sIsElementPresent(locator) )
-				throw new HarnessException("Button is not present locator="+ locator +" button="+ button);
+			if (!this.sIsElementPresent(locator))
+				throw new HarnessException("Button is not present locator=" + locator + " button=" + button);
 
-			
 		} else if (button == Button.B_TREE_EDIT) {
 			locator = Locators.RIGHT_CLICK_MENU_EDIT_BUTTON;
 
 			if (typeOfObject.equals(TypeOfObject.DISTRIBUTION_LIST))
-				page=new FormEditDistributionList(this.MyApplication);
+				page = new FormEditDistributionList(this.MyApplication);
 			else if (typeOfObject.equals(TypeOfObject.ACCOUNT))
-				page=new FormEditAccount(this.MyApplication);
+				page = new FormEditAccount(this.MyApplication);
 			else if (typeOfObject.equals(TypeOfObject.RESOURCE))
-				page=new FormEditResource(this.MyApplication);
+				page = new FormEditResource(this.MyApplication);
 			else if (typeOfObject.equals(TypeOfObject.ALIAS))
-				page=new FormEditAccount(this.MyApplication);
+				page = new FormEditAccount(this.MyApplication);
 			else if (typeOfObject.equals(TypeOfObject.COS))
-				page=new FormEditCos(this.MyApplication);
+				page = new FormEditCos(this.MyApplication);
 			else if (typeOfObject.equals(TypeOfObject.DOMAIN))
-				page=new FormEditDomain(this.MyApplication);
+				page = new FormEditDomain(this.MyApplication);
 			else if (typeOfObject.equals(TypeOfObject.DOMAIN_ALIAS))
-				page=new WizardCreateDomainAlias(this);
+				page = new WizardCreateDomainAlias(this);
 
 			// Make sure the button exists
-			if ( !this.sIsElementPresent(locator) )
-				throw new HarnessException("Button is not present locator="+ locator +" button="+ button);
+			if (!this.sIsElementPresent(locator))
+				throw new HarnessException("Button is not present locator=" + locator + " button=" + button);
 
-			
 		} else if (button == Button.B_DELETE) {
-				locator = Locators.DELETE_BUTTON;
-				page = new DialogForDeleteOperation(this.MyApplication,null);
-				
+			locator = Locators.DELETE_BUTTON;
+			page = new DialogForDeleteOperation(this.MyApplication, null);
+
 		} else if (button == Button.B_ADVANCED) {
 			locator = "css=div[id^='zti__AppAdmin__Home__actLstHV__2__8_textCell']";
 			if (zIsVisiblePerPosition(locator, 10, 10)) {
@@ -242,13 +230,12 @@ public class PageSearchResults extends AbsTab {
 				locator = "css=div[id^='zti__AppAdmin__Home__actLstHV__1__8_textCell']";
 			}
 
-			
-		} else{
-			throw new HarnessException("no logic defined for button "+ button);
+		} else {
+			throw new HarnessException("no logic defined for button " + button);
 		}
 
-		if ( locator == null ) {
-			throw new HarnessException("locator was null for button "+ button);
+		if (locator == null) {
+			throw new HarnessException("locator was null for button " + button);
 		}
 
 		// Default behavior, process the locator by clicking on it
@@ -257,32 +244,29 @@ public class PageSearchResults extends AbsTab {
 		// Click it
 		this.sClick(locator);
 
-
 		// If page was specified, make sure it is active
-		if ( page != null ) {
+		if (page != null) {
 
 			// This function (default) throws an exception if never active
-			//page.zWaitForActive();
+			// page.zWaitForActive();
 			SleepUtil.sleepMedium();
 
 		}
-		
-		if ( button == Button.B_SEARCH ) {
+
+		if (button == Button.B_SEARCH) {
 			SleepUtil.sleepMedium();
 		}
 
 		sMouseOut(locator);
 		return (page);
 
-
 	}
 
 	@Override
-	public AbsPage zToolbarPressPulldown(Button pulldown, Button option)
-	throws HarnessException {
-		logger.info(myPageName() + " zToolbarPressButtonWithPulldown("+ pulldown +", "+ option +")");
+	public AbsPage zToolbarPressPulldown(Button pulldown, Button option) throws HarnessException {
+		logger.info(myPageName() + " zToolbarPressButtonWithPulldown(" + pulldown + ", " + option + ")");
 
-		tracer.trace("Click pulldown "+ pulldown +" then "+ option);
+		tracer.trace("Click pulldown " + pulldown + " then " + option);
 
 		if (pulldown == null)
 			throw new HarnessException("Pulldown cannot be null!");
@@ -290,8 +274,6 @@ public class PageSearchResults extends AbsTab {
 		if (option == null)
 			throw new HarnessException("Option cannot be null!");
 
-
-		
 		String pulldownLocator = null; // If set, this will be expanded
 		String optionLocator = null;
 		AbsPage page = null;
@@ -303,9 +285,7 @@ public class PageSearchResults extends AbsTab {
 				pulldownLocator = Locators.GEAR_ICON;
 				optionLocator = Locators.DELETE_BUTTON;
 
-				page = new DialogForDeleteOperation(this.MyApplication,null);
-
-				
+				page = new DialogForDeleteOperation(this.MyApplication, null);
 
 			} else if (option == Button.O_EDIT) {
 
@@ -313,74 +293,74 @@ public class PageSearchResults extends AbsTab {
 				optionLocator = Locators.EDIT_BUTTON;
 
 				if (typeOfObject.equals(TypeOfObject.DISTRIBUTION_LIST))
-					page=new FormEditDistributionList(this.MyApplication);
+					page = new FormEditDistributionList(this.MyApplication);
 				else if (typeOfObject.equals(TypeOfObject.ACCOUNT))
-					page=new FormEditAccount(this.MyApplication);
+					page = new FormEditAccount(this.MyApplication);
 				else if (typeOfObject.equals(TypeOfObject.RESOURCE))
-					page=new FormEditResource(this.MyApplication);
+					page = new FormEditResource(this.MyApplication);
 				else if (typeOfObject.equals(TypeOfObject.ALIAS))
-					page=new FormEditAccount(this.MyApplication);
+					page = new FormEditAccount(this.MyApplication);
 				else if (typeOfObject.equals(TypeOfObject.COS))
-					page=new FormEditCos(this.MyApplication);
+					page = new FormEditCos(this.MyApplication);
 				else if (typeOfObject.equals(TypeOfObject.DOMAIN))
-					page=new FormEditDomain(this.MyApplication);
+					page = new FormEditDomain(this.MyApplication);
 				else if (typeOfObject.equals(TypeOfObject.DOMAIN_ALIAS))
-					page=new WizardCreateDomainAlias(this);
+					page = new WizardCreateDomainAlias(this);
 			} else {
 				throw new HarnessException("no logic defined for pulldown/option " + pulldown + "/" + option);
 			}
-			
+
 		} else if (pulldown == Button.B_SEARCH_TYPE) {
-			
+
 			pulldownLocator = Locators.zSearchTypeDropdown;
-			
+
 			if (option == Button.O_ACCOUNTS) {
-				optionLocator="css=td[id='zmi__SEARCH_ACCOUNTS_left_icon']";
+				optionLocator = "css=td[id='zmi__SEARCH_ACCOUNTS_left_icon']";
 			} else if (option == Button.O_DISTRIBUTION_LISTS) {
-				optionLocator="css=td[id='zmi__SEARCH_DLS_left_icon']";
+				optionLocator = "css=td[id='zmi__SEARCH_DLS_left_icon']";
 			} else if (option == Button.O_ALIASES) {
-				optionLocator="css=td[id='zmi__SEARCH_ALIASES_left_icon']";
+				optionLocator = "css=td[id='zmi__SEARCH_ALIASES_left_icon']";
 			} else if (option == Button.O_RESOURCES) {
-				optionLocator="css=td[id='zmi__SEARCH_RESOURCES_left_icon']";
+				optionLocator = "css=td[id='zmi__SEARCH_RESOURCES_left_icon']";
 			} else if (option == Button.O_DOMAINS) {
-				optionLocator="css=td[id='zmi__SEARCH_DOMAINS_left_icon']";
+				optionLocator = "css=td[id='zmi__SEARCH_DOMAINS_left_icon']";
 			} else if (option == Button.O_CLASS_OF_SERVICE) {
-				optionLocator="css=td[id='zmi__SEARCH_COSES_left_icon']";
+				optionLocator = "css=td[id='zmi__SEARCH_COSES_left_icon']";
 			} else if (option == Button.O_DISTRIBUTION_LISTS) {
-				optionLocator="css=td[id='zmi__SEARCH_ALL_left_icon']";
+				optionLocator = "css=td[id='zmi__SEARCH_ALL_left_icon']";
 			}
 
 		} else {
-			throw new HarnessException("no logic defined for pulldown/option "
-					+ pulldown + "/" + option);
+			throw new HarnessException("no logic defined for pulldown/option " + pulldown + "/" + option);
 		}
 
-		
 		if (pulldownLocator != null) {
 
 			// Make sure the locator exists
 			if (!this.sIsElementPresent(pulldownLocator)) {
-				throw new HarnessException("Button " + pulldown + " option " + option + " pulldownLocator " + pulldownLocator + " not present!");
+				throw new HarnessException("Button " + pulldown + " option " + option + " pulldownLocator "
+						+ pulldownLocator + " not present!");
 			}
 
-			this.sClickAt(pulldownLocator,"");
+			this.sClickAt(pulldownLocator, "");
 
 			// If the app is busy, wait for it to become active
-			//zWaitForBusyOverlay();
+			// zWaitForBusyOverlay();
 
 			if (optionLocator != null) {
 
 				// Make sure the locator exists
 				if (!this.sIsElementPresent(optionLocator)) {
-					throw new HarnessException("Button " + pulldown + " option " + option + " optionLocator " + optionLocator + " not present!");
+					throw new HarnessException("Button " + pulldown + " option " + option + " optionLocator "
+							+ optionLocator + " not present!");
 				}
 
 				this.sClick(optionLocator);
 
 				// If the app is busy, wait for it to become active
-				//zWaitForBusyOverlay();
-			} 
-			
+				// zWaitForBusyOverlay();
+			}
+
 			SleepUtil.sleepMedium();
 		}
 
@@ -390,6 +370,7 @@ public class PageSearchResults extends AbsTab {
 
 	/**
 	 * Return a list of all accounts in the current view
+	 *
 	 * @return
 	 * @throws HarnessException
 	 * @throws HarnessException
@@ -399,52 +380,49 @@ public class PageSearchResults extends AbsTab {
 		List<AccountItem> items = new ArrayList<AccountItem>();
 
 		// Make sure the button exists
-		if ( !this.sIsElementPresent("css=div[id='zl__SEARCH_MANAGE'] div[id$='__rows']") )
+		if (!this.sIsElementPresent("css=div[id='zl__SEARCH_MANAGE'] div[id$='__rows']"))
 			throw new HarnessException("Account Rows is not present");
 
 		// How many items are in the table?
 		String rowsLocator = "css=div#zl__SEARCH_MANAGE div[id$='__rows'] div[id^='zli__']";
 		int count = this.sGetCssCount(rowsLocator);
-		logger.debug(myPageName() + " zListGetAccounts: number of accounts: "+ count);
+		logger.debug(myPageName() + " zListGetAccounts: number of accounts: " + count);
 
-		int m= 50;
-		if (count >= 50){
-			for (int a1 = 1; a1 <= 5; a1++) { 
-				String p0  = rowsLocator + ":nth-child("+m+")";
-				if (this.sIsElementPresent(p0)){
-				sClickAt(p0,"");
-				this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_DOWN);
-				m=m+20;
-				}
-				else
+		int m = 50;
+		if (count >= 50) {
+			for (int a1 = 1; a1 <= 5; a1++) {
+				String p0 = rowsLocator + ":nth-child(" + m + ")";
+				if (this.sIsElementPresent(p0)) {
+					sClickAt(p0, "");
+					this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_DOWN);
+					m = m + 20;
+				} else
 					break;
-				
-			
+
+			}
+
 		}
-			
-		}
-		
-		count = this.sGetCssCount(rowsLocator);	
-		
-		
+
+		count = this.sGetCssCount(rowsLocator);
+
 		// Get each conversation's data from the table list
 		for (int i = 1; i <= count; i++) {
-			final String accountLocator = rowsLocator + ":nth-child("+i+")";
+			final String accountLocator = rowsLocator + ":nth-child(" + i + ")";
 			String locator;
 
-			AccountItem item = new AccountItem("email" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
+			AccountItem item = new AccountItem("email" + ConfigProperties.getUniqueString(),
+					ConfigProperties.getStringProperty("testdomain"));
 
 			// Type (image)
 			// ImgAdminUser ImgAccount ImgSystemResource (others?)
 			locator = accountLocator + " td[id^='SEARCH_MANAGE_data_type'] div";
-			if ( this.sIsElementPresent(locator) ) {
+			if (this.sIsElementPresent(locator)) {
 				item.setGAccountType(this.sGetAttribute(locator + "@class"));
 			}
 
-
 			// Email Address
 			locator = accountLocator + " td[id^='SEARCH_MANAGE_data_emailaddress']";
-			if ( this.sIsElementPresent(locator) ) {
+			if (this.sIsElementPresent(locator)) {
 				item.setGEmailAddress(this.sGetText(locator).trim());
 			}
 
@@ -452,7 +430,6 @@ public class PageSearchResults extends AbsTab {
 			// Status
 			// Lost Login Time
 			// Description
-
 
 			// Add the new item to the list
 			items.add(item);
@@ -462,63 +439,57 @@ public class PageSearchResults extends AbsTab {
 		// Return the list of items
 		return (items);
 	}
-	
+
 	public boolean zIsPresentInSearchResult(String email) throws HarnessException {
-		logger.info(myPageName() + " zIsPresentInSearchResult("+ email +")");
-		String rowlocator = "css=div#zl__SEARCH_MANAGE div[id$='__rows'] div[id^='zli__'] td[id^='SEARCH_MANAGE_data_emailaddress_']";		
-		return sIsElementPresent(rowlocator+":contains(" + email + ")");		
+		logger.info(myPageName() + " zIsPresentInSearchResult(" + email + ")");
+		String rowlocator = "css=div#zl__SEARCH_MANAGE div[id$='__rows'] div[id^='zli__'] td[id^='SEARCH_MANAGE_data_emailaddress_']";
+		return sIsElementPresent(rowlocator + ":contains(" + email + ")");
 	}
 
-	public boolean zVerifyDisabled(String  buttonID)throws HarnessException{
-		if (buttonID=="DeleteContext"){
-			boolean test= this.sIsElementPresent(Locators.DELETE_BUTTON_DISABLED);
+	public boolean zVerifyDisabled(String buttonID) throws HarnessException {
+		if (buttonID == "DeleteContext") {
+			boolean test = this.sIsElementPresent(Locators.DELETE_BUTTON_DISABLED);
 			return test;
-		}else if (buttonID=="DeleteTreeMenu"){
+		} else if (buttonID == "DeleteTreeMenu") {
 			return this.sIsElementPresent(Locators.RIGHT_CLICK_MENU_DELETE_BUTTON_DISABLED);
-		}else{
+		} else {
 			return false;
 		}
 
 	}
-	
-public void zSelectSearchObject(String object)throws HarnessException{
-	
-		if (object==S_COS){
-			
+
+	public void zSelectSearchObject(String object) throws HarnessException {
+
+		if (object == S_COS) {
+
 			this.sClickAt(Locators.zArrowSelectSearchObject, "");
 			this.sClickAt(Locators.zCosSearchObject, "");
-		
-		
-		}else if (object==S_DOMAIN){
+
+		} else if (object == S_DOMAIN) {
 
 			this.sClickAt(Locators.zDomainSearchObject, "");
-		
-		
-		}else if (object==S_ACCOUNT){
-			
+
+		} else if (object == S_ACCOUNT) {
+
 			this.sClickAt(Locators.zArrowSelectSearchObject, "");
 			this.sClickAt(Locators.zAccountsSearchObject, "");
-		
-		
-		}else if (object==S_RESOURCE){
+
+		} else if (object == S_RESOURCE) {
 
 			this.sClickAt(Locators.zResourcesSearchObject, "");
-		
-		
-		}else if (object==S_DISTRIBUTION_LIST){
-			
+
+		} else if (object == S_DISTRIBUTION_LIST) {
+
 			SleepUtil.sleepMedium();
 			this.sClickAt(Locators.zDLSearchObject, "");
-		
-		
-		}else if (object==S_ALIAS){
-			
+
+		} else if (object == S_ALIAS) {
+
 			this.sClickAt(Locators.zAliasesSearchObject, "");
-		
-		
-		}else{
-			throw new HarnessException("Not imeplemented for "+object+"Object");
+
+		} else {
+			throw new HarnessException("Not imeplemented for " + object + "Object");
 		}
 	}
-		
+
 }

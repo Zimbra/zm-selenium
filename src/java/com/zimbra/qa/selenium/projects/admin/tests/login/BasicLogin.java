@@ -17,53 +17,50 @@
 package com.zimbra.qa.selenium.projects.admin.tests.login;
 
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.admin.core.AdminCommonTest;
 
-
 public class BasicLogin extends AdminCommonTest {
-	
+
 	public BasicLogin() {
 		logger.info("New "+ BasicLogin.class.getCanonicalName());
-		
+
 		// All tests start at the login page
 		super.startingPage = app.zPageLogin;
 		super.startingAccount = null;
-		
 	}
-	
+
+
 	@Test (description = "Login to the Admin Console",
 			groups = { "sanity", "L0" })
+
 	public void BasicLogin_01() throws HarnessException {
-		
+
 		// Login
 		app.zPageLogin.login(gAdmin);
-		
+
 		// Verify main page becomes active
 		ZAssert.assertTrue(app.zPageMain.zIsActive(), "Verify that the account is logged in");
-		
 	}
+
 
 	@Test (description = "Login to the Admin Console as a different Admin Account",
 			groups = { "smoke", "L1" })
+
 	public void BasicLogin_02() throws HarnessException {
-		
+
 		// Create a new AdminAccount
 		ZimbraAdminAccount account = new ZimbraAdminAccount("admin"+ ConfigProperties.getUniqueString() + "@" + ConfigProperties.getStringProperty("testdomain"));
 		account.provision();
 		account.authenticate();
-		
+
 		// Login
 		app.zPageLogin.login(account);
-		
+
 		// Verify main page becomes active
 		ZAssert.assertTrue(app.zPageMain.zIsActive(), "Verify that the account is logged in");
-		
 	}
-
-
 }

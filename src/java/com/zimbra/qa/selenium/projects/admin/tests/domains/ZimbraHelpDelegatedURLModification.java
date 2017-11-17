@@ -88,7 +88,7 @@ public class ZimbraHelpDelegatedURLModification extends AdminCommonTest {
 
 					app.zPageMain.sSelectWindow(id);
 					if (app.zPageMain.sGetTitle().contains("Not Found") || app.zPageMain.sGetTitle().contains("Help")) {
-						//Get the opened URL
+						// Get the opened URL
 						tempURL=app.zPageMain.sGetLocation();
 						found = true;
 						app.zPageMain.zSeparateWindowClose(app.zPageMain.sGetTitle());

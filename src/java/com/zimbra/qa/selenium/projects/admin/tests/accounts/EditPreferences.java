@@ -35,23 +35,26 @@ public class EditPreferences extends AdminCommonTest {
 		super.startingPage = app.zPageManageAccounts;
 	}
 
+
 	/**
-	 * Testcase : Edit account - Edit preferences at account level 
+	 * Testcase : Edit account - Edit preferences at account level
 	 * Steps :
 	 * 1. Login to Admin Console and go to Manage > Accounts.
 	 * 2. Select created account from the list
-	 * 3. Select Edit, go to Preferences tab 
+	 * 3. Select Edit, go to Preferences tab
 	 * 4. Check/Uncheck some Preferences > Save
 	 * 5. Edited details should be saved without any errors
 	 * @throws HarnessException
 	 */
+
 	@Test (description = "Edit account - Edit preferences at account level",
 			groups = { "smoke", "L1" })
 
 	public void EditPreferences_01() throws HarnessException {
 
 		// Create a new account in the Admin Console using SOAP
-		AccountItem account = new AccountItem("email" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
+		AccountItem account = new AccountItem("email" + ConfigProperties.getUniqueString(),
+				ConfigProperties.getStringProperty("testdomain"));
 		AccountItem.createUsingSOAP(account);
 
 		// Refresh the account list
@@ -61,34 +64,33 @@ public class EditPreferences extends AdminCommonTest {
 		app.zPageManageAccounts.zListItem(Action.A_LEFTCLICK, account.getEmailAddress());
 
 		// Click on Edit button
-		FormEditAccount form = (FormEditAccount) app.zPageManageAccounts.zListItem(Action.A_RIGHTCLICK, Button.O_EDIT, account.getEmailAddress());
+		FormEditAccount form = (FormEditAccount) app.zPageManageAccounts.zListItem(Action.A_RIGHTCLICK, Button.O_EDIT,
+				account.getEmailAddress());
 
-		// CLick on preferences
+		// Click on preferences
 		app.zPageEditAccount.zToolbarPressButton(Button.B_PREFERENCES);
 
 		// Check show seach strings preference
-		form.zPreferencesCheckboxSet(Button.B_SHOW_SEARCH_STRINGS,true);
+		form.zPreferencesCheckboxSet(Button.B_SHOW_SEARCH_STRINGS, true);
 
 		// Uncheck show imap search folders preference
-		form.zPreferencesCheckboxSet(Button.B_SHOW_IMAP_SEARCH_FOLDERS,false);
+		form.zPreferencesCheckboxSet(Button.B_SHOW_IMAP_SEARCH_FOLDERS, false);
 
 		// Save the changes
 		form.zSave();
-		
+
 		// Verify preferences saved correctly
-		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
-				"<GetAccountRequest xmlns='urn:zimbraAdmin'>"
-						+			"<account by='name'>"+ account.getEmailAddress() +"</account>"
-						+		"</GetAccountRequest>");
+		ZimbraAdminAccount.AdminConsoleAdmin().soapSend("<GetAccountRequest xmlns='urn:zimbraAdmin'>"
+				+ "<account by='name'>" + account.getEmailAddress() + "</account>" + "</GetAccountRequest>");
 
-		Element response1 = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetAccountResponse/admin:account/admin:a[@n='zimbraPrefShowSearchString']", 1);
+		Element response1 = ZimbraAdminAccount.AdminConsoleAdmin()
+				.soapSelectNode("//admin:GetAccountResponse/admin:account/admin:a[@n='zimbraPrefShowSearchString']", 1);
 		ZAssert.assertNotNull(response1, "Verify the account is edited successfully");
-		ZAssert.assertStringContains(response1.toString(),"TRUE", "Verify calendar feature is disabled");
+		ZAssert.assertStringContains(response1.toString(), "TRUE", "Verify calendar feature is disabled");
 
-		Element response2 = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetAccountResponse/admin:account/admin:a[@n='zimbraPrefImapSearchFoldersEnabled']", 1);
+		Element response2 = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode(
+				"//admin:GetAccountResponse/admin:account/admin:a[@n='zimbraPrefImapSearchFoldersEnabled']", 1);
 		ZAssert.assertNotNull(response2, "Verify the account is edited successfully");
 		ZAssert.assertStringContains(response2.toString(),"FALSE", "Verify mail feature is disabled");
-
 	}
-
 }

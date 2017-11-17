@@ -85,7 +85,7 @@ public class TreeMail extends AbsTree {
 			}
 
 			SleepUtil.sleepSmall();
-			this.zRightClickAt(actionLocator, "");
+			this.sRightClickAt(actionLocator, "");
 			this.zWaitForBusyOverlay();
 			SleepUtil.sleepSmall();
 
@@ -196,7 +196,7 @@ public class TreeMail extends AbsTree {
 			actionLocator = "zti__main_Mail__" + f.getId() + "_textCell";
 
 			GeneralUtility.waitForElementPresent(this, actionLocator);
-			this.zRightClick(actionLocator);
+			this.sRightClick(actionLocator);
 			this.zWaitForBusyOverlay();
 
 			optionLocator = Locators.ContextMenuTVSearchesCSS;
@@ -266,7 +266,7 @@ public class TreeMail extends AbsTree {
 		} else if (action == Action.A_RIGHTCLICK) {
 			actionLocator = "css=td[id^='zti__main_Mail__']:contains('" + t.getName() + "')";
 
-			this.zRightClickAt(actionLocator, "");
+			this.sRightClickAt(actionLocator, "");
 
 			this.zWaitForBusyOverlay();
 
@@ -335,7 +335,7 @@ public class TreeMail extends AbsTree {
 		} else if (action == Action.A_RIGHTCLICK) {
 
 			locator = "css=td[id='zti__main_Mail__" + tag.getId() + "_textCell']";
-			this.zRightClickAt(locator, "");
+			this.sRightClickAt(locator, "");
 			SleepUtil.sleepSmall();
 
 			return (new ContextMenu(MyApplication));
@@ -425,7 +425,7 @@ public class TreeMail extends AbsTree {
 			locator = "css=td[id='zti__main_Mail__" + folder.getId() + "_textCell']";
 
 			zWaitForElementPresent(locator);
-			this.zRightClickAt(locator, "");
+			this.sRightClickAt(locator, "");
 			SleepUtil.sleepSmall();
 
 			return (new ContextMenu(MyApplication));
@@ -694,7 +694,7 @@ public class TreeMail extends AbsTree {
 
 		} else if (action == Action.A_RIGHTCLICK) {
 
-			this.zRightClick(locator);
+			this.sRightClick(locator);
 
 			return (new ContextMenu(MyApplication));
 

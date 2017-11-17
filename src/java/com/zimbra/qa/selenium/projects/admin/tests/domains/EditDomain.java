@@ -21,7 +21,6 @@ import com.zimbra.common.soap.Element;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
-import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
@@ -32,13 +31,12 @@ import com.zimbra.qa.selenium.projects.admin.ui.PageMain;
 import com.zimbra.qa.selenium.projects.admin.ui.PageSearchResults;
 
 public class EditDomain extends AdminCommonTest {
+
 	public EditDomain() {
 		logger.info("New "+ EditDomain.class.getCanonicalName());
-
-		// All tests start at the "Accounts" page
 		super.startingPage = app.zPageManageDomains;
-
 	}
+
 
 	/**
 	 * Testcase : Verify delete domain operation --  Manage Domain List View
@@ -49,46 +47,44 @@ public class EditDomain extends AdminCommonTest {
 	 * 5. Verify domain is edited using SOAP.
 	 * @throws HarnessException
 	 */
+
 	@Test (description = "Verify edit domain operation --  Manage Domain List View",
 			groups = { "smoke", "L1" })
-			public void EditDomain_01() throws HarnessException {
-	
+
+	public void EditDomain_01() throws HarnessException {
+
 		// Create a new domain in the Admin Console using SOAP
 		DomainItem domain = new DomainItem();
-		String domainName=domain.getName();
-	
-		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
-				"<CreateDomainRequest xmlns='urn:zimbraAdmin'>"
-				+			"<name>" + domainName + "</name>"
-				+		"</CreateDomainRequest>");
-	
-	
+		String domainName = domain.getName();
+
+		ZimbraAdminAccount.AdminConsoleAdmin().soapSend("<CreateDomainRequest xmlns='urn:zimbraAdmin'>" + "<name>"
+				+ domainName + "</name>" + "</CreateDomainRequest>");
+
 		// Refresh the domain list
 		app.zPageManageDomains.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
-	
+
 		// Click on account to be deleted.
 		app.zPageManageDomains.zListItem(Action.A_LEFTCLICK, domain.getName());
-		
-		FormEditDomain form = (FormEditDomain) app.zPageManageDomains.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_EDIT);
-	
-		//Edit the description.
+
+		FormEditDomain form = (FormEditDomain) app.zPageManageDomains.zToolbarPressPulldown(Button.B_GEAR_BOX,
+				Button.O_EDIT);
+
+		// Edit the description.
 		String description = "editeddomain_" + ConfigProperties.getUniqueString();
 		form.setName(description);
-		
-		//Submit the form.
+
+		// Submit
 		form.zSubmit();
-		
+
 		// Verify the domain exists in the ZCS
-		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
-				"<GetDomainRequest xmlns='urn:zimbraAdmin'>"
-				+	"<domain by='name'>" + domainName + "</domain>"
-				+	"</GetDomainRequest>");
+		ZimbraAdminAccount.AdminConsoleAdmin().soapSend("<GetDomainRequest xmlns='urn:zimbraAdmin'>"
+				+ "<domain by='name'>" + domainName + "</domain>" + "</GetDomainRequest>");
 
-
-		Element response = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetDomainResponse/admin:domain/admin:a[@n='description']", 1);
+		Element response = ZimbraAdminAccount.AdminConsoleAdmin()
+				.soapSelectNode("//admin:GetDomainResponse/admin:domain/admin:a[@n='description']", 1);
 		ZAssert.assertStringContains(response.toString(), description, "Verify description is edited correctly");
-	
 	}
+
 
 	/**
 	 * Testcase : Verify delete domain operation  -- Manage Domain List View/Right Click Menu
@@ -99,43 +95,40 @@ public class EditDomain extends AdminCommonTest {
 	 * 4. Verify domain is deleted using SOAP..
 	 * @throws HarnessException
 	 */
+
 	@Test (description = "Verify edit domain operation",
 			groups = { "functional", "L3" })
-			public void EditDomain_02() throws HarnessException {
-	
+
+	public void EditDomain_02() throws HarnessException {
+
 		// Create a new domain in the Admin Console using SOAP
 		DomainItem domain = new DomainItem();
-		String domainName=domain.getName();
-	
-		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
-				"<CreateDomainRequest xmlns='urn:zimbraAdmin'>"
-				+			"<name>" + domainName + "</name>"
-				+		"</CreateDomainRequest>");
-	
-	
+		String domainName = domain.getName();
+
+		ZimbraAdminAccount.AdminConsoleAdmin().soapSend("<CreateDomainRequest xmlns='urn:zimbraAdmin'>" + "<name>"
+				+ domainName + "</name>" + "</CreateDomainRequest>");
+
 		// Refresh the domain list
 		app.zPageManageDomains.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
-	
+
 		// Click on account to be deleted.
 		app.zPageManageDomains.zListItem(Action.A_RIGHTCLICK, domain.getName());
-		
+
 		FormEditDomain form = (FormEditDomain) app.zPageManageDomains.zToolbarPressButton(Button.B_TREE_EDIT);
 
-		//Edit the description.
+		// Edit the description.
 		String description = "editeddomain_" + ConfigProperties.getUniqueString();
 		form.setName(description);
-		
-		//Submit the form.
-		form.zSubmit();
-		SleepUtil.sleepMedium();
-		
-		// Verify the domain exists in the ZCS
-		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
-				"<GetDomainRequest xmlns='urn:zimbraAdmin'>"
-				+	"<domain by='name'>" + domainName + "</domain>"
-				+	"</GetDomainRequest>");
 
-		Element response = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetDomainResponse/admin:domain/admin:a[@n='description']", 1);
+		// Submit
+		form.zSubmit();
+
+		// Verify the domain exists in the ZCS
+		ZimbraAdminAccount.AdminConsoleAdmin().soapSend("<GetDomainRequest xmlns='urn:zimbraAdmin'>"
+				+ "<domain by='name'>" + domainName + "</domain>" + "</GetDomainRequest>");
+
+		Element response = ZimbraAdminAccount.AdminConsoleAdmin()
+				.soapSelectNode("//admin:GetDomainResponse/admin:domain/admin:a[@n='description']", 1);
 		ZAssert.assertStringContains(response.toString(), description, "Verify description is edited correctly");
 	}
 
@@ -149,109 +142,104 @@ public class EditDomain extends AdminCommonTest {
 	 * 5. Verify domain is edited using SOAP.
 	 * @throws HarnessException
 	 */
+
 	@Test (description = "Edit domain name  - Search list View",
 			groups = { "functional", "L2" })
-			public void Editdomain_03() throws HarnessException {
+
+	public void Editdomain_03() throws HarnessException {
 
 		// Create a new domain in the Admin Console using SOAP
 		DomainItem domain = new DomainItem();
-		String domainName=domain.getName();
+		String domainName = domain.getName();
 
-		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
-				"<CreateDomainRequest xmlns='urn:zimbraAdmin'>"
-		+			"<name>" + domainName + "</name>"
-		+		"</CreateDomainRequest>");
-		
+		ZimbraAdminAccount.AdminConsoleAdmin().soapSend("<CreateDomainRequest xmlns='urn:zimbraAdmin'>" + "<name>"
+				+ domainName + "</name>" + "</CreateDomainRequest>");
+
 		// Enter the search string to find the account
 		app.zPageSearchResults.zAddSearchQuery(domainName);
 
 		// Click search
 		app.zPageSearchResults.zToolbarPressButton(Button.B_SEARCH);
-		
+
 		// Click on domain to be deleted.
 		app.zPageSearchResults.zListItem(Action.A_LEFTCLICK, domain.getName());
 
 		// Click on Edit button
 		app.zPageSearchResults.setType(PageSearchResults.TypeOfObject.DOMAIN);
-		FormEditDomain form = (FormEditDomain) app.zPageSearchResults.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_EDIT);
-		
-		//Edit the description.
+		FormEditDomain form = (FormEditDomain) app.zPageSearchResults.zToolbarPressPulldown(Button.B_GEAR_BOX,
+				Button.O_EDIT);
+
+		// Edit the description.
 		String description = "editeddomain_" + ConfigProperties.getUniqueString();
 		form.setName(description);
-		
-		//Submit the form.
+
+		// Submit
 		form.zSubmit();
-		
+
 		// Verify the domain exists in the ZCS
-		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
-				"<GetDomainRequest xmlns='urn:zimbraAdmin'>"
-				+	"<domain by='name'>" + domainName + "</domain>"
-				+	"</GetDomainRequest>");
+		ZimbraAdminAccount.AdminConsoleAdmin().soapSend("<GetDomainRequest xmlns='urn:zimbraAdmin'>"
+				+ "<domain by='name'>" + domainName + "</domain>" + "</GetDomainRequest>");
 
-
-		Element response = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetDomainResponse/admin:domain/admin:a[@n='description']", 1);
+		Element response = ZimbraAdminAccount.AdminConsoleAdmin()
+				.soapSelectNode("//admin:GetDomainResponse/admin:domain/admin:a[@n='description']", 1);
 		ZAssert.assertStringContains(response.toString(), description, "Verify description is edited correctly");
 		app.zPageMain.logout();
-		
 	}
-	
+
+
 	/**
-	 * Testcase : Edit domain name -- right click 
+	 * Testcase : Edit domain name -- right click
 	 * Steps :
 	 * 1. Create an domain using SOAP.
 	 * 2. Edit the domain name using UI Right Click.
 	 * 3. Verify domain name is changed using SOAP.
 	 * @throws HarnessException
 	 */
+
 	@Test (description = "Edit domain name -- right click",
 			groups = { "functional", "L3" })
-			public void Editdomain_04() throws HarnessException {
+
+	public void Editdomain_04() throws HarnessException {
+
 		// Create a new domain in the Admin Console using SOAP
 		DomainItem domain = new DomainItem();
-		String domainName=domain.getName();
+		String domainName = domain.getName();
 		this.startingPage = app.zPageManageDomains;
 		this.startingPage.zNavigateTo();
-		
-		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
-				"<CreateDomainRequest xmlns='urn:zimbraAdmin'>"
-		+			"<name>" + domainName + "</name>"
-		+		"</CreateDomainRequest>");
 
-		
+		ZimbraAdminAccount.AdminConsoleAdmin().soapSend("<CreateDomainRequest xmlns='urn:zimbraAdmin'>" + "<name>"
+				+ domainName + "</name>" + "</CreateDomainRequest>");
+
 		// Refresh the account list
-		 app.zPageSearchResults.zSelectSearchObject(app.zPageSearchResults.S_DOMAIN);
-		
+		app.zPageSearchResults.zSelectSearchObject(app.zPageSearchResults.S_DOMAIN);
+
 		// Enter the search string to find the account
-			app.zPageSearchResults.setType(PageSearchResults.TypeOfObject.DOMAIN);
+		app.zPageSearchResults.setType(PageSearchResults.TypeOfObject.DOMAIN);
 		app.zPageSearchResults.zAddSearchQuery(domainName);
 
 		// Click search
 		app.zPageSearchResults.zToolbarPressButton(Button.B_SEARCH);
-		
+
 		// Click on domain to be deleted.
 		app.zPageSearchResults.zListItem(Action.A_RIGHTCLICK, domain.getName());
 
 		// Click on Edit button
 		app.zPageSearchResults.setType(PageSearchResults.TypeOfObject.DOMAIN);
 		FormEditDomain form = (FormEditDomain) app.zPageSearchResults.zToolbarPressButton(Button.B_TREE_EDIT);
-		
-		//Edit the description.
+
+		// Edit the description.
 		String description = "editeddomain_" + ConfigProperties.getUniqueString();
 		form.setName(description);
-		
-		//Submit the form.
+
+		// Submit
 		form.zSubmit();
-		
+
 		// Verify the domain exists in the ZCS
-		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
-				"<GetDomainRequest xmlns='urn:zimbraAdmin'>"
-				+	"<domain by='name'>" + domainName + "</domain>"
-				+	"</GetDomainRequest>");
+		ZimbraAdminAccount.AdminConsoleAdmin().soapSend("<GetDomainRequest xmlns='urn:zimbraAdmin'>"
+				+ "<domain by='name'>" + domainName + "</domain>" + "</GetDomainRequest>");
 
-
-		Element response = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetDomainResponse/admin:domain/admin:a[@n='description']", 1);
+		Element response = ZimbraAdminAccount.AdminConsoleAdmin()
+				.soapSelectNode("//admin:GetDomainResponse/admin:domain/admin:a[@n='description']", 1);
 		ZAssert.assertStringContains(response.toString(), description, "Verify description is edited correctly");
-		
 	}
-
 }

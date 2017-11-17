@@ -28,7 +28,6 @@ public class VoiceChatServiceItem implements IItem {
 	public VoiceChatServiceItem() {
 		super();
 
-		
 		displayName = "service" + ConfigProperties.getUniqueString();
 	}
 
@@ -51,8 +50,6 @@ public class VoiceChatServiceItem implements IItem {
 
 	@Override
 	public String getName() {
-		// TODO Auto-generated method stub
 		return null;
 	}
-
 }

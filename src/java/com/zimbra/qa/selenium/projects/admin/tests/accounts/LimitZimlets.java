@@ -50,7 +50,7 @@ public class LimitZimlets extends AdminCommonTest {
 
 		String zimlet="com_zimbra_date";
 		String zimlet_status="!com_zimbra_date";
-		
+
 		// Refresh the account list
 		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
 
@@ -74,7 +74,7 @@ public class LimitZimlets extends AdminCommonTest {
 
 		Element[] response = ZimbraAdminAccount.GlobalAdmin().soapSelectNodes("//admin:a[@n='zimbraZimletAvailableZimlets']");
 
-		//Verify that MTA configuration has changed
+		// Verify that MTA configuration has changed
 		boolean value = false;
 		for(Element e : response ) {
 			if (e.getText().contains(zimlet_status)) {
@@ -84,5 +84,4 @@ public class LimitZimlets extends AdminCommonTest {
 		}
 		ZAssert.assertFalse(value, "Verify zimlet is unavailable for an account!");
 	}
-
 }

@@ -14,9 +14,6 @@
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-/**
- *
- */
 package com.zimbra.qa.selenium.projects.admin.ui;
 
 import org.openqa.selenium.JavascriptExecutor;
@@ -33,42 +30,44 @@ public class WizardCreateAccount extends AbsWizard {
 	public static class Locators {
 		public static final String zdlg_NEW_ACCT = "zdlg__NEW_ACCT";
 		public static final String zdlg_ACCT_NAME = "zdlgv__NEW_ACCT_name_2";
-		public static final String zdlg_DOMAIN_NAME="zdlgv__NEW_ACCT_name_3_display";
-		public static final String zdlg_LAST_NAME="zdlgv__NEW_ACCT_sn";
-		public static final String zdlg_OK="zdlg__MSG_button2_title";
-		public static final String server_AUTO_CHECKBOX="css=input[id='zdlgv__NEW_ACCT_automailserver']";
-		public static final String server_PULL_DOWN="div[id^='zdlgv__NEW_ACCT'][id*='_zimbraMailHost'] div[class='ImgSelectPullDownArrow']";
+		public static final String zdlg_DOMAIN_NAME = "zdlgv__NEW_ACCT_name_3_display";
+		public static final String zdlg_LAST_NAME = "zdlgv__NEW_ACCT_sn";
+		public static final String zdlg_OK = "zdlg__MSG_button2_title";
+		public static final String server_AUTO_CHECKBOX = "css=input[id='zdlgv__NEW_ACCT_automailserver']";
+		public static final String server_PULL_DOWN = "div[id^='zdlgv__NEW_ACCT'][id*='_zimbraMailHost'] div[class='ImgSelectPullDownArrow']";
 	}
 
 	public WizardCreateAccount(AbsTab page) {
 		super(page);
-		logger.info("New "+ WizardCreateAccount.class.getName());
+		logger.info("New " + WizardCreateAccount.class.getName());
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 *
 	 * @see projects.admin.ui.AbsWizard#completeWizard(projects.admin.clients.Item)
 	 */
 	@Override
 	public IItem zCompleteWizard(IItem item) throws HarnessException {
 
-		if ( !(item instanceof AccountItem) )
-			throw new HarnessException("item must be an AccountItem, was "+ item.getClass().getCanonicalName());
+		if (!(item instanceof AccountItem))
+			throw new HarnessException("item must be an AccountItem, was " + item.getClass().getCanonicalName());
 
-		AccountItem account = (AccountItem)item;
+		AccountItem account = (AccountItem) item;
 
 		String CN = account.getLocalName();
 		String domain = account.getDomainName();
 
 		zType(Locators.zdlg_ACCT_NAME, CN);
 		this.clearField(Locators.zdlg_DOMAIN_NAME);
-		zType(Locators.zdlg_DOMAIN_NAME,"");
-		zType(Locators.zdlg_DOMAIN_NAME,domain);
+		zType(Locators.zdlg_DOMAIN_NAME, "");
+		zType(Locators.zdlg_DOMAIN_NAME, domain);
 
 		for (String key : account.getAccountAttrs().keySet()) {
 
 			// TODO: Handle Previous/Next to find the input field, if necessary
 
-			if ( key.equals("sn")) {
+			if (key.equals("sn")) {
 
 				zType(Locators.zdlg_LAST_NAME, account.getAccountAttrs().get(key));
 				continue;
@@ -76,7 +75,7 @@ public class WizardCreateAccount extends AbsWizard {
 
 			// TODO: add all account keys
 
-			throw new HarnessException("Unknown account attribute key "+ key);
+			throw new HarnessException("Unknown account attribute key " + key);
 
 		}
 		if (ExecuteHarnessMain.totalZimbraServers > 1) {
@@ -100,11 +99,11 @@ public class WizardCreateAccount extends AbsWizard {
 		clickFinish(AbsWizard.Locators.ACCOUNT_DIALOG);
 
 		// Need to dismiss the "account created" dialog.
-		//sClick(Locators.zdlg_OK);
-		//throw new HarnessException("See http://bugzilla.zimbra.com/show_bug.cgi?id=59013");
+		// sClick(Locators.zdlg_OK);
+		// throw new HarnessException("See
+		// http://bugzilla.zimbra.com/show_bug.cgi?id=59013");
 
 		return (account);
-
 
 	}
 
@@ -112,12 +111,12 @@ public class WizardCreateAccount extends AbsWizard {
 	public boolean zIsActive() throws HarnessException {
 
 		boolean present = sIsElementPresent(Locators.zdlg_NEW_ACCT);
-		if ( !present ) {
+		if (!present) {
 			return (false);
 		}
 
 		boolean visible = this.zIsVisiblePerPosition(Locators.zdlg_NEW_ACCT, 0, 0);
-		if ( !visible ) {
+		if (!visible) {
 			return (false);
 		}
 
@@ -130,9 +129,8 @@ public class WizardCreateAccount extends AbsWizard {
 	}
 
 	public boolean zCloseWizard() throws HarnessException {
-		this.sClickAt("css=td[id$='zdlg__NEW_ACCT_button1_title']" ,"");
+		this.sClickAt("css=td[id$='zdlg__NEW_ACCT_button1_title']", "");
 		return true;
 	}
-
 
 }

@@ -23,24 +23,22 @@ import com.zimbra.qa.selenium.framework.ui.AbsPage;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 
-
-
 public class FormManageRetentionPolicy extends AbsForm {
 
 	public static class TreeItem {
-		public static final String GENERAL_INFORMATION="General Information";
+		public static final String GENERAL_INFORMATION = "General Information";
 	}
 
 	public static class Locators {
-		public static final String NAME_TEXT_BOX="css=input[id$='_name']";
-		public static final String RETENTION_RANGE_TEXT_BOX="css=input[id='zdlgv__UNDEFINE1_lifetime_2']";
-		public static final String SAVE_BUTTON="css=td[id^='zb__ZaCurrentAppBar__SAVE']";
-		public static final String CLOSE_BUTTON="css=td[id$='zb__ZaCurrentAppBar__CLOSE']";
-		public static final String Pull_DOWN="css=div[class='ImgSelectPullDownArrow']";
-		public static final String PULL_DOWN_CLOSE="css=td[id='zmi__zb_currentApp__CLOSE_title']";
+		public static final String NAME_TEXT_BOX = "css=input[id$='_name']";
+		public static final String RETENTION_RANGE_TEXT_BOX = "css=input[id='zdlgv__UNDEFINE1_lifetime_2']";
+		public static final String SAVE_BUTTON = "css=td[id^='zb__ZaCurrentAppBar__SAVE']";
+		public static final String CLOSE_BUTTON = "css=td[id$='zb__ZaCurrentAppBar__CLOSE']";
+		public static final String Pull_DOWN = "css=div[class='ImgSelectPullDownArrow']";
+		public static final String PULL_DOWN_CLOSE = "css=td[id='zmi__zb_currentApp__CLOSE_title']";
 		public static final String PASSWORD = "css=input[id$='ztabv__ACCT_EDIT_password']";
-		public static final String CONFIRM_PASSWORD= "css=input[id$='ztabv__ACCT_EDIT_confirmPassword']";
-		public static final String OK_BUTTON="css=td[id^='zdlg__UNDEFINE']:contains('OK')";
+		public static final String CONFIRM_PASSWORD = "css=input[id$='ztabv__ACCT_EDIT_confirmPassword']";
+		public static final String OK_BUTTON = "css=td[id^='zdlg__UNDEFINE']:contains('OK')";
 	}
 
 	public FormManageRetentionPolicy(AbsApplication application) {
@@ -54,17 +52,16 @@ public class FormManageRetentionPolicy extends AbsForm {
 	public boolean zIsActive() throws HarnessException {
 
 		// Make sure the Admin Console is loaded in the browser
-		if ( !MyApplication.zIsLoaded() )
+		if (!MyApplication.zIsLoaded())
 			throw new HarnessException("Admin Console application is not active!");
 
-
 		boolean present = sIsElementPresent("");
-		if ( !present ) {
+		if (!present) {
 			return (false);
 		}
 
 		String attrs = sGetAttribute("");
-		if ( !attrs.contains("ZSelected") ) {
+		if (!attrs.contains("ZSelected")) {
 			return (false);
 		}
 
@@ -83,7 +80,7 @@ public class FormManageRetentionPolicy extends AbsForm {
 
 	@Override
 	public void zSubmit() throws HarnessException {
-		sClickAt(Locators.SAVE_BUTTON,"");
+		sClickAt(Locators.SAVE_BUTTON, "");
 		sClick(Locators.Pull_DOWN);
 		sClick(Locators.PULL_DOWN_CLOSE);
 
@@ -108,9 +105,9 @@ public class FormManageRetentionPolicy extends AbsForm {
 	}
 
 	public AbsPage selectRetentionRange(Button option) throws HarnessException {
-		logger.info(myPageName() + " selectRetentionRange"+ option);
+		logger.info(myPageName() + " selectRetentionRange" + option);
 
-		tracer.trace("Click pulldown "+ option);
+		tracer.trace("Click pulldown " + option);
 
 		if (option == null)
 			throw new HarnessException("Option cannot be null!");
@@ -120,14 +117,14 @@ public class FormManageRetentionPolicy extends AbsForm {
 		AbsPage page = null;
 
 		if (option == Button.O_DAYS) {
-			optionLocator="css=div[id='zdlgv__UNDEFINE1_lifetime_3_choice_0']";
+			optionLocator = "css=div[id='zdlgv__UNDEFINE1_lifetime_3_choice_0']";
 		} else if (option == Button.O_WEEKS) {
-			optionLocator="css=div[id='zdlgv__UNDEFINE1_lifetime_3_choice_1']";
+			optionLocator = "css=div[id='zdlgv__UNDEFINE1_lifetime_3_choice_1']";
 		} else if (option == Button.O_MONTHS) {
-			optionLocator="css=div[id='zdlgv__UNDEFINE1_lifetime_3_choice_2']";
+			optionLocator = "css=div[id='zdlgv__UNDEFINE1_lifetime_3_choice_2']";
 		} else if (option == Button.O_YEARS) {
-			optionLocator="css=div[id='zdlgv__UNDEFINE1_lifetime_3_choice_3']";
-		}else {
+			optionLocator = "css=div[id='zdlgv__UNDEFINE1_lifetime_3_choice_3']";
+		} else {
 			throw new HarnessException("no logic defined for pulldown/option " + option);
 		}
 		// Make sure the locator exists
@@ -135,7 +132,7 @@ public class FormManageRetentionPolicy extends AbsForm {
 			throw new HarnessException(" option " + option + " optionLocator " + pulldownLocator + " not present!");
 		}
 
-		this.sClickAt(pulldownLocator,"");
+		this.sClickAt(pulldownLocator, "");
 
 		if (optionLocator != null) {
 
@@ -144,21 +141,18 @@ public class FormManageRetentionPolicy extends AbsForm {
 				throw new HarnessException(" option " + option + " optionLocator " + optionLocator + " not present!");
 			}
 
-
-			this.sClickAt(optionLocator,"");
+			this.sClickAt(optionLocator, "");
 		}
 
 		return (page);
 	}
 
-
 	public void sClickOkButton() throws HarnessException {
 		if (!this.sIsElementPresent(Locators.OK_BUTTON)) {
-			throw new HarnessException("Locator"+ Locators.OK_BUTTON + " not present!");
+			throw new HarnessException("Locator" + Locators.OK_BUTTON + " not present!");
 		}
 
-		sClickAt(Locators.OK_BUTTON,"");
+		sClickAt(Locators.OK_BUTTON, "");
 	}
 
 }
-

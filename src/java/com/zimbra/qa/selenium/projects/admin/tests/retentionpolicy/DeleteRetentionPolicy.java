@@ -11,19 +11,6 @@
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program.
-/*
- * ***** BEGIN LICENSE BLOCK *****
- * Zimbra Collaboration Suite Server
- * Copyright (C) 2012, 2013, 2014, 2016 Synacor, Inc.
- *
- * This program is free software: you can redistribute it and/or modify it under
- * the terms of the GNU General Public License as published by the Free Software Foundation,
- * version 2 of the License.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
- * You should have received a copy of the GNU General Public License along with this program.
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
@@ -46,16 +33,18 @@ public class DeleteRetentionPolicy extends AdminCommonTest {
 		logger.info("New "+ DeleteRetentionPolicy.class.getCanonicalName());
 	}
 
+
 	/**
 	 * Testcase : Create retention policy
 	 * Steps :
-	 * 1. Go to configure >> global settings >> retention policy >> Add new retention policy 
-	 * 2. Verify that new policy gets created successfully 
+	 * 1. Go to configure >> global settings >> retention policy >> Add new retention policy
+	 * 2. Verify that new policy gets created successfully
 	 * @throws HarnessException
 	 */
 
-	@Test(	description = "Delete retention policy",
+	@Test (description = "Delete retention policy",
 			groups = { "smoke", "L1" })
+
 	public void DeleteRetentionPolicy_01() throws HarnessException {
 
 		final String policyName = "test_policy" + ConfigProperties.getUniqueString();
@@ -68,7 +57,6 @@ public class DeleteRetentionPolicy extends AdminCommonTest {
 						+ "<policy name='"+policyName+"' lifetime='"+retentionRange+"' xmlns='urn:zimbraMail'> </policy>"
 						+ "</keep>"
 						+ "</CreateSystemRetentionPolicyRequest>");
-
 
 		// Refresh the retention list
 		app.zPageManageRetentionPolicy.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
@@ -90,4 +78,3 @@ public class DeleteRetentionPolicy extends AdminCommonTest {
 		ZAssert.assertFalse(app.zPageManageRetentionPolicy.zVerifyPolicyName(policyName), "Policy not displayed on UI ");
 	}
 }
-

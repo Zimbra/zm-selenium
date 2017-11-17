@@ -14,9 +14,6 @@
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-/**
- *
- */
 package com.zimbra.qa.selenium.projects.admin.ui;
 
 import com.zimbra.qa.selenium.framework.items.IItem;
@@ -30,9 +27,9 @@ public class WizardChangePassword extends AbsWizard {
 	public static class Locators {
 		public static final String zNewPassword = "css=input[id='zdlgv__UNDEFINE1_password']";
 		public static final String zConfirmPassword = "css=input[id='zdlgv__UNDEFINE1_confirmPassword']";
-		public static final String zdlg_OK="css=td[id='zdlg__UNDEFINE1_button2_title']:contains('OK')";
+		public static final String zdlg_OK = "css=td[id='zdlg__UNDEFINE1_button2_title']:contains('OK')";
 		public static final String PASSWORD = "css=input[id='ztabv__ACCT_EDIT_password]";
-		public static final String CONFIRM_PASSWORD= "css=input[id='ztabv__ACCT_EDIT_confirmPassword']";
+		public static final String CONFIRM_PASSWORD = "css=input[id='ztabv__ACCT_EDIT_confirmPassword']";
 	}
 
 	public WizardChangePassword(AbsTab myApplication) {
@@ -42,20 +39,18 @@ public class WizardChangePassword extends AbsWizard {
 	@Override
 	public IItem zCompleteWizard(IItem item) throws HarnessException {
 
-		if ( !(item instanceof AccountItem) )
-			throw new HarnessException("item must be an AccountItem, was "+ item.getClass().getCanonicalName());
+		if (!(item instanceof AccountItem))
+			throw new HarnessException("item must be an AccountItem, was " + item.getClass().getCanonicalName());
 
 		sType(Locators.zNewPassword, "test1234");
-		sType(Locators.zConfirmPassword,"test1234");
+		sType(Locators.zConfirmPassword, "test1234");
 		SleepUtil.sleepSmall();
 
-		sClickAt(Locators.zdlg_OK,"");
+		sClickAt(Locators.zdlg_OK, "");
 		SleepUtil.sleepMedium();
 		return item;
 
 	}
-	
-	
 
 	@Override
 	public String myPageName() {
@@ -66,12 +61,12 @@ public class WizardChangePassword extends AbsWizard {
 	public boolean zIsActive() throws HarnessException {
 
 		boolean present = sIsElementPresent(Locators.zNewPassword);
-		if ( !present ) {
+		if (!present) {
 			return (false);
 		}
 
 		boolean visible = this.zIsVisiblePerPosition(Locators.zConfirmPassword, 0, 0);
-		if ( !visible ) {
+		if (!visible) {
 			return (false);
 		}
 

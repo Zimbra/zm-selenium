@@ -235,7 +235,7 @@ public class BubbleEmailAddress extends AbsBubble {
 			if ( locator != null ) {
 				
 				// Right click on the bubble
-				this.zRightClickAt(locator,"");
+				this.sRightClickAt(locator,"");
 				this.zWaitForBusyOverlay();
 
 			}
@@ -312,7 +312,7 @@ public class BubbleEmailAddress extends AbsBubble {
 			if ( locator != null ) {
 				
 				// Right click on the bubble
-				this.zRightClickAt(locator,"");
+				this.sRightClickAt(locator,"");
 				this.zWaitForBusyOverlay();
 				
 				if ( optionLocator != null ) {

@@ -2,11 +2,11 @@
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
  * Copyright (C) 2015, 2016 Synacor, Inc.
- * 
+ *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software Foundation,
  * version 2 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
@@ -32,7 +32,6 @@ public class EditFeatures extends AdminCommonTest {
 
 	public EditFeatures() {
 		logger.info("New "+ EditFeatures.class.getCanonicalName());
-		// All tests start at the "Cos" page
 		super.startingPage = app.zPageManageCOS;
 	}
 
@@ -41,10 +40,11 @@ public class EditFeatures extends AdminCommonTest {
 	 * Testcase : Edit COS - Edit features
 	 * Steps :
 	 * 1. Create an COS using SOAP.
-	 * 2. Edit COS - uncheck mail and calendar features 
+	 * 2. Edit COS - uncheck mail and calendar features
 	 * 3. Verify mail and calendar features attributes are changed using SOAP.
 	 * @throws HarnessException
 	 */
+
 	@Test (description = "Edit COS - Edit features",
 			groups = { "smoke", "L1" })
 
@@ -95,7 +95,5 @@ public class EditFeatures extends AdminCommonTest {
 		Element response2 = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetCosResponse/admin:cos/admin:a[@n='zimbraFeatureMailEnabled']", 1);
 		ZAssert.assertNotNull(response2, "Verify the account is edited successfully");
 		ZAssert.assertStringContains(response2.toString(),"FALSE", "Verify mail feature is disabled");
-
 	}
-
 }

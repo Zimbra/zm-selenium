@@ -17,7 +17,6 @@
 package com.zimbra.qa.selenium.projects.admin.tests.accounts;
 
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
@@ -30,25 +29,26 @@ import com.zimbra.qa.selenium.projects.admin.ui.FormEditAccount;
 import com.zimbra.qa.selenium.projects.admin.ui.WizardChangePassword;
 
 public class ChangePassword extends AdminCommonTest {
+
 	public ChangePassword() {
 		logger.info("New "+ ChangePassword.class.getCanonicalName());
-
-		// All tests start at the "Accounts" page
 		super.startingPage = app.zPageManageAccounts;
 	}
 
-	
+
 	/**
-	 * Testcase : Edit password  -- manage account >> right click 
+	 * Testcase : Edit password  -- manage account >> right click
 	 * Steps :
 	 * 1. Create an account using SOAP.
 	 * 2. Edit the account name using UI Right Click.
 	 * 3. Verify password is changed using SOAP.
 	 * @throws HarnessException
 	 */
+
 	@Test (description = "Edit password  -- manage account > Gearbox > edit account > change password",
 			groups = { "smoke", "L1" })
-			public void ChangePassword_01() throws HarnessException {
+
+	public void ChangePassword_01() throws HarnessException {
 
 		// Create a new account in the Admin Console using SOAP
 		AccountItem account = new AccountItem("email" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
@@ -60,22 +60,20 @@ public class ChangePassword extends AdminCommonTest {
 
 		// Refresh the account list
 		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
-	
+
 		// Click on account to be Edited.
 		app.zPageManageAccounts.zListItem(Action.A_LEFTCLICK, account.getEmailAddress());
-		
+
 		// Click on Edit button
 		FormEditAccount form = (FormEditAccount) app.zPageManageAccounts.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_EDIT);
-		
-		
-		// Fill out the wizard	
+
+		// Fill out the wizard
 		form.setPassword("test1234");
 
 		// Save the changes
 		form.zSave();
-		
-		// Confirm that the new password is in use
-		// by getting a new token
+
+		// Confirm that the new password is in use by getting a new token
 		app.zGetActiveAccount().soapSend(
 					"<AuthRequest xmlns='urn:zimbraAccount'>"
 				+		"<account by='name'>"+ account.getEmailAddress() +"</account>"
@@ -83,22 +81,24 @@ public class ChangePassword extends AdminCommonTest {
 				+	"</AuthRequest>");
 		String token = app.zGetActiveAccount().soapSelectValue("//acct:AuthResponse//acct:authToken", null);
 		ZAssert.assertGreaterThan(token.trim().length(), 0, "Verify the token is returned");
-		
+
 		app.zGetActiveAccount().authenticate();
 	}
 
 
 	/**
-	 * Testcase : Edit password  -- manage account >> right click 
+	 * Testcase : Edit password  -- manage account >> right click
 	 * Steps :
 	 * 1. Create an account using SOAP.
 	 * 2. Edit the account name using UI Right Click.
 	 * 3. Verify password is changed using SOAP.
 	 * @throws HarnessException
 	 */
+
 	@Test (description = "Edit password  -- manage account > right click > change password",
 			groups = { "smoke", "L1" })
-			public void ChangePassword_02() throws HarnessException {
+
+	public void ChangePassword_02() throws HarnessException {
 
 		// Create a new account in the Admin Console using SOAP
 		AccountItem account = new AccountItem("email" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
@@ -110,20 +110,20 @@ public class ChangePassword extends AdminCommonTest {
 
 		 // Refresh the account list
 		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
-	
+
 		// Right Click on account to be Edited.
 		app.zPageManageAccounts.zListItem(Action.A_RIGHTCLICK, Button.O_CHANGE_PASSWORD, account.getEmailAddress());
-		
-		// right Click account >>  "Change password"
+
+		// Right Click account >> "Change password"
 		WizardChangePassword wizard = new WizardChangePassword(startingPage);
-		
-		// Fill out the wizard	
+
+		// Fill out the wizard
 		wizard.zCompleteWizard(account);
-				
+
 		// Refresh the account list
 		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
-		// Confirm that the new password is in use
-		// by getting a new token
+
+		// Confirm that the new password is in use by getting a new token
 		app.zGetActiveAccount().soapSend(
 					"<AuthRequest xmlns='urn:zimbraAccount'>"
 				+		"<account by='name'>"+ account.getEmailAddress() +"</account>"
@@ -131,8 +131,5 @@ public class ChangePassword extends AdminCommonTest {
 				+	"</AuthRequest>");
 		String token = app.zGetActiveAccount().soapSelectValue("//acct:AuthResponse//acct:authToken", null);
 		ZAssert.assertGreaterThan(token.trim().length(), 0, "Verify the token is returned");
-	
 	}
-	
-	
 }

@@ -17,7 +17,6 @@
 package com.zimbra.qa.selenium.projects.admin.tests.adminextensions;
 
 import org.testng.annotations.Test;
-
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.FileItem;
 import com.zimbra.qa.selenium.framework.ui.Button;
@@ -33,20 +32,20 @@ public class DeployAdminExtensions extends AdminCommonTest {
 
 	public DeployAdminExtensions() {
 		logger.info("New " + DeployAdminExtensions.class.getCanonicalName());
-
-		// All tests start at the "admin extension" page
 		super.startingPage = app.zPageManageAdminExtensions;
 	}
+
 
 	/**
 	 * Testcase : Deploy admin extension
 	 * 1. Go to configure > admin extensions
-	 * 2. Select deploy option from gear menu > deploy extension 
+	 * 2. Select deploy option from gear menu > deploy extension
 	 * 3. Verify extension is listed under admin extensions
 	 * @throws HarnessException
 	 */
+
 	@Bugs (ids = "ZCS-1059")
-	@Test(	description = "Deploy admin extension",
+	@Test (description = "Deploy admin extension",
 			groups = { "smoke", "L1" })
 
 	public void DeployAdminExtension_01() throws HarnessException {
@@ -56,41 +55,38 @@ public class DeployAdminExtensions extends AdminCommonTest {
 		String zimletName ="de_dieploegers_admin_vacation";
 		final String filePath = ConfigProperties.getBaseDirectory() + "\\data\\public\\adminextension\\" + fileName;
 		FileItem fileItem = new FileItem(filePath);
-		
+
 		// Click on deploy admin extension
 		WizardDeployZimlet wizard= (WizardDeployZimlet)app.zPageManageZimlets.zToolbarPressPulldown(Button.B_GEAR_BOX,Button.B_DEPLOY_ZIMLET);
-		
-		// Click on Upload File button 
+
+		// Click on Upload File button
 		app.zPageManageZimlets.zToolbarPressButton(Button.B_UPLOAD_ZIMLET, fileItem);
 
 		// Upload admin extension
 		zUpload(filePath);
-			
+
 		// Click on flush cache
 		wizard.zCheckboxSet(Locators.FLUSH_CHACHE,true);
 		SleepUtil.sleepMedium();
-		
+
 		// Click on Deploy
 		wizard.sClickAt(Locators.DEPLOY_BUTTON,"");
 		SleepUtil.sleepMedium();
-		
+
 		// Verify extension is uploaded successfully
 		boolean isUploadSuccessful = app.zPageManageZimlets.zVerifyUploadSuccessMessage();
 		ZAssert.assertTrue(isUploadSuccessful, "Verify extension is uploaded successfully!");
-		
+
 		// Verify extension is delployed successfully
 		boolean isPresent = app.zPageManageZimlets.zVerifyDeploySuccessMessage();
 		ZAssert.assertTrue(isPresent, "Verify extension is delployed successfully!");
-		
+
 		// Click on Finish
 		wizard.sClickAt(Locators.FINISH_BUTTON,"");
 		SleepUtil.sleepMedium();
-		
+
 		// Verify extension is deployed
 		boolean isDeploySuccessful = app.zPageManageAdminExtensions.zVerifyAdminExtensionName(zimletName);
 		ZAssert.assertTrue(isDeploySuccessful, "Verify extension is deployed!");
-	
-		
 	}
-
 }

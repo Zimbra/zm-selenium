@@ -705,7 +705,7 @@ public class PageCalendar extends AbsTab {
 
 		} else if ( action == Action.A_RIGHTCLICK) {
 
-			this.zRightClickAt(locator, "");
+			this.sRightClickAt(locator, "");
 			this.zWaitForBusyOverlay();
 
 			page = null;
@@ -769,7 +769,7 @@ public class PageCalendar extends AbsTab {
 
 		} else if ( action == Action.A_RIGHTCLICK ) {
 
-			this.zRightClickAt(locator, "");
+			this.sRightClickAt(locator, "");
 			this.zWaitForBusyOverlay();
 
 			page = null;
@@ -811,7 +811,7 @@ public class PageCalendar extends AbsTab {
 		if ( action == Action.A_RIGHTCLICK ) {
 
 			// Right-Click on the item
-			this.zRightClickAt(itemlocator,"");
+			this.sRightClickAt(itemlocator,"");
 
 			if (option == Button.O_OPEN_MENU) {
 
@@ -1091,7 +1091,7 @@ public class PageCalendar extends AbsTab {
 
 		} else if (action == Action.A_RIGHTCLICK) {
 
-			this.zRightClickAt(locator, "");
+			this.sRightClickAt(locator, "");
 			this.zWaitForBusyOverlay();
 			SleepUtil.sleepSmall();
 
@@ -1701,7 +1701,7 @@ public class PageCalendar extends AbsTab {
 				}
 			}
 
-			this.zRightClickAt(locator, "");
+			this.sRightClickAt(locator, "");
 			this.zWaitForBusyOverlay();
 
 			this.sFocus(optionLocator);
@@ -2953,7 +2953,7 @@ public class PageCalendar extends AbsTab {
 
 		SleepUtil.sleepMedium();
 		try {
-			this.zRightClick(Locators.AttendeeBubbleAddr);
+			this.sRightClick(Locators.AttendeeBubbleAddr);
 			SleepUtil.sleepSmall();
 		} catch (Exception ex) {
 			throw new HarnessException(ex);

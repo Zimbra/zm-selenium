@@ -14,9 +14,6 @@
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-/**
- *
- */
 package com.zimbra.qa.selenium.projects.admin.ui;
 
 import com.zimbra.qa.selenium.framework.items.IItem;
@@ -32,24 +29,24 @@ import com.zimbra.qa.selenium.projects.admin.items.BackupItem;
  */
 public class WizardBackup extends AbsWizard {
 
-	public static class Locators {		
-		public static final String NEXT_BUTTON="css=td[id$='_button12_title']:contains('Next')";
-		public static final String BACKUP_BUTTON="css=td[id$='_button12_title']:contains('Backup')";
-		public static final String FINISH_BUTTON="css=td[id$='_button13_title']:contains('Finish')";
-		public static final String BACKUP_METHOD_FULL="css=div[id='zdlgv__UNDEFINE_method_choice_0']";
-		public static final String BACKUP_METHOD_INCREMENTAL="css=div[id='zdlgv__UNDEFINE_method_choice_1']";
-		public static final String EMAIL="css=input[id$='zdlgv__UNDEFINE_query']";
-		public static final String SEARCH_BUTTON="css=td[id$='_dwt_button___container'] div:contains('Search')";
-		public static final String ADD="css=td[id$='dwt_button_3___container'] div:contains('Add')";
-		public static final String BACKUP_ALL="css=div[class='DwtDialog']:not([aria-hidden='true']) input[id$='_backupAll']";
-		public static final String PULL_DOWN="css=div[id='zdlgv__UNDEFINE_method_arrow_button']";
+	public static class Locators {
+		public static final String NEXT_BUTTON = "css=td[id$='_button12_title']:contains('Next')";
+		public static final String BACKUP_BUTTON = "css=td[id$='_button12_title']:contains('Backup')";
+		public static final String FINISH_BUTTON = "css=td[id$='_button13_title']:contains('Finish')";
+		public static final String BACKUP_METHOD_FULL = "css=div[id='zdlgv__UNDEFINE_method_choice_0']";
+		public static final String BACKUP_METHOD_INCREMENTAL = "css=div[id='zdlgv__UNDEFINE_method_choice_1']";
+		public static final String EMAIL = "css=input[id$='zdlgv__UNDEFINE_query']";
+		public static final String SEARCH_BUTTON = "css=td[id$='_dwt_button___container'] div:contains('Search')";
+		public static final String ADD = "css=td[id$='dwt_button_3___container'] div:contains('Add')";
+		public static final String BACKUP_ALL = "css=div[class='DwtDialog']:not([aria-hidden='true']) input[id$='_backupAll']";
+		public static final String PULL_DOWN = "css=div[id='zdlgv__UNDEFINE_method_arrow_button']";
 	}
 
 	public WizardBackup(AbsTab page) {
 		super(page);
 	}
 
-	public String backupMethod="";
+	public String backupMethod = "";
 
 	public String getBackupMethod() {
 		return backupMethod;
@@ -57,12 +54,12 @@ public class WizardBackup extends AbsWizard {
 
 	public void setBackupMethod(String backupMethod) throws HarnessException {
 
-		if(backupMethod.equals(Locators.BACKUP_METHOD_FULL)) {
-			backupMethod=Locators.BACKUP_METHOD_FULL;
-			sClickAt(Locators.NEXT_BUTTON,"");
-		} else if(backupMethod.equals("INCREMENTAL")) {
-			backupMethod=Locators.BACKUP_METHOD_INCREMENTAL;
-		}  
+		if (backupMethod.equals(Locators.BACKUP_METHOD_FULL)) {
+			backupMethod = Locators.BACKUP_METHOD_FULL;
+			sClickAt(Locators.NEXT_BUTTON, "");
+		} else if (backupMethod.equals("INCREMENTAL")) {
+			backupMethod = Locators.BACKUP_METHOD_INCREMENTAL;
+		}
 		this.backupMethod = backupMethod;
 	}
 
@@ -77,20 +74,18 @@ public class WizardBackup extends AbsWizard {
 		// How many items are in the table?
 		String rowsLocator = "css=td[id$='_accountPool___container'] div[id^='zl'] div[id^='zli__']";
 		int count = this.sGetCssCount(rowsLocator);
-		logger.debug(myPageName() + " zListGetPolicy: number of policys: "+ count);
+		logger.debug(myPageName() + " zListGetPolicy: number of policys: " + count);
 
 		// Get each conversation's data from the table list
 		for (int i = 1; i <= count; i++) {
-			final String backupLocator = rowsLocator + ":nth-child("+i+")";
+			final String backupLocator = rowsLocator + ":nth-child(" + i + ")";
 			String locator;
 
 			// Email Address
 			locator = backupLocator + " td:nth-child(2)";
 
-			if(this.sIsElementPresent(locator))
-			{
-				if(this.sGetText(locator).trim().equalsIgnoreCase(email))
-				{
+			if (this.sIsElementPresent(locator)) {
+				if (this.sGetText(locator).trim().equalsIgnoreCase(email)) {
 					sClick(locator);
 					SleepUtil.sleepMedium();
 				} else {
@@ -105,38 +100,38 @@ public class WizardBackup extends AbsWizard {
 		}
 	}
 
-	@Override  
+	@Override
 	public IItem zCompleteWizard(IItem item) throws HarnessException {
-		if ( !(item instanceof BackupItem) )
-			throw new HarnessException("item must be an BackupItem, was "+ item.getClass().getCanonicalName());
+		if (!(item instanceof BackupItem))
+			throw new HarnessException("item must be an BackupItem, was " + item.getClass().getCanonicalName());
 
-		BackupItem backup = (BackupItem)item;
+		BackupItem backup = (BackupItem) item;
 
-		if(backupMethod.equals(Locators.BACKUP_METHOD_FULL)) {
+		if (backupMethod.equals(Locators.BACKUP_METHOD_FULL)) {
 
-			sClickAt(Locators.BACKUP_BUTTON,"");
+			sClickAt(Locators.BACKUP_BUTTON, "");
 
-			sClickAt(Locators.FINISH_BUTTON,"");
+			sClickAt(Locators.FINISH_BUTTON, "");
 		}
 
-		else{
+		else {
 
-			sClickAt(Locators.PULL_DOWN,"");
+			sClickAt(Locators.PULL_DOWN, "");
 
-			sClickAt(Locators.BACKUP_METHOD_INCREMENTAL,"");	
+			sClickAt(Locators.BACKUP_METHOD_INCREMENTAL, "");
 
-			sClickAt(Locators.NEXT_BUTTON,"");
+			sClickAt(Locators.NEXT_BUTTON, "");
 
-			sClickAt(Locators.FINISH_BUTTON,"");	
+			sClickAt(Locators.FINISH_BUTTON, "");
 		}
 
 		return (backup);
 	}
 
 	public void selectAccountsToBackup(String criteria, String email) throws HarnessException {
-		if(criteria.equals("all")) {
+		if (criteria.equals("all")) {
 			sClick(Locators.BACKUP_ALL);
-		} else if(criteria.equals("selected")) {
+		} else if (criteria.equals("selected")) {
 			sType(Locators.EMAIL, email);
 			SleepUtil.sleepMedium();
 
@@ -146,17 +141,15 @@ public class WizardBackup extends AbsWizard {
 			// How many items are in the table?
 			String rowsLocator = "css=td[id$='_accountPool___container'] div[id^='zl'] div[id^='zli__']";
 			int count = this.sGetCssCount(rowsLocator);
-			logger.debug(myPageName() + " zListGetPolicy: number of policys: "+ count);
+			logger.debug(myPageName() + " zListGetPolicy: number of policys: " + count);
 
 			// Get each conversation's data from the table list
 			for (int i = 1; i <= count; i++) {
-				final String backupLocator = rowsLocator + ":nth-child("+i+")";
+				final String backupLocator = rowsLocator + ":nth-child(" + i + ")";
 				String locator;
 				locator = backupLocator + " td:nth-child(2)";
-				if(this.sIsElementPresent(locator))
-				{
-					if(this.sGetText(locator).trim().equalsIgnoreCase(email))
-					{
+				if (this.sIsElementPresent(locator)) {
+					if (this.sGetText(locator).trim().equalsIgnoreCase(email)) {
 						sClick(locator);
 						SleepUtil.sleepMedium();
 					} else {
@@ -183,9 +176,8 @@ public class WizardBackup extends AbsWizard {
 		return false;
 	}
 
-
 	public boolean zCloseWizard() throws HarnessException {
-		this.sClickAt("css=td[id$='zdlg__UNDEFINE_button1_title']" ,"");
+		this.sClickAt("css=td[id$='zdlg__UNDEFINE_button1_title']", "");
 		return true;
 	}
 }

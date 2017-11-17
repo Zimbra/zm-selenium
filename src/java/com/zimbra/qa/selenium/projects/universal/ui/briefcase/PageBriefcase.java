@@ -766,7 +766,7 @@ public class PageBriefcase extends AbsTab {
 			zWaitForElementPresent(itemNameLocator);
 
 			// Right-Click on the item
-			this.zRightClickAt(itemNameLocator, "0,0");
+			this.sRightClickAt(itemNameLocator, "0,0");
 
 		} else {
 			throw new HarnessException("implement me!  action = " + action);
@@ -812,7 +812,7 @@ public class PageBriefcase extends AbsTab {
 			zWaitForElementPresent(itemlocator);
 
 			// Right-Click on the item
-			this.zRightClickAt(itemlocator, "0,0");
+			this.sRightClickAt(itemlocator, "0,0");
 			SleepUtil.sleepSmall();
 
 			// Now the ContextMenu is opened
@@ -956,7 +956,7 @@ public class PageBriefcase extends AbsTab {
 			zWaitForElementPresent(itemlocator);
 
 			// Right-Click on the item
-			this.zRightClickAt(itemlocator, "0,0");
+			this.sRightClickAt(itemlocator, "0,0");
 
 			// Now the ContextMenu is opened
 			// Click on the specified option
@@ -1440,7 +1440,7 @@ public class PageBriefcase extends AbsTab {
 
 			zWaitForElementPresent(subject);
 
-			this.zRightClickAt(subject, "0,0");
+			this.sRightClickAt(subject, "0,0");
 			String optionLocator = null;
 
 			if (option == Button.B_RENAME) {
