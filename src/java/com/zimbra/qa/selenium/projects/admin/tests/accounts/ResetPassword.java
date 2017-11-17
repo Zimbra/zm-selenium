@@ -28,7 +28,6 @@ import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
 import com.zimbra.qa.selenium.projects.admin.core.AdminCommonTest;
 import com.zimbra.qa.selenium.projects.admin.ui.FormEditAccount;
 import com.zimbra.qa.selenium.projects.admin.ui.PageLogin.Locators;
-import com.zimbra.qa.selenium.projects.admin.ui.PageMain;
 
 public class ResetPassword extends AdminCommonTest {
 	public ResetPassword() {
@@ -57,19 +56,19 @@ public class ResetPassword extends AdminCommonTest {
 			account.provision();			
 
 			// Refresh the account list
-			app.zPageManageAccounts.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
+			app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
 
 			// Click on account to be Edited.
 			app.zPageManageAccounts.zListItem(Action.A_LEFTCLICK, adminaccount);
 
 			// Click on Edit button
-			FormEditAccount form = (FormEditAccount) app.zPageManageAccounts.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_EDIT);
+			FormEditAccount form = (FormEditAccount) app.zPageManageAccounts.zListItem(Action.A_RIGHTCLICK, Button.O_EDIT, adminaccount);
 			
 			// Check must change password
 			app.zPageManageAccounts.zPreferenceCheckboxSet(Button.B_MUST_CHANGE_PASSWORD,true);
 			
-			// Submit the form
-			form.zSubmit();
+			// Save the changes
+			form.zSave();
 			
 			// Logout from global admin account
 			app.zPageMain.logout();			

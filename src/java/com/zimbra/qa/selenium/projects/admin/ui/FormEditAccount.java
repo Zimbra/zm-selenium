@@ -97,12 +97,19 @@ public class FormEditAccount extends AbsForm {
 
 	@Override
 	public void zSubmit() throws HarnessException {
+		SleepUtil.sleepSmall();
 		sClickAt(Locators.SAVE_BUTTON,"");
-		SleepUtil.sleepMedium();
+		SleepUtil.sleepLong();
 		sClick(Locators.Pull_DOWN);
 		SleepUtil.sleepSmall();
 		sClick(Locators.PULL_DOWN_CLOSE);
 		SleepUtil.sleepSmall();
+	}
+	
+	public void zSave() throws HarnessException {
+		SleepUtil.sleepSmall();
+		sClickAt(Locators.SAVE_BUTTON,"");
+		SleepUtil.sleepLong();
 	}
 
 	public void zSelectTreeItem(String treeItem) throws HarnessException {

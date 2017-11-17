@@ -29,7 +29,7 @@ import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.admin.core.AdminCommonTest;
 import com.zimbra.qa.selenium.projects.admin.items.AccountItem;
 import com.zimbra.qa.selenium.projects.admin.ui.DialogForDeleteOperation;
-import com.zimbra.qa.selenium.projects.admin.ui.PageMain;
+import com.zimbra.qa.selenium.projects.admin.ui.PageSearchResults;
 
 public class DeleteAccount extends AdminCommonTest {
 
@@ -67,7 +67,7 @@ public class DeleteAccount extends AdminCommonTest {
 
 
 		// Refresh the account list
-		app.zPageManageAccounts.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
+		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
 
 		// Click on account to be deleted.
 		app.zPageManageAccounts.zListItem(Action.A_LEFTCLICK, account.getEmailAddress());
@@ -120,7 +120,7 @@ public class DeleteAccount extends AdminCommonTest {
 
 
 		// Refresh the account list
-		app.zPageManageAccounts.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
+		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
 
 		// Right Click on account to be deleted.
 		app.zPageManageAccounts.zListItem(Action.A_RIGHTCLICK, account.getEmailAddress());
@@ -177,11 +177,13 @@ public class DeleteAccount extends AdminCommonTest {
 
 		// Click search
 		app.zPageSearchResults.zToolbarPressButton(Button.B_SEARCH);
-
-		// Click on account to be deleted.
+		
+		// Click on account to be deleted
 		app.zPageSearchResults.zListItem(Action.A_LEFTCLICK, account.getEmailAddress());
 
+
 		// Click on Delete button
+		app.zPageSearchResults.setType(PageSearchResults.TypeOfObject.ACCOUNT);
 		DialogForDeleteOperation dialog = (DialogForDeleteOperation) app.zPageSearchResults.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_DELETE);
 
 		// Click Yes in Confirmation dialog

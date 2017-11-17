@@ -27,7 +27,6 @@ import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.admin.core.AdminCommonTest;
 import com.zimbra.qa.selenium.projects.admin.items.AccountItem;
 import com.zimbra.qa.selenium.projects.admin.ui.FormEditAccount;
-import com.zimbra.qa.selenium.projects.admin.ui.PageMain;
 import com.zimbra.qa.selenium.projects.admin.ui.PageSearchResults;
 
 public class EditAccount extends AdminCommonTest {
@@ -49,7 +48,7 @@ public class EditAccount extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test (description = "Edit Account name  - Manage Account View",
-			groups = { "smoke", "L1" })
+			groups = { "sanity", "L0" })
 	
 	public void EditAccount_01() throws HarnessException {
 
@@ -62,7 +61,7 @@ public class EditAccount extends AdminCommonTest {
 						+		"</CreateAccountRequest>");
 
 		// Refresh the account list
-		app.zPageManageAccounts.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
+		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
 
 		// Click on account to be Edited.
 		app.zPageManageAccounts.zListItem(Action.A_LEFTCLICK, account.getEmailAddress());
@@ -74,8 +73,8 @@ public class EditAccount extends AdminCommonTest {
 		String editedName = "editedAccount_" + ConfigProperties.getUniqueString();
 		form.setName(editedName);
 
-		//Submit the form.
-		form.zSubmit();
+		// Save the changes
+		form.zSave();
 		
 		// Verify the account exists in the ZCS
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
@@ -95,7 +94,7 @@ public class EditAccount extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test (description = "Edit account name -- right click",
-			groups = { "functional", "L2" })
+			groups = { "sanity", "L0" })
 	
 	public void EditAccount_02() throws HarnessException {
 
@@ -108,20 +107,21 @@ public class EditAccount extends AdminCommonTest {
 						+		"</CreateAccountRequest>");
 
 		// Refresh the account list
-		app.zPageManageAccounts.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
-
-		// Right Click on account to be Edited.
+		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
+		
+		// Right Click on account to be deleted.
 		app.zPageManageAccounts.zListItem(Action.A_RIGHTCLICK, account.getEmailAddress());
+		
 
-		// Click on Edit button
+		// Click on Delete button
 		FormEditAccount form = (FormEditAccount) app.zPageManageAccounts.zToolbarPressButton(Button.B_TREE_EDIT);
 
 		//Edit the name.
 		String editedName = "editedAccount_" + ConfigProperties.getUniqueString();
 		form.setName(editedName);
 
-		//Submit the form.
-		form.zSubmit();
+		// Save the changes
+		form.zSave();
 
 		// Verify the account exists in the ZCS
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
@@ -144,7 +144,7 @@ public class EditAccount extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test (description = "Edit a basic account - Search List View",
-			groups = { "functional", "L2" })
+			groups = { "smmoke", "L1" })
 	
 	public void EditAccount_03() throws HarnessException {
 
@@ -156,7 +156,8 @@ public class EditAccount extends AdminCommonTest {
 						+			"<password>test123</password>"
 						+		"</CreateAccountRequest>");
 
-
+		// Refresh the account list
+		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
 
 		// Enter the search string to find the account
 		app.zPageSearchResults.zAddSearchQuery(account.getEmailAddress());
@@ -164,11 +165,11 @@ public class EditAccount extends AdminCommonTest {
 		// Click search
 		app.zPageSearchResults.zToolbarPressButton(Button.B_SEARCH);
 
-		// Click on account to be deleted.
+		// Click on account to be edited
 		app.zPageSearchResults.zListItem(Action.A_LEFTCLICK, account.getEmailAddress());
 
 
-		// Click on Delete button
+		// Click on Edit button
 		app.zPageSearchResults.setType(PageSearchResults.TypeOfObject.ACCOUNT);
 		FormEditAccount form = (FormEditAccount) app.zPageSearchResults.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_EDIT);
 
@@ -176,8 +177,8 @@ public class EditAccount extends AdminCommonTest {
 		String editedName = "editedAccount_" + ConfigProperties.getUniqueString();
 		form.setName(editedName);
 
-		//Submit the form.
-		form.zSubmit();
+		// Save the changes
+		form.zSave();
 
 		// Verify the account exists in the ZCS
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
@@ -201,7 +202,7 @@ public class EditAccount extends AdminCommonTest {
 	 * @throws HarnessException
 	 */
 	@Test (description = "Edit a basic account - Search List View",
-			groups = { "functional", "L3" })
+			groups = { "smoke", "L1" })
 	
 	public void EditAccount_04() throws HarnessException {
 
@@ -214,29 +215,18 @@ public class EditAccount extends AdminCommonTest {
 						+			"<password>test123</password>"
 						+		"</CreateAccountRequest>");
 
+		// Refresh the account list
+		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
 
+		// Click on Edit button
+		FormEditAccount form = (FormEditAccount) app.zPageManageAccounts.zListItem(Action.A_RIGHTCLICK, Button.O_EDIT, account.getEmailAddress());
 
-		// Enter the search string to find the account
-		app.zPageSearchResults.zAddSearchQuery(account.getEmailAddress());
-
-		// Click search
-		app.zPageSearchResults.zToolbarPressButton(Button.B_SEARCH);
-
-		// Click on account to be deleted.
-		app.zPageSearchResults.zListItem(Action.A_RIGHTCLICK, account.getEmailAddress());
-
-
-		// Click on Delete button
-		app.zPageSearchResults.setType(PageSearchResults.TypeOfObject.ACCOUNT);
-		FormEditAccount form = (FormEditAccount) app.zPageSearchResults.zToolbarPressButton(Button.B_TREE_EDIT);
-
-
-		//Edit the name.
+		//Edit the name
 		String editedName = "editedAccount_" + ConfigProperties.getUniqueString();
 		form.setName(editedName);
 
-		//Submit the form.
-		form.zSubmit();
+		// Save the changes
+		form.zSave();
 
 		// Verify the account exists in the ZCS
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(

@@ -27,7 +27,6 @@ import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.admin.core.AdminCommonTest;
 import com.zimbra.qa.selenium.projects.admin.items.AccountItem;
 import com.zimbra.qa.selenium.projects.admin.ui.FormEditAccount;
-import com.zimbra.qa.selenium.projects.admin.ui.PageMain;
 
 
 public class AddAlias extends AdminCommonTest {
@@ -67,7 +66,7 @@ public class AddAlias extends AdminCommonTest {
 		String aliasEmail = aliasLocalName + "@" + aliasDomainName;
 
 		// Refresh the account list
-		app.zPageManageAccounts.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
+		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
 
 		// Click on account to be Edited.
 		app.zPageManageAccounts.zListItem(Action.A_LEFTCLICK, account.getEmailAddress());
@@ -85,8 +84,8 @@ public class AddAlias extends AdminCommonTest {
 		// Add alias
 		form.zAddAccountAliases(aliasLocalName, aliasDomainName);
 
-		// Submit form
-		form.zSubmit();
+		// Save the changes
+		form.zSave();
 
 		// Verify the alias exists in the ZCS
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
