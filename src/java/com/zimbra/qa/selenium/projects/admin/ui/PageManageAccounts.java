@@ -139,11 +139,9 @@ public class PageManageAccounts extends AbsTab {
 	}
 
 	@Override
-	public AbsPage zListItem(Action action, String item)
+	public AbsPage zListItem(Action action, String account)
 			throws HarnessException {
-		logger.info(myPageName() + " zListItem("+ action +", "+ item +")");
-
-		tracer.trace(action +" on subject = "+ item);
+		logger.info(myPageName() + " zListItem("+ action +", "+ account +")");
 
 		AbsPage page = null;
 		SleepUtil.sleepSmall();
@@ -151,49 +149,30 @@ public class PageManageAccounts extends AbsTab {
 		// How many items are in the table?
 		String rowsLocator = "css=div#zl__ACCT_MANAGE div[id$='__rows'] div[id^='zli__']";
 		int count = this.sGetCssCount(rowsLocator);
-		logger.debug(myPageName() + " zListGetAccounts: number of accounts: "+ count);
+		logger.debug(myPageName() + " zListItem: number of accounts: "+ count);
+		logger.info(myPageName() + " zListItem: Load all accounts in the list");
 
-		int m= 50;
+		int m = 50;
 		if (count >= 50) {
 			for (int a1 = 1; a1 <= 10; a1++) { 
 				String p0  = rowsLocator + ":nth-child("+m+")";				
 				if (this.sIsElementPresent(p0)) {					
 					sClickAt(p0,"");
 					this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_DOWN);
-					m=m+20;
-				}
-				else
+					m = m + 20;
+				} else {
 					break;
-
-
+				}
 			}
 
 		}
+		// xpath to the account
+		String accountLocator = "//div[@id='zl__ACCT_MANAGE']//div[starts-with(@id,'zli__DWT')]//td[starts-with(@id,'account_data_emailaddress_')]/nobr[.='" + account + "']";
 
-		count = this.sGetCssCount(rowsLocator);
-		// Get each conversation's data from the table list
-		for (int i = 1; i <= count; i++) {
-			final String accountLocator = rowsLocator + ":nth-child("+i+")";
-			String locator;
-
-			// Email Address
-			locator = accountLocator + " td[id^='account_data_emailaddress']";
-
-
-			if (this.sIsElementPresent(locator))
-			{
-				if (this.sGetText(locator).trim().equalsIgnoreCase(item))
-				{
-					if (action == Action.A_LEFTCLICK) {
-						sClick(locator);
-						break;
-					} else if(action == Action.A_RIGHTCLICK) {
-						zRightClick(locator);
-						break;
-					}
-
-				}
-			}
+		if (action == Action.A_LEFTCLICK) {
+			sClick(accountLocator);
+		} else if(action == Action.A_RIGHTCLICK) {
+			zRightClick(accountLocator);
 		}
 		return page;
 	}
