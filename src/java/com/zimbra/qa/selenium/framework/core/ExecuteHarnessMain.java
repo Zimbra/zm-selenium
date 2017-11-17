@@ -280,6 +280,10 @@ public class ExecuteHarnessMain {
 			excludeGroups.add("network");
 		}
 
+		if (OperatingSystem.isWindows() == false || ConfigProperties.getStringProperty("browser").contains("edge")) {
+			excludeGroups.add("upload");
+		}
+
 		PerfMetrics.getInstance().Enabled = groups.contains("performance");
 
 		// Only one suite per run in the zimbra process (subject to change)

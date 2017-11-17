@@ -46,74 +46,68 @@ public class ReplyMailWithInlineImageBodyHtmlToText extends PrefGroupMailByMessa
 
 	@Bugs (ids = "104342,106133")
 	@Test (description = "Verify that in reply compose screen, inline attachment shows as an attachment when changing format to from HTML to Plain Text",
-			groups = { "functional-skip", "application-bug" })
+			groups = { "functional-skip", "application-bug", "upload" })
 
 	public void ReplyMailWithInlineImageBodyHtmlToText_01() throws HarnessException {
 
-		if (OperatingSystem.isWindows() == true && !ConfigProperties.getStringProperty("browser").contains("edge")) {
+		String subject = "subject" + ConfigProperties.getUniqueString();
 
-			String subject = "subject" + ConfigProperties.getUniqueString();
+		try {
 
-			try {
+			// Send a message to the account
+			ZimbraAccount.AccountA().soapSend(
+						"<SendMsgRequest xmlns='urn:zimbraMail'>" +
+							"<m>" +
+								"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
+								"<su>"+ subject +"</su>" +
+								"<mp ct='text/html'>" +
+									"<content> Body content"+ ConfigProperties.getUniqueString() +"</content>" +
+								"</mp>" +
+							"</m>" +
+						"</SendMsgRequest>");
 
-				// Send a message to the account
-				ZimbraAccount.AccountA().soapSend(
-							"<SendMsgRequest xmlns='urn:zimbraMail'>" +
-								"<m>" +
-									"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
-									"<su>"+ subject +"</su>" +
-									"<mp ct='text/html'>" +
-										"<content> Body content"+ ConfigProperties.getUniqueString() +"</content>" +
-									"</mp>" +
-								"</m>" +
-							"</SendMsgRequest>");
+			// Get the mail item for the new message
+			MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
+			ZAssert.assertNotNull(mail, "Verify the message is received correctly");
 
-				// Get the mail item for the new message
-				MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
-				ZAssert.assertNotNull(mail, "Verify the message is received correctly");
+			// Refresh current view
+			ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 
-				// Refresh current view
-				ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
+			// Select the item
+			app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 
-				// Select the item
-				app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
+			// Reply to the item
+			FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_REPLY);
+			SleepUtil.sleepLong();
 
-				// Reply to the item
-				FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_REPLY);
-				SleepUtil.sleepLong();
+			final String fileName = "inlineImage.jpg";
+			final String filePath = ConfigProperties.getBaseDirectory() + "\\data\\public\\other\\" + fileName;
 
-				final String fileName = "inlineImage.jpg";
-				final String filePath = ConfigProperties.getBaseDirectory() + "\\data\\public\\other\\" + fileName;
+			app.zPageMail.zPressButton(Button.O_ATTACH_DROPDOWN);
+			app.zPageMail.zPressButton(Button.B_ATTACH_INLINE);
+			zUploadInlineImageAttachment(filePath);
 
-				app.zPageMail.zPressButton(Button.O_ATTACH_DROPDOWN);
-				app.zPageMail.zPressButton(Button.B_ATTACH_INLINE);
-				zUploadInlineImageAttachment(filePath);
+			app.zPageMail.zVerifyInlineImageAttachmentExistsInComposeWindow();
 
-				app.zPageMail.zVerifyInlineImageAttachmentExistsInComposeWindow();
+			DialogWarning dialog = (DialogWarning) mailform.zToolbarPressPulldown(Button.B_OPTIONS, Button.O_FORMAT_AS_PLAIN_TEXT);
+			dialog.zPressButton(Button.B_OK);
+			SleepUtil.sleepMedium();
 
-				DialogWarning dialog = (DialogWarning) mailform.zToolbarPressPulldown(Button.B_OPTIONS, Button.O_FORMAT_AS_PLAIN_TEXT);
-				dialog.zPressButton(Button.B_OK);
-				SleepUtil.sleepMedium();
+			mailform.sClickAt(Locators.zAddAttachmentFromOriginalMsgLink, "0,0");
 
-				mailform.sClickAt(Locators.zAddAttachmentFromOriginalMsgLink, "0,0");
+			ZAssert.assertTrue(mailform.zHasAttachment(fileName),"Attachment is not present");
 
-				ZAssert.assertTrue(mailform.zHasAttachment(fileName),"Attachment is not present");
+			// Send the mail
+			mailform.zSubmit();
 
-				// Send the mail
-				mailform.zSubmit();
+			// Click on sent folder to verify the presence of attachment
+			app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Sent));
 
-				// Click on sent folder to verify the presence of attachment
-				app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Sent));
+			app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
+			ZAssert.assertTrue(app.zPageMail.zVerifyAttachmentExistsInMail(fileName), "Attachment is not present in the sent mail.");
 
-				app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
-				ZAssert.assertTrue(app.zPageMail.zVerifyAttachmentExistsInMail(fileName), "Attachment is not present in the sent mail.");
-
-			} finally {
-				app.zPageMain.zKeyboardKeyEvent(KeyEvent.VK_ESCAPE);
-			}
-
-		} else {
-			throw new SkipException("File upload operation is allowed only for Windows OS (Skipping upload tests on MS Edge for now due to intermittancy and major control issue), skipping this test...");
+		} finally {
+			app.zPageMain.zKeyboardKeyEvent(KeyEvent.VK_ESCAPE);
 		}
 	}
 }

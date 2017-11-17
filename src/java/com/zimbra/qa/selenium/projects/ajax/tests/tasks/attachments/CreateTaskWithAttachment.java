@@ -45,50 +45,44 @@ public class CreateTaskWithAttachment extends PrefGroupMailByMessageTest {
 
 	@Bugs (ids = "104231")
 	@Test (description = "Create task with attachment",
-			groups = { "sanity", "L0" })
+			groups = { "sanity", "L0", "upload" })
 
 	public void CreateTaskWithAttachment_01() throws HarnessException {
 
-		if (OperatingSystem.isWindows() == true && !ConfigProperties.getStringProperty("browser").contains("edge")) {
+		try {
 
-			try {
+			String subject = "task" + ConfigProperties.getUniqueString();
+			String body = "taskbody"+ ConfigProperties.getUniqueString();
 
-				String subject = "task" + ConfigProperties.getUniqueString();
-				String body = "taskbody"+ ConfigProperties.getUniqueString();
+			// Create file item
+			final String fileName = "testtextfile.txt";
+			final String filePath = ConfigProperties.getBaseDirectory() + "\\data\\public\\other\\" + fileName;
 
-				// Create file item
-				final String fileName = "testtextfile.txt";
-				final String filePath = ConfigProperties.getBaseDirectory() + "\\data\\public\\other\\" + fileName;
+			// Click NEW button
+			FormTaskNew taskNew = (FormTaskNew) app.zPageTasks.zToolbarPressButton(Button.B_NEW);
 
-				// Click NEW button
-				FormTaskNew taskNew = (FormTaskNew) app.zPageTasks.zToolbarPressButton(Button.B_NEW);
+			// Fill out the resulting form
+			taskNew.zFillField(Field.Subject, subject);
+			taskNew.zFillField(Field.Body, body);
 
-				// Fill out the resulting form
-				taskNew.zFillField(Field.Subject, subject);
-				taskNew.zFillField(Field.Body, body);
+			// Upload the file
+			app.zPageTasks.zToolbarPressButton(Button.B_Attachment);
+			app.zPageTasks.zToolbarPressButton(Button.B_ATTACH);
+			zUpload(filePath);
 
-				// Upload the file
-				app.zPageTasks.zToolbarPressButton(Button.B_Attachment);
-				app.zPageTasks.zToolbarPressButton(Button.B_ATTACH);
-				zUpload(filePath);
+			// Submit task
+			taskNew.zSubmit();
 
-				// Submit task
-				taskNew.zSubmit();
+			TaskItem task = TaskItem.importFromSOAP(app.zGetActiveAccount(), subject);
+			ZAssert.assertEquals(task.getName(), subject, "Verify task subject");
+			ZAssert.assertEquals(task.gettaskBody().trim(), body.trim(), "Verify task body");
+			ZAssert.assertEquals(app.zGetActiveAccount().soapSelectValue("//mail:GetMsgResponse//mail:mp[@cd='attachment']", "filename"), fileName, "Verify task attachment");
 
-				TaskItem task = TaskItem.importFromSOAP(app.zGetActiveAccount(), subject);
-				ZAssert.assertEquals(task.getName(), subject, "Verify task subject");
-				ZAssert.assertEquals(task.gettaskBody().trim(), body.trim(), "Verify task body");
-				ZAssert.assertEquals(app.zGetActiveAccount().soapSelectValue("//mail:GetMsgResponse//mail:mp[@cd='attachment']", "filename"), fileName, "Verify task attachment");
+			// Verify UI for attachment
+			ZAssert.assertTrue(app.zPageMail.zVerifyAttachmentExistsInMail(fileName), "Verify attachment exists in the task");
 
-				// Verify UI for attachment
-				ZAssert.assertTrue(app.zPageMail.zVerifyAttachmentExistsInMail(fileName), "Verify attachment exists in the task");
-
-			} finally {
-				app.zPageMain.zKeyboardKeyEvent(KeyEvent.VK_ESCAPE);
-			}
-
-		} else {
-			throw new SkipException("File upload operation is allowed only for Windows OS (Skipping upload tests on MS Edge for now due to intermittancy and major control issue), skipping this test...");
+		} finally {
+			app.zPageMain.zKeyboardKeyEvent(KeyEvent.VK_ESCAPE);
 		}
 	}
 }

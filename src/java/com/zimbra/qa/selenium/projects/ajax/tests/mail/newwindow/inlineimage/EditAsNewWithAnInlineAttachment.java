@@ -34,104 +34,98 @@ public class EditAsNewWithAnInlineAttachment extends PrefGroupMailByMessageTest 
 
 
 	@Test (description = "Edit as New message >> add inline Attchment from new window ",
-			groups = { "functional", "L2" })
+			groups = { "functional", "L2", "upload" })
 
 	public void EditAsNewWithAnInlineAttachment_01() throws HarnessException {
 
-		if (OperatingSystem.isWindows() == true && !ConfigProperties.getStringProperty("browser").contains("edge")) {
+		String subject = "subject"+ ConfigProperties.getUniqueString();
+		FolderItem sent = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Sent);
 
-			String subject = "subject"+ ConfigProperties.getUniqueString();
-			FolderItem sent = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Sent);
+		// Send a message to the account
+		ZimbraAccount.AccountA().soapSend(
+				"<SendMsgRequest xmlns='urn:zimbraMail'>" +
+						"<m>" +
+						"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
+						"<su>"+ subject +"</su>" +
+						"<mp ct='text/plain'>" +
+						"<content>content"+ ConfigProperties.getUniqueString() +"</content>" +
+						"</mp>" +
+						"</m>" +
+				"</SendMsgRequest>");
 
-			// Send a message to the account
-			ZimbraAccount.AccountA().soapSend(
-					"<SendMsgRequest xmlns='urn:zimbraMail'>" +
-							"<m>" +
-							"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
-							"<su>"+ subject +"</su>" +
-							"<mp ct='text/plain'>" +
-							"<content>content"+ ConfigProperties.getUniqueString() +"</content>" +
-							"</mp>" +
-							"</m>" +
-					"</SendMsgRequest>");
+		// Refresh current view
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 
-			// Refresh current view
-			ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
+		// Select the item
+		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 
-			// Select the item
-			app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
+		// Create file item
+		final String fileName = "samplejpg.jpg";
+		final String filePath = ConfigProperties.getBaseDirectory() + "\\data\\public\\other\\" + fileName;
 
-			// Create file item
-			final String fileName = "samplejpg.jpg";
-			final String filePath = ConfigProperties.getBaseDirectory() + "\\data\\public\\other\\" + fileName;
+		SeparateWindowDisplayMail window = null;
 
-			SeparateWindowDisplayMail window = null;
+		MailItem mail = new MailItem();
+		mail.dBodyHtml = "body"+ ConfigProperties.getUniqueString();
 
-			MailItem mail = new MailItem();
-			mail.dBodyHtml = "body"+ ConfigProperties.getUniqueString();
+		String windowTitle = "Zimbra: " + subject;
 
-			String windowTitle = "Zimbra: " + subject;
+		try {
 
-			try {
+			// Choose Actions -> Launch in Window
+			window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
 
-				// Choose Actions -> Launch in Window
-				window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);
+			window.zSetWindowTitle(windowTitle);
+			ZAssert.assertTrue(window.zIsWindowOpen(windowTitle),"Verify the window is opened and switch to it");
 
-				window.zSetWindowTitle(windowTitle);
-				ZAssert.assertTrue(window.zIsWindowOpen(windowTitle),"Verify the window is opened and switch to it");
+			window.zToolbarPressPulldown(Button.B_ACTIONS, Button.O_EDIT_AS_NEW);
 
-				window.zToolbarPressPulldown(Button.B_ACTIONS, Button.O_EDIT_AS_NEW);
+			// Type in body
+			window.zFillField(Field.Body, mail.dBodyHtml);
 
-				// Type in body
-				window.zFillField(Field.Body, mail.dBodyHtml);
+			SleepUtil.sleepSmall();
 
-				SleepUtil.sleepSmall();
+			// Click Attach>>inline image
+			window.zPressButton(Button.O_ATTACH_DROPDOWN);
+			window.zPressButton(Button.B_ATTACH_INLINE);
+			zUploadInlineImageAttachment(filePath);
 
-				// Click Attach>>inline image
-				window.zPressButton(Button.O_ATTACH_DROPDOWN);
-				window.zPressButton(Button.B_ATTACH_INLINE);
-				zUploadInlineImageAttachment(filePath);
+			ZAssert.assertTrue(app.zPageMail.zVerifyInlineImageAttachmentExistsInComposeWindow(windowTitle, 1),"Verify inline image is present in  compose window");
 
-				ZAssert.assertTrue(app.zPageMail.zVerifyInlineImageAttachmentExistsInComposeWindow(windowTitle, 1),"Verify inline image is present in  compose window");
+			window.zToolbarPressButton(Button.B_SEND);
 
-				window.zToolbarPressButton(Button.B_SEND);
+		} finally {
+			app.zPageMain.zCloseWindow(window, windowTitle, app);
+		}
 
-			} finally {
-				app.zPageMain.zCloseWindow(window, windowTitle, app);
-			}
-
-			for (int i = 0; i < 30; i++) {
-				app.zGetActiveAccount().soapSend(
-						"<SearchRequest types='message' xmlns='urn:zimbraMail'>"
-								+ "<query>subject:(" + subject + ")</query>"
-								+ "</SearchRequest>");
-				com.zimbra.common.soap.Element node = ZimbraAccount.AccountA().soapSelectNode("//mail:m", 1);
-				if (node != null) {
-					break;
-				}
-				SleepUtil.sleep(1000);
-			}
-
+		for (int i = 0; i < 30; i++) {
 			app.zGetActiveAccount().soapSend(
 					"<SearchRequest types='message' xmlns='urn:zimbraMail'>"
 							+ "<query>subject:(" + subject + ")</query>"
 							+ "</SearchRequest>");
-			String id = app.zGetActiveAccount().soapSelectValue("//mail:m", "id");
-
-			app.zGetActiveAccount().soapSend(
-					"<GetMsgRequest xmlns='urn:zimbraMail'>" + "<m id='" + id
-					+ "' html='1'/>" + "</GetMsgRequest>");
-
-			String html = app.zGetActiveAccount().soapSelectValue("//mail:mp[@ct='text/html']//mail:content", null);
-			ZAssert.assertStringContains(html, mail.dBodyHtml, "Verify the html content");
-
-			// Verify UI for attachment
-			app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, sent);
-			app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
-			ZAssert.assertTrue(app.zPageMail.zVerifyInlineImageAttachmentExistsInMail(),"Verify inline attachment exists in the email");
-
-		} else {
-			throw new SkipException("File upload operation is allowed only for Windows OS (Skipping upload tests on MS Edge for now due to intermittancy and major control issue), skipping this test...");
+			com.zimbra.common.soap.Element node = ZimbraAccount.AccountA().soapSelectNode("//mail:m", 1);
+			if (node != null) {
+				break;
+			}
+			SleepUtil.sleep(1000);
 		}
+
+		app.zGetActiveAccount().soapSend(
+				"<SearchRequest types='message' xmlns='urn:zimbraMail'>"
+						+ "<query>subject:(" + subject + ")</query>"
+						+ "</SearchRequest>");
+		String id = app.zGetActiveAccount().soapSelectValue("//mail:m", "id");
+
+		app.zGetActiveAccount().soapSend(
+				"<GetMsgRequest xmlns='urn:zimbraMail'>" + "<m id='" + id
+				+ "' html='1'/>" + "</GetMsgRequest>");
+
+		String html = app.zGetActiveAccount().soapSelectValue("//mail:mp[@ct='text/html']//mail:content", null);
+		ZAssert.assertStringContains(html, mail.dBodyHtml, "Verify the html content");
+
+		// Verify UI for attachment
+		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, sent);
+		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
+		ZAssert.assertTrue(app.zPageMail.zVerifyInlineImageAttachmentExistsInMail(),"Verify inline attachment exists in the email");
 	}
 }

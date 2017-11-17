@@ -37,43 +37,37 @@ public class OpenComposedMsgWithAnAttachmentInNewWindow extends PrefGroupMailByM
 
 
 	@Test (description = "Verify attachment in Normal Compose window as well as in New compose window",
-			groups = { "functional", "L2" })
+			groups = { "functional", "L2", "upload" })
 
 	public void OpenComposedMsgWithAnAttachmentInNewWindow_01() throws HarnessException {
 
-		if (OperatingSystem.isWindows() == true && !ConfigProperties.getStringProperty("browser").contains("edge")) {
+		// Create file item
+		final String fileName = "testtextfile.txt";
+		final String filePath = ConfigProperties.getBaseDirectory()+ "\\data\\public\\other\\" + fileName;
 
-			// Create file item
-			final String fileName = "testtextfile.txt";
-			final String filePath = ConfigProperties.getBaseDirectory()+ "\\data\\public\\other\\" + fileName;
+		// Open the new mail form
+		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
+		ZAssert.assertNotNull(mailform, "Verify the new form opened");
 
-			// Open the new mail form
-			FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
-			ZAssert.assertNotNull(mailform, "Verify the new form opened");
+		// Upload the file
+		app.zPageMail.zPressButton(Button.B_ATTACH);
+		zUpload(filePath);
 
-			// Upload the file
-			app.zPageMail.zPressButton(Button.B_ATTACH);
-			zUpload(filePath);
+		SeparateWindowFormMailNew window = null;
+		String windowTitle = "Zimbra: Compose";
 
-			SeparateWindowFormMailNew window = null;
-			String windowTitle = "Zimbra: Compose";
+		try {
 
-			try {
+			window = (SeparateWindowFormMailNew) app.zPageMail.zToolbarPressButton(Button.B_DETACH_COMPOSE);
 
-				window = (SeparateWindowFormMailNew) app.zPageMail.zToolbarPressButton(Button.B_DETACH_COMPOSE);
+			window.zSetWindowTitle(windowTitle);
+			ZAssert.assertTrue(window.zIsWindowOpen(windowTitle),"Verify the window is opened and switch to it");
 
-				window.zSetWindowTitle(windowTitle);
-				ZAssert.assertTrue(window.zIsWindowOpen(windowTitle),"Verify the window is opened and switch to it");
+			// Verify Attachment should not disappeared  New compose window
+			Assert.assertTrue(window.zIsVisiblePerPosition("css=a[id^='COMPOSE']:contains(" + fileName + ")", 0, 0),"vcf attachment link present");
 
-				// Verify Attachment should not disappeared  New compose window
-				Assert.assertTrue(window.zIsVisiblePerPosition("css=a[id^='COMPOSE']:contains(" + fileName + ")", 0, 0),"vcf attachment link present");
-
-			} finally {
-				app.zPageMain.zCloseWindow(window, windowTitle, app);
-			}
-
-		} else {
-			throw new SkipException("File upload operation is allowed only for Windows OS (Skipping upload tests on MS Edge for now due to intermittancy and major control issue), skipping this test...");
+		} finally {
+			app.zPageMain.zCloseWindow(window, windowTitle, app);
 		}
 	}
 }

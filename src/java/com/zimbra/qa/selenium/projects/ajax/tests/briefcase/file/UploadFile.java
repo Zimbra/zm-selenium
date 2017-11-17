@@ -78,48 +78,42 @@ public class UploadFile extends FeatureBriefcaseTest {
 
 
 	@Test (description = "Upload file through GUI - verify through GUI",
-			groups = { "sanity", "L0" })
+			groups = { "sanity", "L0", "upload" })
 
 	public void UploadFile_02() throws HarnessException {
 
-		if (OperatingSystem.isWindows() == true && !ConfigProperties.getStringProperty("browser").contains("edge")) {
+		try {
 
-			try {
+			ZimbraAccount account = app.zGetActiveAccount();
 
-				ZimbraAccount account = app.zGetActiveAccount();
+			FolderItem briefcaseFolder = FolderItem.importFromSOAP(account, SystemFolder.Briefcase);
 
-				FolderItem briefcaseFolder = FolderItem.importFromSOAP(account, SystemFolder.Briefcase);
+			// Create file item
+			final String fileName = "testtextfile.txt";
+			final String filePath = ConfigProperties.getBaseDirectory() + "\\data\\public\\other\\" + fileName;
+			FileItem fileItem = new FileItem(filePath);
 
-				// Create file item
-				final String fileName = "testtextfile.txt";
-				final String filePath = ConfigProperties.getBaseDirectory() + "\\data\\public\\other\\" + fileName;
-				FileItem fileItem = new FileItem(filePath);
+			// Select briefcase folder
+			app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseFolder, false);
 
-				// Select briefcase folder
-				app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseFolder, false);
+			// Click on Upload File button in the Toolbar
+			DialogUploadFile dlg = (DialogUploadFile) app.zPageBriefcase.zToolbarPressButton(Button.B_UPLOAD_FILE, fileItem);
 
-				// Click on Upload File button in the Toolbar
-				DialogUploadFile dlg = (DialogUploadFile) app.zPageBriefcase.zToolbarPressButton(Button.B_UPLOAD_FILE, fileItem);
+			app.zPageBriefcase.sClickAt("css=div[class='ZmUploadDialog'] input[name='uploadFile']", "10,10");
 
-				app.zPageBriefcase.sClickAt("css=div[class='ZmUploadDialog'] input[name='uploadFile']", "10,10");
+			zUpload(filePath);
 
-				zUpload(filePath);
+			dlg.zPressButton(Button.B_OK);
 
-				dlg.zPressButton(Button.B_OK);
+			// Click on created File
+			app.zPageBriefcase.zListItem(Action.A_BRIEFCASE_CHECKBOX, fileItem);
 
-				// Click on created File
-				app.zPageBriefcase.zListItem(Action.A_BRIEFCASE_CHECKBOX, fileItem);
+			// Verify file is uploaded
+			String name = app.zPageBriefcase.getItemNameFromListView(fileName);
+			ZAssert.assertStringContains(name, fileName, "Verify file name through GUI");
 
-				// Verify file is uploaded
-				String name = app.zPageBriefcase.getItemNameFromListView(fileName);
-				ZAssert.assertStringContains(name, fileName, "Verify file name through GUI");
-
-			} finally {
-				app.zPageMain.zKeyboardKeyEvent(KeyEvent.VK_ESCAPE);
-			}
-
-		} else {
-			throw new SkipException("File upload operation is allowed only for Windows OS (Skipping upload tests on MS Edge for now due to intermittancy and major control issue), skipping this test...");
+		} finally {
+			app.zPageMain.zKeyboardKeyEvent(KeyEvent.VK_ESCAPE);
 		}
 	}
 

@@ -40,90 +40,84 @@ public class CreateMeetingWithAttachment extends AjaxCommonTest {
 
 	@Bugs (ids = "104231")
 	@Test (description = "Create invite by attaching file",
-		groups = { "sanity", "L0" })
+		groups = { "sanity", "L0", "upload" })
 
 	public void CreateMeetingWithAttachment_01() throws HarnessException {
 
-		if (OperatingSystem.isWindows() == true && !ConfigProperties.getStringProperty("browser").contains("edge")) {
+		try {
 
-			try {
+			// Create appointment data
+			AppointmentItem appt = new AppointmentItem();
 
-				// Create appointment data
-				AppointmentItem appt = new AppointmentItem();
+			// Create file item
+			final String fileName = "testtextfile.txt";
+			final String filePath = ConfigProperties.getBaseDirectory() + "\\data\\public\\other\\" + fileName;
 
-				// Create file item
-				final String fileName = "testtextfile.txt";
-				final String filePath = ConfigProperties.getBaseDirectory() + "\\data\\public\\other\\" + fileName;
+			String apptSubject, apptAttendee1, apptContent;
+			Calendar now = Calendar.getInstance();
+			apptSubject = ConfigProperties.getUniqueString();
+			apptAttendee1 = ZimbraAccount.Account2().EmailAddress;
+			apptContent = ConfigProperties.getUniqueString();
 
-				String apptSubject, apptAttendee1, apptContent;
-				Calendar now = Calendar.getInstance();
-				apptSubject = ConfigProperties.getUniqueString();
-				apptAttendee1 = ZimbraAccount.Account2().EmailAddress;
-				apptContent = ConfigProperties.getUniqueString();
+			appt.setSubject(apptSubject);
+			appt.setAttendees(apptAttendee1);
+			appt.setStartTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 10, 0, 0));
+			appt.setEndTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 11, 0, 0));
+			appt.setContent(apptContent);
 
-				appt.setSubject(apptSubject);
-				appt.setAttendees(apptAttendee1);
-				appt.setStartTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 10, 0, 0));
-				appt.setEndTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 11, 0, 0));
-				appt.setContent(apptContent);
+			// Compose appointment and send it to invitee
+			FormApptNew apptForm = (FormApptNew) app.zPageCalendar.zToolbarPressButton(Button.B_NEW);
+			apptForm.zFill(appt);
+			apptForm.zToolbarPressButton(Button.B_ATTACH);
+			apptForm.zToolbarPressButton(Button.B_BROWSE);
+			zUpload(filePath);
+			apptForm.zSubmit();
 
-				// Compose appointment and send it to invitee
-				FormApptNew apptForm = (FormApptNew) app.zPageCalendar.zToolbarPressButton(Button.B_NEW);
-				apptForm.zFill(appt);
-				apptForm.zToolbarPressButton(Button.B_ATTACH);
-				apptForm.zToolbarPressButton(Button.B_BROWSE);
-				zUpload(filePath);
-				apptForm.zSubmit();
+			// Verify appointment exists in current view
+			ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
 
-				// Verify appointment exists in current view
-				ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
+			// Verify appointment exists on the server
+			AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ appt.getSubject() +")", appt.getStartTime().addDays(-7), appt.getEndTime().addDays(7));
+			ZAssert.assertNotNull(actual, "Verify the new appointment is created");
+			ZAssert.assertEquals(actual.getSubject(), appt.getSubject(), "Subject: Verify the appointment data");
+			ZAssert.assertEquals(actual.getAttendees(), apptAttendee1, "Attendees: Verify the appointment data");
+			ZAssert.assertEquals(actual.getContent(), appt.getContent(), "Content: Verify the appointment data");
+			Element[] nodes = app.zGetActiveAccount().soapSelectNodes("//mail:mp[@filename='" + fileName + "']");
+			ZAssert.assertEquals(nodes.length, 1, "Verify attachment exist in the sent meeting");
 
-				// Verify appointment exists on the server
-				AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ appt.getSubject() +")", appt.getStartTime().addDays(-7), appt.getEndTime().addDays(7));
-				ZAssert.assertNotNull(actual, "Verify the new appointment is created");
-				ZAssert.assertEquals(actual.getSubject(), appt.getSubject(), "Subject: Verify the appointment data");
-				ZAssert.assertEquals(actual.getAttendees(), apptAttendee1, "Attendees: Verify the appointment data");
-				ZAssert.assertEquals(actual.getContent(), appt.getContent(), "Content: Verify the appointment data");
-				Element[] nodes = app.zGetActiveAccount().soapSelectNodes("//mail:mp[@filename='" + fileName + "']");
-				ZAssert.assertEquals(nodes.length, 1, "Verify attachment exist in the sent meeting");
+			// Verify the attendee receives the meeting
+			AppointmentItem received = AppointmentItem.importFromSOAP(ZimbraAccount.Account2(), "subject:("+ appt.getSubject() +")", appt.getStartTime().addDays(-7), appt.getEndTime().addDays(7));
+			ZAssert.assertNotNull(received, "Verify the new appointment is created");
+			ZAssert.assertEquals(received.getSubject(), appt.getSubject(), "Subject: Verify the appointment data");
+			ZAssert.assertEquals(received.getAttendees(), apptAttendee1, "Attendees: Verify the appointment data");
+			ZAssert.assertEquals(received.getContent(), appt.getContent(), "Content: Verify the appointment data");
 
-				// Verify the attendee receives the meeting
-				AppointmentItem received = AppointmentItem.importFromSOAP(ZimbraAccount.Account2(), "subject:("+ appt.getSubject() +")", appt.getStartTime().addDays(-7), appt.getEndTime().addDays(7));
-				ZAssert.assertNotNull(received, "Verify the new appointment is created");
-				ZAssert.assertEquals(received.getSubject(), appt.getSubject(), "Subject: Verify the appointment data");
-				ZAssert.assertEquals(received.getAttendees(), apptAttendee1, "Attendees: Verify the appointment data");
-				ZAssert.assertEquals(received.getContent(), appt.getContent(), "Content: Verify the appointment data");
+			 nodes = ZimbraAccount.Account2().soapSelectNodes("//mail:mp[@filename='" + fileName + "']");
+			ZAssert.assertEquals(nodes.length, 1, "Verify attachment exist in the received meeting");
 
-				 nodes = ZimbraAccount.Account2().soapSelectNodes("//mail:mp[@filename='" + fileName + "']");
-				ZAssert.assertEquals(nodes.length, 1, "Verify attachment exist in the received meeting");
+			// Verify the attendee receives the invitation
+			MailItem invite = MailItem.importFromSOAP(ZimbraAccount.Account2(), "subject:("+ appt.getSubject() +")");
+			ZAssert.assertNotNull(invite, "Verify the invite is received");
+			ZAssert.assertEquals(invite.dSubject, appt.getSubject(), "Subject: Verify the appointment data");
 
-				// Verify the attendee receives the invitation
-				MailItem invite = MailItem.importFromSOAP(ZimbraAccount.Account2(), "subject:("+ appt.getSubject() +")");
-				ZAssert.assertNotNull(invite, "Verify the invite is received");
-				ZAssert.assertEquals(invite.dSubject, appt.getSubject(), "Subject: Verify the appointment data");
+			// Login as attendee and accept the invite
+			app.zPageMain.zLogout();
+			app.zPageLogin.zLogin(ZimbraAccount.Account2());
+			app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
+			SleepUtil.sleepSmall();
+			app.zPageCalendar.zNavigateTo();
 
-				// Login as attendee and accept the invite
-				app.zPageMain.zLogout();
-				app.zPageLogin.zLogin(ZimbraAccount.Account2());
-				app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
-				SleepUtil.sleepSmall();
-				app.zPageCalendar.zNavigateTo();
+			// Verify appointment exists in current view
+			ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
 
-				// Verify appointment exists in current view
-				ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
+			// Open the appt
+			app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_OPEN, apptSubject);
 
-				// Open the appt
-				app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_OPEN, apptSubject);
+			// Verify the new appointment has an attachment
+			ZAssert.assertTrue(app.zPageCalendar.zVerifyAttachmentExistsInAppointment(fileName), "Verify attachment exists in the appointment");
 
-				// Verify the new appointment has an attachment
-				ZAssert.assertTrue(app.zPageCalendar.zVerifyAttachmentExistsInAppointment(fileName), "Verify attachment exists in the appointment");
-
-			} finally {
-				app.zPageMain.zKeyboardKeyEvent(KeyEvent.VK_ESCAPE);
-			}
-
-		} else {
-			throw new SkipException("File upload operation is allowed only for Windows OS (Skipping upload tests on MS Edge for now due to intermittancy and major control issue), skipping this test...");
+		} finally {
+			app.zPageMain.zKeyboardKeyEvent(KeyEvent.VK_ESCAPE);
 		}
 	}
 }

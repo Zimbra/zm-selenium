@@ -39,76 +39,70 @@ public class ForwardMailWithInlineImageAttachment extends PrefGroupMailByMessage
 
 
 	@Test (description = "Forward to a mail with attachment - Verify inline image sent",
-			groups = { "smoke", "L1" })
+			groups = { "smoke", "L1", "upload" })
 
 	public void ForwardMailWithInlineImageAttachment_01() throws HarnessException {
 
-		if (OperatingSystem.isWindows() == true && !ConfigProperties.getStringProperty("browser").contains("edge")) {
+		try {
 
-			try {
+			final String mimeSubject = "subjectAttachment";
+			final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email17/mime.txt";
+			FolderItem sent = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Sent);
 
-				final String mimeSubject = "subjectAttachment";
-				final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email17/mime.txt";
-				FolderItem sent = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Sent);
+			LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
 
-				LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
+			MailItem original = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ mimeSubject +")");
+			ZAssert.assertNotNull(original, "Verify the message is received correctly");
 
-				MailItem original = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ mimeSubject +")");
-				ZAssert.assertNotNull(original, "Verify the message is received correctly");
+			// Refresh current view
+			ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(mimeSubject), "Verify message displayed in current view");
 
-				// Refresh current view
-				ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(mimeSubject), "Verify message displayed in current view");
+			// Select the item
+			app.zPageMail.zListItem(Action.A_LEFTCLICK, mimeSubject);
 
-				// Select the item
-				app.zPageMail.zListItem(Action.A_LEFTCLICK, mimeSubject);
+			// Reply to the item
+			FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_FORWARD);
 
-				// Reply to the item
-				FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_FORWARD);
+			mailform.zFillField(Field.To, ZimbraAccount.AccountA().EmailAddress);
 
-				mailform.zFillField(Field.To, ZimbraAccount.AccountA().EmailAddress);
+			final String fileName = "samplejpg.jpg";
+			final String filePath = ConfigProperties.getBaseDirectory() + "\\data\\public\\other\\" + fileName;
 
-				final String fileName = "samplejpg.jpg";
-				final String filePath = ConfigProperties.getBaseDirectory() + "\\data\\public\\other\\" + fileName;
+			app.zPageMail.zPressButton(Button.O_ATTACH_DROPDOWN);
+			app.zPageMail.zPressButton(Button.B_ATTACH_INLINE);
+			zUploadInlineImageAttachment(filePath);
 
-				app.zPageMail.zPressButton(Button.O_ATTACH_DROPDOWN);
-				app.zPageMail.zPressButton(Button.B_ATTACH_INLINE);
-				zUploadInlineImageAttachment(filePath);
+			app.zPageMail.zVerifyInlineImageAttachmentExistsInComposeWindow();
 
-				app.zPageMail.zVerifyInlineImageAttachmentExistsInComposeWindow();
+			// Send the message
+			mailform.zSubmit();
 
-				// Send the message
-				mailform.zSubmit();
+			// From the receiving end, verify the message details
+			MailItem received = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "from:("+ app.zGetActiveAccount().EmailAddress +") subject:("+ mimeSubject +")");
+			ZAssert.assertNotNull(received, "Verify the message is received correctly");
 
-				// From the receiving end, verify the message details
-				MailItem received = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "from:("+ app.zGetActiveAccount().EmailAddress +") subject:("+ mimeSubject +")");
-				ZAssert.assertNotNull(received, "Verify the message is received correctly");
+			ZimbraAccount.AccountA().soapSend(
+					"<GetMsgRequest xmlns='urn:zimbraMail'>"
+					+		"<m id='"+ received.getId() +"'/>"
+					+	"</GetMsgRequest>");
 
-				ZimbraAccount.AccountA().soapSend(
-						"<GetMsgRequest xmlns='urn:zimbraMail'>"
-						+		"<m id='"+ received.getId() +"'/>"
-						+	"</GetMsgRequest>");
+			String getFilename = ZimbraAccount.AccountA().soapSelectValue("//mail:mp[@cd='inline']", "filename");
+			ZAssert.assertEquals(getFilename, fileName, "Verify existing attachment exists in the forwarded mail");
 
-				String getFilename = ZimbraAccount.AccountA().soapSelectValue("//mail:mp[@cd='inline']", "filename");
-				ZAssert.assertEquals(getFilename, fileName, "Verify existing attachment exists in the forwarded mail");
+			getFilename = ZimbraAccount.AccountA().soapSelectValue("//mail:mp[@cd='attachment']", "filename");
+			ZAssert.assertEquals(getFilename, fileName, "Verify attachment exists in the forwarded mail");
 
-				getFilename = ZimbraAccount.AccountA().soapSelectValue("//mail:mp[@cd='attachment']", "filename");
-				ZAssert.assertEquals(getFilename, fileName, "Verify attachment exists in the forwarded mail");
+			Element[] nodes = ZimbraAccount.AccountA().soapSelectNodes("//mail:mp[@filename='" + fileName + "']");
+			ZAssert.assertEquals(nodes.length, 2, "Verify attachment exist in the forwarded mail");
 
-				Element[] nodes = ZimbraAccount.AccountA().soapSelectNodes("//mail:mp[@filename='" + fileName + "']");
-				ZAssert.assertEquals(nodes.length, 2, "Verify attachment exist in the forwarded mail");
+			// Verify UI for attachment
+			app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, sent);
+			app.zPageMail.zListItem(Action.A_LEFTCLICK, mimeSubject);
+			ZAssert.assertTrue(app.zPageMail.zVerifyAttachmentExistsInMail(fileName), "Verify attachment exists in the email");
+			ZAssert.assertTrue(app.zPageMail.zVerifyInlineImageAttachmentExistsInMail(), "Verify inline attachment exists in the email");
 
-				// Verify UI for attachment
-				app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, sent);
-				app.zPageMail.zListItem(Action.A_LEFTCLICK, mimeSubject);
-				ZAssert.assertTrue(app.zPageMail.zVerifyAttachmentExistsInMail(fileName), "Verify attachment exists in the email");
-				ZAssert.assertTrue(app.zPageMail.zVerifyInlineImageAttachmentExistsInMail(), "Verify inline attachment exists in the email");
-
-			} finally {
-				app.zPageMain.zKeyboardKeyEvent(KeyEvent.VK_ESCAPE);
-			}
-
-		} else {
-			throw new SkipException("File upload operation is allowed only for Windows OS (Skipping upload tests on MS Edge for now due to intermittancy and major control issue), skipping this test...");
+		} finally {
+			app.zPageMain.zKeyboardKeyEvent(KeyEvent.VK_ESCAPE);
 		}
 	}
 }

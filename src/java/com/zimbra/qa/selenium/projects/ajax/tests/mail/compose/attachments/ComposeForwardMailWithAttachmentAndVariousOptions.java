@@ -44,241 +44,223 @@ public class ComposeForwardMailWithAttachmentAndVariousOptions extends PrefGroup
 
 	@Bugs (ids = "103903")
 	@Test (description = "Verify the presence of attachment while forwarding a mail and changing option from  'Include Original as an attachment' to 'Include Original message'",
-			groups = { "functional", "L2" })
+			groups = { "functional", "L2", "upload" })
 
 	public void ComposeForwardMailWithAttachmentAndVariousOptions_01() throws HarnessException {
 
-		if (OperatingSystem.isWindows() == true && !ConfigProperties.getStringProperty("browser").contains("edge")) {
+		String subject = "subject" + ConfigProperties.getUniqueString();
 
-			String subject = "subject" + ConfigProperties.getUniqueString();
+		try {
 
-			try {
+			// Send a message to the account
+			ZimbraAccount.AccountA().soapSend(
+						"<SendMsgRequest xmlns='urn:zimbraMail'>" +
+							"<m>" +
+								"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
+								"<su>"+ subject +"</su>" +
+								"<mp ct='text/html'>" +
+									"<content> Body content"+ ConfigProperties.getUniqueString() +"</content>" +
+								"</mp>" +
+							"</m>" +
+						"</SendMsgRequest>");
 
-				// Send a message to the account
-				ZimbraAccount.AccountA().soapSend(
-							"<SendMsgRequest xmlns='urn:zimbraMail'>" +
-								"<m>" +
-									"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
-									"<su>"+ subject +"</su>" +
-									"<mp ct='text/html'>" +
-										"<content> Body content"+ ConfigProperties.getUniqueString() +"</content>" +
-									"</mp>" +
-								"</m>" +
-							"</SendMsgRequest>");
+			// Get the mail item for the new message
+			MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
+			ZAssert.assertNotNull(mail, "Verify the message is received correctly");
 
-				// Get the mail item for the new message
-				MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
-				ZAssert.assertNotNull(mail, "Verify the message is received correctly");
+			// Refresh current view
+			ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 
-				// Refresh current view
-				ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
+			// Select the item
+			app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
+			SleepUtil.sleepSmall();
 
-				// Select the item
-				app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
-				SleepUtil.sleepSmall();
+			//Forward the item
+			FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_FORWARD);
+			SleepUtil.sleepLong();
 
-				//Forward the item
-				FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_FORWARD);
-				SleepUtil.sleepLong();
+			//Include original message as attachment
+			mailform.zToolbarPressPulldown(Button.B_OPTIONS, Button.O_INCLUDE_ORIGINAL_AS_ATTACHMENT);
 
-				//Include original message as attachment
-				mailform.zToolbarPressPulldown(Button.B_OPTIONS, Button.O_INCLUDE_ORIGINAL_AS_ATTACHMENT);
-
-				// Check if a warning dialog is present. If Yes, Press Yes to continue
-				if (mailform.sIsVisible(Locators.zOkCancelContinueComposeWarningDialog) && mailform.sIsElementPresent(Locators.zOkCancelContinueComposeWarningDialog)) {
-					mailform.sClickAt(Locators.zOkBtnOnContinueComposeWarningDialog,"0,0");
-				}
-				SleepUtil.sleepSmall();
-
-				// Verify that the message is included as attachment
-				ZAssert.assertTrue(mailform.zHasAttachment(subject),"Original message is not present as attachment");
-
-				// Attach a new file
-				final String fileName = "inlineImage.jpg";
-				final String filePath = ConfigProperties.getBaseDirectory() + "\\data\\public\\other\\" + fileName;
-
-				app.zPageMail.zPressButton(Button.O_ATTACH_DROPDOWN);
-				app.zPageMail.zPressButton(Button.B_MY_COMPUTER);
-				zUpload(filePath);
-
-				// Include the original message in the body and not as attachment
-				mailform.zToolbarPressPulldown(Button.B_OPTIONS, Button.O_INCLUDE_ORIGINAL_MESSAGE);
-				SleepUtil.sleepSmall();
-
-				// Verify that the new attachment is present and message as attachment is not
-				ZAssert.assertTrue(mailform.zHasAttachment(fileName),"Attachment is not present");
-				ZAssert.assertFalse(mailform.zHasAttachment(subject),"Included original message attachment is still present");
-
-				// Cancel the message
-				AbsDialog warning = (AbsDialog)mailform.zToolbarPressButton(Button.B_CANCEL);
-				ZAssert.assertNotNull(warning, "Verify the dialog is returned");
-
-				// Dismiss the dialog
-				warning.zPressButton(Button.B_NO);
-				warning.zWaitForClose();
-
-			} finally {
-				app.zPageMain.zKeyboardKeyEvent(KeyEvent.VK_ESCAPE);
+			// Check if a warning dialog is present. If Yes, Press Yes to continue
+			if (mailform.sIsVisible(Locators.zOkCancelContinueComposeWarningDialog) && mailform.sIsElementPresent(Locators.zOkCancelContinueComposeWarningDialog)) {
+				mailform.sClickAt(Locators.zOkBtnOnContinueComposeWarningDialog,"0,0");
 			}
+			SleepUtil.sleepSmall();
 
-		} else {
-			throw new SkipException("File upload operation is allowed only for Windows OS (Skipping upload tests on MS Edge for now due to intermittancy and major control issue), skipping this test...");
+			// Verify that the message is included as attachment
+			ZAssert.assertTrue(mailform.zHasAttachment(subject),"Original message is not present as attachment");
+
+			// Attach a new file
+			final String fileName = "inlineImage.jpg";
+			final String filePath = ConfigProperties.getBaseDirectory() + "\\data\\public\\other\\" + fileName;
+
+			app.zPageMail.zPressButton(Button.O_ATTACH_DROPDOWN);
+			app.zPageMail.zPressButton(Button.B_MY_COMPUTER);
+			zUpload(filePath);
+
+			// Include the original message in the body and not as attachment
+			mailform.zToolbarPressPulldown(Button.B_OPTIONS, Button.O_INCLUDE_ORIGINAL_MESSAGE);
+			SleepUtil.sleepSmall();
+
+			// Verify that the new attachment is present and message as attachment is not
+			ZAssert.assertTrue(mailform.zHasAttachment(fileName),"Attachment is not present");
+			ZAssert.assertFalse(mailform.zHasAttachment(subject),"Included original message attachment is still present");
+
+			// Cancel the message
+			AbsDialog warning = (AbsDialog)mailform.zToolbarPressButton(Button.B_CANCEL);
+			ZAssert.assertNotNull(warning, "Verify the dialog is returned");
+
+			// Dismiss the dialog
+			warning.zPressButton(Button.B_NO);
+			warning.zWaitForClose();
+
+		} finally {
+			app.zPageMain.zKeyboardKeyEvent(KeyEvent.VK_ESCAPE);
 		}
 	}
 
 
 	@Bugs (ids = "103903")
 	@Test (description = "Verify the presence of attachment while forwarding a mail and selecting 'Use Prefixes' option from Options'",
-			groups = { "functional", "L3" })
+			groups = { "functional", "L3", "upload" })
 
 	public void ComposeForwardMailWithAttachmentAndVariousOptions_02() throws HarnessException {
 
-		if (OperatingSystem.isWindows() == true && !ConfigProperties.getStringProperty("browser").contains("edge")) {
+		String subject = "subject" + ConfigProperties.getUniqueString();
 
-			String subject = "subject" + ConfigProperties.getUniqueString();
+		try {
 
-			try {
+			// Send a message to the account
+			ZimbraAccount.AccountA().soapSend(
+						"<SendMsgRequest xmlns='urn:zimbraMail'>" +
+							"<m>" +
+								"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
+								"<su>"+ subject +"</su>" +
+								"<mp ct='text/html'>" +
+									"<content> Body content"+ ConfigProperties.getUniqueString() +"</content>" +
+								"</mp>" +
+							"</m>" +
+						"</SendMsgRequest>");
 
-				// Send a message to the account
-				ZimbraAccount.AccountA().soapSend(
-							"<SendMsgRequest xmlns='urn:zimbraMail'>" +
-								"<m>" +
-									"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
-									"<su>"+ subject +"</su>" +
-									"<mp ct='text/html'>" +
-										"<content> Body content"+ ConfigProperties.getUniqueString() +"</content>" +
-									"</mp>" +
-								"</m>" +
-							"</SendMsgRequest>");
+			// Get the mail item for the new message
+			MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
+			ZAssert.assertNotNull(mail, "Verify the message is received correctly");
 
-				// Get the mail item for the new message
-				MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
-				ZAssert.assertNotNull(mail, "Verify the message is received correctly");
+			// Refresh current view
+			ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 
-				// Refresh current view
-				ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
+			// Select the item
+			app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 
-				// Select the item
-				app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
+			// orward the item
+			FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_FORWARD);
+			SleepUtil.sleepLong();
 
-				// orward the item
-				FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_FORWARD);
-				SleepUtil.sleepLong();
+			// Attach a new file
+			final String fileName = "inlineImage.jpg";
+			final String filePath = ConfigProperties.getBaseDirectory() + "\\data\\public\\other\\" + fileName;
 
-				// Attach a new file
-				final String fileName = "inlineImage.jpg";
-				final String filePath = ConfigProperties.getBaseDirectory() + "\\data\\public\\other\\" + fileName;
+			app.zPageMail.zPressButton(Button.O_ATTACH_DROPDOWN);
+			app.zPageMail.zPressButton(Button.B_MY_COMPUTER);
+			zUpload(filePath);
 
-				app.zPageMail.zPressButton(Button.O_ATTACH_DROPDOWN);
-				app.zPageMail.zPressButton(Button.B_MY_COMPUTER);
-				zUpload(filePath);
+			// Select Use Prefix from Options drop down
+			mailform.zToolbarPressPulldown(Button.B_OPTIONS, Button.O_USE_PRIFIX);
 
-				// Select Use Prefix from Options drop down
-				mailform.zToolbarPressPulldown(Button.B_OPTIONS, Button.O_USE_PRIFIX);
-
-				// Check if a warning dialog is present. If Yes, Press Yes to continue
-				if (mailform.sIsVisible(Locators.zOkCancelContinueComposeWarningDialog) && mailform.sIsElementPresent(Locators.zOkCancelContinueComposeWarningDialog)) {
-					mailform.sClickAt(Locators.zOkBtnOnContinueComposeWarningDialog,"0,0");
-				}
-
-				// Verify that the new attachment is present and message as attachment is not
-				ZAssert.assertTrue(mailform.zHasAttachment(fileName),"Attachment is not present after selecting Use Prefix from Options!");
-
-				// Cancel the message
-				AbsDialog warning = (AbsDialog)mailform.zToolbarPressButton(Button.B_CANCEL);
-				ZAssert.assertNotNull(warning, "Verify the dialog is returned");
-
-				// Dismiss the dialog
-				warning.zPressButton(Button.B_NO);
-				warning.zWaitForClose();
-
-			} finally {
-				app.zPageMain.zKeyboardKeyEvent(KeyEvent.VK_ESCAPE);
+			// Check if a warning dialog is present. If Yes, Press Yes to continue
+			if (mailform.sIsVisible(Locators.zOkCancelContinueComposeWarningDialog) && mailform.sIsElementPresent(Locators.zOkCancelContinueComposeWarningDialog)) {
+				mailform.sClickAt(Locators.zOkBtnOnContinueComposeWarningDialog,"0,0");
 			}
 
-		} else {
-			throw new SkipException("File upload operation is allowed only for Windows OS (Skipping upload tests on MS Edge for now due to intermittancy and major control issue), skipping this test...");
+			// Verify that the new attachment is present and message as attachment is not
+			ZAssert.assertTrue(mailform.zHasAttachment(fileName),"Attachment is not present after selecting Use Prefix from Options!");
+
+			// Cancel the message
+			AbsDialog warning = (AbsDialog)mailform.zToolbarPressButton(Button.B_CANCEL);
+			ZAssert.assertNotNull(warning, "Verify the dialog is returned");
+
+			// Dismiss the dialog
+			warning.zPressButton(Button.B_NO);
+			warning.zWaitForClose();
+
+		} finally {
+			app.zPageMain.zKeyboardKeyEvent(KeyEvent.VK_ESCAPE);
 		}
 	}
 
 
 	@Bugs (ids = "103903")
 	@Test (description = "Verify the presence of attachment while forwarding a mail and selecting 'Include Headers' option from Options'",
-			groups = { "functional", "L3" })
+			groups = { "functional", "L3", "upload" })
 
 	public void ComposeForwardMailWithAttachmentAndVariousOptions_03() throws HarnessException {
 
-		if (OperatingSystem.isWindows() == true && !ConfigProperties.getStringProperty("browser").contains("edge")) {
+		String subject = "subject" + ConfigProperties.getUniqueString();
 
-			String subject = "subject" + ConfigProperties.getUniqueString();
+		try {
 
-			try {
+			// Send a message to the account
+			ZimbraAccount.AccountA().soapSend(
+						"<SendMsgRequest xmlns='urn:zimbraMail'>" +
+							"<m>" +
+								"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
+								"<su>"+ subject +"</su>" +
+								"<mp ct='text/html'>" +
+									"<content> Body content"+ ConfigProperties.getUniqueString() +"</content>" +
+								"</mp>" +
+							"</m>" +
+						"</SendMsgRequest>");
 
-				// Send a message to the account
-				ZimbraAccount.AccountA().soapSend(
-							"<SendMsgRequest xmlns='urn:zimbraMail'>" +
-								"<m>" +
-									"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
-									"<su>"+ subject +"</su>" +
-									"<mp ct='text/html'>" +
-										"<content> Body content"+ ConfigProperties.getUniqueString() +"</content>" +
-									"</mp>" +
-								"</m>" +
-							"</SendMsgRequest>");
+			// Get the mail item for the new message
+			MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
+			ZAssert.assertNotNull(mail, "Verify the message is received correctly");
 
-				// Get the mail item for the new message
-				MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
-				ZAssert.assertNotNull(mail, "Verify the message is received correctly");
+			// Refresh current view
+			ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 
-				// Refresh current view
-				ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
+			// Select the item
+			app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 
-				// Select the item
-				app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
+			// Forward the item
+			FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_FORWARD);
+			SleepUtil.sleepLong();
 
-				// Forward the item
-				FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_FORWARD);
-				SleepUtil.sleepLong();
+			// Attach a new file
+			final String fileName = "inlineImage.jpg";
+			final String filePath = ConfigProperties.getBaseDirectory() + "\\data\\public\\other\\" + fileName;
 
-				// Attach a new file
-				final String fileName = "inlineImage.jpg";
-				final String filePath = ConfigProperties.getBaseDirectory() + "\\data\\public\\other\\" + fileName;
+			app.zPageMail.zPressButton(Button.O_ATTACH_DROPDOWN);
+			app.zPageMail.zPressButton(Button.B_MY_COMPUTER);
+			zUpload(filePath);
 
-				app.zPageMail.zPressButton(Button.O_ATTACH_DROPDOWN);
-				app.zPageMail.zPressButton(Button.B_MY_COMPUTER);
-				zUpload(filePath);
+			// Select Include Headers from Options drop down
+			mailform.zToolbarPressPulldown(Button.B_OPTIONS, Button.O_INCLUDE_HEADERS);
 
-				// Select Include Headers from Options drop down
-				mailform.zToolbarPressPulldown(Button.B_OPTIONS, Button.O_INCLUDE_HEADERS);
-
-				// Check if a warning dialog is present. If Yes, Press Yes to continue
-				if (mailform.sIsVisible(Locators.zOkCancelContinueComposeWarningDialog) && mailform.sIsElementPresent(Locators.zOkCancelContinueComposeWarningDialog)) {
-					mailform.sClickAt(Locators.zOkBtnOnContinueComposeWarningDialog,"0,0");
-				}
-
-				// Verify that the new attachment is present and message as attachment is not
-				ZAssert.assertTrue(mailform.zHasAttachment(fileName),"Attachment is not present after selecting Include Headers from Options!");
-
-				// Select Include Headers from Options drop down again to include headers
-				mailform.zToolbarPressPulldown(Button.B_OPTIONS, Button.O_INCLUDE_HEADERS);
-
-				// Verify that the new attachment is present and message as attachment is not
-				ZAssert.assertTrue(mailform.zHasAttachment(fileName),"Attachment is not present after selecting Include Headers from Options!");
-
-				// Cancel the message
-				AbsDialog warning = (AbsDialog)mailform.zToolbarPressButton(Button.B_CANCEL);
-				ZAssert.assertNotNull(warning, "Verify the dialog is returned");
-
-				// Dismiss the dialog
-				warning.zPressButton(Button.B_NO);
-				warning.zWaitForClose();
-
-			} finally {
-				app.zPageMain.zKeyboardKeyEvent(KeyEvent.VK_ESCAPE);
+			// Check if a warning dialog is present. If Yes, Press Yes to continue
+			if (mailform.sIsVisible(Locators.zOkCancelContinueComposeWarningDialog) && mailform.sIsElementPresent(Locators.zOkCancelContinueComposeWarningDialog)) {
+				mailform.sClickAt(Locators.zOkBtnOnContinueComposeWarningDialog,"0,0");
 			}
 
-		} else {
-			throw new SkipException("File upload operation is allowed only for Windows OS (Skipping upload tests on MS Edge for now due to intermittancy and major control issue), skipping this test...");
+			// Verify that the new attachment is present and message as attachment is not
+			ZAssert.assertTrue(mailform.zHasAttachment(fileName),"Attachment is not present after selecting Include Headers from Options!");
+
+			// Select Include Headers from Options drop down again to include headers
+			mailform.zToolbarPressPulldown(Button.B_OPTIONS, Button.O_INCLUDE_HEADERS);
+
+			// Verify that the new attachment is present and message as attachment is not
+			ZAssert.assertTrue(mailform.zHasAttachment(fileName),"Attachment is not present after selecting Include Headers from Options!");
+
+			// Cancel the message
+			AbsDialog warning = (AbsDialog)mailform.zToolbarPressButton(Button.B_CANCEL);
+			ZAssert.assertNotNull(warning, "Verify the dialog is returned");
+
+			// Dismiss the dialog
+			warning.zPressButton(Button.B_NO);
+			warning.zWaitForClose();
+
+		} finally {
+			app.zPageMain.zKeyboardKeyEvent(KeyEvent.VK_ESCAPE);
 		}
 	}
 }
