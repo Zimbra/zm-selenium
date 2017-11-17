@@ -218,7 +218,7 @@ public class PageManageAccounts extends AbsTab {
 					break;
 				}
 			}
-			ZAssert.assertNotNull(accountFound, "Verify account is found in search results");
+			ZAssert.assertTrue(accountFound, "Verify account is found in search results");
 			
 			accountLocator = "css=td[id^='SEARCH_MANAGE_data_emailaddress']:contains('" + accountEmailAddress + "')";
 			zRightClickAt(accountLocator, "");
