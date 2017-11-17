@@ -177,7 +177,7 @@ public class PageManageAccounts extends AbsTab {
 				accountFound = true;
 			}
 			
-			if (accountFound.equals(true)) {
+			if (accountFound) {
 				if (action == Action.A_LEFTCLICK) {
 					sClickAt(accountLocator, "");
 				} else if (action == Action.A_RIGHTCLICK) {
@@ -289,7 +289,7 @@ public class PageManageAccounts extends AbsTab {
 					accountFound = true;
 				}
 				
-				if (accountFound.equals(true)) {
+				if (accountFound) {
 					if (action == Action.A_LEFTCLICK) {
 						sClickAt(accountLocator, "");
 					}
