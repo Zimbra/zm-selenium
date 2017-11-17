@@ -47,9 +47,6 @@ public class CheckMTASettings extends AdminCommonTest {
 
 	public CheckMTASettings() {
 		logger.info("New "+ CheckMTASettings.class.getCanonicalName());
-
-		//All the test tests start from Global settings page
-		super.startingPage = app.zPageManageGlobalSettings;
 	}
 
 	/**
@@ -97,7 +94,8 @@ public class CheckMTASettings extends AdminCommonTest {
 			}
 			ZAssert.assertTrue(present, "MTA restriction changes are not reflected in SOAP response");
 
-			// Navigating to MTA configuration page to make MTA configuration changes through Admin UI 
+			// Navigating to MTA configuration page to make MTA configuration changes through Admin UI
+			app.zPageManageGlobalSettings.zNavigateTo();
 			app.zPageManageMTA.zNavigateTo();
 			SleepUtil.sleepMedium();
 
