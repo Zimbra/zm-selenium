@@ -444,7 +444,11 @@ public class AdminCommonTest {
 							StandardOpenOption.APPEND);
 				}
 			}
+		}
 
+		// Get test PASSED/FAILED status
+		if (testResult.getStatus() == ITestResult.FAILURE){
+			app.zPageMain.zRefreshMainUI();
 		}
 
 		logger.info("AfterMethod: finish");

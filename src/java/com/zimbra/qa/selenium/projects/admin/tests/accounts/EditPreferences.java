@@ -21,14 +21,12 @@ import com.zimbra.common.soap.Element;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
-import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.admin.core.AdminCommonTest;
 import com.zimbra.qa.selenium.projects.admin.items.AccountItem;
 import com.zimbra.qa.selenium.projects.admin.ui.FormEditAccount;
-import com.zimbra.qa.selenium.projects.admin.ui.PageMain;
 
 public class EditPreferences extends AdminCommonTest {
 
@@ -57,17 +55,16 @@ public class EditPreferences extends AdminCommonTest {
 		AccountItem.createUsingSOAP(account);
 
 		// Refresh the account list
-		app.zPageManageAccounts.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
+		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
 
 		// Click on account to be Edited.
 		app.zPageManageAccounts.zListItem(Action.A_LEFTCLICK, account.getEmailAddress());
 
 		// Click on Edit button
-		FormEditAccount form = (FormEditAccount) app.zPageManageAccounts.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_EDIT);
+		FormEditAccount form = (FormEditAccount) app.zPageManageAccounts.zListItem(Action.A_RIGHTCLICK, Button.O_EDIT, account.getEmailAddress());
 
 		// CLick on preferences
 		app.zPageEditAccount.zToolbarPressButton(Button.B_PREFERENCES);
-		SleepUtil.sleepMedium();
 
 		// Check show seach strings preference
 		form.zPreferencesCheckboxSet(Button.B_SHOW_SEARCH_STRINGS,true);
@@ -75,8 +72,8 @@ public class EditPreferences extends AdminCommonTest {
 		// Uncheck show imap search folders preference
 		form.zPreferencesCheckboxSet(Button.B_SHOW_IMAP_SEARCH_FOLDERS,false);
 
-		// Submit the form
-		form.zSubmit();
+		// Save the changes
+		form.zSave();
 		
 		// Verify preferences saved correctly
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(

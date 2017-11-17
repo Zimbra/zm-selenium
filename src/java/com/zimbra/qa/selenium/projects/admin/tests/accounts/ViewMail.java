@@ -31,7 +31,6 @@ import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
 import com.zimbra.qa.selenium.projects.admin.core.AdminCommonTest;
 import com.zimbra.qa.selenium.projects.admin.items.AccountItem;
-import com.zimbra.qa.selenium.projects.admin.ui.PageMain;
 
 public class ViewMail extends AdminCommonTest {
 	public ViewMail() {
@@ -40,18 +39,18 @@ public class ViewMail extends AdminCommonTest {
 		// All tests start at the "Accounts" page
 		super.startingPage = app.zPageManageAccounts;
 	}
-
+	
+	
 	/**
-	 * Testcase : View mail  -- manage account >> right click >> View mail
+	 * Testcase : View mail  -- manage account >> Gearbox >> View mail
 	 * Steps :
 	 * 1. Create an account using SOAP.
-	 * 2. Edit the account name using UI Right Click.
-	 * 3. Verify view mail functionality
+	 * 2. Manage account >> Gearbox >> edit account >>  View mail
+	 * 3. Verify account mailbox is opened up
 	 * @throws HarnessException
 	 */
-	@Bugs (ids = "69155")
-	@Test (description = "View mail  -- manage account > right click > view mail",
-	groups = { "smoke", "L1" })
+	@Test (description = " View mail  -- manage account >> Gearbox >> edit account >>  View mail",
+			groups = { "sanity", "L0" })
 	public void ViewMail_01() throws HarnessException {
 
 		// Create a new account in the admin Console using SOAP
@@ -63,7 +62,45 @@ public class ViewMail extends AdminCommonTest {
 						+		"</CreateAccountRequest>");
 
 		// Refresh the account list
-		app.zPageManageAccounts.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
+		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
+
+		// Click on account
+		app.zPageManageAccounts.zListItem(Action.A_LEFTCLICK, account.getEmailAddress());
+
+		// Gearbox >> View mail
+		app.zPageManageAccounts.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.B_VIEW_MAIL);
+
+		// Wait for page to load
+		SleepUtil.sleepLong();
+
+		// Verify account mailbox is opened up
+		ZAssert.assertTrue(app.zPageMain.zIsActive(), "Verify account mailbox is opened up");		
+	}
+	
+
+	/**
+	 * Testcase : View mail  -- manage account >> right click >> View mail
+	 * Steps :
+	 * 1. Create an account using SOAP.
+	 * 2. Edit the account name using UI Right Click.
+	 * 3. Verify view mail functionality
+	 * @throws HarnessException
+	 */
+	@Bugs (ids = "69155")
+	@Test (description = "View mail  -- manage account > right click > view mail",
+	groups = { "sanity", "L0" })
+	public void ViewMail_02() throws HarnessException {
+
+		// Create a new account in the admin Console using SOAP
+		AccountItem account = new AccountItem("email" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
+		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
+				"<CreateAccountRequest xmlns='urn:zimbraAdmin'>"
+						+			"<name>" + account.getEmailAddress() + "</name>"
+						+			"<password>test123</password>"
+						+		"</CreateAccountRequest>");
+
+		// Refresh the account list
+		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
 
 		// Right click on account 
 		app.zPageManageAccounts.zListItem(Action.A_RIGHTCLICK, account.getEmailAddress());
@@ -79,99 +116,23 @@ public class ViewMail extends AdminCommonTest {
 		ZAssert.assertTrue(app.zPageMain.zIsActive(), "Verify account mailbox is opened up");		
 	}
 
+
 	/**
-	 * Testcase : View mail  -- manage account >> Gearbox >> View mail
+	 * Testcase : Edit a basic account -- Search List View
 	 * Steps :
 	 * 1. Create an account using SOAP.
-	 * 2. Manage account >> Gearbox >> edit account >>  View mail
-	 * 3. Verify account mailbox is opened up
+	 * 2. Search account. 
+	 * 3. Select an Account.
+	 * 4. View mail
+	 * 5. Verify account mailbox is opened up
+	 * 
 	 * @throws HarnessException
 	 */
-	@Test (description = " View mail  -- manage account >> Gearbox >> edit account >>  View mail",
+	
+	@Test (description = "Edit a basic account - Search List View",
 			groups = { "smoke", "L1" })
-	public void ViewMail_02() throws HarnessException {
-
-		// Create a new account in the admin Console using SOAP
-		AccountItem account = new AccountItem("email" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
-		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
-				"<CreateAccountRequest xmlns='urn:zimbraAdmin'>"
-						+			"<name>" + account.getEmailAddress() + "</name>"
-						+			"<password>test123</password>"
-						+		"</CreateAccountRequest>");
-
-		// Refresh the account list
-		app.zPageManageAccounts.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
-
-		// Click on account
-		app.zPageManageAccounts.zListItem(Action.A_LEFTCLICK, account.getEmailAddress());
-
-		// Gearbox >> View mail
-		app.zPageManageAccounts.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.B_VIEW_MAIL);
-
-		// Wait for page to load
-		SleepUtil.sleepLong();
-
-		// Verify account mailbox is opened up
-		ZAssert.assertTrue(app.zPageMain.zIsActive(), "Verify account mailbox is opened up");		
-	}
-
-	/**
-	 * Testcase : Edit a basic account -- Search List View
-	 * Steps :
-	 * 1. Create an account using SOAP.
-	 * 2. Search account. 
-	 * 3. Select an Account.
-	 * 4. View mail
-	 * 5. Verify account mailbox is opened up
-	 * 
-	 * @throws HarnessException
-	 */
-	@Test (description = "Edit a basic account - Search List View",
-			groups = { "functional", "L2" })
+	
 	public void ViewMail_03() throws HarnessException {
-
-		// Create a new account in the Admin Console using SOAP
-		AccountItem account = new AccountItem("email" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
-		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
-				"<CreateAccountRequest xmlns='urn:zimbraAdmin'>"
-						+			"<name>" + account.getEmailAddress() + "</name>"
-						+			"<password>test123</password>"
-						+		"</CreateAccountRequest>");
-
-		// Enter the search string to find the account
-		app.zPageSearchResults.zAddSearchQuery(account.getEmailAddress());
-
-		// Click search
-		app.zPageSearchResults.zToolbarPressButton(Button.B_SEARCH);
-
-		// Click on account 
-		app.zPageSearchResults.zListItem(Action.A_LEFTCLICK, account.getEmailAddress());
-
-
-		// Gearbox >> View mail
-		app.zPageManageAccounts.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.B_VIEW_MAIL);
-
-		// Wait for page to load
-		SleepUtil.sleepLong();
-
-		// Verify account mailbox is opened up
-		ZAssert.assertTrue(app.zPageMain.zIsActive(), "Verify account mailbox is opened up");		
-	}	
-
-	/**
-	 * Testcase : Edit a basic account -- Search List View
-	 * Steps :
-	 * 1. Create an account using SOAP.
-	 * 2. Search account. 
-	 * 3. Select an Account.
-	 * 4. View mail
-	 * 5. Verify account mailbox is opened up
-	 * 
-	 * @throws HarnessException
-	 */
-	@Test (description = "Edit a basic account - Search List View",
-			groups = { "functional", "L3" })
-	public void ViewMail_04() throws HarnessException {
 
 		// Create a new account in the Admin Console using SOAP
 		AccountItem account = new AccountItem("email" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
@@ -203,6 +164,44 @@ public class ViewMail extends AdminCommonTest {
 		// Verify account mailbox is opened up
 		ZAssert.assertTrue(app.zPageMain.zIsActive(), "Verify account mailbox is opened up");		
 	}
+
+
+	/**
+	 * Testcase : Edit a basic account -- Search List View
+	 * Steps :
+	 * 1. Create an account using SOAP.
+	 * 2. Search account. 
+	 * 3. Select an Account.
+	 * 4. View mail
+	 * 5. Verify account mailbox is opened up
+	 * 
+	 * @throws HarnessException
+	 */
+	@Test (description = "Edit a basic account - Search List View",
+			groups = { "smoke", "L1" })
+	public void ViewMail_04() throws HarnessException {
+
+		// Create a new account in the Admin Console using SOAP
+		AccountItem account = new AccountItem("email" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
+		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
+				"<CreateAccountRequest xmlns='urn:zimbraAdmin'>"
+						+			"<name>" + account.getEmailAddress() + "</name>"
+						+			"<password>test123</password>"
+						+		"</CreateAccountRequest>");
+
+		// Refresh the account list
+		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
+
+		// Click on view mail
+		app.zPageManageAccounts.zListItem(Action.A_RIGHTCLICK, Button.O_VIEW_MAIL, account.getEmailAddress());
+
+		// Wait for page to load
+		SleepUtil.sleepLong();
+
+		// Verify account mailbox is opened up
+		ZAssert.assertTrue(app.zPageMain.zIsActive(), "Verify account mailbox is opened up");		
+	}	
+
 
 	@AfterMethod( groups = { "always" } )
 	public void afterMethod() throws HarnessException {

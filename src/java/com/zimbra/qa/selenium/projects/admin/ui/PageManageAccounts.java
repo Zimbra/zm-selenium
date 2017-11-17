@@ -22,7 +22,6 @@ package com.zimbra.qa.selenium.projects.admin.ui;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
-
 import com.zimbra.qa.selenium.framework.ui.AbsApplication;
 import com.zimbra.qa.selenium.framework.ui.AbsPage;
 import com.zimbra.qa.selenium.framework.ui.AbsTab;
@@ -31,8 +30,8 @@ import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
+import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.projects.admin.items.AccountItem;
-import com.zimbra.qa.selenium.projects.ajax.ui.Toaster;
 /**
  * Admin Console -> Manage Accounts -> Accounts
  * @author Matt Rhoades
@@ -139,52 +138,173 @@ public class PageManageAccounts extends AbsTab {
 	}
 
 	@Override
-	public AbsPage zListItem(Action action, String account)
-			throws HarnessException {
-		logger.info(myPageName() + " zListItem("+ action +", "+ account +")");
+	public AbsPage zListItem(Action action, String accountEmailAddress) throws HarnessException {
+		
+		logger.info(myPageName() + " zListItem(" + action + ", " + accountEmailAddress + ")");
 
 		AbsPage page = null;
-		SleepUtil.sleepSmall();
+		String accountLocator = null;
+		Boolean accountFound = false;
+		
+		SleepUtil.sleepMedium();
 
-		// How many items are in the table?
+		// How many items are in the page?
 		String rowsLocator = "css=div#zl__ACCT_MANAGE div[id$='__rows'] div[id^='zli__']";
 		int count = this.sGetCssCount(rowsLocator);
-		logger.debug(myPageName() + " zListItem: number of accounts: "+ count);
-		logger.info(myPageName() + " zListItem: Load all accounts in the list");
+		int scrollCounter = 50;
+		
+		logger.debug(myPageName() + " zListGetAccounts: number of accounts: " + count);
 
-		int m = 50;
 		if (count >= 50) {
-			for (int a1 = 1; a1 <= 10; a1++) { 
-				String p0  = rowsLocator + ":nth-child("+m+")";				
-				if (this.sIsElementPresent(p0)) {					
-					sClickAt(p0,"");
+			
+			for (int accountPaging = 1; accountPaging <= 30; accountPaging++) {
+				
+				String pageCounter = rowsLocator + ":nth-child(" + scrollCounter + ")";
+				SleepUtil.sleepVerySmall();
+				if (this.sIsElementPresent(pageCounter)) {
+					sClickAt(pageCounter, "");
+					SleepUtil.sleepVerySmall();
 					this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_DOWN);
-					m = m + 20;
+					scrollCounter = scrollCounter + 20;
 				} else {
 					break;
 				}
 			}
-
+			
+			accountLocator = "//div[@id='zl__ACCT_MANAGE']//div[starts-with(@id,'zli__DWT')]//td[starts-with(@id,'account_data_emailaddress_')]/nobr[.='" + accountEmailAddress + "']";
+			//accountLocator = "css=div[id^='zli__DWT'] td[id^='account_data_emailaddress']:contains('" + account + "')";
+			if (sIsElementPresent(accountLocator)) {
+				accountFound = true;
+			}
+			
+			if (accountFound) {
+				if (action == Action.A_LEFTCLICK) {
+					sClickAt(accountLocator, "");
+				} else if (action == Action.A_RIGHTCLICK) {
+					zRightClickAt(accountLocator, "");
+				}
+			} else {
+				throw new HarnessException("Couldn't find account " + accountEmailAddress + " after virtual paging.");
+			}
 		}
-		// xpath to the account
-		String accountLocator = "//div[@id='zl__ACCT_MANAGE']//div[starts-with(@id,'zli__DWT')]//td[starts-with(@id,'account_data_emailaddress_')]/nobr[.='" + account + "']";
 
-		if (action == Action.A_LEFTCLICK) {
-			sClick(accountLocator);
-		} else if(action == Action.A_RIGHTCLICK) {
-			zRightClick(accountLocator);
-		}
+		SleepUtil.sleepSmall();
 		return page;
 	}
 
 	@Override
-	public AbsPage zListItem(Action action, Button option, String item)
-			throws HarnessException {
-		return null;
+	public AbsPage zListItem(Action action, Button option, String accountEmailAddress) throws HarnessException {
+		
+		logger.info(myPageName() + " zListItem(" + action + ", " + option + ", " + accountEmailAddress + ")");
+
+		AbsPage page = null;
+		String accountLocator, optionLocator = null;
+		Boolean accountFound = false;
+		
+		SleepUtil.sleepMedium();
+		
+		if (action == Action.A_RIGHTCLICK) {
+			
+			((AppAdminConsole)MyApplication).zPageSearchResults.zAddSearchQuery(accountEmailAddress);
+			((AppAdminConsole)MyApplication).zPageSearchResults.zToolbarPressButton(Button.B_SEARCH);
+
+			// Get the list of displayed accounts
+			List<AccountItem> accounts = ((AppAdminConsole)MyApplication).zPageSearchResults.zListGetAccounts();
+
+			for (AccountItem a : accounts) {
+				logger.info("Looking for account " + accountEmailAddress + " found: " + a.getGEmailAddress());
+				if (accountEmailAddress.equals(a.getGEmailAddress())) {
+					accountFound = true;
+					break;
+				}
+			}
+			ZAssert.assertTrue(accountFound, "Verify account is found in search results");
+			
+			accountLocator = "css=td[id^='SEARCH_MANAGE_data_emailaddress']:contains('" + accountEmailAddress + "')";
+			zRightClickAt(accountLocator, "");
+							
+			if (option.equals(Button.O_DELETE)) {
+				optionLocator = "css=td[id='zmi__SCHLV__DELETE_title']";
+				page = new DialogForDeleteOperation(MyApplication, ((AppAdminConsole) MyApplication).zPageSearchResults);
+				
+			} else if (option.equals(Button.O_EDIT)) {
+				optionLocator = "css=td[id='zmi__SCHLV__EDIT_title']";
+				page = new FormEditAccount(MyApplication);
+				
+			} else if (option.equals(Button.O_CHANGE_PASSWORD)) {
+				optionLocator = "css=td[id='zmi__SCHLV__CHNG_PWD_title']";
+				page = null;
+
+			} else if (option.equals(Button.O_VIEW_MAIL)) {
+				optionLocator = "css=td[id='zmi__SCHLV__VIEW_MAIL_title']";
+				page = null;
+				
+			} else if (option.equals(Button.O_MOVE_ALIAS)) {
+				optionLocator = "css=td[id='zmi__SCHLV__MOVE_ALIAS_title']";
+				page = null;
+
+			} else if (option.equals(Button.O_INVALIDATE_SESSIONS)) {
+				optionLocator = "css=td[id='zmi__SCHLV__EXPIRE_SESSION_title']";
+				page = null;
+
+			} else if (option.equals(Button.O_MOVE_MAILBOX)) {
+				optionLocator = "css=td[id='zmi__SCHLV__UNKNOWN_78_title']";
+				page = null;
+			
+			} else if (option.equals(Button.O_SEARCH_MAIL)) {
+				optionLocator = "css=td[id='zmi__SCHLV__UNKNOWN_79_title']";
+				page = null;
+			}
+
+			sClick(optionLocator);
+			
+		} else {
+			
+			// How many items are in the page?
+			String rowsLocator = "css=div#zl__ACCT_MANAGE div[id$='__rows'] div[id^='zli__']";
+			int count = this.sGetCssCount(rowsLocator);
+			int scrollCounter = 50;
+			
+			logger.debug(myPageName() + " zListGetAccounts: number of accounts: " + count);
+	
+			if (count >= 50) {
+				
+				for (int accountPaging = 1; accountPaging <= 30; accountPaging++) {
+					
+					String pageCounter = rowsLocator + ":nth-child(" + scrollCounter + ")";
+					SleepUtil.sleepVerySmall();
+					if (this.sIsElementPresent(pageCounter)) {
+						sClickAt(pageCounter, "");
+						SleepUtil.sleepVerySmall();
+						this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_DOWN);
+						scrollCounter = scrollCounter + 20;
+					} else {
+						break;
+					}
+				}
+				
+				accountLocator = "//div[@id='zl__ACCT_MANAGE']//div[starts-with(@id,'zli__DWT')]//td[starts-with(@id,'account_data_emailaddress_')]/nobr[.='" + accountEmailAddress + "']";
+				//accountLocator = "css=div[id^='zli__DWT'] td[id^='account_data_emailaddress']:contains('" + account + "')";
+				if (sIsElementPresent(accountLocator)) {
+					accountFound = true;
+				}
+				
+				if (accountFound) {
+					if (action == Action.A_LEFTCLICK) {
+						sClickAt(accountLocator, "");
+					}
+				} else {
+					throw new HarnessException("Couldn't find account " + accountEmailAddress + " after virtual paging.");
+				}
+			}
+		}
+
+		SleepUtil.sleepMedium();
+		return page;
 	}
+	
 	@Override
-	public AbsPage zListItem(Action action, Button option, Button subOption ,String item)
-			throws HarnessException {
+	public AbsPage zListItem(Action action, Button option, Button subOption ,String item) throws HarnessException {
 		return null;
 	}
 
@@ -363,7 +483,7 @@ public class PageManageAccounts extends AbsTab {
 			}
 
 			this.sClickAt(pulldownLocator,"");
-			SleepUtil.sleepMedium();
+			SleepUtil.sleepSmall();
 
 			// If the app is busy, wait for it to become active
 			//zWaitForBusyOverlay();
@@ -376,7 +496,7 @@ public class PageManageAccounts extends AbsTab {
 				}
 
 				this.sClickAt(optionLocator,"");
-				SleepUtil.sleepMedium();
+				SleepUtil.sleepLong();
 				// If the app is busy, wait for it to become active
 				//zWaitForBusyOverlay();
 			}
@@ -409,7 +529,7 @@ public class PageManageAccounts extends AbsTab {
 
 		int m = 50;
 		if (count >= 50) {
-			for (int a1 = 1; a1 <= 5; a1++) {
+			for (int a1 = 1; a1 <= 30; a1++) {
 				String p0 = rowsLocator + ":nth-child(" + m + ")";
 				if (this.sIsElementPresent(p0)) {
 					sClickAt(p0, "");
@@ -505,16 +625,4 @@ public class PageManageAccounts extends AbsTab {
 		SleepUtil.sleepSmall();
 		return (page);
 	}
-
-	public Toaster zGetToaster() throws HarnessException {
-		SleepUtil.sleepMedium();
-		Toaster toaster = new Toaster(this.MyApplication);
-		logger.info("toaster is active: "+ toaster.zIsActive());
-		return (toaster);
-	}
-
-
-
-
-
 }

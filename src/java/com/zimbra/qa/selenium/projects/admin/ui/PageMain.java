@@ -23,6 +23,7 @@ import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
+import com.zimbra.qa.selenium.projects.ajax.ui.Toaster;
 
 /**
  * This class defines the top menu bar of the admin console application
@@ -36,7 +37,7 @@ public class PageMain extends AbsTab {
 		public static final String zSkinContainerUsername	= "css=div[id='skin_container_username']";
 
 		public static final String zSkinContainerLogoff		= "css=table[class='skin_table'] span[onclick='ZaZimbraAdmin.logOff();']";
-		public static final String zLogoffDropDownArrow		="css=div[id='skin_container_username'] div.ImgNodeExpandedWhite";
+		public static final String zLogoffDropDownArrow		="css=td[id$='_dropdown'] div[class='ImgNodeExpandedWhite']";
 		public static final String zLogOff = "zmi__ZA_LOGOFF__LOGOFF_title";
 
 		public static final String zSkinContainerDW			= "xpath=//*[@id='skin_container_dw']";
@@ -135,7 +136,6 @@ public class PageMain extends AbsTab {
 	public void logout() throws HarnessException {
 		logger.debug("logout()");
 		
-		zWaitForElementPresent(Locators.zLogoffDropDownArrow);
 		zNavigateTo();
 		if ( !sIsElementPresent(Locators.zLogoffDropDownArrow) ) {
 			throw new HarnessException("The refresh button is not present " + Locators.zLogoffDropDownArrow);
@@ -146,14 +146,6 @@ public class PageMain extends AbsTab {
 		sClickAt(Locators.zLogOff,"");
 		SleepUtil.sleepLong();
 		
-		/**
-		 * Following WaitForPageToLoad() is needed to ensure successful log off operation.
-		 */
-		//sWaitForPageToLoad();
-		// Sometimes there is a "confirm" popup.
-		// Disable it using zimbraPrefAdminConsoleWarnOnExit=FALSE
-		// This is the default configureation for the AdminConsoleAdmin() account
-
 
 		((AppAdminConsole)MyApplication).zPageLogin.zWaitForActive();
 
@@ -253,5 +245,12 @@ public class PageMain extends AbsTab {
 		if (this.sIsElementPresent("css=span:contains('" + header + "')"))
 			return true;
 		return false;
+	}
+	
+	public Toaster zGetToaster() throws HarnessException {
+		SleepUtil.sleepMedium();
+		Toaster toaster = new Toaster(this.MyApplication);
+		logger.info("toaster is active: " + toaster.zIsActive());
+		return (toaster);
 	}
 }

@@ -733,8 +733,13 @@
 		public static final Button O_ACCOUNTS_ACCOUNT = new Button("O_ACCOUNTS_ACCOUNT");
 		public static final Button O_ADD_DOMAIN_ALIAS = new Button("O_ADD_DOMAIN_ALIAS");
 		public static final Button B_VIEW_MAIL = new Button("B_VIEW_MAIL");
+		public static final Button O_VIEW_MAIL = new Button("O_VIEW_MAIL");
+		public static final Button O_MOVE_ALIAS = new Button("O_MOVE_ALIAS");
 		public static final Button B_INVALIDATE_SESSIONS = new Button("B_INVALIDATE_SESSIONS");
+		public static final Button O_INVALIDATE_SESSIONS = new Button("O_INVALIDATE_SESSIONS");
+		public static final Button O_MOVE_MAILBOX = new Button("O_MOVE_MAILBOX");
 		public static final Button B_MUST_CHANGE_PASSWORD = new Button("B_MUST_CHANGE_PASSWORD");
+		public static final Button O_SEARCH_MAIL = new Button("O_SEARCH_MAIL");
 		public static final Button B_CONFIGURE_GRANTS = new Button("B_CONFIGURE_GRANTS");
 		public static final Button B_ACCOUNTS_LIMIT_PER_DOMAIN = new Button("B_ACCOUNTS_LIMIT_PER_DOMAIN");
 		public static final Button B_ACCOUNTS_LIMIT_PER_COS = new Button("B_ACCOUNTS_LIMIT_PER_COS");

@@ -28,7 +28,6 @@ import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.admin.core.AdminCommonTest;
 import com.zimbra.qa.selenium.projects.admin.items.AccountItem;
-import com.zimbra.qa.selenium.projects.admin.ui.PageMain;
 
 
 public class GetAccount extends AdminCommonTest {
@@ -62,9 +61,7 @@ public class GetAccount extends AdminCommonTest {
 
 		
 		// Refresh the account list
-		app.zPageManageAccounts.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
-		SleepUtil.sleepMedium();
-
+		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
 		
 		// Get the list of displayed accounts
 		List<AccountItem> accounts = app.zPageManageAccounts.zListGetAccounts();
@@ -152,7 +149,7 @@ public class GetAccount extends AdminCommonTest {
 
 		
 		// Refresh the account list
-		app.zPageManageAccounts.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
+		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
 		SleepUtil.sleepMedium();
 
 		

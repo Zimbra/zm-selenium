@@ -27,7 +27,6 @@ import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.admin.core.AdminCommonTest;
 import com.zimbra.qa.selenium.projects.admin.items.AccountItem;
 import com.zimbra.qa.selenium.projects.admin.ui.FormEditAccount;
-import com.zimbra.qa.selenium.projects.admin.ui.PageMain;
 
 public class LimitThemes extends AdminCommonTest {
 
@@ -52,13 +51,10 @@ public class LimitThemes extends AdminCommonTest {
 		String theme="Harmony";
 		
 		// Refresh the account list
-		app.zPageManageAccounts.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
-
-		// Click on account to be Edited.
-		app.zPageManageAccounts.zListItem(Action.A_LEFTCLICK, account.getEmailAddress());
+		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
 
 		// Click on Edit button
-		FormEditAccount form = (FormEditAccount) app.zPageManageAccounts.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_EDIT);
+		FormEditAccount form = (FormEditAccount) app.zPageManageAccounts.zListItem(Action.A_RIGHTCLICK, Button.O_EDIT, account.getEmailAddress());
 
 		// Click on themes tab
 		app.zPageEditAccount.zToolbarPressButton(Button.B_THEMES);
@@ -66,8 +62,8 @@ public class LimitThemes extends AdminCommonTest {
 		// Set available skin 
 		form.zLimitThemes(theme);
 
-		// Submit the form
-		form.zSubmit();
+		// Save the changes
+		form.zSave();
 
 		// Verify selected theme set as available for an account
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
