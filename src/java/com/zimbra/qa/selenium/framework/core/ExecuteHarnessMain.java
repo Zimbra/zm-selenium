@@ -94,7 +94,7 @@ public class ExecuteHarnessMain {
 	public static HashSet<String> retriedTests = new HashSet<String>();
 
 	private static final String OpenQABasePackage = "org.openqa";
-	public static final String SeleniumBasePackage = "selenium";
+	public static final String SeleniumBasePackage = "com.zimbra.qa.selenium";
 	public static String testoutputfoldername = null;
 	public static File fTestOutputDirectory;
 	public static ResultListener currentResultListener = null;
@@ -460,7 +460,7 @@ public class ExecuteHarnessMain {
 
 			if (!ConfigProperties.getStringProperty("emailTo").contains("pnq-automation@synacor.com")) {
 
-				String project = classfilter.toString().replace("selenium.", "").replace("projects.", "");
+				String project = classfilter.toString().replace("com.zimbra.qa.selenium.", "").replace("projects.", "");
 				project = project.substring(0, 1).toUpperCase() + project.substring(1);
 				String[] projectSplit = project.split(".tests.");
 
