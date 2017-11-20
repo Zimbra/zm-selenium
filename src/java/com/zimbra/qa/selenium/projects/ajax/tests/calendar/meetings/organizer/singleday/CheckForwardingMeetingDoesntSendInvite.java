@@ -22,10 +22,10 @@ import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.PageCalendar.Locators;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
+import com.zimbra.qa.selenium.projects.ajax.pages.calendar.PageCalendar.Locators;
 
-public class CheckForwardingMeetingDoesntSendInvite extends AjaxCommonTest {
+public class CheckForwardingMeetingDoesntSendInvite extends AjaxCore {
 
 	public CheckForwardingMeetingDoesntSendInvite() {
 		logger.info("New "+ CheckForwardingMeetingDoesntSendInvite.class.getCanonicalName());

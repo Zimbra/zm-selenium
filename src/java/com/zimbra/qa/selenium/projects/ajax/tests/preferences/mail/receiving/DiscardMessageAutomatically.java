@@ -21,10 +21,10 @@ import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.items.MailItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.preferences.TreePreferences.TreeItem;
+import com.zimbra.qa.selenium.projects.ajax.core.SetGroupMailByMessagePreference;
+import com.zimbra.qa.selenium.projects.ajax.pages.preferences.TreePreferences.TreeItem;
 
-public class DiscardMessageAutomatically extends PrefGroupMailByMessageTest {
+public class DiscardMessageAutomatically extends SetGroupMailByMessagePreference {
 
 	public DiscardMessageAutomatically() {
 		logger.info("New "+ DiscardMessageAutomatically.class.getCanonicalName());

@@ -25,11 +25,11 @@ import com.zimbra.qa.selenium.framework.items.MailItem;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.CalendarWorkWeekTest;
-import com.zimbra.qa.selenium.projects.universal.ui.calendar.FormApptNew;
-import com.zimbra.qa.selenium.projects.universal.ui.mail.DisplayMail;
+import com.zimbra.qa.selenium.projects.universal.core.CalendarWorkWeekPreference;
+import com.zimbra.qa.selenium.projects.universal.pages.calendar.FormApptNew;
+import com.zimbra.qa.selenium.projects.universal.pages.mail.DisplayMail;
 
-public class CreateMeeting extends CalendarWorkWeekTest {
+public class CreateMeeting extends CalendarWorkWeekPreference {
 
 	public CreateMeeting() {
 		logger.info("New "+ CreateMeeting.class.getCanonicalName());

@@ -25,7 +25,7 @@ import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.universal.core.*;
 
 
-public class DeleteMail extends PrefGroupMailByMessageTest {
+public class DeleteMail extends SetGroupMailByMessagePreference {
 
 	
 	public DeleteMail() {

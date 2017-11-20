@@ -24,11 +24,11 @@ import com.zimbra.qa.selenium.framework.items.MailItem;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew.Field;
+import com.zimbra.qa.selenium.projects.ajax.core.SetGroupMailByMessagePreference;
+import com.zimbra.qa.selenium.projects.ajax.pages.mail.FormMailNew;
+import com.zimbra.qa.selenium.projects.ajax.pages.mail.FormMailNew.Field;
 
-public class SendAs extends PrefGroupMailByMessageTest {
+public class SendAs extends SetGroupMailByMessagePreference {
 
 	public SendAs() {
 		logger.info("New "+ SendAs.class.getCanonicalName());

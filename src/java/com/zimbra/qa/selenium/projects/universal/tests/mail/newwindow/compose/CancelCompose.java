@@ -20,11 +20,11 @@ import org.testng.annotations.Test;
 
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.PrefGroupMailByMessageTest;
-import com.zimbra.qa.selenium.projects.universal.ui.mail.SeparateWindowFormMailNew;
+import com.zimbra.qa.selenium.projects.universal.core.SetGroupMailByMessagePreference;
+import com.zimbra.qa.selenium.projects.universal.pages.mail.SeparateWindowFormMailNew;
 
 
-public class CancelCompose extends PrefGroupMailByMessageTest {
+public class CancelCompose extends SetGroupMailByMessagePreference {
 
 	public CancelCompose() {
 		logger.info("New "+ CancelCompose.class.getCanonicalName());

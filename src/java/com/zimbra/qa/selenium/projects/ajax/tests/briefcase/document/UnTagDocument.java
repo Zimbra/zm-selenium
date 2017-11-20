@@ -21,9 +21,9 @@ import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.FeatureBriefcaseTest;
+import com.zimbra.qa.selenium.projects.ajax.core.EnableBriefcaseFeature;
 
-public class UnTagDocument extends FeatureBriefcaseTest {
+public class UnTagDocument extends EnableBriefcaseFeature {
 
 	public UnTagDocument() {
 		logger.info("New " + UnTagDocument.class.getCanonicalName());

@@ -23,10 +23,10 @@ import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.universal.core.*;
-import com.zimbra.qa.selenium.projects.universal.ui.DialogWarning;
-import com.zimbra.qa.selenium.projects.universal.ui.calendar.FormApptNew;
+import com.zimbra.qa.selenium.projects.universal.pages.DialogWarning;
+import com.zimbra.qa.selenium.projects.universal.pages.calendar.FormApptNew;
 
-public class VerifyOptionalAttendee extends CalendarWorkWeekTest {
+public class VerifyOptionalAttendee extends CalendarWorkWeekPreference {
 
 	public VerifyOptionalAttendee() {
 		logger.info("New "+ Edit.class.getCanonicalName());

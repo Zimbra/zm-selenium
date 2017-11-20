@@ -24,11 +24,11 @@ import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.*;
-import com.zimbra.qa.selenium.projects.ajax.ui.*;
-import com.zimbra.qa.selenium.projects.ajax.ui.TooltipImage.*;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.*;
+import com.zimbra.qa.selenium.projects.ajax.pages.*;
+import com.zimbra.qa.selenium.projects.ajax.pages.TooltipImage.*;
+import com.zimbra.qa.selenium.projects.ajax.pages.mail.*;
 
-public class HoverOverAttachment extends PrefGroupMailByMessageTest {
+public class HoverOverAttachment extends SetGroupMailByMessagePreference {
 
 	public HoverOverAttachment() {
 		logger.info("New "+ HoverOverAttachment.class.getCanonicalName());

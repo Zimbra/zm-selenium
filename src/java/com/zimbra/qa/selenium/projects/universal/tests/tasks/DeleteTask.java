@@ -28,13 +28,13 @@ import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
-import com.zimbra.qa.selenium.projects.universal.ui.DialogWarning;
-import com.zimbra.qa.selenium.projects.universal.ui.tasks.FormTaskNew;
-import com.zimbra.qa.selenium.projects.universal.ui.tasks.PageTasks;
-import com.zimbra.qa.selenium.projects.universal.ui.tasks.PageTasks.Locators;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCore;
+import com.zimbra.qa.selenium.projects.universal.pages.DialogWarning;
+import com.zimbra.qa.selenium.projects.universal.pages.tasks.FormTaskNew;
+import com.zimbra.qa.selenium.projects.universal.pages.tasks.PageTasks;
+import com.zimbra.qa.selenium.projects.universal.pages.tasks.PageTasks.Locators;
 
-public class DeleteTask extends UniversalCommonTest {
+public class DeleteTask extends UniversalCore {
 
 	@SuppressWarnings("serial")
 	public DeleteTask() {

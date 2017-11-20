@@ -24,9 +24,9 @@ import com.zimbra.qa.selenium.framework.items.ZimletItem.*;
 import com.zimbra.qa.selenium.framework.items.ZimletItem.CoreZimletItem.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.*;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.TreeMail.*;
+import com.zimbra.qa.selenium.projects.ajax.pages.mail.TreeMail.*;
 
-public class FolderTree extends AjaxCommonTest {
+public class FolderTree extends AjaxCore {
 
 	public FolderTree() {
 		logger.info("New "+ FolderTree.class.getCanonicalName());

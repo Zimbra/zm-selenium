@@ -25,11 +25,11 @@ import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.DialogEditFolder;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.DialogEditFolder.FolderColor;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
+import com.zimbra.qa.selenium.projects.ajax.pages.mail.DialogEditFolder;
+import com.zimbra.qa.selenium.projects.ajax.pages.mail.DialogEditFolder.FolderColor;
 
-public class ChangeColorTaskFolder extends AjaxCommonTest {
+public class ChangeColorTaskFolder extends AjaxCore {
 
 	@SuppressWarnings("serial")
 	public ChangeColorTaskFolder() {

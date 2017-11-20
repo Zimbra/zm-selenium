@@ -24,12 +24,12 @@ import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.universal.core.*;
-import com.zimbra.qa.selenium.projects.universal.ui.calendar.FormApptNew;
-import com.zimbra.qa.selenium.projects.universal.ui.mail.DisplayMail;
-import com.zimbra.qa.selenium.projects.universal.ui.mail.FormMailNew;
+import com.zimbra.qa.selenium.projects.universal.pages.calendar.FormApptNew;
+import com.zimbra.qa.selenium.projects.universal.pages.mail.DisplayMail;
+import com.zimbra.qa.selenium.projects.universal.pages.mail.FormMailNew;
 
 
-public class DeclineProposeNewTime extends CalendarWorkWeekTest {
+public class DeclineProposeNewTime extends CalendarWorkWeekPreference {
 
 	public DeclineProposeNewTime() {
 		logger.info("New "+ DeclineProposeNewTime.class.getCanonicalName());

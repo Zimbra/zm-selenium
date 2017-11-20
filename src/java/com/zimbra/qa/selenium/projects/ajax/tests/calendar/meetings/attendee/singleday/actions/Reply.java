@@ -22,11 +22,11 @@ import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew.Field;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
+import com.zimbra.qa.selenium.projects.ajax.pages.mail.FormMailNew;
+import com.zimbra.qa.selenium.projects.ajax.pages.mail.FormMailNew.Field;
 
-public class Reply extends AjaxCommonTest {
+public class Reply extends AjaxCore {
 
 	public Reply() {
 		logger.info("New "+ Reply.class.getCanonicalName());

@@ -20,10 +20,10 @@ import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.PrefGroupMailByMessageTest;
-import com.zimbra.qa.selenium.projects.universal.ui.*;
+import com.zimbra.qa.selenium.projects.universal.core.SetGroupMailByMessagePreference;
+import com.zimbra.qa.selenium.projects.universal.pages.*;
 
-public class SetArchiveFolder extends PrefGroupMailByMessageTest {
+public class SetArchiveFolder extends SetGroupMailByMessagePreference {
 
 	public SetArchiveFolder() {
 		logger.info("New "+ SetArchiveFolder.class.getCanonicalName());
@@ -72,7 +72,7 @@ public class SetArchiveFolder extends PrefGroupMailByMessageTest {
 		app.zPageMail.zToolbarPressButton(Button.B_ARCHIVE);
 		
 		// A choose folder dialog will pop up
-		DialogMove dialog = new DialogMove(app, ((AppUniversalClient)app).zPageMail);
+		DialogMove dialog = new DialogMove(app, ((UniversalPages)app).zPageMail);
 		dialog.zWaitForActive();
 		dialog.sClickTreeFolder(subfolder);
 		dialog.zPressButton(Button.B_OK);

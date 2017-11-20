@@ -21,9 +21,9 @@ import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.*;
-import com.zimbra.qa.selenium.projects.ajax.ui.*;
+import com.zimbra.qa.selenium.projects.ajax.pages.*;
 
-public class SetArchiveFolder extends PrefGroupMailByConversationTest {
+public class SetArchiveFolder extends SetGroupMailByConversationPreference {
 
 	public SetArchiveFolder() {
 		logger.info("New "+ SetArchiveFolder.class.getCanonicalName());
@@ -74,7 +74,7 @@ public class SetArchiveFolder extends PrefGroupMailByConversationTest {
 		app.zPageMail.zToolbarPressButton(Button.B_ARCHIVE);
 
 		// A choose folder dialog will pop up
-		DialogMove dialog = new DialogMove(app, ((AppAjaxClient)app).zPageMail);
+		DialogMove dialog = new DialogMove(app, ((AjaxPages)app).zPageMail);
 		dialog.zWaitForActive();
 		dialog.sClickTreeFolder(subfolder);
 		dialog.zPressButton(Button.B_OK);

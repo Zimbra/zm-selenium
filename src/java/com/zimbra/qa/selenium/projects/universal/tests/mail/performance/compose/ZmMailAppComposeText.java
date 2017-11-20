@@ -25,9 +25,9 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.performance.PerfKey;
 import com.zimbra.qa.selenium.framework.util.performance.PerfMetrics;
 import com.zimbra.qa.selenium.framework.util.performance.PerfToken;
-import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCore;
 
-public class ZmMailAppComposeText extends UniversalCommonTest {
+public class ZmMailAppComposeText extends UniversalCore {
 
 	public ZmMailAppComposeText() {
 		logger.info("New " + ZmMailAppComposeText.class.getCanonicalName());

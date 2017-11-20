@@ -23,9 +23,9 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZDate;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.universal.core.CalendarWorkWeekTest;
+import com.zimbra.qa.selenium.projects.universal.core.CalendarWorkWeekPreference;
 
-public class GetReminder extends CalendarWorkWeekTest {
+public class GetReminder extends CalendarWorkWeekPreference {
 
 	public GetReminder() {
 		logger.info("New "+ GetReminder.class.getCanonicalName());

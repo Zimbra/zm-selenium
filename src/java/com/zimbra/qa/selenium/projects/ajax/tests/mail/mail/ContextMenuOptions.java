@@ -21,11 +21,11 @@ import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.items.MailItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail.Field;
+import com.zimbra.qa.selenium.projects.ajax.core.SetGroupMailByMessagePreference;
+import com.zimbra.qa.selenium.projects.ajax.pages.mail.DisplayMail;
+import com.zimbra.qa.selenium.projects.ajax.pages.mail.DisplayMail.Field;
 
-public class ContextMenuOptions extends PrefGroupMailByMessageTest {
+public class ContextMenuOptions extends SetGroupMailByMessagePreference {
 
 	int pollIntervalSeconds = 60;
 
@@ -65,7 +65,7 @@ public class ContextMenuOptions extends PrefGroupMailByMessageTest {
 		DisplayMail actual = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, mail.dSubject);
 		ZAssert.assertEquals(actual.zGetMailProperty(Field.From), ZimbraAccount.AccountA().EmailAddress, "Verify the From matches");
 
-		app.zPageMail.zRightClickAddressBubble(com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew.Field.From);
+		app.zPageMail.zRightClickAddressBubble(com.zimbra.qa.selenium.projects.ajax.pages.mail.FormMailNew.Field.From);
 		ZAssert.assertTrue(app.zPageMail.zVerifyAllAddressContextMenu("MessageHeader"),"Copy/FindEmails/New Email/AddtoContact/Goto URL/Create Filter menu should be exist");
 	}
 

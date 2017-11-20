@@ -22,9 +22,9 @@ import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
 
-public class ZimbraFeaturePortalEnabled extends AjaxCommonTest {
+public class ZimbraFeaturePortalEnabled extends AjaxCore {
 
 	public ZimbraFeaturePortalEnabled() {
 		logger.info("New "+ ZimbraFeaturePortalEnabled.class.getCanonicalName());

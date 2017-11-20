@@ -26,9 +26,9 @@ import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZDate;
 import com.zimbra.qa.selenium.framework.util.ZTimeZone;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
 
-public class OpenAppointment extends AjaxCommonTest {
+public class OpenAppointment extends AjaxCore {
 
 	public OpenAppointment() {
 		logger.info("New "+ OpenAppointment.class.getCanonicalName());

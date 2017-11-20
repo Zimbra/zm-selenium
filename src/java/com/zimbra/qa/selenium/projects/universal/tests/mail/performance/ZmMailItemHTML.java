@@ -29,7 +29,7 @@ import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.universal.core.*;
 
 
-public class ZmMailItemHTML extends UniversalCommonTest {
+public class ZmMailItemHTML extends UniversalCore {
 
 	
 	@SuppressWarnings("serial")

@@ -24,11 +24,11 @@ import com.zimbra.qa.selenium.framework.core.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.universal.core.*;
-import com.zimbra.qa.selenium.projects.universal.ui.preferences.TreePreferences.*;
+import com.zimbra.qa.selenium.projects.universal.pages.preferences.TreePreferences.*;
 
 
 
-public class ZimbraFeatureMailForwardingEnabled extends UniversalCommonTest {
+public class ZimbraFeatureMailForwardingEnabled extends UniversalCore {
 	
 	public ZimbraFeatureMailForwardingEnabled() {
 		logger.info("New "+ ZimbraFeatureMailForwardingEnabled.class.getCanonicalName());

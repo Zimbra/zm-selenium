@@ -21,9 +21,9 @@ import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.touch.core.*;
-import com.zimbra.qa.selenium.projects.touch.ui.mail.DisplayMail.*;
+import com.zimbra.qa.selenium.projects.touch.pages.mail.DisplayMail.*;
 
-public class AddressContextMenuOptions extends PrefGroupMailByMessageTest {
+public class AddressContextMenuOptions extends SetGroupMailByMessagePreference {
 
 	public AddressContextMenuOptions() {
 		logger.info("New "+ AddressContextMenuOptions.class.getCanonicalName());

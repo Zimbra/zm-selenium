@@ -24,9 +24,9 @@ import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.touch.core.CalendarWorkWeekTest;
+import com.zimbra.qa.selenium.projects.touch.core.CalendarWorkWeekPreference;
 
-public class Decline extends CalendarWorkWeekTest {
+public class Decline extends CalendarWorkWeekPreference {
 
 	public Decline() {
 		logger.info("New "+ Decline.class.getCanonicalName());

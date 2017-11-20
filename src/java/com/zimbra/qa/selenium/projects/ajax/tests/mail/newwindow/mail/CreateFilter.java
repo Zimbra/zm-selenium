@@ -20,12 +20,12 @@ import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.AppAjaxClient;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.SeparateWindowDisplayMail;
-import com.zimbra.qa.selenium.projects.ajax.ui.preferences.DialogEditFilter;
+import com.zimbra.qa.selenium.projects.ajax.core.SetGroupMailByMessagePreference;
+import com.zimbra.qa.selenium.projects.ajax.pages.AjaxPages;
+import com.zimbra.qa.selenium.projects.ajax.pages.mail.SeparateWindowDisplayMail;
+import com.zimbra.qa.selenium.projects.ajax.pages.preferences.DialogEditFilter;
 
-public class CreateFilter extends PrefGroupMailByMessageTest {
+public class CreateFilter extends SetGroupMailByMessagePreference {
 
 	public int delaySeconds = 10;
 
@@ -76,7 +76,7 @@ public class CreateFilter extends PrefGroupMailByMessageTest {
 			// Select the main window
 			window.sSelectWindow(null);
 
-			DialogEditFilter dialog = new DialogEditFilter(app,((AppAjaxClient) app).zPageMail);
+			DialogEditFilter dialog = new DialogEditFilter(app,((AjaxPages) app).zPageMail);
 			ZAssert.assertTrue(dialog.zIsActive(), "Add filter dialog should active");
 
 		} finally {

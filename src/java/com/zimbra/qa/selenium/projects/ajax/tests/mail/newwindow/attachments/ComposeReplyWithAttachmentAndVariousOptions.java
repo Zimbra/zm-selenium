@@ -27,12 +27,12 @@ import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.SeparateWindowFormMailNew;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew.Locators;
+import com.zimbra.qa.selenium.projects.ajax.core.SetGroupMailByMessagePreference;
+import com.zimbra.qa.selenium.projects.ajax.pages.mail.FormMailNew;
+import com.zimbra.qa.selenium.projects.ajax.pages.mail.SeparateWindowFormMailNew;
+import com.zimbra.qa.selenium.projects.ajax.pages.mail.FormMailNew.Locators;
 
-public class ComposeReplyWithAttachmentAndVariousOptions extends PrefGroupMailByMessageTest {
+public class ComposeReplyWithAttachmentAndVariousOptions extends SetGroupMailByMessagePreference {
 
 	public ComposeReplyWithAttachmentAndVariousOptions() {
 		logger.info("New "+ ComposeReplyWithAttachmentAndVariousOptions.class.getCanonicalName());

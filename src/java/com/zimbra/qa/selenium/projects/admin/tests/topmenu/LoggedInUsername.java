@@ -20,10 +20,10 @@ import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
-import com.zimbra.qa.selenium.projects.admin.core.AdminCommonTest;
-import com.zimbra.qa.selenium.projects.admin.ui.PageMain;
+import com.zimbra.qa.selenium.projects.admin.core.AdminCore;
+import com.zimbra.qa.selenium.projects.admin.pages.PageMain;
 
-public class LoggedInUsername extends AdminCommonTest {
+public class LoggedInUsername extends AdminCore {
 
 	public LoggedInUsername() {
 		logger.info("New "+ LoggedInUsername.class.getCanonicalName());

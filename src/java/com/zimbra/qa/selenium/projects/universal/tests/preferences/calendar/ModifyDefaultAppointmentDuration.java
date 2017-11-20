@@ -26,16 +26,16 @@ import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZDate;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.universal.core.CalendarWorkWeekTest;
-import com.zimbra.qa.selenium.projects.universal.ui.calendar.FormApptNew;
-import com.zimbra.qa.selenium.projects.universal.ui.preferences.TreePreferences.TreeItem;
+import com.zimbra.qa.selenium.projects.universal.core.CalendarWorkWeekPreference;
+import com.zimbra.qa.selenium.projects.universal.pages.calendar.FormApptNew;
+import com.zimbra.qa.selenium.projects.universal.pages.preferences.TreePreferences.TreeItem;
 
 import java.awt.event.KeyEvent;
 import java.util.Calendar;
 
 import org.testng.annotations.Test;
 
-public class ModifyDefaultAppointmentDuration extends CalendarWorkWeekTest {
+public class ModifyDefaultAppointmentDuration extends CalendarWorkWeekPreference {
 
 	 public ModifyDefaultAppointmentDuration() {
 	    logger.info("New " + ModifyDefaultAppointmentDuration.class.getCanonicalName());

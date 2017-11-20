@@ -22,11 +22,11 @@ import com.zimbra.qa.selenium.framework.items.ZimletItem;
 import com.zimbra.qa.selenium.framework.items.ZimletItem.CoreZimletItem;
 import com.zimbra.qa.selenium.framework.items.ZimletItem.CoreZimletItem.CoreZimletName;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.TreeMail.FolderSection;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.TreeMail.FolderSectionAction;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
+import com.zimbra.qa.selenium.projects.ajax.pages.mail.TreeMail.FolderSection;
+import com.zimbra.qa.selenium.projects.ajax.pages.mail.TreeMail.FolderSectionAction;
 
-public class FolderTree extends AjaxCommonTest {
+public class FolderTree extends AjaxCore {
 
 	public FolderTree() {
 		logger.info("New "+ FolderTree.class.getCanonicalName());

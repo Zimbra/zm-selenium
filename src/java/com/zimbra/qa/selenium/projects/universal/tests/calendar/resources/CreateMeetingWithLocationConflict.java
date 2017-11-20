@@ -23,11 +23,11 @@ import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.universal.core.*;
-import com.zimbra.qa.selenium.projects.universal.ui.calendar.DialogWarningConflictingResources;
-import com.zimbra.qa.selenium.projects.universal.ui.calendar.FormApptNew;
-import com.zimbra.qa.selenium.projects.universal.ui.calendar.FormApptNew.Locators;
+import com.zimbra.qa.selenium.projects.universal.pages.calendar.DialogWarningConflictingResources;
+import com.zimbra.qa.selenium.projects.universal.pages.calendar.FormApptNew;
+import com.zimbra.qa.selenium.projects.universal.pages.calendar.FormApptNew.Locators;
 
-public class CreateMeetingWithLocationConflict extends CalendarWorkWeekTest {
+public class CreateMeetingWithLocationConflict extends CalendarWorkWeekPreference {
 
 	public CreateMeetingWithLocationConflict() {
 		logger.info("New "+ CreateMeetingWithLocationConflict.class.getCanonicalName());

@@ -24,7 +24,7 @@ import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.*;
 
-public class GroupBySize extends PrefGroupMailByMessageTest {
+public class GroupBySize extends SetGroupMailByMessagePreference {
 
 	public GroupBySize() {
 		logger.info("New "+ GroupBySize.class.getCanonicalName());

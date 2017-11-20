@@ -21,11 +21,11 @@ import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.AppAjaxClient;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.*;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
+import com.zimbra.qa.selenium.projects.ajax.pages.AjaxPages;
+import com.zimbra.qa.selenium.projects.ajax.pages.calendar.*;
 
-public class CreateExternalCalendarOther extends AjaxCommonTest {
+public class CreateExternalCalendarOther extends AjaxCore {
 
 	public CreateExternalCalendarOther() {
 		logger.info("New " + CreateExternalCalendarOther.class.getCanonicalName());
@@ -59,7 +59,7 @@ public class CreateExternalCalendarOther extends AjaxCommonTest {
 		dialog.zSetSourceServer(icalAccount.zGetAccountStoreHost());
 		dialog.zPressButton(Button.B_NEXT);
 
-		DialogCreateCalendarFolder dailog2 = new DialogCreateCalendarFolder(app, ((AppAjaxClient) app).zPageCalendar);
+		DialogCreateCalendarFolder dailog2 = new DialogCreateCalendarFolder(app, ((AjaxPages) app).zPageCalendar);
 		dailog2.zWaitForActive();
 		dailog2.zEnterFolderName(calendarname);
 		dailog2.zPressButton(Button.B_OK);

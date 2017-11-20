@@ -22,12 +22,12 @@ import com.zimbra.common.soap.Element;
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.DialogFindLocation;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.PageCalendar.Locators;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
+import com.zimbra.qa.selenium.projects.ajax.pages.calendar.DialogFindLocation;
+import com.zimbra.qa.selenium.projects.ajax.pages.calendar.FormApptNew;
+import com.zimbra.qa.selenium.projects.ajax.pages.calendar.PageCalendar.Locators;
 
-public class ZimbraCalResLocationDisplayName extends AjaxCommonTest {
+public class ZimbraCalResLocationDisplayName extends AjaxCore {
 
 	public ZimbraCalResLocationDisplayName() {
 		logger.info("New "+ ZimbraCalResLocationDisplayName.class.getCanonicalName());

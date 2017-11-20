@@ -22,12 +22,12 @@ import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.DialogConfirmDeleteAttendee;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.DialogConfirmationDeclineAppointment;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
+import com.zimbra.qa.selenium.projects.ajax.pages.calendar.DialogConfirmDeleteAttendee;
+import com.zimbra.qa.selenium.projects.ajax.pages.calendar.DialogConfirmationDeclineAppointment;
 
 @SuppressWarnings("unused")
-public class DeleteMeeting extends AjaxCommonTest {
+public class DeleteMeeting extends AjaxCore {
 
 	public DeleteMeeting() {
 		logger.info("New "+ DeleteMeeting.class.getCanonicalName());

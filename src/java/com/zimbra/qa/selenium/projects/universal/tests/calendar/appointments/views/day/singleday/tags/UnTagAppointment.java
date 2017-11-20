@@ -24,9 +24,9 @@ import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCore;
 
-public class UnTagAppointment extends UniversalCommonTest {
+public class UnTagAppointment extends UniversalCore {
 
 	public UnTagAppointment() {
 		logger.info("New "+ UnTagAppointment.class.getCanonicalName());

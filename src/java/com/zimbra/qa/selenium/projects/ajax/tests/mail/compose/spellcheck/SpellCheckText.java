@@ -20,11 +20,11 @@ import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
-import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew.Field;
+import com.zimbra.qa.selenium.projects.ajax.core.SetGroupMailByMessagePreference;
+import com.zimbra.qa.selenium.projects.ajax.pages.mail.FormMailNew;
+import com.zimbra.qa.selenium.projects.ajax.pages.mail.FormMailNew.Field;
 
-public class SpellCheckText extends PrefGroupMailByMessageTest {
+public class SpellCheckText extends SetGroupMailByMessagePreference {
 
 	public SpellCheckText() {
 		logger.info("New "+ SpellCheckText.class.getCanonicalName());

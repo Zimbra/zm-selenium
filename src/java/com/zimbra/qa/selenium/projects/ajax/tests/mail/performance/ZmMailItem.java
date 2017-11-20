@@ -27,7 +27,7 @@ import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.*;
 
-public class ZmMailItem extends AjaxCommonTest {
+public class ZmMailItem extends AjaxCore {
 
 	@SuppressWarnings("serial")
 	public ZmMailItem() throws HarnessException {

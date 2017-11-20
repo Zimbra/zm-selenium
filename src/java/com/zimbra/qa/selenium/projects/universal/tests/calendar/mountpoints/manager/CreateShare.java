@@ -20,11 +20,11 @@ import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.CalendarWorkWeekTest;
-import com.zimbra.qa.selenium.projects.universal.ui.DialogShare;
-import com.zimbra.qa.selenium.projects.universal.ui.DialogShare.ShareRole;
+import com.zimbra.qa.selenium.projects.universal.core.CalendarWorkWeekPreference;
+import com.zimbra.qa.selenium.projects.universal.pages.DialogShare;
+import com.zimbra.qa.selenium.projects.universal.pages.DialogShare.ShareRole;
 
-public class CreateShare extends CalendarWorkWeekTest  {
+public class CreateShare extends CalendarWorkWeekPreference  {
 
 	public CreateShare() {
 		logger.info("New "+ CreateShare.class.getCanonicalName());

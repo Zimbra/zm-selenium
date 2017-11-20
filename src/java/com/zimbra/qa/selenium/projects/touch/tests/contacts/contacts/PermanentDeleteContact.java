@@ -20,9 +20,9 @@ import org.testng.annotations.*;
 import com.zimbra.qa.selenium.framework.items.ContactItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.touch.core.TouchCommonTest;
+import com.zimbra.qa.selenium.projects.touch.core.TouchCore;
 
-public class PermanentDeleteContact extends TouchCommonTest  {
+public class PermanentDeleteContact extends TouchCore  {
 	
 	public PermanentDeleteContact() {
 		logger.info("New "+ DeleteContact.class.getCanonicalName());

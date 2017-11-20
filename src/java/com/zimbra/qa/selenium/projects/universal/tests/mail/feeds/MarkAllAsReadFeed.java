@@ -23,9 +23,9 @@ import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.PrefGroupMailByMessageTest;
+import com.zimbra.qa.selenium.projects.universal.core.SetGroupMailByMessagePreference;
 
-public class MarkAllAsReadFeed extends PrefGroupMailByMessageTest {
+public class MarkAllAsReadFeed extends SetGroupMailByMessagePreference {
 
 	public MarkAllAsReadFeed() {
 		logger.info("New "+ MarkAllAsReadFeed.class.getCanonicalName());

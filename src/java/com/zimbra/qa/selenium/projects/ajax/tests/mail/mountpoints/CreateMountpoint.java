@@ -21,11 +21,11 @@ import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.DialogShareAccept;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail;
+import com.zimbra.qa.selenium.projects.ajax.core.SetGroupMailByMessagePreference;
+import com.zimbra.qa.selenium.projects.ajax.pages.DialogShareAccept;
+import com.zimbra.qa.selenium.projects.ajax.pages.mail.DisplayMail;
 
-public class CreateMountpoint extends PrefGroupMailByMessageTest {
+public class CreateMountpoint extends SetGroupMailByMessagePreference {
 
 	public CreateMountpoint() {
 		logger.info("New "+ CreateMountpoint.class.getCanonicalName());

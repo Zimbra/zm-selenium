@@ -27,7 +27,7 @@ import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.universal.core.*;
 
 
-public class GroupByDate extends PrefGroupMailByMessageTest {
+public class GroupByDate extends SetGroupMailByMessagePreference {
 
 	
 	public GroupByDate() {

@@ -54,8 +54,8 @@ import com.zimbra.qa.selenium.framework.core.ClientSessionFactory;
 import com.zimbra.qa.selenium.framework.core.ExecuteHarnessMain;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
-import com.zimbra.qa.selenium.projects.admin.ui.PageLogin;
-import com.zimbra.qa.selenium.projects.admin.ui.PageMain;
+import com.zimbra.qa.selenium.projects.admin.pages.PageLogin;
+import com.zimbra.qa.selenium.projects.admin.pages.PageMain;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import org.openqa.selenium.interactions.Mouse;
 import org.openqa.selenium.interactions.HasInputDevices;
@@ -831,19 +831,19 @@ public abstract class AbsSeleniumObject {
 
 			if (ConfigProperties.getStringProperty("server.host").contains("zimbra.com")) {
 				zWaitTillElementPresent(
-						com.zimbra.qa.selenium.projects.ajax.ui.mail.PageMail.Locators.zMailZimletsPane);
+						com.zimbra.qa.selenium.projects.ajax.pages.mail.PageMail.Locators.zMailZimletsPane);
 			} else {
-				zWaitTillElementPresent(com.zimbra.qa.selenium.projects.ajax.ui.mail.PageMail.Locators.zMailTagsPane);
+				zWaitTillElementPresent(com.zimbra.qa.selenium.projects.ajax.pages.mail.PageMail.Locators.zMailTagsPane);
 			}
 
 		} else if (ConfigProperties.getAppType().toString().equals("UNIVERSAL")) {
 
 			if (ConfigProperties.getStringProperty("server.host").contains("zimbra.com")) {
 				zWaitTillElementPresent(
-						com.zimbra.qa.selenium.projects.universal.ui.mail.PageMail.Locators.zMailZimletsPane);
+						com.zimbra.qa.selenium.projects.universal.pages.mail.PageMail.Locators.zMailZimletsPane);
 			} else {
 				zWaitTillElementPresent(
-						com.zimbra.qa.selenium.projects.universal.ui.mail.PageMail.Locators.zMailTagsPane);
+						com.zimbra.qa.selenium.projects.universal.pages.mail.PageMail.Locators.zMailTagsPane);
 			}
 
 		} else if (ConfigProperties.getAppType().name().equals("ADMIN")) {

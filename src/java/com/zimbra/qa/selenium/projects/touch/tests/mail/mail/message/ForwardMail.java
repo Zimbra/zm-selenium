@@ -24,10 +24,10 @@ import com.zimbra.qa.selenium.framework.items.RecipientItem;
 import com.zimbra.qa.selenium.framework.items.RecipientItem.RecipientType;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.touch.core.PrefGroupMailByConversationTest;
-import com.zimbra.qa.selenium.projects.touch.ui.mail.FormMailNew;
+import com.zimbra.qa.selenium.projects.touch.core.SetGroupMailByConversationPreference;
+import com.zimbra.qa.selenium.projects.touch.pages.mail.FormMailNew;
 
-public class ForwardMail extends PrefGroupMailByConversationTest {
+public class ForwardMail extends SetGroupMailByConversationPreference {
 
 	public ForwardMail() {
 		logger.info("New "+ ForwardMail.class.getCanonicalName());

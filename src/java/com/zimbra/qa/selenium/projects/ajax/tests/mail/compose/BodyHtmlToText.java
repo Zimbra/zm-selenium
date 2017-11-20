@@ -20,11 +20,11 @@ import org.testng.annotations.*;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.DialogWarning;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
+import com.zimbra.qa.selenium.projects.ajax.core.SetGroupMailByMessagePreference;
+import com.zimbra.qa.selenium.projects.ajax.pages.DialogWarning;
+import com.zimbra.qa.selenium.projects.ajax.pages.mail.FormMailNew;
 
-public class BodyHtmlToText extends PrefGroupMailByMessageTest {
+public class BodyHtmlToText extends SetGroupMailByMessagePreference {
 
 	public BodyHtmlToText() {
 		logger.info("New " + BodyHtmlToText.class.getCanonicalName());

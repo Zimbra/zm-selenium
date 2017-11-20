@@ -30,7 +30,7 @@ import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.universal.core.*;
 
-public class OpenInTabSharedMailFolders extends PrefGroupMailByMessageTest {
+public class OpenInTabSharedMailFolders extends SetGroupMailByMessagePreference {
 
 	public OpenInTabSharedMailFolders() {
 		logger.info("New "+ OpenInTabMailFolder.class.getCanonicalName());

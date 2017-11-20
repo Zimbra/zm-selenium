@@ -22,11 +22,11 @@ import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.ContactItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
-import com.zimbra.qa.selenium.projects.universal.ui.mail.*;
-import com.zimbra.qa.selenium.projects.universal.ui.mail.FormMailNew.Field;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCore;
+import com.zimbra.qa.selenium.projects.universal.pages.mail.*;
+import com.zimbra.qa.selenium.projects.universal.pages.mail.FormMailNew.Field;
 
-public class ForwardContact extends UniversalCommonTest  {
+public class ForwardContact extends UniversalCore  {
 	public ForwardContact() {
 		logger.info("New "+ ForwardContact.class.getCanonicalName());
 		super.startingPage = app.zPageContacts;

@@ -22,9 +22,9 @@ import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.items.MailItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.touch.core.PrefGroupMailByConversationTest;
+import com.zimbra.qa.selenium.projects.touch.core.SetGroupMailByConversationPreference;
 
-public class UnFlagMail extends PrefGroupMailByConversationTest {
+public class UnFlagMail extends SetGroupMailByConversationPreference {
 
 	public UnFlagMail() {
 		logger.info("New "+ UnFlagMail.class.getCanonicalName());

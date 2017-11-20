@@ -21,10 +21,10 @@ import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.DialogError;
+import com.zimbra.qa.selenium.projects.ajax.core.SetGroupMailByMessagePreference;
+import com.zimbra.qa.selenium.projects.ajax.pages.DialogError;
 
-public class DeleteMail extends PrefGroupMailByMessageTest {
+public class DeleteMail extends SetGroupMailByMessagePreference {
 
 	public DeleteMail() {
 		logger.info("New "+ DeleteMail.class.getCanonicalName());

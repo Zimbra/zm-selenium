@@ -23,7 +23,7 @@ import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.*;
 
-public class ArchiveZimletByMessageTest extends PrefGroupMailByMessageTest {
+public class ArchiveZimletByMessageTest extends SetGroupMailByMessagePreference {
 
 	protected FolderItem MyArchiveFolder = null;
 

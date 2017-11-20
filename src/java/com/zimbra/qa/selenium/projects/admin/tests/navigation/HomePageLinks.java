@@ -20,16 +20,16 @@ import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
-import com.zimbra.qa.selenium.projects.admin.core.AdminCommonTest;
-import com.zimbra.qa.selenium.projects.admin.ui.PageMain.Locators;
-import com.zimbra.qa.selenium.projects.admin.ui.WizardConfigureAuthentication;
-import com.zimbra.qa.selenium.projects.admin.ui.WizardConfigureGAL;
-import com.zimbra.qa.selenium.projects.admin.ui.WizardCreateAccount;
-import com.zimbra.qa.selenium.projects.admin.ui.WizardCreateDomain;
-import com.zimbra.qa.selenium.projects.admin.ui.WizardInstallCertificate;
-import com.zimbra.qa.selenium.projects.admin.ui.WizardMigrationCoexistance;
+import com.zimbra.qa.selenium.projects.admin.core.AdminCore;
+import com.zimbra.qa.selenium.projects.admin.pages.PageMain.Locators;
+import com.zimbra.qa.selenium.projects.admin.pages.WizardConfigureAuthentication;
+import com.zimbra.qa.selenium.projects.admin.pages.WizardConfigureGAL;
+import com.zimbra.qa.selenium.projects.admin.pages.WizardCreateAccount;
+import com.zimbra.qa.selenium.projects.admin.pages.WizardCreateDomain;
+import com.zimbra.qa.selenium.projects.admin.pages.WizardInstallCertificate;
+import com.zimbra.qa.selenium.projects.admin.pages.WizardMigrationCoexistance;
 
-public class HomePageLinks extends AdminCommonTest {
+public class HomePageLinks extends AdminCore {
 
 	public HomePageLinks() {
 		logger.info("New " + HomePageLinks.class.getCanonicalName());

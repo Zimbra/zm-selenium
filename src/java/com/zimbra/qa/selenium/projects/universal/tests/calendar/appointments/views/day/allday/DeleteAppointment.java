@@ -27,10 +27,10 @@ import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
-import com.zimbra.qa.selenium.projects.universal.ui.calendar.*;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCore;
+import com.zimbra.qa.selenium.projects.universal.pages.calendar.*;
 
-public class DeleteAppointment extends UniversalCommonTest {
+public class DeleteAppointment extends UniversalCore {
 
 	public DeleteAppointment() {
 		logger.info("New "+ DeleteAppointment.class.getCanonicalName());

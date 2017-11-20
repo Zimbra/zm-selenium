@@ -25,11 +25,11 @@ import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
-import com.zimbra.qa.selenium.projects.universal.ui.contacts.*;
-import com.zimbra.qa.selenium.projects.universal.ui.contacts.FormContactGroupNew.Field;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCore;
+import com.zimbra.qa.selenium.projects.universal.pages.contacts.*;
+import com.zimbra.qa.selenium.projects.universal.pages.contacts.FormContactGroupNew.Field;
 
-public class CreateContactGroup extends UniversalCommonTest  {
+public class CreateContactGroup extends UniversalCore  {
 
 	public CreateContactGroup() {
 		logger.info("New "+ CreateContactGroup.class.getCanonicalName());

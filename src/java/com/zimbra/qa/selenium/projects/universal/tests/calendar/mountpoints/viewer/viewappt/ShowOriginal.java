@@ -21,10 +21,10 @@ import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.CalendarWorkWeekTest;
-import com.zimbra.qa.selenium.projects.universal.ui.SeparateWindow;
+import com.zimbra.qa.selenium.projects.universal.core.CalendarWorkWeekPreference;
+import com.zimbra.qa.selenium.projects.universal.pages.SeparateWindow;
 
-public class ShowOriginal extends CalendarWorkWeekTest {
+public class ShowOriginal extends CalendarWorkWeekPreference {
 
 	public ShowOriginal() {
 		logger.info("New "+ ShowOriginal.class.getCanonicalName());

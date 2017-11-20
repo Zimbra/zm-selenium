@@ -22,10 +22,10 @@ import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
+import com.zimbra.qa.selenium.projects.ajax.pages.calendar.FormApptNew;
 
-public class SuggestALocation extends AjaxCommonTest {
+public class SuggestALocation extends AjaxCore {
 
 	public SuggestALocation() {
 		logger.info("New "+ SuggestALocation.class.getCanonicalName());

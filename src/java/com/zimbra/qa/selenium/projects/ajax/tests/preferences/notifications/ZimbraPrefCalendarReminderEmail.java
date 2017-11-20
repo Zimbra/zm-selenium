@@ -22,10 +22,10 @@ import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.preferences.TreePreferences.TreeItem;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
+import com.zimbra.qa.selenium.projects.ajax.pages.preferences.TreePreferences.TreeItem;
 
-public class ZimbraPrefCalendarReminderEmail extends AjaxCommonTest {
+public class ZimbraPrefCalendarReminderEmail extends AjaxCore {
 
 	public ZimbraPrefCalendarReminderEmail() {
 		super.startingPage = app.zPagePreferences;

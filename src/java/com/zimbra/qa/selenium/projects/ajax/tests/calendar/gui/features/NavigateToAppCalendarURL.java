@@ -28,9 +28,9 @@ import com.zimbra.qa.selenium.framework.util.ZTimeZone;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.framework.util.ZimbraURI;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
 
-public class NavigateToAppCalendarURL extends AjaxCommonTest {
+public class NavigateToAppCalendarURL extends AjaxCore {
 
 	public NavigateToAppCalendarURL() {
 		logger.info("New " + NavigateToAppCalendarURL.class.getCanonicalName());
@@ -38,7 +38,7 @@ public class NavigateToAppCalendarURL extends AjaxCommonTest {
 	}
 
 
-	@Bugs (ids = "96868,62137")
+	@Bugs (ids = "96868")
 	@Test (description = "Bug 62137 - 'http://<server>?app=calendar' broken with/without login to zcs",
 			groups = { "smoke", "L1" })
 
@@ -93,6 +93,5 @@ public class NavigateToAppCalendarURL extends AjaxCommonTest {
 		}
 
 		ZAssert.assertTrue(found, "Verify appt gets displayed in work week view");
-
 	}
 }

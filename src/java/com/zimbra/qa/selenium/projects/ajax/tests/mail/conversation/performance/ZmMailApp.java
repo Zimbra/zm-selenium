@@ -21,10 +21,10 @@ import java.util.HashMap;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.framework.util.performance.*;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.PageLogin.Locators;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
+import com.zimbra.qa.selenium.projects.ajax.pages.PageLogin.Locators;
 
-public class ZmMailApp extends AjaxCommonTest {
+public class ZmMailApp extends AjaxCore {
 
 	public ZmMailApp() {
 		logger.info("New "+ ZmMailApp.class.getCanonicalName());

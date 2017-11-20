@@ -22,12 +22,12 @@ import org.testng.annotations.*;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew.Field;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.PageMail.Locators;
+import com.zimbra.qa.selenium.projects.ajax.core.SetGroupMailByMessagePreference;
+import com.zimbra.qa.selenium.projects.ajax.pages.mail.DisplayMail;
+import com.zimbra.qa.selenium.projects.ajax.pages.mail.FormMailNew.Field;
+import com.zimbra.qa.selenium.projects.ajax.pages.mail.PageMail.Locators;
 
-public class NewEmail extends PrefGroupMailByMessageTest {
+public class NewEmail extends SetGroupMailByMessagePreference {
 
 	public NewEmail() {
 		logger.info("New " + NewEmail.class.getCanonicalName());
@@ -63,7 +63,7 @@ public class NewEmail extends PrefGroupMailByMessageTest {
 
 		// Select the message so that it shows in the reading pane
 		DisplayMail actual = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, mail.dSubject);
-		ZAssert.assertEquals(actual.zGetMailProperty(com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail.Field.From), ZimbraAccount.AccountA().EmailAddress, "Verify the From matches");
+		ZAssert.assertEquals(actual.zGetMailProperty(com.zimbra.qa.selenium.projects.ajax.pages.mail.DisplayMail.Field.From), ZimbraAccount.AccountA().EmailAddress, "Verify the From matches");
 
 		app.zPageMail.zRightClickAddressBubble(Field.From);
 		app.zPageMail.NewEmailMsgHdrContextMenu();

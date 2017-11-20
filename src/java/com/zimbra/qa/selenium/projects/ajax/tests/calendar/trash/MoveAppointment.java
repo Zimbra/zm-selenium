@@ -29,9 +29,9 @@ import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZDate;
 import com.zimbra.qa.selenium.framework.util.ZTimeZone;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
 
-public class MoveAppointment extends AjaxCommonTest {
+public class MoveAppointment extends AjaxCore {
 
 	public MoveAppointment() {
 		logger.info("New "+ MoveAppointment.class.getCanonicalName());

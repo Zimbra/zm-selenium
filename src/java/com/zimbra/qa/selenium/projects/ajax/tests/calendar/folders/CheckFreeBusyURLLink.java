@@ -21,10 +21,10 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.PageCalendar.Locators;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
+import com.zimbra.qa.selenium.projects.ajax.pages.calendar.PageCalendar.Locators;
 
-public class CheckFreeBusyURLLink extends AjaxCommonTest {
+public class CheckFreeBusyURLLink extends AjaxCore {
 
 	public CheckFreeBusyURLLink() {
 		logger.info("New "+ CheckFreeBusyURLLink.class.getCanonicalName());

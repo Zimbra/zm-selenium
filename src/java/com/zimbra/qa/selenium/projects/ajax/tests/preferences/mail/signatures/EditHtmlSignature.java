@@ -25,13 +25,13 @@ import com.zimbra.qa.selenium.framework.util.XmlStringUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.preferences.TreePreferences.TreeItem;
-import com.zimbra.qa.selenium.projects.ajax.ui.preferences.signature.FormSignatureNew;
-import com.zimbra.qa.selenium.projects.ajax.ui.preferences.signature.PageSignature;
-import com.zimbra.qa.selenium.projects.ajax.ui.preferences.signature.FormSignatureNew.Field;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
+import com.zimbra.qa.selenium.projects.ajax.pages.preferences.TreePreferences.TreeItem;
+import com.zimbra.qa.selenium.projects.ajax.pages.preferences.signature.FormSignatureNew;
+import com.zimbra.qa.selenium.projects.ajax.pages.preferences.signature.PageSignature;
+import com.zimbra.qa.selenium.projects.ajax.pages.preferences.signature.FormSignatureNew.Field;
 
-public class EditHtmlSignature extends AjaxCommonTest {
+public class EditHtmlSignature extends AjaxCore {
 	String sigName = "signame " + ConfigProperties.getUniqueString();
 	String bodyHTML = "text <strong>bold" + ConfigProperties.getUniqueString() + " </strong>text";
 	String contentHTML = XmlStringUtil.escapeXml("<html>" + "<head></head>" + "<body>" + bodyHTML + "</body>" + "</html>");

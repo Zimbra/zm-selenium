@@ -23,11 +23,11 @@ import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.PrefGroupMailByMessageTest;
-import com.zimbra.qa.selenium.projects.universal.ui.mail.SeparateWindowDisplayMail;
+import com.zimbra.qa.selenium.projects.universal.core.SetGroupMailByMessagePreference;
+import com.zimbra.qa.selenium.projects.universal.pages.mail.SeparateWindowDisplayMail;
 
 
-public class DeleteMail extends PrefGroupMailByMessageTest {
+public class DeleteMail extends SetGroupMailByMessagePreference {
 	protected static Logger logger = LogManager.getLogger(DeleteMail.class);
 
 	public DeleteMail() throws HarnessException {

@@ -22,9 +22,9 @@ import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
+import com.zimbra.qa.selenium.projects.ajax.core.SetGroupMailByMessagePreference;
 
-public class SortBySubject extends PrefGroupMailByMessageTest {
+public class SortBySubject extends SetGroupMailByMessagePreference {
 
 	public SortBySubject() {
 		logger.info("New "+ SortBySubject.class.getCanonicalName());

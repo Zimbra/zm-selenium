@@ -22,10 +22,10 @@ import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByConversationTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.DialogWarning;
+import com.zimbra.qa.selenium.projects.ajax.core.SetGroupMailByConversationPreference;
+import com.zimbra.qa.selenium.projects.ajax.pages.DialogWarning;
 
-public class HardDeleteConversation extends PrefGroupMailByConversationTest {
+public class HardDeleteConversation extends SetGroupMailByConversationPreference {
 
 	public HardDeleteConversation() {
 		logger.info("New "+ HardDeleteConversation.class.getCanonicalName());
@@ -63,7 +63,7 @@ public class HardDeleteConversation extends PrefGroupMailByConversationTest {
 	}
 
 
-	@Bugs (ids = "53564")
+	@Bugs (ids = "ZCS-3672")
 	@Test (description = "Hard-delete multiple messages (3) by selecting and typing 'shift-del' shortcut",
 			groups = { "functional", "L2" })
 

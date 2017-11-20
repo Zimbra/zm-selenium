@@ -20,10 +20,10 @@ import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.DialogShare;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
+import com.zimbra.qa.selenium.projects.ajax.pages.DialogShare;
 
-public class CreateShare extends AjaxCommonTest  {
+public class CreateShare extends AjaxCore  {
 
 	public CreateShare() {
 		logger.info("New "+ CreateShare.class.getCanonicalName());

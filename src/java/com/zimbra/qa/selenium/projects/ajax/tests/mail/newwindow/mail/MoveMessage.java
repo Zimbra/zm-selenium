@@ -27,20 +27,20 @@ import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
-import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.AppAjaxClient;
-import com.zimbra.qa.selenium.projects.ajax.ui.DialogMove;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.DialogCreateFolder;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.SeparateWindowDisplayMail;
+import com.zimbra.qa.selenium.projects.ajax.core.SetGroupMailByMessagePreference;
+import com.zimbra.qa.selenium.projects.ajax.pages.AjaxPages;
+import com.zimbra.qa.selenium.projects.ajax.pages.DialogMove;
+import com.zimbra.qa.selenium.projects.ajax.pages.mail.DialogCreateFolder;
+import com.zimbra.qa.selenium.projects.ajax.pages.mail.SeparateWindowDisplayMail;
 
-public class MoveMessage extends PrefGroupMailByMessageTest {
+public class MoveMessage extends SetGroupMailByMessagePreference {
 
 	@AfterMethod( groups = { "always" } )
 	public void afterMethod() throws HarnessException {
 		logger.info("Checking for the Move Dialog ...");
 
 		// Check if the "Move Dialog is still open
-		DialogMove dialog = new DialogMove(app, ((AppAjaxClient) app).zPageMail);
+		DialogMove dialog = new DialogMove(app, ((AjaxPages) app).zPageMail);
 		if (dialog.zIsActive()) {
 			logger.warn(dialog.myPageName()
 					+ " was still active.  Cancelling ...");

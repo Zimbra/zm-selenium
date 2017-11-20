@@ -28,12 +28,12 @@ import com.zimbra.qa.selenium.framework.util.ZDate;
 import com.zimbra.qa.selenium.framework.util.ZTimeZone;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.universal.core.CalendarWorkWeekTest;
-import com.zimbra.qa.selenium.projects.universal.ui.calendar.DialogSendUpdatetoAttendees;
-import com.zimbra.qa.selenium.projects.universal.ui.calendar.FormApptNew;
-import com.zimbra.qa.selenium.projects.universal.ui.calendar.DialogConfirmModification;
+import com.zimbra.qa.selenium.projects.universal.core.CalendarWorkWeekPreference;
+import com.zimbra.qa.selenium.projects.universal.pages.calendar.DialogSendUpdatetoAttendees;
+import com.zimbra.qa.selenium.projects.universal.pages.calendar.FormApptNew;
+import com.zimbra.qa.selenium.projects.universal.pages.calendar.DialogConfirmModification;
 
-public class CloseModifiedAppointment extends CalendarWorkWeekTest {
+public class CloseModifiedAppointment extends CalendarWorkWeekPreference {
 	
 	public CloseModifiedAppointment() {
 		logger.info("New " + CloseModifiedAppointment.class.getCanonicalName());

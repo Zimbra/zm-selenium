@@ -26,10 +26,10 @@ import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
-import com.zimbra.qa.selenium.projects.ajax.core.FeatureBriefcaseTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.briefcase.DialogFindShares;
+import com.zimbra.qa.selenium.projects.ajax.core.EnableBriefcaseFeature;
+import com.zimbra.qa.selenium.projects.ajax.pages.briefcase.DialogFindShares;
 
-public class FindSharesWithFeatureDisabled extends FeatureBriefcaseTest {
+public class FindSharesWithFeatureDisabled extends EnableBriefcaseFeature {
 
 	public FindSharesWithFeatureDisabled() {
 		logger.info("New " + FindSharesWithFeatureDisabled.class.getCanonicalName());

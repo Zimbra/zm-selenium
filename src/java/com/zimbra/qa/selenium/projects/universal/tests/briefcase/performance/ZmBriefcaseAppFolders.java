@@ -26,7 +26,7 @@ import com.zimbra.qa.selenium.projects.universal.core.*;
 
 
 
-public class ZmBriefcaseAppFolders extends FeatureBriefcaseTest {
+public class ZmBriefcaseAppFolders extends EnableBriefcaseFeature {
 
 	public ZmBriefcaseAppFolders() {
 		logger.info("New "+ ZmBriefcaseAppFolders.class.getCanonicalName());

@@ -20,11 +20,11 @@ import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.PrefGroupMailByMessageTest;
-import com.zimbra.qa.selenium.projects.universal.ui.mail.*;
-import com.zimbra.qa.selenium.projects.universal.ui.mail.DisplayMail.Field;
+import com.zimbra.qa.selenium.projects.universal.core.SetGroupMailByMessagePreference;
+import com.zimbra.qa.selenium.projects.universal.pages.mail.*;
+import com.zimbra.qa.selenium.projects.universal.pages.mail.DisplayMail.Field;
 
-public class ReceiveReadReceipt extends PrefGroupMailByMessageTest {
+public class ReceiveReadReceipt extends SetGroupMailByMessagePreference {
 
 	public ReceiveReadReceipt() {
 		logger.info("New "+ ReceiveReadReceipt.class.getCanonicalName());

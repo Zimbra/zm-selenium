@@ -32,12 +32,12 @@ import com.zimbra.qa.selenium.framework.util.OperatingSystem;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
-import com.zimbra.qa.selenium.projects.universal.core.PrefGroupMailByMessageTest;
-import com.zimbra.qa.selenium.projects.universal.ui.preferences.PagePreferences.Locators;
-import com.zimbra.qa.selenium.projects.universal.ui.preferences.TreePreferences.TreeItem;
+import com.zimbra.qa.selenium.projects.universal.core.SetGroupMailByMessagePreference;
+import com.zimbra.qa.selenium.projects.universal.pages.preferences.PagePreferences.Locators;
+import com.zimbra.qa.selenium.projects.universal.pages.preferences.TreePreferences.TreeItem;
 
 
-public class SortByDateGroupByDateAscending extends PrefGroupMailByMessageTest {
+public class SortByDateGroupByDateAscending extends SetGroupMailByMessagePreference {
 
 
 	public SortByDateGroupByDateAscending() {

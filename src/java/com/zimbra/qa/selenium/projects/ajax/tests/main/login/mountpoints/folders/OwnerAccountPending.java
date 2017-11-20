@@ -20,9 +20,9 @@ import org.testng.annotations.*;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
 
-public class OwnerAccountPending extends AjaxCommonTest {
+public class OwnerAccountPending extends AjaxCore {
 
 	protected ZimbraAccount Owner = null;
 

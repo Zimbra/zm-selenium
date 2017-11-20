@@ -25,7 +25,7 @@ import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.*;
 
-public class DragAndDropAppointment extends AjaxCommonTest {
+public class DragAndDropAppointment extends AjaxCore {
 
 	public DragAndDropAppointment() {
 		logger.info("New "+ DragAndDropAppointment.class.getCanonicalName());

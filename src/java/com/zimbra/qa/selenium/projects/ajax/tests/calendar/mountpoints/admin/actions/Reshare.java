@@ -22,11 +22,11 @@ import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.DialogShare;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
+import com.zimbra.qa.selenium.projects.ajax.pages.DialogShare;
+import com.zimbra.qa.selenium.projects.ajax.pages.mail.DisplayMail;
 
-public class Reshare extends AjaxCommonTest {
+public class Reshare extends AjaxCore {
 
 	public Reshare() {
 		logger.info("New "+ Reshare.class.getCanonicalName());

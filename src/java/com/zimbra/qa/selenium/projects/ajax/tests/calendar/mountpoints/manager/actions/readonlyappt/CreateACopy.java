@@ -22,12 +22,12 @@ import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.DialogInformational;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew.Field;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
+import com.zimbra.qa.selenium.projects.ajax.pages.DialogInformational;
+import com.zimbra.qa.selenium.projects.ajax.pages.calendar.FormApptNew;
+import com.zimbra.qa.selenium.projects.ajax.pages.calendar.FormApptNew.Field;
 
-public class CreateACopy extends AjaxCommonTest {
+public class CreateACopy extends AjaxCore {
 
 	public CreateACopy() {
 		logger.info("New "+ CreateACopy.class.getCanonicalName());

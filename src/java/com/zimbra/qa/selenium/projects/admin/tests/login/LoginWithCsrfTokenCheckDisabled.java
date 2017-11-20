@@ -22,9 +22,9 @@ import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.admin.core.AdminCommonTest;
+import com.zimbra.qa.selenium.projects.admin.core.AdminCore;
 
-public class LoginWithCsrfTokenCheckDisabled extends AdminCommonTest {
+public class LoginWithCsrfTokenCheckDisabled extends AdminCore {
 
 	public LoginWithCsrfTokenCheckDisabled() {
 		logger.info("New "+ LoginWithCsrfTokenCheckDisabled.class.getCanonicalName());

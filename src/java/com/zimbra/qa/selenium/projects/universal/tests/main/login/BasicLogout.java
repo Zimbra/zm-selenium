@@ -20,9 +20,9 @@ import org.testng.annotations.Test;
 
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
-import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCore;
 
-public class BasicLogout extends UniversalCommonTest {
+public class BasicLogout extends UniversalCore {
 	
 	public BasicLogout() {
 		logger.info("New "+ BasicLogout.class.getCanonicalName());

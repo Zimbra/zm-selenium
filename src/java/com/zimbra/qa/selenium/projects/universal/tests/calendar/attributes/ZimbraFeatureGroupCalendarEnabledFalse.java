@@ -32,11 +32,11 @@ import com.zimbra.qa.selenium.framework.util.ZTimeZone;
 import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
 import com.zimbra.qa.selenium.framework.util.ZimbraResource;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.universal.core.CalendarWorkWeekTest;
-import com.zimbra.qa.selenium.projects.universal.ui.calendar.FormApptNew;
-import com.zimbra.qa.selenium.projects.universal.ui.calendar.FormApptNew.Field;
+import com.zimbra.qa.selenium.projects.universal.core.CalendarWorkWeekPreference;
+import com.zimbra.qa.selenium.projects.universal.pages.calendar.FormApptNew;
+import com.zimbra.qa.selenium.projects.universal.pages.calendar.FormApptNew.Field;
 
-public class ZimbraFeatureGroupCalendarEnabledFalse extends CalendarWorkWeekTest {
+public class ZimbraFeatureGroupCalendarEnabledFalse extends CalendarWorkWeekPreference {
 
 	public ZimbraFeatureGroupCalendarEnabledFalse() {
 		logger.info("New "+ ZimbraFeatureGroupCalendarEnabledFalse.class.getCanonicalName());

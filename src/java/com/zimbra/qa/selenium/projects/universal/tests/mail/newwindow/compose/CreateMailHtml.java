@@ -21,10 +21,10 @@ import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.PrefGroupMailByMessageTest;
-import com.zimbra.qa.selenium.projects.universal.ui.mail.SeparateWindowFormMailNew;
+import com.zimbra.qa.selenium.projects.universal.core.SetGroupMailByMessagePreference;
+import com.zimbra.qa.selenium.projects.universal.pages.mail.SeparateWindowFormMailNew;
 
-public class CreateMailHtml extends PrefGroupMailByMessageTest {
+public class CreateMailHtml extends SetGroupMailByMessagePreference {
 
 	public CreateMailHtml() {
 		logger.info("New " + CreateMailHtml.class.getCanonicalName());

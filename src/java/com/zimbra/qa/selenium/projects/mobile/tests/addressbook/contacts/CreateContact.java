@@ -25,11 +25,11 @@ import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.mobile.core.MobileCommonTest;
-import com.zimbra.qa.selenium.projects.mobile.ui.FormContactNew;
+import com.zimbra.qa.selenium.projects.mobile.core.MobileCore;
+import com.zimbra.qa.selenium.projects.mobile.pages.FormContactNew;
 
 
-public class CreateContact extends MobileCommonTest {
+public class CreateContact extends MobileCore {
 
 	public CreateContact() {
 		logger.info("New "+ CreateContact.class.getCanonicalName());

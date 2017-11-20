@@ -22,7 +22,7 @@ import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.*;
 
-public class Close extends AjaxCommonTest {
+public class Close extends AjaxCore {
 
 	public Close() {
 		logger.info("New "+ Close.class.getCanonicalName());

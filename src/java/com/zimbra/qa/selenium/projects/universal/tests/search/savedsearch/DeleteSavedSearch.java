@@ -25,11 +25,11 @@ import com.zimbra.qa.selenium.framework.items.SavedSearchFolderItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCore;
 
 //TODO: add more in ContactItem.java
 
-public class DeleteSavedSearch extends UniversalCommonTest  {
+public class DeleteSavedSearch extends UniversalCore  {
 
 	public DeleteSavedSearch() {
 		logger.info("New "+ DeleteSavedSearch.class.getCanonicalName());

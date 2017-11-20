@@ -24,12 +24,12 @@ import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.AppAjaxClient;
-import com.zimbra.qa.selenium.projects.ajax.ui.DialogMove;
-import com.zimbra.qa.selenium.projects.ajax.ui.tasks.DialogCreateTaskFolder;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
+import com.zimbra.qa.selenium.projects.ajax.pages.AjaxPages;
+import com.zimbra.qa.selenium.projects.ajax.pages.DialogMove;
+import com.zimbra.qa.selenium.projects.ajax.pages.tasks.DialogCreateTaskFolder;
 
-public class MoveTask extends AjaxCommonTest {
+public class MoveTask extends AjaxCore {
 
 	@SuppressWarnings("serial")
 	public MoveTask() {
@@ -372,7 +372,7 @@ public class MoveTask extends AjaxCommonTest {
 		logger.info("Checking for the Move Dialog ...");
 
 		// Check if the "Move Dialog is still open
-		DialogMove dialog = new DialogMove(app, ((AppAjaxClient)app).zPageTasks);
+		DialogMove dialog = new DialogMove(app, ((AjaxPages)app).zPageTasks);
 		if (dialog.zIsActive()) {
 			logger.warn(dialog.myPageName()
 					+ " was still active.  Cancelling ...");

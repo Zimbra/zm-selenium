@@ -20,10 +20,10 @@ import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.contacts.DialogCreateFolder;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
+import com.zimbra.qa.selenium.projects.ajax.pages.contacts.DialogCreateFolder;
 
-public class CreateFolder extends AjaxCommonTest {
+public class CreateFolder extends AjaxCore {
 
 	public CreateFolder() {
 		logger.info("New " + CreateFolder.class.getCanonicalName());

@@ -17,10 +17,10 @@
 package com.zimbra.qa.selenium.projects.touch.tests.contacts.contacts;
 import org.testng.annotations.Test;import com.zimbra.qa.selenium.framework.core.Bugs;import com.zimbra.qa.selenium.framework.items.ContactItem;import com.zimbra.qa.selenium.framework.items.FolderItem;import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.touch.ui.contacts.FormContactNew;
-import com.zimbra.qa.selenium.projects.touch.ui.contacts.FormContactNew.Field;
-import com.zimbra.qa.selenium.projects.touch.core.TouchCommonTest;import com.zimbra.qa.selenium.projects.touch.ui.contacts.PageAddressbook.Locators;
-public class CreateContact extends TouchCommonTest  {	
+import com.zimbra.qa.selenium.projects.touch.pages.contacts.FormContactNew;
+import com.zimbra.qa.selenium.projects.touch.pages.contacts.FormContactNew.Field;
+import com.zimbra.qa.selenium.projects.touch.core.TouchCore;import com.zimbra.qa.selenium.projects.touch.pages.contacts.PageAddressbook.Locators;
+public class CreateContact extends TouchCore  {	
 	public CreateContact() {
 		logger.info("New "+ CreateContact.class.getCanonicalName());
 		super.startingPage = app.zPageAddressbook;

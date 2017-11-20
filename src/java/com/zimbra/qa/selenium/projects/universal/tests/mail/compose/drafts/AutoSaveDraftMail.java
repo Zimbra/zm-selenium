@@ -26,11 +26,11 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.universal.core.PrefGroupMailByMessageTest;
-import com.zimbra.qa.selenium.projects.universal.ui.mail.FormMailNew;
-import com.zimbra.qa.selenium.projects.universal.ui.mail.FormMailNew.Field;
+import com.zimbra.qa.selenium.projects.universal.core.SetGroupMailByMessagePreference;
+import com.zimbra.qa.selenium.projects.universal.pages.mail.FormMailNew;
+import com.zimbra.qa.selenium.projects.universal.pages.mail.FormMailNew.Field;
 
-public class AutoSaveDraftMail extends PrefGroupMailByMessageTest {
+public class AutoSaveDraftMail extends SetGroupMailByMessagePreference {
 
 	public static final int PrefAutoSaveDraftInterval = 10; // seconds
 

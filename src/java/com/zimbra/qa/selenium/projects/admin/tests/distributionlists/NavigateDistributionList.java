@@ -19,10 +19,10 @@ package com.zimbra.qa.selenium.projects.admin.tests.distributionlists;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
-import com.zimbra.qa.selenium.projects.admin.core.AdminCommonTest;
-import com.zimbra.qa.selenium.projects.admin.ui.PageManageDistributionLists;
+import com.zimbra.qa.selenium.projects.admin.core.AdminCore;
+import com.zimbra.qa.selenium.projects.admin.pages.PageManageDistributionLists;
 
-public class NavigateDistributionList extends AdminCommonTest {
+public class NavigateDistributionList extends AdminCore {
 
 	public NavigateDistributionList() {
 		logger.info("New "+ NavigateDistributionList.class.getCanonicalName());

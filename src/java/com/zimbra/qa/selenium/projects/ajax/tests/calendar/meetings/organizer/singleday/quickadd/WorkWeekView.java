@@ -18,10 +18,10 @@ package com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.organizer.s
 
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.QuickAddAppointment;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
+import com.zimbra.qa.selenium.projects.ajax.pages.calendar.QuickAddAppointment;
 
-public class WorkWeekView extends AjaxCommonTest {
+public class WorkWeekView extends AjaxCore {
 
 	public WorkWeekView() {
 		logger.info("New "+ WorkWeekView.class.getCanonicalName());

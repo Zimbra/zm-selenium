@@ -27,11 +27,11 @@ import com.zimbra.qa.selenium.framework.util.ZDate;
 import com.zimbra.qa.selenium.framework.util.ZTimeZone;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.PageCalendar.Locators;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
+import com.zimbra.qa.selenium.projects.ajax.pages.calendar.FormApptNew;
+import com.zimbra.qa.selenium.projects.ajax.pages.calendar.PageCalendar.Locators;
 
-public class ModifyMeetingPrivateToPublic extends AjaxCommonTest {
+public class ModifyMeetingPrivateToPublic extends AjaxCore {
 
 	public ModifyMeetingPrivateToPublic() {
 		logger.info("New " + ModifyMeetingPrivateToPublic.class.getCanonicalName());

@@ -25,10 +25,10 @@ import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.PrefGroupMailByConversationTest;
-import com.zimbra.qa.selenium.projects.universal.ui.DialogWarning;
+import com.zimbra.qa.selenium.projects.universal.core.SetGroupMailByConversationPreference;
+import com.zimbra.qa.selenium.projects.universal.pages.DialogWarning;
 
-public class DeleteConversation extends PrefGroupMailByConversationTest {
+public class DeleteConversation extends SetGroupMailByConversationPreference {
 
 	public DeleteConversation() {
 		logger.info("New "+ DeleteConversation.class.getCanonicalName());

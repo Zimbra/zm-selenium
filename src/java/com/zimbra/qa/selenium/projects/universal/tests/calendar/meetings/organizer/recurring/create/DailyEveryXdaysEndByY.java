@@ -28,10 +28,10 @@ import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.items.MailItem;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.CalendarWorkWeekTest;
-import com.zimbra.qa.selenium.projects.universal.ui.calendar.FormApptNew;
+import com.zimbra.qa.selenium.projects.universal.core.CalendarWorkWeekPreference;
+import com.zimbra.qa.selenium.projects.universal.pages.calendar.FormApptNew;
 
-public class DailyEveryXdaysEndByY extends CalendarWorkWeekTest {
+public class DailyEveryXdaysEndByY extends CalendarWorkWeekPreference {
 
 	public DailyEveryXdaysEndByY() {
 		logger.info("New "+ DailyEveryXdaysEndByY.class.getCanonicalName());

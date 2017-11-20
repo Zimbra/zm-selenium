@@ -22,12 +22,12 @@ import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
-import com.zimbra.qa.selenium.projects.universal.ui.Toaster;
-import com.zimbra.qa.selenium.projects.universal.ui.contacts.FormContactNew;
-import com.zimbra.qa.selenium.projects.universal.ui.contacts.FormContactNew.Field;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCore;
+import com.zimbra.qa.selenium.projects.universal.pages.Toaster;
+import com.zimbra.qa.selenium.projects.universal.pages.contacts.FormContactNew;
+import com.zimbra.qa.selenium.projects.universal.pages.contacts.FormContactNew.Field;
 
-public class CreateContact extends UniversalCommonTest {
+public class CreateContact extends UniversalCore {
 
 	public CreateContact() {
 		logger.info("New " + CreateContact.class.getCanonicalName());

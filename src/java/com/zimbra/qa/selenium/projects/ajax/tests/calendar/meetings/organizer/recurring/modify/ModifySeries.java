@@ -26,11 +26,11 @@ import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.*;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.DialogOpenRecurringItem;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew.Field;
+import com.zimbra.qa.selenium.projects.ajax.pages.calendar.DialogOpenRecurringItem;
+import com.zimbra.qa.selenium.projects.ajax.pages.calendar.FormApptNew;
+import com.zimbra.qa.selenium.projects.ajax.pages.calendar.FormApptNew.Field;
 
-public class ModifySeries extends AjaxCommonTest {
+public class ModifySeries extends AjaxCore {
 
 	public ModifySeries() {
 		logger.info("New "+ ModifySeries.class.getCanonicalName());

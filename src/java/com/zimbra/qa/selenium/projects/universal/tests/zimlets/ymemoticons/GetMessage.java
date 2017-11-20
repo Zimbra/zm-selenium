@@ -21,11 +21,11 @@ import org.testng.annotations.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.universal.core.*;
-import com.zimbra.qa.selenium.projects.universal.ui.mail.*;
-import com.zimbra.qa.selenium.projects.universal.ui.mail.DisplayMail.*;
+import com.zimbra.qa.selenium.projects.universal.pages.mail.*;
+import com.zimbra.qa.selenium.projects.universal.pages.mail.DisplayMail.*;
 
 
-public class GetMessage extends UniversalCommonTest {
+public class GetMessage extends UniversalCore {
 
 	public static final class Emoticons {
 		public static final String HAPPY = ":)";

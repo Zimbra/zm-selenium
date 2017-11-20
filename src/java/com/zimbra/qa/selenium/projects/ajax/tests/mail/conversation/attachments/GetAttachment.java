@@ -26,9 +26,9 @@ import com.zimbra.qa.selenium.framework.util.LmtpInject;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.*;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.*;
+import com.zimbra.qa.selenium.projects.ajax.pages.mail.*;
 
-public class GetAttachment extends PrefGroupMailByConversationTest {
+public class GetAttachment extends SetGroupMailByConversationPreference {
 
 	public GetAttachment() throws HarnessException {
 		logger.info("New "+ GetAttachment.class.getCanonicalName());

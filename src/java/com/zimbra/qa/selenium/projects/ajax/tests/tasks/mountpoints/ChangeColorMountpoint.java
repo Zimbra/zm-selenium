@@ -27,11 +27,11 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.DialogEditFolder;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.DialogEditFolder.FolderColor;
+import com.zimbra.qa.selenium.projects.ajax.core.SetGroupMailByMessagePreference;
+import com.zimbra.qa.selenium.projects.ajax.pages.mail.DialogEditFolder;
+import com.zimbra.qa.selenium.projects.ajax.pages.mail.DialogEditFolder.FolderColor;
 
-public class ChangeColorMountpoint extends PrefGroupMailByMessageTest {
+public class ChangeColorMountpoint extends SetGroupMailByMessagePreference {
 
 	@SuppressWarnings("serial")
 	public ChangeColorMountpoint() {

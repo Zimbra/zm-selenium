@@ -21,10 +21,10 @@ import com.zimbra.qa.selenium.framework.items.MailItem;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
+import com.zimbra.qa.selenium.projects.ajax.pages.mail.FormMailNew;
 
-public class SendEmail extends AjaxCommonTest  {
+public class SendEmail extends AjaxCore  {
 
 	public SendEmail() {
 		logger.info("New "+ SendEmail.class.getCanonicalName());

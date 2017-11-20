@@ -22,12 +22,12 @@ import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.Toaster;
-import com.zimbra.qa.selenium.projects.ajax.ui.contacts.FormContactGroupNew;
-import com.zimbra.qa.selenium.projects.ajax.ui.contacts.FormContactGroupNew.Field;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
+import com.zimbra.qa.selenium.projects.ajax.pages.Toaster;
+import com.zimbra.qa.selenium.projects.ajax.pages.contacts.FormContactGroupNew;
+import com.zimbra.qa.selenium.projects.ajax.pages.contacts.FormContactGroupNew.Field;
 
-public class CreateContactGroup extends AjaxCommonTest {
+public class CreateContactGroup extends AjaxCore {
 
 	public CreateContactGroup() {
 		logger.info("New " + CreateContactGroup.class.getCanonicalName());

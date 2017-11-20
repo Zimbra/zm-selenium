@@ -19,9 +19,9 @@ package com.zimbra.qa.selenium.projects.touch.tests.contacts.contacts;
 import org.testng.annotations.Test;
 
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.touch.core.TouchCommonTest;
+import com.zimbra.qa.selenium.projects.touch.core.TouchCore;
 
-public class ViewContact extends TouchCommonTest  {
+public class ViewContact extends TouchCore  {
 	
 	public ViewContact() {
 		logger.info("New "+ ViewContact.class.getCanonicalName());

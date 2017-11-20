@@ -23,11 +23,11 @@ import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
-import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
-import com.zimbra.qa.selenium.projects.universal.ui.preferences.TreePreferences.TreeItem;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCore;
+import com.zimbra.qa.selenium.projects.universal.pages.preferences.TreePreferences.TreeItem;
 
 
-public class ZimbraPrefCalendarReminderEmail extends UniversalCommonTest {
+public class ZimbraPrefCalendarReminderEmail extends UniversalCore {
 
 	public ZimbraPrefCalendarReminderEmail() {
 		

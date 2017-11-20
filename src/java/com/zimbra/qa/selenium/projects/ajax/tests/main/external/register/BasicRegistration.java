@@ -21,9 +21,9 @@ import com.zimbra.common.soap.Element;
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
 
-public class BasicRegistration extends AjaxCommonTest {
+public class BasicRegistration extends AjaxCore {
 
 	public BasicRegistration() {
 		logger.info("New "+ BasicRegistration.class.getCanonicalName());

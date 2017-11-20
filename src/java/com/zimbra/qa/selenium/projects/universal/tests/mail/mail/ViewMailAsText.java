@@ -23,12 +23,12 @@ import org.testng.annotations.Test;
 
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
-import com.zimbra.qa.selenium.projects.universal.ui.mail.DisplayMail;
-import com.zimbra.qa.selenium.projects.universal.ui.mail.DisplayMail.Field;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCore;
+import com.zimbra.qa.selenium.projects.universal.pages.mail.DisplayMail;
+import com.zimbra.qa.selenium.projects.universal.pages.mail.DisplayMail.Field;
 
 
-public class ViewMailAsText extends UniversalCommonTest {
+public class ViewMailAsText extends UniversalCore {
 
 	boolean injected = false;
 	final String mimeFolder = ConfigProperties.getBaseDirectory() + "/data/public/mime/email00";

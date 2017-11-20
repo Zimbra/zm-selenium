@@ -23,11 +23,11 @@ import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
-import com.zimbra.qa.selenium.projects.admin.core.AdminCommonTest;
+import com.zimbra.qa.selenium.projects.admin.core.AdminCore;
 import com.zimbra.qa.selenium.projects.admin.items.DistributionListItem;
-import com.zimbra.qa.selenium.projects.admin.ui.WizardCreateDL;
+import com.zimbra.qa.selenium.projects.admin.pages.WizardCreateDL;
 
-public class CreateDistributionList extends AdminCommonTest {
+public class CreateDistributionList extends AdminCore {
 
 	public CreateDistributionList() {
 		logger.info("New "+ CreateDistributionList.class.getCanonicalName());

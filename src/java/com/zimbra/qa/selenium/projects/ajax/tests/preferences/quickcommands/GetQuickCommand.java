@@ -22,10 +22,10 @@ import com.zimbra.qa.selenium.framework.items.QuickCommand;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxQuickCommandTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.preferences.TreePreferences.TreeItem;
+import com.zimbra.qa.selenium.projects.ajax.core.QuickCommandSettings;
+import com.zimbra.qa.selenium.projects.ajax.pages.preferences.TreePreferences.TreeItem;
 
-public class GetQuickCommand extends AjaxQuickCommandTest {
+public class GetQuickCommand extends QuickCommandSettings {
 
 	public GetQuickCommand() {
 		super.startingPage = app.zPagePreferences;

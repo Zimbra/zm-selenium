@@ -19,11 +19,11 @@ package com.zimbra.qa.selenium.projects.ajax.tests.mail.newwindow.inlineimage;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.SeparateWindowFormMailNew;
+import com.zimbra.qa.selenium.projects.ajax.core.SetGroupMailByMessagePreference;
+import com.zimbra.qa.selenium.projects.ajax.pages.mail.FormMailNew;
+import com.zimbra.qa.selenium.projects.ajax.pages.mail.SeparateWindowFormMailNew;
 
-public class OpenComposedMsgWithAnInlineAttachmentInNewWindow extends PrefGroupMailByMessageTest {
+public class OpenComposedMsgWithAnInlineAttachmentInNewWindow extends SetGroupMailByMessagePreference {
 
 	public OpenComposedMsgWithAnInlineAttachmentInNewWindow() {
 		logger.info("New "+ OpenComposedMsgWithAnInlineAttachmentInNewWindow.class.getCanonicalName());

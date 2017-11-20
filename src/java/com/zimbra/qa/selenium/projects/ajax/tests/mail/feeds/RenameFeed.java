@@ -24,9 +24,9 @@ import com.zimbra.qa.selenium.framework.items.FolderItem.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.*;
-import com.zimbra.qa.selenium.projects.ajax.ui.*;
+import com.zimbra.qa.selenium.projects.ajax.pages.*;
 
-public class RenameFeed extends PrefGroupMailByMessageTest {
+public class RenameFeed extends SetGroupMailByMessagePreference {
 
 	public RenameFeed() {
 		logger.info("New "+ RenameFeed.class.getCanonicalName());

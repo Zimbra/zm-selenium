@@ -22,10 +22,10 @@ import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.TooltipContact;
+import com.zimbra.qa.selenium.projects.ajax.core.SetGroupMailByMessagePreference;
+import com.zimbra.qa.selenium.projects.ajax.pages.TooltipContact;
 
-public class HoverOverEmail extends PrefGroupMailByMessageTest {
+public class HoverOverEmail extends SetGroupMailByMessagePreference {
 
 	public HoverOverEmail() throws HarnessException {
 		logger.info("New "+ HoverOverEmail.class.getCanonicalName());

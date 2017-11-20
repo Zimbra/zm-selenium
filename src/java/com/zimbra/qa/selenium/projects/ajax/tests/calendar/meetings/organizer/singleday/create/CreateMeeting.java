@@ -25,12 +25,12 @@ import com.zimbra.qa.selenium.framework.items.MailItem;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew.Field;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
+import com.zimbra.qa.selenium.projects.ajax.pages.calendar.FormApptNew;
+import com.zimbra.qa.selenium.projects.ajax.pages.calendar.FormApptNew.Field;
+import com.zimbra.qa.selenium.projects.ajax.pages.mail.DisplayMail;
 
-public class CreateMeeting extends AjaxCommonTest {
+public class CreateMeeting extends AjaxCore {
 
 	public CreateMeeting() {
 		logger.info("New "+ CreateMeeting.class.getCanonicalName());

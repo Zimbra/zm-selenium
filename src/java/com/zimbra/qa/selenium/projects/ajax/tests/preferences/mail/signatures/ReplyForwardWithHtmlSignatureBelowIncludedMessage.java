@@ -30,10 +30,10 @@ import com.zimbra.qa.selenium.framework.util.XmlStringUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
+import com.zimbra.qa.selenium.projects.ajax.pages.mail.DisplayMail;
 
-public class ReplyForwardWithHtmlSignatureBelowIncludedMessage extends AjaxCommonTest {
+public class ReplyForwardWithHtmlSignatureBelowIncludedMessage extends AjaxCore {
 	String sigName = "signame" + ConfigProperties.getUniqueString();
 	String sigBody = "signature<b>bold" + ConfigProperties.getUniqueString() + "</b>signature";
 	String contentHTMLSig = XmlStringUtil.escapeXml("<html>" + "<head></head>" + "<body>" + sigBody + "</body>" + "</html>");

@@ -27,13 +27,13 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
-import com.zimbra.qa.selenium.projects.universal.ui.PagePrint;
-import com.zimbra.qa.selenium.projects.universal.ui.contacts.PageContacts;
-import com.zimbra.qa.selenium.projects.universal.ui.mail.FormMailNew;
-import com.zimbra.qa.selenium.projects.universal.ui.search.PageAdvancedSearch;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCore;
+import com.zimbra.qa.selenium.projects.universal.pages.PagePrint;
+import com.zimbra.qa.selenium.projects.universal.pages.contacts.PageContacts;
+import com.zimbra.qa.selenium.projects.universal.pages.mail.FormMailNew;
+import com.zimbra.qa.selenium.projects.universal.pages.search.PageAdvancedSearch;
 
-public class ContactContextMenu extends UniversalCommonTest {
+public class ContactContextMenu extends UniversalCore {
 	public ContactContextMenu() {
 		logger.info("New " + ContactContextMenu.class.getCanonicalName());
 

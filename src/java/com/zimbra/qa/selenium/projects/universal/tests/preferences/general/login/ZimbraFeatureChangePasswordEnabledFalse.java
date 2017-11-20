@@ -24,10 +24,10 @@ import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
-import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
-import com.zimbra.qa.selenium.projects.universal.ui.preferences.TreePreferences.TreeItem;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCore;
+import com.zimbra.qa.selenium.projects.universal.pages.preferences.TreePreferences.TreeItem;
 
-public class ZimbraFeatureChangePasswordEnabledFalse extends UniversalCommonTest {
+public class ZimbraFeatureChangePasswordEnabledFalse extends UniversalCore {
 
 	@SuppressWarnings("serial")
 	public ZimbraFeatureChangePasswordEnabledFalse() {

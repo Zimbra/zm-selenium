@@ -23,12 +23,12 @@ import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.framework.util.ZimbraCharsets.*;
-import com.zimbra.qa.selenium.projects.universal.core.PrefGroupMailByMessageTest;
-import com.zimbra.qa.selenium.projects.universal.ui.DialogError;
-import com.zimbra.qa.selenium.projects.universal.ui.DialogRenameFolder;
-import com.zimbra.qa.selenium.projects.universal.ui.DialogError.DialogErrorID;
+import com.zimbra.qa.selenium.projects.universal.core.SetGroupMailByMessagePreference;
+import com.zimbra.qa.selenium.projects.universal.pages.DialogError;
+import com.zimbra.qa.selenium.projects.universal.pages.DialogRenameFolder;
+import com.zimbra.qa.selenium.projects.universal.pages.DialogError.DialogErrorID;
 
-public class RenameFolder extends PrefGroupMailByMessageTest {
+public class RenameFolder extends SetGroupMailByMessagePreference {
 
 	public RenameFolder() {
 		logger.info("New "+ RenameFolder.class.getCanonicalName());

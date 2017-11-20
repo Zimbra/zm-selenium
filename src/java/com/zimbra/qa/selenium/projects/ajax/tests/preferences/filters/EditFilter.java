@@ -24,13 +24,13 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.preferences.DialogEditFilter;
-import com.zimbra.qa.selenium.projects.ajax.ui.preferences.PagePreferences;
-import com.zimbra.qa.selenium.projects.ajax.ui.preferences.DialogEditFilter.FilterAction;
-import com.zimbra.qa.selenium.projects.ajax.ui.preferences.TreePreferences.TreeItem;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
+import com.zimbra.qa.selenium.projects.ajax.pages.preferences.DialogEditFilter;
+import com.zimbra.qa.selenium.projects.ajax.pages.preferences.PagePreferences;
+import com.zimbra.qa.selenium.projects.ajax.pages.preferences.DialogEditFilter.FilterAction;
+import com.zimbra.qa.selenium.projects.ajax.pages.preferences.TreePreferences.TreeItem;
 
-public class EditFilter extends AjaxCommonTest {
+public class EditFilter extends AjaxCore {
 
 	public EditFilter() {
 		super.startingPage = app.zPagePreferences;

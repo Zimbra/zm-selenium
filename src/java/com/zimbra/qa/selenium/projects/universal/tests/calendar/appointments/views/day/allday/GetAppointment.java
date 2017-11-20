@@ -21,9 +21,9 @@ import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCore;
 
-public class GetAppointment extends UniversalCommonTest {
+public class GetAppointment extends UniversalCore {
 
 	public GetAppointment() {
 		logger.info("New "+ GetAppointment.class.getCanonicalName());

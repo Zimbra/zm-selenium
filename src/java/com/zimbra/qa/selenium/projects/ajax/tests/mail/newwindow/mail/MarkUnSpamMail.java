@@ -22,10 +22,10 @@ import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.SeparateWindowDisplayMail;
+import com.zimbra.qa.selenium.projects.ajax.core.SetGroupMailByMessagePreference;
+import com.zimbra.qa.selenium.projects.ajax.pages.mail.SeparateWindowDisplayMail;
 
-public class MarkUnSpamMail extends PrefGroupMailByMessageTest {
+public class MarkUnSpamMail extends SetGroupMailByMessagePreference {
 
 	public MarkUnSpamMail() {
 		logger.info("New "+ MarkUnSpamMail.class.getCanonicalName());

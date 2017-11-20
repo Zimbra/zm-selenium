@@ -21,9 +21,9 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.admin.core.AdminCommonTest;
+import com.zimbra.qa.selenium.projects.admin.core.AdminCore;
 
-public class BasicLogin extends AdminCommonTest {
+public class BasicLogin extends AdminCore {
 
 	public BasicLogin() {
 		logger.info("New "+ BasicLogin.class.getCanonicalName());

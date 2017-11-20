@@ -30,13 +30,13 @@ import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.universal.core.PrefGroupMailByMessageTest;
-import com.zimbra.qa.selenium.projects.universal.ui.DialogWarning;
-import com.zimbra.qa.selenium.projects.universal.ui.mail.FormMailNew;
-import com.zimbra.qa.selenium.projects.universal.ui.mail.FormMailNew.Field;
-import com.zimbra.qa.selenium.projects.universal.ui.mail.PageMail.Locators;
+import com.zimbra.qa.selenium.projects.universal.core.SetGroupMailByMessagePreference;
+import com.zimbra.qa.selenium.projects.universal.pages.DialogWarning;
+import com.zimbra.qa.selenium.projects.universal.pages.mail.FormMailNew;
+import com.zimbra.qa.selenium.projects.universal.pages.mail.FormMailNew.Field;
+import com.zimbra.qa.selenium.projects.universal.pages.mail.PageMail.Locators;
 
-public class SaveDraftMail extends PrefGroupMailByMessageTest {
+public class SaveDraftMail extends SetGroupMailByMessagePreference {
 
 	public SaveDraftMail() {
 		logger.info("New "+ SaveDraftMail.class.getCanonicalName());

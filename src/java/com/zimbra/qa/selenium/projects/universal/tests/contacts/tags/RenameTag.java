@@ -22,10 +22,10 @@ import com.zimbra.common.soap.Element;
 import com.zimbra.qa.selenium.framework.items.TagItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.PrefGroupMailByMessageTest;
-import com.zimbra.qa.selenium.projects.universal.ui.*;
+import com.zimbra.qa.selenium.projects.universal.core.SetGroupMailByMessagePreference;
+import com.zimbra.qa.selenium.projects.universal.pages.*;
 
-public class RenameTag extends PrefGroupMailByMessageTest {
+public class RenameTag extends SetGroupMailByMessagePreference {
 
 	public RenameTag() {
 		logger.info("New "+ RenameTag.class.getCanonicalName());

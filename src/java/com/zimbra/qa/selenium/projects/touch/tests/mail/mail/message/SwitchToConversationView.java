@@ -23,9 +23,9 @@ import java.awt.AWTException;
 import org.testng.annotations.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.touch.core.PrefGroupMailByMessageTest;
+import com.zimbra.qa.selenium.projects.touch.core.SetGroupMailByMessagePreference;
 
-public class SwitchToConversationView extends PrefGroupMailByMessageTest{
+public class SwitchToConversationView extends SetGroupMailByMessagePreference{
 
 	public SwitchToConversationView() {
 		logger.info("New "+ SwitchToConversationView.class.getCanonicalName());

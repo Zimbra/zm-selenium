@@ -21,11 +21,11 @@ import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew.Field;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
+import com.zimbra.qa.selenium.projects.ajax.pages.calendar.FormApptNew;
+import com.zimbra.qa.selenium.projects.ajax.pages.calendar.FormApptNew.Field;
 
-public class ModifyAppointment extends AjaxCommonTest {
+public class ModifyAppointment extends AjaxCore {
 
 	public ModifyAppointment() {
 		logger.info("New " + ModifyAppointment.class.getCanonicalName());
@@ -34,7 +34,7 @@ public class ModifyAppointment extends AjaxCommonTest {
 
 
 	@Bugs (ids = "69132")
-	@Test (	description = "Modify all-day appointment with subject & body and verify it",
+	@Test (description = "Modify all-day appointment with subject & body and verify it",
 			groups = { "functional", "L2" })
 
 	public void ModifyAllDayAppointment_01() throws HarnessException {

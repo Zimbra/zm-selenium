@@ -22,9 +22,9 @@ import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
 
-public class VerifyDisabledUI extends AjaxCommonTest {
+public class VerifyDisabledUI extends AjaxCore {
 
 	public VerifyDisabledUI() {
 		logger.info("New "+ VerifyDisabledUI.class.getCanonicalName());

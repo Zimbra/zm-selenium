@@ -21,11 +21,11 @@ import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.items.MailItem;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.DialogSuggestionPreferences;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
+import com.zimbra.qa.selenium.projects.ajax.pages.calendar.DialogSuggestionPreferences;
+import com.zimbra.qa.selenium.projects.ajax.pages.calendar.FormApptNew;
 
-public class ModifyLocationSuggestionPreference extends AjaxCommonTest {
+public class ModifyLocationSuggestionPreference extends AjaxCore {
 
 	public ModifyLocationSuggestionPreference() {
 		logger.info("New "+ ModifyLocationSuggestionPreference.class.getCanonicalName());

@@ -23,10 +23,10 @@ import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.items.MailItem;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.html.core.HtmlCommonTest;
+import com.zimbra.qa.selenium.projects.html.core.HtmlCore;
 
 
-public class GetMail extends HtmlCommonTest {
+public class GetMail extends HtmlCore {
 
 	int pollIntervalSeconds = 60;
 	

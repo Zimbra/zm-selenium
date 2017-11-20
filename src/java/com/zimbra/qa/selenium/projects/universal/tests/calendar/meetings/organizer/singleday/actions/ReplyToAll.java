@@ -28,11 +28,11 @@ import com.zimbra.qa.selenium.framework.util.ZDate;
 import com.zimbra.qa.selenium.framework.util.ZTimeZone;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.universal.core.CalendarWorkWeekTest;
-import com.zimbra.qa.selenium.projects.universal.ui.mail.FormMailNew;
-import com.zimbra.qa.selenium.projects.universal.ui.mail.FormMailNew.Field;
+import com.zimbra.qa.selenium.projects.universal.core.CalendarWorkWeekPreference;
+import com.zimbra.qa.selenium.projects.universal.pages.mail.FormMailNew;
+import com.zimbra.qa.selenium.projects.universal.pages.mail.FormMailNew.Field;
 
-public class ReplyToAll extends CalendarWorkWeekTest {	
+public class ReplyToAll extends CalendarWorkWeekPreference {	
 	
 	public ReplyToAll() {
 		logger.info("New "+ ReplyToAll.class.getCanonicalName());

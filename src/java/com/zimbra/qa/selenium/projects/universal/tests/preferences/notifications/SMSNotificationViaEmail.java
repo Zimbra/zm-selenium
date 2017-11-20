@@ -30,15 +30,15 @@ import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.universal.core.CalendarWorkWeekTest;
-import com.zimbra.qa.selenium.projects.universal.ui.DialogInformational;
-import com.zimbra.qa.selenium.projects.universal.ui.calendar.FormApptNew;
-import com.zimbra.qa.selenium.projects.universal.ui.calendar.FormApptNew.Field;
-import com.zimbra.qa.selenium.projects.universal.ui.calendar.PageCalendar;
-import com.zimbra.qa.selenium.projects.universal.ui.preferences.PagePreferences.Locators;
-import com.zimbra.qa.selenium.projects.universal.ui.preferences.TreePreferences.TreeItem;
+import com.zimbra.qa.selenium.projects.universal.core.CalendarWorkWeekPreference;
+import com.zimbra.qa.selenium.projects.universal.pages.DialogInformational;
+import com.zimbra.qa.selenium.projects.universal.pages.calendar.FormApptNew;
+import com.zimbra.qa.selenium.projects.universal.pages.calendar.FormApptNew.Field;
+import com.zimbra.qa.selenium.projects.universal.pages.calendar.PageCalendar;
+import com.zimbra.qa.selenium.projects.universal.pages.preferences.PagePreferences.Locators;
+import com.zimbra.qa.selenium.projects.universal.pages.preferences.TreePreferences.TreeItem;
 
-public class SMSNotificationViaEmail extends CalendarWorkWeekTest {
+public class SMSNotificationViaEmail extends CalendarWorkWeekPreference {
 
 	public SMSNotificationViaEmail() {
 

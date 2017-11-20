@@ -21,16 +21,16 @@ import java.util.HashMap;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.CalendarWorkWeekTest;
+import com.zimbra.qa.selenium.projects.universal.core.CalendarWorkWeekPreference;
 import com.zimbra.qa.selenium.projects.universal.tests.calendar.performance.ZmCalendarApp_ViewDay_Appointment1;
-import com.zimbra.qa.selenium.projects.universal.ui.mail.DisplayMail;
-import com.zimbra.qa.selenium.projects.universal.ui.mail.DisplayMail.Field;
-import com.zimbra.qa.selenium.projects.universal.ui.preferences.PagePreferences;
-import com.zimbra.qa.selenium.projects.universal.ui.preferences.TreePreferences.TreeItem;
+import com.zimbra.qa.selenium.projects.universal.pages.mail.DisplayMail;
+import com.zimbra.qa.selenium.projects.universal.pages.mail.DisplayMail.Field;
+import com.zimbra.qa.selenium.projects.universal.pages.preferences.PagePreferences;
+import com.zimbra.qa.selenium.projects.universal.pages.preferences.TreePreferences.TreeItem;
 import java.util.Calendar;
 
 
-public class ViewInviteWithDisplayMailPreference extends CalendarWorkWeekTest {
+public class ViewInviteWithDisplayMailPreference extends CalendarWorkWeekPreference {
 
 	public ViewInviteWithDisplayMailPreference() throws HarnessException {
 		logger.info("New "+ ZmCalendarApp_ViewDay_Appointment1.class.getCanonicalName());

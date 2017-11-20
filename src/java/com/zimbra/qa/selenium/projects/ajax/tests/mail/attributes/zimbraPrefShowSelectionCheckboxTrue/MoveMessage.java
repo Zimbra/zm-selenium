@@ -24,9 +24,9 @@ import com.zimbra.qa.selenium.framework.items.FolderItem.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.*;
-import com.zimbra.qa.selenium.projects.ajax.ui.*;
+import com.zimbra.qa.selenium.projects.ajax.pages.*;
 
-public class MoveMessage extends PrefGroupMailByMessageTest {
+public class MoveMessage extends SetGroupMailByMessagePreference {
 
 	public MoveMessage() {
 		logger.info("New "+ MoveMessage.class.getCanonicalName());
@@ -40,7 +40,7 @@ public class MoveMessage extends PrefGroupMailByMessageTest {
 		logger.info("Checking for the Move Dialog ...");
 
 		// Check if the "Move Dialog is still open
-		DialogMove dialog = new DialogMove(app, ((AppAjaxClient)app).zPageMail);
+		DialogMove dialog = new DialogMove(app, ((AjaxPages)app).zPageMail);
 		if ( dialog.zIsActive() ) {
 			logger.warn(dialog.myPageName() +" was still active.  Cancelling ...");
 			dialog.zPressButton(Button.B_CANCEL);

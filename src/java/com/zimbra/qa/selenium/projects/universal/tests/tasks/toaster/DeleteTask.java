@@ -24,11 +24,11 @@ import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
-import com.zimbra.qa.selenium.projects.universal.ui.Toaster;
-import com.zimbra.qa.selenium.projects.universal.ui.tasks.PageTasks;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCore;
+import com.zimbra.qa.selenium.projects.universal.pages.Toaster;
+import com.zimbra.qa.selenium.projects.universal.pages.tasks.PageTasks;
 
-public class DeleteTask extends UniversalCommonTest {
+public class DeleteTask extends UniversalCore {
 
 	@SuppressWarnings("serial")
 	public DeleteTask() {

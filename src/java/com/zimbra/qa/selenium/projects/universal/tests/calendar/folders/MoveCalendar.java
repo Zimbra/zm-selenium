@@ -22,11 +22,11 @@ import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.CalendarWorkWeekTest;
-import com.zimbra.qa.selenium.projects.universal.ui.DialogMove;
+import com.zimbra.qa.selenium.projects.universal.core.CalendarWorkWeekPreference;
+import com.zimbra.qa.selenium.projects.universal.pages.DialogMove;
 
 
-public class MoveCalendar extends CalendarWorkWeekTest {
+public class MoveCalendar extends CalendarWorkWeekPreference {
 
 	public MoveCalendar() {
 		logger.info("New "+ MoveCalendar.class.getCanonicalName());

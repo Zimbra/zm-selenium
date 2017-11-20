@@ -22,7 +22,7 @@ import org.apache.log4j.*;
 import com.zimbra.common.soap.Element;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.ui.AppAjaxClient;
+import com.zimbra.qa.selenium.projects.ajax.pages.AjaxPages;
 
 /**
  * The <code>DistributionListItem</code> defines a Zimbra dl item
@@ -181,7 +181,7 @@ public class DistributionListItem extends ContactItem implements IItem {
 		// 1);
 	}
 
-	public static DistributionListItem createUsingSOAP(ZimbraAccount owner, AppAjaxClient app,
+	public static DistributionListItem createUsingSOAP(ZimbraAccount owner, AjaxPages app,
 			ZimbraAccount... memberList) throws HarnessException {
 
 		// Create a dlist
@@ -206,7 +206,7 @@ public class DistributionListItem extends ContactItem implements IItem {
 		dlist.setId(owner.soapSelectValue("//acct:CreateDistributionListResponse/acct:dl", "id"));
 
 		// Refresh addressbook
-		((AppAjaxClient) app).zPageMain.zToolbarPressButton(Button.B_REFRESH);
+		((AjaxPages) app).zPageMain.zToolbarPressButton(Button.B_REFRESH);
 
 		return dlist;
 	}

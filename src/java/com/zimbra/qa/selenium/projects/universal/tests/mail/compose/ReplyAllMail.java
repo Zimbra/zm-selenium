@@ -24,11 +24,11 @@ import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.PrefGroupMailByMessageTest;
-import com.zimbra.qa.selenium.projects.universal.ui.mail.FormMailNew;
+import com.zimbra.qa.selenium.projects.universal.core.SetGroupMailByMessagePreference;
+import com.zimbra.qa.selenium.projects.universal.pages.mail.FormMailNew;
 
 
-public class ReplyAllMail extends PrefGroupMailByMessageTest {
+public class ReplyAllMail extends SetGroupMailByMessagePreference {
 
 	ZimbraAccount account1 = null;
 	ZimbraAccount account2 = null;

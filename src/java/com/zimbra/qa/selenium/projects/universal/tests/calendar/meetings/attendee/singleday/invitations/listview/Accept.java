@@ -26,7 +26,7 @@ import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.universal.core.*;
 
-public class Accept extends UniversalCommonTest {
+public class Accept extends UniversalCore {
 
 	@SuppressWarnings("serial")
 	public Accept() {

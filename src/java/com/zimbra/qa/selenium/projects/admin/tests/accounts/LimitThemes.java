@@ -24,11 +24,11 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.admin.core.AdminCommonTest;
+import com.zimbra.qa.selenium.projects.admin.core.AdminCore;
 import com.zimbra.qa.selenium.projects.admin.items.AccountItem;
-import com.zimbra.qa.selenium.projects.admin.ui.FormEditAccount;
+import com.zimbra.qa.selenium.projects.admin.pages.FormEditAccount;
 
-public class LimitThemes extends AdminCommonTest {
+public class LimitThemes extends AdminCore {
 
 	public LimitThemes() {
 		logger.info("New "+ LimitThemes.class.getCanonicalName());

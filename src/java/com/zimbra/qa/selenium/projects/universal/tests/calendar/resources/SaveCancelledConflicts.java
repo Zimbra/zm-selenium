@@ -29,14 +29,14 @@ import com.zimbra.qa.selenium.framework.util.ZTimeZone;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ZimbraResource;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.universal.core.CalendarWorkWeekTest;
-import com.zimbra.qa.selenium.projects.universal.ui.calendar.DialogWarningConflictingResources;
-import com.zimbra.qa.selenium.projects.universal.ui.calendar.FormApptNew;
-import com.zimbra.qa.selenium.projects.universal.ui.calendar.FormApptNew.Locators;
+import com.zimbra.qa.selenium.projects.universal.core.CalendarWorkWeekPreference;
+import com.zimbra.qa.selenium.projects.universal.pages.calendar.DialogWarningConflictingResources;
+import com.zimbra.qa.selenium.projects.universal.pages.calendar.FormApptNew;
+import com.zimbra.qa.selenium.projects.universal.pages.calendar.FormApptNew.Locators;
 import java.util.Calendar;
 import org.testng.annotations.Test;
 
-public class SaveCancelledConflicts extends CalendarWorkWeekTest {
+public class SaveCancelledConflicts extends CalendarWorkWeekPreference {
 
   public SaveCancelledConflicts() {
     logger.info("New " + SaveCancelledConflicts.class.getCanonicalName());

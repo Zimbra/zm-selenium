@@ -26,10 +26,10 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.DialogMove;
+import com.zimbra.qa.selenium.projects.ajax.core.SetGroupMailByMessagePreference;
+import com.zimbra.qa.selenium.projects.ajax.pages.DialogMove;
 
-public class MoveMountpoint extends PrefGroupMailByMessageTest {
+public class MoveMountpoint extends SetGroupMailByMessagePreference {
 
 	public MoveMountpoint() {
 		logger.info("New "+ MoveMountpoint.class.getCanonicalName());

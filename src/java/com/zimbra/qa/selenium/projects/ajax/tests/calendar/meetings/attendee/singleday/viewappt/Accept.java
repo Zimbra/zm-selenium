@@ -24,7 +24,7 @@ import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.*;
 import com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.attendee.singleday.viewappt.Accept;
 
-public class Accept extends AjaxCommonTest {
+public class Accept extends AjaxCore {
 
 	public Accept() {
 		logger.info("New "+ Accept.class.getCanonicalName());

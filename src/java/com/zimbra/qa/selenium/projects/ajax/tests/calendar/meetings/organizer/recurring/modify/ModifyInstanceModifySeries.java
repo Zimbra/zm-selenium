@@ -25,12 +25,12 @@ import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.*;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.*;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.DialogConfirmationDeleteAppointment;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew.Field;
+import com.zimbra.qa.selenium.projects.ajax.pages.calendar.*;
+import com.zimbra.qa.selenium.projects.ajax.pages.calendar.DialogConfirmationDeleteAppointment;
+import com.zimbra.qa.selenium.projects.ajax.pages.calendar.FormApptNew;
+import com.zimbra.qa.selenium.projects.ajax.pages.calendar.FormApptNew.Field;
 
-public class ModifyInstanceModifySeries extends AjaxCommonTest {
+public class ModifyInstanceModifySeries extends AjaxCore {
 
 	public ModifyInstanceModifySeries() {
 		logger.info("New "+ ModifyInstanceModifySeries.class.getCanonicalName());

@@ -22,11 +22,11 @@ import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
-import com.zimbra.qa.selenium.projects.universal.ui.DialogMove;
-import com.zimbra.qa.selenium.projects.universal.ui.contacts.FormContactNew;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCore;
+import com.zimbra.qa.selenium.projects.universal.pages.DialogMove;
+import com.zimbra.qa.selenium.projects.universal.pages.contacts.FormContactNew;
 
-public class MoveContact extends UniversalCommonTest {
+public class MoveContact extends UniversalCore {
 	public MoveContact() {
 		logger.info("New " + MoveContact.class.getCanonicalName());
 

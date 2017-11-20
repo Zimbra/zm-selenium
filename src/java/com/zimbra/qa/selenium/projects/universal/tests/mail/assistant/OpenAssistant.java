@@ -21,11 +21,11 @@ import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.ui.Shortcut;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
-import com.zimbra.qa.selenium.projects.universal.core.PrefGroupMailByMessageTest;
-import com.zimbra.qa.selenium.projects.universal.ui.DialogAssistant;
+import com.zimbra.qa.selenium.projects.universal.core.SetGroupMailByMessagePreference;
+import com.zimbra.qa.selenium.projects.universal.pages.DialogAssistant;
 
 
-public class OpenAssistant extends PrefGroupMailByMessageTest {
+public class OpenAssistant extends SetGroupMailByMessagePreference {
 	
 	public OpenAssistant() {
 		logger.info("New "+ OpenAssistant.class.getCanonicalName());

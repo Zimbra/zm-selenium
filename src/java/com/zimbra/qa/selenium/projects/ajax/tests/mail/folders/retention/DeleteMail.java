@@ -20,11 +20,11 @@ import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.DialogWarning;
-import com.zimbra.qa.selenium.projects.ajax.ui.DialogWarning.DialogWarningID;
+import com.zimbra.qa.selenium.projects.ajax.core.SetGroupMailByMessagePreference;
+import com.zimbra.qa.selenium.projects.ajax.pages.DialogWarning;
+import com.zimbra.qa.selenium.projects.ajax.pages.DialogWarning.DialogWarningID;
 
-public class DeleteMail extends PrefGroupMailByMessageTest {
+public class DeleteMail extends SetGroupMailByMessagePreference {
 
 	public DeleteMail() {
 		logger.info("New " + DeleteMail.class.getCanonicalName());

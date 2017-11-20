@@ -24,10 +24,10 @@ import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.*;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail;
+import com.zimbra.qa.selenium.projects.ajax.pages.calendar.FormApptNew;
+import com.zimbra.qa.selenium.projects.ajax.pages.mail.DisplayMail;
 
-public class CreateMeetingWithRSVPOnOff extends AjaxCommonTest {
+public class CreateMeetingWithRSVPOnOff extends AjaxCore {
 
 	public CreateMeetingWithRSVPOnOff() {
 		logger.info("New "+ CreateMeetingWithRSVPOnOff.class.getCanonicalName());

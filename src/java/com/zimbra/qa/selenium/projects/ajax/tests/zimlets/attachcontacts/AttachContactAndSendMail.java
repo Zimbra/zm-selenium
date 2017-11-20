@@ -21,12 +21,12 @@ import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.*;
-import com.zimbra.qa.selenium.projects.ajax.ui.AppAjaxClient;
-import com.zimbra.qa.selenium.projects.ajax.ui.DialogAttach;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.*;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.PageMail.Locators;
+import com.zimbra.qa.selenium.projects.ajax.pages.AjaxPages;
+import com.zimbra.qa.selenium.projects.ajax.pages.DialogAttach;
+import com.zimbra.qa.selenium.projects.ajax.pages.mail.*;
+import com.zimbra.qa.selenium.projects.ajax.pages.mail.PageMail.Locators;
 
-public class AttachContactAndSendMail extends PrefGroupMailByMessageTest {
+public class AttachContactAndSendMail extends SetGroupMailByMessagePreference {
 
 	public AttachContactAndSendMail() {
 		logger.info("New " + AttachContactAndSendMail.class.getCanonicalName());
@@ -67,7 +67,7 @@ public class AttachContactAndSendMail extends PrefGroupMailByMessageTest {
 		// Click attach drop down and select Contact
 		app.zPageMail.zToolbarPressPulldown(Button.B_ATTACH, Button.O_CONTACTATTACH);
 
-		DialogAttach dialog = new DialogAttach(app, ((AppAjaxClient) app).zPageMail);
+		DialogAttach dialog = new DialogAttach(app, ((AjaxPages) app).zPageMail);
 		ZAssert.assertTrue(dialog.zIsActive(), "Attach Contact dialog gets open and active");
 
 		// Click on Contact folder

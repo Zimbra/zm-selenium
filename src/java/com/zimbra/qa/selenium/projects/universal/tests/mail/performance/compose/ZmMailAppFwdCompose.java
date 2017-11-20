@@ -31,9 +31,9 @@ import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.framework.util.performance.PerfKey;
 import com.zimbra.qa.selenium.framework.util.performance.PerfMetrics;
 import com.zimbra.qa.selenium.framework.util.performance.PerfToken;
-import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCore;
 
-public class ZmMailAppFwdCompose extends UniversalCommonTest {
+public class ZmMailAppFwdCompose extends UniversalCore {
 
 	public ZmMailAppFwdCompose() {
 		logger.info("New " + ZmMailAppFwdCompose.class.getCanonicalName());

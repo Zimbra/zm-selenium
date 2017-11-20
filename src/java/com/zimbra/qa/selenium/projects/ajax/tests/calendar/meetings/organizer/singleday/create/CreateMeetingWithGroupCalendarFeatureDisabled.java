@@ -23,10 +23,10 @@ import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
+import com.zimbra.qa.selenium.projects.ajax.pages.calendar.FormApptNew;
 
-public class CreateMeetingWithGroupCalendarFeatureDisabled extends AjaxCommonTest {
+public class CreateMeetingWithGroupCalendarFeatureDisabled extends AjaxCore {
 
 	public CreateMeetingWithGroupCalendarFeatureDisabled() {
 		logger.info("New "+ CreateMeetingWithGroupCalendarFeatureDisabled.class.getCanonicalName());

@@ -22,10 +22,10 @@ import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.items.ContactItem;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.contacts.PageContacts;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
+import com.zimbra.qa.selenium.projects.ajax.pages.contacts.PageContacts;
 
-public class GetContacts extends AjaxCommonTest  {
+public class GetContacts extends AjaxCore  {
 	public GetContacts() {
 		logger.info("New "+ GetContacts.class.getCanonicalName());
 		super.startingPage = app.zPageContacts;

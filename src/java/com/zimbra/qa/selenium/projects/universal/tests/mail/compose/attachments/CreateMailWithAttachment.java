@@ -24,10 +24,10 @@ import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.PrefGroupMailByMessageTest;
-import com.zimbra.qa.selenium.projects.universal.ui.mail.FormMailNew;
+import com.zimbra.qa.selenium.projects.universal.core.SetGroupMailByMessagePreference;
+import com.zimbra.qa.selenium.projects.universal.pages.mail.FormMailNew;
 
-public class CreateMailWithAttachment extends PrefGroupMailByMessageTest {
+public class CreateMailWithAttachment extends SetGroupMailByMessagePreference {
 
 	public CreateMailWithAttachment() {
 		logger.info("New "+ CreateMailWithAttachment.class.getCanonicalName());

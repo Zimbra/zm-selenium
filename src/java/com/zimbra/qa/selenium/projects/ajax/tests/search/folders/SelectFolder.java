@@ -24,7 +24,7 @@ import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.*;
 
-public class SelectFolder extends PrefGroupMailByMessageTest {
+public class SelectFolder extends SetGroupMailByMessagePreference {
 
 	public SelectFolder() {
 		logger.info("New "+ SelectFolder.class.getCanonicalName());

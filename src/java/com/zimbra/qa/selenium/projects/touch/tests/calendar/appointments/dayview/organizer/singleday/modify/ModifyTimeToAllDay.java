@@ -23,11 +23,11 @@ import org.testng.annotations.*;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.touch.core.CalendarWorkWeekTest;
-import com.zimbra.qa.selenium.projects.touch.ui.calendar.FormApptNew;
-import com.zimbra.qa.selenium.projects.touch.ui.calendar.FormApptNew.Field;
+import com.zimbra.qa.selenium.projects.touch.core.CalendarWorkWeekPreference;
+import com.zimbra.qa.selenium.projects.touch.pages.calendar.FormApptNew;
+import com.zimbra.qa.selenium.projects.touch.pages.calendar.FormApptNew.Field;
 
-public class ModifyTimeToAllDay extends CalendarWorkWeekTest {	
+public class ModifyTimeToAllDay extends CalendarWorkWeekPreference {	
 	
 	public ModifyTimeToAllDay() {
 		logger.info("New "+ ModifyTimeToAllDay.class.getCanonicalName());

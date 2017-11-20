@@ -23,11 +23,11 @@ import com.zimbra.qa.selenium.framework.items.MailItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
+import com.zimbra.qa.selenium.projects.ajax.core.SetGroupMailByMessagePreference;
+import com.zimbra.qa.selenium.projects.ajax.pages.mail.DisplayMail;
+import com.zimbra.qa.selenium.projects.ajax.pages.mail.FormMailNew;
 
-public class ReplyMail extends PrefGroupMailByMessageTest {
+public class ReplyMail extends SetGroupMailByMessagePreference {
 
 	public ReplyMail() {
 		logger.info("New "+ ReplyMail.class.getCanonicalName());
@@ -66,12 +66,12 @@ public class ReplyMail extends PrefGroupMailByMessageTest {
 		// Verify Excel Table border
 		DisplayMail actual = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 		ZAssert.assertTrue(app.zPageMail.zVerifyDisplayMailElement("div[id='zimbraEditorContainer'] div table[border='1']"), "Verify Excel Table border ");
-		ZAssert.assertStringContains(actual.zGetMailProperty(com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail.Field.Body), "ID", "Verify the body content matches");
-		ZAssert.assertStringContains(actual.zGetMailProperty(com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail.Field.Body), "Fname", "Verify the body content matches");
-		ZAssert.assertStringContains(actual.zGetMailProperty(com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail.Field.Body), "Lname", "Verify the body content matches");
-		ZAssert.assertStringContains(actual.zGetMailProperty(com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail.Field.Body), "Test1", "Verify the body content matches");
-		ZAssert.assertStringContains(actual.zGetMailProperty(com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail.Field.Body), "Test2", "Verify the body content matches");
-		ZAssert.assertStringContains(actual.zGetMailProperty(com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail.Field.Body), "Test3", "Verify the body content matches");
-		ZAssert.assertStringContains(actual.zGetMailProperty(com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail.Field.Body), "Test4", "Verify the body content matches");
+		ZAssert.assertStringContains(actual.zGetMailProperty(com.zimbra.qa.selenium.projects.ajax.pages.mail.DisplayMail.Field.Body), "ID", "Verify the body content matches");
+		ZAssert.assertStringContains(actual.zGetMailProperty(com.zimbra.qa.selenium.projects.ajax.pages.mail.DisplayMail.Field.Body), "Fname", "Verify the body content matches");
+		ZAssert.assertStringContains(actual.zGetMailProperty(com.zimbra.qa.selenium.projects.ajax.pages.mail.DisplayMail.Field.Body), "Lname", "Verify the body content matches");
+		ZAssert.assertStringContains(actual.zGetMailProperty(com.zimbra.qa.selenium.projects.ajax.pages.mail.DisplayMail.Field.Body), "Test1", "Verify the body content matches");
+		ZAssert.assertStringContains(actual.zGetMailProperty(com.zimbra.qa.selenium.projects.ajax.pages.mail.DisplayMail.Field.Body), "Test2", "Verify the body content matches");
+		ZAssert.assertStringContains(actual.zGetMailProperty(com.zimbra.qa.selenium.projects.ajax.pages.mail.DisplayMail.Field.Body), "Test3", "Verify the body content matches");
+		ZAssert.assertStringContains(actual.zGetMailProperty(com.zimbra.qa.selenium.projects.ajax.pages.mail.DisplayMail.Field.Body), "Test4", "Verify the body content matches");
 	}
 }

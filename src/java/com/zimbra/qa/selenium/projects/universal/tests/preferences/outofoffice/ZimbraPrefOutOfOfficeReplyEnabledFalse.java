@@ -27,12 +27,12 @@ import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
-import com.zimbra.qa.selenium.projects.universal.ui.AppUniversalClient;
-import com.zimbra.qa.selenium.projects.universal.ui.preferences.DialogOOOAlert;
-import com.zimbra.qa.selenium.projects.universal.ui.preferences.TreePreferences.TreeItem;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCore;
+import com.zimbra.qa.selenium.projects.universal.pages.UniversalPages;
+import com.zimbra.qa.selenium.projects.universal.pages.preferences.DialogOOOAlert;
+import com.zimbra.qa.selenium.projects.universal.pages.preferences.TreePreferences.TreeItem;
 
-public class ZimbraPrefOutOfOfficeReplyEnabledFalse extends UniversalCommonTest {
+public class ZimbraPrefOutOfOfficeReplyEnabledFalse extends UniversalCore {
 
 	public static final String autoReplyMessage = "OOO" + ConfigProperties.getUniqueString();
 
@@ -57,7 +57,7 @@ public class ZimbraPrefOutOfOfficeReplyEnabledFalse extends UniversalCommonTest 
 
 		// Client must display out of office dialog, wait for some time and take an action on it
 		SleepUtil.sleepLong();
-		DialogOOOAlert alert = new DialogOOOAlert(app, ((AppUniversalClient) app).zPageMail);
+		DialogOOOAlert alert = new DialogOOOAlert(app, ((UniversalPages) app).zPageMail);
 		ZAssert.assertTrue(alert.zIsActive(), "Verify turn off auto-reply alert dialog is displayed");
 		alert.zCheckboxSet(true);
 		alert.zPressButton(Button.B_YES);

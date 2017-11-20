@@ -20,9 +20,9 @@ import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
-import com.zimbra.qa.selenium.projects.touch.core.TouchCommonTest;
+import com.zimbra.qa.selenium.projects.touch.core.TouchCore;
 
-public class BasicLogin extends TouchCommonTest {
+public class BasicLogin extends TouchCore {
 	
 	public BasicLogin() {
 		logger.info("New "+ BasicLogin.class.getCanonicalName());

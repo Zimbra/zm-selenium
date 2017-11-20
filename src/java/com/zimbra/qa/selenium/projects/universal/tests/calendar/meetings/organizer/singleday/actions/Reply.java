@@ -24,10 +24,10 @@ import com.zimbra.qa.selenium.framework.util.ZDate;
 import com.zimbra.qa.selenium.framework.util.ZTimeZone;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.universal.core.CalendarWorkWeekTest;
-import com.zimbra.qa.selenium.projects.universal.ui.calendar.PageCalendar.Locators;
+import com.zimbra.qa.selenium.projects.universal.core.CalendarWorkWeekPreference;
+import com.zimbra.qa.selenium.projects.universal.pages.calendar.PageCalendar.Locators;
 
-public class Reply extends CalendarWorkWeekTest {	
+public class Reply extends CalendarWorkWeekPreference {	
 	
 	public Reply() {
 		 logger.info("New "+ Reply.class.getCanonicalName());

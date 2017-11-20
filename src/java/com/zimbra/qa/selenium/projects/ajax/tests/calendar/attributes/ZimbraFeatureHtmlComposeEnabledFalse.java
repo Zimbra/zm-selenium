@@ -26,10 +26,10 @@ import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZDate;
 import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
+import com.zimbra.qa.selenium.projects.ajax.pages.calendar.FormApptNew;
 
-public class ZimbraFeatureHtmlComposeEnabledFalse extends AjaxCommonTest {
+public class ZimbraFeatureHtmlComposeEnabledFalse extends AjaxCore {
 
 	public ZimbraFeatureHtmlComposeEnabledFalse() {
 		logger.info("New "+ ZimbraFeatureHtmlComposeEnabledFalse.class.getCanonicalName());

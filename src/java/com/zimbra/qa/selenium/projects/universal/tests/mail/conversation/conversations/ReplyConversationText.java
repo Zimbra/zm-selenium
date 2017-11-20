@@ -22,10 +22,10 @@ import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.universal.core.*;
-import com.zimbra.qa.selenium.projects.universal.ui.mail.*;
+import com.zimbra.qa.selenium.projects.universal.pages.mail.*;
 
 
-public class ReplyConversationText extends PrefGroupMailByConversationTest {
+public class ReplyConversationText extends SetGroupMailByConversationPreference {
 
 	public ReplyConversationText() {
 		logger.info("New "+ ReplyConversationText.class.getCanonicalName());

@@ -21,10 +21,10 @@ import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
-import com.zimbra.qa.selenium.projects.universal.ui.DialogShare;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCore;
+import com.zimbra.qa.selenium.projects.universal.pages.DialogShare;
 
-public class CreateShare extends UniversalCommonTest  {
+public class CreateShare extends UniversalCore  {
 
 	public CreateShare() {
 		logger.info("New "+ CreateShare.class.getCanonicalName());

@@ -21,10 +21,10 @@ import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.PrefGroupMailByMessageTest;
-import com.zimbra.qa.selenium.projects.universal.ui.mail.DialogCreateFolder;
+import com.zimbra.qa.selenium.projects.universal.core.SetGroupMailByMessagePreference;
+import com.zimbra.qa.selenium.projects.universal.pages.mail.DialogCreateFolder;
 
-public class CreateFeed extends PrefGroupMailByMessageTest {
+public class CreateFeed extends SetGroupMailByMessagePreference {
 
 	public CreateFeed() {
 		logger.info("New "+ CreateFeed.class.getCanonicalName());

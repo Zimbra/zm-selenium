@@ -20,12 +20,12 @@ import org.testng.annotations.Test;
 import com.zimbra.common.soap.Element;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.DialogDelegate;
-import com.zimbra.qa.selenium.projects.ajax.ui.DialogError.DialogErrorID;
-import com.zimbra.qa.selenium.projects.ajax.ui.preferences.TreePreferences.TreeItem;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
+import com.zimbra.qa.selenium.projects.ajax.pages.DialogDelegate;
+import com.zimbra.qa.selenium.projects.ajax.pages.DialogError.DialogErrorID;
+import com.zimbra.qa.selenium.projects.ajax.pages.preferences.TreePreferences.TreeItem;
 
-public class EditDelegate extends AjaxCommonTest {
+public class EditDelegate extends AjaxCore {
 
 	public EditDelegate() {
 		super.startingPage = app.zPagePreferences;

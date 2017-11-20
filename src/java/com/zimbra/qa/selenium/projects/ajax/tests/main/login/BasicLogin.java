@@ -20,9 +20,9 @@ import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
 
-public class BasicLogin extends AjaxCommonTest {
+public class BasicLogin extends AjaxCore {
 
 	public BasicLogin() {
 		logger.info("New "+ BasicLogin.class.getCanonicalName());

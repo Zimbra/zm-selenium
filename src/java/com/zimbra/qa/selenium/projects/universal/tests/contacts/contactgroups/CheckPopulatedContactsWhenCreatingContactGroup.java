@@ -22,13 +22,13 @@ import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
-import com.zimbra.qa.selenium.projects.universal.ui.AppUniversalClient;
-import com.zimbra.qa.selenium.projects.universal.ui.DialogWarning;
-import com.zimbra.qa.selenium.projects.universal.ui.contacts.*;
-import com.zimbra.qa.selenium.projects.universal.ui.contacts.FormContactGroupNew.Field;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCore;
+import com.zimbra.qa.selenium.projects.universal.pages.UniversalPages;
+import com.zimbra.qa.selenium.projects.universal.pages.DialogWarning;
+import com.zimbra.qa.selenium.projects.universal.pages.contacts.*;
+import com.zimbra.qa.selenium.projects.universal.pages.contacts.FormContactGroupNew.Field;
 
-public class CheckPopulatedContactsWhenCreatingContactGroup extends UniversalCommonTest  {
+public class CheckPopulatedContactsWhenCreatingContactGroup extends UniversalCore  {
 
 	public CheckPopulatedContactsWhenCreatingContactGroup() {
 		logger.info("New "+ CheckPopulatedContactsWhenCreatingContactGroup.class.getCanonicalName());
@@ -79,7 +79,7 @@ public class CheckPopulatedContactsWhenCreatingContactGroup extends UniversalCom
 		// Try to close out the window
 		formGroup.zToolbarPressButton(Button.B_CLOSE);
 		
-		DialogWarning dialog =  new DialogWarning(DialogWarning.DialogWarningID.CancelCreateContact, this.app, ((AppUniversalClient)this.app).zPageContacts);
+		DialogWarning dialog =  new DialogWarning(DialogWarning.DialogWarningID.CancelCreateContact, this.app, ((UniversalPages)this.app).zPageContacts);
 
 		// Wait for the dialog to appear
 		dialog.zWaitForActive();

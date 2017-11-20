@@ -26,13 +26,13 @@ import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.universal.core.FeatureBriefcaseTest;
-import com.zimbra.qa.selenium.projects.universal.ui.*;
+import com.zimbra.qa.selenium.projects.universal.core.EnableBriefcaseFeature;
+import com.zimbra.qa.selenium.projects.universal.pages.*;
 import org.testng.annotations.AfterMethod;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 
-public class MoveFile extends FeatureBriefcaseTest {
+public class MoveFile extends EnableBriefcaseFeature {
 
 	public MoveFile() throws HarnessException {
 		logger.info("New " + MoveFile.class.getCanonicalName());
@@ -351,7 +351,7 @@ public class MoveFile extends FeatureBriefcaseTest {
 
 		// Check if the "Move Dialog is still open
 		DialogMove dialog = new DialogMove(app,
-				((AppUniversalClient) app).zPageBriefcase);
+				((UniversalPages) app).zPageBriefcase);
 		if (dialog.zIsActive()) {
 			logger.warn(dialog.myPageName()
 					+ " was still active.  Cancelling ...");

@@ -20,9 +20,9 @@ import org.testng.annotations.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.*;
-import com.zimbra.qa.selenium.projects.ajax.ui.*;
+import com.zimbra.qa.selenium.projects.ajax.pages.*;
 
-public class ProductHelp extends AjaxCommonTest {
+public class ProductHelp extends AjaxCore {
 
 	public ProductHelp() {
 		logger.info("New " + ProductHelp.class.getCanonicalName());

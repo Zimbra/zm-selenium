@@ -16,7 +16,7 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.tasks;
 
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
 import java.util.HashMap;
 import java.util.List;
 import org.testng.annotations.Test;
@@ -29,12 +29,12 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.ajax.ui.DialogWarning;
-import com.zimbra.qa.selenium.projects.ajax.ui.tasks.FormTaskNew;
-import com.zimbra.qa.selenium.projects.ajax.ui.tasks.FormTaskNew.Field;
-import com.zimbra.qa.selenium.projects.ajax.ui.tasks.PageTasks.Locators;
+import com.zimbra.qa.selenium.projects.ajax.pages.DialogWarning;
+import com.zimbra.qa.selenium.projects.ajax.pages.tasks.FormTaskNew;
+import com.zimbra.qa.selenium.projects.ajax.pages.tasks.FormTaskNew.Field;
+import com.zimbra.qa.selenium.projects.ajax.pages.tasks.PageTasks.Locators;
 
-public class CancelTask extends AjaxCommonTest {
+public class CancelTask extends AjaxCore {
 
 	@SuppressWarnings("serial")
    public CancelTask() {

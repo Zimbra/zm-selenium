@@ -21,10 +21,10 @@ import java.util.HashMap;
 import org.testng.annotations.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.DialogWarning;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
+import com.zimbra.qa.selenium.projects.ajax.pages.DialogWarning;
 
-public class DeleteRecurringInstance extends AjaxCommonTest {
+public class DeleteRecurringInstance extends AjaxCore {
 
 	public DeleteRecurringInstance() {
 		logger.info("New "+ DeleteRecurringInstance.class.getCanonicalName());

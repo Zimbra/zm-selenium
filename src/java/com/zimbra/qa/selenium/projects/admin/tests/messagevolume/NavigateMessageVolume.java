@@ -19,10 +19,10 @@ package com.zimbra.qa.selenium.projects.admin.tests.messagevolume;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
-import com.zimbra.qa.selenium.projects.admin.core.AdminCommonTest;
-import com.zimbra.qa.selenium.projects.admin.ui.PageManageMessageVolume;
+import com.zimbra.qa.selenium.projects.admin.core.AdminCore;
+import com.zimbra.qa.selenium.projects.admin.pages.PageManageMessageVolume;
 
-public class NavigateMessageVolume extends AdminCommonTest {
+public class NavigateMessageVolume extends AdminCore {
 
 	public NavigateMessageVolume() {
 		logger.info("New "+ NavigateMessageVolume.class.getCanonicalName());

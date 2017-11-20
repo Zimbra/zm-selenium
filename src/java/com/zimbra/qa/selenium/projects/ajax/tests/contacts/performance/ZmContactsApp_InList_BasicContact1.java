@@ -26,9 +26,9 @@ import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.framework.util.performance.PerfKey;
 import com.zimbra.qa.selenium.framework.util.performance.PerfMetrics;
 import com.zimbra.qa.selenium.framework.util.performance.PerfToken;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
 
-public class ZmContactsApp_InList_BasicContact1 extends AjaxCommonTest {
+public class ZmContactsApp_InList_BasicContact1 extends AjaxCore {
 
    public ZmContactsApp_InList_BasicContact1() {
       logger.info("New " + ZmContactsApp_InList_BasicContact1.class.getCanonicalName());

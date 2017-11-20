@@ -30,11 +30,11 @@ import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.universal.core.FeatureBriefcaseTest;
-import com.zimbra.qa.selenium.projects.universal.ui.briefcase.DialogConfirm;
-import com.zimbra.qa.selenium.projects.universal.ui.mail.FormMailNew;
+import com.zimbra.qa.selenium.projects.universal.core.EnableBriefcaseFeature;
+import com.zimbra.qa.selenium.projects.universal.pages.briefcase.DialogConfirm;
+import com.zimbra.qa.selenium.projects.universal.pages.mail.FormMailNew;
 
-public class SendFileLink extends FeatureBriefcaseTest {
+public class SendFileLink extends EnableBriefcaseFeature {
 
 	public SendFileLink() throws HarnessException {
 		logger.info("New " + SendFileLink.class.getCanonicalName());

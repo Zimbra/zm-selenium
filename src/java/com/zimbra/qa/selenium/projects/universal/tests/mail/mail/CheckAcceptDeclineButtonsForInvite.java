@@ -28,10 +28,10 @@ import com.zimbra.qa.selenium.framework.util.LmtpInject;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.universal.core.PrefGroupMailByMessageTest;
-import com.zimbra.qa.selenium.projects.universal.ui.mail.DisplayMail;
+import com.zimbra.qa.selenium.projects.universal.core.SetGroupMailByMessagePreference;
+import com.zimbra.qa.selenium.projects.universal.pages.mail.DisplayMail;
 
-public class CheckAcceptDeclineButtonsForInvite extends PrefGroupMailByMessageTest {
+public class CheckAcceptDeclineButtonsForInvite extends SetGroupMailByMessagePreference {
 
 	public CheckAcceptDeclineButtonsForInvite() {
 		logger.info("New "+ CheckAcceptDeclineButtonsForInvite.class.getCanonicalName());

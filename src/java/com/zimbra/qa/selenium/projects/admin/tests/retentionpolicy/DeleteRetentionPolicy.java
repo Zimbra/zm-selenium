@@ -24,10 +24,10 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
-import com.zimbra.qa.selenium.projects.admin.core.AdminCommonTest;
-import com.zimbra.qa.selenium.projects.admin.ui.PageMain;
+import com.zimbra.qa.selenium.projects.admin.core.AdminCore;
+import com.zimbra.qa.selenium.projects.admin.pages.PageMain;
 
-public class DeleteRetentionPolicy extends AdminCommonTest {
+public class DeleteRetentionPolicy extends AdminCore {
 
 	public DeleteRetentionPolicy() {
 		logger.info("New "+ DeleteRetentionPolicy.class.getCanonicalName());

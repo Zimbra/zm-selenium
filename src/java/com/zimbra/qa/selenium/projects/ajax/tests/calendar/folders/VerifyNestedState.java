@@ -20,9 +20,9 @@ import java.util.Calendar;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
 
-public class VerifyNestedState extends AjaxCommonTest {
+public class VerifyNestedState extends AjaxCore {
 
 	public VerifyNestedState() {
 		logger.info("New "+ VerifyNestedState.class.getCanonicalName());

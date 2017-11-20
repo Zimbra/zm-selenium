@@ -19,10 +19,10 @@ package com.zimbra.qa.selenium.projects.admin.tests.domains;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
-import com.zimbra.qa.selenium.projects.admin.core.AdminCommonTest;
-import com.zimbra.qa.selenium.projects.admin.ui.PageManageDomains;
+import com.zimbra.qa.selenium.projects.admin.core.AdminCore;
+import com.zimbra.qa.selenium.projects.admin.pages.PageManageDomains;
 
-public class NavigateDomain extends AdminCommonTest {
+public class NavigateDomain extends AdminCore {
 
 	public NavigateDomain() {
 		logger.info("New "+ NavigateDomain.class.getCanonicalName());

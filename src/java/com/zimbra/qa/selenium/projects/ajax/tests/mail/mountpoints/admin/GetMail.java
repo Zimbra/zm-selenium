@@ -21,11 +21,11 @@ import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail.Field;
+import com.zimbra.qa.selenium.projects.ajax.core.SetGroupMailByMessagePreference;
+import com.zimbra.qa.selenium.projects.ajax.pages.mail.DisplayMail;
+import com.zimbra.qa.selenium.projects.ajax.pages.mail.DisplayMail.Field;
 
-public class GetMail extends PrefGroupMailByMessageTest {
+public class GetMail extends SetGroupMailByMessagePreference {
 
 	public GetMail() {
 		logger.info("New "+ GetMail.class.getCanonicalName());

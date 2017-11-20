@@ -22,10 +22,10 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.CalendarWorkWeekTest;
-import com.zimbra.qa.selenium.projects.universal.ui.calendar.PageCalendar.Locators;
+import com.zimbra.qa.selenium.projects.universal.core.CalendarWorkWeekPreference;
+import com.zimbra.qa.selenium.projects.universal.pages.calendar.PageCalendar.Locators;
 
-public class CheckFreeBusyURLLink extends CalendarWorkWeekTest {
+public class CheckFreeBusyURLLink extends CalendarWorkWeekPreference {
 
 	public CheckFreeBusyURLLink() {
 		logger.info("New "+ CheckFreeBusyURLLink.class.getCanonicalName());

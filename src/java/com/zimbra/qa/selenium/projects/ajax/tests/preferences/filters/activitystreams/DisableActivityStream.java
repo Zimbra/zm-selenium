@@ -21,11 +21,11 @@ import org.testng.ITestContext;
 import org.testng.annotations.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.preferences.DialogActivityStream;
-import com.zimbra.qa.selenium.projects.ajax.ui.preferences.TreePreferences.TreeItem;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
+import com.zimbra.qa.selenium.projects.ajax.pages.preferences.DialogActivityStream;
+import com.zimbra.qa.selenium.projects.ajax.pages.preferences.TreePreferences.TreeItem;
 
-public class DisableActivityStream extends AjaxCommonTest {
+public class DisableActivityStream extends AjaxCore {
 
 	public DisableActivityStream() {
 		super.startingPage = app.zPagePreferences;

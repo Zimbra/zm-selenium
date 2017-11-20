@@ -24,7 +24,7 @@ import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.*;
 
-public class Tentative extends AjaxCommonTest {
+public class Tentative extends AjaxCore {
 
 	@SuppressWarnings("serial")
 	public Tentative() {

@@ -27,9 +27,9 @@ import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZDate;
 import com.zimbra.qa.selenium.framework.util.ZTimeZone;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
 
-public class RecurringWeekly extends AjaxCommonTest {
+public class RecurringWeekly extends AjaxCore {
 
 	public RecurringWeekly() {
 		logger.info("New "+ RecurringWeekly.class.getCanonicalName());

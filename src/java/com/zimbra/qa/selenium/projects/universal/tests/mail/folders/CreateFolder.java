@@ -23,9 +23,9 @@ import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.framework.util.ZimbraCharsets.*;
 import com.zimbra.qa.selenium.projects.universal.core.*;
-import com.zimbra.qa.selenium.projects.universal.ui.mail.*;
+import com.zimbra.qa.selenium.projects.universal.pages.mail.*;
 
-public class CreateFolder extends PrefGroupMailByMessageTest {
+public class CreateFolder extends SetGroupMailByMessagePreference {
 
 	private String folderName = null;
 

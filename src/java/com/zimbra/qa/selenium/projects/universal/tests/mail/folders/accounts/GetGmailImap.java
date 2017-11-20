@@ -21,12 +21,12 @@ import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.PrefGroupMailByMessageTest;
-import com.zimbra.qa.selenium.projects.universal.ui.Toaster;
-import com.zimbra.qa.selenium.projects.universal.ui.mail.PageMail.PageMailView;
-import com.zimbra.qa.selenium.projects.universal.ui.mail.TreeMail.Locators;
+import com.zimbra.qa.selenium.projects.universal.core.SetGroupMailByMessagePreference;
+import com.zimbra.qa.selenium.projects.universal.pages.Toaster;
+import com.zimbra.qa.selenium.projects.universal.pages.mail.PageMail.PageMailView;
+import com.zimbra.qa.selenium.projects.universal.pages.mail.TreeMail.Locators;
 
-public class GetGmailImap extends PrefGroupMailByMessageTest {
+public class GetGmailImap extends SetGroupMailByMessagePreference {
 
 	public GetGmailImap() {
 		logger.info("New "+ GetGmailImap.class.getCanonicalName());

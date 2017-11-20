@@ -19,10 +19,10 @@ package com.zimbra.qa.selenium.projects.admin.tests.clientupload;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
-import com.zimbra.qa.selenium.projects.admin.core.AdminCommonTest;
-import com.zimbra.qa.selenium.projects.admin.ui.PageManageClientUpload;
+import com.zimbra.qa.selenium.projects.admin.core.AdminCore;
+import com.zimbra.qa.selenium.projects.admin.pages.PageManageClientUpload;
 
-public class NavigateClientUpload extends AdminCommonTest {
+public class NavigateClientUpload extends AdminCore {
 
 	public NavigateClientUpload() {
 		logger.info("New "+ NavigateClientUpload.class.getCanonicalName());

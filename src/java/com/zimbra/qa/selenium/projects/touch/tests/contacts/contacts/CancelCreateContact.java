@@ -15,10 +15,10 @@
  * ***** END LICENSE BLOCK *****
  */
 package com.zimbra.qa.selenium.projects.touch.tests.contacts.contacts;import org.testng.annotations.Test;import com.zimbra.qa.selenium.framework.ui.Button;import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.touch.ui.contacts.FormContactNew;
-import com.zimbra.qa.selenium.projects.touch.ui.contacts.FormContactNew.Field;
-import com.zimbra.qa.selenium.projects.touch.core.TouchCommonTest;
-public class CancelCreateContact extends TouchCommonTest  {
+import com.zimbra.qa.selenium.projects.touch.pages.contacts.FormContactNew;
+import com.zimbra.qa.selenium.projects.touch.pages.contacts.FormContactNew.Field;
+import com.zimbra.qa.selenium.projects.touch.core.TouchCore;
+public class CancelCreateContact extends TouchCore  {
 	public CancelCreateContact() {
 		logger.info("New "+ CancelCreateContact.class.getCanonicalName());
 		super.startingPage = app.zPageAddressbook;

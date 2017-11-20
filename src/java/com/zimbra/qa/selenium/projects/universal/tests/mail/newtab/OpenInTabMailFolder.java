@@ -28,11 +28,11 @@ import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.universal.core.*;
-import com.zimbra.qa.selenium.projects.universal.ui.mail.FormMailNew;
-import com.zimbra.qa.selenium.projects.universal.ui.mail.FormMailNew.Field;
-import com.zimbra.qa.selenium.projects.universal.ui.search.PageSearch;
+import com.zimbra.qa.selenium.projects.universal.pages.mail.FormMailNew;
+import com.zimbra.qa.selenium.projects.universal.pages.mail.FormMailNew.Field;
+import com.zimbra.qa.selenium.projects.universal.pages.search.PageSearch;
 
-public class OpenInTabMailFolder extends PrefGroupMailByMessageTest {
+public class OpenInTabMailFolder extends SetGroupMailByMessagePreference {
 
 	public OpenInTabMailFolder() {
 		logger.info("New "+ OpenInTabMailFolder.class.getCanonicalName());

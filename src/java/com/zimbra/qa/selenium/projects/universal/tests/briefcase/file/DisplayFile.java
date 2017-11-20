@@ -27,9 +27,9 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.universal.core.FeatureBriefcaseTest;
+import com.zimbra.qa.selenium.projects.universal.core.EnableBriefcaseFeature;
 
-public class DisplayFile extends FeatureBriefcaseTest {
+public class DisplayFile extends EnableBriefcaseFeature {
 
 	public DisplayFile() {
 		logger.info("New " + DisplayFile.class.getCanonicalName());

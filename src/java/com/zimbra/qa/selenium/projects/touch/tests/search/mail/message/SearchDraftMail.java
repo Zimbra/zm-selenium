@@ -29,9 +29,9 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.touch.core.PrefGroupMailByMessageTest;
+import com.zimbra.qa.selenium.projects.touch.core.SetGroupMailByMessagePreference;
 
-public class SearchDraftMail extends PrefGroupMailByMessageTest {
+public class SearchDraftMail extends SetGroupMailByMessagePreference {
 
 	public SearchDraftMail() {
 		logger.info("New "+ SearchDraftMail.class.getCanonicalName());

@@ -29,14 +29,14 @@ import com.zimbra.qa.selenium.framework.util.ZTimeZone;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ZimbraResource;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.DialogWarningConflictingResources;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew.Locators;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
+import com.zimbra.qa.selenium.projects.ajax.pages.calendar.DialogWarningConflictingResources;
+import com.zimbra.qa.selenium.projects.ajax.pages.calendar.FormApptNew;
+import com.zimbra.qa.selenium.projects.ajax.pages.calendar.FormApptNew.Locators;
 import java.util.Calendar;
 import org.testng.annotations.Test;
 
-public class SaveCancelledConflicts extends AjaxCommonTest {
+public class SaveCancelledConflicts extends AjaxCore {
 
 	public SaveCancelledConflicts() {
 		logger.info("New " + SaveCancelledConflicts.class.getCanonicalName());

@@ -22,12 +22,12 @@ import com.zimbra.qa.selenium.framework.items.FolderItem.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.*;
-import com.zimbra.qa.selenium.projects.ajax.ui.AppAjaxClient;
-import com.zimbra.qa.selenium.projects.ajax.ui.DialogAttach;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.*;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.PageMail.Locators;
+import com.zimbra.qa.selenium.projects.ajax.pages.AjaxPages;
+import com.zimbra.qa.selenium.projects.ajax.pages.DialogAttach;
+import com.zimbra.qa.selenium.projects.ajax.pages.mail.*;
+import com.zimbra.qa.selenium.projects.ajax.pages.mail.PageMail.Locators;
 
-public class AttachAndSendMail extends PrefGroupMailByMessageTest {
+public class AttachAndSendMail extends SetGroupMailByMessagePreference {
 
 	public AttachAndSendMail() {
 		logger.info("New "+ AttachAndSendMail.class.getCanonicalName());
@@ -73,7 +73,7 @@ public class AttachAndSendMail extends PrefGroupMailByMessageTest {
 		mailform.zFill(mail);
 		app.zPageMail.zToolbarPressPulldown(Button.B_ATTACH, Button.O_MAILATTACH);
 
-		DialogAttach dialog = new DialogAttach(app, ((AppAjaxClient) app).zPageMail);
+		DialogAttach dialog = new DialogAttach(app, ((AjaxPages) app).zPageMail);
 		ZAssert.assertTrue(dialog.zIsActive(), "Attach Mail dialog gets open and active");
 
 		// Click on Inbox folder

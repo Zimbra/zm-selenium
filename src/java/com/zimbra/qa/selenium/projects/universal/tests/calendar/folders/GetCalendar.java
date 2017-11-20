@@ -28,7 +28,7 @@ import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.universal.core.*;
 
 
-public class GetCalendar extends CalendarWorkWeekTest {
+public class GetCalendar extends CalendarWorkWeekPreference {
 
 	public GetCalendar() {
 		logger.info("New "+ GetCalendar.class.getCanonicalName());

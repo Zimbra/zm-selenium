@@ -26,12 +26,12 @@ import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.universal.core.*;
-import com.zimbra.qa.selenium.projects.universal.ui.*;
-import com.zimbra.qa.selenium.projects.universal.ui.TooltipImage.*;
-import com.zimbra.qa.selenium.projects.universal.ui.mail.*;
+import com.zimbra.qa.selenium.projects.universal.pages.*;
+import com.zimbra.qa.selenium.projects.universal.pages.TooltipImage.*;
+import com.zimbra.qa.selenium.projects.universal.pages.mail.*;
 
 
-public class HoverOverAttachment extends PrefGroupMailByMessageTest {
+public class HoverOverAttachment extends SetGroupMailByMessagePreference {
 
 
 

@@ -25,12 +25,12 @@ import com.zimbra.qa.selenium.framework.items.MailItem;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.CalendarWorkWeekTest;
-import com.zimbra.qa.selenium.projects.universal.ui.DialogWarning;
-import com.zimbra.qa.selenium.projects.universal.ui.mail.FormMailNew;
-import com.zimbra.qa.selenium.projects.universal.ui.mail.FormMailNew.Field;;
+import com.zimbra.qa.selenium.projects.universal.core.CalendarWorkWeekPreference;
+import com.zimbra.qa.selenium.projects.universal.pages.DialogWarning;
+import com.zimbra.qa.selenium.projects.universal.pages.mail.FormMailNew;
+import com.zimbra.qa.selenium.projects.universal.pages.mail.FormMailNew.Field;;
 
-public class CheckEditedMessageAfterCancellingMeetingInvite extends CalendarWorkWeekTest {
+public class CheckEditedMessageAfterCancellingMeetingInvite extends CalendarWorkWeekPreference {
 
 	public CheckEditedMessageAfterCancellingMeetingInvite() {
 		logger.info("New "+ CheckEditedMessageAfterCancellingMeetingInvite.class.getCanonicalName());

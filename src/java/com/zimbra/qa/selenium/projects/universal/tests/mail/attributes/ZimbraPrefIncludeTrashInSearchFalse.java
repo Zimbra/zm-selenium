@@ -27,7 +27,7 @@ import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.universal.core.*;
 
 
-public class ZimbraPrefIncludeTrashInSearchFalse extends PrefGroupMailByMessageTest {
+public class ZimbraPrefIncludeTrashInSearchFalse extends SetGroupMailByMessagePreference {
 
 	public ZimbraPrefIncludeTrashInSearchFalse() {
 		logger.info("New "+ ZimbraPrefIncludeTrashInSearchFalse.class.getCanonicalName());

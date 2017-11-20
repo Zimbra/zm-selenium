@@ -20,10 +20,10 @@ import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.items.MailItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.touch.ui.mail.DisplayMail.Field;
-import com.zimbra.qa.selenium.projects.touch.core.PrefGroupMailByMessageTest;
+import com.zimbra.qa.selenium.projects.touch.pages.mail.DisplayMail.Field;
+import com.zimbra.qa.selenium.projects.touch.core.SetGroupMailByMessagePreference;
 
-public class QuickReply extends PrefGroupMailByMessageTest {
+public class QuickReply extends SetGroupMailByMessagePreference {
 
 	public QuickReply() {
 		logger.info("New "+ QuickReply.class.getCanonicalName());

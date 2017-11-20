@@ -27,7 +27,7 @@ import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.*;
 
-public class ZmConv extends AjaxCommonTest {
+public class ZmConv extends AjaxCore {
 
 	@SuppressWarnings("serial")
 	public ZmConv() throws HarnessException {

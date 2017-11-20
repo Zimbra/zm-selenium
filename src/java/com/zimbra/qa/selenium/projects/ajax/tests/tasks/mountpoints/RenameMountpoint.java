@@ -28,10 +28,10 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.DialogRenameFolder;
+import com.zimbra.qa.selenium.projects.ajax.core.SetGroupMailByMessagePreference;
+import com.zimbra.qa.selenium.projects.ajax.pages.DialogRenameFolder;
 
-public class RenameMountpoint extends PrefGroupMailByMessageTest {
+public class RenameMountpoint extends SetGroupMailByMessagePreference {
 
 	@SuppressWarnings("serial")
 	public RenameMountpoint() {

@@ -26,9 +26,9 @@ import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.ajax.core.FeatureBriefcaseTest;
+import com.zimbra.qa.selenium.projects.ajax.core.EnableBriefcaseFeature;
 
-public class PreviewFile extends FeatureBriefcaseTest {
+public class PreviewFile extends EnableBriefcaseFeature {
 
 	public PreviewFile() {
 		logger.info("New " + PreviewFile.class.getCanonicalName());

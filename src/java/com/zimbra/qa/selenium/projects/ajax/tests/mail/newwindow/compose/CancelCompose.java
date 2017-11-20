@@ -19,10 +19,10 @@ package com.zimbra.qa.selenium.projects.ajax.tests.mail.newwindow.compose;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.SeparateWindowFormMailNew;
+import com.zimbra.qa.selenium.projects.ajax.core.SetGroupMailByMessagePreference;
+import com.zimbra.qa.selenium.projects.ajax.pages.mail.SeparateWindowFormMailNew;
 
-public class CancelCompose extends PrefGroupMailByMessageTest {
+public class CancelCompose extends SetGroupMailByMessagePreference {
 
 	public CancelCompose() {
 		logger.info("New "+ CancelCompose.class.getCanonicalName());

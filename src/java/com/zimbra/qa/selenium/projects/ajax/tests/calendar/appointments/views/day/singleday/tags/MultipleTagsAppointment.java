@@ -23,9 +23,9 @@ import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
 
-public class MultipleTagsAppointment extends AjaxCommonTest {
+public class MultipleTagsAppointment extends AjaxCore {
 
 	public MultipleTagsAppointment() {
 		logger.info("New "+ MultipleTagsAppointment.class.getCanonicalName());

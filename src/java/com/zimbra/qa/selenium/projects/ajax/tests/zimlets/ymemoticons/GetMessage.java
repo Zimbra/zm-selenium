@@ -21,10 +21,10 @@ import org.testng.annotations.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.*;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.*;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail.*;
+import com.zimbra.qa.selenium.projects.ajax.pages.mail.*;
+import com.zimbra.qa.selenium.projects.ajax.pages.mail.DisplayMail.*;
 
-public class GetMessage extends AjaxCommonTest {
+public class GetMessage extends AjaxCore {
 
 	public static final class Emoticons {
 		public static final String HAPPY = ":)";

@@ -29,11 +29,11 @@ import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByConversationTest;
+import com.zimbra.qa.selenium.projects.ajax.core.SetGroupMailByConversationPreference;
 import com.zimbra.qa.selenium.projects.ajax.tests.mail.compose.drafts.OpenDraftMail;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.PageMail.Locators;
+import com.zimbra.qa.selenium.projects.ajax.pages.mail.PageMail.Locators;
 
-public class VerifyReadingPaneOptions extends PrefGroupMailByConversationTest {
+public class VerifyReadingPaneOptions extends SetGroupMailByConversationPreference {
 
 	public VerifyReadingPaneOptions() {
 		logger.info("New " + OpenDraftMail.class.getCanonicalName());

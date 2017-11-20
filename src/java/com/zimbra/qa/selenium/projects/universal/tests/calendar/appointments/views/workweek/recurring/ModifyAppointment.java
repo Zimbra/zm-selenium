@@ -27,10 +27,10 @@ import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZDate;
 import com.zimbra.qa.selenium.framework.util.ZTimeZone;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.universal.core.CalendarWorkWeekTest;
-import com.zimbra.qa.selenium.projects.universal.ui.calendar.FormApptNew;
+import com.zimbra.qa.selenium.projects.universal.core.CalendarWorkWeekPreference;
+import com.zimbra.qa.selenium.projects.universal.pages.calendar.FormApptNew;
 
-public class ModifyAppointment extends CalendarWorkWeekTest {
+public class ModifyAppointment extends CalendarWorkWeekPreference {
 	
 	public ModifyAppointment() {
 		logger.info("New " + ModifyAppointment.class.getCanonicalName());

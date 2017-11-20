@@ -24,12 +24,12 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.DialogShare;
-import com.zimbra.qa.selenium.projects.ajax.ui.DialogShare.ShareRole;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.DialogEditFolder;
+import com.zimbra.qa.selenium.projects.ajax.core.SetGroupMailByMessagePreference;
+import com.zimbra.qa.selenium.projects.ajax.pages.DialogShare;
+import com.zimbra.qa.selenium.projects.ajax.pages.DialogShare.ShareRole;
+import com.zimbra.qa.selenium.projects.ajax.pages.mail.DialogEditFolder;
 
-public class EditShare extends PrefGroupMailByMessageTest {
+public class EditShare extends SetGroupMailByMessagePreference {
 
 	public EditShare() {
 		logger.info("New "+ EditShare.class.getCanonicalName());

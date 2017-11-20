@@ -21,9 +21,9 @@ import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
 
-public class Open extends AjaxCommonTest {
+public class Open extends AjaxCore {
 
 	public Open() {
 		logger.info("New "+ Open.class.getCanonicalName());

@@ -23,9 +23,9 @@ import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
+import com.zimbra.qa.selenium.projects.ajax.core.SetGroupMailByMessagePreference;
 
-public class SortPerFolder extends PrefGroupMailByMessageTest {
+public class SortPerFolder extends SetGroupMailByMessagePreference {
 
 	public SortPerFolder() {
 		logger.info("New "+ SortPerFolder.class.getCanonicalName());

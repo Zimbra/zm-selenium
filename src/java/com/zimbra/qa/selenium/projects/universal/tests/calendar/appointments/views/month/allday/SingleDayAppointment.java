@@ -28,10 +28,10 @@ import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
-import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCore;
 
 
-public class SingleDayAppointment extends UniversalCommonTest {
+public class SingleDayAppointment extends UniversalCore {
 
 	
 	@SuppressWarnings("serial")

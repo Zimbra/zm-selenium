@@ -22,11 +22,11 @@ import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.PrefGroupMailByMessageTest;
-import com.zimbra.qa.selenium.projects.universal.ui.DialogMove;
+import com.zimbra.qa.selenium.projects.universal.core.SetGroupMailByMessagePreference;
+import com.zimbra.qa.selenium.projects.universal.pages.DialogMove;
 
 
-public class MoveFolder extends PrefGroupMailByMessageTest {
+public class MoveFolder extends SetGroupMailByMessagePreference {
 
 	public MoveFolder() {
 		logger.info("New "+ MoveFolder.class.getCanonicalName());

@@ -19,11 +19,11 @@ package com.zimbra.qa.selenium.projects.html.tests.login;
 import org.testng.annotations.Test;
 
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.html.core.HtmlCommonTest;
+import com.zimbra.qa.selenium.projects.html.core.HtmlCore;
 
 
 
-public class BasicLogout extends HtmlCommonTest {
+public class BasicLogout extends HtmlCore {
 	
 	public BasicLogout() {
 		logger.info("New "+ BasicLogout.class.getCanonicalName());

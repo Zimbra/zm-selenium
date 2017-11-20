@@ -22,10 +22,10 @@ import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.PrefGroupMailByMessageTest;
-import com.zimbra.qa.selenium.projects.universal.ui.mail.SeparateWindowDisplayMail;
+import com.zimbra.qa.selenium.projects.universal.core.SetGroupMailByMessagePreference;
+import com.zimbra.qa.selenium.projects.universal.pages.mail.SeparateWindowDisplayMail;
 
-public class EditAsNewWithAttachment extends PrefGroupMailByMessageTest {
+public class EditAsNewWithAttachment extends SetGroupMailByMessagePreference {
 
 	public EditAsNewWithAttachment() {
 		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "html");

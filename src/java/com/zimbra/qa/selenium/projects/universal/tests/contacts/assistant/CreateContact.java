@@ -21,10 +21,10 @@ import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
-import com.zimbra.qa.selenium.projects.universal.ui.DialogAssistant;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCore;
+import com.zimbra.qa.selenium.projects.universal.pages.DialogAssistant;
 
-public class CreateContact extends UniversalCommonTest {
+public class CreateContact extends UniversalCore {
 	
 	public CreateContact() {
 		logger.info("New "+ CreateContact.class.getCanonicalName());

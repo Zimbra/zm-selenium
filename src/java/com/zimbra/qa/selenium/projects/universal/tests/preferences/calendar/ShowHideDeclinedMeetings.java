@@ -29,12 +29,12 @@ import com.zimbra.qa.selenium.framework.util.ZTimeZone;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.universal.core.CalendarWorkWeekTest;
-import com.zimbra.qa.selenium.projects.universal.ui.calendar.DialogConfirmationDeclineAppointment;
+import com.zimbra.qa.selenium.projects.universal.core.CalendarWorkWeekPreference;
+import com.zimbra.qa.selenium.projects.universal.pages.calendar.DialogConfirmationDeclineAppointment;
 import java.util.Calendar;
 import org.testng.annotations.Test;
 
-public class ShowHideDeclinedMeetings extends CalendarWorkWeekTest {
+public class ShowHideDeclinedMeetings extends CalendarWorkWeekPreference {
 
   public ShowHideDeclinedMeetings()
   {

@@ -27,10 +27,10 @@ import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZDate;
 import com.zimbra.qa.selenium.framework.util.ZTimeZone;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
+import com.zimbra.qa.selenium.projects.ajax.pages.calendar.FormApptNew;
 
-public class ModifyAppointment extends AjaxCommonTest {
+public class ModifyAppointment extends AjaxCore {
 
 	public ModifyAppointment() {
 		logger.info("New " + ModifyAppointment.class.getCanonicalName());
@@ -44,7 +44,7 @@ public class ModifyAppointment extends AjaxCommonTest {
 	}
 
 
-	@Test (	description = "Modify appointment with subject & body and verify it in day view",
+	@Test (description = "Modify appointment with subject & body and verify it in day view",
 			groups = { "smoke", "L1" })
 
 	public void ModifyAppointment_01() throws HarnessException {

@@ -19,10 +19,10 @@ package com.zimbra.qa.selenium.projects.admin.tests.certificates;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
-import com.zimbra.qa.selenium.projects.admin.core.AdminCommonTest;
-import com.zimbra.qa.selenium.projects.admin.ui.PageManageCertificates;
+import com.zimbra.qa.selenium.projects.admin.core.AdminCore;
+import com.zimbra.qa.selenium.projects.admin.pages.PageManageCertificates;
 
-public class NavigateCertificates extends AdminCommonTest {
+public class NavigateCertificates extends AdminCore {
 
 	public NavigateCertificates() {
 		logger.info("New "+ NavigateCertificates.class.getCanonicalName());

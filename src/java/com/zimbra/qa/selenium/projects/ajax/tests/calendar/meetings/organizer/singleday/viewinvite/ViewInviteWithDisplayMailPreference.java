@@ -21,15 +21,15 @@ import java.util.HashMap;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
 import com.zimbra.qa.selenium.projects.ajax.tests.calendar.performance.ZmCalendarApp_ViewDay_Appointment1;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail.Field;
-import com.zimbra.qa.selenium.projects.ajax.ui.preferences.PagePreferences;
-import com.zimbra.qa.selenium.projects.ajax.ui.preferences.TreePreferences.TreeItem;
+import com.zimbra.qa.selenium.projects.ajax.pages.mail.DisplayMail;
+import com.zimbra.qa.selenium.projects.ajax.pages.mail.DisplayMail.Field;
+import com.zimbra.qa.selenium.projects.ajax.pages.preferences.PagePreferences;
+import com.zimbra.qa.selenium.projects.ajax.pages.preferences.TreePreferences.TreeItem;
 import java.util.Calendar;
 
-public class ViewInviteWithDisplayMailPreference extends AjaxCommonTest {
+public class ViewInviteWithDisplayMailPreference extends AjaxCore {
 
 	public ViewInviteWithDisplayMailPreference() throws HarnessException {
 		logger.info("New "+ ZmCalendarApp_ViewDay_Appointment1.class.getCanonicalName());

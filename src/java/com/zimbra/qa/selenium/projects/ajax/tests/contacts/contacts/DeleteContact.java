@@ -22,9 +22,9 @@ import org.testng.annotations.*;
 import com.zimbra.qa.selenium.framework.items.ContactItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
 
-public class DeleteContact extends AjaxCommonTest  {
+public class DeleteContact extends AjaxCore  {
 
 	public DeleteContact() {
 		logger.info("New "+ DeleteContact.class.getCanonicalName());

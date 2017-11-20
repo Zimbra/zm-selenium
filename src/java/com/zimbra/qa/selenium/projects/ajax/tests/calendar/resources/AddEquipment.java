@@ -22,14 +22,14 @@ import org.testng.annotations.*;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.AutocompleteEntry;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.DialogFindEquipment;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew.Field;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew.Locators;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
+import com.zimbra.qa.selenium.projects.ajax.pages.AutocompleteEntry;
+import com.zimbra.qa.selenium.projects.ajax.pages.calendar.DialogFindEquipment;
+import com.zimbra.qa.selenium.projects.ajax.pages.calendar.FormApptNew;
+import com.zimbra.qa.selenium.projects.ajax.pages.calendar.FormApptNew.Field;
+import com.zimbra.qa.selenium.projects.ajax.pages.calendar.FormApptNew.Locators;
 
-public class AddEquipment extends AjaxCommonTest {
+public class AddEquipment extends AjaxCore {
 
 	public AddEquipment() {
 		logger.info("New "+ AddEquipment.class.getCanonicalName());

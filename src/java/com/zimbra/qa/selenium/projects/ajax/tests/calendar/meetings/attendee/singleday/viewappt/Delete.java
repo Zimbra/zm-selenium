@@ -23,9 +23,9 @@ import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.*;
 import com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.attendee.singleday.viewappt.Decline;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.DialogConfirmationDeclineAppointment;
+import com.zimbra.qa.selenium.projects.ajax.pages.calendar.DialogConfirmationDeclineAppointment;
 
-public class Delete extends AjaxCommonTest {
+public class Delete extends AjaxCore {
 
 	public Delete() {
 		logger.info("New "+ Decline.class.getCanonicalName());

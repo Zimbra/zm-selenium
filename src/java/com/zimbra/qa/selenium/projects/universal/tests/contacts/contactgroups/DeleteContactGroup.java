@@ -25,10 +25,10 @@ import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
-import com.zimbra.qa.selenium.projects.universal.ui.contacts.FormContactGroupNew;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCore;
+import com.zimbra.qa.selenium.projects.universal.pages.contacts.FormContactGroupNew;
 
-public class DeleteContactGroup extends UniversalCommonTest  {
+public class DeleteContactGroup extends UniversalCore  {
 	
 	public DeleteContactGroup() {
 		logger.info("New "+ DeleteContactGroup.class.getCanonicalName());

@@ -23,11 +23,11 @@ import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.FeatureBriefcaseTest;
-import com.zimbra.qa.selenium.projects.universal.ui.DialogTag;
-import com.zimbra.qa.selenium.projects.universal.ui.briefcase.PageBriefcase;
+import com.zimbra.qa.selenium.projects.universal.core.EnableBriefcaseFeature;
+import com.zimbra.qa.selenium.projects.universal.pages.DialogTag;
+import com.zimbra.qa.selenium.projects.universal.pages.briefcase.PageBriefcase;
 
-public class TagFile extends FeatureBriefcaseTest {
+public class TagFile extends EnableBriefcaseFeature {
 
 	public TagFile() throws HarnessException {
 		logger.info("New " + TagFile.class.getCanonicalName());

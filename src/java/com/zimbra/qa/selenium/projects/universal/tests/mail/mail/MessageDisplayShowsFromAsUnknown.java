@@ -29,9 +29,9 @@ import com.zimbra.qa.selenium.framework.util.LmtpInject;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCore;
 
-public class MessageDisplayShowsFromAsUnknown extends UniversalCommonTest {
+public class MessageDisplayShowsFromAsUnknown extends UniversalCore {
 
 	@SuppressWarnings("serial")
 	public MessageDisplayShowsFromAsUnknown() {

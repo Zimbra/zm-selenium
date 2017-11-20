@@ -24,7 +24,7 @@ import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.*;
 import com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.attendee.singleday.viewappt.Tentative;
 
-public class Tentative extends AjaxCommonTest {
+public class Tentative extends AjaxCore {
 
 	public Tentative() {
 		logger.info("New "+ Tentative.class.getCanonicalName());

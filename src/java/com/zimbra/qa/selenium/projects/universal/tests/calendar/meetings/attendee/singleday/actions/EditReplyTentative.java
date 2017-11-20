@@ -23,10 +23,10 @@ import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.universal.core.*;
-import com.zimbra.qa.selenium.projects.universal.ui.mail.FormMailNew;
-import com.zimbra.qa.selenium.projects.universal.ui.mail.FormMailNew.Field;
+import com.zimbra.qa.selenium.projects.universal.pages.mail.FormMailNew;
+import com.zimbra.qa.selenium.projects.universal.pages.mail.FormMailNew.Field;
 
-public class EditReplyTentative extends CalendarWorkWeekTest {
+public class EditReplyTentative extends CalendarWorkWeekPreference {
 
 	public EditReplyTentative() {
 		logger.info("New "+ EditReplyTentative.class.getCanonicalName());

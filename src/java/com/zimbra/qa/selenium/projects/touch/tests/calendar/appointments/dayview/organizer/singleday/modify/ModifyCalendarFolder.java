@@ -25,10 +25,10 @@ import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.touch.ui.calendar.FormApptNew;
-import com.zimbra.qa.selenium.projects.touch.core.CalendarWorkWeekTest;
+import com.zimbra.qa.selenium.projects.touch.pages.calendar.FormApptNew;
+import com.zimbra.qa.selenium.projects.touch.core.CalendarWorkWeekPreference;
 
-public class ModifyCalendarFolder extends CalendarWorkWeekTest {
+public class ModifyCalendarFolder extends CalendarWorkWeekPreference {
 
 	public ModifyCalendarFolder() {
 		logger.info("New "+ ModifyCalendarFolder.class.getCanonicalName());

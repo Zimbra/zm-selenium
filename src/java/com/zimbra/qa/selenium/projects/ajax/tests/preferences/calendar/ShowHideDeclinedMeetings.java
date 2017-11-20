@@ -29,12 +29,12 @@ import com.zimbra.qa.selenium.framework.util.ZTimeZone;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.DialogConfirmationDeclineAppointment;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
+import com.zimbra.qa.selenium.projects.ajax.pages.calendar.DialogConfirmationDeclineAppointment;
 import java.util.Calendar;
 import org.testng.annotations.Test;
 
-public class ShowHideDeclinedMeetings extends AjaxCommonTest {
+public class ShowHideDeclinedMeetings extends AjaxCore {
 
 	public ShowHideDeclinedMeetings() {
 		logger.info("New " + ShowHideDeclinedMeetings.class.getCanonicalName());

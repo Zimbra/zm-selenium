@@ -29,9 +29,9 @@ import com.zimbra.qa.selenium.framework.util.LmtpInject;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
 
-public class TrustedDomainConversationView extends AjaxCommonTest {
+public class TrustedDomainConversationView extends AjaxCore {
 
 	@SuppressWarnings("serial")
 	public TrustedDomainConversationView() throws HarnessException {

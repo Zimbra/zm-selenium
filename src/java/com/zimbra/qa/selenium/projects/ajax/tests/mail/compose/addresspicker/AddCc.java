@@ -24,11 +24,11 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormAddressPicker;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
+import com.zimbra.qa.selenium.projects.ajax.core.SetGroupMailByMessagePreference;
+import com.zimbra.qa.selenium.projects.ajax.pages.mail.FormAddressPicker;
+import com.zimbra.qa.selenium.projects.ajax.pages.mail.FormMailNew;
 
-public class AddCc extends PrefGroupMailByMessageTest {
+public class AddCc extends SetGroupMailByMessagePreference {
 
 	public AddCc() {
 		logger.info("New "+ AddCc.class.getCanonicalName());

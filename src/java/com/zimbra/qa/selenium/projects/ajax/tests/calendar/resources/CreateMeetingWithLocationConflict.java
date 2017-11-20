@@ -23,11 +23,11 @@ import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.*;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.DialogWarningConflictingResources;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew.Locators;
+import com.zimbra.qa.selenium.projects.ajax.pages.calendar.DialogWarningConflictingResources;
+import com.zimbra.qa.selenium.projects.ajax.pages.calendar.FormApptNew;
+import com.zimbra.qa.selenium.projects.ajax.pages.calendar.FormApptNew.Locators;
 
-public class CreateMeetingWithLocationConflict extends AjaxCommonTest {
+public class CreateMeetingWithLocationConflict extends AjaxCore {
 
 	public CreateMeetingWithLocationConflict() {
 		logger.info("New "+ CreateMeetingWithLocationConflict.class.getCanonicalName());

@@ -19,13 +19,13 @@ package com.zimbra.qa.selenium.projects.ajax.tests.contacts.dl.duplicate;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.DialogError;
-import com.zimbra.qa.selenium.projects.ajax.ui.DialogError.DialogErrorID;
-import com.zimbra.qa.selenium.projects.ajax.ui.contacts.FormContactDistributionListNew;
-import com.zimbra.qa.selenium.projects.ajax.ui.contacts.FormContactDistributionListNew.Field;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
+import com.zimbra.qa.selenium.projects.ajax.pages.DialogError;
+import com.zimbra.qa.selenium.projects.ajax.pages.DialogError.DialogErrorID;
+import com.zimbra.qa.selenium.projects.ajax.pages.contacts.FormContactDistributionListNew;
+import com.zimbra.qa.selenium.projects.ajax.pages.contacts.FormContactDistributionListNew.Field;
 
-public class CreateDuplicateDL extends AjaxCommonTest  {
+public class CreateDuplicateDL extends AjaxCore  {
 
 	public CreateDuplicateDL() {
 		logger.info("New "+ CreateDuplicateDL.class.getCanonicalName());

@@ -20,13 +20,13 @@ import java.awt.event.KeyEvent;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.DialogWarning;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew.Field;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew.Locators;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
+import com.zimbra.qa.selenium.projects.ajax.pages.DialogWarning;
+import com.zimbra.qa.selenium.projects.ajax.pages.calendar.FormApptNew;
+import com.zimbra.qa.selenium.projects.ajax.pages.calendar.FormApptNew.Field;
+import com.zimbra.qa.selenium.projects.ajax.pages.calendar.FormApptNew.Locators;
 
-public class CreateMeetingWithMultilineBody extends AjaxCommonTest {
+public class CreateMeetingWithMultilineBody extends AjaxCore {
 
 	public CreateMeetingWithMultilineBody() {
 		logger.info("New "+ CreateMeetingWithMultilineBody.class.getCanonicalName());

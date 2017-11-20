@@ -22,13 +22,13 @@ import com.zimbra.qa.selenium.framework.core.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.universal.core.*;
-import com.zimbra.qa.selenium.projects.universal.ui.calendar.DialogFindAttendees;
-import com.zimbra.qa.selenium.projects.universal.ui.calendar.FormApptNew;
-import com.zimbra.qa.selenium.projects.universal.ui.mail.*;
-import com.zimbra.qa.selenium.projects.universal.ui.mail.FormAddressPicker.Field;
-import com.zimbra.qa.selenium.projects.universal.ui.mail.FormAddressPicker.Locators;
+import com.zimbra.qa.selenium.projects.universal.pages.calendar.DialogFindAttendees;
+import com.zimbra.qa.selenium.projects.universal.pages.calendar.FormApptNew;
+import com.zimbra.qa.selenium.projects.universal.pages.mail.*;
+import com.zimbra.qa.selenium.projects.universal.pages.mail.FormAddressPicker.Field;
+import com.zimbra.qa.selenium.projects.universal.pages.mail.FormAddressPicker.Locators;
 
-public class ZimbraFeatureContactsDetailedSearchEnabled extends PrefGroupMailByMessageTest {
+public class ZimbraFeatureContactsDetailedSearchEnabled extends SetGroupMailByMessagePreference {
 
 	public ZimbraFeatureContactsDetailedSearchEnabled() {
 		logger.info("New "+ ZimbraFeatureContactsDetailedSearchEnabled.class.getCanonicalName());
@@ -159,7 +159,7 @@ public class ZimbraFeatureContactsDetailedSearchEnabled extends PrefGroupMailByM
 	        DialogFindAttendees dialogFindAttendees = (DialogFindAttendees) new DialogFindAttendees(app, app.zPageCalendar);
 	        
 	        //Enter department to search
-	        dialogFindAttendees.zFillField(com.zimbra.qa.selenium.projects.universal.ui.calendar.DialogFindAttendees.Field.Department, department);
+	        dialogFindAttendees.zFillField(com.zimbra.qa.selenium.projects.universal.pages.calendar.DialogFindAttendees.Field.Department, department);
 			dialogFindAttendees.zPressButton(Button.B_SEARCH);
 
 			//Check that correct addresses are filtered out		

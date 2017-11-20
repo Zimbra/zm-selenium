@@ -29,9 +29,9 @@ import com.zimbra.qa.selenium.framework.util.XmlStringUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ZimbraURI;
-import com.zimbra.qa.selenium.projects.ajax.core.FeatureBriefcaseTest;
+import com.zimbra.qa.selenium.projects.ajax.core.EnableBriefcaseFeature;
 
-public class AppBriefcase extends FeatureBriefcaseTest {
+public class AppBriefcase extends EnableBriefcaseFeature {
 
 	public AppBriefcase() {
 		logger.info("New " + AppBriefcase.class.getCanonicalName());

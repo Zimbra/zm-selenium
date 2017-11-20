@@ -25,11 +25,11 @@ import com.zimbra.qa.selenium.framework.items.ContactItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.touch.core.*;
-import com.zimbra.qa.selenium.projects.touch.ui.mail.DisplayMail.*;
-import com.zimbra.qa.selenium.projects.touch.ui.contacts.FormContactNew;
+import com.zimbra.qa.selenium.projects.touch.pages.mail.DisplayMail.*;
+import com.zimbra.qa.selenium.projects.touch.pages.contacts.FormContactNew;
 
 
-public class AddToContactsContextMenu extends CalendarWorkWeekTest {
+public class AddToContactsContextMenu extends CalendarWorkWeekPreference {
 
 	public AddToContactsContextMenu() {
 		logger.info("New "+ AddToContactsContextMenu.class.getCanonicalName());

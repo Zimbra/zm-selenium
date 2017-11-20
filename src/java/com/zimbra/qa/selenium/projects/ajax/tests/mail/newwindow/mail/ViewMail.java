@@ -26,11 +26,11 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.LmtpInject;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.SeparateWindowDisplayMail;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail.Field;
+import com.zimbra.qa.selenium.projects.ajax.core.SetGroupMailByMessagePreference;
+import com.zimbra.qa.selenium.projects.ajax.pages.mail.SeparateWindowDisplayMail;
+import com.zimbra.qa.selenium.projects.ajax.pages.mail.DisplayMail.Field;
 
-public class ViewMail extends PrefGroupMailByMessageTest {
+public class ViewMail extends SetGroupMailByMessagePreference {
 
 	final String mimeFolder = ConfigProperties.getBaseDirectory() + "/data/public/mime/email00";
 

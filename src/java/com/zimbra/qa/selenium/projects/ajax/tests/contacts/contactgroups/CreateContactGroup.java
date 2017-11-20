@@ -25,11 +25,11 @@ import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.contacts.*;
-import com.zimbra.qa.selenium.projects.ajax.ui.contacts.FormContactGroupNew.Field;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
+import com.zimbra.qa.selenium.projects.ajax.pages.contacts.*;
+import com.zimbra.qa.selenium.projects.ajax.pages.contacts.FormContactGroupNew.Field;
 
-public class CreateContactGroup extends AjaxCommonTest  {
+public class CreateContactGroup extends AjaxCore  {
 
 	public CreateContactGroup() {
 		logger.info("New "+ CreateContactGroup.class.getCanonicalName());

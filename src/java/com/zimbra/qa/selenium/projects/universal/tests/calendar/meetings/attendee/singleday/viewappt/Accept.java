@@ -24,7 +24,7 @@ import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.universal.core.*;
 import com.zimbra.qa.selenium.projects.universal.tests.calendar.meetings.attendee.singleday.viewappt.Accept;
 
-public class Accept extends CalendarWorkWeekTest {
+public class Accept extends CalendarWorkWeekPreference {
 
 	public Accept() {
 		logger.info("New "+ Accept.class.getCanonicalName());

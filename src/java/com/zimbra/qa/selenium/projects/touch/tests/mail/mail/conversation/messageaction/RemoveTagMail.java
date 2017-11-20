@@ -22,9 +22,9 @@ import com.zimbra.qa.selenium.framework.items.MailItem;
 import com.zimbra.qa.selenium.framework.items.TagItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.touch.core.PrefGroupMailByConversationTest;
+import com.zimbra.qa.selenium.projects.touch.core.SetGroupMailByConversationPreference;
 
-public class RemoveTagMail extends PrefGroupMailByConversationTest {
+public class RemoveTagMail extends SetGroupMailByConversationPreference {
 
 	public RemoveTagMail() {
 		logger.info("New "+ DeleteMail.class.getCanonicalName());

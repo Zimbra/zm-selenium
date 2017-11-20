@@ -22,9 +22,9 @@ import org.testng.annotations.Test;
 
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCore;
 
-public class ZimbraFeatureChangePasswordEnabledFalse extends UniversalCommonTest {
+public class ZimbraFeatureChangePasswordEnabledFalse extends UniversalCore {
 
 	public ZimbraFeatureChangePasswordEnabledFalse() {
 		logger.info("New " + ZimbraFeatureChangePasswordEnabledFalse.class.getCanonicalName());

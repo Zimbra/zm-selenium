@@ -26,10 +26,10 @@ import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.items.RecipientItem.RecipientType;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.touch.core.TouchCommonTest;
-import com.zimbra.qa.selenium.projects.touch.ui.mail.FormMailNew;
+import com.zimbra.qa.selenium.projects.touch.core.TouchCore;
+import com.zimbra.qa.selenium.projects.touch.pages.mail.FormMailNew;
 
-public class CancelCompose extends TouchCommonTest {
+public class CancelCompose extends TouchCore {
 
 	public CancelCompose() {
 		logger.info("New "+ CancelCompose.class.getCanonicalName());

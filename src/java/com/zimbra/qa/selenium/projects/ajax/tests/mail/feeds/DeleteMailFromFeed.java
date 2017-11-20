@@ -27,10 +27,10 @@ import com.zimbra.qa.selenium.framework.ui.Shortcut;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
-import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.DialogWarning;
+import com.zimbra.qa.selenium.projects.ajax.core.SetGroupMailByMessagePreference;
+import com.zimbra.qa.selenium.projects.ajax.pages.DialogWarning;
 
-public class DeleteMailFromFeed extends PrefGroupMailByMessageTest {
+public class DeleteMailFromFeed extends SetGroupMailByMessagePreference {
 
 	public DeleteMailFromFeed() {
 		logger.info("New " + DeleteMailFromFeed.class.getCanonicalName());

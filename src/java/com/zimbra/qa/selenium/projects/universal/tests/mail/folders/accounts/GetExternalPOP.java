@@ -22,10 +22,10 @@ import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.PrefGroupMailByMessageTest;
-import com.zimbra.qa.selenium.projects.universal.ui.Toaster;
+import com.zimbra.qa.selenium.projects.universal.core.SetGroupMailByMessagePreference;
+import com.zimbra.qa.selenium.projects.universal.pages.Toaster;
 
-public class GetExternalPOP extends PrefGroupMailByMessageTest {
+public class GetExternalPOP extends SetGroupMailByMessagePreference {
 
 	public GetExternalPOP() {
 		logger.info("New "+ GetExternalPOP.class.getCanonicalName());

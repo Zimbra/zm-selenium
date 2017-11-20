@@ -21,11 +21,11 @@ import org.testng.annotations.Test;
 import com.zimbra.common.soap.Element;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
-import com.zimbra.qa.selenium.projects.universal.ui.contacts.FormContactDistributionListNew;
-import com.zimbra.qa.selenium.projects.universal.ui.contacts.FormContactDistributionListNew.Field;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCore;
+import com.zimbra.qa.selenium.projects.universal.pages.contacts.FormContactDistributionListNew;
+import com.zimbra.qa.selenium.projects.universal.pages.contacts.FormContactDistributionListNew.Field;
 
-public class CreateDLByAddingMembersFromVariousOptions extends UniversalCommonTest  {
+public class CreateDLByAddingMembersFromVariousOptions extends UniversalCore  {
 
 	public CreateDLByAddingMembersFromVariousOptions() {
 		logger.info("New "+ CreateDLByAddingMembersFromVariousOptions.class.getCanonicalName());

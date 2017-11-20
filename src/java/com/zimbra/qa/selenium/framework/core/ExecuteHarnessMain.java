@@ -94,7 +94,7 @@ public class ExecuteHarnessMain {
 	public static HashSet<String> retriedTests = new HashSet<String>();
 
 	private static final String OpenQABasePackage = "org.openqa";
-	public static final String SeleniumBasePackage = "com.zimbra.qa.selenium";
+	public static final String SeleniumBasePackage = "selenium";
 	public static String testoutputfoldername = null;
 	public static File fTestOutputDirectory;
 	public static ResultListener currentResultListener = null;
@@ -148,7 +148,6 @@ public class ExecuteHarnessMain {
 		File testng = new File(testoutputfoldername + "/TestNG");
 		if (!testng.exists())
 			testng.mkdirs();
-
 	}
 
 	public String workingfoldername = ".";
@@ -198,9 +197,7 @@ public class ExecuteHarnessMain {
 					if (!isExcluded(name, excludeStr)) {
 						classes.add(name);
 					}
-
 				}
-
 			}
 
 		} finally {
@@ -264,7 +261,7 @@ public class ExecuteHarnessMain {
 		for (String c : classes) {
 			String testname = getTestName(c);
 			if (!testnames.contains(testname)) {
-				logger.debug("Add new testiname " + testname);
+				logger.debug("Add new testname " + testname);
 				testnames.add(testname);
 			}
 		}
@@ -288,7 +285,7 @@ public class ExecuteHarnessMain {
 
 		// Only one suite per run in the zimbra process (subject to change)
 		XmlSuite suite = new XmlSuite();
-		suite.setName("zimbra");
+		suite.setName(ConfigProperties.getAppType().toString());
 		suite.setVerbose(verbosity);
 		suite.setThreadCount(4);
 		suite.setParallel(XmlSuite.PARALLEL_NONE);
@@ -402,7 +399,6 @@ public class ExecuteHarnessMain {
 
 		StafServiceFS staf = new StafServiceFS(remotehost);
 		staf.execute("COPY FILE " + fromfile + " TOFILE " + tofile + " TOMACHINE " + localhost);
-
 	}
 
 	protected static String getLocalMachineName() throws HarnessException {
@@ -432,7 +428,7 @@ public class ExecuteHarnessMain {
 				ConfigProperties.setStringProperty(st, configMap.get(st));
 			}
 
-			// keep checking for server down
+			// Keep checking for server down
 			while (ConfigProperties.zimbraGetVersionString().indexOf("unknown") != -1) {
 				SleepUtil.sleep(100000);
 			}
@@ -464,7 +460,7 @@ public class ExecuteHarnessMain {
 
 			if (!ConfigProperties.getStringProperty("emailTo").contains("pnq-automation@synacor.com")) {
 
-				String project = classfilter.toString().replace("com.zimbra.qa.selenium.", "").replace("projects.", "");
+				String project = classfilter.toString().replace("selenium.", "").replace("projects.", "");
 				project = project.substring(0, 1).toUpperCase() + project.substring(1);
 				String[] projectSplit = project.split(".tests.");
 
@@ -501,7 +497,6 @@ public class ExecuteHarnessMain {
 			testsRetried = 0;
 
 			currentResultListener = null;
-
 		}
 	}
 
@@ -509,7 +504,7 @@ public class ExecuteHarnessMain {
 
 		logger.debug("sumTestCounts");
 
-		StringBuilder sb = new StringBuilder();
+		StringBuilder stringBuilder = new StringBuilder();
 		int sum = 0;
 
 		List<String> classes = ExecuteHarnessMain.getClassesFromJar(new File(jarfilename),
@@ -519,29 +514,29 @@ public class ExecuteHarnessMain {
 
 			try {
 
-				Class<?> c = Class.forName(s);
-				logger.debug("sumTestCounts: checking class: " + c.getCanonicalName());
+				Class<?> currentClass = Class.forName(s);
+				logger.debug("sumTestCounts: checking class: " + currentClass.getCanonicalName());
 
-				for (Method m : Arrays.asList(c.getDeclaredMethods())) {
+				for (Method method : Arrays.asList(currentClass.getDeclaredMethods())) {
 
-					logger.debug("sumTestCounts: checking method: " + m.getName());
+					logger.debug("sumTestCounts: checking method: " + method.getName());
 
-					for (Annotation a : Arrays.asList(m.getAnnotations())) {
+					for (Annotation annotation : Arrays.asList(method.getAnnotations())) {
 
-						logger.debug("sumTestCounts: checking annotation: " + a.toString());
+						logger.debug("sumTestCounts: checking annotation: " + annotation.toString());
 
-						if (a instanceof org.testng.annotations.Test) {
+						if (annotation instanceof org.testng.annotations.Test) {
 
-							org.testng.annotations.Test t = (org.testng.annotations.Test) a;
+							org.testng.annotations.Test testAnnotation = (org.testng.annotations.Test) annotation;
 
 							// Check the groups to make sure they match
-							for (String g : Arrays.asList(t.groups())) {
+							for (String group : Arrays.asList(testAnnotation.groups())) {
 
-								if (ExecuteHarnessMain.groups.contains(g)) {
+								if (ExecuteHarnessMain.groups.contains(group)) {
 
-									logger.debug("sumTestCounts: matched: " + g);
+									logger.debug("sumTestCounts: matched: " + group);
 
-									sb.append(++sum).append(": ").append(t.description()).append('\n');
+									stringBuilder.append(++sum).append(": ").append(testAnnotation.description()).append('\n');
 									continue; // for (Annotation a ...
 
 								}
@@ -556,14 +551,12 @@ public class ExecuteHarnessMain {
 			} catch (ClassNotFoundException e) {
 				logger.warn("sumTestCounts: Unable to find class", e);
 			}
-
 		}
 
 		logger.debug("sumTestCounts: found: " + sum);
 
-		sb.append("Number of matching test cases: " + sum);
-		return (sb.toString());
-
+		stringBuilder.append("Number of matching test cases: " + sum);
+		return (stringBuilder.toString());
 	}
 
 	protected static class ErrorDialogListener extends AbsSeleniumObject implements IInvokedMethodListener {
@@ -613,7 +606,6 @@ public class ExecuteHarnessMain {
 
 				logger.info("ErrorDialogListener:afterInvocation ... done");
 			}
-
 		}
 
 		public static void getScreenCapture(ITestResult result) {
@@ -644,13 +636,11 @@ public class ExecuteHarnessMain {
 			} catch (WebDriverException e) {
 				logger.error("Webdriver exception when creating image file at " + screenShotFilePath, e);
 			}
-
 		}
 
 		@Override
 		public void beforeInvocation(IInvokedMethod arg0, ITestResult arg1) {
 		}
-
 	}
 
 	protected static class MethodListener implements IInvokedMethodListener {
@@ -722,7 +712,6 @@ public class ExecuteHarnessMain {
 				} catch (IOException e) {
 					logger.warn("Unable to add test class appender", e);
 				}
-
 			}
 		}
 
@@ -924,7 +913,6 @@ public class ExecuteHarnessMain {
 
 	    public void onStart(ITestContext context) {   }
 	}
-
 
 
 	/**
@@ -1348,11 +1336,11 @@ public class ExecuteHarnessMain {
 					}
 				}
 
-				if (ExecuteHarnessMain.classfilter.equals("com.zimbra.qa.selenium.projects.html.tests")) {
+				if (ExecuteHarnessMain.classfilter.equals("selenium.projects.html.tests")) {
 					throw new HarnessException("Currently Html client tests are not being executed.");
 				}
 
-				if (ExecuteHarnessMain.classfilter.equals("com.zimbra.qa.selenium.projects.mobile.tests")) {
+				if (ExecuteHarnessMain.classfilter.equals("selenium.projects.mobile.tests")) {
 					throw new HarnessException("Currently Mobile client tests are not being executed.");
 				}
 

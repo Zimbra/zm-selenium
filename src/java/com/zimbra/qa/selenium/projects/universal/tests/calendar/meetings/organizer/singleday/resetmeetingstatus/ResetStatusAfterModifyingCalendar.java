@@ -23,10 +23,10 @@ import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.CalendarWorkWeekTest;
-import com.zimbra.qa.selenium.projects.universal.ui.calendar.FormApptNew;
+import com.zimbra.qa.selenium.projects.universal.core.CalendarWorkWeekPreference;
+import com.zimbra.qa.selenium.projects.universal.pages.calendar.FormApptNew;
 
-public class ResetStatusAfterModifyingCalendar extends CalendarWorkWeekTest {	
+public class ResetStatusAfterModifyingCalendar extends CalendarWorkWeekPreference {	
 	
 	public ResetStatusAfterModifyingCalendar() {
 		logger.info("New "+ ResetStatusAfterModifyingCalendar.class.getCanonicalName());

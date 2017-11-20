@@ -26,11 +26,11 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
-import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.SeparateWindowDisplayMail;
+import com.zimbra.qa.selenium.projects.ajax.core.SetGroupMailByMessagePreference;
+import com.zimbra.qa.selenium.projects.ajax.pages.mail.FormMailNew;
+import com.zimbra.qa.selenium.projects.ajax.pages.mail.SeparateWindowDisplayMail;
 
-public class FwdMailWithAnAttachment extends PrefGroupMailByMessageTest {
+public class FwdMailWithAnAttachment extends SetGroupMailByMessagePreference {
 
 	public FwdMailWithAnAttachment() {
 		logger.info("New "+ FwdMailWithAnAttachment.class.getCanonicalName());

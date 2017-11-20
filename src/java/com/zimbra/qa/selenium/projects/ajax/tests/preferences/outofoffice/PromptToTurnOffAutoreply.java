@@ -24,9 +24,9 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
 
-public class PromptToTurnOffAutoreply extends AjaxCommonTest {
+public class PromptToTurnOffAutoreply extends AjaxCore {
 
 	public static final String autoReplyMessage = "OOO" + ConfigProperties.getUniqueString();
 

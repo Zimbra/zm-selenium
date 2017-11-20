@@ -23,9 +23,9 @@ import com.zimbra.qa.selenium.framework.items.FolderItem.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.universal.core.*;
-import com.zimbra.qa.selenium.projects.universal.ui.*;
+import com.zimbra.qa.selenium.projects.universal.pages.*;
 
-public class UndoMoveContact extends UniversalCommonTest {
+public class UndoMoveContact extends UniversalCore {
 
 	public UndoMoveContact() {
 		logger.info("New " + UndoMoveContact.class.getCanonicalName());

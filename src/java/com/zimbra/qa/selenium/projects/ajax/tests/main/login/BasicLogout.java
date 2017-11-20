@@ -19,9 +19,9 @@ package com.zimbra.qa.selenium.projects.ajax.tests.main.login;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
 
-public class BasicLogout extends AjaxCommonTest {
+public class BasicLogout extends AjaxCore {
 
 	public BasicLogout() {
 		logger.info("New "+ BasicLogout.class.getCanonicalName());

@@ -22,12 +22,12 @@ import com.zimbra.common.soap.Element;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.PrefGroupMailByMessageTest;
-import com.zimbra.qa.selenium.projects.universal.ui.DialogShareRevoke;
-import com.zimbra.qa.selenium.projects.universal.ui.mail.DialogEditFolder;
+import com.zimbra.qa.selenium.projects.universal.core.SetGroupMailByMessagePreference;
+import com.zimbra.qa.selenium.projects.universal.pages.DialogShareRevoke;
+import com.zimbra.qa.selenium.projects.universal.pages.mail.DialogEditFolder;
 
 
-public class RevokeShare extends PrefGroupMailByMessageTest {
+public class RevokeShare extends SetGroupMailByMessagePreference {
 
 	public RevokeShare() {
 		logger.info("New "+ RevokeShare.class.getCanonicalName());

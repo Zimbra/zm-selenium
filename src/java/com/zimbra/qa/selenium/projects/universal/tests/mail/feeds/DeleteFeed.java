@@ -24,9 +24,9 @@ import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.PrefGroupMailByMessageTest;
+import com.zimbra.qa.selenium.projects.universal.core.SetGroupMailByMessagePreference;
 
-public class DeleteFeed extends PrefGroupMailByMessageTest {
+public class DeleteFeed extends SetGroupMailByMessagePreference {
 
 	public DeleteFeed() {
 		logger.info("New "+ DeleteFeed.class.getCanonicalName());

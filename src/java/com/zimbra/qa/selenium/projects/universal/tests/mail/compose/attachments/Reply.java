@@ -24,11 +24,11 @@ import com.zimbra.common.soap.Element;
 import com.zimbra.qa.selenium.framework.items.MailItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.PrefGroupMailByMessageTest;
-import com.zimbra.qa.selenium.projects.universal.ui.mail.FormMailNew;
+import com.zimbra.qa.selenium.projects.universal.core.SetGroupMailByMessagePreference;
+import com.zimbra.qa.selenium.projects.universal.pages.mail.FormMailNew;
 
 
-public class Reply extends PrefGroupMailByMessageTest {
+public class Reply extends SetGroupMailByMessagePreference {
 
 	public Reply() {
 		logger.info("New "+ Reply.class.getCanonicalName());

@@ -23,9 +23,9 @@ import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
 
-public class DeleteFolder extends AjaxCommonTest {
+public class DeleteFolder extends AjaxCore {
 
 	public DeleteFolder() {
 		logger.info("New " + DeleteFolder.class.getCanonicalName());

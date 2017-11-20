@@ -21,11 +21,11 @@ import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.DialogError;
-import com.zimbra.qa.selenium.projects.ajax.ui.DialogError.DialogErrorID;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
+import com.zimbra.qa.selenium.projects.ajax.pages.DialogError;
+import com.zimbra.qa.selenium.projects.ajax.pages.DialogError.DialogErrorID;
 
-public class ZimbraFeatureOptionsDisabled extends AjaxCommonTest {
+public class ZimbraFeatureOptionsDisabled extends AjaxCore {
 
 	@SuppressWarnings("serial")
 	public ZimbraFeatureOptionsDisabled() {

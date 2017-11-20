@@ -22,11 +22,11 @@ import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.CalendarWorkWeekTest;
-import com.zimbra.qa.selenium.projects.universal.ui.AppUniversalClient;
-import com.zimbra.qa.selenium.projects.universal.ui.calendar.*;
+import com.zimbra.qa.selenium.projects.universal.core.CalendarWorkWeekPreference;
+import com.zimbra.qa.selenium.projects.universal.pages.UniversalPages;
+import com.zimbra.qa.selenium.projects.universal.pages.calendar.*;
 
-public class CreateExternalCalendarOther extends CalendarWorkWeekTest {
+public class CreateExternalCalendarOther extends CalendarWorkWeekPreference {
 
 
 	public CreateExternalCalendarOther() {
@@ -64,7 +64,7 @@ public class CreateExternalCalendarOther extends CalendarWorkWeekTest {
 		dialog.zSetSourceServer(icalAccount.zGetAccountStoreHost());
 		dialog.zPressButton(Button.B_NEXT);
 		
-		DialogCreateCalendarFolder dailog2 = new DialogCreateCalendarFolder(app, ((AppUniversalClient) app).zPageCalendar);
+		DialogCreateCalendarFolder dailog2 = new DialogCreateCalendarFolder(app, ((UniversalPages) app).zPageCalendar);
 		dailog2.zWaitForActive();
 		dailog2.zEnterFolderName(calendarname);
 		dailog2.zPressButton(Button.B_OK);

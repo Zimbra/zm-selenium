@@ -21,12 +21,12 @@ import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.items.ContactItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
-import com.zimbra.qa.selenium.projects.universal.ui.Toaster;
-import com.zimbra.qa.selenium.projects.universal.ui.contacts.*;
-import com.zimbra.qa.selenium.projects.universal.ui.contacts.FormContactNew.Field;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCore;
+import com.zimbra.qa.selenium.projects.universal.pages.Toaster;
+import com.zimbra.qa.selenium.projects.universal.pages.contacts.*;
+import com.zimbra.qa.selenium.projects.universal.pages.contacts.FormContactNew.Field;
 
-public class EditContact extends UniversalCommonTest {
+public class EditContact extends UniversalCore {
 	public EditContact() {
 		logger.info("New " + EditContact.class.getCanonicalName());
 

@@ -27,11 +27,11 @@ import com.zimbra.qa.selenium.framework.util.XmlStringUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.universal.core.PrefGroupMailByMessageTest;
-import com.zimbra.qa.selenium.projects.universal.ui.SeparateWindowDialog;
-import com.zimbra.qa.selenium.projects.universal.ui.mail.SeparateWindowDisplayMail;
+import com.zimbra.qa.selenium.projects.universal.core.SetGroupMailByMessagePreference;
+import com.zimbra.qa.selenium.projects.universal.pages.SeparateWindowDialog;
+import com.zimbra.qa.selenium.projects.universal.pages.mail.SeparateWindowDisplayMail;
 
-public class CreateMountpoint extends PrefGroupMailByMessageTest {
+public class CreateMountpoint extends SetGroupMailByMessagePreference {
 
 	public CreateMountpoint() {
 		logger.info("New "+ CreateMountpoint.class.getCanonicalName());

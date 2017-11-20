@@ -21,9 +21,9 @@ import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.items.ContactItem;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
 
-public class SearchContact extends AjaxCommonTest {
+public class SearchContact extends AjaxCore {
 
 	public SearchContact() {
 		logger.info("New " + SearchContact.class.getCanonicalName());

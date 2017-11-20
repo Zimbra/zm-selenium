@@ -16,7 +16,7 @@
  */
 package com.zimbra.qa.selenium.projects.universal.tests.tasks;
 
-import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCore;
 
 import java.util.HashMap;
 import java.util.List;
@@ -31,12 +31,12 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.universal.ui.DialogWarning;
-import com.zimbra.qa.selenium.projects.universal.ui.tasks.FormTaskNew;
-import com.zimbra.qa.selenium.projects.universal.ui.tasks.FormTaskNew.Field;
-import com.zimbra.qa.selenium.projects.universal.ui.tasks.PageTasks.Locators;
+import com.zimbra.qa.selenium.projects.universal.pages.DialogWarning;
+import com.zimbra.qa.selenium.projects.universal.pages.tasks.FormTaskNew;
+import com.zimbra.qa.selenium.projects.universal.pages.tasks.FormTaskNew.Field;
+import com.zimbra.qa.selenium.projects.universal.pages.tasks.PageTasks.Locators;
 
-public class CancelTask extends UniversalCommonTest {
+public class CancelTask extends UniversalCore {
 	@SuppressWarnings("serial")
    public CancelTask() {
 		logger.info("New " + CancelTask.class.getCanonicalName());

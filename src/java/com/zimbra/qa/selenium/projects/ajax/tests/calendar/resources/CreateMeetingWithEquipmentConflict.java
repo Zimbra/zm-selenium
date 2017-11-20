@@ -24,10 +24,10 @@ import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.*;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.DialogWarningConflictingResources;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
+import com.zimbra.qa.selenium.projects.ajax.pages.calendar.DialogWarningConflictingResources;
+import com.zimbra.qa.selenium.projects.ajax.pages.calendar.FormApptNew;
 
-public class CreateMeetingWithEquipmentConflict extends AjaxCommonTest {
+public class CreateMeetingWithEquipmentConflict extends AjaxCore {
 
 	public CreateMeetingWithEquipmentConflict() {
 		logger.info("New "+ CreateMeetingWithEquipmentConflict.class.getCanonicalName());

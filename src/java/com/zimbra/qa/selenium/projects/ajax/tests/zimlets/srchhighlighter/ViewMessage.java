@@ -21,10 +21,10 @@ import org.testng.annotations.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.*;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail.Field;
-import com.zimbra.qa.selenium.projects.ajax.ui.search.*;
+import com.zimbra.qa.selenium.projects.ajax.pages.mail.DisplayMail.Field;
+import com.zimbra.qa.selenium.projects.ajax.pages.search.*;
 
-public class ViewMessage extends AjaxCommonTest {
+public class ViewMessage extends AjaxCore {
 
 	public ViewMessage() {
 		logger.info("New "+ ViewMessage.class.getCanonicalName());

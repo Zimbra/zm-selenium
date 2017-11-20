@@ -22,10 +22,10 @@ import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
+import com.zimbra.qa.selenium.projects.ajax.pages.calendar.FormApptNew;
 
-public class CreateMeetingWithLocation extends AjaxCommonTest {
+public class CreateMeetingWithLocation extends AjaxCore {
 
 	public CreateMeetingWithLocation() {
 		logger.info("New "+ CreateMeetingWithLocation.class.getCanonicalName());

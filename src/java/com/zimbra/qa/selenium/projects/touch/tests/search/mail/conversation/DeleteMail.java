@@ -18,9 +18,9 @@
  */
 package com.zimbra.qa.selenium.projects.touch.tests.search.mail.conversation;
 
-import java.awt.AWTException;import org.testng.annotations.*;import com.zimbra.qa.selenium.framework.items.*;import com.zimbra.qa.selenium.framework.ui.*;import com.zimbra.qa.selenium.framework.util.*;import com.zimbra.qa.selenium.projects.touch.core.PrefGroupMailByConversationTest;
+import java.awt.AWTException;import org.testng.annotations.*;import com.zimbra.qa.selenium.framework.items.*;import com.zimbra.qa.selenium.framework.ui.*;import com.zimbra.qa.selenium.framework.util.*;import com.zimbra.qa.selenium.projects.touch.core.SetGroupMailByConversationPreference;
 
-public class DeleteMail extends PrefGroupMailByConversationTest {
+public class DeleteMail extends SetGroupMailByConversationPreference {
 
 	public DeleteMail() {
 		logger.info("New "+ DeleteMail.class.getCanonicalName());

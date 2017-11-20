@@ -21,10 +21,10 @@ import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.preferences.TreePreferences.TreeItem;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
+import com.zimbra.qa.selenium.projects.ajax.pages.preferences.TreePreferences.TreeItem;
 
-public class ZimbraPrefMailRequestReadReceiptsTrue extends AjaxCommonTest {
+public class ZimbraPrefMailRequestReadReceiptsTrue extends AjaxCore {
 
 	@SuppressWarnings("serial")
 	public ZimbraPrefMailRequestReadReceiptsTrue() {

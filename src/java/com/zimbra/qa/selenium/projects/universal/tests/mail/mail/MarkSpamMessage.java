@@ -25,7 +25,7 @@ import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.universal.core.*;
 
 
-public class MarkSpamMessage extends PrefGroupMailByMessageTest {
+public class MarkSpamMessage extends SetGroupMailByMessagePreference {
 
 	
 	public MarkSpamMessage() {

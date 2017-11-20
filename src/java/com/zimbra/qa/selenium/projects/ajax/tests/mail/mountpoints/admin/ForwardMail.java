@@ -22,10 +22,10 @@ import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.*;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.*;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew.Field;
+import com.zimbra.qa.selenium.projects.ajax.pages.mail.*;
+import com.zimbra.qa.selenium.projects.ajax.pages.mail.FormMailNew.Field;
 
-public class ForwardMail extends PrefGroupMailByMessageTest {
+public class ForwardMail extends SetGroupMailByMessagePreference {
 
 	public ForwardMail() {
 		logger.info("New "+ ForwardMail.class.getCanonicalName());

@@ -25,13 +25,13 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.ajax.core.FeatureBriefcaseTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.*;
+import com.zimbra.qa.selenium.projects.ajax.core.EnableBriefcaseFeature;
+import com.zimbra.qa.selenium.projects.ajax.pages.*;
 import org.testng.annotations.AfterMethod;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 
-public class MoveFile extends FeatureBriefcaseTest {
+public class MoveFile extends EnableBriefcaseFeature {
 
 	public MoveFile() throws HarnessException {
 		logger.info("New " + MoveFile.class.getCanonicalName());
@@ -249,7 +249,7 @@ public class MoveFile extends FeatureBriefcaseTest {
 		logger.info("Checking for the Move Dialog ...");
 
 		// Check if the "Move Dialog is still open
-		DialogMove dialog = new DialogMove(app, ((AppAjaxClient) app).zPageBriefcase);
+		DialogMove dialog = new DialogMove(app, ((AjaxPages) app).zPageBriefcase);
 		if (dialog.zIsActive()) {
 			logger.warn(dialog.myPageName() + " was still active.  Cancelling ...");
 			dialog.zPressButton(Button.B_CANCEL);

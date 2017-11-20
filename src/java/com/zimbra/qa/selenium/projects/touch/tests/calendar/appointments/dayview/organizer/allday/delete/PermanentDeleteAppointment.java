@@ -24,9 +24,9 @@ import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.touch.core.CalendarWorkWeekTest;
+import com.zimbra.qa.selenium.projects.touch.core.CalendarWorkWeekPreference;
 
-public class PermanentDeleteAppointment extends CalendarWorkWeekTest {
+public class PermanentDeleteAppointment extends CalendarWorkWeekPreference {
 
 	public PermanentDeleteAppointment() {
 		logger.info("New "+ PermanentDeleteAppointment.class.getCanonicalName());

@@ -27,9 +27,9 @@ import com.zimbra.qa.selenium.framework.util.LmtpInject;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
 
-public class MessageDisplayShowsFromAsUnknown extends AjaxCommonTest {
+public class MessageDisplayShowsFromAsUnknown extends AjaxCore {
 
 	@SuppressWarnings("serial")
 	public MessageDisplayShowsFromAsUnknown() {

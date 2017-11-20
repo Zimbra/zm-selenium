@@ -23,9 +23,9 @@ import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.touch.core.*;
-import com.zimbra.qa.selenium.projects.touch.ui.mail.DisplayMail;
+import com.zimbra.qa.selenium.projects.touch.pages.mail.DisplayMail;
 
-public class AcceptMeeting extends CalendarWorkWeekTest {
+public class AcceptMeeting extends CalendarWorkWeekPreference {
 
 	public AcceptMeeting() {
 		logger.info("New "+ AcceptMeeting.class.getCanonicalName());

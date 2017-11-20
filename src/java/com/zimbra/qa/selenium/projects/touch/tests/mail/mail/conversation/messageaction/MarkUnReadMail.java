@@ -22,9 +22,9 @@ import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.items.MailItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.touch.core.PrefGroupMailByConversationTest;
+import com.zimbra.qa.selenium.projects.touch.core.SetGroupMailByConversationPreference;
 
-public class MarkUnReadMail extends PrefGroupMailByConversationTest {
+public class MarkUnReadMail extends SetGroupMailByConversationPreference {
 
 	public MarkUnReadMail() {
 		logger.info("New "+ MarkUnReadMail.class.getCanonicalName());

@@ -22,11 +22,11 @@ import org.testng.annotations.*;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.touch.core.PrefGroupMailByMessageTest;
-import com.zimbra.qa.selenium.projects.touch.ui.PageCreateTag;
+import com.zimbra.qa.selenium.projects.touch.core.SetGroupMailByMessagePreference;
+import com.zimbra.qa.selenium.projects.touch.pages.PageCreateTag;
 
 
-public class CreateTag extends PrefGroupMailByMessageTest {
+public class CreateTag extends SetGroupMailByMessagePreference {
 
 	private String tagName = null;
 	private String errorMessage = null;

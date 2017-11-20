@@ -22,10 +22,10 @@ import org.testng.annotations.Test;
 
 import com.zimbra.qa.selenium.framework.items.MailItem;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.PrefGroupMailByMessageTest;
+import com.zimbra.qa.selenium.projects.universal.core.SetGroupMailByMessagePreference;
 
 
-public class PriorityMail extends PrefGroupMailByMessageTest {
+public class PriorityMail extends SetGroupMailByMessagePreference {
 
 	
 	public PriorityMail() {

@@ -23,7 +23,7 @@ import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.*;
 
-public class ZimbraPrefMailPollingIntervalAsMailArrives extends PrefGroupMailByMessageTest {
+public class ZimbraPrefMailPollingIntervalAsMailArrives extends SetGroupMailByMessagePreference {
 
 	public ZimbraPrefMailPollingIntervalAsMailArrives() {
 		logger.info("New "+ ZimbraPrefMailPollingIntervalAsMailArrives.class.getCanonicalName());

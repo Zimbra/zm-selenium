@@ -20,9 +20,9 @@ import java.util.Calendar;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.CalendarWorkWeekTest;
+import com.zimbra.qa.selenium.projects.universal.core.CalendarWorkWeekPreference;
 
-public class VerifyNestedState extends CalendarWorkWeekTest {
+public class VerifyNestedState extends CalendarWorkWeekPreference {
 
 	public VerifyNestedState() {
 		logger.info("New "+ VerifyNestedState.class.getCanonicalName());

@@ -23,10 +23,10 @@ import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.FolderMountpointItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.touch.core.TouchCommonTest;
-import com.zimbra.qa.selenium.projects.touch.ui.PageCreateFolder;
+import com.zimbra.qa.selenium.projects.touch.core.TouchCore;
+import com.zimbra.qa.selenium.projects.touch.pages.PageCreateFolder;
 
-public class Delete extends TouchCommonTest  {
+public class Delete extends TouchCore  {
 
 	public Delete() {
 		logger.info("New "+ Delete.class.getCanonicalName());

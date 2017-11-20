@@ -21,12 +21,12 @@ import org.testng.annotations.*;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.CalendarWorkWeekTest;
-import com.zimbra.qa.selenium.projects.universal.ui.calendar.FormApptNew;
-import com.zimbra.qa.selenium.projects.universal.ui.mail.DisplayMail;
-import com.zimbra.qa.selenium.projects.universal.ui.mail.DisplayMail.Field;
+import com.zimbra.qa.selenium.projects.universal.core.CalendarWorkWeekPreference;
+import com.zimbra.qa.selenium.projects.universal.pages.calendar.FormApptNew;
+import com.zimbra.qa.selenium.projects.universal.pages.mail.DisplayMail;
+import com.zimbra.qa.selenium.projects.universal.pages.mail.DisplayMail.Field;
 
-public class ViewInviteWithSchedulePolicyofLocation extends CalendarWorkWeekTest {	
+public class ViewInviteWithSchedulePolicyofLocation extends CalendarWorkWeekPreference {	
 	
 	public ViewInviteWithSchedulePolicyofLocation() {
 		logger.info("New "+ ViewInviteWithSchedulePolicyofLocation.class.getCanonicalName());

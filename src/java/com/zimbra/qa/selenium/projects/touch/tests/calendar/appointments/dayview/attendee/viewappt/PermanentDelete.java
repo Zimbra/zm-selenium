@@ -25,7 +25,7 @@ import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.touch.core.*;
 
-public class PermanentDelete extends CalendarWorkWeekTest {
+public class PermanentDelete extends CalendarWorkWeekPreference {
 
 	public PermanentDelete() {
 		logger.info("New "+ PermanentDelete.class.getCanonicalName());

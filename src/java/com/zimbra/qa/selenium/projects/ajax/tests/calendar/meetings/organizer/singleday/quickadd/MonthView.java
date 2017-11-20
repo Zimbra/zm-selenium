@@ -21,10 +21,10 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.QuickAddAppointment;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
+import com.zimbra.qa.selenium.projects.ajax.pages.calendar.QuickAddAppointment;
 
-public class MonthView extends AjaxCommonTest {
+public class MonthView extends AjaxCore {
 
 	public MonthView() {
 		logger.info("New "+ MonthView.class.getCanonicalName());

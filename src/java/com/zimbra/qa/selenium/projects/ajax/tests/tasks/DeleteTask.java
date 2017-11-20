@@ -25,10 +25,10 @@ import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.tasks.PageTasks;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
+import com.zimbra.qa.selenium.projects.ajax.pages.tasks.PageTasks;
 
-public class DeleteTask extends AjaxCommonTest {
+public class DeleteTask extends AjaxCore {
 
 	@SuppressWarnings("serial")
 	public DeleteTask() {

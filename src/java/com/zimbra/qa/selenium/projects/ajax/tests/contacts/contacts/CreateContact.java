@@ -26,13 +26,13 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraCharsets.ZCharset;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.DialogWarning;
-import com.zimbra.qa.selenium.projects.ajax.ui.contacts.FormContactNew;
-import com.zimbra.qa.selenium.projects.ajax.ui.contacts.FormContactNew.Field;
-import com.zimbra.qa.selenium.projects.ajax.ui.contacts.FormContactNew.Locators;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
+import com.zimbra.qa.selenium.projects.ajax.pages.DialogWarning;
+import com.zimbra.qa.selenium.projects.ajax.pages.contacts.FormContactNew;
+import com.zimbra.qa.selenium.projects.ajax.pages.contacts.FormContactNew.Field;
+import com.zimbra.qa.selenium.projects.ajax.pages.contacts.FormContactNew.Locators;
 
-public class CreateContact extends AjaxCommonTest {
+public class CreateContact extends AjaxCore {
 
 	public CreateContact() {
 		logger.info("New " + CreateContact.class.getCanonicalName());

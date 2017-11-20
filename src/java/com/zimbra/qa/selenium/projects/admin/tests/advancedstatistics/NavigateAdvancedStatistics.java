@@ -19,10 +19,10 @@ package com.zimbra.qa.selenium.projects.admin.tests.advancedstatistics;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
-import com.zimbra.qa.selenium.projects.admin.core.AdminCommonTest;
-import com.zimbra.qa.selenium.projects.admin.ui.PageManageAdvancedStatistics;
+import com.zimbra.qa.selenium.projects.admin.core.AdminCore;
+import com.zimbra.qa.selenium.projects.admin.pages.PageManageAdvancedStatistics;
 
-public class NavigateAdvancedStatistics extends AdminCommonTest {
+public class NavigateAdvancedStatistics extends AdminCore {
 
 	public NavigateAdvancedStatistics() {
 		logger.info("New "+ NavigateAdvancedStatistics.class.getCanonicalName());

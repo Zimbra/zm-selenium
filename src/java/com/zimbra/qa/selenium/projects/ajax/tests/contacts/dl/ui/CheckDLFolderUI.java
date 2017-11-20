@@ -20,9 +20,9 @@ import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
 
-public class CheckDLFolderUI extends AjaxCommonTest  {
+public class CheckDLFolderUI extends AjaxCore  {
 
 	public CheckDLFolderUI() {
 		logger.info("New "+ CheckDLFolderUI.class.getCanonicalName());

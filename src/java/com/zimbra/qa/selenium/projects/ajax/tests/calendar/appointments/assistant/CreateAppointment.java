@@ -25,10 +25,10 @@ import com.zimbra.qa.selenium.framework.ui.Shortcut;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.DialogAssistant;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
+import com.zimbra.qa.selenium.projects.ajax.pages.DialogAssistant;
 
-public class CreateAppointment extends AjaxCommonTest {
+public class CreateAppointment extends AjaxCore {
 
 	public CreateAppointment() {
 		logger.info("New "+ CreateAppointment.class.getCanonicalName());

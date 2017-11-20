@@ -23,11 +23,11 @@ import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
-import com.zimbra.qa.selenium.projects.admin.core.AdminCommonTest;
+import com.zimbra.qa.selenium.projects.admin.core.AdminCore;
 import com.zimbra.qa.selenium.projects.admin.items.DomainItem;
-import com.zimbra.qa.selenium.projects.admin.ui.WizardCreateDomain;
+import com.zimbra.qa.selenium.projects.admin.pages.WizardCreateDomain;
 
-public class CreateDomain extends AdminCommonTest {
+public class CreateDomain extends AdminCore {
 
 	public CreateDomain() {
 		logger.info("New " + CreateDomain.class.getName());

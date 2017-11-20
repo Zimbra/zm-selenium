@@ -21,10 +21,10 @@ import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.preferences.TreePreferences.TreeItem;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
+import com.zimbra.qa.selenium.projects.ajax.pages.preferences.TreePreferences.TreeItem;
 
-public class ZimbraPrefShowSearchStringTrue extends AjaxCommonTest {
+public class ZimbraPrefShowSearchStringTrue extends AjaxCore {
 
 	public ZimbraPrefShowSearchStringTrue() {
 		logger.info("New "+ ZimbraPrefShowSearchStringTrue.class.getCanonicalName());

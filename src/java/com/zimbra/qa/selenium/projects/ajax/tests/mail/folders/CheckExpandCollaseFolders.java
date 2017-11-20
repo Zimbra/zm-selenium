@@ -28,10 +28,10 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
+import com.zimbra.qa.selenium.projects.ajax.core.SetGroupMailByMessagePreference;
 import com.zimbra.qa.selenium.projects.ajax.tests.mail.mail.GetMail;
 
-public class CheckExpandCollaseFolders extends PrefGroupMailByMessageTest {
+public class CheckExpandCollaseFolders extends SetGroupMailByMessagePreference {
 
 	@AfterClass( groups = { "always" } )
 	public void CheckExpandCollaseFoldersAfterClass() throws HarnessException {

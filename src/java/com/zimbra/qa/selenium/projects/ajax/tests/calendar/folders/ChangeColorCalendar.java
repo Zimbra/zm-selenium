@@ -21,12 +21,12 @@ import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.AppAjaxClient;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.DialogEditFolder;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.DialogEditFolder.FolderColor;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
+import com.zimbra.qa.selenium.projects.ajax.pages.AjaxPages;
+import com.zimbra.qa.selenium.projects.ajax.pages.mail.DialogEditFolder;
+import com.zimbra.qa.selenium.projects.ajax.pages.mail.DialogEditFolder.FolderColor;
 
-public class ChangeColorCalendar extends AjaxCommonTest {
+public class ChangeColorCalendar extends AjaxCore {
 
 	public ChangeColorCalendar() {
 		logger.info("New " + ChangeColorCalendar.class.getCanonicalName());
@@ -61,7 +61,7 @@ public class ChangeColorCalendar extends AjaxCommonTest {
 		ZAssert.assertNotNull(dialog, "Verify the dialog opened");
 
 		// Change the color, click OK
-		dialog.zSetNewColor(FolderColor.Green, (AppAjaxClient)app);
+		dialog.zSetNewColor(FolderColor.Green, (AjaxPages)app);
 		dialog.zPressButton(Button.B_OK);
 
 		// Check the color

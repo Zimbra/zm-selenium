@@ -21,9 +21,9 @@ import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
-import com.zimbra.qa.selenium.projects.admin.core.AdminCommonTest;
+import com.zimbra.qa.selenium.projects.admin.core.AdminCore;
 
-public class HelpLinks extends AdminCommonTest {
+public class HelpLinks extends AdminCore {
 
 	public HelpLinks() {
 		logger.info("New "+ HelpLinks.class.getCanonicalName());

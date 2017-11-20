@@ -23,13 +23,13 @@ import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.DialogEditFolder;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.DialogEditFolder.FolderColor;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.DialogEditFolder.Locators;
+import com.zimbra.qa.selenium.projects.ajax.pages.calendar.FormApptNew;
+import com.zimbra.qa.selenium.projects.ajax.pages.mail.DialogEditFolder;
+import com.zimbra.qa.selenium.projects.ajax.pages.mail.DialogEditFolder.FolderColor;
+import com.zimbra.qa.selenium.projects.ajax.pages.mail.DialogEditFolder.Locators;
 import com.zimbra.qa.selenium.projects.ajax.core.*;
 
-public class ChangeCustomColorWithExcludeFreeBusy extends AjaxCommonTest {
+public class ChangeCustomColorWithExcludeFreeBusy extends AjaxCore {
 
 	public ChangeCustomColorWithExcludeFreeBusy() {
 		logger.info("New " + ChangeCustomColorWithExcludeFreeBusy.class.getCanonicalName());

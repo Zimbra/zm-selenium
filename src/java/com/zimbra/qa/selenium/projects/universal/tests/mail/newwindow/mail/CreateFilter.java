@@ -22,12 +22,12 @@ import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.PrefGroupMailByMessageTest;
-import com.zimbra.qa.selenium.projects.universal.ui.AppUniversalClient;
-import com.zimbra.qa.selenium.projects.universal.ui.mail.SeparateWindowDisplayMail;
-import com.zimbra.qa.selenium.projects.universal.ui.preferences.DialogEditFilter;
+import com.zimbra.qa.selenium.projects.universal.core.SetGroupMailByMessagePreference;
+import com.zimbra.qa.selenium.projects.universal.pages.UniversalPages;
+import com.zimbra.qa.selenium.projects.universal.pages.mail.SeparateWindowDisplayMail;
+import com.zimbra.qa.selenium.projects.universal.pages.preferences.DialogEditFilter;
 
-public class CreateFilter extends PrefGroupMailByMessageTest {
+public class CreateFilter extends SetGroupMailByMessagePreference {
 
 	public int delaySeconds = 10;
 
@@ -76,7 +76,7 @@ public class CreateFilter extends PrefGroupMailByMessageTest {
 
 			SleepUtil.sleepMedium();
 
-			DialogEditFilter dialog = new DialogEditFilter(app,((AppUniversalClient) app).zPageMail);
+			DialogEditFilter dialog = new DialogEditFilter(app,((UniversalPages) app).zPageMail);
 			ZAssert.assertTrue(dialog.zIsActive(), "Add filter dialog should active");
 
 		} finally {

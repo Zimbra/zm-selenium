@@ -24,11 +24,11 @@ import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
-import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCore;
 
 
 
-public class ZimbraFeaturePortalEnabled extends UniversalCommonTest {
+public class ZimbraFeaturePortalEnabled extends UniversalCore {
 	
 	public ZimbraFeaturePortalEnabled() {
 		logger.info("New "+ ZimbraFeaturePortalEnabled.class.getCanonicalName());

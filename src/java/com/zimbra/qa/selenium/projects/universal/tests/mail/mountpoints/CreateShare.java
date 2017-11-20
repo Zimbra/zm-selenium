@@ -21,12 +21,12 @@ import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.PrefGroupMailByMessageTest;
-import com.zimbra.qa.selenium.projects.universal.ui.DialogShare;
-import com.zimbra.qa.selenium.projects.universal.ui.DialogShare.ShareRole;
+import com.zimbra.qa.selenium.projects.universal.core.SetGroupMailByMessagePreference;
+import com.zimbra.qa.selenium.projects.universal.pages.DialogShare;
+import com.zimbra.qa.selenium.projects.universal.pages.DialogShare.ShareRole;
 
 
-public class CreateShare extends PrefGroupMailByMessageTest {
+public class CreateShare extends SetGroupMailByMessagePreference {
 
 	public CreateShare() {
 		logger.info("New "+ CreateShare.class.getCanonicalName());

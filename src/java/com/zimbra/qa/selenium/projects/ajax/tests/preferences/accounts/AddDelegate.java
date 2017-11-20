@@ -19,11 +19,11 @@ package com.zimbra.qa.selenium.projects.ajax.tests.preferences.accounts;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.DialogDelegate;
-import com.zimbra.qa.selenium.projects.ajax.ui.preferences.TreePreferences.TreeItem;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
+import com.zimbra.qa.selenium.projects.ajax.pages.DialogDelegate;
+import com.zimbra.qa.selenium.projects.ajax.pages.preferences.TreePreferences.TreeItem;
 
-public class AddDelegate extends AjaxCommonTest {
+public class AddDelegate extends AjaxCore {
 
 	public AddDelegate() {
 		super.startingPage = app.zPagePreferences;

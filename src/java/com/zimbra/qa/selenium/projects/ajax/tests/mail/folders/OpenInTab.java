@@ -23,10 +23,10 @@ import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.search.PageSearch;
+import com.zimbra.qa.selenium.projects.ajax.core.SetGroupMailByMessagePreference;
+import com.zimbra.qa.selenium.projects.ajax.pages.search.PageSearch;
 
-public class OpenInTab extends PrefGroupMailByMessageTest {
+public class OpenInTab extends SetGroupMailByMessagePreference {
 
 	public OpenInTab() {
 		logger.info("New " + OpenInTab.class.getCanonicalName());

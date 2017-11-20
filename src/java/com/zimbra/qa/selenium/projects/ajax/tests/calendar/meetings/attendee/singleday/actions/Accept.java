@@ -23,7 +23,7 @@ import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.*;
 
-public class Accept extends AjaxCommonTest {
+public class Accept extends AjaxCore {
 
 	public Accept() {
 		logger.info("New "+ Accept.class.getCanonicalName());

@@ -29,14 +29,14 @@ import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCore;
 
-import com.zimbra.qa.selenium.projects.universal.ui.DialogError;
-import com.zimbra.qa.selenium.projects.universal.ui.DialogRenameFolder;
-import com.zimbra.qa.selenium.projects.universal.ui.DialogError.DialogErrorID;
-import com.zimbra.qa.selenium.projects.universal.ui.mail.DialogEditFolder;
+import com.zimbra.qa.selenium.projects.universal.pages.DialogError;
+import com.zimbra.qa.selenium.projects.universal.pages.DialogRenameFolder;
+import com.zimbra.qa.selenium.projects.universal.pages.DialogError.DialogErrorID;
+import com.zimbra.qa.selenium.projects.universal.pages.mail.DialogEditFolder;
 
-public class RenameTaskFolder extends UniversalCommonTest {
+public class RenameTaskFolder extends UniversalCore {
 	@SuppressWarnings("serial")
 	public RenameTaskFolder() {
 		logger.info("New " + RenameTaskFolder.class.getCanonicalName());

@@ -20,11 +20,11 @@ import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.touch.core.PrefGroupMailByMessageTest;
-import com.zimbra.qa.selenium.projects.touch.ui.mail.FormMailNew;
-import com.zimbra.qa.selenium.projects.touch.ui.mail.FormMailNew.Field;
+import com.zimbra.qa.selenium.projects.touch.core.SetGroupMailByMessagePreference;
+import com.zimbra.qa.selenium.projects.touch.pages.mail.FormMailNew;
+import com.zimbra.qa.selenium.projects.touch.pages.mail.FormMailNew.Field;
 
-public class ReplyAllMail extends PrefGroupMailByMessageTest {
+public class ReplyAllMail extends SetGroupMailByMessagePreference {
 
 	public ReplyAllMail() {
 		logger.info("New "+ ReplyAllMail.class.getCanonicalName());		

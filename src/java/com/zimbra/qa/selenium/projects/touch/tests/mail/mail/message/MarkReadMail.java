@@ -22,9 +22,9 @@ import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.items.MailItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.touch.core.PrefGroupMailByMessageTest;
+import com.zimbra.qa.selenium.projects.touch.core.SetGroupMailByMessagePreference;
 
-public class MarkReadMail extends PrefGroupMailByMessageTest {
+public class MarkReadMail extends SetGroupMailByMessagePreference {
 
 	public MarkReadMail() {
 		logger.info("New "+ MarkReadMail.class.getCanonicalName());

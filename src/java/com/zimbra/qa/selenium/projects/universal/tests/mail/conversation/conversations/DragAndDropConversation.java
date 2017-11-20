@@ -22,10 +22,10 @@ import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.PrefGroupMailByConversationTest;
+import com.zimbra.qa.selenium.projects.universal.core.SetGroupMailByConversationPreference;
 
 
-public class DragAndDropConversation extends PrefGroupMailByConversationTest {
+public class DragAndDropConversation extends SetGroupMailByConversationPreference {
 
 	public DragAndDropConversation() {
 		logger.info("New "+ DragAndDropConversation.class.getCanonicalName());

@@ -20,11 +20,11 @@ import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
-import com.zimbra.qa.selenium.projects.admin.core.AdminCommonTest;
-import com.zimbra.qa.selenium.projects.admin.ui.PageManageCertificates;
-import com.zimbra.qa.selenium.projects.admin.ui.PageManageCertificates.Locators;
+import com.zimbra.qa.selenium.projects.admin.core.AdminCore;
+import com.zimbra.qa.selenium.projects.admin.pages.PageManageCertificates;
+import com.zimbra.qa.selenium.projects.admin.pages.PageManageCertificates.Locators;
 
-public class ViewCertificate extends AdminCommonTest {
+public class ViewCertificate extends AdminCore {
 
 	public ViewCertificate() {
 		logger.info("New "+ ViewCertificate.class.getCanonicalName());

@@ -25,9 +25,9 @@ import org.testng.annotations.Test;
 
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.touch.core.CalendarWorkWeekTest;
+import com.zimbra.qa.selenium.projects.touch.core.CalendarWorkWeekPreference;
 
-public class ViewAppointment extends CalendarWorkWeekTest {
+public class ViewAppointment extends CalendarWorkWeekPreference {
 
 	public ViewAppointment() {
 		logger.info("New "+ ViewAppointment.class.getCanonicalName());

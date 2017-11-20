@@ -20,11 +20,11 @@ import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.DialogShare;
-import com.zimbra.qa.selenium.projects.ajax.ui.DialogShare.ShareWith;
+import com.zimbra.qa.selenium.projects.ajax.core.SetGroupMailByMessagePreference;
+import com.zimbra.qa.selenium.projects.ajax.pages.DialogShare;
+import com.zimbra.qa.selenium.projects.ajax.pages.DialogShare.ShareWith;
 
-public class CreateShare extends PrefGroupMailByMessageTest {
+public class CreateShare extends SetGroupMailByMessagePreference {
 
 	public CreateShare() {
 		logger.info("New "+ CreateShare.class.getCanonicalName());

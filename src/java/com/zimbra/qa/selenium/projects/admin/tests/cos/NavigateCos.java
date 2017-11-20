@@ -19,10 +19,10 @@ package com.zimbra.qa.selenium.projects.admin.tests.cos;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
-import com.zimbra.qa.selenium.projects.admin.core.AdminCommonTest;
-import com.zimbra.qa.selenium.projects.admin.ui.PageManageCOS;
+import com.zimbra.qa.selenium.projects.admin.core.AdminCore;
+import com.zimbra.qa.selenium.projects.admin.pages.PageManageCOS;
 
-public class NavigateCos extends AdminCommonTest {
+public class NavigateCos extends AdminCore {
 
 	public NavigateCos() {
 		logger.info("New "+ NavigateCos.class.getCanonicalName());

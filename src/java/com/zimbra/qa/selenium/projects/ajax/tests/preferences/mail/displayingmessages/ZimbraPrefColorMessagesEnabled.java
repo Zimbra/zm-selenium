@@ -25,12 +25,12 @@ import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.DialogTag;
-import com.zimbra.qa.selenium.projects.ajax.ui.preferences.PagePreferences;
-import com.zimbra.qa.selenium.projects.ajax.ui.preferences.TreePreferences.TreeItem;
+import com.zimbra.qa.selenium.projects.ajax.core.SetGroupMailByMessagePreference;
+import com.zimbra.qa.selenium.projects.ajax.pages.DialogTag;
+import com.zimbra.qa.selenium.projects.ajax.pages.preferences.PagePreferences;
+import com.zimbra.qa.selenium.projects.ajax.pages.preferences.TreePreferences.TreeItem;
 
-public class ZimbraPrefColorMessagesEnabled extends PrefGroupMailByMessageTest {
+public class ZimbraPrefColorMessagesEnabled extends SetGroupMailByMessagePreference {
 
 	public ZimbraPrefColorMessagesEnabled() {
 		super.startingPage = app.zPageMail;

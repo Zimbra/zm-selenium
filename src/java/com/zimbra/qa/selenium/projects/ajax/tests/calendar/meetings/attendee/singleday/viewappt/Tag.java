@@ -22,9 +22,9 @@ import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.*;
-import com.zimbra.qa.selenium.projects.ajax.ui.DialogTag;
+import com.zimbra.qa.selenium.projects.ajax.pages.DialogTag;
 
-public class Tag extends AjaxCommonTest {
+public class Tag extends AjaxCore {
 
 	public Tag() {
 		logger.info("New "+ Tag.class.getCanonicalName());

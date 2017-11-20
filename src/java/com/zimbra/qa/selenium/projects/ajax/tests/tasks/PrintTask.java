@@ -29,10 +29,10 @@ import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.SeparateWindowPrintPreview;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
+import com.zimbra.qa.selenium.projects.ajax.pages.SeparateWindowPrintPreview;
 
-public class PrintTask extends AjaxCommonTest {
+public class PrintTask extends AjaxCore {
 
 	@SuppressWarnings("serial")
 	public PrintTask() {

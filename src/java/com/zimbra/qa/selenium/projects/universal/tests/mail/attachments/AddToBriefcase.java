@@ -25,11 +25,11 @@ import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.PrefGroupMailByMessageTest;
-import com.zimbra.qa.selenium.projects.universal.ui.*;
-import com.zimbra.qa.selenium.projects.universal.ui.mail.DisplayMail;
+import com.zimbra.qa.selenium.projects.universal.core.SetGroupMailByMessagePreference;
+import com.zimbra.qa.selenium.projects.universal.pages.*;
+import com.zimbra.qa.selenium.projects.universal.pages.mail.DisplayMail;
 
-public class AddToBriefcase extends PrefGroupMailByMessageTest {
+public class AddToBriefcase extends SetGroupMailByMessagePreference {
 	
     	private String subject;
     	private String filename;

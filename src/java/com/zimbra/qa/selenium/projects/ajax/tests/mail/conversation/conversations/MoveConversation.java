@@ -22,11 +22,11 @@ import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.*;
-import com.zimbra.qa.selenium.projects.ajax.ui.*;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.DialogCreateFolder;
+import com.zimbra.qa.selenium.projects.ajax.pages.*;
+import com.zimbra.qa.selenium.projects.ajax.pages.mail.DialogCreateFolder;
 
 
-public class MoveConversation extends PrefGroupMailByConversationTest {
+public class MoveConversation extends SetGroupMailByConversationPreference {
 
 	public MoveConversation() {
 		logger.info("New "+ MoveConversation.class.getCanonicalName());
@@ -37,7 +37,7 @@ public class MoveConversation extends PrefGroupMailByConversationTest {
 		logger.info("Checking for the Move Dialog ...");
 
 		// Check if the "Move Dialog is still open
-		DialogMove dialog = new DialogMove(app, ((AppAjaxClient)app).zPageMail);
+		DialogMove dialog = new DialogMove(app, ((AjaxPages)app).zPageMail);
 		if ( dialog.zIsActive() ) {
 			logger.warn(dialog.myPageName() +" was still active.  Cancelling ...");
 			dialog.zPressButton(Button.B_CANCEL);
@@ -109,7 +109,7 @@ public class MoveConversation extends PrefGroupMailByConversationTest {
 		app.zPageMail.zKeyboardShortcut(Shortcut.S_MOVE);
 
 		// A move dialog will pop up
-		DialogMove dialog = new DialogMove(app, ((AppAjaxClient)app).zPageMail);
+		DialogMove dialog = new DialogMove(app, ((AjaxPages)app).zPageMail);
 		dialog.sClickTreeFolder(subfolder);
 		dialog.zPressButton(Button.B_OK);
 

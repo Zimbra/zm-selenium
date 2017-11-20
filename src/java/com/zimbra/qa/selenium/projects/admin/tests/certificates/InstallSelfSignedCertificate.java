@@ -24,12 +24,12 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
-import com.zimbra.qa.selenium.projects.admin.core.AdminCommonTest;
+import com.zimbra.qa.selenium.projects.admin.core.AdminCore;
 import com.zimbra.qa.selenium.projects.admin.items.*;
-import com.zimbra.qa.selenium.projects.admin.ui.WizardInstallCertificate;
-import com.zimbra.qa.selenium.projects.admin.ui.WizardInstallCertificate.Locators;
+import com.zimbra.qa.selenium.projects.admin.pages.WizardInstallCertificate;
+import com.zimbra.qa.selenium.projects.admin.pages.WizardInstallCertificate.Locators;
 
-public class InstallSelfSignedCertificate extends AdminCommonTest {
+public class InstallSelfSignedCertificate extends AdminCore {
 
 	public InstallSelfSignedCertificate() {
 		logger.info("New " + InstallSelfSignedCertificate.class.getCanonicalName());
