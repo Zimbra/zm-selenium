@@ -45,7 +45,6 @@ import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.logging.LogType;
 import org.openqa.selenium.logging.LoggingPreferences;
 import org.openqa.selenium.remote.CapabilityType;
-import org.openqa.selenium.remote.DesiredCapabilities;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.common.util.tar.TarEntry;
 import com.zimbra.common.util.tar.TarInputStream;
@@ -120,10 +119,8 @@ public class ClientSession {
 					e.printStackTrace();
 				}
 
-				DesiredCapabilities capabilities = DesiredCapabilities.edge();
 				System.setProperty("webdriver.edge.driver", driverFilePath);
-				capabilities.setCapability(CapabilityType.LOGGING_PREFS, logs);
-				webDriver = new EdgeDriver(capabilities);
+				webDriver = new EdgeDriver();
 
 	        } else if (ConfigProperties.getStringProperty("browser").contains("firefox")) {
 
