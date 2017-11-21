@@ -35,27 +35,19 @@ public class ShowRemaining extends SetGroupMailByMessagePreference {
 
 	public void ShowRemaining_01() throws HarnessException {
 
-		String name = "";
+		String folderName = null;
 
 		// Create 125 subfolders
 		for ( int i = 0; i < 125; i++ ) {
-			name = "folder" + ConfigProperties.getUniqueString();
+			folderName = "folder" + ConfigProperties.getUniqueString();
 			app.zGetActiveAccount().soapSend(
-					"<CreateFolderRequest xmlns='urn:zimbraMail'>" +
-	                	"<folder name='"+ name +"' l='1'/>" +
-	                "</CreateFolderRequest>");
+				"<CreateFolderRequest xmlns='urn:zimbraMail'>" +
+						"<folder name='"+ folderName +"' l='1'/>" +
+				"</CreateFolderRequest>");
 		}
 
-		// Need to logout/login for changes to take effect
-		ZimbraAccount active = app.zGetActiveAccount();
-		app.zPageMain.zLogout();
-		app.zPageLogin.zLogin(active);
-		if ( !startingPage.zIsActive() ) {
-			startingPage.zNavigateTo();
-		}
-		if ( !startingPage.zIsActive() ) {
-			throw new HarnessException("Unable to navigate to "+ startingPage.myPageName());
-		}
+		// Refresh UI
+		app.zPageMain.zRefreshMainUI();
 
 		// Click on Get Mail to refresh the folder list
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
@@ -71,11 +63,11 @@ public class ShowRemaining extends SetGroupMailByMessagePreference {
 
 		FolderItem found = null;
 		for (FolderItem f : folders) {
-			if ( name.equals(f.getName()) ) {
+			if ( folderName.equals(f.getName()) ) {
 				found = f;
 				break;
 			}
 		}
-		ZAssert.assertNotNull(found, "Verify the folder "+ name + " was in the tree");
+		ZAssert.assertNotNull(found, "Verify the folder "+ folderName + " was in the tree");
 	}
 }
