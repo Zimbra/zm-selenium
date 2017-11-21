@@ -19,10 +19,10 @@ package com.zimbra.qa.selenium.projects.admin.tests.search;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
-import com.zimbra.qa.selenium.projects.admin.core.AdminCommonTest;
-import com.zimbra.qa.selenium.projects.admin.ui.PageManageSearch;
+import com.zimbra.qa.selenium.projects.admin.core.AdminCore;
+import com.zimbra.qa.selenium.projects.admin.pages.PageManageSearch;
 
-public class NavigateSearch extends AdminCommonTest {
+public class NavigateSearch extends AdminCore {
 
 	public NavigateSearch() {
 		logger.info("New "+ NavigateSearch.class.getCanonicalName());

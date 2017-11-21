@@ -19,10 +19,10 @@ package com.zimbra.qa.selenium.projects.universal.tests.calendar.meetings.organi
 import java.util.HashMap;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.CalendarWorkWeekTest;
-import com.zimbra.qa.selenium.projects.universal.ui.calendar.QuickAddAppointment;
+import com.zimbra.qa.selenium.projects.universal.core.CalendarWorkWeekPreference;
+import com.zimbra.qa.selenium.projects.universal.pages.calendar.QuickAddAppointment;
 
-public class DayView extends CalendarWorkWeekTest {
+public class DayView extends CalendarWorkWeekPreference {
 
 	public DayView() {
 		logger.info("New "+ DayView.class.getCanonicalName());

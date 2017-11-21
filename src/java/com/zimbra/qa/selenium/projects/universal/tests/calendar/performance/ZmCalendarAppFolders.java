@@ -22,11 +22,11 @@ import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.framework.util.performance.*;
-import com.zimbra.qa.selenium.projects.universal.core.CalendarWorkWeekTest;
+import com.zimbra.qa.selenium.projects.universal.core.CalendarWorkWeekPreference;
 
 
 
-public class ZmCalendarAppFolders extends CalendarWorkWeekTest {
+public class ZmCalendarAppFolders extends CalendarWorkWeekPreference {
 
 	public ZmCalendarAppFolders() {
 		logger.info("New "+ ZmCalendarAppFolders.class.getCanonicalName());

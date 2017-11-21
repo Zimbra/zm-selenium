@@ -23,9 +23,9 @@ import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
 
-public class DragAndDropCalendar extends AjaxCommonTest{
+public class DragAndDropCalendar extends AjaxCore{
 
 	public DragAndDropCalendar() {
 		logger.info("New "+ DragAndDropCalendar.class.getCanonicalName());

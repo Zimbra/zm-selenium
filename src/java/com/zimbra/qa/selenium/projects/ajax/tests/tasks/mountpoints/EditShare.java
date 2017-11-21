@@ -26,12 +26,12 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.DialogShare;
-import com.zimbra.qa.selenium.projects.ajax.ui.DialogShare.ShareRole;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.DialogEditFolder;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
+import com.zimbra.qa.selenium.projects.ajax.pages.DialogShare;
+import com.zimbra.qa.selenium.projects.ajax.pages.DialogShare.ShareRole;
+import com.zimbra.qa.selenium.projects.ajax.pages.mail.DialogEditFolder;
 
-public class EditShare extends AjaxCommonTest {
+public class EditShare extends AjaxCore {
 
 	@SuppressWarnings("serial")
 	public EditShare() {

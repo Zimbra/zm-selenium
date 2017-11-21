@@ -33,10 +33,10 @@ import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.universal.core.FeatureBriefcaseTest;
-import com.zimbra.qa.selenium.projects.universal.ui.briefcase.PageBriefcase;
+import com.zimbra.qa.selenium.projects.universal.core.EnableBriefcaseFeature;
+import com.zimbra.qa.selenium.projects.universal.pages.briefcase.PageBriefcase;
 
-public class EditFile extends FeatureBriefcaseTest {
+public class EditFile extends EnableBriefcaseFeature {
 
 	public EditFile() throws HarnessException {
 		logger.info("New " + EditFile.class.getCanonicalName());

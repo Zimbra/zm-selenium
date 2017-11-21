@@ -22,10 +22,10 @@ import com.zimbra.qa.selenium.framework.core.*;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.universal.core.*;
-import com.zimbra.qa.selenium.projects.universal.ui.mail.*;
+import com.zimbra.qa.selenium.projects.universal.pages.mail.*;
 
 
-public class CreateMail extends PrefGroupMailByMessageTest {
+public class CreateMail extends SetGroupMailByMessagePreference {
 
 	public CreateMail() {
 		logger.info("New "+ CreateMail.class.getCanonicalName());

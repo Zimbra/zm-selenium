@@ -21,9 +21,9 @@ import org.testng.annotations.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.universal.core.*;
-import com.zimbra.qa.selenium.projects.universal.ui.*;
+import com.zimbra.qa.selenium.projects.universal.pages.*;
 
-public class AboutDialog extends UniversalCommonTest {
+public class AboutDialog extends UniversalCore {
 
 	public AboutDialog() {
 		logger.info("New "+ AboutDialog.class.getCanonicalName());

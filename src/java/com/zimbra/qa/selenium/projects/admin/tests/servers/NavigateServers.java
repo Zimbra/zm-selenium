@@ -19,10 +19,10 @@ package com.zimbra.qa.selenium.projects.admin.tests.servers;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
-import com.zimbra.qa.selenium.projects.admin.core.AdminCommonTest;
-import com.zimbra.qa.selenium.projects.admin.ui.PageManageServers;
+import com.zimbra.qa.selenium.projects.admin.core.AdminCore;
+import com.zimbra.qa.selenium.projects.admin.pages.PageManageServers;
 
-public class NavigateServers extends AdminCommonTest {
+public class NavigateServers extends AdminCore {
 
 	public NavigateServers() {
 		logger.info("New "+ NavigateServers.class.getCanonicalName());

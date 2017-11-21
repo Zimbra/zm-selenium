@@ -23,11 +23,11 @@ import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
-import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
-import com.zimbra.qa.selenium.projects.universal.ui.DialogError;
-import com.zimbra.qa.selenium.projects.universal.ui.DialogError.DialogErrorID;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCore;
+import com.zimbra.qa.selenium.projects.universal.pages.DialogError;
+import com.zimbra.qa.selenium.projects.universal.pages.DialogError.DialogErrorID;
 
-public class ZimbraFeatureOptionsDisabled extends UniversalCommonTest {
+public class ZimbraFeatureOptionsDisabled extends UniversalCore {
 
 	@SuppressWarnings("serial")
 	public ZimbraFeatureOptionsDisabled() {

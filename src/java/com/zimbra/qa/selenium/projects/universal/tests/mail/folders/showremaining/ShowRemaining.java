@@ -23,10 +23,10 @@ import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.PrefGroupMailByMessageTest;
+import com.zimbra.qa.selenium.projects.universal.core.SetGroupMailByMessagePreference;
 
 
-public class ShowRemaining extends PrefGroupMailByMessageTest {
+public class ShowRemaining extends SetGroupMailByMessagePreference {
 
 	public ShowRemaining() {
 		logger.info("New "+ ShowRemaining.class.getCanonicalName());

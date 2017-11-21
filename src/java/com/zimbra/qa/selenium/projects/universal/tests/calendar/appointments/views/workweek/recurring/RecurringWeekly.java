@@ -28,11 +28,11 @@ import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.CalendarWorkWeekTest;
-import com.zimbra.qa.selenium.projects.universal.ui.calendar.DialogOpenRecurringItem;
-import com.zimbra.qa.selenium.projects.universal.ui.calendar.FormApptNew;
+import com.zimbra.qa.selenium.projects.universal.core.CalendarWorkWeekPreference;
+import com.zimbra.qa.selenium.projects.universal.pages.calendar.DialogOpenRecurringItem;
+import com.zimbra.qa.selenium.projects.universal.pages.calendar.FormApptNew;
 
-public class RecurringWeekly extends CalendarWorkWeekTest {
+public class RecurringWeekly extends CalendarWorkWeekPreference {
 
 	public RecurringWeekly() {
 		logger.info("New "+ RecurringWeekly.class.getCanonicalName());

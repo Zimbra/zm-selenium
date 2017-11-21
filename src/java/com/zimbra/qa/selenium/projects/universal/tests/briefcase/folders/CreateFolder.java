@@ -22,10 +22,10 @@ import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.FeatureBriefcaseTest;
-import com.zimbra.qa.selenium.projects.universal.ui.briefcase.DialogCreateBriefcaseFolder;
+import com.zimbra.qa.selenium.projects.universal.core.EnableBriefcaseFeature;
+import com.zimbra.qa.selenium.projects.universal.pages.briefcase.DialogCreateBriefcaseFolder;
 
-public class CreateFolder extends FeatureBriefcaseTest {
+public class CreateFolder extends EnableBriefcaseFeature {
 
 	private boolean _folderIsCreated = false;
 	private String _folderName = null;

@@ -24,9 +24,9 @@ import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.*;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.SeparateWindowDisplayMail;
+import com.zimbra.qa.selenium.projects.ajax.pages.mail.SeparateWindowDisplayMail;
 
-public class TentativeMeeting extends AjaxCommonTest {
+public class TentativeMeeting extends AjaxCore {
 
 	public TentativeMeeting() {
 		logger.info("New "+ TentativeMeeting.class.getCanonicalName());

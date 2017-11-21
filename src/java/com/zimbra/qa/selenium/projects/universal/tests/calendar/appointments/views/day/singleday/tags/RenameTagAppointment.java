@@ -24,11 +24,11 @@ import com.zimbra.qa.selenium.framework.items.TagItem;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
-import com.zimbra.qa.selenium.projects.universal.ui.DialogRenameTag;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCore;
+import com.zimbra.qa.selenium.projects.universal.pages.DialogRenameTag;
 
 @SuppressWarnings("unused")
-public class RenameTagAppointment extends UniversalCommonTest {
+public class RenameTagAppointment extends UniversalCore {
 
 	public RenameTagAppointment() {
 		logger.info("New "+ RenameTagAppointment.class.getCanonicalName());

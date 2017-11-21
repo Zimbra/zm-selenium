@@ -30,15 +30,15 @@ import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
-import com.zimbra.qa.selenium.projects.ajax.ui.preferences.DialogSelectContact;
-import com.zimbra.qa.selenium.projects.ajax.ui.preferences.DialogSelectContact.Locators;
-import com.zimbra.qa.selenium.projects.ajax.ui.preferences.TreePreferences.TreeItem;
-import com.zimbra.qa.selenium.projects.ajax.ui.preferences.signature.FormSignatureNew;
-import com.zimbra.qa.selenium.projects.ajax.ui.preferences.signature.FormSignatureNew.Field;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
+import com.zimbra.qa.selenium.projects.ajax.pages.mail.FormMailNew;
+import com.zimbra.qa.selenium.projects.ajax.pages.preferences.DialogSelectContact;
+import com.zimbra.qa.selenium.projects.ajax.pages.preferences.DialogSelectContact.Locators;
+import com.zimbra.qa.selenium.projects.ajax.pages.preferences.TreePreferences.TreeItem;
+import com.zimbra.qa.selenium.projects.ajax.pages.preferences.signature.FormSignatureNew;
+import com.zimbra.qa.selenium.projects.ajax.pages.preferences.signature.FormSignatureNew.Field;
 
-public class SignatureVcard extends AjaxCommonTest {
+public class SignatureVcard extends AjaxCore {
 	public SignatureVcard() {
 		super.startingPage = app.zPagePreferences;
 	}

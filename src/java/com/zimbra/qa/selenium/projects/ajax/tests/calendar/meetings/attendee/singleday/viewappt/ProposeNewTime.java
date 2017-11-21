@@ -23,9 +23,9 @@ import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.*;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
+import com.zimbra.qa.selenium.projects.ajax.pages.calendar.FormApptNew;
 
-public class ProposeNewTime extends AjaxCommonTest {
+public class ProposeNewTime extends AjaxCore {
 
 	public ProposeNewTime() {
 		logger.info("New "+ ProposeNewTime.class.getCanonicalName());

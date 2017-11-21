@@ -25,10 +25,10 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.mobile.core.MobileCommonTest;
+import com.zimbra.qa.selenium.projects.mobile.core.MobileCore;
 
 
-public class ReceiveMail extends MobileCommonTest {
+public class ReceiveMail extends MobileCore {
 
 	public ReceiveMail() {
 		logger.info("New "+ ReceiveMail.class.getCanonicalName());

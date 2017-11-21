@@ -21,10 +21,10 @@ import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.MailItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.touch.core.PrefGroupMailByConversationTest;
+import com.zimbra.qa.selenium.projects.touch.core.SetGroupMailByConversationPreference;
 
 
-public class DeleteMail extends PrefGroupMailByConversationTest {
+public class DeleteMail extends SetGroupMailByConversationPreference {
 
 	public DeleteMail() {
 		logger.info("New "+ DeleteMail.class.getCanonicalName());

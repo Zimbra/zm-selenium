@@ -29,9 +29,9 @@ import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZDate;
 import com.zimbra.qa.selenium.framework.util.ZTimeZone;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
-import com.zimbra.qa.selenium.projects.universal.core.CalendarWorkWeekTest;
+import com.zimbra.qa.selenium.projects.universal.core.CalendarWorkWeekPreference;
 
-public class RecurringWeekly extends CalendarWorkWeekTest {
+public class RecurringWeekly extends CalendarWorkWeekPreference {
 
 	public RecurringWeekly() {
 		logger.info("New "+ RecurringWeekly.class.getCanonicalName());

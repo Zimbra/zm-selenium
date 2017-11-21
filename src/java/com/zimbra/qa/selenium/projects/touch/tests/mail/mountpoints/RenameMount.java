@@ -25,10 +25,10 @@ import com.zimbra.common.soap.Element;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.touch.core.PrefGroupMailByMessageTest;
-import com.zimbra.qa.selenium.projects.touch.ui.PageCreateFolder;
+import com.zimbra.qa.selenium.projects.touch.core.SetGroupMailByMessagePreference;
+import com.zimbra.qa.selenium.projects.touch.pages.PageCreateFolder;
 
-public class RenameMount extends PrefGroupMailByMessageTest{
+public class RenameMount extends SetGroupMailByMessagePreference{
 
 
 	public RenameMount() {

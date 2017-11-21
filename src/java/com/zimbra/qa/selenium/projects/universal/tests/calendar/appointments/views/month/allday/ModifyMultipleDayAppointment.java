@@ -30,13 +30,13 @@ import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
-import com.zimbra.qa.selenium.projects.universal.core.CalendarWorkWeekTest;
-import com.zimbra.qa.selenium.projects.universal.ui.calendar.DialogFindAttendees;
-import com.zimbra.qa.selenium.projects.universal.ui.calendar.DialogFindAttendees.Locators;
-import com.zimbra.qa.selenium.projects.universal.ui.calendar.FormApptNew;
-import com.zimbra.qa.selenium.projects.universal.ui.calendar.FormApptNew.Field;
+import com.zimbra.qa.selenium.projects.universal.core.CalendarWorkWeekPreference;
+import com.zimbra.qa.selenium.projects.universal.pages.calendar.DialogFindAttendees;
+import com.zimbra.qa.selenium.projects.universal.pages.calendar.DialogFindAttendees.Locators;
+import com.zimbra.qa.selenium.projects.universal.pages.calendar.FormApptNew;
+import com.zimbra.qa.selenium.projects.universal.pages.calendar.FormApptNew.Field;
 
-public class ModifyMultipleDayAppointment extends CalendarWorkWeekTest {
+public class ModifyMultipleDayAppointment extends CalendarWorkWeekPreference {
 
 	public ModifyMultipleDayAppointment() {
 		logger.info("New " + ModifyMultipleDayAppointment.class.getCanonicalName());

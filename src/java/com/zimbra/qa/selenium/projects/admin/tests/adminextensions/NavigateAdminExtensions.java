@@ -19,10 +19,10 @@ package com.zimbra.qa.selenium.projects.admin.tests.adminextensions;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
-import com.zimbra.qa.selenium.projects.admin.core.AdminCommonTest;
-import com.zimbra.qa.selenium.projects.admin.ui.PageManageAdminExtensions;
+import com.zimbra.qa.selenium.projects.admin.core.AdminCore;
+import com.zimbra.qa.selenium.projects.admin.pages.PageManageAdminExtensions;
 
-public class NavigateAdminExtensions extends AdminCommonTest {
+public class NavigateAdminExtensions extends AdminCore {
 
 	public NavigateAdminExtensions() {
 		logger.info("New "+ NavigateAdminExtensions.class.getCanonicalName());

@@ -25,10 +25,10 @@ import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.framework.util.performance.*;
-import com.zimbra.qa.selenium.projects.universal.core.CalendarWorkWeekTest;
+import com.zimbra.qa.selenium.projects.universal.core.CalendarWorkWeekPreference;
 
 
-public class ZmCalendarApp_ViewDay_Appointment1 extends CalendarWorkWeekTest {
+public class ZmCalendarApp_ViewDay_Appointment1 extends CalendarWorkWeekPreference {
 
 	
 	public ZmCalendarApp_ViewDay_Appointment1() throws HarnessException {

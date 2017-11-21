@@ -23,11 +23,11 @@ import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.touch.core.CalendarWorkWeekTest;
-import com.zimbra.qa.selenium.projects.touch.ui.calendar.FormApptNew;
-import com.zimbra.qa.selenium.projects.touch.ui.calendar.FormApptNew.Field;
+import com.zimbra.qa.selenium.projects.touch.core.CalendarWorkWeekPreference;
+import com.zimbra.qa.selenium.projects.touch.pages.calendar.FormApptNew;
+import com.zimbra.qa.selenium.projects.touch.pages.calendar.FormApptNew.Field;
 
-public class ModifySubjectBody extends CalendarWorkWeekTest {
+public class ModifySubjectBody extends CalendarWorkWeekPreference {
 
 	public ModifySubjectBody() {
 		logger.info("New "+ ModifySubjectBody.class.getCanonicalName());

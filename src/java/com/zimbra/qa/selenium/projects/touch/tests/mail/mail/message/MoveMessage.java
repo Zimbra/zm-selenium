@@ -27,11 +27,11 @@ import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.touch.core.PrefGroupMailByConversationTest;
+import com.zimbra.qa.selenium.projects.touch.core.SetGroupMailByConversationPreference;
 //import com.zimbra.qa.selenium.projects.touch.core.PrefGroupMailByMessageTest;
-import com.zimbra.qa.selenium.projects.touch.ui.mail.PageMail.Locators;
+import com.zimbra.qa.selenium.projects.touch.pages.mail.PageMail.Locators;
 
-public class MoveMessage extends PrefGroupMailByConversationTest{
+public class MoveMessage extends SetGroupMailByConversationPreference{
 
 	public MoveMessage() {
 		logger.info("New "+ MoveMessage.class.getCanonicalName());

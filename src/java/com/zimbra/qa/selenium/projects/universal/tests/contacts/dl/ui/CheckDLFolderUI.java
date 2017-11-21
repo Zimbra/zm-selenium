@@ -21,9 +21,9 @@ import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCore;
 
-public class CheckDLFolderUI extends UniversalCommonTest  {
+public class CheckDLFolderUI extends UniversalCore  {
 
 	public CheckDLFolderUI() {
 		logger.info("New "+ CheckDLFolderUI.class.getCanonicalName());

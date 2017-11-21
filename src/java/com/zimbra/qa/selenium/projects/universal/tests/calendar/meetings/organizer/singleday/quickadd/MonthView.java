@@ -21,10 +21,10 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.CalendarWorkWeekTest;
-import com.zimbra.qa.selenium.projects.universal.ui.calendar.QuickAddAppointment;
+import com.zimbra.qa.selenium.projects.universal.core.CalendarWorkWeekPreference;
+import com.zimbra.qa.selenium.projects.universal.pages.calendar.QuickAddAppointment;
 
-public class MonthView extends CalendarWorkWeekTest {
+public class MonthView extends CalendarWorkWeekPreference {
 
 	public MonthView() {
 		logger.info("New "+ MonthView.class.getCanonicalName());

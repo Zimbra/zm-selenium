@@ -19,10 +19,10 @@ package com.zimbra.qa.selenium.projects.admin.tests.zimlets;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
-import com.zimbra.qa.selenium.projects.admin.core.AdminCommonTest;
-import com.zimbra.qa.selenium.projects.admin.ui.PageManageZimlets;
+import com.zimbra.qa.selenium.projects.admin.core.AdminCore;
+import com.zimbra.qa.selenium.projects.admin.pages.PageManageZimlets;
 
-public class NavigateZimlets extends AdminCommonTest {
+public class NavigateZimlets extends AdminCore {
 
 	public NavigateZimlets() {
 		logger.info("New "+ NavigateZimlets.class.getCanonicalName());

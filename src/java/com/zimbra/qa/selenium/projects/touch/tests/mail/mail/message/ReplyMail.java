@@ -22,9 +22,9 @@ import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.MailItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.touch.core.PrefGroupMailByMessageTest;
+import com.zimbra.qa.selenium.projects.touch.core.SetGroupMailByMessagePreference;
 
-public class ReplyMail extends PrefGroupMailByMessageTest {
+public class ReplyMail extends SetGroupMailByMessagePreference {
 
 	public ReplyMail() {
 		logger.info("New "+ ReplyMail.class.getCanonicalName());

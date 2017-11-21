@@ -27,12 +27,12 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.universal.core.PrefGroupMailByConversationTest;
-import com.zimbra.qa.selenium.projects.universal.ui.mail.*;
-import com.zimbra.qa.selenium.projects.universal.ui.mail.DisplayMail.Field;
+import com.zimbra.qa.selenium.projects.universal.core.SetGroupMailByConversationPreference;
+import com.zimbra.qa.selenium.projects.universal.pages.mail.*;
+import com.zimbra.qa.selenium.projects.universal.pages.mail.DisplayMail.Field;
 
 
-public class QuickReplyAll extends PrefGroupMailByConversationTest {
+public class QuickReplyAll extends SetGroupMailByConversationPreference {
 
 	public QuickReplyAll() {
 		logger.info("New "+ QuickReplyAll.class.getCanonicalName());

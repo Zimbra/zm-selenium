@@ -19,10 +19,10 @@ package com.zimbra.qa.selenium.projects.admin.tests.accounts;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
-import com.zimbra.qa.selenium.projects.admin.core.AdminCommonTest;
-import com.zimbra.qa.selenium.projects.admin.ui.PageManageAccounts;
+import com.zimbra.qa.selenium.projects.admin.core.AdminCore;
+import com.zimbra.qa.selenium.projects.admin.pages.PageManageAccounts;
 
-public class NavigateAccount extends AdminCommonTest {
+public class NavigateAccount extends AdminCore {
 
 	public NavigateAccount() {
 		logger.info("New "+ NavigateAccount.class.getCanonicalName());

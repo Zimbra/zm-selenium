@@ -23,10 +23,10 @@ import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.search.DialogSaveSearch;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
+import com.zimbra.qa.selenium.projects.ajax.pages.search.DialogSaveSearch;
 
-public class CreateSavedSearch extends AjaxCommonTest  {
+public class CreateSavedSearch extends AjaxCore  {
 
 	public CreateSavedSearch() {
 		logger.info("New "+ CreateSavedSearch.class.getCanonicalName());

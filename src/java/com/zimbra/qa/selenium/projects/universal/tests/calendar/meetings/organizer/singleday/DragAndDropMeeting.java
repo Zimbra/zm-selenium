@@ -21,9 +21,9 @@ import java.util.HashMap;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.CalendarWorkWeekTest;
+import com.zimbra.qa.selenium.projects.universal.core.CalendarWorkWeekPreference;
 
-public class DragAndDropMeeting extends CalendarWorkWeekTest {	
+public class DragAndDropMeeting extends CalendarWorkWeekPreference {	
 	
 	public DragAndDropMeeting() {
 		logger.info("New "+ DragAndDropMeeting.class.getCanonicalName());

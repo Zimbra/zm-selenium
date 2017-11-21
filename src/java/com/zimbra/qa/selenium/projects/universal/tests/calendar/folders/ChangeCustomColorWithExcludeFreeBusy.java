@@ -25,12 +25,12 @@ import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.ui.calendar.FormApptNew;
-import com.zimbra.qa.selenium.projects.universal.ui.mail.DialogEditFolder;
-import com.zimbra.qa.selenium.projects.universal.ui.mail.DialogEditFolder.FolderColor;
-import com.zimbra.qa.selenium.projects.universal.ui.mail.DialogEditFolder.Locators;
+import com.zimbra.qa.selenium.projects.universal.pages.calendar.FormApptNew;
+import com.zimbra.qa.selenium.projects.universal.pages.mail.DialogEditFolder;
+import com.zimbra.qa.selenium.projects.universal.pages.mail.DialogEditFolder.FolderColor;
+import com.zimbra.qa.selenium.projects.universal.pages.mail.DialogEditFolder.Locators;
 import com.zimbra.qa.selenium.projects.universal.core.*;
-public class ChangeCustomColorWithExcludeFreeBusy extends CalendarWorkWeekTest {
+public class ChangeCustomColorWithExcludeFreeBusy extends CalendarWorkWeekPreference {
 
 	public ChangeCustomColorWithExcludeFreeBusy() {
 		logger.info("New " + ChangeCustomColorWithExcludeFreeBusy.class.getCanonicalName());

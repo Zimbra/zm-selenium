@@ -23,11 +23,11 @@ import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.tasks.FormTaskNew;
-import com.zimbra.qa.selenium.projects.ajax.ui.tasks.FormTaskNew.Field;
+import com.zimbra.qa.selenium.projects.ajax.core.SetGroupMailByMessagePreference;
+import com.zimbra.qa.selenium.projects.ajax.pages.tasks.FormTaskNew;
+import com.zimbra.qa.selenium.projects.ajax.pages.tasks.FormTaskNew.Field;
 
-public class CreateTaskWithAttachment extends PrefGroupMailByMessageTest {
+public class CreateTaskWithAttachment extends SetGroupMailByMessagePreference {
 
 	@SuppressWarnings("serial")
 	public CreateTaskWithAttachment() {

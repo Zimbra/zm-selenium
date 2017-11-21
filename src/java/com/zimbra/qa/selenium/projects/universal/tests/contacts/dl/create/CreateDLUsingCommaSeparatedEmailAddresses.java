@@ -20,11 +20,11 @@ import org.testng.annotations.Test;
 import com.zimbra.common.soap.Element;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
-import com.zimbra.qa.selenium.projects.universal.ui.contacts.FormContactDistributionListNew;
-import com.zimbra.qa.selenium.projects.universal.ui.contacts.FormContactDistributionListNew.Field;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCore;
+import com.zimbra.qa.selenium.projects.universal.pages.contacts.FormContactDistributionListNew;
+import com.zimbra.qa.selenium.projects.universal.pages.contacts.FormContactDistributionListNew.Field;
 
-public class CreateDLUsingCommaSeparatedEmailAddresses extends UniversalCommonTest  {
+public class CreateDLUsingCommaSeparatedEmailAddresses extends UniversalCore  {
 
 	public CreateDLUsingCommaSeparatedEmailAddresses() {
 		logger.info("New "+ CreateDLUsingCommaSeparatedEmailAddresses.class.getCanonicalName());

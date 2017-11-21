@@ -26,9 +26,9 @@ import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZDate;
 import com.zimbra.qa.selenium.framework.util.ZTimeZone;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
-import com.zimbra.qa.selenium.projects.universal.core.CalendarWorkWeekTest;
+import com.zimbra.qa.selenium.projects.universal.core.CalendarWorkWeekPreference;
 
-public class OpenAppointment extends CalendarWorkWeekTest {
+public class OpenAppointment extends CalendarWorkWeekPreference {
 
 	public OpenAppointment() {
 		logger.info("New "+ OpenAppointment.class.getCanonicalName());

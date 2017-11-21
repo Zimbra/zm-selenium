@@ -21,12 +21,12 @@ import org.testng.annotations.*;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.DialogFindAttendees;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.DialogFindAttendees.Locators;;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
+import com.zimbra.qa.selenium.projects.ajax.pages.calendar.DialogFindAttendees;
+import com.zimbra.qa.selenium.projects.ajax.pages.calendar.FormApptNew;
+import com.zimbra.qa.selenium.projects.ajax.pages.calendar.DialogFindAttendees.Locators;;
 
-public class ModifyBySelectAttendees extends AjaxCommonTest {
+public class ModifyBySelectAttendees extends AjaxCore {
 
 	public ModifyBySelectAttendees() {
 		logger.info("New "+ ModifyBySelectAttendees.class.getCanonicalName());

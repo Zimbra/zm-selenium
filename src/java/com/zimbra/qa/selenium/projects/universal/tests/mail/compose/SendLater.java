@@ -28,15 +28,15 @@ import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
-import com.zimbra.qa.selenium.projects.universal.core.PrefGroupMailByMessageTest;
-import com.zimbra.qa.selenium.projects.universal.ui.DialogWarning;
-import com.zimbra.qa.selenium.projects.universal.ui.DialogWarning.DialogWarningID;
-import com.zimbra.qa.selenium.projects.universal.ui.mail.DialogSendLater;
-import com.zimbra.qa.selenium.projects.universal.ui.mail.FormMailNew;
-import com.zimbra.qa.selenium.projects.universal.ui.mail.FormMailNew.Field;
+import com.zimbra.qa.selenium.projects.universal.core.SetGroupMailByMessagePreference;
+import com.zimbra.qa.selenium.projects.universal.pages.DialogWarning;
+import com.zimbra.qa.selenium.projects.universal.pages.DialogWarning.DialogWarningID;
+import com.zimbra.qa.selenium.projects.universal.pages.mail.DialogSendLater;
+import com.zimbra.qa.selenium.projects.universal.pages.mail.FormMailNew;
+import com.zimbra.qa.selenium.projects.universal.pages.mail.FormMailNew.Field;
 
 
-public class SendLater extends PrefGroupMailByMessageTest {
+public class SendLater extends SetGroupMailByMessagePreference {
 
 	public SendLater() {
 		logger.info("New "+ SendLater.class.getCanonicalName());

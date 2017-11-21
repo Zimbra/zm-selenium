@@ -22,10 +22,10 @@ import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.FeatureBriefcaseTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.briefcase.DialogEditProperties;
+import com.zimbra.qa.selenium.projects.ajax.core.EnableBriefcaseFeature;
+import com.zimbra.qa.selenium.projects.ajax.pages.briefcase.DialogEditProperties;
 
-public class EditProperties extends FeatureBriefcaseTest {
+public class EditProperties extends EnableBriefcaseFeature {
 
 	public EditProperties() {
 		logger.info("New " + EditProperties.class.getCanonicalName());

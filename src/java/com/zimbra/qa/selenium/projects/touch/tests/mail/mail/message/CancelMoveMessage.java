@@ -26,9 +26,9 @@ import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.touch.core.PrefGroupMailByMessageTest;
+import com.zimbra.qa.selenium.projects.touch.core.SetGroupMailByMessagePreference;
 
-	public class CancelMoveMessage extends PrefGroupMailByMessageTest{
+	public class CancelMoveMessage extends SetGroupMailByMessagePreference{
 
 		public CancelMoveMessage() {
 			logger.info("New "+ CancelMoveMessage.class.getCanonicalName());

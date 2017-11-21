@@ -21,9 +21,9 @@ import java.util.HashMap;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
 
-public class DragAndDropMeeting extends AjaxCommonTest {
+public class DragAndDropMeeting extends AjaxCore {
 
 	public DragAndDropMeeting() {
 		logger.info("New "+ DragAndDropMeeting.class.getCanonicalName());

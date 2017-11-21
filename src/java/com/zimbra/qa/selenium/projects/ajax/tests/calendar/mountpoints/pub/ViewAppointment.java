@@ -22,9 +22,9 @@ import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.core.ExecuteHarnessMain;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
 
-public class ViewAppointment extends AjaxCommonTest {
+public class ViewAppointment extends AjaxCore {
 
 	public ViewAppointment() {
 		logger.info("New "+ ViewAppointment.class.getCanonicalName());

@@ -21,10 +21,10 @@ import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
-import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.DialogShareFind;
+import com.zimbra.qa.selenium.projects.ajax.core.SetGroupMailByMessagePreference;
+import com.zimbra.qa.selenium.projects.ajax.pages.DialogShareFind;
 
-public class Cancel extends PrefGroupMailByMessageTest {
+public class Cancel extends SetGroupMailByMessagePreference {
 
 	public Cancel() {
 		logger.info("New "+ Cancel.class.getCanonicalName());

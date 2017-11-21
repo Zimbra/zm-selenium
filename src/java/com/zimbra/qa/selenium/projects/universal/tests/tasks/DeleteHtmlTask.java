@@ -26,10 +26,10 @@ import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
-import com.zimbra.qa.selenium.projects.universal.ui.tasks.PageTasks;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCore;
+import com.zimbra.qa.selenium.projects.universal.pages.tasks.PageTasks;
 
-public class DeleteHtmlTask extends UniversalCommonTest {
+public class DeleteHtmlTask extends UniversalCore {
 
 	@SuppressWarnings("serial")
 	public DeleteHtmlTask() {

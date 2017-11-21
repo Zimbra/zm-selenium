@@ -21,10 +21,10 @@ import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.TooltipFolder;
+import com.zimbra.qa.selenium.projects.ajax.core.SetGroupMailByMessagePreference;
+import com.zimbra.qa.selenium.projects.ajax.pages.TooltipFolder;
 
-public class HoverOverFolder extends PrefGroupMailByMessageTest {
+public class HoverOverFolder extends SetGroupMailByMessagePreference {
 
 	public HoverOverFolder() {
 		logger.info("New "+ HoverOverFolder.class.getCanonicalName());

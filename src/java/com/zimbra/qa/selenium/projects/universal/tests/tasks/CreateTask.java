@@ -26,12 +26,12 @@ import com.zimbra.qa.selenium.framework.items.FolderItem.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.universal.core.*;
-import com.zimbra.qa.selenium.projects.universal.ui.*;
-import com.zimbra.qa.selenium.projects.universal.ui.tasks.*;
-import com.zimbra.qa.selenium.projects.universal.ui.tasks.FormTaskNew.*;
-import com.zimbra.qa.selenium.projects.universal.ui.tasks.PageTasks.Locators;
+import com.zimbra.qa.selenium.projects.universal.pages.*;
+import com.zimbra.qa.selenium.projects.universal.pages.tasks.*;
+import com.zimbra.qa.selenium.projects.universal.pages.tasks.FormTaskNew.*;
+import com.zimbra.qa.selenium.projects.universal.pages.tasks.PageTasks.Locators;
 
-public class CreateTask extends UniversalCommonTest {
+public class CreateTask extends UniversalCore {
 
 	@SuppressWarnings("serial")
 	public CreateTask() {

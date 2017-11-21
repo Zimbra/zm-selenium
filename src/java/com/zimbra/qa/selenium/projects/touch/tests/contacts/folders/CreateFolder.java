@@ -21,10 +21,10 @@ import org.testng.annotations.*;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.touch.core.PrefGroupMailByMessageTest;
-import com.zimbra.qa.selenium.projects.touch.ui.PageCreateFolder;
+import com.zimbra.qa.selenium.projects.touch.core.SetGroupMailByMessagePreference;
+import com.zimbra.qa.selenium.projects.touch.pages.PageCreateFolder;
 
-public class CreateFolder extends PrefGroupMailByMessageTest {
+public class CreateFolder extends SetGroupMailByMessagePreference {
 
 	private String folderName = null;
 	

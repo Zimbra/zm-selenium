@@ -32,10 +32,10 @@ import com.zimbra.qa.selenium.framework.util.HtmlElement;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.ajax.core.FeatureBriefcaseTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.briefcase.PageBriefcase;
+import com.zimbra.qa.selenium.projects.ajax.core.EnableBriefcaseFeature;
+import com.zimbra.qa.selenium.projects.ajax.pages.briefcase.PageBriefcase;
 
-public class EditFile extends FeatureBriefcaseTest {
+public class EditFile extends EnableBriefcaseFeature {
 
 	public EditFile() throws HarnessException {
 		logger.info("New " + EditFile.class.getCanonicalName());

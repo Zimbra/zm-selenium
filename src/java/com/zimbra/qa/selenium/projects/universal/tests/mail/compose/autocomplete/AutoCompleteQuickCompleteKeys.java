@@ -23,12 +23,12 @@ import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.items.MailItem;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.PrefGroupMailByMessageTest;
-import com.zimbra.qa.selenium.projects.universal.ui.AutocompleteEntry;
-import com.zimbra.qa.selenium.projects.universal.ui.mail.FormMailNew;
-import com.zimbra.qa.selenium.projects.universal.ui.mail.FormMailNew.Field;
+import com.zimbra.qa.selenium.projects.universal.core.SetGroupMailByMessagePreference;
+import com.zimbra.qa.selenium.projects.universal.pages.AutocompleteEntry;
+import com.zimbra.qa.selenium.projects.universal.pages.mail.FormMailNew;
+import com.zimbra.qa.selenium.projects.universal.pages.mail.FormMailNew.Field;
 
-public class AutoCompleteQuickCompleteKeys extends PrefGroupMailByMessageTest {
+public class AutoCompleteQuickCompleteKeys extends SetGroupMailByMessagePreference {
 
 	private static String FirstName = "James" + ConfigProperties.getUniqueString();
 	private static String LastName = "Smith" + ConfigProperties.getUniqueString();

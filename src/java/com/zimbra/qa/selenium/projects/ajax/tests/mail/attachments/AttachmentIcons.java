@@ -21,10 +21,10 @@ import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.items.AttachmentItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail;
+import com.zimbra.qa.selenium.projects.ajax.core.SetGroupMailByMessagePreference;
+import com.zimbra.qa.selenium.projects.ajax.pages.mail.DisplayMail;
 
-public class AttachmentIcons extends PrefGroupMailByMessageTest {
+public class AttachmentIcons extends SetGroupMailByMessagePreference {
 
 	public AttachmentIcons() throws HarnessException {
 		logger.info("New "+ AttachmentIcons.class.getCanonicalName());

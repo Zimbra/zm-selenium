@@ -25,12 +25,12 @@ import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
-import com.zimbra.qa.selenium.projects.universal.core.CalendarWorkWeekTest;
-import com.zimbra.qa.selenium.projects.universal.ui.AppUniversalClient;
-import com.zimbra.qa.selenium.projects.universal.ui.mail.DialogEditFolder;
-import com.zimbra.qa.selenium.projects.universal.ui.mail.DialogEditFolder.FolderColor;
+import com.zimbra.qa.selenium.projects.universal.core.CalendarWorkWeekPreference;
+import com.zimbra.qa.selenium.projects.universal.pages.UniversalPages;
+import com.zimbra.qa.selenium.projects.universal.pages.mail.DialogEditFolder;
+import com.zimbra.qa.selenium.projects.universal.pages.mail.DialogEditFolder.FolderColor;
 
-public class ChangeColorCalendar extends CalendarWorkWeekTest {
+public class ChangeColorCalendar extends CalendarWorkWeekPreference {
 
 	public ChangeColorCalendar() {
 		logger.info("New " + ChangeColorCalendar.class.getCanonicalName());
@@ -67,7 +67,7 @@ public class ChangeColorCalendar extends CalendarWorkWeekTest {
 		ZAssert.assertNotNull(dialog, "Verify the dialog opened");
 
 		// Change the color, click OK
-		dialog.zSetNewColor(FolderColor.Green, (AppUniversalClient)app);
+		dialog.zSetNewColor(FolderColor.Green, (UniversalPages)app);
 		dialog.zPressButton(Button.B_OK);
 
 		// Check the color

@@ -21,12 +21,12 @@ import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.PrefGroupMailByMessageTest;
-import com.zimbra.qa.selenium.projects.universal.ui.SeparateWindowDialog;
-import com.zimbra.qa.selenium.projects.universal.ui.mail.SeparateWindowFormMailNew;
-import com.zimbra.qa.selenium.projects.universal.ui.mail.FormMailNew.Field;
+import com.zimbra.qa.selenium.projects.universal.core.SetGroupMailByMessagePreference;
+import com.zimbra.qa.selenium.projects.universal.pages.SeparateWindowDialog;
+import com.zimbra.qa.selenium.projects.universal.pages.mail.SeparateWindowFormMailNew;
+import com.zimbra.qa.selenium.projects.universal.pages.mail.FormMailNew.Field;
 
-public class SaveDraftMail extends PrefGroupMailByMessageTest {
+public class SaveDraftMail extends SetGroupMailByMessagePreference {
 
 	public SaveDraftMail() {
 		logger.info("New "+ SaveDraftMail.class.getCanonicalName());

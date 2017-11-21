@@ -23,11 +23,11 @@ import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
-import com.zimbra.qa.selenium.projects.admin.core.AdminCommonTest;
-import com.zimbra.qa.selenium.projects.admin.ui.WizardDeployZimlet;
-import com.zimbra.qa.selenium.projects.admin.ui.WizardDeployZimlet.Locators;
+import com.zimbra.qa.selenium.projects.admin.core.AdminCore;
+import com.zimbra.qa.selenium.projects.admin.pages.WizardDeployZimlet;
+import com.zimbra.qa.selenium.projects.admin.pages.WizardDeployZimlet.Locators;
 
-public class DeployZimlet extends AdminCommonTest {
+public class DeployZimlet extends AdminCore {
 
 	public DeployZimlet() {
 		logger.info("New " + DeployZimlet.class.getCanonicalName());

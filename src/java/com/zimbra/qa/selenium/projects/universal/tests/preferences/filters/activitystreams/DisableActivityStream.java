@@ -23,12 +23,12 @@ import org.testng.annotations.*;
 
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
-import com.zimbra.qa.selenium.projects.universal.ui.preferences.DialogActivityStream;
-import com.zimbra.qa.selenium.projects.universal.ui.preferences.TreePreferences.TreeItem;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCore;
+import com.zimbra.qa.selenium.projects.universal.pages.preferences.DialogActivityStream;
+import com.zimbra.qa.selenium.projects.universal.pages.preferences.TreePreferences.TreeItem;
 
 
-public class DisableActivityStream extends UniversalCommonTest {
+public class DisableActivityStream extends UniversalCore {
 
 	public DisableActivityStream() {
 		

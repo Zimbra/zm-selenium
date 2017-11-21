@@ -25,10 +25,10 @@ import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.items.MailItem;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
+import com.zimbra.qa.selenium.projects.ajax.pages.calendar.FormApptNew;
 
-public class YearlyRecurringNoEndDate extends AjaxCommonTest {
+public class YearlyRecurringNoEndDate extends AjaxCore {
 
 	public YearlyRecurringNoEndDate() {
 		logger.info("New "+ YearlyRecurringNoEndDate.class.getCanonicalName());

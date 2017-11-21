@@ -24,10 +24,10 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.DialogAssistant;
+import com.zimbra.qa.selenium.projects.ajax.core.SetGroupMailByMessagePreference;
+import com.zimbra.qa.selenium.projects.ajax.pages.DialogAssistant;
 
-public class CreateMailText extends PrefGroupMailByMessageTest {
+public class CreateMailText extends SetGroupMailByMessagePreference {
 
 	public CreateMailText() {
 		logger.info("New "+ CreateMailText.class.getCanonicalName());

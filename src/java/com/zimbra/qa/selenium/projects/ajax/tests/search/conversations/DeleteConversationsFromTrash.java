@@ -28,10 +28,10 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.*;
-import com.zimbra.qa.selenium.projects.ajax.ui.AppAjaxClient;
-import com.zimbra.qa.selenium.projects.ajax.ui.DialogWarning;
+import com.zimbra.qa.selenium.projects.ajax.pages.AjaxPages;
+import com.zimbra.qa.selenium.projects.ajax.pages.DialogWarning;
 
-public class DeleteConversationsFromTrash extends PrefGroupMailByMessageTest {
+public class DeleteConversationsFromTrash extends SetGroupMailByMessagePreference {
 
 	public DeleteConversationsFromTrash() {
 		logger.info("New "+ DeleteConversationsFromTrash.class.getCanonicalName());
@@ -102,7 +102,7 @@ public class DeleteConversationsFromTrash extends PrefGroupMailByMessageTest {
 			app.zPageSearch.zToolbarPressButton(Button.B_DELETE);
 
 			// Warning dialog will appear
-			DialogWarning dialog = new DialogWarning(DialogWarning.DialogWarningID.PermanentlyDeleteTheItem, app, ((AppAjaxClient) app).zPageSearch);
+			DialogWarning dialog = new DialogWarning(DialogWarning.DialogWarningID.PermanentlyDeleteTheItem, app, ((AjaxPages) app).zPageSearch);
 			ZAssert.assertTrue(dialog.zIsActive(), "Verify the warning dialog opens");
 			dialog.zPressButton(Button.B_OK);
 
@@ -198,7 +198,7 @@ public class DeleteConversationsFromTrash extends PrefGroupMailByMessageTest {
 
 			// Warning dialog will appear
 			DialogWarning dialog = new DialogWarning(DialogWarning.DialogWarningID.PermanentlyDeleteTheItem,
-											app, ((AppAjaxClient) app).zPageSearch);
+											app, ((AjaxPages) app).zPageSearch);
 			ZAssert.assertTrue(dialog.zIsActive(), "Verify the warning dialog opens");
 			dialog.zPressButton(Button.B_OK);
 

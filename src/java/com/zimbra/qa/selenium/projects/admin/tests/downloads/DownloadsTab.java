@@ -22,9 +22,9 @@ import java.util.*;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.admin.core.AdminCommonTest;
+import com.zimbra.qa.selenium.projects.admin.core.AdminCore;
 
-public class DownloadsTab extends AdminCommonTest {
+public class DownloadsTab extends AdminCore {
 
 	public static String[] downloadLinkLocators = {
 		"//a[contains(text(),'ZCS Migration Wizard for Exchange/PST (32bit)')]",

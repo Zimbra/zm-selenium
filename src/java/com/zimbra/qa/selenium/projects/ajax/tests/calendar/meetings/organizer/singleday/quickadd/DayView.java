@@ -19,10 +19,10 @@ package com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.organizer.s
 import java.util.HashMap;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.QuickAddAppointment;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
+import com.zimbra.qa.selenium.projects.ajax.pages.calendar.QuickAddAppointment;
 
-public class DayView extends AjaxCommonTest {
+public class DayView extends AjaxCore {
 
 	public DayView() {
 		logger.info("New "+ DayView.class.getCanonicalName());

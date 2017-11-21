@@ -23,7 +23,7 @@ import com.zimbra.qa.selenium.framework.items.FolderItem.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.*;
 
-public class ZimbraPrefColorMessagesEnabledTrue extends PrefGroupMailByMessageTest {
+public class ZimbraPrefColorMessagesEnabledTrue extends SetGroupMailByMessagePreference {
 
 	public ZimbraPrefColorMessagesEnabledTrue() {
 		this.startingAccountPreferences.put("zimbraPrefColorMessagesEnabled", "TRUE");

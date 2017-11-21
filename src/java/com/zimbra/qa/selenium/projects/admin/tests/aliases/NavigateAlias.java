@@ -19,10 +19,10 @@ package com.zimbra.qa.selenium.projects.admin.tests.aliases;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
-import com.zimbra.qa.selenium.projects.admin.core.AdminCommonTest;
-import com.zimbra.qa.selenium.projects.admin.ui.PageManageAliases;
+import com.zimbra.qa.selenium.projects.admin.core.AdminCore;
+import com.zimbra.qa.selenium.projects.admin.pages.PageManageAliases;
 
-public class NavigateAlias extends AdminCommonTest {
+public class NavigateAlias extends AdminCore {
 
 	public NavigateAlias() {
 		logger.info("New "+ NavigateAlias.class.getCanonicalName());

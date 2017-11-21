@@ -22,11 +22,11 @@ import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.PrefGroupMailByMessageTest;
-import com.zimbra.qa.selenium.projects.universal.ui.mail.SeparateWindowDisplayMail;
-import com.zimbra.qa.selenium.projects.universal.ui.mail.DisplayMail;
+import com.zimbra.qa.selenium.projects.universal.core.SetGroupMailByMessagePreference;
+import com.zimbra.qa.selenium.projects.universal.pages.mail.SeparateWindowDisplayMail;
+import com.zimbra.qa.selenium.projects.universal.pages.mail.DisplayMail;
 
-public class SaveDraftMailWithIncludeOriginalAsAttachment extends PrefGroupMailByMessageTest {
+public class SaveDraftMailWithIncludeOriginalAsAttachment extends SetGroupMailByMessagePreference {
 
 	public SaveDraftMailWithIncludeOriginalAsAttachment() {
 		logger.info("New "+ SaveDraftMailWithIncludeOriginalAsAttachment.class.getCanonicalName());

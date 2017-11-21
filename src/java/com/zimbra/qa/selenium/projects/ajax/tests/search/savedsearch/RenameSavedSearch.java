@@ -21,10 +21,10 @@ import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.items.SavedSearchFolderItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.DialogRenameFolder;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
+import com.zimbra.qa.selenium.projects.ajax.pages.DialogRenameFolder;
 
-public class RenameSavedSearch extends AjaxCommonTest  {
+public class RenameSavedSearch extends AjaxCore  {
 
 	public RenameSavedSearch() {
 		logger.info("New "+ RenameSavedSearch.class.getCanonicalName());

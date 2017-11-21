@@ -23,9 +23,9 @@ import com.zimbra.qa.selenium.framework.core.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.universal.core.*;
-import com.zimbra.qa.selenium.projects.universal.ui.*;
+import com.zimbra.qa.selenium.projects.universal.pages.*;
 
-public class HoverOverURL extends UniversalCommonTest {
+public class HoverOverURL extends UniversalCore {
 	
 	public HoverOverURL() {
 		logger.info("New "+ HoverOverURL.class.getCanonicalName());

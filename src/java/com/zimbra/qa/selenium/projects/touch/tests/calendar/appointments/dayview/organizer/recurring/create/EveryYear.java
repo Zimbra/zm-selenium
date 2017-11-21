@@ -22,10 +22,10 @@ import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.items.MailItem;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.touch.core.CalendarWorkWeekTest;
-import com.zimbra.qa.selenium.projects.touch.ui.calendar.FormApptNew;
+import com.zimbra.qa.selenium.projects.touch.core.CalendarWorkWeekPreference;
+import com.zimbra.qa.selenium.projects.touch.pages.calendar.FormApptNew;
 
-public class EveryYear extends CalendarWorkWeekTest {
+public class EveryYear extends CalendarWorkWeekPreference {
 
 	public EveryYear() {
 		logger.info("New "+ EveryYear.class.getCanonicalName());

@@ -27,16 +27,16 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
-import com.zimbra.qa.selenium.projects.universal.ui.preferences.DialogEditFilter;
-import com.zimbra.qa.selenium.projects.universal.ui.preferences.DialogEditFilter.ConditionConstraint;
-import com.zimbra.qa.selenium.projects.universal.ui.preferences.DialogEditFilter.ConditionType;
-import com.zimbra.qa.selenium.projects.universal.ui.preferences.DialogEditFilter.FilterAction;
-import com.zimbra.qa.selenium.projects.universal.ui.preferences.PagePreferences;
-import com.zimbra.qa.selenium.projects.universal.ui.preferences.TreePreferences.TreeItem;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCore;
+import com.zimbra.qa.selenium.projects.universal.pages.preferences.DialogEditFilter;
+import com.zimbra.qa.selenium.projects.universal.pages.preferences.DialogEditFilter.ConditionConstraint;
+import com.zimbra.qa.selenium.projects.universal.pages.preferences.DialogEditFilter.ConditionType;
+import com.zimbra.qa.selenium.projects.universal.pages.preferences.DialogEditFilter.FilterAction;
+import com.zimbra.qa.selenium.projects.universal.pages.preferences.PagePreferences;
+import com.zimbra.qa.selenium.projects.universal.pages.preferences.TreePreferences.TreeItem;
 
 
-public class MoveIntoFolderFilters extends UniversalCommonTest {
+public class MoveIntoFolderFilters extends UniversalCore {
 
 	public MoveIntoFolderFilters() {
 		

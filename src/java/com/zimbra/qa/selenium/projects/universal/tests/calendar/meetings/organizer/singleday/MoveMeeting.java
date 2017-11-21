@@ -24,10 +24,10 @@ import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.CalendarWorkWeekTest;
-import com.zimbra.qa.selenium.projects.universal.ui.calendar.PageCalendar.Locators;
+import com.zimbra.qa.selenium.projects.universal.core.CalendarWorkWeekPreference;
+import com.zimbra.qa.selenium.projects.universal.pages.calendar.PageCalendar.Locators;
 
-public class MoveMeeting extends CalendarWorkWeekTest {	
+public class MoveMeeting extends CalendarWorkWeekPreference {	
 	
 	public MoveMeeting() {
 		logger.info("New "+ MoveMeeting.class.getCanonicalName());

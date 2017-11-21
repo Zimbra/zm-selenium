@@ -26,10 +26,10 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
+import com.zimbra.qa.selenium.projects.ajax.pages.mail.FormMailNew;
 
-public class ZimbraPrefAutoAddAddressEnabledTrue extends AjaxCommonTest {
+public class ZimbraPrefAutoAddAddressEnabledTrue extends AjaxCore {
 
 	@SuppressWarnings("serial")
 	public ZimbraPrefAutoAddAddressEnabledTrue() {

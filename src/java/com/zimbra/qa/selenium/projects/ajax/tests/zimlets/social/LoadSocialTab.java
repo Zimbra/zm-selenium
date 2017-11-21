@@ -20,9 +20,9 @@ import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
 
-public class LoadSocialTab extends AjaxCommonTest {
+public class LoadSocialTab extends AjaxCore {
 
 	public LoadSocialTab() {
 		logger.info("New "+ LoadSocialTab.class.getCanonicalName());

@@ -22,11 +22,11 @@ import org.testng.SkipException;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.PrefGroupMailByMessageTest;
-import com.zimbra.qa.selenium.projects.universal.ui.mail.FormMailNew;
-import com.zimbra.qa.selenium.projects.universal.ui.mail.SeparateWindowFormMailNew;
+import com.zimbra.qa.selenium.projects.universal.core.SetGroupMailByMessagePreference;
+import com.zimbra.qa.selenium.projects.universal.pages.mail.FormMailNew;
+import com.zimbra.qa.selenium.projects.universal.pages.mail.SeparateWindowFormMailNew;
 
-public class OpenComposedMsgWithAnAttachmentInNewWindow extends PrefGroupMailByMessageTest {
+public class OpenComposedMsgWithAnAttachmentInNewWindow extends SetGroupMailByMessagePreference {
 
 	public OpenComposedMsgWithAnAttachmentInNewWindow() {
 		logger.info("New " + OpenComposedMsgWithAnAttachmentInNewWindow.class.getCanonicalName());

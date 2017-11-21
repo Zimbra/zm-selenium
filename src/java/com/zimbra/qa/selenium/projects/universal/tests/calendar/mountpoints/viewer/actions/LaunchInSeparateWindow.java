@@ -24,11 +24,11 @@ import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.CalendarWorkWeekTest;
-import com.zimbra.qa.selenium.projects.universal.ui.SeparateWindow;
-import com.zimbra.qa.selenium.projects.universal.ui.SeparateWindow.Locators;
+import com.zimbra.qa.selenium.projects.universal.core.CalendarWorkWeekPreference;
+import com.zimbra.qa.selenium.projects.universal.pages.SeparateWindow;
+import com.zimbra.qa.selenium.projects.universal.pages.SeparateWindow.Locators;
 
-public class LaunchInSeparateWindow extends CalendarWorkWeekTest {
+public class LaunchInSeparateWindow extends CalendarWorkWeekPreference {
 
 	public LaunchInSeparateWindow() {
 		logger.info("New "+ LaunchInSeparateWindow.class.getCanonicalName());

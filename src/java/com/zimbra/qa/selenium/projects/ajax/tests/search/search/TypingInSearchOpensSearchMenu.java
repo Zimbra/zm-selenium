@@ -23,10 +23,10 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.projects.ajax.core.*;
-import com.zimbra.qa.selenium.projects.ajax.ui.search.PageSearch;
-import com.zimbra.qa.selenium.projects.ajax.ui.search.PageSearch.Locators;
+import com.zimbra.qa.selenium.projects.ajax.pages.search.PageSearch;
+import com.zimbra.qa.selenium.projects.ajax.pages.search.PageSearch.Locators;
 
-public class TypingInSearchOpensSearchMenu extends PrefGroupMailByMessageTest {
+public class TypingInSearchOpensSearchMenu extends SetGroupMailByMessagePreference {
 
 	public TypingInSearchOpensSearchMenu() {
 		logger.info("New " + TypingInSearchOpensSearchMenu.class.getCanonicalName());

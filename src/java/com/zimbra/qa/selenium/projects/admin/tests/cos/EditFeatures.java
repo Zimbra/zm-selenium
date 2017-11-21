@@ -23,12 +23,12 @@ import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
-import com.zimbra.qa.selenium.projects.admin.core.AdminCommonTest;
+import com.zimbra.qa.selenium.projects.admin.core.AdminCore;
 import com.zimbra.qa.selenium.projects.admin.items.CosItem;
-import com.zimbra.qa.selenium.projects.admin.ui.FormEditCos;
-import com.zimbra.qa.selenium.projects.admin.ui.PageMain;
+import com.zimbra.qa.selenium.projects.admin.pages.FormEditCos;
+import com.zimbra.qa.selenium.projects.admin.pages.PageMain;
 
-public class EditFeatures extends AdminCommonTest {
+public class EditFeatures extends AdminCore {
 
 	public EditFeatures() {
 		logger.info("New "+ EditFeatures.class.getCanonicalName());

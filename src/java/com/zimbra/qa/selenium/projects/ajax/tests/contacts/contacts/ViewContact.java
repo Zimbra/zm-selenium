@@ -20,10 +20,10 @@ import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.items.ContactItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.contacts.FormContactNew;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
+import com.zimbra.qa.selenium.projects.ajax.pages.contacts.FormContactNew;
 
-public class ViewContact extends AjaxCommonTest  {
+public class ViewContact extends AjaxCore  {
 	public ViewContact() {
 		logger.info("New "+ ViewContact.class.getCanonicalName());
 		super.startingPage = app.zPageContacts;

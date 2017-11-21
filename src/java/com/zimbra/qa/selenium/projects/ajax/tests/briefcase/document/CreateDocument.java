@@ -35,12 +35,12 @@ import com.zimbra.qa.selenium.framework.ui.Shortcut;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
-import com.zimbra.qa.selenium.projects.ajax.core.FeatureBriefcaseTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.briefcase.DocumentBriefcaseNew;
-import com.zimbra.qa.selenium.projects.ajax.ui.briefcase.DocumentBriefcaseOpen;
-import com.zimbra.qa.selenium.projects.ajax.ui.briefcase.PageBriefcase;
+import com.zimbra.qa.selenium.projects.ajax.core.EnableBriefcaseFeature;
+import com.zimbra.qa.selenium.projects.ajax.pages.briefcase.DocumentBriefcaseNew;
+import com.zimbra.qa.selenium.projects.ajax.pages.briefcase.DocumentBriefcaseOpen;
+import com.zimbra.qa.selenium.projects.ajax.pages.briefcase.PageBriefcase;
 
-public class CreateDocument extends FeatureBriefcaseTest {
+public class CreateDocument extends EnableBriefcaseFeature {
 
 	public CreateDocument() {
 		logger.info("New " + CreateDocument.class.getCanonicalName());

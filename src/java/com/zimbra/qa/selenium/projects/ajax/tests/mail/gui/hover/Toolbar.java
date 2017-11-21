@@ -18,9 +18,9 @@ package com.zimbra.qa.selenium.projects.ajax.tests.mail.gui.hover;
 
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
+import com.zimbra.qa.selenium.projects.ajax.core.SetGroupMailByMessagePreference;
 
-public class Toolbar extends PrefGroupMailByMessageTest {
+public class Toolbar extends SetGroupMailByMessagePreference {
 
 	public Toolbar() {
 		logger.info("New " + Toolbar.class.getCanonicalName());

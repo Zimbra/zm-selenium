@@ -24,12 +24,12 @@ import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.CalendarWorkWeekTest;
-import com.zimbra.qa.selenium.projects.universal.ui.calendar.DialogConfirmDeleteAttendee;
-import com.zimbra.qa.selenium.projects.universal.ui.calendar.DialogConfirmationDeclineAppointment;
+import com.zimbra.qa.selenium.projects.universal.core.CalendarWorkWeekPreference;
+import com.zimbra.qa.selenium.projects.universal.pages.calendar.DialogConfirmDeleteAttendee;
+import com.zimbra.qa.selenium.projects.universal.pages.calendar.DialogConfirmationDeclineAppointment;
 
 @SuppressWarnings("unused")
-public class DeleteMeeting extends CalendarWorkWeekTest {
+public class DeleteMeeting extends CalendarWorkWeekPreference {
 
 	public DeleteMeeting() {
 		logger.info("New "+ DeleteMeeting.class.getCanonicalName());

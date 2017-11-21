@@ -30,10 +30,10 @@ import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
-import com.zimbra.qa.selenium.projects.universal.ui.tasks.PageTasks.Locators;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCore;
+import com.zimbra.qa.selenium.projects.universal.pages.tasks.PageTasks.Locators;
 
-public class CheckCloseButtonInSharedFolder extends UniversalCommonTest {
+public class CheckCloseButtonInSharedFolder extends UniversalCore {
 
 	@SuppressWarnings("serial")
 	public CheckCloseButtonInSharedFolder() {

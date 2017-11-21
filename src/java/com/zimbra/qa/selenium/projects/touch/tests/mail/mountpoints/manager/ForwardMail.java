@@ -22,11 +22,11 @@ import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.items.RecipientItem.RecipientType;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.touch.core.PrefGroupMailByMessageTest;
-import com.zimbra.qa.selenium.projects.touch.ui.PageCreateFolder;
-import com.zimbra.qa.selenium.projects.touch.ui.mail.FormMailNew;
+import com.zimbra.qa.selenium.projects.touch.core.SetGroupMailByMessagePreference;
+import com.zimbra.qa.selenium.projects.touch.pages.PageCreateFolder;
+import com.zimbra.qa.selenium.projects.touch.pages.mail.FormMailNew;
 
-public class ForwardMail extends PrefGroupMailByMessageTest{
+public class ForwardMail extends SetGroupMailByMessagePreference{
 
 
 	public ForwardMail() {

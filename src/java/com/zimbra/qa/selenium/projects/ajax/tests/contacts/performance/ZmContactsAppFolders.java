@@ -21,9 +21,9 @@ import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.framework.util.performance.*;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
 
-public class ZmContactsAppFolders extends AjaxCommonTest {
+public class ZmContactsAppFolders extends AjaxCore {
 
 	public ZmContactsAppFolders() {
 		logger.info("New "+ ZmContactsAppFolders.class.getCanonicalName());

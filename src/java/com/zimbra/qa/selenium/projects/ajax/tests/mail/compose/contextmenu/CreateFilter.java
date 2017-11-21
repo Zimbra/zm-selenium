@@ -22,13 +22,13 @@ import org.testng.annotations.*;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.AppAjaxClient;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew.Field;
-import com.zimbra.qa.selenium.projects.ajax.ui.preferences.DialogEditFilter;
+import com.zimbra.qa.selenium.projects.ajax.core.SetGroupMailByMessagePreference;
+import com.zimbra.qa.selenium.projects.ajax.pages.AjaxPages;
+import com.zimbra.qa.selenium.projects.ajax.pages.mail.DisplayMail;
+import com.zimbra.qa.selenium.projects.ajax.pages.mail.FormMailNew.Field;
+import com.zimbra.qa.selenium.projects.ajax.pages.preferences.DialogEditFilter;
 
-public class CreateFilter extends PrefGroupMailByMessageTest {
+public class CreateFilter extends SetGroupMailByMessagePreference {
 
 	public CreateFilter() {
 		logger.info("New " + CreateFilter.class.getCanonicalName());
@@ -64,12 +64,12 @@ public class CreateFilter extends PrefGroupMailByMessageTest {
 
 		// Select the message so that it shows in the reading pane
 		DisplayMail actual = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, mail.dSubject);
-		ZAssert.assertEquals(actual.zGetMailProperty(com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail.Field.From), ZimbraAccount.AccountA().EmailAddress, "Verify the From matches");
+		ZAssert.assertEquals(actual.zGetMailProperty(com.zimbra.qa.selenium.projects.ajax.pages.mail.DisplayMail.Field.From), ZimbraAccount.AccountA().EmailAddress, "Verify the From matches");
 
 		app.zPageMail.zRightClickAddressBubble(Field.From);
 		app.zPageMail.zCreateFilterMsgHdrContextMenu();
 		SleepUtil.sleepMedium();
-		DialogEditFilter dialog = new DialogEditFilter(app,((AppAjaxClient) app).zPagePreferences);
+		DialogEditFilter dialog = new DialogEditFilter(app,((AjaxPages) app).zPagePreferences);
 		ZAssert.assertTrue(dialog.zIsActive(),"Add filter dialog should active");
 	}
 }

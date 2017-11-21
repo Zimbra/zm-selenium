@@ -23,11 +23,11 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.TooltipContact;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail;
+import com.zimbra.qa.selenium.projects.ajax.core.SetGroupMailByMessagePreference;
+import com.zimbra.qa.selenium.projects.ajax.pages.TooltipContact;
+import com.zimbra.qa.selenium.projects.ajax.pages.mail.DisplayMail;
 
-public class Address extends PrefGroupMailByMessageTest {
+public class Address extends SetGroupMailByMessagePreference {
 
 	public Address() {
 		logger.info("New "+ Address.class.getCanonicalName());

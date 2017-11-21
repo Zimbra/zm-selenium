@@ -25,12 +25,12 @@ import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
-import com.zimbra.qa.selenium.projects.universal.ui.search.DialogSaveSearch;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCore;
+import com.zimbra.qa.selenium.projects.universal.pages.search.DialogSaveSearch;
 
 //TODO: add more in ContactItem.java
 
-public class CreateSavedSearch extends UniversalCommonTest  {
+public class CreateSavedSearch extends UniversalCore  {
 
 	public CreateSavedSearch() {
 		logger.info("New "+ CreateSavedSearch.class.getCanonicalName());

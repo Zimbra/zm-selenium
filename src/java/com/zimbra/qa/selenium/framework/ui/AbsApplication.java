@@ -90,7 +90,7 @@ public abstract class AbsApplication {
 	/**
 	 * Return a list of active pages
 	 * <p>
-	 * For instance, when the {@link AppAjaxClient} is displaying the
+	 * For instance, when the {@link AjaxPages} is displaying the
 	 * {@link PageMail} mail view, this method will return {@link PageMail},
 	 * {@link PageMain}, {@link TreeMail} objects.
 	 * 

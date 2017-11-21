@@ -22,10 +22,10 @@ import com.zimbra.qa.selenium.framework.items.TagItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.FeatureBriefcaseTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.DialogWarning;
+import com.zimbra.qa.selenium.projects.ajax.core.EnableBriefcaseFeature;
+import com.zimbra.qa.selenium.projects.ajax.pages.DialogWarning;
 
-public class DeleteTag extends FeatureBriefcaseTest {
+public class DeleteTag extends EnableBriefcaseFeature {
 
 	public DeleteTag() {
 		logger.info("New " + DeleteTag.class.getCanonicalName());

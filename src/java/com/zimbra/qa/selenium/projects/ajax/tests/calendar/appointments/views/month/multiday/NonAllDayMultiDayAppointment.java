@@ -26,9 +26,9 @@ import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZDate;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
 
-public class NonAllDayMultiDayAppointment extends AjaxCommonTest {
+public class NonAllDayMultiDayAppointment extends AjaxCore {
 
 	@SuppressWarnings("serial")
 	public NonAllDayMultiDayAppointment() {

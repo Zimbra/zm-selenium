@@ -23,10 +23,10 @@ import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.*;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail;
+import com.zimbra.qa.selenium.projects.ajax.pages.calendar.FormApptNew;
+import com.zimbra.qa.selenium.projects.ajax.pages.mail.DisplayMail;
 
-public class AcceptProposeNewTime extends AjaxCommonTest {
+public class AcceptProposeNewTime extends AjaxCore {
 
 	public AcceptProposeNewTime() {
 		logger.info("New "+ AcceptProposeNewTime.class.getCanonicalName());

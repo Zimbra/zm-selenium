@@ -23,9 +23,9 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZDate;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
 
-public class GetReminder extends AjaxCommonTest {
+public class GetReminder extends AjaxCore {
 
 	public GetReminder() {
 		logger.info("New "+ GetReminder.class.getCanonicalName());

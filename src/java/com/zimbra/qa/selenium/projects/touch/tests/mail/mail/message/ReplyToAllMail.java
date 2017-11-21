@@ -23,9 +23,9 @@ import com.zimbra.qa.selenium.framework.items.MailItem;
 import com.zimbra.qa.selenium.framework.items.RecipientItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.touch.core.PrefGroupMailByConversationTest;
+import com.zimbra.qa.selenium.projects.touch.core.SetGroupMailByConversationPreference;
 
-public class ReplyToAllMail extends PrefGroupMailByConversationTest {
+public class ReplyToAllMail extends SetGroupMailByConversationPreference {
 
 	ZimbraAccount account1 = null;
 	ZimbraAccount account2 = null;

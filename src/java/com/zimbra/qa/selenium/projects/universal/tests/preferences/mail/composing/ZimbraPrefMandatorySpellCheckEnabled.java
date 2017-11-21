@@ -25,15 +25,15 @@ import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
-import com.zimbra.qa.selenium.projects.universal.ui.mail.FormMailNew;
-import com.zimbra.qa.selenium.projects.universal.ui.mail.FormMailNew.Field;
-import com.zimbra.qa.selenium.projects.universal.ui.mail.FormMailNew.Locators;
-import com.zimbra.qa.selenium.projects.universal.ui.preferences.TreePreferences.TreeItem;
-import com.zimbra.qa.selenium.projects.universal.ui.preferences.PagePreferences;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCore;
+import com.zimbra.qa.selenium.projects.universal.pages.mail.FormMailNew;
+import com.zimbra.qa.selenium.projects.universal.pages.mail.FormMailNew.Field;
+import com.zimbra.qa.selenium.projects.universal.pages.mail.FormMailNew.Locators;
+import com.zimbra.qa.selenium.projects.universal.pages.preferences.TreePreferences.TreeItem;
+import com.zimbra.qa.selenium.projects.universal.pages.preferences.PagePreferences;
 
 
-public class ZimbraPrefMandatorySpellCheckEnabled extends UniversalCommonTest {
+public class ZimbraPrefMandatorySpellCheckEnabled extends UniversalCore {
 
 
 	public ZimbraPrefMandatorySpellCheckEnabled() {

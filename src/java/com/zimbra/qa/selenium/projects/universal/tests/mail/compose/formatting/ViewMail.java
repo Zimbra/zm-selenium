@@ -23,11 +23,11 @@ import org.testng.annotations.Test;
 
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.PrefGroupMailByMessageTest;
-import com.zimbra.qa.selenium.projects.universal.ui.mail.DisplayMail;
-import com.zimbra.qa.selenium.projects.universal.ui.mail.DisplayMail.Field;
+import com.zimbra.qa.selenium.projects.universal.core.SetGroupMailByMessagePreference;
+import com.zimbra.qa.selenium.projects.universal.pages.mail.DisplayMail;
+import com.zimbra.qa.selenium.projects.universal.pages.mail.DisplayMail.Field;
 
-public class ViewMail extends PrefGroupMailByMessageTest {
+public class ViewMail extends SetGroupMailByMessagePreference {
 
 	public ViewMail() throws HarnessException {
 		logger.info("New " + ViewMail.class.getCanonicalName());

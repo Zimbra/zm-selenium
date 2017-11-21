@@ -21,10 +21,10 @@ import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.CalendarWorkWeekTest;
-import com.zimbra.qa.selenium.projects.universal.ui.calendar.PageCalendar.Locators;
+import com.zimbra.qa.selenium.projects.universal.core.CalendarWorkWeekPreference;
+import com.zimbra.qa.selenium.projects.universal.pages.calendar.PageCalendar.Locators;
 
-public class ViewInviteWhichContainsAttachment extends CalendarWorkWeekTest {
+public class ViewInviteWhichContainsAttachment extends CalendarWorkWeekPreference {
 
 	public ViewInviteWhichContainsAttachment() {
 		logger.info("New "+ ViewInviteWhichContainsAttachment.class.getCanonicalName());

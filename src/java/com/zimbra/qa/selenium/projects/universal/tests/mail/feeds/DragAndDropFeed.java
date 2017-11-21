@@ -24,9 +24,9 @@ import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.PrefGroupMailByMessageTest;
+import com.zimbra.qa.selenium.projects.universal.core.SetGroupMailByMessagePreference;
 
-public class DragAndDropFeed extends PrefGroupMailByMessageTest{
+public class DragAndDropFeed extends SetGroupMailByMessagePreference{
 
 	public DragAndDropFeed() {
 		logger.info("New "+ DragAndDropFeed.class.getCanonicalName());

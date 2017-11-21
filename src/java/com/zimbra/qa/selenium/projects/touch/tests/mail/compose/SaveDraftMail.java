@@ -27,10 +27,10 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.touch.core.TouchCommonTest;
-import com.zimbra.qa.selenium.projects.touch.ui.mail.FormMailNew;
+import com.zimbra.qa.selenium.projects.touch.core.TouchCore;
+import com.zimbra.qa.selenium.projects.touch.pages.mail.FormMailNew;
 
-public class SaveDraftMail extends TouchCommonTest {
+public class SaveDraftMail extends TouchCore {
 
 	public SaveDraftMail() {
 		logger.info("New "+ SaveDraftMail.class.getCanonicalName());

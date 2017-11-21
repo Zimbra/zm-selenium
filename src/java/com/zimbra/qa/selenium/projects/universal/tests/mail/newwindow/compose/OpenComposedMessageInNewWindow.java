@@ -20,13 +20,13 @@ import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.PrefGroupMailByMessageTest;
-import com.zimbra.qa.selenium.projects.universal.ui.mail.FormMailNew;
-import com.zimbra.qa.selenium.projects.universal.ui.mail.SeparateWindowFormMailNew;
-import com.zimbra.qa.selenium.projects.universal.ui.mail.FormMailNew.Field;
-import com.zimbra.qa.selenium.projects.universal.ui.mail.FormMailNew.Locators;
+import com.zimbra.qa.selenium.projects.universal.core.SetGroupMailByMessagePreference;
+import com.zimbra.qa.selenium.projects.universal.pages.mail.FormMailNew;
+import com.zimbra.qa.selenium.projects.universal.pages.mail.SeparateWindowFormMailNew;
+import com.zimbra.qa.selenium.projects.universal.pages.mail.FormMailNew.Field;
+import com.zimbra.qa.selenium.projects.universal.pages.mail.FormMailNew.Locators;
 
-public class OpenComposedMessageInNewWindow extends PrefGroupMailByMessageTest {
+public class OpenComposedMessageInNewWindow extends SetGroupMailByMessagePreference {
 
 	public OpenComposedMessageInNewWindow() {
 		logger.info("New "+ CreateMailHtml.class.getCanonicalName());

@@ -22,10 +22,10 @@ import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.contacts.DialogNewContactGroup;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
+import com.zimbra.qa.selenium.projects.ajax.pages.contacts.DialogNewContactGroup;
 
-public class ManageContactGroupUsingRightClickContextMenu extends AjaxCommonTest  {
+public class ManageContactGroupUsingRightClickContextMenu extends AjaxCore  {
 
 	public ManageContactGroupUsingRightClickContextMenu() {
 		logger.info("New "+ ManageContactGroupUsingRightClickContextMenu.class.getCanonicalName());

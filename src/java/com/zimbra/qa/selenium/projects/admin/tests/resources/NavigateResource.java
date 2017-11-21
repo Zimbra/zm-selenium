@@ -19,10 +19,10 @@ package com.zimbra.qa.selenium.projects.admin.tests.resources;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
-import com.zimbra.qa.selenium.projects.admin.core.AdminCommonTest;
-import com.zimbra.qa.selenium.projects.admin.ui.PageManageResources;
+import com.zimbra.qa.selenium.projects.admin.core.AdminCore;
+import com.zimbra.qa.selenium.projects.admin.pages.PageManageResources;
 
-public class NavigateResource extends AdminCommonTest {
+public class NavigateResource extends AdminCore {
 
 	public NavigateResource() {
 		logger.info("New "+ NavigateResource.class.getCanonicalName());

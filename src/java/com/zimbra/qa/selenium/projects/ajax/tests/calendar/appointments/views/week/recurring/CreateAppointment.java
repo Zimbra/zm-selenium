@@ -22,10 +22,10 @@ import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
+import com.zimbra.qa.selenium.projects.ajax.pages.calendar.FormApptNew;
 
-public class CreateAppointment extends AjaxCommonTest {
+public class CreateAppointment extends AjaxCore {
 
 	public CreateAppointment() {
 		logger.info("New "+ CreateAppointment.class.getCanonicalName());
@@ -38,7 +38,7 @@ public class CreateAppointment extends AjaxCommonTest {
 		};
 	}
 
-	@Test (	description = "Create basic recurring appointment (every day) in week view",
+	@Test (description = "Create basic recurring appointment (every day) in week view",
 			groups = { "smoke", "L3" } )
 
 	public void CreateRecurringAppointment_01() throws HarnessException {

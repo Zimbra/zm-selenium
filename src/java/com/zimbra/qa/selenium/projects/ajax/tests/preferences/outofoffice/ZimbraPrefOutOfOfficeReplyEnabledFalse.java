@@ -27,12 +27,12 @@ import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.AppAjaxClient;
-import com.zimbra.qa.selenium.projects.ajax.ui.preferences.DialogOOOAlert;
-import com.zimbra.qa.selenium.projects.ajax.ui.preferences.TreePreferences.TreeItem;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
+import com.zimbra.qa.selenium.projects.ajax.pages.AjaxPages;
+import com.zimbra.qa.selenium.projects.ajax.pages.preferences.DialogOOOAlert;
+import com.zimbra.qa.selenium.projects.ajax.pages.preferences.TreePreferences.TreeItem;
 
-public class ZimbraPrefOutOfOfficeReplyEnabledFalse extends AjaxCommonTest {
+public class ZimbraPrefOutOfOfficeReplyEnabledFalse extends AjaxCore {
 
 	public static final String autoReplyMessage = "OOO" + ConfigProperties.getUniqueString();
 	public ZimbraPrefOutOfOfficeReplyEnabledFalse() throws HarnessException { }
@@ -57,7 +57,7 @@ public class ZimbraPrefOutOfOfficeReplyEnabledFalse extends AjaxCommonTest {
 
 		// Client must display out of office dialog, wait for some time and take an action on it
 		SleepUtil.sleepLong();
-		DialogOOOAlert alert = new DialogOOOAlert(app, ((AppAjaxClient) app).zPageMail);
+		DialogOOOAlert alert = new DialogOOOAlert(app, ((AjaxPages) app).zPageMail);
 		ZAssert.assertTrue(alert.zIsActive(), "Verify turn off auto-reply alert dialog is displayed");
 		alert.zCheckboxSet(true);
 		alert.zPressButton(Button.B_YES);

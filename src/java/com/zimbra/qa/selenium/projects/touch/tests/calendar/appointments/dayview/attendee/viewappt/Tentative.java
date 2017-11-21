@@ -26,7 +26,7 @@ import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.touch.core.*;
 
-public class Tentative extends CalendarWorkWeekTest {
+public class Tentative extends CalendarWorkWeekPreference {
 
 	public Tentative() {
 		logger.info("New "+ Tentative.class.getCanonicalName());

@@ -29,11 +29,11 @@ import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.AppAjaxClient;
-import com.zimbra.qa.selenium.projects.ajax.ui.DialogTag;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
+import com.zimbra.qa.selenium.projects.ajax.pages.AjaxPages;
+import com.zimbra.qa.selenium.projects.ajax.pages.DialogTag;
 
-public class TagTask extends AjaxCommonTest{
+public class TagTask extends AjaxCore{
 
 	@SuppressWarnings("serial")
 	public TagTask() {
@@ -120,7 +120,7 @@ public class TagTask extends AjaxCommonTest{
 		logger.info("Checking for the Create New Tag Dialog ...");
 
 		// Check if the "Create New Tag Dialog is still open
-		DialogTag dialogtag = new DialogTag(app, ((AppAjaxClient)app).zPageTasks);
+		DialogTag dialogtag = new DialogTag(app, ((AjaxPages)app).zPageTasks);
 		if (dialogtag.zIsActive()) {
 			logger.warn(dialogtag.myPageName() + " was still active.  Cancelling ...");
 			dialogtag.zPressButton(Button.B_CANCEL);

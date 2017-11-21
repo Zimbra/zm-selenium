@@ -27,11 +27,11 @@ import org.testng.annotations.*;
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.touch.core.CalendarWorkWeekTest;
-import com.zimbra.qa.selenium.projects.touch.ui.calendar.FormApptNew;
-import com.zimbra.qa.selenium.projects.touch.ui.calendar.FormApptNew.Field;
+import com.zimbra.qa.selenium.projects.touch.core.CalendarWorkWeekPreference;
+import com.zimbra.qa.selenium.projects.touch.pages.calendar.FormApptNew;
+import com.zimbra.qa.selenium.projects.touch.pages.calendar.FormApptNew.Field;
 
-public class ModifySeriesDate extends CalendarWorkWeekTest {
+public class ModifySeriesDate extends CalendarWorkWeekPreference {
 
 	public ModifySeriesDate() {
 		logger.info("New "+ ModifySeriesDate.class.getCanonicalName());

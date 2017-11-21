@@ -20,9 +20,9 @@ import java.util.List;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.items.MailItem;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
+import com.zimbra.qa.selenium.projects.ajax.core.SetGroupMailByMessagePreference;
 
-public class PriorityMail extends PrefGroupMailByMessageTest {
+public class PriorityMail extends SetGroupMailByMessagePreference {
 
 	public PriorityMail() {
 		logger.info("New "+ PriorityMail.class.getCanonicalName());

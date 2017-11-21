@@ -30,11 +30,11 @@ import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.framework.util.performance.PerfKey;
 import com.zimbra.qa.selenium.framework.util.performance.PerfMetrics;
 import com.zimbra.qa.selenium.framework.util.performance.PerfToken;
-import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
-import com.zimbra.qa.selenium.projects.universal.ui.mail.DisplayMail;
-import com.zimbra.qa.selenium.projects.universal.ui.mail.FormMailNew;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCore;
+import com.zimbra.qa.selenium.projects.universal.pages.mail.DisplayMail;
+import com.zimbra.qa.selenium.projects.universal.pages.mail.FormMailNew;
 
-public class ZmMailAppReplyCompose extends UniversalCommonTest {
+public class ZmMailAppReplyCompose extends UniversalCore {
 
 	public ZmMailAppReplyCompose() {
 		logger.info("New " + ZmMailAppReplyCompose.class.getCanonicalName());

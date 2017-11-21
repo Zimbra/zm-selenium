@@ -28,13 +28,13 @@ import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.DialogFindAttendees;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.DialogFindAttendees.Locators;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew.Field;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
+import com.zimbra.qa.selenium.projects.ajax.pages.calendar.DialogFindAttendees;
+import com.zimbra.qa.selenium.projects.ajax.pages.calendar.DialogFindAttendees.Locators;
+import com.zimbra.qa.selenium.projects.ajax.pages.calendar.FormApptNew;
+import com.zimbra.qa.selenium.projects.ajax.pages.calendar.FormApptNew.Field;
 
-public class ModifyMultipleDayAppointment extends AjaxCommonTest {
+public class ModifyMultipleDayAppointment extends AjaxCore {
 
 	public ModifyMultipleDayAppointment() {
 		logger.info("New " + ModifyMultipleDayAppointment.class.getCanonicalName());

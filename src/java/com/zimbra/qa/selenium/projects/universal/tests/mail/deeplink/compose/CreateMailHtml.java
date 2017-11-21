@@ -21,10 +21,10 @@ import org.testng.annotations.*;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.universal.core.*;
-import com.zimbra.qa.selenium.projects.universal.ui.mail.*;
+import com.zimbra.qa.selenium.projects.universal.pages.mail.*;
 
 
-public class CreateMailHtml extends PrefGroupMailByMessageTest {
+public class CreateMailHtml extends SetGroupMailByMessagePreference {
 
 	public CreateMailHtml() {
 		logger.info("New "+ CreateMailHtml.class.getCanonicalName());

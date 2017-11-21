@@ -22,9 +22,9 @@ import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.MailItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.PrefGroupMailByMessageTest;
+import com.zimbra.qa.selenium.projects.universal.core.SetGroupMailByMessagePreference;
 
-public class MuteMessage extends PrefGroupMailByMessageTest {
+public class MuteMessage extends SetGroupMailByMessagePreference {
 
 	public MuteMessage() {
 		logger.info("New "+ MuteMessage.class.getCanonicalName());

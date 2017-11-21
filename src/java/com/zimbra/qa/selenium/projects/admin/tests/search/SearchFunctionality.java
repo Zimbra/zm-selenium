@@ -22,13 +22,13 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.admin.core.AdminCommonTest;
+import com.zimbra.qa.selenium.projects.admin.core.AdminCore;
 import com.zimbra.qa.selenium.projects.admin.items.AccountItem;
 import com.zimbra.qa.selenium.projects.admin.items.DistributionListItem;
 import com.zimbra.qa.selenium.projects.admin.items.DomainItem;
-import com.zimbra.qa.selenium.projects.admin.ui.PageManageSearch;
+import com.zimbra.qa.selenium.projects.admin.pages.PageManageSearch;
 
-public class SearchFunctionality extends AdminCommonTest {
+public class SearchFunctionality extends AdminCore {
 
 	public SearchFunctionality() {
 		logger.info("New "+ SearchFunctionality.class.getCanonicalName());

@@ -21,10 +21,10 @@ import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.FeatureBriefcaseTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.DialogTag;
+import com.zimbra.qa.selenium.projects.ajax.core.EnableBriefcaseFeature;
+import com.zimbra.qa.selenium.projects.ajax.pages.DialogTag;
 
-public class CreateTag extends FeatureBriefcaseTest {
+public class CreateTag extends EnableBriefcaseFeature {
 
 	public CreateTag() {
 		logger.info("New " + CreateTag.class.getCanonicalName());

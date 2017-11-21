@@ -21,10 +21,10 @@ import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
-import com.zimbra.qa.selenium.projects.admin.core.AdminCommonTest;
-import com.zimbra.qa.selenium.projects.admin.ui.DialogForUndeployZimlet;
+import com.zimbra.qa.selenium.projects.admin.core.AdminCore;
+import com.zimbra.qa.selenium.projects.admin.pages.DialogForUndeployZimlet;
 
-public class UndeployZimlet extends AdminCommonTest {
+public class UndeployZimlet extends AdminCore {
 
 	public UndeployZimlet() {
 		logger.info("New " + UndeployZimlet.class.getCanonicalName());

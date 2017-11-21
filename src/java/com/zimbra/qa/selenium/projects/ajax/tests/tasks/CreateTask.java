@@ -24,12 +24,12 @@ import com.zimbra.qa.selenium.framework.items.FolderItem.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.*;
-import com.zimbra.qa.selenium.projects.ajax.ui.*;
-import com.zimbra.qa.selenium.projects.ajax.ui.tasks.*;
-import com.zimbra.qa.selenium.projects.ajax.ui.tasks.FormTaskNew.*;
-import com.zimbra.qa.selenium.projects.ajax.ui.tasks.PageTasks.Locators;
+import com.zimbra.qa.selenium.projects.ajax.pages.*;
+import com.zimbra.qa.selenium.projects.ajax.pages.tasks.*;
+import com.zimbra.qa.selenium.projects.ajax.pages.tasks.FormTaskNew.*;
+import com.zimbra.qa.selenium.projects.ajax.pages.tasks.PageTasks.Locators;
 
-public class CreateTask extends AjaxCommonTest {
+public class CreateTask extends AjaxCore {
 
 	@SuppressWarnings("serial")
 	public CreateTask() {

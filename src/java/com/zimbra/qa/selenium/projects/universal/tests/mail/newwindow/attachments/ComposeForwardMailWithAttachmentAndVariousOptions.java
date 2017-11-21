@@ -29,12 +29,12 @@ import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.universal.core.PrefGroupMailByMessageTest;
-import com.zimbra.qa.selenium.projects.universal.ui.mail.FormMailNew;
-import com.zimbra.qa.selenium.projects.universal.ui.mail.SeparateWindowFormMailNew;
-import com.zimbra.qa.selenium.projects.universal.ui.mail.FormMailNew.Locators;
+import com.zimbra.qa.selenium.projects.universal.core.SetGroupMailByMessagePreference;
+import com.zimbra.qa.selenium.projects.universal.pages.mail.FormMailNew;
+import com.zimbra.qa.selenium.projects.universal.pages.mail.SeparateWindowFormMailNew;
+import com.zimbra.qa.selenium.projects.universal.pages.mail.FormMailNew.Locators;
 
-public class ComposeForwardMailWithAttachmentAndVariousOptions extends PrefGroupMailByMessageTest {
+public class ComposeForwardMailWithAttachmentAndVariousOptions extends SetGroupMailByMessagePreference {
 
 	public ComposeForwardMailWithAttachmentAndVariousOptions() {
 		logger.info("New "+ ComposeForwardMailWithAttachmentAndVariousOptions.class.getCanonicalName());

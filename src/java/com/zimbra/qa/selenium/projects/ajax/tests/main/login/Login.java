@@ -20,9 +20,9 @@ import org.testng.annotations.*;
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
 
-public class Login extends AjaxCommonTest {
+public class Login extends AjaxCore {
 
 	public Login() {
 		logger.info("New "+ Login.class.getCanonicalName());

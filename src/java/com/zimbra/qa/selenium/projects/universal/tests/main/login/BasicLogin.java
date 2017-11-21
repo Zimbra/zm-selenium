@@ -21,9 +21,9 @@ import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
-import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCore;
 
-public class BasicLogin extends UniversalCommonTest {
+public class BasicLogin extends UniversalCore {
 	
 	public BasicLogin() {
 		logger.info("New "+ BasicLogin.class.getCanonicalName());

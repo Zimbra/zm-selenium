@@ -20,10 +20,10 @@ import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.PrefGroupMailByMessageTest;
-import com.zimbra.qa.selenium.projects.universal.ui.Toaster;
+import com.zimbra.qa.selenium.projects.universal.core.SetGroupMailByMessagePreference;
+import com.zimbra.qa.selenium.projects.universal.pages.Toaster;
 
-public class UndoMarkSpamMessage extends PrefGroupMailByMessageTest {
+public class UndoMarkSpamMessage extends SetGroupMailByMessagePreference {
 	public UndoMarkSpamMessage() {
 		logger.info("New "+ UndoMarkSpamMessage.class.getCanonicalName());
 	}

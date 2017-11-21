@@ -25,10 +25,10 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
-import com.zimbra.qa.selenium.projects.admin.core.AdminCommonTest;
-import com.zimbra.qa.selenium.projects.admin.ui.PageManageMTA.Locators;
+import com.zimbra.qa.selenium.projects.admin.core.AdminCore;
+import com.zimbra.qa.selenium.projects.admin.pages.PageManageMTA.Locators;
 
-public class CheckMTASettings extends AdminCommonTest {
+public class CheckMTASettings extends AdminCore {
 
 	public CheckMTASettings() {
 		logger.info("New "+ CheckMTASettings.class.getCanonicalName());

@@ -24,7 +24,7 @@ import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.*;
 
-public class PriorityTask extends AjaxCommonTest {
+public class PriorityTask extends AjaxCore {
 
 	public PriorityTask() {
 		logger.info("New "+ PriorityTask.class.getCanonicalName());

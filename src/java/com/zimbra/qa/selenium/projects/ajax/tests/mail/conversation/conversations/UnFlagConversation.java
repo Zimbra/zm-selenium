@@ -22,7 +22,7 @@ import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.*;
 
-public class UnFlagConversation extends PrefGroupMailByConversationTest {
+public class UnFlagConversation extends SetGroupMailByConversationPreference {
 
 	public UnFlagConversation() {
 		logger.info("New "+ UnFlagConversation.class.getCanonicalName());

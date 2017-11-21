@@ -19,11 +19,11 @@ package com.zimbra.qa.selenium.projects.ajax.tests.preferences.shortcuts;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.SeparateWindow;
-import com.zimbra.qa.selenium.projects.ajax.ui.preferences.TreePreferences.TreeItem;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
+import com.zimbra.qa.selenium.projects.ajax.pages.SeparateWindow;
+import com.zimbra.qa.selenium.projects.ajax.pages.preferences.TreePreferences.TreeItem;
 
-public class Print extends AjaxCommonTest {
+public class Print extends AjaxCore {
 
 	public Print() {
 		super.startingPage = app.zPagePreferences;

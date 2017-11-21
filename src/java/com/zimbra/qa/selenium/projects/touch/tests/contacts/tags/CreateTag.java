@@ -21,11 +21,11 @@ import org.testng.annotations.*;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.touch.ui.AppTouchClient;
-import com.zimbra.qa.selenium.projects.touch.ui.PageCreateTag;
-import com.zimbra.qa.selenium.projects.touch.core.TouchCommonTest;
+import com.zimbra.qa.selenium.projects.touch.pages.TouchPages;
+import com.zimbra.qa.selenium.projects.touch.pages.PageCreateTag;
+import com.zimbra.qa.selenium.projects.touch.core.TouchCore;
 
-public class CreateTag extends TouchCommonTest {
+public class CreateTag extends TouchCore {
 
 	private String tagName = null;
 	private String errorMessage = null;
@@ -49,7 +49,7 @@ public class CreateTag extends TouchCommonTest {
 		
 		tagName = "tag" + ConfigProperties.getUniqueString();
 	
-		PageCreateTag createTagPage = new PageCreateTag((AppTouchClient) app , this.startingPage);
+		PageCreateTag createTagPage = new PageCreateTag((TouchPages) app , this.startingPage);
 		
 		//Click on edit button
 		createTagPage.zPressButton(Button.B_EDIT);
@@ -87,7 +87,7 @@ public class CreateTag extends TouchCommonTest {
 		tagName = "tag" + ConfigProperties.getUniqueString();
 		errorMessage="An object with that name already exists.";
 	
-		PageCreateTag createTagPage = new PageCreateTag((AppTouchClient) app , this.startingPage);
+		PageCreateTag createTagPage = new PageCreateTag((TouchPages) app , this.startingPage);
 		
 		//Click on edit button
 		createTagPage.zPressButton(Button.B_EDIT);

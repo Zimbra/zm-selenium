@@ -27,7 +27,7 @@ import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.*;
 
-public class SearchMail extends PrefGroupMailByMessageTest {
+public class SearchMail extends SetGroupMailByMessagePreference {
 
 	int pollIntervalSeconds = 60;
 

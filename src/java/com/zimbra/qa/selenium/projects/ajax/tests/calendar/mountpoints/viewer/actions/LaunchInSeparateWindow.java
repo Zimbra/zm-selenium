@@ -32,11 +32,11 @@ import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZDate;
 import com.zimbra.qa.selenium.framework.util.ZTimeZone;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.SeparateWindow;
-import com.zimbra.qa.selenium.projects.ajax.ui.SeparateWindow.Locators;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
+import com.zimbra.qa.selenium.projects.ajax.pages.SeparateWindow;
+import com.zimbra.qa.selenium.projects.ajax.pages.SeparateWindow.Locators;
 
-public class LaunchInSeparateWindow extends AjaxCommonTest {
+public class LaunchInSeparateWindow extends AjaxCore {
 
 	public LaunchInSeparateWindow() {
 		logger.info("New "+ LaunchInSeparateWindow.class.getCanonicalName());

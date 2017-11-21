@@ -23,9 +23,9 @@ import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.universal.core.*;
-import com.zimbra.qa.selenium.projects.universal.ui.DialogTag;
+import com.zimbra.qa.selenium.projects.universal.pages.DialogTag;
 
-public class Tag extends CalendarWorkWeekTest {
+public class Tag extends CalendarWorkWeekPreference {
 
 	public Tag() {
 		logger.info("New "+ Tag.class.getCanonicalName());

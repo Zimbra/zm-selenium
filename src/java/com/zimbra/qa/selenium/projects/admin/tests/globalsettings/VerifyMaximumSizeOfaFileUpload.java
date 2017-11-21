@@ -20,10 +20,10 @@ import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
-import com.zimbra.qa.selenium.projects.admin.core.AdminCommonTest;
-import com.zimbra.qa.selenium.projects.admin.ui.PageManageGlobalSettings;
+import com.zimbra.qa.selenium.projects.admin.core.AdminCore;
+import com.zimbra.qa.selenium.projects.admin.pages.PageManageGlobalSettings;
 
-public class VerifyMaximumSizeOfaFileUpload extends AdminCommonTest {
+public class VerifyMaximumSizeOfaFileUpload extends AdminCore {
 
 	public VerifyMaximumSizeOfaFileUpload() {
 		logger.info("New "+ VerifyMaximumSizeOfaFileUpload.class.getCanonicalName());

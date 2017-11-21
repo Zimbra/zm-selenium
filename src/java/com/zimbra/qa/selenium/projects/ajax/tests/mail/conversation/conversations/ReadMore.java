@@ -22,7 +22,7 @@ import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.*;
 
-public class ReadMore extends PrefGroupMailByConversationTest {
+public class ReadMore extends SetGroupMailByConversationPreference {
 
 	public ReadMore() throws HarnessException {
 		logger.info("New "+ ReadMore.class.getCanonicalName());

@@ -24,9 +24,9 @@ import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.items.ContactItem;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.touch.core.TouchCommonTest;
+import com.zimbra.qa.selenium.projects.touch.core.TouchCore;
 
-public class SearchContact extends TouchCommonTest  {
+public class SearchContact extends TouchCore  {
 	
 	public SearchContact() {
 		logger.info("New "+ CreateContact.class.getCanonicalName());

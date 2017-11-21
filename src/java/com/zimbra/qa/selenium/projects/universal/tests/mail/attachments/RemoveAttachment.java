@@ -26,12 +26,12 @@ import com.zimbra.qa.selenium.framework.core.*;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.PrefGroupMailByMessageTest;
-import com.zimbra.qa.selenium.projects.universal.ui.*;
-import com.zimbra.qa.selenium.projects.universal.ui.mail.DisplayMail;
+import com.zimbra.qa.selenium.projects.universal.core.SetGroupMailByMessagePreference;
+import com.zimbra.qa.selenium.projects.universal.pages.*;
+import com.zimbra.qa.selenium.projects.universal.pages.mail.DisplayMail;
 
 
-public class RemoveAttachment extends PrefGroupMailByMessageTest {
+public class RemoveAttachment extends SetGroupMailByMessagePreference {
 
 	
 	public RemoveAttachment() throws HarnessException {

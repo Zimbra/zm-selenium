@@ -29,14 +29,14 @@ import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
 import com.zimbra.qa.selenium.framework.util.ZimbraResource;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew.Field;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.PageMail;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
+import com.zimbra.qa.selenium.projects.ajax.pages.calendar.FormApptNew;
+import com.zimbra.qa.selenium.projects.ajax.pages.calendar.FormApptNew.Field;
+import com.zimbra.qa.selenium.projects.ajax.pages.mail.PageMail;
 import java.util.Calendar;
 import org.testng.annotations.Test;
 
-public class CreateMeetingInSharedCalendarWithMailFeatureDisabled extends AjaxCommonTest {
+public class CreateMeetingInSharedCalendarWithMailFeatureDisabled extends AjaxCore {
 
 	public CreateMeetingInSharedCalendarWithMailFeatureDisabled() {
 		logger.info("New " + CreateMeetingInSharedCalendarWithMailFeatureDisabled.class.getCanonicalName());

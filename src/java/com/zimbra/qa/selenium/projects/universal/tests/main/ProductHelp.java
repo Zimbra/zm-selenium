@@ -21,9 +21,9 @@ import org.testng.annotations.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.universal.core.*;
-import com.zimbra.qa.selenium.projects.universal.ui.*;
+import com.zimbra.qa.selenium.projects.universal.pages.*;
 
-public class ProductHelp extends UniversalCommonTest {
+public class ProductHelp extends UniversalCore {
 
 	public ProductHelp() {
 		logger.info("New " + ProductHelp.class.getCanonicalName());

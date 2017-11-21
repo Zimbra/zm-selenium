@@ -21,9 +21,9 @@ import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCore;
 
-public class UnTagContact extends UniversalCommonTest  {
+public class UnTagContact extends UniversalCore  {
 	public UnTagContact() {
 		logger.info("New "+ UnTagContact.class.getCanonicalName());
 		

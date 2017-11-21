@@ -23,9 +23,9 @@ import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.framework.util.performance.*;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
 
-public class ZmCalendarApp_ViewMonth_Appointment1 extends AjaxCommonTest {
+public class ZmCalendarApp_ViewMonth_Appointment1 extends AjaxCore {
 
 	public ZmCalendarApp_ViewMonth_Appointment1() throws HarnessException {
 		logger.info("New "+ ZmCalendarApp_ViewMonth_Appointment1.class.getCanonicalName());

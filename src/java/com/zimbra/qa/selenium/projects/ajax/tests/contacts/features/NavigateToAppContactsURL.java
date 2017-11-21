@@ -21,9 +21,9 @@ import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.items.ContactItem;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
 
-public class NavigateToAppContactsURL extends AjaxCommonTest {
+public class NavigateToAppContactsURL extends AjaxCore {
 	public NavigateToAppContactsURL() {
 		logger.info("New " + NavigateToAppContactsURL.class.getCanonicalName());
 		super.startingPage = app.zPageContacts;

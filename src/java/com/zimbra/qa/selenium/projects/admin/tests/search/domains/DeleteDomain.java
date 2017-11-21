@@ -23,11 +23,11 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.admin.core.AdminCommonTest;
+import com.zimbra.qa.selenium.projects.admin.core.AdminCore;
 import com.zimbra.qa.selenium.projects.admin.items.DomainItem;
-import com.zimbra.qa.selenium.projects.admin.ui.DA_PageManageAccounts.Locators;
+import com.zimbra.qa.selenium.projects.admin.pages.DA_PageManageAccounts.Locators;
 
-public class DeleteDomain extends AdminCommonTest {
+public class DeleteDomain extends AdminCore {
 
 	public DeleteDomain() {
 		logger.info("New" + DeleteDomain.class.getCanonicalName());

@@ -24,10 +24,10 @@ import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.items.ContactItem;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
-import com.zimbra.qa.selenium.projects.universal.ui.contacts.PageContacts;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCore;
+import com.zimbra.qa.selenium.projects.universal.pages.contacts.PageContacts;
 
-public class GetContacts extends UniversalCommonTest  {
+public class GetContacts extends UniversalCore  {
 	public GetContacts() {
 		logger.info("New "+ GetContacts.class.getCanonicalName());
 		super.startingPage = app.zPageContacts;

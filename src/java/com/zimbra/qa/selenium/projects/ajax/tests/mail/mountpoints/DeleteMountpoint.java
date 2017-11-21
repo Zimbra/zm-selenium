@@ -27,9 +27,9 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
+import com.zimbra.qa.selenium.projects.ajax.core.SetGroupMailByMessagePreference;
 
-public class DeleteMountpoint extends PrefGroupMailByMessageTest {
+public class DeleteMountpoint extends SetGroupMailByMessagePreference {
 
 	public DeleteMountpoint() {
 		logger.info("New "+ DeleteMountpoint.class.getCanonicalName());

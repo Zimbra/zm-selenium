@@ -21,18 +21,18 @@ import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.PrefGroupMailByMessageTest;
-import com.zimbra.qa.selenium.projects.universal.ui.*;
-import com.zimbra.qa.selenium.projects.universal.ui.mail.DialogCreateFolder;
+import com.zimbra.qa.selenium.projects.universal.core.SetGroupMailByMessagePreference;
+import com.zimbra.qa.selenium.projects.universal.pages.*;
+import com.zimbra.qa.selenium.projects.universal.pages.mail.DialogCreateFolder;
 
-public class MoveMessage extends PrefGroupMailByMessageTest {
+public class MoveMessage extends SetGroupMailByMessagePreference {
 
 	@AfterMethod( groups = { "always" } )
 	public void afterMethod() throws HarnessException {
 		logger.info("Checking for the Move Dialog ...");
 
 		// Check if the "Move Dialog is still open
-		DialogMove dialog = new DialogMove(app, ((AppUniversalClient)app).zPageMail);
+		DialogMove dialog = new DialogMove(app, ((UniversalPages)app).zPageMail);
 		if ( dialog.zIsActive() ) {
 			logger.warn(dialog.myPageName() +" was still active.  Cancelling ...");
 			dialog.zPressButton(Button.B_CANCEL);
@@ -140,7 +140,7 @@ public class MoveMessage extends PrefGroupMailByMessageTest {
 		app.zPageMail.zKeyboardShortcut(Shortcut.S_MOVE);
 		
 		// A move dialog will pop up
-		DialogMove dialog = new DialogMove(app, ((AppUniversalClient)app).zPageMail);
+		DialogMove dialog = new DialogMove(app, ((UniversalPages)app).zPageMail);
 		dialog.sClickTreeFolder(subfolder);
 		dialog.zPressButton(Button.B_OK);
 

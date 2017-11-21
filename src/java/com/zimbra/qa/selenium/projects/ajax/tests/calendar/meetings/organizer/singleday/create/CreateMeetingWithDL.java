@@ -21,14 +21,14 @@ import org.testng.annotations.*;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.DialogFindAttendees;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.DialogFindAttendees.Locators;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.DialogFindAttendees.Field;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
+import com.zimbra.qa.selenium.projects.ajax.pages.calendar.DialogFindAttendees;
+import com.zimbra.qa.selenium.projects.ajax.pages.calendar.FormApptNew;
+import com.zimbra.qa.selenium.projects.ajax.pages.mail.DisplayMail;
+import com.zimbra.qa.selenium.projects.ajax.pages.calendar.DialogFindAttendees.Locators;
+import com.zimbra.qa.selenium.projects.ajax.pages.calendar.DialogFindAttendees.Field;
 
-public class CreateMeetingWithDL extends AjaxCommonTest {
+public class CreateMeetingWithDL extends AjaxCore {
 
 	public CreateMeetingWithDL() {
 		logger.info("New "+ CreateMeetingWithDL.class.getCanonicalName());

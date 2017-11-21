@@ -21,13 +21,13 @@ import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew.Field;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew.Locators;
-import com.zimbra.qa.selenium.projects.ajax.ui.preferences.PagePreferences;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
+import com.zimbra.qa.selenium.projects.ajax.pages.mail.FormMailNew;
+import com.zimbra.qa.selenium.projects.ajax.pages.mail.FormMailNew.Field;
+import com.zimbra.qa.selenium.projects.ajax.pages.mail.FormMailNew.Locators;
+import com.zimbra.qa.selenium.projects.ajax.pages.preferences.PagePreferences;
 
-public class ZimbraPrefShowComposeDirection extends AjaxCommonTest {
+public class ZimbraPrefShowComposeDirection extends AjaxCore {
 
 	public ZimbraPrefShowComposeDirection() {
 		super.startingPage = app.zPageMail;

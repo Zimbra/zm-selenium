@@ -20,9 +20,9 @@ import java.util.*;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.CalendarWorkWeekTest;
+import com.zimbra.qa.selenium.projects.universal.core.CalendarWorkWeekPreference;
 
-public class GetAppointment extends CalendarWorkWeekTest {
+public class GetAppointment extends CalendarWorkWeekPreference {
 
 	
 	public GetAppointment() {

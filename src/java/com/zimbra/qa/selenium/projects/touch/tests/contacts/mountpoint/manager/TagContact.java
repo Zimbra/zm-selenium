@@ -24,11 +24,11 @@ import com.zimbra.qa.selenium.framework.items.FolderMountpointItem;
 import com.zimbra.qa.selenium.framework.items.TagItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.touch.core.TouchCommonTest;
-import com.zimbra.qa.selenium.projects.touch.ui.PageCreateFolder;
-import com.zimbra.qa.selenium.projects.touch.ui.contacts.TagContactView;
+import com.zimbra.qa.selenium.projects.touch.core.TouchCore;
+import com.zimbra.qa.selenium.projects.touch.pages.PageCreateFolder;
+import com.zimbra.qa.selenium.projects.touch.pages.contacts.TagContactView;
 
-public class TagContact extends TouchCommonTest  {
+public class TagContact extends TouchCore  {
 
 	public TagContact() {
 		logger.info("New "+ Delete.class.getCanonicalName());

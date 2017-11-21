@@ -24,11 +24,11 @@ import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.universal.core.*;
-import com.zimbra.qa.selenium.projects.universal.ui.calendar.DialogOpenRecurringItem;
-import com.zimbra.qa.selenium.projects.universal.ui.calendar.FormApptNew;
-import com.zimbra.qa.selenium.projects.universal.ui.calendar.FormApptNew.Field;
+import com.zimbra.qa.selenium.projects.universal.pages.calendar.DialogOpenRecurringItem;
+import com.zimbra.qa.selenium.projects.universal.pages.calendar.FormApptNew;
+import com.zimbra.qa.selenium.projects.universal.pages.calendar.FormApptNew.Field;
 
-public class ModifySeries extends CalendarWorkWeekTest {
+public class ModifySeries extends CalendarWorkWeekPreference {
 
 	public ModifySeries() {
 		logger.info("New "+ ModifySeries.class.getCanonicalName());

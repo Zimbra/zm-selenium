@@ -22,12 +22,12 @@ import com.zimbra.qa.selenium.framework.items.FolderItem.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.universal.core.*;
-import com.zimbra.qa.selenium.projects.universal.ui.AppUniversalClient;
-import com.zimbra.qa.selenium.projects.universal.ui.DialogAttach;
-import com.zimbra.qa.selenium.projects.universal.ui.mail.*;
-import com.zimbra.qa.selenium.projects.universal.ui.mail.PageMail.Locators;
+import com.zimbra.qa.selenium.projects.universal.pages.UniversalPages;
+import com.zimbra.qa.selenium.projects.universal.pages.DialogAttach;
+import com.zimbra.qa.selenium.projects.universal.pages.mail.*;
+import com.zimbra.qa.selenium.projects.universal.pages.mail.PageMail.Locators;
 
-public class AttachAndSendMail extends PrefGroupMailByMessageTest {
+public class AttachAndSendMail extends SetGroupMailByMessagePreference {
 
 	public AttachAndSendMail() {
 		logger.info("New "+ AttachAndSendMail.class.getCanonicalName());
@@ -74,7 +74,7 @@ public class AttachAndSendMail extends PrefGroupMailByMessageTest {
 		mailform.zFill(mail);
 		app.zPageMail.zToolbarPressPulldown(Button.B_ATTACH, Button.O_MAILATTACH);
 
-		DialogAttach dialog = new DialogAttach(app, ((AppUniversalClient) app).zPageMail);
+		DialogAttach dialog = new DialogAttach(app, ((UniversalPages) app).zPageMail);
 		ZAssert.assertTrue(dialog.zIsActive(), "Attach Mail dialog gets open and active");
 
 		// Click on Inbox folder

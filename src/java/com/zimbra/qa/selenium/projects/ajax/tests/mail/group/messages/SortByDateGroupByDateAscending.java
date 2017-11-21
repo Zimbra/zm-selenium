@@ -29,11 +29,11 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
-import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.preferences.PagePreferences.Locators;
-import com.zimbra.qa.selenium.projects.ajax.ui.preferences.TreePreferences.TreeItem;
+import com.zimbra.qa.selenium.projects.ajax.core.SetGroupMailByMessagePreference;
+import com.zimbra.qa.selenium.projects.ajax.pages.preferences.PagePreferences.Locators;
+import com.zimbra.qa.selenium.projects.ajax.pages.preferences.TreePreferences.TreeItem;
 
-public class SortByDateGroupByDateAscending extends PrefGroupMailByMessageTest {
+public class SortByDateGroupByDateAscending extends SetGroupMailByMessagePreference {
 
 	public SortByDateGroupByDateAscending() {
 		logger.info("New "+ SortByDateGroupByDateAscending.class.getCanonicalName());

@@ -21,9 +21,9 @@ import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
-import com.zimbra.qa.selenium.projects.admin.core.AdminCommonTest;
+import com.zimbra.qa.selenium.projects.admin.core.AdminCore;
 
-public class ToggleStatus extends AdminCommonTest {
+public class ToggleStatus extends AdminCore {
 
 	public ToggleStatus() {
 		logger.info("New "+ ToggleStatus.class.getCanonicalName());

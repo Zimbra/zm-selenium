@@ -25,7 +25,7 @@ import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.universal.core.*;
 
 
-public class ZimbraPrefMarkMsgReadNever extends PrefGroupMailByConversationTest {
+public class ZimbraPrefMarkMsgReadNever extends SetGroupMailByConversationPreference {
 
 	public int delaySeconds = 5;
 	

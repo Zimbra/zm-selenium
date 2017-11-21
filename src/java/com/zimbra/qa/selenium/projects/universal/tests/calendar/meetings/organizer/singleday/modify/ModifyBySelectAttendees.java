@@ -21,12 +21,12 @@ import org.testng.annotations.*;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.CalendarWorkWeekTest;
-import com.zimbra.qa.selenium.projects.universal.ui.calendar.DialogFindAttendees;
-import com.zimbra.qa.selenium.projects.universal.ui.calendar.FormApptNew;
-import com.zimbra.qa.selenium.projects.universal.ui.calendar.DialogFindAttendees.Locators;;
+import com.zimbra.qa.selenium.projects.universal.core.CalendarWorkWeekPreference;
+import com.zimbra.qa.selenium.projects.universal.pages.calendar.DialogFindAttendees;
+import com.zimbra.qa.selenium.projects.universal.pages.calendar.FormApptNew;
+import com.zimbra.qa.selenium.projects.universal.pages.calendar.DialogFindAttendees.Locators;;
 
-public class ModifyBySelectAttendees extends CalendarWorkWeekTest {	
+public class ModifyBySelectAttendees extends CalendarWorkWeekPreference {	
 	
 	public ModifyBySelectAttendees() {
 		logger.info("New "+ ModifyBySelectAttendees.class.getCanonicalName());

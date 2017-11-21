@@ -24,10 +24,10 @@ import com.zimbra.qa.selenium.framework.ui.Shortcut;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.DialogCreateFolder;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
+import com.zimbra.qa.selenium.projects.ajax.pages.mail.DialogCreateFolder;
 
-public class CreateCalendar extends AjaxCommonTest {
+public class CreateCalendar extends AjaxCore {
 
 	public CreateCalendar() {
 		logger.info("New " + CreateCalendar.class.getCanonicalName());

@@ -24,12 +24,12 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.admin.core.AdminCommonTest;
+import com.zimbra.qa.selenium.projects.admin.core.AdminCore;
 import com.zimbra.qa.selenium.projects.admin.items.AccountItem;
-import com.zimbra.qa.selenium.projects.admin.ui.PageManageAccounts;
-import com.zimbra.qa.selenium.projects.ajax.ui.Toaster;
+import com.zimbra.qa.selenium.projects.admin.pages.PageManageAccounts;
+import com.zimbra.qa.selenium.projects.ajax.pages.Toaster;
 
-public class InvalidateSession extends AdminCommonTest {
+public class InvalidateSession extends AdminCore {
 
 	public InvalidateSession() {
 		logger.info("New "+ InvalidateSession.class.getCanonicalName());

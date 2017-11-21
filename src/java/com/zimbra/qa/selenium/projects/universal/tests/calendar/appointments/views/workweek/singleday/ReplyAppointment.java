@@ -20,10 +20,10 @@ import java.util.Calendar;
 import org.testng.annotations.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.CalendarWorkWeekTest;
-import com.zimbra.qa.selenium.projects.universal.ui.calendar.PageCalendar.*;
+import com.zimbra.qa.selenium.projects.universal.core.CalendarWorkWeekPreference;
+import com.zimbra.qa.selenium.projects.universal.pages.calendar.PageCalendar.*;
 
-public class ReplyAppointment extends CalendarWorkWeekTest {	
+public class ReplyAppointment extends CalendarWorkWeekPreference {	
 	
 	public ReplyAppointment() {
 		logger.info("New "+ ReplyAppointment.class.getCanonicalName());

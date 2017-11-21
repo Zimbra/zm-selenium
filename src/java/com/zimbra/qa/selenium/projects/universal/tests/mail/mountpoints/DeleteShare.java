@@ -26,11 +26,11 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.universal.core.PrefGroupMailByMessageTest;
-import com.zimbra.qa.selenium.projects.universal.ui.DialogShareRevoke;
-import com.zimbra.qa.selenium.projects.universal.ui.mail.DialogEditFolder;
+import com.zimbra.qa.selenium.projects.universal.core.SetGroupMailByMessagePreference;
+import com.zimbra.qa.selenium.projects.universal.pages.DialogShareRevoke;
+import com.zimbra.qa.selenium.projects.universal.pages.mail.DialogEditFolder;
 
-public class DeleteShare extends PrefGroupMailByMessageTest{
+public class DeleteShare extends SetGroupMailByMessagePreference{
 	
 	
 	

@@ -25,10 +25,10 @@ import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.framework.util.performance.PerfKey;
 import com.zimbra.qa.selenium.framework.util.performance.PerfMetrics;
 import com.zimbra.qa.selenium.framework.util.performance.PerfToken;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.PageLogin.Locators;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
+import com.zimbra.qa.selenium.projects.ajax.pages.PageLogin.Locators;
 
-public class ZmMailAppFolders extends AjaxCommonTest {
+public class ZmMailAppFolders extends AjaxCore {
 
 	public ZmMailAppFolders() {
 		logger.info("New "+ ZmMailAppFolders.class.getCanonicalName());

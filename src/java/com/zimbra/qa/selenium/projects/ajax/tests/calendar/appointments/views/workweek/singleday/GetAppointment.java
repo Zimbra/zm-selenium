@@ -20,9 +20,9 @@ import java.util.*;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
 
-public class GetAppointment extends AjaxCommonTest {
+public class GetAppointment extends AjaxCore {
 
 	public GetAppointment() {
 		logger.info("New "+ GetAppointment.class.getCanonicalName());

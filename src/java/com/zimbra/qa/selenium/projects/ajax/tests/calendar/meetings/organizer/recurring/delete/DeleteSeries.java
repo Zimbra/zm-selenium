@@ -22,11 +22,11 @@ import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.*;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.DialogConfirmationDeleteAppointment;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.DialogConfirmDeleteOrganizer;
+import com.zimbra.qa.selenium.projects.ajax.pages.calendar.DialogConfirmationDeleteAppointment;
+import com.zimbra.qa.selenium.projects.ajax.pages.mail.DisplayMail;
+import com.zimbra.qa.selenium.projects.ajax.pages.calendar.DialogConfirmDeleteOrganizer;
 
-public class DeleteSeries extends AjaxCommonTest {
+public class DeleteSeries extends AjaxCore {
 
 	public DeleteSeries() {
 		logger.info("New "+ DeleteSeries.class.getCanonicalName());

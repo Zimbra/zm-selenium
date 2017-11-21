@@ -27,10 +27,10 @@ import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 //import com.zimbra.qa.selenium.projects.touch.core.PrefGroupMailByConversationTest;
-import com.zimbra.qa.selenium.projects.touch.core.PrefGroupMailByMessageTest;
-import com.zimbra.qa.selenium.projects.touch.ui.PageCreateFolder;
+import com.zimbra.qa.selenium.projects.touch.core.SetGroupMailByMessagePreference;
+import com.zimbra.qa.selenium.projects.touch.pages.PageCreateFolder;
 
-public class MarkNotSpamMessage extends PrefGroupMailByMessageTest{
+public class MarkNotSpamMessage extends SetGroupMailByMessagePreference{
 
 	public MarkNotSpamMessage() {
 		logger.info("New "+ MarkNotSpamMessage.class.getCanonicalName());

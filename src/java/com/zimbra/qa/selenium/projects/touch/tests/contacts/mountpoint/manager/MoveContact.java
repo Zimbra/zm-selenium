@@ -23,11 +23,11 @@ import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.FolderMountpointItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.touch.core.TouchCommonTest;
-import com.zimbra.qa.selenium.projects.touch.ui.PageCreateFolder;
-import com.zimbra.qa.selenium.projects.touch.ui.contacts.MoveContactView;
+import com.zimbra.qa.selenium.projects.touch.core.TouchCore;
+import com.zimbra.qa.selenium.projects.touch.pages.PageCreateFolder;
+import com.zimbra.qa.selenium.projects.touch.pages.contacts.MoveContactView;
 
-public class MoveContact extends TouchCommonTest  {
+public class MoveContact extends TouchCore  {
 
 	public MoveContact() {
 		logger.info("New "+ Delete.class.getCanonicalName());

@@ -23,7 +23,7 @@ import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.*;
 
-public class ZimbraPrefMarkMsgReadNever extends PrefGroupMailByConversationTest {
+public class ZimbraPrefMarkMsgReadNever extends SetGroupMailByConversationPreference {
 
 	public int delaySeconds = 5;
 

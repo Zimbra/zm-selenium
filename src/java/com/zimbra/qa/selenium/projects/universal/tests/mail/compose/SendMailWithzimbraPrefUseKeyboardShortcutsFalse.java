@@ -22,10 +22,10 @@ import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.PrefGroupMailByMessageTest;
-import com.zimbra.qa.selenium.projects.universal.ui.mail.FormMailNew;
+import com.zimbra.qa.selenium.projects.universal.core.SetGroupMailByMessagePreference;
+import com.zimbra.qa.selenium.projects.universal.pages.mail.FormMailNew;
 
-public class SendMailWithzimbraPrefUseKeyboardShortcutsFalse extends PrefGroupMailByMessageTest {
+public class SendMailWithzimbraPrefUseKeyboardShortcutsFalse extends SetGroupMailByMessagePreference {
 
 	public SendMailWithzimbraPrefUseKeyboardShortcutsFalse() {
 		logger.info("New "+ SendMailWithzimbraPrefUseKeyboardShortcutsFalse.class.getCanonicalName());

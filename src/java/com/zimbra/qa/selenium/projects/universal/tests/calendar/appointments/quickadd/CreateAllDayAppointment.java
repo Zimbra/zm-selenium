@@ -23,10 +23,10 @@ import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.CalendarWorkWeekTest;
-import com.zimbra.qa.selenium.projects.universal.ui.calendar.QuickAddAppointment;
+import com.zimbra.qa.selenium.projects.universal.core.CalendarWorkWeekPreference;
+import com.zimbra.qa.selenium.projects.universal.pages.calendar.QuickAddAppointment;
 
-public class CreateAllDayAppointment extends CalendarWorkWeekTest {
+public class CreateAllDayAppointment extends CalendarWorkWeekPreference {
 
 	public CreateAllDayAppointment() {
 		logger.info("New "+ CreateAllDayAppointment.class.getCanonicalName());

@@ -20,11 +20,11 @@ import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.admin.core.AdminCommonTest;
+import com.zimbra.qa.selenium.projects.admin.core.AdminCore;
 import com.zimbra.qa.selenium.projects.admin.items.AccountItem;
-import com.zimbra.qa.selenium.projects.admin.ui.WizardCreateAccount;
+import com.zimbra.qa.selenium.projects.admin.pages.WizardCreateAccount;
 
-public class CreateAccount extends AdminCommonTest {
+public class CreateAccount extends AdminCore {
 
 	public CreateAccount() {
 		logger.info("New "+ CreateAccount.class.getCanonicalName());

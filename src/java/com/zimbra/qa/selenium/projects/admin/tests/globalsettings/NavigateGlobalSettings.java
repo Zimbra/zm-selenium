@@ -19,10 +19,10 @@ package com.zimbra.qa.selenium.projects.admin.tests.globalsettings;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
-import com.zimbra.qa.selenium.projects.admin.core.AdminCommonTest;
-import com.zimbra.qa.selenium.projects.admin.ui.PageManageGlobalSettings;
+import com.zimbra.qa.selenium.projects.admin.core.AdminCore;
+import com.zimbra.qa.selenium.projects.admin.pages.PageManageGlobalSettings;
 
-public class NavigateGlobalSettings extends AdminCommonTest {
+public class NavigateGlobalSettings extends AdminCore {
 
 	public NavigateGlobalSettings() {
 		logger.info("New "+ NavigateGlobalSettings.class.getCanonicalName());

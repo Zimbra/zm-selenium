@@ -30,11 +30,11 @@ import com.zimbra.qa.selenium.framework.util.ZTimeZone;
 import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
 import com.zimbra.qa.selenium.framework.util.ZimbraResource;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew.Field;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
+import com.zimbra.qa.selenium.projects.ajax.pages.calendar.FormApptNew;
+import com.zimbra.qa.selenium.projects.ajax.pages.calendar.FormApptNew.Field;
 
-public class ZimbraFeatureGroupCalendarEnabledFalse extends AjaxCommonTest {
+public class ZimbraFeatureGroupCalendarEnabledFalse extends AjaxCore {
 
 	public ZimbraFeatureGroupCalendarEnabledFalse() {
 		logger.info("New "+ ZimbraFeatureGroupCalendarEnabledFalse.class.getCanonicalName());

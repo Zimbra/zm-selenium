@@ -27,11 +27,11 @@ import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.universal.core.*;
-import com.zimbra.qa.selenium.projects.universal.ui.calendar.DialogConfirmationDeleteAppointment;
-import com.zimbra.qa.selenium.projects.universal.ui.mail.DisplayMail;
-import com.zimbra.qa.selenium.projects.universal.ui.calendar.DialogConfirmDeleteOrganizer;
+import com.zimbra.qa.selenium.projects.universal.pages.calendar.DialogConfirmationDeleteAppointment;
+import com.zimbra.qa.selenium.projects.universal.pages.mail.DisplayMail;
+import com.zimbra.qa.selenium.projects.universal.pages.calendar.DialogConfirmDeleteOrganizer;
 
-public class DeleteSeries extends CalendarWorkWeekTest {
+public class DeleteSeries extends CalendarWorkWeekPreference {
 
 	public DeleteSeries() {
 		logger.info("New "+ DeleteSeries.class.getCanonicalName());

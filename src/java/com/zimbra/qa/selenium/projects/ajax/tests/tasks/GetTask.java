@@ -23,12 +23,12 @@ import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.tasks.DisplayTask;
-import com.zimbra.qa.selenium.projects.ajax.ui.tasks.FormTaskNew;
-import com.zimbra.qa.selenium.projects.ajax.ui.tasks.DisplayTask.Field;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
+import com.zimbra.qa.selenium.projects.ajax.pages.tasks.DisplayTask;
+import com.zimbra.qa.selenium.projects.ajax.pages.tasks.FormTaskNew;
+import com.zimbra.qa.selenium.projects.ajax.pages.tasks.DisplayTask.Field;
 
-public class GetTask extends AjaxCommonTest {
+public class GetTask extends AjaxCore {
 
 	@SuppressWarnings("serial")
 	public GetTask() {
@@ -357,8 +357,8 @@ public class GetTask extends AjaxCommonTest {
 		SleepUtil.sleepVeryLong();
 
 		// Fill out the resulting form
-		taskNew.zFillField(com.zimbra.qa.selenium.projects.ajax.ui.tasks.FormTaskNew.Field.Subject, newsubject);
-		taskNew.zFillField(com.zimbra.qa.selenium.projects.ajax.ui.tasks.FormTaskNew.Field.Body, newcontent);
+		taskNew.zFillField(com.zimbra.qa.selenium.projects.ajax.pages.tasks.FormTaskNew.Field.Subject, newsubject);
+		taskNew.zFillField(com.zimbra.qa.selenium.projects.ajax.pages.tasks.FormTaskNew.Field.Body, newcontent);
 
 		// Click Save
 		app.zPageTasks.sClickAt("css=div[id^='ztb__TKE']  tr[id^='ztb__TKE'] td[id$='_title']:contains('Save')", "0,0");

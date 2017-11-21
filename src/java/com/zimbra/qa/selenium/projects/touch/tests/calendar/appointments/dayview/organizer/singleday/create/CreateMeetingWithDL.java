@@ -20,11 +20,11 @@ import org.testng.annotations.*;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.touch.core.CalendarWorkWeekTest;
-import com.zimbra.qa.selenium.projects.touch.ui.calendar.FormApptNew;
-import com.zimbra.qa.selenium.projects.touch.ui.calendar.FormApptNew.Field;
+import com.zimbra.qa.selenium.projects.touch.core.CalendarWorkWeekPreference;
+import com.zimbra.qa.selenium.projects.touch.pages.calendar.FormApptNew;
+import com.zimbra.qa.selenium.projects.touch.pages.calendar.FormApptNew.Field;
 
-public class CreateMeetingWithDL extends CalendarWorkWeekTest {	
+public class CreateMeetingWithDL extends CalendarWorkWeekPreference {	
 	
 	public CreateMeetingWithDL() {
 		logger.info("New "+ CreateMeetingWithDL.class.getCanonicalName());

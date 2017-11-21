@@ -24,7 +24,7 @@ import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.universal.core.*;
 import com.zimbra.qa.selenium.projects.universal.tests.calendar.meetings.attendee.singleday.viewappt.Tentative;
 
-public class Tentative extends CalendarWorkWeekTest {
+public class Tentative extends CalendarWorkWeekPreference {
 
 	public Tentative() {
 		logger.info("New "+ Tentative.class.getCanonicalName());

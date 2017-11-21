@@ -23,10 +23,10 @@ import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.Toaster;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
+import com.zimbra.qa.selenium.projects.ajax.pages.Toaster;
 
-public class UndoDeleteContactGroup extends AjaxCommonTest {
+public class UndoDeleteContactGroup extends AjaxCore {
 	public UndoDeleteContactGroup() {
 		logger.info("New " + UndoDeleteContactGroup.class.getCanonicalName());
 

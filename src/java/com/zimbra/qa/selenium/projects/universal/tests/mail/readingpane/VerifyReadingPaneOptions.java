@@ -12,11 +12,11 @@ import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.universal.core.PrefGroupMailByConversationTest;
+import com.zimbra.qa.selenium.projects.universal.core.SetGroupMailByConversationPreference;
 import com.zimbra.qa.selenium.projects.universal.tests.mail.compose.drafts.OpenDraftMail;
-import com.zimbra.qa.selenium.projects.universal.ui.mail.PageMail.Locators;
+import com.zimbra.qa.selenium.projects.universal.pages.mail.PageMail.Locators;
 
-public class VerifyReadingPaneOptions extends PrefGroupMailByConversationTest {
+public class VerifyReadingPaneOptions extends SetGroupMailByConversationPreference {
 
 	public VerifyReadingPaneOptions() {
 		logger.info("New " + OpenDraftMail.class.getCanonicalName());

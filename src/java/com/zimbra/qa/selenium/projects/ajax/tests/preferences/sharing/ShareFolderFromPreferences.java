@@ -21,11 +21,11 @@ package com.zimbra.qa.selenium.projects.ajax.tests.preferences.sharing;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.DialogShare.ShareRole;
-import com.zimbra.qa.selenium.projects.ajax.ui.preferences.TreePreferences.TreeItem;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
+import com.zimbra.qa.selenium.projects.ajax.pages.DialogShare.ShareRole;
+import com.zimbra.qa.selenium.projects.ajax.pages.preferences.TreePreferences.TreeItem;
 
-public class ShareFolderFromPreferences extends AjaxCommonTest {
+public class ShareFolderFromPreferences extends AjaxCore {
 
 	public ShareFolderFromPreferences() {
 		super.startingPage = app.zPagePreferences;

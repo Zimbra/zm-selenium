@@ -34,13 +34,13 @@ import com.zimbra.qa.selenium.framework.util.XmlStringUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZDate;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
-import com.zimbra.qa.selenium.projects.universal.ui.DialogWarning;
-import com.zimbra.qa.selenium.projects.universal.ui.tasks.DisplayTask;
-import com.zimbra.qa.selenium.projects.universal.ui.tasks.FormTaskNew;
-import com.zimbra.qa.selenium.projects.universal.ui.tasks.FormTaskNew.Field;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCore;
+import com.zimbra.qa.selenium.projects.universal.pages.DialogWarning;
+import com.zimbra.qa.selenium.projects.universal.pages.tasks.DisplayTask;
+import com.zimbra.qa.selenium.projects.universal.pages.tasks.FormTaskNew;
+import com.zimbra.qa.selenium.projects.universal.pages.tasks.FormTaskNew.Field;
 
-public class EditHtmlTask extends UniversalCommonTest{
+public class EditHtmlTask extends UniversalCore{
 
 	@SuppressWarnings("serial")
 	public EditHtmlTask() {
@@ -179,7 +179,7 @@ public class EditHtmlTask extends UniversalCommonTest{
 		DisplayTask actual = (DisplayTask) app.zPageTasks.zListItem(Action.A_LEFTCLICK, subject);
 
 		//Verify Due Date before refresh
-		ZAssert.assertEquals(actual.zGetTaskListViewProperty(com.zimbra.qa.selenium.projects.universal.ui.tasks.DisplayTask.Field.DueDate), dueDate.toMM_DD_YYYY(), "Verify the due date matches");
+		ZAssert.assertEquals(actual.zGetTaskListViewProperty(com.zimbra.qa.selenium.projects.universal.pages.tasks.DisplayTask.Field.DueDate), dueDate.toMM_DD_YYYY(), "Verify the due date matches");
 
 		// click on Trash folder
 		app.zTreeTasks.zTreeItem(Action.A_LEFTCLICK, trashFolder);		
@@ -187,7 +187,7 @@ public class EditHtmlTask extends UniversalCommonTest{
 		app.zTreeTasks.zTreeItem(Action.A_LEFTCLICK, taskFolder);
 
 		//Verify the due date matches after refresh
-		ZAssert.assertEquals(actual.zGetTaskListViewProperty(com.zimbra.qa.selenium.projects.universal.ui.tasks.DisplayTask.Field.DueDate), dueDate.toMM_DD_YYYY(), "Verify the due date matches after refresh");
+		ZAssert.assertEquals(actual.zGetTaskListViewProperty(com.zimbra.qa.selenium.projects.universal.pages.tasks.DisplayTask.Field.DueDate), dueDate.toMM_DD_YYYY(), "Verify the due date matches after refresh");
 
 	}
 	

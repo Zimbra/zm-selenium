@@ -24,10 +24,10 @@ import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
-import com.zimbra.qa.selenium.projects.admin.core.AdminCommonTest;
-import com.zimbra.qa.selenium.projects.admin.ui.FormEditServer;
+import com.zimbra.qa.selenium.projects.admin.core.AdminCore;
+import com.zimbra.qa.selenium.projects.admin.pages.FormEditServer;
 
-public class EditServer extends AdminCommonTest {
+public class EditServer extends AdminCore {
 
 	public EditServer() {
 		logger.info("New "+ EditServer.class.getCanonicalName());

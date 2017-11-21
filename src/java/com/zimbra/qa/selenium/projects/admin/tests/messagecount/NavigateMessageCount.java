@@ -19,10 +19,10 @@ package com.zimbra.qa.selenium.projects.admin.tests.messagecount;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
-import com.zimbra.qa.selenium.projects.admin.core.AdminCommonTest;
-import com.zimbra.qa.selenium.projects.admin.ui.PageManageMessageCount;
+import com.zimbra.qa.selenium.projects.admin.core.AdminCore;
+import com.zimbra.qa.selenium.projects.admin.pages.PageManageMessageCount;
 
-public class NavigateMessageCount extends AdminCommonTest {
+public class NavigateMessageCount extends AdminCore {
 
 	public NavigateMessageCount() {
 		logger.info("New "+ NavigateMessageCount.class.getCanonicalName());

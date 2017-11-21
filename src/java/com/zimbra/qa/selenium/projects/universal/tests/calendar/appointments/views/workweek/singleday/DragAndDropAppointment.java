@@ -26,7 +26,7 @@ import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.universal.core.*;
 import com.zimbra.qa.selenium.projects.universal.tests.calendar.appointments.views.workweek.allday.CreateAppointment;
 
-public class DragAndDropAppointment extends CalendarWorkWeekTest {
+public class DragAndDropAppointment extends CalendarWorkWeekPreference {
 	
 	public DragAndDropAppointment() {
 		logger.info("New "+ CreateAppointment.class.getCanonicalName());

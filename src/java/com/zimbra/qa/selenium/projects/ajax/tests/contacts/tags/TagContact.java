@@ -21,10 +21,10 @@ import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.ContactsPrefShowSelectionCheckbox;
-import com.zimbra.qa.selenium.projects.ajax.ui.DialogTag;
+import com.zimbra.qa.selenium.projects.ajax.core.ShowSelectionCheckboxPreference;
+import com.zimbra.qa.selenium.projects.ajax.pages.DialogTag;
 
-public class TagContact extends ContactsPrefShowSelectionCheckbox {
+public class TagContact extends ShowSelectionCheckboxPreference {
 
 	public TagContact() {
 		logger.info("New " + TagContact.class.getCanonicalName());

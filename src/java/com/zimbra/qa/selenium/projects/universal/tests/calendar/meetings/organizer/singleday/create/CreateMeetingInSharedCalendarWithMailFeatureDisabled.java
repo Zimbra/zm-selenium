@@ -29,15 +29,15 @@ import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
 import com.zimbra.qa.selenium.framework.util.ZimbraResource;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.universal.core.CalendarWorkWeekTest;
-import com.zimbra.qa.selenium.projects.universal.ui.calendar.FormApptNew;
-import com.zimbra.qa.selenium.projects.universal.ui.calendar.FormApptNew.Field;
+import com.zimbra.qa.selenium.projects.universal.core.CalendarWorkWeekPreference;
+import com.zimbra.qa.selenium.projects.universal.pages.calendar.FormApptNew;
+import com.zimbra.qa.selenium.projects.universal.pages.calendar.FormApptNew.Field;
 
 import java.util.Calendar;
 
 import org.testng.annotations.Test;
 
-public class CreateMeetingInSharedCalendarWithMailFeatureDisabled extends CalendarWorkWeekTest {
+public class CreateMeetingInSharedCalendarWithMailFeatureDisabled extends CalendarWorkWeekPreference {
 
   public CreateMeetingInSharedCalendarWithMailFeatureDisabled() {
 	  logger.info("New " + CreateMeetingInSharedCalendarWithMailFeatureDisabled.class.getCanonicalName());

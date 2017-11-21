@@ -26,14 +26,14 @@ import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZDate;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
-import com.zimbra.qa.selenium.projects.ajax.ui.preferences.TreePreferences.TreeItem;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
+import com.zimbra.qa.selenium.projects.ajax.pages.calendar.FormApptNew;
+import com.zimbra.qa.selenium.projects.ajax.pages.preferences.TreePreferences.TreeItem;
 import java.awt.event.KeyEvent;
 import java.util.Calendar;
 import org.testng.annotations.Test;
 
-public class ModifyDefaultAppointmentDuration extends AjaxCommonTest {
+public class ModifyDefaultAppointmentDuration extends AjaxCore {
 
 	 public ModifyDefaultAppointmentDuration() {
 	    logger.info("New " + ModifyDefaultAppointmentDuration.class.getCanonicalName());

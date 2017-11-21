@@ -21,10 +21,10 @@ import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.touch.core.*;
-import com.zimbra.qa.selenium.projects.touch.ui.mail.DisplayMail.*;
-import com.zimbra.qa.selenium.projects.touch.ui.mail.FormMailNew;
+import com.zimbra.qa.selenium.projects.touch.pages.mail.DisplayMail.*;
+import com.zimbra.qa.selenium.projects.touch.pages.mail.FormMailNew;
 
-public class NewMessageContextMenu extends CalendarWorkWeekTest {
+public class NewMessageContextMenu extends CalendarWorkWeekPreference {
 
 	public NewMessageContextMenu() {
 		logger.info("New "+ NewMessageContextMenu.class.getCanonicalName());

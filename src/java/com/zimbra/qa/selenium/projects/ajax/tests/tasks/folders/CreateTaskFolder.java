@@ -22,10 +22,10 @@ import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.tasks.DialogCreateTaskFolder;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
+import com.zimbra.qa.selenium.projects.ajax.pages.tasks.DialogCreateTaskFolder;
 
-public class CreateTaskFolder extends AjaxCommonTest {
+public class CreateTaskFolder extends AjaxCore {
 
 	private boolean _folderIsCreated = false;
 	private String _folderName = null;

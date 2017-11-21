@@ -23,9 +23,9 @@ import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.CalendarWorkWeekTest;
+import com.zimbra.qa.selenium.projects.universal.core.CalendarWorkWeekPreference;
 
-public class VerifyDisabledUI extends CalendarWorkWeekTest {
+public class VerifyDisabledUI extends CalendarWorkWeekPreference {
 
 	public VerifyDisabledUI() {
 		logger.info("New "+ VerifyDisabledUI.class.getCanonicalName());

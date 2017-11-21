@@ -20,12 +20,12 @@ import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.items.MailItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew.Field;
-import com.zimbra.qa.selenium.projects.ajax.ui.preferences.TreePreferences.TreeItem;
+import com.zimbra.qa.selenium.projects.ajax.core.SetGroupMailByMessagePreference;
+import com.zimbra.qa.selenium.projects.ajax.pages.mail.FormMailNew;
+import com.zimbra.qa.selenium.projects.ajax.pages.mail.FormMailNew.Field;
+import com.zimbra.qa.selenium.projects.ajax.pages.preferences.TreePreferences.TreeItem;
 
-public class ForwardMessageWithIncludeOriginalMessageAsAnAttachment extends PrefGroupMailByMessageTest {
+public class ForwardMessageWithIncludeOriginalMessageAsAnAttachment extends SetGroupMailByMessagePreference {
 
 	public ForwardMessageWithIncludeOriginalMessageAsAnAttachment() {
 		logger.info("New "+ ForwardMessageWithIncludeOriginalMessageAsAnAttachment.class.getCanonicalName());

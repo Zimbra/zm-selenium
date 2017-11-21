@@ -20,9 +20,9 @@ import org.testng.annotations.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.*;
-import com.zimbra.qa.selenium.projects.ajax.ui.*;
+import com.zimbra.qa.selenium.projects.ajax.pages.*;
 
-public class ShortcutDialog extends AjaxCommonTest {
+public class ShortcutDialog extends AjaxCore {
 
 	public ShortcutDialog() {
 		logger.info("New " + ShortcutDialog.class.getCanonicalName());

@@ -25,11 +25,11 @@ import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZDate;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.preferences.TreePreferences.TreeItem;
-import com.zimbra.qa.selenium.projects.ajax.ui.preferences.PagePreferences.Field;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
+import com.zimbra.qa.selenium.projects.ajax.pages.preferences.TreePreferences.TreeItem;
+import com.zimbra.qa.selenium.projects.ajax.pages.preferences.PagePreferences.Field;
 
-public class OutOfOfficeCalendarAppointment extends AjaxCommonTest {
+public class OutOfOfficeCalendarAppointment extends AjaxCore {
 
 	public OutOfOfficeCalendarAppointment() {
 		logger.info("New " + OutOfOfficeCalendarAppointment.class.getCanonicalName());

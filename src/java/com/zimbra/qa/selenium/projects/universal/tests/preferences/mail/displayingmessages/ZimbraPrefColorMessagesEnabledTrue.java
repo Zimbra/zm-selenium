@@ -23,10 +23,10 @@ import org.testng.annotations.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.universal.core.*;
-import com.zimbra.qa.selenium.projects.universal.ui.preferences.TreePreferences.*;
+import com.zimbra.qa.selenium.projects.universal.pages.preferences.TreePreferences.*;
 
 
-public class ZimbraPrefColorMessagesEnabledTrue extends UniversalCommonTest {
+public class ZimbraPrefColorMessagesEnabledTrue extends UniversalCore {
 
 	
 	

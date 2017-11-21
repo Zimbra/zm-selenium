@@ -24,11 +24,11 @@ import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.PrefGroupMailByMessageTest;
-import com.zimbra.qa.selenium.projects.universal.ui.mail.DialogEditFolder;
-import com.zimbra.qa.selenium.projects.universal.ui.mail.DialogEditFolder.FolderColor;
+import com.zimbra.qa.selenium.projects.universal.core.SetGroupMailByMessagePreference;
+import com.zimbra.qa.selenium.projects.universal.pages.mail.DialogEditFolder;
+import com.zimbra.qa.selenium.projects.universal.pages.mail.DialogEditFolder.FolderColor;
 
-public class ChangeColorFeed extends PrefGroupMailByMessageTest {
+public class ChangeColorFeed extends SetGroupMailByMessagePreference {
 
 	public ChangeColorFeed() {
 		logger.info("New " + ChangeColorFeed.class.getCanonicalName());

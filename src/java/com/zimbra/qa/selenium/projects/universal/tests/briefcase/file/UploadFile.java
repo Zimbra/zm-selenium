@@ -30,10 +30,10 @@ import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.universal.core.FeatureBriefcaseTest;
-import com.zimbra.qa.selenium.projects.universal.ui.briefcase.DialogUploadFile;
+import com.zimbra.qa.selenium.projects.universal.core.EnableBriefcaseFeature;
+import com.zimbra.qa.selenium.projects.universal.pages.briefcase.DialogUploadFile;
 
-public class UploadFile extends FeatureBriefcaseTest {
+public class UploadFile extends EnableBriefcaseFeature {
 
 	public UploadFile() throws HarnessException {
 		logger.info("New " + UploadFile.class.getCanonicalName());

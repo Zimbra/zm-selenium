@@ -21,10 +21,10 @@ import org.testng.annotations.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.universal.core.*;
-import com.zimbra.qa.selenium.projects.universal.ui.preferences.TreePreferences.*;
+import com.zimbra.qa.selenium.projects.universal.pages.preferences.TreePreferences.*;
 
 
-public class ZimbraPrefMailPollingIntervalAsMailArrives extends UniversalCommonTest {
+public class ZimbraPrefMailPollingIntervalAsMailArrives extends UniversalCore {
 
 	public static final long AsMailArrives = 500;			// The value set by the client when choosing AsMailArrives
 	public static final long AsMailArrivesDelay = 7000;		// Give 7 seconds to show the mail

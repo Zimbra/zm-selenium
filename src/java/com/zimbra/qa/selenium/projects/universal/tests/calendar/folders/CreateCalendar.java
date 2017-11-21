@@ -25,10 +25,10 @@ import com.zimbra.qa.selenium.framework.ui.Shortcut;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.universal.core.CalendarWorkWeekTest;
-import com.zimbra.qa.selenium.projects.universal.ui.mail.DialogCreateFolder;
+import com.zimbra.qa.selenium.projects.universal.core.CalendarWorkWeekPreference;
+import com.zimbra.qa.selenium.projects.universal.pages.mail.DialogCreateFolder;
 
-public class CreateCalendar extends CalendarWorkWeekTest {
+public class CreateCalendar extends CalendarWorkWeekPreference {
 
 
 	public CreateCalendar() {

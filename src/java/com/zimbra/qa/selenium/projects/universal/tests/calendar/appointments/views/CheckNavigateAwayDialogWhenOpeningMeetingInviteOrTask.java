@@ -28,9 +28,9 @@ import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZDate;
 import com.zimbra.qa.selenium.framework.util.ZTimeZone;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.universal.core.CalendarWorkWeekTest;
+import com.zimbra.qa.selenium.projects.universal.core.CalendarWorkWeekPreference;
 
-public class CheckNavigateAwayDialogWhenOpeningMeetingInviteOrTask extends CalendarWorkWeekTest {
+public class CheckNavigateAwayDialogWhenOpeningMeetingInviteOrTask extends CalendarWorkWeekPreference {
 
 	public CheckNavigateAwayDialogWhenOpeningMeetingInviteOrTask() {
 		logger.info("New " + CheckNavigateAwayDialogWhenOpeningMeetingInviteOrTask.class.getCanonicalName());

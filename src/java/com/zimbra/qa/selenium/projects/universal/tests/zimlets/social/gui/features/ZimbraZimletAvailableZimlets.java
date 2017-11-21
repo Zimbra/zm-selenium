@@ -23,9 +23,9 @@ import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
-import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCore;
 
-	public class ZimbraZimletAvailableZimlets extends UniversalCommonTest {
+	public class ZimbraZimletAvailableZimlets extends UniversalCore {
 	
 	@SuppressWarnings("serial")
 	public ZimbraZimletAvailableZimlets() {

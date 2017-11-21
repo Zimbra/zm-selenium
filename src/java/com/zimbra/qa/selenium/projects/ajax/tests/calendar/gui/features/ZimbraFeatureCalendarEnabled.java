@@ -20,9 +20,9 @@ import java.util.HashMap;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
 
-public class ZimbraFeatureCalendarEnabled extends AjaxCommonTest {
+public class ZimbraFeatureCalendarEnabled extends AjaxCore {
 
 	@SuppressWarnings("serial")
 	public ZimbraFeatureCalendarEnabled() {

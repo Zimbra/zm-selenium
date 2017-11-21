@@ -24,10 +24,10 @@ import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.*;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
+import com.zimbra.qa.selenium.projects.ajax.pages.*;
 
-public class DeleteSeries extends AjaxCommonTest {
+public class DeleteSeries extends AjaxCore {
 
 	public DeleteSeries() {
 		logger.info("New "+ DeleteSeries.class.getCanonicalName());

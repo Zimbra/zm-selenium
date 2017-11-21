@@ -21,10 +21,10 @@ import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.PageCalendar.Locators;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
+import com.zimbra.qa.selenium.projects.ajax.pages.calendar.PageCalendar.Locators;
 
-public class ViewInviteWhichContainsAttachment extends AjaxCommonTest {
+public class ViewInviteWhichContainsAttachment extends AjaxCore {
 
 	public ViewInviteWhichContainsAttachment() {
 		logger.info("New "+ ViewInviteWhichContainsAttachment.class.getCanonicalName());

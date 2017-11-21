@@ -24,10 +24,10 @@ import com.zimbra.qa.selenium.framework.items.TagItem;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.DialogRenameTag;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
+import com.zimbra.qa.selenium.projects.ajax.pages.DialogRenameTag;
 
-public class RenameTagAppointment extends AjaxCommonTest {
+public class RenameTagAppointment extends AjaxCore {
 
 	public RenameTagAppointment() {
 		logger.info("New "+ RenameTagAppointment.class.getCanonicalName());

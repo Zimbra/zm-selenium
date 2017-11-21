@@ -26,10 +26,10 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.ajax.core.FeatureBriefcaseTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.briefcase.DialogCheckInFile;
+import com.zimbra.qa.selenium.projects.ajax.core.EnableBriefcaseFeature;
+import com.zimbra.qa.selenium.projects.ajax.pages.briefcase.DialogCheckInFile;
 
-public class CheckInFile extends FeatureBriefcaseTest {
+public class CheckInFile extends EnableBriefcaseFeature {
 
 	public CheckInFile() {
 		logger.info("New " + CheckInFile.class.getCanonicalName());

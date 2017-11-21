@@ -24,7 +24,7 @@ import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.touch.core.*;
 
-public class Delete extends CalendarWorkWeekTest {
+public class Delete extends CalendarWorkWeekPreference {
 
 	public Delete() {
 		logger.info("New "+ Delete.class.getCanonicalName());

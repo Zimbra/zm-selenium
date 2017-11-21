@@ -24,7 +24,7 @@ import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.*;
 
-public class MoveMessage extends PrefGroupMailByMessageTest {
+public class MoveMessage extends SetGroupMailByMessagePreference {
 
 	public MoveMessage() {
 		logger.info("New "+ MoveMessage.class.getCanonicalName());

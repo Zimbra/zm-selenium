@@ -23,9 +23,9 @@ import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.items.ContactItem;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCore;
 
-public class SearchGAL extends UniversalCommonTest {
+public class SearchGAL extends UniversalCore {
 
 	public SearchGAL() {
 		logger.info("New " + SearchGAL.class.getCanonicalName());

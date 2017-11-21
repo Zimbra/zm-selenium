@@ -21,11 +21,11 @@ import org.testng.annotations.*;
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew.Field;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
+import com.zimbra.qa.selenium.projects.ajax.pages.calendar.FormApptNew;
+import com.zimbra.qa.selenium.projects.ajax.pages.calendar.FormApptNew.Field;
 
-public class ModifyMeetingByModifyingAttendees extends AjaxCommonTest {
+public class ModifyMeetingByModifyingAttendees extends AjaxCore {
 
 	public ModifyMeetingByModifyingAttendees() {
 		logger.info("New "+ ModifyMeetingByModifyingAttendees.class.getCanonicalName());

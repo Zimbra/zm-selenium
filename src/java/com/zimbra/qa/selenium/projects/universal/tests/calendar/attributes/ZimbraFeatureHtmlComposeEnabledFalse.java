@@ -28,10 +28,10 @@ import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZDate;
 import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.universal.core.CalendarWorkWeekTest;
-import com.zimbra.qa.selenium.projects.universal.ui.calendar.FormApptNew;
+import com.zimbra.qa.selenium.projects.universal.core.CalendarWorkWeekPreference;
+import com.zimbra.qa.selenium.projects.universal.pages.calendar.FormApptNew;
 
-public class ZimbraFeatureHtmlComposeEnabledFalse extends CalendarWorkWeekTest {
+public class ZimbraFeatureHtmlComposeEnabledFalse extends CalendarWorkWeekPreference {
 
 	public ZimbraFeatureHtmlComposeEnabledFalse() {
 		logger.info("New "+ ZimbraFeatureHtmlComposeEnabledFalse.class.getCanonicalName());

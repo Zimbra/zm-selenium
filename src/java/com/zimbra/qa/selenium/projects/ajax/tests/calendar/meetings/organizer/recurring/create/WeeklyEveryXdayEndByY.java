@@ -24,10 +24,10 @@ import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.items.MailItem;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
+import com.zimbra.qa.selenium.projects.ajax.pages.calendar.FormApptNew;
 
-public class WeeklyEveryXdayEndByY extends AjaxCommonTest {
+public class WeeklyEveryXdayEndByY extends AjaxCore {
 
 	public WeeklyEveryXdayEndByY() {
 		logger.info("New "+ WeeklyEveryXdayEndByY.class.getCanonicalName());

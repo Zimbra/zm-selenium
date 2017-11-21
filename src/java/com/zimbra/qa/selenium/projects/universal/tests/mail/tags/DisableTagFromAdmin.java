@@ -3,9 +3,9 @@ package com.zimbra.qa.selenium.projects.universal.tests.mail.tags;
 import org.testng.annotations.Test;
 
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.PrefGroupMailByMessageTest;
+import com.zimbra.qa.selenium.projects.universal.core.SetGroupMailByMessagePreference;
 
-public class DisableTagFromAdmin extends PrefGroupMailByMessageTest {
+public class DisableTagFromAdmin extends SetGroupMailByMessagePreference {
 
 	public DisableTagFromAdmin() {
 		logger.info("New "+ CreateTag.class.getCanonicalName());		

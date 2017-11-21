@@ -24,14 +24,14 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.admin.core.AdminCommonTest;
+import com.zimbra.qa.selenium.projects.admin.core.AdminCore;
 import com.zimbra.qa.selenium.projects.admin.items.DomainItem;
-import com.zimbra.qa.selenium.projects.admin.ui.PageMain;
-import com.zimbra.qa.selenium.projects.admin.ui.PageManageDomains;
-import com.zimbra.qa.selenium.projects.admin.ui.PageSearchResults;
-import com.zimbra.qa.selenium.projects.admin.ui.WizardCreateDomainAlias;
+import com.zimbra.qa.selenium.projects.admin.pages.PageMain;
+import com.zimbra.qa.selenium.projects.admin.pages.PageManageDomains;
+import com.zimbra.qa.selenium.projects.admin.pages.PageSearchResults;
+import com.zimbra.qa.selenium.projects.admin.pages.WizardCreateDomainAlias;
 
-public class EditDomainAlias extends AdminCommonTest {
+public class EditDomainAlias extends AdminCore {
 
 	public EditDomainAlias() {
 		logger.info("New "+ EditDomainAlias.class.getCanonicalName());

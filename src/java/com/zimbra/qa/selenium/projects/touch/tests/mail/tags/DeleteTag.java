@@ -21,10 +21,10 @@ import org.testng.annotations.*;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.touch.core.PrefGroupMailByMessageTest;
-import com.zimbra.qa.selenium.projects.touch.ui.PageCreateTag;
+import com.zimbra.qa.selenium.projects.touch.core.SetGroupMailByMessagePreference;
+import com.zimbra.qa.selenium.projects.touch.pages.PageCreateTag;
 
-public class DeleteTag extends PrefGroupMailByMessageTest  {
+public class DeleteTag extends SetGroupMailByMessagePreference  {
 	public DeleteTag() {
 			logger.info("New "+ DeleteTag.class.getCanonicalName());
 	}

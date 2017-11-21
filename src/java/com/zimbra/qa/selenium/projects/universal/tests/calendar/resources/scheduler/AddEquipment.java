@@ -23,10 +23,10 @@ import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.CalendarWorkWeekTest;
-import com.zimbra.qa.selenium.projects.universal.ui.calendar.FormApptNew;
+import com.zimbra.qa.selenium.projects.universal.core.CalendarWorkWeekPreference;
+import com.zimbra.qa.selenium.projects.universal.pages.calendar.FormApptNew;
 
-public class AddEquipment extends CalendarWorkWeekTest {	
+public class AddEquipment extends CalendarWorkWeekPreference {	
 	
 	public AddEquipment() {
 		logger.info("New "+ AddEquipment.class.getCanonicalName());

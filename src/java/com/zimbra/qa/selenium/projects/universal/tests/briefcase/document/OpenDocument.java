@@ -33,11 +33,11 @@ import com.zimbra.qa.selenium.framework.util.XmlStringUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.universal.core.FeatureBriefcaseTest;
-import com.zimbra.qa.selenium.projects.universal.ui.briefcase.DocumentBriefcaseOpen;
-import com.zimbra.qa.selenium.projects.universal.ui.briefcase.PageBriefcase;
+import com.zimbra.qa.selenium.projects.universal.core.EnableBriefcaseFeature;
+import com.zimbra.qa.selenium.projects.universal.pages.briefcase.DocumentBriefcaseOpen;
+import com.zimbra.qa.selenium.projects.universal.pages.briefcase.PageBriefcase;
 
-public class OpenDocument extends FeatureBriefcaseTest {
+public class OpenDocument extends EnableBriefcaseFeature {
 
 	public OpenDocument() {
 		logger.info("New " + OpenDocument.class.getCanonicalName());

@@ -23,10 +23,10 @@ import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.contacts.PageContacts;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
+import com.zimbra.qa.selenium.projects.ajax.pages.contacts.PageContacts;
 
-public class GetContactGroup extends AjaxCommonTest {
+public class GetContactGroup extends AjaxCore {
 
 	public GetContactGroup() {
 		logger.info("New " + GetContactGroup.class.getCanonicalName());

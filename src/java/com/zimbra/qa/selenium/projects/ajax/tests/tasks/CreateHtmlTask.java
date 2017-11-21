@@ -33,13 +33,13 @@ import com.zimbra.qa.selenium.framework.util.XmlStringUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.DialogWarning;
-import com.zimbra.qa.selenium.projects.ajax.ui.tasks.FormTaskNew;
-import com.zimbra.qa.selenium.projects.ajax.ui.tasks.FormTaskNew.Field;
-import com.zimbra.qa.selenium.projects.ajax.ui.tasks.PageTasks.Locators;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
+import com.zimbra.qa.selenium.projects.ajax.pages.DialogWarning;
+import com.zimbra.qa.selenium.projects.ajax.pages.tasks.FormTaskNew;
+import com.zimbra.qa.selenium.projects.ajax.pages.tasks.FormTaskNew.Field;
+import com.zimbra.qa.selenium.projects.ajax.pages.tasks.PageTasks.Locators;
 
-public class CreateHtmlTask extends AjaxCommonTest {
+public class CreateHtmlTask extends AjaxCore {
 
 	@SuppressWarnings("serial")
 	public CreateHtmlTask() {

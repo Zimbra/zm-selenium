@@ -27,12 +27,12 @@ import com.zimbra.qa.selenium.framework.items.TagItem;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
-import com.zimbra.qa.selenium.projects.universal.ui.DialogDeleteTag;
-import com.zimbra.qa.selenium.projects.universal.ui.calendar.DialogConfirmDeleteAppointment;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCore;
+import com.zimbra.qa.selenium.projects.universal.pages.DialogDeleteTag;
+import com.zimbra.qa.selenium.projects.universal.pages.calendar.DialogConfirmDeleteAppointment;
 
 @SuppressWarnings("unused")
-public class DeleteTagAppointment extends UniversalCommonTest {
+public class DeleteTagAppointment extends UniversalCore {
 
 	public DeleteTagAppointment() {
 		logger.info("New "+ DeleteTagAppointment.class.getCanonicalName());

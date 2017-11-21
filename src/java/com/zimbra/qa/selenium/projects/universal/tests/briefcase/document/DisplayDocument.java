@@ -29,10 +29,10 @@ import com.zimbra.qa.selenium.framework.util.XmlStringUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.universal.core.FeatureBriefcaseTest;
-import com.zimbra.qa.selenium.projects.universal.ui.briefcase.DocumentBriefcaseOpen;
+import com.zimbra.qa.selenium.projects.universal.core.EnableBriefcaseFeature;
+import com.zimbra.qa.selenium.projects.universal.pages.briefcase.DocumentBriefcaseOpen;
 
-public class DisplayDocument extends FeatureBriefcaseTest {
+public class DisplayDocument extends EnableBriefcaseFeature {
 
 	public DisplayDocument() {
 		logger.info("New " + DisplayDocument.class.getCanonicalName());

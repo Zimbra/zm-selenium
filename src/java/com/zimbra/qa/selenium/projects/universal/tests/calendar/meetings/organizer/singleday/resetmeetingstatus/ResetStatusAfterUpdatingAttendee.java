@@ -23,12 +23,12 @@ import org.testng.annotations.*;
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.CalendarWorkWeekTest;
-import com.zimbra.qa.selenium.projects.universal.ui.calendar.DialogSendUpdatetoAttendees;
-import com.zimbra.qa.selenium.projects.universal.ui.calendar.FormApptNew;
-import com.zimbra.qa.selenium.projects.universal.ui.calendar.FormApptNew.Field;
+import com.zimbra.qa.selenium.projects.universal.core.CalendarWorkWeekPreference;
+import com.zimbra.qa.selenium.projects.universal.pages.calendar.DialogSendUpdatetoAttendees;
+import com.zimbra.qa.selenium.projects.universal.pages.calendar.FormApptNew;
+import com.zimbra.qa.selenium.projects.universal.pages.calendar.FormApptNew.Field;
 
-public class ResetStatusAfterUpdatingAttendee extends CalendarWorkWeekTest {	
+public class ResetStatusAfterUpdatingAttendee extends CalendarWorkWeekPreference {	
 	
 	public ResetStatusAfterUpdatingAttendee() {
 		logger.info("New "+ ResetStatusAfterUpdatingAttendee.class.getCanonicalName());

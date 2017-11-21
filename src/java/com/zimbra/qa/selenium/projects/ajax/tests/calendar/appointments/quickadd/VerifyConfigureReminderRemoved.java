@@ -21,10 +21,10 @@ import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.QuickAddAppointment;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
+import com.zimbra.qa.selenium.projects.ajax.pages.calendar.QuickAddAppointment;
 
-public class VerifyConfigureReminderRemoved extends AjaxCommonTest {
+public class VerifyConfigureReminderRemoved extends AjaxCore {
 
 	public VerifyConfigureReminderRemoved() {
 		logger.info("New "+ VerifyConfigureReminderRemoved.class.getCanonicalName());

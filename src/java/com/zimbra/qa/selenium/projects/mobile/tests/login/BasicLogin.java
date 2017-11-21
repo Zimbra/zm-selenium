@@ -21,10 +21,10 @@ import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
-import com.zimbra.qa.selenium.projects.mobile.core.MobileCommonTest;
+import com.zimbra.qa.selenium.projects.mobile.core.MobileCore;
 
 
-public class BasicLogin extends MobileCommonTest {
+public class BasicLogin extends MobileCore {
 	
 	public BasicLogin() {
 		logger.info("New "+ BasicLogin.class.getCanonicalName());

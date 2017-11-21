@@ -28,10 +28,10 @@ import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.universal.core.UniversalQuickCommandTest;
+import com.zimbra.qa.selenium.projects.universal.core.QuickCommandSettings;
 
 
-public class ApplyQuickCommandMessage extends UniversalQuickCommandTest {
+public class ApplyQuickCommandMessage extends QuickCommandSettings {
 
 	@SuppressWarnings("serial")
 	public ApplyQuickCommandMessage() {

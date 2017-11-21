@@ -22,9 +22,9 @@ import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.framework.util.performance.*;
-import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCore;
 
-public class ZmTasksAppFolders extends UniversalCommonTest {
+public class ZmTasksAppFolders extends UniversalCore {
 
 	public ZmTasksAppFolders() {
 		logger.info("New "+ ZmTasksAppFolders.class.getCanonicalName());

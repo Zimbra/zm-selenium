@@ -22,10 +22,10 @@ import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.FormApptNew;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
+import com.zimbra.qa.selenium.projects.ajax.pages.calendar.FormApptNew;
 
-public class ResetStatusAfterAddingEquipment extends AjaxCommonTest {
+public class ResetStatusAfterAddingEquipment extends AjaxCore {
 
 	public ResetStatusAfterAddingEquipment() {
 		logger.info("New "+ ResetStatusAfterAddingEquipment.class.getCanonicalName());

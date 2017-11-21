@@ -25,9 +25,9 @@ import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.items.MailItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.touch.core.CalendarWorkWeekTest;
+import com.zimbra.qa.selenium.projects.touch.core.CalendarWorkWeekPreference;
 
-public class DeleteSeries extends CalendarWorkWeekTest {
+public class DeleteSeries extends CalendarWorkWeekPreference {
 
 	public DeleteSeries() {
 		logger.info("New "+ PermanentDeleteSeries.class.getCanonicalName());

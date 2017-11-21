@@ -20,9 +20,9 @@ import java.util.List;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.items.MailItem;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByConversationTest;
+import com.zimbra.qa.selenium.projects.ajax.core.SetGroupMailByConversationPreference;
 
-public class GetConversation extends PrefGroupMailByConversationTest {
+public class GetConversation extends SetGroupMailByConversationPreference {
 
 	public GetConversation() {
 		logger.info("New "+ GetConversation.class.getCanonicalName());

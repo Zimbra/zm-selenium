@@ -30,10 +30,10 @@ import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.tasks.PageTasks.Locators;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
+import com.zimbra.qa.selenium.projects.ajax.pages.tasks.PageTasks.Locators;
 
-public class CheckCloseButtonInSharedFolder extends AjaxCommonTest {
+public class CheckCloseButtonInSharedFolder extends AjaxCore {
 
 	@SuppressWarnings("serial")
 	public CheckCloseButtonInSharedFolder() {

@@ -21,10 +21,10 @@ import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.SeparateWindow;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
+import com.zimbra.qa.selenium.projects.ajax.pages.SeparateWindow;
 
-public class ShowOriginal extends AjaxCommonTest {
+public class ShowOriginal extends AjaxCore {
 
 	public ShowOriginal() {
 		logger.info("New "+ ShowOriginal.class.getCanonicalName());

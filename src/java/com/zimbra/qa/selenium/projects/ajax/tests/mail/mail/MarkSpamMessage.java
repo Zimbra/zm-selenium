@@ -23,7 +23,7 @@ import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.*;
 
-public class MarkSpamMessage extends PrefGroupMailByMessageTest {
+public class MarkSpamMessage extends SetGroupMailByMessagePreference {
 
 	public MarkSpamMessage() {
 		logger.info("New "+ MarkSpamMessage.class.getCanonicalName());

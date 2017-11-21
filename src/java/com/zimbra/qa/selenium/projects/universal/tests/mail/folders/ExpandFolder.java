@@ -24,7 +24,7 @@ import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.universal.core.*;
 
-public class ExpandFolder extends PrefGroupMailByMessageTest {
+public class ExpandFolder extends SetGroupMailByMessagePreference {
 
 	public ExpandFolder() {
 		logger.info("New "+ ExpandFolder.class.getCanonicalName());

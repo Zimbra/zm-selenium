@@ -19,10 +19,10 @@ package com.zimbra.qa.selenium.projects.admin.tests.softwareupdates;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
-import com.zimbra.qa.selenium.projects.admin.core.AdminCommonTest;
-import com.zimbra.qa.selenium.projects.admin.ui.PageManageSoftwareUpdates;
+import com.zimbra.qa.selenium.projects.admin.core.AdminCore;
+import com.zimbra.qa.selenium.projects.admin.pages.PageManageSoftwareUpdates;
 
-public class NavigateSoftwareUpdates extends AdminCommonTest {
+public class NavigateSoftwareUpdates extends AdminCore {
 
 	public NavigateSoftwareUpdates() {
 		logger.info("New "+ NavigateSoftwareUpdates.class.getCanonicalName());

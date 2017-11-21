@@ -21,11 +21,11 @@ import com.zimbra.common.soap.Element;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.framework.util.staf.Stafpostqueue;
-import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.DialogWarning;
-import com.zimbra.qa.selenium.projects.ajax.ui.DialogWarning.DialogWarningID;
+import com.zimbra.qa.selenium.projects.ajax.core.SetGroupMailByMessagePreference;
+import com.zimbra.qa.selenium.projects.ajax.pages.DialogWarning;
+import com.zimbra.qa.selenium.projects.ajax.pages.DialogWarning.DialogWarningID;
 
-public class SendReadReceiptsPrompt extends PrefGroupMailByMessageTest {
+public class SendReadReceiptsPrompt extends SetGroupMailByMessagePreference {
 
 	public SendReadReceiptsPrompt() {
 		logger.info("New "+ SendReadReceiptsPrompt.class.getCanonicalName());

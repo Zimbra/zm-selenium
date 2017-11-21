@@ -22,12 +22,12 @@ import com.zimbra.qa.selenium.framework.items.ContactItem;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
-import com.zimbra.qa.selenium.projects.universal.ui.DialogWarning;
-import com.zimbra.qa.selenium.projects.universal.ui.contacts.FormContactDistributionListNew;
-import com.zimbra.qa.selenium.projects.universal.ui.contacts.FormContactDistributionListNew.Field;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCore;
+import com.zimbra.qa.selenium.projects.universal.pages.DialogWarning;
+import com.zimbra.qa.selenium.projects.universal.pages.contacts.FormContactDistributionListNew;
+import com.zimbra.qa.selenium.projects.universal.pages.contacts.FormContactDistributionListNew.Field;
 
-public class ModifyDLByAddingListOwnersAndOwnerDeletesDL extends UniversalCommonTest  {
+public class ModifyDLByAddingListOwnersAndOwnerDeletesDL extends UniversalCore  {
 
 	public ModifyDLByAddingListOwnersAndOwnerDeletesDL() {
 		logger.info("New "+ ModifyDLByAddingListOwnersAndOwnerDeletesDL.class.getCanonicalName());

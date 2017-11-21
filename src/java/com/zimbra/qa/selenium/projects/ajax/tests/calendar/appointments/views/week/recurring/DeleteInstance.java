@@ -24,10 +24,10 @@ import com.zimbra.common.soap.Element;
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.*;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
+import com.zimbra.qa.selenium.projects.ajax.pages.*;
 
-public class DeleteInstance extends AjaxCommonTest {
+public class DeleteInstance extends AjaxCore {
 
 	public DeleteInstance() {
 		logger.info("New "+ DeleteInstance.class.getCanonicalName());
@@ -42,7 +42,7 @@ public class DeleteInstance extends AjaxCommonTest {
 
 
 	@Bugs (ids = "69132")
-	@Test (	description = "Delete instance of recurring appointment (every month) using toolbar button in week view",
+	@Test (description = "Delete instance of recurring appointment (every month) using toolbar button in week view",
 			groups = { "functional", "L3" } )
 
 	public void DeleteInstance_01() throws HarnessException {
@@ -117,7 +117,7 @@ public class DeleteInstance extends AjaxCommonTest {
 
 
 	@Bugs (ids = "69132")
-	@Test (	description = "Delete instance of recurring appointment (every year) using context menu in week view",
+	@Test (description = "Delete instance of recurring appointment (every year) using context menu in week view",
 			groups = { "functional", "L3" } )
 
 	public void DeleteInstance_02() throws HarnessException {

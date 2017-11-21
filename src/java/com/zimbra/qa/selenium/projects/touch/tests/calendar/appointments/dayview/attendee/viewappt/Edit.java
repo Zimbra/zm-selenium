@@ -24,10 +24,10 @@ import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.touch.core.*;
-import com.zimbra.qa.selenium.projects.touch.ui.calendar.FormApptNew;
-import com.zimbra.qa.selenium.projects.touch.ui.calendar.FormApptNew.Field;
+import com.zimbra.qa.selenium.projects.touch.pages.calendar.FormApptNew;
+import com.zimbra.qa.selenium.projects.touch.pages.calendar.FormApptNew.Field;
 
-public class Edit extends CalendarWorkWeekTest {
+public class Edit extends CalendarWorkWeekPreference {
 
 	public Edit() {
 		logger.info("New "+ Edit.class.getCanonicalName());

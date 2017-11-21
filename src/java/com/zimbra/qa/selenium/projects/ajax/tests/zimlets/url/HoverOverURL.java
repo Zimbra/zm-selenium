@@ -23,9 +23,9 @@ import com.zimbra.qa.selenium.framework.core.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.*;
-import com.zimbra.qa.selenium.projects.ajax.ui.*;
+import com.zimbra.qa.selenium.projects.ajax.pages.*;
 
-public class HoverOverURL extends AjaxCommonTest {
+public class HoverOverURL extends AjaxCore {
 
 	public HoverOverURL() {
 		logger.info("New "+ HoverOverURL.class.getCanonicalName());

@@ -22,10 +22,10 @@ import com.zimbra.common.soap.Element;
 import com.zimbra.qa.selenium.framework.items.MailItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
+import com.zimbra.qa.selenium.projects.ajax.core.SetGroupMailByMessagePreference;
+import com.zimbra.qa.selenium.projects.ajax.pages.mail.FormMailNew;
 
-public class Reply extends PrefGroupMailByMessageTest {
+public class Reply extends SetGroupMailByMessagePreference {
 
 	public Reply() {
 		logger.info("New "+ Reply.class.getCanonicalName());

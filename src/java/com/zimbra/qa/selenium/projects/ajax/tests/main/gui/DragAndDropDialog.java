@@ -23,9 +23,9 @@ import com.zimbra.qa.selenium.framework.items.FolderItem.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.*;
-import com.zimbra.qa.selenium.projects.ajax.ui.*;
+import com.zimbra.qa.selenium.projects.ajax.pages.*;
 
-public class DragAndDropDialog extends AjaxCommonTest {
+public class DragAndDropDialog extends AjaxCore {
 
 	public DragAndDropDialog() {
 		logger.info("New "+ DragAndDropDialog.class.getCanonicalName());

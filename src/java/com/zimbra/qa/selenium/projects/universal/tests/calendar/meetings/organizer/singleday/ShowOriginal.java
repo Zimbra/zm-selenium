@@ -28,10 +28,10 @@ import com.zimbra.qa.selenium.framework.util.ZDate;
 import com.zimbra.qa.selenium.framework.util.ZTimeZone;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.universal.core.CalendarWorkWeekTest;
-import com.zimbra.qa.selenium.projects.universal.ui.SeparateWindow;
+import com.zimbra.qa.selenium.projects.universal.core.CalendarWorkWeekPreference;
+import com.zimbra.qa.selenium.projects.universal.pages.SeparateWindow;
 
-public class ShowOriginal extends CalendarWorkWeekTest {
+public class ShowOriginal extends CalendarWorkWeekPreference {
 
 	public ShowOriginal() {
 		logger.info("New "+ ShowOriginal.class.getCanonicalName());

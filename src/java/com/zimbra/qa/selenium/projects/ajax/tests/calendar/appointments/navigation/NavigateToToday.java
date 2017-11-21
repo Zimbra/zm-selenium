@@ -21,11 +21,11 @@ import org.testng.annotations.*;
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.calendar.PageCalendar.Locators;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
+import com.zimbra.qa.selenium.projects.ajax.pages.calendar.PageCalendar.Locators;
 import java.util.Date;
 
-public class NavigateToToday extends AjaxCommonTest {
+public class NavigateToToday extends AjaxCore {
 
 	public NavigateToToday() {
 		logger.info("New "+ NavigateToToday.class.getCanonicalName());

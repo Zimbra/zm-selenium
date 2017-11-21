@@ -24,11 +24,11 @@ import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
-import com.zimbra.qa.selenium.projects.admin.core.AdminCommonTest;
-import com.zimbra.qa.selenium.projects.admin.ui.FormEditAccount;
-import com.zimbra.qa.selenium.projects.admin.ui.PageLogin.Locators;
+import com.zimbra.qa.selenium.projects.admin.core.AdminCore;
+import com.zimbra.qa.selenium.projects.admin.pages.FormEditAccount;
+import com.zimbra.qa.selenium.projects.admin.pages.PageLogin.Locators;
 
-public class ResetPassword extends AdminCommonTest {
+public class ResetPassword extends AdminCore {
 
 	public ResetPassword() {
 		logger.info("New "+ ResetPassword.class.getCanonicalName());

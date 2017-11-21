@@ -23,12 +23,12 @@ import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
-import com.zimbra.qa.selenium.projects.admin.core.AdminCommonTest;
+import com.zimbra.qa.selenium.projects.admin.core.AdminCore;
 import com.zimbra.qa.selenium.projects.admin.items.DistributionListItem;
-import com.zimbra.qa.selenium.projects.admin.ui.DialogForDeleteOperation;
-import com.zimbra.qa.selenium.projects.admin.ui.PageMain;
+import com.zimbra.qa.selenium.projects.admin.pages.DialogForDeleteOperation;
+import com.zimbra.qa.selenium.projects.admin.pages.PageMain;
 
-public class DeleteDistributionList extends AdminCommonTest {
+public class DeleteDistributionList extends AdminCore {
 
 	public DeleteDistributionList() {
 		logger.info("New "+ DeleteDistributionList.class.getCanonicalName());

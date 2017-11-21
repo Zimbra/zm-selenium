@@ -21,9 +21,9 @@ import org.testng.annotations.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.*;
-import com.zimbra.qa.selenium.projects.ajax.ui.preferences.TreePreferences.*;
+import com.zimbra.qa.selenium.projects.ajax.pages.preferences.TreePreferences.*;
 
-public class ZimbraPrefColorMessagesEnabledTrue extends AjaxCommonTest {
+public class ZimbraPrefColorMessagesEnabledTrue extends AjaxCore {
 
 	public ZimbraPrefColorMessagesEnabledTrue() {
 		logger.info("New "+ ZimbraPrefColorMessagesEnabledTrue.class.getCanonicalName());

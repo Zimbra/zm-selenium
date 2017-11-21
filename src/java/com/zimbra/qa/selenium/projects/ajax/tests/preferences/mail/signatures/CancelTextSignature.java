@@ -23,13 +23,13 @@ import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.preferences.TreePreferences.TreeItem;
-import com.zimbra.qa.selenium.projects.ajax.ui.preferences.signature.FormSignatureNew;
-import com.zimbra.qa.selenium.projects.ajax.ui.preferences.signature.PageSignature;
-import com.zimbra.qa.selenium.projects.ajax.ui.preferences.signature.FormSignatureNew.Field;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
+import com.zimbra.qa.selenium.projects.ajax.pages.preferences.TreePreferences.TreeItem;
+import com.zimbra.qa.selenium.projects.ajax.pages.preferences.signature.FormSignatureNew;
+import com.zimbra.qa.selenium.projects.ajax.pages.preferences.signature.PageSignature;
+import com.zimbra.qa.selenium.projects.ajax.pages.preferences.signature.FormSignatureNew.Field;
 
-public class CancelTextSignature extends AjaxCommonTest {
+public class CancelTextSignature extends AjaxCore {
 
 	public CancelTextSignature() throws HarnessException {
 		super.startingPage = app.zPagePreferences;

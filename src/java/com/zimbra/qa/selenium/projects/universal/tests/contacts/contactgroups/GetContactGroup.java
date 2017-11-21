@@ -25,8 +25,8 @@ import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
-import com.zimbra.qa.selenium.projects.universal.ui.contacts.PageContacts;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCore;
+import com.zimbra.qa.selenium.projects.universal.pages.contacts.PageContacts;
 
 /**
  * These test cases verify the contact lists display the correct contact gropus
@@ -34,7 +34,7 @@ import com.zimbra.qa.selenium.projects.universal.ui.contacts.PageContacts;
  * @author Matt Rhoades
  */
 
-public class GetContactGroup extends UniversalCommonTest {
+public class GetContactGroup extends UniversalCore {
 
 	public GetContactGroup() {
 		logger.info("New " + GetContactGroup.class.getCanonicalName());

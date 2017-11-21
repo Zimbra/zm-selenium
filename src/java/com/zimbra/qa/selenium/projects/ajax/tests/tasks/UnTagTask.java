@@ -28,10 +28,10 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.DialogTag;
-import com.zimbra.qa.selenium.projects.ajax.ui.tasks.PageTasks.Locators;
-public class UnTagTask extends AjaxCommonTest{
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
+import com.zimbra.qa.selenium.projects.ajax.pages.DialogTag;
+import com.zimbra.qa.selenium.projects.ajax.pages.tasks.PageTasks.Locators;
+public class UnTagTask extends AjaxCore{
 
 	@SuppressWarnings("serial")
 	public UnTagTask() {

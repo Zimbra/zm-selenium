@@ -24,10 +24,10 @@ import com.zimbra.qa.selenium.framework.items.ContactItem;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.UniversalCommonTest;
-import com.zimbra.qa.selenium.projects.universal.ui.DialogWarning;
+import com.zimbra.qa.selenium.projects.universal.core.UniversalCore;
+import com.zimbra.qa.selenium.projects.universal.pages.DialogWarning;
 
-public class DeleteDL extends UniversalCommonTest  {
+public class DeleteDL extends UniversalCore  {
 
 	public DeleteDL() {
 		logger.info("New "+ DeleteDL.class.getCanonicalName());

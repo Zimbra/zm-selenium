@@ -20,11 +20,11 @@ import org.testng.annotations.*;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.touch.ui.AppTouchClient;
-import com.zimbra.qa.selenium.projects.touch.ui.PageCreateTag;
-import com.zimbra.qa.selenium.projects.touch.core.TouchCommonTest;
+import com.zimbra.qa.selenium.projects.touch.pages.TouchPages;
+import com.zimbra.qa.selenium.projects.touch.pages.PageCreateTag;
+import com.zimbra.qa.selenium.projects.touch.core.TouchCore;
 
-public class DeleteTag extends TouchCommonTest  {
+public class DeleteTag extends TouchCore  {
 	public DeleteTag() {
 			logger.info("New "+ DeleteTag.class.getCanonicalName());
 			super.startingPage = app.zPageAddressbook;
@@ -54,7 +54,7 @@ public class DeleteTag extends TouchCommonTest  {
 		app.zPageMail.zRefresh();		
 		SleepUtil.sleepSmall();
 		
-		PageCreateTag createTagPage = new PageCreateTag((AppTouchClient) app , this.startingPage);
+		PageCreateTag createTagPage = new PageCreateTag((TouchPages) app , this.startingPage);
 		
 		//Click on edit button
 		createTagPage.zPressButton(Button.B_EDIT);
@@ -100,7 +100,7 @@ public class DeleteTag extends TouchCommonTest  {
 		app.zPageMail.zRefresh();		
 		SleepUtil.sleepSmall();
 		
-		PageCreateTag createTagPage = new PageCreateTag((AppTouchClient) app , this.startingPage);
+		PageCreateTag createTagPage = new PageCreateTag((TouchPages) app , this.startingPage);
 		
 		//Click on edit button
 		createTagPage.zPressButton(Button.B_EDIT);

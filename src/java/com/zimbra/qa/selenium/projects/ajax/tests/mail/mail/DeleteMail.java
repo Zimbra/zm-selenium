@@ -26,10 +26,10 @@ import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.*;
+import com.zimbra.qa.selenium.projects.ajax.core.SetGroupMailByMessagePreference;
+import com.zimbra.qa.selenium.projects.ajax.pages.*;
 
-public class DeleteMail extends PrefGroupMailByMessageTest {
+public class DeleteMail extends SetGroupMailByMessagePreference {
 
 	public DeleteMail() {
 		logger.info("New "+ DeleteMail.class.getCanonicalName());
@@ -598,7 +598,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 			// Warning dialog will appear
 			DialogWarning dialog = new DialogWarning(DialogWarning.DialogWarningID.PermanentlyDeleteTheItem,
 											app,
-											((AppAjaxClient) app).zPageMail);
+											((AjaxPages) app).zPageMail);
 			ZAssert.assertTrue(dialog.zIsActive(), "Verify the warning dialog opens");
 			dialog.zPressButton(Button.B_OK);
 
@@ -694,7 +694,7 @@ public class DeleteMail extends PrefGroupMailByMessageTest {
 
 			// Warning dialog will appear
 			DialogWarning dialog = new DialogWarning(DialogWarning.DialogWarningID.PermanentlyDeleteTheItem,
-											app, ((AppAjaxClient) app).zPageMail);
+											app, ((AjaxPages) app).zPageMail);
 			ZAssert.assertTrue(dialog.zIsActive(), "Verify the warning dialog opens");
 			dialog.zPressButton(Button.B_OK);
 

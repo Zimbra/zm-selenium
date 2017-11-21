@@ -20,10 +20,10 @@ import java.util.HashMap;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.preferences.TreePreferences.TreeItem;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
+import com.zimbra.qa.selenium.projects.ajax.pages.preferences.TreePreferences.TreeItem;
 
-public class ZimbraPrefClientTypeAdvanced extends AjaxCommonTest {
+public class ZimbraPrefClientTypeAdvanced extends AjaxCore {
 
 	public ZimbraPrefClientTypeAdvanced() {
 		logger.info("New "+ ZimbraPrefClientTypeAdvanced.class.getCanonicalName());

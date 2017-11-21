@@ -26,12 +26,12 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
-import com.zimbra.qa.selenium.projects.ajax.core.FeatureBriefcaseTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.DialogWarning;
-import com.zimbra.qa.selenium.projects.ajax.ui.briefcase.DialogConfirm;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.FormMailNew;
+import com.zimbra.qa.selenium.projects.ajax.core.EnableBriefcaseFeature;
+import com.zimbra.qa.selenium.projects.ajax.pages.DialogWarning;
+import com.zimbra.qa.selenium.projects.ajax.pages.briefcase.DialogConfirm;
+import com.zimbra.qa.selenium.projects.ajax.pages.mail.FormMailNew;
 
-public class SendFileLink extends FeatureBriefcaseTest {
+public class SendFileLink extends EnableBriefcaseFeature {
 
 	public SendFileLink() throws HarnessException {
 		logger.info("New " + SendFileLink.class.getCanonicalName());

@@ -23,11 +23,11 @@ import org.testng.annotations.Test;
 
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
-import com.zimbra.qa.selenium.projects.mobile.core.MobileCommonTest;
-import com.zimbra.qa.selenium.projects.mobile.ui.PageLogin;
+import com.zimbra.qa.selenium.projects.mobile.core.MobileCore;
+import com.zimbra.qa.selenium.projects.mobile.pages.PageLogin;
 
 
-public class LoginScreen extends MobileCommonTest {
+public class LoginScreen extends MobileCore {
 
 	public LoginScreen() {
 		logger.info("New "+ LoginScreen.class.getCanonicalName());

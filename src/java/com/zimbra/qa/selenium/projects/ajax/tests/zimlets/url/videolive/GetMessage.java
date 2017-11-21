@@ -20,9 +20,9 @@ import java.io.File;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
 
-public class GetMessage extends AjaxCommonTest {
+public class GetMessage extends AjaxCore {
 
 	public GetMessage() {
 		logger.info("New "+ GetMessage.class.getCanonicalName());

@@ -19,10 +19,10 @@ package com.zimbra.qa.selenium.projects.admin.tests.antispamantivirusactivity;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
-import com.zimbra.qa.selenium.projects.admin.core.AdminCommonTest;
-import com.zimbra.qa.selenium.projects.admin.ui.PageManageAntiSpamAnitVirusActivity;
+import com.zimbra.qa.selenium.projects.admin.core.AdminCore;
+import com.zimbra.qa.selenium.projects.admin.pages.PageManageAntiSpamAnitVirusActivity;
 
-public class NavigateAntiSpamAntiVirus extends AdminCommonTest {
+public class NavigateAntiSpamAntiVirus extends AdminCore {
 
 	public NavigateAntiSpamAntiVirus() {
 		logger.info("New "+ NavigateAntiSpamAntiVirus.class.getCanonicalName());

@@ -22,10 +22,10 @@ import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.ContactsPrefShowSelectionCheckbox;
-import com.zimbra.qa.selenium.projects.universal.ui.DialogTag;
+import com.zimbra.qa.selenium.projects.universal.core.ShowSelectionCheckboxPreference;
+import com.zimbra.qa.selenium.projects.universal.pages.DialogTag;
 
-public class TagContact extends ContactsPrefShowSelectionCheckbox {
+public class TagContact extends ShowSelectionCheckboxPreference {
 	public TagContact() {
 		logger.info("New " + TagContact.class.getCanonicalName());
 		// All tests start at the Address page

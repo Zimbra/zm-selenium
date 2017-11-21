@@ -20,9 +20,9 @@ import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
+import com.zimbra.qa.selenium.projects.ajax.core.SetGroupMailByMessagePreference;
 
-public class MarkAllAsReadFolder extends PrefGroupMailByMessageTest {
+public class MarkAllAsReadFolder extends SetGroupMailByMessagePreference {
 
 	public MarkAllAsReadFolder() {
 		logger.info("New "+ MarkAllAsReadFolder.class.getCanonicalName());

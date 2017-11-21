@@ -24,11 +24,11 @@ import com.zimbra.qa.selenium.framework.core.*;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.*;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.DisplayMail;
+import com.zimbra.qa.selenium.projects.ajax.core.SetGroupMailByMessagePreference;
+import com.zimbra.qa.selenium.projects.ajax.pages.*;
+import com.zimbra.qa.selenium.projects.ajax.pages.mail.DisplayMail;
 
-public class RemoveAttachment extends PrefGroupMailByMessageTest {
+public class RemoveAttachment extends SetGroupMailByMessagePreference {
 
 	public RemoveAttachment() throws HarnessException {
 		logger.info("New "+ RemoveAttachment.class.getCanonicalName());

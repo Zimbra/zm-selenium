@@ -21,11 +21,11 @@ package com.zimbra.qa.selenium.projects.ajax.tests.preferences.general;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.AjaxCommonTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.preferences.TreePreferences.TreeItem;
-import com.zimbra.qa.selenium.projects.ajax.ui.preferences.PagePreferences.Locators;
+import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
+import com.zimbra.qa.selenium.projects.ajax.pages.preferences.TreePreferences.TreeItem;
+import com.zimbra.qa.selenium.projects.ajax.pages.preferences.PagePreferences.Locators;
 
-public class VerifyTimezoneView extends AjaxCommonTest {
+public class VerifyTimezoneView extends AjaxCore {
 
 	public VerifyTimezoneView() {
 		super.startingPage = app.zPagePreferences;

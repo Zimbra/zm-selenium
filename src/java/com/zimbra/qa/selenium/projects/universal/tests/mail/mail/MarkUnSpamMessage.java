@@ -21,9 +21,9 @@ import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.PrefGroupMailByMessageTest;
+import com.zimbra.qa.selenium.projects.universal.core.SetGroupMailByMessagePreference;
 
-public class MarkUnSpamMessage extends PrefGroupMailByMessageTest {
+public class MarkUnSpamMessage extends SetGroupMailByMessagePreference {
 	
 	public MarkUnSpamMessage() {
 		logger.info("New "+ MarkUnSpamMessage.class.getCanonicalName());

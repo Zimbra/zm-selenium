@@ -20,10 +20,10 @@ import org.apache.log4j.*;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.PrefGroupMailByMessageTest;
-import com.zimbra.qa.selenium.projects.ajax.ui.mail.SeparateWindowDisplayMail;
+import com.zimbra.qa.selenium.projects.ajax.core.SetGroupMailByMessagePreference;
+import com.zimbra.qa.selenium.projects.ajax.pages.mail.SeparateWindowDisplayMail;
 
-public class CloseMail extends PrefGroupMailByMessageTest {
+public class CloseMail extends SetGroupMailByMessagePreference {
 	protected static Logger logger = LogManager.getLogger(CloseMail.class);
 
 	public CloseMail() throws HarnessException {

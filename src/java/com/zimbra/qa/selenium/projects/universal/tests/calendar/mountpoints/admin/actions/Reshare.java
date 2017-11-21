@@ -22,11 +22,11 @@ import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.universal.core.CalendarWorkWeekTest;
-import com.zimbra.qa.selenium.projects.universal.ui.DialogShare;
-import com.zimbra.qa.selenium.projects.universal.ui.mail.DisplayMail;
+import com.zimbra.qa.selenium.projects.universal.core.CalendarWorkWeekPreference;
+import com.zimbra.qa.selenium.projects.universal.pages.DialogShare;
+import com.zimbra.qa.selenium.projects.universal.pages.mail.DisplayMail;
 
-public class Reshare extends CalendarWorkWeekTest {
+public class Reshare extends CalendarWorkWeekPreference {
 
 	public Reshare() {
 		logger.info("New "+ Reshare.class.getCanonicalName());
