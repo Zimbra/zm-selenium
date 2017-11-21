@@ -801,10 +801,6 @@ public class TreeMail extends AbsTree {
 		int count = this.sGetCssCount(searchLocator);
 		logger.debug(myPageName() + " zListGetFolders: number of folders: " + count);
 
-		if (ConfigProperties.zimbraGetVersionString().contains("8.6.")) {
-			count++;
-		}
-
 		for (int i = 1; i <= count + 1; i++) {
 			String itemLocator = searchLocator + ":nth-child(" + i + ")";
 
