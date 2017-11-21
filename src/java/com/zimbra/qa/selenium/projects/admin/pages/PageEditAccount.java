@@ -164,7 +164,7 @@ public class PageEditAccount extends AbsTab {
 		// Default behavior, process the locator by clicking on it
 		//
 		this.sClickAt(locator, "");
-		SleepUtil.sleepMedium();
+		SleepUtil.sleepLong();
 
 		// If page was specified, make sure it is active
 		if (page != null) {
