@@ -89,7 +89,7 @@ public class AjaxCore {
 	}
 
 	@BeforeSuite(groups = { "always" })
-	public void commonTestBeforeSuite() throws HarnessException, IOException, InterruptedException, SAXException {
+	public void coreBeforeSuite() throws HarnessException, IOException, InterruptedException, SAXException {
 
 		logger.info("BeforeSuite: start");
 		ZimbraAccount.ResetAccountZCS();
@@ -138,13 +138,13 @@ public class AjaxCore {
 	}
 
 	@BeforeClass(groups = { "always" })
-	public void commonTestBeforeClass() throws HarnessException {
+	public void coreBeforeClass() throws HarnessException {
 		logger.info("BeforeClass: start");
 		logger.info("BeforeClass: finish");
 	}
 
 	@BeforeMethod(groups = { "always" })
-	public void commonTestBeforeMethod(Method method, ITestContext testContext) throws HarnessException {
+	public void coreBeforeMethod(Method method, ITestContext testContext) throws HarnessException {
 
 		logger.info("BeforeMethod: start");
 
@@ -257,7 +257,7 @@ public class AjaxCore {
 	}
 
 	@AfterSuite(groups = { "always" })
-	public void commonTestAfterSuite() throws HarnessException, IOException {
+	public void coreAfterSuite() throws HarnessException, IOException {
 		logger.info("AfterSuite: start");
 
 		if (ConfigProperties.getStringProperty("javascript.errors.report").equals("true")) {
@@ -276,7 +276,7 @@ public class AjaxCore {
 	}
 
 	@AfterClass(groups = { "always" })
-	public void commonTestAfterClass() throws HarnessException {
+	public void coreAfterClass() throws HarnessException {
 		logger.info("AfterClass: start");
 
 		ZimbraAccount currentAccount = app.zGetActiveAccount();
@@ -288,7 +288,7 @@ public class AjaxCore {
 	}
 
 	@AfterMethod(groups = { "always" })
-	public void commonTestAfterMethod(Method method, ITestResult testResult) throws HarnessException, IOException {
+	public void coreAfterMethod(Method method, ITestResult testResult) throws HarnessException, IOException {
 		logger.info("AfterMethod: start");
 
 		if (ZimbraURI.needsReload()) {

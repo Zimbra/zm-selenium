@@ -232,7 +232,6 @@ public class QuickCommandSettings extends UniversalCore {
 		// Re-login to pick up the new preferences
 		app.zPageMain.zRefreshMainUI();
 
-		// The UniversalCommonTest.commonTestBeforeMethod() method will log into the client
 		logger.info("addQuickCommands: finish");
 	}
 

@@ -73,8 +73,8 @@ public class MobileCore {
 	 * @throws HarnessException
 	 */
 	@BeforeSuite( groups = { "always" } )
-	public void commonTestBeforeSuite() throws HarnessException {
-		logger.info("commonTestBeforeSuite: start");
+	public void coreBeforeSuite() throws HarnessException {
+		logger.info("coreBeforeSuite: start");
 
 
 
@@ -127,7 +127,7 @@ public class MobileCore {
 			throw e;
 		}
 
-		logger.info("commonTestBeforeSuite: finish");		
+		logger.info("coreBeforeSuite: finish");		
 	}
 	
 	/**
@@ -136,24 +136,24 @@ public class MobileCore {
 	 * @throws HarnessException
 	 */
 	@BeforeClass( groups = { "always" } )
-	public void commonTestBeforeClass() throws HarnessException {
-		logger.info("commonTestBeforeClass: start");
+	public void coreBeforeClass() throws HarnessException {
+		logger.info("coreBeforeClass: start");
 
-		logger.info("commonTestBeforeClass: finish");
+		logger.info("coreBeforeClass: finish");
 
 	}
 
 	/**
 	 * Global BeforeMethod
 	 * 
-	 * 1. For all tests, make sure the CommonTest.startingPage is active
+	 * 1. For all tests, make sure the startingPage is active
 	 * 2. For all tests, make sure the logged in user is 
 	 * 
 	 * @throws HarnessException
 	 */
 	@BeforeMethod( groups = { "always" } )
-	public void commonTestBeforeMethod(Method method, ITestContext testContext) throws HarnessException {
-		logger.info("commonTestBeforeMethod: start");
+	public void coreBeforeMethod(Method method, ITestContext testContext) throws HarnessException {
+		logger.info("coreBeforeMethod: start");
 
 		
 		// Get the test description
@@ -177,7 +177,7 @@ public class MobileCore {
 
 	      // If a startinAccount is defined, then make sure we are authenticated as that user
 		if ( startingAccount != null ) {
-			logger.debug("commonTestBeforeMethod: startingAccount is defined");
+			logger.debug("coreBeforeMethod: startingAccount is defined");
 
 			if ( !startingAccount.equals(app.zGetActiveAccount())) {
 
@@ -195,7 +195,7 @@ public class MobileCore {
 
 		// If a startingPage is defined, then make sure we are on that page
 		if ( startingPage != null ) {
-			logger.debug("commonTestBeforeMethod: startingPage is defined");
+			logger.debug("coreBeforeMethod: startingPage is defined");
 			
 			// If the starting page is not active, navigate to it
 			if ( !startingPage.zIsActive() ) {
@@ -210,7 +210,7 @@ public class MobileCore {
 		}
 		
 
-		logger.info("commonTestBeforeMethod: finish");
+		logger.info("coreBeforeMethod: finish");
 
 	}
 
@@ -220,10 +220,10 @@ public class MobileCore {
 	 * @throws HarnessException
 	 */
 	@AfterSuite( groups = { "always" } )
-	public void commonTestAfterSuite() throws HarnessException {	
-		logger.info("commonTestAfterSuite: start");
+	public void coreAfterSuite() throws HarnessException {	
+		logger.info("coreAfterSuite: start");
 		webDriver.quit();
-		logger.info("commonTestAfterSuite: finish");
+		logger.info("coreAfterSuite: finish");
 
 	}
 	
@@ -233,10 +233,10 @@ public class MobileCore {
 	 * @throws HarnessException
 	 */
 	@AfterClass( groups = { "always" } )
-	public void commonTestAfterClass() throws HarnessException {
-		logger.info("commonTestAfterClass: start");
+	public void coreAfterClass() throws HarnessException {
+		logger.info("coreAfterClass: start");
 		
-		logger.info("commonTestAfterClass: finish");
+		logger.info("coreAfterClass: finish");
 	}
 
 	/**
@@ -245,12 +245,12 @@ public class MobileCore {
 	 * @throws HarnessException
 	 */
 	@AfterMethod( groups = { "always" } )
-	public void commonTestAfterMethod(Method method, ITestResult testResult)
+	public void coreAfterMethod(Method method, ITestResult testResult)
 	throws HarnessException {
-		logger.info("commonTestAfterMethod: start");
+		logger.info("coreAfterMethod: start");
 
 
-      logger.info("commonTestAfterMethod: finish");
+      logger.info("coreAfterMethod: finish");
 	}
 
 }

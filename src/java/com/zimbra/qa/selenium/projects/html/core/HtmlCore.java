@@ -69,8 +69,8 @@ public class HtmlCore {
 	 * @throws SAXException 
 	 */
 	@BeforeSuite( groups = { "always" } )
-	public void commonTestBeforeSuite() throws HarnessException {
-		logger.info("commonTestBeforeSuite: start");
+	public void coreBeforeSuite() throws HarnessException {
+		logger.info("coreBeforeSuite: start");
 
 
 		ConfigProperties.setAppType(ConfigProperties.AppType.HTML);
@@ -114,27 +114,27 @@ public class HtmlCore {
 		}
 
 
-		logger.info("commonTestBeforeSuite: finish");		
+		logger.info("coreBeforeSuite: finish");		
 	}
 
 	@BeforeClass( groups = { "always" } )
-	public void commonTestBeforeClass() throws HarnessException {
-		logger.info("commonTestBeforeClass: start");
+	public void coreBeforeClass() throws HarnessException {
+		logger.info("coreBeforeClass: start");
 
-		logger.info("commonTestBeforeClass: finish");
+		logger.info("coreBeforeClass: finish");
 
 	}
 
 	@BeforeMethod( groups = { "always" } )
-	public void commonTestBeforeMethod() throws HarnessException {
-		logger.info("commonTestBeforeMethod: start");
+	public void coreBeforeMethod() throws HarnessException {
+		logger.info("coreBeforeMethod: start");
 
 
 		// If test account preferences are defined, then make sure the test account
 		// uses those preferences
 		//
 		if ( (startingAccountPreferences != null) && (!startingAccountPreferences.isEmpty()) ) {
-			logger.debug("commonTestBeforeMethod: startingAccountPreferences are defined");
+			logger.debug("coreBeforeMethod: startingAccountPreferences are defined");
 
 			StringBuilder settings = new StringBuilder();
 			for (Map.Entry<String, String> entry : startingAccountPreferences.entrySet()) {
@@ -155,13 +155,13 @@ public class HtmlCore {
 		// uses those zimlet preferences
 		//
 		if ( (startingAccountZimletPreferences != null) && (!startingAccountZimletPreferences.isEmpty()) ) {
-			logger.debug("commonTestBeforeMethod: startingAccountPreferences are defined");
+			logger.debug("coreBeforeMethod: startingAccountPreferences are defined");
 			ZimbraAccount.AccountZCS().modifyUserZimletPreferences(startingAccountZimletPreferences);
 		}
 
 		// If AccountZCS is not currently logged in, then login now
 		if ( !ZimbraAccount.AccountZCS().equals(app.zGetActiveAccount()) ) {
-			logger.debug("commonTestBeforeMethod: AccountZCS is not currently logged in");
+			logger.debug("coreBeforeMethod: AccountZCS is not currently logged in");
 
 			if ( app.zPageMain.zIsActive() )
 				app.zPageMain.zLogout();
@@ -177,7 +177,7 @@ public class HtmlCore {
 
 		// If a startingPage is defined, then make sure we are on that page
 		if ( startingPage != null ) {
-			logger.debug("commonTestBeforeMethod: startingPage is defined");
+			logger.debug("coreBeforeMethod: startingPage is defined");
 
 			// If the starting page is not active, navigate to it
 			if ( !startingPage.zIsActive() ) {
@@ -191,20 +191,20 @@ public class HtmlCore {
 
 		}
 
-		logger.info("commonTestBeforeMethod: finish");
+		logger.info("coreBeforeMethod: finish");
 
 	}
 
 	@AfterSuite( groups = { "always" } )
-	public void commonTestAfterSuite() throws HarnessException {
-		logger.info("commonTestAfterSuite: start");
+	public void coreAfterSuite() throws HarnessException {
+		logger.info("coreAfterSuite: start");
 		webDriver.quit();
-		logger.info("commonTestAfterSuite: finish");
+		logger.info("coreAfterSuite: finish");
 	}
 
 	@AfterClass( groups = { "always" } )
-	public void commonTestAfterClass() throws HarnessException {
-		logger.info("commonTestAfterClass: start");
+	public void coreAfterClass() throws HarnessException {
+		logger.info("coreAfterClass: start");
 
 		// For Ajax and Html, if account is considered dirty (modified),
 		// then recreate a new account
@@ -217,7 +217,7 @@ public class HtmlCore {
 
 		}
 
-		logger.info("commonTestAfterClass: finish");
+		logger.info("coreAfterClass: finish");
 	}
 
 	/**
@@ -226,10 +226,10 @@ public class HtmlCore {
 	 * @throws HarnessException
 	 */
 	@AfterMethod( groups = { "always" } )
-	public void commonTestAfterMethod() throws HarnessException {
-		logger.info("commonTestAfterMethod: start");
+	public void coreAfterMethod() throws HarnessException {
+		logger.info("coreAfterMethod: start");
 
-		logger.info("commonTestAfterMethod: finish");
+		logger.info("coreAfterMethod: finish");
 	}
 
 }

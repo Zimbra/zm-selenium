@@ -218,7 +218,6 @@ public class QuickCommandSettings extends AjaxCore {
 		// Re-login to pick up the new preferences
 		app.zPageMain.zRefreshMainUI();
 
-		// The AjaxCommonTest.commonTestBeforeMethod() method will log into the client
 		logger.info("addQuickCommands: finish");
 	}
 }

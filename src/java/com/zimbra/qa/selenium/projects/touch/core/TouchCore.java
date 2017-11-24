@@ -62,9 +62,9 @@ public class TouchCore {
 	}
 
 	@BeforeSuite( groups = { "always" } )
-	public void commonTestBeforeSuite()
+	public void coreBeforeSuite()
 	throws HarnessException, IOException, InterruptedException, SAXException {
-		logger.info("commonTestBeforeSuite: start");
+		logger.info("coreBeforeSuite: start");
 		ZimbraAccount.ResetAccountZCS();
 
 		try
@@ -109,7 +109,7 @@ public class TouchCore {
 			logger.warn(e);
 		}
 
-		logger.info("commonTestBeforeSuite: finish");
+		logger.info("coreBeforeSuite: finish");
 	}
 
 	/**
@@ -118,10 +118,10 @@ public class TouchCore {
 	 * @throws HarnessException
 	 */
 	@BeforeClass( groups = { "always" } )
-	public void commonTestBeforeClass() throws HarnessException {
-		logger.info("commonTestBeforeClass: start");
+	public void coreBeforeClass() throws HarnessException {
+		logger.info("coreBeforeClass: start");
 
-		logger.info("commonTestBeforeClass: finish");
+		logger.info("coreBeforeClass: finish");
 
 	}
 
@@ -139,8 +139,8 @@ public class TouchCore {
 	 * @throws HarnessException
 	 */
 	@BeforeMethod( groups = { "always" } )
-	public void commonTestBeforeMethod(Method method, ITestContext testContext) throws HarnessException {
-		logger.info("commonTestBeforeMethod: start");
+	public void coreBeforeMethod(Method method, ITestContext testContext) throws HarnessException {
+		logger.info("coreBeforeMethod: start");
 
 
 		// Get the test description
@@ -166,12 +166,12 @@ public class TouchCore {
 		// uses those preferences
 		//
 		if ( (startingAccountPreferences != null) && (!startingAccountPreferences.isEmpty()) ) {
-			logger.debug("commonTestBeforeMethod: startingAccountPreferences are defined");
+			logger.debug("coreBeforeMethod: startingAccountPreferences are defined");
 
 			// If the current test accounts preferences match, then the account can be used
 			if ( !ZimbraAccount.AccountZCS().compareAccountPreferences(startingAccountPreferences) ) {
 
-				logger.debug("commonTestBeforeMethod: startingAccountPreferences do not match active account");
+				logger.debug("coreBeforeMethod: startingAccountPreferences do not match active account");
 
 				// Reset the account
 				ZimbraAccount.ResetAccountZCS();
@@ -187,7 +187,7 @@ public class TouchCore {
 
 		// If AccountZCS is not currently logged in, then login now
 		if ( !ZimbraAccount.AccountZCS().equals(app.zGetActiveAccount()) ) {
-			logger.debug("commonTestBeforeMethod: AccountZCS is not currently logged in");
+			logger.debug("coreBeforeMethod: AccountZCS is not currently logged in");
 
 			if ( app.zPageMain.zIsActive() )
 				try {
@@ -206,7 +206,7 @@ public class TouchCore {
 
 		// If a startingPage is defined, then make sure we are on that page
 		if ( startingPage != null ) {
-			logger.debug("commonTestBeforeMethod: startingPage is defined");
+			logger.debug("coreBeforeMethod: startingPage is defined");
 
 			// If the starting page is not active, navigate to it
 			if ( !startingPage.zIsActive() ) {
@@ -220,20 +220,20 @@ public class TouchCore {
 
 		}
 
-		logger.info("commonTestBeforeMethod: finish");
+		logger.info("coreBeforeMethod: finish");
 
 	}
 
 	@AfterSuite( groups = { "always" } )
-	public void commonTestAfterSuite() throws HarnessException {
-		logger.info("commonTestAfterSuite: start");
+	public void coreAfterSuite() throws HarnessException {
+		logger.info("coreAfterSuite: start");
 		webDriver.quit();
-		logger.info("commonTestAfterSuite: finish");
+		logger.info("coreAfterSuite: finish");
 	}
 
 	@AfterClass( groups = { "always" } )
-	public void commonTestAfterClass() throws HarnessException {
-		logger.info("commonTestAfterClass: start");
+	public void coreAfterClass() throws HarnessException {
+		logger.info("coreAfterClass: start");
 
 		// For Touch, if account is considered dirty (modified),
 		// then recreate a new account, but for the zimlet
@@ -246,7 +246,7 @@ public class TouchCore {
 
 		}
 
-		logger.info("commonTestAfterClass: finish");
+		logger.info("coreAfterClass: finish");
 	}
 
 	/**
@@ -255,9 +255,9 @@ public class TouchCore {
 	 * @throws HarnessException
 	 */
 	@AfterMethod( groups = { "always" } )
-	public void commonTestAfterMethod(Method method, ITestResult testResult)
+	public void coreAfterMethod(Method method, ITestResult testResult)
 	throws HarnessException {
-		logger.info("commonTestAfterMethod: start");
+		logger.info("coreAfterMethod: start");
 
 
 		// If the active URL does not match the base URL, then
@@ -288,7 +288,7 @@ public class TouchCore {
             //app.zPageLogin.sOpen(ConfigProperties.getBaseURL());
         }
 
-		logger.info("commonTestAfterMethod: finish");
+		logger.info("coreAfterMethod: finish");
 	}
 
 

@@ -93,7 +93,7 @@ public class AdminCore {
 	}
 
 	@BeforeSuite(groups = { "always" })
-	public void commonTestBeforeSuite() throws HarnessException {
+	public void coreBeforeSuite() throws HarnessException {
 
 		logger.info("BeforeSuite: start");
 
@@ -149,13 +149,13 @@ public class AdminCore {
 	}
 
 	@BeforeClass(groups = { "always" })
-	public void commonTestBeforeClass() throws HarnessException {
+	public void coreBeforeClass() throws HarnessException {
 		logger.info("BeforeClass: start");
 		logger.info("BeforeClass: finish");
 	}
 
 	@BeforeMethod(groups = { "always" })
-	public void commonTestBeforeMethod(Method method, ITestContext testContext) throws HarnessException {
+	public void coreBeforeMethod(Method method, ITestContext testContext) throws HarnessException {
 		logger.info("BeforeMethod: start");
 
 		// Get the test name & description
@@ -181,7 +181,7 @@ public class AdminCore {
 		// If a startinAccount is defined, then make sure we are authenticated
 		// as that user
 		if (startingAccount != null) {
-			logger.debug("commonTestBeforeMethod: startingAccount is defined");
+			logger.debug("coreBeforeMethod: startingAccount is defined");
 
 			zHandleNetworkModulesNGDialog();
 
@@ -221,7 +221,7 @@ public class AdminCore {
 
 		// If a startingPage is defined, then make sure we are on that page
 		if (startingPage != null) {
-			logger.debug("commonTestBeforeMethod: startingPage is defined");
+			logger.debug("coreBeforeMethod: startingPage is defined");
 
 			// If the starting page is not active, navigate to it
 			if (!startingPage.zIsActive()) {
@@ -264,7 +264,7 @@ public class AdminCore {
 	}
 
 	@AfterSuite(groups = { "always" })
-	public void commonTestAfterSuite() throws HarnessException, IOException {
+	public void coreAfterSuite() throws HarnessException, IOException {
 		logger.info("AfterSuite: start");
 
 		if (ConfigProperties.getStringProperty("javascript.errors.report").equals("true")) {
@@ -284,13 +284,13 @@ public class AdminCore {
 	}
 
 	@AfterClass(groups = { "always" })
-	public void commonTestAfterClass() throws HarnessException {
+	public void coreAfterClass() throws HarnessException {
 		logger.info("AfterClass: start");
 		logger.info("AfterClass: finish");
 	}
 
 	@AfterMethod(groups = { "always" })
-	public void commonTestAfterMethod(Method method, ITestResult testResult) throws HarnessException, IOException {
+	public void coreAfterMethod(Method method, ITestResult testResult) throws HarnessException, IOException {
 		logger.info("AfterMethod: start");
 
 		if (ConfigProperties.getStringProperty("javascript.errors.report").equals("true")) {
@@ -450,7 +450,7 @@ public class AdminCore {
 
 		// Get test PASSED/FAILED status
 		if (testResult.getStatus() == ITestResult.FAILURE){
-			app.zPageMain.zRefreshMainUI();
+			ZimbraAdminAccount.ResetAdminAccount();
 		}
 
 		logger.info("AfterMethod: finish");

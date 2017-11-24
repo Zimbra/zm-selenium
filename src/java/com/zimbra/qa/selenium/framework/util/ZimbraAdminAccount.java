@@ -265,11 +265,6 @@ public class ZimbraAdminAccount extends ZimbraAccount {
 		return (_AdminConsoleAdmin);
 	}
 
-	public static synchronized void ResetAccountAdminConsoleAdmin() {
-		logger.warn("AdminConsoleAdmin is being reset");
-		_AdminConsoleAdmin = null;
-	}
-
 	private static ZimbraAdminAccount _AdminConsoleAdmin = null;
 
 	/**
@@ -279,9 +274,11 @@ public class ZimbraAdminAccount extends ZimbraAccount {
 	 * server2, then all accounts need to be reset, otherwise the second request
 	 * will have references to server1.
 	 */
-	public static void reset() {
-		ZimbraAdminAccount._AdminConsoleAdmin = null;
-		ZimbraAdminAccount._GlobalAdmin = null;
+	public static synchronized void ResetAdminAccount() {
+		logger.warn("AdminConsoleAdmin is being reset");
+		_AdminConsoleAdmin = null;
+		_GlobalAdmin = null;
+		AdminConsoleAdmin();
 	}
 
 	/**
