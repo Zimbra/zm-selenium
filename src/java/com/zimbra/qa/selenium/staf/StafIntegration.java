@@ -244,7 +244,7 @@ public class StafIntegration implements STAFServiceInterfaceLevel30 {
         	return (new STAFResult(STAFResult.Ok, "already running"));
         }
 
-        String sumTestsResult, executeTestsResult = null;
+        String countTestsResult, executeTestsResult = null;
         StringBuilder resultString = new StringBuilder();
 
 		try {
@@ -262,14 +262,14 @@ public class StafIntegration implements STAFServiceInterfaceLevel30 {
 
 			// Count testcases
 			try {
-				sumTestsResult = harness.sumTestCounts();
+				countTestsResult = harness.countTests();
 			} catch (FileNotFoundException e) {
 				return (new STAFResult(STAFResult.JavaError, getStackTrace(e)));
 			} catch (IOException e) {
 				return (new STAFResult(STAFResult.JavaError, getStackTrace(e)));
 			}
-			String[] splitSumTestsResult = sumTestsResult.split("Number of matching test cases: ");
-			ExecuteHarnessMain.testsCount = Integer.parseInt(splitSumTestsResult[1]);
+			String[] splitCountTestsResult = countTestsResult.split("Number of matching test cases: ");
+			ExecuteHarnessMain.testsCount = Integer.parseInt(splitCountTestsResult[1]);
 
 	        // Execute
 			try {
