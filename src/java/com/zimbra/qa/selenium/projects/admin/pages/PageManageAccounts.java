@@ -48,8 +48,6 @@ public class PageManageAccounts extends AbsTab {
 		public static final String NEW_MENU = "css=div[id='zm__zb_currentApp__MENU_POP'] div[class='ImgNewAccount']";
 		public static final String NEW_ADMIN_USER = "css=td[id='zmi__zb_currentApp__NEW_ADMIN_title']:contains('New Administrator')";
 		public static final String DELETE_BUTTON = "css=div[id='zm__zb_currentApp__MENU_POP'] div[class='ImgDelete']";
-		// public static final String
-		// EDIT_BUTTON="css=div[id='zm__zb_currentApp__MENU_POP'] div[class='ImgEdit']";
 		public static final String EDIT_BUTTON = "css=td[id='zmi__zb_currentApp__EDIT_title']:contains('Edit')";
 		public static final String RIGHT_CLICK_MENU_DELETE_BUTTON = "css=div[id^='zm__ACLV__MENU_POP'] div[class='ImgDelete']";
 		public static final String RIGHT_CLICK_MENU_EDIT_BUTTON = "css=td[id='zmi__ACLV__EDIT_title']:contains('Edit')";
@@ -67,7 +65,6 @@ public class PageManageAccounts extends AbsTab {
 		public static final String CONFIGURE_GRANTS = "css=td[id^='zmi__zb_currentApp__UNKNOWN']:contains('Configure Grants')";
 		public static final String RIGHT_CLICK_CONFIGURE_GRANTS = "css=td[id^='zmi__ACLV__UNKNOWN']:contains('Configure Grants')";
 		public static final String SEARCH_QUERY_LABEL = "div[id^='_XForm_4_output']:contains('Search query')";
-
 	}
 
 	public PageManageAccounts(AbsApplication application) {
@@ -147,8 +144,8 @@ public class PageManageAccounts extends AbsTab {
 		logger.info(myPageName() + " zListItem(" + action + ", " + accountEmailAddress + ")");
 
 		AbsPage page = null;
-		String accountLocator = null;
-		Boolean accountFound = false;
+		String accountLocator = "//div[@id='zl__ACCT_MANAGE']//div[starts-with(@id,'zli__DWT')]//td[starts-with(@id,'account_data_emailaddress_')]/nobr[.='"
+				+ accountEmailAddress + "']";
 
 		SleepUtil.sleepMedium();
 
@@ -161,37 +158,26 @@ public class PageManageAccounts extends AbsTab {
 
 		if (count >= 50) {
 
-			for (int accountPaging = 1; accountPaging <= 30; accountPaging++) {
+			for (int accountPaging = 1; accountPaging <= 50; accountPaging++) {
 
 				String pageCounter = rowsLocator + ":nth-child(" + scrollCounter + ")";
-				SleepUtil.sleepVerySmall();
+
 				if (this.sIsElementPresent(pageCounter)) {
 					sClickAt(pageCounter, "");
 					SleepUtil.sleepVerySmall();
 					this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_DOWN);
+					SleepUtil.sleepVerySmall();
 					scrollCounter = scrollCounter + 20;
 				} else {
 					break;
 				}
 			}
+		}
 
-			accountLocator = "//div[@id='zl__ACCT_MANAGE']//div[starts-with(@id,'zli__DWT')]//td[starts-with(@id,'account_data_emailaddress_')]/nobr[.='"
-					+ accountEmailAddress + "']";
-			// accountLocator = "css=div[id^='zli__DWT']
-			// td[id^='account_data_emailaddress']:contains('" + account + "')";
-			if (sIsElementPresent(accountLocator)) {
-				accountFound = true;
-			}
-
-			if (accountFound) {
-				if (action == Action.A_LEFTCLICK) {
-					sClickAt(accountLocator, "");
-				} else if (action == Action.A_RIGHTCLICK) {
-					sRightClickAt(accountLocator, "");
-				}
-			} else {
-				throw new HarnessException("Couldn't find account " + accountEmailAddress + " after virtual paging.");
-			}
+		if (action == Action.A_LEFTCLICK) {
+			sClickAt(accountLocator, "");
+		} else if (action == Action.A_RIGHTCLICK) {
+			sRightClickAt(accountLocator, "");
 		}
 
 		SleepUtil.sleepSmall();
@@ -262,10 +248,12 @@ public class PageManageAccounts extends AbsTab {
 				optionLocator = "css=td[id='zmi__SCHLV__UNKNOWN_79_title']";
 				page = null;
 			}
+			sClickAt(optionLocator, "");
 
-			sClick(optionLocator);
+		} else if (action == Action.A_LEFTCLICK) {
 
-		} else {
+			accountLocator = "//div[@id='zl__ACCT_MANAGE']//div[starts-with(@id,'zli__DWT')]//td[starts-with(@id,'account_data_emailaddress_')]/nobr[.='"
+					+ accountEmailAddress + "']";
 
 			// How many items are in the page?
 			String rowsLocator = "css=div#zl__ACCT_MANAGE div[id$='__rows'] div[id^='zli__']";
@@ -276,37 +264,22 @@ public class PageManageAccounts extends AbsTab {
 
 			if (count >= 50) {
 
-				for (int accountPaging = 1; accountPaging <= 30; accountPaging++) {
+				for (int accountPaging = 1; accountPaging <= 50; accountPaging++) {
 
 					String pageCounter = rowsLocator + ":nth-child(" + scrollCounter + ")";
-					SleepUtil.sleepVerySmall();
+
 					if (this.sIsElementPresent(pageCounter)) {
 						sClickAt(pageCounter, "");
 						SleepUtil.sleepVerySmall();
 						this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_DOWN);
+						SleepUtil.sleepVerySmall();
 						scrollCounter = scrollCounter + 20;
 					} else {
 						break;
 					}
 				}
-
-				accountLocator = "//div[@id='zl__ACCT_MANAGE']//div[starts-with(@id,'zli__DWT')]//td[starts-with(@id,'account_data_emailaddress_')]/nobr[.='"
-						+ accountEmailAddress + "']";
-				// accountLocator = "css=div[id^='zli__DWT']
-				// td[id^='account_data_emailaddress']:contains('" + account + "')";
-				if (sIsElementPresent(accountLocator)) {
-					accountFound = true;
-				}
-
-				if (accountFound) {
-					if (action == Action.A_LEFTCLICK) {
-						sClickAt(accountLocator, "");
-					}
-				} else {
-					throw new HarnessException(
-							"Couldn't find account " + accountEmailAddress + " after virtual paging.");
-				}
 			}
+			sClickAt(accountLocator, "");
 		}
 
 		SleepUtil.sleepMedium();
