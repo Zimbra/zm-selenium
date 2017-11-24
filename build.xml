@@ -318,7 +318,7 @@
 
 		<echo message="Creating selenium-staf package tgz file..."/>
 		<tar destfile="${selenium-staf-package.filepath}" compression="gzip">
-			<tarfileset dir="${selenium-staf-package.dir}" prefix="${selenium-staf-package}" mode="777">
+			<tarfileset dir="${selenium-staf-package.dir}" prefix="${selenium-staf-package.name}" mode="777">
 				<include name="**/*"/>
 			</tarfileset>
 		</tar>
