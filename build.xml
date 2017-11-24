@@ -1,137 +1,207 @@
-<project xmlns:ivy="antlib:org.apache.ivy.ant" name="zm-selenium" default="jar" basedir=".">
+<project xmlns:ivy="antlib:org.apache.ivy.ant" name="zm-selenium" default="selenium-jar" basedir=".">
 
-    <import file="../zm-zcs/ant-global.xml"/>
-	<property name="build.version" value="8.8.0"/>
+	<property name="selenium.version" value="3.7.1"/>
+
+	<property name="ivy.jar.dir" location="${user.home}/.ant/lib"/>
+	<property name="ivy.install.version" value="2.3.0"/>
+	<property name="ivy.jar.file" value="${ivy.jar.dir}/ivy-${ivy.install.version}.jar"/>
+	<property name="ivy.status" value="integration"/>
+	<property name="ivy.organisation" value="synacor"/>
+	<property name="ivy.module" value="zm-selenium"/>
+
+	<property name="src.java.dir" location="src/java"/>
+	<property name="build.dir" location="build"/>
+	<property name="build.tmp.dir" location="${build.dir}/tmp"/>
+	<property name="build.dist.dir" location="${build.dir}/dist"/>
+	<property name="build.dist.lib.dir" location="${build.dist.dir}/lib"/>
+	<property name="build.classes.dir" location="${build.dir}/classes"/>
+	<property name="build.deps.dir" location="${user.home}/.zcs-deps"/>
 	<property name="build.resources.dir" location="${build.dir}/resources"/>
-	<property name="generated.dir" location="${build.dir}/generated"/>
-	<property name="generated.java.dir" location="${generated.dir}/java"/>
-	<property name="generated.javadocs.dir" location="${generated.dir}/javadocs"/>
-	<property name="dist.dir" location="${build.dir}/dist/zimbra-${build.version}"/>
-	<property name="conf.dir" location="conf"/>
+	<property name="build.coverage.dir" location="${build.dir}/coverage"/>
 
-	<property name="seleniumjar.file" value="ZimbraSelenium.jar"/>
-	<property name="selenium-staf.file-name" value="ZimbraSeleniumSTAF"/>
-	<property name="stafjar.file" value="${selenium-staf.file-name}.jar"/>
+	<property name="selenium-jar.file" value="ZimbraSelenium.jar"/>
+	<property name="selenium-staf-package.name" value="ZimbraSeleniumSTAF"/>
+	<property name="selenium-staf-jar.file" value="${selenium-staf-package.name}.jar"/>
 
-	<property name="tms.dir" location="${build.dir}/tms"/>
-	<property name="tms.tgz.file" value="${selenium-staf.file-name}.tgz"/>
-	<property name="tms.tgz.filepath" location="${dist.dir}/${tms.tgz.file}"/>
+	<property name="selenium-staf-package.dir" location="${build.dist.dir}/${selenium-staf-package.name}"/>
+	<property name="selenium-staf-package-tgz.file" value="${selenium-staf-package.name}.tgz"/>
+	<property name="selenium-staf-package.filepath" location="${build.dist.dir}/${selenium-staf-package-tgz.file}"/>
 
-	<property name="network-selenium.dir" location="../zm-network-selenium"/>
-	<property name="network-private-data.dir" location="../zm-selenium/data/private"/>
-	<property name="network-ajax-tests.dir" location="../zm-selenium/src/java/com/zimbra/qa/selenium/projects/ajax/tests/network"/>
-	<property name="network-admin-tests.dir" location="../zm-selenium/src/java/com/zimbra/qa/selenium/projects/admin/tests/network"/>
-	<property name="network-universal-tests.dir" location="../zm-selenium/src/java/com/zimbra/qa/selenium/projects/universal/tests/network"/>
-	<property name="store-conf.dir" location="../zm-mailbox/store-conf"/>
-	<property name="web-client.dir" location="../zm-web-client"/>
-	<property name="ajax.dir" location="../zm-ajax"/>
-	<property name="zimlets.dir" location="../zm-zimlets"/>
+	<property name="zm-selenium-network-private-data.dir" location="data/private"/>
+	<property name="zm-selenium-network-ajax-tests.dir" location="${src.java.dir}/com/zimbra/qa/selenium/projects/ajax/tests/network"/>
+	<property name="zm-selenium-network-admin-tests.dir" location="${src.java.dir}/com/zimbra/qa/selenium/projects/admin/tests/network"/>
+	<property name="zm-network-selenium.dir" location="../zm-network-selenium"/>
+	<property name="zm-mailbox-store-conf.dir" location="../zm-mailbox/store-conf"/>
+	<property name="zm-web-client.dir" location="../zm-web-client"/>
+	<property name="zm-ajax.dir" location="../zm-ajax"/>
+	<property name="zm-zimlets.dir" location="../zm-zimlets"/>
 
-	<path id="all.java.path">
+	<property name="resources-jar.file" value="resources.jar"/>
+	<property name="coverage-jar.file" value="coverage.jar"/>
+
+	<taskdef resource="net/sf/antcontrib/antlib.xml">
+		<classpath>
+			<pathelement location="${build.deps.dir}/ant-contrib-1.0b1.jar"/>
+		</classpath>
+	</taskdef>
+
+	<path id="src.java.dir">
 		<pathelement location="${src.java.dir}"/>
-		<pathelement location="${generated.java.dir}"/>
 	</path>
 
-	<target name="clean" depends="delete-network-content" description="Removes all built files">
+	<path id="build.dist.lib.classpath">
+		<fileset dir="${build.dist.lib.dir}">
+			<include name="*.jar"/>
+		</fileset>
+	</path>
+
+	<target name="help" description="Selenium project target related helps">
+		<echo message="selenium-jar: Creates the selenium jar file"/>
+		<echo message="selenium-staf-package: Creates the selenium-staf package tgz file"/>
+	</target>
+
+	<target name="clean-zm-selenium-network-content" description="Deletes network related data and tests">
+		<echo message="Deleting network related data and tests..."/>
+		<delete dir="zm-selenium-network-private-data.dir}"/>
+		<delete dir="zm-selenium-network-ajax-tests.dir}"/>
+		<delete dir="zm-selenium-network-admin-tests.dir}"/>
+	</target>
+
+	<target name="clean" depends="clean-zm-selenium-network-content" description="Cleans build directory">
+		<echo message="Cleaning build directory..."/>
 		<delete dir="${build.dir}"/>
 	</target>
 
-	<target name="build-init" description="Create folders as required">
+	<target name="setup" description="Creates required directories">
+		<echo message="Create required directories..."/>
 		<mkdir dir="${build.dir}"/>
-		<mkdir dir="${dist.dir}"/>
-		<mkdir dir="${dist.lib.dir}"/>
-		<mkdir dir="${generated.java.dir}"/>
-		<mkdir dir="${generated.javadocs.dir}"/>
+		<mkdir dir="${build.dist.dir}"/>
+		<mkdir dir="${build.dist.lib.dir}"/>
 		<mkdir dir="${build.classes.dir}"/>
 	</target>
 
-	<target name="compile" depends="build-init,network-content,bundles-jar,coverage-jar,resolve" description="Compiles the source code">
+	<target name="download-ivy" description="Downloads IVY">
+		<echo message="Downloading IVY..."/>
+		<if>
+			<not>
+				<available file="${ivy.jar.file}" type="file"/>
+			</not>
+			<then>
+				<mkdir dir="${ivy.jar.dir}"/>
+				<get src="https://repo1.maven.org/maven2/org/apache/ivy/ivy/${ivy.install.version}/ivy-${ivy.install.version}.jar" dest="${ivy.jar.file}" usetimestamp="true"/>
+			</then>
+		</if>
+	</target>
+
+	<target name="init-ivy" depends="download-ivy" description="Initializes IVY">
+		<echo message="Initializing IVY..."/>
+		<path id="ivy.lib.path">
+			<fileset dir="${ivy.jar.dir}" includes="*.jar"/>
+		</path>
+		<taskdef resource="org/apache/ivy/ant/antlib.xml" uri="antlib:org.apache.ivy.ant" classpathref="ivy.lib.path"/>
+		<ivy:settings id="ivy.settings" file="conf/ivysettings.xml"/>
+	</target>
+
+	<target name="resolve" depends="init-ivy" description="Resolves dependencies">
+		<echo message="Resolving dependencies..."/>
+		<ivy:resolve settingsRef="ivy.settings"/>
+		<ivy:cachepath pathid="class.path" settingsRef="ivy.settings"/>
+	</target>
+
+	<target name="zm-network-selenium-content" description="Copies network related data and tests">
+		<echo message="Copying network related data and tests..."/>
+		<if> <available file="${zm-network-selenium.dir}" type="dir"/>
+			<then>
+				<copy todir="src">
+					<fileset dir="${zm-network-selenium.dir}/src"/>
+				</copy>
+				<copy todir="data">
+					<fileset dir="${zm-network-selenium.dir}/data"/>
+				</copy>
+			</then>
+		</if>
+	</target>
+
+	<target name="compile" depends="setup,zm-network-selenium-content,resources-jar,coverage-jar,resolve" description="Compiles the source code">
 		<echo message="Compiling framework..."/>
-		<javac destdir="${build.classes.dir}" debug="true" classpathref="class.path" nowarn="on" encoding="iso-8859-1">
-			<src refid="all.java.path"/>
+		<javac destdir="${build.classes.dir}" debug="true" classpathref="class.path" nowarn="on" includeantruntime="false" encoding="iso-8859-1">
+			<src refid="src.java.dir"/>
 		</javac>
 	</target>
 
-	<target name="jar" depends="compile" description="Creates the jar file">
-		<jar destfile="${dist.lib.dir}/${seleniumjar.file}" basedir="${build.classes.dir}"/>
+	<target name="selenium-jar" depends="compile" description="Creates the selenium jar file">
+		<echo message="Creating selenium jar file..."/>
+		<jar destfile="${build.dist.lib.dir}/${selenium-jar.file}" basedir="${build.classes.dir}"/>
 	</target>
 
-	<target name="javadocs" description="Build javadocs">
-		<javadoc destdir="${generated.javadocs.dir}" classpathref="class.path" access="public" useexternalfile="yes">
-			<link offline="true" href="http://java.sun.com/j2se/1.5.0/docs/api package-list" packagelistLoc="."/>
-			<fileset dir="${src.java.dir}/com/zimbra/qa/selenium/framework" includes="**/*.java"/>
-			<fileset dir="${src.java.dir}/com/zimbra/qa/selenium/projects/ajax/core" includes="**/*.java"/>
-			<fileset dir="${src.java.dir}/com/zimbra/qa/selenium/projects/ajax/ui" includes="**/*.java"/>
-			<fileset dir="${src.java.dir}/com/zimbra/qa/selenium/projects/admin/core" includes="**/*.java"/>
-			<fileset dir="${src.java.dir}/com/zimbra/qa/selenium/projects/admin/ui" includes="**/*.java"/>
-			<fileset dir="${src.java.dir}/com/zimbra/qa/selenium/projects/universal/core" includes="**/*.java"/>
-			<fileset dir="${src.java.dir}/com/zimbra/qa/selenium/projects/universal/ui" includes="**/*.java"/>
-		</javadoc>
-	</target>
-
-	<target name="bundles-classes" description="Copies the I18N properties files to build">
+	<target name="resources-classes" description="Copies the I18N properties files to build">
+		<echo message="Copying the I18N properties files to build..."/>
 		<copy todir="${build.resources.dir}">
-			<fileset dir="${web-client.dir}/WebRoot/messages/"/>
-			<fileset dir="${ajax.dir}/WebRoot/messages/"/>
+			<fileset dir="${zm-web-client.dir}/WebRoot/messages/"/>
+			<fileset dir="${zm-ajax.dir}/WebRoot/messages/"/>
 		</copy>
 		<copy todir="${build.resources.dir}">
-			<fileset dir="${store-conf.dir}/conf/msgs/"/>
+			<fileset dir="${zm-mailbox-store-conf.dir}/conf/msgs/"/>
 		</copy>
 		<copy todir="${build.resources.dir}">
-			<fileset dir="${zimlets.dir}/src/zimlet/com_zimbra_attachcontacts/">
+			<fileset dir="${zm-zimlets.dir}/src/zimlet/com_zimbra_attachcontacts/">
 				<filename name="*.properties"/>
 			</fileset>
-			<fileset dir="${zimlets.dir}/src/zimlet/com_zimbra_attachmail/">
+			<fileset dir="${zm-zimlets.dir}/src/zimlet/com_zimbra_attachmail/">
 				<filename name="*.properties"/>
 			</fileset>
-			<fileset dir="${zimlets.dir}/src/zimlet/com_zimbra_date/">
+			<fileset dir="${zm-zimlets.dir}/src/zimlet/com_zimbra_date/">
 				<filename name="*.properties"/>
 			</fileset>
-			<fileset dir="${zimlets.dir}/src/zimlet/com_zimbra_dnd/">
+			<fileset dir="${zm-zimlets.dir}/src/zimlet/com_zimbra_dnd/">
 				<filename name="*.properties"/>
 			</fileset>
-			<fileset dir="${zimlets.dir}/src/zimlet/com_zimbra_email/">
+			<fileset dir="${zm-zimlets.dir}/src/zimlet/com_zimbra_email/">
 				<filename name="*.properties"/>
 			</fileset>
-			<fileset dir="${zimlets.dir}/src/zimlet/com_zimbra_linkedin/">
+			<fileset dir="${zm-zimlets.dir}/src/zimlet/com_zimbra_linkedin/">
 				<filename name="*.properties"/>
 			</fileset>
-			<fileset dir="${zimlets.dir}/src/zimlet/com_zimbra_linkedinimage/">
+			<fileset dir="${zm-zimlets.dir}/src/zimlet/com_zimbra_linkedinimage/">
 				<filename name="*.properties"/>
 			</fileset>
-			<fileset dir="${zimlets.dir}/src/zimlet/com_zimbra_phone/">
+			<fileset dir="${zm-zimlets.dir}/src/zimlet/com_zimbra_phone/">
 				<filename name="*.properties"/>
 			</fileset>
-			<fileset dir="${zimlets.dir}/src/zimlet/com_zimbra_social/">
+			<fileset dir="${zm-zimlets.dir}/src/zimlet/com_zimbra_social/">
 				<filename name="*.properties"/>
 			</fileset>
-			<fileset dir="${zimlets.dir}/src/zimlet/com_zimbra_srchhighlighter/">
+			<fileset dir="${zm-zimlets.dir}/src/zimlet/com_zimbra_srchhighlighter/">
 				<filename name="*.properties"/>
 			</fileset>
-			<fileset dir="${zimlets.dir}/src/zimlet/com_zimbra_url/">
+			<fileset dir="${zm-zimlets.dir}/src/zimlet/com_zimbra_url/">
 				<filename name="*.properties"/>
 			</fileset>
-			<fileset dir="${zimlets.dir}/src/zimlet/com_zimbra_webex/">
+			<fileset dir="${zm-zimlets.dir}/src/zimlet/com_zimbra_webex/">
 				<filename name="*.properties"/>
 			</fileset>
 		</copy>
 	</target>
 
-	<target name="bundles-jar" depends="bundles-classes" description="Creates a jar with all resource bundles">
-		<jar destfile="${dist.lib.dir}/resources.jar" basedir="${build.resources.dir}"/>
+	<target name="resources-jar" depends="resources-classes" description="Creates jar with all resource bundles">
+		<echo message="Creating jar with all resource bundles..."/>
+		<jar destfile="${build.dist.lib.dir}/${resources-jar.file}" basedir="${build.resources.dir}"/>
 	</target>
 
-	<target name="coverage-classes" description="Copies the coverage website files to build">
+	<target name="coverage-classes" description="Copies the coverage files to build">
+		<echo message="Copying the coverage files to build..."/>
 		<copy todir="${build.coverage.dir}">
 			<fileset dir="${src.java.dir}/com/zimbra/qa/selenium/framework/util/coverage"/>
 		</copy>
 	</target>
 
-	<target name="coverage-jar" depends="coverage-classes" description="Creates a jar with all coverage website files">
-		<jar destfile="${dist.lib.dir}/coverage.jar" basedir="${build.coverage.dir}"/>
+	<target name="coverage-jar" depends="coverage-classes" description="Creates jar with all coverage files">
+		<echo message="Creating jar with all coverage files..."/>
+		<jar destfile="${build.dist.lib.dir}/${coverage-jar.file}" basedir="${build.coverage.dir}"/>
 	</target>
 
-	<target name="jar-selenium" depends="jar, coverage-jar" description="Creates the STAF jar file for the selenium service">
+	<target name="selenium-staf-jar" depends="selenium-jar, coverage-jar" description="Creates selenium-staf jar">
+		<echo message="Creating selenium-staf jar..."/>
 		<property name="build.staf.selenium" location="${build.dir}/staf/selenium"/>
 		<property name="build.staf.selenium.jars.dir" location="${build.staf.selenium}/STAF-INF/jars"/>
 		<property name="build.staf.selenium.classes.dir" location="${build.staf.selenium}/STAF-INF/classes"/>
@@ -140,68 +210,68 @@
 			<fileset dir="${build.classes.dir}"/>
 		</copy>
 
-		<ivy:install organisation="ant-contrib" module="ant-contrib" revision="1.0b3" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
-		<ivy:install organisation="ant-tar-patched" module="ant-tar-patched" revision="1.0" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
-		<ivy:install organisation="com.google.code.gson" module="gson" revision="2.8.0" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
-		<ivy:install organisation="com.google.guava" module="guava" revision="23.0" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
-		<ivy:install organisation="com.jcraft" module="jsch" revision="0.1.53" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
-		<ivy:install organisation="commons-beanutils" module="commons-beanutils" revision="1.7.0" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
-		<ivy:install organisation="commons-cli" module="commons-cli" revision="1.2" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
-		<ivy:install organisation="commons-codec" module="commons-codec" revision="1.7" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
-		<ivy:install organisation="commons-collections" module="commons-collections" revision="3.2.2" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
-		<ivy:install organisation="commons-configuration" module="commons-configuration" revision="1.10" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
-		<ivy:install organisation="commons-httpclient" module="commons-httpclient" revision="3.1" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
-		<ivy:install organisation="commons-io" module="commons-io" revision="2.5" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
-		<ivy:install organisation="commons-lang" module="commons-lang" revision="2.6" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
-		<ivy:install organisation="commons-logging" module="commons-logging" revision="1.0.3" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
-		<ivy:install organisation="dom4j" module="dom4j" revision="1.5.2" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
-		<ivy:install organisation="javax.mail" module="mail" revision="1.4.5" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
-		<ivy:install organisation="javax.servlet" module="javax.servlet-api" revision="3.1.0" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
-		<ivy:install organisation="jaxen" module="jaxen" revision="1.1-beta-6" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
-		<ivy:install organisation="libidn" module="libidn" revision="1.24" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
-		<ivy:install organisation="log4j" module="apache-log4j-extras" revision="1.0" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
-		<ivy:install organisation="log4j" module="log4j" revision="1.2.16" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
-		<ivy:install organisation="net.sf.ezmorph" module="ezmorph" revision="1.0.6" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
-		<ivy:install organisation="net.sf.json-lib" module="json-lib" revision="2.4" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
-		<ivy:install organisation="net.sf.staf" module="jstaf" revision="3.4.4" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
-		<ivy:install organisation="net.sourceforge.htmlcleaner" module="htmlcleaner" revision="2.2" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
-		<ivy:install organisation="org.apache.ant" module="ant" revision="1.10.1" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
-		<ivy:install organisation="org.apache.commons" module="commons-exec" revision="1.3" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
-		<ivy:install organisation="org.apache.httpcomponents" module="httpclient" revision="4.5.3" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
-		<ivy:install organisation="org.apache.httpcomponents" module="httpcore" revision="4.4.6" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
-		<ivy:install organisation="org.apache.ws.commons.util" module="ws-commons-util" revision="1.0.2" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
-		<ivy:install organisation="org.apache.xmlrpc" module="xmlrpc-client" revision="3.1.3" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
-		<ivy:install organisation="org.apache.xmlrpc" module="xmlrpc-common" revision="3.1.3" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
-		<ivy:install organisation="org.clapper" module="javautil" revision="3.2.0" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
-		<ivy:install organisation="org.json" module="json" revision="20160810" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
-		<ivy:install organisation="org.mariadb.jdbc" module="mariadb-java-client" revision="1.1.8" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
-		<ivy:install organisation="org.seleniumhq.selenium" module="selenium-server" revision="3.4.0" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
-		<ivy:install organisation="org.testng" module="testng" revision="5.12.1" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
-		<ivy:install organisation="xalan" module="serializer" revision="2.7.2" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
-		<ivy:install organisation="xml-apis" module="xml-apis" revision="2.0.2" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
-		<ivy:install organisation="org.seleniumhq.selenium" module="selenium-api" revision="3.7.1" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
-		<ivy:install organisation="org.seleniumhq.selenium" module="selenium-chrome-driver" revision="3.7.1" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
-		<ivy:install organisation="org.seleniumhq.selenium" module="selenium-edge-driver" revision="3.7.1" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
-		<ivy:install organisation="org.seleniumhq.selenium" module="selenium-firefox-driver" revision="3.7.1" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
-		<ivy:install organisation="org.seleniumhq.selenium" module="selenium-ie-driver" revision="3.7.1" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
-		<ivy:install organisation="org.seleniumhq.selenium" module="selenium-java" revision="3.7.1" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
-		<ivy:install organisation="org.seleniumhq.selenium" module="selenium-remote-driver" revision="3.7.1" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
-		<ivy:install organisation="org.seleniumhq.selenium" module="selenium-safari-driver" revision="3.7.1" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
-		<ivy:install organisation="org.seleniumhq.selenium" module="selenium-support" revision="3.7.1" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
-		<ivy:install organisation="zimbra" module="zm-common" revision="latest.integration" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
-		<ivy:install organisation="zimbra" module="zm-native" revision="latest.integration" settingsRef="dev.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
+		<ivy:install organisation="ant-contrib" module="ant-contrib" revision="1.0b3" settingsRef="ivy.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
+		<ivy:install organisation="ant-tar-patched" module="ant-tar-patched" revision="1.0" settingsRef="ivy.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
+		<ivy:install organisation="com.google.code.gson" module="gson" revision="2.8.0" settingsRef="ivy.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
+		<ivy:install organisation="com.google.guava" module="guava" revision="23.0" settingsRef="ivy.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
+		<ivy:install organisation="com.jcraft" module="jsch" revision="0.1.53" settingsRef="ivy.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
+		<ivy:install organisation="commons-beanutils" module="commons-beanutils" revision="1.7.0" settingsRef="ivy.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
+		<ivy:install organisation="commons-cli" module="commons-cli" revision="1.2" settingsRef="ivy.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
+		<ivy:install organisation="commons-codec" module="commons-codec" revision="1.7" settingsRef="ivy.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
+		<ivy:install organisation="commons-collections" module="commons-collections" revision="3.2.2" settingsRef="ivy.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
+		<ivy:install organisation="commons-configuration" module="commons-configuration" revision="1.10" settingsRef="ivy.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
+		<ivy:install organisation="commons-httpclient" module="commons-httpclient" revision="3.1" settingsRef="ivy.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
+		<ivy:install organisation="commons-io" module="commons-io" revision="2.5" settingsRef="ivy.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
+		<ivy:install organisation="commons-lang" module="commons-lang" revision="2.6" settingsRef="ivy.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
+		<ivy:install organisation="commons-logging" module="commons-logging" revision="1.0.3" settingsRef="ivy.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
+		<ivy:install organisation="dom4j" module="dom4j" revision="1.5.2" settingsRef="ivy.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
+		<ivy:install organisation="javax.mail" module="mail" revision="1.4.5" settingsRef="ivy.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
+		<ivy:install organisation="javax.servlet" module="javax.servlet-api" revision="3.1.0" settingsRef="ivy.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
+		<ivy:install organisation="jaxen" module="jaxen" revision="1.1-beta-6" settingsRef="ivy.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
+		<ivy:install organisation="libidn" module="libidn" revision="1.24" settingsRef="ivy.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
+		<ivy:install organisation="log4j" module="apache-log4j-extras" revision="1.0" settingsRef="ivy.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
+		<ivy:install organisation="log4j" module="log4j" revision="1.2.16" settingsRef="ivy.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
+		<ivy:install organisation="net.sf.ezmorph" module="ezmorph" revision="1.0.6" settingsRef="ivy.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
+		<ivy:install organisation="net.sf.json-lib" module="json-lib" revision="2.4" settingsRef="ivy.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
+		<ivy:install organisation="net.sf.staf" module="jstaf" revision="3.4.4" settingsRef="ivy.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
+		<ivy:install organisation="net.sourceforge.htmlcleaner" module="htmlcleaner" revision="2.2" settingsRef="ivy.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
+		<ivy:install organisation="org.apache.ant" module="ant" revision="1.10.1" settingsRef="ivy.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
+		<ivy:install organisation="org.apache.commons" module="commons-exec" revision="1.3" settingsRef="ivy.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
+		<ivy:install organisation="org.apache.httpcomponents" module="httpclient" revision="4.5.3" settingsRef="ivy.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
+		<ivy:install organisation="org.apache.httpcomponents" module="httpcore" revision="4.4.6" settingsRef="ivy.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
+		<ivy:install organisation="org.apache.ws.commons.util" module="ws-commons-util" revision="1.0.2" settingsRef="ivy.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
+		<ivy:install organisation="org.apache.xmlrpc" module="xmlrpc-client" revision="3.1.3" settingsRef="ivy.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
+		<ivy:install organisation="org.apache.xmlrpc" module="xmlrpc-common" revision="3.1.3" settingsRef="ivy.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
+		<ivy:install organisation="org.clapper" module="javautil" revision="3.2.0" settingsRef="ivy.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
+		<ivy:install organisation="org.json" module="json" revision="20160810" settingsRef="ivy.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
+		<ivy:install organisation="org.mariadb.jdbc" module="mariadb-java-client" revision="1.1.8" settingsRef="ivy.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
+		<ivy:install organisation="org.testng" module="testng" revision="5.12.1" settingsRef="ivy.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
+		<ivy:install organisation="xalan" module="serializer" revision="2.7.2" settingsRef="ivy.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
+		<ivy:install organisation="xml-apis" module="xml-apis" revision="2.0.2" settingsRef="ivy.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
+		<ivy:install organisation="org.seleniumhq.selenium" module="selenium-api" revision="${selenium.version}" settingsRef="ivy.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
+		<ivy:install organisation="org.seleniumhq.selenium" module="selenium-chrome-driver" revision="${selenium.version}" settingsRef="ivy.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
+		<ivy:install organisation="org.seleniumhq.selenium" module="selenium-edge-driver" revision="${selenium.version}" settingsRef="ivy.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
+		<ivy:install organisation="org.seleniumhq.selenium" module="selenium-firefox-driver" revision="${selenium.version}" settingsRef="ivy.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
+		<ivy:install organisation="org.seleniumhq.selenium" module="selenium-ie-driver" revision="${selenium.version}" settingsRef="ivy.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
+		<ivy:install organisation="org.seleniumhq.selenium" module="selenium-java" revision="${selenium.version}" settingsRef="ivy.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
+		<ivy:install organisation="org.seleniumhq.selenium" module="selenium-remote-driver" revision="${selenium.version}" settingsRef="ivy.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
+		<ivy:install organisation="org.seleniumhq.selenium" module="selenium-safari-driver" revision="${selenium.version}" settingsRef="ivy.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
+		<ivy:install organisation="org.seleniumhq.selenium" module="selenium-server" revision="${selenium.version}" settingsRef="ivy.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
+		<ivy:install organisation="org.seleniumhq.selenium" module="selenium-support" revision="${selenium.version}" settingsRef="ivy.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
+		<ivy:install organisation="zimbra" module="zm-common" revision="latest.integration" settingsRef="ivy.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
+		<ivy:install organisation="zimbra" module="zm-native" revision="latest.integration" settingsRef="ivy.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
 
 		<copy todir="${build.staf.selenium.jars.dir}">
             <fileset dir="${build.tmp.dir}">
                 <include name="*.jar"/>
             </fileset>
 
-			<fileset dir="${dist.lib.dir}">
-				<include name="resources.jar"/>
+			<fileset dir="${build.dist.lib.dir}">
+				<include name="${resources-jar.file}"/>
 			</fileset>
 
-			<fileset dir="${dist.lib.dir}">
-				<include name="coverage.jar"/>
+			<fileset dir="${build.dist.lib.dir}">
+				<include name="${coverage-jar.file}"/>
 			</fileset>
 		</copy>
 
@@ -219,7 +289,7 @@
 			</mapper>
 	    </pathconvert>
 
-		<jar destfile="${dist.lib.dir}/${stafjar.file}" basedir="${build.staf.selenium}">
+		<jar destfile="${build.dist.lib.dir}/${selenium-staf-jar.file}" basedir="${build.staf.selenium}">
 			<manifest>
 				<attribute name="Main-Class" value="staf.Driver"/>
 				<section name="staf/service/info">
@@ -228,91 +298,54 @@
 				</section>
 			</manifest>
 		</jar>
-
-        <!-- Delete tmp folder that may have been left over, e.g.: older versions of same libs -->
         <delete dir="${build.tmp.dir}"/>
-
 	</target>
 
-	<target name="jar-selenium-staf" depends="jar-selenium" description="Creates all the STAF jar files"> </target>
-	<target name="tgz-selenium-staf" depends="tgz-selenium-staf-file" description="Creates the tms Package"> </target>
-
-	<path id="dist.lib.classpath">
-		<fileset dir="${dist.lib.dir}">
-	        <include name="*.jar"/>
-		</fileset>
-	</path>
-
-	<target name="network-content" description="Specific to network related data and tests">
-		<if> <available file="${network-selenium.dir}" type="dir"/>
-			<then>
-				<copy todir="src">
-					<fileset dir="${network-selenium.dir}/src/"/>
-				</copy>
-				<copy todir="data">
-					<fileset dir="${network-selenium.dir}/data/"/>
-				</copy>
-			</then>
-		</if>
-	</target>
-
-	<target name="delete-network-content" description="Deletes network related data and tests">
-		<delete dir="${network-private-data.dir}"/>
-		<delete dir="${network-ajax-tests.dir}"/>
-		<delete dir="${network-admin-tests.dir}"/>
-		<delete dir="${network-universal-tests.dir}"/>
-	</target>
-
-	<target name="Run-ExecuteHarnessMain" depends="jar" description="Run all tests per specified arguments">
-		<property name="jarfile" value="${dist.lib.dir}/${seleniumjar.file}"/>
-		<property name="pattern" value="ajax.tests"/>
-		<property name="groups" value="always,sanity"/>
-		<property name="exclude_groups" value="skip"/>
-		<echo>Executing tests...</echo>
-		<java classname="selenium.framework.core.ExecuteHarnessMain" classpathref="class.path" fork="true" failonerror="true">
-		    <classpath refid="dist.lib.classpath"/>
-			<arg line="-j '${jarfile}' -p ${pattern} -g ${groups} -eg ${exclude_groups} -l conf/log4j.properties  "/>
-		</java>
-	</target>
-
-	<target name="Sum-ExecuteHarnessMain" depends="jar" description="Count all tests to be run per specified arguments">
-		<property name="jarfile" value="${dist.lib.dir}/${seleniumjar.file}"/>
-		<property name="pattern" value="ajax.tests"/>
-		<property name="groups" value="always,sanity"/>
-		<echo>Calculating number of tests for selected groups...</echo>
-		<java classname="selenium.framework.core.ExecuteHarnessMain" classpathref="class.path" fork="true" failonerror="true">
-			<arg line="-s -j '${jarfile}' -p ${pattern} -g ${groups} -l conf/log4j.properties "/>
-		</java>
-	</target>
-
-	<target name="tgz-selenium-staf-file-contents" depends="jar,jar-selenium-staf" description="Creates the tms package contents folder">
-		<echo message="Creating tms tgz contents..."/>
-		<copy file="${dist.lib.dir}/${seleniumjar.file}" todir="${tms.dir}/jars/"/>
-		<copy file="${dist.lib.dir}/${stafjar.file}" todir="${tms.dir}/jars/"/>
-		<copy todir="${tms.dir}/conf/">
+	<target name="selenium-staf-package" depends="selenium-staf-jar" description="Creates the selenium-staf package tgz file">
+		<echo message="Creating selenium-staf package tgz contents..."/>
+		<copy file="${build.dist.lib.dir}/${selenium-jar.file}" todir="${selenium-staf-package.dir}/jars"/>
+		<copy file="${build.dist.lib.dir}/${selenium-staf-jar.file}" todir="${selenium-staf-package.dir}/jars"/>
+		<copy todir="${selenium-staf-package.dir}/conf">
 			<fileset dir="conf">
 				<include name="**/*"/>
 			</fileset>
 		</copy>
-		<copy todir="${tms.dir}/data/">
+		<copy todir="${selenium-staf-package.dir}/data">
 			<fileset dir="data">
 				<include name="**/*"/>
 			</fileset>
 		</copy>
-	</target>
 
-	<target name="tgz-selenium-staf-file" depends="tgz-selenium-staf-file-contents" description="Creates the tms package tgz file">
-		<echo message="Creating tms package tgz file..."/>
-		<tar destfile="${tms.tgz.filepath}" compression="gzip">
-			<tarfileset dir="${tms.dir}" prefix="${selenium-staf.file-name}" mode="777">
+		<echo message="Creating selenium-staf package tgz file..."/>
+		<tar destfile="${selenium-staf-package.filepath}" compression="gzip">
+			<tarfileset dir="${selenium-staf-package.dir}" prefix="${selenium-staf-package}" mode="777">
 				<include name="**/*"/>
 			</tarfileset>
 		</tar>
-		<checksum file="${tms.tgz.filepath}" forceOverwrite="yes"/>
+		<checksum file="${selenium-staf-package.filepath}" forceOverwrite="yes"/>
 	</target>
 
-	<target name="tgz-selenium-staf-file-extract" depends="tgz-selenium-staf-file" description="Extracts tms package tgz file">
-	    <untar src="${tms.tgz.filepath}" dest="${dist.dir}" compression="gzip"/>
+	<target name="Count-ExecuteHarnessMain" depends="selenium-jar" description="Count number of tests for selected groups and tests pattern">
+		<echo message="Counting number of tests for selected groups and tests pattern..."/>
+		<property name="jarfile" value="${build.dist.lib.dir}/${selenium-jar.file}"/>
+		<property name="pattern" value="ajax.tests"/>
+		<property name="groups" value="always,sanity"/>
+		<property name="excludeGroups" value="performance,skip"/>
+		<java classname="com.zimbra.qa.selenium.framework.core.ExecuteHarnessMain" classpathref="class.path" fork="true" failonerror="true">
+			<classpath refid="build.dist.lib.classpath"/>
+			<arg line="-s -j ${jarfile} -p ${pattern} -g ${groups} -eg ${excludeGroups} -l conf/log4j.properties"/>
+		</java>
 	</target>
 
+	<target name="Run-ExecuteHarnessMain" depends="selenium-jar" description="Execute tests for selected groups and tests pattern">
+		<echo message="Executing tests for selected groups and tests pattern..."/>
+		<property name="jarfile" value="${build.dist.lib.dir}/${selenium-jar.file}"/>
+		<property name="pattern" value="ajax.tests"/>
+		<property name="groups" value="always,sanity"/>
+		<property name="excludeGroups" value="performance,skip"/>
+		<java classname="com.zimbra.qa.selenium.framework.core.ExecuteHarnessMain" classpathref="class.path" fork="true" failonerror="true">
+			<classpath refid="build.dist.lib.classpath"/>
+			<arg line="-j ${jarfile} -p ${pattern} -g ${groups} -eg ${excludeGroups} -l conf/log4j.properties"/>
+		</java>
+	</target>
 </project>

@@ -84,7 +84,7 @@ public class ExecuteHarnessMain {
 	}
 
 	public int verbosity = 10;
-	public static boolean DO_TEST_CASE_SUM = false;
+	public static boolean COUNT_TESTS = false;
 	public static String TEST_TOKEN = ".tests.";
 	public String jarfilename;
 	public static String classfilter = null;
@@ -318,7 +318,7 @@ public class ExecuteHarnessMain {
 		logger.info("Execute ...");
 
 		// Zimbra Pre-configuration and required setup
-		ExecuteHarnessMain.zimbraPreConfiguration(ConfigProperties.getAppType().toString().toLowerCase());
+		ExecuteHarnessMain.ZimbraPreConfiguration(ConfigProperties.getAppType().toString().toLowerCase());
 
 		Date start = new Date();
 		Date finish;
@@ -500,12 +500,12 @@ public class ExecuteHarnessMain {
 		}
 	}
 
-	public String sumTestCounts() throws FileNotFoundException, IOException, HarnessException {
+	public String countTests() throws FileNotFoundException, IOException, HarnessException {
 
-		logger.debug("sumTestCounts");
+		logger.debug("countTests");
 
 		StringBuilder stringBuilder = new StringBuilder();
-		int sum = 0;
+		int count = 0;
 
 		List<String> classes = ExecuteHarnessMain.getClassesFromJar(new File(jarfilename),
 				(classfilter == null ? null : Pattern.compile(classfilter)), excludefilter);
@@ -515,15 +515,15 @@ public class ExecuteHarnessMain {
 			try {
 
 				Class<?> currentClass = Class.forName(s);
-				logger.debug("sumTestCounts: checking class: " + currentClass.getCanonicalName());
+				logger.debug("countTests: checking class: " + currentClass.getCanonicalName());
 
 				for (Method method : Arrays.asList(currentClass.getDeclaredMethods())) {
 
-					logger.debug("sumTestCounts: checking method: " + method.getName());
+					logger.debug("countTests: checking method: " + method.getName());
 
 					for (Annotation annotation : Arrays.asList(method.getAnnotations())) {
 
-						logger.debug("sumTestCounts: checking annotation: " + annotation.toString());
+						logger.debug("countTests: checking annotation: " + annotation.toString());
 
 						if (annotation instanceof org.testng.annotations.Test) {
 
@@ -534,28 +534,24 @@ public class ExecuteHarnessMain {
 
 								if (ExecuteHarnessMain.groups.contains(group)) {
 
-									logger.debug("sumTestCounts: matched: " + group);
+									logger.debug("countTests: matched: " + group);
 
-									stringBuilder.append(++sum).append(": ").append(testAnnotation.description()).append('\n');
+									stringBuilder.append(++count).append(": ").append(testAnnotation.description()).append('\n');
 									continue; // for (Annotation a ...
-
 								}
 							}
-
 						}
-
 					}
-
 				}
 
 			} catch (ClassNotFoundException e) {
-				logger.warn("sumTestCounts: Unable to find class", e);
+				logger.warn("countTests: Unable to find class", e);
 			}
 		}
 
-		logger.debug("sumTestCounts: found: " + sum);
+		logger.debug("countTests: found: " + count);
 
-		stringBuilder.append("Number of matching test cases: " + sum);
+		stringBuilder.append("Number of matching test cases: " + count);
 		return (stringBuilder.toString());
 	}
 
@@ -1281,9 +1277,9 @@ public class ExecuteHarnessMain {
 		options.addOption(new Option("c", "config", true,
 				"dynamic setting config properties i.e browser, server, locale... ( -c 'locale=en_US,browser=firefox' "));
 		options.addOption(
-				new Option("s", "sum", false, "run harness in mode to count the number of matching test cases"));
+				new Option("s", "count", false, "run harness in mode to count the number of matching test cases"));
 		options.addOption(new Option("e", "exclude", true, "exclude pattern  "));
-		options.addOption(new Option("eg", "exclude_groups", true,
+		options.addOption(new Option("eg", "excludeGroups", true,
 				"comma separated list of groups to exclude when execute (skip)"));
 
 		// Set required options
@@ -1300,7 +1296,7 @@ public class ExecuteHarnessMain {
 			}
 
 			if (cmd.hasOption('s')) {
-				DO_TEST_CASE_SUM = true;
+				COUNT_TESTS = true;
 			}
 
 			if (cmd.hasOption('c')) {
@@ -1400,7 +1396,7 @@ public class ExecuteHarnessMain {
 		return (true);
 	}
 
-	public static void zimbraPreConfiguration(String project) throws HarnessException, IOException {
+	public static void ZimbraPreConfiguration(String project) throws HarnessException, IOException {
 
 		SeleniumService seleniumService = new SeleniumService();
 
@@ -1585,7 +1581,7 @@ public class ExecuteHarnessMain {
 
 	public static void main(String[] args) throws HarnessException, IOException {
 
-		String sumTestsResult = "No results";
+		String countTestsResult = "No results";
 		String executeTestsResult = "No results";
 
 		BasicConfigurator.configure();
@@ -1605,36 +1601,34 @@ public class ExecuteHarnessMain {
 
 			// Create the harness object and execute it
 			ExecuteHarnessMain harness = new ExecuteHarnessMain();
+
 			if (harness.parseArgs(args)) {
-				if (DO_TEST_CASE_SUM) {
-					// Sum
-					executeTestsResult = harness.sumTestCounts();
+				if (COUNT_TESTS) {
+					executeTestsResult = harness.countTests(); 	// Count
+
 				} else {
-					// Sum
-					sumTestsResult = harness.sumTestCounts();
-					String[] splitSumTestsResult = sumTestsResult.split("Number of matching test cases: ");
+					countTestsResult = harness.countTests();	// Count
+					String[] splitSumTestsResult = countTestsResult.split("Number of matching test cases: ");
 					testsCount = Integer.parseInt(splitSumTestsResult[1]);
 
-					// Execute
-					executeTestsResult = harness.execute();
+					executeTestsResult = harness.execute();		// Execute
 				}
 			}
 
 		} catch (Exception e) {
 			logger.error(e, e);
-		} finally {
-			DO_TEST_CASE_SUM = false;
+		}
+
+		if (!COUNT_TESTS) {
+			try {
+				Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList("\n\n" + testsCountSummary),
+						Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 
 		System.out.println("\n*****\n" + executeTestsResult);
-
-		try {
-			Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList("\n\n" + testsCountSummary),
-					Charset.forName("UTF-8"), StandardOpenOption.APPEND);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
 		System.exit(0);
 	}
 }
