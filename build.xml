@@ -9,12 +9,12 @@
 	<property name="ivy.organisation" value="synacor"/>
 	<property name="ivy.module" value="zm-selenium"/>
 
-    <property name="src.java.dir" location="src/java"/>
-    <property name="build.dir" location="build"/>
-    <property name="build.tmp.dir" location="${build.dir}/tmp"/>
+	<property name="src.java.dir" location="src/java"/>
+	<property name="build.dir" location="build"/>
+	<property name="build.tmp.dir" location="${build.dir}/tmp"/>
 	<property name="build.dist.dir" location="${build.dir}/dist"/>
-    <property name="build.dist.lib.dir" location="${build.dist.dir}/lib"/>
-    <property name="build.classes.dir" location="${build.dir}/classes"/>
+	<property name="build.dist.lib.dir" location="${build.dist.dir}/lib"/>
+	<property name="build.classes.dir" location="${build.dir}/classes"/>
 	<property name="build.deps.dir" location="${user.home}/.zcs-deps"/>
 	<property name="build.resources.dir" location="${build.dir}/resources"/>
 	<property name="build.coverage.dir" location="${build.dir}/coverage"/>
@@ -51,7 +51,7 @@
 
 	<path id="build.dist.lib.classpath">
 		<fileset dir="${build.dist.lib.dir}">
-	        <include name="*.jar"/>
+			<include name="*.jar"/>
 		</fileset>
 	</path>
 
