@@ -73,7 +73,7 @@ public class DeleteMount extends SetGroupMailByMessagePreference{
 		createFolderPage.zSelectMountFolder(mountpointname);
 		createFolderPage.zPressButton(Button.B_DELETE);
 
-		//-- Verification
+		// Verification
 		// SOAP
 		FolderMountpointItem mountpoint = FolderMountpointItem.importFromSOAP(app.zGetActiveAccount(), mountpointname);
 		mountpoint = FolderMountpointItem.importFromSOAP(app.zGetActiveAccount(), mountpointname);

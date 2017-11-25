@@ -73,7 +73,7 @@ public class EditCos extends AdminCore {
 
 		// Edit the name
 		String editedName = "editedCos_" + ConfigProperties.getUniqueString();
-		form.setName(editedName);
+		form.zSetName(editedName);
 
 		// Submit
 		form.zSubmit();
@@ -125,7 +125,7 @@ public class EditCos extends AdminCore {
 
 		// Edit the name
 		String editedName = "editedCos_" + ConfigProperties.getUniqueString();
-		form.setName(editedName);
+		form.zSetName(editedName);
 
 		// Submit
 		form.zSubmit();
@@ -166,7 +166,7 @@ public class EditCos extends AdminCore {
 						+		"</CreateCosRequest>");
 
 		// Enter the search string to find the account
-		app.zPageSearchResults.setType(PageSearchResults.TypeOfObject.COS);
+		app.zPageSearchResults.zSetType(PageSearchResults.TypeOfObject.COS);
 		app.zPageSearchResults.zAddSearchQuery(cosName);
 
 		// Click search
@@ -176,7 +176,7 @@ public class EditCos extends AdminCore {
 		app.zPageSearchResults.zListItem(Action.A_LEFTCLICK, cos.getName());
 
 		// Click on Edit button
-		app.zPageSearchResults.setType(PageSearchResults.TypeOfObject.COS);
+		app.zPageSearchResults.zSetType(PageSearchResults.TypeOfObject.COS);
 		FormEditCos form = (FormEditCos) app.zPageSearchResults.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_EDIT);
 
 		// Click on General Information tab
@@ -184,7 +184,7 @@ public class EditCos extends AdminCore {
 
 		// Edit the name
 		String editedName = "editedCos_" + ConfigProperties.getUniqueString();
-		form.setName(editedName);
+		form.zSetName(editedName);
 
 		// Submit
 		form.zSubmit();
@@ -196,7 +196,7 @@ public class EditCos extends AdminCore {
 				"</GetCosRequest>");
 		Element response = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetCosResponse/admin:cos", 1);
 		ZAssert.assertNotNull(response, "Verify the cos is edited successfully");
-		app.zPageMain.logout();
+		app.zPageMain.zLogout();
 	}
 
 
@@ -223,7 +223,7 @@ public class EditCos extends AdminCore {
 						+			"<name>" + cosName + "</name>"
 						+		"</CreateCosRequest>");
 
-		app.zPageSearchResults.setType(PageSearchResults.TypeOfObject.COS);
+		app.zPageSearchResults.zSetType(PageSearchResults.TypeOfObject.COS);
 
 		// Enter the search string to find the account
 		app.zPageSearchResults.zAddSearchQuery(cosName);
@@ -239,7 +239,7 @@ public class EditCos extends AdminCore {
 
 		// Edit the name
 		String editedName = "editedCos_" + ConfigProperties.getUniqueString();
-		form.setName(editedName);
+		form.zSetName(editedName);
 
 		// Submit
 		form.zSubmit();

@@ -24,6 +24,7 @@ import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.projects.admin.items.AccountItem;
 
 public class WizardChangePassword extends AbsWizard {
+
 	public static class Locators {
 		public static final String zNewPassword = "css=input[id='zdlgv__UNDEFINE1_password']";
 		public static final String zConfirmPassword = "css=input[id='zdlgv__UNDEFINE1_confirmPassword']";
@@ -49,7 +50,6 @@ public class WizardChangePassword extends AbsWizard {
 		sClickAt(Locators.zdlg_OK, "");
 		SleepUtil.sleepMedium();
 		return item;
-
 	}
 
 	@Override
@@ -72,5 +72,4 @@ public class WizardChangePassword extends AbsWizard {
 
 		return (true);
 	}
-
 }

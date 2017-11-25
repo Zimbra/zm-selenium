@@ -36,7 +36,7 @@ public class ResetStatusAfterModifyingSubject extends CalendarWorkWeekPreference
 	
 	@Bugs (ids = "49881")
 	@Test (description = "Check reset status of meeting after modifying subject",
-			groups = { "functional", "L2"})
+			groups = { "functional", "L2" })
 			
 	public void ResetStatusAfterModifyingSubject_01() throws HarnessException {
 		

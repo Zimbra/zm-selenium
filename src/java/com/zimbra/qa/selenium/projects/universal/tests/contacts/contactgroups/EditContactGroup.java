@@ -58,7 +58,7 @@ public class EditContactGroup extends UniversalCore  {
 		formContactGroupNew.zFillField(Field.GroupName, newname);
 		formContactGroupNew.zSubmit();
 		
-		//-- Verification
+		// Verification
 		ContactGroupItem actual = ContactGroupItem.importFromSOAP(app.zGetActiveAccount(), "#nickname:"+ newname);
 		ZAssert.assertNotNull(actual, "Verify the contact group with new name exists");
 	}
@@ -84,7 +84,7 @@ public class EditContactGroup extends UniversalCore  {
 		formContactGroupNew.zFillField(Field.GroupName, newname);
 		formContactGroupNew.zSubmit();
 
-		//-- Verification
+		// Verification
 		ContactGroupItem actual = ContactGroupItem.importFromSOAP(app.zGetActiveAccount(), "#nickname:"+ newname);
 		ZAssert.assertNotNull(actual, "Verify the contact group with new name exists");
 
@@ -112,7 +112,7 @@ public class EditContactGroup extends UniversalCore  {
 		formContactGroupNew.zFillField(Field.GroupName, newname);
 		formContactGroupNew.zSubmit();
 
-		//-- Verification
+		// Verification
 		ContactGroupItem actual = ContactGroupItem.importFromSOAP(app.zGetActiveAccount(), "#nickname:"+ newname);
 		ZAssert.assertNotNull(actual, "Verify the contact group with new name exists");
 
@@ -136,7 +136,7 @@ public class EditContactGroup extends UniversalCore  {
 
 		// CHange the group name
 		formContactGroupNew.zToolbarPressButton(Button.B_CLOSE);
-		//-- Verification
+		// Verification
 
 		// Verify the form closed
 		ZAssert.assertFalse(formContactGroupNew.zIsActive(), "Verify the form closed after clicking CLOSE");
@@ -179,7 +179,7 @@ public class EditContactGroup extends UniversalCore  {
 		// Click No: Don't save changes
 		dialog.zPressButton(Button.B_NO);
 
-		//-- Verification
+		// Verification
 
 		// Verify the form closed
 		ZAssert.assertFalse(formContactGroupNew.zIsActive(), "Verify the form closed after clicking CLOSE");
@@ -226,7 +226,7 @@ public class EditContactGroup extends UniversalCore  {
 		// Click Save
 		formContactGroupNew.zToolbarPressButton(Button.B_SAVE);
 
-		//-- Verification
+		// Verification
 		ContactGroupItem actual = ContactGroupItem.importFromSOAP(app.zGetActiveAccount(), "#nickname:"+ newname);
 		ZAssert.assertNotNull(actual, "Verify the contact group with new name exists");
 	}
@@ -265,7 +265,7 @@ public class EditContactGroup extends UniversalCore  {
 		// Click Yes: Don't save changes
 		dialog.zPressButton(Button.B_YES);
 
-		//-- Verification
+		// Verification
 		ContactGroupItem actual = ContactGroupItem.importFromSOAP(app.zGetActiveAccount(), "#nickname:"+ newname);
 		ZAssert.assertNotNull(actual, "Verify the contact group with new name exists");
 		}

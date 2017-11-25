@@ -32,7 +32,6 @@ import com.zimbra.qa.selenium.framework.util.*;
 public class PageLogin extends AbsTab {
 
 	public static class Locators {
-
 		public static final String zLoginDialog = "css=div[class='ZaLoginDialog']";
 		public static final String zLoginUserName = "ZLoginUserName";
 		public static final String zLoginPassword = "ZLoginPassword";
@@ -40,7 +39,6 @@ public class PageLogin extends AbsTab {
 		public static final String zLoginLicenseContainer = "ZLoginLicenseContainer";
 		public static final String zLoginNewPassword = "css=input[id^='newpass1']";
 		public static final String zConfirmNewPassword = "css=input[id^='newpass2']";
-
 	}
 
 	/**
@@ -87,13 +85,12 @@ public class PageLogin extends AbsTab {
 	public void zNavigateTo() throws HarnessException {
 
 		if (zIsActive()) {
-
 			return;
 		}
 
 		// Logout
 		if (((AdminPages) MyApplication).zPageMain.zIsActive()) {
-			((AdminPages) MyApplication).zPageMain.logout();
+			((AdminPages) MyApplication).zPageMain.zLogout();
 		}
 
 		zWaitForActive();
@@ -104,10 +101,10 @@ public class PageLogin extends AbsTab {
 	 *
 	 * @throws HarnessException
 	 */
-	public void login() throws HarnessException {
-		logger.debug("login()");
+	public void zLogin() throws HarnessException {
+		logger.debug("zLogin()");
 
-		login(ZimbraAdminAccount.AdminConsoleAdmin());
+		zLogin(ZimbraAdminAccount.AdminConsoleAdmin());
 	}
 
 	/**
@@ -116,21 +113,19 @@ public class PageLogin extends AbsTab {
 	 * @param account
 	 * @throws HarnessException
 	 */
-	public void login(ZimbraAccount account) throws HarnessException {
-		logger.debug("login(ZimbraAccount account)" + account.EmailAddress);
+	public void zLogin(ZimbraAccount account) throws HarnessException {
+		logger.debug("zLogin(ZimbraAccount account)" + account.EmailAddress);
 
 		zNavigateTo();
 
 		// Fill out the form
-		fillLoginFormFields(account);
+		zFillLoginFormFields(account);
 
 		// Click the Login button
 		sClick(Locators.zLoginButtonContainer);
 
 		// Wait for the app to load
-		// sWaitForPageToLoad();
 		((AdminPages) MyApplication).zPageMain.zWaitForActive();
-
 		((AdminPages) MyApplication).zSetActiveAccount(account);
 
 		SleepUtil.sleep(10000);
@@ -141,8 +136,8 @@ public class PageLogin extends AbsTab {
 	 *
 	 * @throws HarnessException
 	 */
-	public void fillLoginFormFields(ZimbraAccount account) throws HarnessException {
-		logger.debug("fillFields(ZimbraAccount account)" + account.EmailAddress);
+	public void zFillLoginFormFields(ZimbraAccount account) throws HarnessException {
+		logger.debug("zFillLoginFormFields(ZimbraAccount account)" + account.EmailAddress);
 
 		if (!zIsActive())
 			throw new HarnessException("LoginPage is not active");
@@ -157,8 +152,8 @@ public class PageLogin extends AbsTab {
 	 *
 	 * @throws HarnessException
 	 */
-	public void fillResetLoginPasswordFormFields(String NewPassword, String ConfirmPassword) throws HarnessException {
-		logger.debug("fillFields(ZimbraAccount account)" + NewPassword);
+	public void zFillResetLoginPasswordFormFields(String NewPassword, String ConfirmPassword) throws HarnessException {
+		logger.debug("zFillResetLoginPasswordFormFields(ZimbraAccount account)" + NewPassword);
 
 		SleepUtil.sleepSmall();
 		if (!zIsActive())
@@ -172,7 +167,6 @@ public class PageLogin extends AbsTab {
 		sClick(Locators.zLoginButtonContainer);
 
 		// Wait for the app to load
-		// sWaitForPageToLoad();
 		((AdminPages) MyApplication).zPageMain.zWaitForActive();
 		SleepUtil.sleep(10000);
 	}
@@ -201,5 +195,4 @@ public class PageLogin extends AbsTab {
 	public AbsPage zToolbarPressPulldown(Button pulldown, Button option) throws HarnessException {
 		return null;
 	}
-
 }

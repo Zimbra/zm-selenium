@@ -69,16 +69,16 @@ public class EditDistributionList extends AdminCore {
 		// Click search
 		app.zPageSearchResults.zToolbarPressButton(Button.B_SEARCH);
 
-		// Right Click on distribution list to be Edited.
+		// Right Click on distribution list to be edited
 		app.zPageSearchResults.zListItem(Action.A_LEFTCLICK, dl.getEmailAddress());
 
 		// Click on Edit button
-		app.zPageSearchResults.setType(PageSearchResults.TypeOfObject.DISTRIBUTION_LIST);
+		app.zPageSearchResults.zSetType(PageSearchResults.TypeOfObject.DISTRIBUTION_LIST);
 		FormEditDistributionList form = (FormEditDistributionList) app.zPageManageDistributionList.zToolbarPressPulldown(Button.B_GEAR_BOX,Button.O_EDIT);
 
 		// Edit the name
 		String editedName = "editedDL_" + ConfigProperties.getUniqueString();
-		form.setName(editedName);
+		form.zSetName(editedName);
 
 		// Submit
 		form.zSubmit();
@@ -92,7 +92,7 @@ public class EditDistributionList extends AdminCore {
 		Element response = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetDistributionListResponse/admin:dl", 1);
 		ZAssert.assertNotNull(response, "Verify the distribution list is edited successfully");
 
-		app.zPageMain.logout();
+		app.zPageMain.zLogout();
 	}
 
 
@@ -128,16 +128,16 @@ public class EditDistributionList extends AdminCore {
 		// Click search
 		app.zPageSearchResults.zToolbarPressButton(Button.B_SEARCH);
 
-		// Right Click on distribution list to be Edited.
+		// Right Click on distribution list to be edited
 		app.zPageSearchResults.zListItem(Action.A_RIGHTCLICK, dl.getEmailAddress());
 
 		// Click on Edit button
-		app.zPageSearchResults.setType(PageSearchResults.TypeOfObject.DISTRIBUTION_LIST);
+		app.zPageSearchResults.zSetType(PageSearchResults.TypeOfObject.DISTRIBUTION_LIST);
 		FormEditDistributionList form = (FormEditDistributionList) app.zPageSearchResults.zToolbarPressButton(Button.B_TREE_EDIT);
 
 		// Edit the name
 		String editedName = "editedDL_" + ConfigProperties.getUniqueString();
-		form.setName(editedName);
+		form.zSetName(editedName);
 
 		// Submit
 		form.zSubmit();
@@ -150,7 +150,7 @@ public class EditDistributionList extends AdminCore {
 
 		Element response = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetDistributionListResponse/admin:dl", 1);
 		ZAssert.assertNotNull(response, "Verify the distribution list is edited successfully");
-		app.zPageMain.logout();
+		app.zPageMain.zLogout();
 	}
 
 
@@ -185,14 +185,14 @@ public class EditDistributionList extends AdminCore {
 						+ "</CreateDistributionListRequest>");
 
 		// Enter the search string to find the dl
-		app.zPageSearchResults.setType(PageSearchResults.TypeOfObject.DISTRIBUTION_LIST);
+		app.zPageSearchResults.zSetType(PageSearchResults.TypeOfObject.DISTRIBUTION_LIST);
 		app.zPageSearchResults.zAddSearchQuery(dlEmailAddress);
 
 		// Click search
 		app.zPageSearchResults.zToolbarPressPulldown(Button.B_SEARCH_TYPE, Button.O_DISTRIBUTION_LISTS);
 		app.zPageSearchResults.zToolbarPressButton(Button.B_SEARCH);
 
-		// Right Click on distribution list to be Edited.
+		// Right Click on distribution list to be edited
 		app.zPageSearchResults.zListItem(Action.A_LEFTCLICK, dl.getEmailAddress());
 
 		// Click on Edit button
@@ -200,7 +200,7 @@ public class EditDistributionList extends AdminCore {
 
 		// Edit the name
 		String editedName = "editedDL_" + ConfigProperties.getUniqueString();
-		form.setName(editedName);
+		form.zSetName(editedName);
 
 		// Submit
 		form.zSubmit();

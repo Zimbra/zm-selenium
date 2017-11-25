@@ -40,7 +40,7 @@ public class MoveTask extends UniversalCore {
 	}
 	
 	@Test (description = "Verify Toaster message on moving Task", 
-			groups = { "functional", "L3"})
+			groups = { "functional", "L3" })
 	public void MoveTask_01() throws HarnessException {
 
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);

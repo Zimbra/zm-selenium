@@ -34,7 +34,7 @@ public class GetContacts extends UniversalCore  {
 	}
 	
 	@Test (description = "Click Alphabetbar button All: Verify contact started with digit and A-Z listed ",
-			groups = { "functional", "L2"})
+			groups = { "functional", "L2" })
 	
 	public void GetContact_All_Button_01() throws HarnessException {
 		
@@ -89,7 +89,7 @@ public class GetContacts extends UniversalCore  {
 		app.zPageContacts.zToolbarPressButton(Button.B_AB_ALL);
 					
 		
-		//-- Verification
+		// Verification
 		
 		// Verify group name and members displayed
 		List<ContactItem> items = app.zPageContacts.zListGetContacts();
@@ -118,7 +118,7 @@ public class GetContacts extends UniversalCore  {
 	}
 	
 	@Test (description = "Click Alphabetbar button 123: Verify contact started with digit listed and A-Z not-listed ",
-			groups = { "functional", "L2"})
+			groups = { "functional", "L2" })
 	
 	public void GetContact_123_Button_02() throws HarnessException {
 		
@@ -173,7 +173,7 @@ public class GetContacts extends UniversalCore  {
 		app.zPageContacts.zToolbarPressButton(Button.B_AB_123);
 					
 		
-		//-- Verification
+		// Verification
 		
 		// Verify group name and members displayed
 		List<ContactItem> items = app.zPageContacts.zListGetContacts();
@@ -202,7 +202,7 @@ public class GetContacts extends UniversalCore  {
 	}
 	
 	@Test (description = "Click Alphabetbar button B: Verify only contact started with B|b is listed ",
-			groups = { "functional", "L3"})
+			groups = { "functional", "L3" })
 	public void GetContact_B_Button_03() throws HarnessException {
 		
 		String lastname;
@@ -256,7 +256,7 @@ public class GetContacts extends UniversalCore  {
 		app.zPageContacts.zToolbarPressButton(Button.B_AB_B);
 					
 		
-		//-- Verification
+		// Verification
 		
 		// Verify group name and members displayed
 		List<ContactItem> items = app.zPageContacts.zListGetContacts();
@@ -285,7 +285,7 @@ public class GetContacts extends UniversalCore  {
 	}
 	
 	@Test (description = "Click all Alphabetbar buttons: Verify only contact started with the alphabet is listed ",
-			groups = { "functional", "L2"})
+			groups = { "functional", "L2" })
 	
 	public void GetContact_Iterate_Buttons_04() throws HarnessException {
 		
@@ -325,7 +325,7 @@ public class GetContacts extends UniversalCore  {
 		
 
 		
-		//-- Verification
+		// Verification
 		
 		for ( Entry<Button, ContactItem> entry : contacts.entrySet() ) {
 			

@@ -69,7 +69,7 @@ public class DeleteFolder extends SetGroupMailByMessagePreference {
 		createFolderPage.zSelectFolder(folderName);
 		createFolderPage.zPressButton(Button.B_DELETE);
 
-        //-- Verification
+        // Verification
         
         // SOAP
      	FolderItem actual = FolderItem.importFromSOAP(app.zGetActiveAccount(), folderName);

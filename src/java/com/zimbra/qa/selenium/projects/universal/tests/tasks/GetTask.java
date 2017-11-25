@@ -45,7 +45,7 @@ public class GetTask extends UniversalCore {
 	}
 	
 	@Test (description = "View a simple task",
-			groups = { "smoke", "L0"})
+			groups = { "smoke", "L0" })
 
 	public void GetTask_01() throws HarnessException {
 		
@@ -93,7 +93,7 @@ public class GetTask extends UniversalCore {
 
 	@Bugs (ids = "72236")
 	@Test (description = "Verify Text Only Task that can display the body in the preview pane",
-			groups = { "smoke", "L0"})
+			groups = { "smoke", "L0" })
 
 	public void GetTask_02() throws HarnessException {
 		
@@ -136,7 +136,7 @@ public class GetTask extends UniversalCore {
 	}
 
 	@Test (description = "Verify Multipart/alternative (text and html) task that can be display the body in preview pane",
-			groups = { "smoke", "L0"})
+			groups = { "smoke", "L0" })
 	
 	public void GetTask_03() throws HarnessException {
 
@@ -198,7 +198,7 @@ public class GetTask extends UniversalCore {
 
 	@Bugs (ids = "72236")
 	@Test (description = "Get a task with all fields - verify task contents",
-			groups = { "smoke", "L0"})
+			groups = { "smoke", "L0" })
 
 	public void GetTask_04() throws HarnessException {
 		
@@ -260,7 +260,7 @@ public class GetTask extends UniversalCore {
 	}
 
 	@Test (description = "Click on task folder to receive any new tasks",
-			groups = { "smoke", "L1"})
+			groups = { "smoke", "L1" })
 
 	public void GetTask_05() throws HarnessException {
 		
@@ -321,7 +321,7 @@ public class GetTask extends UniversalCore {
 	 */
 	@Bugs (ids = "63357")
 	@Test (description = "Task list view fields (Percentage) are not updated after editing ",
-			groups = { "smoke", "L1"})
+			groups = { "smoke", "L1" })
 
 	public void GetTask_06() throws HarnessException {
 		
@@ -397,7 +397,7 @@ public class GetTask extends UniversalCore {
 
 	@Bugs (ids = "64681,72236")
 	@Test (description = "No refresh after task is marked complete in filter to-do list",
-			groups = { "functional", "L3"})
+			groups = { "functional", "L3" })
 
 	public void GetTask_07() throws HarnessException {
 		
@@ -461,7 +461,7 @@ public class GetTask extends UniversalCore {
 	
 	@Bugs (ids = "72236")
 	@Test (description = "Verify Html Only Task that can display the html body in the preview pane",
-			groups = { "smoke", "L1"})
+			groups = { "smoke", "L1" })
 
 	public void GetTask_08() throws HarnessException {
 		

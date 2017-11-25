@@ -24,6 +24,7 @@ import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.projects.admin.items.AliasItem;
 
 public class WizardCreateAlias extends AbsWizard {
+
 	public static class Locators {
 		public static final String zdlg_NEW_ALIAS = "zdlg__NEW_ALIAS";
 		public static final String zdlg_ALIAS_NAME = "css=input[id='zdlgv__NEW_ALIAS_name_2']";
@@ -79,5 +80,4 @@ public class WizardCreateAlias extends AbsWizard {
 
 		return (true);
 	}
-
 }

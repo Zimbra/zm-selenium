@@ -122,7 +122,7 @@ public class CreateResource extends AdminCore {
 				.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_NEW);
 
 		// Fill out the wizard and click Finish
-		wizard.setResourceType(WizardCreateResource.Locators.LOCATION);
+		wizard.zSetResourceType(WizardCreateResource.Locators.LOCATION);
 		wizard.zCompleteWizard(resource);
 
 		// Verify the resource exists in the ZCS
@@ -157,7 +157,7 @@ public class CreateResource extends AdminCore {
 				.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_NEW);
 
 		// Fill out the wizard and click Finish
-		wizard.setResourceType(WizardCreateResource.Locators.EQUIPMENT);
+		wizard.zSetResourceType(WizardCreateResource.Locators.EQUIPMENT);
 		wizard.zCompleteWizard(resource);
 
 		// Verify the resource exists in the ZCS

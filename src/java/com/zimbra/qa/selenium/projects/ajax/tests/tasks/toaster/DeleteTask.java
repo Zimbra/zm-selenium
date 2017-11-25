@@ -191,7 +191,7 @@ public class DeleteTask extends AjaxCore {
 
 	@Bugs (ids = "56467")
 	@Test (description = "Delete a task by selecting and typing '.t' shortcut : Verify Toast message through GUI",
-			groups = { "functional", "L3"} )
+			groups = { "functional", "L3" })
 
 	public void DeleteTaskToast_04() throws HarnessException {
 
@@ -369,7 +369,7 @@ public class DeleteTask extends AjaxCore {
 
 
 	@Test (description = "Create task through SOAP - delete using Backspace Key & verify Toast message through GUI",
-			groups = { "functional", "L3"} )
+			groups = { "functional", "L3" })
 
 	public void DeleteTaskToast_07() throws HarnessException {
 

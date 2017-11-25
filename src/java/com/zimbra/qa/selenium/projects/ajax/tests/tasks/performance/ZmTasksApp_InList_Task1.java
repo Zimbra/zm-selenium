@@ -44,7 +44,7 @@ public class ZmTasksApp_InList_Task1 extends AjaxCore {
 
 
    @Test (description = "Measure the time to load Tasks page with 1 task",
-         groups = {"performance", "deprecated"}, dataProvider = "DataProvider_LoadingApp_1Task")
+         groups = { "performance", "deprecated"}, dataProvider = "DataProvider_LoadingApp_1Task")
 
    public void ZmTasksApp_01(String logMessage) throws HarnessException {
 

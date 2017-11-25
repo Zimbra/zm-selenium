@@ -40,7 +40,7 @@ public class PrintTask extends UniversalCore {
 	}
 	
 	@Test (description = "Print Task using RightClick -> Print and Verify Contents in Print view", 
-			groups = { "functional", "L3"} )
+			groups = { "functional", "L3" })
 
 	public void PrintTask_01() throws HarnessException {
 
@@ -98,7 +98,7 @@ public class PrintTask extends UniversalCore {
 	}
 
 	@Test (description = "Print Task using shortcut 'p' and verify its content from GUI", 
-			groups = { "functional", "L3"} )
+			groups = { "functional", "L3" })
 	
 	public void PrintTask_02() throws HarnessException {
 

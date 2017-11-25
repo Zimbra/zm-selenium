@@ -168,7 +168,7 @@ public class DeleteAppointment extends CalendarWorkWeekPreference {
         DialogConfirmDeleteAppointment dlgConfirm = (DialogConfirmDeleteAppointment)app.zPageCalendar.zKeyboardKeyEvent(keyEvent);
 		dlgConfirm.zPressButton(Button.B_YES);
 		
-		//-- Verification
+		// Verification
 		app.zGetActiveAccount().soapSend(
 					"<SearchRequest xmlns='urn:zimbraMail' types='appointment' calExpandInstStart='"+ startUTC.addDays(-7).toMillis() +"' calExpandInstEnd='"+ startUTC.addDays(7).toMillis() +"'>"
 				+	"<query>subject:("+ apptSubject +")</query>"

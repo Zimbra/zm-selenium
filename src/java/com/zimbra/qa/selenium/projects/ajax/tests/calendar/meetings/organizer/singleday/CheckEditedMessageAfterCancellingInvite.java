@@ -39,7 +39,7 @@ public class CheckEditedMessageAfterCancellingInvite extends AjaxCore {
 
 	@Bugs (ids = "77548,35365")
 	@Test (description = "Text entered before cancellation message of a cancelled appointment ignored",
-				groups = { "functional", "L2"} )
+				groups = { "functional", "L2" })
 
 	public void CheckEditedMessageAfterCancellingInvite_01() throws HarnessException {
 

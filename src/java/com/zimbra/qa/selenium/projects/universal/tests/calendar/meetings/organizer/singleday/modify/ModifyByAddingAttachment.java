@@ -38,7 +38,7 @@ public class ModifyByAddingAttachment extends CalendarWorkWeekPreference {
 
 	@Bugs (ids = "104231")
 	@Test (description = "Modify meeting by adding attachment to an existing invite",
-			groups = {"smoke", "L1" })
+			groups = { "smoke", "L1" })
 
 	public void ModifyByAddingAttachment_01() throws HarnessException {
 

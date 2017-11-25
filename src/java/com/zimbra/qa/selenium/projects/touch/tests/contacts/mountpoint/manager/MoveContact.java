@@ -102,7 +102,7 @@ public class MoveContact extends TouchCore  {
 		// Choose EmailedContact as target AddressBook which you move the contact to
 		mcv.zTreeItem(Action.A_LEFTCLICK, "Emailed Contacts");
 
-		//-- Verification
+		// Verification
 
 		// Verify contact moved from Contacts AddressBook
 		ContactItem actual = ContactItem.importFromSOAP(ZimbraAccount.AccountA(), "in:contacts AND #firstname:"+ contact.firstName);

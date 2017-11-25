@@ -48,7 +48,7 @@ public class ShareRevoked extends UniversalCore {
 	
 	
 	@Test (description = "Login to the Universal Client - with a mountpoint to a revoked share",
-			groups = { "functional", "L3"})
+			groups = { "functional", "L3" })
 	public void ShareRevoked01() throws HarnessException {
 		
 		// Data setup

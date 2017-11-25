@@ -81,7 +81,7 @@ public class ForwardMailWithInlineImageAttachment extends SetGroupMailByMessageP
 				// Send the message
 				mailform.zSubmit();
 
-				//-- Verification
+				// Verification
 
 				// From the receiving end, verify the message details
 				MailItem received = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "from:("+ app.zGetActiveAccount().EmailAddress +") subject:("+ mimeSubject +")");

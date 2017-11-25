@@ -79,7 +79,7 @@ public class RenameMount extends SetGroupMailByMessagePreference{
 		app.zPageMain.zRefreshMainUI();
 		createFolderPage.zSelectOrganizer();
 
-		//-- Verification
+		// Verification
 
 		// SOAP
 		// Get all the folders and verify the new name appears and the old name disappears

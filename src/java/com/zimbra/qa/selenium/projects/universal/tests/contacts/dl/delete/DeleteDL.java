@@ -36,7 +36,7 @@ public class DeleteDL extends UniversalCore  {
 	}
 
 	@Test (description = "Delete DL using toolbar button", 
-			groups = { "smoke", "L0"})
+			groups = { "smoke", "L0" })
 
 	public void DeleteDLUsingToolbarButton_01() throws HarnessException {
 
@@ -96,7 +96,7 @@ public class DeleteDL extends UniversalCore  {
 	}
 
 	@Test (description = "Delete DL using context menu", 
-			groups = { "smoke", "L1"})
+			groups = { "smoke", "L1" })
 
 	public void DeleteDLUsingContextMenu_02() throws HarnessException {
 

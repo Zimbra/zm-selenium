@@ -28,6 +28,7 @@ import com.zimbra.qa.selenium.projects.admin.items.DomainItem;
  *
  */
 public class WizardCreateDomainAlias extends AbsWizard {
+
 	public static class Locators {
 		public static final String DOMAIN_ALIAS_DLG = "zdlgv__UNDEFINE1_zimbraDomainName";
 		public static final String DOMAIN_ALIAS_NAME = "_zimbraDomainName";
@@ -102,5 +103,4 @@ public class WizardCreateDomainAlias extends AbsWizard {
 
 		return (true);
 	}
-
 }

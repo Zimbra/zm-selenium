@@ -38,7 +38,7 @@ public DragAndDropTask() {
 	}
 	
 	@Test (description = "Drag and Drop a task from Tasks to subfolder", 
-			groups = { "smoke", "L1"})
+			groups = { "smoke", "L1" })
 	
 	public void DragAndDropTask_01() throws HarnessException {
 

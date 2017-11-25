@@ -51,7 +51,7 @@ public class ZmContactsApp_InList_BasicContact1 extends UniversalCore {
    }
    
    @Test (description = "Measure the time to load address book page with 1 contact item",
-         groups = {"performance", "L4"}, dataProvider = "DataProvider_LoadingApp_1Contact")
+         groups = { "performance", "L4"}, dataProvider = "DataProvider_LoadingApp_1Contact")
    public void ZmContactsApp_01(String logMessage) throws HarnessException {
 	   ContactItem.createContactItem(app.zGetActiveAccount());
 
@@ -67,7 +67,7 @@ public class ZmContactsApp_InList_BasicContact1 extends UniversalCore {
    }
 
    @Test (description = "Measure the time to load address book page with 100 contact items",
-         groups = {"performance", "L4"})
+         groups = { "performance", "L4" })
    public void ZmContactsApp_02() throws HarnessException {
 
       // Loading csv file that has information for 100 contacts to speed up the setup

@@ -35,7 +35,7 @@ public class ModifyDLDisplayNameAndDescription extends UniversalCore  {
 	}
 	
 	@Test (description = "Modify DL display name and description", 
-			groups = { "functional", "L2"})
+			groups = { "functional", "L2" })
 
 	public void ModifyDLDisplayNameAndDescription_01 () throws HarnessException {
 

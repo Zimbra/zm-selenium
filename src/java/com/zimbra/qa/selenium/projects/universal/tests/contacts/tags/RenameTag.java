@@ -35,7 +35,7 @@ public class RenameTag extends SetGroupMailByMessagePreference {
 	}
 	
 	@Test (description = "Rename a tag - Right click, Rename",
-			groups = { "smoke", "L1"})
+			groups = { "smoke", "L1" })
 	public void RenameTag_01() throws HarnessException {
 		
 		// Create the tag to rename

@@ -30,6 +30,7 @@ import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.projects.admin.items.AccountItem;
 
 public class PageSearchResults extends AbsTab {
+
 	public static class Locators {
 		public static final String SEARCH_INPUT_TEXT_BOX = "_XForm_query_display";
 		public static final String SEARCH_BUTTON = "css=td.xform_container div.ImgSearch";
@@ -47,9 +48,7 @@ public class PageSearchResults extends AbsTab {
 		public static final String zDLSearchObject = "css=div[id='zmi__SEARCH_DLS'] td[id='zmi__SEARCH_DLS_title']";
 		public static final String zAliasesSearchObject = "css=div[id='zmi__SEARCH_ALIASES'] td[id='zmi__SEARCH_ALIASES_title']";
 		public static final String zResourcesSearchObject = "css=div[id='zmi__SEARCH_RESOURCES'] td[id='zmi__SEARCH_RESOURCES_title']";
-
 		public static final String zSearchTypeDropdown = "css=div[class^='ZaSearchFieldButton']";
-
 	}
 
 	public static class TypeOfObject {
@@ -63,9 +62,6 @@ public class PageSearchResults extends AbsTab {
 	}
 
 	public String typeOfObject = "";
-
-	// Search Object from the dropdown in search panel
-
 	public String S_ACCOUNT = "Account";
 	public String S_ALIAS = "ALIAS";
 	public String S_RESOURCE = "RESOURCE";
@@ -74,11 +70,11 @@ public class PageSearchResults extends AbsTab {
 	public String S_DOMAIN = "Domain";
 	public String S_ALL_OBJECTS = "All Objects";
 
-	public String getType() {
+	public String zGetType() {
 		return typeOfObject;
 	}
 
-	public void setType(String type) {
+	public void zSetType(String type) {
 		this.typeOfObject = type;
 	}
 
@@ -109,11 +105,7 @@ public class PageSearchResults extends AbsTab {
 	 */
 	public void zAddSearchQuery(String query) throws HarnessException {
 		logger.info(myPageName() + " zAddSearchQuery(" + query + ")");
-
-		tracer.trace("Search for the query " + query);
-
 		this.sType(Locators.SEARCH_INPUT_TEXT_BOX, query);
-
 	}
 
 	@Override
@@ -129,7 +121,6 @@ public class PageSearchResults extends AbsTab {
 		int count = this.sGetCssCount(rowsLocator);
 		logger.debug(myPageName() + " zListGetAccounts: number of accounts: " + count);
 
-		// Get each conversation's data from the table list
 		for (int i = 1; i <= count; i++) {
 			final String accountLocator = rowsLocator + ":nth-child(" + i + ")";
 			String locator;
@@ -176,15 +167,12 @@ public class PageSearchResults extends AbsTab {
 		String locator = null;
 		AbsPage page = null;
 
-		// Based on the button specified, take the appropriate action(s)
-		//
 		SleepUtil.sleepSmall();
 		if (button == Button.B_SEARCH) {
 
 			locator = Locators.SEARCH_BUTTON;
 			page = new PageSearchResults(MyApplication);
 
-			// Make sure the button exists
 			if (!this.sIsElementPresent(locator))
 				throw new HarnessException("Button is not present locator=" + locator + " button=" + button);
 
@@ -192,7 +180,6 @@ public class PageSearchResults extends AbsTab {
 			locator = Locators.RIGHT_CLICK_MENU_DELETE_BUTTON;
 			page = new DialogForDeleteOperation(this.MyApplication, null);
 
-			// Make sure the button exists
 			if (!this.sIsElementPresent(locator))
 				throw new HarnessException("Button is not present locator=" + locator + " button=" + button);
 
@@ -214,7 +201,6 @@ public class PageSearchResults extends AbsTab {
 			else if (typeOfObject.equals(TypeOfObject.DOMAIN_ALIAS))
 				page = new WizardCreateDomainAlias(this);
 
-			// Make sure the button exists
 			if (!this.sIsElementPresent(locator))
 				throw new HarnessException("Button is not present locator=" + locator + " button=" + button);
 
@@ -238,19 +224,11 @@ public class PageSearchResults extends AbsTab {
 			throw new HarnessException("locator was null for button " + button);
 		}
 
-		// Default behavior, process the locator by clicking on it
-		//
-
 		// Click it
 		this.sClick(locator);
 
-		// If page was specified, make sure it is active
 		if (page != null) {
-
-			// This function (default) throws an exception if never active
-			// page.zWaitForActive();
 			SleepUtil.sleepMedium();
-
 		}
 
 		if (button == Button.B_SEARCH) {
@@ -259,7 +237,6 @@ public class PageSearchResults extends AbsTab {
 
 		sMouseOut(locator);
 		return (page);
-
 	}
 
 	@Override
@@ -274,7 +251,7 @@ public class PageSearchResults extends AbsTab {
 		if (option == null)
 			throw new HarnessException("Option cannot be null!");
 
-		String pulldownLocator = null; // If set, this will be expanded
+		String pulldownLocator = null;
 		String optionLocator = null;
 		AbsPage page = null;
 
@@ -336,7 +313,6 @@ public class PageSearchResults extends AbsTab {
 
 		if (pulldownLocator != null) {
 
-			// Make sure the locator exists
 			if (!this.sIsElementPresent(pulldownLocator)) {
 				throw new HarnessException("Button " + pulldown + " option " + option + " pulldownLocator "
 						+ pulldownLocator + " not present!");
@@ -344,68 +320,56 @@ public class PageSearchResults extends AbsTab {
 
 			this.sClickAt(pulldownLocator, "");
 
-			// If the app is busy, wait for it to become active
-			// zWaitForBusyOverlay();
-
 			if (optionLocator != null) {
 
-				// Make sure the locator exists
 				if (!this.sIsElementPresent(optionLocator)) {
 					throw new HarnessException("Button " + pulldown + " option " + option + " optionLocator "
 							+ optionLocator + " not present!");
 				}
-
 				this.sClick(optionLocator);
-
-				// If the app is busy, wait for it to become active
-				// zWaitForBusyOverlay();
 			}
-
 			SleepUtil.sleepMedium();
 		}
 
-		// Return the specified page, or null if not set
 		return (page);
 	}
 
 	/**
 	 * Return a list of all accounts in the current view
-	 *
-	 * @return
-	 * @throws HarnessException
-	 * @throws HarnessException
 	 */
 	public List<AccountItem> zListGetAccounts() throws HarnessException {
 
 		List<AccountItem> items = new ArrayList<AccountItem>();
 
-		// Make sure the button exists
-		if (!this.sIsElementPresent("css=div[id='zl__SEARCH_MANAGE'] div[id$='__rows']"))
-			throw new HarnessException("Account Rows is not present");
+		SleepUtil.sleepMedium();
 
 		// How many items are in the table?
 		String rowsLocator = "css=div#zl__SEARCH_MANAGE div[id$='__rows'] div[id^='zli__']";
 		int count = this.sGetCssCount(rowsLocator);
+		int scrollCounter = 50;
+
 		logger.debug(myPageName() + " zListGetAccounts: number of accounts: " + count);
 
-		int m = 50;
 		if (count >= 50) {
-			for (int a1 = 1; a1 <= 5; a1++) {
-				String p0 = rowsLocator + ":nth-child(" + m + ")";
-				if (this.sIsElementPresent(p0)) {
-					sClickAt(p0, "");
+
+			for (int accountPaging = 1; accountPaging <= 50; accountPaging++) {
+
+				String pageCounter = rowsLocator + ":nth-child(" + scrollCounter + ")";
+
+				if (this.sIsElementPresent(pageCounter)) {
+					sClickAt(pageCounter, "");
+					SleepUtil.sleepVerySmall();
 					this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_DOWN);
-					m = m + 20;
-				} else
+					SleepUtil.sleepVerySmall();
+					scrollCounter = scrollCounter + 20;
+				} else {
 					break;
-
+				}
 			}
-
 		}
 
 		count = this.sGetCssCount(rowsLocator);
 
-		// Get each conversation's data from the table list
 		for (int i = 1; i <= count; i++) {
 			final String accountLocator = rowsLocator + ":nth-child(" + i + ")";
 			String locator;
@@ -414,7 +378,6 @@ public class PageSearchResults extends AbsTab {
 					ConfigProperties.getStringProperty("testdomain"));
 
 			// Type (image)
-			// ImgAdminUser ImgAccount ImgSystemResource (others?)
 			locator = accountLocator + " td[id^='SEARCH_MANAGE_data_type'] div";
 			if (this.sIsElementPresent(locator)) {
 				item.setGAccountType(this.sGetAttribute(locator + "@class"));
@@ -426,17 +389,11 @@ public class PageSearchResults extends AbsTab {
 				item.setGEmailAddress(this.sGetText(locator).trim());
 			}
 
-			// Display Name
-			// Status
-			// Lost Login Time
-			// Description
-
 			// Add the new item to the list
 			items.add(item);
 			logger.info(item.prettyPrint());
 		}
 
-		// Return the list of items
 		return (items);
 	}
 
@@ -455,41 +412,33 @@ public class PageSearchResults extends AbsTab {
 		} else {
 			return false;
 		}
-
 	}
 
 	public void zSelectSearchObject(String object) throws HarnessException {
 
 		if (object == S_COS) {
-
 			this.sClickAt(Locators.zArrowSelectSearchObject, "");
 			this.sClickAt(Locators.zCosSearchObject, "");
 
 		} else if (object == S_DOMAIN) {
-
 			this.sClickAt(Locators.zDomainSearchObject, "");
 
 		} else if (object == S_ACCOUNT) {
-
 			this.sClickAt(Locators.zArrowSelectSearchObject, "");
 			this.sClickAt(Locators.zAccountsSearchObject, "");
 
 		} else if (object == S_RESOURCE) {
-
 			this.sClickAt(Locators.zResourcesSearchObject, "");
 
 		} else if (object == S_DISTRIBUTION_LIST) {
-
 			SleepUtil.sleepMedium();
 			this.sClickAt(Locators.zDLSearchObject, "");
 
 		} else if (object == S_ALIAS) {
-
 			this.sClickAt(Locators.zAliasesSearchObject, "");
 
 		} else {
 			throw new HarnessException("Not imeplemented for " + object + "Object");
 		}
 	}
-
 }

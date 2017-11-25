@@ -130,7 +130,7 @@ public class CheckCloseButtonInSharedFolder extends UniversalCore {
 
 	@Bugs (ids = "75277")
 	@Test (description = "Verify Close button on Share Task Window and its functionality",	
-	groups = { "smoke", "L1"})
+	groups = { "smoke", "L1" })
 
 	public void CheckCloseButtonInSharedFolder_02() throws HarnessException {
 

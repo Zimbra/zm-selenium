@@ -70,7 +70,7 @@ public class CreateDisposal extends SetGroupMailByMessagePreference {
 		dialog.zPressButton(Button.B_OK);
 		
 		
-		//-- Verification
+		// Verification
 		
 		// Verify the retention policy on the folder
 		app.zGetActiveAccount().soapSend(
@@ -136,7 +136,7 @@ public class CreateDisposal extends SetGroupMailByMessagePreference {
 		dialog.zPressButton(Button.B_OK);
 		
 		
-		//-- Verification
+		// Verification
 		
 		// Verify the retention policy on the folder
 		app.zGetActiveAccount().soapSend(

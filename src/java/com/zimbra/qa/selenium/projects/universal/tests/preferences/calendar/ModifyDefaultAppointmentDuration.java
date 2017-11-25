@@ -42,7 +42,7 @@ public class ModifyDefaultAppointmentDuration extends CalendarWorkWeekPreference
 	    this.startingPage = this.app.zPagePreferences;
 	 }
   
-	 @Test (description = "Modify calendar default appointment duration", groups = {"functional", "L2"} )
+	 @Test (description = "Modify calendar default appointment duration", groups = { "functional", "L2" })
 	
 	 public void ModifyDefaultAppointmentDuration_01() throws HarnessException  {
 		 

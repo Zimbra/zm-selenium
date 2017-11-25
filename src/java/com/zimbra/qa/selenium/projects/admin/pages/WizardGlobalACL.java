@@ -43,12 +43,6 @@ public class WizardGlobalACL extends AbsWizard {
 		super(page);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see projects.admin.pages.AbsWizard#completeWizard(projects.admin.clients.Item)
-	 */
-
 	public IItem zCompleteWizard(IItem item) throws HarnessException {
 
 		AclItem acl = (AclItem) item;
@@ -59,12 +53,6 @@ public class WizardGlobalACL extends AbsWizard {
 		SleepUtil.sleepMedium();
 		sClick(Locators.ACL_RIGHT_NAME);
 		sClick(Locators.Pull_DOWN);
-
-		/*
-		 * if (this.sIsElementPresent(Locators.Pull_DOWN) == true) {
-		 * sClick(Locators.Pull_DOWN); } else { throw new
-		 * HarnessException("Element is not active!"); }
-		 */
 
 		sClick(Locators.SYSTEM_DEFINED_RIGHTS);
 
@@ -89,5 +77,4 @@ public class WizardGlobalACL extends AbsWizard {
 	public boolean zIsActive() throws HarnessException {
 		return false;
 	}
-
 }

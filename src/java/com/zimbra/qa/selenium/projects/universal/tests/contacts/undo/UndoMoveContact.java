@@ -35,7 +35,7 @@ public class UndoMoveContact extends UniversalCore {
 
 	@Test(
 			description = "Undone moved contact", 
-			groups = { "functional", "L3"})
+			groups = { "functional", "L3" })
 	public void UndoMoveContact_01() throws HarnessException {
 		 
 		// The contacts folder

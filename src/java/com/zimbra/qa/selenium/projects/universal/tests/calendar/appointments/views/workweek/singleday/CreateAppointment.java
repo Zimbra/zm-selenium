@@ -122,7 +122,7 @@ public class CreateAppointment extends CalendarWorkWeekPreference {
 	}
 		
 	@Test (description = "Create private appointment",
-			groups = { "functional", "L2"} )
+			groups = { "functional", "L2" })
 	
 	public void CreatePrivateAppointment_03() throws HarnessException {
 		

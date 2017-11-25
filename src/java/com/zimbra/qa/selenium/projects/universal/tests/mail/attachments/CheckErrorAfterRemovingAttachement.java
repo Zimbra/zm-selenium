@@ -88,7 +88,7 @@ public class CheckErrorAfterRemovingAttachement extends SetGroupMailByMessagePre
 		DialogWarning dialog = (DialogWarning)display.zListAttachmentItem(Button.B_REMOVE, item);
 		dialog.zPressButton(Button.B_YES);
 
-		//-- Verification
+		// Verification
 		// Verify the message no longer has an attachment
 		account.soapSend(
 				"<SearchRequest xmlns='urn:zimbraMail' types='message'>"

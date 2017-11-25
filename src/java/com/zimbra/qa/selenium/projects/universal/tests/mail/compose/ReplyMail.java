@@ -72,7 +72,7 @@ public class ReplyMail extends SetGroupMailByMessagePreference {
 
 
 
-		//-- Verification
+		// Verification
 		
 		// From the receiving end, verify the message details
 		// Need 'in:inbox' to separate the message from the sent message
@@ -122,7 +122,7 @@ public class ReplyMail extends SetGroupMailByMessagePreference {
 
 
 
-		//-- Verification
+		// Verification
 		
 		// From the receiving end, verify the message details
 		// Need 'in:inbox' to separate the message from the sent message
@@ -191,7 +191,7 @@ public class ReplyMail extends SetGroupMailByMessagePreference {
 		}
 
 
-		//-- Verification
+		// Verification
 		
 		// From the receiving end, verify the message details
 		// Need 'in:inbox' to separate the message from the sent message
@@ -242,7 +242,7 @@ public class ReplyMail extends SetGroupMailByMessagePreference {
 
 
 
-		//-- Verification
+		// Verification
 		
 		// Verify no new drafts
 		app.zGetActiveAccount().soapSend(

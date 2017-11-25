@@ -34,7 +34,7 @@ public class DeleteTag extends SetGroupMailByMessagePreference {
 	}
 	
 	@Test (description = "Delete a tag - Right click, Delete",
-			groups = { "smoke", "L1"})
+			groups = { "smoke", "L1" })
 	public void DeleteTag_01() throws HarnessException {
 		
 		// Create the tag to delete

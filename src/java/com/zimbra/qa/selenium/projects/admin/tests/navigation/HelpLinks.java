@@ -62,6 +62,6 @@ public class HelpLinks extends AdminCore {
 		boolean isEndUsersGuideLinkPresent = app.zPageManageHelp.zVerifyHelpCenterLink("End Users' Guide");
 		ZAssert.assertTrue(isEndUsersGuideLinkPresent, "Verify End Users' Guide link is present");
 
-		app.zPageMain.logout();
+		app.zPageMain.zLogout();
 	}
 }

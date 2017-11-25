@@ -29,6 +29,7 @@ import com.zimbra.qa.selenium.projects.admin.items.GALItem.GALMode;
  *
  */
 public class WizardConfigureGAL extends AbsWizard {
+
 	public static class Locators {
 		public static final String GAL_CONFIGRATION_WIZARD = "css=div[id^='zdlg__UNDEFINE__DWT'][style*='z-index: 7'] td[id$='title']:contains('GAL Configuration Wizard')";
 		public static final String GAL_MODE_DROPDOWN = "css=div[id='zdlgv__UNDEFINE_zimbraGalMode_arrow_button'] div.ImgSelectPullDownArrow";

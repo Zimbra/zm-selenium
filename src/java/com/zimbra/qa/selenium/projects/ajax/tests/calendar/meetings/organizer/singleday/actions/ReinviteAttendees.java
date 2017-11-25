@@ -85,9 +85,6 @@ public class ReinviteAttendees extends AjaxCore {
         // Right Click -> Re-invite context menu
         app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_REINVITE, apptSubject);
 
-		//-- Verification
-
-
 		// Verify the new invitation appears in the inbox
 		ZimbraAccount.AccountA().soapSend(
 				"<SearchRequest xmlns='urn:zimbraMail' types='message'>"

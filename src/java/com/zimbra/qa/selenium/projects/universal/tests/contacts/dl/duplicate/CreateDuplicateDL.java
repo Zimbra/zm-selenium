@@ -33,7 +33,7 @@ public class CreateDuplicateDL extends UniversalCore  {
 	}
 
 	@Test (description = "Try to create duplicate DL", 
-			groups = { "functional", "L2"})
+			groups = { "functional", "L2" })
 
 	public void TryToCreateDuplicateDL_01 () throws HarnessException {
 

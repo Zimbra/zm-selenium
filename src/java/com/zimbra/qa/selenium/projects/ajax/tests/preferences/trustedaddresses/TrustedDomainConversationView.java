@@ -56,7 +56,7 @@ public class TrustedDomainConversationView extends AjaxCore {
 	 */
 
 	@Test (description = "Verify Display Image link in Trusted doamin for conversation view",
-			groups = { "smoke", "L1"  })
+			groups = { "smoke", "L1" })
 
 	public void TrustedDomainConversationView_01() throws HarnessException {
 

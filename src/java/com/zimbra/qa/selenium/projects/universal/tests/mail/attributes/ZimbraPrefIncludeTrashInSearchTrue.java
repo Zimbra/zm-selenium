@@ -92,7 +92,7 @@ public class ZimbraPrefIncludeTrashInSearchTrue extends SetGroupMailByMessagePre
 		app.zPageSearch.zToolbarPressButton(Button.B_SEARCH);
 		
 		
-		//-- Verification
+		// Verification
 		
 		// Verify that both messages are in the list
 		List<MailItem> items = app.zPageSearch.zListGetMessages();

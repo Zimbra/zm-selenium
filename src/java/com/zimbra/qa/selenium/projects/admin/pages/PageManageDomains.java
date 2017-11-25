@@ -70,11 +70,11 @@ public class PageManageDomains extends AbsTab {
 
 	public String typeOfObject = "Domain";
 
-	public String getType() {
+	public String zGetType() {
 		return typeOfObject;
 	}
 
-	public void setType(String type) {
+	public void zSetType(String type) {
 		this.typeOfObject = type;
 	}
 
@@ -82,11 +82,6 @@ public class PageManageDomains extends AbsTab {
 		super(application);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see projects.admin.pages.AbsTab#isActive()
-	 */
 	@Override
 	public boolean zIsActive() throws HarnessException {
 
@@ -101,21 +96,11 @@ public class PageManageDomains extends AbsTab {
 		return (true);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see projects.admin.pages.AbsTab#myPageName()
-	 */
 	@Override
 	public String myPageName() {
 		return (this.getClass().getName());
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see projects.admin.pages.AbsTab#navigateTo()
-	 */
 	@Override
 	public void zNavigateTo() throws HarnessException {
 
@@ -163,7 +148,7 @@ public class PageManageDomains extends AbsTab {
 
 		}
 		count = this.sGetCssCount(rowsLocator);
-		// Get each conversation's data from the table list
+
 		for (int i = 1; i <= count; i++) {
 			final String accountLocator = rowsLocator + ":nth-child(" + i + ")";
 			String locator;
@@ -184,9 +169,7 @@ public class PageManageDomains extends AbsTab {
 						sDoubleClick(locator);
 						break;
 					}
-
 				}
-
 			}
 		}
 		return page;
@@ -212,24 +195,15 @@ public class PageManageDomains extends AbsTab {
 		if (button == null)
 			throw new HarnessException("Button cannot be null!");
 
-		//
-		String locator = null; // If set, this will be clicked
-		AbsPage page = null; // If set, this page will be returned
-
-		// Based on the button specified, take the appropriate action(s)
-		//
+		String locator = null;
+		AbsPage page = null;
 
 		if (button == Button.B_NEW) {
-
-			// New button
 			locator = Locators.DOMAINS;
-
-			// Create the page
 			page = new WizardCreateDomain(this);
 
 		} else if (button == Button.B_TREE_DELETE) {
 			locator = Locators.RIGHT_CLICK_MENU_DELETE_BUTTON;
-
 			page = new DialogForDeleteOperationDomain(this.MyApplication, null);
 
 		} else if (button == Button.B_TREE_EDIT) {
@@ -241,30 +215,20 @@ public class PageManageDomains extends AbsTab {
 				page = new WizardCreateDomainAlias(this);
 
 		} else if (button == Button.B_HOME_DOMAIN) {
-
-			// New button
 			locator = PageMain.Locators.HomeCreateDomain;
-			// Create the page
 			page = new WizardCreateDomain(this);
 			this.sClickAt(locator, "");
 			return page;
 
 		} else if (button == Button.B_CONFIGURE_GRANTS) {
-
 			locator = Locators.RIGHT_CLICK_CONFIGURE_GRANTS;
 
 		} else if (button == Button.B_EDIT_ACL) {
-
 			locator = Locators.EDIT_ACL;
-
-			// Create the page
 			page = new WizardEditACLAtDL(this);
 
 		} else if (button == Button.B_DELETE_ACL) {
-
 			locator = Locators.DELETE_ACL;
-
-			// Create the page
 			page = new DialogForDeleteOperationACL(this.MyApplication, null);
 
 		} else {
@@ -275,18 +239,13 @@ public class PageManageDomains extends AbsTab {
 			throw new HarnessException("locator was null for button " + button);
 		}
 
-		// Default behavior, process the locator by clicking on it
-		//
-
 		this.sClickAt(locator, "");
 
-		// If page was specified, make sure it is active
 		if (page != null) {
 			SleepUtil.sleepMedium();
 		}
 
 		return (page);
-
 	}
 
 	@Override
@@ -309,19 +268,15 @@ public class PageManageDomains extends AbsTab {
 			pulldownLocator = Locators.GEAR_ICON;
 
 			if (option == Button.O_NEW) {
-
 				optionLocator = Locators.NEW_MENU;
-
 				page = new WizardCreateDomain(this);
 
 			} else if (option == Button.O_ADD_DOMAIN_ALIAS) {
 				optionLocator = Locators.ADD_DOMAIN_ALIAS;
-
 				page = new WizardCreateDomainAlias(this);
 
 			} else if (option == Button.O_DELETE) {
 				optionLocator = Locators.DELETE_BUTTON;
-
 				page = new DialogForDeleteOperationDomain(this.MyApplication, null);
 
 			} else if (option == Button.O_EDIT) {
@@ -334,12 +289,10 @@ public class PageManageDomains extends AbsTab {
 
 			} else if (option == Button.O_CONFIGURE_GAL) {
 				optionLocator = Locators.CONFIGURE_GAL;
-
 				page = new WizardConfigureGAL(this);
 
 			} else if (option == Button.O_VIEW_ACCOUNTS) {
 				optionLocator = Locators.VIEW_ACCOUNTS;
-
 				page = new DialogForDeleteOperationDomain(this.MyApplication, null);
 
 			} else if (option == Button.O_CONFIGURE_GRANTS) {
@@ -353,10 +306,8 @@ public class PageManageDomains extends AbsTab {
 			throw new HarnessException("no logic defined for pulldown/option " + pulldown + "/" + option);
 		}
 
-		// Default behavior
 		if (pulldownLocator != null) {
 
-			// Make sure the locator exists
 			if (!this.sIsElementPresent(pulldownLocator)) {
 				throw new HarnessException("Button " + pulldown + " option " + option + " pulldownLocator "
 						+ pulldownLocator + " not present!");
@@ -364,12 +315,8 @@ public class PageManageDomains extends AbsTab {
 
 			this.sClickAt(pulldownLocator, "");
 
-			// If the app is busy, wait for it to become active
-			// zWaitForBusyOverlay();
-
 			if (optionLocator != null) {
 
-				// Make sure the locator exists
 				if (!this.sIsElementPresent(optionLocator)) {
 					throw new HarnessException("Button " + pulldown + " option " + option + " optionLocator "
 							+ optionLocator + " not present!");
@@ -377,9 +324,6 @@ public class PageManageDomains extends AbsTab {
 
 				SleepUtil.sleepMedium();
 				this.sClickAt(optionLocator, "");
-
-				// If the app is busy, wait for it to become active
-				// zWaitForBusyOverlay();
 			}
 
 			if (option == Button.O_EDIT) {
@@ -387,9 +331,7 @@ public class PageManageDomains extends AbsTab {
 			}
 		}
 
-		// Return the specified page, or null if not set
 		return (page);
-
 	}
 
 	public boolean zVerifyHeader(String header) throws HarnessException {
@@ -400,16 +342,11 @@ public class PageManageDomains extends AbsTab {
 
 	/**
 	 * Return a list of all domain entries in the current view
-	 *
-	 * @return
-	 * @throws HarnessException
-	 * @throws HarnessException
 	 */
 	public List<DomainItem> zListGetDomainList() throws HarnessException {
 
 		List<DomainItem> items = new ArrayList<DomainItem>();
 
-		// Make sure the button exists
 		if (!this.sIsElementPresent("css=div[id='zl__DOMAIN_MANAGE'] div[id$='__rows']"))
 			throw new HarnessException("Account Rows is not present");
 
@@ -418,7 +355,6 @@ public class PageManageDomains extends AbsTab {
 		int count = this.sGetXpathCount(rowsLocator);
 		logger.debug(myPageName() + " zListGetdomain: number of domain: " + count);
 
-		// Get each conversation's data from the table list
 		for (int i = 1; i <= count; i++) {
 			final String domainLocator = rowsLocator + "[" + i + "]";
 			String locator;
@@ -426,23 +362,16 @@ public class PageManageDomains extends AbsTab {
 			DomainItem item = new DomainItem();
 
 			// Type (image)
-			// ImgAdminUser ImgAccount ImgSystemResource (others?)
 			locator = domainLocator + "//td[contains(@id,'domain_data_name')]";
 			if (this.sIsElementPresent(locator)) {
 				item.setName(this.sGetText(locator).trim());
 			}
-
-			// Display Name
-			// Status
-			// Lost Login Time
-			// Description
 
 			// Add the new item to the list
 			items.add(item);
 			logger.info(item.prettyPrint());
 		}
 
-		// Return the list of items
 		return (items);
 	}
 
@@ -471,15 +400,12 @@ public class PageManageDomains extends AbsTab {
 		if (this.sIsElementPresent(Locators.DOMAIN_ACCOUNTS_LIMITS_COS_LIMIT)) {
 			this.sFocus(Locators.DOMAIN_ACCOUNTS_LIMITS_COS_LIMIT);
 			this.sType(Locators.DOMAIN_ACCOUNTS_LIMITS_COS_LIMIT, limit);
-
 		}
 
 		// Click on OK button
 		this.sClickAt(Locators.DOMAIN_ACCOUNTS_LIMITS_AT_COS_OK, "");
 
-		// Return the specified page, or null if not set
 		return (page);
-
 	}
 
 	public AbsPage zSetAccountLimitOnDomain(String limit) throws HarnessException {
@@ -501,9 +427,7 @@ public class PageManageDomains extends AbsTab {
 
 		}
 
-		// Return the specified page, or null if not set
 		return (page);
-
 	}
 
 	public AbsPage zSetAccountLimit(String limit) throws HarnessException {
@@ -522,20 +446,13 @@ public class PageManageDomains extends AbsTab {
 		if (this.sIsElementPresent(Locators.MAXIMUM_ACCOUNTS_FOR_DOMAIN)) {
 			this.sFocus(Locators.MAXIMUM_ACCOUNTS_FOR_DOMAIN);
 			this.sType(Locators.MAXIMUM_ACCOUNTS_FOR_DOMAIN, limit);
-
 		}
 
-		// Return the specified page, or null if not set
 		return (page);
-
 	}
 
 	/**
 	 * Press the toolbar button
-	 *
-	 * @param button
-	 * @return
-	 * @throws HarnessException
 	 */
 	public AbsPage zToolbarPressButton(Button button, String cos_name, String limit) throws HarnessException {
 		logger.info(myPageName() + " zToolbarPressButton(" + button + ")");
@@ -594,7 +511,6 @@ public class PageManageDomains extends AbsTab {
 		int count = this.sGetCssCount(rowsLocator);
 		logger.debug(myPageName() + " zListGetPolicy: number of policys: " + count);
 
-		// Get each conversation's data from the table list
 		for (int i = 1; i <= count; i++) {
 			final String aceLocator = rowsLocator + ":nth-child(" + i + ")";
 			String locator;
@@ -632,7 +548,6 @@ public class PageManageDomains extends AbsTab {
 		int count = this.sGetCssCount(rowsLocator);
 		logger.debug(myPageName() + " zListGetPolicy: number of policys: " + count);
 
-		// Get each conversation's data from the table list
 		for (int i = 1; i <= count; i++) {
 			final String aceLocator = rowsLocator + ":nth-child(" + i + ")";
 			String locator;

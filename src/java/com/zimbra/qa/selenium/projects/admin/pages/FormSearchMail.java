@@ -42,14 +42,11 @@ public class FormSearchMail extends AbsForm {
 		public static final String FIND_ACCOUNTS = "css=td[id$='_dwt_button_3___container'] div:contains('Find accounts')";
 		public static final String ADD = "css=td[id$='dwt_button_5___container'] div:contains('Add')";
 		public static final String SELECTED_ACCOUNTS1 = "css=input[id='_XForm_2_searchAll_2']";
-
 	}
 
 	public FormSearchMail(AbsApplication application) {
 		super(application);
-
 		logger.info("new " + myPageName());
-
 	}
 
 	@Override
@@ -70,7 +67,6 @@ public class FormSearchMail extends AbsForm {
 		}
 
 		return (true);
-
 	}
 
 	@Override
@@ -92,7 +88,7 @@ public class FormSearchMail extends AbsForm {
 		sClickAt("css=td:contains('" + treeItem + "')", "");
 	}
 
-	public void setSearchQuery(String Query) throws HarnessException {
+	public void zSetSearchQuery(String Query) throws HarnessException {
 		for (int i = 12; i >= 0; i--) {
 			if (sIsElementPresent(Locators.QUERY_TEXT_BOX + i + "_query_2")) {
 				sType(Locators.QUERY_TEXT_BOX + i + "_query_2", Query);
@@ -102,7 +98,7 @@ public class FormSearchMail extends AbsForm {
 		sType(Locators.QUERY_TEXT_BOX + "_query_2", Query);
 	}
 
-	public void SelectServerName(String serverName) throws HarnessException {
+	public void zSelectServerName(String serverName) throws HarnessException {
 		this.sClickAt(Locators.SERVER_NAME_ARROW, "");
 		for (int i = 12; i >= 0; i--) {
 			if (sIsElementPresent(Locators.SERVER_NAME + i + "_serverId_choice_0")) {
@@ -114,7 +110,7 @@ public class FormSearchMail extends AbsForm {
 		sClick(Locators.SERVER_NAME + "_serverId_choice_0");
 	}
 
-	public void setTargetMailbox(String emailAddress) throws HarnessException {
+	public void zSetTargetMailbox(String emailAddress) throws HarnessException {
 		for (int i = 12; i >= 0; i--) {
 			if (sIsElementPresent(Locators.TARGET_MAILBOX + i + "_targetMbx_2_display")) {
 				sType(Locators.TARGET_MAILBOX + i + "_targetMbx_2_display", emailAddress);
@@ -127,7 +123,7 @@ public class FormSearchMail extends AbsForm {
 		SleepUtil.sleepMedium();
 	}
 
-	public void selectAccountsToSearch(String criteria) throws HarnessException {
+	public void zSelectAccountsToSearch(String criteria) throws HarnessException {
 		if (criteria.equals("all")) {
 			for (int i = 12; i >= 0; i--) {
 				if (sIsElementPresent(Locators.ALL_ACCOUNTS + i + "_searchAll")) {
@@ -137,19 +133,11 @@ public class FormSearchMail extends AbsForm {
 			}
 			sClick(Locators.ALL_ACCOUNTS + "_searchAll");
 		} else if (criteria.equals("selected")) {
-			/*
-			 * for(int i=12;i>=0;i--) { if
-			 * (sIsElementPresent(Locators.ALL_ACCOUNTS+i+"_searchAll_2")) {
-			 * sClick(Locators.ALL_ACCOUNTS+i+"_searchAll_2"); return; }
-			 * sClick(Locators.ALL_ACCOUNTS+"_searchAll_2"); }
-			 */
-
 			sClick(Locators.SELECTED_ACCOUNTS1);
-
 		}
 	}
 
-	public void searchInSelectedAccount(String email) throws HarnessException {
+	public void zSearchInSelectedAccount(String email) throws HarnessException {
 
 		sType(Locators.ACCOUNT_NAME, email);
 		SleepUtil.sleepMedium();
@@ -162,7 +150,6 @@ public class FormSearchMail extends AbsForm {
 		int count = this.sGetCssCount(rowsLocator);
 		logger.debug(myPageName() + " zListGetPolicy: number of policys: " + count);
 
-		// Get each conversation's data from the table list
 		for (int i = 1; i <= count; i++) {
 			final String accountLocator = rowsLocator + ":nth-child(" + i + ")";
 			String locator;
@@ -177,13 +164,10 @@ public class FormSearchMail extends AbsForm {
 				} else {
 					logger.info("Element is not present!");
 				}
-
 			}
 
 			sClick(Locators.ADD);
-
 			SleepUtil.sleepMedium();
 		}
 	}
-
 }

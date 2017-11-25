@@ -90,7 +90,7 @@ public class EditFilter extends AjaxCore {
 	}
 
 
-    @Test(	description = "Edit a outgoing filter",
+    @Test (description = "Edit a outgoing filter",
 			groups = { "functional", "L2" })
 
 	public void EditFilter_02() throws HarnessException {

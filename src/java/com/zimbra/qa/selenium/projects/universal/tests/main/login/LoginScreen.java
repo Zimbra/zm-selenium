@@ -42,7 +42,7 @@ public class LoginScreen extends UniversalCore {
 	}
 
 	@Test (description = "Verify the label text on the universal client login screen",
-			groups = { "smoke", "L0"})
+			groups = { "smoke", "L0" })
 	public void LoginScreen01() throws HarnessException {
 		
 		String username = app.zPageLogin.sGetText(PageLogin.Locators.zDisplayedusername);

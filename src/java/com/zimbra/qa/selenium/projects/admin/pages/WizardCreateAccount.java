@@ -27,6 +27,7 @@ import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.projects.admin.items.AccountItem;
 
 public class WizardCreateAccount extends AbsWizard {
+
 	public static class Locators {
 		public static final String zdlg_NEW_ACCT = "zdlg__NEW_ACCT";
 		public static final String zdlg_ACCT_NAME = "zdlgv__NEW_ACCT_name_2";
@@ -42,11 +43,6 @@ public class WizardCreateAccount extends AbsWizard {
 		logger.info("New " + WizardCreateAccount.class.getName());
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see projects.admin.pages.AbsWizard#completeWizard(projects.admin.clients.Item)
-	 */
 	@Override
 	public IItem zCompleteWizard(IItem item) throws HarnessException {
 
@@ -66,18 +62,15 @@ public class WizardCreateAccount extends AbsWizard {
 		for (String key : account.getAccountAttrs().keySet()) {
 
 			// TODO: Handle Previous/Next to find the input field, if necessary
-
 			if (key.equals("sn")) {
-
 				zType(Locators.zdlg_LAST_NAME, account.getAccountAttrs().get(key));
 				continue;
 			}
 
 			// TODO: add all account keys
-
 			throw new HarnessException("Unknown account attribute key " + key);
-
 		}
+
 		if (ExecuteHarnessMain.totalZimbraServers > 1) {
 			if (sIsVisible(Locators.server_AUTO_CHECKBOX)) {
 
@@ -97,11 +90,6 @@ public class WizardCreateAccount extends AbsWizard {
 			}
 		}
 		clickFinish(AbsWizard.Locators.ACCOUNT_DIALOG);
-
-		// Need to dismiss the "account created" dialog.
-		// sClick(Locators.zdlg_OK);
-		// throw new HarnessException("See
-		// http://bugzilla.zimbra.com/show_bug.cgi?id=59013");
 
 		return (account);
 
@@ -132,5 +120,4 @@ public class WizardCreateAccount extends AbsWizard {
 		this.sClickAt("css=td[id$='zdlg__NEW_ACCT_button1_title']", "");
 		return true;
 	}
-
 }

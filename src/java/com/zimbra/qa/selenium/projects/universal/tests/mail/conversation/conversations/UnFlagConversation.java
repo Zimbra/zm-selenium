@@ -62,7 +62,7 @@ public class UnFlagConversation extends SetGroupMailByConversationPreference {
 		
 
 
-		//-- Verification
+		// Verification
 		
 
 		// Each message in the conversation should now be flagged
@@ -103,7 +103,7 @@ public class UnFlagConversation extends SetGroupMailByConversationPreference {
 		
 
 
-		//-- Verification
+		// Verification
 		
 
 		// Each message in the conversation should now be flagged

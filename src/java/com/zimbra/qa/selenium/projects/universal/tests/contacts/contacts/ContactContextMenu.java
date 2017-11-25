@@ -79,7 +79,7 @@ public class ContactContextMenu extends UniversalCore {
 	}
 
 	@Test (description = "Right click a contact to show a menu", 
-			groups = { "smoke", "L0"})
+			groups = { "smoke", "L0" })
 	public void ShowContextMenu_01() throws HarnessException {
 
 		ContactItem contactItem = createSelectARandomContactItem();
@@ -107,7 +107,7 @@ public class ContactContextMenu extends UniversalCore {
 	}
 
 	@Test (description = "Right click then click New Email", 
-			groups = { "smoke", "L0"})
+			groups = { "smoke", "L0" })
 	public void NewEmail_02() throws HarnessException {
 
 		ContactItem contactItem = createSelectARandomContactItem();
@@ -131,7 +131,7 @@ public class ContactContextMenu extends UniversalCore {
 	}
 
 	@Test (description = "Right click then click Advanced Search", 
-			groups = { "deprecated", "L4"})
+			groups = { "deprecated", "L4" })
 	public void AdvancedSearch_03() throws HarnessException {
 
 		ContactItem contactItem = createSelectARandomContactItem();
@@ -171,7 +171,7 @@ public class ContactContextMenu extends UniversalCore {
 	}
 
 	@Test (description = "Right click then  click Find Emails->Received From contact", 
-			groups = { "smoke" , "L1"})
+			groups = { "smoke" , "L1" })
 	public void FindEmailsReceivedFromContact_05() throws HarnessException {
 
 		// Create email sent to this contacts

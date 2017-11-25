@@ -48,7 +48,7 @@ public class ShareDeleted extends UniversalCore {
 	
 	
 	@Test (description = "Login to the Universal Client - with a mountpoint to a deleted share",
-			groups = { "functional" , "L3"})
+			groups = { "functional" , "L3" })
 	public void ShareDeleted01() throws HarnessException {
 		
 		// Data setup

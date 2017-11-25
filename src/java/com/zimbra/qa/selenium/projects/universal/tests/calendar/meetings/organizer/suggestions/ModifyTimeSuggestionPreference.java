@@ -34,7 +34,7 @@ public class ModifyTimeSuggestionPreference extends CalendarWorkWeekPreference {
 	}
 		
 	@Test (description = "Create a meeting invite by modifying time suggestion preferences",
-			groups = { "functional", "L2"})
+			groups = { "functional", "L2" })
 			
 	public void ModifyTimeSuggestionPreference_01() throws HarnessException {
 		

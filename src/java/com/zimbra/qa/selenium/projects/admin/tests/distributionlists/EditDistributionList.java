@@ -78,7 +78,7 @@ public class EditDistributionList extends AdminCore {
 
 		// Edit the name
 		String editedName = "editedDL_" + ConfigProperties.getUniqueString();
-		form.setName(editedName);
+		form.zSetName(editedName);
 
 		// Submit
 		form.zSubmit();
@@ -133,7 +133,7 @@ public class EditDistributionList extends AdminCore {
 
 		// Edit the name
 		String editedName = "editedDL_" + ConfigProperties.getUniqueString();
-		form.setName(editedName);
+		form.zSetName(editedName);
 
 		// Submit
 		form.zSubmit();
@@ -190,7 +190,7 @@ public class EditDistributionList extends AdminCore {
 
 		// Edit the name
 		String editedName = "editedDL_" + ConfigProperties.getUniqueString();
-		form.setName(editedName);
+		form.zSetName(editedName);
 
 		// Submit
 		form.zSubmit();
@@ -250,7 +250,7 @@ public class EditDistributionList extends AdminCore {
 
 		// Edit the name
 		String editedName = "editedDL_" + ConfigProperties.getUniqueString();
-		form.setName(editedName);
+		form.zSetName(editedName);
 
 		// Submit
 		form.zSubmit();
@@ -310,7 +310,7 @@ public class EditDistributionList extends AdminCore {
 
 		// Edit the name
 		String editedName = "editedDL_" + ConfigProperties.getUniqueString();
-		form.setName(editedName);
+		form.zSetName(editedName);
 
 		// Submit
 		form.zSubmit();
@@ -370,7 +370,7 @@ public class EditDistributionList extends AdminCore {
 
 		// Edit the name
 		String editedName = "editedDL_" + ConfigProperties.getUniqueString();
-		form.setName(editedName);
+		form.zSetName(editedName);
 
 		// Submit
 		form.zSubmit();

@@ -51,7 +51,7 @@ public class RenameMountpoint extends SetGroupMailByMessagePreference {
 	}
 
 	@Test (description = "Rename a mountpoint (Right Click -> Rename)", 
-			groups = { "smoke", "L1"})
+			groups = { "smoke", "L1" })
 	public void RenameMountpoint_01() throws HarnessException {
 
 		ZimbraAccount Owner = (new ZimbraAccount()).provision().authenticate();

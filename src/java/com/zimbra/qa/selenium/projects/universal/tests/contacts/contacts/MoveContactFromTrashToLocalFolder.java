@@ -39,7 +39,7 @@ public class MoveContactFromTrashToLocalFolder extends UniversalCore  {
 	}
 	
 	@Test (description = "Bug 102685 - Delete a contact item then moved it back to contact folder from trash",	
-			groups = { "functional", "L2"})
+			groups = { "functional", "L2" })
 	
 	public void MoveContactFromTrashToLocalFolder_01() throws HarnessException {
 
@@ -72,7 +72,7 @@ public class MoveContactFromTrashToLocalFolder extends UniversalCore  {
         // delete contact
         app.zPageContacts.zToolbarPressButton(Button.B_DELETE);
         
-        //-- Verification      
+        // Verification      
         //verify contact deleted
         ContactItem actual = ContactItem.importFromSOAP(app.zGetActiveAccount(), "#firstname:"+ contact.firstName);
         ZAssert.assertNull(actual, "Verify the contact is deleted from the addressbook");

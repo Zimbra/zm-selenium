@@ -42,11 +42,6 @@ public class WizardCreateCos extends AbsWizard {
 
 		String cosName = domain.getName();
 
-		/**
-		 * If you use normal type method domain is taken as default domain name. Below
-		 * line of code is not grid friendly but this is only solution working
-		 * currently.
-		 */
 		zType(Locators.zdlg_COS_NAME, "");
 		this.zKeyboard.zTypeCharacters(cosName);
 		zType(Locators.zdlg_COS_NAME, cosName);
@@ -65,5 +60,4 @@ public class WizardCreateCos extends AbsWizard {
 	public boolean zIsActive() throws HarnessException {
 		return false;
 	}
-
 }

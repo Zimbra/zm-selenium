@@ -64,7 +64,7 @@ public class MoveFolder extends SetGroupMailByMessagePreference {
 		createFolderPage.zSelectFolder(folderName);
 		createFolderPage.zPressButton(Button.B_SAVE);
 		
-        //-- Verification
+        // Verification
         
 		// SOAP Verify the folder is in the other Subfolder
 		FolderItem actual = FolderItem.importFromSOAP(app.zGetActiveAccount(), pagemail1.getName());

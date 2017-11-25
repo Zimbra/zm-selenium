@@ -63,7 +63,7 @@ public class ForwardMessageWithIncludeOriginalMessageAsAnAttachment extends SetG
 		// Send the message
 		mailform.zSubmit();
 
-		//-- Verification
+		// Verification
 		app.zPageLogin.zLogin(ZimbraAccount.Account8());
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, mail.dSubject);
 

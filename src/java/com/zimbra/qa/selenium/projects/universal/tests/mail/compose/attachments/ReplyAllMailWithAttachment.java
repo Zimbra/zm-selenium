@@ -82,7 +82,7 @@ public class ReplyAllMailWithAttachment extends SetGroupMailByMessagePreference 
 				// Send the message
 				mailform.zSubmit();
 
-				//-- Verification
+				// Verification
 
 				// From the receiving end, verify the message details
 				MailItem received = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "from:("+ app.zGetActiveAccount().EmailAddress +") subject:("+ mimeSubject +")");

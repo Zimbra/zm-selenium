@@ -33,7 +33,7 @@ public class ZmContactsAppFolders extends UniversalCore {
 	}
 
 	@Test (description = "Measure the time to load the contacts app, 1 addressbook",
-			groups = { "performance", "L4"})
+			groups = { "performance", "L4" })
 	public void ZmContactsAppFolders_01() throws HarnessException {
 
 		// Create a folder
@@ -63,7 +63,7 @@ public class ZmContactsAppFolders extends UniversalCore {
 	}
 
 	@Test (description = "Measure the time to load the contacts app, 100 addressbooks",
-			groups = { "performance", "L4"})
+			groups = { "performance", "L4" })
 	public void ZmContactsAppFolders_02() throws HarnessException {
 
 		// Create 100 folders

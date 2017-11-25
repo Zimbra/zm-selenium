@@ -53,7 +53,7 @@ public class TrustedEmailAddressMessageView extends AjaxCore {
 	 */
 
 	@Test (description = "Verify Display Image link in Trusted Addresses for message view",
-			groups = { "smoke", "L1"  })
+			groups = { "smoke", "L1" })
 
 	public void TrustedEmailAddressMessageView_01() throws HarnessException {
 

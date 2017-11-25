@@ -712,7 +712,7 @@ public class DeleteConversation extends SetGroupMailByConversationPreference {
 		// Right click the item, select delete (this should not refresh)
 		app.zPageMail.zListItem(Action.A_RIGHTCLICK, Button.B_DELETE, subject);
 		
-		//-- Verification
+		// Verification
 		
 		// If conversation is not refreshed, then only the old messages should be deleted
 		app.zGetActiveAccount().soapSend(

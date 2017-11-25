@@ -43,7 +43,7 @@ public class DeleteTaskFolder extends UniversalCore {
 	}	
 	
 	@Test (description = "Delete Task list -right click delete", 
-			groups = { "smoke", "L0"})
+			groups = { "smoke", "L0" })
 	public void DeleteTaskFolder_01() throws HarnessException {
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
 		ZAssert.assertNotNull(taskFolder, "Verify the task is available");

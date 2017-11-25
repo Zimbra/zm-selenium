@@ -41,11 +41,6 @@ public class PageManageAccountMigration extends AbsTab {
 		super(application);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see projects.admin.pages.AbsTab#isActive()
-	 */
 	@Override
 	public boolean zIsActive() throws HarnessException {
 
@@ -65,38 +60,25 @@ public class PageManageAccountMigration extends AbsTab {
 		}
 
 		return (true);
-
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see projects.admin.pages.AbsTab#myPageName()
-	 */
 	@Override
 	public String myPageName() {
 		return (this.getClass().getName());
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see projects.admin.pages.AbsTab#navigateTo()
-	 */
 	@Override
 	public void zNavigateTo() throws HarnessException {
 
 		if (zIsActive()) {
-
 			return;
 		}
 
-		// Click on Tools and Migration -> Downloads
 		sClickAt(Locators.TOOLS_AND_MIGRATION_ICON, "");
 		zWaitForWorkInProgressDialogInVisible();
-		if (sIsElementPresent(Locators.ACCOUNTMIGRATION))
-			;
-		sClickAt(Locators.ACCOUNTMIGRATION, "");
+		if (sIsElementPresent(Locators.ACCOUNTMIGRATION)) {
+			sClickAt(Locators.ACCOUNTMIGRATION, "");
+		}
 		zWaitForWorkInProgressDialogInVisible();
 		zWaitForActive();
 	}
@@ -131,5 +113,4 @@ public class PageManageAccountMigration extends AbsTab {
 			return true;
 		return false;
 	}
-
 }

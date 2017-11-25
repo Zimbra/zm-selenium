@@ -41,11 +41,6 @@ public class PageManageSoftwareUpdates extends AbsTab {
 		super(application);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see projects.admin.pages.AbsTab#isActive()
-	 */
 	@Override
 	public boolean zIsActive() throws HarnessException {
 
@@ -67,35 +62,24 @@ public class PageManageSoftwareUpdates extends AbsTab {
 		return (true);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see projects.admin.pages.AbsTab#myPageName()
-	 */
 	@Override
 	public String myPageName() {
 		return (this.getClass().getName());
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see projects.admin.pages.AbsTab#navigateTo()
-	 */
 	@Override
 	public void zNavigateTo() throws HarnessException {
 
 		if (zIsActive()) {
-
 			return;
 		}
 
 		// Click on Tools and Migration -> Downloads
 		sClickAt(Locators.TOOLS_AND_MIGRATION_ICON, "");
 		zWaitForWorkInProgressDialogInVisible();
-		if (sIsElementPresent(Locators.SOFTWAREUPDATES))
-			;
-		sClickAt(Locators.SOFTWAREUPDATES, "");
+		if (sIsElementPresent(Locators.SOFTWAREUPDATES)) {
+			sClickAt(Locators.SOFTWAREUPDATES, "");
+		}
 		zWaitForWorkInProgressDialogInVisible();
 		zWaitForActive();
 	}
@@ -130,5 +114,4 @@ public class PageManageSoftwareUpdates extends AbsTab {
 			return true;
 		return false;
 	}
-
 }

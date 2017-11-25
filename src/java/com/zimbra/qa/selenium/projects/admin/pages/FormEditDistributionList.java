@@ -60,9 +60,7 @@ public class FormEditDistributionList extends AbsForm {
 
 	public FormEditDistributionList(AbsApplication application) {
 		super(application);
-
 		logger.info("new " + myPageName());
-
 	}
 
 	@Override
@@ -83,7 +81,6 @@ public class FormEditDistributionList extends AbsForm {
 		}
 
 		return (true);
-
 	}
 
 	@Override
@@ -106,7 +103,7 @@ public class FormEditDistributionList extends AbsForm {
 				+ "')", "");
 	}
 
-	public void setName(String name) throws HarnessException {
+	public void zSetName(String name) throws HarnessException {
 		for (int i = 12; i >= 0; i--) {
 			if (sIsElementPresent(Locators.NAME_TEXT_BOX + i + "_name_2")) {
 				sType(Locators.NAME_TEXT_BOX + i + "_name_2", name);
@@ -127,27 +124,22 @@ public class FormEditDistributionList extends AbsForm {
 		SleepUtil.sleepSmall();
 
 		if (button == Button.B_DYNAMIC_GROUP) {
-
 			locator = Locators.DYNAMIC_GROUP;
 
 		} else if (button == Button.B_HIDE_IN_GAL) {
-
 			locator = Locators.HIDE_IN_GAL;
 
 		} else if (button == Button.B_ADMIN_GROUP) {
-
 			locator = Locators.ADMIN_GROUP;
 
 		} else {
 			throw new HarnessException("Button " + button + " not implemented");
 		}
 
-		// Make sure the locator was set
 		if (locator == null) {
 			throw new HarnessException("Button " + button + " not implemented");
 		}
 
-		// Make sure the locator exists
 		if (!this.sIsElementPresent(locator)) {
 			throw new HarnessException("Button " + button + " locator " + locator + " not present!");
 		}
@@ -178,21 +170,17 @@ public class FormEditDistributionList extends AbsForm {
 		SleepUtil.sleepSmall();
 
 		if (button == Button.B_SET_REPLY_TO) {
-
 			locator = Locators.SET_REPLY_TO;
 
 		} else {
 			throw new HarnessException("Button " + button + " not implemented");
 		}
 
-		// Make sure the locator was set
 		if (locator == null) {
 			throw new HarnessException("Button " + button + " not implemented");
 		}
 
-		// Make sure the locator exists
 		if (!this.sIsElementPresent(locator)) {
-
 			throw new HarnessException("Button " + button + " locator " + locator + " not present!");
 		}
 
@@ -223,7 +211,6 @@ public class FormEditDistributionList extends AbsForm {
 	public void zSetReplyToAddress(String email) throws HarnessException {
 		logger.info(myPageName() + " zSetReplyToAddress(" + email + ")");
 
-		// Make sure the locator exists
 		if (!this.sIsElementPresent(Locators.REPLY_TO_ADDRESS)) {
 			throw new HarnessException("zSetReplyToAddress " + Locators.REPLY_TO_ADDRESS + " is not present");
 		}
@@ -283,5 +270,4 @@ public class FormEditDistributionList extends AbsForm {
 		this.sClick(Locators.SelectDLRowCSS + ":contains('" + d.getEmailAddress() + "')");
 		this.sClick(Locators.ADD_DL);
 	}
-
 }

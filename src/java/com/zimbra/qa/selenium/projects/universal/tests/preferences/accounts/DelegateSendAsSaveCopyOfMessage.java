@@ -68,7 +68,7 @@ public class DelegateSendAsSaveCopyOfMessage extends SetGroupMailByMessagePrefer
 		mailform.zFillField(Field.From, grantor.EmailAddress);
 		mailform.zSubmit();
 
-		// -- Data Verification
+		// Verification
 		// Verify sent message is not present in delegate's Sent folder
 		MailItem sent = MailItem.importFromSOAP(app.zGetActiveAccount(), "in:sent subject:(" + subject + ")");
 		ZAssert.assertNull(sent, "Verify sent message is not present in Delegate's Sent folder");
@@ -116,7 +116,7 @@ public class DelegateSendAsSaveCopyOfMessage extends SetGroupMailByMessagePrefer
 		mailform.zFillField(Field.From, grantor.EmailAddress);
 		mailform.zSubmit();
 
-		// -- Data Verification
+		// Verification
 		// Verify sent message is present in delegate's sent folder
 		MailItem sent = MailItem.importFromSOAP(app.zGetActiveAccount(), "in:sent subject:(" + subject + ")");
 		ZAssert.assertNotNull(sent, "Verify sent message is present in delegate's Sent folder");
@@ -165,7 +165,7 @@ public class DelegateSendAsSaveCopyOfMessage extends SetGroupMailByMessagePrefer
 		mailform.zFillField(Field.From, grantor.EmailAddress);
 		mailform.zSubmit();
 
-		// -- Data Verification
+		// Verification
 		// Verify sent message is present in delegate's sent folder
 		MailItem sent = MailItem.importFromSOAP(app.zGetActiveAccount(), "in:sent subject:(" + subject + ")");
 		ZAssert.assertNotNull(sent, "Verify sent message is present in delegate's Sent folder");
@@ -213,7 +213,7 @@ public class DelegateSendAsSaveCopyOfMessage extends SetGroupMailByMessagePrefer
 		mailform.zFillField(Field.From, grantor.EmailAddress);
 		mailform.zSubmit();
 
-		// -- Data Verification
+		// Verification
 		// Verify sent message is not present in delegate's sent folder
 		MailItem sent = MailItem.importFromSOAP(app.zGetActiveAccount(), "in:sent subject:(" + subject + ")");
 		ZAssert.assertNull(sent, "Verify the subject field is correct");

@@ -34,7 +34,7 @@ public class DeleteFolder extends UniversalCore {
 	}
 
 	@Test (description = "Delete a top level addressbook - Right click, Delete", 
-			groups = { "smoke", "L1"})
+			groups = { "smoke", "L1" })
 	public void DeleteTopLevelFolderFromContextmenu_01() throws HarnessException {
 
 		// -- Data
@@ -66,7 +66,7 @@ public class DeleteFolder extends UniversalCore {
 	}
 
 	@Test (description = "Delete a sub folder - Right click, Delete", 
-			groups = { "functional", "L2"})
+			groups = { "functional", "L2" })
 	public void DeleteSubFolderFromContextmenu_02() throws HarnessException {
 
 		// -- Data
@@ -98,7 +98,7 @@ public class DeleteFolder extends UniversalCore {
 	}
 
 	@Test (description = "Drag one sub folder to Trash folder", 
-			groups = { "functional", "L2"})
+			groups = { "functional", "L2" })
 	public void DnDFromSubFolderToTrash_03() throws HarnessException {
 
 		// -- Data

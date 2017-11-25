@@ -34,7 +34,7 @@ public class EditQuickCommand extends QuickCommandSettings {
 
 
 	@Bugs (ids = "71389")
-	@Test(	description = "Edit a basic Quick Command",
+	@Test (description = "Edit a basic Quick Command",
 			groups = { "deprecated" })
 
 	public void EditQuickCommand_01() throws HarnessException {

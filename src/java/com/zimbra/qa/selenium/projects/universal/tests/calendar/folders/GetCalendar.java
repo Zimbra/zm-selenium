@@ -201,7 +201,7 @@ public class GetCalendar extends CalendarWorkWeekPreference {
 		// Verify appointment exists in current view
         ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
 
-		//-- Verification
+		// Verification
 		
 	    //verify appt displayed in workweek view
 		boolean found = false;

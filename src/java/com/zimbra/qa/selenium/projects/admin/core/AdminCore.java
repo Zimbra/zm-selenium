@@ -191,7 +191,7 @@ public class AdminCore {
 					//app.zPageMain.sOpen(ConfigProperties.getBaseURL());
 					//app.zPageMain.zWaitForActive();
 				//}
-				app.zPageLogin.login(startingAccount);
+				app.zPageLogin.zLogin(startingAccount);
 			}
 
 			// For coverage ?mode=mjsf&gzip=false
@@ -450,7 +450,7 @@ public class AdminCore {
 
 		// Get test PASSED/FAILED status
 		if (testResult.getStatus() == ITestResult.FAILURE){
-			ZimbraAdminAccount.ResetAdminAccount();
+			//ZimbraAdminAccount.ResetAdminAccount();
 		}
 
 		logger.info("AfterMethod: finish");

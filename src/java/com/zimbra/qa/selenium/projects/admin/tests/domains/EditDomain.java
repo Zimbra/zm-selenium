@@ -71,7 +71,7 @@ public class EditDomain extends AdminCore {
 
 		// Edit the description.
 		String description = "editeddomain_" + ConfigProperties.getUniqueString();
-		form.setName(description);
+		form.zSetName(description);
 
 		// Submit
 		form.zSubmit();
@@ -118,7 +118,7 @@ public class EditDomain extends AdminCore {
 
 		// Edit the description.
 		String description = "editeddomain_" + ConfigProperties.getUniqueString();
-		form.setName(description);
+		form.zSetName(description);
 
 		// Submit
 		form.zSubmit();
@@ -165,13 +165,13 @@ public class EditDomain extends AdminCore {
 		app.zPageSearchResults.zListItem(Action.A_LEFTCLICK, domain.getName());
 
 		// Click on Edit button
-		app.zPageSearchResults.setType(PageSearchResults.TypeOfObject.DOMAIN);
+		app.zPageSearchResults.zSetType(PageSearchResults.TypeOfObject.DOMAIN);
 		FormEditDomain form = (FormEditDomain) app.zPageSearchResults.zToolbarPressPulldown(Button.B_GEAR_BOX,
 				Button.O_EDIT);
 
 		// Edit the description.
 		String description = "editeddomain_" + ConfigProperties.getUniqueString();
-		form.setName(description);
+		form.zSetName(description);
 
 		// Submit
 		form.zSubmit();
@@ -183,7 +183,7 @@ public class EditDomain extends AdminCore {
 		Element response = ZimbraAdminAccount.AdminConsoleAdmin()
 				.soapSelectNode("//admin:GetDomainResponse/admin:domain/admin:a[@n='description']", 1);
 		ZAssert.assertStringContains(response.toString(), description, "Verify description is edited correctly");
-		app.zPageMain.logout();
+		app.zPageMain.zLogout();
 	}
 
 
@@ -214,7 +214,7 @@ public class EditDomain extends AdminCore {
 		app.zPageSearchResults.zSelectSearchObject(app.zPageSearchResults.S_DOMAIN);
 
 		// Enter the search string to find the account
-		app.zPageSearchResults.setType(PageSearchResults.TypeOfObject.DOMAIN);
+		app.zPageSearchResults.zSetType(PageSearchResults.TypeOfObject.DOMAIN);
 		app.zPageSearchResults.zAddSearchQuery(domainName);
 
 		// Click search
@@ -224,12 +224,12 @@ public class EditDomain extends AdminCore {
 		app.zPageSearchResults.zListItem(Action.A_RIGHTCLICK, domain.getName());
 
 		// Click on Edit button
-		app.zPageSearchResults.setType(PageSearchResults.TypeOfObject.DOMAIN);
+		app.zPageSearchResults.zSetType(PageSearchResults.TypeOfObject.DOMAIN);
 		FormEditDomain form = (FormEditDomain) app.zPageSearchResults.zToolbarPressButton(Button.B_TREE_EDIT);
 
 		// Edit the description.
 		String description = "editeddomain_" + ConfigProperties.getUniqueString();
-		form.setName(description);
+		form.zSetName(description);
 
 		// Submit
 		form.zSubmit();

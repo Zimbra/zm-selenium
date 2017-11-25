@@ -67,7 +67,7 @@ public class EditRetentionPolicy extends AdminCore {
 		// Verify navigation path - configure >> global settings >> retention policy
 		app.zPageManageRetentionPolicy.zNavigateTo();
 
-		// Click on account to be Edited.
+		// Click on account to be edited
 		app.zPageManageRetentionPolicy.zListItem(Action.A_LEFTCLICK, policyName);
 		SleepUtil.sleepMedium();
 
@@ -75,10 +75,10 @@ public class EditRetentionPolicy extends AdminCore {
 		FormManageRetentionPolicy form = (FormManageRetentionPolicy) app.zPageManageRetentionPolicy.zToolbarPressButton( Button.B_EDIT);
 
 		// Enter policy name
-		form.setPolicyName(editedPolicyName);
+		form.zSetPolicyName(editedPolicyName);
 
 		// Enter retention range
-		form.setRetentionRange(editedRetentionRange);
+		form.zSetRetentionRange(editedRetentionRange);
 
 		// Click on OK button
 		form.sClickOkButton();

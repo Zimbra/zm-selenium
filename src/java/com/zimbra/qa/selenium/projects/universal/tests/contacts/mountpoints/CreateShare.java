@@ -35,7 +35,7 @@ public class CreateShare extends UniversalCore  {
 	}
 	
 	@Test (description = "Share an addressbook - Viewer",
-			groups = { "smoke", "L1"})
+			groups = { "smoke", "L1" })
 	public void CreateShare_01() throws HarnessException {
 		
 		String addressbookname = "addressbook" + ConfigProperties.getUniqueString();

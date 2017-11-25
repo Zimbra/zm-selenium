@@ -46,7 +46,7 @@ public class DeleteTask extends UniversalCore {
 	}
 
 	@Test (description = "Delete a task using toolbar delete button and Verify Toast message through GUI",
-			groups = { "smoke", "L1"})
+			groups = { "smoke", "L1" })
 			public void DeleteTaskToastMsg_01() throws HarnessException {
 
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
@@ -90,7 +90,7 @@ public class DeleteTask extends UniversalCore {
 	}
 
 	@Test (description = "Delete a task using checkbox and toolbar delete button-Verify Toast message through GUI",
-			groups = { "smoke", "L1"})
+			groups = { "smoke", "L1" })
 			public void DeleteTaskToastMsg_02() throws HarnessException {
 
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
@@ -193,7 +193,7 @@ public class DeleteTask extends UniversalCore {
 	
 	@Bugs (ids = "56467")
 	@Test (description = "Delete a task by selecting and typing '.t' shortcut : Verify Toast message through GUI",
-			groups = { "functional", "L3"} )
+			groups = { "functional", "L3" })
 			public void DeleteTaskToastMsg_04() throws HarnessException {
 
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
@@ -238,7 +238,7 @@ public class DeleteTask extends UniversalCore {
 	}
 
 	@Test (description = "Delete multiple tasks (3) by select and toolbar delete : Verify Toast message through GUI",
-			groups = { "functional", "L3"})
+			groups = { "functional", "L3" })
 			public void DeleteTaskToastMsg_05() throws HarnessException {
 
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
@@ -326,7 +326,7 @@ public class DeleteTask extends UniversalCore {
 	}
 
 	@Test (description = "Delete a task using context menu delete button:Verify Toast message through GUI",
-			groups = { "functional", "L3"})
+			groups = { "functional", "L3" })
 			public void DeleteTaskToastMsg_06() throws HarnessException {
 
 
@@ -376,7 +376,7 @@ public class DeleteTask extends UniversalCore {
 	}
 
 	@Test (description = "Create task through SOAP - delete using Backspace Key & verify Toast message through GUI",
-			groups = { "functional", "L3"} )
+			groups = { "functional", "L3" })
 			public void DeleteTaskToastMsg_07() throws HarnessException {
 
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);

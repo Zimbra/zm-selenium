@@ -35,7 +35,7 @@ public class UnTagTask extends UniversalCore {
 	}
 
 	@Test (description = "Remove a tag from a Document using Toolbar -> Tag -> Remove Tag", 
-			groups = { "smoke", "L1"})
+			groups = { "smoke", "L1" })
 	public void UnTagTask_01() throws HarnessException {
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
 

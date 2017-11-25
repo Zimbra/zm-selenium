@@ -53,7 +53,7 @@ public class RenameFolder extends SetGroupMailByMessagePreference {
 		createFolderPage.zEnterFolderName(renameFolder);
 		createFolderPage.zPressButton(Button.B_SAVE);
 
-        //-- Verification
+        // Verification
         
         // SOAP
 		FolderItem folder = FolderItem.importFromSOAP(app.zGetActiveAccount(),renameFolder);

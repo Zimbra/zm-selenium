@@ -92,7 +92,7 @@ public class RemoveAttachment extends SetGroupMailByMessagePreference {
 		dialog.zPressButton(Button.B_YES);
 
 		
-		//-- Verification
+		// Verification
 
 		// Verify the message no longer has an attachment
 		account.soapSend(
@@ -168,7 +168,7 @@ public class RemoveAttachment extends SetGroupMailByMessagePreference {
 		dialog.zPressButton(Button.B_YES);
 
 		
-		//-- Verification
+		// Verification
 
 		// Verify the message no longer has an attachment
 		account.soapSend(
@@ -255,7 +255,7 @@ public class RemoveAttachment extends SetGroupMailByMessagePreference {
 		dialog.zPressButton(Button.B_YES);
 
 		
-		//-- Verification
+		// Verification
 
 		// Verify the message no longer has an attachment
 		account.soapSend(
@@ -332,7 +332,7 @@ public class RemoveAttachment extends SetGroupMailByMessagePreference {
 		dialog.zPressButton(Button.B_YES);
 
 		
-		//-- Verification
+		// Verification
 
 		// Verify the message no longer has an attachment
 		account.soapSend(

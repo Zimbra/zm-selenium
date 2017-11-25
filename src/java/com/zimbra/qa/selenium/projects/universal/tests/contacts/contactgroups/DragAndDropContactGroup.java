@@ -67,7 +67,7 @@ public class DragAndDropContactGroup extends UniversalCore  {
 				"css=div#zlif__CNS-main__" + group.getId() + "__fileas:contains("+ group.getName() + ")",
 				"css=td#zti__main_Contacts__" + folder.getId() + "_textCell:contains("+ folder.getName() + ")");
 			
-        //-- Verification
+        // Verification
         
         ContactGroupItem actual = ContactGroupItem.importFromSOAP(app.zGetActiveAccount(), "is:anywhere #nickname:"+ group.getName());
         ZAssert.assertNotNull(actual, "Verify the contact group exists");
@@ -97,7 +97,7 @@ public class DragAndDropContactGroup extends UniversalCore  {
 				"css=div#zlif__CNS-main__" + group.getId() + "__fileas:contains("+ group.getName() + ")",
 				"css=td#zti__main_Contacts__" + trash.getId() + "_textCell:contains("+ trash.getName() + ")");
         
-        //-- Verification
+        // Verification
         
         ContactGroupItem actual = ContactGroupItem.importFromSOAP(app.zGetActiveAccount(), "is:anywhere #nickname:"+ group.getName());
         ZAssert.assertNotNull(actual, "Verify the contact group exists");

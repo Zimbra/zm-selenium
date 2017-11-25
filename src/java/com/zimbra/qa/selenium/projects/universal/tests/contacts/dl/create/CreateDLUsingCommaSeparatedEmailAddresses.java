@@ -33,7 +33,7 @@ public class CreateDLUsingCommaSeparatedEmailAddresses extends UniversalCore  {
 	}
 
 	@Test (description = "Create user DL using comma separated email addresses", 
-			groups = { "smoke", "L0"})
+			groups = { "smoke", "L0" })
 
 	public void CreateDLUsingCommaSeparatedEmailAddresses_01 () throws HarnessException {
 

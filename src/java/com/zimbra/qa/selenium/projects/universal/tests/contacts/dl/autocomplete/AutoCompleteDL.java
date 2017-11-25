@@ -34,7 +34,7 @@ public class AutoCompleteDL extends UniversalCore  {
 	}
 
 	@Test (description = "Auto complete DL and send mail to DL", 
-			groups = { "smoke", "L0"})
+			groups = { "smoke", "L0" })
 
 	public void AutoCompleteDL_01() throws HarnessException {
 

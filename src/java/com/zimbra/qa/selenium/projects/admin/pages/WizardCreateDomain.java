@@ -50,14 +50,8 @@ public class WizardCreateDomain extends AbsWizard {
 
 		String domainName = domain.getName();
 
-		/**
-		 * If you use normal type method domain is taken as default domain name. Below
-		 * line of code is not grid friendly but this is only solution working
-		 * currently.
-		 */
 		zType(Locators.zdlg_DOMAIN_NAME, domainName);
 		clickNext(AbsWizard.Locators.DOMAIN_DIALOG);
-		// sClickAt(Locators.ADD_A_GAL_ACCOUNT_BUTTON,"");
 		sClick(Locators.MAIL_SERVER_DROPDOWN);
 		sClickAt(Locators.MAIL_SERVER_DROPDOWN_TABLE + " div:contains('" + "')", ""); // FIX-ME
 		clickFinish(AbsWizard.Locators.DOMAIN_DIALOG);

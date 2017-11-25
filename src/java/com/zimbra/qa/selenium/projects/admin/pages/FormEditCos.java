@@ -56,9 +56,7 @@ public class FormEditCos extends AbsForm {
 
 	public FormEditCos(AbsApplication application) {
 		super(application);
-
 		logger.info("new " + myPageName());
-
 	}
 
 	@Override
@@ -77,9 +75,7 @@ public class FormEditCos extends AbsForm {
 		if (!attrs.contains("ZSelected")) {
 			return (false);
 		}
-
 		return (true);
-
 	}
 
 	@Override
@@ -102,11 +98,11 @@ public class FormEditCos extends AbsForm {
 		sClickAt("css=td:contains('" + treeItem + "')", "");
 	}
 
-	public void setNameAsDA(String name) throws HarnessException {
+	public void zSetNameAsDelegatedAdmin(String name) throws HarnessException {
 		sType(Locators.DA_NAME_TEXT_BOX, name);
 	}
 
-	public void setName(String name) throws HarnessException {
+	public void zSetName(String name) throws HarnessException {
 		for (int i = 12; i >= 0; i--) {
 			if (sIsElementPresent(Locators.NAME_TEXT_BOX + i + "_cn_2")) {
 				sType(Locators.NAME_TEXT_BOX + i + "_cn_2", name);
@@ -116,7 +112,7 @@ public class FormEditCos extends AbsForm {
 		sType(Locators.NAME_TEXT_BOX + "cn_2", name);
 	}
 
-	public void setPassword(String password) throws HarnessException {
+	public void zSetPassword(String password) throws HarnessException {
 		sType(Locators.PASSWORD, password);
 		zType(Locators.CONFIRM_PASSWORD, password);
 		SleepUtil.sleepSmall();
@@ -145,23 +141,19 @@ public class FormEditCos extends AbsForm {
 		SleepUtil.sleepSmall();
 
 		if (button == Button.B_MAIL) {
-
 			locator = Locators.MAIL;
 
 		} else if (button == Button.B_CALENDAR) {
-
 			locator = Locators.CALENDAR;
 
 		} else {
 			throw new HarnessException("Button " + button + " not implemented");
 		}
 
-		// Make sure the locator was set
 		if (locator == null) {
 			throw new HarnessException("Button " + button + " not implemented");
 		}
 
-		// Make sure the locator exists
 		if (!this.sIsElementPresent(locator)) {
 			throw new HarnessException("Button " + button + " locator " + locator + " not present!");
 		}
@@ -192,25 +184,20 @@ public class FormEditCos extends AbsForm {
 		SleepUtil.sleepSmall();
 
 		if (button == Button.B_SHOW_SEARCH_STRINGS) {
-
 			locator = Locators.SHOW_SEARCH_STRINGS;
 
 		} else if (button == Button.B_SHOW_IMAP_SEARCH_FOLDERS) {
-
 			locator = Locators.SHOW_IMAP_SEARCH_FOLDERS;
 
 		} else {
 			throw new HarnessException("Button " + button + " not implemented");
 		}
 
-		// Make sure the locator was set
 		if (locator == null) {
 			throw new HarnessException("Button " + button + " not implemented");
 		}
 
-		// Make sure the locator exists
 		if (!this.sIsElementPresent(locator)) {
-
 			throw new HarnessException("Button " + button + " locator " + locator + " not present!");
 		}
 
@@ -258,23 +245,19 @@ public class FormEditCos extends AbsForm {
 		SleepUtil.sleepSmall();
 
 		if (button == Button.B_ENABLE_MOBILE_SYNC) {
-
 			locator = Locators.ENABLE_MOBILE_SYNC;
 
 		} else if (button == Button.B_ENABLE_MOBILE_POLICY) {
-
 			locator = Locators.ENABLE_MOBILE_POLICY;
 
 		} else {
 			throw new HarnessException("Button " + button + " not implemented");
 		}
 
-		// Make sure the locator was set
 		if (locator == null) {
 			throw new HarnessException("Button " + button + " not implemented");
 		}
 
-		// Make sure the locator exists
 		if (!this.sIsElementPresent(locator)) {
 			throw new HarnessException("Button " + button + " locator " + locator + " not present!");
 		}
@@ -294,5 +277,4 @@ public class FormEditCos extends AbsForm {
 		SleepUtil.sleepSmall();
 		return (page);
 	}
-
 }

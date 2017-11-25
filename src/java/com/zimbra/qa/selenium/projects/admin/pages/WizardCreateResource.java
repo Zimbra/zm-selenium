@@ -25,6 +25,7 @@ import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.projects.admin.items.ResourceItem;
 
 public class WizardCreateResource extends AbsWizard {
+
 	public static class Locators {
 		public static final String zdlg_RESOURCE_NAME = "zdlgv__NEW_RES_displayName";
 		public static final String zdlg_RESOURCE_NAME_DA = "css=input[id='zdlgv__NEW_RES_displayName']";
@@ -72,11 +73,10 @@ public class WizardCreateResource extends AbsWizard {
 			} else if (resourceType.equals(Locators.EQUIPMENT)) {
 				sClick(Locators.zdlg_RESOURCE_TYPE_EQUIPMENT);
 			}
+
 		} else {
 			sClickAt(Locators.zdlg_RESOURCE_TYPE, "");
-
 		}
-
 		clickFinish(AbsWizard.Locators.RESOURCE_DIALOG);
 
 		return resource;
@@ -92,12 +92,11 @@ public class WizardCreateResource extends AbsWizard {
 		return false;
 	}
 
-	public String getResourceType() {
+	public String zGetResourceType() {
 		return resourceType;
 	}
 
-	public void setResourceType(String resourceType) {
+	public void zSetResourceType(String resourceType) {
 		this.resourceType = resourceType;
 	}
-
 }

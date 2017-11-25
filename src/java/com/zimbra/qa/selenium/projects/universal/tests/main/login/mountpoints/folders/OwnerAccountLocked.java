@@ -48,7 +48,7 @@ public class OwnerAccountLocked extends UniversalCore {
 	
 	
 	@Test (description = "Login to the Universal Client - with a mountpoint to a 'locked' account",
-			groups = { "functional", "L3"})
+			groups = { "functional", "L3" })
 	public void OwnerAccountLocked01() throws HarnessException {
 		
 		// Data setup

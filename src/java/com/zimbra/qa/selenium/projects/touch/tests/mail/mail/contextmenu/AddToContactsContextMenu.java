@@ -85,9 +85,9 @@ public class AddToContactsContextMenu extends CalendarWorkWeekPreference {
 		app.zPageMail.sType("css=input[name='firstName']", contactFirst);
 		app.zPageMail.sClickAt(FormContactNew.Locators.zSaveButton, "");
 
-		// -- Data Verification
+		// Verification
 
-		//-- Verification
+		// Verification
 
 		// Get the contact data stored on server with soap
 		ContactItem actual = ContactItem.importFromSOAP(app.zGetActiveAccount(), contactFirst);
@@ -148,9 +148,9 @@ public class AddToContactsContextMenu extends CalendarWorkWeekPreference {
 		app.zPageMail.sType("css=input[name='firstName']", contactFirst);
 		app.zPageMail.sClickAt(FormContactNew.Locators.zSaveButton, "");
 		
-		// -- Data Verification
+		// Verification
 
-		//-- Verification
+		// Verification
 
 		// Get the contact data stored on server with soap
 		ContactItem actual = ContactItem.importFromSOAP(app.zGetActiveAccount(), contactFirst);

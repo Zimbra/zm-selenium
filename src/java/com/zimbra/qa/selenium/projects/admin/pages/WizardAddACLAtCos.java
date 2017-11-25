@@ -44,12 +44,6 @@ public class WizardAddACLAtCos extends AbsWizard {
 		super(page);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see projects.admin.pages.AbsWizard#completeWizard(projects.admin.clients.Item)
-	 */
-
 	public IItem zCompleteWizard(IItem item) throws HarnessException {
 
 		AclItem acl = (AclItem) item;
@@ -80,5 +74,4 @@ public class WizardAddACLAtCos extends AbsWizard {
 	public boolean zIsActive() throws HarnessException {
 		return false;
 	}
-
 }

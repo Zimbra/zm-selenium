@@ -32,7 +32,7 @@ public class DragAndDropContact extends UniversalCore  {
 	}
 	
 	@Test (description = "Move a contact item to sub-addressbook",
-			groups = { "smoke", "L0"})
+			groups = { "smoke", "L0" })
 	
 	public void DragAndDropContact_01() throws HarnessException {
 		
@@ -74,7 +74,7 @@ public class DragAndDropContact extends UniversalCore  {
 				"css=div#zlif__CNS-main__" + contact.getId() + "__fileas:contains("+ contact.fileAs + ")",
 				"css=td#zti__main_Contacts__" + folder.getId() + "_textCell:contains("+ folder.getName() + ")");
        
-        //-- Verification
+        // Verification
         
         //verify contact deleted
         ContactItem actual = ContactItem.importFromSOAP(app.zGetActiveAccount(), "#firstname:"+ contact.firstName);
@@ -83,7 +83,7 @@ public class DragAndDropContact extends UniversalCore  {
    	}
 		
 	@Test (description = "Move a contact item to trash folder by drag and drop",
-			groups = { "functional", "L2"})
+			groups = { "functional", "L2" })
 	
 	public void DnDToTrash_02() throws HarnessException {
 		
@@ -118,7 +118,7 @@ public class DragAndDropContact extends UniversalCore  {
 				"css=div#zlif__CNS-main__" + contact.getId() + "__fileas:contains("+ contact.fileAs + ")",
 				"css=td#zti__main_Contacts__" + trash.getId() + "_textCell:contains("+ trash.getName() + ")");
        
-        //-- Verification
+        // Verification
         
         //verify contact deleted
         ContactItem actual = ContactItem.importFromSOAP(app.zGetActiveAccount(), "is:anywhere #firstname:"+ contact.firstName);

@@ -19,6 +19,8 @@ package com.zimbra.qa.selenium.projects.admin.tests.downloads;
 import java.io.IOException;
 import java.net.*;
 import java.util.*;
+
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -31,7 +33,6 @@ public class DownloadsTab extends AdminCore {
 		"//a[contains(text(),'ZCS Migration Wizard for Exchange/PST (64bit)')]",
 		"//a[contains(text(),'ZCS Migration Wizard for Domino')]",
 		"//a[contains(text(),'Legacy PST Import Wizard')]",
-		//"//a[contains(text(),'User Instructions')]",
 	};
 
 	public static String[] networkDownloadLinkLocators = {
@@ -39,7 +40,6 @@ public class DownloadsTab extends AdminCore {
 		"//a[contains(text(),'Zimbra Connector for Outlook Branding MSI')]",
 		"//a[contains(text(),'Zimbra Connector for Outlook (32bit)')]",
 		"//a[contains(text(),'Zimbra Connector for Outlook (64bit)')]",
-		//"//a[contains(text(),'User Instructions')]",
 		"//a[contains(text(),'Legacy ZCS Migration Wizard for Exchange')]",
 	};
 
@@ -92,7 +92,7 @@ public class DownloadsTab extends AdminCore {
 			try {
 
 				URL url = new URL(href);
-				int authResponse = app.zPageDownloads.getAuthResponse(url);
+				int authResponse = app.zPageDownloads.zGetAuthResponse(url);
 
 		        // 200 and 400 are acceptable
 		        ZAssert.assertStringContains("200 400", ""+authResponse, "Verify the download URL is valid: " + url.toString());
@@ -108,5 +108,12 @@ public class DownloadsTab extends AdminCore {
 				}
 			}
 		}
+	}
+
+	@AfterMethod(groups={"always"})
+	public void afterMethod() throws HarnessException {
+		logger.info("Opening base URL...");
+		app.zPageMain.sOpen(ConfigProperties.getBaseURL());
+		app.zPageMain.zWaitTillElementPresent("css=div[id='skin_container_help'] div[class='ImgNodeExpandedWhite']");
 	}
 }

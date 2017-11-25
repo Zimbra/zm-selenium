@@ -51,11 +51,6 @@ public class PageManageLicense extends AbsTab {
 		super(application);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see projects.admin.pages.AbsTab#isActive()
-	 */
 	@Override
 	public boolean zIsActive() throws HarnessException {
 
@@ -78,30 +73,18 @@ public class PageManageLicense extends AbsTab {
 
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see projects.admin.pages.AbsTab#myPageName()
-	 */
 	@Override
 	public String myPageName() {
 		return (this.getClass().getName());
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see projects.admin.pages.AbsTab#navigateTo()
-	 */
 	@Override
 	public void zNavigateTo() throws HarnessException {
 
 		if (zIsActive()) {
-
 			return;
 		}
 
-		// Click on Addresses -> Accounts
 		sClick(Locators.CONFIGURE_ICON);
 		zWaitForWorkInProgressDialogInVisible();
 		SleepUtil.sleepMedium();
@@ -164,10 +147,8 @@ public class PageManageLicense extends AbsTab {
 			throw new HarnessException("no logic defined for pulldown/option " + pulldown + "/" + option);
 		}
 
-		// Default behavior
 		if (pulldownLocator != null) {
 
-			// Make sure the locator exists
 			if (!this.sIsElementPresent(pulldownLocator)) {
 				throw new HarnessException("Button " + pulldown + " option " + option + " pulldownLocator "
 						+ pulldownLocator + " not present!");
@@ -178,7 +159,6 @@ public class PageManageLicense extends AbsTab {
 
 			if (optionLocator != null) {
 
-				// Make sure the locator exists
 				if (!this.sIsElementPresent(optionLocator)) {
 					throw new HarnessException("Button " + pulldown + " option " + option + " optionLocator "
 							+ optionLocator + " not present!");
@@ -186,14 +166,11 @@ public class PageManageLicense extends AbsTab {
 
 				this.sClickAt(optionLocator, "");
 			}
-
 		}
 
 		SleepUtil.sleepMedium();
 
-		// Return the specified page, or null if not set
 		return (page);
-
 	}
 
 	@Override
@@ -205,12 +182,8 @@ public class PageManageLicense extends AbsTab {
 		if (button == null)
 			throw new HarnessException("Button cannot be null!");
 
-		//
-		String locator = null; // If set, this will be clicked
-		AbsPage page = null; // If set, this page will be returned
-
-		// Based on the button specified, take the appropriate action(s)
-		//
+		String locator = null;
+		AbsPage page = null;
 
 		if (button == Button.B_UPLOAD_LICENSE) {
 
@@ -226,11 +199,8 @@ public class PageManageLicense extends AbsTab {
 			throw new HarnessException("locator was null for button " + button);
 		}
 
-		// Default behavior, process the locator by clicking on it
-		//
 		this.sClickAt(locator, "");
 
-		// If page was specified, make sure it is active
 		if (page != null) {
 			SleepUtil.sleepMedium();
 		}
@@ -372,5 +342,4 @@ public class PageManageLicense extends AbsTab {
 			return true;
 		return false;
 	}
-
 }

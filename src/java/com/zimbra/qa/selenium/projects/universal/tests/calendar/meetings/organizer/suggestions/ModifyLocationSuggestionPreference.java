@@ -33,7 +33,7 @@ public class ModifyLocationSuggestionPreference extends CalendarWorkWeekPreferen
 	}
 		
 	@Test (description = "Create a meeting invite by modifying location suggestion preferences",
-			groups = { "functional", "L2"})
+			groups = { "functional", "L2" })
 			
 	public void ModifyLocationSuggestionPreference_01() throws HarnessException {
 		

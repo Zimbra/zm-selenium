@@ -33,7 +33,7 @@ public class CreateDLFromGAL extends UniversalCore  {
 	
 
 	@Test (description = "Create user DL with atleast 2 contacts from GAL", 
-			groups = { "sanity", "L0"})
+			groups = { "sanity", "L0" })
 
 	public void CreateDLFromGAL_01 () throws HarnessException {
 

@@ -78,7 +78,7 @@ public class MoveConversation extends SetGroupMailByConversationPreference {
 
 
 		
-		//-- Verification
+		// Verification
 		
 		MailItem message = MailItem.importFromSOAP(app.zGetActiveAccount(), "from:("+ ZimbraAccount.AccountA().EmailAddress + ") subject:("+ c.getSubject() +")");
 		ZAssert.assertNotNull(message, "Verify the message still exists in the mailbox");
@@ -150,7 +150,7 @@ public class MoveConversation extends SetGroupMailByConversationPreference {
 
 
 		
-		//-- Verification
+		// Verification
 		
 		MailItem message = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
 		ZAssert.assertNotNull(message, "Verify the message still exists in the mailbox");
@@ -217,7 +217,7 @@ public class MoveConversation extends SetGroupMailByConversationPreference {
 
 
 		
-		//-- Verification
+		// Verification
 		
 		MailItem message = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
 		ZAssert.assertNotNull(message, "Verify the message still exists in the mailbox");

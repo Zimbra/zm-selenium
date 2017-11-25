@@ -47,11 +47,6 @@ public class PageManageVoiceChatService extends AbsTab {
 		super(application);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see projects.admin.pages.AbsTab#isActive()
-	 */
 	@Override
 	public boolean zIsActive() throws HarnessException {
 
@@ -71,29 +66,17 @@ public class PageManageVoiceChatService extends AbsTab {
 		}
 
 		return (true);
-
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see projects.admin.pages.AbsTab#myPageName()
-	 */
 	@Override
 	public String myPageName() {
 		return (this.getClass().getName());
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see projects.admin.pages.AbsTab#navigateTo()
-	 */
 	@Override
 	public void zNavigateTo() throws HarnessException {
 
 		if (zIsActive()) {
-
 			return;
 		}
 
@@ -104,7 +87,6 @@ public class PageManageVoiceChatService extends AbsTab {
 		sClickAt(Locators.VOICECHATSERVICE, "");
 		zWaitForWorkInProgressDialogInVisible();
 		zWaitForActive();
-
 	}
 
 	@Override
@@ -121,7 +103,6 @@ public class PageManageVoiceChatService extends AbsTab {
 		int count = this.sGetCssCount(rowsLocator);
 		logger.debug(myPageName() + " zListItem: number of results: " + count);
 
-		// Get each conversation's data from the table list
 		for (int i = 1; i <= count; i++) {
 			final String serviceLocator = rowsLocator + ":nth-child(" + i + ")";
 			String locator;
@@ -137,7 +118,6 @@ public class PageManageVoiceChatService extends AbsTab {
 						sRightClick(locator);
 						break;
 					}
-
 				}
 			}
 		}
@@ -179,17 +159,14 @@ public class PageManageVoiceChatService extends AbsTab {
 			pulldownLocator = Locators.GEAR_ICON;
 
 			if (option == Button.O_NEW) {
-
 				optionLocator = Locators.NEW_MENU;
 				page = new WizardAddVoiceChatService(this);
 
 			} else if (option == Button.O_DELETE) {
-
 				optionLocator = Locators.DELETE_BUTTON;
 				page = new DialogForDeleteOperationACL(this.MyApplication, null);
 
 			} else if (option == Button.O_EDIT) {
-
 				optionLocator = Locators.EDIT_BUTTON;
 				page = new FormEditVoiceChatService(this.MyApplication);
 
@@ -201,10 +178,8 @@ public class PageManageVoiceChatService extends AbsTab {
 			throw new HarnessException("no logic defined for pulldown/option " + pulldown + "/" + option);
 		}
 
-		// Default behavior
 		if (pulldownLocator != null) {
 
-			// Make sure the locator exists
 			if (!this.sIsElementPresent(pulldownLocator)) {
 				throw new HarnessException("Button " + pulldown + " option " + option + " pulldownLocator "
 						+ pulldownLocator + " not present!");
@@ -214,28 +189,17 @@ public class PageManageVoiceChatService extends AbsTab {
 			SleepUtil.sleepMedium();
 			SleepUtil.sleepLong();
 
-			// If the app is busy, wait for it to become active
-			// zWaitForBusyOverlay();
-
 			if (optionLocator != null) {
 
-				// Make sure the locator exists
 				if (!this.sIsElementPresent(optionLocator)) {
 					throw new HarnessException("Button " + pulldown + " option " + option + " optionLocator "
 							+ optionLocator + " not present!");
 				}
-
 				this.sClickAt(optionLocator, "");
-
-				// If the app is busy, wait for it to become active
-				// zWaitForBusyOverlay();
 			}
-
 		}
 
-		// Return the specified page, or null if not set
 		return (page);
-
 	}
 
 	public boolean zVerifySearchResult(String item) throws HarnessException {
@@ -280,5 +244,4 @@ public class PageManageVoiceChatService extends AbsTab {
 			return true;
 		return false;
 	}
-
 }

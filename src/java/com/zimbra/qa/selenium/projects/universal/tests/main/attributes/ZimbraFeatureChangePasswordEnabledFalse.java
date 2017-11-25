@@ -42,7 +42,7 @@ public class ZimbraFeatureChangePasswordEnabledFalse extends UniversalCore {
 
 	@Bugs (ids = "81522")
 	@Test (description = "Verify the 'Change Password' option is not present in main->account->Change Password", 
-	groups = {"functional", "L2"})
+	groups = { "functional", "L2" })
 	
 	public void ZimbraFeatureChangePasswordEnabledFalse_01() throws HarnessException {
 

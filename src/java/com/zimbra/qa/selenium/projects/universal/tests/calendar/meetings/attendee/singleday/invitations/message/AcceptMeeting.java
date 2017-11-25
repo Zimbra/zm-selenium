@@ -328,7 +328,7 @@ public class AcceptMeeting extends CalendarWorkWeekPreference {
 	@Bugs (ids = "69132,96556")
 	@Test(
 			description = "Accept meeting using 'Accept -> Edit Reply' and verify modified content", 
-			groups = { "functional", "L2"})
+			groups = { "functional", "L2" })
 	public void AcceptMeeting_04() throws HarnessException {
 
 		// ------------------------ Test data ------------------------------------

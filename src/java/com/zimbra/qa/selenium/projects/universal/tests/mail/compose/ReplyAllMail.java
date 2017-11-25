@@ -88,7 +88,7 @@ public class ReplyAllMail extends SetGroupMailByMessagePreference {
 
 
 
-		//-- Verification
+		// Verification
 		
 		// From the receiving end, verify the message details
 		// Need 'in:inbox' to separate the message from the sent message
@@ -183,7 +183,7 @@ public class ReplyAllMail extends SetGroupMailByMessagePreference {
 
 
 
-		//-- Verification
+		// Verification
 		
 		// From the receiving end, verify the message details
 		// Need 'in:inbox' to separate the message from the sent message
@@ -289,7 +289,7 @@ public class ReplyAllMail extends SetGroupMailByMessagePreference {
 
 
 
-		//-- Verification
+		// Verification
 		
 		// All sent messages should not have TO: include the test account
 		app.zGetActiveAccount().soapSend(
@@ -396,7 +396,7 @@ public class ReplyAllMail extends SetGroupMailByMessagePreference {
 
 
 
-		//-- Verification
+		// Verification
 		
 		// Verify the active account is not in the To/Cc
 		MailItem message = MailItem.importFromSOAP(app.zGetActiveAccount(), "in:sent subject:("+ subject +")");
@@ -456,7 +456,7 @@ public class ReplyAllMail extends SetGroupMailByMessagePreference {
 
 
 
-		//-- Verification
+		// Verification
 		
 		// Verify the active account is not in the To/Cc
 		MailItem message = MailItem.importFromSOAP(app.zGetActiveAccount(), "in:sent subject:("+ subject +")");

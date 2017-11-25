@@ -69,7 +69,7 @@ public class AddAlias extends AdminCore {
 		// Refresh the account list
 		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
 
-		// Click on account to be Edited.
+		// Click on account to be edited
 		app.zPageManageAccounts.zListItem(Action.A_LEFTCLICK, account.getEmailAddress());
 
 		// Click on Edit button

@@ -38,7 +38,7 @@ public class ZmMailApp extends UniversalCore {
 	}
 	
 	@Test (description = "Measure the time to load the universal client",
-			groups = { "performance", "L4"})
+			groups = { "performance", "L4" })
 	public void ZmMailApp01() throws HarnessException {
 		
 		

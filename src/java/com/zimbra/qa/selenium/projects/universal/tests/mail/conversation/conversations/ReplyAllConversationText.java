@@ -94,7 +94,7 @@ public class ReplyAllConversationText extends SetGroupMailByConversationPreferen
 		mailform.zSubmit();
 
 
-		//-- Verification
+		// Verification
 		
 		
 		// From the test account, check the sent folder for the reply

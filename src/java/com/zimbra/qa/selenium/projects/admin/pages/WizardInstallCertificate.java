@@ -125,7 +125,6 @@ public class WizardInstallCertificate extends AbsWizard {
 			SleepUtil.sleepMedium();
 
 			sClickAt(Locators.DOWNLOAD_THE_CSR, "");
-			// sClickAt(Locators.INSTALL_BUTTON,"");
 
 		} else if (certificateAction.equals(Locators.INSTALL_COMMERCIAL_CERTIFICATE)) {
 
@@ -150,10 +149,8 @@ public class WizardInstallCertificate extends AbsWizard {
 			sClickAt(Locators.NEXT_BUTTON, "");
 			SleepUtil.sleepMedium();
 			sClickAt(Locators.INSTALL_BUTTON, "");
-		}
 
-		else {
-
+		} else {
 			throw new HarnessException("implement me");
 		}
 		return (cert);

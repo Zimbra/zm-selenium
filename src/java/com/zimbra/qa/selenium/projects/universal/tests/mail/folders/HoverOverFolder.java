@@ -73,7 +73,7 @@ public class HoverOverFolder extends SetGroupMailByMessagePreference {
 		TooltipFolder tooltip = (TooltipFolder)app.zTreeMail.zTreeItem(Action.A_HOVEROVER, subfolder);
 		
 		
-		//-- Verification
+		// Verification
 		
 		ZAssert.assertTrue(tooltip.zIsActive(), "Verify the tooltip shows");
 
@@ -119,7 +119,7 @@ public class HoverOverFolder extends SetGroupMailByMessagePreference {
 		TooltipFolder tooltip = (TooltipFolder)app.zTreeMail.zTreeItem(Action.A_HOVEROVER, subfolder);
 		
 		
-		//-- Verification
+		// Verification
 		
 		// Verify the tooltip appears
 		ZAssert.assertTrue(tooltip.zIsActive(), "Verify the tooltip shows");
@@ -178,7 +178,7 @@ public class HoverOverFolder extends SetGroupMailByMessagePreference {
 		TooltipFolder tooltip = (TooltipFolder)app.zTreeMail.zTreeItem(Action.A_HOVEROVER, subfolder);
 		
 		
-		//-- Verification
+		// Verification
 		
 		ZAssert.assertTrue(tooltip.zIsActive(), "Verify the tooltip shows");
 
@@ -247,7 +247,7 @@ public class HoverOverFolder extends SetGroupMailByMessagePreference {
 		TooltipFolder tooltip = (TooltipFolder)app.zTreeMail.zTreeItem(Action.A_HOVEROVER, subfolder);
 		
 		
-		//-- Verification
+		// Verification
 		
 		ZAssert.assertTrue(tooltip.zIsActive(), "Verify the tooltip shows");
 

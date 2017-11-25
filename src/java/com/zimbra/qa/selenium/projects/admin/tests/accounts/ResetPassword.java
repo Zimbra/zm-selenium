@@ -60,7 +60,7 @@ public class ResetPassword extends AdminCore {
 		// Refresh the account list
 		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
 
-		// Click on account to be Edited.
+		// Click on account to be edited
 		app.zPageManageAccounts.zListItem(Action.A_LEFTCLICK, adminaccount);
 
 		// Click on Edit button
@@ -74,21 +74,21 @@ public class ResetPassword extends AdminCore {
 		form.zSave();
 
 		// Logout from global admin account
-		app.zPageMain.logout();
+		app.zPageMain.zLogout();
 
 		// Enter new username password for created admin account
-		app.zPageLogin.fillLoginFormFields(account);
+		app.zPageLogin.zFillLoginFormFields(account);
 
 		// Click the Login button
 		app.zPageLogin.sClick(Locators.zLoginButtonContainer);
 
 		// Reset the password
-		app.zPageLogin.fillResetLoginPasswordFormFields("test1234", "test1234");
+		app.zPageLogin.zFillResetLoginPasswordFormFields("test1234", "test1234");
 
 		// Verify admin is able to login with new password
 		ZAssert.assertTrue(app.zPageMain.zIsActive(), "Verify admin cosole is opened up");
 
 		// Logout the current user
-		app.zPageMain.logout();
+		app.zPageMain.zLogout();
 	}
 }

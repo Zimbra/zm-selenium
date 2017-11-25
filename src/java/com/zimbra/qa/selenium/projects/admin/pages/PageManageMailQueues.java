@@ -41,16 +41,9 @@ public class PageManageMailQueues extends AbsTab {
 		super(application);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see projects.admin.pages.AbsTab#isActive()
-	 */
 	@Override
 	public boolean zIsActive() throws HarnessException {
-		// If the "Refresh" button is visible, assume the ServerStatus page is active
 
-		// Look for the Refresh Button
 		boolean present = sIsElementPresent(Locators.MAIL_QUEUES);
 		if (!present) {
 			logger.debug("isActive() present = " + present);
@@ -61,29 +54,17 @@ public class PageManageMailQueues extends AbsTab {
 		return (true);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see projects.admin.pages.AbsTab#myPageName()
-	 */
 	@Override
 	public String myPageName() {
 		return (this.getClass().getName());
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see projects.admin.pages.AbsTab#navigateTo()
-	 */
 	@Override
 	public void zNavigateTo() throws HarnessException {
 		if (zIsActive()) {
-
 			return;
 		}
 
-		// Click on Addresses -> Accounts
 		sClickAt(Locators.MONITOR_ICON, "");
 		zWaitForWorkInProgressDialogInVisible();
 		sIsElementPresent(Locators.MAIL_QUEUES);

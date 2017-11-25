@@ -91,7 +91,7 @@ public class AddToBriefcase extends SetGroupMailByMessagePreference {
 		dialog.zChooseBriefcaseFolder(folder.getId());
 		dialog.zPressButton(Button.B_OK);
 		
-		//-- Verification
+		// Verification
 		app.zGetActiveAccount().soapSend(
 				"<SearchRequest xmlns='urn:zimbraMail' types='document'>"
 			+		"<query>"+ filename +"</query>"
@@ -172,7 +172,7 @@ public class AddToBriefcase extends SetGroupMailByMessagePreference {
         	app.zPageMain.zCloseWindow(window, windowTitle, app);
        	}
 		
-		//-- Verification
+		// Verification
 		account.soapSend(
 			"<SearchRequest xmlns='urn:zimbraMail' types='document'>"
 			+		"<query>"+ filename +"</query>"

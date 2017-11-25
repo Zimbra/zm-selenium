@@ -52,7 +52,7 @@ public class WizardBackup extends AbsWizard {
 		return backupMethod;
 	}
 
-	public void setBackupMethod(String backupMethod) throws HarnessException {
+	public void zSetBackupMethod(String backupMethod) throws HarnessException {
 
 		if (backupMethod.equals(Locators.BACKUP_METHOD_FULL)) {
 			backupMethod = Locators.BACKUP_METHOD_FULL;
@@ -63,7 +63,7 @@ public class WizardBackup extends AbsWizard {
 		this.backupMethod = backupMethod;
 	}
 
-	public void searchInSelectedAccount(String email) throws HarnessException {
+	public void zSearchInSelectedAccount(String email) throws HarnessException {
 
 		sType(Locators.EMAIL, email);
 		SleepUtil.sleepMedium();
@@ -76,7 +76,6 @@ public class WizardBackup extends AbsWizard {
 		int count = this.sGetCssCount(rowsLocator);
 		logger.debug(myPageName() + " zListGetPolicy: number of policys: " + count);
 
-		// Get each conversation's data from the table list
 		for (int i = 1; i <= count; i++) {
 			final String backupLocator = rowsLocator + ":nth-child(" + i + ")";
 			String locator;
@@ -91,11 +90,9 @@ public class WizardBackup extends AbsWizard {
 				} else {
 					logger.info("Element is not present!");
 				}
-
 			}
 
 			sClick(Locators.ADD);
-
 			SleepUtil.sleepMedium();
 		}
 	}
@@ -108,29 +105,23 @@ public class WizardBackup extends AbsWizard {
 		BackupItem backup = (BackupItem) item;
 
 		if (backupMethod.equals(Locators.BACKUP_METHOD_FULL)) {
-
 			sClickAt(Locators.BACKUP_BUTTON, "");
-
 			sClickAt(Locators.FINISH_BUTTON, "");
-		}
 
-		else {
-
+		} else {
 			sClickAt(Locators.PULL_DOWN, "");
-
 			sClickAt(Locators.BACKUP_METHOD_INCREMENTAL, "");
-
 			sClickAt(Locators.NEXT_BUTTON, "");
-
 			sClickAt(Locators.FINISH_BUTTON, "");
 		}
 
 		return (backup);
 	}
 
-	public void selectAccountsToBackup(String criteria, String email) throws HarnessException {
+	public void zSelectAccountsToBackup(String criteria, String email) throws HarnessException {
 		if (criteria.equals("all")) {
 			sClick(Locators.BACKUP_ALL);
+
 		} else if (criteria.equals("selected")) {
 			sType(Locators.EMAIL, email);
 			SleepUtil.sleepMedium();
@@ -143,7 +134,6 @@ public class WizardBackup extends AbsWizard {
 			int count = this.sGetCssCount(rowsLocator);
 			logger.debug(myPageName() + " zListGetPolicy: number of policys: " + count);
 
-			// Get each conversation's data from the table list
 			for (int i = 1; i <= count; i++) {
 				final String backupLocator = rowsLocator + ":nth-child(" + i + ")";
 				String locator;
@@ -155,14 +145,10 @@ public class WizardBackup extends AbsWizard {
 					} else {
 						logger.info("Element is not present!");
 					}
-
 				}
-
 				sClick(Locators.ADD);
-
 				SleepUtil.sleepMedium();
 			}
-
 		}
 	}
 

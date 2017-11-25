@@ -87,7 +87,7 @@ public class CancelMeeting extends AjaxCore {
         // Click Send Cancellation
 		dialog.zPressButton(Button.B_SEND_CANCELLATION);
 
-		//-- Verification
+		// Verification
 
 		// Verify meeting disappears from the view
 		ZAssert.assertEquals(app.zPageCalendar.zIsAppointmentExists(apptSubject), false, "Verify meeting is deleted from organizer's calendar");
@@ -161,7 +161,7 @@ public class CancelMeeting extends AjaxCore {
         // Click Send Cancellation
 		dialog.zPressButton(Button.B_SEND_CANCELLATION);
 
-		//-- Verification
+		// Verification
 
 		// Verify the meeting disappears from the organizer's calendar
 		app.zGetActiveAccount().soapSend(
@@ -227,7 +227,7 @@ public class CancelMeeting extends AjaxCore {
         // Click Send Cancellation
 		dialog.zPressButton(Button.B_CANCEL);
 
-		//-- Verification
+		// Verification
 		ZAssert.assertTrue(app.zPageCalendar.zIsAppointmentExists(apptSubject), "Verify meeting is not deleted from organizer's calendar");
 
 		// Verify meeting is not deleted from attendee's calendar
@@ -288,7 +288,7 @@ public class CancelMeeting extends AjaxCore {
         FormMailNew mailComposeForm = (FormMailNew)dialog.zPressButton(Button.B_EDIT_CANCELLATION);
 		mailComposeForm.zSubmit();
 
-		//-- Verification
+		// Verification
 
 		// Verify meeting is deleted from attendee's calendar && receive meeting cancellation message
 		MailItem canceledApptMail = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "subject:(" + (char)34 + "Cancelled " + apptSubject + (char)34 + ")");
@@ -347,14 +347,10 @@ public class CancelMeeting extends AjaxCore {
         // Press Delete Toolbar button
         DialogWarning dialog = (DialogWarning)app.zPageCalendar.zToolbarPressButton(Button.B_DELETE);
 
-        // Wait for the "Send Cancellation" dialog
         // Click Edit Cancellation
-        // When the form opens, simply click "SEND" (don't edit content)
         FormMailNew mailComposeForm = (FormMailNew)dialog.zPressButton(Button.B_EDIT_CANCELLATION);
 		mailComposeForm.zFillField(Field.Body, " " + modifyApptBody);
 		mailComposeForm.zSubmit();
-
-		//-- Verification
 
 		// Verify the meeting no longer appears in the organizer's calendar
 		ZAssert.assertEquals(app.zPageCalendar.zIsAppointmentExists(apptSubject), false, "Verify meeting is deleted from organizer's calendar");

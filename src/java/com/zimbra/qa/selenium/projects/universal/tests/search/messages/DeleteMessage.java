@@ -80,7 +80,7 @@ public class DeleteMessage extends SetGroupMailByMessagePreference {
 			app.zPageSearch.zClose();
 		}
 
-		//-- Verification
+		// Verification
 		
 		MailItem message = MailItem.importFromSOAP(app.zGetActiveAccount(), "is:anywhere subject:("+ subject +")");
 		ZAssert.assertNotNull(message, "Verify the message still exists in the mailbox");

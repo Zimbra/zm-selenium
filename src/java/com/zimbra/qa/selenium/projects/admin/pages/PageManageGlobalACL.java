@@ -44,11 +44,6 @@ public class PageManageGlobalACL extends AbsTab {
 		super(application);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see projects.admin.pages.AbsTab#isActive()
-	 */
 	@Override
 	public boolean zIsActive() throws HarnessException {
 
@@ -71,37 +66,24 @@ public class PageManageGlobalACL extends AbsTab {
 
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see projects.admin.pages.AbsTab#myPageName()
-	 */
 	@Override
 	public String myPageName() {
 		return (this.getClass().getName());
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see projects.admin.pages.AbsTab#navigateTo()
-	 */
 	@Override
 	public void zNavigateTo() throws HarnessException {
 
 		if (zIsActive()) {
-
 			return;
 		}
 
-		// Click on Addresses -> Accounts
 		sClickAt(Locators.CONFIGURE_ICON, "");
 		zWaitForWorkInProgressDialogInVisible();
 		sIsElementPresent(Locators.GLOBALACL);
 		sClickAt(Locators.GLOBALACL, "");
 		zWaitForWorkInProgressDialogInVisible();
 		zWaitForActive();
-
 	}
 
 	@Override
@@ -118,7 +100,6 @@ public class PageManageGlobalACL extends AbsTab {
 		int count = this.sGetCssCount(rowsLocator);
 		logger.debug(myPageName() + " zListItem: number of results: " + count);
 
-		// Get each conversation's data from the table list
 		for (int i = 1; i <= count; i++) {
 			final String accountLocator = rowsLocator + ":nth-child(" + i + ")";
 			String locator;
@@ -203,5 +184,4 @@ public class PageManageGlobalACL extends AbsTab {
 			return true;
 		return false;
 	}
-
 }

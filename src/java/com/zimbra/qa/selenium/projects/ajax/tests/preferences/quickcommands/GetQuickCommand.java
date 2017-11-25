@@ -33,7 +33,7 @@ public class GetQuickCommand extends QuickCommandSettings {
 
 
 	@Bugs (ids = "71389")
-	@Test(	description = "Get a list of basic Quick Commands",
+	@Test (description = "Get a list of basic Quick Commands",
 			groups = { "deprecated" })
 
 	public void GetQuickCommand_01() throws HarnessException {
@@ -48,7 +48,7 @@ public class GetQuickCommand extends QuickCommandSettings {
 
 
 	@Bugs (ids = "71389")
-	@Test(	description = "Verify the Quick Command data in the list",
+	@Test (description = "Verify the Quick Command data in the list",
 			groups = { "deprecated" })
 
 	public void GetQuickCommand_02() throws HarnessException {

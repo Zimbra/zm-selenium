@@ -44,7 +44,7 @@ public class DeleteTag extends UniversalCore {
 	}
 
 	@Test (description = "Delete a tag - Right click, Delete", 
-			groups = { "smoke", "L1"})
+			groups = { "smoke", "L1" })
 	public void DeleteTag_01() throws HarnessException {
 
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);

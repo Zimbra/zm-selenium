@@ -86,7 +86,7 @@ public class ZimbraPrefIncludeTrashInSearchTrue extends UniversalCore {
 		app.zPagePreferences.zToolbarPressButton(Button.B_SAVE);
 
 
-		//-- Verification
+		// Verification
 
 		// Verify the account preference has been modified
 

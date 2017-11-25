@@ -285,7 +285,7 @@ public class EditDocument extends EnableBriefcaseFeature {
 	}
 
 	@Test (description = "Create document through SOAP - Edit Document using Right Click Context Menu & verify through GUI", 
-			groups = {"functional", "L2" })
+			groups = { "functional", "L2" })
 
 	public void EditDocument_04() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();

@@ -118,7 +118,7 @@ public class DeleteAppointment extends UniversalCore {
 
 		
 		
-		//-- Verification
+		// Verification
 		
 		
 		// On the server, verify the appointment is in the trash

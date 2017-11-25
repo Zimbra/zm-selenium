@@ -53,7 +53,7 @@ public class UnTrustedDomainMessageView extends AjaxCore {
 
 	@Bugs (ids = "74691")
 	@Test (description = "Verify Display Image link in UnTrusted doamin for message view",
-			groups = { "smoke", "L1"  })
+			groups = { "smoke", "L1" })
 
 	public void UnTrustedDomainMessageView_01() throws HarnessException {
 

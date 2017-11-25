@@ -111,12 +111,10 @@ public class AdminPages extends AbsApplication {
 		logger.info("new " + AdminPages.class.getCanonicalName());
 
 		// Login page
-
 		zPageLogin = new PageLogin(this);
 		pages.put(zPageLogin.myPageName(), zPageLogin);
 
 		// Main pages
-
 		zPageMain = new PageMain(this);
 		pages.put(zPageMain.myPageName(), zPageMain);
 
@@ -124,7 +122,6 @@ public class AdminPages extends AbsApplication {
 		pages.put(zPageSearchResults.myPageName(), zPageSearchResults);
 
 		// Addresses
-
 		zPageManageAccounts = new PageManageAccounts(this);
 		pages.put(zPageManageAccounts.myPageName(), zPageManageAccounts);
 
@@ -156,7 +153,6 @@ public class AdminPages extends AbsApplication {
 		pages.put(zPageManageConfigureGrants.myPageName(), zPageManageConfigureGrants);
 
 		// Configuration pages
-
 		zPageManageCOS = new PageManageCOS(this);
 		pages.put(zPageManageCOS.myPageName(), zPageManageCOS);
 
@@ -216,7 +212,6 @@ public class AdminPages extends AbsApplication {
 		pages.put(zPageManageRetentionPolicy.myPageName(), zPageManageRetentionPolicy);
 
 		// Monitoring
-
 		zPageManageServerStatus = new PageManageServerStatus(this);
 		pages.put(zPageManageServerStatus.myPageName(), zPageManageServerStatus);
 
@@ -242,7 +237,6 @@ public class AdminPages extends AbsApplication {
 		pages.put(zPageManageMobileSyncStatistics.myPageName(), zPageManageMobileSyncStatistics);
 
 		// Tools
-
 		zPageManageServerStats = new PageManageServerStats(this);
 		pages.put(zPageManageServerStats.myPageName(), zPageManageServerStats);
 
@@ -280,12 +274,10 @@ public class AdminPages extends AbsApplication {
 		pages.put(zPageEditBackup.myPageName(), zPageEditBackup);
 
 		// Searches
-
 		zPageEditSearch = new PageEditSearch(this);
 		pages.put(zPageEditSearch.myPageName(), zPageEditSearch);
 
 		// Downloads
-
 		zPageDownloads = new PageDownloads(this);
 		pages.put(zPageDownloads.myPageName(), zPageDownloads);
 
@@ -300,13 +292,10 @@ public class AdminPages extends AbsApplication {
 
 		zPageManageHelp = new PageManageHelp(this);
 		pages.put(zPageManageHelp.myPageName(), zPageManageHelp);
-
 	}
 
 	@Override
 	public boolean zIsLoaded() throws HarnessException {
-		// TODO: how to determine if the current browser app is the AdminConsole
-		// Maybe check the current URL?
 		return (true);
 	}
 
@@ -316,7 +305,6 @@ public class AdminPages extends AbsApplication {
 	}
 
 	public ZimbraAccount zSetActiveAccount(ZimbraAccount account) throws HarnessException {
-		// Should we throw an exception if the account is not a ZimbraAdminAccount?
 		return (super.zSetActiveAccount(account));
 	}
 
@@ -340,11 +328,10 @@ public class AdminPages extends AbsApplication {
 		ZimbraAdminAccount.GlobalAdmin().soapSend(
 				"<FlushCacheRequest  xmlns='urn:zimbraAdmin'>" + "<cache type='galgroup'/>" + "</FlushCacheRequest>");
 
-		this.zPageMain.logout();
+		this.zPageMain.zLogout();
 		accounta.authenticate();
 
 		// Login
-		this.zPageLogin.login(accounta);
-
+		this.zPageLogin.zLogin(accounta);
 	}
 }

@@ -109,7 +109,7 @@ public class ZimbraFeatureGroupCalendarEnabledFalse extends AjaxCore {
 	}
 
 
-	@Test(	description = "Bug 59940 -  Location: edit field can display upto 4 characters only if group calendar feature is OFF",
+	@Test (description = "Bug 59940 -  Location: edit field can display upto 4 characters only if group calendar feature is OFF",
 			groups = { "functional", "L2" })
 
 	public void ZimbraFeatureGroupCalendarEnabledFalse_02() throws HarnessException {

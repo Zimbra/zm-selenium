@@ -48,7 +48,7 @@ public class OwnerAccountClosed extends UniversalCore {
 	
 	
 	@Test (description = "Login to the Universal Client - with a mountpoint to a closed account",
-			groups = { "functional", "L3"})
+			groups = { "functional", "L3" })
 	public void OwnerAccountClosed01() throws HarnessException {
 		
 		// Data setup

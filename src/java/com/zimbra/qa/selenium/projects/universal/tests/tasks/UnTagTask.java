@@ -52,7 +52,7 @@ public class UnTagTask extends UniversalCore{
 	}
 
 	@Test (description = "UnTag a Task using Toolbar -> Tag -> Remove Tag", 
-			groups = { "smoke", "L1"})
+			groups = { "smoke", "L1" })
 	public void UnTagTask_01() throws HarnessException {
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
 
@@ -137,7 +137,7 @@ public class UnTagTask extends UniversalCore{
 
 
 	@Test (description = "UnTag a Task using shortcut u", 
-			groups = { "functional", "L3"})
+			groups = { "functional", "L3" })
 	public void UnTagTask_02() throws HarnessException {
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
 		Shortcut shortcut = Shortcut.S_UNTAG;
@@ -229,7 +229,7 @@ public class UnTagTask extends UniversalCore{
 	}
 
 	@Test (description = "Remove a tag from a task clicking 'x' from tag bubble", 
-			groups = { "functional","L2"})
+			groups = { "functional","L2" })
 	public void UnTagTask_03() throws HarnessException {
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
 		//	Shortcut shortcut = Shortcut.S_UNTAG;

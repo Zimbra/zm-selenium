@@ -40,46 +40,26 @@ public class PageManageCofigureGAL extends AbsTab {
 		public static final String EXT_DATA_SRC_NAME = "css=div[id$='ldap_ds.name']";
 		public static final String INT_DATA_SRC_NAME = "css=div[id$='zimbra_ds.name']";
 		public static final String SERVER_TYPE = "css=div[id$='_galservertype']";
-
 	}
 
 	public PageManageCofigureGAL(AbsApplication application) {
 		super(application);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see projects.admin.pages.AbsTab#isActive()
-	 */
 	@Override
 	public boolean zIsActive() throws HarnessException {
-
-		// return if GAL configure page is loaded in the browser
 		return sIsElementPresent(Locators.GAL_HEADER);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see projects.admin.pages.AbsTab#myPageName()
-	 */
 	@Override
 	public String myPageName() {
 		return (this.getClass().getName());
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see projects.admin.pages.AbsTab#navigateTo() use this only for navigating to
-	 * GAL Details page after opening the domain
-	 */
 	@Override
 	public void zNavigateTo() throws HarnessException {
 
 		if (zIsActive()) {
-			// This page is already active.
 			return;
 		}
 
@@ -111,18 +91,11 @@ public class PageManageCofigureGAL extends AbsTab {
 		if (button == null)
 			throw new HarnessException("Button cannot be null!");
 
-		//
-		String locator = null; // If set, this will be clicked
-		AbsPage page = null; // If set, this page will be returned
-
-		// Based on the button specified, take the appropriate action(s)
-		//
+		String locator = null;
+		AbsPage page = null;
 
 		if (button == Button.B_CONFIGURE_GAL) {
-
-			// Install vertificate link on home page
 			locator = PageMain.Locators.HomeConfigureGal;
-			// Create the page
 			page = new WizardConfigureGAL(this);
 
 		} else {
@@ -133,11 +106,8 @@ public class PageManageCofigureGAL extends AbsTab {
 			throw new HarnessException("locator was null for button " + button);
 		}
 
-		// Default behavior, process the locator by clicking on it
-		//
 		this.sClickAt(locator, "");
 
-		// If page was specified, make sure it is active
 		if (page != null) {
 			SleepUtil.sleepMedium();
 		}
@@ -183,5 +153,4 @@ public class PageManageCofigureGAL extends AbsTab {
 		status = true;
 		return status;
 	}
-
 }

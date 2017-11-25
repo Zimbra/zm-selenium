@@ -36,7 +36,6 @@ public class PageMain extends AbsTab {
 	public static class Locators {
 		public static final String zSkinContainerLogo = "xpath=//*[@id='skin_container_logo']";
 		public static final String zSkinContainerUsername = "css=div[id='skin_container_username']";
-
 		public static final String zSkinContainerLogoff = "css=table[class='skin_table'] span[onclick='ZaZimbraAdmin.logOff();']";
 		public static final String zLogoffDropDownArrow = "css=td[id$='_dropdown'] div[class='ImgNodeExpandedWhite']";
 		public static final String zLogOff = "zmi__ZA_LOGOFF__LOGOFF_title";
@@ -46,29 +45,17 @@ public class PageMain extends AbsTab {
 		// Help Drop down
 		public static final String zSkinContainerHelpDropDownArrow = "css=div[id='skin_container_help'] div[class='ImgNodeExpandedWhite']";
 		public static final String zHelpCenterOption = "css=div[id='zm__ZA_HELP'] div[id='zaHelpCenter'] td[id$='_title']";
-
 		public static final String REFRESH_BUTTON = "css=div.ImgSearchRefreshWhite";
-
 		public static final String HomeInstallLicense = "css=div[id^='ztabv__HOMEV_output'] div:contains('Install Licenses')";
-
 		public static final String HomeConfigureBackups = "css=div[id^='ztabv__HOMEV_output'] div:contains('Configure Back-ups')";
-
 		public static final String HomeInstallCertificate = "css=div[id^='ztabv__HOMEV_output'] div:contains('Install Certificates')";
-
 		public static final String HomeConfigureDefaultCos = "css=div[id^='ztabv__HOMEV_output'] div:contains('Configure Default COS')";
-
 		public static final String HomeCreateDomain = "css=div[id^='ztabv__HOMEV_output'] div:contains('Create Domain')";
-
 		public static final String HomeConfigureGal = "css=div[id^='ztabv__HOMEV_output'] div:contains('Configure GAL')";
-
 		public static final String HomeConfigureAuthentication = "css=div[id^='ztabv__HOMEV_output'] div:contains('Configure Authentication')";
-
 		public static final String HomeAddAcoount = "css=div[id^='ztabv__HOMEV_output'] div:contains('Add Account')";
-
 		public static final String HomeManageAccount = "css=div[id^='ztabv__HOMEV_output'] div:contains('Manage Accounts')";
-
 		public static final String HomeMigrationCoexistance = "css=div[id^='ztabv__HOMEV_output'] div:contains('Migration and Co-existence')";
-
 		public static final String zHelpButton = "css=div[id='zb__ZaCurrentAppBar__HELP'] td[id$='_title']";
 	}
 
@@ -92,14 +79,12 @@ public class PageMain extends AbsTab {
 		if (!MyApplication.zIsLoaded())
 			throw new HarnessException("Admin Console application is not active!");
 
-		// Look for the Refresh Button
 		boolean present = sIsElementPresent(Locators.zLogoffDropDownArrow);
 		if (!present) {
 			logger.debug("isActive() present = " + present);
 			return (false);
 		}
 
-		// Look for the Refresh Button.
 		boolean visible = zIsVisiblePerPosition(Locators.zLogoffDropDownArrow, 0, 0);
 		if (!visible) {
 			logger.debug("isActive() visible = " + visible);
@@ -114,7 +99,6 @@ public class PageMain extends AbsTab {
 	public void zNavigateTo() throws HarnessException {
 
 		if (zIsActive()) {
-			// This page is already active
 			return;
 		}
 
@@ -123,7 +107,7 @@ public class PageMain extends AbsTab {
 		if (!((AdminPages) MyApplication).zPageLogin.zIsActive()) {
 			((AdminPages) MyApplication).zPageLogin.zNavigateTo();
 		}
-		((AdminPages) MyApplication).zPageLogin.login();
+		((AdminPages) MyApplication).zPageLogin.zLogin();
 		SleepUtil.sleepLong();
 	}
 
@@ -132,8 +116,8 @@ public class PageMain extends AbsTab {
 	 *
 	 * @throws HarnessException
 	 */
-	public void logout() throws HarnessException {
-		logger.debug("logout()");
+	public void zLogout() throws HarnessException {
+		logger.debug("zLogout()");
 
 		zNavigateTo();
 		if (!sIsElementPresent(Locators.zLogoffDropDownArrow)) {
@@ -151,7 +135,7 @@ public class PageMain extends AbsTab {
 
 	}
 
-	public String getContainerUsername() throws HarnessException {
+	public String zGetContainerUsername() throws HarnessException {
 		logger.debug("getLoggedInAccount()");
 
 		if (!zIsActive())
@@ -165,22 +149,6 @@ public class PageMain extends AbsTab {
 	public void zHandleDialogs() throws HarnessException {
 		zRefreshMainUI();
 	}
-
-	/*
-	 * // Opened dialogs String zIndex; List<WebElement> dialogLocators =
-	 * webDriver().findElements(By.cssSelector("div[class^='Dwt'][class$='Dialog']")
-	 * );
-	 *
-	 * int totalDialogs = dialogLocators.size(); logger.info("Total dialogs found "
-	 * + totalDialogs);
-	 *
-	 * for (int i=totalDialogs-1; i>=0; i--) { zIndex =
-	 * dialogLocators.get(i).getCssValue("z-index"); if (!zIndex.equals("auto") &&
-	 * !zIndex.equals("") && !zIndex.equals(null) && Integer.parseInt(zIndex)>=700)
-	 * { logger.info("Found active dialog"); sRefresh(); return; } }
-	 *
-	 * logger.info("No active dialogs found"); }
-	 */
 
 	@Override
 	public AbsPage zListItem(Action action, String item) throws HarnessException {

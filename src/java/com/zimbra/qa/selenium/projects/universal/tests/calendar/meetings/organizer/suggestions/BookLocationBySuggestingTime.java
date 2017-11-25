@@ -35,7 +35,7 @@ public class BookLocationBySuggestingTime extends CalendarWorkWeekPreference {
 	
 	@Bugs (ids = "73966,88287")
 	@Test (description = "Suggest a free time and book location for selected time while creating new appointment",
-			groups = { "smoke", "L1"})
+			groups = { "smoke", "L1" })
 	
 	public void BookLocationBySuggestingTime_01() throws HarnessException {
 		

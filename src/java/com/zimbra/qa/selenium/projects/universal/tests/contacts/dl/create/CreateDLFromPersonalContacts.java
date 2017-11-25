@@ -34,7 +34,7 @@ public class CreateDLFromPersonalContacts extends UniversalCore  {
 	}
 
 	@Test (description = "Create user DL with atleast 2 contacts from personal contacts", 
-			groups = { "sanity", "L0"})
+			groups = { "sanity", "L0" })
 
 	public void CreateDLFromPersonalContacts_01 () throws HarnessException {
 

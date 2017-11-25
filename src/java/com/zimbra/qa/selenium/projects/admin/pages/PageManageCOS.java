@@ -57,11 +57,6 @@ public class PageManageCOS extends AbsTab {
 		super(application);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see projects.admin.pages.AbsTab#isActive()
-	 */
 	@Override
 	public boolean zIsActive() throws HarnessException {
 
@@ -81,33 +76,20 @@ public class PageManageCOS extends AbsTab {
 		}
 
 		return (true);
-
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see projects.admin.pages.AbsTab#myPageName()
-	 */
 	@Override
 	public String myPageName() {
 		return (this.getClass().getName());
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see projects.admin.pages.AbsTab#navigateTo()
-	 */
 	@Override
 	public void zNavigateTo() throws HarnessException {
 
 		if (zIsActive()) {
-
 			return;
 		}
 
-		// Click on Addresses -> Accounts
 		SleepUtil.sleepMedium();
 		sClickAt(Locators.CONFIGURE_ICON, "");
 		zWaitForWorkInProgressDialogInVisible();
@@ -115,7 +97,6 @@ public class PageManageCOS extends AbsTab {
 		sClickAt(Locators.COS, "");
 		zWaitForWorkInProgressDialogInVisible();
 		SleepUtil.sleepMedium();
-
 	}
 
 	@Override
@@ -132,7 +113,6 @@ public class PageManageCOS extends AbsTab {
 		int count = this.sGetCssCount(rowsLocator);
 		logger.debug(myPageName() + " zListGetAccounts: number of accounts: " + count);
 
-		// Get each conversation's data from the table list
 		for (int i = 1; i <= count; i++) {
 			final String accountLocator = rowsLocator + ":nth-child(" + i + ")";
 			String locator;
@@ -149,9 +129,7 @@ public class PageManageCOS extends AbsTab {
 						sRightClick(locator);
 						break;
 					}
-
 				}
-
 			}
 		}
 		SleepUtil.sleepMedium();
@@ -177,50 +155,31 @@ public class PageManageCOS extends AbsTab {
 		if (button == null)
 			throw new HarnessException("Button cannot be null!");
 
-		//
-		String locator = null; // If set, this will be clicked
-		AbsPage page = null; // If set, this page will be returned
-
-		// Based on the button specified, take the appropriate action(s)
-		//
+		String locator = null;
+		AbsPage page = null;
 
 		if (button == Button.B_NEW) {
-
-			// New button
 			locator = Locators.COS;
-
-			// Create the page
 			page = new WizardCreateCos(this);
 
 		} else if (button == Button.B_REFRESH) {
-
 			locator = PageMain.Locators.REFRESH_BUTTON;
-
 			page = null;
 
 		} else if (button == Button.B_TREE_DELETE) {
-
 			locator = Locators.RIGHT_CLICK_MENU_DELETE_BUTTON;
-
 			page = new DialogForDeleteOperationCos(this.MyApplication, null);
 
 		} else if (button == Button.B_TREE_EDIT) {
-
 			locator = Locators.RIGHT_CLICK_MENU_EDIT_BUTTON;
-
 			page = new FormEditCos(this.MyApplication);
 
 		} else if (button == Button.O_DUPLICATE_COS) {
-
 			locator = Locators.RIGHT_CLICK_DUPLICATE_COS;
-
 			page = new WizardCreateCos(this);
 
 		} else if (button == Button.B_ADD_ACL) {
-
 			locator = Locators.ADD_ACL;
-
-			// Create the page
 			page = new WizardAddACLAtCos(this);
 
 		} else {
@@ -231,15 +190,11 @@ public class PageManageCOS extends AbsTab {
 			throw new HarnessException("locator was null for button " + button);
 		}
 
-		// Default behavior, process the locator by clicking on it
-		//
 		SleepUtil.sleepLong();
 		this.sClickAt(locator, "");
 
 		SleepUtil.sleepMedium();
-
 		return (page);
-
 	}
 
 	@Override
@@ -262,27 +217,19 @@ public class PageManageCOS extends AbsTab {
 			pulldownLocator = Locators.GEAR_ICON;
 
 			if (option == Button.O_NEW) {
-
 				optionLocator = Locators.NEW_MENU;
-
 				page = new WizardCreateCos(this);
 
 			} else if (option == Button.O_DELETE) {
-
 				optionLocator = Locators.DELETE_BUTTON;
-
 				page = new DialogForDeleteOperationCos(this.MyApplication, null);
 
 			} else if (option == Button.O_EDIT) {
-
 				optionLocator = Locators.EDIT_BUTTON;
-
 				page = new FormEditCos(this.MyApplication);
 
 			} else if (option == Button.O_DUPLICATE_COS) {
-
 				optionLocator = Locators.DUPLICATE_COS;
-
 				page = new WizardCreateCos(this);
 
 			} else {
@@ -293,10 +240,8 @@ public class PageManageCOS extends AbsTab {
 			throw new HarnessException("no logic defined for pulldown/option " + pulldown + "/" + option);
 		}
 
-		// Default behavior
 		if (pulldownLocator != null) {
 
-			// Make sure the locator exists
 			if (!this.sIsElementPresent(pulldownLocator)) {
 				throw new HarnessException("Button " + pulldown + " option " + option + " pulldownLocator "
 						+ pulldownLocator + " not present!");
@@ -305,12 +250,8 @@ public class PageManageCOS extends AbsTab {
 			this.sClickAt(pulldownLocator, "");
 			SleepUtil.sleepSmall();
 
-			// If the app is busy, wait for it to become active
-			// zWaitForBusyOverlay();
-
 			if (optionLocator != null) {
 
-				// Make sure the locator exists
 				if (!this.sIsElementPresent(optionLocator)) {
 					throw new HarnessException("Button " + pulldown + " option " + option + " optionLocator "
 							+ optionLocator + " not present!");
@@ -318,30 +259,18 @@ public class PageManageCOS extends AbsTab {
 				SleepUtil.sleepLong();
 				this.sClickAt(optionLocator, "");
 				SleepUtil.sleepSmall();
-
-				// If the app is busy, wait for it to become active
-				// zWaitForBusyOverlay();
 			}
-
 		}
-
-		// Return the specified page, or null if not set
 		return (page);
-
 	}
 
 	/**
 	 * Return a list of all cos entries in the current view
-	 *
-	 * @return
-	 * @throws HarnessException
-	 * @throws HarnessException
 	 */
 	public List<CosItem> zListGetCos() throws HarnessException {
 
 		List<CosItem> items = new ArrayList<CosItem>();
 
-		// Make sure the button exists
 		if (!this.sIsElementPresent("css=div[id='zl__COS_MANAGE'] div[id$='__rows']"))
 			throw new HarnessException("COS Rows are not present");
 
@@ -350,7 +279,6 @@ public class PageManageCOS extends AbsTab {
 		int count = this.sGetCssCount(rowsLocator);
 		logger.debug(myPageName() + " zListGetAccounts: number of COSs: " + count);
 
-		// Get each conversation's data from the table list
 		for (int i = 1; i <= count; i++) {
 			final String cosLocator = rowsLocator + ":nth-child(" + i + ")";
 			String locator;
@@ -363,17 +291,10 @@ public class PageManageCOS extends AbsTab {
 				item.setCosName(this.sGetText(locator).trim());
 			}
 
-			// Display Name
-			// Status
-			// Lost Login Time
-			// Description
-			// Add the new item to the list
-
 			items.add(item);
 			logger.info(item.prettyPrint());
 		}
 
-		// Return the list of items
 		return (items);
 	}
 
@@ -394,5 +315,4 @@ public class PageManageCOS extends AbsTab {
 			return true;
 		return false;
 	}
-
 }

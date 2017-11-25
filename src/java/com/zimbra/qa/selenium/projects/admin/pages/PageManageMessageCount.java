@@ -41,23 +41,15 @@ public class PageManageMessageCount extends AbsTab {
 		super(application);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see projects.admin.pages.AbsTab#isActive()
-	 */
 	@Override
 	public boolean zIsActive() throws HarnessException {
-		// If the "Refresh" button is visible, assume the ServerStatus page is active
 
-		// Look for the Refresh Button
 		boolean present = sIsElementPresent(Locators.MAIL_QUEUES);
 		if (!present) {
 			logger.debug("isActive() present = " + present);
 			return (false);
 		}
 
-		// Look for the Refresh Button.
 		boolean visible = zIsVisiblePerPosition(Locators.MAIL_QUEUES, 0, 0);
 		if (!visible) {
 			logger.debug("isActive() visible = " + visible);
@@ -68,36 +60,23 @@ public class PageManageMessageCount extends AbsTab {
 		return (true);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see projects.admin.pages.AbsTab#myPageName()
-	 */
 	@Override
 	public String myPageName() {
 		return (this.getClass().getName());
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see projects.admin.pages.AbsTab#navigateTo()
-	 */
 	@Override
 	public void zNavigateTo() throws HarnessException {
 		if (zIsActive()) {
-
 			return;
 		}
 
-		// Click on Addresses -> Accounts
 		sClickAt(Locators.MONITOR_ICON, "");
 		zWaitForWorkInProgressDialogInVisible();
 		sIsElementPresent("css=td:contains('" + Locators.MESSAGE_COUNT + "')");
 		sClickAt("css=td:contains('" + Locators.MESSAGE_COUNT + "')", "");
 		zWaitForWorkInProgressDialogInVisible();
 		zWaitForActive();
-
 	}
 
 	@Override
@@ -130,5 +109,4 @@ public class PageManageMessageCount extends AbsTab {
 			return true;
 		return false;
 	}
-
 }

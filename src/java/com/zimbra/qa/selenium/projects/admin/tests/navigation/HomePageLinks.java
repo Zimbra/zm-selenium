@@ -56,7 +56,7 @@ public class HomePageLinks extends AdminCore {
 		// close the wizard to proceed to next test
 		boolean isClosed = wizard.zCloseWizard();
 		ZAssert.assertTrue(isClosed, "Verify the install certificate wizard is closed");
-		app.zPageMain.logout();
+		app.zPageMain.zLogout();
 	}
 
 
@@ -78,7 +78,7 @@ public class HomePageLinks extends AdminCore {
 		app.zPageMain.sClickAt(Locators.HomeConfigureDefaultCos, "");
 		boolean isNavigationSuccess = app.zPageMain.zVerifyHeader("default");
 		ZAssert.assertTrue(isNavigationSuccess, "Verify the configure default COS page is opened");
-		app.zPageMain.logout();
+		app.zPageMain.zLogout();
 	}
 
 
@@ -102,7 +102,7 @@ public class HomePageLinks extends AdminCore {
 		// Close the wizard to proceed to next test
 		boolean isClosed = wizard.zCloseWizard();
 		ZAssert.assertTrue(isClosed, "Verify the  new domain wizard is closed");
-		app.zPageMain.logout();
+		app.zPageMain.zLogout();
 	}
 
 
@@ -127,7 +127,7 @@ public class HomePageLinks extends AdminCore {
 		boolean isClosed = wizard.zCloseWizard();
 		ZAssert.assertTrue(isClosed, "Verify the Configure GAL wizard is closed");
 
-		app.zPageMain.logout();
+		app.zPageMain.zLogout();
 	}
 
 
@@ -152,7 +152,7 @@ public class HomePageLinks extends AdminCore {
 		// Close the wizard to proceed to next test
 		boolean isClosed = wizard.zCloseWizard();
 		ZAssert.assertTrue(isClosed, "Verify the Configure Authentication wizard is closed");
-		app.zPageMain.logout();
+		app.zPageMain.zLogout();
 	}
 
 
@@ -176,7 +176,7 @@ public class HomePageLinks extends AdminCore {
 		// Close the wizard to proceed to next test
 		boolean isClosed = wizard.zCloseWizard();
 		ZAssert.assertTrue(isClosed, "Verify the  new account wizard is closed");
-		app.zPageMain.logout();
+		app.zPageMain.zLogout();
 	}
 
 
@@ -197,7 +197,7 @@ public class HomePageLinks extends AdminCore {
 		app.zPageMain.sClickAt(Locators.HomeManageAccount, "");
 		boolean isNavigationSuccess = app.zPageMain.zVerifyHeader("Manage");
 		ZAssert.assertTrue(isNavigationSuccess, "Verify the manage accounts page is opened");
-		app.zPageMain.logout();
+		app.zPageMain.zLogout();
 	}
 
 
@@ -222,6 +222,6 @@ public class HomePageLinks extends AdminCore {
 		// Close the wizard to proceed to next test
 		boolean isClosed = wizard.zCloseWizard();
 		ZAssert.assertTrue(isClosed, "Verify the migration and Coexistance wizard is closed");
-		app.zPageMain.logout();
+		app.zPageMain.zLogout();
 	}
 }

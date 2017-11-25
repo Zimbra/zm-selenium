@@ -134,7 +134,7 @@ public class GetZimlets extends AjaxCore {
 
 
 	@Bugs (ids = "50123")
-	@Test(	description = "Verify the Zimbra Social table text",
+	@Test (description = "Verify the Zimbra Social table text",
 			groups = { "deprecated" })
 
 	public void GetZimlets_06() throws HarnessException {

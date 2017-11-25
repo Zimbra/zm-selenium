@@ -44,9 +44,7 @@ public class FormEditServer extends AbsForm {
 
 	public FormEditServer(AbsApplication application) {
 		super(application);
-
 		logger.info("new " + myPageName());
-
 	}
 
 	@Override
@@ -90,14 +88,13 @@ public class FormEditServer extends AbsForm {
 		sClickAt("css=td:contains('" + treeItem + "')", "");
 	}
 
-	public void setDescription(String desc) throws HarnessException {
+	public void zSetDescription(String desc) throws HarnessException {
 		sType(Locators.DESCRIPTION, desc);
 		SleepUtil.sleepSmall();
 	}
 
-	public void setNotes(String notes) throws HarnessException {
+	public void zSetNotes(String notes) throws HarnessException {
 		sType(Locators.NOTES, notes);
 		SleepUtil.sleepSmall();
 	}
-
 }

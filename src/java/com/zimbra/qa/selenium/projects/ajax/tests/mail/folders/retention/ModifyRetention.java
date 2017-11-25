@@ -30,7 +30,7 @@ public class ModifyRetention extends SetGroupMailByMessagePreference {
 	}
 
 
-	@Test(	description = "Modify a basic retention (Context menu -> Edit -> Retention)",
+	@Test (description = "Modify a basic retention (Context menu -> Edit -> Retention)",
 			groups = { "functional", "L2" })
 
 	public void ModifyRetention_01() throws HarnessException {

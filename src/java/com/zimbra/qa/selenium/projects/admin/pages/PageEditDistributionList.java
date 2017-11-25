@@ -45,31 +45,16 @@ public class PageEditDistributionList extends AbsTab {
 		super(application);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see projects.admin.pages.AbsTab#isActive()
-	 */
 	@Override
 	public boolean zIsActive() throws HarnessException {
 		throw new HarnessException("implement me");
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see projects.admin.pages.AbsTab#myPageName()
-	 */
 	@Override
 	public String myPageName() {
 		return (this.getClass().getName());
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see projects.admin.pages.AbsTab#navigateTo()
-	 */
 	@Override
 	public void zNavigateTo() throws HarnessException {
 		throw new HarnessException("implement me");
@@ -100,33 +85,23 @@ public class PageEditDistributionList extends AbsTab {
 		if (button == null)
 			throw new HarnessException("Button cannot be null!");
 
-		//
-		String locator = null; // If set, this will be clicked
-		AbsPage page = null; // If set, this page will be returned
-
-		// Based on the button specified, take the appropriate action(s)
-		//
+		String locator = null;
+		AbsPage page = null;
 
 		if (button == Button.B_PROPERTIES) {
-
 			locator = Locators.PROPERTIES;
-
 			page = new FormEditDistributionList(this.MyApplication);
+
 		} else if (button == Button.B_PREFERENCES) {
-
 			locator = Locators.PREFERENCES;
-
 			page = new FormEditDistributionList(this.MyApplication);
-		} else if (button == Button.B_ALIASES) {
 
+		} else if (button == Button.B_ALIASES) {
 			locator = Locators.ALIASES;
 
-			// page = new FormEditDistributionList(this.MyApplication);
 		} else if (button == Button.B_OWNER) {
-
 			locator = Locators.OWNER;
 
-			// page = new FormEditDistributionList(this.MyApplication);
 		} else if (button == Button.B_ADD) {
 			for (int i = 0; i <= 15; i++) {
 				if (sIsElementPresent("css=td[id^='ztabv__UNDEFINE_dwt_button_" + i
@@ -146,18 +121,13 @@ public class PageEditDistributionList extends AbsTab {
 			throw new HarnessException("locator was null for button " + button);
 		}
 
-		// Default behavior, process the locator by clicking on it
-		//
-
 		this.sClickAt(locator, "");
 		SleepUtil.sleepMedium();
 
-		// If page was specified, make sure it is active
 		if (page != null) {
 			SleepUtil.sleepMedium();
 		}
 
-		// sMouseOut(locator);
 		return (page);
 	}
 
@@ -165,5 +135,4 @@ public class PageEditDistributionList extends AbsTab {
 	public AbsPage zToolbarPressPulldown(Button pulldown, Button option) throws HarnessException {
 		return null;
 	}
-
 }

@@ -132,7 +132,7 @@ public class GetAttachment extends SetGroupMailByMessagePreference {
 		ZAssert.assertTrue(app.zPageMail.zVerifyAttachmentExistsInMail(fileName), "Verify attachment exists in the email");
 		ZAssert.assertTrue(app.zPageMail.zVerifyInlineImageAttachmentExistsInMail(), "Verify inline attachment exists in the email");
 
-		//-- Verification
+		// Verification
 
 		// From the receiving end, verify the message details
 		MailItem received = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");

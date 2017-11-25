@@ -90,7 +90,7 @@ public class DeleteAppointment extends UniversalCore {
 		dlgConfirm.zPressButton(Button.B_YES);
 		dlgConfirm.zWaitForClose();
 		
-		//-- Verification
+		// Verification
 		SleepUtil.sleepMedium(); //testcase failing due to timing issue so added sleep
 		ZAssert.assertEquals(app.zPageCalendar.sIsElementPresent(app.zPageCalendar.zGetAllDayApptLocator(apptSubject)), false, "Verify all-day appointment is deleted");
 		
@@ -142,7 +142,7 @@ public class DeleteAppointment extends UniversalCore {
 		dlgConfirm.zPressButton(Button.B_YES);
 		dlgConfirm.zWaitForClose();
 		
-		//-- Verification
+		// Verification
 		SleepUtil.sleepMedium(); //testcase failing due to timing issue so added sleep
 		ZAssert.assertEquals(app.zPageCalendar.sIsElementPresent(app.zPageCalendar.zGetAllDayApptLocator(apptSubject)), false, "Verify all-day appointment is deleted");
 	}
@@ -200,7 +200,7 @@ public class DeleteAppointment extends UniversalCore {
 		dlgConfirm.zPressButton(Button.B_YES);
 		
 		
-		//-- Verification
+		// Verification
 		app.zGetActiveAccount().soapSend(
 					"<SearchRequest xmlns='urn:zimbraMail' types='appointment' calExpandInstStart='"+ startUTC.addDays(-7).toMillis() +"' calExpandInstEnd='"+ startUTC.addDays(7).toMillis() +"'>"
 				+	"<query>subject:("+ apptSubject +")</query>"

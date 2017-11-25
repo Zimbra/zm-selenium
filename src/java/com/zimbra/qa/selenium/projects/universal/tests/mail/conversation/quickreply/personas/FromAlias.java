@@ -115,7 +115,7 @@ public class FromAlias extends SetGroupMailByConversationPreference {
 	
 
 		
-		//-- Verification
+		// Verification
 		
 		
 		// Verify the message shows as from the alias

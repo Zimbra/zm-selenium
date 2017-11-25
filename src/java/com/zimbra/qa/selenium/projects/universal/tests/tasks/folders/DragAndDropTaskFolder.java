@@ -44,7 +44,7 @@ public class DragAndDropTaskFolder extends UniversalCore {
 	
 	@Bugs (ids = "69661")
 	@Test (description = "Drag one Task folder and Drop into other", 
-			groups = { "smoke", "L1"})
+			groups = { "smoke", "L1" })
 	public void DragAndDropTaskFolder_01() throws HarnessException {
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
 		ZAssert.assertNotNull(taskFolder, "Verify the task is available");

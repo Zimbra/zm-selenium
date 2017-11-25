@@ -94,7 +94,7 @@ public class RemoveDelegate extends UniversalCore {
 //		dialog.zPressButton(Button.B_OK);
 		
 		
-		//-- Verification
+		// Verification
 		app.zGetActiveAccount().soapSend(
 					"<GetRightsRequest xmlns='urn:zimbraAccount' >"
 				+		"<ace right='sendAs'/>"

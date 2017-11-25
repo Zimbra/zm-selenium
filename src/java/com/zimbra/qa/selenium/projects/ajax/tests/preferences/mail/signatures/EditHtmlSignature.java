@@ -69,7 +69,7 @@ public class EditHtmlSignature extends AjaxCore {
 	 */
 
 	@Test (description = "Edit signature through GUI and verify through soap",
-		groups = { "sanity", "L0"  })
+		groups = { "sanity", "L0" })
 
 	public void EditHtmlSignature_01() throws HarnessException {
 

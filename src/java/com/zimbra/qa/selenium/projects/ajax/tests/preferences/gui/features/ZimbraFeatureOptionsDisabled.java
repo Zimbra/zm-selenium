@@ -39,7 +39,7 @@ public class ZimbraFeatureOptionsDisabled extends AjaxCore {
 
 
 	@Bugs (ids = "63652")
-	@Test(	description = "Load the app with Preferences tab disabled",
+	@Test (description = "Load the app with Preferences tab disabled",
 			groups = { "functional-skip", "L3-skip" })
 
 	public void ZimbraFeatureOptionsDisabled_01() throws HarnessException {

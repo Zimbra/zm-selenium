@@ -31,7 +31,7 @@ public class Login extends UniversalCore {
 	}
 	
 	@Test (description = "Login to the Universal Client", 
-			groups = { "sanity", "L0"})
+			groups = { "sanity", "L0" })
 	
 	public void Login01() throws HarnessException {
 		

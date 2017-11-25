@@ -31,7 +31,6 @@ public class WizardDeployZimlet extends AbsWizard {
 		public static final String DEPLOY_BUTTON = "css=td[id^='zdlg__ZIM_DEPLOY_button']:contains('Deploy')";
 		public static final String FLUSH_CHACHE = "css=input[id='zdlgv__ZIM_DEPLOY_flushCache']";
 		public static final String FINISH_BUTTON = "css=td[id^='zdlg__ZIM_DEPLOY_button13_title']:contains('Finish')";
-
 	}
 
 	public WizardDeployZimlet(AbsTab page) {

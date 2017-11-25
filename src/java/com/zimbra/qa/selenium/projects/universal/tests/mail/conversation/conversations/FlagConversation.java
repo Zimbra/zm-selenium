@@ -56,7 +56,7 @@ public class FlagConversation extends SetGroupMailByConversationPreference {
 		
 
 
-		//-- Verification
+		// Verification
 		
 
 		// Each message in the conversation should now be flagged
@@ -92,7 +92,7 @@ public class FlagConversation extends SetGroupMailByConversationPreference {
 		
 
 
-		//-- Verification
+		// Verification
 		
 
 		// Each message in the conversation should now be flagged

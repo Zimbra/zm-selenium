@@ -109,7 +109,7 @@ public class DeleteSeries extends UniversalCore {
         
         
         
-        //-- Verification
+        // Verification
         
         // On the server, verify the appointment is in the trash
         app.zGetActiveAccount().soapSend(
@@ -191,7 +191,7 @@ public class DeleteSeries extends UniversalCore {
         
         
         
-        //-- Verification
+        // Verification
         
         // On the server, verify the appointment is in the trash
         app.zGetActiveAccount().soapSend(
@@ -281,7 +281,7 @@ public class DeleteSeries extends UniversalCore {
         
         
         
-        //-- Verification
+        // Verification
         
         // On the server, verify the appointment is in the trash
         app.zGetActiveAccount().soapSend(

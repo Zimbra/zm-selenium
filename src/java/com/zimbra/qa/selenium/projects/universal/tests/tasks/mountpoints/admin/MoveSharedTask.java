@@ -53,7 +53,7 @@ public class MoveSharedTask extends UniversalCore {
 	}
 	
 	@Test (description = "Move task  from shared folder to local task folder (admin rights)",
-			groups = { "functional", "L2"})
+			groups = { "functional", "L2" })
 	public void MoveSharedTaskToLocalFolder() throws HarnessException {
 		
 		String foldername = "tasklist" + ConfigProperties.getUniqueString();
@@ -155,7 +155,7 @@ public class MoveSharedTask extends UniversalCore {
 	}
 	
 	@Test (description = "Move task from local task folder  to shared folder(admin rights)",
-			groups = { "functional", "L2"})
+			groups = { "functional", "L2" })
 	public void MoveTaskToSharedFolder() throws HarnessException {
 		
 		String foldername = "tasklist" + ConfigProperties.getUniqueString();

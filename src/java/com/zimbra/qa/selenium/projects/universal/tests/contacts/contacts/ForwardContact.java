@@ -34,7 +34,7 @@ public class ForwardContact extends UniversalCore  {
 	
 	@Bugs (ids = "77708")
 	@Test (description = "Forward a contact by click Forward on the toolbar",
-			groups = { "deprecated", "L4"})
+			groups = { "deprecated", "L4" })
 	
 	public void InDisplayViewClickForwardOnToolbar_01() throws HarnessException {
 		
@@ -92,7 +92,7 @@ public class ForwardContact extends UniversalCore  {
    	}
 
 	@Test (description = "Forward an editing contact by click Forward on the toolbar",
-			groups = { "deprecated", "L4"})
+			groups = { "deprecated", "L4" })
 	
 	public void InEditViewClickForwardOnToolbar_02() throws HarnessException {
 				
@@ -154,7 +154,7 @@ public class ForwardContact extends UniversalCore  {
    	}
 	
 	@Test (description = "Forward a contact by click Forward on the context menu",
-			groups = { "smoke", "L1"})
+			groups = { "smoke", "L1" })
 	
 	public void ClickForwardOnContextmenu_03() throws HarnessException {
 		

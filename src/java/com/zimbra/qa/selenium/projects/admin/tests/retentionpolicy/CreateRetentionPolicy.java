@@ -56,10 +56,10 @@ public class CreateRetentionPolicy extends AdminCore {
 		FormManageRetentionPolicy form = (FormManageRetentionPolicy) app.zPageManageRetentionPolicy.zToolbarPressButton( Button.B_ADD);
 
 		// Enter policy name
-		form.setPolicyName(policyName);
+		form.zSetPolicyName(policyName);
 
 		// Enter retention range
-		form.setRetentionRange(retentionRange);
+		form.zSetRetentionRange(retentionRange);
 
 		// Select days from range drop-down
 		form.selectRetentionRange(Button.O_DAYS);

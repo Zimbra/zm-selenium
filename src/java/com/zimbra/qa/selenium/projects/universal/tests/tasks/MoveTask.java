@@ -47,7 +47,7 @@ public class MoveTask extends UniversalCore {
 	
 	//@Bugs (ids = "61471")
 	@Test (description = "Create task through SOAP - move & verify through GUI", 
-			groups = { "smoke", "L0"})
+			groups = { "smoke", "L0" })
 	public void MoveTask_01() throws HarnessException {
 
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
@@ -130,7 +130,7 @@ public class MoveTask extends UniversalCore {
 	}
 	
 	@Test (description = "Move a task by selecting task, then click 'm' shortcut", 
-			groups = { "functional", "L2"})
+			groups = { "functional", "L2" })
 	public void MoveTask_02() throws HarnessException {
 
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
@@ -215,7 +215,7 @@ public class MoveTask extends UniversalCore {
 	}
 
 	@Test (description = "Create task through SOAP - move using Right Click Context Menu & verify through GUI", 
-			groups = { "smoke", "L1"})
+			groups = { "smoke", "L1" })
 	public void MoveTask_03() throws HarnessException {
 
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
@@ -300,7 +300,7 @@ public class MoveTask extends UniversalCore {
 	}
 	
 	@Test (description = "Move a task by using Move -> New folder & verify through GUI", 
-			groups = { "functional", "L2"})
+			groups = { "functional", "L2" })
 	public void MoveTask_04() throws HarnessException {
 
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);

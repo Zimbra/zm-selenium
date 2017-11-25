@@ -54,8 +54,10 @@ public class DialogForDeleteOperation extends AbsDialog {
 
 		if (button == Button.B_YES) {
 			locator = Locators.YES_BUTTON;
+
 		} else if (button == Button.B_NO) {
 			locator = Locators.NO_BUTTON;
+
 		} else if (button == Button.B_OK) {
 			for (int i = 0; i <= 15; i++) {
 				if (sIsElementPresent(Locators.OK_BUTTON + i + "_button2_title")
@@ -64,23 +66,18 @@ public class DialogForDeleteOperation extends AbsDialog {
 					break;
 				}
 			}
+
 		} else {
 			throw new HarnessException("Button " + button + " not implemented");
 		}
 
-		// Make sure the locator was set
 		if (locator == null) {
 			throw new HarnessException("Button " + button + " not implemented");
 		}
 
-		// Make sure the locator exists
 		if (!this.sIsElementPresent(locator)) {
 			throw new HarnessException("Button " + button + " locator " + locator + " not present!");
 		}
-
-		// if (zIsActive())
-		// zGetDisplayedText("css=div[class=" + Locators.zDialogContentClassId +
-		// "]");
 
 		this.sClickAt(locator, "");
 		SleepUtil.sleepLong();
@@ -97,5 +94,4 @@ public class DialogForDeleteOperation extends AbsDialog {
 	public boolean zIsActive() throws HarnessException {
 		return false;
 	}
-
 }

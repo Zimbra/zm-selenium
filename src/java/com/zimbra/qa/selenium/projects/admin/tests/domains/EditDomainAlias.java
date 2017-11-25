@@ -83,7 +83,7 @@ public class EditDomainAlias extends AdminCore {
 		app.zPageManageDomains.zListItem(Action.A_LEFTCLICK, domainAliasName);
 
 		//Set object type and initialize creatdomainalias wizard
-		app.zPageManageDomains.setType(PageManageDomains.TypeOfObject.DOMAIN_ALIAS);
+		app.zPageManageDomains.zSetType(PageManageDomains.TypeOfObject.DOMAIN_ALIAS);
 		WizardCreateDomainAlias wizard = (WizardCreateDomainAlias) app.zPageManageDomains.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_EDIT);
 
 		wizard.zSetTargetDomain(alias);
@@ -144,7 +144,7 @@ public class EditDomainAlias extends AdminCore {
 		app.zPageManageDomains.zListItem(Action.A_RIGHTCLICK, domainAliasName);
 
 		//Set object type and initialize creatdomainalias wizard
-		app.zPageManageDomains.setType(PageManageDomains.TypeOfObject.DOMAIN_ALIAS);
+		app.zPageManageDomains.zSetType(PageManageDomains.TypeOfObject.DOMAIN_ALIAS);
 		WizardCreateDomainAlias wizard = (WizardCreateDomainAlias) app.zPageManageDomains.zToolbarPressButton(Button.B_TREE_EDIT);
 
 		wizard.zSetTargetDomain(alias);
@@ -209,7 +209,7 @@ public class EditDomainAlias extends AdminCore {
 
 
 		// Click on Edit button
-		app.zPageSearchResults.setType(PageSearchResults.TypeOfObject.DOMAIN_ALIAS);
+		app.zPageSearchResults.zSetType(PageSearchResults.TypeOfObject.DOMAIN_ALIAS);
 		WizardCreateDomainAlias wizard = (WizardCreateDomainAlias) app.zPageSearchResults.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_EDIT);
 
 		wizard.zSetTargetDomain(alias);
@@ -272,7 +272,7 @@ public class EditDomainAlias extends AdminCore {
 
 
 		// Click on Edit button
-		app.zPageSearchResults.setType(PageSearchResults.TypeOfObject.DOMAIN_ALIAS);
+		app.zPageSearchResults.zSetType(PageSearchResults.TypeOfObject.DOMAIN_ALIAS);
 		WizardCreateDomainAlias wizard = (WizardCreateDomainAlias) app.zPageSearchResults.zToolbarPressButton(Button.B_TREE_EDIT);
 
 		wizard.zSetTargetDomain(alias);

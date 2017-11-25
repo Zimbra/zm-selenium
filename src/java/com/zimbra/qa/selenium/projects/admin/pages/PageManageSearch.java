@@ -71,11 +71,6 @@ public class PageManageSearch extends AbsTab {
 		super(application);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see projects.admin.pages.AbsTab#isActive()
-	 */
 	@Override
 	public boolean zIsActive() throws HarnessException {
 
@@ -95,36 +90,23 @@ public class PageManageSearch extends AbsTab {
 		}
 
 		return (true);
-
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see projects.admin.pages.AbsTab#myPageName()
-	 */
 	@Override
 	public String myPageName() {
 		return (this.getClass().getName());
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see projects.admin.pages.AbsTab#navigateTo()
-	 */
 	@Override
 	public void zNavigateTo() throws HarnessException {
 
 		if (zIsActive()) {
-
 			return;
 		}
 
 		// Click on Search
 		sClickAt(Locators.SEARCH_MENU, "");
 		zWaitForWorkInProgressDialogInVisible();
-		// SleepUtil.sleepLong();
 		zWaitForActive();
 	}
 
@@ -168,5 +150,4 @@ public class PageManageSearch extends AbsTab {
 			return true;
 		return false;
 	}
-
 }

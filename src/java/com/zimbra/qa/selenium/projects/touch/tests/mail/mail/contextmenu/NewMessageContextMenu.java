@@ -83,13 +83,9 @@ public class NewMessageContextMenu extends CalendarWorkWeekPreference {
 
 		//Click on send button
 		app.zPageMail.sClickAt(FormMailNew.Locators.zSendButton,"");
-
-		// -- Data Verification
-
 		app.zPageMail.zRefresh();
-		// -- Data Verification
 
-		//-- Verification
+		// Verification
 		ZimbraAccount.AccountA().soapSend(
 				"<SearchRequest types='conversation' xmlns='urn:zimbraMail'>"
 						+			"<query>subject:("+ mailSubject +")</query>"
@@ -151,7 +147,7 @@ public class NewMessageContextMenu extends CalendarWorkWeekPreference {
 		app.zPageMail.sClickAt(FormMailNew.Locators.zSendButton,"");
 		app.zPageMail.zRefresh();
 
-		//-- Verification
+		// Verification
 		ZimbraAccount.AccountA().soapSend(
 				"<SearchRequest types='conversation' xmlns='urn:zimbraMail'>"
 						+			"<query>subject:("+ mailSubject +")</query>"

@@ -33,7 +33,7 @@ public class EditContact extends UniversalCore  {
 	}	
 	
 	@Test (description = "Edit a contact item, click Edit on toolbar",
-			groups = { "smoke", "L0"})
+			groups = { "smoke", "L0" })
 	
 	public void ClickToolbarEdit_01() throws HarnessException {
 		
@@ -60,14 +60,14 @@ public class EditContact extends UniversalCore  {
         form.zFillField(Field.FirstName, firstname);
         form.zToolbarPressButton(Button.B_SAVE);
         
-        //-- Verification
+        // Verification
         ContactItem actual = ContactItem.importFromSOAP(app.zGetActiveAccount(), "#firstname:"+ firstname);
         ZAssert.assertNotNull(actual, "Verify the contact is found");
         ZAssert.assertEquals(actual.firstName, firstname, "Verify the new first name is saved");
 	}
 	
 	@Test (description = "Edit a contact item, Right click then click Edit",
-			groups = { "smoke", "L1"})
+			groups = { "smoke", "L1" })
 	
 	public void ClickContextMenuEdit_02() throws HarnessException {
 		
@@ -93,7 +93,7 @@ public class EditContact extends UniversalCore  {
         
         
         
-        //-- Verification
+        // Verification
         ContactItem actual = ContactItem.importFromSOAP(app.zGetActiveAccount(), "#firstname:"+ firstname);
         ZAssert.assertNotNull(actual, "Verify the contact is found");
         ZAssert.assertEquals(actual.firstName, firstname, "Verify the new first name is saved");
@@ -124,14 +124,14 @@ public class EditContact extends UniversalCore  {
         form.zFillField(Field.FirstName, firstname);
         form.zToolbarPressButton(Button.B_SAVE);
         
-        //-- Verification
+        // Verification
         ContactItem actual = ContactItem.importFromSOAP(app.zGetActiveAccount(), "#firstname:"+ firstname);
         ZAssert.assertNotNull(actual, "Verify the contact is found");
         ZAssert.assertEquals(actual.firstName, firstname, "Verify the new first name is saved");
 	}
 	
 	@Test (description = "Cancel Editing a contact by click Close",
-			groups = { "functional", "L2"})
+			groups = { "functional", "L2" })
 	
 	public void NoEditClickToolbarClose_04() throws HarnessException {
 		
@@ -154,13 +154,13 @@ public class EditContact extends UniversalCore  {
 		// Change the first name
         form.zToolbarPressButton(Button.B_CLOSE);
         
-        //-- Verification
+        // Verification
         ContactItem actual = ContactItem.importFromSOAP(app.zGetActiveAccount(), "#firstname:"+ contact.firstName);
         ZAssert.assertNotNull(actual, "Verify the contact is found");
 	}
 		
 	@Test (description = "Cancel an edited contact by click Close, then click No",
-			groups = { "functional", "L2"})
+			groups = { "functional", "L2" })
 	
 	public void ClickToolbarCloseThenClickNo_05() throws HarnessException {
 		
@@ -195,13 +195,13 @@ public class EditContact extends UniversalCore  {
 	    // Click No in popup dialog 
         dialog.zPressButton(Button.B_NO);
 
-        //-- Verification
+        // Verification
         ContactItem actual = ContactItem.importFromSOAP(app.zGetActiveAccount(), "#firstname:"+ contact.firstName);
         ZAssert.assertNotNull(actual, "Verify the contact is found");
 	}
 	
 	@Test (description = "Cancel an edited contact by click Close, then click Cancel",
-			groups = { "functional", "L2"})
+			groups = { "functional", "L2" })
 	
 	public void ClickToolbarCloseThenClickCancel_06() throws HarnessException {
 		
@@ -239,13 +239,13 @@ public class EditContact extends UniversalCore  {
         // Click save
         form.zToolbarPressButton(Button.B_SAVE);
         
-        //-- Verification
+        // Verification
         ContactItem actual = ContactItem.importFromSOAP(app.zGetActiveAccount(), "#firstname:"+ firstname);
         ZAssert.assertNotNull(actual, "Verify the contact is found");
     }
 	
 	@Test (description = "Cancel an edited contact by click Close, then click Yes",
-			groups = { "functional", "L2"})
+			groups = { "functional", "L2" })
 	
 	public void ClickToolbarCloseThenClickYes_07() throws HarnessException {
 		
@@ -280,7 +280,7 @@ public class EditContact extends UniversalCore  {
 	    // Click No in popup dialog 
         dialog.zPressButton(Button.B_YES);
         
-        //-- Verification
+        // Verification
         ContactItem actual = ContactItem.importFromSOAP(app.zGetActiveAccount(), "#firstname:"+ firstname);
         ZAssert.assertNotNull(actual, "Verify the contact is found");
 	}

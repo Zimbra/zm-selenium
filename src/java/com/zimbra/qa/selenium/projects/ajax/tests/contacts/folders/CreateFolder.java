@@ -32,7 +32,7 @@ public class CreateFolder extends AjaxCore {
 
 
 	@Test (description = "Create a new folder by clicking 'new folder' on folder tree",
-			groups = { "sanity", "L0"} )
+			groups = { "sanity", "L0" })
 
 	public void ClickNewFolderOnFolderTree_01() throws HarnessException {
 
@@ -52,7 +52,7 @@ public class CreateFolder extends AjaxCore {
 
 
 	@Test (description = "Create a new folder using context menu from root folder",
-			groups = { "sanity", "L0"} )
+			groups = { "sanity", "L0" })
 
 	public void ClickContextMenuNewAddressbook_02() throws HarnessException {
 
@@ -75,7 +75,7 @@ public class CreateFolder extends AjaxCore {
 
 
 	@Test (description = "Create a new folder using context menu from root folder",
-			groups = { "smoke", "L1"} )
+			groups = { "smoke", "L1" })
 
 	public void CreateSubFolderUnderContactsClickContextMenuNewAddressbook_03() throws HarnessException {
 
@@ -102,7 +102,7 @@ public class CreateFolder extends AjaxCore {
 
 
 	@Test (description = "Create a new folder using   New -> New Addressbook",
-			groups = { "functional", "L2"} )
+			groups = { "functional", "L2" })
 
 	public void ClickMenuNewNewAddressbook_04() throws HarnessException {
 

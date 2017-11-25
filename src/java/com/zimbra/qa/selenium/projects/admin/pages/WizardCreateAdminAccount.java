@@ -24,6 +24,7 @@ import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.projects.admin.items.AccountItem;
 
 public class WizardCreateAdminAccount extends AbsWizard {
+
 	public static class Locators {
 		public static final String zdlg_NEW_ACCT = "zdlg__NEW_ACCT";
 		public static final String zdlg_ACCT_NAME = "zdlgv__NEW_ADMIN_name_2";
@@ -85,11 +86,6 @@ public class WizardCreateAdminAccount extends AbsWizard {
 		this.adminType = adminType;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see projects.admin.pages.AbsWizard#completeWizard(projects.admin.clients.Item)
-	 */
 	@Override
 	public IItem zCompleteWizard(IItem item) throws HarnessException {
 
@@ -144,5 +140,4 @@ public class WizardCreateAdminAccount extends AbsWizard {
 	public String myPageName() {
 		return null;
 	}
-
 }

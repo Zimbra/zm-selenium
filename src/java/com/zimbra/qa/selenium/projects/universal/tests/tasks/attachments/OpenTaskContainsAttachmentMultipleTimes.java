@@ -50,7 +50,7 @@ public class OpenTaskContainsAttachmentMultipleTimes extends UniversalCore {
 	
 	@Bugs (ids = "75283")
 	@Test (description = "Same attachment keeps on adding while opening same task multiple times", 
-			groups = { "smoke", "L1"})
+			groups = { "smoke", "L1" })
 	
 	public void OpenTaskContainsAttachmentMultipleTimes_01() throws HarnessException {
 

@@ -111,7 +111,7 @@ public class ReplyFromSentFolderWithReplyToHeader extends SetGroupMailByMessageP
 		// Send the message
 		mailform.zSubmit();
 
-		//-- Verification
+		// Verification
 		
 		// All sent messages should not have TO: include the test account
 		app.zGetActiveAccount().soapSend(
@@ -224,7 +224,7 @@ public class ReplyFromSentFolderWithReplyToHeader extends SetGroupMailByMessageP
 		// Send the message
 		mailform.zSubmit();
 
-		//-- Verification
+		// Verification
 		
 		// All sent messages should not have TO: include the test account
 		app.zGetActiveAccount().soapSend(

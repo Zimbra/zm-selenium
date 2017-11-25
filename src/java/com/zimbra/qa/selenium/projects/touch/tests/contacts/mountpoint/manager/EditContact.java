@@ -104,7 +104,7 @@ public class EditContact extends TouchCore  {
         form.zFillField(Field.FirstName, firstname);
         form.zToolbarPressButton(Button.B_SAVE);
         
-        //-- Verification
+        // Verification
         
         // Get the contact data stored on server with soap
         ContactItem actual = ContactItem.importFromSOAP(ZimbraAccount.AccountA(), "#firstname:"+ firstname);

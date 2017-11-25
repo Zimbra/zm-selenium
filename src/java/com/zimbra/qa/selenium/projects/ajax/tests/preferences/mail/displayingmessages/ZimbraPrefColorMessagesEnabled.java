@@ -37,7 +37,7 @@ public class ZimbraPrefColorMessagesEnabled extends SetGroupMailByMessagePrefere
 		super.startingAccountPreferences.put("zimbraPrefColorMessagesEnabled", "FALSE");
 	}
 
-	@Test(	description = "Verify if the background color of messages is according to the tag color when 'zimbraPrefColorMessagesEnabled' is Set TRUE",
+	@Test (description = "Verify if the background color of messages is according to the tag color when 'zimbraPrefColorMessagesEnabled' is Set TRUE",
 			groups = { "functional", "L2" })
 
 	public void ZimbraPrefColorMessagesEnabled_01() throws HarnessException {
@@ -166,7 +166,7 @@ public class ZimbraPrefColorMessagesEnabled extends SetGroupMailByMessagePrefere
 	}
 
 
-	@Test(	description = "Verify the color of message when it is tagged with two tags and 'zimbraPrefColorMessagesEnabled' is Set TRUE",
+	@Test (description = "Verify the color of message when it is tagged with two tags and 'zimbraPrefColorMessagesEnabled' is Set TRUE",
 			groups = { "functional", "L3" })
 
 	public void ZimbraPrefColorMessagesEnabled_02() throws HarnessException {

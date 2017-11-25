@@ -34,7 +34,7 @@ public class CreateQuickCommand extends AjaxCore {
 	}
 
 	@Bugs (ids = "71389")
-	@Test(	description = "Create a basic Quick Command",
+	@Test (description = "Create a basic Quick Command",
 			groups = { "deprecated" })
 
 	public void CreateQuickCommand_01() throws HarnessException {

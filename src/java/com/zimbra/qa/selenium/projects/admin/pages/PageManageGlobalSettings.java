@@ -50,11 +50,6 @@ public class PageManageGlobalSettings extends AbsTab {
 		super(application);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see projects.admin.pages.AbsTab#isActive()
-	 */
 	@Override
 	public boolean zIsActive() throws HarnessException {
 
@@ -77,30 +72,18 @@ public class PageManageGlobalSettings extends AbsTab {
 
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see projects.admin.pages.AbsTab#myPageName()
-	 */
 	@Override
 	public String myPageName() {
 		return (this.getClass().getName());
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see projects.admin.pages.AbsTab#navigateTo()
-	 */
 	@Override
 	public void zNavigateTo() throws HarnessException {
 
 		if (zIsActive()) {
-			// This page is already active.
 			return;
 		}
 
-		// Click on Addresses -> Accounts
 		sClick(Locators.CONFIGURE_ICON);
 		zWaitForWorkInProgressDialogInVisible();
 		SleepUtil.sleepMedium();
@@ -140,5 +123,4 @@ public class PageManageGlobalSettings extends AbsTab {
 			return true;
 		return false;
 	}
-
 }

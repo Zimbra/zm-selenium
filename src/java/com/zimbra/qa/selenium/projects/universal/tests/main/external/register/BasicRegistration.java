@@ -33,7 +33,7 @@ public class BasicRegistration extends UniversalCore {
 	
 	@Bugs (ids = "103011")
 	@Test (description = "Register as and external user", priority=3, 
-		groups = { "smoke", "L0"})
+		groups = { "smoke", "L0" })
 	
 	public void BasicRegistration_01() throws HarnessException {
 		
@@ -94,7 +94,7 @@ public class BasicRegistration extends UniversalCore {
 			app.zPageExternalRegistration.zLogin(external);
 	
 			
-			//-- Verification
+			// Verification
 			
 			// After logging in, make sure the page appears correctly
 			app.zPageExternalMain.zWaitForActive();

@@ -94,6 +94,6 @@ public class EditPreferences extends AdminCore {
 		Element response3 = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetDistributionListResponse/admin:dl/admin:a[@n='zimbraPrefReplyToAddress']", 1);
 		ZAssert.assertNotNull(response3, "Verify the distribution list is edited successfully");
 		ZAssert.assertStringContains(response3.toString(),dlEmailAddress, "Verify Reply-to address");
-		app.zPageMain.logout();
+		app.zPageMain.zLogout();
 	}
 }

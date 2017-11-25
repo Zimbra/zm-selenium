@@ -50,7 +50,7 @@ public class DeleteEditMove extends UniversalCore {
 	}
 
 	@Test (description = "Verify Delete Edit Move button are visible on mountpoint task (admin rights)",
-			groups = { "functional", "L3"})
+			groups = { "functional", "L3" })
 			public void DeleteEditMove_01() throws HarnessException {
 
 		String foldername = "tasklist" + ConfigProperties.getUniqueString();

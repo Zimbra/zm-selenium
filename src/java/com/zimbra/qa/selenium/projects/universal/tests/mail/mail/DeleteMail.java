@@ -620,7 +620,7 @@ public class DeleteMail extends SetGroupMailByMessagePreference {
 
 		}
 		
-		//-- VERIFICATION
+		// Verification
 		//
 		mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "is:anywhere subject:("+ subject +")");
 		ZAssert.assertNull(mail, "Verify the message no longer exists in the mailbox");
@@ -731,7 +731,7 @@ public class DeleteMail extends SetGroupMailByMessagePreference {
 
 		}
 		
-		//-- VERIFICATION 
+		// Verification 
 		//
 		
 		List<MailItem> messages = app.zPageMail.zListGetMessages();
@@ -811,7 +811,7 @@ public class DeleteMail extends SetGroupMailByMessagePreference {
 		}
 
 
-		//-- Verification
+		// Verification
 		
 		// Verify draft is no longer in drafts folder
 		MailItem m = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:(" + subject +") inid:"+ drafts.getId());

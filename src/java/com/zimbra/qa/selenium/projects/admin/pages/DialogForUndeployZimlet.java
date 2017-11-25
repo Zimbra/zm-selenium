@@ -53,18 +53,18 @@ public class DialogForUndeployZimlet extends AbsDialog {
 
 		if (button == Button.B_YES) {
 			locator = Locators.YES_BUTTON;
+
 		} else if (button == Button.B_NO) {
 			locator = Locators.NO_BUTTON;
+
 		} else {
 			throw new HarnessException("Button " + button + " not implemented");
 		}
 
-		// Make sure the locator was set
 		if (locator == null) {
 			throw new HarnessException("Button " + button + " not implemented");
 		}
 
-		// Make sure the locator exists
 		if (!this.sIsElementPresent(locator)) {
 			throw new HarnessException("Button " + button + " locator " + locator + " not present!");
 		}
@@ -84,5 +84,4 @@ public class DialogForUndeployZimlet extends AbsDialog {
 	public boolean zIsActive() throws HarnessException {
 		return false;
 	}
-
 }

@@ -50,27 +50,23 @@ public class PageDownloads extends AbsTab {
 
 	public PageDownloads(AbsApplication application) {
 		super(application);
-
 		logger.info("new " + myPageName());
-
 	}
 
 	@Override
 	public void zNavigateTo() throws HarnessException {
 
 		if (zIsActive()) {
-
 			return;
 		}
 
-		// Click on Tools and Migration -> Downloads
 		sClickAt(Locators.TOOLS_AND_MIGRATION_ICON, "");
 		zWaitForWorkInProgressDialogInVisible();
-		if (sIsElementPresent(Locators.DOWNLOADS))
-			;
-		sClickAt(Locators.DOWNLOADS, "");
-		zWaitForWorkInProgressDialogInVisible();
 
+		if (sIsElementPresent(Locators.DOWNLOADS)) {
+			sClickAt(Locators.DOWNLOADS, "");
+		}
+		zWaitForWorkInProgressDialogInVisible();
 		zWaitForActive();
 	}
 
@@ -93,7 +89,6 @@ public class PageDownloads extends AbsTab {
 		}
 
 		return (true);
-
 	}
 
 	@Override
@@ -155,7 +150,7 @@ public class PageDownloads extends AbsTab {
 		return false;
 	}
 
-	public int getAuthResponse(URL url) throws IOException {
+	public int zGetAuthResponse(URL url) throws IOException {
 		String userpassword = "admin" + ":" + "test123";
 		String encodedAuthorization = new String(Base64.getEncoder().encode(userpassword.getBytes()));
 		HttpURLConnection connection = (HttpURLConnection) url.openConnection();
@@ -169,5 +164,4 @@ public class PageDownloads extends AbsTab {
 		this.sClick(Locators.GoBackLink);
 		SleepUtil.sleepLong();
 	}
-
 }

@@ -56,7 +56,7 @@ public class CreateTask extends UniversalCore {
  * @throws HarnessException
  */
 	@Test (description = "Create Task using assistant", 
-			groups = { "deprecated", "L4"})
+			groups = { "deprecated", "L4" })
 	public void CreateTask_01() throws HarnessException {
 		String subject = "subject" + ConfigProperties.getUniqueString();
 		String command = "task \"" + subject + "\" Notes(hello)";
@@ -87,7 +87,7 @@ public class CreateTask extends UniversalCore {
 	 */
 		@Bugs (ids = "63199")
 		@Test (description = "Create Task using assistant and save it", 
-			groups = { "deprecated", "L4"})
+			groups = { "deprecated", "L4" })
 		public void CreateTask_02() throws HarnessException {
 			String subject = "subject" + ConfigProperties.getUniqueString();
 			String command = "task \"" + subject + "\" Notes(hello)";

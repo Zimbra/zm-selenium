@@ -82,7 +82,7 @@ public class SearchGAL extends UniversalCore {
 	}
 
 	@Test (description = "Search for a non-existing GAL contact", 
-			groups = { "functional","L2"})
+			groups = { "functional","L2" })
 	public void SearchGAL_02() throws HarnessException {
 
 		// -- Data

@@ -35,7 +35,7 @@ public class DeleteConversation extends SetGroupMailByConversationPreference {
 	
 	@Bugs (ids = "81074")
 	@Test (description = "From search: Delete a conversation using the Delete Toolbar button",
-			groups = { "functional","L2"})
+			groups = { "functional","L2" })
 	public void DeleteConversation_01() throws HarnessException {
 		
 		FolderItem trash = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Trash);
@@ -65,7 +65,7 @@ public class DeleteConversation extends SetGroupMailByConversationPreference {
 			app.zPageSearch.zClose();
 		}
 		
-		//-- Verification
+		// Verification
 		
 		MailItem message = MailItem.importFromSOAP(app.zGetActiveAccount(), "is:anywhere from:("+ ZimbraAccount.AccountA().EmailAddress + ") subject:("+ c.getSubject() +")");
 		ZAssert.assertNotNull(message, "Verify the message still exists in the mailbox");

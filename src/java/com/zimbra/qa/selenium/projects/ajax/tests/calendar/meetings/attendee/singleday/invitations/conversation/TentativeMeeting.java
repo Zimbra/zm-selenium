@@ -217,7 +217,7 @@ public class TentativeMeeting extends AjaxCore {
 
 
 	@Bugs (ids = "69132")
-	@Test(	description = "Mark meeting as Tentative using 'Tentative -> Notify Organizer'",
+	@Test (description = "Mark meeting as Tentative using 'Tentative -> Notify Organizer'",
 			groups = { "functional", "L2" })
 
 	public void TentativeMeeting_03() throws HarnessException {
@@ -325,7 +325,7 @@ public class TentativeMeeting extends AjaxCore {
 
 
 	@Bugs (ids = "69132")
-	@Test(	description = "Mark meeting as tentative using 'Tentative -> Edit Reply' and verify modified content",
+	@Test (description = "Mark meeting as tentative using 'Tentative -> Edit Reply' and verify modified content",
 			groups = { "functional", "L2" })
 
 	public void TentativeMeeting_04() throws HarnessException {
@@ -432,7 +432,7 @@ public class TentativeMeeting extends AjaxCore {
 
 
 	@Bugs (ids = "69132,65356")
-	@Test(	description = "Mark meeting as tentative using 'Tentative -> Don't Notify Organizer'",
+	@Test (description = "Mark meeting as tentative using 'Tentative -> Don't Notify Organizer'",
 			groups = { "functional", "L2" })
 
 	public void TentativeMeeting_05() throws HarnessException {

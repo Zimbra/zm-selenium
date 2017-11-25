@@ -89,7 +89,7 @@ public class NavigateAway extends AjaxCore {
 
 
 	@Bugs (ids = "98364,101596")
-	@Test(	description = "If no changes made, verify that navigating away from preferences pages do not prompt 'Save Changes?'",
+	@Test (description = "If no changes made, verify that navigating away from preferences pages do not prompt 'Save Changes?'",
 			groups = { "functional", "L3" },
 			dataProvider = "DataProviderPreferencePageToLocator")
 

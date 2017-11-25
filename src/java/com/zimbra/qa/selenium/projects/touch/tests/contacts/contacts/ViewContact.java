@@ -91,7 +91,7 @@ public class ViewContact extends TouchCore  {
 		String locator = lastname + ", " + firstname;
 		app.zPageAddressbook.zSelectContact(locator);
 		
-		//-- Verification
+		// Verification
 		
 		app.zGetActiveAccount().soapSend(
 				"<SearchRequest xmlns='urn:zimbraMail' types='contact'>"

@@ -42,7 +42,7 @@ public class DragAndDropDialog extends UniversalCore {
 	
 	@Bugs (ids = "60492")
 	@Test (description = "Pop up any dialog and move it (use the 'About' dialog)",
-			groups = { "functional", "L3"})
+			groups = { "functional", "L3" })
 	public void DragAndDropDialog_01() throws HarnessException {
 		
 		

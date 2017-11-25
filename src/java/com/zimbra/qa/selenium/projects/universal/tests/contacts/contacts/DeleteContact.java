@@ -40,7 +40,7 @@ public class DeleteContact extends UniversalCore  {
 	}
 		
 	@Test (description = "Delete a contact item",
-			groups = { "smoke", "L0"})
+			groups = { "smoke", "L0" })
 	
 	public void ClickDeleteOnToolbar_01() throws HarnessException {
 
@@ -73,7 +73,7 @@ public class DeleteContact extends UniversalCore  {
         app.zPageContacts.zToolbarPressButton(Button.B_DELETE);
        
         
-        //-- Verification
+        // Verification
         
         //verify contact deleted
         ContactItem actual = ContactItem.importFromSOAP(app.zGetActiveAccount(), "#firstname:"+ contact.firstName);
@@ -118,7 +118,7 @@ public class DeleteContact extends UniversalCore  {
         // delete contact
         app.zPageContacts.zToolbarPressButton(Button.B_DELETE);       
         
-        //-- Verification
+        // Verification
         
         //verify contact deleted
         ContactItem actual = ContactItem.importFromSOAP(app.zGetActiveAccount(), "#firstname:"+ contact.firstName);
@@ -171,7 +171,7 @@ public class DeleteContact extends UniversalCore  {
 		app.zPageMail.zKeyboardKeyEvent(keyEvent);
 		SleepUtil.sleepSmall();
         
-        //-- Verification
+        // Verification
         
         //verify contact deleted
         ContactItem actual = ContactItem.importFromSOAP(app.zGetActiveAccount(), "#firstname:"+ contact.firstName);
@@ -179,7 +179,7 @@ public class DeleteContact extends UniversalCore  {
    	}
 	
 	@Test (description = "Right click then click delete",
-			groups = { "smoke", "L0"})
+			groups = { "smoke", "L0" })
 	
 	public void DeleteFromContextMenu_04() throws HarnessException {		
 
@@ -209,7 +209,7 @@ public class DeleteContact extends UniversalCore  {
 		//select delete option
         app.zPageContacts.zListItem(Action.A_RIGHTCLICK, Button.B_DELETE, contact.fileAs);       
         
-        //-- Verification
+        // Verification
         
         //verify contact deleted
         ContactItem actual = ContactItem.importFromSOAP(app.zGetActiveAccount(), "#firstname:"+ contact.firstName);
@@ -217,7 +217,7 @@ public class DeleteContact extends UniversalCore  {
    	}
 	
 	@Test (description = "Delete multiple contact items",
-			groups = { "functional", "L2"})
+			groups = { "functional", "L2" })
 	
 	public void DeleteMultipleContacts_05() throws HarnessException {
 
@@ -282,7 +282,7 @@ public class DeleteContact extends UniversalCore  {
 		//delete 3 contacts
         app.zPageContacts.zToolbarPressButton(Button.B_DELETE);       
         
-        //-- Verification
+        // Verification
         
         //verify contacts deleted
         ContactItem actual1 = ContactItem.importFromSOAP(app.zGetActiveAccount(), "#firstname:"+ contact1.firstName);

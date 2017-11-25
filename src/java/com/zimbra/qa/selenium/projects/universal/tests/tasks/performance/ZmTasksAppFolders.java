@@ -36,7 +36,7 @@ public class ZmTasksAppFolders extends UniversalCore {
 	}
 
 	@Test (description = "Measure the time to load the tasks app, 1 task list",
-			groups = { "performance", "L4"})
+			groups = { "performance", "L4" })
 	public void ZmTasksAppFolders_01() throws HarnessException {
 
 		// Create a folder
@@ -66,7 +66,7 @@ public class ZmTasksAppFolders extends UniversalCore {
 	}
 
 	@Test (description = "Measure the time to load the tasks app, 100 task lists",
-			groups = { "performance", "L4"})
+			groups = { "performance", "L4" })
 	public void ZmTasksAppFolders_02() throws HarnessException {
 
 		// Create 100 folders

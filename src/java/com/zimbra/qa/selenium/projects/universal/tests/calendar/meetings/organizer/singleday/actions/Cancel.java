@@ -89,7 +89,7 @@ public class Cancel extends CalendarWorkWeekPreference {
 
 		
 		
-		//-- Verification
+		// Verification
 		
 		
 		// Verify the meeting disappears from the view

@@ -41,7 +41,7 @@ public class CreateContact extends UniversalCore {
 	}
 
 	@Test (description = "Create a basic contact item by click New in page Addressbook ", 
-			groups = { "sanity", "L0"})
+			groups = { "sanity", "L0" })
 
 	public void ClickContact_01() throws HarnessException {
 
@@ -61,7 +61,7 @@ public class CreateContact extends UniversalCore {
 		formContactNew.zFillField(Field.Email, contactEmail);
 		formContactNew.zSubmit();
 
-		// -- Data Verification
+		// Verification
 
 		app.zGetActiveAccount().soapSend("<SearchRequest xmlns='urn:zimbraMail' types='contact'>" + "<query>#firstname:"
 				+ contactFirst + "</query>" + "</SearchRequest>");
@@ -86,7 +86,7 @@ public class CreateContact extends UniversalCore {
 	}
 
 	@Test (description = "Create a basic contact item by use PullDown Menu->Contacts", 
-			groups = { "functional", "L2"})
+			groups = { "functional", "L2" })
 
 	public void CreateContactFromPulldownMenu_02() throws HarnessException {
 
@@ -109,7 +109,7 @@ public class CreateContact extends UniversalCore {
 		// Save it
 		formContactNew.zSubmit();
 
-		// -- Data Verification
+		// Verification
 
 		ContactItem actual = ContactItem.importFromSOAP(app.zGetActiveAccount(), "#firstname:" + contact.firstName);
 
@@ -120,7 +120,7 @@ public class CreateContact extends UniversalCore {
 	}
 
 	@Test (description = "Cancel creating a contact item - Click Yes", 
-			groups = { "functional", "L2"})
+			groups = { "functional", "L2" })
 
 	public void CancelCreateContactClickYes_03() throws HarnessException {
 
@@ -153,7 +153,7 @@ public class CreateContact extends UniversalCore {
 	}
 
 	@Test (description = "Cancel creating a contact item - Click No", 
-			groups = { "functional", "L2"})
+			groups = { "functional", "L2" })
 
 	public void CancelCreateContactClickNo_04() throws HarnessException {
 
@@ -177,7 +177,7 @@ public class CreateContact extends UniversalCore {
 		// Click Yes in popup dialog
 		dialogWarning.zPressButton(Button.B_NO);
 
-		// -- Data Verification
+		// Verification
 
 		// Verify contact created
 		ContactItem actual = ContactItem.importFromSOAP(app.zGetActiveAccount(), "#firstname:" + contact.firstName);
@@ -186,7 +186,7 @@ public class CreateContact extends UniversalCore {
 	}
 
 	@Test (description = "Cancel creating a contact item - Click Cancel", 
-			groups = { "functional", "L2"})
+			groups = { "functional", "L2" })
 
 	public void CancelCreateContactClickCancel_05() throws HarnessException {
 
@@ -216,7 +216,7 @@ public class CreateContact extends UniversalCore {
 		// Save the contact
 		formContactNew.zSubmit();
 
-		// -- Data Verification
+		// Verification
 
 		ContactItem actual = ContactItem.importFromSOAP(app.zGetActiveAccount(), "#firstname:" + contact.firstName);
 
@@ -227,7 +227,7 @@ public class CreateContact extends UniversalCore {
 	}
 
 	@Test (description = "Create a contact item with all attributes", 
-			groups = { "functional", "L2"})
+			groups = { "functional", "L2" })
 
 	public void CreateContactWithAllAttributes_06() throws HarnessException {
 
@@ -280,7 +280,7 @@ public class CreateContact extends UniversalCore {
 		ZAssert.assertStringContains(app.zPageMain.zGetToaster().zGetToastMessage(), "Contact Created",
 				"Verify toast message 'Contact Created'");
 
-		// -- Data Verification
+		// Verification
 
 		ContactItem contact = ContactItem.importFromSOAP(app.zGetActiveAccount(), "#firstname:" + firstname);
 		ZAssert.assertNotNull(contact, "Verify the contact was saved correctly");
@@ -327,7 +327,7 @@ public class CreateContact extends UniversalCore {
 		formContactNew.zFillField(Field.Email, contactEmail);
 		formContactNew.zSubmit();
 
-		// -- Data Verification
+		// Verification
 
 		app.zGetActiveAccount().soapSend("<SearchRequest xmlns='urn:zimbraMail' types='contact'>" + "<query>#firstname:"
 				+ contactFirst + "</query>" + "</SearchRequest>");
@@ -353,7 +353,7 @@ public class CreateContact extends UniversalCore {
 
 	@Bugs (ids = "66497")
 	@Test (description = "Create contact by selecting birthday and anniversary date using date picker", 
-	groups = {"functional", "L2"})
+	groups = { "functional", "L2" })
 
 	public void CreateContactBySelectingDateUsingDatePicker_08() throws HarnessException {
 
@@ -401,7 +401,7 @@ public class CreateContact extends UniversalCore {
 		// Save the contact
 		formContactNew.zSubmit();
 
-		// -- Data Verification
+		// Verification
 		ContactItem contact = ContactItem.importFromSOAP(app.zGetActiveAccount(), "#firstname:" + firstname);
 		ZAssert.assertNotNull(contact, "Verify the contact was saved correctly");
 

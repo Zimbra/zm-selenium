@@ -39,26 +39,14 @@ public class PageManageHelp extends AbsTab {
 
 	public PageManageHelp(AbsApplication application) {
 		super(application);
-
 		logger.info("new " + myPageName());
-
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see projects.admin.pages.AbsTab#myPageName()
-	 */
 	@Override
 	public String myPageName() {
 		return (this.getClass().getName());
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see projects.admin.pages.AbsTab#isActive()
-	 */
 	@Override
 	public boolean zIsActive() throws HarnessException {
 
@@ -108,16 +96,14 @@ public class PageManageHelp extends AbsTab {
 		String pulldownLocator = null;
 		String optionLocator = null;
 		AbsPage page = null;
+
 		if (pulldown == Button.B_GEAR_BOX) {
 			pulldownLocator = Locators.GEAR_ICON;
 
 			if (option == Button.O_HELP_CENTRAL_ONLINE) {
-
 				optionLocator = Locators.HELP_CENTER;
 
-			}
-
-			else {
+			} else {
 				throw new HarnessException("no logic defined for pulldown/option " + pulldown + "/" + option);
 			}
 
@@ -125,10 +111,8 @@ public class PageManageHelp extends AbsTab {
 			throw new HarnessException("no logic defined for pulldown/option " + pulldown + "/" + option);
 		}
 
-		// Default behavior
 		if (pulldownLocator != null) {
 
-			// Make sure the locator exists
 			if (!this.sIsElementPresent(pulldownLocator)) {
 				throw new HarnessException("Button " + pulldown + " option " + option + " pulldownLocator "
 						+ pulldownLocator + " not present!");
@@ -139,21 +123,15 @@ public class PageManageHelp extends AbsTab {
 
 			if (optionLocator != null) {
 
-				// Make sure the locator exists
 				if (!this.sIsElementPresent(optionLocator)) {
 					throw new HarnessException("Button " + pulldown + " option " + option + " optionLocator "
 							+ optionLocator + " not present!");
 				}
 
 				this.sClickAt(optionLocator, "");
-
 			}
-
 		}
-
-		// Return the specified page, or null if not set
 		return (page);
-
 	}
 
 	@Override
@@ -179,5 +157,4 @@ public class PageManageHelp extends AbsTab {
 			return true;
 		return false;
 	}
-
 }

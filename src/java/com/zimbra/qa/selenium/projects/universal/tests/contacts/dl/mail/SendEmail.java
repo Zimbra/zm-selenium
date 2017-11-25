@@ -33,7 +33,7 @@ public class SendEmail extends UniversalCore  {
 	}
 
 	@Test (description = "Right click to DL and send email", 
-			groups = { "smoke", "L0"})
+			groups = { "smoke", "L0" })
 
 	public void SendEmail_01 () throws HarnessException {
 

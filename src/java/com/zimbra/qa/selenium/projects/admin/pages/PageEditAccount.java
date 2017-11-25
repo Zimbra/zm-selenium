@@ -106,53 +106,41 @@ public class PageEditAccount extends AbsTab {
 		if (button == null)
 			throw new HarnessException("Button cannot be null!");
 
-		//
-		String locator = null; // If set, this will be clicked
-		AbsPage page = null; // If set, this page will be returned
-
-		// Based on the button specified, take the appropriate action(s)
-		//
+		String locator = null;
+		AbsPage page = null;
 
 		if (button == Button.B_ADD) {
-
 			locator = Locators.ADD_BUTTON;
-
 			page = new FormEditAccount(this.MyApplication);
+
 		} else if (button == Button.B_FEATURES) {
-
 			locator = Locators.FEATURES;
-
 			page = new FormEditAccount(this.MyApplication);
+
 		} else if (button == Button.B_PREFERENCES) {
-
 			locator = Locators.PREFERENCES;
-
 			page = new FormEditAccount(this.MyApplication);
+
 		} else if (button == Button.B_ALIASES) {
-
 			locator = Locators.ALIASES;
-
 			page = new FormEditAccount(this.MyApplication);
+
 		} else if (button == Button.B_MOBILE_ACCESS) {
-
 			locator = Locators.MOBILE_ACCESS;
-
 			page = new FormEditAccount(this.MyApplication);
+
 		} else if (button == Button.B_ARCHIVING) {
-
 			locator = Locators.ARCHIVING;
-
 			page = new FormEditAccount(this.MyApplication);
+
 		} else if (button == Button.B_ZIMLETS) {
-
 			locator = Locators.ZIMLETS;
-
 			page = new FormEditAccount(this.MyApplication);
+
 		} else if (button == Button.B_THEMES) {
-
 			locator = Locators.THEMES;
-
 			page = new FormEditAccount(this.MyApplication);
+
 		} else {
 			throw new HarnessException("no logic defined for button " + button);
 		}
@@ -161,19 +149,13 @@ public class PageEditAccount extends AbsTab {
 			throw new HarnessException("locator was null for button " + button);
 		}
 
-		// Default behavior, process the locator by clicking on it
-		//
 		this.sClickAt(locator, "");
 		SleepUtil.sleepLong();
 
-		// If page was specified, make sure it is active
 		if (page != null) {
 			SleepUtil.sleepMedium();
 		}
-
-		// sMouseOut(locator);
 		return (page);
-
 	}
 
 	@Override
@@ -181,10 +163,7 @@ public class PageEditAccount extends AbsTab {
 		return null;
 	}
 
-	public AbsPage zAddACL(String granteeName, Button pulldown, String rightName)
-
-			throws HarnessException {
-
+	public AbsPage zAddACL(String granteeName, Button pulldown, String rightName) throws HarnessException {
 		return null;
 	}
 
@@ -220,9 +199,7 @@ public class PageEditAccount extends AbsTab {
 				ZAssert.assertTrue(found, "Search result displayed in current view");
 				break;
 			}
-
 		}
 		return found;
 	}
-
 }

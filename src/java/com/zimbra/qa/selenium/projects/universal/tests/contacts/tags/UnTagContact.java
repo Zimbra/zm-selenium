@@ -33,7 +33,7 @@ public class UnTagContact extends UniversalCore  {
 	}
 	
 	@Test (description = "Untag a contact by click Toolbar Tag, then select Remove Tag",
-			groups = { "smoke", "L1"})
+			groups = { "smoke", "L1" })
 	public void ClickToolbarTagRemoveTag_01() throws HarnessException {
 		
 		// Create a tag
@@ -60,7 +60,7 @@ public class UnTagContact extends UniversalCore  {
     	// Untag it
 		app.zPageContacts.zToolbarPressPulldown(Button.B_TAG, Button.O_TAG_REMOVETAG);
 		
-		//-- Verification
+		// Verification
 		
 		app.zGetActiveAccount().soapSend(
 				"<GetContactsRequest xmlns='urn:zimbraMail' >" +
@@ -73,7 +73,7 @@ public class UnTagContact extends UniversalCore  {
    	}
 	   
 	@Test (description = "Untag a contact by click Tag->Remove Tag on context menu",
-				groups = { "smoke", "L1"})
+				groups = { "smoke", "L1" })
 	public void ClickContextMenuTagRemoveTag_02() throws HarnessException {
 		
 		// Create a tag
@@ -98,7 +98,7 @@ public class UnTagContact extends UniversalCore  {
     	// Untag it
         app.zPageContacts.zListItem(Action.A_RIGHTCLICK, Button.B_TAG, Button.O_TAG_REMOVETAG , contact.fileAs);
 		
-		//-- Verification
+		// Verification
 		
 		app.zGetActiveAccount().soapSend(
 				"<GetContactsRequest xmlns='urn:zimbraMail' >" +

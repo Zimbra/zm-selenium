@@ -66,7 +66,7 @@ public class DeleteContactGroup extends UniversalCore  {
         app.zPageContacts.zToolbarPressButton(Button.B_DELETE);
 
         
-        //-- Verification
+        // Verification
         
         ContactGroupItem actual = ContactGroupItem.importFromSOAP(app.zGetActiveAccount(), "is:anywhere #nickname:"+ group.getName());
         ZAssert.assertNotNull(actual, "Verify the contact group exists");
@@ -98,7 +98,7 @@ public class DeleteContactGroup extends UniversalCore  {
 		//delete contact group by click Delete on Context menu
         app.zPageContacts.zListItem(Action.A_RIGHTCLICK, Button.B_DELETE, group.getName());
 
-        //-- Verification
+        // Verification
         
         ContactGroupItem actual = ContactGroupItem.importFromSOAP(app.zGetActiveAccount(), "is:anywhere #nickname:"+ group.getName());
         ZAssert.assertNotNull(actual, "Verify the contact group exists");
@@ -133,7 +133,7 @@ public class DeleteContactGroup extends UniversalCore  {
         //delete contact group by click Delete button on toolbar
         app.zPageContacts.zToolbarPressButton(Button.B_DELETE);
 
-        //-- Verification
+        // Verification
         
         ContactGroupItem actual = ContactGroupItem.importFromSOAP(app.zGetActiveAccount(), "is:anywhere #nickname:"+ group.getName());
         ZAssert.assertNotNull(actual, "Verify the contact group exists");
@@ -168,7 +168,7 @@ public class DeleteContactGroup extends UniversalCore  {
         //delete contact group by click shortcut Del
 		app.zPageContacts.zKeyboardKeyEvent(KeyEvent.VK_DELETE);
 
-        //-- Verification
+        // Verification
         
         ContactGroupItem actual = ContactGroupItem.importFromSOAP(app.zGetActiveAccount(), "is:anywhere #nickname:"+ group.getName());
         ZAssert.assertNotNull(actual, "Verify the contact group exists");
@@ -203,7 +203,7 @@ public class DeleteContactGroup extends UniversalCore  {
         //delete contact group by click shortcut Del
 		app.zPageContacts.zKeyboardKeyEvent(KeyEvent.VK_BACK_SPACE);
 
-        //-- Verification
+        // Verification
         
         ContactGroupItem actual = ContactGroupItem.importFromSOAP(app.zGetActiveAccount(), "is:anywhere #nickname:"+ group.getName());
         ZAssert.assertNotNull(actual, "Verify the contact group exists");
@@ -242,7 +242,7 @@ public class DeleteContactGroup extends UniversalCore  {
         //delete contact group by click Delete button on toolbar
         app.zPageContacts.zToolbarPressButton(Button.B_DELETE);
 
-        //-- Verification
+        // Verification
         
         ContactGroupItem actual = ContactGroupItem.importFromSOAP(app.zGetActiveAccount(), "is:anywhere #nickname:"+ group1.getName());
         ZAssert.assertNotNull(actual, "Verify the contact group exists");
@@ -285,7 +285,7 @@ public class DeleteContactGroup extends UniversalCore  {
         //delete contact group by click Delete button on toolbar
         app.zPageContacts.zToolbarPressButton(Button.B_DELETE);
 
-        //-- Verification
+        // Verification
         
         ContactGroupItem actual1 = ContactGroupItem.importFromSOAP(app.zGetActiveAccount(), "is:anywhere #nickname:"+ group.getName());
         ZAssert.assertNotNull(actual1, "Verify the contact group exists");
@@ -323,7 +323,7 @@ public class DeleteContactGroup extends UniversalCore  {
         app.zPageContacts.zToolbarPressPulldown(Button.B_MOVE, trash);
 
         
-        //-- Verification
+        // Verification
         
         ContactGroupItem actual = ContactGroupItem.importFromSOAP(app.zGetActiveAccount(), "is:anywhere #nickname:"+ group.getName());
         ZAssert.assertNotNull(actual, "Verify the contact group exists");
@@ -356,7 +356,7 @@ public class DeleteContactGroup extends UniversalCore  {
 		// In the form, click "Delete"
 		form.zToolbarPressButton(Button.B_DELETE);
 
-		//-- Verification
+		// Verification
 		
 		// Verify the group is in the trash
 		ContactGroupItem actual = ContactGroupItem.importFromSOAP(app.zGetActiveAccount(), "is:anywhere "+ group.getName());

@@ -57,11 +57,11 @@ public class LoginWithCsrfTokenCheckDisabled extends AdminCore {
 			SleepUtil.sleepMedium();
 
 			// Login
-			app.zPageLogin.login(gAdmin);
+			app.zPageLogin.zLogin(gAdmin);
 
 			// Verify main page becomes active
 			ZAssert.assertTrue(app.zPageMain.zIsActive(), "Verify that the account is logged in with zimbraCsrfTokenCheckEnabledValue as FALSE");
-			app.zPageMain.logout();
+			app.zPageMain.zLogout();
 		}
 
 		finally {
@@ -78,9 +78,9 @@ public class LoginWithCsrfTokenCheckDisabled extends AdminCore {
 
 			// Open the base URL
 			app.zPageLogin.sOpen(ConfigProperties.getBaseURL());
-			app.zPageLogin.login(gAdmin);
+			app.zPageLogin.zLogin(gAdmin);
 			ZAssert.assertTrue(app.zPageMain.zIsActive(), "Verify that the account is logged in after zimbraCsrfTokenCheckEnabledValue as TRUE");
-			app.zPageMain.logout();
+			app.zPageMain.zLogout();
 		}
 	}
 }

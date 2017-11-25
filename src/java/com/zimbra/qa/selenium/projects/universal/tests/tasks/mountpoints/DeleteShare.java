@@ -51,7 +51,7 @@ public class DeleteShare extends UniversalCore {
 	}
 
 	@Test (description = "Share and Revoke folder ",
-			groups = { "smoke", "L1"})
+			groups = { "smoke", "L1" })
 	public void DeleteShare_01() throws HarnessException {
 
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);

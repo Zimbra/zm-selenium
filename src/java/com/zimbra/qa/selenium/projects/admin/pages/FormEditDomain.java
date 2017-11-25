@@ -39,9 +39,7 @@ public class FormEditDomain extends AbsForm {
 
 	public FormEditDomain(AbsApplication application) {
 		super(application);
-
 		logger.info("new " + myPageName());
-
 	}
 
 	@Override
@@ -60,9 +58,7 @@ public class FormEditDomain extends AbsForm {
 		if (!attrs.contains("ZSelected")) {
 			return (false);
 		}
-
 		return (true);
-
 	}
 
 	@Override
@@ -85,7 +81,7 @@ public class FormEditDomain extends AbsForm {
 		sClickAt("css=td:contains('" + treeItem + "')", "");
 	}
 
-	public void setName(String name) throws HarnessException {
+	public void zSetName(String name) throws HarnessException {
 		for (int i = 12; i >= 0; i--) {
 			if (sIsElementPresent(Locators.DESCRIPTION_TEXT_BOX + i + "_description\\[0\\]_2")) {
 				sType(Locators.DESCRIPTION_TEXT_BOX + i + "_description\\[0\\]_2", name);
@@ -95,7 +91,7 @@ public class FormEditDomain extends AbsForm {
 		sType(Locators.DESCRIPTION_TEXT_BOX + "description\\[0\\]_2", name);
 	}
 
-	public void setLogoURL(String URL) throws HarnessException {
+	public void zSetLogoURL(String URL) throws HarnessException {
 		for (int i = 12; i >= 0; i--) {
 			if (sIsElementPresent(Locators.DOMAIN_EDIT_THEMES)) {
 				sClickAt(Locators.DOMAIN_EDIT_THEMES, "0,0");
@@ -103,6 +99,5 @@ public class FormEditDomain extends AbsForm {
 				return;
 			}
 		}
-
 	}
 }

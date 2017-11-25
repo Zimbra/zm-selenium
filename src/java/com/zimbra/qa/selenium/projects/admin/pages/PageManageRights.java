@@ -46,11 +46,6 @@ public class PageManageRights extends AbsTab {
 		super(application);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see projects.admin.pages.AbsTab#isActive()
-	 */
 	@Override
 	public boolean zIsActive() throws HarnessException {
 
@@ -73,26 +68,15 @@ public class PageManageRights extends AbsTab {
 
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see projects.admin.pages.AbsTab#myPageName()
-	 */
 	@Override
 	public String myPageName() {
 		return (this.getClass().getName());
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see projects.admin.pages.AbsTab#navigateTo()
-	 */
 	@Override
 	public void zNavigateTo() throws HarnessException {
 
 		if (zIsActive()) {
-
 			return;
 		}
 
@@ -134,7 +118,7 @@ public class PageManageRights extends AbsTab {
 		}
 
 		count = this.sGetCssCount(rowsLocator);
-		// Get each conversation's data from the table list
+
 		for (int i = 1; i <= count; i++) {
 			final String accountLocator = rowsLocator + ":nth-child(" + i + ")";
 			String locator;
@@ -185,21 +169,16 @@ public class PageManageRights extends AbsTab {
 		if (option == null)
 			throw new HarnessException("Option cannot be null!");
 
-		// Default behavior variables
-		String pulldownLocator = null; // If set, this will be expanded
-		String optionLocator = null; // If set, this will be clicked
-		AbsPage page = null; // If set, this page will be returned
+		String pulldownLocator = null;
+		String optionLocator = null;
+		AbsPage page = null;
 
 		if (pulldown == Button.B_GEAR_BOX) {
 			pulldownLocator = Locators.GEAR_ICON;
 
 			if (option == Button.B_VIEW) {
-
 				optionLocator = Locators.VIEW;
-				// FALL THROUGH
-			}
-
-			else {
+			} else {
 				throw new HarnessException("no logic defined for pulldown/option " + pulldown + "/" + option);
 			}
 
@@ -207,10 +186,8 @@ public class PageManageRights extends AbsTab {
 			throw new HarnessException("no logic defined for pulldown/option " + pulldown + "/" + option);
 		}
 
-		// Default behavior
 		if (pulldownLocator != null) {
 
-			// Make sure the locator exists
 			if (!this.sIsElementPresent(pulldownLocator)) {
 				throw new HarnessException("Button " + pulldown + " option " + option + " pulldownLocator "
 						+ pulldownLocator + " not present!");
@@ -221,7 +198,6 @@ public class PageManageRights extends AbsTab {
 
 			if (optionLocator != null) {
 
-				// Make sure the locator exists
 				if (!this.sIsElementPresent(optionLocator)) {
 					throw new HarnessException("Button " + pulldown + " option " + option + " optionLocator "
 							+ optionLocator + " not present!");
@@ -229,12 +205,8 @@ public class PageManageRights extends AbsTab {
 
 				this.sClickAt(optionLocator, "");
 				SleepUtil.sleepSmall();
-
 			}
-
 		}
-
-		// Return the specified page, or null if not set
 		return (page);
 	}
 
@@ -267,5 +239,4 @@ public class PageManageRights extends AbsTab {
 			return true;
 		return false;
 	}
-
 }

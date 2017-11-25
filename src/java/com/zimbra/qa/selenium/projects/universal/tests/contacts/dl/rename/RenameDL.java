@@ -34,7 +34,7 @@ public class RenameDL extends UniversalCore  {
 
 
 	@Test (description = "Rename DL", 
-			groups = { "functional", "L2"})
+			groups = { "functional", "L2" })
 
 	public void RenameDL_01 () throws HarnessException {
 

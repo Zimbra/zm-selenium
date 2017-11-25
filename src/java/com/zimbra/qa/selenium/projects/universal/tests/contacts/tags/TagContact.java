@@ -42,7 +42,7 @@ public class TagContact extends ShowSelectionCheckboxPreference {
 	}
 
 	@Test (description = "Tag a contact, click pulldown menu Tag->New Tag", 
-			groups = { "smoke", "L0"})
+			groups = { "smoke", "L0" })
 	public void ClickPulldownMenuTagNewTag_01() throws HarnessException {
 
 		// Work around due to duplicate dialog ids
@@ -82,7 +82,7 @@ public class TagContact extends ShowSelectionCheckboxPreference {
 	}
 
 	@Test (description = "Right click then click Tag Contact->New Tag", 
-			groups = { "smoke", "L1"})
+			groups = { "smoke", "L1" })
 	public void ClickContextMenuTagContactNewTag_02() throws HarnessException {
 
 		// -- Data
@@ -120,7 +120,7 @@ public class TagContact extends ShowSelectionCheckboxPreference {
 	}
 
 	@Test (description = "Right click then click Tag Contact->a tag name", 
-			groups = { "functional", "L2"})
+			groups = { "functional", "L2" })
 	public void ClickContextMenuTagContactExistingTag_03() throws HarnessException {
 
 		// -- Data
@@ -154,7 +154,7 @@ public class TagContact extends ShowSelectionCheckboxPreference {
 	}
 
 	@Test (description = "click pulldown menu Tag->A tag name", 
-			groups = { "smoke", "L1"})
+			groups = { "smoke", "L1" })
 	public void ClickPulldownMenuTagExistingTag_04() throws HarnessException {
 
 		// -- Data
@@ -188,7 +188,7 @@ public class TagContact extends ShowSelectionCheckboxPreference {
 	}
 
 	@Test (description = "Double tag a contact ", 
-			groups = { "functional", "L3"})
+			groups = { "functional", "L3" })
 	public void DoubleTag_05() throws HarnessException {
 
 		// -- Data
@@ -225,7 +225,7 @@ public class TagContact extends ShowSelectionCheckboxPreference {
 	}
 
 	@Test (description = "Tag a contact by dnd on an existing tag", 
-			groups = { "functional", "L2"})
+			groups = { "functional", "L2" })
 	public void DnDOnExistingTag_06() throws HarnessException {
 
 		// -- Data

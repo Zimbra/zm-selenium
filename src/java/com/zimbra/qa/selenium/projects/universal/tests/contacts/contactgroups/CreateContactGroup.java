@@ -136,7 +136,7 @@ public class CreateContactGroup extends UniversalCore  {
 		// Save the group
 		form.zSubmit();
 		
-		//-- Verification
+		// Verification
 		
 		ContactGroupItem actual = ContactGroupItem.importFromSOAP(app.zGetActiveAccount(), "#nickname:"+ groupName);
 		ZAssert.assertNotNull(actual, "Verify the contact group exists in the mailbox");
@@ -185,7 +185,7 @@ public class CreateContactGroup extends UniversalCore  {
 		// click Save
 		form.zSubmit();
 
-		//-- Verification
+		// Verification
 		
 		ContactGroupItem actual = ContactGroupItem.importFromSOAP(app.zGetActiveAccount(), "#nickname:"+ groupName);
 		ZAssert.assertNotNull(actual, "Verify the contact group exists in the mailbox");
@@ -240,7 +240,7 @@ public class CreateContactGroup extends UniversalCore  {
 		// click Save
 		form.zSubmit(); 
 		
-		//-- Verification
+		// Verification
 		
 		ContactGroupItem actual = ContactGroupItem.importFromSOAP(app.zGetActiveAccount(), "#nickname:"+ groupName);
 		ZAssert.assertNotNull(actual, "Verify the contact group exists in the mailbox");

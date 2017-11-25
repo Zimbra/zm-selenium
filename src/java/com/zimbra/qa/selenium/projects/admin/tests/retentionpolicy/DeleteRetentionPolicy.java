@@ -64,7 +64,7 @@ public class DeleteRetentionPolicy extends AdminCore {
 		// Verify navigation path - configure >> global settings >> retention policy
 		app.zPageManageRetentionPolicy.zNavigateTo();
 
-		// Click on account to be Edited.
+		// Click on account to be edited
 		app.zPageManageRetentionPolicy.zListItem(Action.A_LEFTCLICK, policyName);
 
 		// Click on delete

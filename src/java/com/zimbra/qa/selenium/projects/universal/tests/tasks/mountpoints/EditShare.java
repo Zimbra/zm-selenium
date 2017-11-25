@@ -51,7 +51,7 @@ public class EditShare extends UniversalCore {
 	}
 
 	@Test (description = "Share and edit folder with admin rights",
-			groups = { "smoke", "L1"})
+			groups = { "smoke", "L1" })
 	public void EditShare_01() throws HarnessException {
 
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);

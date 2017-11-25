@@ -43,9 +43,7 @@ public class FormManageRetentionPolicy extends AbsForm {
 
 	public FormManageRetentionPolicy(AbsApplication application) {
 		super(application);
-
 		logger.info("new " + myPageName());
-
 	}
 
 	@Override
@@ -64,9 +62,7 @@ public class FormManageRetentionPolicy extends AbsForm {
 		if (!attrs.contains("ZSelected")) {
 			return (false);
 		}
-
 		return (true);
-
 	}
 
 	@Override
@@ -83,25 +79,23 @@ public class FormManageRetentionPolicy extends AbsForm {
 		sClickAt(Locators.SAVE_BUTTON, "");
 		sClick(Locators.Pull_DOWN);
 		sClick(Locators.PULL_DOWN_CLOSE);
-
 	}
 
 	public void zSelectTreeItem(String treeItem) throws HarnessException {
 		sClickAt("css=td:contains('" + treeItem + "')", "");
 	}
 
-	public void setPolicyName(String name) throws HarnessException {
+	public void zSetPolicyName(String name) throws HarnessException {
 		sType(Locators.NAME_TEXT_BOX, name);
 	}
 
-	public void setRetentionRange(String name) throws HarnessException {
+	public void zSetRetentionRange(String name) throws HarnessException {
 		sType(Locators.RETENTION_RANGE_TEXT_BOX, name);
 	}
 
-	public void setPassword(String password) throws HarnessException {
+	public void zSetPassword(String password) throws HarnessException {
 		sType(Locators.PASSWORD, password);
 		zType(Locators.CONFIRM_PASSWORD, password);
-
 	}
 
 	public AbsPage selectRetentionRange(Button option) throws HarnessException {
@@ -118,16 +112,20 @@ public class FormManageRetentionPolicy extends AbsForm {
 
 		if (option == Button.O_DAYS) {
 			optionLocator = "css=div[id='zdlgv__UNDEFINE1_lifetime_3_choice_0']";
+
 		} else if (option == Button.O_WEEKS) {
 			optionLocator = "css=div[id='zdlgv__UNDEFINE1_lifetime_3_choice_1']";
+
 		} else if (option == Button.O_MONTHS) {
 			optionLocator = "css=div[id='zdlgv__UNDEFINE1_lifetime_3_choice_2']";
+
 		} else if (option == Button.O_YEARS) {
 			optionLocator = "css=div[id='zdlgv__UNDEFINE1_lifetime_3_choice_3']";
+
 		} else {
 			throw new HarnessException("no logic defined for pulldown/option " + option);
 		}
-		// Make sure the locator exists
+
 		if (!this.sIsElementPresent(pulldownLocator)) {
 			throw new HarnessException(" option " + option + " optionLocator " + pulldownLocator + " not present!");
 		}
@@ -136,11 +134,9 @@ public class FormManageRetentionPolicy extends AbsForm {
 
 		if (optionLocator != null) {
 
-			// Make sure the locator exists
 			if (!this.sIsElementPresent(optionLocator)) {
 				throw new HarnessException(" option " + option + " optionLocator " + optionLocator + " not present!");
 			}
-
 			this.sClickAt(optionLocator, "");
 		}
 
@@ -154,5 +150,4 @@ public class FormManageRetentionPolicy extends AbsForm {
 
 		sClickAt(Locators.OK_BUTTON, "");
 	}
-
 }

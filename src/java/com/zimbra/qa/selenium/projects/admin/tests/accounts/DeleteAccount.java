@@ -172,7 +172,7 @@ public class DeleteAccount extends AdminCore {
 		app.zPageSearchResults.zListItem(Action.A_LEFTCLICK, account.getEmailAddress());
 
 		// Click on Delete button
-		app.zPageSearchResults.setType(PageSearchResults.TypeOfObject.ACCOUNT);
+		app.zPageSearchResults.zSetType(PageSearchResults.TypeOfObject.ACCOUNT);
 		DialogForDeleteOperation dialog = (DialogForDeleteOperation) app.zPageSearchResults.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_DELETE);
 
 		// Click Yes in Confirmation dialog

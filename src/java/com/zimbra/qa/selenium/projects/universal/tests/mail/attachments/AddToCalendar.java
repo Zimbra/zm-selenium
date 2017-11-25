@@ -95,7 +95,7 @@ public class AddToCalendar extends SetGroupMailByMessagePreference {
 		dialog.zChooseCalendarFolder(folder.getId());
 		dialog.zPressButton(Button.B_OK);
 		
-		//-- Verification
+		// Verification
 		app.zGetActiveAccount().soapSend(
 				"<SearchRequest xmlns='urn:zimbraMail' types='appointment' calExpandInstStart='"+ startUTC.addDays(-10).toMillis() +"' calExpandInstEnd='"+ endUTC.addDays(10).toMillis() +"'>"
 			+		"<query>"+ apptSubject +"</query>"
@@ -162,7 +162,7 @@ public class AddToCalendar extends SetGroupMailByMessagePreference {
         	app.zPageMain.zCloseWindow(window, windowTitle, app);
        	}
 		
-		//-- Verification
+		// Verification
 		app.zGetActiveAccount().soapSend(
 				"<SearchRequest xmlns='urn:zimbraMail' types='appointment' calExpandInstStart='"+ startUTC.addDays(-10).toMillis() +"' calExpandInstEnd='"+ endUTC.addDays(10).toMillis() +"'>"
 			+		"<query>"+ apptSubject +"</query>"
@@ -248,7 +248,7 @@ public class AddToCalendar extends SetGroupMailByMessagePreference {
         	app.zPageMain.zCloseWindow(window, windowTitle, app);
        	}
 		
-		//-- Verification
+		// Verification
 		app.zGetActiveAccount().soapSend(
 				"<SearchRequest xmlns='urn:zimbraMail' types='appointment' calExpandInstStart='"+ startUTC.addDays(-10).toMillis() +"' calExpandInstEnd='"+ endUTC.addDays(10).toMillis() +"'>"
 			+		"<query>"+ "in:" + foldername + " " + apptSubject +"</query>"
@@ -304,7 +304,7 @@ public class AddToCalendar extends SetGroupMailByMessagePreference {
         	app.zPageMain.zCloseWindow(window, windowTitle, app);
        	}
 		
-		//-- Verification
+		// Verification
 		app.zGetActiveAccount().soapSend(
 				"<SearchRequest xmlns='urn:zimbraMail' types='appointment' calExpandInstStart='"+ startUTC.addDays(-10).toMillis() +"' calExpandInstEnd='"+ endUTC.addDays(10).toMillis() +"'>"
 			+		"<query>"+ apptSubject +"</query>"
@@ -402,7 +402,7 @@ public class AddToCalendar extends SetGroupMailByMessagePreference {
 		dialog.zChooseCalendarFolder(mountfolderid);
 		dialog.zPressButton(Button.B_OK);
 		
-		//-- Verification
+		// Verification
 		app.zGetActiveAccount().soapSend(
 				"<SearchRequest xmlns='urn:zimbraMail' types='appointment' calExpandInstStart='"+ startUTC.addDays(-10).toMillis() +"' calExpandInstEnd='"+ endUTC.addDays(10).toMillis() +"'>"
 			+		"<query>"+ "in:" + mountpointname + " " + apptSubject +"</query>"
@@ -457,7 +457,7 @@ public class AddToCalendar extends SetGroupMailByMessagePreference {
 		ZAssert.assertNotNull(folder, "Verify the new folder is found");
 		ZAssert.assertEquals(folder.getName(), newCalFolder, "Verify the server and client folder names match");
 		
-		//-- Verification
+		// Verification
 		app.zGetActiveAccount().soapSend(
 				"<SearchRequest xmlns='urn:zimbraMail' types='appointment' calExpandInstStart='"+ startUTC.addDays(-60).toMillis() +"' calExpandInstEnd='"+ endUTC.addDays(60).toMillis() +"'>"
 			+		"<query>"+ "in:" + newCalFolder +"</query>"

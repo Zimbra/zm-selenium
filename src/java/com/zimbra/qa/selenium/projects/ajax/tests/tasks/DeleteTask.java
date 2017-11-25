@@ -215,7 +215,7 @@ public class DeleteTask extends AjaxCore {
 
 	@Bugs (ids = "56467")
 	@Test (description = "Delete a task by selecting and typing '.t' shortcut",
-			groups = { "functional", "L3"} )
+			groups = { "functional", "L3" })
 
 	public void DeleteTask_04() throws HarnessException {
 

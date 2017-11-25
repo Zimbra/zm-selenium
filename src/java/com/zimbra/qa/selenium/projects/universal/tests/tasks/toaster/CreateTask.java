@@ -43,7 +43,7 @@ public class CreateTask extends UniversalCore {
 	}
 
 	@Test (description = "Verify Toaster message on Create Task", 
-			groups = { "smoke", "L1"})
+			groups = { "smoke", "L1" })
 	public void CreateTask_01() throws HarnessException {
 
 		String subject = "task" + ConfigProperties.getUniqueString();

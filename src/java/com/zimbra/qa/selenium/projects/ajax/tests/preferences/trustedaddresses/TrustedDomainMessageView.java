@@ -53,7 +53,7 @@ public class TrustedDomainMessageView extends AjaxCore {
 	 */
 
 	@Test (description = "Verify Display Image link in Trusted doamin for message view",
-			groups = { "smoke", "L1"  })
+			groups = { "smoke", "L1" })
 
 	public void TrustedDomainMsgView_01() throws HarnessException {
 

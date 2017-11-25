@@ -73,7 +73,7 @@ public class TagContact extends TouchCore  {
         tcv.zTreeItem(Action.A_LEFTCLICK, tagItem);
 		
         
-        //-- Verification
+        // Verification
         
         // Verify contact with the tag
         ContactItem actual = ContactItem.importFromSOAP(app.zGetActiveAccount(), "tag:"+tagItem.getName()+" AND #firstname:"+ contact.firstName);

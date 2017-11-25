@@ -40,7 +40,7 @@ public class BasicLogin extends AdminCore {
 	public void BasicLogin_01() throws HarnessException {
 
 		// Login
-		app.zPageLogin.login(gAdmin);
+		app.zPageLogin.zLogin(gAdmin);
 
 		// Verify main page becomes active
 		ZAssert.assertTrue(app.zPageMain.zIsActive(), "Verify that the account is logged in");
@@ -58,7 +58,7 @@ public class BasicLogin extends AdminCore {
 		account.authenticate();
 
 		// Login
-		app.zPageLogin.login(account);
+		app.zPageLogin.zLogin(account);
 
 		// Verify main page becomes active
 		ZAssert.assertTrue(app.zPageMain.zIsActive(), "Verify that the account is logged in");

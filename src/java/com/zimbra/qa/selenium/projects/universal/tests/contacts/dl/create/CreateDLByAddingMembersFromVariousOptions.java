@@ -34,7 +34,7 @@ public class CreateDLByAddingMembersFromVariousOptions extends UniversalCore  {
 	}
 
 	@Test (description = "Create DL by adding DL members from various options", 
-			groups = { "sanity", "L0"})
+			groups = { "sanity", "L0" })
 
 	public void CreateDLByAddingMembersFromVariousOptions_01 () throws HarnessException {
 

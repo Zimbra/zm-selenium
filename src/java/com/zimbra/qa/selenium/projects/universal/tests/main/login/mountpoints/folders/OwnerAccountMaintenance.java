@@ -48,7 +48,7 @@ public class OwnerAccountMaintenance extends UniversalCore {
 	
 	
 	@Test (description = "Login to the Universal Client - with a mountpoint to a 'in-maintenance' account",
-			groups = { "functional", "L3"})
+			groups = { "functional", "L3" })
 	public void OwnerAccountMaintenance01() throws HarnessException {
 		
 		// Data setup

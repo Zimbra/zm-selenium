@@ -304,7 +304,7 @@ public class CreateMailText extends SetGroupMailByMessagePreference {
 		
 		mailform.zSubmit();
 		
-		//-- Verification
+		// Verification
 
 		MailItem received = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "subject:("+ subject +")");
 		ZAssert.assertNotNull(received, "Verify the message is received");

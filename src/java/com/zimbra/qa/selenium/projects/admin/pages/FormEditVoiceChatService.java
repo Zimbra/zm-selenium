@@ -61,7 +61,6 @@ public class FormEditVoiceChatService extends AbsForm {
 		}
 
 		return (true);
-
 	}
 
 	@Override
@@ -84,7 +83,7 @@ public class FormEditVoiceChatService extends AbsForm {
 		sClickAt("css=td:contains('" + treeItem + "')", "");
 	}
 
-	public void setName(String name) throws HarnessException {
+	public void zSetName(String name) throws HarnessException {
 		for (int i = 12; i >= 0; i--) {
 			if (sIsElementPresent("css=input[id='ztabv__UC_Service_" + i + "_cn']")) {
 				sType("css=input[id='ztabv__UC_Service_" + i + "_cn']", name);
@@ -95,5 +94,4 @@ public class FormEditVoiceChatService extends AbsForm {
 		sType("css=input[id='ztabv__UC_Service_cn']", name);
 		SleepUtil.sleepSmall();
 	}
-
 }

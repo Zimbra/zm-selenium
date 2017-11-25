@@ -97,7 +97,7 @@ public class Reply extends SetGroupMailByMessagePreference {
 
 
 
-		//-- Verification
+		// Verification
 		
 		// From the receiving end, verify the message details
 		MailItem received = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "from:("+ app.zGetActiveAccount().EmailAddress +") subject:("+ subject +")");

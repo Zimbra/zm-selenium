@@ -79,7 +79,7 @@ public class ModifyFolderRetentionWhenSharingDisabled extends SetGroupMailByMess
 		// Save
 		dialog.zPressButton(Button.B_OK);
 		
-		//-- Verification
+		// Verification
 		
 		// Verify the retention policy on the folder
 		app.zGetActiveAccount().soapSend(

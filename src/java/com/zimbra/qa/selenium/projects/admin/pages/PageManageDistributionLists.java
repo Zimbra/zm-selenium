@@ -34,7 +34,6 @@ public class PageManageDistributionLists extends AbsTab {
 	public static class Locators {
 		public static final String MANAGE_ACCOUNTS_ICON = "css=div[class=ImgManageAccounts]";
 		public static final String DISTRIBUTION_LISTS = "css=div[id='zti__AppAdmin__Home__dlLstHV_textCell']";
-
 		public static final String GEAR_ICON = "css=div[class=ImgConfigure]";
 		public static final String NEW_MENU = "css=div[id='zm__zb_currentApp__MENU_POP'] div[class='ImgDistributionList']";
 		public static final String HOME = "Home";
@@ -49,18 +48,12 @@ public class PageManageDistributionLists extends AbsTab {
 		public static final String COS_TAB = "css=td[id='ztabv__UNDEFINE_xform_tabbar___container']:contains('Class of Service')";
 		public static final String RESOURCES_TAB = "css=td[id='ztabv__UNDEFINE_xform_tabbar___container']:contains('Class of Service')";
 		public static final String ACL_TAB = "css=div[id^='zti__AppAdmin__Home__dlLstHV'] div[class='ZTreeItemTextCell']:contains('ACL')";
-
 	}
 
 	public PageManageDistributionLists(AbsApplication application) {
 		super(application);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see projects.admin.pages.AbsTab#isActive()
-	 */
 	@Override
 	public boolean zIsActive() throws HarnessException {
 
@@ -89,21 +82,11 @@ public class PageManageDistributionLists extends AbsTab {
 
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see projects.admin.pages.AbsTab#myPageName()
-	 */
 	@Override
 	public String myPageName() {
 		return (this.getClass().getName());
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see projects.admin.pages.AbsTab#navigateTo()
-	 */
 	@Override
 	public void zNavigateTo() throws HarnessException {
 
@@ -113,13 +96,10 @@ public class PageManageDistributionLists extends AbsTab {
 
 		sClickAt(Locators.MANAGE_ACCOUNTS_ICON, "");
 		zWaitForWorkInProgressDialogInVisible();
-		// SleepUtil.sleepLong();
 		sIsElementPresent(Locators.DISTRIBUTION_LISTS);
-		// SleepUtil.sleepLong();
 		sClickAt(Locators.DISTRIBUTION_LISTS, "");
 		zWaitForWorkInProgressDialogInVisible();
 		zWaitForActive();
-		// SleepUtil.sleepMedium();
 	}
 
 	@Override
@@ -150,7 +130,7 @@ public class PageManageDistributionLists extends AbsTab {
 
 		}
 		count = this.sGetCssCount(rowsLocator);
-		// Get each conversation's data from the table list
+
 		for (int i = 1; i <= count; i++) {
 			final String accountLocator = rowsLocator + ":nth-child(" + i + ")";
 			String locator;
@@ -194,29 +174,19 @@ public class PageManageDistributionLists extends AbsTab {
 		if (button == null)
 			throw new HarnessException("Button cannot be null!");
 
-		//
-		String locator = null; // If set, this will be clicked
-		AbsPage page = null; // If set, this page will be returned
-
-		// Based on the button specified, take the appropriate action(s)
-		//
+		String locator = null;
+		AbsPage page = null;
 
 		if (button == Button.B_NEW) {
-
-			// New button
 			locator = Locators.DISTRIBUTION_LISTS;
-
-			// Create the page
 			page = new WizardCreateDL(this);
 
 		} else if (button == Button.B_TREE_DELETE) {
 			locator = Locators.RIGHT_CLICK_MENU_DELETE_BUTTON;
-
 			page = new DialogForDeleteOperation(this.MyApplication, null);
 
 		} else if (button == Button.B_TREE_EDIT) {
 			locator = Locators.RIGHT_CLICK_MENU_EDIT_BUTTON;
-
 			page = new FormEditDistributionList(this.MyApplication);
 
 		} else {
@@ -227,17 +197,13 @@ public class PageManageDistributionLists extends AbsTab {
 			throw new HarnessException("locator was null for button " + button);
 		}
 
-		// Default behavior, process the locator by clicking on it
-		//
 		this.sClick(locator);
 
-		// If page was specified, make sure it is active
 		if (page != null) {
 			SleepUtil.sleepMedium();
 		}
 
 		return (page);
-
 	}
 
 	public AbsPage zToolbarPressPulldown(Button pulldown, Button option) throws HarnessException {
@@ -282,10 +248,8 @@ public class PageManageDistributionLists extends AbsTab {
 			throw new HarnessException("no logic defined for pulldown/option " + pulldown + "/" + option);
 		}
 
-		// Default behavior
 		if (pulldownLocator != null) {
 
-			// Make sure the locator exists
 			if (!this.sIsElementPresent(pulldownLocator)) {
 				throw new HarnessException("Button " + pulldown + " option " + option + " pulldownLocator "
 						+ pulldownLocator + " not present!");
@@ -295,12 +259,8 @@ public class PageManageDistributionLists extends AbsTab {
 			this.sClickAt(pulldownLocator, "");
 			SleepUtil.sleepLong();
 
-			// If the app is busy, wait for it to become active
-			// zWaitForBusyOverlay();
-
 			if (optionLocator != null) {
 
-				// Make sure the locator exists
 				if (!this.sIsElementPresent(optionLocator)) {
 					throw new HarnessException("Button " + pulldown + " option " + option + " optionLocator "
 							+ optionLocator + " not present!");
@@ -308,29 +268,19 @@ public class PageManageDistributionLists extends AbsTab {
 
 				this.sClickAt(optionLocator, "0,0");
 				SleepUtil.sleepMedium();
-
-				// If the app is busy, wait for it to become active
-				// zWaitForBusyOverlay();
 			}
-
 		}
 
-		// Return the specified page, or null if not set
 		return (page);
 	}
 
 	/**
 	 * Return a list of all accounts in the current view
-	 *
-	 * @return
-	 * @throws HarnessException
-	 * @throws HarnessException
 	 */
 	public List<AccountItem> zListGetAccounts() throws HarnessException {
 
 		List<AccountItem> items = new ArrayList<AccountItem>();
 
-		// Make sure the button exists
 		if (!this.sIsElementPresent("css=div[id='zl__DL_MANAGE'] div[id$='__rows']"))
 			throw new HarnessException("Account Rows is not present");
 
@@ -347,14 +297,13 @@ public class PageManageDistributionLists extends AbsTab {
 					sClick(p0);
 					this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_DOWN);
 					m = m + 20;
-				} else
+				} else {
 					break;
-
+				}
 			}
-
 		}
 		count = this.sGetXpathCount(rowsLocator);
-		// Get each conversation's data from the table list
+
 		for (int i = 1; i <= count; i++) {
 			final String accountLocator = rowsLocator + "[" + i + "]";
 			String locator;
@@ -363,7 +312,6 @@ public class PageManageDistributionLists extends AbsTab {
 					ConfigProperties.getStringProperty("testdomain"));
 
 			// Type (image)
-			// ImgAdminUser ImgAccount ImgSystemResource (others?)
 			locator = accountLocator + "//td[contains(@id, 'dl_data_type_')]//div";
 			if (this.sIsElementPresent(locator)) {
 				item.setGAccountType(this.sGetAttribute("xpath=(" + locator + ")@class"));
@@ -375,17 +323,11 @@ public class PageManageDistributionLists extends AbsTab {
 				item.setGEmailAddress(this.sGetText(locator).trim());
 			}
 
-			// Display Name
-			// Status
-			// Lost Login Time
-			// Description
-
 			// Add the new item to the list
 			items.add(item);
 			logger.info(item.prettyPrint());
 		}
 
-		// Return the list of items
 		return (items);
 	}
 
@@ -419,5 +361,4 @@ public class PageManageDistributionLists extends AbsTab {
 			return true;
 		return false;
 	}
-
 }

@@ -56,11 +56,6 @@ public class PageManageBackups extends AbsTab {
 		super(application);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see projects.admin.pages.AbsTab#isActive()
-	 */
 	@Override
 	public boolean zIsActive() throws HarnessException {
 
@@ -82,21 +77,11 @@ public class PageManageBackups extends AbsTab {
 		return (true);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see projects.admin.pages.AbsTab#myPageName()
-	 */
 	@Override
 	public String myPageName() {
 		return (this.getClass().getName());
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see projects.admin.pages.AbsTab#navigateTo()
-	 */
 	@Override
 	public void zNavigateTo() throws HarnessException {
 
@@ -104,7 +89,6 @@ public class PageManageBackups extends AbsTab {
 			return;
 		}
 
-		// Click on Tools and Migration -> Downloads
 		sClick(Locators.TOOLS_AND_MIGRATION_ICON);
 		zWaitForWorkInProgressDialogInVisible();
 		SleepUtil.sleep(5000);
@@ -141,21 +125,18 @@ public class PageManageBackups extends AbsTab {
 		if (option == null)
 			throw new HarnessException("Option cannot be null!");
 
-		// Default behavior variables
-		String pulldownLocator = null; // If set, this will be expanded
-		String optionLocator = null; // If set, this will be clicked
-		AbsPage page = null; // If set, this page will be returned
+		String pulldownLocator = null;
+		String optionLocator = null;
+		AbsPage page = null;
 
 		if (pulldown == Button.B_GEAR_BOX) {
 			pulldownLocator = Locators.GEAR_ICON;
 
 			if (option == Button.B_BACKUP) {
-
 				optionLocator = Locators.BACKUP_OPTION;
 				page = new WizardBackup(this);
 
 			} else if (option == Button.B_VIEW) {
-
 				optionLocator = Locators.VIEW_OPTION;
 
 			} else {
@@ -166,10 +147,8 @@ public class PageManageBackups extends AbsTab {
 			throw new HarnessException("no logic defined for pulldown/option " + pulldown + "/" + option);
 		}
 
-		// Default behavior
 		if (pulldownLocator != null) {
 
-			// Make sure the locator exists
 			if (!this.sIsElementPresent(pulldownLocator)) {
 				throw new HarnessException("Button " + pulldown + " option " + option + " pulldownLocator "
 						+ pulldownLocator + " not present!");
@@ -180,7 +159,6 @@ public class PageManageBackups extends AbsTab {
 
 			if (optionLocator != null) {
 
-				// Make sure the locator exists
 				if (!this.sIsElementPresent(optionLocator)) {
 					throw new HarnessException("Button " + pulldown + " option " + option + " optionLocator "
 							+ optionLocator + " not present!");
@@ -188,12 +166,8 @@ public class PageManageBackups extends AbsTab {
 
 				this.sClickAt(optionLocator, "");
 				SleepUtil.sleepLong();
-
 			}
-
 		}
-
-		// Return the specified page, or null if not set
 		return (page);
 	}
 
@@ -211,7 +185,6 @@ public class PageManageBackups extends AbsTab {
 		int count = this.sGetCssCount(rowsLocator);
 		logger.debug(myPageName() + " Number of backups: " + count);
 
-		// Get each conversation's data from the table list
 		for (int i = 1; i <= count; i++) {
 			final String backupLocator = rowsLocator + ":nth-child(" + i + ")";
 			String locator;
@@ -232,7 +205,6 @@ public class PageManageBackups extends AbsTab {
 						sRightClick(locator);
 						break;
 					}
-
 				}
 			}
 		}
@@ -251,7 +223,6 @@ public class PageManageBackups extends AbsTab {
 		logger.debug(myPageName() + " zVerifyBackupStatus: number of backups: " + count);
 
 		// Get each row data from the table list
-
 		final String backupLocator = rowsLocator + ":nth-child(1)";
 		String locator;
 		locator = backupLocator + " td" + ":nth-child(4)";

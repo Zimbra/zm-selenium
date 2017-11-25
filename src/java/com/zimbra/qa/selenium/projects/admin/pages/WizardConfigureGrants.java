@@ -30,7 +30,6 @@ import com.zimbra.qa.selenium.projects.admin.items.AclItem;
 public class WizardConfigureGrants extends AbsWizard {
 
 	public static class Locators {
-
 		public static final String ACL_RIGHT_TYPE_SYSTEM_DEFINED = "css=div[id$='right_type_choice_0']";
 		public static final String ACL_RIGHT_TYPE_CUSTOM = "css=div[id$='right_type_choice_1']";
 		public static final String ADD_AND_FINISH_BUTTON = "css=td[class='ZWidgetTitle']:contains('Add and Finish')";
@@ -42,18 +41,11 @@ public class WizardConfigureGrants extends AbsWizard {
 		public static final String GLOBAL = "css=div[id$='_target_type_choice_3']";
 		public static final String TARGET_NAME = "css=input[id$='target_2_display']";
 		public static final String ACL_RIGHT_NAME = "css=input[id$='right_display']";
-
 	}
 
 	public WizardConfigureGrants(AbsTab page) {
 		super(page);
 	}
-
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see projects.admin.pages.AbsWizard#completeWizard(projects.admin.clients.Item)
-	 */
 
 	public String tagetType = "";
 
@@ -92,7 +84,6 @@ public class WizardConfigureGrants extends AbsWizard {
 		sType(Locators.ACL_RIGHT_NAME, rightName);
 
 		return item;
-
 	}
 
 	public boolean zCloseWizard() throws HarnessException {
@@ -114,5 +105,4 @@ public class WizardConfigureGrants extends AbsWizard {
 	public boolean zIsActive() throws HarnessException {
 		return false;
 	}
-
 }

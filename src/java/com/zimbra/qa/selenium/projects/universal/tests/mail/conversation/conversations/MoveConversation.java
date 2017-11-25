@@ -83,7 +83,7 @@ public class MoveConversation extends SetGroupMailByConversationPreference {
 
 		
 		
-		//-- Verification
+		// Verification
 		
 		// Verify all mesages are in the subfolder
 		ConversationItem actual = ConversationItem.importFromSOAP(app.zGetActiveAccount(), "is:anywhere subject:"+ c.getSubject());
@@ -137,7 +137,7 @@ public class MoveConversation extends SetGroupMailByConversationPreference {
 
 		
 		
-		//-- Verification
+		// Verification
 		
 		// Verify all mesages are in the subfolder
 		ConversationItem actual = ConversationItem.importFromSOAP(app.zGetActiveAccount(), "is:anywhere subject:"+ c.getSubject());
@@ -178,7 +178,7 @@ public class MoveConversation extends SetGroupMailByConversationPreference {
 
 		
 		
-		//-- Verification
+		// Verification
 		
 		// Verify all mesages are in the subfolder
 		FolderItem trash = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Trash);
@@ -238,7 +238,7 @@ public class MoveConversation extends SetGroupMailByConversationPreference {
 
 		
 		
-		//-- Verification
+		// Verification
 		
 		// Verify all mesages are in the subfolder
 		ConversationItem actual = ConversationItem.importFromSOAP(app.zGetActiveAccount(), "is:anywhere subject:"+ c.getSubject());
@@ -286,7 +286,7 @@ public class MoveConversation extends SetGroupMailByConversationPreference {
 
 		
 		
-		//-- Verification
+		// Verification
 		
 		// Get the folder
 		FolderItem subfolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), foldername);
@@ -378,7 +378,7 @@ public class MoveConversation extends SetGroupMailByConversationPreference {
 		
 
 
-		//-- Verification
+		// Verification
 		
 		// Expected: all messages should be in subfolder, except for the sent message and the trash message
 		

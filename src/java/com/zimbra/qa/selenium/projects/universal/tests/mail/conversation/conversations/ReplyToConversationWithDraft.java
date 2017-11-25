@@ -85,7 +85,7 @@ public class ReplyToConversationWithDraft extends SetGroupMailByConversationPref
 		mailform.zSubmit();
 
 
-		//-- Verification
+		// Verification
 		
 		
 		// From the test account, check the sent folder for the reply
@@ -146,7 +146,7 @@ public class ReplyToConversationWithDraft extends SetGroupMailByConversationPref
 		mailform.zSubmit();
 
 
-		//-- Verification
+		// Verification
 		
 		
 		// From the test account, check the sent folder for the reply
@@ -207,7 +207,7 @@ public class ReplyToConversationWithDraft extends SetGroupMailByConversationPref
 		mailform.zSubmit();
 
 
-		//-- Verification
+		// Verification
 		
 		
 		// From the test account, check the sent folder for the reply
@@ -272,7 +272,7 @@ public class ReplyToConversationWithDraft extends SetGroupMailByConversationPref
 		// Send the message
 		mailform.zSubmit();
 
-		//-- Verification
+		// Verification
 		
 		
 		// From the test account, check the sent folder for the reply		

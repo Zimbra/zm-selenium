@@ -32,7 +32,7 @@ public class DeleteQuickCommand extends QuickCommandSettings {
 
 
 	@Bugs (ids = "71389")
-	@Test(	description = "Delete a Quick Command",
+	@Test (description = "Delete a Quick Command",
 			groups = { "deprecated" })
 
 	public void DeleteQuickCommand_01() throws HarnessException {

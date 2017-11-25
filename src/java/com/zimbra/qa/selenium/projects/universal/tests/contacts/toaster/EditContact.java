@@ -38,7 +38,7 @@ public class EditContact extends UniversalCore {
 	}
 
 	@Test (description = "Edit a contact item, click Edit on toolbar and verify toast msg",
-			groups = { "functional", "L2"})
+			groups = { "functional", "L2" })
 	public void EditContactToastMsg_01() throws HarnessException {
 
 		// Create a contact
@@ -76,7 +76,7 @@ public class EditContact extends UniversalCore {
 	}
 
 	@Test (description = "Edit a contact item, Right click then click Edit and verify toast msg", 
-			groups = {"functional", "L2"})
+			groups = { "functional", "L2" })
 	public void EditContactToastMsg_02() throws HarnessException {
 
 		// Create a contact
@@ -112,7 +112,7 @@ public class EditContact extends UniversalCore {
 	}
 
 	@Test (description = "Edit a contact item, double click the contact and verify toast msg", 
-			groups = { "functional", "L2"})
+			groups = { "functional", "L2" })
 	public void EditContactToastMsg_03() throws HarnessException {
 
 		// Create a contact

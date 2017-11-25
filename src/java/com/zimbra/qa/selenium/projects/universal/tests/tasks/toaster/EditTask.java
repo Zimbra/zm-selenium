@@ -46,7 +46,7 @@ public class EditTask extends UniversalCore{
 	}
 
 	@Test (description = "Unchecked Attachment from edit window and - verify Toast message", 
-			groups = { "smoke", "L1"})
+			groups = { "smoke", "L1" })
 	
 	public void EditTaskToastMsg() throws HarnessException {
 

@@ -36,7 +36,7 @@ public class DeleteFilter extends AjaxCore {
 	}
 
 
-	@Test(	description = "Delete an incoming filter",
+	@Test (description = "Delete an incoming filter",
 			groups = { "sanity", "L0" })
 
 	public void DeleteFilter_01() throws HarnessException {
@@ -89,7 +89,7 @@ public class DeleteFilter extends AjaxCore {
 	}
 
 
-	@Test(	description = "Delete a outgoing filter",
+	@Test (description = "Delete a outgoing filter",
 			groups = { "smoke", "L1" })
 
 	public void DeleteFilter_02() throws HarnessException {

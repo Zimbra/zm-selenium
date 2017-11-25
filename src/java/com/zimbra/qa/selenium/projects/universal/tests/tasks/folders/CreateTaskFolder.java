@@ -45,7 +45,7 @@ public class CreateTaskFolder extends UniversalCore {
 	}	
 
 	@Test (description = "Create a new tasklist by clicking 'Create a new task' on task folders tree", 
-			groups = { "sanity", "L0"})
+			groups = { "sanity", "L0" })
 	
 	public void CreateTaskFolder_01() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
@@ -75,7 +75,7 @@ public class CreateTaskFolder extends UniversalCore {
 	}
 	
 	@Test (description = "Create a new tasklist using tasks app New -> New Task Folder", 
-			groups = { "functional", "L2"})
+			groups = { "functional", "L2" })
 	public void CreateTaskFolder_02() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
 

@@ -25,6 +25,7 @@ import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.projects.admin.items.DistributionListItem;
 
 public class WizardCreateDL extends AbsWizard {
+
 	public static class Locators {
 		public static final String zdlg_DL_NAME = "zdlgv__NEW_DL_name";
 		public static final String zdlg_DOMAIN_NAME = "zdlgv__NEW_DL_name_2_display";
@@ -83,5 +84,4 @@ public class WizardCreateDL extends AbsWizard {
 
 	public void zComplete(DistributionListItem dl) {
 	}
-
 }

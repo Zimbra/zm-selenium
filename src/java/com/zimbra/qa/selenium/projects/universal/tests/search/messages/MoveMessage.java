@@ -90,7 +90,7 @@ public class MoveMessage extends SetGroupMailByMessagePreference {
 			app.zPageSearch.zClose();
 		}
 
-		//-- Verification
+		// Verification
 		
 		MailItem message = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
 		ZAssert.assertNotNull(message, "Verify the message still exists in the mailbox");
@@ -162,7 +162,7 @@ public class MoveMessage extends SetGroupMailByMessagePreference {
 
 
 		
-		//-- Verification
+		// Verification
 		
 		MailItem message = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
 		ZAssert.assertNotNull(message, "Verify the message still exists in the mailbox");
@@ -229,7 +229,7 @@ public class MoveMessage extends SetGroupMailByMessagePreference {
 
 
 		
-		//-- Verification
+		// Verification
 		
 		MailItem message = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
 		ZAssert.assertNotNull(message, "Verify the message still exists in the mailbox");

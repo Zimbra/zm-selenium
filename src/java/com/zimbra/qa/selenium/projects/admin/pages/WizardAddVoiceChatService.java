@@ -24,19 +24,18 @@ import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.projects.admin.items.VoiceChatServiceItem;
 
 public class WizardAddVoiceChatService extends AbsWizard {
+
 	public static class Locators {
 		public static final String zdlg_NEW_ALIAS = "zdlg__NEW_ALIAS";
 		public static final String zdlg_ALIAS_NAME = "css=input[id='zdlgv__NEW_ALIAS_name_2']";
 		public static final String zdlg_ALIAS_DOMAIN_NAME = "css=input[id='zdlgv__NEW_ALIAS_name_3_display']";
 		public static final String zdlg_TARGET_ACCOUNT_NAME = "css=input[id='zdlgv__NEW_ALIAS_targetName_display']";
-
 		public static final String zdlg_OK = "css=td[id^='zdlg__NEW_ALIAS_button']:contains('OK')";
 		public static final String ChooseVendorTitle = "css=td[id$='_title']:contains('Choose Voice/Chat Vendor')";
 		public static final String Service_dropdown = "css=div[id$='_zimbraUCProvider_arrow_button']";
 		public static final String CISCO = "css=div[id$='zimbraUCProvider_choice_0']";
 		public static final String OK = "css=td[id$='_button2_title']:contains('OK')";
 		public static final String zdlg_DISPLAY_NAME = "css=input[id$='_cn']";
-
 	}
 
 	public WizardAddVoiceChatService(AbsTab page) {
@@ -86,8 +85,6 @@ public class WizardAddVoiceChatService extends AbsWizard {
 		if (!visible) {
 			return (false);
 		}
-
 		return (true);
 	}
-
 }

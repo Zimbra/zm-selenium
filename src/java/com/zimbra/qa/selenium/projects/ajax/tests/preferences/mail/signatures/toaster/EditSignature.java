@@ -63,7 +63,7 @@ public class EditSignature extends AjaxCore {
 	 */
 
 	@Test (description = "Edit Text singature and verify toast message",
-			groups = { "functional", "L3"  })
+			groups = { "functional", "L3" })
 
 	public void EditTextSignature_01() throws HarnessException {
 

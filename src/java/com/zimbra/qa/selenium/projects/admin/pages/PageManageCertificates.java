@@ -53,11 +53,6 @@ public class PageManageCertificates extends AbsTab {
 		super(application);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see projects.admin.pages.AbsTab#isActive()
-	 */
 	@Override
 	public boolean zIsActive() throws HarnessException {
 
@@ -77,33 +72,20 @@ public class PageManageCertificates extends AbsTab {
 		}
 
 		return (true);
-
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see projects.admin.pages.AbsTab#myPageName()
-	 */
 	@Override
 	public String myPageName() {
 		return (this.getClass().getName());
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see projects.admin.pages.AbsTab#navigateTo()
-	 */
 	@Override
 	public void zNavigateTo() throws HarnessException {
 
 		if (zIsActive()) {
-			// This page is already active.
 			return;
 		}
 
-		// Click on Addresses -> Accounts
 		sClickAt(Locators.CONFIGURE_ICON, "");
 		zWaitForWorkInProgressDialogInVisible();
 		sIsElementPresent(Locators.CERTIFICATE);
@@ -111,7 +93,6 @@ public class PageManageCertificates extends AbsTab {
 		zWaitForWorkInProgressDialogInVisible();
 		zWaitForActive();
 		SleepUtil.sleepMedium();
-
 	}
 
 	@Override
@@ -127,32 +108,21 @@ public class PageManageCertificates extends AbsTab {
 		if (button == null)
 			throw new HarnessException("Button cannot be null!");
 
-		// Default behavior variables
-		//
-		String locator = null; // If set, this will be clicked
-		AbsPage page = null; // If set, this page will be returned
-
-		// Based on the button specified, take the appropriate action(s)
-		//
+		String locator = null;
+		AbsPage page = null;
 
 		if (button == Button.B_INSTALL_CERTIFICATE) {
-
-			// Install vertificate link on home page
 			locator = PageMain.Locators.HomeInstallCertificate;
-			// Create the page
 			page = new WizardInstallCertificate(this);
-			// FALL THROUGH
 
 		} else if (button == Button.B_UPLOAD_CERTIFICATE) {
-
 			locator = Locators.UPLOAD_CERTIFICATE;
-
 			page = new DialogUploadFile(MyApplication, this);
+
 		} else if (button == Button.B_UPLOAD_ROOT_CERTIFICATE) {
-
 			locator = Locators.UPLOAD_ROOT_CERTIFICATE;
-
 			page = new DialogUploadFile(MyApplication, this);
+
 		} else {
 			throw new HarnessException("no logic defined for button " + button);
 		}
@@ -161,11 +131,8 @@ public class PageManageCertificates extends AbsTab {
 			throw new HarnessException("locator was null for button " + button);
 		}
 
-		// Default behavior, process the locator by clicking on it
-		//
 		this.sClickAt(locator, "");
 
-		// If page was specified, make sure it is active
 		if (page != null) {
 			SleepUtil.sleepMedium();
 		}
@@ -186,27 +153,21 @@ public class PageManageCertificates extends AbsTab {
 		if (option == null)
 			throw new HarnessException("Option cannot be null!");
 
-		// Default behavior variables
-		String pulldownLocator = null; // If set, this will be expanded
-		String optionLocator = null; // If set, this will be clicked
-		AbsPage page = null; // If set, this page will be returned
+		String pulldownLocator = null;
+		String optionLocator = null;
+		AbsPage page = null;
 
 		if (pulldown == Button.B_GEAR_BOX) {
 			pulldownLocator = Locators.GEAR_ICON;
 
 			if (option == Button.B_VIEW_CERTIFICATE) {
-
 				optionLocator = Locators.VIEW_CERTIFICATE;
 
-				// FALL THROUGH
 			} else if (option == Button.B_INSTALL_CERTIFICATE) {
-
 				optionLocator = Locators.INSTALL_CERTIFICATE;
-
 				page = new WizardInstallCertificate(this);
-			}
 
-			else {
+			} else {
 				throw new HarnessException("no logic defined for pulldown/option " + pulldown + "/" + option);
 			}
 
@@ -214,10 +175,8 @@ public class PageManageCertificates extends AbsTab {
 			throw new HarnessException("no logic defined for pulldown/option " + pulldown + "/" + option);
 		}
 
-		// Default behavior
 		if (pulldownLocator != null) {
 
-			// Make sure the locator exists
 			if (!this.sIsElementPresent(pulldownLocator)) {
 				throw new HarnessException("Button " + pulldown + " option " + option + " pulldownLocator "
 						+ pulldownLocator + " not present!");
@@ -226,28 +185,17 @@ public class PageManageCertificates extends AbsTab {
 			this.sClickAt(pulldownLocator, "");
 			SleepUtil.sleepMedium();
 
-			// If the app is busy, wait for it to become active
-			// zWaitForBusyOverlay();
-
 			if (optionLocator != null) {
 
-				// Make sure the locator exists
 				if (!this.sIsElementPresent(optionLocator)) {
 					throw new HarnessException("Button " + pulldown + " option " + option + " optionLocator "
 							+ optionLocator + " not present!");
 				}
 
 				this.sClickAt(optionLocator, "");
-
-				// If the app is busy, wait for it to become active
-				// zWaitForBusyOverlay();
 			}
-
 		}
-
-		// Return the specified page, or null if not set
 		return (page);
-
 	}
 
 	public boolean zVerifyHeader(String header) throws HarnessException {
@@ -266,19 +214,17 @@ public class PageManageCertificates extends AbsTab {
 		if (button == null)
 			throw new HarnessException("Button cannot be null!");
 
-		String locator = null; // If set, this will be clicked
-		AbsPage page = null; // If set, this page will be returned
-
-		// Based on the button specified, take the appropriate action(s)
+		String locator = null;
+		AbsPage page = null;
 
 		if (button == Button.B_INSTALL_CERTIFICATE) {
-
 			locator = PageMain.Locators.HomeInstallCertificate;
 			page = new WizardInstallCertificate(this);
 
 		} else {
 			throw new HarnessException("no logic defined for button " + button);
 		}
+
 		if (locator == null) {
 			throw new HarnessException("locator was null for button " + button);
 		}
@@ -288,9 +234,7 @@ public class PageManageCertificates extends AbsTab {
 		if (page != null) {
 			SleepUtil.sleepMedium();
 		}
-
 		return page;
-
 	}
 
 	public AbsPage zSelectServer() throws HarnessException {
@@ -315,7 +259,6 @@ public class PageManageCertificates extends AbsTab {
 		int count = this.sGetCssCount(rowsLocator);
 		logger.debug(myPageName() + " zListGetPolicy: number of policys: " + count);
 
-		// Get each conversation's data from the table list
 		for (int i = 1; i <= count; i++) {
 			final String serverLocator = rowsLocator + ":nth-child(" + i + ")";
 			String locator;
@@ -332,7 +275,6 @@ public class PageManageCertificates extends AbsTab {
 						sRightClick(locator);
 						break;
 					}
-
 				}
 			}
 		}
@@ -344,5 +286,4 @@ public class PageManageCertificates extends AbsTab {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
 }

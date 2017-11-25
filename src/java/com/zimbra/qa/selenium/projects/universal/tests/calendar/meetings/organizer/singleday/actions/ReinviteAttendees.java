@@ -85,7 +85,7 @@ public class ReinviteAttendees extends CalendarWorkWeekPreference {
         // Right Click -> Re-invite context menu
         app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_REINVITE, apptSubject);
 
-		//-- Verification
+		// Verification
 		
 		
 		// Verify the new invitation appears in the inbox

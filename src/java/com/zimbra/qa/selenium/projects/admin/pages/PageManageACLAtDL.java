@@ -32,9 +32,6 @@ import com.zimbra.qa.selenium.framework.util.ZAssert;
 public class PageManageACLAtDL extends AbsTab {
 
 	public static class Locators {
-
-		// ** OverviewTreePanel -> Manage -> Aliases
-
 		public static final String GEAR_ICON = "css=div[class=ImgConfigure]";
 		public static final String ACL_ADD = "css=td[id$='_dwt_button_14___container'] td:contains('Add')";
 		public static final String GRANTED_ACL = "css=td[id$='_grantsList___container'] div[id^='zl'] div[id$='_rows'] div";
@@ -45,18 +42,12 @@ public class PageManageACLAtDL extends AbsTab {
 		public static final String EDIT_ACL = "css=td[id$='_dwt_button_15___container'] td:contains('Edit')";
 		public static final String DELETE_ACL = "css=td[id$='_dwt_button_16___container'] td:contains('Delete')";
 		public static final String ADD_GLOBAL_ACL = "css=td[id='zmi__zb_currentApp__NEW_title']";
-
 	}
 
 	public PageManageACLAtDL(AbsApplication application) {
 		super(application);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see projects.admin.pages.AbsTab#isActive()
-	 */
 	@Override
 	public boolean zIsActive() throws HarnessException {
 
@@ -79,21 +70,10 @@ public class PageManageACLAtDL extends AbsTab {
 
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see projects.admin.pages.AbsTab#myPageName()
-	 */
 	@Override
 	public String myPageName() {
 		return (this.getClass().getName());
 	}
-
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see projects.admin.pages.AbsTab#navigateTo()
-	 */
 
 	@Override
 	public AbsPage zListItem(Action action, Button option, String item) throws HarnessException {
@@ -114,41 +94,23 @@ public class PageManageACLAtDL extends AbsTab {
 		if (button == null)
 			throw new HarnessException("Button cannot be null!");
 
-		String locator = null; // If set, this will be clicked
-		AbsPage page = null; // If set, this page will be returned
-
-		// Based on the button specified, take the appropriate action(s)
-		//
+		String locator = null;
+		AbsPage page = null;
 
 		if (button == Button.B_ADD) {
-
-			// Add button
 			locator = Locators.ACL_ADD;
-
-			// Create the page
 			page = new WizardAddACLAtDL(this);
 
 		} else if (button == Button.B_ADD_ACL_AT_DOMAIN) {
-
-			// Add button
 			locator = Locators.DOMAIN_EDIT_ACL_ADD;
-
-			// Create the page
 			page = new WizardAddACL(this);
 
 		} else if (button == Button.B_EDIT) {
-
-			// Add button
 			locator = Locators.EDIT_ACL;
-
-			// Create the page
 			page = new WizardEditACLAtDL(this);
 
 		} else if (button == Button.B_DELETE) {
-
-			// Add button
 			locator = Locators.DELETE_ACL;
-
 			page = new DialogForDeleteOperationACL(this.MyApplication, null);
 
 		} else {
@@ -159,11 +121,9 @@ public class PageManageACLAtDL extends AbsTab {
 			throw new HarnessException("locator was null for button " + button);
 		}
 
-		// Default behavior, process the locator by clicking on it
 		this.sClickAt(locator, "");
 		SleepUtil.sleepMedium();
 
-		// If page was specified, make sure it is active
 		if (page != null) {
 			SleepUtil.sleepLong();
 		}
@@ -184,8 +144,10 @@ public class PageManageACLAtDL extends AbsTab {
 
 		if (button == Button.B_YES) {
 			locator = Locators.YES_BUTTON;
+
 		} else if (button == Button.B_NO) {
 			locator = Locators.NO_BUTTON;
+
 		} else if (button == Button.B_OK) {
 			for (int i = 0; i <= 15; i++) {
 				if (sIsElementPresent(Locators.OK_BUTTON + i + "_button2_title")) {
@@ -193,16 +155,15 @@ public class PageManageACLAtDL extends AbsTab {
 					break;
 				}
 			}
+
 		} else {
 			throw new HarnessException("Button " + button + " not implemented");
 		}
 
-		// Make sure the locator was set
 		if (locator == null) {
 			throw new HarnessException("Button " + button + " not implemented");
 		}
 
-		// Make sure the locator exists
 		if (!this.sIsElementPresent(locator)) {
 			throw new HarnessException("Button " + button + " locator " + locator + " not present!");
 		}
@@ -244,10 +205,7 @@ public class PageManageACLAtDL extends AbsTab {
 			pulldownLocator = Locators.GEAR_ICON;
 
 			if (option == Button.B_ADD_GLOBAL_ACL) {
-
 				optionLocator = Locators.ADD_GLOBAL_ACL;
-
-				// Create the page
 				page = new WizardGlobalACL(this);
 
 			} else {
@@ -258,10 +216,8 @@ public class PageManageACLAtDL extends AbsTab {
 			throw new HarnessException("no logic defined for pulldown/option " + pulldown + "/" + option);
 		}
 
-		// Default behavior
 		if (pulldownLocator != null) {
 
-			// Make sure the locator exists
 			if (!this.sIsElementPresent(pulldownLocator)) {
 				throw new HarnessException("Button " + pulldown + " option " + option + " pulldownLocator "
 						+ pulldownLocator + " not present!");
@@ -270,26 +226,16 @@ public class PageManageACLAtDL extends AbsTab {
 			this.sClickAt(pulldownLocator, "");
 			SleepUtil.sleepMedium();
 
-			// If the app is busy, wait for it to become active
-			// zWaitForBusyOverlay();
-
 			if (optionLocator != null) {
 
-				// Make sure the locator exists
 				if (!this.sIsElementPresent(optionLocator)) {
 					throw new HarnessException("Button " + pulldown + " option " + option + " optionLocator "
 							+ optionLocator + " not present!");
 				}
-
 				this.sClickAt(optionLocator, "");
-
 			}
-
 		}
-
-		// Return the specified page, or null if not set
 		return (page);
-
 	}
 
 	public boolean zVerifyACL(String item) throws HarnessException {
@@ -325,7 +271,6 @@ public class PageManageACLAtDL extends AbsTab {
 				ZAssert.assertTrue(found, "Search result displayed in current view");
 				break;
 			}
-
 		}
 		return found;
 	}
@@ -333,7 +278,5 @@ public class PageManageACLAtDL extends AbsTab {
 	@Override
 	public void zNavigateTo() throws HarnessException {
 		// TODO Auto-generated method stub
-
 	}
-
 }

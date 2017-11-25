@@ -46,11 +46,6 @@ public class PageManageServers extends AbsTab {
 		super(application);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see projects.admin.pages.AbsTab#isActive()
-	 */
 	@Override
 	public boolean zIsActive() throws HarnessException {
 
@@ -73,38 +68,24 @@ public class PageManageServers extends AbsTab {
 
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see projects.admin.pages.AbsTab#myPageName()
-	 */
 	@Override
 	public String myPageName() {
 		return (this.getClass().getName());
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see projects.admin.pages.AbsTab#navigateTo()
-	 */
 	@Override
 	public void zNavigateTo() throws HarnessException {
 
 		if (zIsActive()) {
-
 			return;
 		}
 
-		// Click on Addresses -> Accounts
 		sClickAt(Locators.CONFIGURE_ICON, "");
 		zWaitForWorkInProgressDialogInVisible();
 		sIsElementPresent(Locators.SERVER);
 		sClickAt(Locators.SERVER, "");
 		zWaitForWorkInProgressDialogInVisible();
-		// SleepUtil.sleepSmall();
 		zWaitForActive();
-
 	}
 
 	@Override
@@ -121,7 +102,6 @@ public class PageManageServers extends AbsTab {
 		int count = this.sGetCssCount(rowsLocator);
 		logger.debug(myPageName() + " zListGetPolicy: number of policys: " + count);
 
-		// Get each conversation's data from the table list
 		for (int i = 1; i <= count; i++) {
 			final String serverLocator = rowsLocator + ":nth-child(" + i + ")";
 			String locator;
@@ -157,23 +137,18 @@ public class PageManageServers extends AbsTab {
 		if (option == null)
 			throw new HarnessException("Option cannot be null!");
 
-		// Default behavior variables
-		String pulldownLocator = null; // If set, this will be expanded
-		String optionLocator = null; // If set, this will be clicked
-		AbsPage page = null; // If set, this page will be returned
+		String pulldownLocator = null;
+		String optionLocator = null;
+		AbsPage page = null;
 
 		if (pulldown == Button.B_GEAR_BOX) {
 			pulldownLocator = Locators.GEAR_ICON;
 
 			if (option == Button.B_EDIT) {
-
 				optionLocator = Locators.EDIT;
 				page = new FormEditServer(this.MyApplication);
 
-				// FALL THROUGH
-			}
-
-			else {
+			} else {
 				throw new HarnessException("no logic defined for pulldown/option " + pulldown + "/" + option);
 			}
 
@@ -181,10 +156,8 @@ public class PageManageServers extends AbsTab {
 			throw new HarnessException("no logic defined for pulldown/option " + pulldown + "/" + option);
 		}
 
-		// Default behavior
 		if (pulldownLocator != null) {
 
-			// Make sure the locator exists
 			if (!this.sIsElementPresent(pulldownLocator)) {
 				throw new HarnessException("Button " + pulldown + " option " + option + " pulldownLocator "
 						+ pulldownLocator + " not present!");
@@ -193,28 +166,17 @@ public class PageManageServers extends AbsTab {
 			this.sClickAt(pulldownLocator, "");
 			SleepUtil.sleepSmall();
 
-			// If the app is busy, wait for it to become active
-			// zWaitForBusyOverlay();
-
 			if (optionLocator != null) {
 
-				// Make sure the locator exists
 				if (!this.sIsElementPresent(optionLocator)) {
 					throw new HarnessException("Button " + pulldown + " option " + option + " optionLocator "
 							+ optionLocator + " not present!");
 				}
 
 				this.sClickAt(optionLocator, "");
-
-				// If the app is busy, wait for it to become active
-				// zWaitForBusyOverlay();
 			}
-
 		}
-
-		// Return the specified page, or null if not set
 		return (page);
-
 	}
 
 	@Override
@@ -236,11 +198,8 @@ public class PageManageServers extends AbsTab {
 		if (button == null)
 			throw new HarnessException("Button cannot be null!");
 
-		String locator = null; // If set, this will be clicked
-		AbsPage page = null; // If set, this page will be returned
-
-		// Based on the button specified, take the appropriate action(s)
-		//
+		String locator = null;
+		AbsPage page = null;
 
 		if (button == Button.B_ADD_ACL) {
 
@@ -258,11 +217,9 @@ public class PageManageServers extends AbsTab {
 			throw new HarnessException("locator was null for button " + button);
 		}
 
-		// Default behavior, process the locator by clicking on it
 		this.sClickAt(locator, "");
 		SleepUtil.sleepMedium();
 
-		// If page was specified, make sure it is active
 		if (page != null) {
 			SleepUtil.sleepLong();
 		}
@@ -276,5 +233,4 @@ public class PageManageServers extends AbsTab {
 			return true;
 		return false;
 	}
-
 }

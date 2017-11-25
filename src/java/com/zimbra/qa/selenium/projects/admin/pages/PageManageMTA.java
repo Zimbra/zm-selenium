@@ -55,11 +55,6 @@ public class PageManageMTA extends AbsTab {
 		super(application);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see projects.admin.pages.AbsTab#isActive()
-	 */
 	@Override
 	public boolean zIsActive() throws HarnessException {
 
@@ -79,29 +74,17 @@ public class PageManageMTA extends AbsTab {
 		}
 
 		return (true);
-
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see projects.admin.pages.AbsTab#myPageName()
-	 */
 	@Override
 	public String myPageName() {
 		return (this.getClass().getName());
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see projects.admin.pages.AbsTab#navigateTo()
-	 */
 	@Override
 	public void zNavigateTo() throws HarnessException {
 
 		if (zIsActive()) {
-			// This page is already active.
 			return;
 		}
 
@@ -182,12 +165,8 @@ public class PageManageMTA extends AbsTab {
 		if (button == null)
 			throw new HarnessException("Button cannot be null!");
 
-		// Default behavior variables
-
-		String locator = null; // If set, this will be clicked
-		AbsPage page = null; // If set, this page will be returned
-
-		// Based on the button specified, take the appropriate action(s)
+		String locator = null;
+		AbsPage page = null;
 
 		switch (button.toString()) {
 
@@ -223,23 +202,16 @@ public class PageManageMTA extends AbsTab {
 		if (option == null)
 			throw new HarnessException("Option cannot be null!");
 
-		// Default behavior variables
-		String pulldownLocator = null; // If set, this will be expanded
-		// String optionLocator = null;
+		String pulldownLocator = null;
 		AbsPage page = null;
 
 		if (pulldown == Button.B_GEAR_BOX) {
 			pulldownLocator = Locators.GEAR_ICON;
 
 			if (option == Button.B_UPDATE_LICENSE) {
-
-				// optionLocator = Locators.UPDATE_LICENSE;
 				page = new WizardUpdateLicense(this);
 
-				// FALL THROUGH
-			}
-
-			else {
+			} else {
 				throw new HarnessException("no logic defined for pulldown/option " + pulldown + "/" + option);
 			}
 
@@ -247,10 +219,8 @@ public class PageManageMTA extends AbsTab {
 			throw new HarnessException("no logic defined for pulldown/option " + pulldown + "/" + option);
 		}
 
-		// Default behavior
 		if (pulldownLocator != null) {
 
-			// Make sure the locator exists
 			if (!this.sIsElementPresent(pulldownLocator)) {
 				throw new HarnessException("Button " + pulldown + " option " + option + " pulldownLocator "
 						+ pulldownLocator + " not present!");
@@ -258,11 +228,8 @@ public class PageManageMTA extends AbsTab {
 
 			this.sClickAt(pulldownLocator, "");
 			SleepUtil.sleepMedium();
-
-			// If the app is busy, wait for it to become active
-			// zWaitForBusyOverlay();
 		}
-		// Return the specified page, or null if not set
+
 		return (page);
 
 	}
@@ -276,5 +243,4 @@ public class PageManageMTA extends AbsTab {
 			return true;
 		return false;
 	}
-
 }

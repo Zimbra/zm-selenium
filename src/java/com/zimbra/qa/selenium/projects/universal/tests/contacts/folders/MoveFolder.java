@@ -32,7 +32,7 @@ public class MoveFolder extends UniversalCore {
 	}
 		
 	@Test (description = "Drag one folder from top level and Drop into sub folder", 
-			groups = { "smoke", "L1"})
+			groups = { "smoke", "L1" })
 	
 	public void DnDFromTopLevelToSubFolder_01() throws HarnessException {
 
@@ -65,7 +65,7 @@ public class MoveFolder extends UniversalCore {
 				"css=div#zov__main_Contacts td#zti__main_Contacts__" + addressbook1.getId() + "_textCell:contains("+ addressbook1.getName() + ")",
 				"css=div#zov__main_Contacts td#zti__main_Contacts__" + addressbook2.getId() + "_textCell:contains("+ addressbook2.getName() + ")");
 			
-		//-- Verification
+		// Verification
 		
 		// Verify the folder is now in the other subfolder
 		FolderItem actual = FolderItem.importFromSOAP(app.zGetActiveAccount(), addressbook1.getName());

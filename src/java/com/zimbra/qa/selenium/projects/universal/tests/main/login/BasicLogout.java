@@ -29,7 +29,7 @@ public class BasicLogout extends UniversalCore {
 	}
 	
 	@Test (description = "Logout of the Universal Client", 
-			groups = { "sanity", "L0"})
+			groups = { "sanity", "L0" })
 	
 	public void BasicLogout01() throws HarnessException {
 		

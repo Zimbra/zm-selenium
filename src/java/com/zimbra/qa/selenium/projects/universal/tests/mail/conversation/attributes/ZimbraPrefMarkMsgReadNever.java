@@ -81,7 +81,7 @@ public class ZimbraPrefMarkMsgReadNever extends SetGroupMailByConversationPrefer
 		
 		
 
-		//-- VERIFICATION
+		// Verification
 		
 		
 		// Verify the message is marked read in the server (flags attribute should not contain (u)nread)
@@ -110,7 +110,7 @@ public class ZimbraPrefMarkMsgReadNever extends SetGroupMailByConversationPrefer
 		
 
 
-		//-- Verification
+		// Verification
 		
 		
 		// Verify each message is still unread

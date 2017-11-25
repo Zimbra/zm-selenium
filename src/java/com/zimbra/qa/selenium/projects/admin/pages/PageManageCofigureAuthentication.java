@@ -38,32 +38,17 @@ public class PageManageCofigureAuthentication extends AbsTab {
 		super(application);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see projects.admin.pages.AbsTab#isActive()
-	 */
 	@Override
 	public boolean zIsActive() throws HarnessException {
 		return false;
 
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see projects.admin.pages.AbsTab#myPageName()
-	 */
 	@Override
 	public String myPageName() {
 		return (this.getClass().getName());
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see projects.admin.pages.AbsTab#navigateTo()
-	 */
 	@Override
 	public void zNavigateTo() throws HarnessException {
 
@@ -93,18 +78,11 @@ public class PageManageCofigureAuthentication extends AbsTab {
 		if (button == null)
 			throw new HarnessException("Button cannot be null!");
 
-		//
-		String locator = null; // If set, this will be clicked
-		AbsPage page = null; // If set, this page will be returned
-
-		// Based on the button specified, take the appropriate action(s)
-		//
+		String locator = null;
+		AbsPage page = null;
 
 		if (button == Button.B_CONFIGURE_AUTHENTICATION) {
-
-			// Install vertificate link on home page
 			locator = PageMain.Locators.HomeConfigureAuthentication;
-			// Create the page
 			page = new WizardConfigureAuthentication(this);
 
 		} else {
@@ -115,11 +93,8 @@ public class PageManageCofigureAuthentication extends AbsTab {
 			throw new HarnessException("locator was null for button " + button);
 		}
 
-		// Default behavior, process the locator by clicking on it
-		//
 		this.sClickAt(locator, "");
 
-		// If page was specified, make sure it is active
 		if (page != null) {
 			SleepUtil.sleepMedium();
 		}
@@ -138,5 +113,4 @@ public class PageManageCofigureAuthentication extends AbsTab {
 			return true;
 		return false;
 	}
-
 }

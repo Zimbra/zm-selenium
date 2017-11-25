@@ -37,9 +37,7 @@ public class FormEditResource extends AbsForm {
 
 	public FormEditResource(AbsApplication application) {
 		super(application);
-
 		logger.info("new " + myPageName());
-
 	}
 
 	@Override
@@ -60,7 +58,6 @@ public class FormEditResource extends AbsForm {
 		}
 
 		return (true);
-
 	}
 
 	@Override
@@ -83,7 +80,7 @@ public class FormEditResource extends AbsForm {
 		sClick("css=td:contains('" + treeItem + "')");
 	}
 
-	public void setName(String name) throws HarnessException {
+	public void zSetName(String name) throws HarnessException {
 		for (int i = 12; i >= 0; i--) {
 			if (sIsElementPresent(Locators.NAME_TEXT_BOX + i + "_name_3")) {
 				sType(Locators.NAME_TEXT_BOX + i + "_name_3", name);
@@ -93,7 +90,7 @@ public class FormEditResource extends AbsForm {
 		sType(Locators.NAME_TEXT_BOX + "name_3", name);
 	}
 
-	public void setNameAsDA(String name) throws HarnessException {
+	public void zSetNameAsDelegatedAdmin(String name) throws HarnessException {
 		sType(Locators.DA_NAME_TEXT_BOX, name);
 	}
 }

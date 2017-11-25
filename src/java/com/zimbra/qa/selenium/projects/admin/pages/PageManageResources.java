@@ -36,7 +36,6 @@ import com.zimbra.qa.selenium.projects.admin.items.AccountItem;
 public class PageManageResources extends AbsTab {
 
 	public static class Locators {
-		// ** OverviewTreePanel -> Manage -> Resources
 		public static final String MANAGE_ACCOUNTS_ICON = "css=div.ImgManageAccounts";
 		public static final String RESOURCES = "css=div[id^='zti__AppAdmin__Home__resLstHV']";
 		public static final String GEAR_ICON = "css=div.ImgConfigure";
@@ -58,11 +57,6 @@ public class PageManageResources extends AbsTab {
 		super(application);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see projects.admin.pages.AbsTab#isActive()
-	 */
 	@Override
 	public boolean zIsActive() throws HarnessException {
 
@@ -82,40 +76,25 @@ public class PageManageResources extends AbsTab {
 		}
 
 		return (true);
-
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see projects.admin.pages.AbsTab#myPageName()
-	 */
 	@Override
 	public String myPageName() {
 		return (this.getClass().getName());
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see projects.admin.pages.AbsTab#navigateTo()
-	 */
 	@Override
 	public void zNavigateTo() throws HarnessException {
 
 		if (zIsActive()) {
-
 			return;
 		}
 
-		// Click on Addresses -> Accounts
 		sClickAt(Locators.MANAGE_ACCOUNTS_ICON, "");
 		zWaitForWorkInProgressDialogInVisible();
-		// SleepUtil.sleepMedium();
 		sIsElementPresent(Locators.RESOURCES);
 		sClickAt(Locators.RESOURCES, "");
 		zWaitForWorkInProgressDialogInVisible();
-		// SleepUtil.sleepLong();
 		zWaitForActive();
 	}
 
@@ -140,15 +119,14 @@ public class PageManageResources extends AbsTab {
 					sClickAt(p0, "");
 					this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_DOWN);
 					m = m + 20;
-				} else
+				} else {
 					break;
-
+				}
 			}
-
 		}
 
 		count = this.sGetCssCount(rowsLocator);
-		// Get each conversation's data from the table list
+
 		for (int i = 1; i <= count; i++) {
 			final String accountLocator = rowsLocator + ":nth-child(" + i + ")";
 			String locator;
@@ -163,7 +141,6 @@ public class PageManageResources extends AbsTab {
 						sClick(locator);
 
 					} else if (action == Action.A_RIGHTCLICK) {
-
 						sRightClick(locator);
 
 					} else if (action == Action.A_DOUBLECLICK) {
@@ -199,51 +176,35 @@ public class PageManageResources extends AbsTab {
 		if (button == null)
 			throw new HarnessException("Button cannot be null!");
 
-		//
-		String locator = null; // If set, this will be clicked
-		AbsPage page = null; // If set, this page will be returned
-
-		// Based on the button specified, take the appropriate action(s)
-		//
+		String locator = null;
+		AbsPage page = null;
 
 		if (button == Button.B_NEW) {
-
-			// New button
 			locator = Locators.RESOURCES;
-
-			// Create the page
 			page = new WizardCreateResource(this);
 
 		} else if (button == Button.B_TREE_DELETE) {
-
 			locator = Locators.RIGHT_CLICK_MENU_DELETE_BUTTON;
-
 			page = new DialogForDeleteOperation(this.MyApplication, null);
+
 		} else if (button == Button.B_EDIT) {
-
 			locator = Locators.EDIT_BUTTON;
-
 			page = new FormEditResource(this.MyApplication);
+
 		} else if (button == Button.B_TREE_EDIT) {
-
 			locator = Locators.RIGHT_CLICK_MENU_EDIT_BUTTON;
-
 			page = new FormEditResource(this.MyApplication);
+
 		} else if (button == Button.B_ADD_ACL) {
-
 			locator = Locators.ADD_ACL;
-
 			page = new WizardAddACL(this);
+
 		} else if (button == Button.B_EDIT_ACL) {
-
 			locator = Locators.EDIT_ACL;
-
 			page = new WizardEditACL(this);
+
 		} else if (button == Button.B_DELETE_ACL) {
-
-			// Add button
 			locator = Locators.DELETE_ACL;
-
 			page = new DialogForDeleteOperationACL(this.MyApplication, null);
 
 		} else {
@@ -254,17 +215,13 @@ public class PageManageResources extends AbsTab {
 			throw new HarnessException("locator was null for button " + button);
 		}
 
-		// Default behavior, process the locator by clicking on it
-		//
 		this.sClickAt(locator, "");
 
-		// If page was specified, make sure it is active
 		if (page != null) {
 			SleepUtil.sleepMedium();
 		}
 
 		return (page);
-
 	}
 
 	@Override
@@ -287,24 +244,18 @@ public class PageManageResources extends AbsTab {
 			pulldownLocator = Locators.GEAR_ICON;
 
 			if (option == Button.O_NEW) {
-
 				optionLocator = Locators.NEW_MENU;
-
 				page = new WizardCreateResource(this);
 
 			} else if (option == Button.O_EDIT) {
 				optionLocator = Locators.EDIT_BUTTON;
-
 				page = new FormEditResource(this.MyApplication);
 
 			} else if (option == Button.O_DELETE) {
 				optionLocator = Locators.DELETE_BUTTON;
-
 				page = new DialogForDeleteOperation(this.MyApplication, null);
 
-			}
-
-			else {
+			} else {
 				throw new HarnessException("no logic defined for pulldown/option " + pulldown + "/" + option);
 			}
 
@@ -312,10 +263,8 @@ public class PageManageResources extends AbsTab {
 			throw new HarnessException("no logic defined for pulldown/option " + pulldown + "/" + option);
 		}
 
-		// Default behavior
 		if (pulldownLocator != null) {
 
-			// Make sure the locator exists
 			if (!this.sIsElementPresent(pulldownLocator)) {
 				throw new HarnessException("Button " + pulldown + " option " + option + " pulldownLocator "
 						+ pulldownLocator + " not present!");
@@ -325,42 +274,26 @@ public class PageManageResources extends AbsTab {
 			this.sClickAt(pulldownLocator, "");
 			SleepUtil.sleepLong();
 
-			// If the app is busy, wait for it to become active
-			// zWaitForBusyOverlay();
-
 			if (optionLocator != null) {
 
-				// Make sure the locator exists
 				if (!this.sIsElementPresent(optionLocator)) {
 					throw new HarnessException("Button " + pulldown + " option " + option + " optionLocator "
 							+ optionLocator + " not present!");
 				}
 
 				this.sClickAt(optionLocator, "");
-
-				// If the app is busy, wait for it to become active
-				// zWaitForBusyOverlay();
 			}
-
 		}
-
-		// Return the specified page, or null if not set
 		return (page);
-
 	}
 
 	/**
 	 * Return a list of all accounts in the current view
-	 *
-	 * @return
-	 * @throws HarnessException
-	 * @throws HarnessException
 	 */
 	public List<AccountItem> zListGetAccounts() throws HarnessException {
 
 		List<AccountItem> items = new ArrayList<AccountItem>();
 
-		// Make sure the button exists
 		if (!this.sIsElementPresent("css=div[id='zl__RES_MANAGE'] div[id$='__rows']"))
 			throw new HarnessException("Account Rows is not present");
 
@@ -385,7 +318,6 @@ public class PageManageResources extends AbsTab {
 		}
 		count = this.sGetCssCount(rowsLocator);
 
-		// Get each conversation's data from the table list
 		for (int i = 1; i <= count; i++) {
 			final String accountLocator = rowsLocator + ":nth-child(" + i + ")";
 			String locator;
@@ -394,8 +326,6 @@ public class PageManageResources extends AbsTab {
 					ConfigProperties.getStringProperty("testdomain"));
 
 			// Type (image)
-			// ImgAdminUser ImgAccount ImgSystemResource (others?)accountLocator + "
-			// td[id^='dl_data_emailaddress']";
 			locator = accountLocator + " td[id^='calresource_data_type_'] div";
 			if (this.sIsElementPresent(locator)) {
 				// item.setGAccountType(this.sGetAttribute("("+ locator + ")@class"));
@@ -406,11 +336,6 @@ public class PageManageResources extends AbsTab {
 			if (this.sIsElementPresent(locator)) {
 				item.setGEmailAddress(this.sGetText(locator).trim());
 			}
-
-			// Display Name
-			// Status
-			// Lost Login Time
-			// Description
 
 			// Add the new item to the list
 			items.add(item);
@@ -426,5 +351,4 @@ public class PageManageResources extends AbsTab {
 			return true;
 		return false;
 	}
-
 }

@@ -51,11 +51,6 @@ public class PageManageSearchMail extends AbsTab {
 		super(application);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see projects.admin.pages.AbsTab#isActive()
-	 */
 	@Override
 	public boolean zIsActive() throws HarnessException {
 
@@ -80,36 +75,23 @@ public class PageManageSearchMail extends AbsTab {
 		return (true);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see projects.admin.pages.AbsTab#myPageName()
-	 */
 	@Override
 	public String myPageName() {
 		return (this.getClass().getName());
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see projects.admin.pages.AbsTab#navigateTo()
-	 */
 	@Override
 	public void zNavigateTo() throws HarnessException {
 
 		if (zIsActive()) {
-			// This page is already active.
 			return;
 		}
 
-		// Click on Tools and Migration -> Downloads
 		sClickAt(Locators.TOOLS_AND_MIGRATION_ICON, "");
 		zWaitForWorkInProgressDialogInVisible();
-		// SleepUtil.sleepMedium();
-		if (sIsElementPresent(Locators.SEARCHMAIL))
-			;
-		sClickAt(Locators.SEARCHMAIL, "");
+		if (sIsElementPresent(Locators.SEARCHMAIL)) {
+			sClickAt(Locators.SEARCHMAIL, "");
+		}
 		zWaitForWorkInProgressDialogInVisible();
 		zWaitForActive();
 	}
@@ -165,7 +147,6 @@ public class PageManageSearchMail extends AbsTab {
 		int count = this.sGetCssCount(rowsLocator);
 		logger.debug(myPageName() + " zListGetSearchResults: number of results: " + count);
 
-		// Get each conversation's data from the table list
 		for (int i = 1; i <= count; i++) {
 			final String resultLocator = rowsLocator + ":nth-child(" + i + ")";
 			String locator;
@@ -229,10 +210,8 @@ public class PageManageSearchMail extends AbsTab {
 			throw new HarnessException("no logic defined for pulldown/option " + pulldown + "/" + option);
 		}
 
-		// Default behavior
 		if (pulldownLocator != null) {
 
-			// Make sure the locator exists
 			if (!this.sIsElementPresent(pulldownLocator)) {
 				throw new HarnessException("Button " + pulldown + " option " + option + " pulldownLocator "
 						+ pulldownLocator + " not present!");
@@ -241,12 +220,8 @@ public class PageManageSearchMail extends AbsTab {
 			this.sClickAt(pulldownLocator, "");
 			SleepUtil.sleepMedium();
 
-			// If the app is busy, wait for it to become active
-			// zWaitForBusyOverlay();
-
 			if (optionLocator != null) {
 
-				// Make sure the locator exists
 				if (!this.sIsElementPresent(optionLocator)) {
 					throw new HarnessException("Button " + pulldown + " option " + option + " optionLocator "
 							+ optionLocator + " not present!");
@@ -254,16 +229,10 @@ public class PageManageSearchMail extends AbsTab {
 
 				this.sClickAt(optionLocator, "");
 				SleepUtil.sleepMedium();
-
-				// If the app is busy, wait for it to become active
-				// zWaitForBusyOverlay();
 			}
-
 		}
 
-		// Return the specified page, or null if not set
 		return (page);
-
 	}
 
 	public boolean zVerifySearchResult(String item) throws HarnessException {

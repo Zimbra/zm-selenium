@@ -39,7 +39,7 @@ public class CancelMeeting extends CalendarWorkWeekPreference {
 	
 	@Bugs (ids = "69132")
 	@Test (description = "Cancel meeting using Delete toolbar button",
-			groups = { "smoke", "L1"})
+			groups = { "smoke", "L1" })
 			
 	public void CancelMeeting_01() throws HarnessException {
 		
@@ -87,7 +87,7 @@ public class CancelMeeting extends CalendarWorkWeekPreference {
         // Click Send Cancellation
 		dialog.zPressButton(Button.B_SEND_CANCELLATION);
 		
-		//-- Verification
+		// Verification
 		
 		// Verify meeting disappears from the view
 		ZAssert.assertEquals(app.zPageCalendar.zIsAppointmentExists(apptSubject), false, "Verify meeting is deleted from organizer's calendar");
@@ -161,7 +161,7 @@ public class CancelMeeting extends CalendarWorkWeekPreference {
         // Click Send Cancellation
 		dialog.zPressButton(Button.B_SEND_CANCELLATION);
 		
-		//-- Verification
+		// Verification
 		
 		// Verify the meeting disappears from the organizer's calendar
 		app.zGetActiveAccount().soapSend(
@@ -179,7 +179,7 @@ public class CancelMeeting extends CalendarWorkWeekPreference {
 	
 	@Bugs (ids = "69132")
 	@Test (description = "Don't cancel the meeting (press Cancel button from cancellation dialog)",
-			groups = { "functional", "L2"})
+			groups = { "functional", "L2" })
 	
 	public void CancelMeeting_03() throws HarnessException {
 		
@@ -227,7 +227,7 @@ public class CancelMeeting extends CalendarWorkWeekPreference {
         // Click Send Cancellation
 		dialog.zPressButton(Button.B_CANCEL);
 		
-		//-- Verification
+		// Verification
 		ZAssert.assertTrue(app.zPageCalendar.zIsAppointmentExists(apptSubject), "Verify meeting is not deleted from organizer's calendar");
 		
 		// Verify meeting is not deleted from attendee's calendar
@@ -238,7 +238,7 @@ public class CancelMeeting extends CalendarWorkWeekPreference {
 	
 	@Bugs (ids = "69132")
 	@Test (description = "Cancel appointment without modifying cancellation message content",
-			groups = { "functional", "L2"})
+			groups = { "functional", "L2" })
 	
 	public void CancelMeeting_04() throws HarnessException {
 		
@@ -288,7 +288,7 @@ public class CancelMeeting extends CalendarWorkWeekPreference {
         FormMailNew mailComposeForm = (FormMailNew)dialog.zPressButton(Button.B_EDIT_CANCELLATION);
 		mailComposeForm.zSubmit();
 		
-		//-- Verification
+		// Verification
 		
 		// Verify meeting is deleted from attendee's calendar && receive meeting cancellation message
 		MailItem canceledApptMail = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "subject:(" + (char)34 + "Cancelled " + apptSubject + (char)34 + ")");
@@ -304,7 +304,7 @@ public class CancelMeeting extends CalendarWorkWeekPreference {
 	
 	@Bugs (ids = "69132,77548")
 	@Test (description = "Modify meeting cancellation message while cancelling appointment",
-			groups = { "functional", "L2"})
+			groups = { "functional", "L2" })
 	
 	public void CancelMeeting_05() throws HarnessException {
 		
@@ -354,7 +354,7 @@ public class CancelMeeting extends CalendarWorkWeekPreference {
 		mailComposeForm.zFillField(Field.Body, " " + modifyApptBody);		
 		mailComposeForm.zSubmit();
 		
-		//-- Verification
+		// Verification
 		
 		// Verify the meeting no longer appears in the organizer's calendar
 		ZAssert.assertEquals(app.zPageCalendar.zIsAppointmentExists(apptSubject), false, "Verify meeting is deleted from organizer's calendar");

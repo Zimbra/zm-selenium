@@ -40,7 +40,7 @@ public class ZmContactsItem_BasicContact1 extends UniversalCore{
    }
 
    @Test (description = "Measure the time to view Basic contact item",
-         groups={"performance", "L4"})
+         groups={"performance", "L4" })
    public void ZmContactsItem_01() throws HarnessException {
       // Create 2 contacts via Soap because by default the first one will be selected
       // therefore measuring the performance of loading the second one

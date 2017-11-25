@@ -77,7 +77,7 @@ public class ExpandDL extends SetGroupMailByMessagePreference {
 		
 		
 		
-		//-- Verification
+		// Verification
 		
 		// Verify the DL is in the To field and has a expand/+ icon
 		AbsBubble found = null;
@@ -153,7 +153,7 @@ public class ExpandDL extends SetGroupMailByMessagePreference {
 		
 		
 
-		//-- Verification
+		// Verification
 		
 		// Expand the bubble
 		bubble.zItem(Action.A_EXPAND);

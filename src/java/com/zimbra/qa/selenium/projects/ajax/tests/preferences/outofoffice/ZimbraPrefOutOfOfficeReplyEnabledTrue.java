@@ -42,7 +42,7 @@ public class ZimbraPrefOutOfOfficeReplyEnabledTrue extends AjaxCore {
 
 	@Bugs (ids = "101356")
 	@Test (description = "Enable out of office", priority = 4,
-			groups = { "smoke", "L1"  })
+			groups = { "smoke", "L1" })
 
 	public void ZimbraPrefOutOfOfficeReplyEnabledTrue_01() throws HarnessException {
 

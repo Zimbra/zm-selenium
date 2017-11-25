@@ -64,7 +64,7 @@ public class EditAccount extends AdminCore {
 		// Refresh the account list
 		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
 
-		// Click on account to be Edited.
+		// Click on account to be edited
 		app.zPageManageAccounts.zListItem(Action.A_LEFTCLICK, account.getEmailAddress());
 
 		// Click on Edit button
@@ -72,7 +72,7 @@ public class EditAccount extends AdminCore {
 
 		// Edit the name
 		String editedName = "editedAccount_" + ConfigProperties.getUniqueString();
-		form.setName(editedName);
+		form.zSetName(editedName);
 
 		// Save the changes
 		form.zSave();
@@ -120,7 +120,7 @@ public class EditAccount extends AdminCore {
 
 		// Edit the name
 		String editedName = "editedAccount_" + ConfigProperties.getUniqueString();
-		form.setName(editedName);
+		form.zSetName(editedName);
 
 		// Save the changes
 		form.zSave();
@@ -174,12 +174,12 @@ public class EditAccount extends AdminCore {
 
 
 		// Click on Edit button
-		app.zPageSearchResults.setType(PageSearchResults.TypeOfObject.ACCOUNT);
+		app.zPageSearchResults.zSetType(PageSearchResults.TypeOfObject.ACCOUNT);
 		FormEditAccount form = (FormEditAccount) app.zPageSearchResults.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_EDIT);
 
 		// Edit the name
 		String editedName = "editedAccount_" + ConfigProperties.getUniqueString();
-		form.setName(editedName);
+		form.zSetName(editedName);
 
 		// Save the changes
 		form.zSave();
@@ -227,7 +227,7 @@ public class EditAccount extends AdminCore {
 
 		//Edit the name
 		String editedName = "editedAccount_" + ConfigProperties.getUniqueString();
-		form.setName(editedName);
+		form.zSetName(editedName);
 
 		// Save the changes
 		form.zSave();

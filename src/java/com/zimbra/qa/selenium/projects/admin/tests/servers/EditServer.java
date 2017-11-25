@@ -61,10 +61,10 @@ public class EditServer extends AdminCore {
 		String notes = "notes" + ConfigProperties.getUniqueString();
 
 		// Edit description
-		form.setDescription(description);
+		form.zSetDescription(description);
 
 		// Edit notes
-		form.setNotes(notes);
+		form.zSetNotes(notes);
 
 		// Submit the form
 		form.zSubmit();

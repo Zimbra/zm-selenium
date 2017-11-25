@@ -67,7 +67,7 @@ public class EditResource extends AdminCore {
 		// Refresh the Resource list
 		app.zPageManageResources.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
 
-		// Click on Resource to be Edited.
+		// Click on Resource to be edited
 		app.zPageManageResources.zListItem(Action.A_LEFTCLICK, resource.getEmailAddress());
 
 		// Click on Edit button
@@ -78,7 +78,7 @@ public class EditResource extends AdminCore {
 
 		// Edit the name
 		String editedName = "editedResource_" + ConfigProperties.getUniqueString();
-		form.setName(editedName);
+		form.zSetName(editedName);
 
 		// Submit
 		form.zSubmit();
@@ -132,7 +132,7 @@ public class EditResource extends AdminCore {
 		// Refresh the Resource list
 		app.zPageManageResources.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
 
-		// Click on Resource to be Edited.
+		// Click on Resource to be edited
 		 app.zPageManageResources.zListItem(Action.A_LEFTCLICK, resource.getEmailAddress());
 
 		// Click on Edit button
@@ -143,7 +143,7 @@ public class EditResource extends AdminCore {
 
 		// Edit the name
 		String editedName = "editedResource_" + ConfigProperties.getUniqueString();
-		form.setName(editedName);
+		form.zSetName(editedName);
 
 		// Submit
 		form.zSubmit();
@@ -188,7 +188,7 @@ public class EditResource extends AdminCore {
 		// Refresh the Resource list
 		app.zPageManageResources.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
 
-		// Right Click on Resource to be Edited.
+		// Right Click on Resource to be edited
 		app.zPageManageResources.zListItem(Action.A_RIGHTCLICK, resource.getEmailAddress());
 
 		// Click on Edit button
@@ -199,7 +199,7 @@ public class EditResource extends AdminCore {
 
 		// Edit the name
 		String editedName = "editedResource_" + ConfigProperties.getUniqueString();
-		form.setName(editedName);
+		form.zSetName(editedName);
 
 		// Submit
 		form.zSubmit();
@@ -244,7 +244,7 @@ public class EditResource extends AdminCore {
 		// Refresh the Resource list
 		app.zPageManageResources.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
 
-		// Right Click on Resource to be Edited.
+		// Right Click on Resource to be edited
 		app.zPageManageResources.zListItem(Action.A_RIGHTCLICK, resource.getEmailAddress());
 
 		// Click on Edit button
@@ -255,7 +255,7 @@ public class EditResource extends AdminCore {
 
 		// Edit the name
 		String editedName = "editedResource_" + ConfigProperties.getUniqueString();
-		form.setName(editedName);
+		form.zSetName(editedName);
 
 		// Submit
 		form.zSubmit();
@@ -303,11 +303,11 @@ public class EditResource extends AdminCore {
 		// Click search
 		app.zPageSearchResults.zToolbarPressButton(Button.B_SEARCH);
 
-		// Click on Resource to be Edited.
+		// Click on Resource to be edited
 		app.zPageSearchResults.zListItem(Action.A_LEFTCLICK, resource.getEmailAddress());
 
 		// Click on Edit button
-		app.zPageSearchResults.setType(PageSearchResults.TypeOfObject.RESOURCE);
+		app.zPageSearchResults.zSetType(PageSearchResults.TypeOfObject.RESOURCE);
 		FormEditResource form = (FormEditResource) app.zPageSearchResults.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_EDIT);
 
 		// Click on General Information tab
@@ -315,7 +315,7 @@ public class EditResource extends AdminCore {
 
 		// Edit the name
 		String editedName = "editedResource_" + ConfigProperties.getUniqueString();
-		form.setName(editedName);
+		form.zSetName(editedName);
 
 		// Submit
 		form.zSubmit();
@@ -363,11 +363,11 @@ public class EditResource extends AdminCore {
 		// Click search
 		app.zPageSearchResults.zToolbarPressButton(Button.B_SEARCH);
 
-		// Click on Resource to be Edited.
+		// Click on Resource to be edited
 		app.zPageSearchResults.zListItem(Action.A_LEFTCLICK, resource.getEmailAddress());
 
 		// Click on Edit button
-		app.zPageSearchResults.setType(PageSearchResults.TypeOfObject.RESOURCE);
+		app.zPageSearchResults.zSetType(PageSearchResults.TypeOfObject.RESOURCE);
 		FormEditResource form = (FormEditResource) app.zPageSearchResults.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_EDIT);
 
 		// Click on General Information tab
@@ -375,7 +375,7 @@ public class EditResource extends AdminCore {
 
 		// Edit the name
 		String editedName = "editedResource_" + ConfigProperties.getUniqueString();
-		form.setName(editedName);
+		form.zSetName(editedName);
 
 		// Submit
 		form.zSubmit();
@@ -423,11 +423,11 @@ public class EditResource extends AdminCore {
 		// Click search
 		app.zPageSearchResults.zToolbarPressButton(Button.B_SEARCH);
 
-		// Click on Resource to be Edited.
+		// Click on Resource to be edited
 		app.zPageSearchResults.zListItem(Action.A_RIGHTCLICK, resource.getEmailAddress());
 
 		// Click on Edit button
-		app.zPageSearchResults.setType(PageSearchResults.TypeOfObject.RESOURCE);
+		app.zPageSearchResults.zSetType(PageSearchResults.TypeOfObject.RESOURCE);
 		FormEditResource form = (FormEditResource) app.zPageSearchResults.zToolbarPressButton(Button.B_TREE_EDIT);
 
 		// Click on General Information tab
@@ -435,7 +435,7 @@ public class EditResource extends AdminCore {
 
 		// Edit the name
 		String editedName = "editedResource_" + ConfigProperties.getUniqueString();
-		form.setName(editedName);
+		form.zSetName(editedName);
 
 		// Submit
 		form.zSubmit();
@@ -483,11 +483,11 @@ public class EditResource extends AdminCore {
 		// Click search
 		app.zPageSearchResults.zToolbarPressButton(Button.B_SEARCH);
 
-		// Click on Resource to be Edited.
+		// Click on Resource to be edited
 		app.zPageSearchResults.zListItem(Action.A_RIGHTCLICK, resource.getEmailAddress());
 
 		// Click on Edit button
-		app.zPageSearchResults.setType(PageSearchResults.TypeOfObject.RESOURCE);
+		app.zPageSearchResults.zSetType(PageSearchResults.TypeOfObject.RESOURCE);
 		FormEditResource form = (FormEditResource) app.zPageSearchResults.zToolbarPressButton(Button.B_TREE_EDIT);
 
 		// Click on General Information tab
@@ -495,7 +495,7 @@ public class EditResource extends AdminCore {
 
 		// Edit the name
 		String editedName = "editedResource_" + ConfigProperties.getUniqueString();
-		form.setName(editedName);
+		form.zSetName(editedName);
 
 		// Submit
 		form.zSubmit();

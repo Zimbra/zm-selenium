@@ -46,38 +46,22 @@ public class PageEditCOS extends AbsTab {
 		public static final String MOBILE_ACCESS = "css=div[id^='zti__AppAdmin__CONFIGURATION__COS'][id$='_textCell']:contains('Mobile Access')";
 		public static final String ARCHIVING = "css=div[id^='zti__AppAdmin__Home__actLstHV'][id$='_textCell']:contains('Archiving')";
 		public static final String ADD_BUTTON = "css=td[id$='dwt_button_5___container']:contains('Add')";
-
 	}
 
 	public PageEditCOS(AbsApplication application) {
 		super(application);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see projects.admin.pages.AbsTab#isActive()
-	 */
 	@Override
 	public boolean zIsActive() throws HarnessException {
 		throw new HarnessException("implement me");
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see projects.admin.pages.AbsTab#myPageName()
-	 */
 	@Override
 	public String myPageName() {
 		return (this.getClass().getName());
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see projects.admin.pages.AbsTab#navigateTo()
-	 */
 	@Override
 	public void zNavigateTo() throws HarnessException {
 		throw new HarnessException("implement me");
@@ -101,7 +85,6 @@ public class PageEditCOS extends AbsTab {
 	@Override
 	public AbsPage zToolbarPressPulldown(Button pulldown, Button option) throws HarnessException {
 		return null;
-
 	}
 
 	@Override
@@ -114,43 +97,33 @@ public class PageEditCOS extends AbsTab {
 		if (button == null)
 			throw new HarnessException("Button cannot be null!");
 
-		//
-		String locator = null; // If set, this will be clicked
-		AbsPage page = null; // If set, this page will be returned
-
-		// Based on the button specified, take the appropriate action(s)
-		//
+		String locator = null;
+		AbsPage page = null;
 
 		if (button == Button.B_ADD) {
-
 			locator = Locators.ADD_BUTTON;
-
 			page = new FormEditAccount(this.MyApplication);
+
 		} else if (button == Button.B_FEATURES) {
-
 			locator = Locators.FEATURES;
-
 			page = new FormEditAccount(this.MyApplication);
+
 		} else if (button == Button.B_PREFERENCES) {
-
 			locator = Locators.PREFERENCES;
-
 			page = new FormEditAccount(this.MyApplication);
+
 		} else if (button == Button.B_ALIASES) {
-
 			locator = Locators.ALIASES;
-
 			page = new FormEditAccount(this.MyApplication);
+
 		} else if (button == Button.B_MOBILE_ACCESS) {
-
 			locator = Locators.MOBILE_ACCESS;
-
 			page = new FormEditAccount(this.MyApplication);
+
 		} else if (button == Button.B_ARCHIVING) {
-
 			locator = Locators.ARCHIVING;
-
 			page = new FormEditAccount(this.MyApplication);
+
 		} else {
 			throw new HarnessException("no logic defined for button " + button);
 		}
@@ -159,17 +132,13 @@ public class PageEditCOS extends AbsTab {
 			throw new HarnessException("locator was null for button " + button);
 		}
 
-		// Default behavior, process the locator by clicking on it
-		//
 		this.sClickAt(locator, "");
 		SleepUtil.sleepMedium();
 
-		// If page was specified, make sure it is active
 		if (page != null) {
 			SleepUtil.sleepMedium();
 		}
 
-		// sMouseOut(locator);
 		return (page);
 
 	}
@@ -182,24 +151,19 @@ public class PageEditCOS extends AbsTab {
 		String locator = null;
 
 		if (button == Button.B_TWO_FACTOR_AUTH_NUM_SCRATCH_CODES) {
-
 			locator = Locators.zTwoFactorAuthNumScratchCodes;
 
 		} else {
 			throw new HarnessException("Button " + button + " not implemented");
 		}
 
-		// Make sure the locator was set
 		if (locator == null) {
 			throw new HarnessException("Button " + button + " not implemented");
 		}
 
-		// Make sure the locator exists
 		if (!this.sIsElementPresent(locator)) {
 			throw new HarnessException(locator + " no present!");
-		}
-
-		else {
+		} else {
 			this.sType(locator, numscratchcodes);
 		}
 
@@ -217,27 +181,22 @@ public class PageEditCOS extends AbsTab {
 		SleepUtil.sleepSmall();
 
 		if (button == Button.B_ENABLE_TWO_FACTOR_AUTH) {
-
 			locator = Locators.zEnableTwoFactorAuth;
 
 		} else if (button == Button.B_REQUIRED_TWO_FACTOR_AUTH) {
-
 			locator = Locators.zRequiredTwoFactorAuth;
 
 		} else if (button == Button.B_ENABLE_APPLICATION_PASSCODES) {
-
 			locator = Locators.zEnableApplicationPasscodes;
 
 		} else {
 			throw new HarnessException("Button " + button + " not implemented");
 		}
 
-		// Make sure the locator was set
 		if (locator == null) {
 			throw new HarnessException("Button " + button + " not implemented");
 		}
 
-		// Make sure the locator exists
 		if (!this.sIsElementPresent(locator)) {
 			throw new HarnessException("Button " + button + " locator " + locator + " not present!");
 		}
@@ -257,5 +216,4 @@ public class PageEditCOS extends AbsTab {
 		SleepUtil.sleepSmall();
 		return (page);
 	}
-
 }

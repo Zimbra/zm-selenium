@@ -32,7 +32,7 @@ public class CheckDLFolderUI extends UniversalCore  {
 	}
 
 	@Test (description = "Right click to DL folder and check respected UI options", 
-			groups = { "functional", "L2"})
+			groups = { "functional", "L2" })
 
 	public void CheckDLFolderRightClickOptions_01 () throws HarnessException {
 

@@ -207,7 +207,7 @@ public class MoveDocument extends EnableBriefcaseFeature {
 	}
 
 	@Test (description = "Create document through SOAP - move using Right Click Context Menu & verify through GUI", 
-			groups = {"functional", "L3" })
+			groups = { "functional", "L3" })
 
 	public void MoveDocument_03() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();

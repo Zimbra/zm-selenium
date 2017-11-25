@@ -67,7 +67,7 @@ public class DeleteTextSignature extends AjaxCore {
 	 */
 
 	@Test (description = "Delete Text signature using Delete button and verify  through soap ",
-			groups = { "smoke", "L1"  })
+			groups = { "smoke", "L1" })
 
 	public void DeleteTextSignatures_01() throws HarnessException {
 
