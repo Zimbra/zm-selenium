@@ -110,7 +110,7 @@ public class PageManageAliases extends AbsTab {
 		// How many items are in the table?
 		String rowsLocator = "css=div#zl__ALIAS_MANAGE div[id$='__rows'] div[id^='zli__']";
 		int count = this.sGetCssCount(rowsLocator);
-		logger.debug(myPageName() + " zListGetAccounts: number of accounts: " + count);
+		logger.debug(myPageName() + " zListItem: number of rows: " + count);
 
 		for (int i = 1; i <= count; i++) {
 			final String accountLocator = rowsLocator + ":nth-child(" + i + ")";

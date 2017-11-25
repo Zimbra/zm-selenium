@@ -277,7 +277,7 @@ public class PageManageCOS extends AbsTab {
 		// How many items are in the table?
 		String rowsLocator = "css=div#zl__COS_MANAGE div[id$='__rows'] div[id^='zli__']";
 		int count = this.sGetCssCount(rowsLocator);
-		logger.debug(myPageName() + " zListGetAccounts: number of COSs: " + count);
+		logger.debug(myPageName() + " zListGetCos: number of rows: " + count);
 
 		for (int i = 1; i <= count; i++) {
 			final String cosLocator = rowsLocator + ":nth-child(" + i + ")";

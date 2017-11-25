@@ -25,8 +25,14 @@ import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.admin.core.AdminCore;
+import com.zimbra.qa.selenium.projects.admin.pages.PageMain;
 
 public class DownloadsTab extends AdminCore {
+
+	public DownloadsTab() {
+		logger.info("New "+ DownloadsTab.class.getCanonicalName());
+		super.startingPage = app.zPageDownloads;
+	}
 
 	public static String[] downloadLinkLocators = {
 		"//a[contains(text(),'ZCS Migration Wizard for Exchange/PST (32bit)')]",
@@ -42,12 +48,6 @@ public class DownloadsTab extends AdminCore {
 		"//a[contains(text(),'Zimbra Connector for Outlook (64bit)')]",
 		"//a[contains(text(),'Legacy ZCS Migration Wizard for Exchange')]",
 	};
-
-	public DownloadsTab() {
-		logger.info("New "+ DownloadsTab.class.getCanonicalName());
-		super.startingPage = app.zPageDownloads;
-	}
-
 
 	@Test (description = "Verify the Downloads Tab contains the correct download links",
 			groups = { "functional", "L2" })
@@ -110,10 +110,11 @@ public class DownloadsTab extends AdminCore {
 		}
 	}
 
+
 	@AfterMethod(groups={"always"})
 	public void afterMethod() throws HarnessException {
 		logger.info("Opening base URL...");
 		app.zPageMain.sOpen(ConfigProperties.getBaseURL());
-		app.zPageMain.zWaitTillElementPresent("css=div[id='skin_container_help'] div[class='ImgNodeExpandedWhite']");
+		app.zPageMain.zWaitTillElementPresent(PageMain.Locators.zHelpButton);
 	}
 }

@@ -97,14 +97,13 @@ public class CreateTaskFolder extends AjaxCore {
 		ZAssert.assertEquals(folder.getName(), _folderName,"Verify the server and client folder names match");
 	}
 
+
 	@AfterMethod(groups = { "always" })
 	public void createFolderTestCleanup() {
 		if (_folderIsCreated) {
 			try {
 				app.zPageTasks.zNavigateTo();
-				// Delete it from Email Server
-				FolderItem
-						.deleteUsingSOAP(app.zGetActiveAccount(), _folderName);
+				FolderItem.deleteUsingSOAP(app.zGetActiveAccount(), _folderName);
 			} catch (Exception e) {
 				logger.warn("Failed while removing the folder.", e);
 			} finally {

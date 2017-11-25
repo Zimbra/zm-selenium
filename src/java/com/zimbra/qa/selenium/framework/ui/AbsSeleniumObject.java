@@ -849,8 +849,9 @@ public abstract class AbsSeleniumObject {
 		} else if (ConfigProperties.getAppType().name().equals("ADMIN")) {
 
 			boolean loginPagePresent = false, mainUIPresent = false;
-			SleepUtil.sleepMedium();
-			for (int i = 0; i <= 10; i++) {
+
+			SleepUtil.sleepSmall();
+			for (int i = 0; i <= 15; i++) {
 				if (zIsVisiblePerPosition(PageMain.Locators.zHelpButton, 10, 10) == true) {
 					mainUIPresent = true;
 					break;
@@ -861,7 +862,7 @@ public abstract class AbsSeleniumObject {
 					SleepUtil.sleepMedium();
 				}
 			}
-			SleepUtil.sleepMedium();
+			SleepUtil.sleepSmall();
 			if (loginPagePresent == false && mainUIPresent == false) {
 				throw new HarnessException("Neither login page nor main UI locator present");
 			}
@@ -879,7 +880,7 @@ public abstract class AbsSeleniumObject {
 			} else {
 				logger.info(locator + " locator not found, refreshing UI..");
 				webDriver().navigate().refresh();
-				SleepUtil.sleepLong();
+				SleepUtil.sleepLongMedium();
 			}
 		}
 		if (present == false) {
@@ -1069,7 +1070,8 @@ public abstract class AbsSeleniumObject {
 		logger.info("zWaitTillElementPresent(" + locator + ")");
 
 		boolean present = false;
-		for (int i = 0; i <= 10; i++) {
+		SleepUtil.sleepSmall();
+		for (int i = 0; i <= 15; i++) {
 			present = zIsVisiblePerPosition(locator, 10, 10);
 			if (present == true) {
 				SleepUtil.sleepSmall();

@@ -257,7 +257,7 @@ public class PageManageCertificates extends AbsTab {
 		// How many items are in the table?
 		String rowsLocator = "css=div[id='zl__SERVER_MANAGE'] div[id$='__rows'] div[id^='zli__']";
 		int count = this.sGetCssCount(rowsLocator);
-		logger.debug(myPageName() + " zListGetPolicy: number of policys: " + count);
+		logger.debug(myPageName() + " zListItem: number of rows: " + count);
 
 		for (int i = 1; i <= count; i++) {
 			final String serverLocator = rowsLocator + ":nth-child(" + i + ")";

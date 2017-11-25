@@ -148,7 +148,7 @@ public class FormSearchMail extends AbsForm {
 		// How many items are in the table?
 		String rowsLocator = "css=td[id$='_accountPool___container'] div[id^='zl'] div[id^='zli__']";
 		int count = this.sGetCssCount(rowsLocator);
-		logger.debug(myPageName() + " zListGetPolicy: number of policys: " + count);
+		logger.debug(myPageName() + " zSearchInSelectedAccount: number of rows: " + count);
 
 		for (int i = 1; i <= count; i++) {
 			final String accountLocator = rowsLocator + ":nth-child(" + i + ")";

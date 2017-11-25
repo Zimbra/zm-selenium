@@ -220,7 +220,7 @@ public class PageManageBackups extends AbsTab {
 		// How many items are in the table?
 		String rowsLocator = "css=div[id='zl__ZaBackupListView'] div[id$='__rows'] div[id^='zli__']";
 		int count = this.sGetCssCount(rowsLocator);
-		logger.debug(myPageName() + " zVerifyBackupStatus: number of backups: " + count);
+		logger.debug(myPageName() + " zVerifyBackupStatus: number of rows: " + count);
 
 		// Get each row data from the table list
 		final String backupLocator = rowsLocator + ":nth-child(1)";

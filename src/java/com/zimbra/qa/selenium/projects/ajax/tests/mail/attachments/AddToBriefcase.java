@@ -188,6 +188,7 @@ public class AddToBriefcase extends SetGroupMailByMessagePreference {
 		ZAssert.assertEquals(name, filename, "Verify saved to Briefcase mail attachment name through SOAP");
 	}
 
+
 	@AfterMethod(groups = { "always" })
 	public void afterMethod() throws HarnessException {
 		logger.info("AfterMethod cleanup ...");

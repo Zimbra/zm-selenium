@@ -25,7 +25,6 @@ import com.zimbra.qa.selenium.projects.ajax.core.*;
 import com.zimbra.qa.selenium.projects.ajax.pages.*;
 import com.zimbra.qa.selenium.projects.ajax.pages.mail.DialogCreateFolder;
 
-
 public class MoveConversation extends SetGroupMailByConversationPreference {
 
 	public MoveConversation() {

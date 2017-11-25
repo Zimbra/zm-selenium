@@ -76,6 +76,7 @@ public class ZimbraPrefCalendarFirstDayOfWeek extends AjaxCore {
         }
 	}
 
+
 	@AfterMethod(groups={"always"})
 	public void afterMethod() throws HarnessException {
 		zFreshLogin();

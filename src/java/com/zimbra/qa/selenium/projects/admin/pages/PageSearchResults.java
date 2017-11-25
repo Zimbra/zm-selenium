@@ -348,7 +348,7 @@ public class PageSearchResults extends AbsTab {
 		int count = this.sGetCssCount(rowsLocator);
 		int scrollCounter = 50;
 
-		logger.debug(myPageName() + " zListGetAccounts: number of accounts: " + count);
+		logger.debug(myPageName() + " zListGetAccounts: number of rows: " + count);
 
 		if (count >= 50) {
 

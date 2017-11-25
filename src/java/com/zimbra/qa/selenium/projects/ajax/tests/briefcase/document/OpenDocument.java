@@ -236,6 +236,7 @@ public class OpenDocument extends EnableBriefcaseFeature {
 		app.zPageBriefcase.deleteFileByName(docName);
 	}
 
+
 	@AfterMethod(groups = { "always" })
 	public void afterMethod() throws HarnessException {
 		logger.info("Checking for the opened window ...");

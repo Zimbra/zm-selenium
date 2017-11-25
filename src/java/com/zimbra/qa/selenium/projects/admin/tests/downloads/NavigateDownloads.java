@@ -16,11 +16,15 @@
  */
 package com.zimbra.qa.selenium.projects.admin.tests.downloads;
 
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
+
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.projects.admin.core.AdminCore;
 import com.zimbra.qa.selenium.projects.admin.pages.PageDownloads;
+import com.zimbra.qa.selenium.projects.admin.pages.PageMain;
 
 public class NavigateDownloads extends AdminCore {
 
@@ -52,5 +56,13 @@ public class NavigateDownloads extends AdminCore {
 				"Verfiy the 'Tools and Migration' text exists in navigation path");
 		ZAssert.assertTrue(app.zPageDownloads.zVerifyHeader(PageDownloads.Locators.DOWNLOAD),
 				"Verfiy the 'Downloads' text exists in navigation path");
+	}
+
+
+	@AfterMethod(groups={"always"})
+	public void afterMethod() throws HarnessException {
+		logger.info("Opening base URL...");
+		app.zPageMain.sOpen(ConfigProperties.getBaseURL());
+		app.zPageMain.zWaitTillElementPresent(PageMain.Locators.zHelpButton);
 	}
 }

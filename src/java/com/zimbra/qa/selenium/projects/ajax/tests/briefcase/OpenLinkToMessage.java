@@ -86,11 +86,9 @@ public class OpenLinkToMessage extends EnableBriefcaseFeature {
 		map.put("id", mail.getId());
 
 		app.zPageBriefcase.openUrl("", map);
-
 		String locator = PageBriefcase.Locators.zCloseIconBtn.locator;
 
 		app.zPageBriefcase.zWaitForElementPresent(locator);
-
 		app.zPageBriefcase.sClickAt(locator, "");
 		SleepUtil.sleepSmall();
 
@@ -98,11 +96,11 @@ public class OpenLinkToMessage extends EnableBriefcaseFeature {
 				"Verify List View Rows are displayed after message pane is closed");
 	}
 
+
 	@AfterMethod(groups = { "always" })
 	public void afterMethod() throws HarnessException {
 		logger.info("Switching to Briefcase page ...");
 
-		// app.zPageBriefcase.openUrl("", null);
 		app.zPageBriefcase.openUrl(url);
 		app.zPageBriefcase.zWaitForElementPresent(PageMain.Locators.zLogoffOption,"2000");
 		app.zPageBriefcase.zNavigateTo();

@@ -144,14 +144,14 @@ public class PageManageGlobalACL extends AbsTab {
 
 	public boolean zVerifyGranteeName(String item) throws HarnessException {
 
-		logger.info(myPageName() + " zVerifyPolicyName(" + item + ")");
+		logger.info(myPageName() + " zVerifyGranteeName(" + item + ")");
 		boolean found = false;
 		SleepUtil.sleepMedium();
 
 		// How many items are in the table?
 		String rowsLocator = "css=div[id='zl'] div[id$='__rows'] div[id^='zli__']";
 		int count = this.sGetCssCount(rowsLocator);
-		logger.debug(myPageName() + " zVerifyPolicyName: number of policys: " + count);
+		logger.debug(myPageName() + " zVerifyGranteeName: number of rows: " + count);
 
 		// Get each row data from the table list
 		for (int i = 1; i <= count; i++) {

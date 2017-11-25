@@ -539,14 +539,14 @@ public class PageManageDomains extends AbsTab {
 
 	public boolean zVerifyACE(String item) throws HarnessException {
 
-		logger.info(myPageName() + " zVerifyPolicyName(" + item + ")");
+		logger.info(myPageName() + " zVerifyACE(" + item + ")");
 		boolean found = false;
 		SleepUtil.sleepMedium();
 
 		// How many items are in the table?
 		String rowsLocator = "css=div[id='zl'] div[id$='__rows'] div[id^='zli__']";
 		int count = this.sGetCssCount(rowsLocator);
-		logger.debug(myPageName() + " zListGetPolicy: number of policys: " + count);
+		logger.debug(myPageName() + " zVerifyACE: number of rows: " + count);
 
 		for (int i = 1; i <= count; i++) {
 			final String aceLocator = rowsLocator + ":nth-child(" + i + ")";

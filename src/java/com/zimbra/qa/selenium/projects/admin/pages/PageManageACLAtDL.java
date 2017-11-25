@@ -248,7 +248,7 @@ public class PageManageACLAtDL extends AbsTab {
 		String rowsLocator = "css=td[id$='_grantsList___container'] div[id$='__rows'] div[id^='zli__']";
 
 		int count = this.sGetCssCount(rowsLocator);
-		logger.debug(myPageName() + " zVerifyPolicyName: number of policys: " + count);
+		logger.debug(myPageName() + " zVerifyACL: number of rows: " + count);
 
 		// Get each row data from the table list
 		for (int i = 1; i <= count; i++) {

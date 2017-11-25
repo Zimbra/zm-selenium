@@ -298,41 +298,30 @@ public class FormEditAccount extends AbsForm {
 
 	public void zLimitZimlets(String zimlet) throws HarnessException {
 		logger.info(myPageName() + " zLimitZimlets(" + zimlet + ")");
-		tracer.trace("Click page button ");
 
+		SleepUtil.sleepSmall();
 		sClick(Locators.LIMIT_ZIMLETS_RADIO);
 		SleepUtil.sleepSmall();
 		sUncheck("css=td[id$='zimbraZimletAvailableZimlets_4___container'] div table tbody tr:contains('" + zimlet
 				+ "') td input");
-		if (!this.sIsElementPresent(
-				"css=td[id$='zimbraZimletAvailableZimlets_4___container'] div table tbody tr:contains('" + zimlet
-						+ "') td input")) {
-			throw new HarnessException("Element is not present!");
-		}
+		SleepUtil.sleepSmall();
 	}
 
 	public void zLimitThemes(String theme) throws HarnessException {
-		logger.info(myPageName() + " zLimitZimlets(" + theme + ")");
-		tracer.trace("Click page button ");
+		logger.info(myPageName() + " zLimitThemes(" + theme + ")");
 
+		SleepUtil.sleepSmall();
 		sClick(Locators.LIMIT_THEME_RADIO);
 		SleepUtil.sleepSmall();
 		sCheck("css=td[id$='zimbraAvailableSkin_4___container'] div table tbody tr:contains('" + theme + "') input");
-		if (!this.sIsElementPresent(
-				"css=td[id$='zimbraAvailableSkin_4___container'] div table tbody tr:contains('" + theme + "') input")) {
-			throw new HarnessException("Element is not present!");
-		}
+		SleepUtil.sleepSmall();
 	}
 
 	public void zSetCurrentUITheme(String theme) throws HarnessException {
-		logger.info(myPageName() + " zLimitZimlets(" + theme + ")");
-		tracer.trace("Click page button ");
+		logger.info(myPageName() + " zSetCurrentUITheme(" + theme + ")");
 
 		SleepUtil.sleepSmall();
 		sCheck("css=td[id$='zimbraAvailableSkin_4___container'] div table tbody tr:contains('" + theme + "') input");
-		if (!this.sIsElementPresent(
-				"css=td[id$='zimbraAvailableSkin_4___container'] div table tbody tr:contains('" + theme + "') input")) {
-			throw new HarnessException("Element is not present!");
-		}
+		SleepUtil.sleepSmall();
 	}
 }

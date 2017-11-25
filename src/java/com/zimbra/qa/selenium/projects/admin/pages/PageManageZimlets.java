@@ -70,7 +70,7 @@ public class PageManageZimlets extends AbsTab {
 		// How many items are in the table?
 		String rowsLocator = "css=div#zl__ZIMLET_MANAGE div[id$='__rows'] div[id^='zli__']";
 		int count = this.sGetCssCount(rowsLocator);
-		logger.debug(myPageName() + " zListGetAccounts: number of accounts: " + count);
+		logger.debug(myPageName() + " zListItem: number of rows: " + count);
 
 		count = this.sGetCssCount(rowsLocator);
 

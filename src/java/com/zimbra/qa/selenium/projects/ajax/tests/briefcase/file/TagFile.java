@@ -217,6 +217,7 @@ public class TagFile extends EnableBriefcaseFeature {
 		app.zPageBriefcase.deleteFileByName(fileName);
 	}
 
+
 	@AfterMethod(groups = { "always" })
 	public void afterMethod() throws HarnessException {
 		logger.info("Checking for the opened window ...");

@@ -38,15 +38,15 @@ public class OpenFile extends EnableBriefcaseFeature {
 		logger.info("New " + OpenFile.class.getCanonicalName());
 		super.startingPage = app.zPageBriefcase;
 		super.startingAccountPreferences.put("zimbraPrefShowSelectionCheckbox","TRUE");
-		super.startingAccountPreferences.put("zimbraPrefBriefcaseReadingPaneLocation", "bottom");			
+		super.startingAccountPreferences.put("zimbraPrefBriefcaseReadingPaneLocation", "bottom");
 	}
 
-	
-	@Test (description = "Upload file through RestUtil - open & verify through GUI", 
+
+	@Test (description = "Upload file through RestUtil - open & verify through GUI",
 			groups = { "smoke", "L0" })
-	
+
 	public void OpenFile_01() throws HarnessException {
-		
+
 		ZimbraAccount account = app.zGetActiveAccount();
 
 		FolderItem briefcaseFolder = FolderItem.importFromSOAP(account, SystemFolder.Briefcase);
@@ -98,6 +98,7 @@ public class OpenFile extends EnableBriefcaseFeature {
 		// Delete file upon test completion
 		app.zPageBriefcase.deleteFileByName(fileItem.getName());
 	}
+
 
 	@AfterMethod(groups = { "always" })
 	public void afterMethod() throws HarnessException {

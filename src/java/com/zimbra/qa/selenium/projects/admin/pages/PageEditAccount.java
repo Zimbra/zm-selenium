@@ -176,7 +176,7 @@ public class PageEditAccount extends AbsTab {
 		// How many items are in the table?
 		String rowsLocator = "css=td[id='ztabv__ACCT_EDIT_grantsList___container'] div[id$='__rows'] div[id^='zli__']";
 		int count = this.sGetCssCount(rowsLocator);
-		logger.debug(myPageName() + " zVerifyPolicyName: number of policys: " + count);
+		logger.debug(myPageName() + " zVerifyACL: number of rows: " + count);
 
 		// Get each row data from the table list
 		for (int i = 1; i <= count; i++) {

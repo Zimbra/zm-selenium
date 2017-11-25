@@ -252,6 +252,7 @@ public class MoveDocument extends EnableBriefcaseFeature {
 				"Verify document was moved to the selected folder");
 	}
 
+
 	@AfterMethod(groups = { "always" })
 	public void afterMethod() throws HarnessException {
 		logger.info("Checking for the Move Dialog ...");
@@ -262,6 +263,5 @@ public class MoveDocument extends EnableBriefcaseFeature {
 			logger.warn(dialog.myPageName() + " was still active.  Cancelling ...");
 			dialog.zPressButton(Button.B_CANCEL);
 		}
-
 	}
 }

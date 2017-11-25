@@ -177,14 +177,13 @@ public class CreateFolder extends EnableBriefcaseFeature {
 		ZAssert.assertEquals(folder.getName(), _folderName, "Verify the server and client folder names match");
 	}
 
+
 	@AfterMethod(groups = { "always" })
 	public void createFolderTestCleanup() {
 		if (_folderIsCreated) {
 			try {
 				app.zPageBriefcase.zNavigateTo();
-				// Delete it from Server
-				FolderItem
-						.deleteUsingSOAP(app.zGetActiveAccount(), _folderName);
+				FolderItem.deleteUsingSOAP(app.zGetActiveAccount(), _folderName);
 			} catch (Exception e) {
 				logger.warn("Failed while removing the folder.", e);
 			} finally {

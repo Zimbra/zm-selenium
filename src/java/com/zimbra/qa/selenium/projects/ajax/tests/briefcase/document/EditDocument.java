@@ -331,6 +331,7 @@ public class EditDocument extends EnableBriefcaseFeature {
 		app.zPageBriefcase.deleteFileByName(docItem.getName());
 	}
 
+
 	@AfterMethod(groups = { "always" })
 	public void afterMethod() throws HarnessException {
 		logger.info("Checking for the opened window ...");

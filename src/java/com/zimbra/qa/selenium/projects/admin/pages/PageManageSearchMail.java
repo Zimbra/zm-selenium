@@ -237,14 +237,14 @@ public class PageManageSearchMail extends AbsTab {
 
 	public boolean zVerifySearchResult(String item) throws HarnessException {
 
-		logger.info(myPageName() + " zVerifyPolicyName(" + item + ")");
+		logger.info(myPageName() + " zVerifySearchResult(" + item + ")");
 		boolean found = false;
 		SleepUtil.sleepMedium();
 
 		// How many items are in the table?
 		String rowsLocator = "css=td[id='ztabv__UNDEFINE_searchesList___container'] div[id$='__rows'] div[id^='zli__']";
 		int count = this.sGetCssCount(rowsLocator);
-		logger.debug(myPageName() + " zVerifyPolicyName: number of policys: " + count);
+		logger.debug(myPageName() + " zVerifySearchResult: number of rows: " + count);
 
 		// Get each row data from the table list
 		for (int i = 1; i <= count; i++) {

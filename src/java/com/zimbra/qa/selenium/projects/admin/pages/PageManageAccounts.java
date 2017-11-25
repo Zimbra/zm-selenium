@@ -244,7 +244,7 @@ public class PageManageAccounts extends AbsTab {
 
 			if (count >= 50) {
 
-				for (int accountPaging = 1; accountPaging <= 50; accountPaging++) {
+				for (int accountPaging = 1; accountPaging <= 100; accountPaging++) {
 
 					String pageCounter = rowsLocator + ":nth-child(" + scrollCounter + ")";
 
@@ -447,7 +447,7 @@ public class PageManageAccounts extends AbsTab {
 
 		if (count >= 50) {
 
-			for (int accountPaging = 1; accountPaging <= 50; accountPaging++) {
+			for (int accountPaging = 1; accountPaging <= 100; accountPaging++) {
 
 				String pageCounter = rowsLocator + ":nth-child(" + scrollCounter + ")";
 
