@@ -430,7 +430,7 @@ public class ModifySeries extends AjaxCore {
 		ZAssert.assertEquals(ruleFrequency, "WEE", "Repeat frequency: Verify the appointment data");
 		ZAssert.assertEquals(interval, "1", "Repeat interval: Verify the appointment data");
 		ZAssert.assertEquals(modifiedStartTime, startUTC.addDays(1).toyyyyMMddTHHmmss(), "Start date: Verify the appointment data");
-		ZAssert.assertEquals(modifiedEndTime, endUTC.addDays(1).toyyyyMMddTHHmmss(), "Start date: Verify the appointment data");
+		ZAssert.assertEquals(modifiedEndTime, endUTC.addDays(1).toyyyyMMddTHHmmss(), "End date: Verify the appointment data");
 		ZAssert.assertEquals(untilDate, "20200102T182959Z", "Until date: Verify the appointment data");
 
 
@@ -455,7 +455,7 @@ public class ModifySeries extends AjaxCore {
 		ZAssert.assertEquals(ruleFrequency, "WEE", "Repeat frequency: Verify the appointment data");
 		ZAssert.assertEquals(interval, "1", "Repeat interval: Verify the appointment data");
 		ZAssert.assertEquals(modifiedStartTime, startUTC.addDays(1).toyyyyMMddTHHmmss(), "Start date: Verify the appointment data");
-		ZAssert.assertEquals(modifiedEndTime, endUTC.addDays(1).toyyyyMMddTHHmmss(), "Start date: Verify the appointment data");
+		ZAssert.assertEquals(modifiedEndTime, endUTC.addDays(1).toyyyyMMddTHHmmss(), "End date: Verify the appointment data");
 		ZAssert.assertEquals(untilDate, "20200102T182959Z", "Until date: Verify the appointment data");
 
 		String inboxId = FolderItem.importFromSOAP(ZimbraAccount.Account1(), FolderItem.SystemFolder.Inbox).getId();
