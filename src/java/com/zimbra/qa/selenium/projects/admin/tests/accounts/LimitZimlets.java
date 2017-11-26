@@ -35,7 +35,7 @@ public class LimitZimlets extends AdminCore {
 		super.startingPage = app.zPageManageAccounts;
 	}
 
-	@Test (description = "Edit account - Verify option 'Limit Zimlets available to this user to:'",
+	@Test (description = "Modify account to verify limited Zimlets available",
 			groups = { "smoke", "L1" })
 
 	public void LimitZimlets_01() throws HarnessException {
@@ -48,8 +48,7 @@ public class LimitZimlets extends AdminCore {
 						+			"<password>test123</password>"
 						+		"</CreateAccountRequest>");
 
-		String zimlet="com_zimbra_date";
-		String zimlet_status="!com_zimbra_date";
+		String unavailableZimlet = "com_zimbra_date";
 
 		// Refresh the account list
 		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
@@ -61,7 +60,7 @@ public class LimitZimlets extends AdminCore {
 		app.zPageEditAccount.zToolbarPressButton(Button.B_ZIMLETS);
 
 		// Limit zimlet
-		form.zLimitZimlets(zimlet);
+		form.zLimitZimlets(unavailableZimlet);
 
 		// Save the changes
 		form.zSave();
@@ -72,16 +71,15 @@ public class LimitZimlets extends AdminCore {
 						+			"<account by='name'>"+ account.getEmailAddress() +"</account>"
 						+		"</GetAccountRequest>");
 
-		Element[] response = ZimbraAdminAccount.GlobalAdmin().soapSelectNodes("//admin:a[@n='zimbraZimletAvailableZimlets']");
+		Element[] response = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNodes("//admin:a[@n='zimbraZimletAvailableZimlets']");
 
-		// Verify that MTA configuration has changed
-		boolean value = false;
+		boolean actualModifiedZimlets = false;
 		for(Element e : response ) {
-			if (e.getText().contains(zimlet_status)) {
-				value = true;
+			if (e.getText().contains(unavailableZimlet)) {
+				actualModifiedZimlets = true;
 				break;
 			}
 		}
-		ZAssert.assertFalse(value, "Verify zimlet is unavailable for an account!");
+		ZAssert.assertFalse(actualModifiedZimlets, "Verify modified zimlet unavailable for an account");
 	}
 }
