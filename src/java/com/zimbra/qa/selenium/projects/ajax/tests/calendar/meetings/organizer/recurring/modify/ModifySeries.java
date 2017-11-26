@@ -423,11 +423,15 @@ public class ModifySeries extends AjaxCore {
 
 		String ruleFrequency = app.zGetActiveAccount().soapSelectValue("//mail:appt//mail:rule", "freq");
 		String interval = app.zGetActiveAccount().soapSelectValue("//mail:appt//mail:interval", "ival");
+		String modifiedStartTime = app.zGetActiveAccount().soapSelectValue("//mail:appt//mail:s", "d");
+		String modifiedEndTime = app.zGetActiveAccount().soapSelectValue("//mail:appt//mail:e", "d");
 		String untilDate = app.zGetActiveAccount().soapSelectValue("//mail:appt//mail:until", "d");
 
 		ZAssert.assertEquals(ruleFrequency, "WEE", "Repeat frequency: Verify the appointment data");
 		ZAssert.assertEquals(interval, "1", "Repeat interval: Verify the appointment data");
-		ZAssert.assertEquals(untilDate, "20200103T045959Z", "Until date: Verify the appointment data");
+		ZAssert.assertEquals(modifiedStartTime, startUTC.addDays(1).toyyyyMMddTHHmmss(), "Start date: Verify the appointment data");
+		ZAssert.assertEquals(modifiedEndTime, endUTC.addDays(1).toyyyyMMddTHHmmss(), "Start date: Verify the appointment data");
+		ZAssert.assertEquals(untilDate, "20200102T182959Z", "Until date: Verify the appointment data");
 
 
 		// Attendee1: Search for the appointment (InvId)
@@ -443,12 +447,16 @@ public class ModifySeries extends AjaxCore {
 		String myStatus = ZimbraAccount.Account1().soapSelectValue("//mail:at[@a='"+ ZimbraAccount.Account1().EmailAddress +"']", "ptst");
 		ruleFrequency = app.zGetActiveAccount().soapSelectValue("//mail:appt//mail:rule", "freq");
 		interval = app.zGetActiveAccount().soapSelectValue("//mail:appt//mail:interval", "ival");
+		modifiedStartTime = app.zGetActiveAccount().soapSelectValue("//mail:appt//mail:s", "d");
+		modifiedEndTime = app.zGetActiveAccount().soapSelectValue("//mail:appt//mail:e", "d");
 		untilDate = app.zGetActiveAccount().soapSelectValue("//mail:appt//mail:until", "d");
 
 		ZAssert.assertEquals(myStatus, "NE", "Verify that the attendee status shows as 'NEEDS ACTION'");
 		ZAssert.assertEquals(ruleFrequency, "WEE", "Repeat frequency: Verify the appointment data");
 		ZAssert.assertEquals(interval, "1", "Repeat interval: Verify the appointment data");
-		ZAssert.assertEquals(untilDate, "20200103T045959Z", "Until date: Verify the appointment data");
+		ZAssert.assertEquals(modifiedStartTime, startUTC.addDays(1).toyyyyMMddTHHmmss(), "Start date: Verify the appointment data");
+		ZAssert.assertEquals(modifiedEndTime, endUTC.addDays(1).toyyyyMMddTHHmmss(), "Start date: Verify the appointment data");
+		ZAssert.assertEquals(untilDate, "20200102T182959Z", "Until date: Verify the appointment data");
 
 		String inboxId = FolderItem.importFromSOAP(ZimbraAccount.Account1(), FolderItem.SystemFolder.Inbox).getId();
 		ZimbraAccount.Account1().soapSend(
