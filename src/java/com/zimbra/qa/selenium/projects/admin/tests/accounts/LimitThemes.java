@@ -36,13 +36,14 @@ public class LimitThemes extends AdminCore {
 	}
 
 
-	@Test (description = "Edit account - Verify option 'Limit Themes available to this user to:'",
+	@Test (description = "Modify account to verify limited themes available",
 			groups = { "smoke", "L1" })
 
 	public void LimitThemes_01() throws HarnessException {
 
 		// Create a new account in the Admin Console using SOAP
-		AccountItem account = new AccountItem("email" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
+		AccountItem account = new AccountItem("email" + ConfigProperties.getUniqueString(), ConfigProperties.getStringProperty("testdomain"));
+
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<CreateAccountRequest xmlns='urn:zimbraAdmin'>"
 						+			"<name>" + account.getEmailAddress() + "</name>"
@@ -60,7 +61,7 @@ public class LimitThemes extends AdminCore {
 		// Click on themes tab
 		app.zPageEditAccount.zToolbarPressButton(Button.B_THEMES);
 
-		// Set available skin
+		// Set available theme
 		form.zLimitThemes(theme);
 
 		// Save the changes
@@ -71,8 +72,11 @@ public class LimitThemes extends AdminCore {
 				"<GetAccountRequest xmlns='urn:zimbraAdmin'>"
 						+			"<account by='name'>"+ account.getEmailAddress() +"</account>"
 						+		"</GetAccountRequest>");
-		Element response = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetAccountResponse/admin:account/admin:a[@n='zimbraAvailableSkin']", 1);
+
+		Element response = ZimbraAdminAccount.AdminConsoleAdmin()
+				.soapSelectNode("//admin:GetAccountResponse/admin:account/admin:a[@n='zimbraAvailableSkin']", 1);
+
 		ZAssert.assertNotNull(response, "Verify the account is edited successfully");
-		ZAssert.assertStringContains(response.toString(),"harmony", "Verify mail feature is disabled");
+		ZAssert.assertStringContains(response.toString(),"harmony", "Verify limited ");
 	}
 }

@@ -41,7 +41,8 @@ public class LimitZimlets extends AdminCore {
 	public void LimitZimlets_01() throws HarnessException {
 
 		// Create a new account in the Admin Console using SOAP
-		AccountItem account = new AccountItem("email" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
+		AccountItem account = new AccountItem("email" + ConfigProperties.getUniqueString(), ConfigProperties.getStringProperty("testdomain"));
+
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<CreateAccountRequest xmlns='urn:zimbraAdmin'>"
 						+			"<name>" + account.getEmailAddress() + "</name>"
@@ -56,7 +57,7 @@ public class LimitZimlets extends AdminCore {
 		// Click on Edit button
 		FormEditAccount form = (FormEditAccount) app.zPageManageAccounts.zListItem(Action.A_RIGHTCLICK, Button.O_EDIT, account.getEmailAddress());
 
-		// Click on Features
+		// Click on zimlets
 		app.zPageEditAccount.zToolbarPressButton(Button.B_ZIMLETS);
 
 		// Limit zimlet
