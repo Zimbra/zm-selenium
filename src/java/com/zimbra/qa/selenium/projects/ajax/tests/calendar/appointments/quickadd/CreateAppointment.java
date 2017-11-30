@@ -98,14 +98,20 @@ public class CreateAppointment extends AjaxCore {
 		appt.setStartTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0));
 		appt.setEndTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 13, 0, 0));
 		appt.setSubject(apptSubject);
-		String startday = String.valueOf(now.get(Calendar.DAY_OF_MONTH) + 3);
+
+		String startDate;
+		if (now.get(Calendar.DAY_OF_MONTH) < 26) {
+			startDate = String.valueOf(now.get(Calendar.DAY_OF_MONTH) + 2);
+		} else {
+			startDate = String.valueOf(now.get(Calendar.DAY_OF_MONTH));
+		}
 
 		// Quick add appointment dialog
 		QuickAddAppointment quickAddAppt = new QuickAddAppointment(app) ;
 		quickAddAppt.zNewAppointment();
 		quickAddAppt.zFillField(Field.Subject, apptSubject);
-		quickAddAppt.zSelectStartDateFromDatePicker(startday);
-		quickAddAppt.zSelectEndDateFromDatePicker(startday);
+		quickAddAppt.zSelectStartDateFromDatePicker(startDate);
+		quickAddAppt.zSelectEndDateFromDatePicker(startDate);
 		quickAddAppt.zFillField(Field.StartTime, "13:00");
 		quickAddAppt.zFillField(Field.EndTime, "14:00");
 		quickAddAppt.zSubmit();
