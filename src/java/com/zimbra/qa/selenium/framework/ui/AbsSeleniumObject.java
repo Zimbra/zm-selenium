@@ -836,16 +836,6 @@ public abstract class AbsSeleniumObject {
 				zWaitTillElementPresent(com.zimbra.qa.selenium.projects.ajax.pages.mail.PageMail.Locators.zMailTagsPane);
 			}
 
-		} else if (ConfigProperties.getAppType().toString().equals("UNIVERSAL")) {
-
-			if (ConfigProperties.getStringProperty("server.host").contains("zimbra.com")) {
-				zWaitTillElementPresent(
-						com.zimbra.qa.selenium.projects.universal.pages.mail.PageMail.Locators.zMailZimletsPane);
-			} else {
-				zWaitTillElementPresent(
-						com.zimbra.qa.selenium.projects.universal.pages.mail.PageMail.Locators.zMailTagsPane);
-			}
-
 		} else if (ConfigProperties.getAppType().name().equals("ADMIN")) {
 
 			boolean loginPagePresent = false, mainUIPresent = false;
