@@ -3111,7 +3111,7 @@ public class PageCalendar extends AbsTab {
 		boolean b = false;
 		for (int i = 1; i <= noOfAppts; i++) {
 
-			if (month < Integer.parseInt(date.toMM_DD_YYYY().split("/")[0])) { // handling the appointments displayed in
+			if (month != Integer.parseInt(date.toMM_DD_YYYY().split("/")[0])) { // handling the appointments displayed in
 																				// next month
 				zToolbarPressButton(Button.B_NEXT_PAGE);
 				SleepUtil.sleepSmall();

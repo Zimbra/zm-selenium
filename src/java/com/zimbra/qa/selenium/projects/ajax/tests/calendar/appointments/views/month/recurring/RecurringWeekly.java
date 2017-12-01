@@ -62,7 +62,7 @@ public class RecurringWeekly extends AjaxCore {
 		// Make sure that appointment is not created on the first day of month as the date cell has month number mentioned in it.
 		for(int i=1; i <= noOfApptInSeries; i++) {
 			if(temp.toDD().equals("01")) {
-				startUTC.addDays(1);
+				startUTC = startUTC.addDays(1);
 				break;
 			}
 			temp = temp.addDays(7);  //Incrementing date by a week

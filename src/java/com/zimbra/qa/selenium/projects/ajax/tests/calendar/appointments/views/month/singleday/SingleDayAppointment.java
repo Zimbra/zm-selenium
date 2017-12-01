@@ -50,7 +50,12 @@ public class SingleDayAppointment extends AjaxCore {
 		// Appointment data
 		String subject = "Appointment"+ ConfigProperties.getUniqueString();
 		ZDate startDate = new ZDate(Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH) + 1, Calendar.getInstance().get(Calendar.DAY_OF_MONTH), 10, 0, 0);
-
+		
+		// Making sure that appointment doesn't get created on 1st day of month
+		if(startDate.toDD().equals("01")) {
+			startDate = startDate.addDays(1);
+		}
+		
 		// Create an appointment of duration 120 mins on next day
 		AppointmentItem.createAppointmentSingleDay(
 				app.zGetActiveAccount(),
