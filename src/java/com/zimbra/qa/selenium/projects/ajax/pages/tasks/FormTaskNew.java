@@ -311,7 +311,7 @@ public class FormTaskNew extends AbsForm {
 						locator = "css=body[id='tinymce']";
 						zWaitForElementPresent(locator);
 
-						this.sClickAt(locator, "");
+						this.sClick(locator);
 						this.sFocus(locator);
 						this.sType(locator, value);
 
