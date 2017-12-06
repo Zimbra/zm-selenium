@@ -279,6 +279,7 @@ public class ExecuteHarnessMain {
 
 		if (OperatingSystem.isWindows() == false || ConfigProperties.getStringProperty("browser").contains("edge")) {
 			excludeGroups.add("upload");
+			excludeGroups.add("non-msedge");
 		}
 
 		PerfMetrics.getInstance().Enabled = groups.contains("performance");
