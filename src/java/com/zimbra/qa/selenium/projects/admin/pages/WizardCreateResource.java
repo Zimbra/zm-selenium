@@ -67,7 +67,7 @@ public class WizardCreateResource extends AbsWizard {
 		sType(Locators.zdlg_RESOURCE_LOCAL_NAME, CN);
 
 		if (resourceType != "") {
-			sClick(Locators.zdlg_RESOURCE_TYPE);
+			sClickAt(Locators.zdlg_RESOURCE_TYPE, "");
 			if (resourceType.equals(Locators.LOCATION)) {
 				sClick(Locators.zdlg_RESOURCE_TYPE_LOCATION);
 			} else if (resourceType.equals(Locators.EQUIPMENT)) {

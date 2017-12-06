@@ -99,7 +99,6 @@ public class PageManageCofigureAuthentication extends AbsTab {
 			SleepUtil.sleepMedium();
 		}
 
-		sMouseOut(locator);
 		return (page);
 	}
 

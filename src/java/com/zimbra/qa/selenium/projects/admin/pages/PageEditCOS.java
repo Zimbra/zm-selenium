@@ -207,7 +207,7 @@ public class PageEditCOS extends AbsTab {
 		}
 
 		if (status == true) {
-			this.sClickAt(locator, "");
+			this.sClick(locator);
 
 		} else {
 			this.sUncheck(locator);

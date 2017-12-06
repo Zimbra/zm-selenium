@@ -143,8 +143,8 @@ public class PageManageAccounts extends AbsTab {
 
 				String pageCounter = rowsLocator + ":nth-child(" + scrollCounter + ")";
 
-				if (this.sIsElementPresent(pageCounter)) {
-					sClickAt(pageCounter, "");
+				if (this.sIsElementPresent(pageCounter) && !this.sIsElementPresent(accountLocator)) {
+					sClick(pageCounter);
 					SleepUtil.sleepVerySmall();
 					this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_DOWN);
 					SleepUtil.sleepVerySmall();
@@ -156,7 +156,7 @@ public class PageManageAccounts extends AbsTab {
 		}
 
 		if (action == Action.A_LEFTCLICK) {
-			sClickAt(accountLocator, "");
+			sClick(accountLocator);
 		} else if (action == Action.A_RIGHTCLICK) {
 			sRightClickAt(accountLocator, "");
 		}
@@ -452,7 +452,7 @@ public class PageManageAccounts extends AbsTab {
 				String pageCounter = rowsLocator + ":nth-child(" + scrollCounter + ")";
 
 				if (this.sIsElementPresent(pageCounter)) {
-					sClickAt(pageCounter, "");
+					sClick(pageCounter);
 					SleepUtil.sleepVerySmall();
 					this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_DOWN);
 					SleepUtil.sleepVerySmall();

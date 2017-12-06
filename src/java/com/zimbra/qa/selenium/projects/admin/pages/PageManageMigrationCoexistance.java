@@ -98,7 +98,6 @@ public class PageManageMigrationCoexistance extends AbsTab {
 			SleepUtil.sleepMedium();
 		}
 
-		sMouseOut(locator);
 		return (page);
 	}
 

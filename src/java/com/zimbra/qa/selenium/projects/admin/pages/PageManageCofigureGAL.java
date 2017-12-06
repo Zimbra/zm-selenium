@@ -112,7 +112,6 @@ public class PageManageCofigureGAL extends AbsTab {
 			SleepUtil.sleepMedium();
 		}
 
-		sMouseOut(locator);
 		return (page);
 	}
 
