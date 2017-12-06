@@ -41,7 +41,7 @@ public class TagContact extends ShowSelectionCheckboxPreference {
 
 
 	@Test (description = "Tag a contact, click pulldown menu Tag->New Tag",
-			groups = { "smoke", "L0", "upload" })
+			groups = { "smoke", "L0", "non-msedge" })
 
 	public void ClickPulldownMenuTagNewTag_01() throws HarnessException {
 

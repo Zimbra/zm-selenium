@@ -191,7 +191,7 @@ public class CreateMeeting extends AjaxCore {
 
 
 	@Test (description = "Create basic meeting invite by selecting date from date picker and time from dropdown",
-			groups = { "sanity", "L0", "upload" })
+			groups = { "sanity", "L0", "non-msedge" })
 
 	public void CreateMeeting_04() throws HarnessException {
 
