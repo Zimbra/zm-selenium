@@ -18,6 +18,9 @@ package com.zimbra.qa.selenium.framework.ui;
 
 import java.util.List;
 import org.apache.log4j.*;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
+
 import com.zimbra.qa.selenium.framework.items.TagItem;
 import com.zimbra.qa.selenium.framework.util.*;
 
@@ -136,6 +139,23 @@ public abstract class AbsTab extends AbsPage {
 		AbsPage page = null;
 		this.zKeyboard.zTypeKeyEvent(keyEvent);
 		this.zWaitForBusyOverlay();
+		return (page);
+	}
+
+	/**
+	 * Use the keychord to enter the specified keyboard key event
+	 *
+	 * @param event
+	 *            see org.openqa.selenium.Keys
+	 * @return Returns the resulting Page, Wizard, etc. or null
+	 * @throws HarnessException
+	 */
+	public AbsPage zKeyChordKeyEvent(Keys event) throws HarnessException {
+		this.zWaitForBusyOverlay();
+		AbsPage page = null;
+		String locator = "//html//body";
+		WebElement we = getElement(locator);
+		we.sendKeys(event);
 		return (page);
 	}
 
