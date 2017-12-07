@@ -20,7 +20,6 @@ import java.util.List;
 import org.apache.log4j.*;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
-
 import com.zimbra.qa.selenium.framework.items.TagItem;
 import com.zimbra.qa.selenium.framework.util.*;
 
