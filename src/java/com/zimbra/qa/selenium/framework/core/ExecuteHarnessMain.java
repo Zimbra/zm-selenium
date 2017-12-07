@@ -282,6 +282,24 @@ public class ExecuteHarnessMain {
 			excludeGroups.add("non-msedge");
 		}
 
+		for (String isNGEnabled : CommandLineUtility.runCommandOnZimbraServer(
+				"zmprov gs `zmhostname` zimbraNetworkModulesNGEnabled | grep -i 'zimbraNetworkModulesNGEnabled' | cut -d : -f 2 | tr -d '[:blank:]'")) {
+			if (isNGEnabled.equals("FALSE")) {
+				excludeGroups.add("ng-module");
+			} else {
+				excludeGroups.add("non-ng");
+			}
+		}
+
+		if (!CommandLineUtility.runCommandOnZimbraServer("dpkg -l | grep -i 'zimbra-chat'").get(0)
+				.contains("ii  zimbra-chat")) {
+			excludeGroups.add("chat");
+		}
+		if (!CommandLineUtility.runCommandOnZimbraServer("dpkg -l | grep -i 'zimbra-drive'").get(0)
+				.contains("ii  zimbra-drive")) {
+			excludeGroups.add("drive");
+		}
+
 		PerfMetrics.getInstance().Enabled = groups.contains("performance");
 
 		// Only one suite per run in the zimbra process (subject to change)
@@ -1535,6 +1553,23 @@ public class ExecuteHarnessMain {
 				logger.info(StafIntegration.logInfo);
 				Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
 				CommandLineUtility.runCommandOnZimbraServer("zmprov mcf zimbraSmimeOCSPEnabled FALSE");
+
+				// Disable chat and drive zimlets on COS if they are enabled
+				ArrayList<String> zimletList= CommandLineUtility.runCommandOnZimbraServer("zmprov -l gc default zimbraZimletAvailableZimlets | grep zimbraZimletAvailableZimlets | cut -c 32-");
+				if (zimletList.contains("com_zextras_chat_open")) {
+					StafIntegration.logInfo = "Disable com_zextras_chat_open zimlets on COS";
+					logger.info(StafIntegration.logInfo);
+					Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo),Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+					CommandLineUtility.runCommandOnZimbraServer("zmprov mc default -zimbraZimletAvailableZimlets '+com_zextras_chat_open'");
+					CommandLineUtility.runCommandOnZimbraServer("zmprov fc -a all");
+				}
+				if (zimletList.contains("com_zextras_drive_open")){
+					StafIntegration.logInfo = "Disable com_zextras_drive_open zimlets on COS";
+					logger.info(StafIntegration.logInfo);
+					Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo),Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+					CommandLineUtility.runCommandOnZimbraServer("zmprov mc default -zimbraZimletAvailableZimlets '+com_zextras_drive_open'");
+					CommandLineUtility.runCommandOnZimbraServer("zmprov fc -a all");
+				}
 
 			// Universal project settings
 			} else if (project.contains("universal")) {

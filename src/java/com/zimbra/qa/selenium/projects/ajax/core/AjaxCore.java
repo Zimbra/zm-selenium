@@ -55,6 +55,7 @@ import com.zimbra.qa.selenium.projects.ajax.pages.mail.FormMailNew;
 import com.zimbra.qa.selenium.projects.ajax.pages.mail.SeparateWindowDisplayMail;
 import com.zimbra.qa.selenium.projects.ajax.pages.mail.SeparateWindowFormMailNew;
 import com.zimbra.qa.selenium.projects.ajax.pages.tasks.FormTaskNew;
+import com.zimbra.qa.selenium.staf.StafIntegration;
 import com.zimbra.qa.selenium.projects.ajax.pages.calendar.FormApptNew;
 import com.zimbra.qa.selenium.projects.ajax.pages.contacts.FormContactDistributionListNew;
 import com.zimbra.qa.selenium.projects.ajax.pages.contacts.FormContactGroupNew;
@@ -138,8 +139,28 @@ public class AjaxCore {
 	}
 
 	@BeforeClass(groups = { "always" })
-	public void coreBeforeClass() throws HarnessException {
+	public void coreBeforeClass() throws HarnessException, IOException {
 		logger.info("BeforeClass: start");
+		logger.info("Class name: " + this.getClass());
+		ArrayList<String> zimletList= null;
+		if (this.getClass().getName().contains("com.zimbra.qa.selenium.projects.ajax.tests.network.chat")) {
+			zimletList=CommandLineUtility.runCommandOnZimbraServer("zmprov -l gc default zimbraZimletAvailableZimlets | grep zimbraZimletAvailableZimlets | cut -c 32-");
+			if (!zimletList.contains("com_zextras_chat_open")) {
+				logger.info("Enable com_zextras_chat_open zimlets on default COS");
+				Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo),Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+				CommandLineUtility.runCommandOnZimbraServer("zmprov mc default +zimbraZimletAvailableZimlets '+com_zextras_chat_open'");
+				CommandLineUtility.runCommandOnZimbraServer("zmprov fc -a all");
+			}
+		}
+		if (this.getClass().getName().contains("com.zimbra.qa.selenium.projects.ajax.tests.network.drive")) {
+			zimletList=CommandLineUtility.runCommandOnZimbraServer("zmprov -l gc default zimbraZimletAvailableZimlets | grep zimbraZimletAvailableZimlets | cut -c 32-");
+			if (!zimletList.contains("com_zextras_drive_open")) {
+				logger.info("Enable com_zextras_drive_open zimlets on default COS");
+				Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo),Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+				CommandLineUtility.runCommandOnZimbraServer("zmprov mc default +zimbraZimletAvailableZimlets '+com_zextras_drive_open'");
+				CommandLineUtility.runCommandOnZimbraServer("zmprov fc -a all");
+			}
+		}
 		logger.info("BeforeClass: finish");
 	}
 
