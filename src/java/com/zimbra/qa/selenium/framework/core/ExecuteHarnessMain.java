@@ -291,12 +291,10 @@ public class ExecuteHarnessMain {
 			}
 		}
 
-		if (!CommandLineUtility.runCommandOnZimbraServer("dpkg -l | grep -i 'zimbra-chat'").get(0)
-				.contains("ii  zimbra-chat")) {
+		if (!CommandLineUtility.runCommandOnZimbraServer("dpkg -l | grep -i 'zimbra-chat'").contains("ii  zimbra-chat")) {
 			excludeGroups.add("chat");
 		}
-		if (!CommandLineUtility.runCommandOnZimbraServer("dpkg -l | grep -i 'zimbra-drive'").get(0)
-				.contains("ii  zimbra-drive")) {
+		if (!CommandLineUtility.runCommandOnZimbraServer("dpkg -l | grep -i 'zimbra-drive'").contains("ii  zimbra-drive")) {
 			excludeGroups.add("drive");
 		}
 
