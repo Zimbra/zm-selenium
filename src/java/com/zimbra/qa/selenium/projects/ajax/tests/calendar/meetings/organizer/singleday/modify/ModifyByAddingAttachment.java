@@ -17,8 +17,8 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.organizer.singleday.modify;
 
-import java.awt.event.KeyEvent;
 import java.util.Calendar;
+import org.openqa.selenium.Keys;
 import org.testng.annotations.*;
 import com.zimbra.common.soap.Element;
 import com.zimbra.qa.selenium.framework.core.Bugs;
@@ -94,7 +94,7 @@ public class ModifyByAddingAttachment extends AjaxCore {
 			ZAssert.assertEquals(nodes.length, 1, "Verify attachment exist in the received meeting");
 
 		} finally {
-			app.zPageMain.zKeyboardKeyEvent(KeyEvent.VK_ESCAPE);
+			app.zPageMain.zKeyboardKeyEvent(Keys.ESCAPE);
 		}
 	}
 }

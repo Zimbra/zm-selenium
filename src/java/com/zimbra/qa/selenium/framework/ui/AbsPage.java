@@ -20,6 +20,8 @@ import java.awt.*;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import org.apache.log4j.*;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import com.zimbra.qa.selenium.framework.util.*;
 
@@ -125,8 +127,8 @@ public abstract class AbsPage extends AbsSeleniumObject {
 		}
 	}
 
-	public static class Keyboard {
-		private static Logger logger = LogManager.getLogger(Keyboard.class);
+	public class Keyboard {
+		private Logger logger = LogManager.getLogger(Keyboard.class);
 
 		public Keyboard() {
 			logger.info("new " + Keyboard.class.getCanonicalName());
@@ -141,13 +143,11 @@ public abstract class AbsPage extends AbsSeleniumObject {
 
 		}
 
-		public void zSelectAll() throws HarnessException {
-			logger.info("zTypeKeyEvent(CTRL A)");
-			RobotKeyboard keyboard = new RobotKeyboard();
-			keyboard.robot.keyPress(KeyEvent.VK_CONTROL);
-			keyboard.robot.keyPress(KeyEvent.VK_A);
-			keyboard.robot.keyRelease(KeyEvent.VK_CONTROL);
-			keyboard.robot.keyRelease(KeyEvent.VK_A);
+		public void zSelectAll(String locator) throws HarnessException {
+			logger.info("zSelectAll(CTRL A)");
+			WebElement we = getElement(locator);
+			we.click();
+			we.sendKeys(Keys.chord(Keys.CONTROL,"a"));
 		}
 
 		public void zTypeCharacters(String chars) throws HarnessException {
@@ -166,8 +166,8 @@ public abstract class AbsPage extends AbsSeleniumObject {
 			SleepUtil.sleepSmall();
 		}
 
-		private static class RobotKeyboard {
-			private static Logger logger = LogManager.getLogger(RobotKeyboard.class);
+		private class RobotKeyboard {
+			private Logger logger = LogManager.getLogger(RobotKeyboard.class);
 
 			private Robot robot;
 
@@ -181,7 +181,7 @@ public abstract class AbsPage extends AbsSeleniumObject {
 				}
 			}
 
-			private static boolean numLockHasBeenProcessed = false;
+			private boolean numLockHasBeenProcessed = false;
 
 			public void type(String characters) {
 				logger.info("type(" + characters + ")");

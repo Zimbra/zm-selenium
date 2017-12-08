@@ -16,8 +16,8 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.pages.contacts;
 
-import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import org.openqa.selenium.Keys;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -441,15 +441,15 @@ public class FormContactGroupNew extends AbsForm {
 		// assume contact is one arrow key down away from top
 		// assume shared contact is two arrow key down away from top
 		// assume GAL is three arrow key down away from top
-		app.zPageContacts.zKeyboardKeyEvent(KeyEvent.VK_DOWN);
+		app.zPageContacts.zKeyboardKeyEvent(Keys.DOWN);
 		if (!option.equals(SELECT_OPTION_TEXT_CONTACTS)) {
-			app.zPageContacts.zKeyboardKeyEvent(KeyEvent.VK_DOWN);
+			app.zPageContacts.zKeyboardKeyEvent(Keys.DOWN);
 			if (!option.equals(SELECT_OPTION_TEXT_SHARED_CONTACTS)) {
-				app.zPageContacts.zKeyboardKeyEvent(KeyEvent.VK_DOWN);
+				app.zPageContacts.zKeyboardKeyEvent(Keys.DOWN);
 			}
 		}
 
-		app.zPageContacts.zKeyboardKeyEvent(KeyEvent.VK_ENTER);
+		app.zPageContacts.zKeyboardKeyEvent(Keys.ENTER);
 
 		// formGroup.sClick(FormContactGroupNew.Locators.zDropdownSelectContacts);
 

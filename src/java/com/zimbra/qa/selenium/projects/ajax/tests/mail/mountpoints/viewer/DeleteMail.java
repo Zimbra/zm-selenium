@@ -16,7 +16,7 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.mountpoints.viewer;
 
-import java.awt.event.KeyEvent;
+import org.openqa.selenium.Keys;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
@@ -181,7 +181,7 @@ public class DeleteMail extends SetGroupMailByMessagePreference {
 			app.zPageMail.zListItem(Action.A_LEFTCLICK, mail.dSubject);
 
 			// Delete the item
-			app.zPageMail.zKeyboardKeyEvent(KeyEvent.VK_DELETE);
+			app.zPageMail.zKeyboardKeyEvent(Keys.DELETE);
 
 			// A "Permission Denied" error popup should NOT occur
 			DialogError dialog = app.zPageMain.zGetErrorDialog(DialogError.DialogErrorID.Zimbra);

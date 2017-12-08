@@ -16,8 +16,8 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.organizer.singleday.create.attachments;
 
-import java.awt.event.KeyEvent;
 import java.util.Calendar;
+import org.openqa.selenium.Keys;
 import org.testng.annotations.Test;
 import com.zimbra.common.soap.Element;
 import com.zimbra.qa.selenium.framework.core.Bugs;
@@ -116,7 +116,7 @@ public class CreateMeetingWithAttachment extends AjaxCore {
 			ZAssert.assertTrue(app.zPageCalendar.zVerifyAttachmentExistsInAppointment(fileName), "Verify attachment exists in the appointment");
 
 		} finally {
-			app.zPageMain.zKeyboardKeyEvent(KeyEvent.VK_ESCAPE);
+			app.zPageMain.zKeyboardKeyEvent(Keys.ESCAPE);
 		}
 	}
 }

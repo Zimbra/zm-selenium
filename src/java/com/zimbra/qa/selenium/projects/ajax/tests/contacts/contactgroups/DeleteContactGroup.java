@@ -16,8 +16,8 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.contacts.contactgroups;
 
-import java.awt.event.KeyEvent;
 import java.util.HashMap;
+import org.openqa.selenium.Keys;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
@@ -137,7 +137,7 @@ public class DeleteContactGroup extends AjaxCore  {
 		app.zPageContacts.zListItem(Action.A_LEFTCLICK, group.getName());
 
         // Delete contact group by click shortcut Del
-		app.zPageContacts.zKeyboardKeyEvent(KeyEvent.VK_DELETE);
+		app.zPageContacts.zKeyboardKeyEvent(Keys.DELETE);
 
         ContactGroupItem actual = ContactGroupItem.importFromSOAP(app.zGetActiveAccount(), "is:anywhere #nickname:"+ group.getName());
         ZAssert.assertNotNull(actual, "Verify the contact group exists");
@@ -166,7 +166,7 @@ public class DeleteContactGroup extends AjaxCore  {
 		app.zPageContacts.zListItem(Action.A_LEFTCLICK, group.getName());
 
         // Delete contact group by click shortcut Del
-		app.zPageContacts.zKeyboardKeyEvent(KeyEvent.VK_BACK_SPACE);
+		app.zPageContacts.zKeyboardKeyEvent(Keys.BACK_SPACE);
 
         ContactGroupItem actual = ContactGroupItem.importFromSOAP(app.zGetActiveAccount(), "is:anywhere #nickname:"+ group.getName());
         ZAssert.assertNotNull(actual, "Verify the contact group exists");

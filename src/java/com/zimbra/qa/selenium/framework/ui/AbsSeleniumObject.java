@@ -95,7 +95,7 @@ public abstract class AbsSeleniumObject {
 		logger.info("new " + AbsSeleniumObject.class.getCanonicalName());
 	}
 
-	protected WebDriver webDriver() {
+	protected static WebDriver webDriver() {
 		return ClientSessionFactory.session().webDriver();
 	}
 
@@ -1681,7 +1681,7 @@ public abstract class AbsSeleniumObject {
 		return webDriver().findElements(by);
 	}
 
-	protected WebElement getElement(String locator) throws HarnessException {
+	public WebElement getElement(String locator) throws HarnessException {
 		WebElement we = getElementOrNull(locator);
 
 		if (we == null) {

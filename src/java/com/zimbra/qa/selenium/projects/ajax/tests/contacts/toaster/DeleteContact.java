@@ -16,8 +16,8 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.contacts.toaster;
 
-import java.awt.event.KeyEvent;
 import java.util.HashMap;
+import org.openqa.selenium.Keys;
 import org.testng.annotations.*;
 import com.zimbra.qa.selenium.framework.items.ContactItem;
 import com.zimbra.qa.selenium.framework.ui.*;
@@ -107,14 +107,14 @@ public class DeleteContact extends AjaxCore {
 
 	@DataProvider(name = "DataProviderDeleteKeys")
 	public Object[][] DataProviderDeleteKeys() {
-		return new Object[][] { new Object[] { "VK_DELETE", KeyEvent.VK_DELETE },
-				new Object[] { "VK_BACK_SPACE", KeyEvent.VK_BACK_SPACE }, };
+		return new Object[][] { new Object[] { "DELETE", Keys.DELETE },
+				new Object[] { "BACK_SPACE", Keys.BACK_SPACE }, };
 	}
 
 	@Test (description = "Delete a contact item using keyboard short cut Del and verify toast mesg",
 			groups = { "functional", "L2"}, dataProvider = "DataProviderDeleteKeys")
 
-	public void DeleteContact_03(String name, int keyEvent) throws HarnessException {
+	public void DeleteContact_03(String name, Keys keyEvent) throws HarnessException {
 
 		// Create a contact item
 		ContactItem contact = new ContactItem();
