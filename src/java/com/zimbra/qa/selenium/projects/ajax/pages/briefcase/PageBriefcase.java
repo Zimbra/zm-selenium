@@ -1437,7 +1437,7 @@ public class PageBriefcase extends AbsTab {
 
 	}
 
-	public void Maximizebrowser(){
+	public void maximizeBrowser(){
 
 		if (ConfigProperties.getCalculatedBrowser().contains("firefox")) {
 			Dimension dimension = new Dimension(500, 500);

@@ -38,7 +38,7 @@ public class PreviewFile extends EnableBriefcaseFeature {
 
 	@BeforeMethod(groups = { "always" })
 	public void MaximizeBrowser(){
-		app.zPageBriefcase.Maximizebrowser();
+		app.zPageBriefcase.maximizeBrowser();
 	}
 
 
