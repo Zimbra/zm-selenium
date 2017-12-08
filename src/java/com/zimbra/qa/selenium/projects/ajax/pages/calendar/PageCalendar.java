@@ -1263,7 +1263,7 @@ public class PageCalendar extends AbsTab {
 					this.sMouseOver(optionLocator);
 					SleepUtil.sleepSmall();
 
-					this.sClickAt(subOptionLocator, "");
+					this.sClick(subOptionLocator);
 					SleepUtil.sleepSmall();
 
 					this.zWaitForBusyOverlay();
@@ -1277,7 +1277,7 @@ public class PageCalendar extends AbsTab {
 
 				if (optionLocator != null) {
 
-					this.sClickAt(optionLocator, "");
+					this.sClick(optionLocator);
 					SleepUtil.sleepSmall();
 
 					this.zWaitForBusyOverlay();
@@ -1746,7 +1746,7 @@ public class PageCalendar extends AbsTab {
 						"implement action:" + action + " option:" + option + " suboption:" + subOption);
 			}
 
-			this.sClickAt(subOptionLocator, "");
+			this.sClick(subOptionLocator);
 			this.zWaitForBusyOverlay();
 
 			SleepUtil.sleepMedium();

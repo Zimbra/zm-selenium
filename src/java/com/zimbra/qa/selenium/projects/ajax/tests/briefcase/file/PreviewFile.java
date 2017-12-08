@@ -16,6 +16,7 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.briefcase.file;
 
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.items.FileItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
@@ -33,6 +34,11 @@ public class PreviewFile extends EnableBriefcaseFeature {
 	public PreviewFile() {
 		logger.info("New " + PreviewFile.class.getCanonicalName());
 		super.startingPage = app.zPageBriefcase;
+	}
+
+	@BeforeMethod(groups = { "always" })
+	public void MaximizeBrowser(){
+		app.zPageBriefcase.Maximizebrowser();
 	}
 
 

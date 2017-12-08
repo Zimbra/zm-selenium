@@ -888,9 +888,13 @@ public abstract class AbsSeleniumObject {
 
 	public int sGetCssCount(String css) throws HarnessException {
 		int count = 0;
-		count = getElements(By.cssSelector(getCssLocator(css).getLocator())).size();
-		logger.info("getCssCount(" + css + ") = " + count);
-		return (count);
+		if(sIsVisible(css)){
+			count = getElements(By.cssSelector(getCssLocator(css).getLocator())).size();
+			logger.info("getCssCount(" + css + ") = " + count);
+			return (count);
+		} else {
+			return count;
+		}
 	}
 
 	public List<String> sGetAllWindowTitles() throws HarnessException {
