@@ -184,7 +184,7 @@ public class QuickAddAppointment extends AbsTab {
 	public void zNewAppointment() throws HarnessException {
 		this.sRightClickAt(
 				"css=div[class='calendar_hour_scroll'] td[class='calendar_grid_body_time_td'] div[id$='_10']", "");
-		this.sClickAt("css=div[id^='POPUP_'] td[id='NEW_APPT_title']", "");
+		this.sClick("css=div[id^='POPUP_'] td[id='NEW_APPT_title']");
 		SleepUtil.sleepMedium();
 	}
 

@@ -20,6 +20,7 @@ import java.util.EnumMap;
 import java.util.Map;
 import org.apache.commons.httpclient.HttpStatus;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import com.zimbra.qa.selenium.framework.items.DocumentItem;
@@ -1434,5 +1435,14 @@ public class PageBriefcase extends AbsTab {
 		}
 		return true;
 
+	}
+
+	public void maximizeBrowser(){
+
+		if (ConfigProperties.getCalculatedBrowser().contains("firefox")) {
+			Dimension dimension = new Dimension(500, 500);
+			webDriver().manage().window().setSize(dimension);
+			webDriver().manage().window().maximize();
+		}
 	}
 }
