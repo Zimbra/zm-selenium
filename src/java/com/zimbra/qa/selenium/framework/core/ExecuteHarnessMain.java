@@ -287,7 +287,7 @@ public class ExecuteHarnessMain {
 			if (isNGEnabled.equals("FALSE")) {
 				excludeGroups.add("ng-module");
 			} else {
-				excludeGroups.add("non-ng");
+				excludeGroups.add("non-ngmodule");
 			}
 		}
 
@@ -1554,17 +1554,17 @@ public class ExecuteHarnessMain {
 				Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
 				CommandLineUtility.runCommandOnZimbraServer("zmprov mcf zimbraSmimeOCSPEnabled FALSE");
 
-				// Disable chat and drive zimlets on COS if they are enabled
-				ArrayList<String> zimletList= CommandLineUtility.runCommandOnZimbraServer("zmprov -l gc default zimbraZimletAvailableZimlets | grep zimbraZimletAvailableZimlets | cut -c 32-");
+				// Initially disable chat and drive zimlets on COS if they are enabled
+				ArrayList<String> zimletList = CommandLineUtility.runCommandOnZimbraServer("zmprov -l gc default zimbraZimletAvailableZimlets | grep zimbraZimletAvailableZimlets | cut -c 32-");
 				if (zimletList.contains("com_zextras_chat_open")) {
-					StafIntegration.logInfo = "Disable com_zextras_chat_open zimlets on COS";
+					StafIntegration.logInfo = "Initially disable zimbra chat zimlet on COS";
 					logger.info(StafIntegration.logInfo);
 					Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo),Charset.forName("UTF-8"), StandardOpenOption.APPEND);
 					CommandLineUtility.runCommandOnZimbraServer("zmprov mc default -zimbraZimletAvailableZimlets '+com_zextras_chat_open'");
-					CommandLineUtility.runCommandOnZimbraServer("zmprov fc -a all");
+					CommandLineUtility.runCommandOnZimbraServer("zmsprov fc -a all");
 				}
 				if (zimletList.contains("com_zextras_drive_open")){
-					StafIntegration.logInfo = "Disable com_zextras_drive_open zimlets on COS";
+					StafIntegration.logInfo = "Initially disable zimbra drive zimlet on COS";
 					logger.info(StafIntegration.logInfo);
 					Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo),Charset.forName("UTF-8"), StandardOpenOption.APPEND);
 					CommandLineUtility.runCommandOnZimbraServer("zmprov mc default -zimbraZimletAvailableZimlets '+com_zextras_drive_open'");
