@@ -16,7 +16,7 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.briefcase.file;
 
-import java.awt.event.KeyEvent;
+import org.openqa.selenium.Keys;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.items.FileItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
@@ -111,7 +111,7 @@ public class UploadFile extends EnableBriefcaseFeature {
 			ZAssert.assertStringContains(name, fileName, "Verify file name through GUI");
 
 		} finally {
-			app.zPageMain.zKeyboardKeyEvent(KeyEvent.VK_ESCAPE);
+			app.zPageMain.zKeyboardKeyEvent(Keys.ESCAPE);
 		}
 	}
 

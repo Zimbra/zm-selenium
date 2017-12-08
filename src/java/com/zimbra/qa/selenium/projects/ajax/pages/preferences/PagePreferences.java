@@ -747,8 +747,7 @@ public class PagePreferences extends AbsTab {
 
 			if (field == Field.StartDate || field == Field.EndDate || field == Field.StartTime
 					|| field == Field.EndTime) {
-				this.sFocus(locator);
-				this.zKeyboard.zSelectAll();
+				this.zKeyboard.zSelectAll(locator);
 				this.sTypeDateTime(locator, value);
 
 			} else {

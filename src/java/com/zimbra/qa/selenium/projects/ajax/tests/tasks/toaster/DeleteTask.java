@@ -16,8 +16,8 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.tasks.toaster;
 
-import java.awt.event.KeyEvent;
 import java.util.HashMap;
+import org.openqa.selenium.Keys;
 import org.testng.annotations.*;
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.*;
@@ -136,8 +136,8 @@ public class DeleteTask extends AjaxCore {
 	@DataProvider(name = "DataProviderDeleteKeys")
 	public Object[][] DataProviderDeleteKeys() {
 		return new Object[][] {
-				new Object[] { "VK_DELETE", KeyEvent.VK_DELETE },
-				new Object[] { "VK_BACK_SPACE", KeyEvent.VK_BACK_SPACE },
+				new Object[] { "DELETE", Keys.DELETE },
+				new Object[] { "BACK_SPACE", Keys.BACK_SPACE },
 		};
 	}
 
@@ -145,7 +145,7 @@ public class DeleteTask extends AjaxCore {
 			groups = { "functional", "L3"},
 			dataProvider = "DataProviderDeleteKeys")
 
-	public void DeleteTaskToast_03(String name, int keyEvent) throws HarnessException {
+	public void DeleteTaskToast_03(String name, Keys keyEvent) throws HarnessException {
 
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
 

@@ -16,8 +16,8 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.mountpoints.viewer;
 
-import java.awt.event.KeyEvent;
 import java.util.Calendar;
+import org.openqa.selenium.Keys;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
@@ -182,7 +182,7 @@ public class DeleteAppointment extends AjaxCore {
 		ZAssert.assertTrue(app.zPageCalendar.zVerifyDisabledControl(Button.B_DELETE_DISABLED), "Verify Delete button is disabled");
 
 		// Delete the item
-		app.zPageMail.zKeyboardKeyEvent(KeyEvent.VK_DELETE);
+		app.zPageMail.zKeyboardKeyEvent(Keys.DELETE);
 
 		// A "Permission Denied" error popup shouldn't appear
 		DialogError dialog = app.zPageMain.zGetErrorDialog(DialogError.DialogErrorID.Zimbra);

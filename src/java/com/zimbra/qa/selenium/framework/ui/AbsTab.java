@@ -126,22 +126,6 @@ public abstract class AbsTab extends AbsPage {
 	}
 
 	/**
-	 * Use the keyboard to enter the specified keyboard key event
-	 *
-	 * @param keyEvent
-	 *            see java.awt.event.KeyEvent
-	 * @return Returns the resulting Page, Wizard, etc. or null
-	 * @throws HarnessException
-	 */
-	public AbsPage zKeyboardKeyEvent(int keyEvent) throws HarnessException {
-		this.zWaitForBusyOverlay();
-		AbsPage page = null;
-		this.zKeyboard.zTypeKeyEvent(keyEvent);
-		this.zWaitForBusyOverlay();
-		return (page);
-	}
-
-	/**
 	 * Use the keychord to enter the specified keyboard key event
 	 *
 	 * @param event
@@ -149,7 +133,7 @@ public abstract class AbsTab extends AbsPage {
 	 * @return Returns the resulting Page, Wizard, etc. or null
 	 * @throws HarnessException
 	 */
-	public AbsPage zKeyChordKeyEvent(Keys event) throws HarnessException {
+	public AbsPage zKeyboardKeyEvent(Keys event) throws HarnessException {
 		this.zWaitForBusyOverlay();
 		AbsPage page = null;
 		String locator = "//html//body";

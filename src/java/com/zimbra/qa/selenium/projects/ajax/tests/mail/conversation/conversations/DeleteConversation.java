@@ -16,8 +16,8 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.conversation.conversations;
 
-import java.awt.event.KeyEvent;
 import java.util.List;
+import org.openqa.selenium.Keys;
 import org.testng.annotations.*;
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.*;
@@ -96,8 +96,8 @@ public class DeleteConversation extends SetGroupMailByConversationPreference {
 	@DataProvider(name = "DataProviderDeleteKeys")
 	public Object[][] DataProviderDeleteKeys() {
 	  return new Object[][] {
-	    new Object[] { "VK_DELETE", KeyEvent.VK_DELETE },
-	    new Object[] { "VK_BACK_SPACE", KeyEvent.VK_BACK_SPACE },
+	    new Object[] { "DELETE", Keys.DELETE },
+	    new Object[] { "BACK_SPACE", Keys.BACK_SPACE },
 	  };
 	}
 
@@ -105,7 +105,7 @@ public class DeleteConversation extends SetGroupMailByConversationPreference {
 			groups = { "functional", "L2" },
 			dataProvider = "DataProviderDeleteKeys")
 
-	public void DeleteConversation_03(String name, int keyEvent) throws HarnessException {
+	public void DeleteConversation_03(String name, Keys keyEvent) throws HarnessException {
 
 		// Create the message data to be sent
 		ConversationItem c = ConversationItem.createConversationItem(app.zGetActiveAccount());

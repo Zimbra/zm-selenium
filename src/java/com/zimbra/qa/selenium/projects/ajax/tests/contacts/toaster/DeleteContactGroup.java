@@ -16,8 +16,8 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.contacts.toaster;
 
-import java.awt.event.KeyEvent;
 import java.util.HashMap;
+import org.openqa.selenium.Keys;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.*;
@@ -121,7 +121,7 @@ public class DeleteContactGroup extends AjaxCore {
 		app.zPageContacts.zListItem(Action.A_LEFTCLICK, group.getName());
 
 		// Delete contact group by click shortcut Del
-		app.zPageContacts.zKeyboardKeyEvent(KeyEvent.VK_DELETE);
+		app.zPageContacts.zKeyboardKeyEvent(Keys.DELETE);
 
 		// Verifying the toaster message
 		Toaster toast = app.zPageMain.zGetToaster();
@@ -145,7 +145,7 @@ public class DeleteContactGroup extends AjaxCore {
 		app.zPageContacts.zListItem(Action.A_LEFTCLICK, group.getName());
 
 		// Delete contact group by click shortcut Del
-		app.zPageContacts.zKeyboardKeyEvent(KeyEvent.VK_BACK_SPACE);
+		app.zPageContacts.zKeyboardKeyEvent(Keys.BACK_SPACE);
 
 		// Verifying the toaster message
 		Toaster toast = app.zPageMain.zGetToaster();

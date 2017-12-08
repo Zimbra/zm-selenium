@@ -16,7 +16,7 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.contacts.folders;
 
-import java.awt.event.KeyEvent;
+import org.openqa.selenium.Keys;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.*;
@@ -137,7 +137,7 @@ public class DeleteFolder extends AjaxCore {
 		app.zTreeContacts.zTreeItem(Action.A_LEFTCLICK, folderItem);
 
 		// Delete the folder using shortcut Del
-		app.zPageContacts.zKeyboardKeyEvent(KeyEvent.VK_DELETE);
+		app.zPageContacts.zKeyboardKeyEvent(Keys.DELETE);
 
 		// Get the folder again
 		FolderItem actual = FolderItem.importFromSOAP(app.zGetActiveAccount(), name);

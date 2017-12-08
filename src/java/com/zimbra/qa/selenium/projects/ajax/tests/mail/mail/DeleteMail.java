@@ -17,8 +17,8 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.mail;
 
 import java.awt.AWTException;
-import java.awt.event.KeyEvent;
 import java.util.List;
+import org.openqa.selenium.Keys;
 import org.testng.annotations.*;
 import com.zimbra.common.soap.Element;
 import com.zimbra.qa.selenium.framework.core.Bugs;
@@ -131,8 +131,8 @@ public class DeleteMail extends SetGroupMailByMessagePreference {
 	@DataProvider(name = "DataProviderDeleteKeys")
 	public Object[][] DataProviderDeleteKeys() {
 	  return new Object[][] {
-	    new Object[] { "VK_DELETE", KeyEvent.VK_DELETE },
-	    new Object[] { "VK_BACK_SPACE", KeyEvent.VK_BACK_SPACE },
+	    new Object[] { "DELETE", Keys.DELETE },
+	    new Object[] { "BACK_SPACE", Keys.BACK_SPACE },
 	  };
 	}
 
@@ -140,7 +140,7 @@ public class DeleteMail extends SetGroupMailByMessagePreference {
 			groups = { "functional", "L2" },
 			dataProvider = "DataProviderDeleteKeys")
 
-	public void DeleteMail_03(String name, int keyEvent) throws HarnessException {
+	public void DeleteMail_03(String name, Keys keyEvent) throws HarnessException {
 
 		// Create the message data to be sent
 		String subject = "subject"+ ConfigProperties.getUniqueString();

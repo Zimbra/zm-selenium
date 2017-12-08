@@ -16,7 +16,6 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.tasks;
 
-import java.awt.event.KeyEvent;
 import java.util.HashMap;
 import java.util.List;
 import org.openqa.selenium.Keys;
@@ -223,7 +222,7 @@ public class DeleteHtmlTask extends AjaxCore {
 		// Click delete keyboard
 		logger.info("Typing shortcut key "+ name + " KeyEvent: "+ keyEvent);
 
-		app.zPageMail.zKeyChordKeyEvent(keyEvent);
+		app.zPageMail.zKeyboardKeyEvent(keyEvent);
 
 		SleepUtil.sleepMedium();
 		List<TaskItem> tasks = app.zPageTasks.zGetTasks();

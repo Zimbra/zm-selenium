@@ -635,9 +635,7 @@ public class FormApptNew extends AbsForm {
 	public void zSetTomorrowDate() throws HarnessException {
 		Calendar c = Calendar.getInstance();
 		c.add(Calendar.DATE, 2);
-		this.sFocus("css=input[id$='_startDateField']");
-		this.sClickAt("css=input[id$='_startDateField']", "");
-		this.zKeyboard.zSelectAll();
+		this.zKeyboard.zSelectAll("css=input[id$='_startDateField']");
 		SleepUtil.sleepVerySmall();
 		this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_DELETE);
 		SleepUtil.sleepVerySmall();
@@ -984,7 +982,7 @@ public class FormApptNew extends AbsForm {
 					|| field == Field.EndTime) {
 				this.sClickAt(locator, "");
 
-				this.zKeyboard.zSelectAll();
+				this.zKeyboard.zSelectAll(locator);
 				/*
 				 * String clearField = ""; for(char c : value.toCharArray()){ clearField +=
 				 * "\b"; } this.sType(locator, clearField);

@@ -16,7 +16,7 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.compose.attachments;
 
-import java.awt.event.KeyEvent;
+import org.openqa.selenium.Keys;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.MailItem;
@@ -114,7 +114,7 @@ public class ComposeForwardMailWithAttachmentAndVariousOptions extends SetGroupM
 			warning.zWaitForClose();
 
 		} finally {
-			app.zPageMain.zKeyboardKeyEvent(KeyEvent.VK_ESCAPE);
+			app.zPageMain.zKeyboardKeyEvent(Keys.ESCAPE);
 		}
 	}
 
@@ -183,7 +183,7 @@ public class ComposeForwardMailWithAttachmentAndVariousOptions extends SetGroupM
 			warning.zWaitForClose();
 
 		} finally {
-			app.zPageMain.zKeyboardKeyEvent(KeyEvent.VK_ESCAPE);
+			app.zPageMain.zKeyboardKeyEvent(Keys.ESCAPE);
 		}
 	}
 
@@ -258,7 +258,7 @@ public class ComposeForwardMailWithAttachmentAndVariousOptions extends SetGroupM
 			warning.zWaitForClose();
 
 		} finally {
-			app.zPageMain.zKeyboardKeyEvent(KeyEvent.VK_ESCAPE);
+			app.zPageMain.zKeyboardKeyEvent(Keys.ESCAPE);
 		}
 	}
 }
