@@ -26,7 +26,6 @@ import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
-import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.XmlStringUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZDate;
@@ -94,19 +93,14 @@ public class EditHtmlTask extends AjaxCore{
 		// Select the item
 		app.zPageTasks.zListItem(Action.A_LEFTCLICK, subject);
 
-		// Click edit
-		SleepUtil.sleepVeryLong();
-
-		// Fill new subject in subject field
+		// Edit task
 		FormTaskNew taskedit = (FormTaskNew) app.zPageTasks.zToolbarPressButton(Button.B_EDIT);
 		taskedit.zFillField(Field.Subject, editSubject);
 		taskedit.zFillField(Field.HtmlBody, editTaskHtmlbody);
 		taskedit.zSubmit();
-		SleepUtil.sleepMedium();
-
-		TaskItem task1 = TaskItem.importFromSOAP(app.zGetActiveAccount(), editSubject);
 
 		// Verify the Edited task present in the task list
+		TaskItem task1 = TaskItem.importFromSOAP(app.zGetActiveAccount(), editSubject);
 		ZAssert.assertEquals(task1.getName(), editSubject, "Verify edited task subject");
 		ZAssert.assertStringContains(task1.getHtmlTaskBody().trim(), editTaskHtmlbody.trim(), "Verify the Edited task present in the task list");
 	}
@@ -237,7 +231,6 @@ public class EditHtmlTask extends AjaxCore{
 		taskedit.zFillField(Field.Subject, editSubject);
 		taskedit.zFillField(Field.HtmlBody, editTaskHtmlbody);
 		taskedit.zSubmit();
-		SleepUtil.sleepMedium();
 
 		// Get the list of tasks in the view
 		List<TaskItem> tasks = app.zPageTasks.zGetTasks();
@@ -310,7 +303,6 @@ public class EditHtmlTask extends AjaxCore{
 
 		// Click edit
 		FormTaskNew taskedit = (FormTaskNew) app.zPageTasks.zToolbarPressButton(Button.B_EDIT);
-		SleepUtil.sleepVeryLong();
 
 		DialogWarning dialogWarning = (DialogWarning)  taskedit.zToolbarPressPulldown(Button.B_OPTIONS, Button.O_OPTION_FORMAT_AS_TEXT);
 		ZAssert.assertNotNull(dialogWarning, "Verify the dialog is returned");

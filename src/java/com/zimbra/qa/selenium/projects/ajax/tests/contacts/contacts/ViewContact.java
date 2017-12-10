@@ -34,7 +34,7 @@ public class ViewContact extends AjaxCore  {
 	@Test (description = "View a contact, file as First Last",
 			groups = { "functional", "L2" })
 
-	public void ViewContact_FileAsFirstLast_01() throws HarnessException {
+	public void FileAsFirstLast_01() throws HarnessException {
 
 		// Create a contact item
 		String firstname = "first"+ ConfigProperties.getUniqueString();
@@ -86,7 +86,7 @@ public class ViewContact extends AjaxCore  {
 	@Test (description = "View a contact, file as Last, First",
 			groups = { "functional", "L2" })
 
-	public void ViewContact_FileAsLastFirst_02() throws HarnessException {
+	public void FileAsLastFirst_02() throws HarnessException {
 
 		// Create a contact item
 		String firstname = "first"+ ConfigProperties.getUniqueString();
@@ -138,7 +138,7 @@ public class ViewContact extends AjaxCore  {
 	@Test (description = "View a contact, file as Company(Last, First)",
 			groups = { "functional", "L2" })
 
-	public void ViewContact_FileAsCompanyLastFirst_03() throws HarnessException {
+	public void FileAsCompanyLastFirst_03() throws HarnessException {
 
 		// Create a contact item
 		String firstname = "first"+ ConfigProperties.getUniqueString();
@@ -190,7 +190,7 @@ public class ViewContact extends AjaxCore  {
 	@Test (description = "View a contact, file as Company",
 			groups = { "functional", "L2" })
 
-	public void ViewContact_FileAsCompany_04() throws HarnessException {
+	public void FileAsCompany_04() throws HarnessException {
 
 		// Create a contact item
 		String firstname = "first"+ ConfigProperties.getUniqueString();
@@ -241,7 +241,7 @@ public class ViewContact extends AjaxCore  {
 	@Test (description = "View a contact, file as Last, First (Company)",
 			groups = { "functional", "L2" })
 
-	public void ViewContact_FileAsLastFirstCompany_05() throws HarnessException {
+	public void FileAsLastFirstCompany_05() throws HarnessException {
 
 		// Create a contact item
 		String firstname = "first"+ ConfigProperties.getUniqueString();
@@ -293,7 +293,7 @@ public class ViewContact extends AjaxCore  {
 	@Test (description = "View a contact, file as First Last (Company)",
 			groups = { "functional", "L2" })
 
-	public void ViewContact_FileAsFirstLastCompany_06() throws HarnessException {
+	public void FileAsFirstLastCompany_06() throws HarnessException {
 
 		// Create a contact item
 		String firstname = "first"+ ConfigProperties.getUniqueString();
@@ -345,7 +345,7 @@ public class ViewContact extends AjaxCore  {
 	@Test (description = "View a contact, file as Company (First Last)",
 			groups = { "functional", "L2" })
 
-	public void ViewContact_FileAsCompanyFirstLast_07() throws HarnessException {
+	public void FileAsCompanyFirstLast_07() throws HarnessException {
 
 		// Create a contact item
 		String firstname = "first"+ ConfigProperties.getUniqueString();

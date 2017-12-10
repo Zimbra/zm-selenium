@@ -46,8 +46,7 @@ public class DelegateSendAsSaveCopyOfMessage extends SetGroupMailByMessagePrefer
 		grantor.provision();
 		grantor.authenticate();
 
-		// Configure 'Delegate Send Settings' to - Save a copy of sent messages
-		// to my Sent folder
+		// Configure 'Delegate Send Settings' to - Save a copy of sent messages to my Sent folder
 		grantor.soapSend("<GrantRightsRequest xmlns='urn:zimbraAccount'>" + "<ace gt='usr' d='"
 				+ app.zGetActiveAccount().EmailAddress + "' right='sendAs'/>" + "</GrantRightsRequest>");
 
@@ -92,8 +91,7 @@ public class DelegateSendAsSaveCopyOfMessage extends SetGroupMailByMessagePrefer
 		grantor.provision();
 		grantor.authenticate();
 
-		// Configure 'Delegate Send Settings' to - Save a copy of sent messages
-		// to delegate's Sent folder
+		// Configure 'Delegate Send Settings' to - Save a copy of sent messages to delegate's Sent folder
 		grantor.soapSend("<GrantRightsRequest xmlns='urn:zimbraAccount'>" + "<ace gt='usr' d='"
 				+ app.zGetActiveAccount().EmailAddress + "' right='sendAs'/>" + "</GrantRightsRequest>");
 

@@ -31,28 +31,32 @@ public class ChangeCalendarView extends AjaxCore {
 	}
 
 
-	@Test (description = "Verify changing view via right click view change options",
+	@Test (description = "Verify changing calendar view works using right click menu options",
 			groups = { "sanity", "L0" } )
 
 	public void ChangeCalendarView_01() throws HarnessException {
 
 		app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_VIEW_MENU, Button.O_VIEW_DAY_SUB_MENU, "Day");
-        ZAssert.assertTrue(app.zPageCalendar.sIsElementPresent(Locators.CalendarViewDayCSS), "Changed to day view");
+        ZAssert.assertTrue(app.zPageCalendar.sIsElementPresent(Locators.CalendarViewDayCSS), "Verify view changed to day view");
 
 		app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_VIEW_MENU, Button.O_VIEW_WORK_WEEK_SUB_MENU, "WorkWeek");
-        ZAssert.assertTrue(app.zPageCalendar.sIsElementPresent(Locators.CalendarViewWorkWeekCSS), "Changed to WorkWeek view");
+        ZAssert.assertTrue(app.zPageCalendar.sIsElementPresent(Locators.CalendarViewWorkWeekCSS), "Verify view changed to work week view");
+
+        // Context menu hidden after switching views so applying work around
+        app.zPageMain.zRefreshMainUI();
+        app.zPageCalendar.zNavigateTo();
 
 		app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_VIEW_MENU, Button.O_VIEW_WEEK_SUB_MENU, "Week");
-        ZAssert.assertTrue(app.zPageCalendar.sIsElementPresent(Locators.CalendarViewWeekCSS), "Changed to week view");
+        ZAssert.assertTrue(app.zPageCalendar.sIsElementPresent(Locators.CalendarViewWeekCSS), "Verify view changed to week view");
 
         // Context menu hidden after switching views so applying work around
         app.zPageMain.zRefreshMainUI();
         app.zPageCalendar.zNavigateTo();
 
 		app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_VIEW_MENU, Button.O_VIEW_MONTH_SUB_MENU, "Month");
-        ZAssert.assertTrue(app.zPageCalendar.sIsElementPresent(Locators.CalendarViewMonthCSS), "Changed to month view");
+        ZAssert.assertTrue(app.zPageCalendar.sIsElementPresent(Locators.CalendarViewMonthCSS), "Verify view changed to month view");
 
 		app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_VIEW_MENU, Button.O_VIEW_LIST_SUB_MENU, "List");
-        ZAssert.assertTrue(app.zPageCalendar.sIsElementPresent(Locators.CalendarViewListCSS), "Changed to list view");
+        ZAssert.assertTrue(app.zPageCalendar.sIsElementPresent(Locators.CalendarViewListCSS), "Verify view changed to list view");
 	}
 }

@@ -482,13 +482,14 @@ public class PageTasks extends AbsTab {
 			throw new HarnessException("locator was null for button " + button);
 		}
 
-		if (button == Button.B_ATTACH) {
-			this.sClickAt(locator, "");
-		} else {
-			this.sClickAt(locator, "");
-		}
+		this.sClickAt(locator, "");
 		this.zWaitForBusyOverlay();
-		SleepUtil.sleepMedium();
+
+		if (button == Button.B_EDIT) {
+			SleepUtil.sleepLongMedium();
+		} else {
+			SleepUtil.sleepMedium();
+		}
 
 		if (page != null) {
 			page.zWaitForActive();

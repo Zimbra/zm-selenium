@@ -867,12 +867,22 @@ public class FormMailNew extends AbsForm {
 		this.sClickAt(locator, "0,0");
 		this.zWaitForBusyOverlay();
 
-		this.sType(locator, value);
-
-		SleepUtil.sleepSmall();
+		if (field == Field.Subject) {
+			for (int i=1; i<=3; i++) {
+				this.sType(locator, value);
+				if (this.sGetValue(locator).contains(value)) {
+					logger.info("Message subject value typed properly in " + i + " attempt.");
+					break;
+				} else {
+					logger.info("Couldn't type message subject value in " + i + " attempt.");
+				}
+			}
+		} else {
+			this.sType(locator, value);
+		}
 
 		this.zWaitForBusyOverlay();
-
+		SleepUtil.sleepSmall();
 	}
 
 	private boolean zBccIsActive() throws HarnessException {

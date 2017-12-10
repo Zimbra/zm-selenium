@@ -888,7 +888,7 @@ public abstract class AbsSeleniumObject {
 
 	public int sGetCssCount(String css) throws HarnessException {
 		int count = 0;
-		if(sIsVisible(css)){
+		if (sIsElementPresent(css)){
 			count = getElements(By.cssSelector(getCssLocator(css).getLocator())).size();
 			logger.info("getCssCount(" + css + ") = " + count);
 			return (count);

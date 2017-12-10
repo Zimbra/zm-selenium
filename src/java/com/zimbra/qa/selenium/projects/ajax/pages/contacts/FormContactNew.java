@@ -613,7 +613,7 @@ public class FormContactNew extends AbsForm {
 
 		sClick(locator);
 		this.zWaitForBusyOverlay();
-		SleepUtil.sleepSmall();
+		SleepUtil.sleepMedium();
 
 		if (page != null) {
 			page.zWaitForActive();
