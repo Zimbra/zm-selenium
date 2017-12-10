@@ -22,6 +22,7 @@ import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
 import com.zimbra.qa.selenium.projects.ajax.pages.contacts.FormContactNew;
+import com.zimbra.qa.selenium.projects.ajax.pages.contacts.FormContactNew.Field;
 
 public class ViewContact extends AjaxCore  {
 	public ViewContact() {
@@ -30,7 +31,7 @@ public class ViewContact extends AjaxCore  {
 	}
 
 
-	// First Last
+	// First, Last
 	@Test (description = "View a contact, file as First Last",
 			groups = { "functional", "L2" })
 
@@ -60,7 +61,7 @@ public class ViewContact extends AjaxCore  {
 		// Select the contact
 		FormContactNew form = (FormContactNew) app.zPageContacts.zListItem(Action.A_DOUBLECLICK, firstname);
 
-		// Change File As -> Company
+		// Change File As -> First, Last
 		form.zToolbarPressPulldown(Button.B_FILEAS, Button.O_FILEAS_FIRSTLAST);
 
 		// Verify that the title bar changes
@@ -68,7 +69,7 @@ public class ViewContact extends AjaxCore  {
 		ZAssert.assertEquals(fileas, expected, "Verify the contact edit form title");
 		form.zToolbarPressButton(Button.B_SAVE);
 
-		// Verify the contact list shows company
+		// Verify the contact list shows modified file as value
 		boolean found = false;
 		for (ContactItem c : app.zPageContacts.zListGetContacts()) {
 			if (c.fileAs.equals(expected))
@@ -112,7 +113,8 @@ public class ViewContact extends AjaxCore  {
 		// Select the contact
 		FormContactNew form = (FormContactNew) app.zPageContacts.zListItem(Action.A_DOUBLECLICK, firstname);
 
-		// Change File As -> Company
+		// Change File As -> Last, First
+		form.zFillField(Field.Email, app.zGetActiveAccount().EmailAddress); // work around to enable Save button
 		form.zToolbarPressPulldown(Button.B_FILEAS, Button.O_FILEAS_LASTFIRST);
 
 		// Verify that the title bar changes
@@ -120,7 +122,7 @@ public class ViewContact extends AjaxCore  {
 		ZAssert.assertEquals(fileas, expected, "Verify the contact edit form title");
 		form.zToolbarPressButton(Button.B_SAVE);
 
-		// Verify the contact list shows company
+		// Verify the contact list shows modified file as value
 		boolean found = false;
 		for (ContactItem c : app.zPageContacts.zListGetContacts()) {
 			if (c.fileAs.equals(expected))
@@ -134,7 +136,7 @@ public class ViewContact extends AjaxCore  {
 	}
 
 
-	// Company(Last, First)
+	// Company (Last, First)
 	@Test (description = "View a contact, file as Company(Last, First)",
 			groups = { "functional", "L2" })
 
@@ -164,7 +166,7 @@ public class ViewContact extends AjaxCore  {
 		// Select the contact
 		FormContactNew form = (FormContactNew) app.zPageContacts.zListItem(Action.A_DOUBLECLICK, firstname);
 
-		// Change File As -> Company
+		// Change File As -> Company (Last, First)
 		form.zToolbarPressPulldown(Button.B_FILEAS, Button.O_FILEAS_COMPANYLASTFIRST);
 
 		// Verify that the title bar changes
@@ -172,7 +174,7 @@ public class ViewContact extends AjaxCore  {
 		ZAssert.assertEquals(fileas, expected, "Verify the contact edit form title");
 		form.zToolbarPressButton(Button.B_SAVE);
 
-		// Verify the contact list shows company
+		// Verify the contact list shows modified file as value
 		boolean found = false;
 		for (ContactItem c : app.zPageContacts.zListGetContacts()) {
 			if (c.fileAs.equals(expected))
@@ -267,7 +269,7 @@ public class ViewContact extends AjaxCore  {
 		// Select the contact
 		FormContactNew form = (FormContactNew) app.zPageContacts.zListItem(Action.A_DOUBLECLICK, firstname);
 
-		// Change File As -> Company
+		// Change File As -> Last, First (Company)
 		form.zToolbarPressPulldown(Button.B_FILEAS, Button.O_FILEAS_LASTFIRSTCOMPANY);
 
 		// Verify that the title bar changes
@@ -275,7 +277,7 @@ public class ViewContact extends AjaxCore  {
 		ZAssert.assertEquals(fileas, expected, "Verify the contact edit form title");
 		form.zToolbarPressButton(Button.B_SAVE);
 
-		// Verify the contact list shows company
+		// Verify the contact list shows modified file as value
 		boolean found = false;
 		for (ContactItem c : app.zPageContacts.zListGetContacts()) {
 			if (c.fileAs.equals(expected))
@@ -319,7 +321,7 @@ public class ViewContact extends AjaxCore  {
 		// Select the contact
 		FormContactNew form = (FormContactNew) app.zPageContacts.zListItem(Action.A_DOUBLECLICK, firstname);
 
-		// Change File As -> Company
+		// Change File As -> First Last (Company)
 		form.zToolbarPressPulldown(Button.B_FILEAS, Button.O_FILEAS_FIRSTLASTCOMPANY);
 
 		// Verify that the title bar changes
@@ -327,7 +329,7 @@ public class ViewContact extends AjaxCore  {
 		ZAssert.assertEquals(fileas, expected, "Verify the contact edit form title");
 		form.zToolbarPressButton(Button.B_SAVE);
 
-		// Verify the contact list shows company
+		// Verify the contact list shows modified file as value
 		boolean found = false;
 		for (ContactItem c : app.zPageContacts.zListGetContacts()) {
 			if (c.fileAs.equals(expected))
@@ -371,7 +373,7 @@ public class ViewContact extends AjaxCore  {
 		// Select the contact
 		FormContactNew form = (FormContactNew) app.zPageContacts.zListItem(Action.A_DOUBLECLICK, firstname);
 
-		// Change File As -> Company
+		// Change File As -> Company (First Last)
 		form.zToolbarPressPulldown(Button.B_FILEAS, Button.O_FILEAS_COMPANYFIRSTLAST);
 
 		// Verify that the title bar changes
@@ -379,7 +381,7 @@ public class ViewContact extends AjaxCore  {
 		ZAssert.assertEquals(fileas, expected, "Verify the contact edit form title");
 		form.zToolbarPressButton(Button.B_SAVE);
 
-		// Verify the contact list shows company
+		// Verify the contact list shows modified file as value
 		boolean found = false;
 		for (ContactItem c : app.zPageContacts.zListGetContacts()) {
 			if (c.fileAs.equals(expected))
