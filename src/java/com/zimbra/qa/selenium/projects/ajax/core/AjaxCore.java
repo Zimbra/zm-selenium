@@ -145,21 +145,29 @@ public class AjaxCore {
 
 		ArrayList<String> zimletList= null;
 		if (this.getClass().getName().contains("com.zimbra.qa.selenium.projects.ajax.tests.zextras.chat")) {
-			zimletList = CommandLineUtility.runCommandOnZimbraServer("zmprov -l gc default zimbraZimletAvailableZimlets | grep zimbraZimletAvailableZimlets | cut -c 32-");
+			zimletList = CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"),
+					"zmprov -l gc default zimbraZimletAvailableZimlets | grep zimbraZimletAvailableZimlets | cut -c 32-");
 			if (!zimletList.contains("com_zextras_chat_open")) {
 				logger.info("Enable zimbra chat zimlet on default COS");
 				Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo),Charset.forName("UTF-8"), StandardOpenOption.APPEND);
-				CommandLineUtility.runCommandOnZimbraServer("zmprov mc default +zimbraZimletAvailableZimlets '+com_zextras_chat_open'");
-				CommandLineUtility.runCommandOnZimbraServer("zmprov fc -a all");
+				CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"),
+						"zmprov mc default +zimbraZimletAvailableZimlets '+com_zextras_chat_open'");
+				for (int i=0; i<ExecuteHarnessMain.storeServers.size(); i++) {
+					CommandLineUtility.runCommandOnZimbraServer(ExecuteHarnessMain.storeServers.get(i), "zmprov fc -a all");
+				}
 			}
 		}
 		if (this.getClass().getName().contains("com.zimbra.qa.selenium.projects.ajax.tests.zextras.drive")) {
-			zimletList = CommandLineUtility.runCommandOnZimbraServer("zmprov -l gc default zimbraZimletAvailableZimlets | grep zimbraZimletAvailableZimlets | cut -c 32-");
+			zimletList = CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"),
+					"zmprov -l gc default zimbraZimletAvailableZimlets | grep zimbraZimletAvailableZimlets | cut -c 32-");
 			if (!zimletList.contains("com_zextras_drive_open")) {
 				logger.info("Enable zimbra drive zimlet on default COS");
 				Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo),Charset.forName("UTF-8"), StandardOpenOption.APPEND);
-				CommandLineUtility.runCommandOnZimbraServer("zmprov mc default +zimbraZimletAvailableZimlets '+com_zextras_drive_open'");
-				CommandLineUtility.runCommandOnZimbraServer("zmprov fc -a all");
+				CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"),
+						"zmprov mc default +zimbraZimletAvailableZimlets '+com_zextras_drive_open'");
+				for (int i=0; i<ExecuteHarnessMain.storeServers.size(); i++) {
+					CommandLineUtility.runCommandOnZimbraServer(ExecuteHarnessMain.storeServers.get(i), "zmprov fc -a all");
+				}
 			}
 		}
 		logger.info("BeforeClass: finish");

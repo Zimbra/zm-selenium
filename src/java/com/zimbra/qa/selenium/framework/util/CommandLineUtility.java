@@ -64,7 +64,7 @@ public class CommandLineUtility {
 
 	/**
 	 * Execute Command line with no STDIN parameter and return the execution status
-	 * 
+	 *
 	 * @param command
 	 *            Command line to be executed
 	 * @return (Integer) Execution status code
@@ -77,7 +77,7 @@ public class CommandLineUtility {
 
 	/**
 	 * Execute Command line and return the execution status
-	 * 
+	 *
 	 * @param command
 	 *            Command line to be executed
 	 * @param params
@@ -92,7 +92,7 @@ public class CommandLineUtility {
 
 	/**
 	 * Execute Command line and return the execution status
-	 * 
+	 *
 	 * @param command
 	 *            Command line to be executed
 	 * @param params
@@ -132,7 +132,7 @@ public class CommandLineUtility {
 
 	/**
 	 * Execute command line with no params and return the output as a String
-	 * 
+	 *
 	 * @param command
 	 *            Command line to be executed
 	 * @return (String) output from the console
@@ -146,7 +146,7 @@ public class CommandLineUtility {
 
 	/**
 	 * Execute command line with parameters and return the output as a String
-	 * 
+	 *
 	 * @param command
 	 *            Command line to be executed
 	 * @param params
@@ -167,7 +167,7 @@ public class CommandLineUtility {
 	/**
 	 * Execute (tokenized) command line with parameters and return the output as a
 	 * String
-	 * 
+	 *
 	 * @param command
 	 *            Command line to be executed
 	 * @param params
@@ -187,7 +187,7 @@ public class CommandLineUtility {
 
 	/**
 	 * Streaming the input and output from the command line execution
-	 * 
+	 *
 	 * @param process
 	 * @param params
 	 * @return Aggregated output from the command line execution
@@ -224,7 +224,7 @@ public class CommandLineUtility {
 		return output;
 	}
 
-	public static String cmdExecOnServer(String email, String secret) {
+	public static String runCommandOnStoreServerToGetTOTP(String email, String secret) {
 		String host = ZimbraAccount.AccountZCS().zGetAccountStoreHost();
 		String user = "root";
 		String password = "zimbra";
@@ -270,8 +270,7 @@ public class CommandLineUtility {
 		return (totp);
 	}
 
-	public static ArrayList<String> runCommandOnZimbraServer(String zimbraCommand) {
-		String host = ConfigProperties.getStringProperty("server.host");
+	public static ArrayList<String> runCommandOnZimbraServer(String host, String zimbraCommand) {
 		String user = "root";
 		String password = "zimbra";
 		String command = "su - zimbra -c '" + zimbraCommand + "'";

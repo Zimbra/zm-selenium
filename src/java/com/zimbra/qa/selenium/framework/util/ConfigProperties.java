@@ -241,7 +241,7 @@ public class ConfigProperties {
 		logger.info("Getting zimbra server version...");
 
 		String buildType;
-		for (String zimbraVersion : CommandLineUtility.runCommandOnZimbraServer("zmcontrol -v")) {
+		for (String zimbraVersion : CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"), "zmcontrol -v")) {
 			if (zimbraVersion.toLowerCase().contains("network")) {
 				buildType = "NETWORK";
 			} else {

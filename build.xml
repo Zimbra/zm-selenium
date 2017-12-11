@@ -62,9 +62,9 @@
 
 	<target name="clean-zm-selenium-network-content" description="Deletes network related data and tests">
 		<echo message="Deleting network related data and tests..."/>
-		<delete dir="zm-selenium-network-private-data.dir}"/>
-		<delete dir="zm-selenium-network-ajax-tests.dir}"/>
-		<delete dir="zm-selenium-network-admin-tests.dir}"/>
+		<delete dir="${zm-selenium-network-private-data.dir}"/>
+		<delete dir="${zm-selenium-network-ajax-tests.dir}"/>
+		<delete dir="${zm-selenium-network-admin-tests.dir}"/>
 	</target>
 
 	<target name="clean" depends="clean-zm-selenium-network-content" description="Cleans build directory">

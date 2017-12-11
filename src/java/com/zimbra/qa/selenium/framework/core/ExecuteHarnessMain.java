@@ -282,7 +282,7 @@ public class ExecuteHarnessMain {
 			excludeGroups.add("non-msedge");
 		}
 
-		for (String isNGEnabled : CommandLineUtility.runCommandOnZimbraServer(
+		for (String isNGEnabled : CommandLineUtility.runCommandOnZimbraServer(storeServers.get(0),
 				"zmprov gs `zmhostname` zimbraNetworkModulesNGEnabled | grep -i 'zimbraNetworkModulesNGEnabled' | cut -d : -f 2 | tr -d '[:blank:]'")) {
 			if (isNGEnabled.equals("FALSE")) {
 				excludeGroups.add("ng-module");
@@ -291,11 +291,19 @@ public class ExecuteHarnessMain {
 			}
 		}
 
-		if (!CommandLineUtility.runCommandOnZimbraServer("dpkg -l | grep -i 'zimbra-chat'").contains("ii  zimbra-chat")) {
+		if (!CommandLineUtility.runCommandOnZimbraServer(storeServers.get(0), "dpkg -l | grep -i 'zimbra-chat'").contains("ii  zimbra-chat")) {
 			excludeGroups.add("chat");
 		}
-		if (!CommandLineUtility.runCommandOnZimbraServer("dpkg -l | grep -i 'zimbra-drive'").contains("ii  zimbra-drive")) {
+		if (!CommandLineUtility.runCommandOnZimbraServer(storeServers.get(0), "dpkg -l | grep -i 'zimbra-drive'").contains("ii  zimbra-drive")) {
 			excludeGroups.add("drive");
+		}
+
+		StafIntegration.logInfo = "Groups " + groups + ", Excluded groups " + excludeGroups;
+		logger.info(StafIntegration.logInfo);
+		try {
+			Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 
 		PerfMetrics.getInstance().Enabled = groups.contains("performance");
@@ -1424,7 +1432,7 @@ public class ExecuteHarnessMain {
 
 			// Get total zimbra servers
 			logger.info("Getting total zimbra servers...");
-			for (String noOfZimbraServers : CommandLineUtility.runCommandOnZimbraServer("zmprov -l gas | wc -l")) {
+			for (String noOfZimbraServers : CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"), "zmprov -l gas | wc -l")) {
 				totalZimbraServers = Integer.parseInt(noOfZimbraServers);
 			}
 			if (totalZimbraServers == 0) {
@@ -1434,7 +1442,7 @@ public class ExecuteHarnessMain {
 			// Get admin port
 			if (totalZimbraServers >= 2) {
 				logger.info("Getting proxy servers...");
-				for (String noOfZimbraProxyServers : CommandLineUtility.runCommandOnZimbraServer("zmprov -l gas proxy | wc -l")) {
+				for (String noOfZimbraProxyServers : CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"), "zmprov -l gas proxy | wc -l")) {
 					totalZimbraProxyServers = Integer.parseInt(noOfZimbraProxyServers);
 					if (totalZimbraProxyServers >=1) {
 						adminPort = 9071;
@@ -1489,7 +1497,7 @@ public class ExecuteHarnessMain {
 
 				// Get all store servers
 				logger.info("Get all store servers...");
-				storeServers = CommandLineUtility.runCommandOnZimbraServer("zmprov -l gas mailbox");
+				storeServers = CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"), "zmprov -l gas mailbox");
 				StafIntegration.logInfo = "Store server(s): " + storeServers;
 				logger.info(StafIntegration.logInfo);
 				Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
@@ -1503,7 +1511,7 @@ public class ExecuteHarnessMain {
 
 				// Get all mta servers
 				logger.info("Get all mta servers...");
-				mtaServers = CommandLineUtility.runCommandOnZimbraServer("zmprov -l gas mta");
+				mtaServers = CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"), "zmprov -l gas mta");
 				StafIntegration.logInfo = "MTA server(s): " + mtaServers;
 				logger.info(StafIntegration.logInfo);
 				Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
@@ -1543,31 +1551,36 @@ public class ExecuteHarnessMain {
 				StafIntegration.logInfo = "Grant createDistList right to domain using CLI utility";
 				logger.info(StafIntegration.logInfo);
 				Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
-				CommandLineUtility.runCommandOnZimbraServer("zmprov grr domain " + ConfigProperties.getStringProperty("testdomain")
+				CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"), "zmprov grr domain " + ConfigProperties.getStringProperty("testdomain")
 								+ " dom " + ConfigProperties.getStringProperty("testdomain") + " createDistList");
 
 				// Disable zimbraSmimeOCSPEnabled attribute for S/MIME
 				StafIntegration.logInfo = "Disable zimbraSmimeOCSPEnabled attribute for S/MIME using CLI utility";
 				logger.info(StafIntegration.logInfo);
 				Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
-				CommandLineUtility.runCommandOnZimbraServer("zmprov mcf zimbraSmimeOCSPEnabled FALSE");
+				CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"), "zmprov mcf zimbraSmimeOCSPEnabled FALSE");
 
 				// Initially disable chat and drive zimlets on COS if they are enabled
-				ArrayList<String> zimletList = CommandLineUtility.runCommandOnZimbraServer("zmprov -l gc default zimbraZimletAvailableZimlets | grep zimbraZimletAvailableZimlets | cut -c 32-");
-				if (zimletList.contains("com_zextras_chat_open")) {
+				ArrayList<String> availableZimlets = CommandLineUtility.runCommandOnZimbraServer(
+						ConfigProperties.getStringProperty("server.host"), "zmprov -l gc default zimbraZimletAvailableZimlets | grep zimbraZimletAvailableZimlets | cut -c 32-");
+				if (availableZimlets.contains("com_zextras_chat_open")) {
 					StafIntegration.logInfo = "Initially disable zimbra chat zimlet on COS";
 					logger.info(StafIntegration.logInfo);
 					Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo),Charset.forName("UTF-8"), StandardOpenOption.APPEND);
-					CommandLineUtility.runCommandOnZimbraServer("zmprov mc default -zimbraZimletAvailableZimlets '+com_zextras_chat_open'");
+					CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"),
+							"zmprov mc default -zimbraZimletAvailableZimlets '+com_zextras_chat_open'");
 				}
-				if (zimletList.contains("com_zextras_drive_open")){
+				if (availableZimlets.contains("com_zextras_drive_open")){
 					StafIntegration.logInfo = "Initially disable zimbra drive zimlet on COS";
 					logger.info(StafIntegration.logInfo);
 					Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo),Charset.forName("UTF-8"), StandardOpenOption.APPEND);
-					CommandLineUtility.runCommandOnZimbraServer("zmprov mc default -zimbraZimletAvailableZimlets '+com_zextras_drive_open'");
+					CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"),
+							"zmprov mc default -zimbraZimletAvailableZimlets '+com_zextras_drive_open'");
 				}
-				if (zimletList.contains("com_zextras_chat_open") || zimletList.contains("com_zextras_drive_open")) {
-					CommandLineUtility.runCommandOnZimbraServer("zmprov fc -a all");
+				if (availableZimlets.contains("com_zextras_chat_open") || availableZimlets.contains("com_zextras_drive_open")) {
+					for (int i=0; i<storeServers.size(); i++) {
+						CommandLineUtility.runCommandOnZimbraServer(storeServers.get(i), "zmprov fc -a all");
+					}
 				}
 
 			// Universal project settings
@@ -1575,7 +1588,8 @@ public class ExecuteHarnessMain {
 				String universalUITheme = "clarity";
 
 				Boolean themeFound = false;
-				for (String serverUniversalUITheme : CommandLineUtility.runCommandOnZimbraServer("ls /opt/zimbra/jetty/webapps/zimbra/skins | grep -i " + universalUITheme)) {
+				for (String serverUniversalUITheme : CommandLineUtility.runCommandOnZimbraServer(
+						ConfigProperties.getStringProperty("server.host"), "ls /opt/zimbra/jetty/webapps/zimbra/skins | grep -i " + universalUITheme)) {
 					if (serverUniversalUITheme.contains(universalUITheme)) {
 						themeFound = true;
 						break ;
@@ -1597,11 +1611,12 @@ public class ExecuteHarnessMain {
 				StafIntegration.logInfo = "Modify COS to always use Clarity theme for Universal UI";
 				logger.info(StafIntegration.logInfo);
 				Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
-				CommandLineUtility.runCommandOnZimbraServer("zmprov mc default zimbraPrefSkin " + universalUITheme);
+				CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"), "zmprov mc default zimbraPrefSkin " + universalUITheme);
 
 				// Get modified COS value for check theme value for Universal UI
 				logger.info("Get modified COS value for check theme value for Universal UI");
-				for (String serverUniversalUITheme : CommandLineUtility.runCommandOnZimbraServer("zmprov gc default | grep zimbraPrefSkin")) {
+				for (String serverUniversalUITheme : CommandLineUtility.runCommandOnZimbraServer(
+						ConfigProperties.getStringProperty("server.host"), "zmprov gc default | grep zimbraPrefSkin")) {
 					if (!serverUniversalUITheme.split(": ")[1].trim().equals(universalUITheme)) {
 						seleniumService.stopSeleniumExecution();
 						StafIntegration.logInfo = "Couldn't set " + universalUITheme + " theme for Univeral UI project";
