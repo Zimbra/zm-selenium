@@ -143,11 +143,11 @@ public class AjaxCore {
 		logger.info("BeforeClass: start");
 		logger.info("Class name: " + this.getClass());
 
-		ArrayList<String> zimletList= null;
+		ArrayList<String> availableZimlets= null;
 		if (this.getClass().getName().contains("com.zimbra.qa.selenium.projects.ajax.tests.zextras.chat")) {
-			zimletList = CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"),
+			availableZimlets = CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"),
 					"zmprov -l gc default zimbraZimletAvailableZimlets | grep zimbraZimletAvailableZimlets | cut -c 32-");
-			if (!zimletList.contains("com_zextras_chat_open")) {
+			if (!availableZimlets.contains("com_zextras_chat_open")) {
 				logger.info("Enable zimbra chat zimlet on default COS");
 				Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo),Charset.forName("UTF-8"), StandardOpenOption.APPEND);
 				CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"),
@@ -158,9 +158,9 @@ public class AjaxCore {
 			}
 		}
 		if (this.getClass().getName().contains("com.zimbra.qa.selenium.projects.ajax.tests.zextras.drive")) {
-			zimletList = CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"),
+			availableZimlets = CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"),
 					"zmprov -l gc default zimbraZimletAvailableZimlets | grep zimbraZimletAvailableZimlets | cut -c 32-");
-			if (!zimletList.contains("com_zextras_drive_open")) {
+			if (!availableZimlets.contains("com_zextras_drive_open")) {
 				logger.info("Enable zimbra drive zimlet on default COS");
 				Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo),Charset.forName("UTF-8"), StandardOpenOption.APPEND);
 				CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"),
