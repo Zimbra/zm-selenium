@@ -25,10 +25,10 @@ import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
 import com.zimbra.qa.selenium.projects.ajax.pages.contacts.DialogNewContactGroup;
 
-public class ManageContactGroupUsingRightClickContextMenu extends AjaxCore  {
+public class ManageContactGroup extends AjaxCore  {
 
-	public ManageContactGroupUsingRightClickContextMenu() {
-		logger.info("New "+ ManageContactGroupUsingRightClickContextMenu.class.getCanonicalName());
+	public ManageContactGroup() {
+		logger.info("New "+ ManageContactGroup.class.getCanonicalName());
 
 		super.startingPage = app.zPageContacts;
 		super.startingAccountPreferences = new HashMap<String , String>() {

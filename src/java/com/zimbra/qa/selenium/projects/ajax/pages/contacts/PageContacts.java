@@ -913,7 +913,11 @@ public class PageContacts extends AbsTab {
 			if (parentLocator != null) {
 				locator = "css=" + parentLocator + " " + sub_cmi.locator + extraLocator;
 			} else {
-				locator = "css=" + sub_cmi.locator + extraLocator;
+				if (ConfigProperties.getStringProperty("browser").equals("firefox") && subOption == Button.O_NEW_CONTACTGROUP) {
+					locator = "css=td[id$='NEWGROUP_title']:contains('New Contact Group')";
+				} else {
+					locator = "css=" + sub_cmi.locator + extraLocator;
+				}
 			}
 
 		}
@@ -927,8 +931,7 @@ public class PageContacts extends AbsTab {
 		}
 
 		sFocus(locator);
-		sMouseOver(locator);
-		sClickAt(locator, "");
+		sClick(locator);
 		zWaitForBusyOverlay();
 		SleepUtil.sleepMedium();
 
