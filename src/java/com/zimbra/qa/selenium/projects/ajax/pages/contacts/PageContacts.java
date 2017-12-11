@@ -306,15 +306,11 @@ public class PageContacts extends AbsTab {
 
 		List<ContactItem> list = new ArrayList<ContactItem>();
 
-		// ensure it is in Addressbook main page
-		zNavigateTo();
 		if (!this.sIsElementPresent("id=zv__CNS-main"))
-			// maybe return empty list?????
 			throw new HarnessException("Contact List is not present " + "id='zv__CNS-main'");
 
 		// Get the number of contacts (String)
 		int count = this.sGetCssCount("css=div[id='zv__CNS-main'] li[id^=zli__CNS-main__]");
-
 		logger.info(myPageName() + " zListGetContacts: number of contacts: " + count);
 
 		// Get each contact's data from the table list

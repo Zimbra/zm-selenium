@@ -1559,13 +1559,14 @@ public class ExecuteHarnessMain {
 					logger.info(StafIntegration.logInfo);
 					Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo),Charset.forName("UTF-8"), StandardOpenOption.APPEND);
 					CommandLineUtility.runCommandOnZimbraServer("zmprov mc default -zimbraZimletAvailableZimlets '+com_zextras_chat_open'");
-					CommandLineUtility.runCommandOnZimbraServer("zmsprov fc -a all");
 				}
 				if (zimletList.contains("com_zextras_drive_open")){
 					StafIntegration.logInfo = "Initially disable zimbra drive zimlet on COS";
 					logger.info(StafIntegration.logInfo);
 					Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo),Charset.forName("UTF-8"), StandardOpenOption.APPEND);
 					CommandLineUtility.runCommandOnZimbraServer("zmprov mc default -zimbraZimletAvailableZimlets '+com_zextras_drive_open'");
+				}
+				if (zimletList.contains("com_zextras_chat_open") || zimletList.contains("com_zextras_drive_open")) {
 					CommandLineUtility.runCommandOnZimbraServer("zmprov fc -a all");
 				}
 

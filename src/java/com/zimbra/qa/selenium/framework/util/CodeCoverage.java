@@ -506,6 +506,11 @@ public class CodeCoverage {
 		}
 	}
 
+	// Sometimes, there may be an exception that should disable code coverage
+	// metrics for the remainder of the run.
+	// In those cases, isCodeCoverageDisabled will be flipped to true
+	boolean isCodeCoverageDisabled = false;
+
 	/**
 	 * Check if jscoverage is available on the server
 	 *
@@ -518,7 +523,7 @@ public class CodeCoverage {
 			StafServiceFS staf = new StafServiceFS();
 			staf.execute("QUERY ENTRY " + jsCoverageTool);
 			if (staf.getSTAFResult().rc == STAFResult.DoesNotExist) {
-				isDisabled = true;
+				isCodeCoverageDisabled = true;
 				throw new HarnessException(jsCoverageTool + " does not exist!");
 			}
 		}
@@ -595,7 +600,7 @@ public class CodeCoverage {
 			staf.execute("zmcontrol status");
 
 		} catch (HarnessException e) {
-			logger.error("Unable to instrument code.  Disabling code coverage.", e);
+			logger.error("Unable to instrument code. Disabling code coverage.", e);
 		}
 
 	}
@@ -705,7 +710,7 @@ public class CodeCoverage {
 		if (!supportedAppTypes.contains(ConfigProperties.getAppType())) {
 			logger.info("CodeCoverage(): code coverage does not support type " + ConfigProperties.getAppType()
 					+ ". Disabling...");
-			isDisabled = true;
+			isCodeCoverageDisabled = true;
 			return;
 		}
 
@@ -725,7 +730,7 @@ public class CodeCoverage {
 
 				if (stream == null) {
 					logger.error("CodeCoverage(): unable to find resource: /coverageScript.js");
-					isDisabled = true;
+					isCodeCoverageDisabled = true;
 					return;
 				}
 
@@ -743,7 +748,7 @@ public class CodeCoverage {
 			}
 		} catch (IOException e) {
 			logger.error("unable to read resource: /coverageScript.js", e);
-			isDisabled = true;
+			isCodeCoverageDisabled = true;
 			return;
 		}
 
@@ -758,18 +763,14 @@ public class CodeCoverage {
 
 	}
 
-	// Sometimes, there may be an exception that should disable code coverage
-	// metrics for the remainder of the run.
-	// In those cases, isDisabled will be flipped to true
-	private boolean isDisabled = false;
-
 	public boolean isEnabled() {
-		String v = ConfigProperties.getStringProperty("coverage.enabled");
-		if (isDisabled) {
-			return (false);
+		Boolean isCoverageEnabled = Boolean.valueOf(ConfigProperties.getStringProperty("coverage.enabled"));
+		if (isCoverageEnabled.equals(true)) {
+			logger.info("Code coverage is enabled");
+		} else {
+			logger.info("Code coverage is disabled");
 		}
-		logger.info("Code coverage is enabled");
-		return (v.equalsIgnoreCase("true"));
+		return (isCoverageEnabled);
 	}
 
 	/**
