@@ -319,9 +319,9 @@ public class CreateContact extends AjaxCore {
 			formContactNew.zFillField(Field.fromString(key), value);
 		}
 
-		// Add birthday as 20th of the current month from date picker
+		// Add birthday as 1st of the current month from date picker
 		formContactNew.sClickAt(Locators.zOther1DatePickerPullDown, "0,0");
-		formContactNew.sClickAt(Locators.zDay20InDatePicker, "");
+		formContactNew.sClickAt(Locators.zDayOneInDatePicker, "");
 
 		// Add another row in Others filed to add Anniversary date
 		formContactNew.sClickAt(Locators.zAddNewOtherRowBtn, "0,0");
@@ -330,14 +330,14 @@ public class CreateContact extends AjaxCore {
 		formContactNew.sClick(Locators.zOther2OptionsPullDown);
 		formContactNew.sClickAt(Locators.zAnniversaryOption, "0,0");
 
-		// Select Anniversary date as 20th
+		// Select Anniversary date as 1st
 		formContactNew.sClickAt(Locators.zOther2DatePickerPullDown, "0,0");
-		formContactNew.sClickAt(Locators.zDay20InDatePicker, "");
+		formContactNew.sClickAt(Locators.zDayOneInDatePicker, "");
 
 		// Verify that selected dates are entered in the fields
-		ZAssert.assertStringContains(formContactNew.sGetValue(Locators.zOther1EditField), "20",
+		ZAssert.assertStringContains(formContactNew.sGetValue(Locators.zOther1EditField), "1",
 				"Entered date is not matching with the date entered through date picker");
-		ZAssert.assertStringContains(formContactNew.sGetValue(Locators.zOther2EditField), "20",
+		ZAssert.assertStringContains(formContactNew.sGetValue(Locators.zOther2EditField), "1",
 				"Entered date is not matching with the date entered through date picker");
 
 		// Save the contact

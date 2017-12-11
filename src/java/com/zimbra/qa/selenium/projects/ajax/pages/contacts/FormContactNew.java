@@ -79,7 +79,7 @@ public class FormContactNew extends AbsForm {
 		public static String zOther2DatePickerPullDown = "css=div[class='ZmEditContactView']:not([aria-hidden='true']) div[id$='_OTHER_1_picker'] div[class='ImgSelectPullDownArrow']";
 		public static String zOther2OptionsPullDown = "css=div[class='ZmEditContactView']:not([aria-hidden='true']) div[id$='_OTHER_1_select'] td[id$='_dropdown'] div[class='ImgSelectPullDownArrow']";
 		public static String zAnniversaryOption = "css=table[class='ZWidgetTable ZMenuItemTable ZMenuItemBorder'] tr td:contains('Anniversary')";
-		public static String zDay20InDatePicker = "css=div.DwtMenu[style*='display: block'] div.DwtComposite div.DwtCalendar td.DwtCalendarBody td.DwtCalendarDay:contains('20')";
+		public static String zDayOneInDatePicker = "css=div.DwtMenu[style*='display: block'] div.DwtComposite div.DwtCalendar td.DwtCalendarBody td.DwtCalendarDay:contains('1')";
 
 		public static final String zPrefixCheckbox = "td.ZWidgetTitle:contains('Prefix')";
 		public static final String zMiddleCheckbox = "td.ZWidgetTitle:contains('Middle')";
