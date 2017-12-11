@@ -85,7 +85,6 @@ public class Edit extends AjaxCore {
         form.zFillField(Field.Body, newContent);
         form.zFillField(Field.Attendees, attendee2EmailAddress);
         form.zSubmit();
-        SleepUtil.sleepMedium();
 
 		// Verify that new invitation doesn't appear in attendee2's inbox because it is locally saved appointment
 		ZimbraAccount.AccountB().soapSend(

@@ -77,14 +77,15 @@ public class Forward extends AjaxCore {
 				+	"</CreateAppointmentRequest>");
 
 		// Verify appointment exists in current view
-        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
+		ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
 
-        // Forward appointment to different attendee
-        app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_FORWARD_MENU, apptSubject);
-        FormApptNew form = new FormApptNew(app);
-        form.zFillField(Field.To, attendee2);
-        form.zFillField(Field.Body, ForwardContent);
-        form.zSubmit();
+		// Forward appointment to different attendee
+		app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_FORWARD_MENU, apptSubject);
+		FormApptNew form = new FormApptNew(app);
+		form.zFillField(Field.To, attendee2);
+		form.zFillField(Field.Body, ForwardContent);
+		form.zSubmit();
+
 		// Verify the new invitation appears in the inbox
 		ZimbraAccount.AccountB().soapSend(
 				"<SearchRequest xmlns='urn:zimbraMail' types='message'>"
@@ -109,7 +110,6 @@ public class Forward extends AjaxCore {
 			+	"</SearchRequest>");
 		id = ZimbraAccount.AccountA().soapSelectValue("//mail:m", "id");
 		ZAssert.assertNotNull(id, "Verify meeting notification to organizer");
-
 	}
 
 
@@ -132,16 +132,16 @@ public class Forward extends AjaxCore {
 		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0);
 
 	    ZimbraAdminAccount.GlobalAdmin().soapSend(
-	    	      "<ModifyAccountRequest xmlns='urn:zimbraAdmin'><id>" +
-	    	      ZimbraAccount.AccountA().ZimbraId + "</id>" +
-	    	      "<a n='zimbraPrefGroupMailBy'>message</a>" +
-	    	      "</ModifyAccountRequest>");
+				"<ModifyAccountRequest xmlns='urn:zimbraAdmin'><id>" +
+					ZimbraAccount.AccountA().ZimbraId + "</id>" +
+					"<a n='zimbraPrefGroupMailBy'>message</a>" +
+				"</ModifyAccountRequest>");
 
 	    ZimbraAdminAccount.GlobalAdmin().soapSend(
-	    	      "<ModifyAccountRequest xmlns='urn:zimbraAdmin'><id>" +
-	    	      ZimbraAccount.AccountB().ZimbraId + "</id>" +
-	    	      "<a n='zimbraPrefGroupMailBy'>message</a>" +
-	    	      "</ModifyAccountRequest>");
+				"<ModifyAccountRequest xmlns='urn:zimbraAdmin'><id>" +
+					ZimbraAccount.AccountB().ZimbraId + "</id>" +
+					"<a n='zimbraPrefGroupMailBy'>message</a>" +
+				"</ModifyAccountRequest>");
 
 		ZimbraAccount.AccountA().soapSend(
 				"<CreateAppointmentRequest xmlns='urn:zimbraMail'>"
@@ -161,7 +161,7 @@ public class Forward extends AjaxCore {
 				+	"</CreateAppointmentRequest>");
 
 		// Verify appointment exists in current view
-        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
+		ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
 
 		// --------------- Login to attendee & accept invitation ----------------------------------------------------
 
@@ -186,7 +186,7 @@ public class Forward extends AjaxCore {
 		apptForm.zFillField(Field.To, attendee2);
 		apptForm.zSubmit();
 
-		//Logout and login as AccountB
+		// Logout and login as AccountB
 		app.zPageMain.zLogout();
 		app.zPageLogin.zLogin(ZimbraAccount.AccountB());
 
@@ -293,5 +293,4 @@ public class Forward extends AjaxCore {
 		ZAssert.assertNotNull(invite, "Verify the invite is received");
 		ZAssert.assertEquals(invite.dSubject, "Fwd: Group photo with Steve", "Subject: Verify the appointment data");
 	}
-
 }

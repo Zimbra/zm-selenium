@@ -69,15 +69,15 @@ public class Forward extends AjaxCore {
 				+	"</CreateAppointmentRequest>");
 
 		// Verify appointment exists in current view
-        ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
+		ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
 
-        // --------------- Login to attendee & open the invitation ----------------------------------------------------
-        app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, Button.O_FORWARD_MENU, apptSubject);
+		// --------------- Login to attendee & open the invitation ----------------------------------------------------
+		app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, Button.O_FORWARD_MENU, apptSubject);
 
-        FormApptNew form = new FormApptNew(app);
+		FormApptNew form = new FormApptNew(app);
 		form.zFillField(Field.To, attendee2);
-        form.zFillField(Field.Body, ForwardContent);
-        form.zSubmit();
+		form.zFillField(Field.Body, ForwardContent);
+		form.zSubmit();
 
 		// Verify the new invitation appears in the inbox
 		ZimbraAccount.AccountB().soapSend(

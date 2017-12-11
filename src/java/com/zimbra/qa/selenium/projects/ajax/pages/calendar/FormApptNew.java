@@ -929,8 +929,13 @@ public class FormApptNew extends AbsForm {
 				// HTML compose
 				try {
 
-					if (this.sIsElementPresent(
-							"css=textarea[class='ZmHtmlEditorTextArea'][style*='display: block;']")) {
+					String plainTextEditorLocator;
+					if (ConfigProperties.getStringProperty("browser").contains("firefox")) {
+						plainTextEditorLocator = "css=textarea[class='ZmHtmlEditorTextArea'][style*='display: inline;']";
+					} else {
+						plainTextEditorLocator = "css=textarea[class='ZmHtmlEditorTextArea'][style*='display: block;']";
+					}
+					if (this.sIsElementPresent(plainTextEditorLocator)) {
 						locator = "css=textarea[class='ZmHtmlEditorTextArea']";
 						this.sFocus(locator);
 						this.sClick(locator);
