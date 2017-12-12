@@ -60,6 +60,7 @@ public class RemoveDelegate extends AjaxCore {
 
 		// Navigate to preferences -> notifications
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.MailAccounts);
+		app.zPageMain.zScrollDown("Prefs_Pages_ACCOUNTS");
 
 		// Select the grant in the list
 		String itemLocator = "css=div[id$='_PRIMARY'] div[id$='__na_name']:contains('"+ delegate.EmailAddress +"')";

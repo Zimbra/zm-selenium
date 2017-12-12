@@ -42,6 +42,7 @@ public class AddDelegate extends AjaxCore {
 
 		// Navigate to preferences -> notifications
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.MailAccounts);
+		app.zPageMain.zScrollDown("Prefs_Pages_ACCOUNTS");
 
 		// See http://bugzilla.zimbra.com/show_bug.cgi?id=74282
 		String buttonLocator = "css=div[id$='_PRIMARY'] td[id$='_title']:contains('Add Delegate')";
@@ -81,6 +82,7 @@ public class AddDelegate extends AjaxCore {
 
 		// Navigate to preferences -> notifications
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.MailAccounts);
+		app.zPageMain.zScrollDown("Prefs_Pages_ACCOUNTS");
 
 		// See http://bugzilla.zimbra.com/show_bug.cgi?id=74282
 		String buttonLocator = "css=div[id$='_PRIMARY'] td[id$='_title']:contains('Add Delegate')";

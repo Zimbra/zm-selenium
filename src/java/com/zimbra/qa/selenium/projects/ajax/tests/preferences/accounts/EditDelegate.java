@@ -52,6 +52,7 @@ public class EditDelegate extends AjaxCore {
 		// Navigate to preferences -> accounts
 		app.zPagePreferences.zNavigateTo();
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.MailAccounts);
+		app.zPageMain.zScrollDown("Prefs_Pages_ACCOUNTS");
 
 		// Select the grant in the list
 		String itemLocator = "css=div[id$='_PRIMARY'] div[id$='__na_name']:contains('" + delegate.EmailAddress + "')";
@@ -117,13 +118,12 @@ public class EditDelegate extends AjaxCore {
 
 		AbsDialog errorDialog = app.zPageMain.zGetErrorDialog(DialogErrorID.Zimbra);
 		if ((errorDialog != null) && (errorDialog.zIsActive())) {
-
-			// Dismiss the dialog and carry on
 			errorDialog.zPressButton(Button.B_OK);
 		}
 
 		// Navigate to preferences -> notifications
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.MailAccounts);
+		app.zPageMain.zScrollDown("Prefs_Pages_ACCOUNTS");
 
 		// Select the grant in the list
 		String itemLocator = "css=div[id$='_PRIMARY'] div[id$='__na_name']:contains('" + delegate.EmailAddress + "')";
@@ -194,6 +194,7 @@ public class EditDelegate extends AjaxCore {
 
 		// Navigate to preferences -> notifications
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.MailAccounts);
+		app.zPageMain.zScrollDown("Prefs_Pages_ACCOUNTS");
 
 		// Select the grant in the list
 		String itemLocator = "css=div[id$='_PRIMARY'] div[id$='__na_name']:contains('" + delegate.EmailAddress + "')";
@@ -257,6 +258,7 @@ public class EditDelegate extends AjaxCore {
 
 		// Navigate to preferences -> notifications
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.MailAccounts);
+		app.zPageMain.zScrollDown("Prefs_Pages_ACCOUNTS");
 
 		// Select the grant in the list
 		String itemLocator = "css=div[id$='_PRIMARY'] div[id$='__na_name']:contains('" + delegate.EmailAddress + "')";
@@ -327,6 +329,7 @@ public class EditDelegate extends AjaxCore {
 
 		// Navigate to preferences -> notifications
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.MailAccounts);
+		app.zPageMain.zScrollDown("Prefs_Pages_ACCOUNTS");
 
 		// Select the grant in the list
 		String itemLocator = "css=div[id$='_PRIMARY'] div[id$='__na_name']:contains('" + delegate.EmailAddress + "')";
@@ -395,6 +398,7 @@ public class EditDelegate extends AjaxCore {
 
 		// Navigate to preferences -> notifications
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.MailAccounts);
+		app.zPageMain.zScrollDown("Prefs_Pages_ACCOUNTS");
 
 		// Select the grant in the list
 		String itemLocator = "css=div[id$='_PRIMARY'] div[id$='__na_name']:contains('" + delegate.EmailAddress + "')";

@@ -2179,8 +2179,14 @@ public abstract class AbsSeleniumObject {
 
 	public void zScrollTo(int scrollTo) throws HarnessException {
 		logger.info("scrollTo(" + scrollTo + ") ");
-		JavascriptExecutor jse = (JavascriptExecutor) webDriver();
-		jse.executeScript("window.scrollBy(0," + scrollTo + ")", "");
+		JavascriptExecutor javaScriptExecutor = (JavascriptExecutor) webDriver();
+		javaScriptExecutor.executeScript("window.scrollBy(0," + scrollTo + ")", "");
+	}
+
+	public void zScrollDown(String objectID) throws HarnessException {
+		logger.info("Scroll down to (" + objectID + ") ");
+		JavascriptExecutor javaScriptExecutor = (JavascriptExecutor) webDriver();
+		javaScriptExecutor.executeScript("var objdiv=document.getElementById('" + objectID + "');" + "objdiv.scrollTo(0, 500);");
 	}
 
 	public boolean zWaitForWorkInProgressDialogInVisible() throws HarnessException {
