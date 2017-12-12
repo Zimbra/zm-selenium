@@ -22,7 +22,6 @@ import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
 import com.zimbra.qa.selenium.projects.ajax.pages.DialogDelegate;
-import com.zimbra.qa.selenium.projects.ajax.pages.DialogError.DialogErrorID;
 import com.zimbra.qa.selenium.projects.ajax.pages.preferences.TreePreferences.TreeItem;
 
 public class EditDelegate extends AjaxCore {
@@ -48,23 +47,17 @@ public class EditDelegate extends AjaxCore {
 
 		// Refresh UI
 		app.zPageMain.zRefreshMainUI();
+		this.startingPage.zNavigateTo();
 
 		// Navigate to preferences -> accounts
-		app.zPagePreferences.zNavigateTo();
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.MailAccounts);
-		app.zPageMain.zScrollDown("Prefs_Pages_ACCOUNTS");
 
 		// Select the grant in the list
 		String itemLocator = "css=div[id$='_PRIMARY'] div[id$='__na_name']:contains('" + delegate.EmailAddress + "')";
 		ZAssert.assertTrue(app.zPagePreferences.sIsElementPresent(itemLocator),
 				"Verify the delegate item is present in the list");
 		app.zPagePreferences.sClick(itemLocator);
-
-		// See http://bugzilla.zimbra.com/show_bug.cgi?id=74282
-		String buttonLocator = "css=div[id$='_PRIMARY'] td[id$='_title']:contains('Edit Permissions')";
-		ZAssert.assertTrue(app.zPagePreferences.sIsElementPresent(buttonLocator),
-				"Verify the add delegate button is present");
-		app.zPagePreferences.sClick(buttonLocator);
+		app.zPagePreferences.zPressButton(Button.B_EDIT_PERMISSIONS);
 
 		// Wait for the dialog to appear
 		DialogDelegate dialog = new DialogDelegate(app, app.zPagePreferences);
@@ -73,7 +66,6 @@ public class EditDelegate extends AjaxCore {
 		// Send As is already checked. Also, check Send On Behalf Of
 		dialog.zCheckRight(DialogDelegate.Rights.SendOnBehalfOf);
 		dialog.zPressButton(Button.B_OK);
-		SleepUtil.sleepSmall();
 
 		// Verification
 		app.zGetActiveAccount().soapSend("<GetRightsRequest xmlns='urn:zimbraAccount' >" + "<ace right='sendAs'/>"
@@ -116,26 +108,16 @@ public class EditDelegate extends AjaxCore {
 		app.zPageMain.zRefreshMainUI();
 		this.startingPage.zNavigateTo();
 
-		AbsDialog errorDialog = app.zPageMain.zGetErrorDialog(DialogErrorID.Zimbra);
-		if ((errorDialog != null) && (errorDialog.zIsActive())) {
-			errorDialog.zPressButton(Button.B_OK);
-		}
-
-		// Navigate to preferences -> notifications
+		// Navigate to preferences -> accounts
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.MailAccounts);
-		app.zPageMain.zScrollDown("Prefs_Pages_ACCOUNTS");
 
 		// Select the grant in the list
-		String itemLocator = "css=div[id$='_PRIMARY'] div[id$='__na_name']:contains('" + delegate.EmailAddress + "')";
+		String itemLocator = "//div[contains(@id, '__na_name') and contains(text(), '"
+				+ delegate.EmailAddress + "')]";
 		ZAssert.assertTrue(app.zPagePreferences.sIsElementPresent(itemLocator),
 				"Verify the delegate item is present in the list");
-		app.zPagePreferences.sClickAt(itemLocator, "");
-
-		// See http://bugzilla.zimbra.com/show_bug.cgi?id=74282
-		String buttonLocator = "css=div[id$='_PRIMARY'] td[id$='_title']:contains('Edit Permissions')";
-		ZAssert.assertTrue(app.zPagePreferences.sIsElementPresent(buttonLocator),
-				"Verify the add delegate button is present");
-		app.zPagePreferences.sClickAt(buttonLocator, "");
+		app.zPagePreferences.sClick(itemLocator);
+		app.zPagePreferences.zPressButton(Button.B_EDIT_PERMISSIONS);
 
 		// Wait for the dialog to appear
 		DialogDelegate dialog = new DialogDelegate(app, app.zPagePreferences);
@@ -143,13 +125,12 @@ public class EditDelegate extends AjaxCore {
 
 		dialog.zCheckRight(DialogDelegate.Rights.SendOnBehalfOf);
 		dialog.zPressButton(Button.B_OK);
-		app.zPagePreferences.sClickAt(itemLocator, "");
-		app.zPagePreferences.sClickAt(buttonLocator, "");
+		app.zPagePreferences.sClick(itemLocator);
+		app.zPagePreferences.zPressButton(Button.B_EDIT_PERMISSIONS);
 		dialog.zWaitForActive();
 		dialog.zUnCheckRight(DialogDelegate.Rights.SendAs);
 		SleepUtil.sleepLong();
 		dialog.zPressButton(Button.B_OK);
-		SleepUtil.sleepLong();
 
 		// Verification
 		app.zGetActiveAccount().soapSend("<GetRightsRequest xmlns='urn:zimbraAccount' >" + "<ace right='sendAs'/>"
@@ -192,21 +173,15 @@ public class EditDelegate extends AjaxCore {
 		app.zPageMain.zRefreshMainUI();
 		this.startingPage.zNavigateTo();
 
-		// Navigate to preferences -> notifications
+		// Navigate to preferences -> accounts
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.MailAccounts);
-		app.zPageMain.zScrollDown("Prefs_Pages_ACCOUNTS");
 
 		// Select the grant in the list
 		String itemLocator = "css=div[id$='_PRIMARY'] div[id$='__na_name']:contains('" + delegate.EmailAddress + "')";
 		ZAssert.assertTrue(app.zPagePreferences.sIsElementPresent(itemLocator),
 				"Verify the delegate item is present in the list");
-		app.zPagePreferences.sClickAt(itemLocator, "");
-
-		// See http://bugzilla.zimbra.com/show_bug.cgi?id=74282
-		String buttonLocator = "css=div[id$='_PRIMARY'] td[id$='_title']:contains('Edit Permissions')";
-		ZAssert.assertTrue(app.zPagePreferences.sIsElementPresent(buttonLocator),
-				"Verify the add delegate button is present");
-		app.zPagePreferences.sClickAt(buttonLocator, "");
+		app.zPagePreferences.sClick(itemLocator);
+		app.zPagePreferences.zPressButton(Button.B_EDIT_PERMISSIONS);
 
 		// Wait for the dialog to appear
 		DialogDelegate dialog = new DialogDelegate(app, app.zPagePreferences);
@@ -256,21 +231,15 @@ public class EditDelegate extends AjaxCore {
 		app.zPageMain.zRefreshMainUI();
 		this.startingPage.zNavigateTo();
 
-		// Navigate to preferences -> notifications
+		// Navigate to preferences -> accounts
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.MailAccounts);
-		app.zPageMain.zScrollDown("Prefs_Pages_ACCOUNTS");
 
 		// Select the grant in the list
 		String itemLocator = "css=div[id$='_PRIMARY'] div[id$='__na_name']:contains('" + delegate.EmailAddress + "')";
 		ZAssert.assertTrue(app.zPagePreferences.sIsElementPresent(itemLocator),
 				"Verify the delegate item is present in the list");
-		app.zPagePreferences.sClickAt(itemLocator, "");
-
-		// See http://bugzilla.zimbra.com/show_bug.cgi?id=74282
-		String buttonLocator = "css=div[id$='_PRIMARY'] td[id$='_title']:contains('Edit Permissions')";
-		ZAssert.assertTrue(app.zPagePreferences.sIsElementPresent(buttonLocator),
-				"Verify the add delegate button is present");
-		app.zPagePreferences.sClickAt(buttonLocator, "");
+		app.zPagePreferences.sClick(itemLocator);
+		app.zPagePreferences.zPressButton(Button.B_EDIT_PERMISSIONS);
 
 		// Wait for the dialog to appear
 		DialogDelegate dialog = new DialogDelegate(app, app.zPagePreferences);
@@ -320,28 +289,15 @@ public class EditDelegate extends AjaxCore {
 		app.zPageMain.zRefreshMainUI();
 		this.startingPage.zNavigateTo();
 
-		AbsDialog errorDialog = app.zPageMain.zGetErrorDialog(DialogErrorID.Zimbra);
-		if ((errorDialog != null) && (errorDialog.zIsActive())) {
-
-			// Dismiss the dialog and carry on
-			errorDialog.zPressButton(Button.B_OK);
-		}
-
-		// Navigate to preferences -> notifications
+		// Navigate to preferences -> accounts
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.MailAccounts);
-		app.zPageMain.zScrollDown("Prefs_Pages_ACCOUNTS");
 
 		// Select the grant in the list
 		String itemLocator = "css=div[id$='_PRIMARY'] div[id$='__na_name']:contains('" + delegate.EmailAddress + "')";
 		ZAssert.assertTrue(app.zPagePreferences.sIsElementPresent(itemLocator),
 				"Verify the delegate item is present in the list");
-		app.zPagePreferences.sClickAt(itemLocator, "");
-
-		// See http://bugzilla.zimbra.com/show_bug.cgi?id=74282
-		String buttonLocator = "css=div[id$='_PRIMARY'] td[id$='_title']:contains('Edit Permissions')";
-		ZAssert.assertTrue(app.zPagePreferences.sIsElementPresent(buttonLocator),
-				"Verify the add delegate button is present");
-		app.zPagePreferences.sClickAt(buttonLocator, "");
+		app.zPagePreferences.sClick(itemLocator);
+		app.zPagePreferences.zPressButton(Button.B_EDIT_PERMISSIONS);
 
 		// Wait for the dialog to appear
 		DialogDelegate dialog = new DialogDelegate(app, app.zPagePreferences);
@@ -349,8 +305,8 @@ public class EditDelegate extends AjaxCore {
 
 		dialog.zCheckRight(DialogDelegate.Rights.SendAs);
 		dialog.zPressButton(Button.B_OK);
-		app.zPagePreferences.sClickAt(itemLocator, "");
-		app.zPagePreferences.sClickAt(buttonLocator, "");
+		app.zPagePreferences.sClick(itemLocator);
+		app.zPagePreferences.zPressButton(Button.B_EDIT_PERMISSIONS);
 		dialog.zWaitForActive();
 		dialog.zUnCheckRight(DialogDelegate.Rights.SendOnBehalfOf);
 		dialog.zPressButton(Button.B_OK);
@@ -396,21 +352,15 @@ public class EditDelegate extends AjaxCore {
 		app.zPageMain.zRefreshMainUI();
 		this.startingPage.zNavigateTo();
 
-		// Navigate to preferences -> notifications
+		// Navigate to preferences -> accounts
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.MailAccounts);
-		app.zPageMain.zScrollDown("Prefs_Pages_ACCOUNTS");
 
 		// Select the grant in the list
 		String itemLocator = "css=div[id$='_PRIMARY'] div[id$='__na_name']:contains('" + delegate.EmailAddress + "')";
 		ZAssert.assertTrue(app.zPagePreferences.sIsElementPresent(itemLocator),
 				"Verify the delegate item is present in the list");
-		app.zPagePreferences.sClickAt(itemLocator, "");
-
-		// See http://bugzilla.zimbra.com/show_bug.cgi?id=74282
-		String buttonLocator = "css=div[id$='_PRIMARY'] td[id$='_title']:contains('Edit Permissions')";
-		ZAssert.assertTrue(app.zPagePreferences.sIsElementPresent(buttonLocator),
-				"Verify the add delegate button is present");
-		app.zPagePreferences.sClickAt(buttonLocator, "");
+		app.zPagePreferences.sClick(itemLocator);
+		app.zPagePreferences.zPressButton(Button.B_EDIT_PERMISSIONS);
 
 		// Wait for the dialog to appear
 		DialogDelegate dialog = new DialogDelegate(app, app.zPagePreferences);

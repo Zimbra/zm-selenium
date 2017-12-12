@@ -215,7 +215,7 @@ public abstract class AbsSeleniumObject {
 	private void zClickAt(String locator, String coord, WebElement... elements) throws HarnessException {
 		sClickAt(locator, coord, elements);
 	}
-	
+
 	@SuppressWarnings("unused")
 	private void zRightClick(String locator, WebElement... elements) throws HarnessException {
 		sClick(locator, elements);
@@ -2181,12 +2181,6 @@ public abstract class AbsSeleniumObject {
 		logger.info("scrollTo(" + scrollTo + ") ");
 		JavascriptExecutor javaScriptExecutor = (JavascriptExecutor) webDriver();
 		javaScriptExecutor.executeScript("window.scrollBy(0," + scrollTo + ")", "");
-	}
-
-	public void zScrollDown(String objectID) throws HarnessException {
-		logger.info("Scroll down to (" + objectID + ") ");
-		JavascriptExecutor javaScriptExecutor = (JavascriptExecutor) webDriver();
-		javaScriptExecutor.executeScript("var objdiv=document.getElementById('" + objectID + "');" + "objdiv.scrollTo(0, 500);");
 	}
 
 	public boolean zWaitForWorkInProgressDialogInVisible() throws HarnessException {

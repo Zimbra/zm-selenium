@@ -28,7 +28,7 @@ package com.zimbra.qa.selenium.framework.ui;
  * "Page" is not specified.
  * <p>
  * The action constants can be used in page methods, for example:
- * 
+ *
  * <pre>
  * {@code
  * // Click on the NEW button to compose a new mail
@@ -681,6 +681,10 @@ public class Button {
 	public static final Button B_EDIT_OUT_FILTER = new Button("B_EDIT_OUT_FILTER");
 	public static final Button B_DELETE_OUT_FILTER = new Button("B_DELETE_OUT_FILTER");
 	public static final Button B_RUN_OUT_FILTER = new Button("B_RUN_OUT_FILTER");
+
+	public static final Button B_ADD_DELEGATE = new Button("B_ADD_DELEGATE");
+	public static final Button B_EDIT_PERMISSIONS = new Button("B_EDIT_PERMISSIONS");
+	public static final Button B_REMOVE_PERMISSIONS = new Button("B_REMOVE_PERMISSIONS");
 
 	public static final Button B_ACTIVITY_STREAM_SETTINGS = new Button("B_ACTIVITY_STREAM_SETTINGS");
 	public static final Button B_ACTIVITY_STREAM_ENABLE = new Button("B_ACTIVITY_STREAM_ENABLE");
