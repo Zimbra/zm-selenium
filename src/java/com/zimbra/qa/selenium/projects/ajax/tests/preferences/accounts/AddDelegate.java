@@ -31,7 +31,7 @@ public class AddDelegate extends AjaxCore {
 
 
 	@Test (description = "Add a 'Send As' delegate to the primary account",
-			groups = { "functional", "L3" })
+			groups = { "sanity", "L0" })
 
 	public void AddDelegate_01() throws HarnessException {
 
@@ -42,12 +42,7 @@ public class AddDelegate extends AjaxCore {
 
 		// Navigate to preferences -> notifications
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.MailAccounts);
-
-		// See http://bugzilla.zimbra.com/show_bug.cgi?id=74282
-		String buttonLocator = "css=div[id$='_PRIMARY'] td[id$='_title']:contains('Add Delegate')";
-
-		ZAssert.assertTrue(app.zPagePreferences.sIsElementPresent(buttonLocator), "Verify the add delegate button is present");
-		app.zPagePreferences.sClickAt(buttonLocator, "");
+		app.zPagePreferences.zPressButton(Button.B_ADD_DELEGATE);
 
 		// Wait for the dialog to appear
 		DialogDelegate dialog = new DialogDelegate(app, app.zPagePreferences);
@@ -70,7 +65,7 @@ public class AddDelegate extends AjaxCore {
 
 
 	@Test (description = "Add a 'Send On Behalf Of' delegate to the primary account",
-			groups = { "functional", "L3" })
+			groups = { "sanity", "L0" })
 
 	public void AddDelegate_02() throws HarnessException {
 
@@ -79,14 +74,13 @@ public class AddDelegate extends AjaxCore {
 		delegate.provision();
 		delegate.authenticate();
 
+		// Refresh UI
+		app.zPageMain.zRefreshMainUI();
+		this.startingPage.zNavigateTo();
+
 		// Navigate to preferences -> notifications
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.MailAccounts);
-
-		// See http://bugzilla.zimbra.com/show_bug.cgi?id=74282
-		String buttonLocator = "css=div[id$='_PRIMARY'] td[id$='_title']:contains('Add Delegate')";
-
-		ZAssert.assertTrue(app.zPagePreferences.sIsElementPresent(buttonLocator), "Verify the add delegate button is present");
-		app.zPagePreferences.sClickAt(buttonLocator, "");
+		app.zPagePreferences.zPressButton(Button.B_ADD_DELEGATE);
 
 		// Wait for the dialog to appear
 		DialogDelegate dialog = new DialogDelegate(app, app.zPagePreferences);

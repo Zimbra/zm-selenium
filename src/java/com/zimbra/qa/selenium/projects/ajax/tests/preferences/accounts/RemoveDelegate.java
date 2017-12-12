@@ -18,12 +18,10 @@ package com.zimbra.qa.selenium.projects.ajax.tests.preferences.accounts;
 
 import org.testng.annotations.Test;
 import com.zimbra.common.soap.Element;
-import com.zimbra.qa.selenium.framework.ui.AbsDialog;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
-import com.zimbra.qa.selenium.projects.ajax.pages.DialogError.DialogErrorID;
 import com.zimbra.qa.selenium.projects.ajax.pages.preferences.TreePreferences.TreeItem;
 
 public class RemoveDelegate extends AjaxCore {
@@ -53,11 +51,6 @@ public class RemoveDelegate extends AjaxCore {
 		app.zPageMain.zRefreshMainUI();
 		this.startingPage.zNavigateTo();
 
-		AbsDialog errorDialog = app.zPageMain.zGetErrorDialog(DialogErrorID.Zimbra);
-		if ( (errorDialog != null) && (errorDialog.zIsActive()) ) {
-		    errorDialog.zPressButton(Button.B_OK);
-		}
-
 		// Navigate to preferences -> notifications
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.MailAccounts);
 
@@ -65,12 +58,7 @@ public class RemoveDelegate extends AjaxCore {
 		String itemLocator = "css=div[id$='_PRIMARY'] div[id$='__na_name']:contains('"+ delegate.EmailAddress +"')";
 		ZAssert.assertTrue(app.zPagePreferences.sIsElementPresent(itemLocator), "Verify the delegate item is present in the list");
 		app.zPagePreferences.sClick(itemLocator);
-
-		// See http://bugzilla.zimbra.com/show_bug.cgi?id=74282
-		String buttonLocator = "css=div[id$='_PRIMARY'] td[id$='_title']:contains('Remove')";
-		ZAssert.assertTrue(app.zPagePreferences.sIsElementPresent(buttonLocator), "Verify the add delegate button is present");
-		app.zPagePreferences.sClick(buttonLocator);
-		SleepUtil.sleepSmall();
+		app.zPagePreferences.zPressButton(Button.B_REMOVE_PERMISSIONS);
 
 		// Verification
 		app.zGetActiveAccount().soapSend(

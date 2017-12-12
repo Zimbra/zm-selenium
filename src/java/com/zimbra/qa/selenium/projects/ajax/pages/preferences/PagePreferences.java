@@ -103,6 +103,10 @@ public class PagePreferences extends AbsTab {
 		public static final String zDialogShareId = "ShareDialog";
 
 		// Accounts
+		public static final String zAddDelegateButton = "css=div[id$='_PRIMARY'] td[id$='_title']:contains('Add Delegate')";
+		public static final String zEditPermissionsButton = "css=div[id$='_PRIMARY'] td[id$='_title']:contains('Edit Permissions')";
+		public static final String zRemovePermissionsButton = "css=div[id$='_PRIMARY'] td[id$='_title']:contains('Remove')";
+
 		public static final String z2FAEnableLink = "css=div[id='Prefs_Pages_ACCOUNTS_PRIMARY'] a[id='Prefs_Pages_ACCOUNTS_TWO_STEP_AUTH_LINK']:contains('Setup two-step authentication ...')";
 		public static final String zDisable2FALink = "css=div[id='Prefs_Pages_ACCOUNTS_PRIMARY'] a[id='Prefs_Pages_ACCOUNTS_TWO_STEP_AUTH_LINK']:contains('Disable two-step authentication ...')";
 		public static final String zTrustedDeviceCount = "css=td[class='ZOptionsField'] span[id='Prefs_Pages_ACCOUNTS_TRUSTED_DEVICES_COUNT']:contains('You have 1 trusted device')";
@@ -667,6 +671,21 @@ public class PagePreferences extends AbsTab {
 		} else if (button == Button.B_VALIDATE_CODE) {
 
 			locator = Locators.zValidateCodeBtn;
+			page = null;
+
+		} else if (button == Button.B_ADD_DELEGATE) {
+
+			locator = Locators.zAddDelegateButton;
+			page = null;
+
+		} else if (button == Button.B_EDIT_PERMISSIONS) {
+
+			locator = Locators.zEditPermissionsButton;
+			page = null;
+
+		} else if (button == Button.B_REMOVE_PERMISSIONS) {
+
+			locator = Locators.zRemovePermissionsButton;
 			page = null;
 
 		} else {

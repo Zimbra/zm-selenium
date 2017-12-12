@@ -56,7 +56,7 @@ public class DialogDelegate extends AbsDialog {
 
 		this.sClick(locator);
 		zWaitForBusyOverlay();
-		SleepUtil.sleepSmall();
+		SleepUtil.sleepLong();
 
 		return (null);
 	}
