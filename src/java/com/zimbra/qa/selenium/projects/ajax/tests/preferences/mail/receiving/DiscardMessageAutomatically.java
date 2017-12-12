@@ -39,9 +39,9 @@ public class DiscardMessageAutomatically extends SetGroupMailByMessagePreference
 
 	public void DiscardMessageAutomatically_01() throws HarnessException {
 
-		//Set discard message automatically to self
+		// Set discard message automatically to self
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.Mail);
-		app.zPagePreferences.sClickAt(("css=label[id$='_text_right']:contains('Discard message automatically')") , "");	 // Check 'discard message automatically'
+		app.zPagePreferences.sClick(("css=label[id$='_text_right']:contains('Discard message automatically')")); // Check 'discard message automatically'
  		app.zPagePreferences.zToolbarPressButton(Button.B_SAVE);
 
 		// Create message
