@@ -912,16 +912,18 @@ public class FormApptNew extends AbsForm {
 			int frames = this.sGetCssCount("css=iframe");
 			logger.info("Body: # of frames: " + frames);
 
-			if (this.sIsElementPresent("css=textarea[class='ZmHtmlEditorTextArea']") && (frames == 0)) {
+			if (this.sIsElementPresent("css=textarea[class='ZmHtmlEditorTextArea']")) {
 
-				locator = "css=textarea[class='ZmHtmlEditorTextArea']";
+				if (ConfigProperties.getStringProperty("browser").contains("firefox")
+						|| (!ConfigProperties.getStringProperty("browser").contains("firefox") && frames == 0)) {
+					locator = "css=textarea[class='ZmHtmlEditorTextArea']";
 
-				this.sFocus(locator);
-				this.sClick(locator);
-				this.zWaitForBusyOverlay();
-				this.sType(locator, value);
-
-				return;
+					this.sFocus(locator);
+					this.sClick(locator);
+					this.zWaitForBusyOverlay();
+					this.sType(locator, value);
+					return;
+				}
 			}
 
 			if (frames >= 1) {
@@ -985,19 +987,12 @@ public class FormApptNew extends AbsForm {
 
 			if (field == Field.StartDate || field == Field.EndDate || field == Field.StartTime
 					|| field == Field.EndTime) {
-				this.sClickAt(locator, "");
-
 				this.zKeyboard.zSelectAll(locator);
-				/*
-				 * String clearField = ""; for(char c : value.toCharArray()){ clearField +=
-				 * "\b"; } this.sType(locator, clearField);
-				 * this.zKeyboard.zTypeCharacters(value);
-				 */
 				this.sTypeDateTime(locator, value);
 
 			} else if (field == Field.Subject) {
 				this.sType(locator, value);
-				SleepUtil.sleepSmall();
+				SleepUtil.sleepVerySmall();
 				if (sIsElementPresent("css=td[id='zb__App__tab_COMPOSE-1_right_icon']")) {
 					sClickAt("css=td[id='zb__App__tab_COMPOSE-1_right_icon']", "0,0");
 				}
