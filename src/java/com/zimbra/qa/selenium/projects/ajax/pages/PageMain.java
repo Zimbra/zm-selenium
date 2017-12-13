@@ -525,38 +525,37 @@ public class PageMain extends AbsTab {
 		logger.info("Navigate to " + appTab.myPageName());
 
 		// Navigate to app
-		if (!appTab.zIsActive()) {
-			zHandleDialogs(appTab);
+		for (int i = 0; i <= 2; i++) {
 
-			for (int i = 0; i <= 2; i++) {
+			if (!appTab.zIsActive()) {
+				zHandleDialogs(appTab);
+
 				if (appTab.equals(((AjaxPages) MyApplication).zPageCalendar)) {
 					SleepUtil.sleepMedium();
 				} else {
 					SleepUtil.sleepSmall();
 				}
+
 				sClickAt(appLocator, "");
 				this.zWaitForBusyOverlay();
 				SleepUtil.sleepMedium();
+
 				if (zGetCurrentApp().equals(appTab)) {
 					break;
+				} else {
+					zRefreshMainUI();
+					appTab.zNavigateTo();
+
+					// Check UI loading
+					if (ConfigProperties.getStringProperty("server.host").contains("zimbra.com")) {
+						zWaitTillElementPresent(appIdentifier);
+					} else {
+						zWaitTillElementPresent(appIdentifier.replace("ZIMLET", "TAG"));
+					}
+					this.zWaitForBusyOverlay();
+					SleepUtil.sleepSmall();
 				}
 			}
-		}
-
-		// Navigate to app
-		if (!appTab.zIsActive()) {
-
-			zRefreshMainUI();
-			appTab.zNavigateTo();
-
-			// Check UI loading
-			if (ConfigProperties.getStringProperty("server.host").contains("zimbra.com")) {
-				zWaitTillElementPresent(appIdentifier);
-			} else {
-				zWaitTillElementPresent(appIdentifier.replace("ZIMLET", "TAG"));
-			}
-			this.zWaitForBusyOverlay();
-			SleepUtil.sleepSmall();
 		}
 
 		logger.info("Navigated to " + this.myPageName() + " page");
