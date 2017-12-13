@@ -915,7 +915,7 @@ public class FormApptNew extends AbsForm {
 			if (this.sIsElementPresent("css=textarea[class='ZmHtmlEditorTextArea']")) {
 
 				if (ConfigProperties.getStringProperty("browser").contains("firefox")
-						|| !ConfigProperties.getStringProperty("browser").contains("firefox") && frames == 0) {
+						|| (!ConfigProperties.getStringProperty("browser").contains("firefox") && frames == 0)) {
 					locator = "css=textarea[class='ZmHtmlEditorTextArea']";
 
 					this.sFocus(locator);
