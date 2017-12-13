@@ -26,19 +26,18 @@ import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
 import com.zimbra.qa.selenium.projects.ajax.pages.DialogWarning;
 import com.zimbra.qa.selenium.projects.ajax.pages.calendar.FormApptNew;
 
-public class CreateMeetingByChangingBodyTextFormat extends AjaxCore {
+public class CreateMeetingByChangingBodyFormat extends AjaxCore {
 
-	public CreateMeetingByChangingBodyTextFormat() {
-		logger.info("New "+ CreateMeetingByChangingBodyTextFormat.class.getCanonicalName());
+	public CreateMeetingByChangingBodyFormat() {
+		logger.info("New "+ CreateMeetingByChangingBodyFormat.class.getCanonicalName());
 		super.startingPage = app.zPageCalendar;
 	}
 
 
-    @Bugs (ids = "103714")
 	@Test (description = "Compose a meeting with body text as plain, change to HTML and verify if text is not lost",
 			groups = { "smoke", "L1" })
 
-	public void PlainText_To_HTML_01() throws HarnessException {
+	public void PlainTextToHTML_01() throws HarnessException {
 
 		// Set mail Compose preference to Text format
 		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "text");
@@ -61,14 +60,13 @@ public class CreateMeetingByChangingBodyTextFormat extends AjaxCore {
 		appt.setStartTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0));
 		appt.setEndTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 15, 0, 0));
 
-		// Compose appointment in enter body text in plain first.
+		// Compose appointment and enter plain text content
 		FormApptNew apptForm = (FormApptNew) app.zPageCalendar.zToolbarPressButton(Button.B_NEW);
 		apptForm.zFill(appt);
 
 		// Change text format to HTML
 		apptForm.zToolbarPressPulldown(Button.B_OPTIONS, Button.O_FORMAT_AS_HTML);
 		ZAssert.assertStringContains(apptForm.zGetApptBodyHtml(), apptContent, "Verify content is not lost");
-
 		apptForm.zToolbarPressButton(Button.B_SAVEANDCLOSE);
 
 		// Verify the new appointment exists on the server
@@ -79,11 +77,10 @@ public class CreateMeetingByChangingBodyTextFormat extends AjaxCore {
 	}
 
 
-    @Bugs (ids = "103714")
 	@Test (description = "Compose a meeting with body text as plain, change to HTML and verify if text is not lost",
 			groups = { "smoke", "L1" })
 
-	public void HTML_To_PlainText_01() throws HarnessException {
+	public void HTMLToPlainText_02() throws HarnessException {
 
 		// Set mail Compose preference to Text format
 		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "html");
@@ -106,11 +103,11 @@ public class CreateMeetingByChangingBodyTextFormat extends AjaxCore {
 		appt.setStartTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 15, 0, 0));
 		appt.setEndTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 16, 0, 0));
 
-		// Compose appointment in enter body text in plain first.
+		// Compose appointment and enter html content
 		FormApptNew apptForm = (FormApptNew) app.zPageCalendar.zToolbarPressButton(Button.B_NEW);
 		apptForm.zFill(appt);
 
-		// Changed text format to plain text.
+		// Change html format to plain text
 		DialogWarning dialog = (DialogWarning)apptForm.zToolbarPressPulldown(Button.B_OPTIONS, Button.O_FORMAT_AS_PLAIN_TEXT);
 		dialog.zPressButton(Button.B_OK);
 
@@ -129,7 +126,7 @@ public class CreateMeetingByChangingBodyTextFormat extends AjaxCore {
 	@Test (description = "Description of a previous appointment comes up when changing mode from plain-text to html ",
 			groups = { "functional", "L2" })
 
-	public void PlainText_To_HTML_02() throws HarnessException {
+	public void PlainTextToHTML_03() throws HarnessException {
 
 		// Set mail Compose preference to Text format
 		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "text");
@@ -155,13 +152,12 @@ public class CreateMeetingByChangingBodyTextFormat extends AjaxCore {
 		appt.setStartTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 16, 0, 0));
 		appt.setEndTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 17, 0, 0));
 
-		// Compose appointment in enter body text in plain first.
+		// Compose appointment and enter plain text content
 		FormApptNew apptForm = (FormApptNew) app.zPageCalendar.zToolbarPressButton(Button.B_NEW);
 		apptForm.zFill(appt);
-		SleepUtil.sleepSmall();
+
 		// Change text format to HTML
 		apptForm.zToolbarPressPulldown(Button.B_OPTIONS, Button.O_FORMAT_AS_HTML);
-		SleepUtil.sleepSmall();
 		ZAssert.assertStringContains(apptForm.zGetApptBodyHtml(), apptContent1, "Verify content is not lost");
 		apptForm.zSubmit();
 
@@ -176,22 +172,19 @@ public class CreateMeetingByChangingBodyTextFormat extends AjaxCore {
 		appt.setStartTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 12, 0, 0));
 		appt.setEndTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0));
 
-		// Compose appointment in enter body text in plain first.
+		// Compose appointment and enter plain text content
 		apptForm = (FormApptNew) app.zPageCalendar.zToolbarPressButton(Button.B_NEW);
 		apptForm.zFill(appt);
+
 		// Change text format to HTML
-		SleepUtil.sleepLong();
 		apptForm.zToolbarPressPulldown(Button.B_OPTIONS, Button.O_FORMAT_AS_HTML);
 		ZAssert.assertStringContains(apptForm.zGetApptBodyHtml(), apptContent2, "Verify content is not lost");
 		apptForm.zSubmit();
-
 
 		// Verify the new appointment exists on the server
 		actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ appt.getSubject() +")", appt.getStartTime().addDays(-7), appt.getEndTime().addDays(7));
 		ZAssert.assertNotNull(actual, "Verify the new appointment is created");
 		ZAssert.assertEquals(actual.getSubject(), appt.getSubject(), "Subject: Verify the appointment data");
 		ZAssert.assertEquals(actual.getContent(), appt.getContent(), "Content: Verify the appointment data");
-
 	}
-
 }

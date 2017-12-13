@@ -47,14 +47,13 @@ public class GetMessage extends AjaxCore {
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 
 		// Verify the thumbnail appears
-
 		String locator = "css=div[id^='YOUTUBE'] img";
 		boolean present = app.zPageMail.sIsElementPresent(locator);
 
 		ZAssert.assertTrue(present, "Verify the youtube thumbnail is present");
 
 		// Click on the image
-		app.zPageMail.sClickAt(locator, "");
+		app.zPageMail.sClick(locator);
 		app.zPageMail.zWaitForBusyOverlay();
 
 		SleepUtil.sleep(5000);
