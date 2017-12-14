@@ -486,6 +486,7 @@ public class PageMain extends AbsTab {
 
 		AbsTab appTab;
 		String appLocator = null;
+		String commonAppLocator = "css=div[id$='__ZIMLET']";
 
 		if (appIdentifier.contains("Mail")) {
 			appTab = ((AjaxPages) MyApplication).zPageMail;
@@ -522,44 +523,44 @@ public class PageMain extends AbsTab {
 			((AjaxPages) MyApplication).zPageMain.zNavigateTo();
 		}
 
+		// Navigate to app
 		logger.info("Navigate to " + appTab.myPageName());
 
-		// Navigate to app
-		if (!appTab.zIsActive()) {
-			zHandleDialogs(appTab);
+		for (int i = 0; i <= 2; i++) {
 
-			for (int i = 0; i <= 2; i++) {
+			if (!appTab.zIsActive()) {
+				zHandleDialogs(appTab);
+
 				if (appTab.equals(((AjaxPages) MyApplication).zPageCalendar)) {
 					SleepUtil.sleepMedium();
 				} else {
 					SleepUtil.sleepSmall();
 				}
+
 				sClickAt(appLocator, "");
 				this.zWaitForBusyOverlay();
 				SleepUtil.sleepMedium();
+				if (!appTab.equals(((AjaxPages) MyApplication).zPagePreferences)) {
+					zWaitForElementPresent(commonAppLocator);
+				}
+
 				if (zGetCurrentApp().equals(appTab)) {
+					logger.info("Navigated to " + appTab + " page");
 					break;
+				} else {
+					zRefreshMainUI();
+					appTab.zNavigateTo();
+
+					// Check UI loading
+					if (ConfigProperties.getStringProperty("server.host").contains("zimbra.com")) {
+						zWaitTillElementPresent(appIdentifier);
+					} else {
+						zWaitTillElementPresent(appIdentifier.replace("ZIMLET", "TAG"));
+					}
+					this.zWaitForBusyOverlay();
+					SleepUtil.sleepSmall();
 				}
 			}
 		}
-
-		// Navigate to app
-		if (!appTab.zIsActive()) {
-
-			zRefreshMainUI();
-			appTab.zNavigateTo();
-
-			// Check UI loading
-			if (ConfigProperties.getStringProperty("server.host").contains("zimbra.com")) {
-				zWaitTillElementPresent(appIdentifier);
-			} else {
-				zWaitTillElementPresent(appIdentifier.replace("ZIMLET", "TAG"));
-			}
-			this.zWaitForBusyOverlay();
-			SleepUtil.sleepSmall();
-		}
-
-		logger.info("Navigated to " + this.myPageName() + " page");
 	}
-
 }
