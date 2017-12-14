@@ -169,6 +169,7 @@ public class TreeTasks extends AbsTree {
 
 	public AbsPage zTreeItem(Action action, IItem tasklist) throws HarnessException {
 
+		SleepUtil.sleepSmall();
 		tracer.trace(action + " on folder = " + tasklist.getName());
 
 		AbsPage page = null;
@@ -194,7 +195,7 @@ public class TreeTasks extends AbsTree {
 
 		sClick(locator);
 		this.zWaitForBusyOverlay();
-		SleepUtil.sleepSmall();
+		SleepUtil.sleepMedium();
 
 		return (page);
 

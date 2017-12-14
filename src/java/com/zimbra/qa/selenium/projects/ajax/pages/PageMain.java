@@ -486,6 +486,7 @@ public class PageMain extends AbsTab {
 
 		AbsTab appTab;
 		String appLocator = null;
+		String commonAppLocator = "css=div[id$='__ZIMLET']";
 
 		if (appIdentifier.contains("Mail")) {
 			appTab = ((AjaxPages) MyApplication).zPageMail;
@@ -522,9 +523,9 @@ public class PageMain extends AbsTab {
 			((AjaxPages) MyApplication).zPageMain.zNavigateTo();
 		}
 
+		// Navigate to app
 		logger.info("Navigate to " + appTab.myPageName());
 
-		// Navigate to app
 		for (int i = 0; i <= 2; i++) {
 
 			if (!appTab.zIsActive()) {
@@ -539,8 +540,12 @@ public class PageMain extends AbsTab {
 				sClickAt(appLocator, "");
 				this.zWaitForBusyOverlay();
 				SleepUtil.sleepMedium();
+				if (!appTab.equals(((AjaxPages) MyApplication).zPagePreferences)) {
+					zWaitForElementPresent(commonAppLocator);
+				}
 
 				if (zGetCurrentApp().equals(appTab)) {
+					logger.info("Navigated to " + appTab + " page");
 					break;
 				} else {
 					zRefreshMainUI();
@@ -557,8 +562,5 @@ public class PageMain extends AbsTab {
 				}
 			}
 		}
-
-		logger.info("Navigated to " + this.myPageName() + " page");
 	}
-
 }

@@ -27,6 +27,7 @@ import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.SetGroupMailByMessagePreference;
+import com.zimbra.qa.selenium.projects.ajax.pages.tasks.PageTasks;
 
 public class AppTasks extends SetGroupMailByMessagePreference {
 
@@ -45,7 +46,7 @@ public class AppTasks extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "?app=tasks in url",
-			groups = { "smoke", "L0" })
+			groups = { "smoke", "L1" })
 
 	public void AppTasks_01() throws HarnessException {
 
@@ -80,11 +81,10 @@ public class AppTasks extends SetGroupMailByMessagePreference {
 		ZimbraURI uri = new ZimbraURI(ZimbraURI.getBaseURI());
 		uri.addQuery("app", "tasks");
 		app.zPageMail.sOpen(uri.toString());
-		SleepUtil.sleepMedium();
+		app.zPageTasks.zWaitTillElementPresent(PageTasks.Locators.zTasksZimletsPane);
 
 		// Refresh the tasks view
 		app.zTreeTasks.zTreeItem(Action.A_LEFTCLICK, taskFolder);
-		SleepUtil.sleepMedium();
 
 		// Get all the tasks
 		List<TaskItem> tasks = app.zPageTasks.zGetTasks();
