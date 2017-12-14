@@ -72,6 +72,7 @@ public class Button {
 	public static final Button B_BEGIN_SETUP = new Button("B_BEGIN_SETUP");
 	public static final Button B_FINISH = new Button("B_FINISH");
 	public static final Button B_REVOKE = new Button("B_REVOKE");
+	public static final Button B_RESET = new Button("B_RESET");
 
 	public static final Button O_NEW = new Button("O_NEW");
 	public static final Button O_NEW_ADMIN = new Button("O_NEW_ADMIN");
