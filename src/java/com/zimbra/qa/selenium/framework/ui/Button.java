@@ -72,7 +72,15 @@ public class Button {
 	public static final Button B_BEGIN_SETUP = new Button("B_BEGIN_SETUP");
 	public static final Button B_FINISH = new Button("B_FINISH");
 	public static final Button B_REVOKE = new Button("B_REVOKE");
-	public static final Button B_RESET = new Button("B_RESET");
+	public static final Button B_RESET = new Button("B_RESET_Domain");
+	public static final Button B_RESET_DOMAIN = new Button("B_RESET_DOMAIN");
+	public static final Button B_ADD_ACCOUNT = new Button("B_ADD_ACCOUNT");
+	public static final Button B_EDIT_ACCOUNT = new Button("B_EDIT_ACCOUNT");
+	public static final Button B_DELETE_ACCOUNT = new Button("B_DELETE_ACCOUNT");
+	public static final Button B_EDIT_DOMAIN = new Button("B_EDIT_DOMAIN");
+	public static final Button B_ADD_COS = new Button("B_ADD_COS");
+	public static final Button B_EDIT_COS = new Button("B_EDIT_COS");
+	public static final Button B_DELETE_COS = new Button("B_DELETE_COS");
 
 	public static final Button O_NEW = new Button("O_NEW");
 	public static final Button O_NEW_ADMIN = new Button("O_NEW_ADMIN");

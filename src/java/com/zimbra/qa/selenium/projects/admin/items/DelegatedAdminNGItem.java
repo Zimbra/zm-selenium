@@ -10,10 +10,10 @@ public class DelegatedAdminNGItem implements IItem {
 	protected String Domain;
 	protected Boolean DelegatedAuth;
 	protected Boolean EditFeatures;
-	protected Grantlimt Limit;
+	protected grantlimt Limit;
 	protected String GrantCustomValue;
 
-	public enum Grantlimt{
+	public enum grantlimt{
 		None,Custom,Unlimited
 	}
 
@@ -67,11 +67,11 @@ public class DelegatedAdminNGItem implements IItem {
 		return (EditFeatures);
 	}
 
-	public void setGrantLimit(Grantlimt limitval) {
+	public void setGrantLimit(grantlimt limitval) {
 		Limit = limitval;
 	}
 
-	public Grantlimt getGrantLimit() {
+	public grantlimt getGrantLimit() {
 		return (Limit);
 	}
 

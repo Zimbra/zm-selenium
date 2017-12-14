@@ -17,7 +17,7 @@ public class WizardAddCosLimitNG extends AbsWizard {
 		public static final String zAddCosLimitDialog = "css=div[class='DwtDialog']:not([aria-hidden='true'])[style*='z-index: 702;'] > div:contains('Add COS Limit')";
 		public static final String zCosNameField = zAddCosLimitDialog + " input[id$='cosName_display']";
 		public static final String zCosAccountLimitField = "css=div[class='DwtDialog']:not([aria-hidden='true'])[style*='z-index: 702;'] input[id$='cosLimit']";
-		public static final String zOkbtn = "css=div[class='DwtDialog']:not([aria-hidden='true'])[style*='z-index: 702;'] td[class='ZWidgetTitle']:contains('OK')";
+		public static final String zOkButton = "css=div[class='DwtDialog']:not([aria-hidden='true'])[style*='z-index: 702;'] td[class='ZWidgetTitle']:contains('OK')";
 	}
 
 	@Override
@@ -38,7 +38,7 @@ public class WizardAddCosLimitNG extends AbsWizard {
 			sType(Locators.zCosAccountLimitField, domainitem.getCosAccountLimit());
 		}
 
-		sClick(Locators.zOkbtn);
+		sClick(Locators.zOkButton);
 
 		return null;
 	}

@@ -9,7 +9,7 @@ import com.zimbra.qa.selenium.framework.ui.AbsWizard;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.projects.admin.items.DelegatedAdminNGItem;
-import com.zimbra.qa.selenium.projects.admin.items.DelegatedAdminNGItem.Grantlimt;
+import com.zimbra.qa.selenium.projects.admin.items.DelegatedAdminNGItem.grantlimt;
 
 
 public class WizardAddDelegatedNG extends AbsWizard {
@@ -29,9 +29,9 @@ public class WizardAddDelegatedNG extends AbsWizard {
 		public static final String zGrantNone = "css=div[id='___OSELECT_MENU___'] table tr td div:contains('None')";
 		public static final String zGrantCustom = "css=div[id='___OSELECT_MENU___'] table tr td div:contains('Custom')";
 		public static final String zGrantValue = zAddNewDelegatedAdminDialog + " input[id$='adminQuotaId']";
-		public static final String zOkbutton = "div.DwtDialog:not([aria-hidden='true']) td[class='ZWidgetTitle']:contains('OK')";
+		public static final String zOkButton = "div.DwtDialog:not([aria-hidden='true']) td[class='ZWidgetTitle']:contains('OK')";
 		public static final String zSaveDailog = "div.DwtDialog[style*='display: block;'] table tr:contains('Saving Settings')";
-		public static final String zSavedialogClosebtn = "div.DwtDialog[style*='display: block;'] td.ZWidgetTitle:contains('Close')";
+		public static final String zSavedialogCloseButton = "div.DwtDialog[style*='display: block;'] td.ZWidgetTitle:contains('Close')";
 	}
 
 	@Override
@@ -77,19 +77,19 @@ public class WizardAddDelegatedNG extends AbsWizard {
 		if (delegatedadmin.getGrantLimit() != null) {
 			sClick(Locators.zGrantLimitdropdown);
 
-			if (delegatedadmin.getGrantLimit() == Grantlimt.None) {
+			if (delegatedadmin.getGrantLimit() == grantlimt.None) {
 				sClick(Locators.zGrantNone);
-			} else if (delegatedadmin.getGrantLimit() == Grantlimt.Unlimited) {
+			} else if (delegatedadmin.getGrantLimit() == grantlimt.Unlimited) {
 				sClick(Locators.zGrantUnlimited);
 			} else {
 				sClick(Locators.zGrantCustom);
 				sType(Locators.zGrantValue, delegatedadmin.getGrantCustomValue());
 			}
 		}
-		sClick(Locators.zOkbutton);
+		sClick(Locators.zOkButton);
 
 		if(zWaitForElementPresent(Locators.zSaveDailog)) {
-			sClick(Locators.zSavedialogClosebtn);
+			sClick(Locators.zSavedialogCloseButton);
 		} else {
 			throw new HarnessException("Save Settings Dialog is not appeared");
 		}

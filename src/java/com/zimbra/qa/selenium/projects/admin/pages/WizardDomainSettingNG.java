@@ -5,7 +5,6 @@ import com.zimbra.qa.selenium.framework.ui.AbsTab;
 import com.zimbra.qa.selenium.framework.ui.AbsWizard;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
-import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.projects.admin.items.DomainNGItem;
 import com.zimbra.qa.selenium.projects.admin.items.DomainNGItem.CosAction;
 
@@ -19,14 +18,14 @@ public class WizardDomainSettingNG extends AbsWizard {
 		public static final String zEditDomainDialog = "css=div[class='DwtDialog']:not([aria-hidden='true']) > div:contains('Edit Domain limits')";
 		public static final String zAccountLimitField = zEditDomainDialog + " input[id$='accountLimit']";
 		public static final String zDomainQuotaField = zEditDomainDialog + " input[id$='domainAccountQuota']";
-		public static final String zCosLimitAddbtn = "css=div[class='DwtDialog']:not([aria-hidden='true']) td[class='ZWidgetTitle']:contains('Add')";
-		public static final String zCosLimitEditbtn = "css=div[class='DwtDialog']:not([aria-hidden='true']) td[class='ZWidgetTitle']:contains('Edit')";
-		public static final String zCosLimitDeletebtn = "css=div[class='DwtDialog']:not([aria-hidden='true']) td[class='ZWidgetTitle']:contains('Delete')";
+		public static final String zCosLimitAddButton = "css=div[class='DwtDialog']:not([aria-hidden='true']) td[class='ZWidgetTitle']:contains('Add')";
+		public static final String zCosLimitEditButton = "css=div[class='DwtDialog']:not([aria-hidden='true']) td[class='ZWidgetTitle']:contains('Edit')";
+		public static final String zCosLimitDeleteButton = "css=div[class='DwtDialog']:not([aria-hidden='true']) td[class='ZWidgetTitle']:contains('Delete')";
 		public static final String zCosListPanel = "xpath=//div[@class='DwtDialog'][not(contains(@aria-hidden,'true'))]";
 		public static final String zOkbtnEditDomainDialog = "css=div[class='DwtDialog']:not([aria-hidden='true']) td[class='ZWidgetTitle']:contains('OK')";
 		public static final String zRemoveDomainDialog = "css=div[class='DwtDialog']:not([aria-hidden='true'])[style*='z-index: 702;'] > div:contains('Remove Domain')";
 		public static final String zRemoveDomainDialogYesbtn = "css=div[class='DwtDialog']:not([aria-hidden='true'])[style*='z-index: 702;'] td[class='ZWidgetTitle']:contains('Yes')";
-		public static final String zSaveDialogOkbtn = "css=div[class='DwtDialog']:not([aria-hidden='true']) td[class='ZWidgetTitle']:contains('OK')";
+		public static final String zSaveDialogOkButton = "css=div[class='DwtDialog']:not([aria-hidden='true']) td[class='ZWidgetTitle']:contains('OK')";
 	}
 
 	@Override
@@ -52,14 +51,14 @@ public class WizardDomainSettingNG extends AbsWizard {
 
 			if (domainitem.getCosAction() == CosAction.Add) {
 				//Click on Add button of COS Limit panel
-				sClick(Locators.zCosLimitAddbtn);
+				sClick(Locators.zCosLimitAddButton);
 
 				WizardAddCosLimitNG wizardCos = new WizardAddCosLimitNG(this.MyPage);
 				wizardCos.zCompleteWizard(domainitem);
 			} else if (domainitem.getCosAction() == CosAction.Edit) {
 				//select the Cos
 				SelectCosRow(domainitem.getCosName());
-				sClick(Locators.zCosLimitEditbtn);
+				sClick(Locators.zCosLimitEditButton);
 
 				domainitem.setCosName(null);
 
@@ -68,7 +67,7 @@ public class WizardDomainSettingNG extends AbsWizard {
 			} else {
 				//select the Cos
 				SelectCosRow(domainitem.getCosName());
-				sClick(Locators.zCosLimitDeletebtn);
+				sClick(Locators.zCosLimitDeleteButton);
 
 				if(zWaitForElementPresent(Locators.zRemoveDomainDialog)) {
 					sClick(Locators.zRemoveDomainDialogYesbtn);
@@ -83,7 +82,7 @@ public class WizardDomainSettingNG extends AbsWizard {
 	public void zCloseWizard() throws HarnessException {
 		sClick(Locators.zOkbtnEditDomainDialog);
 		SleepUtil.sleepMedium();
-		if (zWaitForElementPresent(Locators.zSaveDialogOkbtn))
+		if (zWaitForElementPresent(Locators.zSaveDialogOkButton))
 			sClick("css=div[class='DwtDialog']:not([aria-hidden='true']) td[class='ZWidgetTitle']:contains('OK')");
 		else
 			throw new HarnessException("Save dialog is not appeared");
