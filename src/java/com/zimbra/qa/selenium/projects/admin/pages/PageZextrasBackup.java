@@ -16,20 +16,13 @@
  */
 package com.zimbra.qa.selenium.projects.admin.pages;
 
-import java.awt.event.KeyEvent;
-import java.util.ArrayList;
-import java.util.List;
 import com.zimbra.qa.selenium.framework.ui.AbsApplication;
 import com.zimbra.qa.selenium.framework.ui.AbsPage;
 import com.zimbra.qa.selenium.framework.ui.AbsTab;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
-import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
-import com.zimbra.qa.selenium.framework.util.ZAssert;
-import com.zimbra.qa.selenium.projects.admin.items.AccountItem;
-import com.zimbra.qa.selenium.projects.admin.pages.FormEditAccount.Locators;
 
 /**
  * Admin Console -> Network Modules NG -> Backup
@@ -54,7 +47,6 @@ public class PageZextrasBackup extends AbsTab {
 		super(application);
 
 		logger.info("new " + myPageName());
-
 	}
 
 	@Override
@@ -79,9 +71,7 @@ public class PageZextrasBackup extends AbsTab {
 			logger.debug("isActive() visible = " + visible);
 			return (false);
 		}
-
 		return (true);
-
 	}
 
 	@Override
@@ -96,10 +86,6 @@ public class PageZextrasBackup extends AbsTab {
 		zWaitForWorkInProgressDialogInVisible();
 		sClickAt(Locators.BACKUP_TAB, "");
 		zWaitForWorkInProgressDialogInVisible();
-	}
-
-	public void zNavigateTo(String treeItem) {
-
 	}
 
 	@Override
@@ -127,41 +113,32 @@ public class PageZextrasBackup extends AbsTab {
 	public AbsPage zToolbarPressPulldown(Button pulldown, Button option) throws HarnessException {
 		return null;
 	}
-	
-	/*public List<AccountItem> zListGetAccounts() throws HarnessException {
-
-		return null;
-	}*/
 
 	public boolean zVerifyHeader(String header) throws HarnessException {
 		if (this.sIsElementPresent("css=span:contains('" + header + "')"))
 			return true;
 		return false;
 	}
-	
+
 	public void zSave() throws HarnessException {
 		SleepUtil.sleepSmall();
 		sClickAt(Locators.SAVE_BUTTON, "");
 		SleepUtil.sleepLong();
 	}
-	
-	public AbsPage initiallizeBackup() throws HarnessException{
+
+	public AbsPage initiallizeBackup() throws HarnessException {
 		AbsPage page = null;
 		SleepUtil.sleepVerySmall();
 		page = new DialogRunSmartScanConfirmation(MyApplication, null);
 		this.sClickAt(Locators.INITIALIZE_NOW_BUTTON, "");
 		return (page);
 	}
-	
-	public AbsPage RestoreDeletedAccount() throws HarnessException{
+
+	public AbsPage RestoreDeletedAccount() throws HarnessException {
 		AbsPage page = null;
 		SleepUtil.sleepVerySmall();
 		page = new WizardRestoreAccount(this);
 		this.sClickAt(Locators.RESTORE_DELETED_ACCOUNT_BUTTON, "");
 		return (page);
 	}
-
-	/*public AbsPage zPreferenceCheckboxSet(Button button, boolean status) throws HarnessException {
-		return null;
-	}*/
 }
