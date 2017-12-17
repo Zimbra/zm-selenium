@@ -912,45 +912,26 @@ public class FormApptNew extends AbsForm {
 			int frames = this.sGetCssCount("css=iframe");
 			logger.info("Body: # of frames: " + frames);
 
-			if (this.sIsElementPresent("css=textarea[class='ZmHtmlEditorTextArea']")) {
+			// Plain text
+			locator = "css=textarea[class='ZmHtmlEditorTextArea']";
+			if (this.sIsVisible(locator)) {
+				this.sFocus(locator);
+				this.sClick(locator);
+				this.zWaitForBusyOverlay();
+				this.sType(locator, value);
+				return;
 
-				if (ConfigProperties.getStringProperty("browser").contains("firefox")
-						|| (!ConfigProperties.getStringProperty("browser").contains("firefox") && frames == 0)) {
-					locator = "css=textarea[class='ZmHtmlEditorTextArea']";
+			// HTML compose
+			} else if (frames >= 1) {
 
-					this.sFocus(locator);
-					this.sClick(locator);
-					this.zWaitForBusyOverlay();
-					this.sType(locator, value);
-					return;
-				}
-			}
-
-			if (frames >= 1) {
-
-				// HTML compose
 				try {
 
-					String plainTextEditorLocator;
-					if (ConfigProperties.getStringProperty("browser").contains("firefox")) {
-						plainTextEditorLocator = "css=textarea[class='ZmHtmlEditorTextArea'][style*='display: inline;']";
-					} else {
-						plainTextEditorLocator = "css=textarea[class='ZmHtmlEditorTextArea'][style*='display: block;']";
-					}
-					if (this.sIsElementPresent(plainTextEditorLocator)) {
-						locator = "css=textarea[class='ZmHtmlEditorTextArea']";
-						this.sFocus(locator);
-						this.sClick(locator);
-						this.sType(locator, value);
-
-					} else if (this.sIsElementPresent("css=iframe[id$='ZmHtmlEditor1_body_ifr']")) {
+					if (this.sIsElementPresent("css=iframe[id$='ZmHtmlEditor1_body_ifr']")) {
 						locator = "css=body[id='tinymce']";
-						this.sSelectFrame(
-								"css=div[class='ZmApptComposeView'] div[id$='_notes'] iframe[id$='_body_ifr']");
+						this.sSelectFrame("css=div[class='ZmApptComposeView'] div[id$='_notes'] iframe[id$='_body_ifr']");
 						this.sClick(locator);
 						this.sFocus(locator);
 						this.sType(locator, value);
-						// this.zKeyboard.zTypeCharacters(value);
 
 					} else {
 						throw new HarnessException("Unable to locate compose body");
