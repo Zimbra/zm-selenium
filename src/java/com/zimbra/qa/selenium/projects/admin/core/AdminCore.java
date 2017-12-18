@@ -48,6 +48,8 @@ import org.openqa.selenium.logging.LogEntries;
 import org.openqa.selenium.logging.LogEntry;
 import org.openqa.selenium.logging.LogType;
 import org.openqa.selenium.logging.Logs;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.ITestContext;
 import org.testng.ITestNGMethod;
 import org.testng.ITestResult;
@@ -183,14 +185,10 @@ public class AdminCore {
 		if (startingAccount != null) {
 			logger.debug("coreBeforeMethod: startingAccount is defined");
 
-			zHandleNetworkModulesNGDialog();
-
 			if (!startingAccount.equals(app.zGetActiveAccount())) {
+				zWaitforDialog();
+				zHandleNetworkModulesNGDialog();
 
-				//if (app.zPageMain.zIsActive()) {
-					//app.zPageMain.sOpen(ConfigProperties.getBaseURL());
-					//app.zPageMain.zWaitForActive();
-				//}
 				app.zPageLogin.zLogin(startingAccount);
 			}
 
@@ -217,6 +215,7 @@ public class AdminCore {
 			}
 		}
 
+		zWaitforDialog();
 		zHandleNetworkModulesNGDialog();
 
 		// If a startingPage is defined, then make sure we are on that page
@@ -237,8 +236,20 @@ public class AdminCore {
 		logger.info("BeforeMethod: finish");
 	}
 
-	public void zHandleNetworkModulesNGDialog(){
+	public static void zWaitforDialog() throws HarnessException{
 		try {
+
+		(new WebDriverWait(ClientSessionFactory.session().webDriver(), 5))
+		.until(ExpectedConditions.presenceOfElementLocated(By.xpath(
+				"//div[contains(text(),' Network Modules NG Notification')]/ancestor::div[@class='DwtDialog'][not(@aria-hidden)]/descendant::td[contains(@id,'Close')]")));
+		} catch (Exception e) {
+			logger.info("Network Module NG Notification Dialog Not displayed");
+		}
+	}
+
+	public static void zHandleNetworkModulesNGDialog(){
+		try {
+
 			ClientSessionFactory.session().webDriver().findElement(By.xpath(
 					"//div[contains(text(),' Network Modules NG Notification')]/ancestor::div[@class='DwtDialog'][not(@aria-hidden)]/descendant::td[contains(@id,'Close')]"))
 					.click();

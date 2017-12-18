@@ -22,6 +22,7 @@ import com.zimbra.qa.selenium.framework.ui.AbsTab;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
+import com.zimbra.qa.selenium.projects.admin.core.AdminCore;
 
 /**
  * This class defines the login page
@@ -129,6 +130,8 @@ public class PageLogin extends AbsTab {
 		((AdminPages) MyApplication).zSetActiveAccount(account);
 
 		SleepUtil.sleep(10000);
+
+		AdminCore.zHandleNetworkModulesNGDialog();
 	}
 
 	/**
