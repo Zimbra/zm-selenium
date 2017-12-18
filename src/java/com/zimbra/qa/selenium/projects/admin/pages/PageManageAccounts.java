@@ -48,8 +48,10 @@ public class PageManageAccounts extends AbsTab {
 		public static final String NEW_MENU = "css=div[id='zm__zb_currentApp__MENU_POP'] div[class='ImgNewAccount']";
 		public static final String NEW_ADMIN_USER = "css=td[id='zmi__zb_currentApp__NEW_ADMIN_title']:contains('New Administrator')";
 		public static final String DELETE_BUTTON = "css=div[id='zm__zb_currentApp__MENU_POP'] div[class='ImgDelete']";
+		public static final String RESTORE_BUTTON = "css=div[id='zm__zb_currentApp__MENU_POP'] div[class='ImgZxRestore']";
 		public static final String EDIT_BUTTON = "css=td[id='zmi__zb_currentApp__EDIT_title']:contains('Edit')";
 		public static final String RIGHT_CLICK_MENU_DELETE_BUTTON = "css=div[id^='zm__ACLV__MENU_POP'] div[class='ImgDelete']";
+		public static final String RIGHT_CLICK_MENU_RESTORE_BUTTON = "css=div[id^='zm__ACLV__MENU_POP'] div[class='ImgZxRestore']";
 		public static final String RIGHT_CLICK_MENU_EDIT_BUTTON = "css=td[id='zmi__ACLV__EDIT_title']:contains('Edit')";
 		public static final String RIGHT_CLICK_MENU_CHANGE_PASSWORD_BUTTON = "css=td[id='zmi__ACLV__CHNG_PWD_title']";
 		public static final String CHANGE_PASSWORD_BUTTON = "css=td[id='zmi__zb_currentApp__CHNG_PWD_title']";
@@ -392,6 +394,9 @@ public class PageManageAccounts extends AbsTab {
 			} else if (option == Button.B_CONFIGURE_GRANTS) {
 				optionLocator = Locators.CONFIGURE_GRANTS;
 
+			} else if (option == Button.B_RESTORE) {
+				optionLocator = Locators.RESTORE_BUTTON;
+				page = new WizardRestore(this);
 			} else {
 				throw new HarnessException("no logic defined for pulldown/option " + pulldown + "/" + option);
 			}

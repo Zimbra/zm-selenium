@@ -769,6 +769,7 @@ public class Button {
 	public static final Button B_MUST_CHANGE_PASSWORD = new Button("B_MUST_CHANGE_PASSWORD");
 	public static final Button O_SEARCH_MAIL = new Button("O_SEARCH_MAIL");
 	public static final Button B_CONFIGURE_GRANTS = new Button("B_CONFIGURE_GRANTS");
+	public static final Button B_RESTORE = new Button("B_RESTORE");
 	public static final Button B_ACCOUNTS_LIMIT_PER_DOMAIN = new Button("B_ACCOUNTS_LIMIT_PER_DOMAIN");
 	public static final Button B_ACCOUNTS_LIMIT_PER_COS = new Button("B_ACCOUNTS_LIMIT_PER_COS");
 	public static final Button B_DESCRIPTION = new Button("B_DESCRIPTION");

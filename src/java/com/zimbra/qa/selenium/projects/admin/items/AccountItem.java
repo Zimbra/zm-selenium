@@ -33,6 +33,8 @@ public class AccountItem implements IItem {
 	protected String localName; // Email Address is LocalName@DomainName
 	protected String domainName;
 	protected String Password; // The password is encrypted in the attrs, so need to keep it separate
+	protected Boolean isUndeleteRestore = false;
+	protected Boolean isReastoreOnNewAccount = false;
 	protected Map<String, String> accountAttrs;
 
 	public AccountItem(String emailAddress, String lastName) {
@@ -116,6 +118,22 @@ public class AccountItem implements IItem {
 
 	public void setPassword(String password) {
 		Password = password;
+	}
+
+	public void setIsUndeleteRestore(Boolean undeleteRestore) {
+		isUndeleteRestore = undeleteRestore;
+	}
+
+	public Boolean getIsUndeleteRestore(){
+		return (isUndeleteRestore);
+	}
+
+	public void setIsRestoreOnNewAccount(Boolean restoreOnNewAccount) {
+		isReastoreOnNewAccount = restoreOnNewAccount;
+	}
+
+	public Boolean getIsRestoreOnNewAccount(){
+		return (isReastoreOnNewAccount);
 	}
 
 	public Map<String, String> getAccountAttrs() {

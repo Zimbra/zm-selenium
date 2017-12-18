@@ -23,7 +23,7 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.projects.admin.items.AccountItem;
 
-public class WizardRestoreAccount extends AbsWizard {
+public class WizardRestoreDeletedAccount extends AbsWizard {
 	
 	public static class Locators {
 		public static final String USE_RECENT_DATE_TIME_CHECK_BOX = "css=div[style*='z-index: 7'][class='DwtDialog'] input[id$='_attrs/useLast']";
@@ -32,9 +32,9 @@ public class WizardRestoreAccount extends AbsWizard {
 		public static final String FINISH_BUTTON = "css=div[style*='z-index: 7'] td[id$='_button13_title']";
 	}
 
-	public WizardRestoreAccount(AbsTab page) {
+	public WizardRestoreDeletedAccount(AbsTab page) {
 		super(page);
-		logger.info("New " + WizardRestoreAccount.class.getName());
+		logger.info("New " + WizardRestoreDeletedAccount.class.getName());
 	}
 
 	@Override
