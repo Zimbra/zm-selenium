@@ -16,6 +16,8 @@
  */
 package com.zimbra.qa.selenium.projects.admin.pages;
 
+import org.openqa.selenium.WebElement;
+
 import com.zimbra.qa.selenium.framework.ui.AbsApplication;
 import com.zimbra.qa.selenium.framework.ui.AbsPage;
 import com.zimbra.qa.selenium.framework.ui.AbsTab;
@@ -25,26 +27,31 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 
 /**
- * Admin Console -> Network Modules NG -> Backup
+ * Admin Console -> Network Modules NG -> General
  *
- * @author Shubham Gupta
+ * @author Swapnil Pingle
  *
  */
-public class PageZextrasBackup extends AbsTab {
+public class PageZextrasGeneral extends AbsTab {
 
 	public static class Locators {
 		public static final String NETWORK_MODULE_NG_ICON = "css=td[id^='zti__AppAdmin__Home__ZeXtras_'] div[class='ImgZeXtras']";
-		public static final String BACKUP_TAB = "css=td[id^='zti__AppAdmin__ZeXtras__ZxBackup_']:contains('Backup')";
-		public static final String UNINITIALIZED_ALERT_MSG = "css=td.DwtAlertContent";
 		public static final String CLOSE_BUTTON = "css=td[id^='zb__ZaCurrentAppBar__CLOSE_']:contains('Close')";
-		public static final String SAVE_BUTTON = "css=td[id^='zb__ZaCurrentAppBar__SAVE_']:contains('Save')";
-		public static final String BACKUP_PATH = "css=input[id='ztabv__ZxBackup_attrs/properties/ZxBackup_DestPath']";
-		public static final String INITIALIZE_NOW_BUTTON = "css=td[class='ZWidgetTitle']:contains('Initialize NOW!')";
-		public static final String RESTORE_DELETED_ACCOUNT_BUTTON = "td[class='ZWidgetTitle']:contains('Restore Deleted Account')";
-		public static final String BACKUP = "Backup";
+		public static final String HOME = "Home";
+		public static final String NETWORK_MODULE_NG = "Network Modules NG";
+		public static final String GENERAL = "General";
+		public static final String GENERAL_TAB = "css=td[id^='zti__AppAdmin__ZeXtras__ZxCore_']:contains('General')";
+		public static final String BACKUP_TAB = "css=td[id^='zti__AppAdmin__ZeXtras__ZxBackup_']:contains('Backup')";
+		public static final String HSM_TAB = "css=td[id^='zti__AppAdmin__ZeXtras__ZxPowerstore_']:contains('HSM')";
+		public static final String MOBILE_TAB = "css=td[id^='zti__AppAdmin__ZeXtras__ZxMobile_']:contains('Mobile')";
+		public static final String YES_BUTTON = "css=div[class='DwtDialog']:not([aria-hidden='true']) td[class='ZWidgetTitle']:contains('Yes')";
+		public static final String BACKUP_ALERT = "css=div#ztabv__ZxBackup_zx_alert_2";
+		public static final String MOBILE_ALERT = "css=div#ztabv__ZxMobile_zx_alert_2";
+		public static final String HSM_ALERT = "css=div#ztabv__ZxPowerstore_zx_alert_2";
+
 	}
 
-	public PageZextrasBackup(AbsApplication application) {
+	public PageZextrasGeneral(AbsApplication application) {
 		super(application);
 
 		logger.info("new " + myPageName());
@@ -78,14 +85,14 @@ public class PageZextrasBackup extends AbsTab {
 	@Override
 	public void zNavigateTo() throws HarnessException {
 
-		if (zIsActive() && zVerifyHeader(PageZextrasBackup.Locators.BACKUP)) {
+		if (zIsActive() && zVerifyHeader(PageZextrasGeneral.Locators.GENERAL)) {
 			return;
 		}
 
 		SleepUtil.sleepLong();
 		sClickAt(Locators.NETWORK_MODULE_NG_ICON, "");
 		zWaitForWorkInProgressDialogInVisible();
-		sClickAt(Locators.BACKUP_TAB, "");
+		sClickAt(Locators.GENERAL_TAB, "");
 		zWaitForWorkInProgressDialogInVisible();
 	}
 
@@ -121,25 +128,57 @@ public class PageZextrasBackup extends AbsTab {
 		return false;
 	}
 
-	public void zSave() throws HarnessException {
-		SleepUtil.sleepSmall();
-		sClickAt(Locators.SAVE_BUTTON, "");
+	public boolean zVerifyModuleStatus(String module) throws HarnessException {
+		WebElement we = this.getElement(
+				"xpath=//table[@id='ztabv__ZxCore_top_grouper_table']//td[@class='xform_label'][contains(text(),'"
+						+ module + "')]/following-sibling::td[1]");
+		if (we.getText().contains("Running")) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public boolean zVerifyModuleLicenseStatus(String module) throws HarnessException {
+		WebElement we = this.getElement(
+				"xpath=//table[@id='ztabv__ZxCore_grouper_table']//td[@class='xform_label'][contains(text(),'" + module
+						+ "')]/following-sibling::td[1]");
+		if (we.getText().contains("Licensed")) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public void zEnableDisableModule(String module, String action) throws HarnessException {
+		WebElement we = this.getElement(
+				"//table[@id='ztabv__ZxCore_top_grouper_table']//td[@class='xform_label'][contains(text(),'" + module
+						+ "')]/following-sibling::td[2]//td[@class='ZWidgetTitle'][contains(text(),'" + action + "')]");
+		we.click();
 		SleepUtil.sleepLong();
+		if (action.equals("Stop")) {
+			sClick(Locators.YES_BUTTON);
+		}
 	}
 
-	public AbsPage initiallizeBackup() throws HarnessException {
-		AbsPage page = null;
-		SleepUtil.sleepVerySmall();
-		page = new DialogRunSmartScanConfirmation(MyApplication, null);
-		this.sClickAt(Locators.INITIALIZE_NOW_BUTTON, "");
-		return (page);
+	public boolean zverifyModuleRunningStatus(String module) throws HarnessException {
+		String locator = "";
+		String tab = "";
+		if (module.equals("Backup")) {
+			locator = Locators.BACKUP_ALERT;
+			tab = Locators.BACKUP_TAB;
+		} else if (module.equals("Mobile")) {
+			locator = Locators.MOBILE_ALERT;
+			tab = Locators.MOBILE_TAB;
+		} else {
+			locator = Locators.HSM_ALERT;
+			tab = Locators.HSM_TAB;
+		}
+
+		sClick(tab);
+		SleepUtil.sleepLong();
+		WebElement we = getElement(locator);
+		return we.getText().contains("The " + module + " module is not running.");
 	}
 
-	public AbsPage RestoreDeletedAccount() throws HarnessException {
-		AbsPage page = null;
-		SleepUtil.sleepVerySmall();
-		page = new WizardRestoreDeletedAccount(this);
-		this.sClickAt(Locators.RESTORE_DELETED_ACCOUNT_BUTTON, "");
-		return (page);
-	}
 }
