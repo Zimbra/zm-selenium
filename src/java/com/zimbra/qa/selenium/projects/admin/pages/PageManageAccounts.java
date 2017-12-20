@@ -121,6 +121,10 @@ public class PageManageAccounts extends AbsTab {
 
 	}
 
+	public Boolean IsViewMailEnabled() throws HarnessException {
+		return !zIsElementDisabled(Locators.VIEW_MAIL);
+	}
+
 	@Override
 	public AbsPage zListItem(Action action, String accountEmailAddress) throws HarnessException {
 

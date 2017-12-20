@@ -55,6 +55,7 @@ public class FormEditAccount extends AbsForm {
 		public static final String LIMIT_ZIMLETS_RADIO = "css=td[id$='zimbraZimletAvailableZimlets_3___container'] input";
 		public static final String LIMIT_THEME_RADIO = "css=td[id$='_zimbraAvailableSkin_3___container'] input";
 		public static final String THEME_Pull_DOWN = "css=div[id^='zdlgv__EDIT_ACL'][id*='zimbraPrefSkin_2_arrow_button'] div[class='ImgSelectPullDownArrow']";
+		public static final String Account_Quota = "css=div[class='DwtTabView']:not([aria-hidden=true]) input[id*='zimbraMailQuota']";
 	}
 
 	public FormEditAccount(AbsApplication application) {
@@ -190,6 +191,19 @@ public class FormEditAccount extends AbsForm {
 
 		SleepUtil.sleepSmall();
 		return (page);
+	}
+
+
+	public Boolean zFeatureEnable() throws HarnessException {
+		return !zIsElementDisabled(Locators.MAIL);
+	}
+
+	public void zAddAccountQuota(String accountquota) throws HarnessException{
+		if(sIsElementPresent(Locators.Account_Quota)) {
+			sType(Locators.Account_Quota, accountquota);
+		} else {
+			throw new HarnessException("Account Quota input is not present");
+		}
 	}
 
 	public AbsPage zPreferencesCheckboxSet(Button button, boolean status) throws HarnessException {
