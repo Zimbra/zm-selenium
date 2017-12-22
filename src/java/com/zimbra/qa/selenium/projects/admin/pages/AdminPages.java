@@ -50,6 +50,7 @@ public class AdminPages extends AbsApplication {
 	public PageZextrasAdmin zPageZextrasAdmin = null;
 	public PageZextrasBackup zPageZextrasBackup = null;
 	public PageZextrasGeneral zPageZextrasGeneral = null;
+	public PageZextrasMobile zPageZextrasMobile = null;
 
 	// Configuration
 	public PageManageCOS zPageManageCOS = null;
@@ -304,6 +305,9 @@ public class AdminPages extends AbsApplication {
 
 		zPageZextrasGeneral = new PageZextrasGeneral(this);
 		pages.put(zPageZextrasGeneral.myPageName(), zPageZextrasGeneral);
+
+		zPageZextrasMobile = new PageZextrasMobile(this);
+		pages.put(zPageZextrasMobile.myPageName(), zPageZextrasMobile);
 	}
 
 	@Override

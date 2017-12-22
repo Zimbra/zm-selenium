@@ -56,6 +56,7 @@ public class PageManageAccounts extends AbsTab {
 		public static final String RIGHT_CLICK_MENU_CHANGE_PASSWORD_BUTTON = "css=td[id='zmi__ACLV__CHNG_PWD_title']";
 		public static final String CHANGE_PASSWORD_BUTTON = "css=td[id='zmi__zb_currentApp__CHNG_PWD_title']";
 		public static final String ADVANCED = "css=div[id^='zti__AppAdmin__Home__actLstHV'][id$='_textCell']:contains('Advanced')";
+		public static final String MOBILE = "css=div[id^='zti__AppAdmin__Home__actLstHV'][id$='_textCell']:contains('Mobile')";
 		public static final String RIGHT_CLICK_MENU_VIEW_MAIL_BUTTON = "css=td[id='zmi__ACLV__VIEW_MAIL_title']";
 		public static final String RIGHT_CLICK_MENU_SEARCH_MAIL_BUTTON = "css=td[id^='zmi__ACLV__UNKNOWN']:contains('Search Mail')";
 		public static final String VIEW_MAIL = "css=td[id='zmi__zb_currentApp__VIEW_MAIL_title']";
