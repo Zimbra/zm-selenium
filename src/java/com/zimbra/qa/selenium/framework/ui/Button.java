@@ -802,6 +802,10 @@ public class Button {
 	public static final Button B_ADMIN_GROUP = new Button("B_ADMIN_GROUP");
 	public static final Button B_SET_REPLY_TO = new Button("B_SET_REPLY_TO");
 	public static final Button B_OWNER = new Button("B_OWNER");
+	public static final Button B_ENABLE_MOBILE_SYNC_ZEXTRAS = new Button("B_ENABLE_MOBILE_SYNC_ZEXTRAS");
+	public static final Button B_ENABLE_MOBILE_DEVICE_MANAGEMENT = new Button("B_ENABLE_MOBILE_DEVICE_MANAGEMENT");
+	public static final Button B_ALLOW_NON_PROVISIONABLE_DEVICES = new Button("B_ALLOW_NON_PROVISIONABLE_DEVICES");
+	public static final Button B_ALLOW_PARTIAL_POLICY_ENFORCEMENT = new Button("B_ALLOW_PARTIAL_POLICY_ENFORCEMENT");
 
 	// Distribution List buttons
 	public static final Button O_DISTRIBUTIUONLISTS_DISTRIBUTIONLIST = new Button(

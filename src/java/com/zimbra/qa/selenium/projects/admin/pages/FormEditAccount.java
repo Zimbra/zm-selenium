@@ -16,6 +16,7 @@
  */
 package com.zimbra.qa.selenium.projects.admin.pages;
 
+import org.openqa.selenium.WebElement;
 import com.zimbra.qa.selenium.framework.items.IItem;
 import com.zimbra.qa.selenium.framework.ui.AbsApplication;
 import com.zimbra.qa.selenium.framework.ui.AbsForm;
@@ -56,6 +57,11 @@ public class FormEditAccount extends AbsForm {
 		public static final String LIMIT_THEME_RADIO = "css=td[id$='_zimbraAvailableSkin_3___container'] input";
 		public static final String THEME_Pull_DOWN = "css=div[id^='zdlgv__EDIT_ACL'][id*='zimbraPrefSkin_2_arrow_button'] div[class='ImgSelectPullDownArrow']";
 		public static final String Account_Quota = "css=div[class='DwtTabView']:not([aria-hidden=true]) input[id*='zimbraMailQuota']";
+		public static final String ENABLE_MOBILE_SYNC_ZEXTRAS = "css=input[id*='zimbraFeatureMobileSyncEnabled']";
+		public static final String B_ENABLE_MOBILE_DEVICE_MANAGEMENT = "css=input[id$='zimbraFeatureMobilePolicyEnabled_2']";
+		public static final String B_ALLOW_NON_PROVISIONABLE_DEVICES = "css=input[id$='zimbraMobilePolicyAllowNonProvisionableDevices_2']";
+		public static final String B_ALLOW_PARTIAL_POLICY_ENFORCEMENT = "css=input[id$='zimbraMobilePolicyAllowPartialProvisioning_2']";
+
 	}
 
 	public FormEditAccount(AbsApplication application) {
@@ -337,5 +343,77 @@ public class FormEditAccount extends AbsForm {
 		SleepUtil.sleepSmall();
 		sCheck("css=td[id$='zimbraAvailableSkin_4___container'] div table tbody tr:contains('" + theme + "') input");
 		SleepUtil.sleepSmall();
+	}
+
+	public AbsPage zSetMobilePreferences(Button button, boolean status) throws HarnessException {
+		logger.info(myPageName() + " zSetMobileAccess(" + button + ")");
+		tracer.trace("Click page button " + button);
+
+		AbsPage page = null;
+		String locator = null;
+
+		SleepUtil.sleepSmall();
+
+		if (button == Button.B_ENABLE_MOBILE_SYNC_ZEXTRAS) {
+			locator = Locators.ENABLE_MOBILE_SYNC_ZEXTRAS;
+		} else {
+			throw new HarnessException("Button " + button + " not implemented");
+		}
+
+		if (locator == null) {
+			throw new HarnessException("Button " + button + " not implemented");
+		}
+
+		if (!this.sIsElementPresent(locator)) {
+			throw new HarnessException("Button " + button + " locator " + locator + " not present!");
+		}
+
+		if (this.sIsChecked(locator) == status) {
+			logger.debug("checkbox status matched. not doing anything");
+			return (page);
+		}
+
+		if (status == true) {
+			this.sClickAt(locator, "");
+
+		} else {
+			this.sUncheck(locator);
+		}
+
+		SleepUtil.sleepSmall();
+		return (page);
+	}
+
+	public boolean zVerifyMobileProvisioning(Button button, String status) throws HarnessException {
+		logger.info(myPageName() + " zSetMobileAccess(" + button + ")");
+		tracer.trace("Click page button " + button);
+
+		String locator = null;
+		boolean result;
+
+		if (button == Button.B_ENABLE_MOBILE_DEVICE_MANAGEMENT) {
+			locator = Locators.B_ENABLE_MOBILE_DEVICE_MANAGEMENT;
+		} else if (button == Button.B_ALLOW_NON_PROVISIONABLE_DEVICES) {
+			locator = Locators.B_ALLOW_NON_PROVISIONABLE_DEVICES;
+		} else if (button == Button.B_ALLOW_PARTIAL_POLICY_ENFORCEMENT) {
+			locator = Locators.B_ALLOW_PARTIAL_POLICY_ENFORCEMENT;
+		} else {
+			throw new HarnessException("Button " + button + " not implemented");
+		}
+
+		if (locator == null) {
+			throw new HarnessException("Button " + button + " not implemented");
+		}
+
+		WebElement we = getElement(locator);
+		SleepUtil.sleepSmall();
+
+		if (!status.equals("Enabled")) {
+			result = we.getAttribute("disabled").equals("");
+		} else {
+			result = we.isEnabled();
+		}
+
+		return result;
 	}
 }
