@@ -25,7 +25,6 @@ public class PageZextrasMobile extends AbsTab{
 
 	public PageZextrasMobile(AbsApplication application) {
 		super(application);
-		
 		logger.info("new " + myPageName());
 	}
 	
@@ -119,7 +118,5 @@ public class PageZextrasMobile extends AbsTab{
 		sClickAt(Locators.CLOSE_BUTTON, "");
 		SleepUtil.sleepLong();
 	}
-
-
 
 }

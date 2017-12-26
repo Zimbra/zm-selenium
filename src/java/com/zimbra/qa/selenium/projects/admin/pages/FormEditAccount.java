@@ -59,7 +59,7 @@ public class FormEditAccount extends AbsForm {
 		public static final String Account_Quota = "css=div[class='DwtTabView']:not([aria-hidden=true]) input[id*='zimbraMailQuota']";
 		public static final String ENABLE_MOBILE_SYNC_ZEXTRAS = "css=input[id*='zimbraFeatureMobileSyncEnabled']";
 		public static final String B_ENABLE_MOBILE_DEVICE_MANAGEMENT = "css=input[id$='zimbraFeatureMobilePolicyEnabled_2']";
-		public static final String B_ALLOW_NON_PROVISIONABLE_DEVEICES = "css=input[id$='zimbraMobilePolicyAllowNonProvisionableDevices_2']";
+		public static final String B_ALLOW_NON_PROVISIONABLE_DEVICES = "css=input[id$='zimbraMobilePolicyAllowNonProvisionableDevices_2']";
 		public static final String B_ALLOW_PARTIAL_POLICY_ENFORCEMENT = "css=input[id$='zimbraMobilePolicyAllowPartialProvisioning_2']";
 
 	}
@@ -356,7 +356,6 @@ public class FormEditAccount extends AbsForm {
 
 		if (button == Button.B_ENABLE_MOBILE_SYNC_ZEXTRAS) {
 			locator = Locators.ENABLE_MOBILE_SYNC_ZEXTRAS;
-
 		} else {
 			throw new HarnessException("Button " + button + " not implemented");
 		}
@@ -394,13 +393,10 @@ public class FormEditAccount extends AbsForm {
 
 		if (button == Button.B_ENABLE_MOBILE_DEVICE_MANAGEMENT) {
 			locator = Locators.B_ENABLE_MOBILE_DEVICE_MANAGEMENT;
-
-		} else if (button == Button.B_ALLOW_NON_PROVISIONABLE_DEVEICES) {
-			locator = Locators.B_ALLOW_NON_PROVISIONABLE_DEVEICES;
-
+		} else if (button == Button.B_ALLOW_NON_PROVISIONABLE_DEVICES) {
+			locator = Locators.B_ALLOW_NON_PROVISIONABLE_DEVICES;
 		} else if (button == Button.B_ALLOW_PARTIAL_POLICY_ENFORCEMENT) {
 			locator = Locators.B_ALLOW_PARTIAL_POLICY_ENFORCEMENT;
-
 		} else {
 			throw new HarnessException("Button " + button + " not implemented");
 		}
