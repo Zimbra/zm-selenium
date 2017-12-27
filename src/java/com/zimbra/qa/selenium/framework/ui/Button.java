@@ -81,6 +81,7 @@ public class Button {
 	public static final Button B_ADD_COS = new Button("B_ADD_COS");
 	public static final Button B_EDIT_COS = new Button("B_EDIT_COS");
 	public static final Button B_DELETE_COS = new Button("B_DELETE_COS");
+	public static final Button B_ADD_NEW_BUDDY = new Button("B_ADD_NEW_BUDDY");
 
 	public static final Button O_NEW = new Button("O_NEW");
 	public static final Button O_NEW_ADMIN = new Button("O_NEW_ADMIN");

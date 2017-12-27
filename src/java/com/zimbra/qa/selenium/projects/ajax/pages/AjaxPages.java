@@ -26,6 +26,7 @@ import com.zimbra.qa.selenium.projects.ajax.pages.briefcase.PageBriefcase;
 import com.zimbra.qa.selenium.projects.ajax.pages.briefcase.TreeBriefcase;
 import com.zimbra.qa.selenium.projects.ajax.pages.calendar.PageCalendar;
 import com.zimbra.qa.selenium.projects.ajax.pages.calendar.TreeCalendar;
+import com.zimbra.qa.selenium.projects.ajax.pages.chat.PageChatPanel;
 import com.zimbra.qa.selenium.projects.ajax.pages.mail.*;
 import com.zimbra.qa.selenium.projects.ajax.pages.preferences.PagePreferences;
 import com.zimbra.qa.selenium.projects.ajax.pages.preferences.TreePreferences;
@@ -79,6 +80,7 @@ public class AjaxPages extends AbsApplication {
 	public PageTasks zPageTasks = null;
 	public PagePreferences zPagePreferences = null;
 	public PageSignature zPageSignature = null;
+	public PageChatPanel zPageChatPanel = null;
 
 	// Trees
 	public TreeMail zTreeMail = null;
@@ -164,6 +166,9 @@ public class AjaxPages extends AbsApplication {
 		// Zimlets
 		zPageSocial = new PageSocial(this);
 		pages.put(zPageSocial.myPageName(), zPageSocial);
+
+		zPageChatPanel = new PageChatPanel(this);
+		pages.put(zPageChatPanel.myPageName(), zPageChatPanel);
 
 		// Configure the localization strings
 		getL10N().zAddBundlename(I18N.Catalog.I18nMsg);
