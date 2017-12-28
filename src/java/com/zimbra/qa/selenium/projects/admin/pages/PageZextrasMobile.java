@@ -99,8 +99,12 @@ public class PageZextrasMobile extends AbsTab{
 		return null;
 	}
 
-	public void zEnableMobileDeviceManagement() throws HarnessException {
-		sCheck(Locators.MOBILE_DEVICE_MANAGEMENT);
+	public void zEnableMobileDeviceManagement(boolean state) throws HarnessException {
+		if (state) {
+			sCheck(Locators.MOBILE_DEVICE_MANAGEMENT);
+		} else {
+			sUncheck(Locators.MOBILE_DEVICE_MANAGEMENT);
+		}
 		SleepUtil.sleepLong();
 		if (this.sIsElementPresent(Locators.OK_BUTTON)) {
 			sClick(Locators.OK_BUTTON);
