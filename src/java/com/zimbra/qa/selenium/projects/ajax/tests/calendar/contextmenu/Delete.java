@@ -56,7 +56,7 @@ public class Delete extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Right click To bubble address and hit Delete (Keyboard shortcut)",
-			groups = { "smoke", "L1" })
+			groups = { "smoke", "L1", "non-msedge" })
 
 	public void Delete_KeyboardDelete_02() throws HarnessException {
 

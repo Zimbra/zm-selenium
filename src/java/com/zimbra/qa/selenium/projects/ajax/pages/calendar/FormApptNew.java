@@ -158,8 +158,11 @@ public class FormApptNew extends AbsForm {
 		public static final String BrowseAttachment = "css=tr[id$='_attachment_container'] input[name='__calAttUpload__']";
 
 		public static final String AttendeeField = "css=input[id$='_person_input']";
+		public static final String AttendeeField_Edge = "css=textarea[id$='_person_input']";
 		public static final String LocationField = "css=input[id$='_location_input']";
+		public static final String LocationField_Edge = "css=textarea[id$='_location_input']";
 		public static final String EquipmentField = "css=input[id$='_resourcesData_input']";
+		public static final String EquipmentField_Edge = "css=textarea[id$='_resourcesData_input']";
 		public static final String SMSCheckBox = "css=input[id$='_reminderDeviceEmailCheckbox']";
 
 		public static final String zBoldButton = "css=i[class='mce-ico mce-i-bold']";
@@ -367,7 +370,11 @@ public class FormApptNew extends AbsForm {
 		SleepUtil.sleepSmall();
 		this.sRightClickAt("css=td[id$='_location'] span:contains('" + location + "')", "");
 		this.sClickAt(Locators.DeleteZimletContextMenu, "");
-		this.sClickAt("css=input[id$='_location_input']", "");
+		if (ConfigProperties.getStringProperty("browser").contains("edge")) {
+			this.sClickAt("css=textarea[id$='_location_input']", "");
+		} else {
+			this.sClickAt("css=input[id$='_location_input']", "");
+		}
 		SleepUtil.sleepMedium();
 	}
 
@@ -1322,10 +1329,18 @@ public class FormApptNew extends AbsForm {
 			locator = Locators.AttendeeField;
 
 		} else if (field == Field.Location) {
-			locator = Locators.LocationField;
+			if (ConfigProperties.getStringProperty("browser").contains("edge")) {
+				locator = Locators.LocationField_Edge;
+			} else {
+				locator = Locators.LocationField;
+			}
 
 		} else if (field == Field.Equipment) {
-			locator = Locators.EquipmentField;
+			if (ConfigProperties.getStringProperty("browser").contains("edge")) {
+				locator = Locators.EquipmentField_Edge;
+			} else {
+				locator = Locators.EquipmentField;
+			}
 
 		} else {
 			throw new HarnessException("Unsupported field: " + field);
