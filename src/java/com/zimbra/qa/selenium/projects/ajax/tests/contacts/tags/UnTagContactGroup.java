@@ -238,7 +238,7 @@ public class UnTagContactGroup extends AjaxCore  {
 
 
 	@Test (description = "Remove all tags from a double-tagged-contact group by right click on group, click Tag ->Remove tag->All Tags on context menu",
-			groups = { "smoke", "L1" })
+			groups = { "smoke", "L1", "non-msedge" })
 
 	public void UnTagContactGroup_06() throws HarnessException {
 

@@ -38,7 +38,7 @@ public class TagContactGroup extends AjaxCore  {
 
 
 	@Test (description = "Tag a contact group, click pulldown menu Tag->New Tag",
-			groups = { "smoke", "L1" })
+			groups = { "smoke", "L1", "non-msedge" })
 
 	public void  ClickPulldownMenuTagNewTag_01() throws HarnessException {
 

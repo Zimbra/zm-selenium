@@ -1545,7 +1545,11 @@ public class PageMail extends AbsTab {
 				page = new FormMailNew(this.MyApplication);
 
 			} else if (option == Button.O_CREATE_APPOINTMENT) {
-				optionLocator += " div[id^='zmi__CLV-main__CREATE_APPT'] td[id^='zmi__CLV-main__CREATE_APPT']";
+				if (ConfigProperties.getStringProperty("browser").contains("edge")) {
+					optionLocator += " td[id^='zmi__CLV-main__CREATE_APPT']:contains('Create Appointment')";
+				} else {
+					optionLocator += " div[id^='zmi__CLV-main__CREATE_APPT'] td[id^='zmi__CLV-main__CREATE_APPT']";
+				}
 				page = new DialogAddAttendees(this.MyApplication, ((AjaxPages) MyApplication).zPageCalendar);
 
 			} else if (option == Button.O_CREATE_TASK) {
