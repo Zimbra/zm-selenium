@@ -21,8 +21,8 @@ public class PageChatPanel extends AbsTab {
 		public static final String Dialog_Ok_Button = "css=div[class='DwtDialog'] td[class='ZWidgetTitle']:contains('Yes')";
 	}
 
-	public enum Userstatus{
-		offline("offline"),online("online"),invited("invited"),need_response("need_response");
+	public enum Userstatus {
+		offline("offline"), online("online"), invited("invited"), need_response("need_response");
 
 		private final String status;
 
@@ -47,9 +47,9 @@ public class PageChatPanel extends AbsTab {
 			return;
 		}
 		SleepUtil.sleepVeryLong();
-		if(zWaitForElementPresent(Locators.ChatHeader)) {
+		if (zWaitForElementPresent(Locators.ChatHeader)) {
 
-			if(!sIsElementPresent(Locators.ChatPanel))
+			if (!sIsElementPresent(Locators.ChatPanel))
 				sClick(Locators.ChatHeader);
 		}
 	}
@@ -71,15 +71,15 @@ public class PageChatPanel extends AbsTab {
 		tracer.trace("Click Ellipses then " + option);
 		AbsWizard wizard = null;
 		SleepUtil.sleepSmall();
-		sClickAt(Locators.ChatEllipsis,"0");
+		sClickAt(Locators.ChatEllipsis, "0");
 		SleepUtil.sleepSmall();
 
 		if (option == Button.B_ADD_NEW_BUDDY) {
-			sClickAt(Locators.AddNewBuddy_Option,"0");
+			sClickAt(Locators.AddNewBuddy_Option, "0");
 			wizard = new WizardAddBuddy(this);
 
 		} else {
-			throw new HarnessException("The method not implemented for "+ option);
+			throw new HarnessException("The method not implemented for " + option);
 		}
 
 		return wizard;
@@ -87,33 +87,32 @@ public class PageChatPanel extends AbsTab {
 
 	public String zUserStatus(String email) throws HarnessException {
 
-		String locator ="css=td[id$='ZxChat_BuddyTreeItem_"+email.replace("@", "_")+"_imageCell'] div@class";
+		String locator = "css=td[id$='ZxChat_BuddyTreeItem_" + email.replace("@", "_") + "_imageCell'] div@class";
 		return sGetAttribute(locator);
 	}
 
 	public Boolean zSelectUser(String email, Userstatus status) throws HarnessException {
 
-		String locator = "css=td[id$='ZxChat_BuddyTreeItem_"+email.replace("@", "_")+"_textCell']";
-		sClickAt(locator,"0");
+		String locator = "css=td[id$='ZxChat_BuddyTreeItem_" + email.replace("@", "_") + "_textCell']";
+		sClickAt(locator, "0");
 
-		if(status == Userstatus.need_response) {
-			if(zWaitForElementPresent(Locators.Dialog_Informational)) {
+		if (status == Userstatus.need_response) {
+			if (zWaitForElementPresent(Locators.Dialog_Informational)) {
 				sClick(Locators.Dialog_Ok_Button);
 				SleepUtil.sleepMedium();
 				return true;
 			} else {
 				throw new HarnessException("Informational Dialog is not appeared");
 			}
-		}
-		else{
+		} else {
 			return true;
 		}
 	}
 
-	public void zSendMsg(String message) throws HarnessException{
+	public void zSendMsg(String message) throws HarnessException {
 		SleepUtil.sleepLong();
 		String loc = "css=div[id$='ZxChat_RoomWindow'] textarea";
-		sType(loc, message +"\n");
+		sType(loc, message + "\n");
 	}
 
 	public String zGetMsg() throws HarnessException {
@@ -123,7 +122,7 @@ public class PageChatPanel extends AbsTab {
 
 	public Boolean zVerifyChatFolder() throws HarnessException {
 
-		if(sIsElementPresent("css=div[class='DwtTreeItem-Control'] td:contains('Chats')")) {
+		if (sIsElementPresent("css=div[class='DwtTreeItem-Control'] td:contains('Chats')")) {
 			sClick("css=div[class='DwtTreeItem-Control'] td:contains('Chats')");
 			SleepUtil.sleepMedium();
 			return true;
@@ -134,25 +133,21 @@ public class PageChatPanel extends AbsTab {
 
 	@Override
 	public AbsPage zListItem(Action action, String item) throws HarnessException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public AbsPage zListItem(Action action, Button option, String item) throws HarnessException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public AbsPage zListItem(Action action, Button option, Button subOption, String item) throws HarnessException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public AbsPage zToolbarPressButton(Button button) throws HarnessException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -161,7 +156,6 @@ public class PageChatPanel extends AbsTab {
 
 		return null;
 	}
-
 
 	@Override
 	public String myPageName() {
