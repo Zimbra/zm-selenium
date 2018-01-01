@@ -40,6 +40,9 @@ public class PageZextrasHSM extends AbsTab {
 		public static final String HSM_POLICY_DELETE_BUTTON = "css=div[id='ztabv__ZxPowerstore_group_14'] td[class='ZWidgetTitle']:contains('Delete')";
 		public static final String VOL_ADD_EDIT_OK_BUTTON = "css=div#zdlg__MSG.DwtDialog[style*='z-index: 7'] td[class='ZWidgetTitle']:contains('OK')";
 		public static final String lastPolicyInList = "css=div.hsmList div[class='DwtListView-Rows'] div:last-child";
+		public static final String APPLY_HSM_POLICY_NOW_DIALOG = "css=div.DwtDialog[style*='display: block;'] table td:contains('Apply Storage Management Policy NOW!')";
+		public static final String APPLY_HSM_POLICY_YES_BUTTON = "css=div.DwtDialog[style*='z-index: 7'][role='alertdialog'] td[class='ZWidgetTitle']:contains('Yes')";
+		public static final String APPLY_HSM_POLICY_NO_BUTTON = "css=div.DwtDialog[style*='z-index: 7'][role='alertdialog'] td[class='ZWidgetTitle']:contains('No')";
 	}
 
 	public PageZextrasHSM(AbsApplication application) {
@@ -139,6 +142,21 @@ public class PageZextrasHSM extends AbsTab {
 		this.sClickAt(Locators.HSM_POLICY_ADD_BUTTON, "");
 		SleepUtil.sleepVerySmall();
 		return (page);
+	}
+	public AbsPage ApplyHSMPolicy() throws HarnessException {
+		DialogForZextrasOperationID operationIdDialog = new DialogForZextrasOperationID(MyApplication,null);
+		this.sClickAt(Locators.APPLY_HSM_POLICY_NOW_BUTTON, "");
+		if(zWaitForElementPresent(Locators.APPLY_HSM_POLICY_NOW_DIALOG)) {
+			sClick(Locators.APPLY_HSM_POLICY_YES_BUTTON);
+			if(operationIdDialog.zIsMonitorCommandPresent()){
+				operationIdDialog.zPressButton(Button.B_OK);
+			}else {
+				throw new HarnessException("Operation id not appered");
+			}
+		} else {
+			throw new HarnessException("Apply policy confirmation dialog is not appeared");
+		}
+		return null;
 	}
 	public Boolean IsSecVolAdded(String volName) throws HarnessException {
 		return(this.sIsElementPresent("css=div.secondaryVolumes div.DwtListView-Rows div:contains('"+ volName +"')"));
