@@ -41,7 +41,7 @@ public class WizardRestore extends AbsWizard {
 	@Override
 	public IItem zCompleteWizard(IItem item) throws HarnessException {
 		if (!(item instanceof AccountItem))	throw new HarnessException("item must be an AccountItem, was " + item.getClass().getCanonicalName());
-// wait....some time wizard 1st screen takes time to load check and wait for it
+
 		AccountItem account = (AccountItem) item;
 		if(account.getIsUndeleteRestore() == true) {
 			sClickAt(Locators.NEXT_BUTTON, "");

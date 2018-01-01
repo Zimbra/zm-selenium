@@ -49,6 +49,7 @@ public class AdminPages extends AbsApplication {
 	public PageManageConfigureGrants zPageManageConfigureGrants = null;
 	public PageZextrasAdmin zPageZextrasAdmin = null;
 	public PageZextrasBackup zPageZextrasBackup = null;
+	public PageZextrasHSM zPageZextrasHSM = null;
 	public PageZextrasGeneral zPageZextrasGeneral = null;
 	public PageZextrasMobile zPageZextrasMobile = null;
 
@@ -302,6 +303,9 @@ public class AdminPages extends AbsApplication {
 
 		zPageZextrasBackup = new PageZextrasBackup(this);
 		pages.put(zPageZextrasBackup.myPageName(), zPageZextrasBackup);
+
+		zPageZextrasHSM = new PageZextrasHSM(this);
+		pages.put(zPageZextrasHSM.myPageName(), zPageZextrasHSM);
 
 		zPageZextrasGeneral = new PageZextrasGeneral(this);
 		pages.put(zPageZextrasGeneral.myPageName(), zPageZextrasGeneral);
