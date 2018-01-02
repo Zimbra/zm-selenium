@@ -147,7 +147,7 @@ public class ForwardContact extends AjaxCore  {
 
 
 	@Test (description = "Forward a contact by click Forward on the context menu",
-			groups = { "smoke", "L1" })
+			groups = { "smoke", "L1", "non-msedge" })
 
 	public void ClickForwardOnContextmenu_03() throws HarnessException {
 

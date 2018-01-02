@@ -121,6 +121,9 @@ public class ClientSession {
 
 				System.setProperty("webdriver.edge.driver", driverFilePath);
 				webDriver = new EdgeDriver();
+				Dimension dimension = new Dimension(500, 500);
+				webDriver.manage().window().setSize(dimension);
+				webDriver.manage().window().maximize();
 
 	        } else if (ConfigProperties.getStringProperty("browser").contains("firefox")) {
 

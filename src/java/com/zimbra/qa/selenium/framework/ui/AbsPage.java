@@ -143,6 +143,13 @@ public abstract class AbsPage extends AbsSeleniumObject {
 
 		}
 
+		public void zTypeKeyEvent(String locator, Keys key) throws HarnessException {
+			SleepUtil.sleepSmall();
+			WebElement we = getElement(locator);
+			we.sendKeys(key);
+			SleepUtil.sleepSmall();
+		}
+
 		public void zSelectAll(String locator) throws HarnessException {
 			logger.info("zSelectAll(CTRL A)");
 			WebElement we = getElement(locator);

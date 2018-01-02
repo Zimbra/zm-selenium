@@ -18,7 +18,7 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.contextmenu;
 
-import java.awt.event.KeyEvent;
+import org.openqa.selenium.Keys;
 import org.testng.annotations.*;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
@@ -51,12 +51,19 @@ public class Edit extends SetGroupMailByMessagePreference {
 		app.zPageCalendar.zRightClickAddressBubble();
 		app.zPageMail.zEditAddressContextMenu();
 
-		app.zPageCalendar.sFocus(FormApptNew.Locators.AttendeeField);
-		app.zPageCalendar.sClick(FormApptNew.Locators.AttendeeField);
-		app.zPageCalendar.zType(FormApptNew.Locators.AttendeeField,"test@test.com");
-		app.zPageCalendar.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
+		String locator = "";
+		if (ConfigProperties.getStringProperty("browser").contains("edge")) {
+			locator = FormApptNew.Locators.AttendeeField_Edge;
+		} else {
+			locator = FormApptNew.Locators.AttendeeField;
+		}
+
+		app.zPageCalendar.sFocus(locator);
+		app.zPageCalendar.sClick(locator);
+		app.zPageCalendar.zType(locator,"test@test.com");
+		app.zPageCalendar.zKeyboard.zTypeKeyEvent(locator, Keys.ENTER);
 
 		SleepUtil.sleepMedium();
-		ZAssert.assertEquals(app.zPageCalendar.sGetText(Locators.AttendeeBubbleAddr), "test@test.com", "Edited address should present");
+		ZAssert.assertEquals(app.zPageCalendar.sGetText(Locators.AttendeeBubbleAddr).trim(), "test@test.com", "Edited address should present");
 	}
 }

@@ -18,6 +18,7 @@ package com.zimbra.qa.selenium.projects.ajax.pages;
 
 import java.awt.event.KeyEvent;
 import com.zimbra.qa.selenium.framework.ui.*;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.staf.Stafpostqueue;
@@ -94,7 +95,12 @@ public class DialogShare extends AbsDialog {
 	public void zSetEmailAddress(String email) throws HarnessException {
 		logger.info(myPageName() + " zSetEmailAddress(" + email + ")");
 
-		String locator = "css=input#ShareDialog_grantee";
+		String locator = "";
+		if (ConfigProperties.getStringProperty("browser").contains("edge")) {
+			locator = "css=textarea#ShareDialog_grantee";;
+		} else {
+			locator = "css=input#ShareDialog_grantee";;
+		}
 
 		if (!this.sIsElementPresent(locator)) {
 			throw new HarnessException("zSetEmailAddress " + locator + " is not present");
@@ -103,6 +109,7 @@ public class DialogShare extends AbsDialog {
 		// Seems that the client can't handle filling out the new mail form too
 		// quickly
 		// Click in the "To" fields, etc, to make sure the client is ready
+
 		this.sFocus(locator);
 		this.sClick(locator);
 		this.zWaitForBusyOverlay();

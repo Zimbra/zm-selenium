@@ -1398,11 +1398,22 @@ public class PageBriefcase extends AbsTab {
 
 		try {
 			webDriver().switchTo().frame(0);
-			if (fileContent.equals(webDriver().findElement(By.tagName("body")).getText())) {
-				return true;
+			String bodyContent = webDriver().findElement(By.tagName("body")).getText();
+			boolean result = false;
+			if (!ConfigProperties.getStringProperty("browser").contains("edge")) {
+				if (fileContent.equals(bodyContent)) {
+					result = true;
+				} else {
+					result = false;
+				}
 			} else {
-				return false;
+				if (bodyContent.contains(fileContent)) {
+					result = true;
+				} else {
+					result = false;
+				}
 			}
+			return result;
 
 		} finally {
 			webDriver().switchTo().defaultContent();

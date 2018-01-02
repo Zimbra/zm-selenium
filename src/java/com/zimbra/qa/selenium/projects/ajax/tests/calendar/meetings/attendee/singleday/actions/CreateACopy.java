@@ -34,7 +34,7 @@ public class CreateACopy extends AjaxCore {
 
 
 	@Test (description = "Copy read-only meeting invite and verify content",
-			groups = { "smoke", "L1" })
+			groups = { "smoke", "L1", "non-msedge" })
 
 	public void CopyMeeting_01() throws HarnessException {
 
