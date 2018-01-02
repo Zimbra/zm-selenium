@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import org.apache.commons.lang.StringUtils;
+import org.openqa.selenium.Keys;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -992,7 +993,7 @@ public class FormApptNew extends AbsForm {
 				SleepUtil.sleepSmall();
 				this.sType(locator, value);
 				SleepUtil.sleepSmall();
-				this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
+				this.zKeyboard.zTypeKeyEvent(locator,Keys.ENTER);
 				SleepUtil.sleepSmall();
 			}
 		}

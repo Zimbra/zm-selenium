@@ -201,7 +201,7 @@ public class ContactContextMenu extends AjaxCore {
 			bubleText = app.zPageSearch.sGetText("css=[class='addrBubble']");
 		}
 
-		ZAssert.assertEquals(bubleText, "from:" + ZimbraAccount.AccountB().EmailAddress, "Verify the message list exists");
+		ZAssert.assertEquals(bubleText.trim(), "from:" + ZimbraAccount.AccountB().EmailAddress, "Verify the message list exists");
 	}
 
 
@@ -237,6 +237,6 @@ public class ContactContextMenu extends AjaxCore {
 			bubleText = app.zPageSearch.sGetText("css=[class='addrBubble']");
 		}
 
-		ZAssert.assertEquals(bubleText, "tocc:" + app.zGetActiveAccount().EmailAddress, "Verify the message list exists");
+		ZAssert.assertEquals(bubleText.trim(), "tocc:" + app.zGetActiveAccount().EmailAddress, "Verify the message list exists");
 	}
 }
