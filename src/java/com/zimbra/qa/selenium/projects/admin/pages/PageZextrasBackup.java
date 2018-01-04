@@ -127,7 +127,7 @@ public class PageZextrasBackup extends AbsTab {
 		SleepUtil.sleepLong();
 	}
 
-	public AbsPage initiallizeBackup() throws HarnessException {
+	public AbsPage initializeBackup() throws HarnessException {
 		AbsPage page = null;
 		SleepUtil.sleepVerySmall();
 		page = new DialogRunSmartScanConfirmation(MyApplication, null);

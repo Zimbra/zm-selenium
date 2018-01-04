@@ -17,7 +17,6 @@
 package com.zimbra.qa.selenium.projects.admin.pages;
 
 import org.openqa.selenium.WebElement;
-
 import com.zimbra.qa.selenium.framework.ui.AbsApplication;
 import com.zimbra.qa.selenium.framework.ui.AbsPage;
 import com.zimbra.qa.selenium.framework.ui.AbsTab;
@@ -161,7 +160,7 @@ public class PageZextrasGeneral extends AbsTab {
 		}
 	}
 
-	public boolean zverifyModuleRunningStatus(String module) throws HarnessException {
+	public boolean zVerifyModuleRunningStatus(String module) throws HarnessException {
 		String locator = "";
 		String tab = "";
 		if (module.equals("Backup")) {

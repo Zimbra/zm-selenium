@@ -150,7 +150,7 @@ public class PageZextrasHSM extends AbsTab {
 			sClick(Locators.APPLY_HSM_POLICY_YES_BUTTON);
 			if(operationIdDialog.zIsMonitorCommandPresent()){
 				operationIdDialog.zPressButton(Button.B_OK);
-			}else {
+			} else {
 				throw new HarnessException("Operation id not appered");
 			}
 		} else {
@@ -159,14 +159,15 @@ public class PageZextrasHSM extends AbsTab {
 		return null;
 	}
 	public Boolean IsSecVolAdded(String volName) throws HarnessException {
-		return(this.sIsElementPresent("css=div.secondaryVolumes div.DwtListView-Rows div:contains('"+ volName +"')"));
+		return (this.sIsElementPresent("css=div.secondaryVolumes div.DwtListView-Rows div:contains('"+ volName +"')"));
 	}
 
 	public Boolean IsCurrentVolume(String volName) throws HarnessException {
-		return(this.sIsElementPresent("xpath=//div[contains(text(),'Secondary Volumes')]/parent::div//td[contains(text(),'"+volName+"')]/preceding-sibling::td[2]/div[@class='ImgCheck']"));
+		return (this.sIsElementPresent("xpath=//div[contains(text(),'Secondary Volumes')]/parent::div//td[contains(text(),'"
+						+ volName + "')]/preceding-sibling::td[2]/div[@class='ImgCheck']"));
 	}
-	
+
 	public String GetLastHSMPolicyInList() throws HarnessException {
-		return(sGetText(Locators.lastPolicyInList));
+		return (sGetText(Locators.lastPolicyInList));
 	}
 }

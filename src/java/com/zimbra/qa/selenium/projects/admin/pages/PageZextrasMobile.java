@@ -1,3 +1,19 @@
+/*
+ * ***** BEGIN LICENSE BLOCK *****
+ * Zimbra Collaboration Suite Server
+ * Copyright (C) 2011, 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
+ * This program is free software: you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License as published by the Free Software Foundation,
+ * version 2 of the License.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
+ * You should have received a copy of the GNU General Public License along with this program.
+ * If not, see <https://www.gnu.org/licenses/>.
+ * ***** END LICENSE BLOCK *****
+ */
 package com.zimbra.qa.selenium.projects.admin.pages;
 
 import com.zimbra.qa.selenium.framework.ui.AbsApplication;
@@ -9,7 +25,7 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 
 public class PageZextrasMobile extends AbsTab{
-	
+
 	public static class Locators {
 		public static final String NETWORK_MODULE_NG_ICON = "css=td[id^='zti__AppAdmin__Home__ZeXtras_'] div[class='ImgZeXtras']";
 		public static final String CLOSE_BUTTON = "css=td[id^='zb__ZaCurrentAppBar__CLOSE_']:contains('Close')";
@@ -27,7 +43,7 @@ public class PageZextrasMobile extends AbsTab{
 		super(application);
 		logger.info("new " + myPageName());
 	}
-	
+
 	@Override
 	public String myPageName() {
 		return (this.getClass().getName());
@@ -66,7 +82,7 @@ public class PageZextrasMobile extends AbsTab{
 		sClickAt(Locators.MOBILE_TAB, "");
 		zWaitForWorkInProgressDialogInVisible();
 	}
-	
+
 	public boolean zVerifyHeader(String header) throws HarnessException {
 		if (this.sIsElementPresent("css=span:contains('" + header + "')"))
 			return true;
@@ -110,13 +126,13 @@ public class PageZextrasMobile extends AbsTab{
 			sClick(Locators.OK_BUTTON);
 		}
 	}
-	
+
 	public void zSave() throws HarnessException {
 		SleepUtil.sleepSmall();
 		sClickAt(Locators.SAVE_BUTTON, "");
 		SleepUtil.sleepLong();
 	}
-	
+
 	public void zClose() throws HarnessException {
 		SleepUtil.sleepSmall();
 		sClickAt(Locators.CLOSE_BUTTON, "");
