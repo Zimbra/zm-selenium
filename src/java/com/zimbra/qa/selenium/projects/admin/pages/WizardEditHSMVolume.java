@@ -23,39 +23,43 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.projects.admin.items.HSMItem;
 
-public class WizardAddNewVolume extends AbsWizard {
-	
+public class WizardEditHSMVolume extends AbsWizard {
+
 	public static class Locators {
-		public static final String VOL_TYPE_LOCAL = "css=[style*='z-index: 7'] input[id='zdlgv__DLG_NEW_PWRSTR_VOLUME_BObject_49']";
-		public static final String VOL_TYPE_S3_BUCKET = "css=[style*='z-index: 7'] input[id='zdlgv__DLG_NEW_PWRSTR_VOLUME_BObject_50']";
-		public static final String NEXT_BUTTON = "css=div[style*='z-index: 7'] td[id$='_button12_title']";
-		public static final String FINISH_BUTTON = "css=div[style*='z-index: 7'] td[id$='_button13_title']";
-		public static final String VOLUME_NAME_TEXT_BOX = "css=input[id='zdlgv__DLG_NEW_PWRSTR_VOLUME_BObject_10']";
-		public static final String VOLUME_PATH_TEXT_BOX = "css=input[id='zdlgv__DLG_NEW_PWRSTR_VOLUME_BObject_11']";
-		public static final String SET_CURRENT_CHECK_BOX = "css=input[id='zdlgv__DLG_NEW_PWRSTR_VOLUME_BObject_44']";
+		public static final String VOL_NAME = "css=div[class='DwtDialog'][style*='z-index: 7'] input.xform_field[id$=_name]";
+		public static final String VOL_PATH = "css=div[class='DwtDialog'][style*='z-index: 7'] input.xform_field[id$=_path]";
+		public static final String SET_CURRENT_CHECKBOX = "css=div[class='DwtDialog'][style*='z-index: 7'] input[id$=_current]";
+		public static final String ENABLE_COMPRESSION_CHECKBOX = "css=div[class='DwtDialog'][style*='z-index: 7'] input[id$=_compressed]";
+		public static final String OK_BUTTON = "css=div[style*='z-index: 7'] td[id$='_button2_title']";
+		public static final String CANCEL_BUTTON = "css=div[style*='z-index: 7'] td[id$='_button1_title']";
 	}
 
-	public WizardAddNewVolume(AbsTab page) {
+	public WizardEditHSMVolume(AbsTab page) {
 		super(page);
 		logger.info("New " + WizardAddNewVolume.class.getName());
 	}
 
 	@Override
 	public IItem zCompleteWizard(IItem item) throws HarnessException {
-		if (!(item instanceof HSMItem)) throw new HarnessException("item must be an HSMItem, was " + item.getClass().getCanonicalName());
+		if (!(item instanceof HSMItem))
+			throw new HarnessException("item must be an HSMItem, was " + item.getClass().getCanonicalName());
 
-		HSMItem hsmVol = (HSMItem) item;
-		sClickAt(Locators.VOL_TYPE_LOCAL, "");
-		sClickAt(Locators.NEXT_BUTTON, "");
-		sType(Locators.VOLUME_NAME_TEXT_BOX, hsmVol.getVolName());
-		sType(Locators.VOLUME_PATH_TEXT_BOX, hsmVol.getVolPath());
-		SleepUtil.sleepVerySmall();
-		sClickAt(Locators.NEXT_BUTTON, "");
-		if(hsmVol.getIsCurrent()== true){
-			sCheck(Locators.SET_CURRENT_CHECK_BOX);
-		}
-		sClickAt(Locators.FINISH_BUTTON, "");
 		SleepUtil.sleepSmall();
+		HSMItem hsmVol = (HSMItem) item;
+		if (!sGetValue(Locators.VOL_NAME).equals(hsmVol.getVolName())) {
+			sType(Locators.VOL_NAME, hsmVol.getVolName());
+		}
+		if (!sGetValue(Locators.VOL_PATH).equals(hsmVol.getVolPath())) {
+			sType(Locators.VOL_PATH, hsmVol.getVolPath());
+		}
+		if (hsmVol.getIsCurrent() != null) {
+			if (hsmVol.getIsCurrent() == true) {
+				sCheck(Locators.SET_CURRENT_CHECKBOX);
+			} else if (hsmVol.getIsCurrent() == false) {
+				sUncheck(Locators.SET_CURRENT_CHECKBOX);
+			}
+		}
+		sClickAt(Locators.OK_BUTTON, "");
 		return (hsmVol);
 	}
 
