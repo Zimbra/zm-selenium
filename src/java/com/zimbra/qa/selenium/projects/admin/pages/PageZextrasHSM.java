@@ -180,7 +180,7 @@ public class PageZextrasHSM extends AbsTab {
 		return null;
 	}
 
-	public Boolean IsSecondaryVolumeExist(String volumeName) throws HarnessException {
+	public Boolean IsSecondaryVolumeExists(String volumeName) throws HarnessException {
 		SleepUtil.sleepSmall();
 		return (this.sIsElementPresent("css=div.secondaryVolumes div.DwtListView-Rows div:contains('"+ volumeName +"')"));
 	}
