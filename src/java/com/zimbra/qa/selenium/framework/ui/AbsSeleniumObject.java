@@ -25,6 +25,7 @@ import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -34,6 +35,7 @@ import org.openqa.selenium.Dimension;
 import org.openqa.selenium.ElementNotVisibleException;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.TimeoutException;
@@ -49,6 +51,8 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.WebDriverException;
+
+import com.zimbra.common.mailbox.ZimbraSearchParams;
 import com.zimbra.qa.selenium.framework.core.ClientSession;
 import com.zimbra.qa.selenium.framework.core.ClientSessionFactory;
 import com.zimbra.qa.selenium.framework.core.ExecuteHarnessMain;
@@ -56,6 +60,9 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.projects.admin.pages.PageLogin;
 import com.zimbra.qa.selenium.projects.admin.pages.PageMain;
+
+import sun.security.x509.IssuerAlternativeNameExtension;
+
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import org.openqa.selenium.interactions.Mouse;
 import org.openqa.selenium.interactions.HasInputDevices;
@@ -822,10 +829,21 @@ public abstract class AbsSeleniumObject {
 		SleepUtil.sleepLongMedium();
 	}
 
+	public void HandelAlert() {
+		try {
+			Alert alert = webDriver().switchTo().alert();
+			alert.accept();
+	    } catch (NoAlertPresentException Ex) {
+	    	logger.info("No Alert Found");
+	    }
+	}
+
 	// Refreshes UI till loading completes successfully
 	public void zRefreshMainUI() throws HarnessException {
 		logger.info("Refresh UI");
 		webDriver().navigate().refresh();
+
+		HandelAlert();
 
 		if (ConfigProperties.getAppType().toString().equals("AJAX")) {
 
@@ -841,18 +859,19 @@ public abstract class AbsSeleniumObject {
 			boolean loginPagePresent = false, mainUIPresent = false;
 
 			SleepUtil.sleepSmall();
+
 			for (int i = 0; i <= 15; i++) {
-				if (zIsVisiblePerPosition(PageMain.Locators.zHelpButton, 10, 10) == true) {
+				if (webDriver().getTitle().contains("502 Bad Gateway")) {
+					webDriver().get(webDriver().getCurrentUrl());
+				} else if (zIsVisiblePerPosition(PageMain.Locators.zHelpButton, 10, 10) == true) {
 					mainUIPresent = true;
 					break;
 				} else if (zIsVisiblePerPosition(PageLogin.Locators.zLoginButtonContainer, 10, 10) == true) {
 					loginPagePresent = true;
 					break;
-				} else {
-					SleepUtil.sleepMedium();
 				}
+				SleepUtil.sleepMedium();
 			}
-			SleepUtil.sleepSmall();
 			if (loginPagePresent == false && mainUIPresent == false) {
 				throw new HarnessException("Neither login page nor main UI locator present");
 			}
