@@ -25,8 +25,6 @@ public class WizardHSMPolicy extends AbsWizard {
 		public static final String pullDown = "css=div[class='DwtDialog']:not([aria-hidden='true']) div.ImgSelectPullDownArrow";
 		public static final String okButton = "css=div[class='DwtDialog']:not([aria-hidden='true']) td[class='ZWidgetTitle']:contains('OK')";
 		public static final String successfulDialog = "css=div.DwtDialog[style*='display: block;'] table td:contains('Zimbra Administration')";
-		
-		//public static final String duration = "css=div[class='oselect_choice']:contains('minutes')";
 	}
 	
 	@Override

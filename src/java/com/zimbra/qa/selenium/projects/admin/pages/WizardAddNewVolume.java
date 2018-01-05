@@ -26,13 +26,15 @@ import com.zimbra.qa.selenium.projects.admin.items.HSMItem;
 public class WizardAddNewVolume extends AbsWizard {
 	
 	public static class Locators {
-		public static final String VOL_TYPE_LOCAL = "css=[style*='z-index: 7'] input[id='zdlgv__DLG_NEW_PWRSTR_VOLUME_BObject_49']";
-		public static final String VOL_TYPE_S3_BUCKET = "css=[style*='z-index: 7'] input[id='zdlgv__DLG_NEW_PWRSTR_VOLUME_BObject_50']";
+		public static final String VOLUME_TYPE_LOCAL = "css=[style*='z-index: 7'] input[id='zdlgv__DLG_NEW_PWRSTR_VOLUME_BObject_49']";
+		public static final String VOLUME_TYPE_S3_BUCKET = "css=[style*='z-index: 7'] input[id='zdlgv__DLG_NEW_PWRSTR_VOLUME_BObject_50']";
 		public static final String NEXT_BUTTON = "css=div[style*='z-index: 7'] td[id$='_button12_title']";
 		public static final String FINISH_BUTTON = "css=div[style*='z-index: 7'] td[id$='_button13_title']";
 		public static final String VOLUME_NAME_TEXT_BOX = "css=input[id='zdlgv__DLG_NEW_PWRSTR_VOLUME_BObject_10']";
 		public static final String VOLUME_PATH_TEXT_BOX = "css=input[id='zdlgv__DLG_NEW_PWRSTR_VOLUME_BObject_11']";
 		public static final String SET_CURRENT_CHECK_BOX = "css=input[id='zdlgv__DLG_NEW_PWRSTR_VOLUME_BObject_44']";
+		public static final String successfulDialog = "css=div.DwtDialog[style*='display: block;'] table td:contains('Zimbra Administration')";
+		public static final String VOLUME_ADDED_OK_BUTTON = "css=div#zdlg__MSG.DwtDialog[style*='z-index: 7'] td[class='ZWidgetTitle']:contains('OK')";
 	}
 
 	public WizardAddNewVolume(AbsTab page) {
@@ -42,32 +44,35 @@ public class WizardAddNewVolume extends AbsWizard {
 
 	@Override
 	public IItem zCompleteWizard(IItem item) throws HarnessException {
-		if (!(item instanceof HSMItem)) throw new HarnessException("item must be an HSMItem, was " + item.getClass().getCanonicalName());
+		if (!(item instanceof HSMItem)) throw new HarnessException("Item must be a HSMItem, was " + item.getClass().getCanonicalName());
 
-		HSMItem hsmVol = (HSMItem) item;
-		sClickAt(Locators.VOL_TYPE_LOCAL, "");
+		HSMItem hsmVolume = (HSMItem) item;
+		sClickAt(Locators.VOLUME_TYPE_LOCAL, "");
 		sClickAt(Locators.NEXT_BUTTON, "");
-		sType(Locators.VOLUME_NAME_TEXT_BOX, hsmVol.getVolName());
-		sType(Locators.VOLUME_PATH_TEXT_BOX, hsmVol.getVolPath());
+		sType(Locators.VOLUME_NAME_TEXT_BOX, hsmVolume.getVolumeName());
+		sType(Locators.VOLUME_PATH_TEXT_BOX, hsmVolume.getVolumePath());
 		SleepUtil.sleepVerySmall();
 		sClickAt(Locators.NEXT_BUTTON, "");
-		if(hsmVol.getIsCurrent()== true){
+		if(hsmVolume.getIsCurrent()== true){
 			sCheck(Locators.SET_CURRENT_CHECK_BOX);
 		}
 		sClickAt(Locators.FINISH_BUTTON, "");
+		if (zWaitForElementPresent(Locators.successfulDialog)) {
+			sClick(Locators.VOLUME_ADDED_OK_BUTTON);
+		} else {
+			throw new HarnessException("Policy added successfully dialog is not appeared");
+		}
 		SleepUtil.sleepSmall();
-		return (hsmVol);
+		return (hsmVolume);
 	}
 
 	@Override
 	public String myPageName() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public boolean zIsActive() throws HarnessException {
-		// TODO Auto-generated method stub
 		return false;
 	}
 

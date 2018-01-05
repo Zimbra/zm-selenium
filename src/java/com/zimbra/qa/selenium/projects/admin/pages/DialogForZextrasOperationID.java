@@ -64,6 +64,7 @@ public class DialogForZextrasOperationID extends AbsDialog{
 		}
 
 		this.sClickAt(locator, "");
+		SleepUtil.sleepVerySmall();
 		return (page);
 	}
 	

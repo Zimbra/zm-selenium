@@ -26,12 +26,14 @@ import com.zimbra.qa.selenium.projects.admin.items.HSMItem;
 public class WizardEditHSMVolume extends AbsWizard {
 
 	public static class Locators {
-		public static final String VOL_NAME = "css=div[class='DwtDialog'][style*='z-index: 7'] input.xform_field[id$=_name]";
-		public static final String VOL_PATH = "css=div[class='DwtDialog'][style*='z-index: 7'] input.xform_field[id$=_path]";
+		public static final String VOLUME_NAME = "css=div[class='DwtDialog'][style*='z-index: 7'] input.xform_field[id$=_name]";
+		public static final String VOLUME_PATH = "css=div[class='DwtDialog'][style*='z-index: 7'] input.xform_field[id$=_path]";
 		public static final String SET_CURRENT_CHECKBOX = "css=div[class='DwtDialog'][style*='z-index: 7'] input[id$=_current]";
 		public static final String ENABLE_COMPRESSION_CHECKBOX = "css=div[class='DwtDialog'][style*='z-index: 7'] input[id$=_compressed]";
 		public static final String OK_BUTTON = "css=div[style*='z-index: 7'] td[id$='_button2_title']";
 		public static final String CANCEL_BUTTON = "css=div[style*='z-index: 7'] td[id$='_button1_title']";
+		public static final String successfulDialog = "css=div.DwtDialog[style*='display: block;'] table td:contains('Zimbra Administration')";
+		public static final String VOLUME_ADDED_OK_BUTTON = "css=div#zdlg__MSG.DwtDialog[style*='z-index: 7'] td[class='ZWidgetTitle']:contains('OK')";
 	}
 
 	public WizardEditHSMVolume(AbsTab page) {
@@ -42,36 +44,39 @@ public class WizardEditHSMVolume extends AbsWizard {
 	@Override
 	public IItem zCompleteWizard(IItem item) throws HarnessException {
 		if (!(item instanceof HSMItem))
-			throw new HarnessException("item must be an HSMItem, was " + item.getClass().getCanonicalName());
+			throw new HarnessException("Item must be a HSMItem, was " + item.getClass().getCanonicalName());
 
 		SleepUtil.sleepSmall();
-		HSMItem hsmVol = (HSMItem) item;
-		if (!sGetValue(Locators.VOL_NAME).equals(hsmVol.getVolName())) {
-			sType(Locators.VOL_NAME, hsmVol.getVolName());
+		HSMItem hsmVolume = (HSMItem) item;
+		if (!sGetValue(Locators.VOLUME_NAME).equals(hsmVolume.getVolumeName())) {
+			sType(Locators.VOLUME_NAME, hsmVolume.getVolumeName());
 		}
-		if (!sGetValue(Locators.VOL_PATH).equals(hsmVol.getVolPath())) {
-			sType(Locators.VOL_PATH, hsmVol.getVolPath());
+		if (!sGetValue(Locators.VOLUME_PATH).equals(hsmVolume.getVolumePath())) {
+			sType(Locators.VOLUME_PATH, hsmVolume.getVolumePath());
 		}
-		if (hsmVol.getIsCurrent() != null) {
-			if (hsmVol.getIsCurrent() == true) {
+		if (hsmVolume.getIsCurrent() != null) {
+			if (hsmVolume.getIsCurrent() == true) {
 				sCheck(Locators.SET_CURRENT_CHECKBOX);
-			} else if (hsmVol.getIsCurrent() == false) {
+			} else if (hsmVolume.getIsCurrent() == false) {
 				sUncheck(Locators.SET_CURRENT_CHECKBOX);
 			}
 		}
 		sClickAt(Locators.OK_BUTTON, "");
-		return (hsmVol);
+		if (zWaitForElementPresent(Locators.successfulDialog)) {
+			sClick(Locators.VOLUME_ADDED_OK_BUTTON);
+		} else {
+			throw new HarnessException("Policy edited successfully dialog is not appeared");
+		}
+		return (hsmVolume);
 	}
 
 	@Override
 	public String myPageName() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public boolean zIsActive() throws HarnessException {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
