@@ -42,6 +42,7 @@ public class PageMain extends AbsTab {
 		public static final String zCalendarApp = "id=zb__App__Calendar_title";
 		public static final String zTasksApp = "id=zb__App__Tasks_title";
 		public static final String zBriefcaseApp = "css=td[id=zb__App__Briefcase_title]";
+		public static final String zDriveApp = "css=td[id=zb__App__ZIMBRA_DRIVE_title]";
 		public static final String zPreferencesTab = "id=zb__App__Options_title";
 
 		public static final String zSocialTab = "css=div[id^='zb__App__com_zimbra_social_'] td[id$='_title']";
@@ -508,6 +509,10 @@ public class PageMain extends AbsTab {
 			appTab = ((AjaxPages) MyApplication).zPageBriefcase;
 			appLocator = PageMain.Locators.zBriefcaseApp;
 
+		} else if (appIdentifier.contains("DRIVE")) {
+			appTab = ((AjaxPages) MyApplication).zPageDrive;
+			appLocator = PageMain.Locators.zDriveApp;
+
 		} else if (appIdentifier.contains("Options")) {
 			appTab = ((AjaxPages) MyApplication).zPagePreferences;
 			appLocator = PageMain.Locators.zPreferencesTab;
@@ -534,7 +539,7 @@ public class PageMain extends AbsTab {
 				if (appTab.equals(((AjaxPages) MyApplication).zPageCalendar)) {
 					SleepUtil.sleepMedium();
 				} else {
-					SleepUtil.sleepSmall();
+					SleepUtil.sleepLong();
 				}
 
 				sClickAt(appLocator, "");
