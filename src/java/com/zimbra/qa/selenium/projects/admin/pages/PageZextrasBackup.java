@@ -121,6 +121,11 @@ public class PageZextrasBackup extends AbsTab {
 		return false;
 	}
 
+	public void enterBackupPath(String backupPath) throws HarnessException {
+		SleepUtil.sleepSmall();
+		zType(Locators.BACKUP_PATH, backupPath);
+	}
+
 	public void zSave() throws HarnessException {
 		SleepUtil.sleepSmall();
 		sClickAt(Locators.SAVE_BUTTON, "");

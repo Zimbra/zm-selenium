@@ -23,46 +23,50 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.projects.admin.items.HSMItem;
 
-public class WizardAddNewVolume extends AbsWizard {
-	
+public class WizardEditHSMVolume extends AbsWizard {
+
 	public static class Locators {
-		public static final String VOLUME_TYPE_LOCAL = "css=[style*='z-index: 7'] input[id='zdlgv__DLG_NEW_PWRSTR_VOLUME_BObject_49']";
-		public static final String VOLUME_TYPE_S3_BUCKET = "css=[style*='z-index: 7'] input[id='zdlgv__DLG_NEW_PWRSTR_VOLUME_BObject_50']";
-		public static final String NEXT_BUTTON = "css=div[style*='z-index: 7'] td[id$='_button12_title']";
-		public static final String FINISH_BUTTON = "css=div[style*='z-index: 7'] td[id$='_button13_title']";
-		public static final String VOLUME_NAME_TEXT_BOX = "css=input[id='zdlgv__DLG_NEW_PWRSTR_VOLUME_BObject_10']";
-		public static final String VOLUME_PATH_TEXT_BOX = "css=input[id='zdlgv__DLG_NEW_PWRSTR_VOLUME_BObject_11']";
-		public static final String SET_CURRENT_CHECK_BOX = "css=input[id='zdlgv__DLG_NEW_PWRSTR_VOLUME_BObject_44']";
+		public static final String VOLUME_NAME = "css=div[class='DwtDialog'][style*='z-index: 7'] input.xform_field[id$=_name]";
+		public static final String VOLUME_PATH = "css=div[class='DwtDialog'][style*='z-index: 7'] input.xform_field[id$=_path]";
+		public static final String SET_CURRENT_CHECKBOX = "css=div[class='DwtDialog'][style*='z-index: 7'] input[id$=_current]";
+		public static final String ENABLE_COMPRESSION_CHECKBOX = "css=div[class='DwtDialog'][style*='z-index: 7'] input[id$=_compressed]";
+		public static final String OK_BUTTON = "css=div[style*='z-index: 7'] td[id$='_button2_title']";
+		public static final String CANCEL_BUTTON = "css=div[style*='z-index: 7'] td[id$='_button1_title']";
 		public static final String successfulDialog = "css=div.DwtDialog[style*='display: block;'] table td:contains('Zimbra Administration')";
 		public static final String VOLUME_ADDED_OK_BUTTON = "css=div#zdlg__MSG.DwtDialog[style*='z-index: 7'] td[class='ZWidgetTitle']:contains('OK')";
 	}
 
-	public WizardAddNewVolume(AbsTab page) {
+	public WizardEditHSMVolume(AbsTab page) {
 		super(page);
 		logger.info("New " + WizardAddNewVolume.class.getName());
 	}
 
 	@Override
 	public IItem zCompleteWizard(IItem item) throws HarnessException {
-		if (!(item instanceof HSMItem)) throw new HarnessException("Item must be a HSMItem, was " + item.getClass().getCanonicalName());
+		if (!(item instanceof HSMItem))
+			throw new HarnessException("Item must be a HSMItem, was " + item.getClass().getCanonicalName());
 
+		SleepUtil.sleepSmall();
 		HSMItem hsmVolume = (HSMItem) item;
-		sClickAt(Locators.VOLUME_TYPE_LOCAL, "");
-		sClickAt(Locators.NEXT_BUTTON, "");
-		sType(Locators.VOLUME_NAME_TEXT_BOX, hsmVolume.getVolumeName());
-		sType(Locators.VOLUME_PATH_TEXT_BOX, hsmVolume.getVolumePath());
-		SleepUtil.sleepVerySmall();
-		sClickAt(Locators.NEXT_BUTTON, "");
-		if(hsmVolume.getIsCurrent()== true){
-			sCheck(Locators.SET_CURRENT_CHECK_BOX);
+		if (!sGetValue(Locators.VOLUME_NAME).equals(hsmVolume.getVolumeName())) {
+			sType(Locators.VOLUME_NAME, hsmVolume.getVolumeName());
 		}
-		sClickAt(Locators.FINISH_BUTTON, "");
+		if (!sGetValue(Locators.VOLUME_PATH).equals(hsmVolume.getVolumePath())) {
+			sType(Locators.VOLUME_PATH, hsmVolume.getVolumePath());
+		}
+		if (hsmVolume.getIsCurrent() != null) {
+			if (hsmVolume.getIsCurrent() == true) {
+				sCheck(Locators.SET_CURRENT_CHECKBOX);
+			} else if (hsmVolume.getIsCurrent() == false) {
+				sUncheck(Locators.SET_CURRENT_CHECKBOX);
+			}
+		}
+		sClickAt(Locators.OK_BUTTON, "");
 		if (zWaitForElementPresent(Locators.successfulDialog)) {
 			sClick(Locators.VOLUME_ADDED_OK_BUTTON);
 		} else {
-			throw new HarnessException("Policy added successfully dialog is not appeared");
+			throw new HarnessException("Policy edited successfully dialog is not appeared");
 		}
-		SleepUtil.sleepSmall();
 		return (hsmVolume);
 	}
 

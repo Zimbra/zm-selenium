@@ -27,16 +27,16 @@ import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 public class HSMItem implements IItem {
 	protected static Logger logger = LogManager.getLogger(IItem.class);
 
-	protected String volName; // Volume name of storage to be added/edited
-	protected String volPath;
-	protected String volType; // Local or S3 bucket
+	protected String volumeName;
+	protected String volumePath;
+	protected String volumeType;
 	protected Boolean isCurrent;
 	protected Map<String, String> HSMAttrs;
 
-	public HSMItem(String volName, String volPath) {
+	public HSMItem(String volumeName, String volumePath) {
 		HSMAttrs = new HashMap<String, String>();
-		this.volName = volName;
-		this.volPath = volPath;
+		this.volumeName = volumeName;
+		this.volumePath = volumePath;
 	}
 
 	public Map<String, String> getHSMAttrs() {
@@ -47,28 +47,28 @@ public class HSMItem implements IItem {
 		return isCurrent;
 	}
 
-	public String getVolName() {
-		return volName;
+	public String getVolumeName() {
+		return volumeName;
 	}
 
-	public String getVolPath() {
-		return volPath;
+	public String getVolumePath() {
+		return volumePath;
 	}
 
-	public String getVolType() {
-		return volType;
+	public String getVolumeType() {
+		return volumeType;
 	}
 
-	public void setVolName(String volName) {
-		this.volName = volName;
+	public void setVolumeName(String volName) {
+		this.volumeName = volName;
 	}
 
-	public void setVolPath(String volPath) {
-		this.volPath = volPath;
+	public void setVolumePath(String volPath) {
+		this.volumePath = volPath;
 	}
 
-	public void setVolType(String volType) {
-		this.volType = volType;
+	public void setVolumeType(String volType) {
+		this.volumeType = volType;
 	}
 
 	public void setIsCurrent(Boolean isCurrent) {
@@ -77,7 +77,7 @@ public class HSMItem implements IItem {
 
 	@Override
 	public String getName() {
-		return volName;
+		return volumeName;
 	}
 
 	@Override

@@ -32,17 +32,18 @@ public class PageZextrasHSM extends AbsTab {
 		public static final String CLOSE_BUTTON = "css=td[id^='zb__ZaCurrentAppBar__CLOSE_']:contains('Close')";
 		public static final String SAVE_BUTTON = "css=td[id^='zb__ZaCurrentAppBar__SAVE_']:contains('Save')";
 		public static final String APPLY_HSM_POLICY_NOW_BUTTON = "css=td[class='ZWidgetTitle']:contains('Apply HSM Policy Now')";
-		public static final String SECONDARY_VOL_ADD_BUTTON = "css=div[id='ztabv__ZxPowerstore_zawiz_top_grouper_2'] td[class='ZWidgetTitle']:contains('Add')";
-		public static final String SECONDARY_VOL_EDIT_BUTTON = "css=div[id='ztabv__ZxPowerstore_zawiz_top_grouper_2'] td[class='ZWidgetTitle']:contains('Edit')";
-		public static final String SECONDARY_VOL_DELETE_BUTTON = "css=div[id='ztabv__ZxPowerstore_zawiz_top_grouper_2'] td[class='ZWidgetTitle']:contains('Delete')";
+		public static final String SECONDARY_VOLUME_ADD_BUTTON = "css=div[id='ztabv__ZxPowerstore_zawiz_top_grouper_2'] td[class='ZWidgetTitle']:contains('Add')";
+		public static final String SECONDARY_VOLUME_EDIT_BUTTON = "css=div[id='ztabv__ZxPowerstore_zawiz_top_grouper_2'] td[class='ZWidgetTitle']:contains('Edit')";
+		public static final String SECONDARY_VOLUME_DELETE_BUTTON = "css=div[id='ztabv__ZxPowerstore_zawiz_top_grouper_2'] td[class='ZWidgetTitle']:contains('Delete')";
 		public static final String HSM_POLICY_ADD_BUTTON = "css=div[id='ztabv__ZxPowerstore_group_14'] td[class='ZWidgetTitle']:contains('Add')";
 		public static final String HSM_POLICY_EDIT_BUTTON = "css=div[id='ztabv__ZxPowerstore_group_14'] td[class='ZWidgetTitle']:contains('Edit')";
 		public static final String HSM_POLICY_DELETE_BUTTON = "css=div[id='ztabv__ZxPowerstore_group_14'] td[class='ZWidgetTitle']:contains('Delete')";
-		public static final String VOL_ADD_EDIT_OK_BUTTON = "css=div#zdlg__MSG.DwtDialog[style*='z-index: 7'] td[class='ZWidgetTitle']:contains('OK')";
 		public static final String lastPolicyInList = "css=div.hsmList div[class='DwtListView-Rows'] div:last-child";
 		public static final String APPLY_HSM_POLICY_NOW_DIALOG = "css=div.DwtDialog[style*='display: block;'] table td:contains('Apply Storage Management Policy NOW!')";
 		public static final String APPLY_HSM_POLICY_YES_BUTTON = "css=div.DwtDialog[style*='z-index: 7'][role='alertdialog'] td[class='ZWidgetTitle']:contains('Yes')";
 		public static final String APPLY_HSM_POLICY_NO_BUTTON = "css=div.DwtDialog[style*='z-index: 7'][role='alertdialog'] td[class='ZWidgetTitle']:contains('No')";
+		public static final String SECONDARY_VOLUME = "css=div[id='ztabv__ZxPowerstore_zawiz_top_grouper_2'] div.Row td";
+		public static final String HSM_POLICY = "css=div[id='ztabv__ZxPowerstore_group_14'] div.Row td";
 	}
 
 	public PageZextrasHSM(AbsApplication application) {
@@ -92,7 +93,6 @@ public class PageZextrasHSM extends AbsTab {
 
 	@Override
 	public AbsPage zListItem(Action action, String accountEmailAddress) throws HarnessException {
-
 		return null;
 	}
 
@@ -128,14 +128,24 @@ public class PageZextrasHSM extends AbsTab {
 		SleepUtil.sleepLong();
 	}
 
-	public AbsPage AddSecondaryVol() throws HarnessException {
+	public AbsPage addSecondaryVolume() throws HarnessException {
 		AbsPage page = null;
 		SleepUtil.sleepVerySmall();
 		page = new WizardAddNewVolume(this);
-		this.sClickAt(Locators.SECONDARY_VOL_ADD_BUTTON, "");
+		this.sClickAt(Locators.SECONDARY_VOLUME_ADD_BUTTON, "");
 		return (page);
 	}
-	public AbsPage AddHSMPolicy() throws HarnessException {
+
+	public AbsPage editSecondaryVolume(String volumeName) throws HarnessException {
+		AbsPage page = null;
+		SleepUtil.sleepVerySmall();
+		this.sClickAt(Locators.SECONDARY_VOLUME + ":contains('" + volumeName + "')", "");
+		page = new WizardEditHSMVolume(this);
+		this.sClickAt(Locators.SECONDARY_VOLUME_EDIT_BUTTON, "");
+		return (page);
+	}
+
+	public AbsPage addHSMPolicy() throws HarnessException {
 		AbsPage page = null;
 		SleepUtil.sleepVerySmall();
 		page = new WizardHSMPolicy(this);
@@ -143,6 +153,17 @@ public class PageZextrasHSM extends AbsTab {
 		SleepUtil.sleepVerySmall();
 		return (page);
 	}
+
+	public AbsPage editHSMPolicy(String hsmPolicy) throws HarnessException {
+		AbsPage page = null;
+		SleepUtil.sleepVerySmall();
+		this.sClickAt(Locators.HSM_POLICY + ":contains('" + hsmPolicy + "')", "");
+		page = new WizardHSMPolicy(this);
+		this.sClickAt(Locators.HSM_POLICY_EDIT_BUTTON, "");
+		SleepUtil.sleepVerySmall();
+		return (page);
+	}
+
 	public AbsPage ApplyHSMPolicy() throws HarnessException {
 		DialogForZextrasOperationID operationIdDialog = new DialogForZextrasOperationID(MyApplication,null);
 		this.sClickAt(Locators.APPLY_HSM_POLICY_NOW_BUTTON, "");
@@ -158,13 +179,16 @@ public class PageZextrasHSM extends AbsTab {
 		}
 		return null;
 	}
-	public Boolean IsSecVolAdded(String volName) throws HarnessException {
-		return (this.sIsElementPresent("css=div.secondaryVolumes div.DwtListView-Rows div:contains('"+ volName +"')"));
+
+	public Boolean IsSecondaryVolumeExists(String volumeName) throws HarnessException {
+		SleepUtil.sleepSmall();
+		return (this.sIsElementPresent("css=div.secondaryVolumes div.DwtListView-Rows div:contains('"+ volumeName +"')"));
 	}
 
-	public Boolean IsCurrentVolume(String volName) throws HarnessException {
+	public Boolean IsCurrentVolume(String volumeName) throws HarnessException {
+		SleepUtil.sleepSmall();
 		return (this.sIsElementPresent("xpath=//div[contains(text(),'Secondary Volumes')]/parent::div//td[contains(text(),'"
-						+ volName + "')]/preceding-sibling::td[2]/div[@class='ImgCheck']"));
+						+ volumeName + "')]/preceding-sibling::td[2]/div[@class='ImgCheck']"));
 	}
 
 	public String GetLastHSMPolicyInList() throws HarnessException {
