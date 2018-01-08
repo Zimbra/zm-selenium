@@ -28,6 +28,7 @@ import com.zimbra.qa.selenium.projects.ajax.pages.calendar.TreeCalendar;
 import com.zimbra.qa.selenium.projects.ajax.pages.chat.PageChatPanel;
 import com.zimbra.qa.selenium.projects.ajax.pages.contacts.PageContacts;
 import com.zimbra.qa.selenium.projects.ajax.pages.contacts.TreeContacts;
+import com.zimbra.qa.selenium.projects.ajax.pages.drive.PageDrive;
 import com.zimbra.qa.selenium.projects.ajax.pages.mail.PageMail;
 import com.zimbra.qa.selenium.projects.ajax.pages.mail.TreeMail;
 import com.zimbra.qa.selenium.projects.ajax.pages.preferences.PagePreferences;
@@ -38,7 +39,6 @@ import com.zimbra.qa.selenium.projects.ajax.pages.search.PageSearch;
 import com.zimbra.qa.selenium.projects.ajax.pages.social.PageSocial;
 import com.zimbra.qa.selenium.projects.ajax.pages.tasks.PageTasks;
 import com.zimbra.qa.selenium.projects.ajax.pages.tasks.TreeTasks;
-import com.zimbra.qa.selenium.projects.ajax.pages.zextras.drive.PageDrive;
 
 /**
  * The <code>AppAjaxClient</code> class defines the Zimbra Ajax client.
@@ -54,7 +54,7 @@ import com.zimbra.qa.selenium.projects.ajax.pages.zextras.drive.PageDrive;
  * <pre>
  * {@code
  *
- * // Navigate to the addresbook
+ * // Navigate to the contacts
  * app.zPageContacts.navigateTo();
  *
  * // Click "New" button to create a new contact
@@ -175,7 +175,7 @@ public class AjaxPages extends AbsApplication {
 		zPageChatPanel = new PageChatPanel(this);
 		pages.put(zPageChatPanel.myPageName(), zPageChatPanel);
 
-		// ZextrasDrive
+		// Drive
 		zPageDrive = new PageDrive(this);
 		pages.put(zPageDrive.myPageName(), zPageDrive);
 

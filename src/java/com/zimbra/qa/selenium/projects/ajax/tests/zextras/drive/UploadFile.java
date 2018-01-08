@@ -16,15 +16,15 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.zextras.drive;
 
-import java.awt.event.KeyEvent;
+import org.openqa.selenium.Keys;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.items.FileItem;
 import com.zimbra.qa.selenium.framework.ui.Button;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
-import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
-import com.zimbra.qa.selenium.projects.ajax.pages.zextras.drive.DialogUploadFile;;
+import com.zimbra.qa.selenium.projects.ajax.pages.drive.DialogUploadFile;;
 
 public class UploadFile extends AjaxCore{
 
@@ -34,8 +34,8 @@ public class UploadFile extends AjaxCore{
 		super.startingAccountPreferences.put("zimbraPrefShowSelectionCheckbox","TRUE");
 	}
 
-	@Test (description = "Upload file through GUI - verify through GUI",
-			groups = { "sanity", "L0", "upload" })
+	@Test (description = "Upload file through UI and verify it",
+			groups = { "sanity", "L0", "upload", "drive","test" })
 
 	public void UploadFile_01() throws HarnessException {
 
@@ -54,9 +54,9 @@ public class UploadFile extends AjaxCore{
 			// Verify file is uploaded
 			String name = app.zPageDrive.getItemNameFromListView(fileName);
 			ZAssert.assertStringContains(name, fileName, "Verify file name through GUI");
+
 		} finally {
-			app.zPageMain.zKeyboardKeyEvent(KeyEvent.VK_ESCAPE);
+			app.zPageMain.zKeyboardKeyEvent(Keys.ESCAPE);
 		}
 	}
-
 }

@@ -26,6 +26,7 @@ import com.zimbra.qa.selenium.projects.ajax.pages.DialogWarning.*;
 import com.zimbra.qa.selenium.projects.ajax.pages.briefcase.PageBriefcase;
 import com.zimbra.qa.selenium.projects.ajax.pages.calendar.PageCalendar;
 import com.zimbra.qa.selenium.projects.ajax.pages.contacts.PageContacts;
+import com.zimbra.qa.selenium.projects.ajax.pages.drive.PageDrive;
 import com.zimbra.qa.selenium.projects.ajax.pages.mail.*;
 import com.zimbra.qa.selenium.projects.ajax.pages.preferences.PagePreferences;
 import com.zimbra.qa.selenium.projects.ajax.pages.tasks.PageTasks;
@@ -457,6 +458,7 @@ public class PageMain extends AbsTab {
 
 		String mailZimletsPane = null, contactsZimletsPane = null, calendarZimletsPane = null;
 		String tasksZimletsPane = null, briefcaseZimletsPane = null, generalPreferencesOverviewPane = null;
+		String drivePane = null;
 
 		mailZimletsPane = PageMail.Locators.zMailZimletsPane;
 		contactsZimletsPane = PageContacts.Locators.zContactsZimletsPane;
@@ -464,6 +466,8 @@ public class PageMain extends AbsTab {
 		tasksZimletsPane = PageTasks.Locators.zTasksZimletsPane;
 		briefcaseZimletsPane = PageBriefcase.Locators.zBriefcaseZimletsPane;
 		generalPreferencesOverviewPane = PagePreferences.Locators.zGeneralPreferencesOverviewPane;
+		drivePane = PageDrive.Locators.zDriveFolderPane.toString();
+		
 
 		if (sIsVisible(mailZimletsPane)) {
 			return ((AjaxPages) MyApplication).zPageMail;
@@ -477,6 +481,8 @@ public class PageMain extends AbsTab {
 			return ((AjaxPages) MyApplication).zPageBriefcase;
 		} else if (sIsVisible(generalPreferencesOverviewPane)) {
 			return ((AjaxPages) MyApplication).zPagePreferences;
+		} else if (sIsVisible(drivePane)) {
+			return ((AjaxPages) MyApplication).zPageDrive;
 		} else {
 			logger.info("Unable to find current app");
 			return ((AjaxPages) MyApplication).zPageMail;
