@@ -25,6 +25,7 @@ import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -34,6 +35,7 @@ import org.openqa.selenium.Dimension;
 import org.openqa.selenium.ElementNotVisibleException;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.TimeoutException;
@@ -822,10 +824,21 @@ public abstract class AbsSeleniumObject {
 		SleepUtil.sleepLongMedium();
 	}
 
+	public void zHandleAlert() {
+		try {
+			Alert alert = webDriver().switchTo().alert();
+			alert.accept();
+	    } catch (NoAlertPresentException Ex) {
+	    	logger.info("No Alert Found");
+	    }
+	}
+
 	// Refreshes UI till loading completes successfully
 	public void zRefreshMainUI() throws HarnessException {
 		logger.info("Refresh UI");
 		webDriver().navigate().refresh();
+
+		zHandleAlert();
 
 		if (ConfigProperties.getAppType().toString().equals("AJAX")) {
 
@@ -841,18 +854,19 @@ public abstract class AbsSeleniumObject {
 			boolean loginPagePresent = false, mainUIPresent = false;
 
 			SleepUtil.sleepSmall();
+
 			for (int i = 0; i <= 15; i++) {
-				if (zIsVisiblePerPosition(PageMain.Locators.zHelpButton, 10, 10) == true) {
+				if (webDriver().getTitle().contains("502 Bad Gateway")) {
+					webDriver().get(webDriver().getCurrentUrl());
+				} else if (zIsVisiblePerPosition(PageMain.Locators.zHelpButton, 10, 10) == true) {
 					mainUIPresent = true;
 					break;
 				} else if (zIsVisiblePerPosition(PageLogin.Locators.zLoginButtonContainer, 10, 10) == true) {
 					loginPagePresent = true;
 					break;
-				} else {
-					SleepUtil.sleepMedium();
 				}
+				SleepUtil.sleepMedium();
 			}
-			SleepUtil.sleepSmall();
 			if (loginPagePresent == false && mainUIPresent == false) {
 				throw new HarnessException("Neither login page nor main UI locator present");
 			}
