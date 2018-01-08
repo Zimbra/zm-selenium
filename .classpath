@@ -6,7 +6,5 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="org.apache.ivyde.eclipse.cpcontainer.IVYDE_CONTAINER/?project=zm-selenium&amp;ivyXmlPath=ivy.xml&amp;confs=*"/>
 	<classpathentry kind="lib" path="build/dist/lib/ZimbraSelenium.jar"/>
-	<classpathentry kind="lib" path="C:/Users/ashishk/git/zm-mailbox/common/build/zm-common-8.7.6.1510740065.jar"/>
-	<classpathentry kind="lib" path="C:/Users/ashishk/git/zm-mailbox/native/build/zm-native-8.7.6.1510740065.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
