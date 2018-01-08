@@ -51,8 +51,6 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.WebDriverException;
-
-import com.zimbra.common.mailbox.ZimbraSearchParams;
 import com.zimbra.qa.selenium.framework.core.ClientSession;
 import com.zimbra.qa.selenium.framework.core.ClientSessionFactory;
 import com.zimbra.qa.selenium.framework.core.ExecuteHarnessMain;
@@ -60,9 +58,6 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.projects.admin.pages.PageLogin;
 import com.zimbra.qa.selenium.projects.admin.pages.PageMain;
-
-import sun.security.x509.IssuerAlternativeNameExtension;
-
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import org.openqa.selenium.interactions.Mouse;
 import org.openqa.selenium.interactions.HasInputDevices;
@@ -829,7 +824,7 @@ public abstract class AbsSeleniumObject {
 		SleepUtil.sleepLongMedium();
 	}
 
-	public void HandelAlert() {
+	public void zHandleAlert() {
 		try {
 			Alert alert = webDriver().switchTo().alert();
 			alert.accept();
@@ -843,7 +838,7 @@ public abstract class AbsSeleniumObject {
 		logger.info("Refresh UI");
 		webDriver().navigate().refresh();
 
-		HandelAlert();
+		zHandleAlert();
 
 		if (ConfigProperties.getAppType().toString().equals("AJAX")) {
 
