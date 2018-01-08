@@ -14,7 +14,7 @@
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-package com.zimbra.qa.selenium.projects.ajax.pages.zextras;
+package com.zimbra.qa.selenium.projects.ajax.pages.zextras.drive;
 
 import java.util.Map;
 import org.apache.commons.httpclient.HttpStatus;
@@ -32,8 +32,8 @@ import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.ajax.pages.AjaxPages;
-import com.zimbra.qa.selenium.projects.ajax.pages.zextras.DialogConfirm;
-import com.zimbra.qa.selenium.projects.ajax.pages.zextras.DialogUploadFile;
+import com.zimbra.qa.selenium.projects.ajax.pages.zextras.drive.DialogConfirm;
+import com.zimbra.qa.selenium.projects.ajax.pages.zextras.drive.DialogUploadFile;
 
 public class PageDrive extends AbsTab {
 

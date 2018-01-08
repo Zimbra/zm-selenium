@@ -14,7 +14,7 @@
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-package com.zimbra.qa.selenium.projects.ajax.tests.zextras;
+package com.zimbra.qa.selenium.projects.ajax.tests.zextras.drive;
 
 import java.awt.event.KeyEvent;
 import org.testng.annotations.Test;
@@ -24,7 +24,7 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
-import com.zimbra.qa.selenium.projects.ajax.pages.zextras.DialogUploadFile;;
+import com.zimbra.qa.selenium.projects.ajax.pages.zextras.drive.DialogUploadFile;;
 
 public class UploadFile extends AjaxCore{
 
@@ -35,7 +35,7 @@ public class UploadFile extends AjaxCore{
 	}
 
 	@Test (description = "Upload file through GUI - verify through GUI",
-			groups = { "sanity", "L0", "upload","test" })
+			groups = { "sanity", "L0", "upload" })
 
 	public void UploadFile_01() throws HarnessException {
 

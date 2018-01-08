@@ -1,4 +1,4 @@
-package com.zimbra.qa.selenium.projects.ajax.tests.zextras;
+package com.zimbra.qa.selenium.projects.ajax.tests.zextras.drive;
 
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.ui.Action;

@@ -38,7 +38,7 @@ import com.zimbra.qa.selenium.projects.ajax.pages.search.PageSearch;
 import com.zimbra.qa.selenium.projects.ajax.pages.social.PageSocial;
 import com.zimbra.qa.selenium.projects.ajax.pages.tasks.PageTasks;
 import com.zimbra.qa.selenium.projects.ajax.pages.tasks.TreeTasks;
-import com.zimbra.qa.selenium.projects.ajax.pages.zextras.PageDrive;
+import com.zimbra.qa.selenium.projects.ajax.pages.zextras.drive.PageDrive;
 
 /**
  * The <code>AppAjaxClient</code> class defines the Zimbra Ajax client.
