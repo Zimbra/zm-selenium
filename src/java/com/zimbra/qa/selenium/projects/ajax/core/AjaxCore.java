@@ -169,6 +169,8 @@ public class AjaxCore {
 					CommandLineUtility.runCommandOnZimbraServer(ExecuteHarnessMain.storeServers.get(i), "zmprov fc -a all");
 				}
 			}
+			CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"), 
+					" zmprov md 'testdomain.com' zimbraDriveOwnCloudURL 'http://zqa-257.eng.zimbra.com/nextcloud/index.php'");
 		}
 		logger.info("BeforeClass: finish");
 	}
