@@ -142,7 +142,7 @@ public class PageZextrasBackup extends AbsTab {
 
 	public AbsPage RestoreDeletedAccount() throws HarnessException {
 		AbsPage page = null;
-		SleepUtil.sleepVerySmall();
+		SleepUtil.sleepMedium();
 		page = new WizardRestoreDeletedAccount(this);
 		this.sClickAt(Locators.RESTORE_DELETED_ACCOUNT_BUTTON, "");
 		return (page);

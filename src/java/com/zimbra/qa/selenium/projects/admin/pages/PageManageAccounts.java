@@ -151,7 +151,7 @@ public class PageManageAccounts extends AbsTab {
 				String pageCounter = rowsLocator + ":nth-child(" + scrollCounter + ")";
 
 				if (this.sIsElementPresent(pageCounter) && !this.sIsElementPresent(accountLocator)) {
-					sClick(pageCounter);
+					sClickJavaScript(pageCounter);
 					SleepUtil.sleepVerySmall();
 					this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_DOWN);
 					SleepUtil.sleepVerySmall();
