@@ -16,25 +16,29 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.pages;
 
-import com.zimbra.qa.selenium.framework.ui.*;
+import com.zimbra.qa.selenium.framework.ui.AbsApplication;
+import com.zimbra.qa.selenium.framework.ui.I18N;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
-import com.zimbra.qa.selenium.projects.ajax.pages.contacts.PageContacts;
-import com.zimbra.qa.selenium.projects.ajax.pages.contacts.TreeContacts;
 import com.zimbra.qa.selenium.projects.ajax.pages.briefcase.PageBriefcase;
 import com.zimbra.qa.selenium.projects.ajax.pages.briefcase.TreeBriefcase;
 import com.zimbra.qa.selenium.projects.ajax.pages.calendar.PageCalendar;
 import com.zimbra.qa.selenium.projects.ajax.pages.calendar.TreeCalendar;
 import com.zimbra.qa.selenium.projects.ajax.pages.chat.PageChatPanel;
-import com.zimbra.qa.selenium.projects.ajax.pages.mail.*;
+import com.zimbra.qa.selenium.projects.ajax.pages.contacts.PageContacts;
+import com.zimbra.qa.selenium.projects.ajax.pages.contacts.TreeContacts;
+import com.zimbra.qa.selenium.projects.ajax.pages.drive.PageDrive;
+import com.zimbra.qa.selenium.projects.ajax.pages.mail.PageMail;
+import com.zimbra.qa.selenium.projects.ajax.pages.mail.TreeMail;
 import com.zimbra.qa.selenium.projects.ajax.pages.preferences.PagePreferences;
 import com.zimbra.qa.selenium.projects.ajax.pages.preferences.TreePreferences;
 import com.zimbra.qa.selenium.projects.ajax.pages.preferences.signature.PageSignature;
 import com.zimbra.qa.selenium.projects.ajax.pages.search.PageAdvancedSearch;
 import com.zimbra.qa.selenium.projects.ajax.pages.search.PageSearch;
 import com.zimbra.qa.selenium.projects.ajax.pages.social.PageSocial;
-import com.zimbra.qa.selenium.projects.ajax.pages.tasks.*;
+import com.zimbra.qa.selenium.projects.ajax.pages.tasks.PageTasks;
+import com.zimbra.qa.selenium.projects.ajax.pages.tasks.TreeTasks;
 
 /**
  * The <code>AppAjaxClient</code> class defines the Zimbra Ajax client.
@@ -50,7 +54,7 @@ import com.zimbra.qa.selenium.projects.ajax.pages.tasks.*;
  * <pre>
  * {@code
  *
- * // Navigate to the addresbook
+ * // Navigate to the contacts
  * app.zPageContacts.navigateTo();
  *
  * // Click "New" button to create a new contact
@@ -81,6 +85,7 @@ public class AjaxPages extends AbsApplication {
 	public PagePreferences zPagePreferences = null;
 	public PageSignature zPageSignature = null;
 	public PageChatPanel zPageChatPanel = null;
+	public PageDrive zPageDrive = null;
 
 	// Trees
 	public TreeMail zTreeMail = null;
@@ -169,6 +174,10 @@ public class AjaxPages extends AbsApplication {
 
 		zPageChatPanel = new PageChatPanel(this);
 		pages.put(zPageChatPanel.myPageName(), zPageChatPanel);
+
+		// Drive
+		zPageDrive = new PageDrive(this);
+		pages.put(zPageDrive.myPageName(), zPageDrive);
 
 		// Configure the localization strings
 		getL10N().zAddBundlename(I18N.Catalog.I18nMsg);

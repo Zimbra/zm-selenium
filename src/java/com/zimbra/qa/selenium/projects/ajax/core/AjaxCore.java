@@ -169,6 +169,8 @@ public class AjaxCore {
 					CommandLineUtility.runCommandOnZimbraServer(ExecuteHarnessMain.storeServers.get(i), "zmprov fc -a all");
 				}
 			}
+			CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"), 
+					" zmprov md 'testdomain.com' zimbraDriveOwnCloudURL 'http://zqa-257.eng.zimbra.com/nextcloud/index.php'");
 		}
 		logger.info("BeforeClass: finish");
 	}
@@ -582,7 +584,7 @@ public class AjaxCore {
 
 					// File locator
 					String fileLocator = null;
-					Boolean isMailApp = false, isContactsApp = false, isCalendarApp = false, isTasksApp = false, isBriefcaseApp = false, isPreferencesApp = false, isSmimeZimlet = false;
+					Boolean isMailApp = false, isContactsApp = false, isCalendarApp = false, isTasksApp = false, isBriefcaseApp = false, isPreferencesApp = false, isSmimeZimlet = false, isZimbraDrive = false;
 
 					isMailApp = app.zPageMain.zIsVisiblePerPosition("div[id^='ztb__COMPOSE']", 0, 0);
 					if (isMailApp != true) {
@@ -592,6 +594,7 @@ public class AjaxCore {
 						isBriefcaseApp = app.zPageMain.zIsVisiblePerPosition("div[class='ZmUploadDialog']", 0, 0);
 						isPreferencesApp = app.zPageMain.zIsVisiblePerPosition("div[id='ztb__PREF']", 0, 0);
 						isSmimeZimlet = app.zPageMain.zIsVisiblePerPosition("td[class='ZmSecureMailCertificateRow']", 0, 0);
+						isZimbraDrive = app.zPageMain.zIsVisiblePerPosition("div[class='ZmUploadDialog'] td[class='DwtDialogTitle']:contains('Upload Files - Drive')", 0, 0);
 					}
 
 					// Get attached file locator
@@ -602,6 +605,8 @@ public class AjaxCore {
 					} else if (isCalendarApp == true || isTasksApp == true) {
 						we = webDriver.findElement(By.name("__calAttUpload__"));
 					} else if (isBriefcaseApp == true) {
+						we = webDriver.findElement(By.name("uploadFile"));
+					} else if (isZimbraDrive == true) {
 						we = webDriver.findElement(By.name("uploadFile"));
 					} else if (isSmimeZimlet == true) {
 						fileLocator = "css=td[class='ZmSecureMailCertificateRow'] td[id$='_title']:contains(" + ConfigProperties.getStringProperty("testdomain") + ")";
