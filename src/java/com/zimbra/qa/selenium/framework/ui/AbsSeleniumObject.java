@@ -56,6 +56,7 @@ import com.zimbra.qa.selenium.framework.core.ClientSessionFactory;
 import com.zimbra.qa.selenium.framework.core.ExecuteHarnessMain;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
+import com.zimbra.qa.selenium.projects.admin.core.AdminCore;
 import com.zimbra.qa.selenium.projects.admin.pages.PageLogin;
 import com.zimbra.qa.selenium.projects.admin.pages.PageMain;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
@@ -856,7 +857,7 @@ public abstract class AbsSeleniumObject {
 			SleepUtil.sleepSmall();
 
 			for (int i = 0; i <= 15; i++) {
-				if (webDriver().getTitle().contains("502 Bad Gateway")) {
+				if (webDriver().getTitle().contains("502 Bad Gateway") || webDriver().getTitle().contains("404 - Not Found")) {
 					webDriver().get(webDriver().getCurrentUrl());
 				} else if (zIsVisiblePerPosition(PageMain.Locators.zHelpButton, 10, 10) == true) {
 					mainUIPresent = true;
@@ -870,6 +871,9 @@ public abstract class AbsSeleniumObject {
 			if (loginPagePresent == false && mainUIPresent == false) {
 				throw new HarnessException("Neither login page nor main UI locator present");
 			}
+
+			AdminCore.zWaitforDialog();
+			AdminCore.zHandleNetworkModulesNGDialog();
 		}
 	}
 

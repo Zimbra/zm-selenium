@@ -76,6 +76,7 @@ public class LoginWithCsrfTokenCheckDisabled extends AdminCore {
 
 			staf.execute("zmmailboxdctl restart");
 
+			app.zPageMain.zRefreshMainUI();
 			// Open the base URL
 			app.zPageLogin.sOpen(ConfigProperties.getBaseURL());
 			app.zPageLogin.zLogin(gAdmin);

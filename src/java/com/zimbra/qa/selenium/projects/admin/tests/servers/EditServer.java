@@ -18,6 +18,7 @@ package com.zimbra.qa.selenium.projects.admin.tests.servers;
 
 import org.testng.annotations.Test;
 import com.zimbra.common.soap.Element;
+import com.zimbra.qa.selenium.framework.core.ExecuteHarnessMain;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
@@ -49,10 +50,10 @@ public class EditServer extends AdminCore {
 
 	public void EditServer_01() throws HarnessException {
 
-		String hostname = ConfigProperties.getStringProperty("server.host");
+		String storeServer = ExecuteHarnessMain.storeServers.get(0);
 
 		// Select server
-		app.zPageManageServers.zListItem(Action.A_LEFTCLICK, hostname);
+		app.zPageManageServers.zListItem(Action.A_LEFTCLICK, storeServer);
 
 		// Click on Edit server option
 		FormEditServer form = (FormEditServer) app.zPageManageServers.zToolbarPressPulldown(Button.B_GEAR_BOX,Button.B_EDIT);
@@ -71,7 +72,7 @@ public class EditServer extends AdminCore {
 
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<GetServerRequest xmlns='urn:zimbraAdmin'>"
-						+	"<server by='name'>" + hostname + "</server>"
+						+	"<server by='name'>" + storeServer + "</server>"
 						+		"</GetServerRequest>");
 
 		// Verify description is edited correctly

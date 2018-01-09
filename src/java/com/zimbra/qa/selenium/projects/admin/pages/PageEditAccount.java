@@ -35,7 +35,7 @@ public class PageEditAccount extends AbsTab {
 	public static final String ACCOUNT_EDIT_ACL_GRANTEE_NAME = "css=div[class='DwtDialog WindowOuterContainer'] table[class='dynselect_table'] input";
 
 	public static class Locators {
-		public static final String ADD_BUTTON = "css=td[id$='dwt_button_5___container']:contains('Add')";
+		public static final String ADD_BUTTON = "css=div[id='ztabv__ACCT_EDIT_account_form_aliases_group'] td.ZWidgetTitle:contains('Add')";
 		public static final String FEATURES = "css=div[id^='zti__AppAdmin__Home__actLstHV'][id$='_textCell']:contains('Features')";
 		public static final String PREFERENCES = "css=div[id^='zti__AppAdmin__Home__actLstHV'][id$='_textCell']:contains('Preferences')";
 		public static final String ALIASES = "css=div[id^='zti__AppAdmin__Home__actLstHV'][id$='_textCell']:contains('Aliases')";

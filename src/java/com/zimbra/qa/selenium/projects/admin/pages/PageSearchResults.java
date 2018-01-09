@@ -49,6 +49,7 @@ public class PageSearchResults extends AbsTab {
 		public static final String zAliasesSearchObject = "css=div[id='zmi__SEARCH_ALIASES'] td[id='zmi__SEARCH_ALIASES_title']";
 		public static final String zResourcesSearchObject = "css=div[id='zmi__SEARCH_RESOURCES'] td[id='zmi__SEARCH_RESOURCES_title']";
 		public static final String zSearchTypeDropdown = "css=div[class^='ZaSearchFieldButton']";
+		public static final String ADVANCE_BUTTON = "css=div[role='treeitem'] div.ZTreeItemTextCell:contains('Advanced')";
 	}
 
 	public static class TypeOfObject {
@@ -209,12 +210,7 @@ public class PageSearchResults extends AbsTab {
 			page = new DialogForDeleteOperation(this.MyApplication, null);
 
 		} else if (button == Button.B_ADVANCED) {
-			locator = "css=div[id^='zti__AppAdmin__Home__actLstHV__2__8_textCell']";
-			if (zIsVisiblePerPosition(locator, 10, 10)) {
-				locator = "css=div[id^='zti__AppAdmin__Home__actLstHV__2__8_textCell']";
-			} else {
-				locator = "css=div[id^='zti__AppAdmin__Home__actLstHV__1__8_textCell']";
-			}
+			locator = Locators.ADVANCE_BUTTON;
 
 		} else {
 			throw new HarnessException("no logic defined for button " + button);

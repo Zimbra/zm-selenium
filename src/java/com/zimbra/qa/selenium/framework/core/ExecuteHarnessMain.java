@@ -79,6 +79,7 @@ public class ExecuteHarnessMain {
 	protected AbsTab startingPage = null;
 
 	public static String zimbraVersion;
+	public static Boolean isNGEnabled;
 
 	public ExecuteHarnessMain() {
 	}
@@ -282,12 +283,14 @@ public class ExecuteHarnessMain {
 			excludeGroups.add("non-msedge");
 		}
 
-		for (String isNGEnabled : CommandLineUtility.runCommandOnZimbraServer(storeServers.get(0),
+		for (String sIsNGEnabled : CommandLineUtility.runCommandOnZimbraServer(storeServers.get(0),
 				"zmprov gs `zmhostname` zimbraNetworkModulesNGEnabled | grep -i 'zimbraNetworkModulesNGEnabled' | cut -d : -f 2 | tr -d '[:blank:]'")) {
-			if (isNGEnabled.equals("FALSE")) {
+			if (sIsNGEnabled.equals("FALSE")) {
 				excludeGroups.add("ng-module");
+				isNGEnabled = false;
 			} else {
 				excludeGroups.add("non-ngmodule");
+				isNGEnabled = true;
 			}
 		}
 

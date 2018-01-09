@@ -121,7 +121,7 @@ public class PageManageDistributionLists extends AbsTab {
 			for (int a1 = 1; a1 <= 5; a1++) {
 				String p0 = rowsLocator + ":nth-child(" + m + ")";
 				if (this.sIsElementPresent(p0)) {
-					sClick(p0);
+					sClickAt(p0,"");
 					this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_DOWN);
 					m = m + 20;
 				} else

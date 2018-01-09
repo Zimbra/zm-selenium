@@ -123,7 +123,7 @@ public class PageManageAccounts extends AbsTab {
 	}
 
 	public Boolean IsViewMailEnabled() throws HarnessException {
-		return !zIsElementDisabled(Locators.VIEW_MAIL);
+		return  sIsVisible(Locators.VIEW_MAIL);
 	}
 
 	@Override
