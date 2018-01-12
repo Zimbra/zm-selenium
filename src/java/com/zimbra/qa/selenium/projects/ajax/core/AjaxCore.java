@@ -144,7 +144,32 @@ public class AjaxCore {
 		logger.info("Class name: " + this.getClass());
 
 		ArrayList<String> availableZimlets= null;
-		if (this.getClass().getName().contains("com.zimbra.qa.selenium.projects.ajax.tests.zextras.chat")) {
+
+		// Grant createDistList right to domain
+		if (!ExecuteHarnessMain.isDLRightGranted
+				&& this.getClass().getName().contains(ExecuteHarnessMain.SeleniumBasePackage + ".projects.ajax.tests.contacts.dl")) {
+			StafIntegration.logInfo = "Grant createDistList right to domain using CLI utility";
+			logger.info(StafIntegration.logInfo);
+			Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+			CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"),
+					"zmprov grr domain " + ConfigProperties.getStringProperty("testdomain") + " dom "
+							+ ConfigProperties.getStringProperty("testdomain") + " createDistList");
+			ExecuteHarnessMain.isDLRightGranted = true;
+		}
+
+		// Disable zimbraSmimeOCSPEnabled attribute for S/MIME
+		if (!ExecuteHarnessMain.isSmimeOcspDisabled
+				&& this.getClass().getName().contains(ExecuteHarnessMain.SeleniumBasePackage + ".projects.ajax.tests.network.zimlets.smime")) {
+			StafIntegration.logInfo = "Disable zimbraSmimeOCSPEnabled attribute for S/MIME using CLI utility";
+			logger.info(StafIntegration.logInfo);
+			Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+			CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"), "zmprov mcf zimbraSmimeOCSPEnabled FALSE");
+			ExecuteHarnessMain.isSmimeOcspDisabled = true;
+		}
+
+		// Configure Chat
+		if (!ExecuteHarnessMain.isChatConfigured
+				&& this.getClass().getName().contains(ExecuteHarnessMain.SeleniumBasePackage + ".projects.ajax.tests.zextras.chat")) {
 			availableZimlets = CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"),
 					"zmprov -l gc default zimbraZimletAvailableZimlets | grep zimbraZimletAvailableZimlets | cut -c 32-");
 			if (!availableZimlets.contains("com_zextras_chat_open")) {
@@ -156,8 +181,13 @@ public class AjaxCore {
 					CommandLineUtility.runCommandOnZimbraServer(ExecuteHarnessMain.storeServers.get(i), "zmprov fc -a all");
 				}
 			}
+			ExecuteHarnessMain.isChatConfigured = true;
 		}
-		if (this.getClass().getName().contains("com.zimbra.qa.selenium.projects.ajax.tests.zextras.drive")) {
+
+
+		// Configure drive
+		if (!ExecuteHarnessMain.isDriveConfigured
+				&& this.getClass().getName().contains(ExecuteHarnessMain.SeleniumBasePackage + ".projects.ajax.tests.zextras.drive")) {
 			availableZimlets = CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"),
 					"zmprov -l gc default zimbraZimletAvailableZimlets | grep zimbraZimletAvailableZimlets | cut -c 32-");
 			if (!availableZimlets.contains("com_zextras_drive_open")) {
@@ -169,8 +199,29 @@ public class AjaxCore {
 					CommandLineUtility.runCommandOnZimbraServer(ExecuteHarnessMain.storeServers.get(i), "zmprov fc -a all");
 				}
 			}
-			CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"), 
-					" zmprov md 'testdomain.com' zimbraDriveOwnCloudURL 'http://zqa-257.eng.zimbra.com/nextcloud/index.php'");
+
+			// Zimbra settings
+			CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"),
+					"zmprov md '" + ConfigProperties.getStringProperty("testdomain") + "' zimbraDriveOwnCloudURL '" + ConfigProperties.getStringProperty("driveServer") + "/nextcloud/index.php'");
+
+			// Nextcloud settings
+			try {
+				app.zPageDrive.sOpen(ConfigProperties.getStringProperty("driveServer") + "/nextcloud/index.php/login");
+				SleepUtil.sleepLong();
+				app.zPageDrive.sType("css=input[id='user']", "admin@" + ConfigProperties.getStringProperty("driveServer").split("http://")[1]);
+				app.zPageDrive.sType("css=input[id='password']", "zimbra");
+				app.zPageDrive.sClick("css=input[id='submit']");
+				SleepUtil.sleepMedium();
+				app.zPageDrive.sOpen(ConfigProperties.getStringProperty("driveServer") + "/nextcloud/index.php/settings/admin/zimbradrive");
+				app.zPageDrive.sType("css=input[id='zimbra_url']", ExecuteHarnessMain.storeServers.get(0));
+				app.zPageDrive.zKeyboard.zTypeKeyEvent(KeyEvent.VK_TAB);
+				SleepUtil.sleepMedium();
+
+			} finally {
+				app.zPageMain.sOpen(ConfigProperties.getBaseURL());
+			}
+
+			ExecuteHarnessMain.isDriveConfigured = true;
 		}
 		logger.info("BeforeClass: finish");
 	}

@@ -21,6 +21,7 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.interactions.Actions;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
+import com.zimbra.qa.selenium.framework.util.SleepUtil;
 
 public class DialogUploadFile extends AbsDialog {
 
@@ -78,7 +79,6 @@ public class DialogUploadFile extends AbsDialog {
 				Actions action = new Actions(webDriver());
 				action.moveToElement(el, 1, 1).doubleClick(el).build().perform();
 			} else {
-				//executeScript("arguments[0].click()", el);
 				sClick(locator);
 			}
 			return null;
@@ -90,8 +90,9 @@ public class DialogUploadFile extends AbsDialog {
 			throw new HarnessException("Button " + button + " locator " + locator + " not visible!");
 		}
 
-		this.sClickAt(locator, "0,0");
+		this.sClick(locator);
 		this.zWaitForBusyOverlay();
+		SleepUtil.sleepLong();
 		
 		return (null);
 	}

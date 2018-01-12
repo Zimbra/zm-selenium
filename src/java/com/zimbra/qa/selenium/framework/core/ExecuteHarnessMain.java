@@ -80,6 +80,10 @@ public class ExecuteHarnessMain {
 
 	public static String zimbraVersion;
 	public static Boolean isNGEnabled;
+	public static Boolean isDLRightGranted = false;
+	public static Boolean isSmimeOcspDisabled = false;
+	public static Boolean isChatConfigured = false;
+	public static Boolean isDriveConfigured = false;
 
 	public ExecuteHarnessMain() {
 	}
@@ -294,10 +298,10 @@ public class ExecuteHarnessMain {
 			}
 		}
 
-		if (!CommandLineUtility.runCommandOnZimbraServer(storeServers.get(0), "dpkg -l | grep -i 'zimbra-chat'").contains("ii  zimbra-chat")) {
+		if (!CommandLineUtility.runCommandOnZimbraServer(storeServers.get(0), "dpkg -l | grep -i 'zimbra-chat'").toString().contains("ii  zimbra-chat")) {
 			excludeGroups.add("chat");
 		}
-		if (!CommandLineUtility.runCommandOnZimbraServer(storeServers.get(0), "dpkg -l | grep -i 'zimbra-drive'").contains("ii  zimbra-drive")) {
+		if (!CommandLineUtility.runCommandOnZimbraServer(storeServers.get(0), "dpkg -l | grep -i 'zimbra-drive'").toString().contains("ii  zimbra-drive")) {
 			excludeGroups.add("drive");
 		}
 
@@ -1549,20 +1553,6 @@ public class ExecuteHarnessMain {
 
 			// Ajax project settings
 			} else if (project.contains("ajax")) {
-
-				// Grant createDistList right to domain
-				StafIntegration.logInfo = "Grant createDistList right to domain using CLI utility";
-				logger.info(StafIntegration.logInfo);
-				Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
-				CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"), "zmprov grr domain " + ConfigProperties.getStringProperty("testdomain")
-								+ " dom " + ConfigProperties.getStringProperty("testdomain") + " createDistList");
-
-				// Disable zimbraSmimeOCSPEnabled attribute for S/MIME
-				StafIntegration.logInfo = "Disable zimbraSmimeOCSPEnabled attribute for S/MIME using CLI utility";
-				logger.info(StafIntegration.logInfo);
-				Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
-				CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"), "zmprov mcf zimbraSmimeOCSPEnabled FALSE");
-
 				// Initially disable chat and drive zimlets on COS if they are enabled
 				ArrayList<String> availableZimlets = CommandLineUtility.runCommandOnZimbraServer(
 						ConfigProperties.getStringProperty("server.host"), "zmprov -l gc default zimbraZimletAvailableZimlets | grep zimbraZimletAvailableZimlets | cut -c 32-");

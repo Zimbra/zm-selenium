@@ -551,25 +551,14 @@ public class PageMain extends AbsTab {
 				sClickAt(appLocator, "");
 				this.zWaitForBusyOverlay();
 				SleepUtil.sleepMedium();
-				if (!appTab.equals(((AjaxPages) MyApplication).zPagePreferences)) {
+				if (!appTab.equals(((AjaxPages) MyApplication).zPagePreferences)
+						&& !appTab.equals(((AjaxPages) MyApplication).zPageDrive)) {
 					zWaitForElementPresent(commonAppLocator);
 				}
 
 				if (zGetCurrentApp().equals(appTab)) {
 					logger.info("Navigated to " + appTab + " page");
 					break;
-				} else {
-					zRefreshMainUI();
-					appTab.zNavigateTo();
-
-					// Check UI loading
-					if (ConfigProperties.getStringProperty("server.host").contains("zimbra.com")) {
-						zWaitTillElementPresent(appIdentifier);
-					} else {
-						zWaitTillElementPresent(appIdentifier.replace("ZIMLET", "TAG"));
-					}
-					this.zWaitForBusyOverlay();
-					SleepUtil.sleepSmall();
 				}
 			}
 		}

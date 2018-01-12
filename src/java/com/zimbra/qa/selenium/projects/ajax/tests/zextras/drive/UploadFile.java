@@ -26,16 +26,14 @@ import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
 import com.zimbra.qa.selenium.projects.ajax.pages.drive.DialogUploadFile;;
 
-public class UploadFile extends AjaxCore{
+public class UploadFile extends AjaxCore {
 
 	public UploadFile() throws HarnessException {
 		logger.info("New " + UploadFile.class.getCanonicalName());
-		super.startingPage = app.zPageDrive;
-		super.startingAccountPreferences.put("zimbraPrefShowSelectionCheckbox","TRUE");
 	}
 
 	@Test (description = "Upload file through UI and verify it",
-			groups = { "sanity", "L0", "upload", "drive" })
+			groups = { "sanity", "L0", "upload", "non-msedge" } )
 
 	public void UploadFile_01() throws HarnessException {
 
@@ -45,6 +43,9 @@ public class UploadFile extends AjaxCore{
 			final String filePath = ConfigProperties.getBaseDirectory() + "\\data\\public\\other\\" + fileName;
 			FileItem fileItem = new FileItem(filePath);
 
+			// Navigate to drive app
+			app.zPageDrive.zNavigateTo();
+
 			// Click on Upload File button in the Toolbar
 			DialogUploadFile dlg = (DialogUploadFile) app.zPageDrive.zToolbarPressButton(Button.B_UPLOAD_FILE, fileItem);
 			dlg.zPressButton(Button.B_BROWSE);
@@ -52,7 +53,7 @@ public class UploadFile extends AjaxCore{
 			dlg.zPressButton(Button.B_OK);
 
 			// Verify file is uploaded
-			String name = app.zPageDrive.getItemNameFromListView(fileName);
+			String name = app.zPageDrive.zGetItemNameFromListView(fileName);
 			ZAssert.assertStringContains(name, fileName, "Verify file name through GUI");
 
 		} finally {
