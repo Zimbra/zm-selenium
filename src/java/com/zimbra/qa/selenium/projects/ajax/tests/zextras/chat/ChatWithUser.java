@@ -1,4 +1,20 @@
-package com.zimbra.qa.selenium.projects.ajax.tests.zextras;
+/*
+ * ***** BEGIN LICENSE BLOCK *****
+ * Zimbra Collaboration Suite Server
+ * Copyright (C) 2011, 2012, 2013, 2014, 2016 Synacor, Inc.
+ *
+ * This program is free software: you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License as published by the Free Software Foundation,
+ * version 2 of the License.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
+ * You should have received a copy of the GNU General Public License along with this program.
+ * If not, see <https://www.gnu.org/licenses/>.
+ * ***** END LICENSE BLOCK *****
+ */
+package com.zimbra.qa.selenium.projects.ajax.tests.zextras.chat;
 
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.ui.Action;
@@ -14,60 +30,30 @@ import com.zimbra.qa.selenium.projects.ajax.pages.chat.PageChatPanel.Userstatus;
 import com.zimbra.qa.selenium.projects.ajax.pages.mail.DisplayMail.Field;
 import com.zimbra.qa.selenium.projects.ajax.pages.mail.DisplayMail;
 
+public class ChatWithUser extends AjaxCore {
 
-public class chat extends AjaxCore {
-
-	public chat() {
-		logger.info("New "+ chat.class.getCanonicalName());
-		super.startingPage=app.zPageChatPanel;
+	public ChatWithUser() {
+		logger.info("New "+ ChatWithUser.class.getCanonicalName());
+		super.startingPage = app.zPageChatPanel;
 	}
 
-	@Test (description = "Add new buddy",
-			groups = { "smoke", "L0", "chat" })
 
-	public void ChatAddNewBuddy_01() throws HarnessException {
+	@Test (description = "Chat with online user after adding buddy",
+			groups = { "sanity", "L0", "chat" })
 
-		BuddyItem item = new BuddyItem();
-		item.setEmailAddress(ZimbraAccount.Account1().EmailAddress);
-		app.zPageChatPanel.zNavigateTo();
-
-		WizardAddBuddy wizard = (WizardAddBuddy)app.zPageChatPanel.zEllipsesOption(Button.B_ADD_NEW_BUDDY);
-
-		wizard.zCompleteWizard(item);
-
-		ZimbraAccount account = app.zGetActiveAccount();
-
-		ZAssert.assertStringContains(app.zPageChatPanel.zUserStatus(ZimbraAccount.Account1().EmailAddress),Userstatus.invited.getStatus(),"Verify the user status");
-
-		app.zPageLogin.zNavigateTo();
-		app.zPageLogin.zLogin(ZimbraAccount.Account1());
-		app.zPageChatPanel.zNavigateTo();
-
-		ZAssert.assertStringContains(app.zPageChatPanel.zUserStatus(account.EmailAddress),Userstatus.need_response.getStatus(),"Verify the user status");ZAssert.assertStringContains(app.zPageChatPanel.zUserStatus(account.EmailAddress),Userstatus.need_response.getStatus(),"Verify the user status");
-
-		app.zPageChatPanel.zSelectUser(account.EmailAddress, Userstatus.need_response);
-
-	}
-
-	@Test (description = "Chat with added new buddy when receiver is Online",
-			groups = { "smoke", "L0", "chat" })
-
-	public void ChatAddNewBuddy_02() throws HarnessException {
+	public void ChatWithOnlineUser_01() throws HarnessException {
 
 		BuddyItem item = new BuddyItem();
 		item.setEmailAddress(ZimbraAccount.Account2().EmailAddress);
 		app.zPageChatPanel.zNavigateTo();
 
 		WizardAddBuddy wizard = (WizardAddBuddy)app.zPageChatPanel.zEllipsesOption(Button.B_ADD_NEW_BUDDY);
-
 		wizard.zCompleteWizard(item);
 
 		ZimbraAccount account = app.zGetActiveAccount();
-
 		app.zPageLogin.zNavigateTo();
 		app.zPageLogin.zLogin(ZimbraAccount.Account2());
 		app.zPageChatPanel.zNavigateTo();
-
 		app.zPageChatPanel.zSelectUser(account.EmailAddress, Userstatus.need_response);
 
 		account.soapSend(
@@ -81,17 +67,16 @@ public class chat extends AjaxCore {
 						+ "</ZxChatRequest>");
 
 		app.zPageChatPanel.zSelectUser(account.EmailAddress, Userstatus.offline);
-
-		ZAssert.assertStringContains(app.zPageChatPanel.zGetMsg(), "Test", "verify the chat message");
+		ZAssert.assertStringContains(app.zPageChatPanel.zGetMsg(), "Test", "Verify the chat message");
 	}
 
 
-	@Test (description = "Chat with added new buddy when receiver is Offline",
-			groups = { "smoke", "L0", "chat" })
+	@Test (description = "Chat with offline user after adding buddy",
+			groups = { "smoke", "L1", "chat" })
 
-	public void ChatAddNewBuddy_03() throws HarnessException {
+	public void ChatWithOfflineUser_02() throws HarnessException {
 
-		String message = "Chat"+ConfigProperties.getUniqueString();
+		String message = "Chat" + ConfigProperties.getUniqueString();
 		BuddyItem item = new BuddyItem();
 		item.setEmailAddress(ZimbraAccount.Account3().EmailAddress);
 		app.zPageChatPanel.zNavigateTo();
@@ -106,18 +91,16 @@ public class chat extends AjaxCore {
 		app.zPageChatPanel.zNavigateTo();
 
 		app.zPageChatPanel.zSelectUser(account.EmailAddress, Userstatus.need_response);
-
 		app.zPageChatPanel.zSelectUser(account.EmailAddress, Userstatus.offline);
 		app.zPageChatPanel.zSendMsg(message);
 
 		app.zPageLogin.zNavigateTo();
 		app.zPageLogin.zLogin(account);
 		app.zPageChatPanel.zNavigateTo();
-
 		ZAssert.assertTrue(app.zPageChatPanel.zVerifyChatFolder(),"Verify the chat folder");
 
-		DisplayMail actual = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, "OpenChat - "+ZimbraAccount.Account3().EmailAddress);
-
+		DisplayMail actual = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK,
+				"OpenChat - " + ZimbraAccount.Account3().EmailAddress);
 		ZAssert.assertStringContains(actual.zGetMailProperty(Field.Body),message,"Verify the Open Mail existence");
 	}
 }

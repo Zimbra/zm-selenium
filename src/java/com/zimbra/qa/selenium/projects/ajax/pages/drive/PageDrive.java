@@ -18,7 +18,6 @@ package com.zimbra.qa.selenium.projects.ajax.pages.drive;
 
 import java.util.Map;
 import org.apache.commons.httpclient.HttpStatus;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import com.zimbra.qa.selenium.framework.items.IItem;
 import com.zimbra.qa.selenium.framework.ui.AbsApplication;
@@ -30,7 +29,6 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.RestUtil;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
-import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.ajax.pages.AjaxPages;
 import com.zimbra.qa.selenium.projects.ajax.pages.drive.DialogUploadFile;
 
@@ -116,14 +114,13 @@ public class PageDrive extends AbsTab {
 		}
 
 		try {
-		((AjaxPages) MyApplication).zPageMain.zCheckAppLoaded(Locators.zDriveFolderPane);
+			((AjaxPages) MyApplication).zPageMain.zCheckAppLoaded(Locators.zDriveFolderPane);
 		} catch (Exception ex) {
 			throw new HarnessException("Try connecting Nextcloud Server first or check zimbra settings. Drive not Connected");
 		}
 	}
 
 	public AbsPage zToolbarPressButton(Button button, IItem fileItem) throws HarnessException{
-		// TODO Auto-generated method stub
 
 		logger.info(myPageName() + " zToolbarPressButton(" + button + ")");
 
@@ -384,7 +381,7 @@ public class PageDrive extends AbsTab {
 		throw new HarnessException("implement me! : pulldown=" + pulldown + " option=" + option);
 	}
 
-	public String getItemNameFromListView(String itemName) throws HarnessException {
+	public String zGetItemNameFromListView(String itemName) throws HarnessException {
 
 		String itemLocator = "css=div[id^='zlif__ZDRIVE_DLV-main']:contains('"+itemName+"')";
 
@@ -393,64 +390,4 @@ public class PageDrive extends AbsTab {
 		else
 			return "";
 	}
-	
-	public Boolean zVerifyImageFilePreviewContents(String locator) throws HarnessException {
-
-		try {
-			webDriver().switchTo().frame(0);
-			we = webDriver().findElement(By.cssSelector(locator.replace("css=", "")));
-			if (we.isDisplayed()) {
-				return true;
-			} else {
-				return false;
-			}
-
-		} finally {
-			webDriver().switchTo().defaultContent();
-		}
-
-	}
-
-	public Boolean zVerifyTextFilePreviewContents(String fileContent) throws HarnessException {
-
-		try {
-			webDriver().switchTo().frame(0);
-			if (fileContent.equals(webDriver().findElement(By.tagName("body")).getText())) {
-				return true;
-			} else {
-				return false;
-			}
-
-		} finally {
-			webDriver().switchTo().defaultContent();
-		}
-	}
-
-	public Boolean zVerifyPdfFilePreviewContents(String fileContent) throws HarnessException {
-
-		if (ConfigProperties.getStringProperty("browser").contains("firefox")) {
-
-			String[] pdfElements = { "//body//div[contains(text(), '" + fileContent + "')]", "//button[@id='zoomIn']",
-					"//button[@id='previous']", "//button[@id='print']" };
-
-			try {
-				webDriver().switchTo().frame(0);
-
-				for (int i = 0; i <= pdfElements.length - 1; i++) {
-					System.out.println("Verify " + pdfElements[i] + " element present in file preview");
-					we = webDriver().findElement(By.xpath(pdfElements[i]));
-					if (!we.isDisplayed()) {
-						throw new HarnessException("Could't find " + pdfElements[i] + " element in file preview");
-					}
-				}
-
-			} finally {
-				webDriver().switchTo().defaultContent();
-			}
-
-		}
-		return true;
-
-	}
-
 }

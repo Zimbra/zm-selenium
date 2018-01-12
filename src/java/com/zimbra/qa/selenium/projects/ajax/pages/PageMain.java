@@ -45,7 +45,7 @@ public class PageMain extends AbsTab {
 		public static final String zBriefcaseApp = "css=td[id=zb__App__Briefcase_title]";
 		public static final String zPreferencesTab = "id=zb__App__Options_title";
 		public static final String zDriveApp = "css=td[id=zb__App__ZIMBRA_DRIVE_title]";
-		
+
 		public static final String zSocialTab = "css=div[id^='zb__App__com_zimbra_social_'] td[id$='_title']";
 		public static final String zRefreshButton = "css=div[id='CHECK_MAIL'] td[id='CHECK_MAIL_left_icon']>div";
 	}
@@ -467,7 +467,7 @@ public class PageMain extends AbsTab {
 		briefcaseZimletsPane = PageBriefcase.Locators.zBriefcaseZimletsPane;
 		generalPreferencesOverviewPane = PagePreferences.Locators.zGeneralPreferencesOverviewPane;
 		drivePane = PageDrive.Locators.zDriveFolderPane.toString();
-		
+
 
 		if (sIsVisible(mailZimletsPane)) {
 			return ((AjaxPages) MyApplication).zPageMail;
@@ -551,7 +551,8 @@ public class PageMain extends AbsTab {
 				sClickAt(appLocator, "");
 				this.zWaitForBusyOverlay();
 				SleepUtil.sleepMedium();
-				if (!appTab.equals(((AjaxPages) MyApplication).zPagePreferences)) {
+				if (!appTab.equals(((AjaxPages) MyApplication).zPagePreferences)
+						&& !appTab.equals(((AjaxPages) MyApplication).zPageDrive)) {
 					zWaitForElementPresent(commonAppLocator);
 				}
 
@@ -560,16 +561,6 @@ public class PageMain extends AbsTab {
 					break;
 				} else {
 					zRefreshMainUI();
-					appTab.zNavigateTo();
-
-					// Check UI loading
-					if (ConfigProperties.getStringProperty("server.host").contains("zimbra.com")) {
-						zWaitTillElementPresent(appIdentifier);
-					} else {
-						zWaitTillElementPresent(appIdentifier.replace("ZIMLET", "TAG"));
-					}
-					this.zWaitForBusyOverlay();
-					SleepUtil.sleepSmall();
 				}
 			}
 		}
