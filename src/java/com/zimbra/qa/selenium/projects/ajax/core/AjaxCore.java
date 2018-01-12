@@ -216,7 +216,6 @@ public class AjaxCore {
 				app.zPageDrive.sType("css=input[id='zimbra_url']", ExecuteHarnessMain.storeServers.get(0));
 				app.zPageDrive.zKeyboard.zTypeKeyEvent(KeyEvent.VK_TAB);
 				SleepUtil.sleepMedium();
-
 			} finally {
 				app.zPageMain.sOpen(ConfigProperties.getBaseURL());
 			}
