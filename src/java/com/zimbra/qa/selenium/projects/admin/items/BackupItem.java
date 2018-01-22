@@ -23,6 +23,8 @@ import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 public class BackupItem implements IItem {
 
 	protected String EmailAddress;
+	protected String ExportDestinationPath;
+	protected String ImportSourcePath;
 
 	public BackupItem() {
 		super();
@@ -44,6 +46,22 @@ public class BackupItem implements IItem {
 
 	public String getEmailAddress() {
 		return (EmailAddress);
+	}
+
+	public void setExportDestinationPath(String exportDestinationPath) {
+		ExportDestinationPath = exportDestinationPath;
+	}
+
+	public String getExportDestinationPath() {
+		return (ExportDestinationPath);
+	}
+
+	public void setImportSourcePath(String importSourcePath) {
+		ImportSourcePath = importSourcePath;
+	}
+
+	public String getImportSourcePath() {
+		return (ImportSourcePath);
 	}
 
 	@Override

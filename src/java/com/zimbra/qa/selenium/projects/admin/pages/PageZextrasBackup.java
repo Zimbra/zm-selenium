@@ -41,6 +41,8 @@ public class PageZextrasBackup extends AbsTab {
 		public static final String BACKUP_PATH = "css=input[id='ztabv__ZxBackup_attrs/properties/ZxBackup_DestPath']";
 		public static final String INITIALIZE_NOW_BUTTON = "css=td[class='ZWidgetTitle']:contains('Initialize NOW!')";
 		public static final String RESTORE_DELETED_ACCOUNT_BUTTON = "td[class='ZWidgetTitle']:contains('Restore Deleted Account')";
+		public static final String EXPORT_BACKUP_BUTTON = "css=td[class='ZWidgetTitle']:contains('Export Backup')";
+		public static final String IMPORT_BACKUP_BUTTON = "css=td[class='ZWidgetTitle']:contains('Import Backup')";
 		public static final String BACKUP = "Backup";
 	}
 
@@ -144,6 +146,22 @@ public class PageZextrasBackup extends AbsTab {
 		SleepUtil.sleepMedium();
 		page = new WizardRestoreDeletedAccount(this);
 		this.sClickAt(Locators.RESTORE_DELETED_ACCOUNT_BUTTON, "");
+		return (page);
+	}
+
+	public AbsPage ExportBackup() throws HarnessException {
+		AbsPage page = null;
+		SleepUtil.sleepMedium();
+		page = new WizardExportBackup(this);
+		this.sClickAt(Locators.EXPORT_BACKUP_BUTTON, "");
+		return (page);
+	}
+
+	public AbsPage ImportBackup() throws HarnessException {
+		AbsPage page = null;
+		SleepUtil.sleepMedium();
+		page = new WizardImportBackup(this);
+		this.sClickAt(Locators.IMPORT_BACKUP_BUTTON, "");
 		return (page);
 	}
 }
