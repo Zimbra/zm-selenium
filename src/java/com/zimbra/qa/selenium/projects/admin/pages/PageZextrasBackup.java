@@ -149,7 +149,7 @@ public class PageZextrasBackup extends AbsTab {
 		return (page);
 	}
 
-	public AbsPage ExportBackup() throws HarnessException {
+	public AbsPage zExportBackup() throws HarnessException {
 		AbsPage page = null;
 		SleepUtil.sleepMedium();
 		page = new WizardExportBackup(this);
@@ -157,7 +157,7 @@ public class PageZextrasBackup extends AbsTab {
 		return (page);
 	}
 
-	public AbsPage ImportBackup() throws HarnessException {
+	public AbsPage zImportBackup() throws HarnessException {
 		AbsPage page = null;
 		SleepUtil.sleepMedium();
 		page = new WizardImportBackup(this);
