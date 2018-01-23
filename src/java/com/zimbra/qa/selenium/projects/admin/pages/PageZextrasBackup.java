@@ -91,7 +91,6 @@ public class PageZextrasBackup extends AbsTab {
 
 	@Override
 	public AbsPage zListItem(Action action, String accountEmailAddress) throws HarnessException {
-
 		return null;
 	}
 
@@ -121,7 +120,7 @@ public class PageZextrasBackup extends AbsTab {
 		return false;
 	}
 
-	public void enterBackupPath(String backupPath) throws HarnessException {
+	public void zEnterBackupPath(String backupPath) throws HarnessException {
 		SleepUtil.sleepSmall();
 		zType(Locators.BACKUP_PATH, backupPath);
 	}
@@ -132,7 +131,7 @@ public class PageZextrasBackup extends AbsTab {
 		SleepUtil.sleepLong();
 	}
 
-	public AbsPage initializeBackup() throws HarnessException {
+	public AbsPage zInitializeBackup() throws HarnessException {
 		AbsPage page = null;
 		SleepUtil.sleepVerySmall();
 		page = new DialogRunSmartScanConfirmation(MyApplication, null);
@@ -140,7 +139,7 @@ public class PageZextrasBackup extends AbsTab {
 		return (page);
 	}
 
-	public AbsPage RestoreDeletedAccount() throws HarnessException {
+	public AbsPage zRestoreDeletedAccount() throws HarnessException {
 		AbsPage page = null;
 		SleepUtil.sleepMedium();
 		page = new WizardRestoreDeletedAccount(this);

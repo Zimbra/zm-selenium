@@ -97,7 +97,6 @@ public class PageZextrasGeneral extends AbsTab {
 
 	@Override
 	public AbsPage zListItem(Action action, String accountEmailAddress) throws HarnessException {
-
 		return null;
 	}
 
@@ -179,5 +178,4 @@ public class PageZextrasGeneral extends AbsTab {
 		WebElement we = getElement(locator);
 		return we.getText().contains("The " + module + " module is not running.");
 	}
-
 }
