@@ -128,7 +128,7 @@ public class PageZextrasHSM extends AbsTab {
 		SleepUtil.sleepLong();
 	}
 
-	public AbsPage addSecondaryVolume() throws HarnessException {
+	public AbsPage zAddSecondaryVolume() throws HarnessException {
 		AbsPage page = null;
 		SleepUtil.sleepVerySmall();
 		page = new WizardAddNewVolume(this);
@@ -136,35 +136,35 @@ public class PageZextrasHSM extends AbsTab {
 		return (page);
 	}
 
-	public AbsPage editSecondaryVolume(String volumeName) throws HarnessException {
+	public AbsPage zEditSecondaryVolume(String volumeName) throws HarnessException {
 		AbsPage page = null;
-		SleepUtil.sleepVerySmall();
+		SleepUtil.sleepSmall();
 		this.sClickAt(Locators.SECONDARY_VOLUME + ":contains('" + volumeName + "')", "");
 		page = new WizardEditHSMVolume(this);
 		this.sClickAt(Locators.SECONDARY_VOLUME_EDIT_BUTTON, "");
 		return (page);
 	}
 
-	public AbsPage addHSMPolicy() throws HarnessException {
+	public AbsPage zAddHSMPolicy() throws HarnessException {
 		AbsPage page = null;
-		SleepUtil.sleepVerySmall();
+		SleepUtil.sleepSmall();
 		page = new WizardHSMPolicy(this);
 		this.sClickAt(Locators.HSM_POLICY_ADD_BUTTON, "");
 		SleepUtil.sleepVerySmall();
 		return (page);
 	}
 
-	public AbsPage editHSMPolicy(String hsmPolicy) throws HarnessException {
+	public AbsPage zEditHSMPolicy(String hsmPolicy) throws HarnessException {
 		AbsPage page = null;
-		SleepUtil.sleepVerySmall();
+		SleepUtil.sleepSmall();
 		this.sClickAt(Locators.HSM_POLICY + ":contains('" + hsmPolicy + "')", "");
 		page = new WizardHSMPolicy(this);
 		this.sClickAt(Locators.HSM_POLICY_EDIT_BUTTON, "");
-		SleepUtil.sleepVerySmall();
+		SleepUtil.sleepSmall();
 		return (page);
 	}
 
-	public AbsPage ApplyHSMPolicy() throws HarnessException {
+	public AbsPage zApplyHSMPolicy() throws HarnessException {
 		DialogForZextrasOperationID operationIdDialog = new DialogForZextrasOperationID(MyApplication,null);
 		this.sClickAt(Locators.APPLY_HSM_POLICY_NOW_BUTTON, "");
 		if(zWaitForElementPresent(Locators.APPLY_HSM_POLICY_NOW_DIALOG)) {
@@ -180,18 +180,18 @@ public class PageZextrasHSM extends AbsTab {
 		return null;
 	}
 
-	public Boolean IsSecondaryVolumeExists(String volumeName) throws HarnessException {
+	public Boolean zIsSecondaryVolumeExists(String volumeName) throws HarnessException {
 		SleepUtil.sleepSmall();
 		return (this.sIsElementPresent("css=div.secondaryVolumes div.DwtListView-Rows div:contains('"+ volumeName +"')"));
 	}
 
-	public Boolean IsCurrentVolume(String volumeName) throws HarnessException {
+	public Boolean zIsCurrentVolume(String volumeName) throws HarnessException {
 		SleepUtil.sleepSmall();
 		return (this.sIsElementPresent("xpath=//div[contains(text(),'Secondary Volumes')]/parent::div//td[contains(text(),'"
 						+ volumeName + "')]/preceding-sibling::td[2]/div[@class='ImgCheck']"));
 	}
 
-	public String GetLastHSMPolicyInList() throws HarnessException {
+	public String zGetLastHSMPolicyInList() throws HarnessException {
 		return (sGetText(Locators.lastPolicyInList));
 	}
 }

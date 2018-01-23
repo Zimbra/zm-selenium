@@ -62,7 +62,6 @@ public class PageZextrasAdmin extends AbsTab{
 		zWaitForWorkInProgressDialogInVisible();
 		sClickAt(Locators.Admin, "");
 		zWaitForWorkInProgressDialogInVisible();
-
 	}
 
 	@Override
@@ -157,80 +156,75 @@ public class PageZextrasAdmin extends AbsTab{
 		return (this.getClass().getName());
 	}
 
-	public void SelectAccountRow(String email) throws HarnessException {
+	public void zSelectAccountRow(String email) throws HarnessException {
+		SleepUtil.sleepSmall();
 		sClick("xpath=//tr/descendant::div[@title='"+email+"']");
 	}
 
-	public Boolean IsAccountPresentonUI(String email) throws HarnessException {
+	public Boolean zIsAccountPresentonUI(String email) throws HarnessException {
 		return sIsElementPresent("xpath=//tr/descendant::div[@title='"+email+"']");
 	}
 
-	public String GetDomainfromUI(String email) throws HarnessException{
+	public String zGetDomainfromUI(String email) throws HarnessException{
 		return sGetText("xpath=//tr/descendant::div[@title='"+email+"']//parent::td/following-sibling::td[1]/div");
 	}
 
-	public String GetDelegateAuthfromUI(String email) throws HarnessException{
+	public String zGetDelegateAuthfromUI(String email) throws HarnessException{
 		return sGetText("xpath=//tr/descendant::div[@title='"+email+"']//parent::td/following-sibling::td[2]/div");
 	}
 
-	public String GetEditFeaturesfromUI(String email) throws HarnessException{
+	public String zGetEditFeaturesfromUI(String email) throws HarnessException{
 		return sGetText("xpath=//tr/descendant::div[@title='"+email+"']//parent::td/following-sibling::td[3]/div");
 	}
 
-	public String GetGrantLimitfromUI(String email) throws HarnessException{
+	public String zGetGrantLimitfromUI(String email) throws HarnessException{
 		return sGetText("xpath=//tr/descendant::div[@title='"+email+"']//parent::td/following-sibling::td[4]/div");
 	}
 
-	public void SelectDomainRow(String domain) throws HarnessException {
+	public void zSelectDomainRow(String domain) throws HarnessException {
 		sClick("css=table[id='ztabv__ZxAdmin_domainSettings_table'] div[title='"+domain+"']");
 	}
 
-	public Boolean IsDomainPresentonUI(String domain) throws HarnessException {
+	public Boolean zIsDomainPresentonUI(String domain) throws HarnessException {
 		return sIsElementPresent("xpath=//table[@id='ztabv__ZxAdmin_domainSettings_table']//tr/descendant::div[@title='" + domain + "']");
 	}
 
-	public String GetGlobalLimitfromUI(String domain) throws HarnessException {
+	public String zGetGlobalLimitfromUI(String domain) throws HarnessException {
 		return sGetText("xpath=//table[@id='ztabv__ZxAdmin_domainSettings_table']//tr/descendant::div[@title='" + domain + "']//parent::td/following-sibling::td[2]/div");
 	}
 
-	public String GetDomainQuotafromUI(String domain) throws HarnessException {
+	public String zGetDomainQuotafromUI(String domain) throws HarnessException {
 		return sGetText("xpath=//table[@id='ztabv__ZxAdmin_domainSettings_table']//tr/descendant::div[@title='" + domain + "']//parent::td/following-sibling::td[3]/div");
 	}
 
-	public String GetCosNumberfromUI(String domain) throws HarnessException {
+	public String zGetCosNumberfromUI(String domain) throws HarnessException {
 		return sGetText("xpath=//table[@id='ztabv__ZxAdmin_domainSettings_table']//tr/descendant::div[@title='" + domain + "']//parent::td/following-sibling::td[1]/div");
 	}
 
 
 	@Override
 	public AbsPage zListItem(Action action, String item) throws HarnessException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public AbsPage zListItem(Action action, Button option, String item) throws HarnessException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public AbsPage zListItem(Action action, Button option, Button subOption, String item) throws HarnessException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 
 	@Override
 	public AbsPage zToolbarPressButton(Button button) throws HarnessException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public AbsPage zToolbarPressPulldown(Button pulldown, Button option) throws HarnessException {
-		// TODO Auto-generated method stub
 		return null;
 	}
-
 }
