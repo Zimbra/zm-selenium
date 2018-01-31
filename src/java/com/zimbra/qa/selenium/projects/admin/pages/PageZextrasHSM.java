@@ -177,6 +177,7 @@ public class PageZextrasHSM extends AbsTab {
 		} else {
 			throw new HarnessException("Apply policy confirmation dialog is not appeared");
 		}
+		SleepUtil.sleepMedium();
 		return null;
 	}
 

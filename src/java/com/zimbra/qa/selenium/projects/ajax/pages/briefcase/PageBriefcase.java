@@ -369,7 +369,7 @@ public class PageBriefcase extends AbsTab {
 
 			if (option == Button.B_LAUNCH_IN_SEPARATE_WINDOW) {
 
-				optionLocator = "css=div[id='zmi__BDLV-main__DETACH_WIN']";
+				optionLocator = "css=div[id='zmi__BDLV-main__NEW_BRIEFCASE_WIN']";
 
 				page = new DocumentBriefcaseOpen(this.MyApplication, item);
 

@@ -278,6 +278,7 @@ public class FormTaskNew extends AbsForm {
 			return;
 
 		} else if (field == Field.HtmlBody) {
+			SleepUtil.sleepLongMedium();
 
 			int frames = this.sGetCssCount("css=iframe");
 			logger.info("Body: # of frames: " + frames);

@@ -65,8 +65,8 @@ public class FormApptNew extends AbsForm {
 		public static final String RepeatDescriptionDisabled = "css=div[id$='_repeatDesc'][class='DisabledText']";
 
 		public static final String CustomizeLink = "//div[text() = 'Customize']";
-		public static final String ShowOptionalLink = "css=div[id$='_show_optional']";
-		public static final String ShowEquipmentLink = "css=div[id$='_show_resources']";
+		public static final String ShowOptionalLink = "css=td[id$='_show_optional']";
+		public static final String ShowEquipmentLink = "css=td[id$='_show_resources']";
 		public static final String ConfigureLink = "css=div[class='FakeAnchor']:contains('Configure')";
 		public static final String SuggestAtimeLink = "css=div[id$='_suggest_time']:contains('Suggest a time')";
 		public static final String SuggestATime10AM = "css=div[id$='_suggest_view'] td:contains(10:00 AM)";

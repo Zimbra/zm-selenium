@@ -89,7 +89,7 @@ public class PageManageDomains extends AbsTab {
 		if (!MyApplication.zIsLoaded())
 			throw new HarnessException("Admin Console application is not active!");
 
-		boolean present = sIsElementPresent(Locators.HIGHLIGHTED_DOMAINS_TREEITEM);
+		boolean present = sIsElementPresent(Locators.GEAR_ICON);
 		if (!present) {
 			return (false);
 		}

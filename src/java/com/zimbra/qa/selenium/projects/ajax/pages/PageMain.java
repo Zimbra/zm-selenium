@@ -548,7 +548,9 @@ public class PageMain extends AbsTab {
 					SleepUtil.sleepLong();
 				}
 
+				SleepUtil.sleepMedium();
 				sClickAt(appLocator, "");
+				SleepUtil.sleepLong();
 				this.zWaitForBusyOverlay();
 				SleepUtil.sleepMedium();
 				if (!appTab.equals(((AjaxPages) MyApplication).zPagePreferences)

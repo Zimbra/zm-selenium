@@ -31,7 +31,7 @@ public class PageTasks extends AbsTab {
 		public static final String zTasksTagsPane = "ztih__main_Tasks__TAG_textCell";
 		public static final String zTasksFolder = "zti__main_Tasks__15_textCell";
 
-		public static final String zl__TKL__rowsID = "zl__TKL-main__rows";
+		public static final String zl__TKL__rowsID = "zl__TKL__rows";
 		public static final String _newTaskBannerID = "_newTaskBannerId";
 		public static final String _upComingTaskListHdrID = "_upComingTaskListHdr";
 		public static final String zli__TKL__ = "zli__TKL-";
