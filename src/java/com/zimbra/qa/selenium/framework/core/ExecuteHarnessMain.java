@@ -287,15 +287,13 @@ public class ExecuteHarnessMain {
 			excludeGroups.add("non-msedge");
 		}
 
-		for (String sIsNGEnabled : CommandLineUtility.runCommandOnZimbraServer(storeServers.get(0),
-				"zmprov gs `zmhostname` zimbraNetworkModulesNGEnabled | grep -i 'zimbraNetworkModulesNGEnabled' | cut -d : -f 2 | tr -d '[:blank:]'")) {
-			if (sIsNGEnabled.equals("FALSE")) {
-				excludeGroups.add("ng-module");
-				isNGEnabled = false;
-			} else {
-				excludeGroups.add("non-ngmodule");
-				isNGEnabled = true;
-			}
+		if (CommandLineUtility.runCommandOnZimbraServer(storeServers.get(0),
+				"zmprov gs `zmhostname` zimbraNetworkModulesNGEnabled | grep -i 'zimbraNetworkModulesNGEnabled' | cut -d : -f 2 | tr -d '[:blank:]'").toString().contains("TRUE")) {
+			excludeGroups.add("non-ngmodule");
+			isNGEnabled = true;
+		} else {
+			excludeGroups.add("ng-module");
+			isNGEnabled = false;
 		}
 
 		if (!CommandLineUtility.runCommandOnZimbraServer(storeServers.get(0), "dpkg -l | grep -i 'zimbra-chat'").toString().contains("ii  zimbra-chat")) {
