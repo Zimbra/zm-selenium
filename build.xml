@@ -216,6 +216,7 @@
 		<ivy:install organisation="com.google.guava" module="guava" revision="23.0" settingsRef="ivy.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
 		<ivy:install organisation="com.jcraft" module="jsch" revision="0.1.53" settingsRef="ivy.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
 		<ivy:install organisation="com.squareup.okhttp3" module="okhttp" revision="3.9.1" settingsRef="ivy.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
+		<ivy:install organisation="com.squareup.okio" module="okio" revision="1.13.0" settingsRef="ivy.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
 		<ivy:install organisation="commons-beanutils" module="commons-beanutils" revision="1.7.0" settingsRef="ivy.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
 		<ivy:install organisation="commons-cli" module="commons-cli" revision="1.2" settingsRef="ivy.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
 		<ivy:install organisation="commons-codec" module="commons-codec" revision="1.7" settingsRef="ivy.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>

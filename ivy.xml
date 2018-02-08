@@ -7,6 +7,7 @@
 		<dependency org="com.google.guava" name="guava" rev="23.0"/>
 		<dependency org="com.jcraft" name="jsch" rev="0.1.53"/>
 		<dependency org="com.squareup.okhttp3" name="okhttp" rev="3.9.1"/>
+		<dependency org="com.squareup.okio" name="okio" rev="1.13.0"/>
 		<dependency org="commons-beanutils" name="commons-beanutils" rev="1.7.0"/>
 		<dependency org="commons-cli" name="commons-cli" rev="1.2"/>
 		<dependency org="commons-codec" name="commons-codec" rev="1.7"/>
