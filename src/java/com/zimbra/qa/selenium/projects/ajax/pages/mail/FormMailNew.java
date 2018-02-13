@@ -102,7 +102,8 @@ public class FormMailNew extends AbsForm {
 		public static final String zBubbleCcField = "css=[id^=zv__COMPOSE][id$=_cc_cell]";
 		public static final String zBubbleBccField = "css=[id^=zv__COMPOSE][id$=_bcc_cell]";
 		public static final String CcField = "css= td[id='zv__COMPOSE-1_cc_cell']  div[class='addrBubbleContainer']";
-
+		public static final String zBubbleExpand = "css=div.ImgBubbleExpand";
+		
 		public static final String FormatAsHTMLMenu = "css=div[id^='zm__COMPOSE'][style*='z-index'] div[id$='__FORMAT_HTML'] tr[id^='POPUP_zmi__COMPOSE']";
 		public static final String FormatAsPlainTextMenu = "css=div[id^='zm__COMPOSE'][style*='z-index'] div[id$='__FORMAT_TEXT'] tr[id^='POPUP_zmi__COMPOSE']";
 		public static final String zOptionsdropdown = "css=div[id^='ztb__COMPOSE']:not([aria-hidden='true']) [id^=zb__COMPOSE][id$=__COMPOSE_OPTIONS_dropdown]";
@@ -1277,5 +1278,15 @@ public class FormMailNew extends AbsForm {
 			this.sSelectFrame("relative=top");
 		}
 		return imageSrc;
+	}
+	
+	// Expand the DL and select the member
+	public void zSelectMemberFromDL(String dl, String member) throws HarnessException {
+		String dlLocator = Locators.zBubbleExpand + "[onclick*='" + dl + "']";
+		String dlMemberLcoator = "css=div[id^='ZmAutocompleteListView'] table tr[id^='ZmAutocompleteListView'] td:contains('" + member + "')";
+		this.sClick(dlLocator);
+		this.sMouseMoveAt(Locators.zSendIconBtn, "0,0");
+		SleepUtil.sleepLong();
+		this.sClick(dlMemberLcoator);
 	}
 }
