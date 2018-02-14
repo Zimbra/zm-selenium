@@ -19,6 +19,7 @@ package com.zimbra.qa.selenium.projects.ajax.tests.tasks;
 import java.util.*;
 import org.testng.annotations.*;
 import com.zimbra.common.soap.*;
+import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.items.FolderItem.*;
 import com.zimbra.qa.selenium.framework.ui.*;
@@ -340,5 +341,47 @@ public class CreateTask extends AjaxCore {
 		// Verification
 		TaskItem task = TaskItem.importFromSOAP(app.zGetActiveAccount(), subject);
 		ZAssert.assertStringContains(task.gPriority, verify, "Verify the correct priority was sent");
+	}
+	
+	@Bugs (ids = "81749")
+	@Test (description = "Create a task with start and end date through UI and verify through soap/UI",
+			groups = { "sanity", "L1" })
+
+	public void CreateTask_09() throws HarnessException {
+		
+		Calendar now = Calendar.getInstance();
+		FolderItem tasks = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
+		String subject = "task" + ConfigProperties.getUniqueString();
+		String body = "taskbody"+ ConfigProperties.getUniqueString();
+		String startDay = String.valueOf(now.get(Calendar.DAY_OF_MONTH) + 1);
+		String endDay = String.valueOf(now.get(Calendar.DAY_OF_MONTH) + 3);
+
+		// Click New button
+		FormTaskNew taskNew = (FormTaskNew) app.zPageTasks.zToolbarPressButton(Button.B_NEW);
+
+		// Fill out the resulting form
+		taskNew.zFillField(Field.Subject, subject);
+		taskNew.zFillField(Field.Body, body);
+		
+		// Select start date and end date from date picker
+		taskNew.zSelectStartDateFromDatePicker(startDay);
+		taskNew.zSelectEndDateFromDatePicker(endDay);
+		taskNew.zSubmit();
+		
+		// verify through SOAP
+		TaskItem task = TaskItem.importFromSOAP(app.zGetActiveAccount(), subject);
+		ZAssert.assertEquals(task.getName(), subject, "Verify task subject");
+		ZAssert.assertEquals(task.gettaskBody().trim(), body.trim(), "Verify the task body");
+		
+		// Verify through GUI
+		app.zTreeTasks.zTreeItem(Action.A_LEFTCLICK, tasks);
+
+		// Select the item
+		app.zPageTasks.zListItem(Action.A_LEFTCLICK, subject);
+		
+		ZAssert.assertStringContains(app.zPageTasks.sGetText(Locators.zTaskSubject), subject, "Verify that subject is displayed correctly.");
+		ZAssert.assertStringContains(app.zPageTasks.sGetText(Locators.zTaskStartDate), startDay, "Verify that start day is displayed correctly.");
+		ZAssert.assertStringContains(app.zPageTasks.sGetText(Locators.zTaskDueDate), endDay, "Verify that end day is displayed correctly.");
+		ZAssert.assertStringContains(app.zPageTasks.zGetHtmlBodyText(), body, "Verify that body is displayed correctly.");
 	}
 }

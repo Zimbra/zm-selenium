@@ -74,6 +74,7 @@ public class FormTaskNew extends AbsForm {
 		public static final Field Body = new Field("Body");
 		public static final Field HtmlBody = new Field("HtmlBody");
 		public static final Field DueDate = new Field("DueDate");
+		public static final Field StartDate = new Field("StartDate");
 
 		private String field;
 
@@ -335,6 +336,13 @@ public class FormTaskNew extends AbsForm {
 			sType(locator, value);
 			return;
 
+		} else if (field == Field.StartDate) {
+			locator = "css=input[id$='_startDateField']";
+			this.sFocus(locator);
+			this.sClickAt(locator, "0,0");
+			sType(locator, value);
+			return;
+
 		} else {
 			throw new HarnessException("not implemented for field " + field);
 		}
@@ -370,6 +378,18 @@ public class FormTaskNew extends AbsForm {
 
 		logger.info(myPageName() + " zIsActive() = true");
 		return (true);
+	}
+	
+	public void zSelectStartDateFromDatePicker(String Day) throws HarnessException {
+		this.sClick("css=td[id$='_startMiniCalBtn'] div[class='ImgSelectPullDownArrow']");
+		this.sClick("//div[@class='DwtMenu' and contains(@style,'display: block;')]/descendant::td[text()='" + Day
+				+ "' and not(contains(@class,'DwtCalendarDay-grey'))]");
+	}
+
+	public void zSelectEndDateFromDatePicker(String Day) throws HarnessException {
+		this.sClick("td[id$='_endMiniCalBtn'] div[class='ImgSelectPullDownArrow']");
+		this.sClick("//div[@class='DwtMenu' and contains(@style,'display: block;')]/descendant::td[text()='" + Day
+				+ "' and not(contains(@class,'DwtCalendarDay-grey'))]");
 	}
 
 }

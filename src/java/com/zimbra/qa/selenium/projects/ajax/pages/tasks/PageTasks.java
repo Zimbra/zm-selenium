@@ -66,7 +66,9 @@ public class PageTasks extends AbsTab {
 		public static final String zEditAttachmentCheckbox = "css=div[class='ZmTaskEditView'] tr[id$='_attachment_container'] input[type='checkbox']";
 		public static final String zCheckboxenable = "css=div[class='ImgCheckboxChecked']";
 		public static final String zUntagTaskBubble = "css=div[id='zv__zv__TKL-main__TKV'] tr[id='zv__TKL-main_MSG_tagRow'] span[class='addrBubble TagBubble'] span[class='ImgBubbleDelete']";
-
+		public static final String zTaskSubject = "css=div.MsgHeaderTable div.SubjectCol";
+		public static final String zTaskStartDate = "css=div.MsgHeaderTable table[id$='_hdrTable'] tr[id$='_sd']";
+		public static final String zTaskDueDate = "css=div.MsgHeaderTable table[id$='_hdrTable'] tr[id$='_ed']";
 	}
 
 	public PageTasks(AbsApplication application) {
