@@ -32,6 +32,10 @@ public class WizardCreateDL extends AbsWizard {
 		public static final String zdlg_Check_Dynamic_group = "css=input[id='zdlgv__NEW_DL_dlType']";
 		public static final String zdlg_Check_Right_Management = "css=input[id='zdlgv__NEW_DL_zimbraIsACLGroup']";
 		public static final String zdlg_MemberURL = "css=input[id='zdlgv__NEW_DL_memberURL']";
+		public static final String zdlg_DistributionList = "css=input[id='zdlgv__NEW_DL_query_2']";
+		public static final String zdlg_DistributionListSearch = "css=div[id^='zdlgv__NEW_DL_case'] td[id^='zdlgv__NEW_DL_dwt_button'] td[id$='_title']:contains(Search)";
+		public static final String zdlg_DistributionListSearchRowsCSS = "css=td[id^='zdlgv__NEW_DL_nonMemberList'] div[id$='rows'] td";
+		public static final String zdlg_AddDLButton = "//div[starts-with(@id,'zdlgv__NEW_DL_case')]//td[starts-with(@id, 'zdlgv__NEW_DL_dwt_button')]//td[.='Add']";
 	}
 
 	public WizardCreateDL(AbsTab page) {
@@ -70,6 +74,45 @@ public class WizardCreateDL extends AbsWizard {
 		clickFinish(AbsWizard.Locators.DL_DIALOG);
 
 		return (dl);
+	}
+	
+	public IItem zCompleteWizardWithMemberOfDetails(IItem newDL, IItem memberOfDL) throws HarnessException {
+
+		if (!(newDL instanceof DistributionListItem))
+			throw new HarnessException(
+					newDL + "must be a DistributionListItem, was " + newDL.getClass().getCanonicalName());
+
+		DistributionListItem dl2 = (DistributionListItem) newDL;
+		DistributionListItem dl1 = (DistributionListItem) memberOfDL;
+		String CN = dl2.getLocalName();
+		String domain = dl2.getDomainName();
+
+		zType(Locators.zdlg_DL_NAME, CN);
+		SleepUtil.sleepSmall();
+		this.clearField(Locators.zdlg_DOMAIN_NAME);
+		zType(Locators.zdlg_DOMAIN_NAME, "");
+		zType(Locators.zdlg_DOMAIN_NAME, domain);
+		this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_TAB);
+		zType(Locators.zdlg_DL_NAME, CN);
+
+		if (dl2.getDynamicDL()) {
+			clickNext(AbsWizard.Locators.DL_DIALOG);
+			sClick(Locators.zdlg_Check_Dynamic_group);
+			SleepUtil.sleepMedium();
+			sClick(Locators.zdlg_Check_Right_Management);
+			zType(Locators.zdlg_MemberURL, dl2.getMemberURL());
+		}
+
+		clickNext(AbsWizard.Locators.DL_DIALOG);
+		clickNext(AbsWizard.Locators.DL_DIALOG);
+		zType(Locators.zdlg_DistributionList, dl1.getEmailAddress());
+		sClick(Locators.zdlg_DistributionListSearch);
+		SleepUtil.sleepSmall();
+		sClick(Locators.zdlg_DistributionListSearchRowsCSS + ":contains('"+ dl1.getEmailAddress() + "')");
+		SleepUtil.sleepMedium();
+		sClick(Locators.zdlg_AddDLButton);
+		clickFinish(AbsWizard.Locators.DL_DIALOG);
+		return (dl2);
 	}
 
 	@Override

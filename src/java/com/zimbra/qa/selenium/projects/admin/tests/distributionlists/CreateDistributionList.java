@@ -19,6 +19,7 @@ package com.zimbra.qa.selenium.projects.admin.tests.distributionlists;
 import org.testng.annotations.Test;
 import com.zimbra.common.service.ServiceException;
 import com.zimbra.common.soap.Element;
+import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
@@ -107,5 +108,46 @@ public class CreateDistributionList extends AdminCore {
 		// check if the created DL has correct memberURL
 		response = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetDistributionListResponse/admin:dl/admin:a[@n='memberURL']", 1);
 		ZAssert.assertNotNull(response , "Verify if the created DL has correct memberURL");
+	}
+	
+	@Bugs(ids = "51011")
+	@Test (description = "Create a DL and add it as a member of another DL",
+			groups = { "smoke", "L1" })
+
+	public void CreateDistributionList_03() throws HarnessException {
+
+		this.startingPage.zNavigateTo();
+		
+		// Create a distribution list in the Admin Console using SOAP
+		DistributionListItem dl1 = new DistributionListItem();
+		DistributionListItem dl2 = new DistributionListItem();
+		
+		// Create a DL using SOAP
+		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
+				"<CreateDistributionListRequest xmlns='urn:zimbraAdmin'>"
+						+	"<name>" + dl1.getEmailAddress() + "</name>"
+						+	"</CreateDistributionListRequest>");
+
+		// Create a DL using GUI
+		WizardCreateDL wizard =(WizardCreateDL) app.zPageManageDistributionList.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_NEW);
+		
+		// Fill out the necessary input fields and submit
+		wizard.zCompleteWizardWithMemberOfDetails(dl2, dl1);
+
+		// Verify the dl exists in the ZCS
+		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
+				"<GetDistributionListRequest xmlns='urn:zimbraAdmin'>" 
+						+	"<dl by='name'>" + dl2.getEmailAddress() + "</dl>"
+						+	"</GetDistributionListRequest>");
+		Element response = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetDistributionListResponse/admin:dl", 1);
+		ZAssert.assertNotNull(response, "Verify the distribution list is created successfully");
+		
+		// Verify that the dl2 is added as a member of dl1 
+		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
+				"<GetDistributionListRequest xmlns='urn:zimbraAdmin'>"
+						+ 	"<dl by='name'>" + dl1.getEmailAddress() + "</dl>"
+						+ 	"</GetDistributionListRequest>");
+		String dlMember = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectValue("//admin:GetDistributionListResponse/admin:dl","dlm");
+		ZAssert.assertTrue(dlMember.contains(dl2.getEmailAddress()), "Verify the dl member is added in the previous DL.");
 	}
 }
