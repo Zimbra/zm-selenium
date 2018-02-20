@@ -263,6 +263,46 @@ public class QuickAddAppointment extends AbsTab {
 		this.sClick("//div[@class='DwtMenu' and contains(@style,'display: block;')]/descendant::td[text()='" + Day
 				+ "' and not(contains(@class,'DwtCalendarDay-grey'))]");
 	}
+	
+	public void zSelectTimeFromDropdown(Field field, String Hour, String Minutes, String Meridiem) throws HarnessException {
+		String pullDownArrow = null;
+		if(field.toString().equals("StartTime")) {
+			pullDownArrow = "css=td[id$='_startTime'] td[id$='_timeSelectBtn'] div[class='ImgSelectPullDownArrow']";
+		} else if(field.toString().equals("EndTime")) {
+			pullDownArrow = "td[id$='_endTime'] td[id$='_timeSelectBtn'] div[class='ImgSelectPullDownArrow']";
+		} else {
+			throw new HarnessException("Invalid field type - must be StartTime or EndTime");
+		}
+					
+		if (Hour.equals("0")) {
+			Hour = "12";
+		}
+		String loc = Hour + ":00 " + Meridiem;
+		if (Hour.equals("12")) {
+			if (Meridiem.equals("AM")) {
+				loc = "Midnight";
+			} else {
+				loc = "Noon";
+			}
+		}
+
+		this.sClick(pullDownArrow);
+
+		if (!sIsVisible("td[id$='_title']:contains(" + loc + ")")) {
+			for (int i = 0; i < 16; i++) {
+				sClick("div[class*='ZHasSubMenu'][style*='display: block'] div[class='DwtMenuScrollTop']>div[class='ImgUpArrowSmall']");
+			}
+			while (!sIsVisible("td[id$='_title']:contains(" + loc + ")")) {
+				sClick("div[class*='ZHasSubMenu'][style*='display: block'] div[class='DwtMenuScrollBottom']>div[class='ImgDownArrowSmall']");
+			}
+		}
+		sMouseOver("td[id$='_title']:contains(" + loc + ")");
+		if (Minutes.equals("00") && (loc.equals("Midnight") || loc.equals("Noon"))) {
+			sClick("td[id$='_title']:contains(" + loc + ")");
+		} else {
+			sClick("td[id$='_title']:contains(" + Hour + ":" + Minutes + " " + Meridiem + ")");
+		}
+	}
 
 	public void zFill(IItem item) throws HarnessException {
 
@@ -292,6 +332,7 @@ public class QuickAddAppointment extends AbsTab {
 
 			if (com.zimbra.qa.selenium.projects.ajax.tests.calendar.appointments.quickadd.CreateAllDayAppointment.allDayTest == false
 					|| com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.organizer.allday.minicalendar.CreateAllDayMeeting.allDayTest == false) {
+				zFillField(Field.StartTime, "");
 				zFillField(Field.StartTime, appt.getStartTime());
 			}
 		}

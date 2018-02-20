@@ -64,24 +64,50 @@ public class CreateAppointment extends AjaxCore {
 
 	public void CreateAppointment_02() throws HarnessException {
 
-		// Create appointment
-		AppointmentItem appt = new AppointmentItem();
+		// Appointment Data
 		Calendar now = Calendar.getInstance();
-		appt.setSubject(ConfigProperties.getUniqueString());
-		appt.setStartTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH) - 4, 11, 0, 0));
-		appt.setEndTime(new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH)- 4, 12, 0, 0));
+		String apptSubject = ConfigProperties.getUniqueString();
+
+		//if it is last day of month than set appointment for same day
+		if (now.get(Calendar.DAY_OF_MONTH) == now.getActualMaximum(Calendar.DAY_OF_MONTH)) {
+			now.set(Calendar.DAY_OF_MONTH, now.get(Calendar.DAY_OF_MONTH) - 1);
+		}
+
+		// Start and end day and hour of the appointment
+		String startDay = String.valueOf(now.get(Calendar.DAY_OF_MONTH) - 1);
+		String endDay = String.valueOf(now.get(Calendar.DAY_OF_MONTH) - 1);
+		String startDayOfHour = String.valueOf(now.get(Calendar.HOUR_OF_DAY));
+
+		String meridiem = null;
+		if (now.get(Calendar.AM_PM) == 0) {
+			meridiem = "AM";
+		} else {
+			meridiem = "PM";
+		}
 
 		// Quick add appointment dialog
 		QuickAddAppointment quickAddAppt = new QuickAddAppointment(app) ;
 		quickAddAppt.zNewAppointment();
-		quickAddAppt.zFill(appt);
-        ZAssert.assertTrue(quickAddAppt.zVerifyMeetingInPastWarning(), "Verify meeting in past warning appears");
+
+		// Enter the appointment data
+		quickAddAppt.zFillField(Field.Subject, apptSubject);
+		quickAddAppt.zSelectStartDateFromDatePicker(String.valueOf(now.get(Calendar.DAY_OF_MONTH) - 1));
+		quickAddAppt.zSelectEndDateFromDatePicker(String.valueOf(now.get(Calendar.DAY_OF_MONTH) - 1));
+		quickAddAppt.zSelectTimeFromDropdown(Field.StartTime, String.valueOf(now.get(Calendar.HOUR)), "00", meridiem);
+		quickAddAppt.zSelectTimeFromDropdown(Field.EndTime, String.valueOf(now.get(Calendar.HOUR)), "30", meridiem);
+
+		// Verify the past time warning message 
+		ZAssert.assertTrue(quickAddAppt.zVerifyMeetingInPastWarning(), "Verify meeting in past warning appears");
+
+		// Submit
 		quickAddAppt.zSubmit();
 
 		// Verify the new appointment exists on the server
-		AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ appt.getSubject() +")", appt.getStartTime().addDays(-7), appt.getEndTime().addDays(7));
+		AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ apptSubject +")");
 		ZAssert.assertNotNull(actual, "Verify the new appointment is created");
-		ZAssert.assertEquals(actual.getSubject(), appt.getSubject(), "Subject: Verify the appointment data");
+		ZAssert.assertEquals(actual.getSubject(), apptSubject, "Subject: Verify the appointment data");
+		ZAssert.assertTrue(actual.getStartTime().toString().contains(startDay) && actual.getStartTime().toString().contains(startDayOfHour), "Start time: Verify the appointment start day and hour");
+		ZAssert.assertTrue(actual.getEndTime().toString().contains(endDay) && actual.getEndTime().toString().contains("30"),"End time: Verify the appointment end day and hour");
 	}
 
 
@@ -122,5 +148,50 @@ public class CreateAppointment extends AjaxCore {
 		ZAssert.assertEquals(actual.getSubject(), appt.getSubject(), "Subject: Verify the appointment data");
 		ZAssert.assertEquals(actual.getGStartDate(), appt.getGStartDate(), "Start date: Verify the appointment data");
 		ZAssert.assertEquals(actual.getGEndDate(), appt.getGEndDate(), "End date: Verify the appointment data");
+	}
+
+
+	@Test (description = "Create basic appointment using quick add dialog and add date and time using date/time picker",
+			groups = { "smoke", "L0" } )
+
+	public void CreateAppointment_04() throws HarnessException {
+
+		// Appointment Data
+		Calendar now = Calendar.getInstance();
+		String apptSubject = ConfigProperties.getUniqueString();
+
+		//if it is last day of month than set appointment for same day
+		if (now.get(Calendar.DAY_OF_MONTH) == now.getActualMaximum(Calendar.DAY_OF_MONTH)) {
+			now.set(Calendar.DAY_OF_MONTH, now.get(Calendar.DAY_OF_MONTH) - 1);
+		}
+
+		// Start and end day and hour of the appointment
+		String startDay = String.valueOf(now.get(Calendar.DAY_OF_MONTH) + 1);
+		String endDay = String.valueOf(now.get(Calendar.DAY_OF_MONTH) + 1);
+		String startDayOfHour = String.valueOf(now.get(Calendar.HOUR_OF_DAY));
+
+		String meridiem = null;
+		if (now.get(Calendar.AM_PM) == 0) {
+			meridiem = "AM";
+		} else {
+			meridiem = "PM";
+		}
+
+		// Quick add appointment dialog
+		QuickAddAppointment quickAddAppt = new QuickAddAppointment(app) ;
+		quickAddAppt.zNewAppointment();
+		quickAddAppt.zFillField(Field.Subject, apptSubject);
+		quickAddAppt.zSelectStartDateFromDatePicker(String.valueOf(now.get(Calendar.DAY_OF_MONTH) + 1));
+		quickAddAppt.zSelectEndDateFromDatePicker(String.valueOf(now.get(Calendar.DAY_OF_MONTH) + 1));
+		quickAddAppt.zSelectTimeFromDropdown(Field.StartTime, String.valueOf(now.get(Calendar.HOUR)), "00", meridiem);
+		quickAddAppt.zSelectTimeFromDropdown(Field.EndTime, String.valueOf(now.get(Calendar.HOUR)), "30", meridiem);
+		quickAddAppt.zSubmit();
+
+		// Verify the new appointment exists on the server
+		AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ apptSubject +")");
+		ZAssert.assertNotNull(actual, "Verify the new appointment is created");
+		ZAssert.assertEquals(actual.getSubject(), apptSubject, "Subject: Verify the appointment data");
+		ZAssert.assertTrue(actual.getStartTime().toString().contains(startDay) && actual.getStartTime().toString().contains(startDayOfHour), "Start time: Verify the appointment start day and hour");
+		ZAssert.assertTrue(actual.getEndTime().toString().contains(endDay) && actual.getEndTime().toString().contains("30"),"End time: Verify the appointment end day and hour");
 	}
 }
