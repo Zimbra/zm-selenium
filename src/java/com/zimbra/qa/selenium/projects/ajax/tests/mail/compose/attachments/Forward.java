@@ -18,9 +18,15 @@ package com.zimbra.qa.selenium.projects.ajax.tests.mail.compose.attachments;
 
 import java.io.File;
 import org.testng.annotations.Test;
+import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.MailItem;
-import com.zimbra.qa.selenium.framework.ui.*;
-import com.zimbra.qa.selenium.framework.util.*;
+import com.zimbra.qa.selenium.framework.ui.Action;
+import com.zimbra.qa.selenium.framework.ui.Button;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
+import com.zimbra.qa.selenium.framework.util.HarnessException;
+import com.zimbra.qa.selenium.framework.util.LmtpInject;
+import com.zimbra.qa.selenium.framework.util.ZAssert;
+import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.projects.ajax.core.SetGroupMailByMessagePreference;
 import com.zimbra.qa.selenium.projects.ajax.pages.mail.FormMailNew;
 import com.zimbra.qa.selenium.projects.ajax.pages.mail.FormMailNew.Field;
@@ -73,5 +79,64 @@ public class Forward extends SetGroupMailByMessagePreference {
 
 		String filename = ZimbraAccount.AccountB().soapSelectValue("//mail:mp[@cd='attachment']", "filename");
 		ZAssert.assertEquals(filename, mimeAttachmentName, "Verify the attachment exists in the forwarded mail");
+	}
+	
+	
+	@Bugs(ids = "76776")
+	@Test (description = "Forward a mail having two attachments --> Remove one attachement and Cancel --> "
+								+ "Forward Again - Verify the number of attachement attachments",
+			groups = { "functional", "L3" })
+
+	public void Forward_02() throws HarnessException {
+
+		final String subject = "TwoAttachmentsForward";
+		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/TwoAttachments.txt";
+		final String attachmentName1 = "1.png";
+		final String attachmentName2 = "2.png";
+
+		// Send the message to the test account
+		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
+
+		// Refresh current view
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
+
+		// Select the item
+		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
+
+		// Forward the item
+		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_FORWARD);
+		
+		// Remove one of the attachments
+		mailform.zRemoveAttachment(attachmentName1);
+		
+		// Cancel the forward compose
+		mailform.zToolbarPressButton(Button.B_CANCEL);
+		
+		mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_FORWARD);
+		
+		// Check the presence of attachments
+		ZAssert.assertTrue(mailform.zHasAttachment(attachmentName1),"Verify attachment '" + attachmentName1 + "' is present");
+		ZAssert.assertTrue(mailform.zHasAttachment(attachmentName2),"Verify attachment '" + attachmentName2 + "' is present");
+		
+		// Fill out the form with the data
+		mailform.zFillField(Field.To, ZimbraAccount.AccountB().EmailAddress);
+
+		// Send the message
+		mailform.zSubmit();
+
+		// From the receiving end, verify the message details
+		MailItem received = MailItem.importFromSOAP(ZimbraAccount.AccountB(), "subject:("+ subject +")");
+		ZAssert.assertNotNull(received, "Verify the message is received correctly");
+
+		// Verify the attachments exist in the forwarded mail
+		ZimbraAccount.AccountB().soapSend(
+				"<GetMsgRequest xmlns='urn:zimbraMail'>"
+				+		"<m id='"+ received.getId() +"'/>"
+				+	"</GetMsgRequest>");
+
+		String filename1 = ZimbraAccount.AccountB().soapSelectValue("//mail:mp[@cd='attachment'][1]", "filename");
+		String filename2 = ZimbraAccount.AccountB().soapSelectValue("//mail:mp[@cd='attachment'][2]", "filename");
+		ZAssert.assertEquals(filename1, attachmentName1, "Verify the attachment exists in the forwarded mail");
+		ZAssert.assertEquals(filename2, attachmentName2, "Verify the attachment exists in the forwarded mail");
 	}
 }

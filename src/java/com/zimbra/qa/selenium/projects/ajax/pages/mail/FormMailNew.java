@@ -1025,24 +1025,42 @@ public class FormMailNew extends AbsForm {
 
 	}
 
-	public boolean zHasAttachment(String name) throws HarnessException {
+	public boolean zHasAttachment(String attachmentName) throws HarnessException {
 		// Is the bubble there?
 		if (!zHasAttachment()) {
 			return (false);
 		}
 
-		// Find the attachment name
+		// Attachment bubble locator
 		String locator = "css=div[id$='_attachments_div'] div.attBubbleContainer a.AttLink";
-		if (!this.sIsElementPresent(locator)) {
-			return (false);
-		}
 
-		String filename = this.sGetText(locator);
-		if (filename == null || filename.trim().length() == 0) {
-			return (false);
+		// Get all attachments
+		List<WebElement> attachments = getElements(locator);
+		
+		// Check attachment name 
+		for(WebElement a : attachments) {
+			if(a.getText().equals(attachmentName)) {
+				logger.info("Found folder item: "+ a.getText());
+				return true;
+			}
 		}
-
-		return (filename.contains(name));
+		return false;
+	}
+	
+	public void zRemoveAttachment(String attachmentName) throws HarnessException {
+		// Is the bubble there?
+		if (!zHasAttachment()) {
+			throw new HarnessException("Attchement bubble is not present!");
+		} 
+		
+		// Check for the presence of attachment
+		String attachmentLocator = "//div[@class='attBubbleContainer']//a[@class='AttLink'][.='" + attachmentName + "']";
+		if(!sIsElementPresent(attachmentLocator)) {
+			throw new HarnessException("Attchement '" + attachmentName + "' bubble is not present!");
+		}
+		
+		// Remove attachment
+		sClick(attachmentLocator + "/following-sibling::span");	
 	}
 
 	public List<AutocompleteEntry> zAutocompleteFillField(Field field, String value) throws HarnessException {
