@@ -16,10 +16,25 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.pages.tasks;
 
-import com.zimbra.qa.selenium.framework.items.*;
-import com.zimbra.qa.selenium.framework.ui.*;
-import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.pages.*;
+import java.util.ArrayList;
+import java.util.List;
+import com.zimbra.qa.selenium.framework.items.FolderItem;
+import com.zimbra.qa.selenium.framework.items.IItem;
+import com.zimbra.qa.selenium.framework.items.TagItem;
+import com.zimbra.qa.selenium.framework.ui.AbsApplication;
+import com.zimbra.qa.selenium.framework.ui.AbsPage;
+import com.zimbra.qa.selenium.framework.ui.AbsTree;
+import com.zimbra.qa.selenium.framework.ui.Action;
+import com.zimbra.qa.selenium.framework.ui.Button;
+import com.zimbra.qa.selenium.framework.util.HarnessException;
+import com.zimbra.qa.selenium.framework.util.SleepUtil;
+import com.zimbra.qa.selenium.projects.ajax.pages.AjaxPages;
+import com.zimbra.qa.selenium.projects.ajax.pages.ContextMenu;
+import com.zimbra.qa.selenium.projects.ajax.pages.DialogRenameFolder;
+import com.zimbra.qa.selenium.projects.ajax.pages.DialogRenameTag;
+import com.zimbra.qa.selenium.projects.ajax.pages.DialogShare;
+import com.zimbra.qa.selenium.projects.ajax.pages.DialogTag;
+import com.zimbra.qa.selenium.projects.ajax.pages.DialogWarning;
 import com.zimbra.qa.selenium.projects.ajax.pages.mail.DialogEditFolder;
 
 public class TreeTasks extends AbsTree {
@@ -361,5 +376,85 @@ public class TreeTasks extends AbsTree {
 			return (false);
 
 		return (loaded);
+	}
+
+	private FolderItem parseFolderRow(String id) throws HarnessException {
+
+		String locator;
+
+		FolderItem item = new FolderItem();
+
+		item.setId(id);
+
+		// Set the name
+		locator = "css=div[id='zti__main_Tasks__" + id + "'] td[id$='_textCell']";
+		item.setName(this.sGetText(locator));
+
+		// Set the expanded boolean
+		locator = "css=div[id='zti__main_Tasks__" + id + "'] td[id$='_nodeCell']>div";
+		if (sIsElementPresent(locator)) {
+			// The image could be hidden, if there are no subfolders
+			item.gSetIsExpanded("ImgNodeExpanded".equals(sGetAttribute(locator + "@class")));
+		}
+
+		// Set the selected boolean
+		locator = "css=div[id='zti__main_Tasks__" + id + "'] div[id='zti__main_Tasks__" + id + "_div']";
+		if (sIsElementPresent(locator)) {
+			item.gSetIsSelected("DwtTreeItem-selected".equals(sGetAttribute(locator + "@class")));
+		}
+
+		return (item);
+	}
+	
+	private List<FolderItem> zListGetFolders(String css) throws HarnessException {
+		List<FolderItem> items = new ArrayList<FolderItem>();
+
+		String searchLocator = css + " div[class='DwtTreeItem-Control']";
+
+		int count = this.sGetCssCount(searchLocator);
+		logger.debug(myPageName() + " zListGetFolders: number of folders: " + count);
+
+		for (int i = 1; i <= count + 2; i++) {
+			String itemLocator = searchLocator + ":nth-child(" + i + ")";
+
+			if (!this.sIsElementPresent(itemLocator)) {
+				continue;
+			}
+
+			String identifier = sGetAttribute(itemLocator + "@id");
+			logger.debug(myPageName() + " identifier: " + identifier);
+
+			if (identifier == null || identifier.trim().length() == 0 || !(identifier.startsWith("zti__main_Tasks__"))) {
+				count++;
+				continue;
+			}
+
+			String id = identifier.replace("zti__main_Tasks__", "");
+
+			FolderItem item = this.parseFolderRow(id);
+			items.add(item);
+			logger.info(item.prettyPrint());
+
+			// Add any sub folders
+			items.addAll(zListGetFolders(itemLocator));
+
+		}
+
+		return (items);
+
+	}
+	
+	public List<FolderItem> zListGetFolders() throws HarnessException {
+
+		// Bug 65234
+		// Sleep for a bit to load up the new folders
+		SleepUtil.sleepVerySmall();
+
+		List<FolderItem> items = new ArrayList<FolderItem>();
+
+		// Recursively fill out the list, starting with all mail folders
+		items.addAll(zListGetFolders("css=div[id='ztih__main_Tasks__TASK']"));
+
+		return (items);
 	}
 }

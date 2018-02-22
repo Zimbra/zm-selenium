@@ -16,65 +16,78 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.tasks.mountpoints;
 
-import java.util.HashMap;
+import java.util.List;
 import org.testng.annotations.Test;
-import com.zimbra.common.soap.Element;
+import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
+import com.zimbra.qa.selenium.framework.items.FolderMountpointItem;
+import com.zimbra.qa.selenium.framework.items.TaskItem;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
-import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
 import com.zimbra.qa.selenium.projects.ajax.pages.DialogShare;
-import com.zimbra.qa.selenium.projects.ajax.pages.DialogShareRevoke;
-import com.zimbra.qa.selenium.projects.ajax.pages.mail.DialogEditFolder;
+import com.zimbra.qa.selenium.projects.ajax.pages.DialogShareAccept;
+import com.zimbra.qa.selenium.projects.ajax.pages.mail.DisplayMail;
 
 public class DeleteShare extends AjaxCore {
-
-	@SuppressWarnings("serial")
+	
 	public DeleteShare() {
-		logger.info("New "+ DeleteShare.class.getCanonicalName());
-
+		logger.info("New " + DeleteShare.class.getCanonicalName());
 		super.startingPage = app.zPageTasks;
-		super.startingAccountPreferences = new HashMap<String, String>() {
-			{
-				put("zimbraPrefTasksReadingPaneLocation", "bottom");
-				put("zimbraPrefShowSelectionCheckbox", "TRUE");
-			}
-		};
 	}
-
-
-	@Test (description = "Share and Revoke folder ",
+	
+	@Bugs(ids = "60990")
+	@Test (description = "Delete a shared task folder and verify its presence in trash after deletion",
 			groups = { "smoke", "L1" })
 
 	public void DeleteShare_01() throws HarnessException {
-
-		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
 
 		// Create the subTaskList
 		String name = "taskList" + ConfigProperties.getUniqueString();
 
 		app.zGetActiveAccount().soapSend(
 				"<CreateFolderRequest xmlns='urn:zimbraMail'>"
-				+ "<folder name='" + name + "' l='"
-				+ taskFolder.getId() + "'/>"
-				+ "</CreateFolderRequest>");
+						+ "<folder name='" + name + "' l='" + 1 + "' view='task' />"						
+						+ "</CreateFolderRequest>");
 
-		FolderItem subTaskList = FolderItem.importFromSOAP(app.zGetActiveAccount(), name);
-		ZAssert.assertNotNull(subTaskList, "Verify the subfolder is available");
-
-		// Refresh the tasks view
-		app.zTreeTasks.zTreeItem(Action.A_LEFTCLICK, taskFolder);
-
+		FolderItem taskList = FolderItem.importFromSOAP(app.zGetActiveAccount(), name);
+		ZAssert.assertNotNull(taskList, "Verify the subfolder is available");
+		
+		//Create a task in the task list
+		String subject = "task"+ ConfigProperties.getUniqueString();
+		app.zGetActiveAccount().soapSend(
+				"<CreateTaskRequest xmlns='urn:zimbraMail'>" +
+					"<m >" +
+						"<l>"+ taskList.getId() +"</l>" +
+			        	"<inv>" +
+			        		"<comp name='"+ subject +"'>" +
+			        			"<or a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
+			        		"</comp>" +
+			        	"</inv>" +
+			        	"<su>"+ subject +"</su>" +
+			        	"<mp ct='text/plain'>" +
+			        		"<content>content"+ ConfigProperties.getUniqueString() +"</content>" +
+			        	"</mp>" +
+			        	
+					"</m>" +
+				"</CreateTaskRequest>");
+		
+		TaskItem task = TaskItem.importFromSOAP(app.zGetActiveAccount(), subject);
+		ZAssert.assertNotNull(task, "Verify the task is created");
+		
+		// Click tool bar refresh button
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
+		
 		// Right click on folder, select "Share"
-		DialogShare dialog = (DialogShare) app.zTreeTasks.zTreeItem(Action.A_RIGHTCLICK, Button.B_SHARE, subTaskList);
+		DialogShare dialog = (DialogShare) app.zTreeTasks.zTreeItem(Action.A_RIGHTCLICK, Button.B_SHARE, taskList);
 		ZAssert.assertNotNull(dialog, "Verify the sharing dialog pops up");
 
-		// Use defaults for all options
+		// Enter recipient email
 		dialog.zSetEmailAddress(ZimbraAccount.AccountA().EmailAddress);
 
 		// Send it
@@ -83,49 +96,61 @@ public class DeleteShare extends AjaxCore {
 		// Make sure that AccountA now has the share
 		ZimbraAccount.AccountA().soapSend(
 				"<GetShareInfoRequest xmlns='urn:zimbraAccount'>"
-				+ "<grantee type='usr'/>" + "<owner by='name'>"
-				+ app.zGetActiveAccount().EmailAddress + "</owner>"
-				+ "</GetShareInfoRequest>");
+						+ "<grantee type='usr'/>" + "<owner by='name'>"
+						+ app.zGetActiveAccount().EmailAddress + "</owner>"
+						+ "</GetShareInfoRequest>");
 
-		String ownerEmail = ZimbraAccount.AccountA().soapSelectValue("//acct:GetShareInfoResponse//acct:share[@folderPath='/Tasks/"	+ name + "']", "ownerEmail");
-		ZAssert.assertEquals(ownerEmail, app.zGetActiveAccount().EmailAddress,
-		"Verify the owner of the shared folder");
+		String ownerEmail = ZimbraAccount.AccountA().soapSelectValue("//acct:GetShareInfoResponse//acct:share[@folderPath='/"	+ name + "']", "ownerEmail");
+		ZAssert.assertEquals(ownerEmail, app.zGetActiveAccount().EmailAddress,"Verify the owner of the shared folder");
+		
+		// Login with the account to which task is shared
+		app.zPageLogin.zNavigateTo();
+		app.zPageLogin.zLogin(ZimbraAccount.AccountA());
+		
+		// Switch to message view
+		app.zPageMail.zToolbarPressButton(Button.B_MAIL_VIEW_BY_MESSAGE);
+		// Select the item
+		DisplayMail display = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, name);
 
-		String rights = ZimbraAccount.AccountA().soapSelectValue("//acct:GetShareInfoResponse//acct:share[@folderPath='/Tasks/"	+ name + "']", "rights");
-		ZAssert.assertEquals(rights, "r", "Verify the rights are 'read only'");
+		// Verify that the A/D buttons are displayed
+		ZAssert.assertTrue(display.zHasShareADButtons(), "Verify that the Accept/Decline share buttons are present");
 
-		String granteeType = ZimbraAccount.AccountA().soapSelectValue("//acct:GetShareInfoResponse//acct:share[@folderPath='/Tasks/"+ name + "']", "granteeType");
-		ZAssert.assertEquals(granteeType, "usr","Verify the grantee type is 'user'");
+		// Accept the share, which opens a dialog
+		DialogShareAccept dialogShare = (DialogShareAccept)display.zPressButton(Button.B_ACCEPT_SHARE);
+		ZAssert.assertNotNull(dialogShare, "Verify that the accept share dialog opens");
 
-		// Need to do Refresh to see folder in the list
-		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
+		// Click OK on the dialog
+		dialogShare.zPressButton(Button.B_YES);
+		
+		app.zPageTasks.zNavigateTo();
+		
+		FolderItem found = null;
 
-		// Right click folder, click Edit Properties
-		DialogEditFolder editdialog = (DialogEditFolder)app.zTreeTasks.zTreeItem(Action.A_RIGHTCLICK, Button.B_TREE_EDIT, subTaskList);
-		ZAssert.assertNotNull(editdialog, "Verify the sharing dialog pops up");
+		// Verify that the new mount point is present
+		logger.info("Looking for mountpoint containing text: "+ name);
 
-		// Click Revoke link on Edit properties dialog
-		DialogShareRevoke sharedialog = (DialogShareRevoke)editdialog.zPressButton(Button.O_REVOKE_LINK);
-		ZAssert.assertTrue(sharedialog.zIsActive(), "Verify that the Share dialog is active ");
+		List<FolderItem> folders = app.zTreeTasks.zListGetFolders();
+		for (FolderItem f : folders) {
+			if ( f.getName().contains(name) ) {
+				logger.info("Found folder item: "+ f.getName());
+				found = f;
+				break;
+			}
+		}
 
-		// Click Yes
-		sharedialog.zPressButton(Button.B_YES);
-
-		// Verify Edit properties  dialog is active
-		ZAssert.assertTrue(editdialog.zIsActive(), "Verify that the Edit Folder Properties dialog is active ");
-
-		// Click ok button from edit Folder properties dialog
-		editdialog.zPressButton(Button.B_OK);
-
-		ZimbraAccount.AccountA().soapSend(
-				"<GetShareInfoRequest xmlns='urn:zimbraAccount'>"
-				+		"<grantee type='usr'/>"
-				+		"<owner by='name'>"+ app.zGetActiveAccount().EmailAddress +"</owner>"
-				+	"</GetShareInfoRequest>");
-
-		Element[] nodes = ZimbraAccount.AccountA().soapSelectNodes("//acct:GetShareInfoResponse//acct:share[@folderPath='/Tasks/"+ name +"']");
-
-		ZAssert.assertEquals(nodes.length, 0, "Verify the shared folder no longer exists in the share information (no nodes returned)");
-
+		ZAssert.assertNotNull(found, "Verify the mountpoint is in the folder list");
+		
+		// select the shared task list
+		app.zTreeTasks.zTreeItem(Action.A_LEFTCLICK, found);
+		ZAssert.assertTrue(app.zPageTasks.isPresent(subject),"Verify task from the shared folder is displayed");
+		
+		// Right click the task list, click Delete
+		app.zTreeTasks.zTreeItem(Action.A_RIGHTCLICK, Button.B_DELETE, found);
+		
+		// Verify the task list is now in the trash
+		FolderItem trash = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Trash);
+		FolderMountpointItem sharedFolder = FolderMountpointItem.importFromSOAP(app.zGetActiveAccount(), found.getName());
+		ZAssert.assertNotNull(sharedFolder, "Verify the subfolder is again available");
+		ZAssert.assertEquals(trash.getId(), sharedFolder.getParentId(), "Verify the subfolder's parent is now the trash folder ID");
 	}
 }

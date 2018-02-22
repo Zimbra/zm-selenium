@@ -18,7 +18,10 @@ package com.zimbra.qa.selenium.projects.ajax.pages.tasks;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import com.zimbra.qa.selenium.framework.ui.*;
+import com.zimbra.qa.selenium.framework.ui.AbsApplication;
+import com.zimbra.qa.selenium.framework.ui.AbsDisplay;
+import com.zimbra.qa.selenium.framework.ui.AbsPage;
+import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 
 public class DisplayTask extends AbsDisplay {
