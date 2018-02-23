@@ -82,12 +82,57 @@ public class Forward extends SetGroupMailByMessagePreference {
 	}
 	
 	
+	@Test (description = "Forward a mail after removing the attachemnt",
+			groups = { "smoke", "L1" })
+
+	public void Forward_02() throws HarnessException {
+
+		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email16/mime02.txt";
+		final String subject = "remove attachment from conversation view";
+		final String attachmentName = "remove.txt";
+
+		// Send the message to the test account
+		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
+
+		// Refresh current view
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
+
+		// Select the item
+		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
+
+		// Forward the item
+		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_FORWARD);
+		
+		// Remove the attachment
+		mailform.zRemoveAttachment(attachmentName);
+		
+		// Fill out the form with the data
+		mailform.zFillField(Field.To, ZimbraAccount.Account1().EmailAddress);
+
+		// Send the message
+		mailform.zSubmit();
+
+		// From the receiving end, verify the message details
+		MailItem received = MailItem.importFromSOAP(ZimbraAccount.Account1(), "subject:("+ subject +")");
+		ZAssert.assertNotNull(received, "Verify the message is received correctly");
+
+		// Verify the attachment does not exist in the forwarded mail
+		ZimbraAccount.Account1().soapSend(
+				"<GetMsgRequest xmlns='urn:zimbraMail'>"
+				+		"<m id='"+ received.getId() +"'/>"
+				+	"</GetMsgRequest>");
+
+		String fileName = ZimbraAccount.Account1().soapSelectValue("//mail:mp[@cd='attachment']", "filename");
+		ZAssert.assertNull(fileName, "Verify the attachment is not present in the forwarded mail");
+	}
+	
+	
 	@Bugs(ids = "76776")
 	@Test (description = "Forward a mail having two attachments --> Remove one attachement and Cancel --> "
 								+ "Forward Again - Verify the number of attachement attachments",
 			groups = { "functional", "L3" })
 
-	public void Forward_02() throws HarnessException {
+	public void Forward_03() throws HarnessException {
 
 		final String subject = "TwoAttachmentsForward";
 		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/TwoAttachments.txt";
