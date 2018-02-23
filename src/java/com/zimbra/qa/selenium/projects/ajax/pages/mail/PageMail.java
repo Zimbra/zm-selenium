@@ -700,7 +700,7 @@ public class PageMail extends AbsTab {
 
 		} else if (button == Button.B_CLOSE_CONVERSATION) {
 
-			locator = "css=div[id$='__CLOSE'] td[id$='_title']";
+			locator = "css=div[id^='ztb__CV'][style*='z-index: 3'] div[id$='__CLOSE'] td[id$='_title']";
 			page = null;
 
 		} else if (button == Button.B_SELECT_ALL) {

@@ -24,9 +24,11 @@ import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.AttachmentItem;
 import com.zimbra.qa.selenium.framework.items.MailItem;
 import com.zimbra.qa.selenium.framework.ui.Action;
+import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.LmtpInject;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
+import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.SetGroupMailByMessagePreference;
 import com.zimbra.qa.selenium.projects.ajax.pages.mail.DisplayMail;
@@ -150,5 +152,72 @@ public class GetAttachment extends SetGroupMailByMessagePreference {
 
 		Element[] nodes = app.zGetActiveAccount().soapSelectNodes("//mail:mp[@filename='" + fileName + "']");
 		ZAssert.assertEquals(nodes.length, 1, "Verify attachment exist in the forwarded mail");
+	}
+	
+	
+	@Bugs (ids = "83052")
+	@Test (description = "Verify the presence of attachment in mail on the second attempt of Show Conversation",
+			groups = { "functional", "L3" })
+
+	public void GetAttachment_04() throws HarnessException {
+
+		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email16/mime02.txt";
+		final String subject = "remove attachment from conversation view";
+		final String attachmentName = "remove.txt";
+		ZimbraAccount account = app.zGetActiveAccount();
+
+		// Inject a message with an attachment
+		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
+
+		// Double check that there is an attachment
+		account.soapSend("<SearchRequest xmlns='urn:zimbraMail' types='message'>" + "<query>subject:(" + subject
+				+ ")</query>" + "</SearchRequest>");
+		String id = account.soapSelectValue("//mail:m", "id");
+
+		account.soapSend("<GetMsgRequest xmlns='urn:zimbraMail' >" + "<m id='" + id + "'/>" + "</GetMsgRequest>");
+		Element[] nodes = account.soapSelectNodes("//mail:mp[@cd='attachment']");
+		ZAssert.assertGreaterThan(nodes.length, 0, "Verify the message has the attachment");
+
+		// Refresh current view and check the presence of mail
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
+		
+		// Switch to message view
+		app.zPageMail.zToolbarPressButton(Button.B_MAIL_VIEW_BY_MESSAGE);
+
+		// Select the message so that it shows in the reading pane
+		DisplayMail display = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
+
+		// Go to Actions drop down and select Show Conversation.
+		app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.O_SHOW_CONVERSATION);
+
+		// Check the presence of attachment
+		AttachmentItem item = null;
+		List<AttachmentItem> items = display.zListGetAttachments();
+		for (AttachmentItem i : items) {
+			if (i.getAttachmentName().equals(attachmentName)) {
+				item = i;
+				break;
+			}
+		}
+		ZAssert.assertNotNull(item, "No attachment is in the message");
+		
+		// Close the show conversation tab
+		app.zPageMail.zToolbarPressButton(Button.B_CLOSE_CONVERSATION);
+		
+		// Open the Show conversation view again and check the presence of attachment: Bug:83052
+		app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.O_SHOW_CONVERSATION);
+
+		// Check the presence of attachment
+		items = display.zListGetAttachments();
+		for (AttachmentItem i : items) {
+			if (i.getAttachmentName().equals(attachmentName)) {
+				item = i;
+				break;
+			}
+		}
+		ZAssert.assertNotNull(item, "No attachment is in the message");
+
+		// Close the show conversation tab
+		app.zPageMail.zToolbarPressButton(Button.B_CLOSE_CONVERSATION);
 	}
 }
