@@ -217,27 +217,27 @@ public class TreeTasks extends AbsTree {
 	}
 
 	@Override
-	public AbsPage zTreeItem(Action action, Button option, IItem tasklist) throws HarnessException {
+	public AbsPage zTreeItem(Action action, Button option, IItem tagItem) throws HarnessException {
 
-		logger.info(myPageName() + " zListItem(" + action + ", " + option + ", " + tasklist + ")");
+		logger.info(myPageName() + " zListItem(" + action + ", " + option + ", " + tagItem + ")");
 
 		if (action == null)
 			throw new HarnessException("action cannot be null");
 		if (option == null)
 			throw new HarnessException("button cannot be null");
-		if (tasklist == null)
+		if (tagItem == null)
 			throw new HarnessException("folder cannot be null");
 
-		tracer.trace(action + " then " + option + " on task = " + tasklist.getName());
+		tracer.trace(action + " then " + option + " on task = " + tagItem.getName());
 
 		AbsPage page = null;
 		String actionLocator = null;
 		String optionLocator = null;
 
-		if (!(tasklist instanceof TagItem))
-			throw new HarnessException("folder must be of type FolderItem");
+		if (!(tagItem instanceof TagItem))
+			throw new HarnessException("IItem must be of type TagItem");
 
-		TagItem t = (TagItem) tasklist;
+		TagItem t = (TagItem) tagItem;
 
 		tracer.trace("processing " + t.getName());
 
@@ -303,7 +303,6 @@ public class TreeTasks extends AbsTree {
 		AbsPage page = null;
 		String actionLocator = null;
 		String optionLocator = null;
-		// String locator = null;
 
 		if (action == Action.A_LEFTCLICK) {
 			actionLocator = "zti__main_Tasks__" + folderItem.getId() + "_textCell";
@@ -340,12 +339,15 @@ public class TreeTasks extends AbsTree {
 			optionLocator = Locators.zShareTreeMenuItem;
 			page = new DialogShare(MyApplication, ((AjaxPages) MyApplication).zPageTasks);
 
+		} if (option == Button.B_TREE_NEWTASKLIST) {
+
+			optionLocator = "css=div[id='ZmActionMenu_tasks_TASK'] div[id='NEW_TASK_FOLDER'] td[id$='_title']";
+			page = new DialogCreateTaskFolder(MyApplication, ((AjaxPages) MyApplication).zPageTasks);
+
 		} else {
+			
 			throw new HarnessException("button " + option + " not yet implemented");
 		}
-
-		if (optionLocator == null)
-			throw new HarnessException("locator is null for option " + option);
 
 		sClickAt(optionLocator, "");
 		this.zWaitForBusyOverlay();

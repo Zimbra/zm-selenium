@@ -68,8 +68,7 @@ public class ImportContact extends AjaxCore {
 		// Verifying the toaster message
 		Toaster toast = app.zPageMain.zGetToaster();
 		String toastMessage = toast.zGetToastMessage();
-		System.out.println("The Toast message:"+ toastMessage);
-		ZAssert.assertStringContains(toastMessage, "File extension png is not supported by Import.", "Verify toast message: Contact Created");
+		ZAssert.assertStringContains(toastMessage, "File extension jpg is not supported by Import.", "Verify toast message: Contact Created");
 		
 		// Click on Browse/Choose File button
 		app.zPagePreferences.sClickAt(Locators.zBrowseFileButton,"0,0");
