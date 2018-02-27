@@ -27,7 +27,7 @@ public class DialogConfirmModification extends DialogWarning {
 
 	public static class Locators {
 		public static final String SaveAndSendUpdates = "css= div[class='DwtDialog WindowOuterContainer'] label:contains('Save changes and send updates.')";
-		public static final String DontSaveAndKeepOpen = "css= div[class='DwtDialog WindowOuterContainer'] label:contains('Don't save but keep the meeting open.')";
+		public static final String DontSaveAndKeepOpen = "css= div[class='DwtDialog WindowOuterContainer'] label:contains('Don’t save but keep the meeting open.')";
 		public static final String DiscardAndClose = "css= div[class='DwtDialog WindowOuterContainer'] label:contains('Discard changes and close.')";
 		public static final String Ok_changes = "css=td[id='YesNoCancel_button5_title']";
 		public static final String Cancel_changes = "css=td[id='YesNoCancel_button4_title']";

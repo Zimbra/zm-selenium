@@ -58,7 +58,7 @@ public class EmptySignature extends AjaxCore {
 		// Verifying the toaster message
 		Toaster toast = app.zPageMain.zGetToaster();
 		String toastMessage = toast.zGetToastMessage();
-		ZAssert.assertStringContains(toastMessage, "Signature name is empty. It's required","Verify toast message:Signature name is empty. It's required");
+		ZAssert.assertStringContains(toastMessage, "Signature name is empty. It’s required","Verify toast message:Signature name is empty. It's required");
 	}
 
 

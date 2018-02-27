@@ -167,7 +167,7 @@ public class VerifyTimezoneView extends AjaxCore {
 				"GMT +12:00 Fiji",
 				"GMT +12:45 Chatham",
 				"GMT +13:00 Samoa",
-				"GMT +13:00 Nuku'alofa",
+				"GMT +13:00 Nuku’alofa",
 				"GMT +14:00 Kiritimati Island" };
 
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.General);
