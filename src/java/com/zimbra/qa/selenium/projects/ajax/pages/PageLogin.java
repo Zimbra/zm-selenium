@@ -38,6 +38,7 @@ public class PageLogin extends AbsTab {
 		// Displayed text
 		public static final String zDisplayedusername = "css=form[name='loginForm'] label[for='username']";
 		public static final String zDisplayedcopyright = "css=div[class='copyright']";
+		public static final String zLoginErrorMessage = "css=div#ZLoginErrorPanel";
 
 		// Toolbar links
 		public static final String zLogoutLink = "css=[id='skin_container_logoff']>a";
@@ -241,8 +242,13 @@ public class PageLogin extends AbsTab {
 		SleepUtil.sleepSmall();
 	}
 
-	public Boolean zVerifyTrustThisComputer() throws HarnessException {
+	public boolean zVerifyTrustThisComputer() throws HarnessException {
 		return sIsElementPresent(Locators.zTrustThisComputer);
+	}
+	
+	public boolean zVerifyLoginErrorMessage() throws HarnessException {
+		String loginErrorMessage = "The username or password is incorrect. Verify that CAPS LOCK is not on, and then retype the current username and password.";
+		return sGetText(Locators.zLoginErrorMessage).equals(loginErrorMessage);
 	}
 
 	@Override

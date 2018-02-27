@@ -16,11 +16,20 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.main.login;
 
-import org.testng.annotations.*;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.core.Bugs;
-import com.zimbra.qa.selenium.framework.items.*;
-import com.zimbra.qa.selenium.framework.util.*;
+import com.zimbra.qa.selenium.framework.items.FolderItem;
+import com.zimbra.qa.selenium.framework.items.FolderMountpointItem;
+import com.zimbra.qa.selenium.framework.items.MailItem;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
+import com.zimbra.qa.selenium.framework.util.HarnessException;
+import com.zimbra.qa.selenium.framework.util.SleepUtil;
+import com.zimbra.qa.selenium.framework.util.ZAssert;
+import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
+import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
+import com.zimbra.qa.selenium.projects.ajax.pages.PageLogin.Locators;
 
 public class Login extends AjaxCore {
 
@@ -29,6 +38,7 @@ public class Login extends AjaxCore {
 		super.startingPage = app.zPageLogin;
 
 	}
+	
 
 	@Test (description = "Login to the Ajax Client",
 			groups = { "sanity", "L0" })
@@ -40,14 +50,41 @@ public class Login extends AjaxCore {
 
 		// Verify main page becomes active
 		ZAssert.assertTrue(app.zPageMain.zIsActive(), "Verify that the account is logged in");
-
 	}
+	
+		
+	@Test (description = "Login to the Ajax Client using a locked account",
+			groups = { "smoke", "L1" })
 
+	public void Login_02() throws HarnessException {
+		
+		//Create a Zimbra account
+		ZimbraAccount locked = new ZimbraAccount();
+		locked.provision();
+		
+		// Lock the account
+		ZimbraAdminAccount.GlobalAdmin().soapSend(
+				"<ModifyAccountRequest xmlns='urn:zimbraAdmin'>"
+						+		"<id>" + locked.ZimbraId + "</id>"
+						+		"<a n='zimbraAccountStatus'>locked</a>"
+						+	"</ModifyAccountRequest>");
+		// Login
+		app.zPageLogin.zSetLoginName(locked.EmailAddress);
+		app.zPageLogin.zSetLoginPassword(locked.Password);
+		app.zPageLogin.sClickAt(Locators.zBtnLogin, "");
+		
+		// Verify the error message displayed
+		ZAssert.assertTrue(app.zPageLogin.zVerifyLoginErrorMessage(), "Verify login error message");
+
+		// Verify main page never becomes active
+		ZAssert.assertFalse(app.zPageMain.zIsActive(), "Verify that login was not successfull for a locked account");
+	}
+	
 
 	@Test (description = "Login to the Ajax Client, with a mounted folder",
 			groups = { "functional", "L3" })
 
-	public void Login_02() throws HarnessException {
+	public void Login_03() throws HarnessException {
 
 		String foldername = "folder" + ConfigProperties.getUniqueString();
 		String subject = "subject" + ConfigProperties.getUniqueString();
@@ -107,7 +144,6 @@ public class Login extends AjaxCore {
 
 		// Verify main page becomes active
 		ZAssert.assertTrue(app.zPageMain.zIsActive(), "Verify that the account is logged in");
-
 	}
 
 
@@ -115,7 +151,7 @@ public class Login extends AjaxCore {
 	@Test (description = "Login to the Ajax Client, with a mounted folder of a deleted account",
 			groups = { "functional", "L3" })
 
-	public void Login_03() throws HarnessException {
+	public void Login_04() throws HarnessException {
 
 		// Create Account2
 		ZimbraAccount account = new ZimbraAccount();
@@ -204,7 +240,7 @@ public class Login extends AjaxCore {
 			groups = { "functional-skip", "L3-skip" },
 			dataProvider = "DataProvider_zimbraMailURL")
 
-	public void Login_04(String zimbraMailURLtemp, String notused) throws HarnessException {
+	public void Login_05(String zimbraMailURLtemp, String notused) throws HarnessException {
 
 		String zimbraMailURL = null;
 
