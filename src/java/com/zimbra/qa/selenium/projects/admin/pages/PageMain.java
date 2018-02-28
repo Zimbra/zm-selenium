@@ -212,4 +212,9 @@ public class PageMain extends AbsTab {
 		logger.info("toaster is active: " + toaster.zIsActive());
 		return (toaster);
 	}
+	
+	public boolean zVerifyMailExists(String subject) throws HarnessException {
+		String mailLocator = "css=div#zl__CLV-main ul[id$='__rows'] div[id$='__rw'] div[id$='__su']";
+		return sIsElementPresent(mailLocator + ":contains('" + subject + "')");
+	}
 }

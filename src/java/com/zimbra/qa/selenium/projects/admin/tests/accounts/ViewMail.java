@@ -26,6 +26,7 @@ import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
+import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
 import com.zimbra.qa.selenium.projects.admin.core.AdminCore;
 import com.zimbra.qa.selenium.projects.admin.items.AccountItem;
@@ -60,6 +61,19 @@ public class ViewMail extends AdminCore {
 						+			"<password>test123</password>"
 						+		"</CreateAccountRequest>");
 
+		// Send a mail to the account
+		String subject = "subject"+ ConfigProperties.getUniqueString();
+		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
+				"<SendMsgRequest xmlns='urn:zimbraMail'>" +
+						"<m>" +
+						"<e t='t' a='"+ account.getEmailAddress() +"'/>" +
+						"<su>"+ subject +"</su>" +
+						"<mp ct='text/plain'>" +
+						"<content>content"+ ConfigProperties.getUniqueString() +"</content>" +
+						"</mp>" +
+						"</m>" +
+				"</SendMsgRequest>");
+
 		// Refresh the account list
 		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
 
@@ -72,8 +86,28 @@ public class ViewMail extends AdminCore {
 		// Wait for page to load
 		SleepUtil.sleepLong();
 
-		// Verify account mailbox is opened up
-		ZAssert.assertTrue(app.zPageMain.zIsActive(), "Verify account mailbox is opened up");
+		// Mail page opens in separate window
+		List<String> windowIds = app.zPageMain.sGetAllWindowIds();
+		ZAssert.assertTrue(windowIds.size() > 1, "User's mailbox is not opened in the separate window");
+
+		boolean mailFound = false;
+		for(String id: windowIds) {
+			app.zPageMain.sSelectWindow(id);
+			if (app.zPageMain.sGetTitle().contains("Zimbra: Inbox") && !(app.zPageMain.sGetTitle().contains("Zimbra Administration"))) {
+				// Get the presence of mail
+				mailFound = app.zPageMain.zVerifyMailExists(subject);
+				// Close the selected window
+				app.zPageMain.sClose();
+				// Select the parent window
+				app.zPageMain.sSelectWindow("null");
+				break;
+			} else if (!(app.zPageMain.sGetTitle().contains("Zimbra Administration"))) {
+				app.zPageMain.zSeparateWindowClose(app.zPageMain.sGetTitle());
+			}
+		}
+
+		// Verify that the mail is present
+		ZAssert.assertTrue(mailFound, "Verify that user's mail is displayed to admin");
 	}
 
 
@@ -100,6 +134,19 @@ public class ViewMail extends AdminCore {
 						+			"<password>test123</password>"
 						+		"</CreateAccountRequest>");
 
+		// Send a mail to the account
+		String subject = "subject"+ ConfigProperties.getUniqueString();
+		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
+				"<SendMsgRequest xmlns='urn:zimbraMail'>" +
+						"<m>" +
+						"<e t='t' a='"+ account.getEmailAddress() +"'/>" +
+						"<su>"+ subject +"</su>" +
+						"<mp ct='text/plain'>" +
+						"<content>content"+ ConfigProperties.getUniqueString() +"</content>" +
+						"</mp>" +
+						"</m>" +
+				"</SendMsgRequest>");
+
 		// Refresh the account list
 		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
 
@@ -112,8 +159,28 @@ public class ViewMail extends AdminCore {
 		// Wait for page to load
 		SleepUtil.sleepLong();
 
-		// Verify account mailbox is opened up
-		ZAssert.assertTrue(app.zPageMain.zIsActive(), "Verify account mailbox is opened up");
+		// Mail page opens in separate window
+		List<String> windowIds = app.zPageMain.sGetAllWindowIds();
+		ZAssert.assertTrue(windowIds.size() > 1, "User's mailbox is not opened in the separate window");
+
+		boolean mailFound = false;
+		for(String id: windowIds) {
+			app.zPageMain.sSelectWindow(id);
+			if (app.zPageMain.sGetTitle().contains("Zimbra: Inbox") && !(app.zPageMain.sGetTitle().contains("Zimbra Administration"))) {
+				// Get the presence of mail
+				mailFound = app.zPageMain.zVerifyMailExists(subject);
+				// Close the selected window
+				app.zPageMain.sClose();
+				// Select the parent window
+				app.zPageMain.sSelectWindow("null");
+				break;
+			} else if (!(app.zPageMain.sGetTitle().contains("Zimbra Administration"))) {
+				app.zPageMain.zSeparateWindowClose(app.zPageMain.sGetTitle());
+			}
+		}
+
+		// Verify that the mail is present
+		ZAssert.assertTrue(mailFound, "Verify that user's mail is displayed to admin");
 	}
 
 
@@ -143,7 +210,18 @@ public class ViewMail extends AdminCore {
 						+			"<a xmlns='' n='zimbraAccountStatus'>lockout</a>"
 						+		"</CreateAccountRequest>");
 
-
+		// Send a mail to the account
+		String subject = "subject"+ ConfigProperties.getUniqueString();
+		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
+				"<SendMsgRequest xmlns='urn:zimbraMail'>" +
+						"<m>" +
+						"<e t='t' a='"+ account.getEmailAddress() +"'/>" +
+						"<su>"+ subject +"</su>" +
+						"<mp ct='text/plain'>" +
+						"<content>content"+ ConfigProperties.getUniqueString() +"</content>" +
+						"</mp>" +
+						"</m>" +
+				"</SendMsgRequest>");
 
 		// Enter the search string to find the account
 		app.zPageSearchResults.zAddSearchQuery(account.getEmailAddress());
@@ -160,8 +238,29 @@ public class ViewMail extends AdminCore {
 		// Wait for page to load
 		SleepUtil.sleepLong();
 
-		// Verify account mailbox is opened up
-		ZAssert.assertTrue(app.zPageMain.zIsActive(), "Verify account mailbox is opened up");
+		// Mail page opens in separate window
+		List<String> windowIds = app.zPageMain.sGetAllWindowIds();
+		ZAssert.assertTrue(windowIds.size() > 1, "User's mailbox is not opened in the separate window");
+
+		boolean mailFound = false;
+		for(String id: windowIds) {
+			app.zPageMain.sSelectWindow(id);
+			if (app.zPageMain.sGetTitle().contains("Zimbra: Inbox") && !(app.zPageMain.sGetTitle().contains("Zimbra Administration"))) {
+				// Get the presence of mail
+				mailFound = app.zPageMain.zVerifyMailExists(subject);
+				// Close the selected window
+				app.zPageMain.sClose();
+				// Select the parent window
+				app.zPageMain.sSelectWindow("null");
+				break;
+			} else if (!(app.zPageMain.sGetTitle().contains("Zimbra Administration"))) {
+				app.zPageMain.zSeparateWindowClose(app.zPageMain.sGetTitle());
+			}
+		}
+
+		// Verify that the mail is present
+		ZAssert.assertTrue(mailFound, "Verify that user's mail is displayed to admin");
+
 	}
 
 
@@ -189,6 +288,19 @@ public class ViewMail extends AdminCore {
 						+			"<password>test123</password>"
 						+		"</CreateAccountRequest>");
 
+		// Send a mail to the account
+		String subject = "subject"+ ConfigProperties.getUniqueString();
+		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
+				"<SendMsgRequest xmlns='urn:zimbraMail'>" +
+						"<m>" +
+						"<e t='t' a='"+ account.getEmailAddress() +"'/>" +
+						"<su>"+ subject +"</su>" +
+						"<mp ct='text/plain'>" +
+						"<content>content"+ ConfigProperties.getUniqueString() +"</content>" +
+						"</mp>" +
+						"</m>" +
+				"</SendMsgRequest>");
+
 		// Refresh the account list
 		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
 
@@ -198,8 +310,98 @@ public class ViewMail extends AdminCore {
 		// Wait for page to load
 		SleepUtil.sleepLong();
 
-		// Verify account mailbox is opened up
-		ZAssert.assertTrue(app.zPageMain.zIsActive(), "Verify account mailbox is opened up");
+		// Mail page opens in separate window
+		List<String> windowIds = app.zPageMain.sGetAllWindowIds();
+		ZAssert.assertTrue(windowIds.size() > 1, "User's mailbox is not opened in the separate window");
+
+		boolean mailFound = false;
+		for(String id: windowIds) {
+			app.zPageMain.sSelectWindow(id);
+			if (app.zPageMain.sGetTitle().contains("Zimbra: Inbox") && !(app.zPageMain.sGetTitle().contains("Zimbra Administration"))) {
+				// Get the presence of mail
+				mailFound = app.zPageMain.zVerifyMailExists(subject);
+				// Close the selected window
+				app.zPageMain.sClose();
+				// Select the parent window
+				app.zPageMain.sSelectWindow("null");
+				break;
+			} else if (!(app.zPageMain.sGetTitle().contains("Zimbra Administration"))) {
+				app.zPageMain.zSeparateWindowClose(app.zPageMain.sGetTitle());
+			}
+		}
+
+		// Verify that the mail is present
+		ZAssert.assertTrue(mailFound, "Verify that user's mail is displayed to admin");
+
+	}
+
+
+	@Test (description = "Verify that admin is able to view mails of a locked account",
+			groups = { "functional", "L2" })
+
+	public void ViewMail_05() throws HarnessException {
+
+		//Create a Zimbra account
+		ZimbraAccount locked = new ZimbraAccount();
+		locked.provision();
+
+		// Lock the account
+		ZimbraAdminAccount.GlobalAdmin().soapSend(
+				"<ModifyAccountRequest xmlns='urn:zimbraAdmin'>"
+						+		"<id>" + locked.ZimbraId + "</id>"
+						+		"<a n='zimbraAccountStatus'>locked</a>"
+						+	"</ModifyAccountRequest>");
+
+		// Send a mail to the account
+		String subject = "subject"+ ConfigProperties.getUniqueString();
+		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
+				"<SendMsgRequest xmlns='urn:zimbraMail'>" +
+						"<m>" +
+						"<e t='t' a='"+ locked.EmailAddress +"'/>" +
+						"<su>"+ subject +"</su>" +
+						"<mp ct='text/plain'>" +
+						"<content>content"+ ConfigProperties.getUniqueString() +"</content>" +
+						"</mp>" +
+						"</m>" +
+				"</SendMsgRequest>");
+
+		// Enter the search string to find the account
+		app.zPageSearchResults.zAddSearchQuery(locked.EmailAddress);
+
+		// Click search
+		app.zPageSearchResults.zToolbarPressButton(Button.B_SEARCH);
+
+		// Click on account
+		app.zPageSearchResults.zListItem(Action.A_LEFTCLICK, locked.EmailAddress);
+
+		// Gearbox >> View mail
+		app.zPageManageAccounts.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.B_VIEW_MAIL);
+
+		// Wait for page to load
+		SleepUtil.sleepLong();
+
+		// Mail page opens in separate window
+		List<String> windowIds = app.zPageMain.sGetAllWindowIds();
+		ZAssert.assertTrue(windowIds.size() > 1, "User's mailbox is not opened in the separate window");
+
+		boolean mailFound = false;
+		for(String id: windowIds) {
+			app.zPageMain.sSelectWindow(id);
+			if (app.zPageMain.sGetTitle().contains("Zimbra: Inbox") && !(app.zPageMain.sGetTitle().contains("Zimbra Administration"))) {
+				// Get the presence of mail
+				mailFound = app.zPageMain.zVerifyMailExists(subject);
+				// Close the selected window
+				app.zPageMain.sClose();
+				// Select the parent window
+				app.zPageMain.sSelectWindow("null");
+				break;
+			} else if (!(app.zPageMain.sGetTitle().contains("Zimbra Administration"))) {
+				app.zPageMain.zSeparateWindowClose(app.zPageMain.sGetTitle());
+			}
+		}
+
+		// Verify that the mail is present
+		ZAssert.assertTrue(mailFound, "Verify that user's mail is displayed to admin");
 	}
 
 
