@@ -2351,9 +2351,54 @@ public class PageMail extends AbsTab {
 							.sIsVisible(itemlocator + "div[id='" + messageID + "'] img[src^='data:image/png;base64']");
 					return isMessageTagged.toString();
 
-				} else {
-					break;
-				}
+				} else if (property.contains("readStatus")) {
+					messageID = this.sGetAttribute(itemlocator + "span[id^='zlif" + viewLocator + "']@id")
+							.replace("__fr", "__rd");
+					Boolean isMessageTagged = this
+							.sIsVisible(itemlocator + "div[id='" + messageID + "'] div[class='ImgMsgRead']");
+					return isMessageTagged.toString();
+
+				} else if (property.contains("msgReadStatus")) {
+					messageID = this.sGetAttribute(itemlocator + "span[id^='zlif" + viewLocator + "']@id")
+							.replace("__fr", "__st");
+					Boolean isMessageTagged = this
+							.sIsVisible(itemlocator + "div[id='" + messageID + "'] div[class='ImgMsgStatusRead']");
+					return isMessageTagged.toString();
+
+				} else if (property.contains("highPriority")) {
+					messageID = this.sGetAttribute(itemlocator + "span[id^='zlif" + viewLocator + "']@id")
+							.replace("__fr", "__pr");
+					Boolean isMessageTagged = this
+							.sIsVisible(itemlocator + "div[id='" + messageID + "'] div[class='ImgPriorityHigh_list']");
+					return isMessageTagged.toString();
+
+				} else if (property.contains("from")) {
+					messageID = this.sGetAttribute(itemlocator + "span[id^='zlif" + viewLocator + "']@id");
+					return this.sGetText(itemlocator + "span[id='" + messageID + "']");
+					
+				} else if (property.contains("subject")) {
+					messageID = this.sGetAttribute(itemlocator + "span[id^='zlif" + viewLocator + "']@id")
+							.replace("__fr", "__su");
+					return this.sGetText(itemlocator + "span[id='" + messageID + "']");
+					
+				} else if (property.contains("folder")) {
+					messageID = this.sGetAttribute(itemlocator + "span[id^='zlif" + viewLocator + "']@id")
+							.replace("__fr", "__fo");
+					return this.sGetText(itemlocator + "div[id='" + messageID + "']");
+
+				} else if (property.contains("size")) {
+					return this.sGetText(itemlocator + "div[class='ZmMsgListColSize']");
+
+				} else if (property.contains("time")) {
+					messageID = this.sGetAttribute(itemlocator + "span[id^='zlif" + viewLocator + "']@id")
+							.replace("__fr", "__dt");
+					return this.sGetText(itemlocator + "div[id='" + messageID + "']");
+
+				} else if (property.contains("mailBody")) {
+					messageID = this.sGetAttribute(itemlocator + "span[id^='zlif" + viewLocator + "']@id")
+							.replace("__fr", "__fm");
+					return this.sGetText(itemlocator + "span[id='" + messageID + "']");
+				} 
 			}
 		}
 		return null;
