@@ -52,6 +52,9 @@ public class Checkbox {
 	public static final Checkbox C_MTA_ENABLE_MILTER_SERVER = new Checkbox("C_MTA_ENABLE_MILTER_SERVER");
 	public static final Checkbox C_MTA_TLS_AUTHENTICATION_ONLY = new Checkbox("C_MTA_TLS_AUTHENTICATION_ONLY");
 	public static final Checkbox C_MTA_ENABLE_ARCHIVING = new Checkbox("C_MTA_ENABLE_ARCHIVING");
+	
+	// Ajax Preferences --> Accounts
+	public static final Checkbox C_REPLY_TO_SENT_MESSAGE = new Checkbox("C_REPLY_TO_SENT_MESSAGE");
 
 	// Checkbox properties
 	private final String ID;

@@ -26,6 +26,7 @@ import com.zimbra.qa.selenium.framework.ui.AbsPage;
 import com.zimbra.qa.selenium.framework.ui.AbsTab;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
+import com.zimbra.qa.selenium.framework.ui.Checkbox;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZDate;
@@ -106,7 +107,6 @@ public class PagePreferences extends AbsTab {
 		public static final String zAddDelegateButton = "css=div[id$='_PRIMARY'] td[id$='_title']:contains('Add Delegate')";
 		public static final String zEditPermissionsButton = "css=div[id$='_PRIMARY'] td[id$='_title']:contains('Edit Permissions')";
 		public static final String zRemovePermissionsButton = "css=div[id$='_PRIMARY'] td[id$='_title']:contains('Remove')";
-
 		public static final String z2FAEnableLink = "css=div[id='Prefs_Pages_ACCOUNTS_PRIMARY'] a[id='Prefs_Pages_ACCOUNTS_TWO_STEP_AUTH_LINK']:contains('Setup two-step authentication ...')";
 		public static final String zDisable2FALink = "css=div[id='Prefs_Pages_ACCOUNTS_PRIMARY'] a[id='Prefs_Pages_ACCOUNTS_TWO_STEP_AUTH_LINK']:contains('Disable two-step authentication ...')";
 		public static final String zTrustedDeviceCount = "css=td[class='ZOptionsField'] span[id='Prefs_Pages_ACCOUNTS_TRUSTED_DEVICES_COUNT']:contains('You have 1 trusted device')";
@@ -121,7 +121,10 @@ public class PagePreferences extends AbsTab {
 		public static final String zImapRadioButton = "css=input[id$='_input'][value='Imap']";
 		public static final String zImapText = "css=div#Prefs_Pages_ACCOUNTS_EXTERNAL td.ZOptionsField:contains('IMAP')";
 		public static final String zPop3Text = "css=div#Prefs_Pages_ACCOUNTS_EXTERNAL td.ZOptionsField:contains('POP3')";
-
+		public static final String zReplyToSentMessageCheckbox = "css=input#Prefs_Pages_ACCOUNTS_PRIMARY_REPLY_TO";
+		public static final String zReplyToSentMessageName = "css=input#Prefs_Pages_ACCOUNTS_PRIMARY_REPLY_TO_NAME";
+		public static final String zReplyToSentMessageEmail = "css=input#Prefs_ComboBox_REPLY_TO_EMAIL_input";
+		
 		// Import/Export
 		public static final String zBrowseFileButton = "css=input#ZmImportView_FILE";
 		public static final String zImportButton = "css=div[id='IMPORT_BUTTON'] td[id$='_title']";
@@ -848,6 +851,42 @@ public class PagePreferences extends AbsTab {
 
 		this.zWaitForBusyOverlay();
 
+	}
+	
+	public void zCheckboxSet(Checkbox checkbox, boolean status) throws HarnessException {
+		logger.info("zCheckboxSet(" + checkbox + ") = " + status);
+
+		if (checkbox == null) {
+			throw new HarnessException("Checkbox cannot be null!");
+		}
+
+		String locator = null;
+
+		switch (checkbox.toString()) {
+
+		case "C_REPLY_TO_SENT_MESSAGE":
+			locator = Locators.zReplyToSentMessageCheckbox;
+			break;
+
+		default:
+			new HarnessException("Action for " + checkbox + " is not implemented!");
+		}
+
+		if (!this.sIsElementPresent(locator)) {
+			throw new HarnessException(locator + " not present!");
+		}
+
+		if (this.sIsChecked(locator) == status) {
+			logger.debug("checkbox status matched.  not doing anything");
+			return;
+		}
+		if (status == true) {
+			this.sCheck(locator);
+		} else {
+			this.sUncheck(locator);
+		}
+
+		this.zWaitForBusyOverlay();
 	}
 
 	public static class ShareItem {
