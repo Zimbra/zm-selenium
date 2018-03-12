@@ -152,7 +152,7 @@ public class CreateAppointment extends AjaxCore {
 
 
 	@Test (description = "Create basic appointment using quick add dialog and add date and time using date/time picker",
-			groups = { "smoke", "L0" } )
+			groups = { "smoke", "L0", "non-msedge" } )
 
 	public void CreateAppointment_04() throws HarnessException {
 
