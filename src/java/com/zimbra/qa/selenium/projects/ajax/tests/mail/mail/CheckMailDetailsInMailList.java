@@ -19,12 +19,17 @@ package com.zimbra.qa.selenium.projects.ajax.tests.mail.mail;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import org.testng.annotations.Test;
+import com.zimbra.qa.selenium.framework.items.FolderItem;
+import com.zimbra.qa.selenium.framework.items.MailItem;
+import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.projects.ajax.core.SetGroupMailByMessagePreference;
+import com.zimbra.qa.selenium.projects.ajax.pages.mail.FormMailNew;
+import com.zimbra.qa.selenium.projects.ajax.pages.mail.FormMailNew.Field;
 
 public class CheckMailDetailsInMailList extends SetGroupMailByMessagePreference {
 
@@ -33,7 +38,7 @@ public class CheckMailDetailsInMailList extends SetGroupMailByMessagePreference 
 	}
 
 
-	@Test (description = "Verify mail details displayed in mail list",
+	@Test (description = "Verify mail details displayed in inbox mail list",
 			groups = { "smoke", "L1" })
 
 	public void CheckMailDetailsInMailList_01() throws HarnessException {
@@ -77,6 +82,55 @@ public class CheckMailDetailsInMailList extends SetGroupMailByMessagePreference 
 		ZAssert.assertStringContains(app.zPageMail.zGetMessageProperty(subject, "subject"), subject, "Verify that subject is shown correctly in the mail list");
 		ZAssert.assertStringContains(app.zPageMail.zGetMessageProperty(subject, "folder"), "Inbox", "Verify that folder name is displayed correctly in the mail list");
 		ZAssert.assertStringContains(app.zPageMail.zGetMessageProperty(subject, "size"), "2 KB", "Verify that size of the message is shown correctly in the mail list");
+		ZAssert.assertStringContains(app.zPageMail.zGetMessageProperty(subject, "time"), time, "Verify that message delivery time is displayed correctly in the mail list");
+		ZAssert.assertStringContains(app.zPageMail.zGetMessageProperty(subject, "mailBody"), body, "Verify that the message body is shown as correctly in the mail list");
+	}
+	
+	@Test (description = "Verify mail details displayed in sent mail list",
+			groups = { "smoke", "L1" })
+
+	public void CheckMailDetailsInMailList_02() throws HarnessException {
+
+		// Create the message data to be sent
+		String subject = "Subject of mail in sent mail list " + ConfigProperties.getUniqueString();
+		String body = "Body of mail in sent mail list " + ConfigProperties.getUniqueString();
+		
+		// Open the new mail form
+		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
+
+		// Fill out the form with the data
+		mailform.zFillField(Field.To, ZimbraAccount.Account10().EmailAddress);
+		mailform.zFillField(Field.Subject, subject);
+		mailform.zFillField(Field.Body, body);
+		mailform.zToolbarPressPulldown(Button.B_PRIORITY, Button.O_PRIORITY_HIGH);
+		mailform.zSubmit();
+		
+		// Verify that mail is sent correctly
+		MailItem received = MailItem.importFromSOAP(ZimbraAccount.Account10(), "subject:("+ subject +")");
+		ZAssert.assertNotNull(received, "Verify the message is received");
+		
+		// Go to sent folder
+		FolderItem sent = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Sent);
+		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, sent);
+		
+		// Time of mail delivery
+		SimpleDateFormat formatDate = new SimpleDateFormat("h:mm a");
+		String time = formatDate.format(Calendar.getInstance().getTime());
+		
+		// Change the reading pane to bottom
+		app.zPageMail.zToolbarPressButton(Button.B_MAIL_VIEW_READING_PANE_BOTTOM);
+		
+		// Verify the mail details displayed in mail list
+		ZAssert.assertStringContains(app.zPageMail.zGetMessageProperty(subject, "flag"), "false", "Verify the message is shown as unflagged in the mail list");
+		ZAssert.assertStringContains(app.zPageMail.zGetMessageProperty(subject, "highPriority"), "true", "Verify the message is shown as high priority message in the mail list");
+		ZAssert.assertStringContains(app.zPageMail.zGetMessageProperty(subject, "tag"), "false", "Verify the message is shown as untagged in the mail list");
+		ZAssert.assertStringContains(app.zPageMail.zGetMessageProperty(subject, "readStatus"), "true", "Verify the message is shown as unread in the mail list");
+		ZAssert.assertStringContains(app.zPageMail.zGetMessageProperty(subject, "msgSentStatus"), "true", "Verify the message is shown as unread in the mail list");
+		ZAssert.assertStringContains(app.zPageMail.zGetMessageProperty(subject, "to"), ZimbraAccount.Account10().DisplayName, "Verify that from address in message is shown as correctly in the mail list");
+		ZAssert.assertStringContains(app.zPageMail.zGetMessageProperty(subject, "attachment"), "false", "Verify that attachment synbol is not shown in mail list");
+		ZAssert.assertStringContains(app.zPageMail.zGetMessageProperty(subject, "subject"), subject, "Verify that subject is shown correctly in the mail list");
+		ZAssert.assertStringContains(app.zPageMail.zGetMessageProperty(subject, "folder"), "Sent", "Verify that folder name is displayed correctly in the mail list");
+		ZAssert.assertStringContains(app.zPageMail.zGetMessageProperty(subject, "size"), "1 KB", "Verify that size of the message is shown correctly in the mail list");
 		ZAssert.assertStringContains(app.zPageMail.zGetMessageProperty(subject, "time"), time, "Verify that message delivery time is displayed correctly in the mail list");
 		ZAssert.assertStringContains(app.zPageMail.zGetMessageProperty(subject, "mailBody"), body, "Verify that the message body is shown as correctly in the mail list");
 	}

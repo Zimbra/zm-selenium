@@ -19,6 +19,7 @@ package com.zimbra.qa.selenium.projects.ajax.tests.tasks.folders;
 import java.util.HashMap;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
+import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.Action;
@@ -103,7 +104,7 @@ public class CreateTaskFolder extends AjaxCore {
 		ZAssert.assertEquals(folder.getName(), _folderName,"Verify the server and client folder names match");
 	}
 	
-	
+	@Bugs( ids = "50877" )
 	@Test (description = "Create a new sub tasklist using task context menu:Right Click Tasks --> New Task List",
 			groups = { "functional", "L2" })
 

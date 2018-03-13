@@ -137,7 +137,8 @@ public class PagePreferences extends AbsTab {
 		public static final String zDisplayMessageColor = "css=input[id$='_MAIL_COLOR_MESSAGES']";
 		public static final String zDisplayMailAsHTML = "div[id='Prefs_RadioGroup_VIEW_AS_HTML'] input[value='true']";
 		public static final String zDisplayMailAsText = "div[id='Prefs_RadioGroup_VIEW_AS_HTML'] input[value='false']";
-
+		public static final String zDisplayMailReceivedTime = "css=input#Prefs_Pages_MAIL_DISPLAY_TIME_IN_MAIL_LIST";
+		
 		// Mail > composing
 		public static final String zMandatorySpellCheck = "css=input[id$='_MAIL_MANDATORY_SPELLCHECK']";
 
@@ -866,6 +867,10 @@ public class PagePreferences extends AbsTab {
 
 		case "C_REPLY_TO_SENT_MESSAGE":
 			locator = Locators.zReplyToSentMessageCheckbox;
+			break;
+			
+		case "C_DISPLAY_RECEIVED_TIME":
+			locator = Locators.zDisplayMailReceivedTime;
 			break;
 
 		default:

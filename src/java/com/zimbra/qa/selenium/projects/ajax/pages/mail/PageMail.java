@@ -2328,46 +2328,46 @@ public class PageMail extends AbsTab {
 			String listSubject = this.sGetText(itemlocator + " [id$='__su']").trim();
 
 			if (listSubject.contains(subject)) {
-				String messageID = this.sGetAttribute(itemlocator + " span[id^='zlif" + viewLocator + "']@id");
+				String messageID;
 
 				if (property.contains("flag")) {
-					messageID = this.sGetAttribute(itemlocator + "span[id^='zlif" + viewLocator + "']@id")
-							.replace("__fr", "__fg");
+					messageID = this.sGetAttribute(itemlocator + "div[id^='zlif" + viewLocator + "']@id")
+							.replace("__rw", "__fg");
 					Boolean isMessageFlagged = this
 							.sIsVisible(itemlocator + "div[id='" + messageID + "'] div[class='ImgFlagRed']");
 					return isMessageFlagged.toString();
 
 				} else if (property.contains("attachment")) {
-					messageID = this.sGetAttribute(itemlocator + "span[id^='zlif" + viewLocator + "']@id")
-							.replace("__fr", "__at");
+					messageID = this.sGetAttribute(itemlocator + "div[id^='zlif" + viewLocator + "']@id")
+							.replace("__rw", "__at");
 					Boolean isMessageContainsAttachment = this
 							.sIsVisible(itemlocator + "div[id='" + messageID + "'] div[class='ImgAttachment']");
 					return isMessageContainsAttachment.toString();
 
 				} else if (property.contains("tag")) {
-					messageID = this.sGetAttribute(itemlocator + "span[id^='zlif" + viewLocator + "']@id")
-							.replace("__fr", "__tg");
+					messageID = this.sGetAttribute(itemlocator + "div[id^='zlif" + viewLocator + "']@id")
+							.replace("__rw", "__tg");
 					Boolean isMessageTagged = this
 							.sIsVisible(itemlocator + "div[id='" + messageID + "'] img[src^='data:image/png;base64']");
 					return isMessageTagged.toString();
 
 				} else if (property.contains("readStatus")) {
-					messageID = this.sGetAttribute(itemlocator + "span[id^='zlif" + viewLocator + "']@id")
-							.replace("__fr", "__rd");
+					messageID = this.sGetAttribute(itemlocator + "div[id^='zlif" + viewLocator + "']@id")
+							.replace("__rw", "__rd");
 					Boolean isMessageTagged = this
 							.sIsVisible(itemlocator + "div[id='" + messageID + "'] div[class='ImgMsgRead']");
 					return isMessageTagged.toString();
 
 				} else if (property.contains("msgReadStatus")) {
-					messageID = this.sGetAttribute(itemlocator + "span[id^='zlif" + viewLocator + "']@id")
-							.replace("__fr", "__st");
+					messageID = this.sGetAttribute(itemlocator + "div[id^='zlif" + viewLocator + "']@id")
+							.replace("__rw", "__st");
 					Boolean isMessageTagged = this
 							.sIsVisible(itemlocator + "div[id='" + messageID + "'] div[class='ImgMsgStatusRead']");
 					return isMessageTagged.toString();
 
 				} else if (property.contains("highPriority")) {
-					messageID = this.sGetAttribute(itemlocator + "span[id^='zlif" + viewLocator + "']@id")
-							.replace("__fr", "__pr");
+					messageID = this.sGetAttribute(itemlocator + "div[id^='zlif" + viewLocator + "']@id")
+							.replace("__rw", "__pr");
 					Boolean isMessageTagged = this
 							.sIsVisible(itemlocator + "div[id='" + messageID + "'] div[class='ImgPriorityHigh_list']");
 					return isMessageTagged.toString();
@@ -2375,30 +2375,39 @@ public class PageMail extends AbsTab {
 				} else if (property.contains("from")) {
 					messageID = this.sGetAttribute(itemlocator + "span[id^='zlif" + viewLocator + "']@id");
 					return this.sGetText(itemlocator + "span[id='" + messageID + "']");
-					
+
 				} else if (property.contains("subject")) {
-					messageID = this.sGetAttribute(itemlocator + "span[id^='zlif" + viewLocator + "']@id")
-							.replace("__fr", "__su");
+					messageID = this.sGetAttribute(itemlocator + "span[id^='zlif" + viewLocator + "'][id$='__su']@id");
 					return this.sGetText(itemlocator + "span[id='" + messageID + "']");
-					
+
 				} else if (property.contains("folder")) {
-					messageID = this.sGetAttribute(itemlocator + "span[id^='zlif" + viewLocator + "']@id")
-							.replace("__fr", "__fo");
+					messageID = this.sGetAttribute(itemlocator + "div[id^='zlif" + viewLocator + "']@id")
+							.replace("__rw", "__fo");
 					return this.sGetText(itemlocator + "div[id='" + messageID + "']");
 
 				} else if (property.contains("size")) {
 					return this.sGetText(itemlocator + "div[class='ZmMsgListColSize']");
 
 				} else if (property.contains("time")) {
-					messageID = this.sGetAttribute(itemlocator + "span[id^='zlif" + viewLocator + "']@id")
-							.replace("__fr", "__dt");
+					messageID = this.sGetAttribute(itemlocator + "div[id^='zlif" + viewLocator + "']@id")
+							.replace("__rw", "__dt");
 					return this.sGetText(itemlocator + "div[id='" + messageID + "']");
 
 				} else if (property.contains("mailBody")) {
-					messageID = this.sGetAttribute(itemlocator + "span[id^='zlif" + viewLocator + "']@id")
-							.replace("__fr", "__fm");
+					messageID = this.sGetAttribute(itemlocator + "span[id^='zlif" + viewLocator + "'][id$='__fm']@id");
 					return this.sGetText(itemlocator + "span[id='" + messageID + "']");
-				} 
+
+				} else if (property.contains("to")) {
+					messageID = this.sGetAttribute(itemlocator + "span[id^='zlif" + viewLocator + "'][id$='__fr__0']@id");
+					return this.sGetText(itemlocator + "span[id='" + messageID + "']");
+
+				} else if (property.contains("msgSentStatus")) {
+					messageID = this.sGetAttribute(itemlocator + "div[id^='zlif" + viewLocator + "']@id")
+							.replace("__rw", "__st");
+					Boolean isMessageTagged = this
+							.sIsVisible(itemlocator + "div[id='" + messageID + "'] div[class='ImgMsgStatusSent']");
+					return isMessageTagged.toString();
+				}
 			}
 		}
 		return null;
