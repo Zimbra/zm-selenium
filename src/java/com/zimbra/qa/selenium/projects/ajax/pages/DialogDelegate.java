@@ -97,9 +97,9 @@ public class DialogDelegate extends AbsDialog {
 		String locator;
 
 		if (ConfigProperties.getStringProperty("browser").contains("msedge")) {
-			locator = "css=input#ZmGrantRightsDialog_name";
-		} else {
 			locator = "css=textarea#ZmGrantRightsDialog_name";
+		} else {
+			locator = "css=input#ZmGrantRightsDialog_name";
 		}
 
 		if (!this.sIsElementPresent(locator)) {
