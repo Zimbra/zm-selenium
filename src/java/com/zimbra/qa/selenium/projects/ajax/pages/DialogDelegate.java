@@ -18,6 +18,7 @@ package com.zimbra.qa.selenium.projects.ajax.pages;
 
 import java.awt.event.KeyEvent;
 import com.zimbra.qa.selenium.framework.ui.*;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 
@@ -93,7 +94,13 @@ public class DialogDelegate extends AbsDialog {
 	public void zSetEmailAddress(String email) throws HarnessException {
 		logger.info(myPageName() + " zSetEmailAddress(" + email + ")");
 
-		String locator = "css=input#ZmGrantRightsDialog_name";
+		String locator;
+
+		if (ConfigProperties.getStringProperty("browser").contains("msedge")) {
+			locator = "css=input#ZmGrantRightsDialog_name";
+		} else {
+			locator = "css=textarea#ZmGrantRightsDialog_name";
+		}
 
 		if (!this.sIsElementPresent(locator)) {
 			throw new HarnessException("zSetEmailAddress " + locator + " is not present");
