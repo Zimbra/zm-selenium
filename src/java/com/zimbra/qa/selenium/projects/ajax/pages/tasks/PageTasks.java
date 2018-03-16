@@ -32,7 +32,6 @@ public class PageTasks extends AbsTab {
 		public static final String zTasksFolder = "zti__main_Tasks__15_textCell";
 
 		public static final String zl__TKL__rowsID = "zl__TKL-main__rows";
-		public static final String _newTaskBannerID = "_newTaskBannerId";
 		public static final String _upComingTaskListHdrID = "_upComingTaskListHdr";
 		public static final String zli__TKL__ = "zli__TKL-";
 
@@ -69,6 +68,7 @@ public class PageTasks extends AbsTab {
 		public static final String zTaskSubject = "css=div.MsgHeaderTable div.SubjectCol";
 		public static final String zTaskStartDate = "css=div.MsgHeaderTable table[id$='_hdrTable'] tr[id$='_sd']";
 		public static final String zTaskDueDate = "css=div.MsgHeaderTable table[id$='_hdrTable'] tr[id$='_ed']";
+		public static final String zNewTaskBanner = "css=div[id$='_newTaskBannerId'] div.newTaskBanner";
 	}
 
 	public PageTasks(AbsApplication application) {
