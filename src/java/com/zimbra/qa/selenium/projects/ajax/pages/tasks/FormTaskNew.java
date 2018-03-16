@@ -46,7 +46,7 @@ public class FormTaskNew extends AbsForm {
 		public static final String zBccField = "css=[id^=zv__COMPOSE][id$=_bcc_control]";
 		public static final String zSubjectField = "css=div[id^=zv__COMPOSE] input[id$=_subject_control]";
 
-		public static final String zBodyFrameHTML = "//div[contains(id,'zv__COMPOSE')]//iframe";
+		public static final String zPlainTextEditor = "css=div[class='ZmTaskEditView'] div[id$='_notes'] textarea[id$='_body']";
 
 		public static final String zPriorityPulldown = "css=[id^=zv__COMPOSE][id$=___priority_dropdown]";
 		public static final String zPriorityOptionHigh = "css=[id^=zv__COMPOSE][id$=___priority_dropdown]";
@@ -272,7 +272,7 @@ public class FormTaskNew extends AbsForm {
 
 		} else if (field == Field.Body) {
 
-			locator = "css=div[class='ZmTaskEditView'] div[id$='_notes'] textarea[id$='_body']";
+			locator = "css=div[class='ZmTaskEditView']:not([aria-hidden='true']) div[id$='_notes'] textarea[id$='_body']";
 			this.sFocus(locator);
 			this.sClickAt(locator, "");
 			this.sType(locator, value);
@@ -391,5 +391,8 @@ public class FormTaskNew extends AbsForm {
 		this.sClick("//div[@class='DwtMenu' and contains(@style,'display: block;')]/descendant::td[text()='" + Day
 				+ "' and not(contains(@class,'DwtCalendarDay-grey'))]");
 	}
-
+	
+	public boolean zIsTextEditorDisplayed() throws HarnessException {
+		return sIsElementPresent("css=div[id^='ZmHtmlEditor'] div[id^='mceu_'][style*='display: none']");
+	}
 }
