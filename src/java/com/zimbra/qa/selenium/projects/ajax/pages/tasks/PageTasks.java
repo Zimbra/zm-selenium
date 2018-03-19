@@ -16,12 +16,29 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.pages.tasks;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 import org.openqa.selenium.WebDriverException;
-import com.zimbra.qa.selenium.framework.items.*;
-import com.zimbra.qa.selenium.framework.ui.*;
-import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.pages.*;
+import com.zimbra.qa.selenium.framework.items.FolderItem;
+import com.zimbra.qa.selenium.framework.items.TaskItem;
+import com.zimbra.qa.selenium.framework.ui.AbsApplication;
+import com.zimbra.qa.selenium.framework.ui.AbsPage;
+import com.zimbra.qa.selenium.framework.ui.AbsTab;
+import com.zimbra.qa.selenium.framework.ui.Action;
+import com.zimbra.qa.selenium.framework.ui.Button;
+import com.zimbra.qa.selenium.framework.ui.Shortcut;
+import com.zimbra.qa.selenium.framework.util.HarnessException;
+import com.zimbra.qa.selenium.framework.util.SleepUtil;
+import com.zimbra.qa.selenium.framework.util.ZAssert;
+import com.zimbra.qa.selenium.projects.ajax.pages.AjaxPages;
+import com.zimbra.qa.selenium.projects.ajax.pages.ContextMenu;
+import com.zimbra.qa.selenium.projects.ajax.pages.DialogAssistant;
+import com.zimbra.qa.selenium.projects.ajax.pages.DialogMove;
+import com.zimbra.qa.selenium.projects.ajax.pages.DialogTag;
+import com.zimbra.qa.selenium.projects.ajax.pages.DialogWarning;
+import com.zimbra.qa.selenium.projects.ajax.pages.SeparateWindow;
+import com.zimbra.qa.selenium.projects.ajax.pages.SeparateWindowPrintPreview;
+import com.zimbra.qa.selenium.projects.ajax.pages.ZimbraDOM;
 
 public class PageTasks extends AbsTab {
 
@@ -228,7 +245,7 @@ public class PageTasks extends AbsTab {
 
 			// double-click on the item
 			this.sDoubleClick(itemLocator);
-			page = null;
+			page = new FormTaskNew(this.MyApplication);
 
 		} else if (action == Action.A_MAIL_UNCHECKBOX) {
 
@@ -945,6 +962,26 @@ public class PageTasks extends AbsTab {
 					ZimbraDOM.COMPONENT_TYPE.WIDGET_BUTTON, ZimbraDOM.COMPONENT_NAME.OP_MOVE_MENU) + "'].ZDisabled");
 		} else {
 			return false;
+		}
+	}
+	
+	public boolean zVerifyTaskExists(String subject) throws HarnessException {
+		String taskLocator = "css=div[id^='zli__TKL-main'] td[id^='zlif__TKL-main'][id$='__su']"; 
+		return sIsElementPresent(taskLocator + ":contains('" +  subject + "')");
+	}
+	
+	public boolean zVerifyTaskBody(String content) throws HarnessException {
+		try {
+			webDriver().switchTo().defaultContent();
+			webDriver().switchTo().frame(0);
+			if (this.getElement("css=html body").getText().equals(content)) {
+				return true;
+			} else {
+				return false;
+			}
+
+		} finally {
+			webDriver().switchTo().defaultContent();
 		}
 	}
 }
