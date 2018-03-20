@@ -98,8 +98,10 @@ public class PageMail extends AbsTab {
 
 		public static final String ProposeNewTimeButtonMsgView = "id=zb__TV-main__Inv__PROPOSE_NEW_TIME_title";
 
+		public static final String zMsgViewInfoBar = "css=div#zv__TV__TV-main_MSG_displayImages";
 		public static final String zMsgViewDisplayImgLink = "css=a#zv__TV__TV-main_MSG_displayImages_dispImgs";
 		public static final String zMsgViewDomainLink = "css=a#zv__TV__TV-main_MSG_displayImages_domain";
+		public static final String zMsgViewEmailLink = "css=a#zv__TV__TV-main_MSG_displayImages_email";
 		public static final String zMsgExternalImage = "css=body.MsgBody img";
 		public static final String zMsgViewWarningIcon = "css=div#zv__TV__TV-main_MSG_displayImages.DisplayImages div.ImgWarning";
 		public static final String zConViewDisplayImgLink = "css=a[id$='_displayImages_dispImgs']";
