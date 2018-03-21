@@ -16,12 +16,20 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.mountpoints.manager;
 
-import org.testng.annotations.*;
-import com.zimbra.qa.selenium.framework.core.*;
-import com.zimbra.qa.selenium.framework.items.*;
-import com.zimbra.qa.selenium.framework.ui.*;
-import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.projects.ajax.core.*;
+import org.testng.annotations.Test;
+import com.zimbra.qa.selenium.framework.core.Bugs;
+import com.zimbra.qa.selenium.framework.items.FolderItem;
+import com.zimbra.qa.selenium.framework.items.FolderMountpointItem;
+import com.zimbra.qa.selenium.framework.items.MailItem;
+import com.zimbra.qa.selenium.framework.ui.Action;
+import com.zimbra.qa.selenium.framework.ui.Button;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
+import com.zimbra.qa.selenium.framework.util.HarnessException;
+import com.zimbra.qa.selenium.framework.util.ZAssert;
+import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
+import com.zimbra.qa.selenium.projects.ajax.core.SetGroupMailByMessagePreference;
+import com.zimbra.qa.selenium.projects.ajax.pages.DialogWarning;
+import com.zimbra.qa.selenium.projects.ajax.pages.DialogWarning.DialogWarningID;
 
 public class DeleteMail extends SetGroupMailByMessagePreference {
 
@@ -45,41 +53,41 @@ public class DeleteMail extends SetGroupMailByMessagePreference {
 
 		// Create a folder to share
 		ZimbraAccount.AccountA().soapSend(
-					"<CreateFolderRequest xmlns='urn:zimbraMail'>"
-				+		"<folder name='" + foldername + "' l='" + inbox.getId() + "'/>"
-				+	"</CreateFolderRequest>");
+				"<CreateFolderRequest xmlns='urn:zimbraMail'>"
+						+		"<folder name='" + foldername + "' l='" + inbox.getId() + "'/>"
+						+	"</CreateFolderRequest>");
 
 		FolderItem folder = FolderItem.importFromSOAP(ZimbraAccount.AccountA(), foldername);
 
 		// Share it
 		ZimbraAccount.AccountA().soapSend(
-					"<FolderActionRequest xmlns='urn:zimbraMail'>"
-				+		"<action id='"+ folder.getId() +"' op='grant'>"
-				+			"<grant d='"+ app.zGetActiveAccount().EmailAddress +"' gt='usr' perm='rwidx'/>"
-				+		"</action>"
-				+	"</FolderActionRequest>");
+				"<FolderActionRequest xmlns='urn:zimbraMail'>"
+						+		"<action id='"+ folder.getId() +"' op='grant'>"
+						+			"<grant d='"+ app.zGetActiveAccount().EmailAddress +"' gt='usr' perm='rwidx'/>"
+						+		"</action>"
+						+	"</FolderActionRequest>");
 
 		// Add a message to it
 		ZimbraAccount.AccountA().soapSend(
-					"<AddMsgRequest xmlns='urn:zimbraMail'>"
-        		+		"<m l='"+ folder.getId() +"' f='u'>"
-            	+			"<content>From: foo@foo.com\n"
-            	+				"To: foo@foo.com \n"
-            	+				"Subject: "+ subject +"\n"
-            	+				"MIME-Version: 1.0 \n"
-            	+				"Content-Type: text/plain; charset=utf-8 \n"
-            	+				"Content-Transfer-Encoding: 7bit\n"
-            	+				"\n"
-            	+				"simple text string in the body\n"
-            	+			"</content>"
-            	+		"</m>"
-				+	"</AddMsgRequest>");
+				"<AddMsgRequest xmlns='urn:zimbraMail'>"
+						+		"<m l='"+ folder.getId() +"' f='u'>"
+						+			"<content>From: foo@foo.com\n"
+						+				"To: foo@foo.com \n"
+						+				"Subject: "+ subject +"\n"
+						+				"MIME-Version: 1.0 \n"
+						+				"Content-Type: text/plain; charset=utf-8 \n"
+						+				"Content-Transfer-Encoding: 7bit\n"
+						+				"\n"
+						+				"simple text string in the body\n"
+						+			"</content>"
+						+		"</m>"
+						+	"</AddMsgRequest>");
 
 		// Mount it
 		app.zGetActiveAccount().soapSend(
-					"<CreateMountpointRequest xmlns='urn:zimbraMail'>"
-				+		"<link l='1' name='"+ mountpointname +"'  rid='"+ folder.getId() +"' zid='"+ ZimbraAccount.AccountA().ZimbraId +"'/>"
-				+	"</CreateMountpointRequest>");
+				"<CreateMountpointRequest xmlns='urn:zimbraMail'>"
+						+		"<link l='1' name='"+ mountpointname +"'  rid='"+ folder.getId() +"' zid='"+ ZimbraAccount.AccountA().ZimbraId +"'/>"
+						+	"</CreateMountpointRequest>");
 
 		FolderMountpointItem mountpoint = FolderMountpointItem.importFromSOAP(app.zGetActiveAccount(), mountpointname);
 
@@ -130,56 +138,56 @@ public class DeleteMail extends SetGroupMailByMessagePreference {
 
 		// Create a folder to share
 		ZimbraAccount.AccountA().soapSend(
-					"<CreateFolderRequest xmlns='urn:zimbraMail'>"
-				+		"<folder name='" + foldername + "' l='" + inbox.getId() + "'/>"
-				+	"</CreateFolderRequest>");
+				"<CreateFolderRequest xmlns='urn:zimbraMail'>"
+						+		"<folder name='" + foldername + "' l='" + inbox.getId() + "'/>"
+						+	"</CreateFolderRequest>");
 
 		FolderItem folder = FolderItem.importFromSOAP(ZimbraAccount.AccountA(), foldername);
 
 		// Share it
 		ZimbraAccount.AccountA().soapSend(
-					"<FolderActionRequest xmlns='urn:zimbraMail'>"
-				+		"<action id='"+ folder.getId() +"' op='grant'>"
-				+			"<grant d='"+ app.zGetActiveAccount().EmailAddress +"' gt='usr' perm='rwidx'/>"
-				+		"</action>"
-				+	"</FolderActionRequest>");
+				"<FolderActionRequest xmlns='urn:zimbraMail'>"
+						+		"<action id='"+ folder.getId() +"' op='grant'>"
+						+			"<grant d='"+ app.zGetActiveAccount().EmailAddress +"' gt='usr' perm='rwidx'/>"
+						+		"</action>"
+						+	"</FolderActionRequest>");
 
 		// Add a message to it
 		ZimbraAccount.AccountA().soapSend(
 				"<AddMsgRequest xmlns='urn:zimbraMail'>"
-    		+		"<m l='"+ folder.getId() +"' f='u'>"
-        	+			"<content>From: foo@foo.com\n"
-        	+				"To: foo@foo.com \n"
-        	+				"Subject: "+ subject1 +"\n"
-        	+				"MIME-Version: 1.0 \n"
-        	+				"Content-Type: text/plain; charset=utf-8 \n"
-        	+				"Content-Transfer-Encoding: 7bit\n"
-        	+				"\n"
-        	+				"simple text string in the body\n"
-        	+			"</content>"
-        	+		"</m>"
-			+	"</AddMsgRequest>");
+						+		"<m l='"+ folder.getId() +"' f='u'>"
+						+			"<content>From: foo@foo.com\n"
+						+				"To: foo@foo.com \n"
+						+				"Subject: "+ subject1 +"\n"
+						+				"MIME-Version: 1.0 \n"
+						+				"Content-Type: text/plain; charset=utf-8 \n"
+						+				"Content-Transfer-Encoding: 7bit\n"
+						+				"\n"
+						+				"simple text string in the body\n"
+						+			"</content>"
+						+		"</m>"
+						+	"</AddMsgRequest>");
 
 		ZimbraAccount.AccountA().soapSend(
 				"<AddMsgRequest xmlns='urn:zimbraMail'>"
-    		+		"<m l='"+ folder.getId() +"' f='u'>"
-        	+			"<content>From: foo@foo.com\n"
-        	+				"To: foo@foo.com \n"
-        	+				"Subject: "+ subject2 +"\n"
-        	+				"MIME-Version: 1.0 \n"
-        	+				"Content-Type: text/plain; charset=utf-8 \n"
-        	+				"Content-Transfer-Encoding: 7bit\n"
-        	+				"\n"
-        	+				"simple text string in the body\n"
-        	+			"</content>"
-        	+		"</m>"
-			+	"</AddMsgRequest>");
+						+		"<m l='"+ folder.getId() +"' f='u'>"
+						+			"<content>From: foo@foo.com\n"
+						+				"To: foo@foo.com \n"
+						+				"Subject: "+ subject2 +"\n"
+						+				"MIME-Version: 1.0 \n"
+						+				"Content-Type: text/plain; charset=utf-8 \n"
+						+				"Content-Transfer-Encoding: 7bit\n"
+						+				"\n"
+						+				"simple text string in the body\n"
+						+			"</content>"
+						+		"</m>"
+						+	"</AddMsgRequest>");
 
 		// Mount it
 		app.zGetActiveAccount().soapSend(
-					"<CreateMountpointRequest xmlns='urn:zimbraMail'>"
-				+		"<link l='1' name='"+ mountpointname +"'  rid='"+ folder.getId() +"' zid='"+ ZimbraAccount.AccountA().ZimbraId +"'/>"
-				+	"</CreateMountpointRequest>");
+				"<CreateMountpointRequest xmlns='urn:zimbraMail'>"
+						+		"<link l='1' name='"+ mountpointname +"'  rid='"+ folder.getId() +"' zid='"+ ZimbraAccount.AccountA().ZimbraId +"'/>"
+						+	"</CreateMountpointRequest>");
 
 		FolderMountpointItem mountpoint = FolderMountpointItem.importFromSOAP(app.zGetActiveAccount(), mountpointname);
 
@@ -219,5 +227,103 @@ public class DeleteMail extends SetGroupMailByMessagePreference {
 		mail = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "subject:("+ subject2 +") is:anywhere");
 		ZAssert.assertNotNull(mail, "Verify the message exists in the mailbox");
 		ZAssert.assertEquals(mail.dFolderId, trash.getId(), "Verify the message exists in the owner's trash folder");
+	}
+
+
+	@Bugs (ids = "66715")
+	@Test (description = "Delete a message from a mountpoint folder which has retention policy of 1 month and verify the warning dialog",
+			groups = { "functional", "L3" })
+
+	public void DeleteMailFromFolderWithRetention_03() throws HarnessException {
+
+		String warningMessagePart1 = "You are deleting a message that is within its folder's retention period.";
+		String warningMessagePart2 = "Do you wish to delete the message?";
+		String subject = "subject" + ConfigProperties.getUniqueString();
+		String mountpointname = "mountpoint" + ConfigProperties.getUniqueString();
+
+		FolderItem inbox = FolderItem.importFromSOAP(ZimbraAccount.AccountA(), FolderItem.SystemFolder.Inbox);
+
+		// Add a retention policy to the inbox folder
+		ZimbraAccount.AccountA().soapSend(
+				"<FolderActionRequest xmlns='urn:zimbraMail'>"
+						+		"<action id='" + inbox.getId() + "' op='retentionpolicy'>"
+						+			"<retentionPolicy>"
+						+				"<keep>"
+						+					"<policy lifetime='30d' type='user'/>"
+						+				"</keep>"
+						+			"</retentionPolicy>"
+						+		"</action>"
+						+	"</FolderActionRequest>");
+
+		// Share the inbox folder
+		ZimbraAccount.AccountA().soapSend(
+				"<FolderActionRequest xmlns='urn:zimbraMail'>"
+						+		"<action id='"+ inbox.getId() +"' op='grant'>"
+						+			"<grant d='"+ app.zGetActiveAccount().EmailAddress +"' gt='usr' perm='rwidx'/>"
+						+		"</action>"
+						+	"</FolderActionRequest>");
+
+		// Add a message to it
+		ZimbraAccount.AccountA().soapSend(
+				"<AddMsgRequest xmlns='urn:zimbraMail'>"
+						+		"<m l='"+ inbox.getId() +"' f='u'>"
+						+			"<content>From: foo@foo.com\n"
+						+				"To: foo@foo.com \n"
+						+				"Subject: "+ subject +"\n"
+						+				"MIME-Version: 1.0 \n"
+						+				"Content-Type: text/plain; charset=utf-8 \n"
+						+				"Content-Transfer-Encoding: 7bit\n"
+						+				"\n"
+						+				"simple text string in the body\n"
+						+			"</content>"
+						+		"</m>"
+						+	"</AddMsgRequest>");
+
+		// Mount it
+		app.zGetActiveAccount().soapSend(
+				"<CreateMountpointRequest xmlns='urn:zimbraMail'>"
+						+		"<link l='1' name='"+ mountpointname +"'  rid='"+ inbox.getId() +"' zid='"+ ZimbraAccount.AccountA().ZimbraId +"'/>"
+						+	"</CreateMountpointRequest>");
+
+		FolderMountpointItem mountpoint = FolderMountpointItem.importFromSOAP(app.zGetActiveAccount(), mountpointname);
+
+		// Refresh current view
+		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
+
+		try {
+
+			// Click on the mountpoint
+			app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, mountpoint);
+
+			// Select the item
+			app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
+
+			// Click delete
+			app.zPageMail.zToolbarPressButton(Button.B_DELETE);
+
+			// A dialog will appear confirming deletion
+			DialogWarning warning = (DialogWarning) app.zPageMain.zGetWarningDialog(DialogWarningID.DeleteItemWithinRetentionPeriod);
+			warning.zWaitForActive();
+
+			// Verify the warning message displayed in the dialog
+			ZAssert.assertStringContains(warning.zGetWarningContent(), warningMessagePart1, 
+					"Verify the warning message displayed while deleting the mail from retention folder");
+			ZAssert.assertStringContains(warning.zGetWarningContent(), warningMessagePart2, 
+					"Verify the warning message displayed while deleting the mail from retention folder");
+
+			// Confirm the deletion 
+			warning.zPressButton(Button.B_OK);
+
+		} finally {
+			app.zTreeMail.zTreeItem(Action.A_LEFTCLICK,
+					FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Inbox));
+		}
+
+		// Verify the message is in the trash
+		MailItem message = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:(" + subject + ") is:anywhere");
+		ZAssert.assertNotNull(message, "Verify message remains in the mailbox");
+		ZAssert.assertEquals(message.dFolderId,
+				FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Trash).getId(),
+				"Verify message is contained in the trash");
 	}
 }
