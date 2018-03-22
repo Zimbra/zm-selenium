@@ -1,0 +1,175 @@
+Return-Path: bounces+8732-46d5-jwagner=vmware.com@email.socialcast.com
+Received: from 10.113.63.62 (LHLO mta02.zimbra.com) (10.113.63.62) by
+ catfood.zimbra.com with LMTP; Mon, 27 Feb 2012 03:13:15 -0800 (PST)
+Received: from localhost (localhost.localdomain [127.0.0.1])
+	by mta02.zimbra.com (Postfix) with ESMTP id D26547C005D
+	for <jwagner@zimbra.com>; Mon, 27 Feb 2012 03:13:15 -0800 (PST)
+X-Virus-Scanned: amavisd-new at zimbra.com
+X-Spam-Flag: NO
+X-Spam-Score: -1.999
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.999 tagged_above=-10 required=3
+	tests=[BAYES_00=-1.9, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+	DKIM_VALID_AU=-0.1, HTML_MESSAGE=0.001, RCVD_IN_DNSWL_NONE=-0.0001]
+	autolearn=ham
+Authentication-Results: mta02.zimbra.com (amavisd-new); dkim=pass
+	header.i=@socialcast.com
+Authentication-Results: mta02.zimbra.com (amavisd-new); domainkeys=pass
+	header.from=share@socialcast.com
+	header.sender=do-not-reply@socialcast.com
+Authentication-Results: mta02.zimbra.com (amavisd-new); dkim=softfail (fail,
+	body has been altered) header.i=@socialcast.com
+Received: from mta02.zimbra.com ([127.0.0.1])
+	by localhost (mta02.zimbra.com [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id dld8y28uiVqo for <jwagner@zimbra.com>;
+	Mon, 27 Feb 2012 03:13:13 -0800 (PST)
+Received: from sc9-mailhost2.vmware.com (unknown [10.113.161.72])
+	by mta02.zimbra.com (Postfix) with ESMTP id B24617C0061
+	for <jwagner@zimbra.com>; Mon, 27 Feb 2012 03:13:13 -0800 (PST)
+Received: by sc9-mailhost2.vmware.com (Postfix)
+	id A8836B00DB; Mon, 27 Feb 2012 03:13:13 -0800 (PST)
+Delivered-To: jwagner@vmware.com
+Received: from proofpoint-master.vmware.com (sc9-proofpoint-agent-1.vmware.com [10.113.208.31])
+	by sc9-mailhost2.vmware.com (Postfix) with ESMTP id A23E5B00C8
+	for <jwagner@vmware.com>; Mon, 27 Feb 2012 03:13:13 -0800 (PST)
+Received: from sc9-mail1b.vmware.com (sc9-mail1b.vmware.com [10.113.208.35])
+	by sc9-proofpoint-agent-1.vmware.com (8.14.3/8.14.3) with ESMTP id q1RBDDqw017570
+	for <jwagner@vmware.com>; Mon, 27 Feb 2012 03:13:13 -0800
+Received: from o1.email.strides.do (o1.email.strides.do [208.115.214.220])
+	by sc9-mail1b.vmware.com (Postfix) with SMTP id 0A795876C
+	for <jwagner@vmware.com>; Mon, 27 Feb 2012 03:13:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha1; c=relaxed; d=socialcast.com; h=date
+	:from:sender:reply-to:to:message-id:subject:mime-version
+	:content-type:content-transfer-encoding; s=smtpapi; bh=+lTRJvm87
+	dvCl5g+la6CJJndBEo=; b=rVzHkRMkvdwK92BnL4pk0dctO0XVcTR0ZRmg0bYGk
+	vRzvjVax0RKmCas/kATK3y6Zz+FJnLzP98MqteQXiZoxH9+uqduj7gzq6aiE22v1
+	cCHD4qMKr/eUlIA9NnIHiIdo8zbMZdT+q9VFEqdwroJyZRxMtSKXbfFKEMm7tgZL
+	JU=
+DomainKey-Signature: a=rsa-sha1; c=nofws; d=socialcast.com; h=date:from
+	:sender:reply-to:to:message-id:subject:mime-version:content-type
+	:content-transfer-encoding; q=dns; s=smtpapi; b=pEJRjN2acpBn7HTO
+	FOw0dYF0b5v5qtWoaZ/h+g5Aqh4b0dDwiMym0USloUdT/car3VSD8FFuuFJoxcrc
+	lsv4oOF+ldbz5aAkZK0YB6AegGYIHF8FK/7X2Ll998uuK6CFo+xXwb3OctiOThFh
+	F945PeRc8chfzgeP2OebgW2HmPQ=
+Received: by 10.12.16.8 with SMTP id mf37.28617.4F4B65484
+        Mon, 27 Feb 2012 05:13:12 -0600 (CST)
+Received: from default.socialcast.com (unknown [10.9.180.5])
+	by mi7 (SG) with ESMTP id 4f4b6548.38b5.26342f2
+	for <jwagner@vmware.com>; Mon, 27 Feb 2012 05:13:12 -0600 (CST)
+Received: by default.socialcast.com (Postfix, from userid 500)
+	id 366E9228810F; Mon, 27 Feb 2012 06:13:12 -0500 (EST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=socialcast.com;
+	s=mail; t=1330341192;
+	bh=XE0UPfjB/LgbRnre9P46VTi5yUCq4Nx/yickz/OmRsw=;
+	h=Date:From:Sender:Reply-To:To:Message-ID:Subject:Mime-Version:
+	 Content-Type:Content-Transfer-Encoding;
+	b=r/UfJvQX/hP99UN/EEKJlcAGJIE9phNfjon+Xmolu47XkD6fn0SlIu5jZqsZwKTrR
+	 hh4oBZovD9RYtj7fY50M3F+m4011n433fQv/K5jI5PSAveILMKuOmAH4e6lALDMDE7
+	 1qy3aOYe5IDr4lFqzoajeecjAGyes1HkyFznQSF0=
+Date: Mon, 27 Feb 2012 06:13:11 -0500
+From: Andre van der Werff <share@socialcast.com>
+Sender: do-not-reply@socialcast.com
+Reply-To: share@socialcast.com
+To: jwagner@dwer.com
+Subject: external image test
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_4f4b6547cede3_3be26db9a74706e1";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+Auto-Submitted: auto-generated
+Precedence: Bulk
+X-Sendgrid-EID: mE4WU49BMdQfTYhqwAOM85psJKAypDsUOLIGsKgWXN2L+VEXmWTAdqdP5hsCSaH4lhYs6PPzf7svGY2sXNtzF45uTk2Y6bFJoD79bqGXPZIpDpOXNEUa3/0btYiEGPBruGawLK2axM77JMnoPOdI4Y5dQt7pJpJyaQAKu5KuOy8=
+X-Sendgrid-ID: +Ss8ANrvP2pzTz6q9E0H+YJz+OzwteTaXn+XNtXLnY6NUMpZ26BgtrcMv9zhcJ50
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10432:5.6.7498,1.0.260,0.0.0000
+ definitions=2012-02-27_02:2012-02-24,2012-02-27,1970-01-01 signatures=0
+X-Proofpoint-Spam-Details: rule=quarantine_notspam policy=quarantine score=0 spamscore=0 ipscore=0
+ suspectscore=2 phishscore=0 bulkscore=0 adultscore=0 classifier=spam
+ adjust=0 reason=mlx engine=6.0.2-1012030000 definitions=main-1202270049
+
+
+----==_mimepart_4f4b6547cede3_3be26db9a74706e1
+Date: Mon, 27 Feb 2012 06:13:11 -0500
+Mime-Version: 1.0
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+Content-ID: <4f4b6547d15d6_3be26db9a747076c@sc-work2.app.socialcast.com.mail>
+
+-- reply above this line to post a comment --
+
+The following message was sent by Andre van der Werff in the Zimbra Users group:
+
+"Hi, does anybody know how outlook users can share their calendar with me on Zimbra? Thanks..." - Andre van der Werff
+
+To read the entire message, please click on the link below:
+https://vmware-com.socialcast.com/messages/9525609
+
+Thanks,
+The VMware Community Team
+
+___
+Want to control which emails you receive from the VMware Community? Click here:
+https://vmware-com.socialcast.com/users/jeffwagner/edit_notification_settings
+
+----==_mimepart_4f4b6547cede3_3be26db9a74706e1
+Date: Mon, 27 Feb 2012 06:13:11 -0500
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+Content-ID: <4f4b6547d21b1_3be26db9a7470820@sc-work2.app.socialcast.com.mail>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang='en'>
+<head>
+<meta content='text/html; charset=utf-8' http-equiv='Content-Type' />
+</head>
+<body bgcolor='#ffffff'>
+<div style='width: 100%;'>-- reply above this line to post a comment --</div>
+
+<a href='https://vmware-com.socialcast.com' style='text-decoration: none; color: #404040; border: 0;display: block; clear: both; margin: 15px 15px 0;'>
+<img alt='VMware' src='https://gp1.wac.edgecastcdn.net/801245/socialcast.s3.amazonaws.com/logos/5194/vmwareLink_poweredSocialcast_logo_logo.png' style='border: 0px none;' />
+</a>
+<table bgcolor='#ffffff' border='0' cellpadding='15' cellspacing='0' style="margin: 0; background-color: #fff; color: #404040; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; width: 600px;" width='600'>
+<tbody>
+<tr>
+<td colspan='2' style='padding: 0 15px 0; vertical-align: top; font-size: 12px; line-height: 15px;'>
+<h2 style='font-size: 18px; font-weight: bold; margin: 15px 0; padding-bottom: 10px; line-height: 25px; border-bottom: 1px dotted #d9d9d9; color: #404040 !important;'>
+The following message was sent by Andre van der Werff in the Zimbra Users group:
+</h2>
+</td>
+</tr>
+<tr>
+<td border='0' style='padding: 0 0 15px; vertical-align: top; text-align: center;' width='75'>
+<a href="https://vmware-com.socialcast.com/users/andrevanderwerff" style="width:45px; margin: 0 15px;" target="_blank"><img alt='Andre van der Werff' border='0' src='https://gp1.wac.edgecastcdn.net/801245/socialcast.s3.amazonaws.com/tenants/5258/profile_photos/678104/andre-photo_square45.jpg' style='border: 1px solid #d9d9d9; width: 45px' />
+</a></td>
+<td border='0' style='padding: 0 30px 15px 0; vertical-align: top; font-size: 12px; line-height: 15px;' width='525'>
+<a href="https://vmware-com.socialcast.com/users/andrevanderwerff" style="font-size: 13px; font-weight: bold; color: #187AAB; text-decoration: none; display: block; margin: 0 0 6px;">Andre van der Werff</a>
+<div class='message' style='margin: 0 0 6px; width: 100%'>
+Hi, does anybody know how outlook users can share their calendar with me on Zimbra? Thanks...
+</div>
+<a href="https://vmware-com.socialcast.com/messages/9525609" class="timestamp" style="font-size: 11px; color: #a9a9a9; text-decoration: none; display: block; margin: 0 0 10px;">Today at  3:13 am</a>
+<tr>
+<td border='0' colspan='2' style='padding: 0;'>
+<div style='margin: 0 15px;text-align: center; padding: 15px 0;'>
+<a href='https://vmware-com.socialcast.com/messages/9525609' style='background-color: #cde4f0; border:1px solid #6bb4d8; color: #187aab; display: inline-block; height: 32px; line-height: 32px; padding:0 18px; text-decoration: none; -webkit-border-radius:4px; -moz-border-radius:4px; -border-radius:4px; font-size: 12px; font-weight: bold;'>
+Comment on Andre van der's Idea
+</a>
+</div>
+</td>
+</tr>
+</td>
+
+</tr>
+</tbody>
+</table>
+<p style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; margin: 10px 0; color: #a9a9a9; font-size: 11px;">
+
+To manage your notification settings visit your <a href="https://vmware-com.socialcast.com/users/jeffwagner/edit_notification_settings" style="color: #878787">settings page</a>.
+
+</p>
+</body>
+</html>
+
+----==_mimepart_4f4b6547cede3_3be26db9a74706e1--
