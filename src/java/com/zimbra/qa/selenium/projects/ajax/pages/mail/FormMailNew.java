@@ -101,7 +101,8 @@ public class FormMailNew extends AbsForm {
 		public static final String zBubbleToField = "css=[id^=zv__COMPOSE][id$=_to_cell]";
 		public static final String zBubbleCcField = "css=[id^=zv__COMPOSE][id$=_cc_cell]";
 		public static final String zBubbleBccField = "css=[id^=zv__COMPOSE][id$=_bcc_cell]";
-		public static final String CcField = "css= td[id='zv__COMPOSE-1_cc_cell']  div[class='addrBubbleContainer']";
+		public static final String CcField = "css= td[id='zv__COMPOSE-1_cc_cell'] div[class='addrBubbleContainer']";
+		public static final String ToField = "css= td[id='zv__COMPOSE-1_to_cell'] div[class='addrBubbleContainer']";
 		public static final String zBubbleExpand = "css=div.ImgBubbleExpand";
 		
 		public static final String FormatAsHTMLMenu = "css=div[id^='zm__COMPOSE'][style*='z-index'] div[id$='__FORMAT_HTML'] tr[id^='POPUP_zmi__COMPOSE']";
@@ -1210,6 +1211,9 @@ public class FormMailNew extends AbsForm {
 
 		if (field == Field.Cc) {
 			locator = Locators.CcField;
+
+		} else if (field == Field.To) {
+			locator = Locators.ToField;
 
 		} else if (field == Field.Body) {
 

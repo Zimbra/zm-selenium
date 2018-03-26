@@ -18,12 +18,18 @@ package com.zimbra.qa.selenium.projects.ajax.tests.mail.compose;
 
 import org.testng.annotations.Test;
 import com.zimbra.common.soap.Element;
-import com.zimbra.qa.selenium.framework.items.*;
+import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
-import com.zimbra.qa.selenium.framework.ui.*;
-import com.zimbra.qa.selenium.framework.util.*;
+import com.zimbra.qa.selenium.framework.items.MailItem;
+import com.zimbra.qa.selenium.framework.ui.Action;
+import com.zimbra.qa.selenium.framework.ui.Button;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
+import com.zimbra.qa.selenium.framework.util.HarnessException;
+import com.zimbra.qa.selenium.framework.util.ZAssert;
+import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.projects.ajax.core.SetGroupMailByMessagePreference;
 import com.zimbra.qa.selenium.projects.ajax.pages.mail.FormMailNew;
+import com.zimbra.qa.selenium.projects.ajax.pages.mail.FormMailNew.Field;
 
 public class ReplyMail extends SetGroupMailByMessagePreference {
 
@@ -44,6 +50,7 @@ public class ReplyMail extends SetGroupMailByMessagePreference {
 						"<m>" +
 							"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
 							"<e t='c' a='"+ ZimbraAccount.AccountB().EmailAddress +"'/>" +
+							"<e t='c' a='"+ ZimbraAccount.AccountC().EmailAddress +"'/>" +
 							"<su>"+ subject +"</su>" +
 							"<mp ct='text/plain'>" +
 								"<content>content"+ ConfigProperties.getUniqueString() +"</content>" +
@@ -59,7 +66,11 @@ public class ReplyMail extends SetGroupMailByMessagePreference {
 
 		// Reply the item
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_REPLY);
-
+		
+		// Verify the values populated in To and Cc fields
+		ZAssert.assertEquals(mailform.zGetFieldValue(Field.To),ZimbraAccount.AccountA().EmailAddress, "Verify the value populated in To field");
+		ZAssert.assertEquals(mailform.zGetFieldValue(Field.Cc),"", "Verify the Cc field is empty");
+	
 		// Send the message
 		mailform.zSubmit();
 
@@ -99,6 +110,10 @@ public class ReplyMail extends SetGroupMailByMessagePreference {
 
 		// Reply the item
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_REPLY);
+		
+		// Verify the values populated in To and Cc fields
+		ZAssert.assertEquals(mailform.zGetFieldValue(Field.To),ZimbraAccount.AccountA().EmailAddress," Verify the value populated in To field");
+		ZAssert.assertEquals(mailform.zGetFieldValue(Field.Cc),"", "Verify the Cc field is empty");
 
 		// Send the message
 		mailform.zSubmit();
@@ -151,6 +166,10 @@ public class ReplyMail extends SetGroupMailByMessagePreference {
 
 			// Reply the item
 			FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_REPLY);
+			
+			// Verify the values populated in To and Cc fields
+			ZAssert.assertEquals(mailform.zGetFieldValue(Field.To),ZimbraAccount.AccountA().EmailAddress," Verify the value populated in To field");
+			ZAssert.assertEquals(mailform.zGetFieldValue(Field.Cc),"", "Verify the Cc field is empty");
 
 			// Send the message
 			mailform.zSubmit();
