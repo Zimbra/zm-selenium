@@ -234,16 +234,15 @@ public class SeleniumService {
 	public SeleniumService() {
 		logger.info("New SeleniumService object");
 
-		String modeProp = ConfigProperties.getStringProperty("seleniumMode", "local").toLowerCase();
+		String modeProp = ConfigProperties.getStringProperty("seleniumMode").toLowerCase();
 		logger.info("New SeleniumService object: "+ modeProp);
 
 		// Set Defaults
 		mode = SeleniumMode.Local;
-		SeleniumServer = ConfigProperties.getStringProperty("serverName", "localhost");
-		SeleniumPort = ConfigProperties.getIntProperty("serverPort", 4444);
-		SeleniumBrowser = ConfigProperties.getStringProperty(ConfigProperties.getLocalHost() + ".browser",	ConfigProperties.getStringProperty("browser"));
-		SeleniumServerHost = ConfigProperties.getStringProperty(ConfigProperties.getLocalHost() + ".server.host",	ConfigProperties.getStringProperty("server.host"));
-		SeleniumBrowserVersion = ConfigProperties.getStringProperty("browserVersion");
+		SeleniumServer = ConfigProperties.getStringProperty("serverName");
+		SeleniumPort = ConfigProperties.getIntProperty("serverPort");
+		SeleniumBrowser = ConfigProperties.getStringProperty("browser");
+		SeleniumServerHost = ConfigProperties.getStringProperty("server.host");
 
 		if (modeProp.equals(SeleniumMode.Local.toString().toLowerCase())) {
 			mode = SeleniumMode.Local;

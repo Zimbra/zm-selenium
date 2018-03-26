@@ -540,6 +540,7 @@ public abstract class AbsSeleniumObject {
 		return new StringBuilder("(").append(centerWidth).append(",").append(centerHeight).append(")").toString();
 	}
 
+	@SuppressWarnings("deprecation")
 	public void sWaitForPageToLoad() throws HarnessException {
 		String timeout = ConfigProperties.getStringProperty("selenium.maxpageload.msec", "20000");
 		logger.info("waitForPageToLoad(" + timeout + ")");
@@ -1976,6 +1977,7 @@ public abstract class AbsSeleniumObject {
 		return visible;
 	}
 
+	@SuppressWarnings("deprecation")
 	private boolean waitForElementPresent(final String locator, final boolean flag, long timeout) {
 		logger.info("waitForElementPresent(" + locator + ")");
 		Boolean present = false;
@@ -1999,6 +2001,7 @@ public abstract class AbsSeleniumObject {
 		return present;
 	}
 
+	@SuppressWarnings("deprecation")
 	private boolean waitForElementVisible(final String locator, final boolean flag, long timeout) {
 		logger.info("waitForElementVisible(" + locator + ")");
 		Boolean visible = false;
@@ -2142,6 +2145,7 @@ public abstract class AbsSeleniumObject {
 		return waitForWindow(name, true, timeout, handlesSize);
 	}
 
+	@SuppressWarnings("deprecation")
 	private boolean waitForWindow(final String name, final Boolean flag, Long timeout, int... handlesSize) {
 		logger.info("waitForWindow(" + name + ") ");
 
