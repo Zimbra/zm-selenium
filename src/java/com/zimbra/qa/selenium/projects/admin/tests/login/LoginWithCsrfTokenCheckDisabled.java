@@ -20,7 +20,9 @@ import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
+import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
+import com.zimbra.qa.selenium.framework.util.CommandLineUtility;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.admin.core.AdminCore;
 
@@ -47,12 +49,14 @@ public class LoginWithCsrfTokenCheckDisabled extends AdminCore {
 							+	"</ModifyConfigRequest>");
 
 			// Restart zimbra services
-			staf.execute("zmmailboxdctl restart");
+			CommandLineUtility.runCommandOnZimbraServer(ZimbraAccount.AccountZCS().zGetAccountStoreHost(),
+					"zmmailboxdctl restart");
 
 			// Wait for the service to come up
 			SleepUtil.sleep(60000);
 
-			staf.execute("zmcontrol status");
+			CommandLineUtility.runCommandOnZimbraServer(ZimbraAccount.AccountZCS().zGetAccountStoreHost(),
+					"zmcontrol status");
 
 			SleepUtil.sleepMedium();
 
@@ -74,7 +78,8 @@ public class LoginWithCsrfTokenCheckDisabled extends AdminCore {
 							+		"<a n='zimbraCsrfTokenCheckEnabled'>"+ zimbraCsrfTokenCheckEnabledValue + "</a>"
 							+	"</ModifyConfigRequest>");
 
-			staf.execute("zmmailboxdctl restart");
+			CommandLineUtility.runCommandOnZimbraServer(ZimbraAccount.AccountZCS().zGetAccountStoreHost(),
+					"zmmailboxdctl restart");
 
 			app.zPageMain.zRefreshMainUI();
 			// Open the base URL

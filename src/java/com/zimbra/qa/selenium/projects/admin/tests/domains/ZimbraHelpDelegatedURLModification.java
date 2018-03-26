@@ -22,7 +22,9 @@ import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
+import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
+import com.zimbra.qa.selenium.framework.util.CommandLineUtility;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.admin.core.AdminCore;
 import com.zimbra.qa.selenium.projects.admin.pages.PageMain;
@@ -44,7 +46,8 @@ public class ZimbraHelpDelegatedURLModification extends AdminCore {
 
 		try {
 
-			staf.execute("mkdir -p /opt/zimbra/jetty/webapps/zimbraAdmin/helpUrl/help/DelegatedAdmin && echo '<html><head><title>Zimbra Temp Delegated Admin Help</title></head><body><h1>Temp Delegated Admin Help</h1><p> This is the new Delegated admin help of zimbra!</p></body></html>' > /opt/zimbra/jetty/webapps/zimbraAdmin/helpUrl/help/DelegatedAdmin/dahelp.html");
+			CommandLineUtility.runCommandOnZimbraServer(ZimbraAccount.AccountZCS().zGetAccountStoreHost(),
+					"mkdir -p /opt/zimbra/jetty/webapps/zimbraAdmin/helpUrl/help/DelegatedAdmin && echo '<html><head><title>Zimbra Temp Delegated Admin Help</title></head><body><h1>Temp Delegated Admin Help</h1><p> This is the new Delegated admin help of zimbra!</p></body></html>' > /opt/zimbra/jetty/webapps/zimbraAdmin/helpUrl/help/DelegatedAdmin/dahelp.html");
 
 			// Login using a delegated admin account
 			app.provisionAuthenticateDA();

@@ -48,7 +48,6 @@ import org.openqa.selenium.logging.Logs;
 import com.zimbra.qa.selenium.framework.core.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
-import com.zimbra.qa.selenium.framework.util.staf.StafServicePROCESS;
 import com.zimbra.qa.selenium.projects.ajax.pages.AjaxPages;
 import com.zimbra.qa.selenium.projects.ajax.pages.contacts.FormContactNew;
 import com.zimbra.qa.selenium.projects.ajax.pages.mail.FormMailNew;
@@ -76,7 +75,6 @@ public class AjaxCore {
 	protected WebDriver webDriver = ClientSessionFactory.session().webDriver();
 	protected static Logger logger = LogManager.getLogger(AjaxCore.class);
 
-	protected StafServicePROCESS staf = new StafServicePROCESS();
 	String sJavaScriptErrorsHtmlFileName = "Javascript-errors-report.html";
 
 	protected AjaxCore() {
@@ -326,14 +324,14 @@ public class AjaxCore {
 	public File fGetJavaScriptErrorsHtmlFile() throws HarnessException {
 		String sJavaScriptErrorsFolderPath = ExecuteHarnessMain.testoutputfoldername
 				+ "\\debug\\projects\\javascript-errors";
-		String sJavaScriptErrorsHtmlFilePath = sJavaScriptErrorsFolderPath + "\\" + sJavaScriptErrorsHtmlFileName;
+		String sJavaScriptErrorsHtmlFilePath = sJavaScriptErrorsFolderPath + "/" + sJavaScriptErrorsHtmlFileName;
 		File fJavaScriptErrorsHtmlFile = new File(sJavaScriptErrorsHtmlFilePath);
 		return fJavaScriptErrorsHtmlFile;
 	}
 
 	public Path pGetJavaScriptErrorsHtmlFilePath() throws HarnessException {
 		String sJavaScriptErrorsFolderPath = ExecuteHarnessMain.testoutputfoldername
-				+ "\\debug\\projects\\javascript-errors";
+				+ "/debug/projects/javascript-errors";
 		Path pJavaScriptErrorsHtmlFile = Paths.get(sJavaScriptErrorsFolderPath, sJavaScriptErrorsHtmlFileName);
 		return pJavaScriptErrorsHtmlFile;
 	}
@@ -408,13 +406,13 @@ public class AjaxCore {
 				}
 
 				// Configuration parameters
-				String application = WordUtils.capitalize(method.getDeclaringClass().toString().split("\\.")[7]);
+				String application = WordUtils.capitalize(method.getDeclaringClass().toString().split("/.")[7]);
 				String seleniumTestcase = method.getName().toString();
 				String testOutputFolderName = ExecuteHarnessMain.testoutputfoldername;
 
 				// Javascript error html file configuration
-				String sJavaScriptErrorsFolderPath = testOutputFolderName + "\\debug\\projects\\javascript-errors";
-				String sJavaScriptErrorsHtmlFile = sJavaScriptErrorsFolderPath + "\\" + sJavaScriptErrorsHtmlFileName;
+				String sJavaScriptErrorsFolderPath = testOutputFolderName + "/debug/projects/javascript-errors";
+				String sJavaScriptErrorsHtmlFile = sJavaScriptErrorsFolderPath + "/" + sJavaScriptErrorsHtmlFileName;
 				Path pJavaScriptErrorsHtmlFilePath = Paths.get(sJavaScriptErrorsFolderPath,
 						sJavaScriptErrorsHtmlFileName);
 				File fJavaScriptErrorsHtmlFile = new File(sJavaScriptErrorsHtmlFile);
@@ -440,7 +438,6 @@ public class AjaxCore {
 									.replace("class com.zimbra.qa.selenium", "").replace(".", "/")
 							+ "/" + seleniumTestcase + "ss1.png";
 				}
-				screenShotFilePath = screenShotFilePath.replace("\\", "/");
 
 				// Bug summary
 				logger.info("AfterMethod: Get bug summary from bug tracking tool");

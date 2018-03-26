@@ -63,11 +63,12 @@ import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.core.ClientSessionFactory;
 import com.zimbra.qa.selenium.framework.core.ExecuteHarnessMain;
 import com.zimbra.qa.selenium.framework.ui.AbsTab;
+import com.zimbra.qa.selenium.framework.util.CommandLineUtility;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
+import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
-import com.zimbra.qa.selenium.framework.util.staf.StafServicePROCESS;
 import com.zimbra.qa.selenium.projects.admin.pages.AdminPages;
 
 public class AdminCore {
@@ -82,7 +83,6 @@ public class AdminCore {
 	private WebDriver webDriver = ClientSessionFactory.session().webDriver();
 	protected static Logger logger = LogManager.getLogger(AdminCore.class);
 
-	protected StafServicePROCESS staf = new StafServicePROCESS();
 	String sJavaScriptErrorsHtmlFileName = "Javascript-errors-report.html";
 
 	protected AdminCore() {
@@ -103,8 +103,10 @@ public class AdminCore {
 		if (ConfigProperties.getStringProperty(ConfigProperties.getLocalHost() + ".coverage.enabled",
 				ConfigProperties.getStringProperty("coverage.enabled")).contains("true") == true) {
 			try {
-				staf.execute("zmprov mcf +zimbraHttpThrottleSafeIPs " + InetAddress.getLocalHost().getHostAddress());
-				staf.execute("zmmailboxdctl restart");
+				CommandLineUtility.runCommandOnZimbraServer(ExecuteHarnessMain.proxyServers.get(0),
+						"zmprov mcf +zimbraHttpThrottleSafeIPs " + InetAddress.getLocalHost().getHostAddress());
+				CommandLineUtility.runCommandOnZimbraServer(ZimbraAccount.AccountZCS().zGetAccountStoreHost(),
+						"zmmailboxdctl restart");
 			} catch (UnknownHostException e) {
 				e.printStackTrace();
 			}
@@ -261,15 +263,15 @@ public class AdminCore {
 
 	public File fGetJavaScriptErrorsHtmlFile() throws HarnessException {
 		String sJavaScriptErrorsFolderPath = ExecuteHarnessMain.testoutputfoldername
-				+ "\\debug\\projects\\javascript-errors";
-		String sJavaScriptErrorsHtmlFilePath = sJavaScriptErrorsFolderPath + "\\" + sJavaScriptErrorsHtmlFileName;
+				+ "/debug/projects/javascript-errors";
+		String sJavaScriptErrorsHtmlFilePath = sJavaScriptErrorsFolderPath + "/" + sJavaScriptErrorsHtmlFileName;
 		File fJavaScriptErrorsHtmlFile = new File(sJavaScriptErrorsHtmlFilePath);
 		return fJavaScriptErrorsHtmlFile;
 	}
 
 	public Path pGetJavaScriptErrorsHtmlFilePath() throws HarnessException {
 		String sJavaScriptErrorsFolderPath = ExecuteHarnessMain.testoutputfoldername
-				+ "\\debug\\projects\\javascript-errors";
+				+ "/debug/projects/javascript-errors";
 		Path pJavaScriptErrorsHtmlFile = Paths.get(sJavaScriptErrorsFolderPath, sJavaScriptErrorsHtmlFileName);
 		return pJavaScriptErrorsHtmlFile;
 	}
@@ -327,13 +329,13 @@ public class AdminCore {
 				}
 
 				// Configuration parameters
-				String application = WordUtils.capitalize(method.getDeclaringClass().toString().split("\\.")[7]);
+				String application = WordUtils.capitalize(method.getDeclaringClass().toString().split("/.")[7]);
 				String seleniumTestcase = method.getName().toString();
 				String testOutputFolderName = ExecuteHarnessMain.testoutputfoldername;
 
 				// Javascript error html file configuration
-				String sJavaScriptErrorsFolderPath = testOutputFolderName + "\\debug\\projects\\javascript-errors";
-				String sJavaScriptErrorsHtmlFile = sJavaScriptErrorsFolderPath + "\\" + sJavaScriptErrorsHtmlFileName;
+				String sJavaScriptErrorsFolderPath = testOutputFolderName + "/debug/projects/javascript-errors";
+				String sJavaScriptErrorsHtmlFile = sJavaScriptErrorsFolderPath + "/" + sJavaScriptErrorsHtmlFileName;
 				Path pJavaScriptErrorsHtmlFilePath = Paths.get(sJavaScriptErrorsFolderPath,
 						sJavaScriptErrorsHtmlFileName);
 				File fJavaScriptErrorsHtmlFile = new File(sJavaScriptErrorsHtmlFile);
@@ -359,7 +361,6 @@ public class AdminCore {
 							.replace("class com.zimbra.qa.selenium", "").replace(".", "/")
 							+ "/" + seleniumTestcase + "ss1.png";
 				}
-				screenShotFilePath = screenShotFilePath.replace("\\", "/");
 
 				// Bug summary
 				logger.info("AfterMethod: Get bug summary from bug tracking tool");

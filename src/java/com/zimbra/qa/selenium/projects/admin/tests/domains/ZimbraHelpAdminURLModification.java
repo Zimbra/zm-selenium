@@ -22,7 +22,9 @@ import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
+import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
+import com.zimbra.qa.selenium.framework.util.CommandLineUtility;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.admin.core.AdminCore;
 import com.zimbra.qa.selenium.projects.admin.pages.PageMain;
@@ -40,7 +42,8 @@ public class ZimbraHelpAdminURLModification extends AdminCore {
 
 	public void ZimbraHelpAdminURLModification_01() throws HarnessException {
 
-		staf.execute("mkdir -p /opt/zimbra/jetty/webapps/zimbraAdmin/helpUrl/help/admin && echo '<html><head><title>Zimbra Temp Admin Help</title></head><body><h1>Temp Admin Help</h1><p> This is the new admin help of zimbra!</p></body></html>' > /opt/zimbra/jetty/webapps/zimbraAdmin/helpUrl/help/admin/adminhelp.html");
+		CommandLineUtility.runCommandOnZimbraServer(ZimbraAccount.AccountZCS().zGetAccountStoreHost(),
+				"mkdir -p /opt/zimbra/jetty/webapps/zimbraAdmin/helpUrl/help/admin && echo '<html><head><title>Zimbra Temp Admin Help</title></head><body><h1>Temp Admin Help</h1><p> This is the new admin help of zimbra!</p></body></html>' > /opt/zimbra/jetty/webapps/zimbraAdmin/helpUrl/help/admin/adminhelp.html");
 
 		// To get domain id
 		String targetDomain = ConfigProperties.getStringProperty("server.host");

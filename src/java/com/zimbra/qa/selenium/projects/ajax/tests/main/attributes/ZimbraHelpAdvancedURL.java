@@ -20,10 +20,12 @@ import java.util.List;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.ui.Button;
+import com.zimbra.qa.selenium.framework.util.CommandLineUtility;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
+import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
 
@@ -36,7 +38,7 @@ public class ZimbraHelpAdvancedURL extends AjaxCore {
 
 	@Bugs (ids = "101023")
 	@Test (description = "Verify the product help URL", priority=5,
-		groups = { "functional", "L3" })
+			groups = { "functional", "L3" })
 
 	public void ZimbraHelpAdvancedURL_01() throws HarnessException {
 
@@ -47,7 +49,8 @@ public class ZimbraHelpAdvancedURL extends AjaxCore {
 
 		try {
 
-			staf.execute("mkdir -p /opt/zimbra/jetty/webapps/zimbra/helpUrl/help/adv && echo '<html><head><title>Zimbra Temp Help</title></head><body><h1>Temp Help</h1><p> This is the new advanced help of zimbra!</p></body></html>' > /opt/zimbra/jetty/webapps/zimbra/helpUrl/help/adv/advhelp.html");
+			CommandLineUtility.runCommandOnZimbraServer(ZimbraAccount.AccountZCS().zGetAccountStoreHost(),
+					"mkdir -p /opt/zimbra/jetty/webapps/zimbra/helpUrl/help/adv && echo '<html><head><title>Zimbra Temp Help</title></head><body><h1>Temp Help</h1><p> This is the new advanced help of zimbra!</p></body></html>' > /opt/zimbra/jetty/webapps/zimbra/helpUrl/help/adv/advhelp.html");
 
 			// To get domain id
 			String targetDomain = ConfigProperties.getStringProperty("testdomain");
@@ -106,7 +109,8 @@ public class ZimbraHelpAdvancedURL extends AjaxCore {
 							+ "</a>" + "</ModifyDomainRequest>");
 
 			// Restart zimbra services
-			staf.execute("zmmailboxdctl restart");
+			CommandLineUtility.runCommandOnZimbraServer(ZimbraAccount.AccountZCS().zGetAccountStoreHost(),
+					"zmmailboxdctl restart");
 
 			SleepUtil.sleepVeryLong();
 			for (int i = 0; i <= 10; i++) {
@@ -117,7 +121,8 @@ public class ZimbraHelpAdvancedURL extends AjaxCore {
 				} else {
 					SleepUtil.sleepLong();
 					if (i == 5) {
-						staf.execute("zmmailboxdctl restart");
+						CommandLineUtility.runCommandOnZimbraServer(ZimbraAccount.AccountZCS().zGetAccountStoreHost(),
+								"zmmailboxdctl restart");
 						SleepUtil.sleepVeryLong();
 					}
 					continue;

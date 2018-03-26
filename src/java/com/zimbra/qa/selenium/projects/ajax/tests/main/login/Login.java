@@ -22,6 +22,7 @@ import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.FolderMountpointItem;
 import com.zimbra.qa.selenium.framework.items.MailItem;
+import com.zimbra.qa.selenium.framework.util.CommandLineUtility;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
@@ -36,9 +37,8 @@ public class Login extends AjaxCore {
 	public Login() {
 		logger.info("New "+ Login.class.getCanonicalName());
 		super.startingPage = app.zPageLogin;
-
 	}
-	
+
 
 	@Test (description = "Login to the Ajax Client",
 			groups = { "sanity", "L0" })
@@ -51,17 +51,17 @@ public class Login extends AjaxCore {
 		// Verify main page becomes active
 		ZAssert.assertTrue(app.zPageMain.zIsActive(), "Verify that the account is logged in");
 	}
-	
-		
+
+
 	@Test (description = "Login to the Ajax Client using a locked account",
 			groups = { "smoke", "L1" })
 
 	public void Login_02() throws HarnessException {
-		
+
 		//Create a Zimbra account
 		ZimbraAccount locked = new ZimbraAccount();
 		locked.provision();
-		
+
 		// Lock the account
 		ZimbraAdminAccount.GlobalAdmin().soapSend(
 				"<ModifyAccountRequest xmlns='urn:zimbraAdmin'>"
@@ -72,14 +72,14 @@ public class Login extends AjaxCore {
 		app.zPageLogin.zSetLoginName(locked.EmailAddress);
 		app.zPageLogin.zSetLoginPassword(locked.Password);
 		app.zPageLogin.sClickAt(Locators.zBtnLogin, "");
-		
+
 		// Verify the error message displayed
 		ZAssert.assertTrue(app.zPageLogin.zVerifyLoginErrorMessage(), "Verify login error message");
 
 		// Verify main page never becomes active
 		ZAssert.assertFalse(app.zPageMain.zIsActive(), "Verify that login was not successfull for a locked account");
 	}
-	
+
 
 	@Test (description = "Login to the Ajax Client, with a mounted folder",
 			groups = { "functional", "L3" })
@@ -259,12 +259,14 @@ public class Login extends AjaxCore {
 				+		"<a n='zimbraMailURL'>"+ zimbraMailURLtemp + "</a>"
 				+	"</ModifyConfigRequest>");
 
-			staf.execute("zmmailboxdctl restart");
+			CommandLineUtility.runCommandOnZimbraServer(ZimbraAccount.AccountZCS().zGetAccountStoreHost(),
+					"zmmailboxdctl restart");
 
 			// Wait for the service to come up
 			SleepUtil.sleep(60000);
 
-			staf.execute("zmcontrol status");
+			CommandLineUtility.runCommandOnZimbraServer(ZimbraAccount.AccountZCS().zGetAccountStoreHost(),
+					"zmmailboxdctl status");
 
 			// Open the login page
 			app.zPageLogin.sOpen(ConfigProperties.getBaseURL());
@@ -288,7 +290,8 @@ public class Login extends AjaxCore {
 					+		"<a n='zimbraMailURL'>"+ zimbraMailURL + "</a>"
 					+	"</ModifyConfigRequest>");
 
-				staf.execute("zmmailboxdctl restart");
+				CommandLineUtility.runCommandOnZimbraServer(ZimbraAccount.AccountZCS().zGetAccountStoreHost(),
+						"zmmailboxdctl restart");
 
 				SleepUtil.sleepVeryLong();
 				for (int i = 0; i <= 10; i++) {
@@ -299,7 +302,8 @@ public class Login extends AjaxCore {
 					} else {
 						SleepUtil.sleepLong();
 						if (i == 5) {
-							staf.execute("zmmailboxdctl restart");
+							CommandLineUtility.runCommandOnZimbraServer(ZimbraAccount.AccountZCS().zGetAccountStoreHost(),
+									"zmmailboxdctl restart");
 							SleepUtil.sleepVeryLong();
 						}
 						continue;

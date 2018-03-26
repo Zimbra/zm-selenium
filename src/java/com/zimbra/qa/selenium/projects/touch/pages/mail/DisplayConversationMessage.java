@@ -14,13 +14,9 @@
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-/**
- *
- */
 package com.zimbra.qa.selenium.projects.touch.pages.mail;
 
 import java.util.*;
-
 import com.zimbra.qa.selenium.framework.items.AttachmentItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;

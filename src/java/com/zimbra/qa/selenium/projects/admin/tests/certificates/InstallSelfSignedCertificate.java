@@ -18,11 +18,14 @@ package com.zimbra.qa.selenium.projects.admin.tests.certificates;
 
 import org.testng.annotations.Test;
 import com.zimbra.common.soap.Element;
+import com.zimbra.qa.selenium.framework.core.ExecuteHarnessMain;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
+import com.zimbra.qa.selenium.framework.util.CommandLineUtility;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
+import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
 import com.zimbra.qa.selenium.projects.admin.core.AdminCore;
 import com.zimbra.qa.selenium.projects.admin.items.*;
@@ -81,7 +84,8 @@ public class InstallSelfSignedCertificate extends AdminCore {
 			SleepUtil.sleepVeryVeryLong();
 
 			// Restart zimbra services
-			staf.execute("zmmailboxdctl restart");
+			CommandLineUtility.runCommandOnZimbraServer(ZimbraAccount.AccountZCS().zGetAccountStoreHost(),
+					"zmmailboxdctl restart");
 			app.zPageMain.zRefreshMainUI();
 
 			ZimbraAdminAccount.AdminConsoleAdmin().provision();
@@ -107,8 +111,10 @@ public class InstallSelfSignedCertificate extends AdminCore {
 		}
 
 		finally {
-			staf.execute("zmcertmgr deploycrt comm /opt/zimbra/ssl/zimbra/commercial/commercial.crt /opt/zimbra/ssl/zimbra/commercial/commercial_ca.crt");
-			staf.execute("zmmailboxdctl restart");
+			CommandLineUtility.runCommandOnZimbraServer(ExecuteHarnessMain.proxyServers.get(0),
+					"zmcertmgr deploycrt comm /opt/zimbra/ssl/zimbra/commercial/commercial.crt /opt/zimbra/ssl/zimbra/commercial/commercial_ca.crt");
+			CommandLineUtility.runCommandOnZimbraServer(ZimbraAccount.AccountZCS().zGetAccountStoreHost(),
+					"zmmailboxdctl restart");
 			SleepUtil.sleepVeryVeryLong();
 		}
 	}

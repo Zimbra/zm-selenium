@@ -17,6 +17,7 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.main.login;
 
 import org.testng.annotations.Test;
+import com.zimbra.qa.selenium.framework.util.CommandLineUtility;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
@@ -47,7 +48,8 @@ public class LoginWithCsrfTokenCheckDisabled extends AjaxCore {
 							+	"</ModifyConfigRequest>");
 
 			// Restart zimbra services
-			staf.execute("zmmailboxdctl restart");
+			CommandLineUtility.runCommandOnZimbraServer(ZimbraAccount.AccountZCS().zGetAccountStoreHost(),
+					"zmmailboxdctl restart");
 			SleepUtil.sleepVeryLong();
 
 			for (int i=0; i<=5; i++) {
@@ -58,7 +60,8 @@ public class LoginWithCsrfTokenCheckDisabled extends AjaxCore {
 				} else {
 					SleepUtil.sleepLong();
 					if (i == 3) {
-						staf.execute("zmmailboxdctl restart");
+						CommandLineUtility.runCommandOnZimbraServer(ZimbraAccount.AccountZCS().zGetAccountStoreHost(),
+								"zmmailboxdctl restart");
 						SleepUtil.sleepLongMedium();
 					}
 					continue;
@@ -82,7 +85,8 @@ public class LoginWithCsrfTokenCheckDisabled extends AjaxCore {
 							+		"<a n='zimbraCsrfTokenCheckEnabled'>"+ zimbraCsrfTokenCheckEnabledValue + "</a>"
 							+	"</ModifyConfigRequest>");
 
-			staf.execute("zmmailboxdctl restart");
+			CommandLineUtility.runCommandOnZimbraServer(ZimbraAccount.AccountZCS().zGetAccountStoreHost(),
+					"zmmailboxdctl restart");
 			SleepUtil.sleepVeryLong();
 
 			for (int i=0; i<=5; i++) {
@@ -93,7 +97,8 @@ public class LoginWithCsrfTokenCheckDisabled extends AjaxCore {
 				} else {
 					SleepUtil.sleepLong();
 					if (i == 3) {
-						staf.execute("zmmailboxdctl restart");
+						CommandLineUtility.runCommandOnZimbraServer(ZimbraAccount.AccountZCS().zGetAccountStoreHost(),
+								"zmmailboxdctl restart");
 						SleepUtil.sleepLongMedium();
 					}
 					continue;

@@ -18,7 +18,6 @@ package com.zimbra.qa.selenium.projects.ajax.pages.mail;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-
 import com.zimbra.qa.selenium.framework.ui.AbsApplication;
 import com.zimbra.qa.selenium.framework.ui.AbsDialog;
 import com.zimbra.qa.selenium.framework.ui.AbsPage;

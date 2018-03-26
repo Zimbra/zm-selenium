@@ -59,7 +59,7 @@ public class StafAbstract {
 
 		// STAF log
 		StafIntegration.sSTAFLogFileFolderPath = ExecuteHarnessMain.testoutputfoldername + "/debug/projects";
-		StafIntegration.sSTAFLogFilePath = StafIntegration.sSTAFLogFileFolderPath + "\\" + StafIntegration.sSTAFLogFileName;
+		StafIntegration.sSTAFLogFilePath = StafIntegration.sSTAFLogFileFolderPath + "/" + StafIntegration.sSTAFLogFileName;
 		StafIntegration.pSTAFLogFilePath = Paths.get(StafIntegration.sSTAFLogFileFolderPath, StafIntegration.sSTAFLogFileName);
 		StafIntegration.fSTAFLogFile = new File(StafIntegration.sSTAFLogFilePath);
 		StafIntegration.fSTAFLogFileFolder = new File(StafIntegration.sSTAFLogFileFolderPath);
