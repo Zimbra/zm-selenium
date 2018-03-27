@@ -232,82 +232,11 @@ public class ReplyMail extends SetGroupMailByMessagePreference {
 	}
 	
 	
-	@Test (description = "Reply to a message which has a differnt Reply To address set--verify the address displayed in To fields on reply-compose",
-			groups = { "functional", "L2" })
-
-	public void ReplyMail_05() throws HarnessException {
-		
-		// Account data
-		ZimbraAccount account1 = (new ZimbraAccount()).provision().authenticate();
-		ZimbraAccount account2 = (new ZimbraAccount()).provision().authenticate();
-		
-		// Mail data
-		String subject = "subject" + ConfigProperties.getUniqueString();
-		String body = "body" + ConfigProperties.getUniqueString();
-		
-		// Set the Reply-To address for the account
-		app.zGetActiveAccount().soapSend(
-				" <ModifyIdentityRequest  xmlns='urn:zimbraAccount'>"
-						+   "<identity id='"+ app.zGetActiveAccount().ZimbraId +"'>"
-						+     "<a name='zimbraPrefFromAddressType'>sendAs</a>"
-						+     "<a name='zimbraPrefReplyToEnabled'>TRUE</a>"
-						+     "<a name='zimbraPrefReplyToAddress'>"+ account2.EmailAddress +"</a>"
-						+   "</identity>"
-						+ "</ModifyIdentityRequest >");
-		
-		// Refresh the UI to get the changes
-		app.zPageMail.zRefreshUI();
-		
-		// Compose a mail and send it to account1
-		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
-		
-		// Fill out the form with the data
-		mailform.zFillField(Field.To, account1.EmailAddress + ",");
-		mailform.zFillField(Field.Cc, ZimbraAccount.Account10().EmailAddress + "," + ZimbraAccount.Account9().EmailAddress + ",");
-		mailform.zFillField(Field.Subject, subject);
-		mailform.zFillField(Field.Body, body);
-
-		// Send the message
-		mailform.zSubmit();
-		
-		//Login with account1
-		app.zPageLogin.zLogin(account1);
-		
-		// Refresh current view
-		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
-
-		// Select the item
-		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
-
-		// Reply the item
-		mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_REPLY);
-		
-		// Verify the values populated in To and Cc fields
-		ZAssert.assertEquals(mailform.zGetFieldValue(Field.To),account2.EmailAddress, "Verify the value populated in To field");
-		ZAssert.assertFalse(mailform.zGetFieldValue(Field.To).contains(app.zGetActiveAccount().EmailAddress), "Verify the value in To filed is not the orginal email sender's address");
-		ZAssert.assertEquals(mailform.zGetFieldValue(Field.Cc),"", "Verify the Cc field is empty");
-	
-		// Send the message
-		mailform.zSubmit();
-
-		// From the receiving end, verify the message details
-		MailItem sent = MailItem.importFromSOAP(app.zGetActiveAccount(), "in:sent subject:("+ subject +")");
-
-		ZAssert.assertEquals(sent.dToRecipients.size(), 1, "Verify the message is sent to 1 'to' recipient");
-		ZAssert.assertEquals(sent.dToRecipients.get(0).dEmailAddress, account2.EmailAddress, "Verify the to field is correct");
-		ZAssert.assertEquals(sent.dCcRecipients.size(), 0, "Verify the message is sent to 0 'cc' recipients");
-		
-		// Verify that the mail is delivered to the set Reply-to address
-		MailItem mailReceived = MailItem.importFromSOAP(account2, "in:inbox subject:("+ subject +")");
-		ZAssert.assertNotNull(mailReceived, "Verify that the reply mail is deliverd to the ser Reply-To address");
-	}
-	
-	
-	@Bugs( ids = "54529")
+	@Bugs( ids = "54529" )
 	@Test (description = "Reply to a message which has a same Reply To address set -- verify the addresses displayed in To field are not duplicated",
 			groups = { "functional", "L3" })
 
-	public void ReplyMail_06() throws HarnessException {
+	public void ReplyMail_05() throws HarnessException {
 
 		// Account data
 		ZimbraAccount account1 = (new ZimbraAccount()).provision().authenticate();
