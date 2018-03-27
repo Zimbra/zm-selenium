@@ -53,6 +53,12 @@ import com.zimbra.qa.selenium.framework.util.performance.PerfMetrics;
 import com.zimbra.qa.selenium.framework.util.staf.*;
 import com.zimbra.qa.selenium.staf.StafIntegration;
 
+/**
+ * Selenium harness main executor class.
+ * Usage: -j C:\git\zm-selenium\build\dist\lib\ZimbraSelenium.jar -p com.zimbra.qa.selenium.projects.ajax.tests.mail.folders -g always,L0 -l conf/log4j.properties
+ * @author Matt Rhoades, Jitesh Sojitra
+ */
+
 public class ExecuteHarnessMain {
 
 	private static Logger logger = LogManager.getLogger(ExecuteHarnessMain.class);
@@ -78,8 +84,8 @@ public class ExecuteHarnessMain {
 	public static String testTotalMinutes;
 	protected AbsTab startingPage = null;
 
-	public static String zimbraVersion;
-	public static Boolean isNGEnabled;
+	public static String zimbraVersion = null;
+	public static Boolean isNGEnabled = false;
 	public static Boolean isDLRightGranted = false;
 	public static Boolean isSmimeOcspDisabled = false;
 	public static Boolean isChatConfigured = false;
@@ -106,12 +112,13 @@ public class ExecuteHarnessMain {
 
 	// Zimbra server details
 	public static int totalZimbraServers = 0;
-	public static int totalZimbraProxyServers = 0;
+	public static int totalProxyServers = 0;
 	public static int totalZimbraMtaServers = 0;
 	public static int adminPort = 0;
 	public static int serverPort = 0;
-	public static ArrayList<String> storeServers = null;
-	public static ArrayList<String> mtaServers = null;
+	public static ArrayList<String> proxyServers = new ArrayList<String>();
+	public static ArrayList<String> storeServers = new ArrayList<String>();
+	public static ArrayList<String> mtaServers = new ArrayList<String>();
 
 	public static SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy-hhmmss");
 	public static String currentDateTime = simpleDateFormat.format(new Date());
@@ -287,8 +294,10 @@ public class ExecuteHarnessMain {
 			excludeGroups.add("non-msedge");
 		}
 
-		if (CommandLineUtility.runCommandOnZimbraServer(storeServers.get(0),
-				"zmprov gs `zmhostname` zimbraNetworkModulesNGEnabled | grep -i 'zimbraNetworkModulesNGEnabled' | cut -d : -f 2 | tr -d '[:blank:]'").toString().contains("TRUE")) {
+		if (CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"), "zmprov gs "
+				+ ExecuteHarnessMain.storeServers.get(0)
+				+ " zimbraNetworkModulesNGEnabled | grep -i 'zimbraNetworkModulesNGEnabled' | cut -d : -f 2 | tr -d '[:blank:]'")
+				.toString().contains("TRUE")) {
 			excludeGroups.add("non-ngmodule");
 			isNGEnabled = true;
 		} else {
@@ -296,12 +305,9 @@ public class ExecuteHarnessMain {
 			isNGEnabled = false;
 		}
 
-		if (!CommandLineUtility.runCommandOnZimbraServer(storeServers.get(0), "dpkg -l | grep -i 'zimbra-chat'").toString().contains("ii  zimbra-chat")) {
-			excludeGroups.add("chat");
-		}
-		if (!CommandLineUtility.runCommandOnZimbraServer(storeServers.get(0), "dpkg -l | grep -i 'zimbra-drive'").toString().contains("ii  zimbra-drive")) {
-			excludeGroups.add("drive");
-		}
+		// By default exclude chat, drive testcases
+		excludeGroups.add("chat");
+		excludeGroups.add("drive");
 
 		StafIntegration.logInfo = "Groups " + groups + ", Excluded groups " + excludeGroups;
 		logger.info(StafIntegration.logInfo);
@@ -481,8 +487,8 @@ public class ExecuteHarnessMain {
 			testNG.run();
 
 			// finish inProgress - overwrite inProgress/index.html
-			TestStatusReporter.copyFile(testoutputfoldername + "\\TestNG\\emailable-report.html",
-					testoutputfoldername + "\\TestNG\\index.html");
+			TestStatusReporter.copyFile(testoutputfoldername + "/TestNG/emailable-report.html",
+					testoutputfoldername + "/TestNG/index.html");
 
 			logger.info("Execute tests ... completed");
 
@@ -512,8 +518,8 @@ public class ExecuteHarnessMain {
 								+ String.valueOf(testsPassed) + ", Failed: " + String.valueOf(testsFailed) + ", Skipped: "
 								+ String.valueOf(testsSkipped) + ", Retried: " + String.valueOf(testsRetried -testsFailed) + ")",
 						currentResultListener.getCustomResult(),
-						testoutputfoldername + "\\TestNG\\emailable-report.html",
-						testoutputfoldername + "\\TestNG\\index.html" });
+						testoutputfoldername + "/TestNG/emailable-report.html",
+						testoutputfoldername + "/TestNG/index.html" });
 			}
 
 			return (currentResultListener == null ? "Done" : currentResultListener.getResults());
@@ -791,8 +797,8 @@ public class ExecuteHarnessMain {
 				testTotalSeconds = (int) ((testEndTime.getTime()-testStartTime.getTime())/1000);
 				testTotalMinutes = new DecimalFormat("##.##").format((float) Math.round(testTotalSeconds) / 60);
 
-				StafIntegration.sHarnessLogFileFolderPath = testoutputfoldername + "\\debug\\projects";
-				StafIntegration.sHarnessLogFilePath = StafIntegration.sHarnessLogFileFolderPath + "\\" + StafIntegration.sHarnessLogFileName;
+				StafIntegration.sHarnessLogFileFolderPath = testoutputfoldername + "/debug/projects";
+				StafIntegration.sHarnessLogFilePath = StafIntegration.sHarnessLogFileFolderPath + "/" + StafIntegration.sHarnessLogFileName;
 				StafIntegration.pHarnessLogFilePath = Paths.get(StafIntegration.sHarnessLogFileFolderPath, StafIntegration.sHarnessLogFileName);
 				StafIntegration.fHarnessLogFile = new File(StafIntegration.sHarnessLogFilePath);
 				StafIntegration.fHarnessLogFileFolder = new File(StafIntegration.sHarnessLogFileFolderPath);
@@ -1428,110 +1434,140 @@ public class ExecuteHarnessMain {
 
 	public static void ZimbraPreConfiguration(String project) throws HarnessException, IOException {
 
+		// Selenium service
 		SeleniumService seleniumService = new SeleniumService();
 
+		// Harness log
+		StafIntegration.sHarnessLogFileFolderPath = testoutputfoldername + "/debug/projects";
+		StafIntegration.sHarnessLogFilePath = StafIntegration.sHarnessLogFileFolderPath + "/" + StafIntegration.sHarnessLogFileName;
+		StafIntegration.pHarnessLogFilePath = Paths.get(StafIntegration.sHarnessLogFileFolderPath, StafIntegration.sHarnessLogFileName);
+		StafIntegration.fHarnessLogFile = new File(StafIntegration.sHarnessLogFilePath);
+		StafIntegration.fHarnessLogFileFolder = new File(StafIntegration.sHarnessLogFileFolderPath);
+
+		// Create harness log folder and file
+		StafIntegration.fHarnessLogFileFolder.mkdirs();
+		if (!StafIntegration.fHarnessLogFile.exists()) {
+			StafIntegration.fHarnessLogFile.createNewFile();
+		}
+		Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo),
+				Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+
+		// Zimbra pre-configuration and required setup
 		if (totalZimbraServers == 0) {
 
 			StafIntegration.logInfo = "-------------- Zimbra pre-configuration and required setup for " + project + " project --------------\n";
 			logger.info(StafIntegration.logInfo);
 
 			// Get total zimbra servers
-			logger.info("Getting total zimbra servers...");
-			for (String noOfZimbraServers : CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"), "zmprov -l gas | wc -l")) {
+			logger.info("Get total zimbra servers...");
+			for (String noOfZimbraServers : CommandLineUtility.runCommandOnZimbraServer(
+					ConfigProperties.getStringProperty("server.host"), "zmprov -l gas | wc -l")) {
 				totalZimbraServers = Integer.parseInt(noOfZimbraServers);
 			}
 			if (totalZimbraServers == 0) {
 				seleniumService.stopSeleniumExecution();
+				System.exit(0);
 			}
+			StafIntegration.logInfo = "Total zimbra server(s): " + totalZimbraServers;
+			logger.info(StafIntegration.logInfo);
+			Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo),
+					Charset.forName("UTF-8"), StandardOpenOption.APPEND);
 
-			// Get admin port
-			if (totalZimbraServers >= 2) {
-				logger.info("Getting proxy servers...");
-				for (String noOfZimbraProxyServers : CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"), "zmprov -l gas proxy | wc -l")) {
-					totalZimbraProxyServers = Integer.parseInt(noOfZimbraProxyServers);
-					if (totalZimbraProxyServers >=1) {
-						adminPort = 9071;
-					} else {
-						adminPort = 7071;
-					}
-				}
-			} else {
-				adminPort = 7071;
-			}
-
-			// Get server port
+			// Get zimbra server ports
 			if (ConfigProperties.getStringProperty("server.scheme").equals("https")) {
 				serverPort = 443;
 			} else {
 				serverPort = 80;
 			}
+			adminPort = 7071;
 
-			// Harness log
-			StafIntegration.sHarnessLogFileFolderPath = testoutputfoldername + "/debug/projects";
-			StafIntegration.sHarnessLogFilePath = StafIntegration.sHarnessLogFileFolderPath + "\\" + StafIntegration.sHarnessLogFileName;
-			StafIntegration.pHarnessLogFilePath = Paths.get(StafIntegration.sHarnessLogFileFolderPath, StafIntegration.sHarnessLogFileName);
-			StafIntegration.fHarnessLogFile = new File(StafIntegration.sHarnessLogFilePath);
-			StafIntegration.fHarnessLogFileFolder = new File(StafIntegration.sHarnessLogFileFolderPath);
-
-			// Create harness log folder and file
-			StafIntegration.fHarnessLogFileFolder.mkdirs();
-			if (!StafIntegration.fHarnessLogFile.exists()) {
-				StafIntegration.fHarnessLogFile.createNewFile();
-			}
-
-			Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
-
-			// Get all zimbra servers
-			StafIntegration.logInfo = "No. of zimbra server(s): " + totalZimbraServers;
-			logger.info(StafIntegration.logInfo);
-			Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
-
-			// Port details
-			StafIntegration.logInfo = "Server admin port: " + adminPort + ", server port: " + serverPort;
-			logger.info(StafIntegration.logInfo);
-			Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
-
-			// Multi node settings
+			// Multi-node settings
 			if (totalZimbraServers >= 2) {
-				// Get all proxy servers
-				StafIntegration.logInfo = "No. of proxy server(s): " + totalZimbraProxyServers;
+				logger.info("Get proxy servers...");
+				for (String noOfProxyServers : CommandLineUtility.runCommandOnZimbraServer(
+						ConfigProperties.getStringProperty("server.host"), "zmprov -l gas proxy | wc -l")) {
+					totalProxyServers = Integer.parseInt(noOfProxyServers);
+					if (totalProxyServers >=1) {
+						adminPort = 9071;
+					}
+				}
+				StafIntegration.logInfo = "Server admin port: " + adminPort + ", server port: " + serverPort;
 				logger.info(StafIntegration.logInfo);
-				Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
-				Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList("Admin port: " + adminPort + ", Client port: " + serverPort),
+				Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo),
 						Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+
+				// Get all proxy servers
+				logger.info("Get all proxy servers...");
+				proxyServers = CommandLineUtility.runCommandOnZimbraServer(
+						ConfigProperties.getStringProperty("server.host"), "zmprov -l gas proxy");
+				StafIntegration.logInfo = "Proxy server(s): " + proxyServers;
+				logger.info(StafIntegration.logInfo);
+				Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo),
+						Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+				if (proxyServers.equals(null) || proxyServers.isEmpty()) {
+					seleniumService.stopSeleniumExecution();
+					StafIntegration.logInfo = "Couldn't get proxy servers (" + proxyServers + ") using CLI command";
+					logger.info(StafIntegration.logInfo);
+					Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo),
+							Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+					System.exit(0);
+				}
 
 				// Get all store servers
 				logger.info("Get all store servers...");
-				storeServers = CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"), "zmprov -l gas mailbox");
+				storeServers = CommandLineUtility.runCommandOnZimbraServer(
+						ConfigProperties.getStringProperty("server.host"), "zmprov -l gas mailbox");
 				StafIntegration.logInfo = "Store server(s): " + storeServers;
 				logger.info(StafIntegration.logInfo);
-				Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+				Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo),
+						Charset.forName("UTF-8"), StandardOpenOption.APPEND);
 				if (storeServers.equals(null) || storeServers.isEmpty()) {
 					seleniumService.stopSeleniumExecution();
 					StafIntegration.logInfo = "Couldn't get store servers (" + storeServers + ") using CLI command";
 					logger.info(StafIntegration.logInfo);
-					Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+					Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo),
+							Charset.forName("UTF-8"), StandardOpenOption.APPEND);
 					System.exit(0);
 				}
 
 				// Get all mta servers
 				logger.info("Get all mta servers...");
-				mtaServers = CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"), "zmprov -l gas mta");
+				mtaServers = CommandLineUtility.runCommandOnZimbraServer(
+						ConfigProperties.getStringProperty("server.host"), "zmprov -l gas mta");
 				StafIntegration.logInfo = "MTA server(s): " + mtaServers;
 				logger.info(StafIntegration.logInfo);
-				Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+				Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo),
+						Charset.forName("UTF-8"), StandardOpenOption.APPEND);
 				if (mtaServers.equals(null) || mtaServers.isEmpty()) {
 					seleniumService.stopSeleniumExecution();
 					StafIntegration.logInfo = "Couldn't get mta servers (" + mtaServers + ") using CLI command";
 					logger.info(StafIntegration.logInfo);
-					Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+					Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo),
+							Charset.forName("UTF-8"), StandardOpenOption.APPEND);
 					System.exit(0);
 				}
 
-			// Single node settings
+			// Single-node settings
 			} else {
-				storeServers = new ArrayList<String>();
-				storeServers.add(ConfigProperties.getStringProperty("server.host"));
+				// Get single zimbra server
+				logger.info("Get single zimbra server...");
+				proxyServers = CommandLineUtility.runCommandOnZimbraServer(
+						ConfigProperties.getStringProperty("server.host"), "zmprov -l gas");
+				storeServers.add(proxyServers.get(0));
+				mtaServers.add(proxyServers.get(0));
+
+				StafIntegration.logInfo = "Single server(s): " + proxyServers;
+				logger.info(StafIntegration.logInfo);
+				Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo),
+						Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+				if (proxyServers.equals(null) || proxyServers.isEmpty()) {
+					seleniumService.stopSeleniumExecution();
+					StafIntegration.logInfo = "Couldn't get proxy servers (" + proxyServers + ") using CLI command";
+					logger.info(StafIntegration.logInfo);
+					Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo),
+							Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+					System.exit(0);
+				}
 			}
 
 			// Admin project settings
@@ -1542,29 +1578,35 @@ public class ExecuteHarnessMain {
 				String licenseDirPath = ConfigProperties.getBaseDirectory() + "/data/private/license";
 				File licenseDir = new File(licenseDirPath);
 				if (!licenseDir.exists()) {
-					Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList("Creating licence directory " + licenseDirPath), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+					Files.write(StafIntegration.pHarnessLogFilePath,
+							Arrays.asList("Creating licence directory " + licenseDirPath), Charset.forName("UTF-8"),
+							StandardOpenOption.APPEND);
 					licenseDir.mkdirs();
 				}
 
 				StafServiceFS staf = new StafServiceFS(ConfigProperties.getStringProperty("server.host"));
-				staf.execute("COPY FILE " + serverMachinelicenseFile + " TODIRECTORY " + licenseDir + " TOMACHINE " + getLocalMachineName());
+				staf.execute("COPY FILE " + serverMachinelicenseFile + " TODIRECTORY " + licenseDir + " TOMACHINE "
+						+ getLocalMachineName());
 
 			// Ajax project settings
 			} else if (project.contains("ajax")) {
 				// Initially disable chat and drive zimlets on COS if they are enabled
 				ArrayList<String> availableZimlets = CommandLineUtility.runCommandOnZimbraServer(
-						ConfigProperties.getStringProperty("server.host"), "zmprov -l gc default zimbraZimletAvailableZimlets | grep zimbraZimletAvailableZimlets | cut -c 32-");
+						ConfigProperties.getStringProperty("server.host"),
+						"zmprov -l gc default zimbraZimletAvailableZimlets | grep zimbraZimletAvailableZimlets | cut -c 32-");
 				if (availableZimlets.contains("com_zextras_chat_open")) {
 					StafIntegration.logInfo = "Initially disable zimbra chat zimlet on COS";
 					logger.info(StafIntegration.logInfo);
-					Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo),Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+					Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo),
+							Charset.forName("UTF-8"), StandardOpenOption.APPEND);
 					CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"),
 							"zmprov mc default -zimbraZimletAvailableZimlets '+com_zextras_chat_open'");
 				}
 				if (availableZimlets.contains("com_zextras_drive_open")){
 					StafIntegration.logInfo = "Initially disable zimbra drive zimlet on COS";
 					logger.info(StafIntegration.logInfo);
-					Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo),Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+					Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo),
+							Charset.forName("UTF-8"), StandardOpenOption.APPEND);
 					CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"),
 							"zmprov mc default -zimbraZimletAvailableZimlets '+com_zextras_drive_open'");
 				}
@@ -1580,7 +1622,8 @@ public class ExecuteHarnessMain {
 
 				Boolean themeFound = false;
 				for (String serverUniversalUITheme : CommandLineUtility.runCommandOnZimbraServer(
-						ConfigProperties.getStringProperty("server.host"), "ls /opt/zimbra/jetty/webapps/zimbra/skins | grep -i " + universalUITheme)) {
+						ConfigProperties.getStringProperty("server.host"),
+						"ls /opt/zimbra/jetty/webapps/zimbra/skins | grep -i " + universalUITheme)) {
 					if (serverUniversalUITheme.contains(universalUITheme)) {
 						themeFound = true;
 						break ;
@@ -1590,19 +1633,23 @@ public class ExecuteHarnessMain {
 					seleniumService.stopSeleniumExecution();
 					StafIntegration.logInfo = "Couldn't find or set " + universalUITheme + " theme for Univeral UI project";
 					logger.info(StafIntegration.logInfo);
-					Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+					Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo),
+							Charset.forName("UTF-8"), StandardOpenOption.APPEND);
 					System.exit(0);
 				} else {
 					StafIntegration.logInfo = universalUITheme + " theme set for Univeral UI project";
 					logger.info(StafIntegration.logInfo);
-					Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+					Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo),
+							Charset.forName("UTF-8"), StandardOpenOption.APPEND);
 				}
 
 				// Modify COS to always use Clarity theme for Universal UI
 				StafIntegration.logInfo = "Modify COS to always use Clarity theme for Universal UI";
 				logger.info(StafIntegration.logInfo);
-				Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
-				CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"), "zmprov mc default zimbraPrefSkin " + universalUITheme);
+				Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo),
+						Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+				CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"),
+						"zmprov mc default zimbraPrefSkin " + universalUITheme);
 
 				// Get modified COS value for check theme value for Universal UI
 				logger.info("Get modified COS value for check theme value for Universal UI");
@@ -1612,7 +1659,8 @@ public class ExecuteHarnessMain {
 						seleniumService.stopSeleniumExecution();
 						StafIntegration.logInfo = "Couldn't set " + universalUITheme + " theme for Univeral UI project";
 						logger.info(StafIntegration.logInfo);
-						Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+						Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo),
+								Charset.forName("UTF-8"), StandardOpenOption.APPEND);
 						System.exit(0);
 					}
 				}
