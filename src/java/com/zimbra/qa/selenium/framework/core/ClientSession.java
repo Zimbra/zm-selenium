@@ -67,7 +67,7 @@ import java.util.zip.GZIPInputStream;
  * {@link ClientSession}.
  * <p>
  *
- * @author Matt Rhoades
+ * @author Matt Rhoades, Jitesh Sojitra
  *
  */
 
@@ -187,7 +187,7 @@ public class ClientSession {
 				System.setProperty("webdriver.gecko.driver", driverFilePath);
 				options.setCapability(CapabilityType.LOGGING_PREFS, logs);
 				webDriver = new FirefoxDriver(options);
-				
+
 				Dimension dimension = new Dimension(500, 500);
 				webDriver.manage().window().setSize(dimension);
 				webDriver.manage().window().maximize();
@@ -256,6 +256,7 @@ public class ClientSession {
 				options.setExperimentalOption("prefs", preferences);
 				options.addArguments("disable-infobars");
 				options.addArguments("start-maximized");
+				options.addArguments("--no-sandbox");
 
 		        System.setProperty("webdriver.chrome.driver", driverFilePath);
 		        options.setCapability("chrome.switches", Arrays.asList("--disable-extensions"));

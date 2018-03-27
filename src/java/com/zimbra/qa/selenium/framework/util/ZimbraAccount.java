@@ -96,23 +96,21 @@ public class ZimbraAccount {
 
 	/*
 	 * Create an account with the email address <name>@<domain> The password is set
-	 * to config property "adminPwd"
+	 * to config property "adminPassword"
 	 */
 	public ZimbraAccount(String email, String password) {
 
 		if (email == null) {
 			DisplayName = ConfigProperties.getStringProperty("locale").toLowerCase().replace("_", "")
 					+ ConfigProperties.getUniqueString();
-			email = DisplayName + "@" + ConfigProperties.getStringProperty("testdomain", "testdomain.com");
+			email = DisplayName + "@" + ConfigProperties.getStringProperty("testdomain");
 		} else {
 			DisplayName = email.split("@")[0];
 		}
-
 		EmailAddress = email;
 
 		if (password == null) {
-			// password = ConfigProperties.getStringProperty("adminPwd", "test123");
-			password = "test123";
+			password = ConfigProperties.getStringProperty("adminPassword");
 		}
 		Password = password;
 	}
@@ -404,7 +402,7 @@ public class ZimbraAccount {
 		try {
 
 			if (exists()) {
-				logger.info(EmailAddress + " already exists.  Not provisioning again.");
+				logger.info(EmailAddress + " already exists. Not provisioning again.");
 				return (this);
 			}
 
@@ -1073,8 +1071,7 @@ public class ZimbraAccount {
 
 			setTransport(request);
 
-			// Remember the context, request, envelope and response for logging
-			// purposes
+			// Remember the context, request, envelope and response for logging purposes
 			requestBody = request;
 			requestEnvelope = mSoapProto.soapEnvelope(requestBody, context);
 

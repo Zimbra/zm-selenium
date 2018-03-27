@@ -59,6 +59,9 @@ class StreamGobbler extends Thread {
 	}
 }
 
+
+// Command line utility class
+
 public class CommandLineUtility {
 	private static Logger logger = LogManager.getLogger(CommandLineUtility.class);
 
@@ -224,19 +227,30 @@ public class CommandLineUtility {
 		return output;
 	}
 
+
 	public static String runCommandOnStoreServerToGetTOTP(String email, String secret) {
+
+		String privateKey = null;
 		String host = ZimbraAccount.AccountZCS().zGetAccountStoreHost();
-		String user = "root";
-		String password = "zimbra";
-		String command = "su - zimbra -c 'zmtotp -a " + email + " -s " + secret + "'";
+		String command = "sudo su - zimbra -c 'zmtotp -a " + email + " -s " + secret + "'";
 		String totp = "0";
+
 		try {
 
 			java.util.Properties config = new java.util.Properties();
 			config.put("StrictHostKeyChecking", "no");
 			JSch jsch = new JSch();
-			Session session = jsch.getSession(user, host, 22);
-			session.setPassword(password);
+
+			if (!ConfigProperties.getStringProperty("server.host").endsWith(".zimbra.com")) {
+				privateKey = getUserHome() + "/.ssh/id_rsa";
+				jsch.addIdentity(privateKey);
+			}
+
+			Session session = jsch.getSession(ConfigProperties.getStringProperty("server.user"), host, 22);
+			if (ConfigProperties.getStringProperty("server.host").endsWith(".zimbra.com")) {
+				session.setPassword(ConfigProperties.getStringProperty("server.password"));
+			}
+
 			session.setConfig(config);
 			session.connect();
 			System.out.println("Connected");
@@ -271,17 +285,27 @@ public class CommandLineUtility {
 	}
 
 	public static ArrayList<String> runCommandOnZimbraServer(String host, String zimbraCommand) {
-		String user = "root";
-		String password = "zimbra";
-		String command = "su - zimbra -c '" + zimbraCommand + "'";
+
+		String privateKey = null;
+		String command = "sudo su - zimbra -c '" + zimbraCommand + "'";
 		ArrayList<String> out = null;
+
 		try {
 
 			java.util.Properties config = new java.util.Properties();
 			config.put("StrictHostKeyChecking", "no");
 			JSch jsch = new JSch();
-			Session session = jsch.getSession(user, host, 22);
-			session.setPassword(password);
+
+			if (!ConfigProperties.getStringProperty("server.host").endsWith(".zimbra.com")) {
+				privateKey = getUserHome() + "/.ssh/id_rsa";
+				jsch.addIdentity(privateKey);
+			}
+
+			Session session = jsch.getSession(ConfigProperties.getStringProperty("server.user"), host, 22);
+			if (ConfigProperties.getStringProperty("server.host").endsWith(".zimbra.com")) {
+				session.setPassword(ConfigProperties.getStringProperty("server.password"));
+			}
+
 			session.setConfig(config);
 			session.connect();
 			System.out.println("Connected");
@@ -310,5 +334,14 @@ public class CommandLineUtility {
 		}
 
 		return (out);
+	}
+
+	public static String getUserHome () {
+		String userHome = null;
+		userHome = System.getenv("HOME");
+		if (userHome == null || userHome == "") {
+			userHome = System.getProperty("user.home");
+		}
+		return userHome;
 	}
 }

@@ -237,22 +237,26 @@ public class ConfigProperties {
 	}
 
 	public static String zimbraGetVersionString() throws HarnessException {
+
 		// Get zimbra server version
-		logger.info("Getting zimbra server version...");
+		if (ExecuteHarnessMain.zimbraVersion == null || ExecuteHarnessMain.zimbraVersion == "") {
+			logger.info("Get zimbra server version...");
 
-		String buildType;
-		for (String zimbraVersion : CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"), "zmcontrol -v")) {
-			if (zimbraVersion.toLowerCase().contains("network")) {
-				buildType = "NETWORK";
-			} else {
-				buildType = "FOSS";
+			String buildType;
+			for (String zimbraVersion : CommandLineUtility
+					.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"), "zmcontrol -v")) {
+				if (zimbraVersion.toLowerCase().contains("network")) {
+					buildType = "NETWORK";
+				} else {
+					buildType = "FOSS";
+				}
+
+				Date date = new Date();
+				SimpleDateFormat dateTimeFormat = new SimpleDateFormat("hh.mm");
+
+				ExecuteHarnessMain.zimbraVersion = zimbraVersion.replace("Release ", "").split(" ")[0] + "_" + buildType
+						+ "-" + dateTimeFormat.format(date);
 			}
-
-			Date date = new Date();
-			SimpleDateFormat dateTimeFormat = new SimpleDateFormat("hh.mm");
-
-			ExecuteHarnessMain.zimbraVersion = zimbraVersion.replace("Release ", "").split(" ")[0] + "_" + buildType
-					+ "-" + dateTimeFormat.format(date);
 		}
 		return ExecuteHarnessMain.zimbraVersion;
 	}

@@ -20,6 +20,7 @@ import java.util.HashMap;
 import java.util.Map;
 import org.apache.log4j.*;
 import com.zimbra.common.soap.Element;
+import com.zimbra.qa.selenium.framework.core.ExecuteHarnessMain;
 import com.zimbra.qa.selenium.projects.admin.items.AccountItem;
 
 public class ZimbraAdminAccount extends ZimbraAccount {
@@ -250,8 +251,8 @@ public class ZimbraAdminAccount extends ZimbraAccount {
 	public static synchronized ZimbraAdminAccount AdminConsoleAdmin() {
 		if (_AdminConsoleAdmin == null) {
 			try {
-				String name = "globaladmin" + ConfigProperties.getUniqueString();
-				String domain = ConfigProperties.getStringProperty("server.host", "zqa-062.eng.zimbra.com");
+				String name = ConfigProperties.getStringProperty("adminUser") + ConfigProperties.getUniqueString();
+				String domain = ExecuteHarnessMain.proxyServers.get(0);
 				_AdminConsoleAdmin = new ZimbraAdminAccount(name + "@" + domain);
 				_AdminConsoleAdmin.provision();
 				_AdminConsoleAdmin.authenticate();
@@ -283,16 +284,14 @@ public class ZimbraAdminAccount extends ZimbraAccount {
 
 	/**
 	 * Get the global admin account This account is defined in config.properties as
-	 * <adminName>@<server>
-	 * 
+	 * <adminUser>@<server>
+	 *
 	 * @return The global admin account
 	 */
 	public static synchronized ZimbraAdminAccount GlobalAdmin() {
 		if (_GlobalAdmin == null) {
-			// String name = "globaladmin@" + ConfigProperties.getStringProperty("");
-			String name = "globaladmin@"
-					+ ConfigProperties.getStringProperty(ConfigProperties.getLocalHost() + ".server.host",
-							ConfigProperties.getStringProperty("server.host"));
+			String name = ConfigProperties.getStringProperty("adminUser") + "@"
+					+ ExecuteHarnessMain.proxyServers.get(0);
 			_GlobalAdmin = new ZimbraAdminAccount(name);
 			_GlobalAdmin.authenticate();
 		}
@@ -312,7 +311,7 @@ public class ZimbraAdminAccount extends ZimbraAccount {
 			throw new HarnessException("GetVersionInfoRequest did not return GetVersionInfoResponse");
 
 		// Create a new global admin account
-		String domain = ConfigProperties.getStringProperty("server.host", "zqa-062.eng.zimbra.com");
+		String domain = ConfigProperties.getStringProperty("server.host");
 		ZimbraAdminAccount admin = new ZimbraAdminAccount("admin" + System.currentTimeMillis() + "@" + domain);
 		admin.provision(); // Create the account (CreateAccountRequest)
 		admin.authenticate(); // Authenticate the account (AuthRequest)
