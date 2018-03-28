@@ -124,8 +124,11 @@ public class PageMail extends AbsTab {
 		public static final String zMovetToToAddressContextMenu = "css=div[id^='POPUP_DWT'] tbody div[id='MOVE_TO_TO'][class*='ZDisabled'] table tbody tr[id='POPUP_MOVE_TO_TO']";
 		public static final String zMoveToCcAddressContextMenu = "css=div[id^='POPUP_DWT'] tbody div[id='MOVE_TO_CC'] table tbody tr[id='POPUP_MOVE_TO_CC']";
 		public static final String zMoveToBccAddressContextMenu = "css=div[id^='POPUP_DWT'] tbody div[id='MOVE_TO_BCC'] table tbody tr[id='POPUP_MOVE_TO_BCC']";
-
-		// Msg header Address Context menu
+		
+		// Message header Address bubble
+		public static final String zAddressBubbleInHeaderCss = "css=table[id$='_hdrTable'] span.addrBubble";
+		
+		// Message header Address Context menu
 		public static final String zCopyMsgHdrContextMenu = "css=div[id^='zcs'][class^='ActionMenu ']  tbody div[id='COPY'] table tbody tr[id='POPUP_COPY']";
 		public static final String zFindEmailsMsgHdrContextMenu = "css=div[id^='zcs'][class^='ActionMenu ']  tbody div[id='SEARCH_MENU'] table tbody tr[id='POPUP_SEARCH_MENU']";
 		public static final String zNewEmailsMsgHdrContextMenu = "css=div[id^='zcs'][class^='ActionMenu ']  tbody div[id='NEW_MESSAGE'] table tbody tr[id='POPUP_NEW_MESSAGE']";
@@ -2414,4 +2417,6 @@ public class PageMail extends AbsTab {
 		}
 		return null;
 	}
+	
+	
 }
