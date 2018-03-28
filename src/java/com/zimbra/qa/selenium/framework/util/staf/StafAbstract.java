@@ -216,7 +216,7 @@ public class StafAbstract {
     	logger.info("STAF Response Code: "+ StafResult.rc);
 
     	if (StafResult.rc == STAFResult.AccessDenied) {
-    		logger.error("On the server, use: staf local trust set machine *.eng.zimbra.com level 5");
+    		logger.error("On the server, use: staf local trust set machine *.zimbra.com level 5");
     	}
 
     	if (StafResult.rc != STAFResult.Ok) {

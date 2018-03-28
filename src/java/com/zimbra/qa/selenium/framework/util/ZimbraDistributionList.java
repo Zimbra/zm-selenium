@@ -33,20 +33,19 @@ public class ZimbraDistributionList {
 
 	/*
 	 * Create an account with the email address <name>@<domain> The password is set
-	 * to config property "adminPwd"
+	 * to config property "adminPassword"
 	 */
 	public ZimbraDistributionList(String email, String password) {
 
 		EmailAddress = email;
 		if ((email == null) || (email.trim().length() == 0)) {
 			EmailAddress = "dl" + ConfigProperties.getUniqueString() + "@"
-					+ ConfigProperties.getStringProperty("testdomain", "testdomain.com");
+					+ ConfigProperties.getStringProperty("testdomain");
 		}
 
 		Password = password;
 		if ((password == null) || (password.trim().length() == 0)) {
-			// password = ConfigProperties.getStringProperty("adminPwd", "test123");
-			password = "test123";
+			password = ConfigProperties.getStringProperty("adminPassword");
 		}
 	}
 

@@ -88,7 +88,7 @@ public class ZimbraAccount {
 
 	/*
 	 * Create an account with the email address account<num>@<testdomain> The
-	 * password is set to config property "adminPwd"
+	 * password is set to config property "adminPassword"
 	 */
 	public ZimbraAccount() {
 		this(null, null);
@@ -331,11 +331,10 @@ public class ZimbraAccount {
 	@SuppressWarnings("serial")
 	private static final Map<String, String> accountAttrs = new HashMap<String, String>() {
 		{
-			if (ConfigProperties.getStringProperty("server.host").startsWith("pnq-")) {
-				put("zimbraPrefTimeZoneId", "Asia/Kolkata");
-
-			} else {
+			if (ConfigProperties.getStringProperty("server.host").contains(".eng.")) {
 				put("zimbraPrefTimeZoneId", "America/Chicago");
+			} else {
+				put("zimbraPrefTimeZoneId", "Asia/Kolkata");
 			}
 
 			if (Calendar.getInstance().get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY
@@ -1675,7 +1674,6 @@ public class ZimbraAccount {
 
 	public static void main(String[] args) throws HarnessException {
 
-		// ConfigProperties.getStringProperty("server.host","zqa-062.eng.zimbra.com");
 		String domain = ConfigProperties.getStringProperty("server.host");
 
 		// Configure log4j using the basic configuration

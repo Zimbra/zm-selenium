@@ -117,7 +117,7 @@ public class Stafpostqueue extends StafServicePROCESS {
 			// Delete each ID one by one
 			deletePostqueueItems(qid);
 
-			throw new HarnessException("Message(s) never delivered from queue.  IDs: " + qid.toString());
+			throw new HarnessException("Message(s) never delivered from queue. IDs: " + qid.toString());
 
 		} else {
 
@@ -144,7 +144,10 @@ public class Stafpostqueue extends StafServicePROCESS {
 				}
 			}
 			if (isMessageDelivered.equals(false)) {
-				throw new HarnessException("Mailq not empty, total deffered messages: " + totalDeferredMessages);
+				String mailqInfo;
+				mailqInfo = "Mailq not empty, total deffered messages: " + totalDeferredMessages;
+				logger.info(mailqInfo);
+				//throw new HarnessException("Mailq not empty, total deffered messages: " + totalDeferredMessages);
 			}
 		}
 	}
