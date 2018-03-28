@@ -16,7 +16,6 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.attachments;
 
-import java.io.File;
 import java.util.List;
 import org.testng.annotations.Test;
 import com.zimbra.common.soap.Element;
@@ -46,7 +45,7 @@ public class RemoveAttachment extends SetGroupMailByMessagePreference {
 		ZimbraAccount account = app.zGetActiveAccount();
 
 		// Inject the message
-		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
+		injectMessage(app.zGetActiveAccount(), mimeFile);
 
 		// Double check that there is an attachment
 		account.soapSend(
@@ -122,7 +121,7 @@ public class RemoveAttachment extends SetGroupMailByMessagePreference {
 		ZimbraAccount account = app.zGetActiveAccount();
 
 		// Inject the message
-		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
+		injectMessage(app.zGetActiveAccount(), mimeFile);
 
 		// Double check that there is an attachment
 		account.soapSend(
@@ -191,7 +190,7 @@ public class RemoveAttachment extends SetGroupMailByMessagePreference {
 		ZimbraAccount account = app.zGetActiveAccount();
 
 		// Inject the message
-		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
+		injectMessage(app.zGetActiveAccount(), mimeFile);
 
 		// Double check that there is an attachment
 		account.soapSend(
@@ -268,7 +267,7 @@ public class RemoveAttachment extends SetGroupMailByMessagePreference {
 		ZimbraAccount account = app.zGetActiveAccount();
 
 		// Inject the message
-		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
+		injectMessage(app.zGetActiveAccount(), mimeFile);
 
 		// Double check that there is an attachment
 		account.soapSend(
@@ -336,7 +335,7 @@ public class RemoveAttachment extends SetGroupMailByMessagePreference {
 		ZimbraAccount account = app.zGetActiveAccount();
 
 		// Inject the message
-		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
+		injectMessage(app.zGetActiveAccount(), mimeFile);
 
 		// Double check that there is an attachment
 		account.soapSend("<SearchRequest xmlns='urn:zimbraMail' types='message'>" + "<query>subject:(" + subject

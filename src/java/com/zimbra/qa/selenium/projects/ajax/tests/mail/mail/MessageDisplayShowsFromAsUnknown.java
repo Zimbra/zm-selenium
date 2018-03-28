@@ -16,16 +16,13 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.mail;
 
-import java.io.File;
 import java.util.HashMap;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
-import com.zimbra.qa.selenium.framework.util.LmtpInject;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
-import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
 
@@ -51,14 +48,17 @@ public class MessageDisplayShowsFromAsUnknown extends AjaxCore {
 
 		String subject = "Encoding test";
 		String from = "Unknown";
+		String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug16213/bug16213att4501.txt";
 
-		String MimeFolder = ConfigProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug16213";
-		LmtpInject.injectFile(ZimbraAccount.AccountZCS(), new File(MimeFolder));
+		// Inject the sample mime
+		injectMessage(app.zGetActiveAccount(), mimeFile);
 
 		// Refresh current view
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
-		ZAssert.assertEquals(app.zPageMail.sGetText("css=div[id='zv__TV-main'] div[id='zl__TV-main'] ul[id='zl__TV-main__rows'] div[class^='TopRow'] div span").trim(), from, "Verify the default string for 'From' is 'Unknown'");
+		ZAssert.assertEquals(app.zPageMail.sGetText(
+				"css=div[id='zv__TV-main'] div[id='zl__TV-main'] ul[id='zl__TV-main__rows'] div[class^='TopRow'] div span")
+				.trim(), from, "Verify the default string for 'From' is 'Unknown'");
 	}
 }

@@ -16,7 +16,6 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.attachments;
 
-import java.io.File;
 import java.io.IOException;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.ui.*;
@@ -41,7 +40,8 @@ public class OpenAttachmentFromEMLAttachedInMessage extends SetGroupMailByMessag
 		final String subject = "Print2PDF Error";
 		final String subjecteml = "File conversion #27331";
 
-		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
+		// Inject the sample mime
+		injectMessage(app.zGetActiveAccount(), mimeFile);
 
 		// Refresh current view
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");

@@ -16,7 +16,6 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.conversation.conversations;
 
-import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import org.testng.annotations.Test;
@@ -26,9 +25,7 @@ import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.items.MailItem;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
-import com.zimbra.qa.selenium.framework.util.LmtpInject;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
-import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
 
@@ -54,9 +51,10 @@ public class CheckFromHeaderInConversationView extends AjaxCore {
 
 		String subject = "Encoding test";
 		String to = "ljk20k00k1je";
+		String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug16213/bug16213att4501.txt";
 
-		String MimeFolder = ConfigProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug16213";
-		LmtpInject.injectFile(ZimbraAccount.AccountZCS(), new File(MimeFolder));
+		// Inject the sample mime
+		injectMessage(app.zGetActiveAccount(), mimeFile);
 
 		// Click on folder in the tree
 		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);

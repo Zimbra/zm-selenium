@@ -16,13 +16,11 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.performance.compose;
 
-import java.io.File;
 import java.util.HashMap;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
-import com.zimbra.qa.selenium.framework.util.LmtpInject;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.framework.util.performance.PerfKey;
@@ -51,10 +49,11 @@ public class ZmMailAppReplyCompose extends AjaxCore {
 
 	public void ZmMailAppReplyCompose_01() throws HarnessException {
 
-		String mime = ConfigProperties.getBaseDirectory() + "/data/public/mime/email02/mime01.txt";
+		String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email02/mime01.txt";
 		String subject = "Subject13155016716713";
 
-		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mime));
+		// Inject the sample mime
+		injectMessage(app.zGetActiveAccount(), mimeFile);
 
 		// Refresh current view
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
@@ -75,10 +74,11 @@ public class ZmMailAppReplyCompose extends AjaxCore {
 
 	public void ZmMailAppReplyCompose_02() throws HarnessException {
 
-		String mime = ConfigProperties.getBaseDirectory() + "/data/public/mime/largeconversation_mime.txt";
+		String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/largeconversation_mime.txt";
 		String subject = "RESOLVED BUGS";
 
-		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mime));
+		// Inject the sample mime
+		injectMessage(app.zGetActiveAccount(), mimeFile);
 
 		// Refresh current view
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
@@ -100,10 +100,11 @@ public class ZmMailAppReplyCompose extends AjaxCore {
 
 	public void ZmMailAppReplyCompose_03() throws HarnessException {
 
-		String mime = ConfigProperties.getBaseDirectory() + "/data/public/mime/Invite_Message.txt";
+		String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/Invite_Message.txt";
 		String subject = "Test Edit Reply";
 
-		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mime));
+		// Inject the sample mime
+		injectMessage(app.zGetActiveAccount(), mimeFile);
 
 		// Refresh current view
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
@@ -126,10 +127,11 @@ public class ZmMailAppReplyCompose extends AjaxCore {
 
 	public void ZmMailAppReplyCompose_04() throws HarnessException {
 
-		String mime = ConfigProperties.getBaseDirectory() + "/data/public/mime/inviteMessageWith7MBAttachment.txt";
+		String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/inviteMessageWith7MBAttachment.txt";
 		String subject = "Invite Message with 7 MB attachment";
 
-		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mime));
+		// Inject the sample mime
+		injectMessage(app.zGetActiveAccount(), mimeFile);
 
 		// Refresh current view
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");

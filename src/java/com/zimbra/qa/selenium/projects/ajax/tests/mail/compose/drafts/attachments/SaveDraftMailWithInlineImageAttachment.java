@@ -16,7 +16,6 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.compose.drafts.attachments;
 
-import java.io.File;
 import org.openqa.selenium.Keys;
 import org.testng.annotations.Test;
 import com.zimbra.common.soap.Element;
@@ -117,13 +116,14 @@ public class SaveDraftMailWithInlineImageAttachment extends SetGroupMailByMessag
 
 			// Create file item
 			final String mimeSubject = "subjectAttachment";
-			final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email17/mime.txt";
+			final String mimeFile = ConfigProperties.getBaseDirectory() + "\\data\\public\\mime\\email17\\mime.txt";
 			final String mimeAttachmentName = "samplejpg.jpg";
 
 			FolderItem sent = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Sent);
 			FolderItem drafts = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Drafts);
 
-			LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
+			// Inject the sample mime
+			injectMessage(app.zGetActiveAccount(), mimeFile);
 
 			// Refresh current view
 			ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(mimeSubject), "Verify message displayed in current view");
@@ -147,7 +147,7 @@ public class SaveDraftMailWithInlineImageAttachment extends SetGroupMailByMessag
 			mailform.zFillField(Field.To, ZimbraAccount.AccountA().EmailAddress);
 
 			final String anotherFileName = "structure.jpg";
-			final String anotherFilePath = ConfigProperties.getBaseDirectory() + "\\data\\public\\other\\" + anotherFileName;
+			final String anotherFilePath = ConfigProperties.getBaseDirectory() + "/data/public/other/" + anotherFileName;
 
 			app.zPageMail.zPressButton(Button.O_ATTACH_DROPDOWN);
 			app.zPageMail.zPressButton(Button.B_ATTACH_INLINE);

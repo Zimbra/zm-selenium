@@ -16,13 +16,11 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.conversation.attachments;
 
-import java.io.File;
 import java.util.List;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.items.AttachmentItem;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
-import com.zimbra.qa.selenium.framework.util.LmtpInject;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.*;
@@ -44,7 +42,8 @@ public class GetAttachment extends SetGroupMailByConversationPreference {
 		final String subject = "subject151615738";
 		final String attachmentname = "file.txt";
 
-		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
+		// Inject the sample mime
+		injectMessage(app.zGetActiveAccount(), mimeFile);
 
 		// Refresh current view
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
@@ -82,7 +81,8 @@ public class GetAttachment extends SetGroupMailByConversationPreference {
 		final String attachmentname2 = "file02.txt";
 		final String attachmentname3 = "file03.txt";
 
-		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
+		// Inject the sample mime
+		injectMessage(app.zGetActiveAccount(), mimeFile);
 
 		// Refresh current view
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");

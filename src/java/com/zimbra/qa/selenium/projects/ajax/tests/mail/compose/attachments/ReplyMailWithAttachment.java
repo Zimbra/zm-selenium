@@ -16,7 +16,6 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.compose.attachments;
 
-import java.io.File;
 import org.openqa.selenium.Keys;
 import org.testng.annotations.Test;
 import com.zimbra.common.soap.Element;
@@ -44,11 +43,12 @@ public class ReplyMailWithAttachment extends SetGroupMailByMessagePreference {
 		try {
 
 			final String mimeSubject = "subjectAttachment";
-			final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email17/mime.txt";
+			final String mimeFile = ConfigProperties.getBaseDirectory() + "\\data\\public\\mime\\email17\\mime.txt";
 			FolderItem sent = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Sent);
 			final String mimeAttachmentName = "samplejpg.jpg";
 
-			LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
+			// Inject the sample mime
+			injectMessage(app.zGetActiveAccount(), mimeFile);
 
 			MailItem original = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ mimeSubject +")");
 			ZAssert.assertNotNull(original, "Verify the message is received correctly");
@@ -65,7 +65,7 @@ public class ReplyMailWithAttachment extends SetGroupMailByMessagePreference {
 			mailform.zFillField(Field.To, ZimbraAccount.AccountA().EmailAddress);
 
 			final String fileName = "structure.jpg";
-			final String filePath = ConfigProperties.getBaseDirectory() + "\\data\\public\\other\\" + fileName;
+			final String filePath = ConfigProperties.getBaseDirectory() + "/data/public/other/" + fileName;
 
 			app.zPageMail.zPressButton(Button.O_ATTACH_DROPDOWN);
 			app.zPageMail.zPressButton(Button.B_MY_COMPUTER);

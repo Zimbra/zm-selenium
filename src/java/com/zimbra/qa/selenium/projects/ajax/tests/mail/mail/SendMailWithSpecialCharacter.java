@@ -16,7 +16,6 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.mail;
 
-import java.io.*;
 import org.testng.annotations.*;
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.*;
@@ -69,7 +68,9 @@ public class SendMailWithSpecialCharacter extends SetGroupMailByMessagePreferenc
 		String subject = "13680547408344 & 13680547408345";
 		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug82073/mime1.txt";
 
-		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
+		// Inject the sample mime
+		injectMessage(app.zGetActiveAccount(), mimeFile);
+
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 	}
 }

@@ -16,7 +16,6 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.feeds;
 
-import java.io.File;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.ui.*;
@@ -41,9 +40,10 @@ public class CheckFeedGeneratedMessage extends SetGroupMailByMessagePreference {
 
 		String subject = "\"Wear-with-all\"";
 		String bodytext = "Barbara's suggestion:";
+		String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug52121/bug52121.txt";
 
-		String MimeFolder = ConfigProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug52121";
-		LmtpInject.injectFile(ZimbraAccount.AccountZCS(), new File(MimeFolder));
+		// Inject the sample mime
+		injectMessage(app.zGetActiveAccount(), mimeFile);
 
 		// Refresh current view
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");

@@ -337,4 +337,19 @@ public class TouchCore {
 		}
 		return elementPresent;
 	}
+
+	// Inject message using REST upload & SOAP AddMsgRequest
+	public void injectMessage (ZimbraAccount account, String filePath) throws HarnessException {
+		String attachmentId = account.uploadFileUsingRestUtil(filePath);
+
+		// Add message in selected account
+		try {
+			app.zGetActiveAccount().soapSend(
+				"<AddMsgRequest xmlns='urn:zimbraMail'>" +
+					"<m l='Inbox' f='u' aid='"+ attachmentId + "'></m>" +
+				"</AddMsgRequest>");
+		} catch (HarnessException e) {
+			throw new HarnessException("Unable to inject message: " + e);
+		}
+	}
 }

@@ -16,7 +16,6 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.zimlets.url;
 
-import java.io.*;
 import java.util.*;
 import org.testng.annotations.*;
 import com.zimbra.qa.selenium.framework.core.*;
@@ -127,7 +126,9 @@ public class HoverOverURL extends AjaxCore {
 		// Create the message data to be sent
 		String subject = "bug82303";
 		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug82303/mime.txt";
-		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
+
+		// Inject the sample mime
+		injectMessage(app.zGetActiveAccount(), mimeFile);
 
 		// Refresh current view
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");

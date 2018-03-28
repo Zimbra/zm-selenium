@@ -16,7 +16,6 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.compose.attachments;
 
-import java.io.File;
 import org.testng.annotations.Test;
 import com.zimbra.common.soap.Element;
 import com.zimbra.qa.selenium.framework.items.MailItem;
@@ -40,10 +39,10 @@ public class ReplyAll extends SetGroupMailByMessagePreference {
 
 		final String mimeSubject = "subject1397778577518254677";
 		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email15/mime.txt";
-
 		final String subject = "subject13625192398933";
 
-		LmtpInject.injectFile(ZimbraAccount.AccountA(), new File(mimeFile));
+		// Inject the sample mime
+		injectMessage(app.zGetActiveAccount(), mimeFile);
 
 		MailItem original = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "subject:("+ mimeSubject +")");
 		ZAssert.assertNotNull(original, "Verify the message is received correctly");

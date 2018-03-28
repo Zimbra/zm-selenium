@@ -16,7 +16,6 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.preferences.trustedaddresses;
 
-import java.io.File;
 import java.util.HashMap;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
@@ -25,7 +24,6 @@ import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
-import com.zimbra.qa.selenium.framework.util.LmtpInject;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
@@ -63,7 +61,7 @@ public class TrustedDomainConversationView extends AjaxCore {
 		final String subject = "TestTrustedAddress";
 		final String from = "admintest@testdoamin.com";
 		final String to = "admin@testdoamin.com";
-		final String mimeFolder = ConfigProperties.getBaseDirectory() + "/data/public/mime/ExternalImg.txt";
+		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/ExternalImg.txt";
 		FolderItem inboxFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(),SystemFolder.Inbox);
 
 		// Verify domain through soap- GetPrefsRequest
@@ -71,7 +69,7 @@ public class TrustedDomainConversationView extends AjaxCore {
 		ZAssert.assertTrue(PrefMailTrustedAddr.equals("testdoamin.com"), "Verify doamin is present /Pref/TrustedAddr");
 
 		// Inject the external image message(s)
-		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFolder));
+		injectMessage(app.zGetActiveAccount(), mimeFile);
 
 		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(),subject);
 

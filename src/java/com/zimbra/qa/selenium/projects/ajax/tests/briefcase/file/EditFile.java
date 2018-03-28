@@ -59,7 +59,7 @@ public class EditFile extends EnableBriefcaseFeature {
 		FileItem fileItem = new FileItem(filePath);
 
 		// Upload file to server through RestUtil
-		String attachmentId = account.uploadFile(filePath);
+		String attachmentId = account.uploadFileUsingRestUtil(filePath);
 
 		// Save uploaded file to briefcase through SOAP
 		account.soapSend("<SaveDocumentRequest xmlns='urn:zimbraMail'>"
@@ -115,7 +115,7 @@ public class EditFile extends EnableBriefcaseFeature {
 		IItem fileItem = new FileItem(filePath);
 
 		// Upload file to server through RestUtil
-		String attachmentId = account.uploadFile(filePath);
+		String attachmentId = account.uploadFileUsingRestUtil(filePath);
 
 		// Save uploaded file to briefcase through SOAP
 		account.soapSend("<SaveDocumentRequest xmlns='urn:zimbraMail'>" + "<doc l='" + briefcaseFolder.getId() + "'>"
@@ -150,7 +150,7 @@ public class EditFile extends EnableBriefcaseFeature {
 		IItem fileItem = new FileItem(filePath);
 
 		// Upload file to server through RestUtil
-		String attachmentId = account.uploadFile(filePath);
+		String attachmentId = account.uploadFileUsingRestUtil(filePath);
 
 		// Save uploaded file to briefcase through SOAP
 		account.soapSend("<SaveDocumentRequest xmlns='urn:zimbraMail'>" + "<doc l='" + briefcaseFolder.getId() + "'>"
@@ -192,8 +192,8 @@ public class EditFile extends EnableBriefcaseFeature {
 		String locator = "css=tr[id^='zlif__BDLV-main__'] div[id^='zlif__BDLV-main__']:contains('#1:')";
 
 		// Upload file to server through RestUtil
-		String attachment1Id = account.uploadFile(file1Path);
-		String attachment2Id = account.uploadFile(file1Path);
+		String attachment1Id = account.uploadFileUsingRestUtil(file1Path);
+		String attachment2Id = account.uploadFileUsingRestUtil(file1Path);
 
 		// Save uploaded file to briefcase through SOAP
 		account.soapSend("<SaveDocumentRequest xmlns='urn:zimbraMail'>" + "<doc desc='" + notesV1 + "' l='"
@@ -249,8 +249,8 @@ public class EditFile extends EnableBriefcaseFeature {
 		String locator = "css=tr[id^='zlif__BDLV-main__'] div[id^='zlif__BDLV-main__']:contains('#2:')";
 
 		// Upload file to server through RestUtil
-		String attachment1Id = account.uploadFile(file1Path);
-		String attachment2Id = account.uploadFile(file1Path);
+		String attachment1Id = account.uploadFileUsingRestUtil(file1Path);
+		String attachment2Id = account.uploadFileUsingRestUtil(file1Path);
 
 		// Save uploaded file to briefcase through SOAP
 		account.soapSend(

@@ -16,7 +16,6 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.zimlets.date;
 
-import java.io.File;
 import java.util.*;
 import java.util.regex.Pattern;
 import org.testng.annotations.*;
@@ -125,10 +124,10 @@ public class GetMessage extends AjaxCore {
 	public void GetMessage_03() throws HarnessException {
 
 		final String subject = "subject12912323015009";
-		final String mime = ConfigProperties.getBaseDirectory() + "/data/public/mime/date01/en_us_valid_dates.txt";
+		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/date01/en_us_valid_dates.txt";
 
-		// Inject the example message
-		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mime));
+		// Inject the sample mime
+		injectMessage(app.zGetActiveAccount(), mimeFile);
 
 		// Refresh current view
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
@@ -162,10 +161,10 @@ public class GetMessage extends AjaxCore {
 	public void GetMessage_04() throws HarnessException {
 
 		final String subject = "subject1293323025009";
-		final String mime = ConfigProperties.getBaseDirectory() + "/data/public/mime/date01/en_us_invalid_dates.txt";
+		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/date01/en_us_invalid_dates.txt";
 
-		// Inject the example message
-		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mime));
+		// Inject the sample mime
+		injectMessage(app.zGetActiveAccount(), mimeFile);
 
 		// Refresh current view
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");

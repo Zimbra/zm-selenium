@@ -16,7 +16,6 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.compose.delegates;
 
-import java.io.File;
 import org.testng.annotations.Test;
 import com.zimbra.common.soap.Element;
 import com.zimbra.qa.selenium.framework.core.Bugs;
@@ -123,7 +122,7 @@ public class SendAs extends SetGroupMailByMessagePreference {
 		final String mimeAttachmentName = "screenshot.JPG";
 
 		// Send the message to the test account
-		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
+		injectMessage(app.zGetActiveAccount(), mimeFile);
 
 		// Refresh current view
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");

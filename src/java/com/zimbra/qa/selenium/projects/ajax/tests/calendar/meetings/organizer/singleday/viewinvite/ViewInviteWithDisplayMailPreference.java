@@ -16,7 +16,6 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.organizer.singleday.viewinvite;
 
-import java.io.File;
 import java.util.HashMap;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.ui.*;
@@ -148,11 +147,11 @@ public class ViewInviteWithDisplayMailPreference extends AjaxCore {
 		String value = app.zGetActiveAccount().soapSelectValue("//acct:pref[@name='zimbraPrefMessageViewHtmlPreferred']", null);
 		ZAssert.assertEquals(value, "FALSE", "Verify zimbraPrefMessageViewHtmlPreferred preference changed to Text");
 
-		String filename = ConfigProperties.getBaseDirectory() + "/data/public/mime/email20/CalendarHTMLBody.txt";
+		String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email20/CalendarHTMLBody.txt";
 		String subject = "multiline HTML body";
 
 		if (!app.zPageMail.zVerifyMailExists(subject)) {
-			LmtpInject.injectFile(app.zGetActiveAccount(), new File(filename));
+			injectMessage(app.zGetActiveAccount(), mimeFile);
 			ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 		}
 
@@ -293,7 +292,7 @@ public class ViewInviteWithDisplayMailPreference extends AjaxCore {
 		final String subject = "multiline plain text body";
 
 		if (!app.zPageMail.zVerifyMailExists(subject)) {
-			LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
+			injectMessage(app.zGetActiveAccount(), mimeFile);
 			ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 		}
 		// Select the message so that it shows in the reading pane

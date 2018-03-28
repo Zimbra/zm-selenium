@@ -58,7 +58,7 @@ public class SendFileAttachment extends EnableBriefcaseFeature {
 		String fileName = fileItem.getName();
 
 		// Upload file to server through RestUtil
-		String attachmentId = account.uploadFile(filePath);
+		String attachmentId = account.uploadFileUsingRestUtil(filePath);
 
 		// Save uploaded file to briefcase through SOAP
 		account.soapSend("<SaveDocumentRequest xmlns='urn:zimbraMail'>" + "<doc l='" + briefcaseFolder.getId()
@@ -112,7 +112,7 @@ public class SendFileAttachment extends EnableBriefcaseFeature {
 		String fileName = fileItem.getName();
 
 		// Upload file to server through RestUtil
-		String attachmentId = account.uploadFile(filePath);
+		String attachmentId = account.uploadFileUsingRestUtil(filePath);
 
 		// Save uploaded file to briefcase through SOAP
 		account.soapSend("<SaveDocumentRequest xmlns='urn:zimbraMail'>" + "<doc l='" + briefcaseFolder.getId()

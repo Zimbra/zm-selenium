@@ -16,7 +16,6 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.mail;
 
-import java.io.File;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -56,7 +55,8 @@ public class DisplayMailContent extends SetGroupMailByMessagePreference {
 		final String colorBackgroundContent ="<span style=\"background-color: rgb(51, 153, 102);\">Green background</span></div>";
 		final String numberedListContent ="<ol><li>point one</li><li>point two</li><li>point three</li></ol>";
 
-		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
+		// Inject the sample mime
+		injectMessage(app.zGetActiveAccount(), mimeFile);
 
 		// Refresh current view
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
@@ -110,7 +110,7 @@ public class DisplayMailContent extends SetGroupMailByMessagePreference {
 		final String subject = "subject13214016725788";
 
 		if (!app.zPageMail.zVerifyMailExists(subject)) {
-			LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
+			injectMessage(app.zGetActiveAccount(), mimeFile);
 			ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 		}
 
@@ -163,7 +163,8 @@ public class DisplayMailContent extends SetGroupMailByMessagePreference {
 		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email19/multilineTextcontent.txt";
 		final String subject = "subject13214016777777";
 
-		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
+		// Inject the sample mime
+		injectMessage(app.zGetActiveAccount(), mimeFile);
 
 		// Refresh current view
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
@@ -220,7 +221,7 @@ public class DisplayMailContent extends SetGroupMailByMessagePreference {
 
 		// If mail already exist from previous testcases then don't inject
 		if (!app.zPageMail.zVerifyMailExists(subject)) {
-			LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
+			injectMessage(app.zGetActiveAccount(), mimeFile);
 			ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 		}
 

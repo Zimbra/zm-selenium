@@ -221,7 +221,7 @@ public class CreateTask extends AjaxCore {
 		// Create file item
 		String filePath = ConfigProperties.getBaseDirectory() + "/data/public/Files/Basic01/BasicExcel2007.xlsx";
 		// Upload file to server through RestUtil
-		String attachmentId = account.uploadFile(filePath);
+		String attachmentId = account.uploadFileUsingRestUtil(filePath);
 
 		app.zGetActiveAccount().soapSend(
 				"<CreateTaskRequest xmlns='urn:zimbraMail'>" +
@@ -268,7 +268,7 @@ public class CreateTask extends AjaxCore {
 		String fileName = file.getName();
 
 		// Upload file to server through RestUtil
-		String attachmentId = account.uploadFile(filePath);
+		String attachmentId = account.uploadFileUsingRestUtil(filePath);
 
 		app.zGetActiveAccount().soapSend(
 				"<CreateTaskRequest xmlns='urn:zimbraMail'>" +

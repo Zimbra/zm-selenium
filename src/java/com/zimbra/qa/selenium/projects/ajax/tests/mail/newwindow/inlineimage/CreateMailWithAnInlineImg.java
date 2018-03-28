@@ -52,7 +52,7 @@ public class CreateMailWithAnInlineImg extends SetGroupMailByMessagePreference {
 
 			// Create file item
 			final String fileName = "samplejpg.jpg";
-			final String filePath = ConfigProperties.getBaseDirectory()	+ "\\data\\public\\other\\" + fileName;
+			final String filePath = ConfigProperties.getBaseDirectory() + "\\data\\public\\other\\" + fileName;
 			SeparateWindowFormMailNew window = null;
 			String windowTitle = "Zimbra: Compose";
 
