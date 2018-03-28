@@ -1246,6 +1246,9 @@ public class PageBriefcase extends AbsTab {
 		logger.info(myPageName() + " zToolbarPressButton(" + button + ")");
 
 		tracer.trace("Press the " + button + " button");
+		
+		String locator = null;
+		AbsPage page = null;
 
 		if (button == null)
 			throw new HarnessException("Button cannot be null!");
@@ -1254,8 +1257,19 @@ public class PageBriefcase extends AbsTab {
 
 			return (((AjaxPages) this.MyApplication).zPageMain.zToolbarPressButton(Button.B_REFRESH));
 
+		} else if (button == Button.B_UPLOAD_FILE) {
+			
+			locator = Locators.zUploadFileTitleBtn.locator;
+
+			page = new DialogUploadFile(MyApplication, this);
 		}
-		return (null);
+		
+		this.sClickAt(locator, "0,0");
+		SleepUtil.sleepMedium();
+
+		zWaitForBusyOverlay();
+
+		return (page);
 
 	}
 

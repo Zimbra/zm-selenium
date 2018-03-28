@@ -18,17 +18,20 @@ package com.zimbra.qa.selenium.projects.ajax.tests.briefcase.file;
 
 import org.openqa.selenium.Keys;
 import org.testng.annotations.Test;
+import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.FileItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
-import com.zimbra.qa.selenium.framework.util.ConfigProperties;
+import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
 import com.zimbra.qa.selenium.projects.ajax.core.EnableBriefcaseFeature;
 import com.zimbra.qa.selenium.projects.ajax.pages.briefcase.DialogUploadFile;
+import com.zimbra.qa.selenium.projects.ajax.pages.briefcase.DialogUploadFile.Locators;
 
 public class UploadFile extends EnableBriefcaseFeature {
 
@@ -155,5 +158,70 @@ public class UploadFile extends EnableBriefcaseFeature {
 		// Delete file upon test completion
 		String id = account.soapSelectValue("//mail:doc", "id");
 		app.zPageBriefcase.deleteFileById(id);
+	}
+	
+	
+	@Bugs( ids = "81323")
+	@Test (description = "Upload file of size greater than set zimbraFileUploadMaxSize through GUI - verify the upload failure message",
+		      groups = { "functional", "L3", "upload", "non-msedge" })
+
+		  public void UploadFile_04() throws HarnessException {
+
+		try {
+			
+			// Set the max file upload limit to 1 MB so that user can upload file of size upto 764KB
+			ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
+					" <ModifyConfigRequest  xmlns='urn:zimbraAdmin'>"
+							+     "<a n='zimbraFileUploadMaxSize'>1048576</a>"
+							+ "</ModifyConfigRequest >");
+
+			// Refresh the UI so that the configuration change is loaded
+			app.zPageBriefcase.zRefreshUI();
+			startingPage.zNavigateTo();
+
+			ZimbraAccount account = app.zGetActiveAccount();
+
+			FolderItem briefcaseFolder = FolderItem.importFromSOAP(account, SystemFolder.Briefcase);
+
+			// Create file item
+			final String fileName1 = "BasicPng.PNG";
+			final String filePath1 = ConfigProperties.getBaseDirectory() + "\\data\\public\\Files\\Basic01\\" + fileName1; // Size of the file is 530 KB
+			final String fileName2 = "BasicTiff.TIF";
+			final String filePath2 = ConfigProperties.getBaseDirectory() + "\\data\\public\\Files\\Basic01\\" + fileName1; // Size of the file is 794 KB
+
+			// Select briefcase folder
+			app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseFolder);
+
+			// Click on Upload File button in the tool bar
+			DialogUploadFile dlg = (DialogUploadFile) app.zPageBriefcase.zToolbarPressButton(Button.B_UPLOAD_FILE);
+			
+			app.zPageBriefcase.sClickAt("css=div[class='ZmUploadDialog'] input[name='uploadFile']", "10,10");
+			// Upload file
+			zUpload(filePath2);
+			dlg.zPressButton(Button.B_OK);
+			
+			// Verify the upload failure message
+			ZAssert.assertTrue(dlg.zGetDisplayedText(Locators.zUploadStatusMessage).equals("Upload Failed:\n* The file " + fileName2 + " exceeds the size limit of 764 KB."), 
+					"Verify the upload failure message");
+			
+			// Upload the file of smaller size
+			app.zPageBriefcase.sClickAt("css=div[class='ZmUploadDialog'] input[name='uploadFile']", "10,10");
+			zUpload(filePath1);
+			dlg.zPressButton(Button.B_OK);
+
+			// Verify file is uploaded and displayed in the list view
+			ZAssert.assertTrue(app.zPageBriefcase.isPresentInListView(fileName1), "Verify the file is present in the list");
+			
+			// Verify file is not present
+			ZAssert.assertFalse(app.zPageBriefcase.isPresentInListView(fileName2), "Verify the file is not present in the list");
+			
+		} finally {
+			app.zPageMain.zKeyboardKeyEvent(Keys.ESCAPE);
+			// Reset the zimbraFileUploadMaxSize attribute
+			ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
+					" <ModifyConfigRequest  xmlns='urn:zimbraAdmin'>"
+							+     "<a n='zimbraFileUploadMaxSize'>10485760</a>"
+							+ "</ModifyConfigRequest >");
+		}
 	}
 }

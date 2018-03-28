@@ -19,8 +19,13 @@ package com.zimbra.qa.selenium.projects.ajax.pages.briefcase;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.interactions.Actions;
-import com.zimbra.qa.selenium.framework.ui.*;
+import com.zimbra.qa.selenium.framework.ui.AbsApplication;
+import com.zimbra.qa.selenium.framework.ui.AbsDialog;
+import com.zimbra.qa.selenium.framework.ui.AbsPage;
+import com.zimbra.qa.selenium.framework.ui.AbsTab;
+import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
+import com.zimbra.qa.selenium.framework.util.SleepUtil;
 
 public class DialogUploadFile extends AbsDialog {
 
@@ -28,6 +33,7 @@ public class DialogUploadFile extends AbsDialog {
 		public static final String zDialogClass = "css=div.ZmUploadDialog";
 		public static final String zTitleCLass = "DwtDialogTitle";
 		public static final String zDialogButtonsClass = "DwtDialogButtonBar";
+		public static final String zUploadStatusMessage = "css=div.ZmUploadDialog td[id$='_msg']";
 	}
 
 	public DialogUploadFile(AbsApplication application, AbsTab page) {
@@ -91,6 +97,9 @@ public class DialogUploadFile extends AbsDialog {
 		}
 
 		this.sClickAt(locator, "0,0");
+		if(button == Button.B_OK) {
+			SleepUtil.sleepLongMedium();
+		}
 		this.zWaitForBusyOverlay();
 
 		return (null);
