@@ -836,11 +836,11 @@ public class AjaxCore {
 		}
 	}
 
-	// Inject message using SOAP AddMsgRequest
+	// Inject message using REST upload & SOAP AddMsgRequest
 	public void injectMessage (ZimbraAccount account, String filePath) throws HarnessException {
 		String attachmentId = account.uploadFileUsingRestUtil(filePath);
 
-		// Send the message from AccountA to the ZCS user
+		// Add message in selected account
 		try {
 			app.zGetActiveAccount().soapSend(
 				"<AddMsgRequest xmlns='urn:zimbraMail'>" +
