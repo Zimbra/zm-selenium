@@ -16,7 +16,6 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.mail;
 
-import java.io.File;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.ui.*;
@@ -41,9 +40,10 @@ public class CheckMailContentForSpecificMimes extends SetGroupMailByMessagePrefe
 		String subject = "subject13010064065623";
 		String bodyBeforeImage = "K\u00e6re alle";
 		String bodyAfterImage = "Problemet best\u00E5r";
+		String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug13911/bug13911att3713.txt";
 
-		String MimeFolder = ConfigProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug13911";
-		LmtpInject.injectFile(ZimbraAccount.AccountZCS(), new File(MimeFolder));
+		// Inject the sample mime
+		injectMessage(app.zGetActiveAccount(), mimeFile);
 
 		// Refresh current view
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
@@ -67,9 +67,10 @@ public class CheckMailContentForSpecificMimes extends SetGroupMailByMessagePrefe
 		String subject = "subject12998858731253";
 		String beginningContent = "Uso Interno";
 		String endingContent = "Esta mensagem";
+		String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug21415/bug21415att10438.txt";
 
-		String MimeFolder = ConfigProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug21415";
-		LmtpInject.injectFile(ZimbraAccount.AccountZCS(), new File(MimeFolder));
+		// Inject the sample mime
+		injectMessage(app.zGetActiveAccount(), mimeFile);
 
 		// Refresh current view
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
@@ -95,9 +96,10 @@ public class CheckMailContentForSpecificMimes extends SetGroupMailByMessagePrefe
 		String subject = "subject12998912514374";
 		String beginningContent = "Change 77406";
 		String endingContent = "SkinResources.java";
+		String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug21415/bug21415att8124.txt";
 
-		String MimeFolder = ConfigProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug21415";
-		LmtpInject.injectFile(ZimbraAccount.AccountZCS(), new File(MimeFolder));
+		// Inject the sample mime
+		injectMessage(app.zGetActiveAccount(), mimeFile);
 
 		// Refresh current view
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
@@ -121,9 +123,10 @@ public class CheckMailContentForSpecificMimes extends SetGroupMailByMessagePrefe
 	public void CheckMailContentForSpecificMime_04() throws HarnessException {
 
 		String subject = "subject13001430504373";
+		String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug25624/bug25624att9322.txt";
 
-		String MimeFolder = ConfigProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug25624";
-		LmtpInject.injectFile(ZimbraAccount.AccountZCS(), new File(MimeFolder));
+		// Inject the sample mime
+		injectMessage(app.zGetActiveAccount(), mimeFile);
 
 		// Refresh current view
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
@@ -143,10 +146,10 @@ public class CheckMailContentForSpecificMimes extends SetGroupMailByMessagePrefe
 	public void CheckMailContentForSpecificMime_05() throws HarnessException {
 
 		String subject = "subject13001430504374";
+		String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug27796/bug27796att10515.txt";
 
-		String MimeFolder = ConfigProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug27796";
-		LmtpInject.injectFile(ZimbraAccount.AccountZCS(), new File(MimeFolder));
-
+		// Inject the sample mime
+		injectMessage(app.zGetActiveAccount(), mimeFile);
 
 		// Refresh current view
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
@@ -168,9 +171,10 @@ public class CheckMailContentForSpecificMimes extends SetGroupMailByMessagePrefe
 	public void CheckMailContentForSpecificMime_06() throws HarnessException {
 
 		String subject = "subject13002239738283";
+		String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug31535/bug34401att14395.txt";
 
-		String MimeFolder = ConfigProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug31535";
-		LmtpInject.injectFile(ZimbraAccount.AccountZCS(), new File(MimeFolder));
+		// Inject the sample mime
+		injectMessage(app.zGetActiveAccount(), mimeFile);
 
 		// Refresh current view
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
@@ -192,9 +196,10 @@ public class CheckMailContentForSpecificMimes extends SetGroupMailByMessagePrefe
 
 		String subject = "Fwd: test bug66192";
 		String bodytext = "Kind regards,";
+		String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/Bugs/bug66192.txt";
 
-		String MimeFolder = ConfigProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug66192";
-		LmtpInject.injectFile(ZimbraAccount.AccountZCS(), new File(MimeFolder));
+		// Inject the sample mime
+		injectMessage(app.zGetActiveAccount(), mimeFile);
 
 		// Refresh current view
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);

@@ -16,7 +16,6 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.compose.attachments;
 
-import java.io.File;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.MailItem;
@@ -24,7 +23,6 @@ import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
-import com.zimbra.qa.selenium.framework.util.LmtpInject;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.projects.ajax.core.SetGroupMailByMessagePreference;
@@ -49,7 +47,7 @@ public class Forward extends SetGroupMailByMessagePreference {
 		final String mimeAttachmentName = "screenshot.JPG";
 
 		// Send the message to the test account
-		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
+		injectMessage(app.zGetActiveAccount(), mimeFile);
 
 		// Refresh current view
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
@@ -80,8 +78,8 @@ public class Forward extends SetGroupMailByMessagePreference {
 		String filename = ZimbraAccount.AccountB().soapSelectValue("//mail:mp[@cd='attachment']", "filename");
 		ZAssert.assertEquals(filename, mimeAttachmentName, "Verify the attachment exists in the forwarded mail");
 	}
-	
-	
+
+
 	@Test (description = "Forward a mail after removing the attachemnt",
 			groups = { "smoke", "L1" })
 
@@ -92,7 +90,7 @@ public class Forward extends SetGroupMailByMessagePreference {
 		final String attachmentName = "remove.txt";
 
 		// Send the message to the test account
-		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
+		injectMessage(app.zGetActiveAccount(), mimeFile);
 
 		// Refresh current view
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
@@ -102,10 +100,10 @@ public class Forward extends SetGroupMailByMessagePreference {
 
 		// Forward the item
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_FORWARD);
-		
+
 		// Remove the attachment
 		mailform.zRemoveAttachment(attachmentName);
-		
+
 		// Fill out the form with the data
 		mailform.zFillField(Field.To, ZimbraAccount.Account1().EmailAddress);
 
@@ -125,8 +123,8 @@ public class Forward extends SetGroupMailByMessagePreference {
 		String fileName = ZimbraAccount.Account1().soapSelectValue("//mail:mp[@cd='attachment']", "filename");
 		ZAssert.assertNull(fileName, "Verify the attachment is not present in the forwarded mail");
 	}
-	
-	
+
+
 	@Bugs(ids = "76776")
 	@Test (description = "Forward a mail having two attachments --> Remove one attachement and Cancel --> "
 								+ "Forward Again - Verify the number of attachement attachments",
@@ -140,7 +138,7 @@ public class Forward extends SetGroupMailByMessagePreference {
 		final String attachmentName2 = "2.png";
 
 		// Send the message to the test account
-		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
+		injectMessage(app.zGetActiveAccount(), mimeFile);
 
 		// Refresh current view
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
@@ -150,19 +148,19 @@ public class Forward extends SetGroupMailByMessagePreference {
 
 		// Forward the item
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_FORWARD);
-		
+
 		// Remove one of the attachments
 		mailform.zRemoveAttachment(attachmentName1);
-		
+
 		// Cancel the forward compose
 		mailform.zToolbarPressButton(Button.B_CANCEL);
-		
+
 		mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_FORWARD);
-		
+
 		// Check the presence of attachments
 		ZAssert.assertTrue(mailform.zHasAttachment(attachmentName1),"Verify attachment '" + attachmentName1 + "' is present");
 		ZAssert.assertTrue(mailform.zHasAttachment(attachmentName2),"Verify attachment '" + attachmentName2 + "' is present");
-		
+
 		// Fill out the form with the data
 		mailform.zFillField(Field.To, ZimbraAccount.AccountB().EmailAddress);
 

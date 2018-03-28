@@ -64,7 +64,7 @@ public class OpenTaskContainsAttachmentMultipleTimes extends AjaxCore {
 		String fileName = file.getName();
 
 		// Upload file to server through RestUtil
-		String attachmentId = account.uploadFile(filePath);
+		String attachmentId = account.uploadFileUsingRestUtil(filePath);
 
 
 		app.zGetActiveAccount().soapSend(

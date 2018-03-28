@@ -16,7 +16,6 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.attachments;
 
-import java.io.File;
 import java.util.List;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.items.AttachmentItem;
@@ -43,7 +42,8 @@ public class OpenAttachment extends SetGroupMailByMessagePreference {
 		final String attachmentname = "file.txt";
 		final String attachmentcontent = "Text Attachment Content";
 
-		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
+		// Inject the sample mime
+		injectMessage(app.zGetActiveAccount(), mimeFile);
 
 		// Refresh current view
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");

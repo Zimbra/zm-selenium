@@ -16,7 +16,6 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.attachments;
 
-import java.io.File;
 import java.util.List;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
@@ -55,8 +54,8 @@ public class AddToBriefcase extends SetGroupMailByMessagePreference {
 
 		FolderItem folder = FolderItem.importFromSOAP(account, FolderItem.SystemFolder.Briefcase);
 
-		// Inject the message
-		LmtpInject.injectFile(account, new File(mimeFile));
+		// Inject the sample mime
+		injectMessage(app.zGetActiveAccount(), mimeFile);
 
 		// Double check that there is an attachment
 		account.soapSend(
@@ -122,8 +121,8 @@ public class AddToBriefcase extends SetGroupMailByMessagePreference {
 
  		FolderItem folder = FolderItem.importFromSOAP(account, FolderItem.SystemFolder.Briefcase);
 
- 		// Inject the message
- 		LmtpInject.injectFile(account, new File(mimeFile));
+ 		// Inject the sample mime
+ 		injectMessage(app.zGetActiveAccount(), mimeFile);
 
  		// Double check that there is an attachment
  		account.soapSend(

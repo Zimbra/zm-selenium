@@ -16,14 +16,12 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.newwindow.mail;
 
-import java.io.File;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.MailItem;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
-import com.zimbra.qa.selenium.framework.util.LmtpInject;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.SetGroupMailByMessagePreference;
@@ -48,7 +46,7 @@ public class ViewMail extends SetGroupMailByMessagePreference {
 		final String from = "from12996131112962@example.com";
 		final String sender = "sender12996131112962@example.com";
 
-		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFolder + "/mime_wSender.txt"));
+		injectMessage(app.zGetActiveAccount(), mimeFolder + "/mime_wSender.txt");
 
 		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), subject);
 		ZAssert.assertNotNull(mail, "Verify message is received");
@@ -95,7 +93,7 @@ public class ViewMail extends SetGroupMailByMessagePreference {
 		final String from = "from13016959916873@example.com";
 		final String replyto = "replyto13016959916873@example.com";
 
-		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFolder + "/mime_wReplyTo.txt"));
+		injectMessage(app.zGetActiveAccount(), mimeFolder + "/mime_wReplyTo.txt");
 
 		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), subject);
 		ZAssert.assertNotNull(mail, "Verify message is received");
@@ -142,7 +140,7 @@ public class ViewMail extends SetGroupMailByMessagePreference {
 		final String from = "from13011239916873@example.com";
 		final String resentfrom = "resentfrom13016943216873@example.com";
 
-		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFolder + "/mime_wResentFrom.txt"));
+		injectMessage(app.zGetActiveAccount(), mimeFolder + "/mime_wResentFrom.txt");
 
 		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), subject);
 		ZAssert.assertNotNull(mail, "Verify message is received");
@@ -187,7 +185,8 @@ public class ViewMail extends SetGroupMailByMessagePreference {
 		final String subject = "bug72233";
 		final String htmlcontent = "html1328844621404";
 
-		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
+		// Inject the sample mime
+		injectMessage(app.zGetActiveAccount(), mimeFile);
 
 		// Refresh current view
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");

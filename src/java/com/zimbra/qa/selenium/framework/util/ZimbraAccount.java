@@ -779,7 +779,7 @@ public class ZimbraAccount {
 	 * @return the attachment id, to be used with SaveDocumentRequest, for example
 	 * @throws HarnessException
 	 */
-	public String uploadFile(String filename) throws HarnessException {
+	public String uploadFileUsingRestUtil(String filename) throws HarnessException {
 		RestUtil util = new RestUtil();
 		util.setAuthentication(this);
 		util.setPath("/service/upload");

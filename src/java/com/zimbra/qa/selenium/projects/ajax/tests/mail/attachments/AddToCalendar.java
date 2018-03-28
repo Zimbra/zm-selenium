@@ -16,7 +16,6 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.attachments;
 
-import java.io.File;
 import java.util.List;
 import org.testng.annotations.Test;
 import com.zimbra.common.soap.Element;
@@ -56,7 +55,7 @@ public class AddToCalendar extends SetGroupMailByMessagePreference {
 		FolderItem folder = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Calendar);
 
 		// Inject the message
-		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
+		injectMessage(app.zGetActiveAccount(), mimeFile);
 
 		// Double check that there is an attachment
 		account.soapSend(
@@ -124,7 +123,7 @@ public class AddToCalendar extends SetGroupMailByMessagePreference {
 		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email08/mime03.txt";
 
 		// Inject the message
-		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
+		injectMessage(app.zGetActiveAccount(), mimeFile);
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 
 		// Select the message so that it shows in the reading pane
@@ -192,10 +191,9 @@ public class AddToCalendar extends SetGroupMailByMessagePreference {
 		String foldername = "folder" + ConfigProperties.getUniqueString();
 		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email08/mime06.txt";
 
-		// Inject the message
-		LmtpInject.injectFile(ZimbraAccount.AccountZCS(), new File(mimeFile));
+		// Inject the sample mime
+		injectMessage(app.zGetActiveAccount(), mimeFile);
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
-		SleepUtil.sleepMedium();
 
 		// Select the message so that it shows in the reading pane
 		DisplayMail display = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
@@ -273,7 +271,7 @@ public class AddToCalendar extends SetGroupMailByMessagePreference {
 		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email08/mime04.txt";
 
 		// Inject the message
-		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
+		injectMessage(app.zGetActiveAccount(), mimeFile);
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 		SleepUtil.sleepMedium();
 
@@ -357,7 +355,7 @@ public class AddToCalendar extends SetGroupMailByMessagePreference {
 		String mountfolderid = app.zGetActiveAccount().soapSelectValue("//mail:link[@name='"+ mountpointname +"']", "id");
 
 		// Inject the message
-		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
+		injectMessage(app.zGetActiveAccount(), mimeFile);
 
 		// Double check that there is an attachment
 		app.zGetActiveAccount().soapSend(
@@ -423,7 +421,7 @@ public class AddToCalendar extends SetGroupMailByMessagePreference {
 		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email08/mime02.txt";
 
 		// Inject the message
-		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
+		injectMessage(app.zGetActiveAccount(), mimeFile);
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 
 		// Adding additional code to go to Cal tab and click explicitly on Calendar header, so that new folder will create in upper level.

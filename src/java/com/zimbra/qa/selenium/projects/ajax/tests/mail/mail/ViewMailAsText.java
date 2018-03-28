@@ -16,7 +16,6 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.mail;
 
-import java.io.File;
 import java.util.HashMap;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.ui.*;
@@ -26,9 +25,6 @@ import com.zimbra.qa.selenium.projects.ajax.pages.mail.DisplayMail;
 import com.zimbra.qa.selenium.projects.ajax.pages.mail.DisplayMail.Field;
 
 public class ViewMailAsText extends AjaxCore {
-
-	boolean injected = false;
-	final String mimeFolder = ConfigProperties.getBaseDirectory() + "/data/public/mime/email00";
 
 	public ViewMailAsText() throws HarnessException {
 		logger.info("New "+ ViewMailAsText.class.getCanonicalName());
@@ -51,7 +47,8 @@ public class ViewMailAsText extends AjaxCore {
 		final String subject = "subject13214016725788";
 		final String content = "The Ming Dynasty";
 
-		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
+		// Inject the sample mime
+		injectMessage(app.zGetActiveAccount(), mimeFile);
 
 		// Refresh current view
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
@@ -73,7 +70,8 @@ public class ViewMailAsText extends AjaxCore {
 		final String subject = "subject13214016672655";
 		final String content = "Bold";
 
-		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
+		// Inject the sample mime
+		injectMessage(app.zGetActiveAccount(), mimeFile);
 
 		// Refresh current view
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
@@ -95,7 +93,8 @@ public class ViewMailAsText extends AjaxCore {
 		final String subject = "subject13214016621403";
 		final String content = "The Ming Dynasty";
 
-		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
+		// Inject the sample mime
+		injectMessage(app.zGetActiveAccount(), mimeFile);
 
 		// Refresh current view
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");

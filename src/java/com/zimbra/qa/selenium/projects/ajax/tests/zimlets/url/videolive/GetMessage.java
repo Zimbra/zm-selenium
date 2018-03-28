@@ -16,7 +16,6 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.zimlets.url.videolive;
 
-import java.io.File;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -34,11 +33,11 @@ public class GetMessage extends AjaxCore {
 
 	public void GetMail_01() throws HarnessException {
 
-		// Inject the sample message
 		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email07/mime.txt";
 		final String subject = "subject135232705018411";
 
-		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
+		// Inject the sample mime
+		injectMessage(app.zGetActiveAccount(), mimeFile);
 
 		// Refresh current view
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");

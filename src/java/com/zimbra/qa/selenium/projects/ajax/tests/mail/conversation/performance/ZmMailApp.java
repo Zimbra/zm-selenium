@@ -16,7 +16,6 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.conversation.performance;
 
-import java.io.File;
 import java.util.HashMap;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -64,8 +63,10 @@ public class ZmMailApp extends AjaxCore {
 
 	public void ZmMailApp_02() throws HarnessException {
 
-		String mime = ConfigProperties.getBaseDirectory() + "/data/public/mime/email02/mime01.txt";
-		LmtpInject.injectFile(ZimbraAccount.AccountZCS(), new File(mime));
+		String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email02/mime01.txt";
+
+		// Inject the sample mime
+		injectMessage(app.zGetActiveAccount(), mimeFile);
 
 		// Fill out the login page
 		app.zPageLogin.zSetLoginName(ZimbraAccount.AccountZCS().EmailAddress);
@@ -87,8 +88,10 @@ public class ZmMailApp extends AjaxCore {
 
 	public void ZmMailApp_03() throws HarnessException {
 
-		String mime = ConfigProperties.getBaseDirectory() + "/data/public/mime/email03";
-		LmtpInject.injectFile(ZimbraAccount.AccountZCS(), new File(mime));
+		String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email03";
+
+		// Inject the sample mime
+		injectMessage(app.zGetActiveAccount(), mimeFile);
 
 		// Fill out the login page
 		app.zPageLogin.zSetLoginName(ZimbraAccount.AccountZCS().EmailAddress);

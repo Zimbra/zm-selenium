@@ -16,7 +16,6 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.attachments;
 
-import java.io.*;
 import java.util.*;
 import org.testng.annotations.*;
 import com.zimbra.qa.selenium.framework.core.*;
@@ -52,7 +51,9 @@ public class HoverOverAttachment extends SetGroupMailByMessagePreference {
 	public void HoverOverAttachment_01(String subject, String path) throws HarnessException {
 
 		final String mimeFile = ConfigProperties.getBaseDirectory() + path;
-		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
+
+		// Inject the sample mime
+		injectMessage(app.zGetActiveAccount(), mimeFile);
 
 		// Click on Get Mail to refresh the folder list
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");

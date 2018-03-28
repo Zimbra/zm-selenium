@@ -16,7 +16,6 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.mail;
 
-import java.io.File;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.ui.*;
@@ -39,10 +38,10 @@ public class CheckViewEntireMessageFunctionality extends SetGroupMailByMessagePr
 	public void CheckViewEntireMessageFunctionality_01() throws HarnessException  {
 
 		final String subject = "Bug39246";
-		final String mime = ConfigProperties.getBaseDirectory() + "/data/public/mime/viewEntireMessage_Bug39246.txt";
+		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/viewEntireMessage_Bug39246.txt";
 
-		// Inject the example message
-		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mime));
+		// Inject the sample mime
+		injectMessage(app.zGetActiveAccount(), mimeFile);
 
 		// Get Mail
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");

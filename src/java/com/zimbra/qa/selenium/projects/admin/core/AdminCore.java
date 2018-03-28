@@ -460,11 +460,6 @@ public class AdminCore {
 			}
 		}
 
-		// Get test PASSED/FAILED status
-		if (testResult.getStatus() == ITestResult.FAILURE){
-			//ZimbraAdminAccount.ResetAdminAccount();
-		}
-
 		logger.info("AfterMethod: finish");
 	}
 

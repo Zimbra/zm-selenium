@@ -16,7 +16,6 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.attributes;
 
-import java.io.*;
 import java.util.*;
 import org.testng.annotations.*;
 import com.zimbra.qa.selenium.framework.items.*;
@@ -41,7 +40,8 @@ public class ZimbraAttachmentsViewInHtmlOnlyTrue extends SetGroupMailByMessagePr
 		final String subject = "subject151615738";
 		final String attachmentname = "file.txt";
 
-		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
+		// Inject the sample mime
+		injectMessage(app.zGetActiveAccount(), mimeFile);
 
 		// Refresh current view
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");

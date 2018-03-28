@@ -16,7 +16,6 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.mail;
 
-import java.io.File;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.core.Bugs;
@@ -30,9 +29,6 @@ import com.zimbra.qa.selenium.projects.ajax.pages.mail.PageMail.Locators;
 
 @SuppressWarnings("unused")
 public class ViewMail extends SetGroupMailByMessagePreference {
-
-	boolean injected = false;
-	final String mimeFolder = ConfigProperties.getBaseDirectory() + "/data/public/mime/email00";
 
 	public ViewMail() throws HarnessException {
 		logger.info("New "+ ViewMail.class.getCanonicalName());
@@ -48,11 +44,10 @@ public class ViewMail extends SetGroupMailByMessagePreference {
 		final String subject = "subject12996131112962";
 		final String from = "from12996131112962@example.com";
 		final String sender = "sender12996131112962@example.com";
+		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email00/mime_wSender.txt";
 
-		if ( !injected ) {
-			LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFolder));
-			injected = true;
-		}
+		// Inject the sample mime
+		injectMessage(app.zGetActiveAccount(), mimeFile);
 
 		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), subject);
 		ZAssert.assertNotNull(mail, "Verify message is received");
@@ -82,11 +77,10 @@ public class ViewMail extends SetGroupMailByMessagePreference {
 		final String subject = "subject13016959916873";
 		final String from = "from13016959916873@example.com";
 		final String replyto = "replyto13016959916873@example.com";
+		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email00/mime_wReplyTo.txt";
 
-		if ( !injected ) {
-			LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFolder));
-			injected = true;
-		}
+		// Inject the sample mime
+		injectMessage(app.zGetActiveAccount(), mimeFile);
 
 		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), subject);
 		ZAssert.assertNotNull(mail, "Verify message is received");
@@ -117,11 +111,10 @@ public class ViewMail extends SetGroupMailByMessagePreference {
 		final String subject = "subject13147509564213";
 		final String from = "from13011239916873@example.com";
 		final String resentfrom = "resentfrom13016943216873@example.com";
+		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email00/mime_wResentFrom.txt";
 
-		if ( !injected ) {
-			LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFolder));
-			injected = true;
-		}
+		// Inject the sample mime
+		injectMessage(app.zGetActiveAccount(), mimeFile);
 
 		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), subject);
 		ZAssert.assertNotNull(mail, "Verify message is received");
@@ -148,12 +141,13 @@ public class ViewMail extends SetGroupMailByMessagePreference {
 
 	public void ViewMail_04() throws HarnessException {
 
-		final String mime = ConfigProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug64444";
+		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug64444/bug64444.txt";
 		final String subject = "subject13150123168433";
 		final String from = "from13160123168433@testdomain.com";
 		final String to = "to3163210168433@testdomain.com";
 
-		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mime));
+		// Inject the sample mime
+		injectMessage(app.zGetActiveAccount(), mimeFile);
 
 		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:(" + subject +")");
 		ZAssert.assertNotNull(mail, "Verify message is received");
@@ -176,11 +170,12 @@ public class ViewMail extends SetGroupMailByMessagePreference {
 
 	public void ViewMail_05() throws HarnessException {
 
-		final String mime = ConfigProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug66565";
+		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug66565/mime01.txt";
 		final String subject = "subject13197565510464";
 		final String subjectText = "<u><i> subject13197565510464 </i></u>";
 
-		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mime));
+		// Inject the sample mime
+		injectMessage(app.zGetActiveAccount(), mimeFile);
 
 		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:(" + subject +")");
 		ZAssert.assertNotNull(mail, "Verify message is received");
@@ -206,11 +201,12 @@ public class ViewMail extends SetGroupMailByMessagePreference {
 
 	public void ViewMail_06() throws HarnessException {
 
-		// Inject the sample mime
 		String subject = "subject13188948451403";
 		String content = "Welcome to the NetWorker Listserv list";
-		String MimeFolder = ConfigProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug65933";
-		LmtpInject.injectFile(app.zGetActiveAccount(), new File(MimeFolder));
+		String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug65933/Bug65933.txt";
+
+		// Inject the sample mime
+		injectMessage(app.zGetActiveAccount(), mimeFile);
 
 		// Refresh the inbox
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
@@ -229,11 +225,12 @@ public class ViewMail extends SetGroupMailByMessagePreference {
 
 	public void ViewMail_07() throws HarnessException {
 
-		// Inject the sample mime
 		String subject = "subject13189485723753";
 		String content = "Enrico Medici";
-		String MimeFolder = ConfigProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug65623";
-		LmtpInject.injectFile(app.zGetActiveAccount(), new File(MimeFolder));
+		String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug65623.txt";
+
+		// Inject the sample mime
+		injectMessage(app.zGetActiveAccount(), mimeFile);
 
 		// Refresh the inbox
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
@@ -252,11 +249,12 @@ public class ViewMail extends SetGroupMailByMessagePreference {
 
 	public void ViewMail_08() throws HarnessException {
 
-		// Inject the sample mime
 		String subject = "subject13189993282183";
 		String content = "Incident Title";
-		String MimeFolder = ConfigProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug65079";
-		LmtpInject.injectFile(app.zGetActiveAccount(), new File(MimeFolder));
+		String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug65079/Bug65079.txt";
+
+		// Inject the sample mime
+		injectMessage(app.zGetActiveAccount(), mimeFile);
 
 		// Refresh the inbox
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
@@ -278,7 +276,8 @@ public class ViewMail extends SetGroupMailByMessagePreference {
 		final String subject = "subject13214016725788";
 		final String content = "The Ming Dynasty";
 
-		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
+		// Inject the sample mime
+		injectMessage(app.zGetActiveAccount(), mimeFile);
 
 		// Refresh current view
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
@@ -300,7 +299,8 @@ public class ViewMail extends SetGroupMailByMessagePreference {
 		final String subject = "subject13214016672655";
 		final String content = "Bold";
 
-		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
+		// Inject the sample mime
+		injectMessage(app.zGetActiveAccount(), mimeFile);
 
 		// Refresh current view
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
@@ -322,7 +322,8 @@ public class ViewMail extends SetGroupMailByMessagePreference {
 		final String subject = "subject13214016621403";
 		final String content = "Bold";
 
-		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
+		// Inject the sample mime
+		injectMessage(app.zGetActiveAccount(), mimeFile);
 
 		// Refresh current view
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
@@ -341,11 +342,12 @@ public class ViewMail extends SetGroupMailByMessagePreference {
 
 	public void ViewMail_12() throws HarnessException {
 
-		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug67854";
+		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug67854/mime01.txt";
 		final String subject = "subject13218526621403";
 		final String content = "The message has no text content.";
 
-		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
+		// Inject the sample mime
+		injectMessage(app.zGetActiveAccount(), mimeFile);
 
 		// Refresh current view
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
@@ -370,11 +372,12 @@ public class ViewMail extends SetGroupMailByMessagePreference {
 
 	public void ViewMail_13() throws HarnessException {
 
-		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug72248";
+		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug72248/mime.txt";
 		final String subject = "subject13217218621403";
 		final String content = "content1328844621403";
 
-		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
+		// Inject the sample mime
+		injectMessage(app.zGetActiveAccount(), mimeFile);
 
 		// Refresh current view
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
@@ -395,11 +398,12 @@ public class ViewMail extends SetGroupMailByMessagePreference {
 
 	public void ViewMail_14() throws HarnessException {
 
-		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug72233";
+		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug72233/mime.txt";
 		final String subject = "bug72233";
 		final String htmlcontent = "html1328844621404";
 
-		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
+		// Inject the sample mime
+		injectMessage(app.zGetActiveAccount(), mimeFile);
 
 		// Refresh current view
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
@@ -423,7 +427,8 @@ public class ViewMail extends SetGroupMailByMessagePreference {
 		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/externalImage01/externalimage01.txt";
 		final String subject = "externalimage01";
 
-		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
+		// Inject the sample mime
+		injectMessage(app.zGetActiveAccount(), mimeFile);
 
 		// Refresh current view
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
@@ -446,7 +451,8 @@ public class ViewMail extends SetGroupMailByMessagePreference {
 		final String subject = "Very large message";
 		final String testString = "Entire message is displayed";
 
-		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
+		// Inject the sample mime
+		injectMessage(app.zGetActiveAccount(), mimeFile);
 
 		// Refresh current view
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);

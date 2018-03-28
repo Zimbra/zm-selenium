@@ -56,7 +56,7 @@ public class SendFileLink extends EnableBriefcaseFeature {
 		FileItem fileItem = new FileItem(filePath);
 
 		// Upload file to server through RestUtil
-		String attachmentId = ZimbraAccount.AccountA().uploadFile(filePath);
+		String attachmentId = ZimbraAccount.AccountA().uploadFileUsingRestUtil(filePath);
 		FolderItem briefcaseFolder = FolderItem.importFromSOAP(ZimbraAccount.AccountA(), SystemFolder.Briefcase);
 
 		// Create a folder to share

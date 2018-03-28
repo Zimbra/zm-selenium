@@ -16,13 +16,11 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.performance;
 
-import java.io.File;
 import java.util.HashMap;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.performance.*;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
-import com.zimbra.qa.selenium.framework.util.LmtpInject;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.*;
@@ -46,10 +44,11 @@ public class ZmMailItem extends AjaxCore {
 
 	public void ZmMailItem_01() throws HarnessException {
 
-		String mime = ConfigProperties.getBaseDirectory() + "/data/public/mime/email02/mime01.txt";
+		String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email02/mime01.txt";
 		String subject = "Subject13155016716713";
 
-		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mime));
+		// Inject the sample mime
+		injectMessage(app.zGetActiveAccount(), mimeFile);
 
 		// Refresh current view
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
@@ -65,10 +64,11 @@ public class ZmMailItem extends AjaxCore {
 
 	public void ZmMailItem_02() throws HarnessException {
 
-		String mime = ConfigProperties.getBaseDirectory() + "/data/public/mime/email02/mime01.txt";
+		String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email02/mime01.txt";
 		String subject = "Subject13155016716713";
 
-		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mime));
+		// Inject the sample mime
+		injectMessage(app.zGetActiveAccount(), mimeFile);
 
 		// Refresh current view
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
@@ -86,7 +86,9 @@ public class ZmMailItem extends AjaxCore {
 
 		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email05/mime01.txt";
 		final String subject = "subject151615738";
-		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
+
+		// Inject the sample mime
+		injectMessage(app.zGetActiveAccount(), mimeFile);
 
 		// Refresh current view
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
@@ -104,7 +106,9 @@ public class ZmMailItem extends AjaxCore {
 
 		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email05/mime02.txt";
 		final String subject = "subject151111738";
-		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
+
+		// Inject the sample mime
+		injectMessage(app.zGetActiveAccount(), mimeFile);
 
 		// Refresh current view
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");

@@ -16,7 +16,6 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.compose.drafts;
 
-import java.io.*;
 import org.testng.annotations.*;
 import com.zimbra.common.soap.*;
 import com.zimbra.qa.selenium.framework.core.*;
@@ -41,9 +40,10 @@ public class ReplyingMessageDoesntCreateDraft extends SetGroupMailByMessagePrefe
 	public void ReplyingMessageDoesntCreateDraft_01() throws HarnessException {
 
 		String subject = "subject13690880312762";
+		String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug67686/mime01.txt";
 
-		String MimeFolder = ConfigProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug67686";
-		LmtpInject.injectFile(ZimbraAccount.AccountZCS(), new File(MimeFolder));
+		// Inject the sample mime
+		injectMessage(app.zGetActiveAccount(), mimeFile);
 
 		// Refresh current view
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);

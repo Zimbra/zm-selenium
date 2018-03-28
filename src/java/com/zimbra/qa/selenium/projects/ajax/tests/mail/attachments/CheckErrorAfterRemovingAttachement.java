@@ -1,4 +1,3 @@
-
 /*
  * ***** BEGIN LICENSE BLOCK *****
  * Zimbra Collaboration Suite Server
@@ -17,7 +16,6 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.attachments;
 
-import java.io.File;
 import java.util.List;
 import org.testng.annotations.Test;
 import com.zimbra.common.soap.Element;
@@ -49,7 +47,7 @@ public class CheckErrorAfterRemovingAttachement extends SetGroupMailByMessagePre
 		ZimbraAccount account = app.zGetActiveAccount();
 
 		// Inject the message
-		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
+		injectMessage(app.zGetActiveAccount(), mimeFile);
 
 		// Verification for attachment
 		account.soapSend(

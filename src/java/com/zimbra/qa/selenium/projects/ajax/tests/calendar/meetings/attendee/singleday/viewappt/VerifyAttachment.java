@@ -43,7 +43,7 @@ public class VerifyAttachment extends AjaxCore {
 		//upload file to server
 		String filename = "BasicExcel2007.xlsx";
 		String filePath = ConfigProperties.getBaseDirectory() + "/data/public/Files/Basic01/"+ filename;
-		String dAttachmentId  = account.uploadFile(filePath);
+		String dAttachmentId  = account.uploadFileUsingRestUtil(filePath);
 		// Create date object
 		String tz = ZTimeZone.getLocalTimeZone().getID();
 		Calendar now = Calendar.getInstance();

@@ -16,7 +16,6 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.conversation.conversations;
 
-import java.io.*;
 import org.testng.annotations.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -35,9 +34,10 @@ public class ReadMore extends SetGroupMailByConversationPreference {
 	public void ReadMore_01() throws HarnessException {
 
 		final String subject = "ReadMore13674340693103";
-		final String mimeFolder = ConfigProperties.getBaseDirectory() + "/data/public/mime/email11";
+		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email11/mime01.txt";
 
-		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFolder));
+		// Inject the sample mime
+		injectMessage(app.zGetActiveAccount(), mimeFile);
 
 		// Refresh current view
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");

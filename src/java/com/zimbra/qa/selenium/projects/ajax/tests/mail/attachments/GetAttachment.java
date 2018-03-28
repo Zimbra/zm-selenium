@@ -16,7 +16,6 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.attachments;
 
-import java.io.File;
 import java.util.List;
 import org.testng.annotations.Test;
 import com.zimbra.common.soap.Element;
@@ -26,7 +25,6 @@ import com.zimbra.qa.selenium.framework.items.MailItem;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
-import com.zimbra.qa.selenium.framework.util.LmtpInject;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
@@ -49,7 +47,8 @@ public class GetAttachment extends SetGroupMailByMessagePreference {
 		final String subject = "subject151615738";
 		final String attachmentname = "file.txt";
 
-		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
+		// Inject the sample mime
+		injectMessage(app.zGetActiveAccount(), mimeFile);
 
 		// Refresh current view
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
@@ -82,7 +81,8 @@ public class GetAttachment extends SetGroupMailByMessagePreference {
 		final String attachmentname2 = "file02.txt";
 		final String attachmentname3 = "file03.txt";
 
-		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
+		// Inject the sample mime
+		injectMessage(app.zGetActiveAccount(), mimeFile);
 
 		// Refresh current view
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
@@ -127,7 +127,8 @@ public class GetAttachment extends SetGroupMailByMessagePreference {
 		final String subject = "FW: Christian cartoons [SEC=UNCLASSIFIED]";
 		final String fileName = "image001.gif";
 
-		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
+		// Inject the sample mime
+		injectMessage(app.zGetActiveAccount(), mimeFile);
 
 		// Refresh current view
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
@@ -153,8 +154,8 @@ public class GetAttachment extends SetGroupMailByMessagePreference {
 		Element[] nodes = app.zGetActiveAccount().soapSelectNodes("//mail:mp[@filename='" + fileName + "']");
 		ZAssert.assertEquals(nodes.length, 1, "Verify attachment exist in the forwarded mail");
 	}
-	
-	
+
+
 	@Bugs (ids = "83052")
 	@Test (description = "Verify the presence of attachment in mail on the second attempt of Show Conversation",
 			groups = { "functional", "L3" })
@@ -167,7 +168,7 @@ public class GetAttachment extends SetGroupMailByMessagePreference {
 		ZimbraAccount account = app.zGetActiveAccount();
 
 		// Inject a message with an attachment
-		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
+		injectMessage(app.zGetActiveAccount(), mimeFile);
 
 		// Double check that there is an attachment
 		account.soapSend("<SearchRequest xmlns='urn:zimbraMail' types='message'>" + "<query>subject:(" + subject
@@ -180,7 +181,7 @@ public class GetAttachment extends SetGroupMailByMessagePreference {
 
 		// Refresh current view and check the presence of mail
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
-		
+
 		// Switch to message view
 		app.zPageMail.zToolbarPressButton(Button.B_MAIL_VIEW_BY_MESSAGE);
 
@@ -200,10 +201,10 @@ public class GetAttachment extends SetGroupMailByMessagePreference {
 			}
 		}
 		ZAssert.assertNotNull(item, "No attachment is in the message");
-		
+
 		// Close the show conversation tab
 		app.zPageMail.zToolbarPressButton(Button.B_CLOSE_CONVERSATION);
-		
+
 		// Open the Show conversation view again and check the presence of attachment: Bug:83052
 		app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.O_SHOW_CONVERSATION);
 

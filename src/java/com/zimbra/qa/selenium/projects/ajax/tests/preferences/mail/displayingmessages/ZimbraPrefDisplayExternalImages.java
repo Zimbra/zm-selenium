@@ -16,19 +16,16 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.preferences.mail.displayingmessages;
 
-import java.io.File;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
-import com.zimbra.qa.selenium.framework.util.LmtpInject;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
 import com.zimbra.qa.selenium.projects.ajax.pages.mail.PageMail.Locators;
 import com.zimbra.qa.selenium.projects.ajax.pages.preferences.PagePreferences;
 import com.zimbra.qa.selenium.projects.ajax.pages.preferences.TreePreferences.TreeItem;
-
 
 public class ZimbraPrefDisplayExternalImages extends AjaxCore {
 
@@ -46,7 +43,8 @@ public class ZimbraPrefDisplayExternalImages extends AjaxCore {
 		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email18/AutomaticExternalImageDisplayMime.txt";
 		final String subject = "Display external image preference check";
 
-		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
+		// Inject the sample mime
+		injectMessage(app.zGetActiveAccount(), mimeFile);
 
 		// Refresh current view
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");

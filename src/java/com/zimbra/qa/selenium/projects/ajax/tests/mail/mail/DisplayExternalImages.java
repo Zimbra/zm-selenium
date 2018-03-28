@@ -16,7 +16,6 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.mail;
 
-import java.io.File;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
@@ -24,13 +23,12 @@ import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
-import com.zimbra.qa.selenium.framework.util.LmtpInject;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.projects.ajax.core.SetGroupMailByMessagePreference;
 import com.zimbra.qa.selenium.projects.ajax.pages.mail.PageMail.Locators;
 
 public class DisplayExternalImages extends SetGroupMailByMessagePreference {
-	
+
 	public DisplayExternalImages() throws HarnessException {
 		logger.info("New "+ DisplayExternalImages.class.getCanonicalName());
 	}
@@ -44,8 +42,9 @@ public class DisplayExternalImages extends SetGroupMailByMessagePreference {
 
 		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/externalImage01/externalimage01.txt";
 		final String subject = "externalimage01";
-	
-		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
+
+		// Inject the sample mime
+		injectMessage(app.zGetActiveAccount(), mimeFile);
 
 		// Refresh current view
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
@@ -55,17 +54,17 @@ public class DisplayExternalImages extends SetGroupMailByMessagePreference {
 
 		// Verify warning info bar with other links
 		ZAssert.assertTrue(app.zPageMail.zHasWDDLinks(), "Verify display images link");
-		
+
 		// Click on 'Always display images sent from' email link to always display the external image
 		app.zPageMail.sClick(Locators.zMsgViewEmailLink);
-		
+
 		// Verify warning info bar with other links
 		ZAssert.assertFalse(app.zPageMail.sIsVisible(Locators.zMsgViewInfoBar), "Verify that info bar with links is not appearing now.");
-		
+
 		// Select the body frame and verify the external image is displayed
 		app.zPageMail.sSelectFrame("iframe[name$='__body__iframe']");
 		ZAssert.assertTrue(app.zPageMail.sIsElementPresent(Locators.zMsgExternalImage), "Verify the external is displayed");
-		
+
 		// Refresh the inbox folder and open the message again to check if the external image warning info bar is displayed
 		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Inbox);
 		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, inbox);
@@ -79,8 +78,8 @@ public class DisplayExternalImages extends SetGroupMailByMessagePreference {
 		app.zPageMail.sSelectFrame("iframe[name$='__body__iframe']");
 		ZAssert.assertTrue(app.zPageMail.sIsElementPresent(Locators.zMsgExternalImage), "Verify the external is displayed");
 	}
-	
-	
+
+
 	@Bugs (ids = "70600" )
 	@Test (description = "View the display of external images when user clicks on 'Always display images sent from' domain link",
 			groups = { "functional", "L3" })
@@ -89,9 +88,9 @@ public class DisplayExternalImages extends SetGroupMailByMessagePreference {
 
 		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/externalImage01/externalimage02.txt";
 		final String subject = "external image test";
-		
+
 		// Add the message to mailbox
-		LmtpInject.injectFile(app.zGetActiveAccount(), new File(mimeFile));
+		injectMessage(app.zGetActiveAccount(), mimeFile);
 
 		// Refresh current view
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
@@ -101,17 +100,17 @@ public class DisplayExternalImages extends SetGroupMailByMessagePreference {
 
 		// Verify warning info bar with other links
 		ZAssert.assertTrue(app.zPageMail.zHasWDDLinks(), "Verify display images link");
-		
+
 		// Click on 'Always display images sent from' email link to always display the external image
 		app.zPageMail.sClick(Locators.zMsgViewDomainLink);
-		
+
 		// Verify warning info bar with other links
 		ZAssert.assertFalse(app.zPageMail.sIsVisible(Locators.zMsgViewInfoBar), "Verify that info bar with links is not appearing now.");
-		
+
 		// Select the body frame and verify the external image is displayed
 		app.zPageMail.sSelectFrame("iframe[name$='__body__iframe']");
 		ZAssert.assertTrue(app.zPageMail.sIsElementPresent(Locators.zMsgExternalImage), "Verify the external is displayed");
-		
+
 		// Refresh the inbox folder and open the message again to check if the external image warning info bar is displayed
 		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Inbox);
 		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, inbox);
