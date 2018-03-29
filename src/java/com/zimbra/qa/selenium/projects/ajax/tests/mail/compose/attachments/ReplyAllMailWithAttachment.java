@@ -43,7 +43,7 @@ public class ReplyAllMailWithAttachment extends SetGroupMailByMessagePreference 
 		try {
 
 			final String mimeSubject = "subjectAttachment";
-			final String mimeFile = ConfigProperties.getBaseDirectory() + "\\data\\public\\mime\\email17\\mime.txt";
+			final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email17/mime.txt";
 			FolderItem sent = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Sent);
 			final String mimeAttachmentName = "samplejpg.jpg";
 
@@ -66,7 +66,7 @@ public class ReplyAllMailWithAttachment extends SetGroupMailByMessagePreference 
 			mailform.zFillField(Field.To, ZimbraAccount.AccountB().EmailAddress);
 
 			final String fileName = "structure.jpg";
-			final String filePath = ConfigProperties.getBaseDirectory() + "/data/public/other/" + fileName;
+			final String filePath = ConfigProperties.getBaseDirectory() + "\\data\\public\\other\\" + fileName;
 
 			app.zPageMail.zPressButton(Button.B_ATTACH);
 			zUpload(filePath);
