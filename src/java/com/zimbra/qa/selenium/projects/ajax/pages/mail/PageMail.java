@@ -1330,6 +1330,14 @@ public class PageMail extends AbsTab {
 
 			page = new DisplayMail(MyApplication);
 
+		} else if (action == Action.A_DOUBLECLICK_TO_NEWWINDOW) {
+
+			// Double-Click on the item
+			this.sDoubleClick(itemlocator);
+			this.zWaitForBusyOverlay();
+			page = new SeparateWindowDisplayMail(this.MyApplication);
+			SleepUtil.sleepLong();
+
 		} else if (action == Action.A_CTRLSELECT) {
 
 			throw new HarnessException("implement me!  action = " + action);
@@ -1423,10 +1431,6 @@ public class PageMail extends AbsTab {
 
 		} else {
 			throw new HarnessException("implement me! action = " + action);
-		}
-
-		if (page != null) {
-			page.zWaitForActive();
 		}
 
 		SleepUtil.sleepMedium();
