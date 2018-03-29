@@ -76,7 +76,7 @@ public class ViewMail extends SetGroupMailByMessagePreference {
 
 		final String subject = "subject13016959916873";
 		final String from = "from13016959916873@example.com";
-		final String replyto = "replyto13016959916873@example.com";
+		final String replyto = "globaladmin@testdomain.com";
 		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email00/mime_wReplyTo.txt";
 
 		// Inject the sample mime
@@ -135,7 +135,7 @@ public class ViewMail extends SetGroupMailByMessagePreference {
 	}
 
 
-	@Bugs (ids = "102049")
+	@Bugs (ids = "102049")	
 	@Test (description = "Receive a mail with only audio/wav content",
 			groups = { "functional", "L2" })
 
@@ -144,7 +144,7 @@ public class ViewMail extends SetGroupMailByMessagePreference {
 		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug64444/bug64444.txt";
 		final String subject = "subject13150123168433";
 		final String from = "from13160123168433@testdomain.com";
-		final String to = "to3163210168433@testdomain.com";
+		final String to = "globaladmin@testdomain.com";
 
 		// Inject the sample mime
 		injectMessage(app.zGetActiveAccount(), mimeFile);
@@ -227,7 +227,7 @@ public class ViewMail extends SetGroupMailByMessagePreference {
 
 		String subject = "subject13189485723753";
 		String content = "Enrico Medici";
-		String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug65623.txt";
+		String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug65623/Bug65623.txt";
 
 		// Inject the sample mime
 		injectMessage(app.zGetActiveAccount(), mimeFile);
