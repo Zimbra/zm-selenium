@@ -1,7 +1,6 @@
 From: from13016959916873@example.com
-To: to13016959916873@example.com
-Cc: cc13016959916873@example.com
-Reply-To: replyto13016959916873@example.com
+To: globaladmin@testdomain.com
+Reply-To: globaladmin@testdomain.com
 Subject: subject13016959916873
 MIME-Version: 1.0 
 Content-Type: text/plain; charset=utf-8 

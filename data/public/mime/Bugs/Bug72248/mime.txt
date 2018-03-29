@@ -1,4 +1,4 @@
-To: foo@testdomain.com
+To: globaladmin@testdomain.com
 From: bar@testdomain.com
 Subject: subject13217218621403
 Date: Wed, 28 Mar 2012 14:45:39 -0700

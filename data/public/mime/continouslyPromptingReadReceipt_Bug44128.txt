@@ -37,9 +37,8 @@ Received: from [94.252.245.200] (helo=DannyPC)
 From: "Salma Al-Jandali--British Training" <testZimbra@testdomain.com>
 X-Barracuda-BBL-IP: 94.252.245.200
 X-Barracuda-RBL-IP: 94.252.245.200
-To: "Salma Al-Jandali--British Training" <testZimbra@testdomain.com>
+To: globaladmin@testdomain.com
 References: 
-In-Reply-To: 
 X-ASG-Orig-Subj: =?windows-1256?B?z+bRx8og5uPEyuPRx8ogx+Hj0d/SIMfhyNHt2Mfk7SDdyNHH7dEgMg==?=
 	=?windows-1256?B?MDEw?=
 Subject: Continous read receipt prompting
@@ -51,7 +50,7 @@ Content-Type: multipart/alternative;
 X-Mailer: Microsoft Office Outlook 12.0
 Thread-Index: AcqY9w4KrU/jDKMJQjGESmQ/5lgd5AAAAeDgAAD2UVA=
 Content-Language: ar-sy
-Disposition-Notification-To: "Salma Al-Jandali--British Training" <testZimbra@testdomain.com>
+Disposition-Notification-To: globaladmin@testdomain.com
 X-Barracuda-Connect: mailrelay2.surf.sy[94.252.191.129]
 X-Barracuda-Start-Time: 1263900819
 X-Barracuda-Virus-Scanned: by Barracuda Spam Firewall at zimbra.com

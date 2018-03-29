@@ -10,12 +10,12 @@ Received: (qmail 48245 invoked by uid 500); 10 Oct 2003 20:01:36 -0000
 Mailing-List: contact xmlbeans-user-help@xml.apache.org; run by ezmlm
 Precedence: bulk
 X-No-Archive: yes
-List-Post: <mailto:xmlbeans-user@xml.apache.org>
+List-Post: <mailto:globaladmin@testdomain.com>
 List-Help: <mailto:xmlbeans-user-help@xml.apache.org>
 List-Unsubscribe: <mailto:xmlbeans-user-unsubscribe@xml.apache.org>
 List-Subscribe: <mailto:xmlbeans-user-subscribe@xml.apache.org>
-Reply-To: xmlbeans-user@xml.apache.org
-Delivered-To: mailing list xmlbeans-user@xml.apache.org
+Reply-To: globaladmin@testdomain.com
+Delivered-To: mailing list globaladmin@testdomain.com
 Received: (qmail 48232 invoked from network); 10 Oct 2003 20:01:36 -0000
 content-class: urn:content-classes:message
 Subject: RE: noNamespace package alternatives
@@ -31,7 +31,7 @@ X-MimeOLE: Produced By Microsoft Exchange V6.0.6375.0
 Thread-Topic: noNamespace package alternatives
 Thread-Index: AcOPaRo65/vubJPgTL20VBqtEGJ00gAAAmlg
 From: "Breese, Dustin" <dustin.breese@qwest.com>
-To: <xmlbeans-user@xml.apache.org>
+To: globaladmin@testdomain.com
 X-Spam-Rating: daedalus.apache.org 1.6.2 0/1000/N
 X-Evolution-Source: imap://smith@smith.pobox.stanford.edu/
 X-Evolution: 0000002b-0010
@@ -46,7 +46,7 @@ Dustin
 -----Original Message-----
 From: Eric Vasilik [mailto:ericvas@bea.com]=20
 Sent: Friday, October 10, 2003 1:53 PM
-To: xmlbeans-user@xml.apache.org
+To: globaladmin@testdomain.com
 Subject: RE: noNamespace package alternatives
 
 The -repackage option exists for the purposes of building the XmlBeans
@@ -60,7 +60,7 @@ Are you trying to change the packages that a schema compiles to?
 -----Original Message-----
 From: Breese, Dustin [mailto:dustin.breese@qwest.com]
 Sent: Friday, October 10, 2003 12:42 PM
-To: xmlbeans-user@xml.apache.org
+To: globaladmin@testdomain.com
 Subject: noNamespace package alternatives
 
 

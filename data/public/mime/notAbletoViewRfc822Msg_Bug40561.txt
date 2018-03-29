@@ -24,8 +24,7 @@ Received: from dogfood.zimbra.com (dogfood.zimbra.com [207.126.229.140])
 	Wed, 26 Aug 2009 08:54:19 -0700 (PDT)
 Date: Wed, 26 Aug 2009 08:54:18 -0700 (PDT)
 From: Raja Rao <raja.rao@testdomain.com>
-To: Juan Bocanegra <juan.bocanegra@testdomain.com>
-Cc: se@testdomain.com, Jason Bryan <jbryan@testdomain.com>
+To: globaladmin@testdomain.com
 Message-ID: <853467217.3141251302058811.JavaMail.root@dogfood.zimbra.com>
 In-Reply-To: <75735487.3091251301972578.JavaMail.root@dogfood.zimbra.com>
 Subject: Re: **CORP UPGRADE 8/25**
@@ -59,8 +58,7 @@ http://www.youtube.com/watch?v=ZiJG6fW3leQ
 
 ----- "Juan Bocanegra" <juan.bocanegra@testdomain.com> wrote: 
 | From: "Juan Bocanegra" <juan.bocanegra@testdomain.com> 
-| To: "Jason Bryan" <jbryan@testdomain.com> 
-| Cc: se@testdomain.com, "Raja Rao (raja@testdomain.com)" <raja@testdomain.com> 
+| To: globaladmin@testdomain.com
 | Sent: Wednesday, August 26, 2009 7:52:42 AM 
 | Subject: Re: **CORP UPGRADE 8/25** 
 | 
@@ -232,9 +230,7 @@ br>raja<br><br><font style=3D"color: rgb(102, 102, 102);" size=3D"1">What k=
 ind of world do YOU want?<br>http://www.youtube.com/watch?v=3DZiJG6fW3leQ</=
 font><br></div></div></div></div></div></div><br></span><br>----- "Juan Boc=
 anegra" &lt;juan.bocanegra@testdomain.com&gt; wrote:
-<br>| From: "Juan Bocanegra" &lt;juan.bocanegra@testdomain.com&gt;<br>| To: "Ja=
-son Bryan" &lt;jbryan@testdomain.com&gt;<br>| Cc: se@testdomain.com, "Raja Rao (raj=
-a@testdomain.com)" &lt;raja@testdomain.com&gt;<br>| Sent: Wednesday, August 26, 200=
+<br>| From: "Juan Bocanegra" &lt;juan.bocanegra@testdomain.com&gt;<br>| To: globaladmin@testdomain.com<br>| Sent: Wednesday, August 26, 200=
 9 7:52:42 AM<br>| Subject: Re: **CORP UPGRADE 8/25**<br>|<br>| <style>p { m=
 argin: 0; }</style><div style=3D"font-family: Times New Roman; font-size: 1=
 2pt; color: rgb(0, 0, 0);">| Sorry, I meant to say anything for the account=
@@ -630,7 +626,7 @@ Content-Disposition: attachment
 Date: Mon, 17 Aug 2009 17:20:26 -0700 (PDT)
 From: raja.rao@testdomain.com
 Sender: rrao@testdomain.com
-To: Quanah Gibson-Mount <quanah@testdomain.com>, Ramesh May <ramesh.may@testdomain.com>
+To: globaladmin@testdomain.com
 Message-ID: <969601365.14241250554826177.JavaMail.root@dogfood.zimbra.com>
 In-Reply-To: <705023160.14221250554801408.JavaMail.root@dogfood.zimbra.com>
 Subject: Broadsoft zimlet for demo account on dogfood

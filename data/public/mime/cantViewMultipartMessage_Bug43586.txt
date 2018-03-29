@@ -6,7 +6,7 @@ Received: from mail.testdomain.com (LHLO
 Received: from nodoa.infagri.lan (nodoa.infagri.lan [192.168.50.4])
 	by webmail.testdomain.com (Postfix) with ESMTP id 919E1202C35B
 	for <l.andreotti@webmail.testdomain.com>; Tue, 15 Dec 2009 14:54:54 +0100 (CET)
-Resent-To: l.andreotti@webmail.testdomain.com
+Resent-To: globaladmin@testdomain.com
 Resent-From: l.andreotti@testdomain.com
 Resent-Message-Id: <B0003570366@nodoa.infagri.lan>
 Resent-Date: Tue, 15 Dec 2009 14:54:54 +0100

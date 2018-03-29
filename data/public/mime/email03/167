@@ -24,7 +24,7 @@ Received: from rocket (localhost [127.0.0.1])
 Date:	Wed, 16 Jun 2004 09:23:44 +0200
 X-Zimbra-Received: Wed, 16 Jun 2004 09:23:44 +0200
 From: Andreas Schmidt <andy@space.wh1.tu-dresden.de>
-To: linux-kernel@vger.kernel.org
+To: globaladmin@testdomain.com
 Subject: Re: Frequent system freezes after kernel bug
 X-Gnus-Mail-Source: file:/var/spool/mail/palanis
 Message-ID: <20040616072344.GC28402@rocket>
@@ -34,7 +34,7 @@ Content-Type:	text/plain; charset=US-ASCII;
 	Format=Flowed	DelSp=Yes
 Content-Disposition: inline
 Content-Transfer-Encoding: 7BIT
-In-Reply-To: <20040612183742.GE1733@rocket> (from andy@space.wh1.tu-dresden.de on Sat, Jun 12, 2004 at 20:37:42 +0200)
+In-Reply-To: globaladmin@testdomain.com
 X-Mailer: Balsa 2.0.17
 Lines:	130
 Sender: linux-kernel-owner@vger.kernel.org

@@ -10,12 +10,12 @@ Received: (qmail 70161 invoked by uid 500); 20 Sep 2003 08:52:58 -0000
 Mailing-List: contact xmlbeans-dev-help@xml.apache.org; run by ezmlm
 Precedence: bulk
 X-No-Archive: yes
-List-Post: <mailto:xmlbeans-dev@xml.apache.org>
+List-Post: <mailto:globaladmin@testdomain.com>
 List-Help: <mailto:xmlbeans-dev-help@xml.apache.org>
 List-Unsubscribe: <mailto:xmlbeans-dev-unsubscribe@xml.apache.org>
 List-Subscribe: <mailto:xmlbeans-dev-subscribe@xml.apache.org>
-Reply-To: xmlbeans-dev@xml.apache.org
-Delivered-To: mailing list xmlbeans-dev@xml.apache.org
+Reply-To: globaladmin@testdomain.com
+Delivered-To: mailing list globaladmin@testdomain.com
 Received: (qmail 70148 invoked from network); 20 Sep 2003 08:52:58 -0000
 X-Sent: 20 Sep 2003 08:52:40 GMT
 Date: Sat, 20 Sep 2003 09:54:53 +0100
@@ -23,9 +23,9 @@ X-Zimbra-Received: Sat, 20 Sep 2003 09:54:53 +0100
 Subject: Re: Getting the distribution onto a download site somewhere ...
 Mime-Version: 1.0 (Apple Message framework v482)
 From: robert burrell donkin <rdonkin@apache.org>
-To: xmlbeans-dev@xml.apache.org
+To: globaladmin@testdomain.com
 Content-Transfer-Encoding: 7bit
-In-Reply-To: <4B2B4C417991364996F035E1EE39E2E11E9976@uskiex01.amer.bea.com>
+In-Reply-To: globaladmin@testdomain.com
 Message-Id: <1A1CC0FE-EB48-11D7-BE61-003065DC754C@apache.org>
 X-Mailer: Apple Mail (2.482)
 X-Spam-Rating: daedalus.apache.org 1.6.2 0/1000/N
@@ -67,7 +67,7 @@ On Thursday, September 18, 2003, at 09:59 PM, David Remy wrote:
 >> -----Original Message-----
 >> From: Ted Leung [mailto:twleung@sauria.com]
 >> Sent: Wednesday, September 17, 2003 10:30 PM
->> To: xmlbeans-dev@xml.apache.org
+>> To: globaladmin@testdomain.com
 >> Subject: Re: Getting the distribution onto a download site
 >> somewhere ...
 >>

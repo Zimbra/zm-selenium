@@ -10,12 +10,12 @@ Received: (qmail 45584 invoked by uid 500); 26 Sep 2003 01:49:05 -0000
 Mailing-List: contact xmlbeans-dev-help@xml.apache.org; run by ezmlm
 Precedence: bulk
 X-No-Archive: yes
-List-Post: <mailto:xmlbeans-dev@xml.apache.org>
+List-Post: <mailto:globaladmin@testdomain.com>
 List-Help: <mailto:xmlbeans-dev-help@xml.apache.org>
 List-Unsubscribe: <mailto:xmlbeans-dev-unsubscribe@xml.apache.org>
 List-Subscribe: <mailto:xmlbeans-dev-subscribe@xml.apache.org>
-Reply-To: xmlbeans-dev@xml.apache.org
-Delivered-To: mailing list xmlbeans-dev@xml.apache.org
+Reply-To: globaladmin@testdomain.com
+Delivered-To: mailing list globaladmin@testdomain.com
 Received: (qmail 45529 invoked from network); 26 Sep 2003 01:49:05 -0000
 X-MimeOLE: Produced By Microsoft Exchange V6.0.6375.0
 content-class: urn:content-classes:message
@@ -31,8 +31,7 @@ X-MS-TNEF-Correlator:
 Thread-Topic: licenses for jaxb-api.jar and jax-qname.jar...?
 Thread-Index: AcODwu8XPWNwo9bjQxOP0jKDepWtHgAA1/1wAAJtd7A=
 From: "Eric Vasilik" <ericvas@bea.com>
-To: <xmlbeans-dev@xml.apache.org>
-Cc: <pmc@incubator.apache.org>
+To: globaladmin@testdomain.com
 X-OriginalArrivalTime: 26 Sep 2003 01:49:14.0209 (UTC)
 	FILETIME=[637D2D10:01C383D0]
 X-Spam-Rating: daedalus.apache.org 1.6.2 0/1000/N
@@ -50,7 +49,7 @@ xmlbeans.
 -----Original Message-----
 From: Eric Vasilik=20
 Sent: Thursday, September 25, 2003 5:38 PM
-To: xmlbeans-dev@xml.apache.org
+To: globaladmin@testdomain.com
 Subject: RE: licenses for jaxb-api.jar and jax-qname.jar...?
 
 
@@ -62,7 +61,7 @@ xis.  Where would one be able to get the jaxb api?
 -----Original Message-----
 From: robert burrell donkin [mailto:rdonkin@apache.org]
 Sent: Thursday, September 25, 2003 5:15 PM
-To: xmlbeans-dev@xml.apache.org
+To: globaladmin@testdomain.com
 Subject: licenses for jaxb-api.jar and jax-qname.jar...?
 
 

@@ -1,6 +1,6 @@
 Date: Wed, 8 May 2013 13:40:44 -0700 (PDT)
 From: foo@example.com
-To: bar@example.com
+To: globaladmin@testdomain.com
 Subject: Bug81565
 MIME-Version: 1.0
 Content-Type: multipart/mixed; 

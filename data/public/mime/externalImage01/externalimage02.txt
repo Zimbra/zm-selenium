@@ -28,7 +28,7 @@ Received: from sc9-mailhost2.vmware.com (unknown [10.113.161.72])
 	for <jwagner@zimbra.com>; Mon, 27 Feb 2012 03:13:13 -0800 (PST)
 Received: by sc9-mailhost2.vmware.com (Postfix)
 	id A8836B00DB; Mon, 27 Feb 2012 03:13:13 -0800 (PST)
-Delivered-To: jwagner@vmware.com
+Delivered-To: globaladmin@testdomain.com
 Received: from proofpoint-master.vmware.com (sc9-proofpoint-agent-1.vmware.com [10.113.208.31])
 	by sc9-mailhost2.vmware.com (Postfix) with ESMTP id A23E5B00C8
 	for <jwagner@vmware.com>; Mon, 27 Feb 2012 03:13:13 -0800 (PST)
@@ -69,8 +69,8 @@ DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=socialcast.com;
 Date: Mon, 27 Feb 2012 06:13:11 -0500
 From: Andre van der Werff <share@socialcast.com>
 Sender: do-not-reply@socialcast.com
-Reply-To: share@socialcast.com
-To: jwagner@dwer.com
+Reply-To: globaladmin@testdomain.com
+To: globaladmin@testdomain.com
 Subject: external image test
 Mime-Version: 1.0
 Content-Type: multipart/alternative;

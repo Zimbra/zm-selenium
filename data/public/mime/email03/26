@@ -10,16 +10,16 @@ Received: (qmail 89431 invoked by uid 500); 11 Nov 2003 21:03:21 -0000
 Mailing-List: contact xmlbeans-user-help@xml.apache.org; run by ezmlm
 Precedence: bulk
 X-No-Archive: yes
-List-Post: <mailto:xmlbeans-user@xml.apache.org>
+List-Post: <mailto:globaladmin@testdomain.com>
 List-Help: <mailto:xmlbeans-user-help@xml.apache.org>
 List-Unsubscribe: <mailto:xmlbeans-user-unsubscribe@xml.apache.org>
 List-Subscribe: <mailto:xmlbeans-user-subscribe@xml.apache.org>
-Reply-To: xmlbeans-user@xml.apache.org
-Delivered-To: mailing list xmlbeans-user@xml.apache.org
+Reply-To: globaladmin@testdomain.com
+Delivered-To: mailing list globaladmin@testdomain.com
 Received: (qmail 89414 invoked from network); 11 Nov 2003 21:03:21 -0000
 Message-ID: <016901c3a897$3a4d2c10$0fa8a8c0@lightbox>
 From: "David Bau" <david.bau@bea.com>
-To: <xmlbeans-user@xml.apache.org>
+To: globaladmin@testdomain.com
 References: <9A06B7E0-1483-11D8-B5EC-000393D5A006@vrtx.com>
 Subject: Re: Need some help with validation error...
 Date: Tue, 11 Nov 2003 16:03:15 -0500
@@ -47,7 +47,7 @@ the command-line validator?  Are the schemas compiled or loaded dynamically?
 David
 ----- Original Message ----- 
 From: Tom Condon
-To: xmlbeans-user@xml.apache.org
+To: globaladmin@testdomain.com
 Sent: Tuesday, November 11, 2003 3:14 PM
 Subject: [xmlbeans-user] Need some help with validation error...
 

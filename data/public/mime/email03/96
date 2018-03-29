@@ -14,8 +14,8 @@ List-Post: <mailto:xmlbeans-cvs@xml.apache.org>
 List-Help: <mailto:xmlbeans-cvs-help@xml.apache.org>
 List-Unsubscribe: <mailto:xmlbeans-cvs-unsubscribe@xml.apache.org>
 List-Subscribe: <mailto:xmlbeans-cvs-subscribe@xml.apache.org>
-Reply-To: xmlbeans-dev@xml.apache.org
-Delivered-To: mailing list xmlbeans-cvs@xml.apache.org
+Reply-To: globaladmin@testdomain.com
+Delivered-To: globaladmin@testdomain.com
 Received: (qmail 52452 invoked from network); 20 Oct 2003 19:07:25 -0000
 Received: from unknown (HELO minotaur.apache.org) (209.237.227.194) by
 	daedalus.apache.org with SMTP; 20 Oct 2003 19:07:25 -0000
@@ -24,7 +24,7 @@ Date: 20 Oct 2003 19:07:34 -0000
 X-Zimbra-Received: 20 Oct 2003 19:07:34 -0000
 Message-ID: <20031020190734.10019.qmail@minotaur.apache.org>
 From: pcal@apache.org
-To: xml-xmlbeans-cvs@apache.org
+To: globaladmin@testdomain.com
 Subject: cvs commit:
 	xml-xmlbeans/v2/src/jam/org/apache/xmlbeans/impl/jam/internal/javadoc
 	JDClassLoaderFactory.java

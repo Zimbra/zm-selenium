@@ -9,12 +9,12 @@ Received: (qmail 3961 invoked by uid 500); 22 Sep 2003 19:20:26 -0000
 Mailing-List: contact xmlbeans-dev-help@xml.apache.org; run by ezmlm
 Precedence: bulk
 X-No-Archive: yes
-List-Post: <mailto:xmlbeans-dev@xml.apache.org>
+List-Post: <mailto:globaladmin@testdomain.com>
 List-Help: <mailto:xmlbeans-dev-help@xml.apache.org>
 List-Unsubscribe: <mailto:xmlbeans-dev-unsubscribe@xml.apache.org>
 List-Subscribe: <mailto:xmlbeans-dev-subscribe@xml.apache.org>
-Reply-To: xmlbeans-dev@xml.apache.org
-Delivered-To: mailing list xmlbeans-dev@xml.apache.org
+Reply-To: globaladmin@testdomain.com
+Delivered-To: mailing list globaladmin@testdomain.com
 Received: (qmail 3948 invoked from network); 22 Sep 2003 19:20:26 -0000
 X-MimeOLE: Produced By Microsoft Exchange V6.0.6375.0
 content-class: urn:content-classes:message
@@ -29,7 +29,7 @@ X-MS-TNEF-Correlator:
 Thread-Topic: Getting the distribution onto a download site somewhere ...
 Thread-Index: AcOBOZtZYghAyv6JQuujIMz5/B0znwAAHXow
 From: "David Remy" <dremy@bea.com>
-To: <xmlbeans-dev@xml.apache.org>
+To: globaladmin@testdomain.com
 X-OriginalArrivalTime: 22 Sep 2003 19:20:31.0071 (UTC)
 	FILETIME=[96937EF0:01C3813E]
 X-Spam-Rating: daedalus.apache.org 1.6.2 0/1000/N
@@ -77,7 +77,7 @@ rem
 > -----Original Message-----
 > From: Ted Leung [mailto:twleung@sauria.com]=20
 > Sent: Monday, September 22, 2003 11:44 AM
-> To: xmlbeans-dev@xml.apache.org
+> To: globaladmin@testdomain.com
 > Subject: Re: Getting the distribution onto a download site=20
 > somewhere ...
 >=20

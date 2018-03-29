@@ -1,8 +1,7 @@
 ﻿From: "User 1" <user1@testdomain.com>
-To: "'User 2'" <user2@testdomain.com>,
-	"User 3" <user3@testdomain.com>
+To: globaladmin@testdomain.com
 References: <1460921948.730077.1340312105003.JavaMail.root@testdomain.com> <979016627.730884.1340313033566.JavaMail.root@testdomain.com>
-In-Reply-To: <979016627.730884.1340313033566.JavaMail.root@testdomain.com>
+In-Reply-To: globaladmin@testdomain.com
 Subject: ZCS 8 triage
 Date: Mon, 25 Jun 2012 12:20:34 -0700
 Message-ID: <11d9ee62.00000ff0.00000050@zimbra-PC7632>
@@ -61,9 +60,7 @@ Hopefully the list will be quite short.  I’ll send out an email next Monday.
 
 From: Kevin Henrikson [mailto:kevinh@vmware.com]
 Sent: Thursday, June 21, 2012 2:11 PM
-To: Jeff Wagner; Jeff Flanigan; Todd Richmond; Brian P. Peterson; Ellen 
-Shen; Matt Rhoades; Bill Hwang; Sandesh Joseph Almeida
-Cc: Jon Dybik; Lavanya Shastri; John Robb
+To: globaladmin@testdomain.com
 Subject: zcs 8 triage
 
 
@@ -1810,8 +1807,7 @@ style=3D'font-size:10.0pt;font-family:"Tahoma","sans-serif"'>From:</span>=
 Kevin Henrikson [mailto:kevinh@vmware.com] <br><b>Sent:</b> Thursday, =
 June 21, 2012 2:11 PM<br><b>To:</b> Jeff Wagner; Jeff Flanigan; Todd =
 Richmond; Brian P. Peterson; Ellen Shen; Matt Rhoades; Bill Hwang; =
-Sandesh Joseph Almeida<br><b>Cc:</b> Jon Dybik; Lavanya Shastri; John =
-Robb<br><b>Subject:</b> zcs 8 triage<o:p></o:p></span></p></div></div><p =
+Sandesh Joseph Almeida<br><b><br><b>Subject:</b> zcs 8 triage<o:p></o:p></span></p></div></div><p =
 class=3DMsoNormal><o:p>&nbsp;</o:p></p><div><p class=3DMsoNormal =
 style=3D'margin-bottom:12.0pt'><span style=3D'font-family:"Trebuchet =
 MS","sans-serif";color:black'><br>Hey guys I ran the ZCS -&gt; =

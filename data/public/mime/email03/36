@@ -10,22 +10,22 @@ Received: (qmail 24357 invoked by uid 500); 29 Sep 2003 18:51:28 -0000
 Mailing-List: contact xmlbeans-dev-help@xml.apache.org; run by ezmlm
 Precedence: bulk
 X-No-Archive: yes
-List-Post: <mailto:xmlbeans-dev@xml.apache.org>
+List-Post: <mailto:globaladmin@testdomain.com>
 List-Help: <mailto:xmlbeans-dev-help@xml.apache.org>
 List-Unsubscribe: <mailto:xmlbeans-dev-unsubscribe@xml.apache.org>
 List-Subscribe: <mailto:xmlbeans-dev-subscribe@xml.apache.org>
-Reply-To: xmlbeans-dev@xml.apache.org
-Delivered-To: mailing list xmlbeans-dev@xml.apache.org
+Reply-To: globaladmin@testdomain.com
+Delivered-To: mailing list globaladmin@testdomain.com
 Received: (qmail 24317 invoked from network); 29 Sep 2003 18:51:28 -0000
 Message-Id: <5.2.1.1.0.20030929114718.020b2e98@san-francisco.beasys.com>
 X-Sender: pcal@san-francisco.beasys.com (Unverified)
 X-Mailer: QUALCOMM Windows Eudora Version 5.2.1
 Date: Mon, 29 Sep 2003 11:47:56 -0700
 X-Zimbra-Received: Mon, 29 Sep 2003 11:47:56 -0700
-To: xmlbeans-dev@xml.apache.org
+To: globaladmin@testdomain.com
 From: Patrick Calahan <pcal@bea.com>
 Subject: RE: V2 Store discussion...
-In-Reply-To: <4B2B4C417991364996F035E1EE39E2E11E9D74@uskiex01.amer.bea.c om>
+In-Reply-To: globaladmin@testdomain.com
 Mime-Version: 1.0
 Content-Type: multipart/alternative; boundary="=====================_3384796==.ALT"
 X-Spam-Rating: daedalus.apache.org 1.6.2 0/1000/N
@@ -53,8 +53,8 @@ I see.  Right, good point.
 >-----Original Message-----
 >From: Patrick Calahan [mailto:pcal@bea.com]
 >Sent: Monday, September 29, 2003 11:24 AM
->To: xmlbeans-dev@xml.apache.org; christopher.fry@bea.com; 
->xmlbeans-dev@xml.apache.org
+>To: globaladmin@testdomain.com; christopher.fry@bea.com; 
+>globaladmin@testdomain.com
 >Subject: RE: V2 Store discussion...
 >
 >
@@ -94,7 +94,7 @@ I see.  Right, good point.
 >-----Original Message-----
 >From: Chris Fry [mailto:christopher.fry@bea.com]
 >Sent: Monday, September 29, 2003 9:55 AM
->To: xmlbeans-dev@xml.apache.org; Eric Vasilik
+>To: globaladmin@testdomain.com; Eric Vasilik
 >Subject: RE: V2 Store discussion...
 >
 >
@@ -111,8 +111,7 @@ I see.  Right, good point.
 > > -----Original Message-----
 > > From: David Bau [mailto:david.bau@bea.com]
 > > Sent: Monday, September 29, 2003 8:27 AM
-> > To: Eric Vasilik
-> > Cc: xmlbeans-dev@xml.apache.org
+> > To: globaladmin@testdomain.com
 > > Subject: V2 Store discussion...
 > >
 > >
@@ -174,8 +173,8 @@ I see.&nbsp; Right, good point.<br>
 From: Patrick Calahan
 [<a href="mailto:pcal@bea.com" eudora="autourl">mailto:pcal@bea.com</a>]<br>
 Sent: Monday, September 29, 2003 11:24 AM<br>
-To: xmlbeans-dev@xml.apache.org; christopher.fry@bea.com;
-xmlbeans-dev@xml.apache.org<br>
+To: globaladmin@testdomain.com; christopher.fry@bea.com;
+globaladmin@testdomain.com<br>
 Subject: RE: V2 Store discussion...<br><br>
 <br>
 At 10:25 AM 9/29/2003 -0700, Eric Vasilik wrote:<br><br>
@@ -205,7 +204,7 @@ Any thoughts?&nbsp; Any confusion about this trade off?&nbsp; <br><br>
 From: Chris Fry
 [<a href="mailto:christopher.fry@bea.com" eudora="autourl">mailto:christopher.fry@bea.com</a>]<br>
 Sent: Monday, September 29, 2003 9:55 AM<br>
-To: xmlbeans-dev@xml.apache.org; Eric Vasilik<br>
+To: globaladmin@testdomain.com; Eric Vasilik<br>
 Subject: RE: V2 Store discussion...<br><br>
 <br>
 I think you should be careful not to make the same mistakes that the
@@ -226,8 +225,7 @@ in WS-invocations...<br><br>
 &gt; From: David Bau
 [<a href="mailto:david.bau@bea.com" eudora="autourl">mailto:david.bau@bea.com</a>]<br>
 &gt; Sent: Monday, September 29, 2003 8:27 AM<br>
-&gt; To: Eric Vasilik<br>
-&gt; Cc: xmlbeans-dev@xml.apache.org<br>
+&gt; To: globaladmin@testdomain.com<br>
 &gt; Subject: V2 Store discussion...<br>
 &gt;<br>
 &gt;<br>

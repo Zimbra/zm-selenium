@@ -20,7 +20,7 @@ Received: from catfood.zimbra.com (catfood.zimbra.com [10.113.63.60])
 	for <mlo@testdomain.com>; Thu,  1 Apr 2010 16:04:54 -0700 (PDT)
 Date: Thu, 1 Apr 2010 16:05:02 -0700 (PDT)
 From: Maria Lo <mlo@testdomain.com>
-To: mlo@testdomain.com
+To: globaladmin@testdomain.com
 Message-ID: <1434244237.8527.1270163102708.JavaMail.root@catfood.zimbra.com>
 Subject: Fwd: attached messages
 MIME-Version: 1.0
@@ -58,9 +58,8 @@ Received: from corp.zimbra.com (corp.zimbra.com [10.113.63.58])
 	Thu,  1 Apr 2010 14:12:27 -0700 (PDT)
 Date: Thu, 1 Apr 2010 14:26:59 -0700 (PDT)
 From: Rick King <rking@testdomain.com>
-Reply-To: support@testdomain.com
-To: Jiho Hahm <jhahm@testdomain.com>
-Cc: support-team@testdomain.com, calendar-team@testdomain.com, support@testdomain.com
+Reply-To: globaladmin@testdomain.com
+To: globaladmin@testdomain.com
 Message-ID: <703314951.134882.1270157219121.JavaMail.root@corp.zimbra.com>
 In-Reply-To: <16255275.20.1269900233146.JavaMail.jhahm@spike.local>
 Subject: Re: SF: Case 00051542:  - Timezone conversion 24 hour error
@@ -83,8 +82,7 @@ Zimbra Support Team
 
 ----- Original Message -----
 From: "Jiho Hahm" <jhahm@testdomain.com>
-To: support@testdomain.com
-Cc: support-team@testdomain.com, calendar-team@testdomain.com
+To: globaladmin@testdomain.com
 Sent: Monday, March 29, 2010 6:04:01 PM
 Subject: Re: SF: Case 00051542:  - Timezone conversion 24 hour error
 
@@ -95,8 +93,7 @@ Thanks for the data.  It sounds like a JSP client issue.  Can someone from clien
 ----- Original Message -----
 
 From: "Rick King" <rking@testdomain.com>
-To: "Jiho Hahm" <jhahm@testdomain.com>
-Cc: support-team@testdomain.com, calendar-team@testdomain.com, support@testdomain.com
+To: globaladmin@testdomain.com
 Sent: Monday, March 29, 2010 2:31:05 PM
 Subject: Re: SF: Case 00051542: - Timezone conversion 24 hour error
 
@@ -122,8 +119,7 @@ Zimbra Support Team
 
 ----- Original Message -----
 From: "Jiho Hahm" <jhahm@testdomain.com>
-To: support@testdomain.com
-Cc: support-team@testdomain.com, calendar-team@testdomain.com
+To: globaladmin@testdomain.com
 Sent: Monday, March 29, 2010 5:10:14 PM
 Subject: Re: SF: Case 00051542: - Timezone conversion 24 hour error
 
@@ -137,9 +133,7 @@ Rick, can you find out a few things for me?
 ----- Original Message -----
 
 From: "Rick King" <rking@testdomain.com>
-To: "Jiho Hahm" <jhahm@testdomain.com>
-Cc: support-team@testdomain.com, calendar-team@testdomain.com,
-support@testdomain.com
+To: globaladmin@testdomain.com
 Sent: Monday, March 29, 2010 1:47:15 PM
 Subject: Re: SF: Case 00051542: - Timezone conversion 24 hour error
 
@@ -155,8 +149,7 @@ Zimbra Support Team
 
 ----- Original Message -----
 From: "Jiho Hahm" <jhahm@testdomain.com>
-To: support@testdomain.com
-Cc: support-team@testdomain.com, calendar-team@testdomain.com
+To: globaladmin@testdomain.com
 Sent: Monday, March 29, 2010 2:29:24 PM
 Subject: Re: SF: Case 00051542: - Timezone conversion 24 hour error
 
@@ -169,8 +162,7 @@ showing the wrong date.
 ----- Original Message -----
 
 From: "Rick King" <rking@testdomain.com>
-To: calendar-team@testdomain.com
-Cc: support-team@testdomain.com
+To: globaladmin@testdomain.com
 Sent: Monday, March 29, 2010 1:11:52 PM
 Subject: Fwd: SF: Case 00051542: - Timezone conversion 24 hour error
 
@@ -250,8 +242,7 @@ Received: from dogfood.zimbra.com (dogfood.zimbra.com [10.113.63.59])
 	Mon, 29 Mar 2010 15:03:15 -0700 (PDT)
 Date: Mon, 29 Mar 2010 15:04:01 -0700 (PDT)
 From: Jiho Hahm <jhahm@testdomain.com>
-To: support@testdomain.com
-Cc: support-team@testdomain.com, calendar-team@testdomain.com
+To: globaladmin@testdomain.com
 Message-ID: <16255275.20.1269900233146.JavaMail.jhahm@spike.local>
 In-Reply-To: <1954326971.96982.1269898265355.JavaMail.root@corp.zimbra.com>
 Subject: Re: SF: Case 00051542:  - Timezone conversion 24 hour error
@@ -267,8 +258,7 @@ Thanks for the data.  It sounds like a JSP client issue.  Can someone from clien
 ----- Original Message -----
 
 From: "Rick King" <rking@testdomain.com>
-To: "Jiho Hahm" <jhahm@testdomain.com>
-Cc: support-team@testdomain.com, calendar-team@testdomain.com, support@testdomain.com
+To: globaladmin@testdomain.com
 Sent: Monday, March 29, 2010 2:31:05 PM
 Subject: Re: SF: Case 00051542: - Timezone conversion 24 hour error
 
@@ -294,8 +284,7 @@ Zimbra Support Team
 
 ----- Original Message -----
 From: "Jiho Hahm" <jhahm@testdomain.com>
-To: support@testdomain.com
-Cc: support-team@testdomain.com, calendar-team@testdomain.com
+To: globaladmin@testdomain.com
 Sent: Monday, March 29, 2010 5:10:14 PM
 Subject: Re: SF: Case 00051542: - Timezone conversion 24 hour error
 
@@ -309,9 +298,7 @@ Rick, can you find out a few things for me?
 ----- Original Message -----
 
 From: "Rick King" <rking@testdomain.com>
-To: "Jiho Hahm" <jhahm@testdomain.com>
-Cc: support-team@testdomain.com, calendar-team@testdomain.com,
-support@testdomain.com
+To: globaladmin@testdomain.com
 Sent: Monday, March 29, 2010 1:47:15 PM
 Subject: Re: SF: Case 00051542: - Timezone conversion 24 hour error
 
@@ -327,8 +314,7 @@ Zimbra Support Team
 
 ----- Original Message -----
 From: "Jiho Hahm" <jhahm@testdomain.com>
-To: support@testdomain.com
-Cc: support-team@testdomain.com, calendar-team@testdomain.com
+To: globaladmin@testdomain.com
 Sent: Monday, March 29, 2010 2:29:24 PM
 Subject: Re: SF: Case 00051542: - Timezone conversion 24 hour error
 
@@ -341,8 +327,7 @@ showing the wrong date.
 ----- Original Message -----
 
 From: "Rick King" <rking@testdomain.com>
-To: calendar-team@testdomain.com
-Cc: support-team@testdomain.com
+To: globaladmin@testdomain.com
 Sent: Monday, March 29, 2010 1:11:52 PM
 Subject: Fwd: SF: Case 00051542: - Timezone conversion 24 hour error
 

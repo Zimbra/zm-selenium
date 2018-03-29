@@ -30,7 +30,7 @@ Received: from zqa-062.eng.zimbra.com (zqa-062.eng.zimbra.com [10.137.244.62])
 	for <girish1@zqa-062.eng.zimbra.com>; Mon,  8 Apr 2013 01:24:01 -0700 (PDT)
 Date: Mon, 8 Apr 2013 01:24:01 -0700 (PDT)
 From: admin@zqa-062.eng.zimbra.com
-To: girish1 <girish1@zqa-062.eng.zimbra.com>
+To: globaladmin@testdomain.com
 Message-ID: <158081883.13.1365409441378.JavaMail.zimbra@zqa-062.eng.zimbra.com>
 Subject: Test Edit Reply
 MIME-Version: 1.0

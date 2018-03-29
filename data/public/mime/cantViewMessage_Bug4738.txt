@@ -22,7 +22,7 @@ Received: from frontdesk (adsl-67-122-179-222.dsl.pltn13.pacbell.net [67.122.179
 	by mail.winstor.net (Postfix) with ESMTP id 705FF348003
 	for <kevinh@testdomain.com>; Fri, 28 Oct 2005 14:13:14 -0700 (PDT)
 From: "Sandy Zimmer" <sandy@testdomain.com>
-To: "'Kevin Henrikson'" <kevinh@testdomain.com>
+To: globaladmin@testdomain.com
 Subject: RE: funny messages
 Date: Fri, 28 Oct 2005 14:23:41 -0700
 Message-ID: <006801c5dc05$df3273e0$6c00a8c0@frontdesk>
@@ -35,7 +35,7 @@ X-Mailer: Microsoft Outlook CWS, Build 9.0.2416 (9.0.2910.0)
 X-MimeOLE: Produced By Microsoft MimeOLE V6.00.2800.1506
 Importance: Normal
 In-Reply-To: <1814603.18681130533600447.JavaMail.root@dogfood.liquidsys.com>
-Disposition-Notification-To: "Sandy Zimmer" <sandy@testdomain.com>
+Disposition-Notification-To: globaladmin@testdomain.com
 X-Virus-Scanned: amavisd-new at winstor.net
 X-Virus-Scanned: amavisd-new at dogfood
 X-Spam-Status: No, hits=-2.355 tagged_above=-10 required=6.6 autolearn=no

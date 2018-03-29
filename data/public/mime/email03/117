@@ -9,13 +9,13 @@ Received: (qmail 83195 invoked by uid 500); 15 Sep 2003 23:37:31 -0000
 Mailing-List: contact xmlbeans-user-help@xml.apache.org; run by ezmlm
 Precedence: bulk
 X-No-Archive: yes
-List-Post: <mailto:xmlbeans-user@xml.apache.org>
+List-Post: <mailto:globaladmin@testdomain.com>
 List-Help: <mailto:xmlbeans-user-help@xml.apache.org>
 List-Unsubscribe: <mailto:xmlbeans-user-unsubscribe@xml.apache.org>
 List-Subscribe: <mailto:xmlbeans-user-subscribe@xml.apache.org>
-Reply-To: xmlbeans-user@xml.apache.org
-Delivered-To: mailing list xmlbeans-user@xml.apache.org
-Delivered-To: moderator for xmlbeans-user@xml.apache.org
+Reply-To: globaladmin@testdomain.com
+Delivered-To: mailing list globaladmin@testdomain.com
+Delivered-To: moderator for globaladmin@testdomain.com
 Received: (qmail 28369 invoked from network); 15 Sep 2003 21:07:19 -0000
 content-class: urn:content-classes:message
 Subject: XmlBeans source code has been checked in ...
@@ -31,8 +31,7 @@ X-MS-TNEF-Correlator:
 Thread-Topic: XmlBeans source code has been checked in ...
 Thread-Index: AcN7zVqm0/g4nXKTTMKpPiP8n2fcuw==
 From: "Eric Vasilik" <ericvas@bea.com>
-To: <xmlbeans-dev@xml.apache.org>
-Cc: <xmlbeans-user@xml.apache.org>, <xmlbeans-cvs@xml.apache.org>
+To: globaladmin@testdomain.com
 X-OriginalArrivalTime: 15 Sep 2003 21:07:25.0008 (UTC)
 	FILETIME=[5CB05D00:01C37BCD]
 X-Spam-Rating: daedalus.apache.org 1.6.2 0/1000/N

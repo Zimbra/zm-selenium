@@ -1,10 +1,5 @@
 From: <matt@testdomain.com>
-To: "'Raja Rao'" <raja.rao@testdomain.com>,
-	"Bill Hwang" <bhwang@testdomain.com>
-Cc: "'suryakant kanada'" <suryakant@testdomain.com>,
-	"'krishnakumar'" <krishnakumar@testdomain.com>,
-	"'Jitesh Sojitra'" <jsojitra@testdomain.com>,
-	"'Prashant Jaiswal'" <pjaiswal@testdomain.com>
+To: globaladmin@testdomain.com
 References: <000001c8002a$743b2a00$fa810a0a@testdomain.com> <1139275496.182791190831291532.JavaMail.root@dogfood.zimbra.com>
 In-Reply-To: <1139275496.182791190831291532.JavaMail.root@dogfood.zimbra.com>
 Subject: Bug39246
@@ -50,8 +45,7 @@ Is the P4 sync server up and running in SF?
 
 From: Raja Rao [mailto:raja.rao@testdomain.com]
 Sent: Wednesday, September 26, 2007 11:28 AM
-To: krishnakumar; Jitesh Sojitra; Prashant Jaiswal
-Cc: suryakant kanada; matt
+To: globaladmin@testdomain.com
 Subject: QTP update:
 
 
@@ -91,7 +85,7 @@ on a btn but the btn is Disabled.
 
 ----- Original Message -----
 From: QTPResultEmail@dogfood.zimbra.com
-To: qa-automation@testdomain.com
+To: globaladmin@testdomain.com
 Sent: Wednesday, September 26, 2007 3:46:11 AM (GMT-0800) 
 America/Los_Angeles
 Subject: QTPResult_FULL_FF2.0(main 5.0.0_RC1.1_1532.RHEL4.NETWORK qa32 
@@ -2689,7 +2683,6 @@ style=3D'font-size:10.0pt;font-family:"Tahoma","sans-serif"'> Raja Rao
 [mailto:raja.rao@testdomain.com] <br>
 <b>Sent:</b> Wednesday, September 26, 2007 11:28 AM<br>
 <b>To:</b> krishnakumar; Jitesh Sojitra; Prashant Jaiswal<br>
-<b>Cc:</b> suryakant kanada; matt<br>
 <b>Subject:</b> QTP update:<o:p></o:p></span></p>
 
 </div>
@@ -2749,7 +2742,7 @@ btn but the btn is Disabled.<br>
 <br>
 ----- Original Message -----<br>
 From: QTPResultEmail@dogfood.zimbra.com<br>
-To: qa-automation@testdomain.com<br>
+To: globaladmin@testdomain.com<br>
 Sent: Wednesday, September 26, 2007 3:46:11 AM (GMT-0800) =
 America/Los_Angeles<br>
 Subject: QTPResult_FULL_FF2.0(main 5.0.0_RC1.1_1532.RHEL4.NETWORK qa32 =

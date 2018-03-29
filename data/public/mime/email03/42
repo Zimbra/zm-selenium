@@ -10,16 +10,16 @@ Received: (qmail 87294 invoked by uid 500); 25 Sep 2003 03:55:13 -0000
 Mailing-List: contact xmlbeans-dev-help@xml.apache.org; run by ezmlm
 Precedence: bulk
 X-No-Archive: yes
-List-Post: <mailto:xmlbeans-dev@xml.apache.org>
+List-Post: <mailto:globaladmin@testdomain.com>
 List-Help: <mailto:xmlbeans-dev-help@xml.apache.org>
 List-Unsubscribe: <mailto:xmlbeans-dev-unsubscribe@xml.apache.org>
 List-Subscribe: <mailto:xmlbeans-dev-subscribe@xml.apache.org>
-Reply-To: xmlbeans-dev@xml.apache.org
-Delivered-To: mailing list xmlbeans-dev@xml.apache.org
+Reply-To: globaladmin@testdomain.com
+Delivered-To: mailing list globaladmin@testdomain.com
 Received: (qmail 87279 invoked from network); 25 Sep 2003 03:55:13 -0000
 Message-ID: <001301c38318$1c525f40$6401a8c0@third>
 From: "Chris Fry" <christopher.fry@bea.com>
-To: <xmlbeans-dev@xml.apache.org>
+To: globaladmin@testdomain.com
 References: <4C2F1577F2EF2840A9AE9EC61860C8810A0FED@usseex01.amer.bea.com>
 Subject: Re: STAX
 Date: Wed, 24 Sep 2003 20:50:06 -0700
@@ -47,7 +47,7 @@ FYI the jar is publicly available at http://jcp.org/en/jsr/detail?id=173
 -Chris
 ----- Original Message -----
 From: "Cliff Schmidt" <cliff@bea.com>
-To: <xmlbeans-dev@xml.apache.org>; <christopher.fry@bea.com>
+To: globaladmin@testdomain.com
 Sent: Wednesday, September 24, 2003 6:43 PM
 Subject: RE: STAX
 

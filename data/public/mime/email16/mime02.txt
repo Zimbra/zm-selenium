@@ -1,6 +1,6 @@
 Date: Fri, 19 Feb 2016 13:20:34 +0530 (IST)
 From: enus14558676574843@testdomain.com
-To: xyz@testdomain.com
+To: globaladmin@testdomain.com
 Subject: remove attachment from conversation view
 MIME-Version: 1.0
 Content-Type: multipart/mixed; 

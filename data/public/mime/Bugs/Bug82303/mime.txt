@@ -1,6 +1,6 @@
 Date: Wed, 22 May 2013 10:52:33 -0700 (PDT)
 From: vmwen2@zqa-062.eng.zimbra.com
-To: vmwen1 <vmwen1@zqa-062.eng.zimbra.com>
+To: globaladmin@testdomain.com
 Subject: bug82303
 MIME-Version: 1.0
 Content-Type: multipart/alternative; 

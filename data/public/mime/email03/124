@@ -10,17 +10,17 @@ Received: (qmail 50790 invoked by uid 500); 22 Sep 2003 23:09:18 -0000
 Mailing-List: contact xmlbeans-dev-help@xml.apache.org; run by ezmlm
 Precedence: bulk
 X-No-Archive: yes
-List-Post: <mailto:xmlbeans-dev@xml.apache.org>
+List-Post: <mailto:globaladmin@testdomain.com>
 List-Help: <mailto:xmlbeans-dev-help@xml.apache.org>
 List-Unsubscribe: <mailto:xmlbeans-dev-unsubscribe@xml.apache.org>
 List-Subscribe: <mailto:xmlbeans-dev-subscribe@xml.apache.org>
-Reply-To: xmlbeans-dev@xml.apache.org
-Delivered-To: mailing list xmlbeans-dev@xml.apache.org
+Reply-To: globaladmin@testdomain.com
+Delivered-To: mailing list globaladmin@testdomain.com
 Received: (qmail 50774 invoked from network); 22 Sep 2003 23:09:17 -0000
 Date: Tue, 23 Sep 2003 08:14:08 +0900
 X-Zimbra-Received: Tue, 23 Sep 2003 08:14:08 +0900
 From: Tetsuya Kitahata <tetsuya@apache.org>
-To: xmlbeans-dev@xml.apache.org
+To: globaladmin@testdomain.com
 Subject: Re: Getting the distribution onto a download site somewhere ...
 In-Reply-To: <3F6F755F.7030105@sauria.com>
 References: <3F6F5565.3000506@outerthought.org>
@@ -52,7 +52,7 @@ That's all.
 (I am willing to put the news at jakarta.apache.org top page)
 
 In such an announcement, please note that the you should tell people the
-existence of "xmlbeans-user@xml.apache.org" mailing list
+existence of "globaladmin@testdomain.com" mailing list
 for building the powerful users' community.
 
 --

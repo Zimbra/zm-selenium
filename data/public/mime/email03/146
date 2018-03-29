@@ -10,16 +10,16 @@ Received: (qmail 16465 invoked by uid 500); 27 Oct 2003 23:00:16 -0000
 Mailing-List: contact xmlbeans-user-help@xml.apache.org; run by ezmlm
 Precedence: bulk
 X-No-Archive: yes
-List-Post: <mailto:xmlbeans-user@xml.apache.org>
+List-Post: <mailto:globaladmin@testdomain.com>
 List-Help: <mailto:xmlbeans-user-help@xml.apache.org>
 List-Unsubscribe: <mailto:xmlbeans-user-unsubscribe@xml.apache.org>
 List-Subscribe: <mailto:xmlbeans-user-subscribe@xml.apache.org>
-Reply-To: xmlbeans-user@xml.apache.org
-Delivered-To: mailing list xmlbeans-user@xml.apache.org
+Reply-To: globaladmin@testdomain.com
+Delivered-To: mailing list globaladmin@testdomain.com
 Received: (qmail 16451 invoked from network); 27 Oct 2003 23:00:15 -0000
 Sensitivity: 
 Subject: Re: XML to Java at run-time
-To: xmlbeans-user@xml.apache.org
+To: globaladmin@testdomain.com
 X-Mailer: Lotus Notes Release 5.0.8  June 18, 2001
 Message-ID: <OF4F0C2BB6.046A6524-ONCA256DCC.007DC715@tmca.com.au>
 From: Dmitri.Colebatch@toyota.com.au
@@ -63,10 +63,9 @@ dim
 
 "Koller, Shmuel" <Shmuel_Koller@bmc.com> on 28/10/2003 05:25:52 AM
 
-Please respond to xmlbeans-user@xml.apache.org
+Please respond to globaladmin@testdomain.com
 
-To:    xmlbeans-user@xml.apache.org
-cc:
+To:    globaladmin@testdomain.com
 Subject:    XML to Java at run-time
 
 I am looking at Java Binding tool for developing WebServices - incoming as

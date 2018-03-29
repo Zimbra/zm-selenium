@@ -1,6 +1,6 @@
 Date: Tue, 5 Mar 2013 12:56:56 -0800 (PST)
 From: foo@example.com
-To: bar@example.com
+To: globaladmin@testdomain.com
 Subject: subject1397778577518254677
 MIME-Version: 1.0
 Content-Type: multipart/mixed; 

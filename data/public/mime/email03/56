@@ -9,16 +9,16 @@ Received: (qmail 8348 invoked by uid 500); 13 Sep 2003 11:21:32 -0000
 Mailing-List: contact xmlbeans-dev-help@xml.apache.org; run by ezmlm
 Precedence: bulk
 X-No-Archive: yes
-List-Post: <mailto:xmlbeans-dev@xml.apache.org>
+List-Post: <mailto:globaladmin@testdomain.com>
 List-Help: <mailto:xmlbeans-dev-help@xml.apache.org>
 List-Unsubscribe: <mailto:xmlbeans-dev-unsubscribe@xml.apache.org>
 List-Subscribe: <mailto:xmlbeans-dev-subscribe@xml.apache.org>
-Reply-To: xmlbeans-dev@xml.apache.org
-Delivered-To: mailing list xmlbeans-dev@xml.apache.org
+Reply-To: globaladmin@testdomain.com
+Delivered-To: mailing list globaladmin@testdomain.com
 Received: (qmail 8334 invoked from network); 13 Sep 2003 11:21:32 -0000
 Message-ID: <022901c379e9$2d9387d0$0fa8a8c0@lightbox>
 From: "David Bau" <david.bau@bea.com>
-To: <xmlbeans-dev@xml.apache.org>
+To: globaladmin@testdomain.com
 Subject: Setting up bugzilla, list archiving, etc
 Date: Sat, 13 Sep 2003 07:21:27 -0400
 X-Zimbra-Received: Sat, 13 Sep 2003 07:21:27 -0400
@@ -38,7 +38,7 @@ and we're basically ready to check it into apache CVS now; we're just
 waiting on infrastructure to set up accounts and cvs access for us.  We're
 also going to start using this mailing list for development work, which
 means we need to make sure user discussions happen on
-xmlbeans-user@xml.apache.org.
+globaladmin@testdomain.com.
 
 Forgive me for a bit, for a little while things on xmlbeans-dev are going to
 have to be boring setup issues.  We need a functional development space

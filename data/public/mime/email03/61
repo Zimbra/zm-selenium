@@ -13,9 +13,9 @@ List-Post: <mailto:xmlbeans-cvs@xml.apache.org>
 List-Help: <mailto:xmlbeans-cvs-help@xml.apache.org>
 List-Unsubscribe: <mailto:xmlbeans-cvs-unsubscribe@xml.apache.org>
 List-Subscribe: <mailto:xmlbeans-cvs-subscribe@xml.apache.org>
-Reply-To: xmlbeans-dev@xml.apache.org
-Delivered-To: mailing list xmlbeans-cvs@xml.apache.org
-Delivered-To: moderator for xmlbeans-cvs@xml.apache.org
+Reply-To: globaladmin@testdomain.com
+Delivered-To: globaladmin@testdomain.com
+Delivered-To: globaladmin@testdomain.com
 Received: (qmail 28369 invoked from network); 15 Sep 2003 21:07:19 -0000
 content-class: urn:content-classes:message
 Subject: XmlBeans source code has been checked in ...
@@ -30,8 +30,7 @@ X-MS-TNEF-Correlator:
 Thread-Topic: XmlBeans source code has been checked in ...
 Thread-Index: AcN7zVqm0/g4nXKTTMKpPiP8n2fcuw==
 From: "Eric Vasilik" <ericvas@bea.com>
-To: <xmlbeans-dev@xml.apache.org>
-Cc: <xmlbeans-user@xml.apache.org>, <xmlbeans-cvs@xml.apache.org>
+To: globaladmin@testdomain.com
 X-OriginalArrivalTime: 15 Sep 2003 21:07:25.0008 (UTC)
 	FILETIME=[5CB05D00:01C37BCD]
 X-Spam-Rating: daedalus.apache.org 1.6.2 0/1000/N

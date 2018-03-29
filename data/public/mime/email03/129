@@ -10,16 +10,16 @@ Received: (qmail 59289 invoked by uid 500); 28 Oct 2003 22:35:57 -0000
 Mailing-List: contact xmlbeans-user-help@xml.apache.org; run by ezmlm
 Precedence: bulk
 X-No-Archive: yes
-List-Post: <mailto:xmlbeans-user@xml.apache.org>
+List-Post: <mailto:globaladmin@testdomain.com>
 List-Help: <mailto:xmlbeans-user-help@xml.apache.org>
 List-Unsubscribe: <mailto:xmlbeans-user-unsubscribe@xml.apache.org>
 List-Subscribe: <mailto:xmlbeans-user-subscribe@xml.apache.org>
-Reply-To: xmlbeans-user@xml.apache.org
-Delivered-To: mailing list xmlbeans-user@xml.apache.org
+Reply-To: globaladmin@testdomain.com
+Delivered-To: mailing list globaladmin@testdomain.com
 Received: (qmail 59198 invoked from network); 28 Oct 2003 22:35:54 -0000
 Sensitivity: 
 Subject: Re: Versioning of XML Schema
-To: xmlbeans-user@xml.apache.org
+To: globaladmin@testdomain.com
 X-Mailer: Lotus Notes Release 5.0.8  June 18, 2001
 Message-ID: <OF7BDA7D87.B2BF23FF-ONCA256DCD.007AD642@tmca.com.au>
 From: Dmitri.Colebatch@toyota.com.au
@@ -75,10 +75,9 @@ dim
 
 "Koller, Shmuel" <Shmuel_Koller@bmc.com> on 29/10/2003 03:28:15 AM
 
-Please respond to xmlbeans-user@xml.apache.org
+Please respond to globaladmin@testdomain.com
 
-To:    xmlbeans-user@xml.apache.org
-cc:
+To:    globaladmin@testdomain.com
 Subject:    Versioning of XML Schema
 
 Assume we have a XML standard (SOAP based) version 1 schema, with its

@@ -23,7 +23,7 @@ Received: from cfdevws02.imt.testdomain.com (cfdevws02.imt.testdomain.com [129.8
 	Wed, 3 Sep 2008 10:29:07 -0500
 Date: Wed, 3 Sep 2008 10:29:07 -0500 (CDT)
 From: mabraham@testdomain.com
-To: mydev@testdomain.com
+To: globaladmin@testdomain.com
 Message-ID: <28849117.9461220455747839.JavaMail.jrun@cfdevws02.imt.testdomain.com>
 Subject: now there is a change . . . Just sending off the correction for the
  event I just reg'd you for

@@ -7,7 +7,7 @@ Received: from [10.10.130.109] (unknown [10.10.130.109]) by
 	<smith@example.zimbra.com>; Fri, 26 Mar 2004 16:43:58 -0800 (PST)
 Subject: outlook...
 From: "Smith, Roland Q. (VP)" <smith@example.zimbra.com>
-To: smith@example.zimbra.com
+To: globaladmin@testdomain.com
 Content-Type: multipart/mixed; boundary="=-mTT+IyyX+d829XGe+k1/"
 Message-Id: <1080348223.24248.6.camel@localhost.localdomain>
 Mime-Version: 1.0

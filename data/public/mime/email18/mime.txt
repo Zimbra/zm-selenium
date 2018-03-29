@@ -34,7 +34,7 @@ Date: Wed, 20 Feb 2013 05:44:59 +0000
 X-Mailer: Chilkat Software Inc (http://www.chilkatsoft.com)
 X-Priority: 3 (Normal)
 Subject: Print2PDF Error
-To: servers@testdomain.com
+To: globaladmin@testdomain.com
 From: servers@testdomain.com
 Content-Type: multipart/mixed;
 	boundary="-----_chilkat_24d_07e5_c2694143.76aafb15_.MIX"

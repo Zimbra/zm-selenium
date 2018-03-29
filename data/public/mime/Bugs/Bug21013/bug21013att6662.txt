@@ -3,7 +3,7 @@ Date: Fri, 12 Oct 2007 16:12:16 -0700
 From: Foo Bar <foo@testdomain.com>
 User-Agent: Thunderbird 2.0.0.6 (Windows/20070728)
 MIME-Version: 1.0
-To: Matt Rhoades <matt@testdomain.com>
+To: globaladmin@testdomain.com
 Subject: [Fwd: CC&F QA all-hands]
 Content-Type: multipart/mixed;
  boundary="------------010209050105000008010309"
@@ -35,7 +35,7 @@ X-MS-TNEF-Correlator:
 Thread-Topic: CC&F QA all-hands
 Thread-Index: Acf5e3FvpBgjyTjXThKg0vfteyZdnwFhPOPg
 From: "Foo Bar" <foo@testdomain.com>
-To: yousef-all@testdomain.com
+To: globaladmin@testdomain.com
 X-OriginalArrivalTime: 24 Sep 2007 23:12:36.0658 (UTC) FILETIME=[6537B120:01C7FF00]
 
 This is a MIME-formatted message.  If you see this text it means that your

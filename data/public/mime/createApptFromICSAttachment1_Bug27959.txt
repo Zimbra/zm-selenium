@@ -20,7 +20,7 @@ Received: from z54.puneqa.lab (z54.puneqa.lab [10.117.82.54])
 	for <admin@z54.puneqa.lab>; Tue,  8 Jun 2010 12:00:12 +0530 (IST)
 Date: Tue, 8 Jun 2010 12:00:12 +0530 (IST)
 From: root@z54.puneqa.lab
-To: admin  <admin@z54.puneqa.lab>
+To: globaladmin@testdomain.com
 Message-ID: <8978934.2194.1275978611955.JavaMail.root@z54.puneqa.lab>
 In-Reply-To: <27374481.2190.1275978565535.JavaMail.root@z54.puneqa.lab>
 Subject: Testing ics attachment1 - "Add to Calendar" functionality

@@ -48,7 +48,7 @@ X-Priority: 1 (High)
 Priority: Urgent
 Importance: High
 From: "GACC ENCERRAMENTO" <gacc.encerramento@testdomain.com>
-To: <MATRIZ@TESTDOMAIN.COM>
+To: globaladmin@testdomain.com
 X-OriginalArrivalTime: 29 Apr 2008 19:09:35.0109 (UTC) FILETIME=[8FFD6350:01C8AA2C]
 X-MIMETrack: Itemize by SMTP Server on Zeus/Itaubanco(Release 6.5.4FP1 | June 19, 2005) at
  29/04/2008 16:09:37,

@@ -36,15 +36,7 @@ Received: from mbs01e.testdomain.com (unknown [52.203.137.206])
 	Thu, 20 Oct 2016 05:34:06 -0400 (EDT)
 Date: Thu, 20 Oct 2016 05:38:02 -0400 (EDT)
 From: Ashwini Oak <aoak@testdomain.com>
-To: All Pune Employees <pune-employees@testdomain.com>, 
-	nilesh pawar <nilesh.pawar@testdomain.com>, 
-	sakchhi kiran <sakchhi.kiran@testdomain.com>, 
-	kalpesh patel <kalpesh.patel@testdomain.com>, 
-	mayur sonar <mayur.sonar@testdomain.com>, 
-	abhishek thakur <abhishek.thakur@testdomain.com>, 
-	prashant deshmukh <prashant.deshmukh@testdomain.com>, 
-	tejbahadur singh <tejbahadur.singh@testdomain.com>, 
-	kunal gorai <kunal.gorai@testdomain.com>
+To: globaladmin@testdomain.com
 Message-ID: <2021520083.8355581.1476956282541.JavaMail.zimbra@testdomain.com>
 Subject: Group photo with Steve
 MIME-Version: 1.0

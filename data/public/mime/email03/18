@@ -8,7 +8,7 @@ Received: from smtp011.mail.yahoo.com (smtp011.mail.yahoo.com
 Received: from unknown (HELO churchill) (davidson@208.15.232.133 with
 	login) by smtp011.mail.yahoo.com with SMTP; 31 Mar 2004 22:07:59 -0000
 From: "Ross Davidson" <davidson@yahoo.com>
-To: <roland@example.zimbra.com>
+To: globaladmin@testdomain.com
 Subject: 
 Date: Wed, 31 Mar 2004 14:08:00 -0800
 X-Zimbra-Received: Wed, 31 Mar 2004 14:08:00 -0800

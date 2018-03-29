@@ -1,7 +1,7 @@
 Date: Sat, 1 Oct 2011 00:01:07 -0400
 From: foo@example.com
 Subject: subject13188948451403
-To: bar@example.com
+To: globaladmin@testdomain.com
 MIME-Version: 1.0
 Content-Type: text/html
 

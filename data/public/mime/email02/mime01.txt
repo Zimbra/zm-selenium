@@ -1,6 +1,6 @@
 Date: Thu, 08 Sep 2011 10:16:46 -0700 (PDT)
 From: foo@example.com
-To: bar@example.com
+To: globaladmin@testdomain.com
 Subject: Subject13155016716713
 Message-ID: <6656aab9-175a-46c0-86f7-9eba7ce1e3fc@zqa-171>
 Content-Type: multipart/alternative;

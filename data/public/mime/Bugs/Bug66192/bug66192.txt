@@ -20,7 +20,7 @@ Received: from mail2.testdomain.com (mail2.testdomain.com [212.64.156.12])
 	for <robert@testdomain.com>; Wed, 19 Oct 2011 11:50:29 +0100 (BST)
 Date: Wed, 19 Oct 2011 11:50:28 +0100 (BST)
 From: Tony Hu <tony@testdomain.com>
-To: Robert Zhang <robert@testdomain.com>
+To: globaladmin@testdomain.com
 Subject: Fwd: test bug66192
 In-Reply-To: <4051e4be-9fd8-4d33-be1e-2babaef0796b@mail2.testdomain.com>
 Content-Type: multipart/mixed;
@@ -159,8 +159,7 @@ e: 12pt; color: #333333">=E5=B0=8FZhao,<div><br></div><div>=E8=AF=B7=E4=B8=
 hr"><div style=3D"color:#000;font-weight:normal;font-style:normal;text-deco=
 ration:none;font-family:Helvetica,Arial,sans-serif;font-size:12pt;"><b>From=
 : </b>"=E5=A4=9A=E6=99=AE=E6=A3=AE-=E8=8B=9F=E5=85=B5" &lt;dopsing.go@gmail=
-.com&gt;<br><b>To: </b>"Henry Guo" &lt;henry@testdomain.com&gt;, zhao@flashba=
-y.com<br><b>Sent: </b>Saturday, 15 October, 2011 6:00:36 PM<br><b>Subject: =
+.com&gt;<br><b>To: globaladmin@testdomain.com<br><b>Sent: </b>Saturday, 15 October, 2011 6:00:36 PM<br><b>Subject: =
 </b>Re: =E5=90=8A=E5=B8=A6=E4=B8=9D=E5=8D=B0=E6=9C=BA=E5=99=A8<br><br><div>=
 =E9=83=AD=E6=80=BB=EF=BC=8C=E8=B5=B5=E4=B8=BB=E7=AE=A1=EF=BC=9A</div>
 <div>&nbsp;</div>
@@ -211,10 +210,7 @@ n>=E5=86=99=E9=81=93=EF=BC=9A<br>
 ; COLOR: #000; FONT-SIZE: 12pt; FONT-WEIGHT: normal; TEXT-DECORATION: none"=
 ><b>From: </b>"Henry Guo" &lt;<a href=3D"mailto:henry@testdomain.com" target=
 =3D"_blank">henry@testdomain.com</a>&gt;<br>
-<b>To: </b><a href=3D"mailto:sales@testdomain.com" target=3D"_blank">sales=
-@testdomain.com</a><br><b>Cc: </b><a href=3D"mailto:cha@testdomain.com" t=
-arget=3D"_blank">cha@testdomain.com</a>, "Kevin Zhao" &lt;<a href=3D"mailt=
-o:zhao@testdomain.com" target=3D"_blank">zhao@testdomain.com</a>&gt;<br>
+<b>To: globaladmin@testdomain.com<br><b><br>
 <b>Sent: </b>Wednesday, 12 October, 2011 11:36:34 AM<br><b>Subject: </b>=
 =E5=90=8A=E5=B8=A6=E4=B8=9D=E5=8D=B0=E6=9C=BA=E5=99=A8
 <div>
@@ -261,8 +257,7 @@ o:zhao@testdomain.com" target=3D"_blank">zhao@testdomain.com</a>&gt;<br>
 ; COLOR: #000; FONT-SIZE: 12pt; FONT-WEIGHT: normal; TEXT-DECORATION: none"=
 ><b>From: </b>"Yuan Dandan" &lt;<a href=3D"mailto:yuandandan@testdomain.com" =
 target=3D"_blank">yuandandan@testdomain.com</a>&gt;<br>
-<b>To: </b>"Henry Guo" &lt;<a href=3D"mailto:henry@testdomain.com" target=3D"=
-_blank">henry@testdomain.com</a>&gt;<br><b>Sent: </b>Tuesday, 11 October, 201=
+<b>To: globaladmin@testdomain.com<br><b>Sent: </b>Tuesday, 11 October, 201=
 1 10:31:29 PM<br><b>Subject: </b>NS=E9=97=AE=E9=A2=98=E7=82=B9<br><br>
 <div style=3D"FONT-FAMILY: Arial; COLOR: #333333; FONT-SIZE: 12pt">HI &nbsp=
 ; HENRY:

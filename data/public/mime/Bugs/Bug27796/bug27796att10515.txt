@@ -48,12 +48,12 @@ From: Jilong Wang <swang@testdomain.com>
 User-Agent: Mozilla/5.0 (Windows; U; Windows NT 5.0; en-US; rv:1.7.2) Gecko/20040804 Netscape/7.2 (ax)
 X-Accept-Language: en-us, en
 MIME-Version: 1.0
-To: "'devel-random'" <devel-random@testdomain.com>
+To: globaladmin@testdomain.com
 Subject: subject13001430504374
-Reply-To: Jilong Wang <swang@testdomain.com>
+Reply-To: globaladmin@testdomain.com
 X-Loop: devel-random@testdomain.com
 X-Sequence: 4707
-Errors-to: devel-random-owner@testdomain.com
+Errors-to: globaladmin@testdomain.com
 Precedence: bulk
 X-no-archive: yes
 List-Id: <devel-random.testdomain.com>

@@ -1,7 +1,7 @@
 Return-Path: bar@example.com
 Date: Thu, 22 Dec 2011 11:38:24 -0800 (PST)
 From: Bar User <bar@example.com>
-To: foo@example.com
+To: globaladmin@testdomain.com
 Subject: Re: Conversation13155016716714
 Content-Type: multipart/alternative;
  boundary="=_bda03244-e099-431b-be06-87b9c31b0414"
@@ -21,7 +21,7 @@ more
 
 
 From: "Matthew Rhoades " <matt@ zimbra .com> 
-To: matt@ zimbra .com 
+To: globaladmin@testdomain.com
 Sent: Thursday, 22 December, 2011 11:38:03 AM 
 Subject: conversation01 
 

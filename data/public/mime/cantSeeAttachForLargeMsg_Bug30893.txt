@@ -44,7 +44,7 @@ X-Priority: 1
 Priority: Urgent
 Importance: high
 From: "Neena Kulkarni" <mum-bcd@testdomain.com>
-To: "Rajesh Segu" <rsegu@testdomain.com>
+To: globaladmin@testdomain.com
 X-OriginalArrivalTime: 04 Aug 2008 10:51:01.0331 (UTC) FILETIME=[FC0EDA30:01C8F61F]
 
 This is a multi-part message in MIME format.
@@ -131,7 +131,7 @@ Contact- 000-00000000 / 00000000000
 -----Original Message-----
 From: Rajesh Segu [mailto:rsegu@testdomain.com]=20
 Sent: Monday, August 04, 2008 11:28 AM
-To: Neena Kulkarni; Satishkumar Sugumaran; Rajesh Segu
+To: globaladmin@testdomain.com
 Subject: RE: Pl find eco class itinerary! Pl confirm the same!
 
 =20
@@ -550,9 +550,7 @@ From: Abinash Tripathy [mailto:abinash.tripathy@testdomain.com]=20
 
 Sent: Monday, August 04, 2008 9:55 AM
 
-To: Satishkumar Sugumaran; Rajesh Segu
-
-Cc: Neena Kulkarni
+To: globaladmin@testdomain.com
 
 Subject: Re: Pl find eco class itinerary! Pl confirm the same!
 
@@ -592,9 +590,7 @@ Otherwise we have to again start rescheduling.
 
 > From: "Rajesh Segu" <rajesh.segu@testdomain.com>
 
-> To: "Neena Kulkarni" <mum-bcd@testdomain.com>
-
-> Cc: satishs@testdomain.com, "Atiah Zarar" <atiah@testdomain.com>
+> To: globaladmin@testdomain.com
 
 > Sent: Friday, August 1, 2008 5:58:32 AM GMT -08:00 US/Canada Pacific
 
@@ -992,9 +988,7 @@ From: Rajesh Segu [mailto:rajesh.segu@testdomain.com]=20
 
 > > Sent: Friday, August 01, 2008 2:31 PM
 
-> > To: Neena Kulkarni
-
-> > Cc: satishs@testdomain.com; Atiah Zarar; blr-travel
+> > To: globaladmin@testdomain.com
 
 > > Subject: Re: US Travel Details
 
@@ -1112,9 +1106,7 @@ From: Rajesh Segu [mailto:rajesh.segu@testdomain.com]=20
 
 > > > Sent: Friday, August 01, 2008 2:19 PM
 
-> > > To: Neena Kulkarni
-
-> > > Cc: satishs@testdomain.com; Atiah Zarar
+> > > To: globaladmin@testdomain.com
 
 > > > Subject: Re: US Travel Details
 
@@ -1430,9 +1422,7 @@ From: Rajesh Segu [mailto:rajesh.segu@testdomain.com]=20
 
 > > > > Sent: Thursday, July 31, 2008 1:48 PM
 
-> > > > To: Neena Kulkarni
-
-> > > > Cc: satishs@testdomain.com; Atiah Zarar
+> > > > To: globaladmin@testdomain.com
 
 > > > > Subject: Re: US Travel Details
 
@@ -2331,7 +2321,7 @@ style=3D'font-size:
 10.0pt'>-----Original Message-----<br>
 From: Rajesh Segu [mailto:rsegu@testdomain.com] <br>
 Sent: Monday, August 04, 2008 11:28 AM<br>
-To: Neena Kulkarni; Satishkumar Sugumaran; Rajesh Segu<br>
+To: globaladmin@testdomain.com<br>
 Subject: RE: Pl find eco class itinerary! Pl confirm the =
 same!</span></font></p>
 
@@ -3205,12 +3195,7 @@ AM<o:p></o:p></span></font></p>
 
 <p class=3DMsoPlainText><font size=3D2 face=3D"Courier New"><span =
 style=3D'font-size:
-10.0pt'>To: Satishkumar Sugumaran; Rajesh =
-Segu<o:p></o:p></span></font></p>
-
-<p class=3DMsoPlainText><font size=3D2 face=3D"Courier New"><span =
-style=3D'font-size:
-10.0pt'>Cc: Neena Kulkarni<o:p></o:p></span></font></p>
+10.0pt'>To: globaladmin@testdomain.com<o:p></o:p></span></font></p>
 
 <p class=3DMsoPlainText><font size=3D2 face=3D"Courier New"><span =
 style=3D'font-size:
@@ -3296,15 +3281,7 @@ style=3D'font-size:
 
 <p class=3DMsoPlainText><font size=3D2 face=3D"Courier New"><span =
 style=3D'font-size:
-10.0pt'>&gt; To: &quot;Neena Kulkarni&quot; =
-&lt;mum-bcd@testdomain.com&gt;<o:p></o:p></span></font></p>
-
-<p class=3DMsoPlainText><font size=3D2 face=3D"Courier New"><span =
-style=3D'font-size:
-10.0pt'>&gt; Cc: satishs@testdomain.com, &quot;<st1:PersonName =
-w:st=3D"on">Atiah
- Zarar</st1:PersonName>&quot; =
-&lt;atiah@testdomain.com&gt;<o:p></o:p></span></font></p>
+10.0pt'>&gt; To: globaladmin@testdomain.com<o:p></o:p></span></font></p>
 
 <p class=3DMsoPlainText><font size=3D2 face=3D"Courier New"><span =
 style=3D'font-size:
@@ -4138,13 +4115,7 @@ PM<o:p></o:p></span></font></p>
 
 <p class=3DMsoPlainText><font size=3D2 face=3D"Courier New"><span =
 style=3D'font-size:
-10.0pt'>&gt; &gt; To: Neena Kulkarni<o:p></o:p></span></font></p>
-
-<p class=3DMsoPlainText><font size=3D2 face=3D"Courier New"><span =
-style=3D'font-size:
-10.0pt'>&gt; &gt; Cc: satishs@testdomain.com; <st1:PersonName =
-w:st=3D"on">Atiah Zarar</st1:PersonName>;
-blr-travel<o:p></o:p></span></font></p>
+10.0pt'>&gt; &gt; To: globaladmin@testdomain.com<o:p></o:p></span></font></p>
 
 <p class=3DMsoPlainText><font size=3D2 face=3D"Courier New"><span =
 style=3D'font-size:
@@ -4390,13 +4361,7 @@ PM<o:p></o:p></span></font></p>
 
 <p class=3DMsoPlainText><font size=3D2 face=3D"Courier New"><span =
 style=3D'font-size:
-10.0pt'>&gt; &gt; &gt; To: Neena Kulkarni<o:p></o:p></span></font></p>
-
-<p class=3DMsoPlainText><font size=3D2 face=3D"Courier New"><span =
-style=3D'font-size:
-10.0pt'>&gt; &gt; &gt; Cc: satishs@testdomain.com; <st1:PersonName =
-w:st=3D"on">Atiah
- Zarar</st1:PersonName><o:p></o:p></span></font></p>
+10.0pt'>&gt; &gt; &gt; To: globaladmin@testdomain.com<o:p></o:p></span></font></p>
 
 <p class=3DMsoPlainText><font size=3D2 face=3D"Courier New"><span =
 style=3D'font-size:
@@ -5089,12 +5054,6 @@ PM<o:p></o:p></span></font></p>
 style=3D'font-size:
 10.0pt'>&gt; &gt; &gt; &gt; To: Neena =
 Kulkarni<o:p></o:p></span></font></p>
-
-<p class=3DMsoPlainText><font size=3D2 face=3D"Courier New"><span =
-style=3D'font-size:
-10.0pt'>&gt; &gt; &gt; &gt; Cc: satishs@testdomain.com; <st1:PersonName =
-w:st=3D"on">Atiah
- Zarar</st1:PersonName><o:p></o:p></span></font></p>
 
 <p class=3DMsoPlainText><font size=3D2 face=3D"Courier New"><span =
 style=3D'font-size:
@@ -6336,7 +6295,7 @@ X-MS-TNEF-Correlator:
 Thread-Topic: YOUR TRAVEL INFORMATION
 Thread-Index: Acj2HZC7PnItKKLwTuyN9A7vznE66Q==
 From: "BCD TRAVEL INDIA PVT.LTD          (AGENTID01998137)" <emailserver@pop3.testdomain.com>
-To: "Neena Kulkarni" <mum-bcd@testdomain.com>
+To: globaladmin@testdomain.com
 
 This is a multi-part message in MIME format.
 

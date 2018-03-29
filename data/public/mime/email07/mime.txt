@@ -3,7 +3,7 @@ Content-Type: multipart/alternative; boundary="===============1502514016=="
 MIME-Version: 1.0
 Subject: subject135232705018411
 From: YouTube Service <noreply@youtube.com>
-To: foo@example.com
+To: globaladmin@testdomain.com
 Date: Wed, 07 Nov 2012 14:41:36 -0800 (PST)
 
 

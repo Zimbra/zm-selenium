@@ -8,16 +8,16 @@ Received: from mail.apache.org (daedalus.apache.org [208.185.179.12]) by
 Received: (qmail 11945 invoked by uid 500); 4 Dec 2003 23:42:20 -0000
 Mailing-List: contact xmlbeans-user-help@xml.apache.org; run by ezmlm
 Precedence: bulk
-List-Post: <mailto:xmlbeans-user@xml.apache.org>
+List-Post: <mailto:globaladmin@testdomain.com>
 List-Help: <mailto:xmlbeans-user-help@xml.apache.org>
 List-Unsubscribe: <mailto:xmlbeans-user-unsubscribe@xml.apache.org>
 List-Subscribe: <mailto:xmlbeans-user-subscribe@xml.apache.org>
-Reply-To: xmlbeans-user@xml.apache.org
-Delivered-To: mailing list xmlbeans-user@xml.apache.org
+Reply-To: globaladmin@testdomain.com
+Delivered-To: mailing list globaladmin@testdomain.com
 Received: (qmail 11932 invoked from network); 4 Dec 2003 23:42:19 -0000
 Message-ID: <017001c3bac0$34cf16a0$0fa8a8c0@lightbox>
 From: "David Bau" <david.bau@bea.com>
-To: <xmlbeans-user@xml.apache.org>
+To: globaladmin@testdomain.com
 References: <FAF98113-25D3-11D8-BCCC-000393D5A006@vrtx.com>
 	 <015a01c3baad$e640c9a0$0fa8a8c0@lightbox>
 	 <F349361B-26AD-11D8-A026-000393D5A006@vrtx.com>
@@ -46,7 +46,7 @@ the tags removed (and &lt; entities etc resolved).
 David
 ----- Original Message ----- 
 From: "Thomas Condon" <tom_condon@vrtx.com>
-To: <xmlbeans-user@xml.apache.org>
+To: globaladmin@testdomain.com
 Sent: Thursday, December 04, 2003 6:02 PM
 Subject: [xmlbeans-user] Re: XMLBeans or perhaps just an XML question...
 

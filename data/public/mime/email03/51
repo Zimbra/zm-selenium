@@ -10,16 +10,16 @@ Received: (qmail 12539 invoked by uid 500); 21 Oct 2003 16:35:22 -0000
 Mailing-List: contact xmlbeans-dev-help@xml.apache.org; run by ezmlm
 Precedence: bulk
 X-No-Archive: yes
-List-Post: <mailto:xmlbeans-dev@xml.apache.org>
+List-Post: <mailto:globaladmin@testdomain.com>
 List-Help: <mailto:xmlbeans-dev-help@xml.apache.org>
 List-Unsubscribe: <mailto:xmlbeans-dev-unsubscribe@xml.apache.org>
 List-Subscribe: <mailto:xmlbeans-dev-subscribe@xml.apache.org>
-Reply-To: xmlbeans-dev@xml.apache.org
-Delivered-To: mailing list xmlbeans-dev@xml.apache.org
+Reply-To: globaladmin@testdomain.com
+Delivered-To: mailing list globaladmin@testdomain.com
 Received: (qmail 12515 invoked from network); 21 Oct 2003 16:35:22 -0000
 Message-ID: <014401c397f1$4e992e00$0fa8a8c0@lightbox>
 From: "David Bau" <david.bau@bea.com>
-To: <xmlbeans-dev@xml.apache.org>
+To: globaladmin@testdomain.com
 References:
 	 <1924BF350FC96B46A56BB38087B9B86E6A6461@srvcorreio.primavera.local>
 Subject: RE: Feature Request: Serialization
@@ -47,7 +47,7 @@ David
 
 ----- Original Message ----- 
 From: "Jochen Rebhan" <jochen.rebhan@primaverasoft.pt>
-To: <xmlbeans-dev@xml.apache.org>
+To: globaladmin@testdomain.com
 Sent: Tuesday, October 21, 2003 12:06 PM
 Subject: [xmlbeans-dev] RE: Feature Request: Serialization
 
@@ -77,7 +77,7 @@ j.rebhan@web.de
  -----Original Message-----
 From: David Bau [mailto:david.bau@bea.com]
 Sent: ter?a-feira, 21 de Outubro de 2003 16:26
-To: xmlbeans-dev@xml.apache.org
+To: globaladmin@testdomain.com
 Subject: Re: Feature Request: Serialization
 
 Hi Jochen -
@@ -95,7 +95,7 @@ David
 
 ----- Original Message ----- 
 From: "Jochen Rebhan" <jochen.rebhan@primaverasoft.pt>
-To: <xmlbeans-dev@xml.apache.org>
+To: globaladmin@testdomain.com
 Sent: Tuesday, October 21, 2003 10:04 AM
 Subject: [xmlbeans-dev] Feature Request: Serialization
 

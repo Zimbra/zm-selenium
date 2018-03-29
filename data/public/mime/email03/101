@@ -10,17 +10,16 @@ Received: (qmail 70224 invoked by uid 500); 23 Sep 2003 16:25:06 -0000
 Mailing-List: contact xmlbeans-dev-help@xml.apache.org; run by ezmlm
 Precedence: bulk
 X-No-Archive: yes
-List-Post: <mailto:xmlbeans-dev@xml.apache.org>
+List-Post: <mailto:globaladmin@testdomain.com>
 List-Help: <mailto:xmlbeans-dev-help@xml.apache.org>
 List-Unsubscribe: <mailto:xmlbeans-dev-unsubscribe@xml.apache.org>
 List-Subscribe: <mailto:xmlbeans-dev-subscribe@xml.apache.org>
-Reply-To: xmlbeans-dev@xml.apache.org
-Delivered-To: mailing list xmlbeans-dev@xml.apache.org
+Reply-To: globaladmin@testdomain.com
+Delivered-To: mailing list globaladmin@testdomain.com
 Received: (qmail 70209 invoked from network); 23 Sep 2003 16:25:06 -0000
 Message-ID: <001301c381ef$3a69b980$0fa8a8c0@lightbox>
 From: "David Bau" <david.bau@bea.com>
-To: "Eric Vasilik" <ericvas@bea.com>, "David Bau" <davidbau@bea.com>, "Robert Wyrick" <rwyrick@fedex.com>
-Cc: <xmlbeans-dev@xml.apache.org>
+To: globaladmin@testdomain.com
 References: <4B2B4C417991364996F035E1EE39E2E11E9D5D@uskiex01.amer.bea.com>
 Subject: RE: GDateBuilder question
 Date: Tue, 23 Sep 2003 12:24:55 -0400
@@ -57,7 +56,7 @@ difference between Z and +0:00?
 David
 ----- Original Message ----- 
 From: "Eric Vasilik" <ericvas@bea.com>
-To: "David Bau" <davidbau@bea.com>; "Robert Wyrick" <rwyrick@fedex.com>
+To: globaladmin@testdomain.com
 Sent: Tuesday, September 23, 2003 11:38 AM
 Subject: [bea-readme] RE: GDateBuilder question
 
@@ -96,7 +95,7 @@ betwen -14:00 and +14:00");
 -----Original Message-----
 From: Robert Wyrick [mailto:rwyrick@fedex.com]
 Sent: Monday, September 22, 2003 3:02 PM
-To: Eric Vasilik
+To: globaladmin@testdomain.com
 Subject: GDateBuilder question
 
 

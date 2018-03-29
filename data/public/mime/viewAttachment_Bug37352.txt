@@ -36,7 +36,7 @@ X-Barracuda-BBL-IP: 130.207.185.140
 X-Barracuda-RBL-IP: 130.207.185.140
 Message-Id: <5260EE25-58D7-4E26-9E41-A152345A441B@testdomain.com>
 From: Matt Sanders <msanders@testdomain.com>
-To: msanders Sanders <msanders@testdomain.com>
+To: globaladmin@testdomain.com
 Content-Type: multipart/mixed; boundary=Apple-Mail-216--304106344
 X-ASG-Orig-Subj: Invitation to Review for the 2009 Convergence Innovation Competition
 Subject: Invitation to Review for the 2009 Convergence Innovation Competition

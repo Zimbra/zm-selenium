@@ -1,8 +1,6 @@
 From: from12996131112962@example.com
-To: to12996131112962@example.com
-Cc: cc12996131112962@example.com
+To: globaladmin@testdomain.com
 Sender: sender12996131112962@example.com
-Errors-To: errorsto12996131112962@example.com
 Subject: subject12996131112962
 MIME-Version: 1.0 
 Content-Type: text/plain; charset=utf-8 

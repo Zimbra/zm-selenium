@@ -1,5 +1,5 @@
 From: foo@foo.com 
-To: foo@foo.com 
+To: globaladmin@testdomain.com 
 Subject: subject12977323015009
 MIME-Version: 1.0 
 Content-Type: text/plain; charset=utf-8 

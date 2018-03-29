@@ -7,7 +7,7 @@ Received: from [10.10.130.109] (unknown [10.10.130.109]) by
 	<smith@example.zimbra.com>; Tue, 27 Apr 2004 17:42:40 -0700 (PDT)
 Subject: AdminGuide...
 From: Roland Smith <smith@example.zimbra.com>
-To: smith@example.zimbra.com
+To: globaladmin@testdomain.com
 Content-Type: multipart/mixed; boundary="=-rSmOyociNcb+yWQQX9jC"
 Message-Id: <1083113270.16292.0.camel@localhost.localdomain>
 Mime-Version: 1.0

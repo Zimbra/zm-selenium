@@ -1,6 +1,6 @@
 Date: Mon, 3 Nov 2014 01:45:50 -0800 (PST)
 From: uwm01@zqa-062.eng.vmware.com
-To: uwm02 <uwm02@zqa-062.eng.vmware.com>
+To: globaladmin@testdomain.com
 Message-ID: <496126020.226.1415007950478.JavaMail.zimbra@zqa-062.eng.vmware.com>
 Subject: external image testing
 MIME-Version: 1.0

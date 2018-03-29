@@ -1,6 +1,6 @@
 Date: Mon, 7 Nov 2016 13:17:52 +0530 (IST)
 From: foo@example.com
-To: bar@example.com
+To: globaladmin@testdomain.com
 Subject: multiline plain text body
 MIME-Version: 1.0
 Content-Type: multipart/alternative; 

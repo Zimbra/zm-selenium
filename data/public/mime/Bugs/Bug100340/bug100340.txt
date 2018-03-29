@@ -29,19 +29,7 @@ Received: from mbs01.testdomain.com (mbs01.testdomain.com [10.110.0.177])
 	Wed,  3 Jun 2015 06:10:01 -0500 (CDT)
 Date: Wed, 3 Jun 2015 06:10:01 -0500 (CDT)
 From: Ashwini Oak <aoak@testdomain.com>
-To: Rohan Ambasta <rambasta@testdomain.com>, pbhandolkar <pbhandolkar@testdomain.com>, 
-	pgajjar <pgajjar@testdomain.com>, Vikas Galande <vgalande@testdomain.com>, 
-	Pallavi Khairnar <pkhairnar@testdomain.com>, 
-	Swati Khosre <skhosre@testdomain.com>, Ankit Kumar <kumara@testdomain.com>, 
-	Satyam Kumar <kumars@testdomain.com>, 
-	Piyush Nimoria <pnimoria@testdomain.com>, 
-	Chinmay Pathak <pathakc@testdomain.com>, sprasad <sprasad@testdomain.com>, 
-	Dawood Shaikh <dshaikh@testdomain.com>, Rahul Yadav <ryadav@testdomain.com>, 
-	Abhishek Zambre <azambre@testdomain.com>, Santosh Rao <srao@testdomain.com>, 
-	Shashank Tewari <stewari@testdomain.com>, 
-	Irfan Shaikh <ishaikh@testdomain.com>, 
-	Zimbra India Managers <india-managers@testdomain.com>, 
-	"Site: Pune, India, Building: Godrej Castlemaine, Floor: 3rd Floor, Room: Jupiter" <conf-jupiter@testdomain.com>
+To: globaladmin@testdomain.com
 Message-ID: <60442451.2147237.1433329801326.JavaMail.zimbra@testdomain.com>
 Subject: Schedule for Generic Training
 MIME-Version: 1.0

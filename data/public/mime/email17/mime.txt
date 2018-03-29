@@ -1,6 +1,6 @@
 Date: Sat, 20 Feb 2016 22:48:29 -0600 (CST)
 From: Offline Account <test@zimbratest.com>
-To: offline <test@zimbratest.com>
+To: globaladmin@testdomain.com
 Subject: subjectAttachment
 MIME-Version: 1.0
 Content-Type: multipart/mixed; 

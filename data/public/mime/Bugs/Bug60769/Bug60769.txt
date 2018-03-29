@@ -29,7 +29,7 @@ Received: from home01 ([123.211.59.115]) by nschwotgx03p.mx.testdomain.com
           id <20110429033002.QRGO11080.nschwotgx03p.mx.testdomain.com@home01>
           for <removed@test.com>; Fri, 29 Apr 2011 03:30:02 +0000
 From: "Andrea Panosh" <obsured@testdomain.com>
-To: <removed@test.com>
+To: globaladmin@testdomain.com
 Subject: FW: Christian cartoons [SEC=UNCLASSIFIED]
 Date: Fri, 29 Apr 2011 13:30:06 +1000
 Message-ID: <6E8089171CF94D7CA8507B073DE33419@home01>

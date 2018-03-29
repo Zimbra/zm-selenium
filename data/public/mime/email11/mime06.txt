@@ -1,6 +1,6 @@
 Date: Mon, 3 Jun 2013 11:45:04 -0700 (PDT)
-From: vmwde1@zqa-062.eng.zimbra.com
-To: vmwen2@zqa-062.eng.zimbra.com
+From: globaladmin@testdomain.com
+To: globaladmin@testdomain.com
 Subject: Re: ReadMore13674340693103
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
@@ -22,7 +22,7 @@ s proceeded through the airline industry upturn in the late 1970s.[11][12]
 
 ----- Urspr=C3=BCngliche Mail -----
 Von: vmwen2@zqa-062.eng.zimbra.com
-An: vmwde1@zqa-062.eng.zimbra.com
+An: globaladmin@testdomain.com
 Gesendet: Montag, 3. Juni 2013 11:44:52
 Betreff: Re: read more
 
@@ -46,8 +46,8 @@ d two or three engines, with possible configurations including over-wing en=
 gines and a T-tail.[3]
 
 ----- Original Message -----
-From: vmwde1@zqa-062.eng.zimbra.com
-To: vmwen2@zqa-062.eng.zimbra.com
+From: globaladmin@testdomain.com
+To: globaladmin@testdomain.com
 Sent: Monday, June 3, 2013 11:44:33 AM
 Subject: Re: read more
 
@@ -61,7 +61,7 @@ itors have included the Airbus A300, A310, and A330-200, while a successor,=
 
 ----- Urspr=C3=BCngliche Mail -----
 Von: vmwen2@zqa-062.eng.zimbra.com
-An: vmwde1@zqa-062.eng.zimbra.com
+An: globaladmin@testdomain.com
 Gesendet: Montag, 3. Juni 2013 11:44:18
 Betreff: Re: read more
 
@@ -77,8 +77,8 @@ he most frequently used airliner for transatlantic flights between North Am=
 erica and Europe.
 
 ----- Original Message -----
-From: vmwde1@zqa-062.eng.zimbra.com
-To: vmwen2@zqa-062.eng.zimbra.com
+From: globaladmin@testdomain.com
+To: globaladmin@testdomain.com
 Sent: Monday, June 3, 2013 11:44:01 AM
 Subject: Re: read more
 
@@ -95,7 +95,7 @@ s-Royce RB211 turbofans.
 
 ----- Urspr=C3=BCngliche Mail -----
 Von: vmwen2@zqa-062.eng.zimbra.com
-An: "vmwde1" <vmwde1@zqa-062.eng.zimbra.com>
+An: "vmwde1" <globaladmin@testdomain.com>
 Gesendet: Montag, 3. Juni 2013 11:43:11
 Betreff: read more
 

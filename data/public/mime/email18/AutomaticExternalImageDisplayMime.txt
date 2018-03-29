@@ -1,7 +1,6 @@
 Date: Wed, 30 Mar 2016 11:47:09 +0400 (GMT+04:00)
 From: j2@zqa-061.eng.zimbra.com
-To: j1 <j1@zqa-061.eng.zimbra.com>
-Cc: j3 <j3@zqa-061.eng.zimbra.com>
+To: globaladmin@testdomain.com
 Subject: Display external image preference check
 MIME-Version: 1.0
 Content-Type: multipart/alternative; 

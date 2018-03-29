@@ -9,17 +9,16 @@ Received: (qmail 11182 invoked by uid 500); 3 Oct 2003 20:53:05 -0000
 Mailing-List: contact xmlbeans-dev-help@xml.apache.org; run by ezmlm
 Precedence: bulk
 X-No-Archive: yes
-List-Post: <mailto:xmlbeans-dev@xml.apache.org>
+List-Post: <mailto:globaladmin@testdomain.com>
 List-Help: <mailto:xmlbeans-dev-help@xml.apache.org>
 List-Unsubscribe: <mailto:xmlbeans-dev-unsubscribe@xml.apache.org>
 List-Subscribe: <mailto:xmlbeans-dev-subscribe@xml.apache.org>
-Reply-To: xmlbeans-dev@xml.apache.org
-Delivered-To: mailing list xmlbeans-dev@xml.apache.org
+Reply-To: globaladmin@testdomain.com
+Delivered-To: mailing list globaladmin@testdomain.com
 Received: (qmail 11168 invoked from network); 3 Oct 2003 20:53:05 -0000
 Message-ID: <019401c389f0$58380ad0$0fa8a8c0@lightbox>
 From: "David Bau" <david.bau@bea.com>
-To: "Lawrence Jones" <ljones@bea.com>, "David Bau" <davidbau@bea.com>
-Cc: <xmlbeans-dev@xml.apache.org>
+To: globaladmin@testdomain.com
 References: <4B2B4C417991364996F035E1EE39E2E11DF1EF@uskiex01.amer.bea.com>
 Subject: Re: Replacement for SniffedXmlInputStream.java
 Date: Fri, 3 Oct 2003 16:53:03 -0400
@@ -53,7 +52,7 @@ David
 
 ----- Original Message ----- 
 From: Lawrence Jones
-To: David Bau
+To: globaladmin@testdomain.com
 Sent: Friday, October 03, 2003 3:21 PM
 Subject: [xmlbeans-cvs] Replacement for SniffedXmlInputStream.java
 

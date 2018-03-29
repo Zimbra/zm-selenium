@@ -9,24 +9,24 @@ Received: (qmail 12710 invoked by uid 500); 3 Oct 2003 19:52:34 -0000
 Mailing-List: contact xmlbeans-dev-help@xml.apache.org; run by ezmlm
 Precedence: bulk
 X-No-Archive: yes
-List-Post: <mailto:xmlbeans-dev@xml.apache.org>
+List-Post: <mailto:globaladmin@testdomain.com>
 List-Help: <mailto:xmlbeans-dev-help@xml.apache.org>
 List-Unsubscribe: <mailto:xmlbeans-dev-unsubscribe@xml.apache.org>
 List-Subscribe: <mailto:xmlbeans-dev-subscribe@xml.apache.org>
-Reply-To: xmlbeans-dev@xml.apache.org
-Delivered-To: mailing list xmlbeans-dev@xml.apache.org
+Reply-To: globaladmin@testdomain.com
+Delivered-To: mailing list globaladmin@testdomain.com
 Received: (qmail 12697 invoked from network); 3 Oct 2003 19:52:33 -0000
 Date: Fri, 3 Oct 2003 12:52:38 -0700
 X-Zimbra-Received: Fri, 3 Oct 2003 12:52:38 -0700
 From: Scott Ziegler <zieg@bea.com>
-To: xmlbeans-dev@xml.apache.org
+To: globaladmin@testdomain.com
 Subject: Re: builtin type conversions
 Message-ID: <20031003195238.GA19811@zieg.beasys.com>
 References: <1065122063.14001.18.camel@zieg>
 	 <013801c389c3$79b021c0$0fa8a8c0@lightbox>
 Mime-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <013801c389c3$79b021c0$0fa8a8c0@lightbox>
+In-Reply-To: globaladmin@testdomain.com
 User-Agent: Mutt/1.4.1i
 X-Spam-Rating: daedalus.apache.org 1.6.2 0/1000/N
 Content-Type: text/plain; CHARSET=us-ascii

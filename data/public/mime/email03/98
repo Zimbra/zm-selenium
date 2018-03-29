@@ -9,12 +9,12 @@ Received: (qmail 27139 invoked by uid 500); 10 Nov 2003 21:19:35 -0000
 Mailing-List: contact xmlbeans-user-help@xml.apache.org; run by ezmlm
 Precedence: bulk
 X-No-Archive: yes
-List-Post: <mailto:xmlbeans-user@xml.apache.org>
+List-Post: <mailto:globaladmin@testdomain.com>
 List-Help: <mailto:xmlbeans-user-help@xml.apache.org>
 List-Unsubscribe: <mailto:xmlbeans-user-unsubscribe@xml.apache.org>
 List-Subscribe: <mailto:xmlbeans-user-subscribe@xml.apache.org>
-Reply-To: xmlbeans-user@xml.apache.org
-Delivered-To: mailing list xmlbeans-user@xml.apache.org
+Reply-To: globaladmin@testdomain.com
+Delivered-To: mailing list globaladmin@testdomain.com
 Received: (qmail 27126 invoked from network); 10 Nov 2003 21:19:35 -0000
 X-MimeOLE: Produced By Microsoft Exchange V6.0.6375.0
 content-class: urn:content-classes:message
@@ -29,7 +29,7 @@ X-MS-TNEF-Correlator:
 Thread-Topic: how to deal with extensible schemas
 Thread-Index: AcOnxrTCkZUi1QbTQrCBQC+zbWeprQACWtSA
 From: "Eric Vasilik" <ericvas@bea.com>
-To: <xmlbeans-user@xml.apache.org>
+To: globaladmin@testdomain.com
 X-OriginalArrivalTime: 10 Nov 2003 21:19:39.0164 (UTC)
 	FILETIME=[5969ADC0:01C3A7D0]
 X-Spam-Rating: daedalus.apache.org 1.6.2 0/1000/N
@@ -45,7 +45,7 @@ XmlCursor.copyXmlContents when a cursor is position on the document.
 -----Original Message-----
 From: Javier Ramos [mailto:ramos@parsec.es]
 Sent: Monday, November 10, 2003 12:11 PM
-To: xmlbeans-user@xml.apache.org
+To: globaladmin@testdomain.com
 Subject: Re: how to deal with extensible schemas
 
 
@@ -67,7 +67,7 @@ Javier
 
 ----- Original Message -----=20
 From: "Yogesh L. Simmhan" <ysimmhan@cs.indiana.edu>
-To: <xmlbeans-user@xml.apache.org>
+To: globaladmin@testdomain.com
 Sent: Monday, November 10, 2003 5:24 PM
 Subject: RE: how to deal with extensible schemas
 
@@ -92,7 +92,7 @@ the
 > ________________________________________
 > From: Javier Ramos [mailto:ramos@parsec.es]
 > Sent: Monday, November 10, 2003 5:50 AM
-> To: xmlbeans-user@xml.apache.org
+> To: globaladmin@testdomain.com
 > Subject: how to deal with extensible schemas
 >
 > Hi,

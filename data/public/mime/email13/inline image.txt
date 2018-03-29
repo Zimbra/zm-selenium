@@ -1,6 +1,6 @@
 Date: Tue, 17 Sep 2013 00:17:23 -0700 (PDT)
 From: uwm01@zqa-062.eng.vmware.com
-To: uwm02 <uwm02@zqa-062.eng.vmware.com>
+To: globaladmin@testdomain.com
 Subject: inline image testing
 MIME-Version: 1.0
 Content-Type: multipart/alternative; 
