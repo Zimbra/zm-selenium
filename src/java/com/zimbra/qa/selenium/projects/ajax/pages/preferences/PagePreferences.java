@@ -141,6 +141,7 @@ public class PagePreferences extends AbsTab {
 		
 		// Mail > composing
 		public static final String zMandatorySpellCheck = "css=input[id$='_MAIL_MANDATORY_SPELLCHECK']";
+		public static final String zPrefixEmailReply = "css=input#Prefs_Pages_MAIL_REPLY_USE_PREFIX";
 
 		// Secure Email
 		public static final String zBrowseToCertificate = "css=div[id$='_UploadCertificateBtn'] td:contains('Browse to certificate...')";
@@ -871,6 +872,10 @@ public class PagePreferences extends AbsTab {
 			
 		case "C_DISPLAY_RECEIVED_TIME":
 			locator = Locators.zDisplayMailReceivedTime;
+			break;
+			
+		case "C_PREFIX_EMAIL_REPLY":
+			locator = Locators.zPrefixEmailReply;
 			break;
 
 		default:

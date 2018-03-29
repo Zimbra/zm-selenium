@@ -2422,5 +2422,12 @@ public class PageMail extends AbsTab {
 		return null;
 	}
 	
-	
+	public boolean zVerifyPrefixInDisplayedMail() throws HarnessException {
+		try {
+			this.sSelectFrame("css=iframe[id$='__body__iframe']");
+			return this.sIsElementPresent("body.MsgBody-html div blockquote[style*='border-left: 2px solid rgb(16, 16, 255);']");
+		} finally {
+			this.sSelectFrame("relative=top");
+		}
+	}
 }

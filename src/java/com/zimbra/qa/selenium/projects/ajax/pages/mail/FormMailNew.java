@@ -75,7 +75,9 @@ public class FormMailNew extends AbsForm {
 		public static final String zUsePrefixForward = "css=div[id$='_FORWARD_ATT__USE_PREFIX'] td[id$='_FORWARD_ATT__USE_PREFIX_title']";
 		public static final String zIncludeHeadersReply = "css=div[id$='_REPLY__INCLUDE_HEADERS'] td[id$='_REPLY__INCLUDE_HEADERS_title']";
 		public static final String zIncludeHeadersForward = "css=div[id$='_FORWARD_ATT__INCLUDE_HEADERS'] td[id$='_FORWARD_ATT__INCLUDE_HEADERS_title']";
-
+		public static final String zPrefixInHeaderReplyCompose = "css=div[data-marker='__HEADERS__'] blockquote[style*='border-left:2px solid #1010FF;']";
+		public static final String zPrefixInQuotedTextReplyCompose = "css=div[data-marker='__QUOTED_TEXT__'] blockquote[style*='border-left:2px solid #1010FF;']";
+		
 		public static final String zToField = "css=input[id^='zv__COMPOSE'][id$='_to_control']";
 		public static final String zToField_Edge = "css=textarea[id^='zv__COMPOSE'][id$='_to_control']";
 		public static final String zCcField = "css=input[id^=zv__COMPOSE][id$=_cc_control]";
@@ -1310,5 +1312,17 @@ public class FormMailNew extends AbsForm {
 		this.sMouseMoveAt(Locators.zSendIconBtn, "0,0");
 		SleepUtil.sleepLong();
 		this.sClick(dlMemberLcoator);
+	}
+	
+	public boolean zVerifyPrefixInHtmlMailBody() throws HarnessException {
+		boolean status = false;
+		SleepUtil.sleepMedium();
+		try {
+			this.sSelectFrame("css=iframe[id='ZmHtmlEditor1_body_ifr']");
+			status = this.sIsElementPresent(Locators.zPrefixInHeaderReplyCompose) && this.sIsElementPresent(Locators.zPrefixInQuotedTextReplyCompose);
+		} finally {
+			this.sSelectFrame("relative=top");
+		}		
+		return status;
 	}
 }

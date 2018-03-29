@@ -58,6 +58,7 @@ public class Checkbox {
 	
 	// Ajax Preferences --> Mail
 	public static final Checkbox C_DISPLAY_RECEIVED_TIME = new Checkbox("C_DISPLAY_RECEIVED_TIME");
+	public static final Checkbox C_PREFIX_EMAIL_REPLY = new Checkbox("C_PREFIX_EMAIL_REPLY");
 
 	// Checkbox properties
 	private final String ID;
