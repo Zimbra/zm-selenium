@@ -152,6 +152,8 @@ public class PageMain extends AbsTab {
 	public void zLogout() throws HarnessException {
 		logger.info("Logout of the " + MyApplication.myApplicationName());
 
+		zRefreshUITillElementPresent("css=td[class='DwtLinkButtonDropDownArrowTd']");
+
 		zNavigateTo();
 		SleepUtil.sleepSmall();
 		getElement("css=td[class='DwtLinkButtonDropDownArrowTd']").click();
