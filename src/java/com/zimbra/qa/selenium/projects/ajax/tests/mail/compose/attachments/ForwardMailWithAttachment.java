@@ -43,7 +43,7 @@ public class ForwardMailWithAttachment extends SetGroupMailByMessagePreference {
 		try {
 
 			final String subject = "subjectAttachment";
-			final String mimeFile = ConfigProperties.getBaseDirectory() + "\\data\\public\\mime\\email17\\mime.txt";
+			final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email17/mime.txt";
 			final String mimeAttachmentName = "samplejpg.jpg";
 
 			FolderItem sent = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Sent);
@@ -64,7 +64,7 @@ public class ForwardMailWithAttachment extends SetGroupMailByMessagePreference {
 			mailform.zFillField(Field.To, ZimbraAccount.AccountA().EmailAddress);
 
 			final String fileName = "testtextfile.txt";
-			final String filePath = ConfigProperties.getBaseDirectory() + "/data/public/other/" + fileName;
+			final String filePath = ConfigProperties.getBaseDirectory() + "\\data\\public\\other\\" + fileName;
 
 			app.zPageMail.zPressButton(Button.B_ATTACH);
 			zUpload(filePath);

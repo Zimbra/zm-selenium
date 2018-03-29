@@ -339,13 +339,13 @@ public class TreeTasks extends AbsTree {
 			optionLocator = Locators.zShareTreeMenuItem;
 			page = new DialogShare(MyApplication, ((AjaxPages) MyApplication).zPageTasks);
 
-		} if (option == Button.B_TREE_NEWTASKLIST) {
+		} else if (option == Button.B_TREE_NEWTASKLIST) {
 
 			optionLocator = "css=div[id='ZmActionMenu_tasks_TASK'] div[id='NEW_TASK_FOLDER'] td[id$='_title']";
 			page = new DialogCreateTaskFolder(MyApplication, ((AjaxPages) MyApplication).zPageTasks);
 
 		} else {
-			
+
 			throw new HarnessException("button " + option + " not yet implemented");
 		}
 
@@ -407,7 +407,7 @@ public class TreeTasks extends AbsTree {
 
 		return (item);
 	}
-	
+
 	private List<FolderItem> zListGetFolders(String css) throws HarnessException {
 		List<FolderItem> items = new ArrayList<FolderItem>();
 
@@ -445,7 +445,7 @@ public class TreeTasks extends AbsTree {
 		return (items);
 
 	}
-	
+
 	public List<FolderItem> zListGetFolders() throws HarnessException {
 
 		// Bug 65234
