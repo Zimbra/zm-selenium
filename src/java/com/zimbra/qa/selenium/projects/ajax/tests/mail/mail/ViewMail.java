@@ -42,7 +42,7 @@ public class ViewMail extends SetGroupMailByMessagePreference {
 	public void ViewMail_01() throws HarnessException {
 
 		final String subject = "subject12996131112962";
-		final String from = "from12996131112962@example.com";
+		final String from = ConfigProperties.getStringProperty("adminUser") + "@" + ConfigProperties.getStringProperty("testdomain");
 		final String sender = "sender12996131112962@example.com";
 		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email00/mime_wSender.txt";
 
@@ -75,7 +75,7 @@ public class ViewMail extends SetGroupMailByMessagePreference {
 	public void ViewMail_02() throws HarnessException {
 
 		final String subject = "subject13016959916873";
-		final String from = "from13016959916873@example.com";
+		final String from = ConfigProperties.getStringProperty("adminUser") + "@" + ConfigProperties.getStringProperty("testdomain");
 		final String replyto = "replyto13016959916873@example.com";
 		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email00/mime_wReplyTo.txt";
 
@@ -109,7 +109,7 @@ public class ViewMail extends SetGroupMailByMessagePreference {
 	public void ViewMail_03() throws HarnessException {
 
 		final String subject = "subject13147509564213";
-		final String from = "from13011239916873@example.com";
+		final String from = ConfigProperties.getStringProperty("adminUser") + "@" + ConfigProperties.getStringProperty("testdomain");
 		final String resentfrom = "resentfrom13016943216873@example.com";
 		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email00/mime_wResentFrom.txt";
 
@@ -135,7 +135,7 @@ public class ViewMail extends SetGroupMailByMessagePreference {
 	}
 
 
-	@Bugs (ids = "102049")
+	@Bugs (ids = "102049")	
 	@Test (description = "Receive a mail with only audio/wav content",
 			groups = { "functional", "L2" })
 
@@ -143,8 +143,8 @@ public class ViewMail extends SetGroupMailByMessagePreference {
 
 		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug64444/bug64444.txt";
 		final String subject = "subject13150123168433";
-		final String from = "from13160123168433@testdomain.com";
-		final String to = "to3163210168433@testdomain.com";
+		final String from = ConfigProperties.getStringProperty("adminUser") + "@" + ConfigProperties.getStringProperty("testdomain");
+		final String to = ConfigProperties.getStringProperty("adminUser") + "@" + ConfigProperties.getStringProperty("testdomain");
 
 		// Inject the sample mime
 		injectMessage(app.zGetActiveAccount(), mimeFile);
@@ -227,7 +227,7 @@ public class ViewMail extends SetGroupMailByMessagePreference {
 
 		String subject = "subject13189485723753";
 		String content = "Enrico Medici";
-		String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug65623.txt";
+		String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug65623/Bug65623.txt";
 
 		// Inject the sample mime
 		injectMessage(app.zGetActiveAccount(), mimeFile);

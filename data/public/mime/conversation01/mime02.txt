@@ -1,6 +1,6 @@
-Return-Path: bar@example.com
+Return-Path: globaladmin@testdomain.com
 Date: Thu, 22 Dec 2011 11:38:24 -0800 (PST)
-From: Bar User <bar@example.com>
+From: globaladmin@testdomain.com
 To: globaladmin@testdomain.com
 Subject: Re: Conversation13155016716713
 Content-Type: multipart/alternative;
@@ -20,8 +20,8 @@ more
 
 
 
-From: "Matthew Rhoades " <matt@ zimbra .com> 
-To: matt@ zimbra .com 
+From: globaladmin@testdomain.com
+To: globaladmin@ testdomain .com 
 Sent: Thursday, 22 December, 2011 11:38:03 AM 
 Subject: conversation01 
 

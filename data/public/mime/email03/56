@@ -17,7 +17,7 @@ Reply-To: globaladmin@testdomain.com
 Delivered-To: mailing list globaladmin@testdomain.com
 Received: (qmail 8334 invoked from network); 13 Sep 2003 11:21:32 -0000
 Message-ID: <022901c379e9$2d9387d0$0fa8a8c0@lightbox>
-From: "David Bau" <david.bau@bea.com>
+From: globaladmin@testdomain.com
 To: globaladmin@testdomain.com
 Subject: Setting up bugzilla, list archiving, etc
 Date: Sat, 13 Sep 2003 07:21:27 -0400
@@ -52,7 +52,7 @@ http://nagoya.apache.org/bugzilla/enter_bug.cgi?product=XMLBeans - you'll
 see that it complains that "You need to have at least one component for this
 product in order to create a new bug."
 
-Can somebody grant me (david.bau@bea.com) appropriate access so that I can
+Can somebody grant me (globaladmin@testdomain.com) appropriate access so that I can
 set up components (and whatever else is needed for our bugzilla area?)  I'm
 new to bugzilla so if I'm missing something simple please let me know.
 

@@ -21,7 +21,7 @@ Message-Id: <sf795eab.089@corp-gw.mantech.com>
 X-Mailer: Novell GroupWise Internet Agent 5.5.6.1
 Date: Tue, 30 Sep 2003 10:44:40 -0400
 X-Zimbra-Received: Tue, 30 Sep 2003 10:44:40 -0400
-From: "Darrell Teague" <darrell.teague@mantech.com>
+From: globaladmin@testdomain.com
 To: globaladmin@testdomain.com
 Subject: Re: V2 store
 Mime-Version: 1.0
@@ -48,7 +48,7 @@ cost (remember a few months ago when you thought one GB was a lot of memory=
 ?).  Factoring that in may make a big difference in establishing the target=
  threshold.
 
->>> david.bau@bea.com 09/26/03 04:42PM >>>
+>>> globaladmin@testdomain.com 09/26/03 04:42PM >>>
 Eric,
 
 You called this morning with a difficult design problem that you're facing
@@ -139,7 +139,7 @@ industry trend toward&nbsp;more memory&nbsp;at a&nbsp;lower cost (remember =
 a few=20
 months ago when you thought&nbsp;one GB was a&nbsp;lot of memory?).&nbsp;=20
 Factoring that in may make a big difference in establishing the target=20
-threshold.</FONT><BR><BR>&gt;&gt;&gt; david.bau@bea.com 09/26/03 04:42PM=20
+threshold.</FONT><BR><BR>&gt;&gt;&gt; globaladmin@testdomain.com 09/26/03 04:42PM=20
 &gt;&gt;&gt;<BR>Eric,<BR><BR>You called this morning with a difficult desig=
 n=20
 problem that you're facing<BR>with v2 store given the features listed on th=

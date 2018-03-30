@@ -1,5 +1,5 @@
 Date: Mon, 10 Oct 2011 09:00:51 +0200 (CEST)
-From: Foo Bar <foo@example.com>
+From: globaladmin@testdomain.com
 To: globaladmin@testdomain.com
 Subject: subject13189485723753
 Content-Type: multipart/mixed;

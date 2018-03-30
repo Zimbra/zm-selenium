@@ -18,7 +18,7 @@ Reply-To: globaladmin@testdomain.com
 Delivered-To: mailing list globaladmin@testdomain.com
 Received: (qmail 26744 invoked from network); 21 Oct 2003 15:26:30 -0000
 Message-ID: <013701c397e7$af16c350$0fa8a8c0@lightbox>
-From: "David Bau" <david.bau@bea.com>
+From: globaladmin@testdomain.com
 To: globaladmin@testdomain.com
 References:
 	 <1924BF350FC96B46A56BB38087B9B86E6A63BF@srvcorreio.primavera.local>
@@ -50,7 +50,7 @@ David
 
 
 ----- Original Message ----- 
-From: "Jochen Rebhan" <jochen.rebhan@primaverasoft.pt>
+From: globaladmin@testdomain.com
 To: globaladmin@testdomain.com
 Sent: Tuesday, October 21, 2003 10:04 AM
 Subject: [xmlbeans-dev] Feature Request: Serialization

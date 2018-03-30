@@ -20,7 +20,7 @@ Message-Id: <sf7c024d.091@corp-gw.mantech.com>
 X-Mailer: Novell GroupWise Internet Agent 5.5.6.1
 Date: Thu, 02 Oct 2003 10:47:22 -0400
 X-Zimbra-Received: Thu, 02 Oct 2003 10:47:22 -0400
-From: "Darrell Teague" <darrell.teague@mantech.com>
+From: globaladmin@testdomain.com
 To: globaladmin@testdomain.com
 Subject: RE: Finalizers
 Mime-Version: 1.0
@@ -40,7 +40,7 @@ The Sun URLs (below) have changed.  There is probably a good tutorial but I=
 http://www.ociweb.com/jnb/archive/jnbJune2000.html
 
 
->>> darrell.teague@mantech.com 10/02/03 10:28AM >>>
+>>> globaladmin@testdomain.com 10/02/03 10:28AM >>>
 
 Excellent point.
 
@@ -70,7 +70,7 @@ There is plenty of documentation on the subject at
 Have you looked at using weak references for the XML->Cursor references?
 
 -----Original Message-----
-From: Eric Vasilik [mailto:ericvas@bea.com]=20
+From: globaladmin@testdomain.com=20
 Sent: Wednesday, October 01, 2003 1:14 PM
 To: globaladmin@testdomain.com
 Subject: RE: Finalizers
@@ -119,7 +119,7 @@ particular object no longer needed finalization.  Does such a thing exist?
 - Eric
 
 -----Original Message-----
-From: Darrell Teague [mailto:darrell.teague@mantech.com]
+From: globaladmin@testdomain.com
 Sent: Wednesday, October 01, 2003 8:49 AM
 To: globaladmin@testdomain.com
 Subject: Re: Finalizers
@@ -220,7 +220,7 @@ Computing, Inc&nbsp;that covers the topic well:</FONT></DIV>
 href=3D"http://www.ociweb.com/jnb/archive/jnbJune2000.html">http://www.ociw=
 eb.com/jnb/archive/jnbJune2000.html</A></DIV>
 <DIV><FONT face=3D"Comic Sans MS" size=3D2></FONT><BR><BR>&gt;&gt;&gt;=20
-darrell.teague@mantech.com 10/02/03 10:28AM &gt;&gt;&gt;<BR></DIV><FONT=20
+globaladmin@testdomain.com 10/02/03 10:28AM &gt;&gt;&gt;<BR></DIV><FONT=20
 face=3DTahoma size=3D1>
 <DIV><FONT face=3D"Comic Sans MS" size=3D2>Excellent point.</FONT></DIV>
 <DIV><FONT face=3D"Comic Sans MS" size=3D2></FONT>&nbsp;</DIV>
@@ -302,7 +302,7 @@ notified the VM that a<BR>particular object no longer needed finalization.&=
 nbsp;=20
 Does such a thing exist?<BR><BR>- Eric<BR><BR>-----Original=20
 Message-----<BR>From: Darrell Teague [<A=20
-href=3D"mailto:darrell.teague@mantech.com]">mailto:darrell.teague@mantech.c=
+href=3D"mailto:globaladmin@testdomain.com]">mailto:globaladmin@testdomain.c=
 om]</A><BR>Sent:=20
 Wednesday, October 01, 2003 8:49 AM<BR>To:=20
 globaladmin@testdomain.com<BR>Subject: Re: Finalizers<BR><BR><BR>Two more =

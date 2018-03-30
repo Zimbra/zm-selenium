@@ -23,7 +23,7 @@ Subject: Re: ArrayStoreException when using RMI
 MIME-Version: 1.0
 X-Mailer: Lotus Notes Release 6.0.1 February 07, 2003
 Message-ID: <OFE6867712.B3D5F68E-ON85256DB4.00559031-85256DB4.005645CE@vrtx.com>
-From: Carl_Elkin@vrtx.com
+From: globaladmin@testdomain.com
 Date: Fri, 3 Oct 2003 11:42:19 -0400
 X-Zimbra-Received: Fri, 3 Oct 2003 11:42:19 -0400
 X-MIMETrack: Serialize by Router on BOS01MAIL01/M/BOS1/VRTX(Release
@@ -96,7 +96,7 @@ minOccurs="0" maxOccurs="unbounded"/>
 
 
 
-"David Bau" <david.bau@bea.com> 
+"David Bau" <globaladmin@testdomain.com> 
 10/03/2003 11:26 AM
 Please respond to
 globaladmin@testdomain.com
@@ -130,7 +130,7 @@ Anybody else on xmlbeans-dev have any insights?
 
 David
 ----- Original Message ----- 
-From: Carl_Elkin@vrtx.com
+From: globaladmin@testdomain.com
 To: globaladmin@testdomain.com
 Sent: Friday, October 03, 2003 10:51 AM
 Subject: [xmlbeans-dev] ArrayStoreException when using RMI
@@ -315,7 +315,7 @@ follows at the end of this message.]</font>
 <br>
 <table width=100%>
 <tr valign=top>
-<td width=40%><font size=1 face="sans-serif"><b>&quot;David Bau&quot; &lt;david.bau@bea.com&gt;</b>
+<td width=40%><font size=1 face="sans-serif"><b>&quot;David Bau&quot; &lt;globaladmin@testdomain.com&gt;</b>
 </font>
 <p><font size=1 face="sans-serif">10/03/2003 11:26 AM</font>
 <table border>
@@ -363,7 +363,7 @@ Anybody else on xmlbeans-dev have any insights?<br>
 <br>
 David<br>
 ----- Original Message ----- <br>
-From: Carl_Elkin@vrtx.com<br>
+From: globaladmin@testdomain.com<br>
 To: globaladmin@testdomain.com<br>
 Sent: Friday, October 03, 2003 10:51 AM<br>
 Subject: [xmlbeans-dev] ArrayStoreException when using RMI<br>

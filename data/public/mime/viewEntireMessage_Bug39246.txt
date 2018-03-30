@@ -1,4 +1,4 @@
-From: <matt@testdomain.com>
+From: globaladmin@testdomain.com
 To: globaladmin@testdomain.com
 References: <000001c8002a$743b2a00$fa810a0a@testdomain.com> <1139275496.182791190831291532.JavaMail.root@dogfood.zimbra.com>
 In-Reply-To: <1139275496.182791190831291532.JavaMail.root@dogfood.zimbra.com>
@@ -43,7 +43,7 @@ Is the P4 sync server up and running in SF?
 
 
 
-From: Raja Rao [mailto:raja.rao@testdomain.com]
+From: globaladmin@testdomain.com
 Sent: Wednesday, September 26, 2007 11:28 AM
 To: globaladmin@testdomain.com
 Subject: QTP update:
@@ -84,7 +84,7 @@ on a btn but the btn is Disabled.
 
 
 ----- Original Message -----
-From: QTPResultEmail@dogfood.zimbra.com
+From: globaladmin@testdomain.com
 To: globaladmin@testdomain.com
 Sent: Wednesday, September 26, 2007 3:46:11 AM (GMT-0800) 
 America/Los_Angeles
@@ -2741,7 +2741,7 @@ btn but the btn is Disabled.<br>
 <br>
 <br>
 ----- Original Message -----<br>
-From: QTPResultEmail@dogfood.zimbra.com<br>
+From: globaladmin@testdomain.com<br>
 To: globaladmin@testdomain.com<br>
 Sent: Wednesday, September 26, 2007 3:46:11 AM (GMT-0800) =
 America/Los_Angeles<br>

@@ -1,5 +1,5 @@
 Date: Tue, 18 Jun 2013 09:59:58 -0700 (PDT)
-From: foo@foo.com
+From: globaladmin@testdomain.com
 To: globaladmin@testdomain.com
 Subject: subject13715117780534
 MIME-Version: 1.0

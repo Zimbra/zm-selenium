@@ -18,7 +18,7 @@ Reply-To: globaladmin@testdomain.com
 Delivered-To: mailing list globaladmin@testdomain.com
 Received: (qmail 87279 invoked from network); 25 Sep 2003 03:55:13 -0000
 Message-ID: <001301c38318$1c525f40$6401a8c0@third>
-From: "Chris Fry" <christopher.fry@bea.com>
+From: globaladmin@testdomain.com
 To: globaladmin@testdomain.com
 References: <4C2F1577F2EF2840A9AE9EC61860C8810A0FED@usseex01.amer.bea.com>
 Subject: Re: STAX
@@ -46,7 +46,7 @@ FYI the jar is publicly available at http://jcp.org/en/jsr/detail?id=173
 
 -Chris
 ----- Original Message -----
-From: "Cliff Schmidt" <cliff@bea.com>
+From: globaladmin@testdomain.com
 To: globaladmin@testdomain.com
 Sent: Wednesday, September 24, 2003 6:43 PM
 Subject: RE: STAX

@@ -127,7 +127,7 @@ public class Forward extends SetGroupMailByMessagePreference {
 
 	@Bugs(ids = "76776")
 	@Test (description = "Forward a mail having two attachments --> Remove one attachement and Cancel --> "
-								+ "Forward Again - Verify the number of attachement attachments",
+								+ "Forward Again - Verify the number of attachments",
 			groups = { "functional", "L3" })
 
 	public void Forward_03() throws HarnessException {
@@ -179,7 +179,7 @@ public class Forward extends SetGroupMailByMessagePreference {
 
 		String filename1 = ZimbraAccount.AccountB().soapSelectValue("//mail:mp[@cd='attachment'][1]", "filename");
 		String filename2 = ZimbraAccount.AccountB().soapSelectValue("//mail:mp[@cd='attachment'][2]", "filename");
-		ZAssert.assertEquals(filename1, attachmentName1, "Verify the attachment exists in the forwarded mail");
-		ZAssert.assertEquals(filename2, attachmentName2, "Verify the attachment exists in the forwarded mail");
+		ZAssert.assertEquals(filename1, attachmentName1, "Verify the attachment1 exists in the forwarded mail");
+		ZAssert.assertEquals(filename2, attachmentName2, "Verify the attachment2 exists in the forwarded mail");
 	}
 }

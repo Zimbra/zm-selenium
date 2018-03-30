@@ -42,7 +42,7 @@ public class Reply extends SetGroupMailByMessagePreference {
 		final String subject = "subject13625192398933";
 
 		// Inject the sample mime
-		injectMessage(app.zGetActiveAccount(), mimeFile);
+		injectMessage(ZimbraAccount.AccountA(), mimeFile);
 
 		MailItem original = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "subject:("+ mimeSubject +")");
 		ZAssert.assertNotNull(original, "Verify the message is received correctly");
@@ -75,7 +75,7 @@ public class Reply extends SetGroupMailByMessagePreference {
 		// Select the item
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 
-		// Forward the item
+		// Reply to the mail
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_REPLY);
 		ZAssert.assertNotNull(mailform, "Verify the new form opened");
 

@@ -2,7 +2,7 @@ Return-Path: 3oOOaUAcLBF0IJM9KGTTJPOP69.7JHH5OOUDH6M5.7JH@youtube.bounces.google
 Content-Type: multipart/alternative; boundary="===============1502514016=="
 MIME-Version: 1.0
 Subject: subject135232705018411
-From: YouTube Service <noreply@youtube.com>
+From: globaladmin@testdomain.com
 To: globaladmin@testdomain.com
 Date: Wed, 07 Nov 2012 14:41:36 -0800 (PST)
 

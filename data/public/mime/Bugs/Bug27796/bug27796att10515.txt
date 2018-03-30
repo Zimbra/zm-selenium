@@ -44,7 +44,7 @@ Received: from [10.72.121.124] (swang2.corp.yahoo.com [10.72.121.124])
 	for <devel-random@testdomain.com>; Wed, 7 May 2008 16:56:17 -0700 (PDT)
 Message-ID: <482241A1.3050405@testdomain.com>
 Date: Wed, 07 May 2008 16:56:17 -0700
-From: Jilong Wang <swang@testdomain.com>
+From: globaladmin@testdomain.com
 User-Agent: Mozilla/5.0 (Windows; U; Windows NT 5.0; en-US; rv:1.7.2) Gecko/20040804 Netscape/7.2 (ax)
 X-Accept-Language: en-us, en
 MIME-Version: 1.0

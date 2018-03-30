@@ -21,7 +21,7 @@ Received: from mail.winstor.net ([127.0.0.1])
 Received: from frontdesk (adsl-67-122-179-222.dsl.pltn13.pacbell.net [67.122.179.222])
 	by mail.winstor.net (Postfix) with ESMTP id 705FF348003
 	for <kevinh@testdomain.com>; Fri, 28 Oct 2005 14:13:14 -0700 (PDT)
-From: "Sandy Zimmer" <sandy@testdomain.com>
+From: globaladmin@testdomain.com
 To: globaladmin@testdomain.com
 Subject: RE: funny messages
 Date: Fri, 28 Oct 2005 14:23:41 -0700

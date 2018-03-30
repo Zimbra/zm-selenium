@@ -1,5 +1,5 @@
 Date: Thu, 29 Mar 2012 15:40:12 -0700 (PDT)
-From: foo@testdomain.com
+From: globaladmin@testdomain.com
 To: globaladmin@testdomain.com
 Subject: bug72233
 MIME-Version: 1.0

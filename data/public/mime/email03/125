@@ -18,7 +18,7 @@ Reply-To: globaladmin@testdomain.com
 Delivered-To: mailing list globaladmin@testdomain.com
 Received: (qmail 76433 invoked from network); 18 Nov 2003 21:35:55 -0000
 Message-ID: <001e01c3ae1b$eb42a7f0$900210ac@lightbox>
-From: "David Bau" <david.bau@bea.com>
+From: globaladmin@testdomain.com
 To: globaladmin@testdomain.com
 References: <3FBA4748.4010302@tzi.de>
 Subject: Re:problem with SchemaTypeLoaders and xsi:type attributes
@@ -58,7 +58,7 @@ That's it!
 David
 
 ----- Original Message ----- 
-From: "Arne Jacobs" <jarne@tzi.de>
+From: globaladmin@testdomain.com
 To: globaladmin@testdomain.com
 Sent: Tuesday, November 18, 2003 11:22 AM
 Subject: [xmlbeans-dev] problem with SchemaTypeLoaders and xsi:type

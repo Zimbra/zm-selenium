@@ -1,5 +1,5 @@
 Date: Wed, 8 May 2013 13:47:18 -0700 (PDT)
-From: foo@example.com
+From: globaladmin@testdomain.com
 To: globaladmin@testdomain.com
 Subject: Bug81565B
 MIME-Version: 1.0
@@ -19,12 +19,12 @@ Content-Transfer-Encoding: 7bit
 The following is a new meeting request:
 
 Subject: Bug81565B 
-Organizer: foo@example.com 
+Organizer: globaladmin@testdomain.com 
 
 Location: Location 
 Time: Sunday, May 8, 2016, 5:00:00 PM - 6:00:00 PM GMT -08:00 US/Canada Pacific
  
-Invitees: bar@example.com 
+Invitees: globaladmin@testdomain.com 
 
 
 *~*~*~*~*~*~*~*~*~*
@@ -60,8 +60,8 @@ UID:2297d493-99aa-40ce-8707-8fe1f60f0def
 SUMMARY:Bug81565B
 LOCATION:Location
 ATTENDEE;CN=vmwen2;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;RSVP=TRUE:mail
- to:vmwen2@zqa-062.eng.zimbra.com
-ORGANIZER:mailto:vmwen1@zqa-062.eng.zimbra.com
+ to:globaladmin@testdomain.com
+ORGANIZER:mailto:globaladmin@testdomain.com
 DTSTART;TZID="America/Los_Angeles":20160508T170000
 DTEND;TZID="America/Los_Angeles":20160508T180000
 STATUS:CONFIRMED
@@ -72,9 +72,9 @@ LAST-MODIFIED:20130508T204718Z
 DTSTAMP:20130508T204718Z
 SEQUENCE:0
 DESCRIPTION:The following is a new meeting request:\n\nSubject: Bug81565B \n
- Organizer: vmwen1@zqa-062.eng.zimbra.com \n\nLocation: Location \nTime: Sund
+ Organizer: globaladmin@testdomain.com \n\nLocation: Location \nTime: Sund
  ay\, May 8\, 2016\, 5:00:00 PM - 6:00:00 PM GMT -08:00 US/Canada Pacific\n \
- nInvitees: vmwen2@zqa-062.eng.zimbra.com \n\n\n*~*~*~*~*~*~*~*~*~*\n\nConten
+ nInvitees: globaladmin@testdomain.com \n\n\n*~*~*~*~*~*~*~*~*~*\n\nConten
  t
 BEGIN:VALARM
 ACTION:DISPLAY

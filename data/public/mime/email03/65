@@ -18,7 +18,7 @@ Reply-To: globaladmin@testdomain.com
 Delivered-To: mailing list globaladmin@testdomain.com
 Received: (qmail 24541 invoked from network); 20 Oct 2003 18:52:38 -0000
 Message-ID: <007e01c3973b$52489920$0fa8a8c0@lightbox>
-From: "David Bau" <david.bau@bea.com>
+From: globaladmin@testdomain.com
 To: globaladmin@testdomain.com
 References: <1A17D44A-032B-11D8-A2FC-000393D5A006@vrtx.com>
 Subject: Re: Strange problem.....
@@ -48,7 +48,7 @@ sure you're saying elementFormDefault="qualified"..
 David
 
 ----- Original Message ----- 
-From: "Tom Condon" <tom_condon@vrtx.com>
+From: globaladmin@testdomain.com
 To: globaladmin@testdomain.com
 Sent: Monday, October 20, 2003 2:27 PM
 Subject: [xmlbeans-dev] Strange problem.....

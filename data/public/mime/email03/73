@@ -19,7 +19,7 @@ Delivered-To: mailing list globaladmin@testdomain.com
 Received: (qmail 62874 invoked from network); 19 Sep 2003 00:21:19 -0000
 Date: Fri, 19 Sep 2003 09:26:06 +0900
 X-Zimbra-Received: Fri, 19 Sep 2003 09:26:06 +0900
-From: Tetsuya Kitahata <tetsuya@apache.org>
+From: globaladmin@testdomain.com
 To: globaladmin@testdomain.com
 Subject: Re: Getting an XMLBeans distribution onto a download site somewhere
 In-Reply-To: <017301c37e40$9be37e10$d41e11ac@lightbox>
@@ -37,7 +37,7 @@ X-Evolution: 00000049-0010
 
 On Thu, 18 Sep 2003 19:57:25 -0400
 (Subject: Re: Getting an XMLBeans distribution onto a download site somewhere)
-"David Bau" <david.bau@bea.com> wrote:
+"David Bau" <globaladmin@testdomain.com> wrote:
 
 > imho I like the punctuation between 1 and the following number, e.g., 1-0 or
 > 1_0, since eventually we'll get into the 17s and 18's I'm sure.  I don't

@@ -1,5 +1,5 @@
 Date: Wed, 30 Mar 2016 11:47:09 +0400 (GMT+04:00)
-From: j2@zqa-061.eng.zimbra.com
+From: globaladmin@testdomain.com
 To: globaladmin@testdomain.com
 Subject: Display external image preference check
 MIME-Version: 1.0

@@ -21,7 +21,7 @@ Received: from deliverator3.ecc.testdomain.com (localhost [127.0.0.1])
 	by mta01.zimbra.com (Spam Firewall) with ESMTP
 	id 735C35F887; Fri, 17 Apr 2009 12:21:52 -0700 (PDT)
 Received: from deliverator3.ecc.testdomain.com (deliverator3.ecc.testdomain.com [130.207.185.173]) by mta01.zimbra.com with ESMTP id Q5J4ET4FewKBUMeV; Fri, 17 Apr 2009 12:21:52 -0700 (PDT)
-X-Barracuda-Envelope-From: msanders@testdomain.com
+X-Barracuda-Envelope-From: globaladmin@testdomain.com
 Received: from deliverator3.ecc.testdomain.com (localhost [127.0.0.1])
 	by localhost (Postfix) with SMTP id 0835839C199;
 	Fri, 17 Apr 2009 15:21:51 -0400 (EDT)
@@ -35,7 +35,7 @@ Received: from lawn-128-61-118-246.lawn.testdomain.com (bigip.ecc.testdomain.com
 X-Barracuda-BBL-IP: 130.207.185.140
 X-Barracuda-RBL-IP: 130.207.185.140
 Message-Id: <5260EE25-58D7-4E26-9E41-A152345A441B@testdomain.com>
-From: Matt Sanders <msanders@testdomain.com>
+From: globaladmin@testdomain.com
 To: globaladmin@testdomain.com
 Content-Type: multipart/mixed; boundary=Apple-Mail-216--304106344
 X-ASG-Orig-Subj: Invitation to Review for the 2009 Convergence Innovation Competition

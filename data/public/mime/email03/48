@@ -21,7 +21,7 @@ Subject: RE: deep equals implementation?
 To: globaladmin@testdomain.com
 X-Mailer: Lotus Notes Release 5.0.8  June 18, 2001
 Message-ID: <OF1B4C50E4.B7785DBF-ONCA256DC8.0004D9E2@tmca.com.au>
-From: Dmitri.Colebatch@toyota.com.au
+From: globaladmin@testdomain.com
 Date: Thu, 23 Oct 2004 10:52:56 +1000
 X-Zimbra-Received: Thu, 23 Oct 2004 10:52:56 +1000
 X-MIMETrack: Serialize by Router on SHM_ISD_A2_80/TMCA(Release 5.0.12 
@@ -75,8 +75,7 @@ the right direction.
 - Eric
 
 -----Original Message-----
-From: Dmitri.Colebatch@toyota.com.au
-[mailto:Dmitri.Colebatch@toyota.com.au]
+From: globaladmin@testdomain.com
 Sent: Wednesday, October 22, 2003 5:08 PM
 To: globaladmin@testdomain.com
 Subject: Re: deep equals implementation?
@@ -119,7 +118,7 @@ marshal non-document nodes, but it works.
 
 -Rob
 
-Dmitri.Colebatch@toyota.com.au wrote:
+globaladmin@testdomain.com wrote:
 
 >Eric,
 >

@@ -28,7 +28,7 @@ Received: from mbs01.testdomain.com (mbs01.testdomain.com [10.110.0.177])
 	by edge02.testdomain.com (Postfix) with ESMTP id 81D8DA6285;
 	Wed,  3 Jun 2015 06:10:01 -0500 (CDT)
 Date: Wed, 3 Jun 2015 06:10:01 -0500 (CDT)
-From: Ashwini Oak <aoak@testdomain.com>
+From: globaladmin@testdomain.com
 To: globaladmin@testdomain.com
 Message-ID: <60442451.2147237.1433329801326.JavaMail.zimbra@testdomain.com>
 Subject: Schedule for Generic Training

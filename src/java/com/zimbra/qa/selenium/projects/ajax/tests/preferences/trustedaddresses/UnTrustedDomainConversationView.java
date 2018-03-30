@@ -57,8 +57,8 @@ public class UnTrustedDomainConversationView extends AjaxCore {
 	public void UnTrustedDomainConversationView_01() throws HarnessException {
 
 		final String subject = "TestTrustedAddress";
-		final String from = "admintest@testdoamin.com";
-		final String to = "admin@testdoamin.com";
+		final String from = ConfigProperties.getStringProperty("adminUser") + "@" + ConfigProperties.getStringProperty("testdomain");
+		final String to = ConfigProperties.getStringProperty("adminUser") + "@" + ConfigProperties.getStringProperty("testdomain");
 		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/ExternalImg.txt";
 		FolderItem inboxFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(),SystemFolder.Inbox);
 

@@ -31,13 +31,15 @@ public class ReadMore extends SetGroupMailByMessagePreference {
 	@Test (description = "Use the 'Read More' button to scroll through the message content",
 			groups = { "functional", "L2" })
 
-	public void ViewMail_01() throws HarnessException {
+	public void ReadMore_01() throws HarnessException {
 
 		final String subject = "ReadMore13674340693102";
-		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/mime00.txt";
+		final String mimeFolder = ConfigProperties.getBaseDirectory() + "/data/public/mime/email11";
 
-		// Inject the sample mime
-		injectMessage(app.zGetActiveAccount(), mimeFile);
+		// Inject sample mimes
+		for (int i=0; i<=6; i++) {
+			injectMessage(app.zGetActiveAccount(), mimeFolder + "/mime0" + i + ".txt");
+		}
 
 		// Refresh current view
 		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);

@@ -17,7 +17,7 @@ Reply-To: globaladmin@testdomain.com
 Delivered-To: mailing list globaladmin@testdomain.com
 Delivered-To: moderator for globaladmin@testdomain.com
 Received: (qmail 97557 invoked from network); 16 Sep 2003 05:05:57 -0000
-From: "Sascha Kulawik" <sascha@kulawik.de>
+From: globaladmin@testdomain.com
 To: globaladmin@testdomain.com
 Subject: Patch for Unicode-Build-Bug
 Date: Tue, 16 Sep 2003 07:07:06 +0200

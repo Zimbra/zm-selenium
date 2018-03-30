@@ -25,7 +25,7 @@ BEGIN:VEVENT
 UID:54f729ba-5bc4-4bbd-b404-ba89647174a2
 SUMMARY:asdf
 X-ALT-DESC;FMTTYPE=text/html:<html><body></body></html>
-ORGANIZER:mailto:user@domain.com
+ORGANIZER:mailto:globaladmin@testdomain.com
 DTSTART;TZID="America/Los_Angeles":20100101T120000
 DTEND;TZID="America/Los_Angeles":20100101T130000
 STATUS:CONFIRMED

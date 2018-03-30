@@ -18,7 +18,7 @@ Reply-To: globaladmin@testdomain.com
 Delivered-To: mailing list globaladmin@testdomain.com
 Received: (qmail 63473 invoked from network); 27 Sep 2003 00:04:14 -0000
 Message-ID: <031601c3848a$ddf4ff40$0fa8a8c0@lightbox>
-From: "David Bau" <david.bau@bea.com>
+From: globaladmin@testdomain.com
 To: globaladmin@testdomain.com
 Subject: Fw:  Mapping XML type QName to Java Class name?
 Date: Fri, 26 Sep 2003 20:04:04 -0400

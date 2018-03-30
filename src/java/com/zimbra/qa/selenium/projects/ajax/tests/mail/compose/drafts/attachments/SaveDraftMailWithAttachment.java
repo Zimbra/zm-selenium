@@ -36,7 +36,7 @@ public class SaveDraftMailWithAttachment extends SetGroupMailByMessagePreference
 
 
 	@Test (description = "Save draft a mail with attachment and send a mail",
-			groups = { "sanity", "L0", "upload" })
+			groups = { "sanity", "L0", "upload", "non-msedge" })
 
 	public void SaveDraftMailWithAttachment_01() throws HarnessException {
 
@@ -105,7 +105,7 @@ public class SaveDraftMailWithAttachment extends SetGroupMailByMessagePreference
 
 
 	@Test (description = "Open existing saved draft with attachment and send a mail",
-			groups = { "functional", "L2", "upload" })
+			groups = { "functional", "L2", "upload", "non-msedge" })
 
 	public void OpenExistingSavedDraftMailWithAttachment_02() throws HarnessException {
 
@@ -113,7 +113,7 @@ public class SaveDraftMailWithAttachment extends SetGroupMailByMessagePreference
 
 			// Create file item
 			final String mimeSubject = "subjectAttachment";
-			final String mimeFile = ConfigProperties.getBaseDirectory() + "\\data\\public\\mime\\email17\\mime.txt";
+			final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email17/mime.txt";
 			final String mimeAttachmentName = "samplejpg.jpg";
 
 			FolderItem sent = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Sent);

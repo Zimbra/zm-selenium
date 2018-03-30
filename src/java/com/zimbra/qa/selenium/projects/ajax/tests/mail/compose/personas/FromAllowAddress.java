@@ -40,7 +40,7 @@ public class FromAllowAddress extends SetGroupMailByMessagePreference {
 		AllowFromDisplay = "allowed" + ConfigProperties.getUniqueString();
 		AllowEmailAddress = AllowFromDisplay +
 					"@" +
-					ConfigProperties.getStringProperty("testdomain", "testdomain.com");
+					ConfigProperties.getStringProperty("testdomain");
 
 		String identity = "identity" + ConfigProperties.getUniqueString();
 

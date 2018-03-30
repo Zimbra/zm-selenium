@@ -1,4 +1,4 @@
-From: Foo Bar <foo@zqa-061.eng.zimbra.com>
+From: globaladmin@testdomain.com
 To: globaladmin@testdomain.com
 Subject: Re: subject13690880312762 Account moves - good news!
 Importance: Normal
@@ -22,7 +22,7 @@ Sent from my Verizon Wireless Phone
 
 
 ----- Reply message -----
-From: "Foo Bar" <foo@zqa-061.eng.zimbra.com>
+From: globaladmin@testdomain.com
 Date: Fri, Dec 9, 2011 17:51
 Subject: Account moves - good news!
 To: globaladmin@testdomain.com

@@ -35,7 +35,7 @@ Received: from mbs01e.testdomain.com (unknown [52.203.137.206])
 	by edge04e.testdomain.com (Postfix) with ESMTP id 6DAF45348D0;
 	Thu, 20 Oct 2016 05:34:06 -0400 (EDT)
 Date: Thu, 20 Oct 2016 05:38:02 -0400 (EDT)
-From: Ashwini Oak <aoak@testdomain.com>
+From: globaladmin@testdomain.com
 To: globaladmin@testdomain.com
 Message-ID: <2021520083.8355581.1476956282541.JavaMail.zimbra@testdomain.com>
 Subject: Group photo with Steve

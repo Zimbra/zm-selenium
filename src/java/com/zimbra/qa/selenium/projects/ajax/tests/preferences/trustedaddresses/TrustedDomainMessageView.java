@@ -56,8 +56,8 @@ public class TrustedDomainMessageView extends AjaxCore {
 	public void TrustedDomainMsgView_01() throws HarnessException {
 
 		final String subject = "TestTrustedAddress";
-		final String from = "admintest@testdoamin.com";
-		final String to = "admin@testdoamin.com";
+		final String from = ConfigProperties.getStringProperty("adminUser") + "@" + ConfigProperties.getStringProperty("testdomain");
+		final String to = ConfigProperties.getStringProperty("adminUser") + "@" + ConfigProperties.getStringProperty("testdomain");
 		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/ExternalImg.txt";
 
 		// Verify domain through soap- GetPrefsRequest

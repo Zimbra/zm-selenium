@@ -23,7 +23,7 @@ Received: from testdomain.com ([127.0.0.1])
 Received: from corp.zimbra.com (mail-archive.zimbra.com [207.126.229.142])
 	by testdomain.com (Postfix) with ESMTP id 1835778401
 	for <candace@testdomain.com>; Mon, 26 Oct 2009 16:41:47 -0700 (PDT)
-From: "Mark Nichols" <mnichols@testdomain.com>
+From: globaladmin@testdomain.com
 To: globaladmin@testdomain.com
 Date: Mon, 26 Oct 2009 16:41:46 -0700 (PDT)
 Subject: Fwd: Bad Link to 6.0 User Guide on Zimbra Site

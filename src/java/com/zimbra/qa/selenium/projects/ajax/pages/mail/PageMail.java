@@ -1975,6 +1975,8 @@ public class PageMail extends AbsTab {
 	}
 
 	public boolean zHasWDDLinks() throws HarnessException {
+		
+		SleepUtil.sleepMedium();
 
 		if (zGetPropMailView() == PageMailView.BY_MESSAGE) {
 			List<String> locators = Arrays.asList(Locators.zMsgViewDisplayImgLink, Locators.zMsgViewDomainLink,
@@ -1995,7 +1997,7 @@ public class PageMail extends AbsTab {
 			return (true);
 
 		} else {
-			throw new HarnessException("no logic defined  ");
+			throw new HarnessException("no logic defined");
 		}
 	}
 

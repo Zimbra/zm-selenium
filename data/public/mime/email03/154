@@ -22,7 +22,7 @@ X-Zimbra-Received: Tue, 14 Oct 2003 17:48:52 -0400
 Subject: Re: XMLBeans/Java Web Start Issues
 Content-Type: text/plain; charset=US-ASCII; format=flowed
 Mime-Version: 1.0 (Apple Message framework v552)
-From: Tom Condon <tom_condon@vrtx.com>
+From: globaladmin@testdomain.com
 To: globaladmin@testdomain.com
 Content-Transfer-Encoding: 7bit
 In-Reply-To: globaladmin@testdomain.com
@@ -40,7 +40,7 @@ still has problems with JavaSpaces, though.
 On Friday, October 10, 2003, at 05:02 PM, Dominique Devienne wrote:
 
 >> -----Original Message-----
->> From: David Bau [mailto:david.bau@bea.com]
+>> From: globaladmin@testdomain.com
 >>
 >> We assume that the classloader that was used to load the 
 >> TypeSystemHolder

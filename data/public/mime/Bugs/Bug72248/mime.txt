@@ -1,5 +1,5 @@
 To: globaladmin@testdomain.com
-From: bar@testdomain.com
+From: globaladmin@testdomain.com
 Subject: subject13217218621403
 Date: Wed, 28 Mar 2012 14:45:39 -0700
 Content-Type: multipart/alternative; boundary="=-1332971139-435613-881-9806-450-="

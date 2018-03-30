@@ -1,5 +1,5 @@
 Date: Thu, 25 Feb 2016 10:24:30 +0400 (GMT+04:00)
-From: vmwen2@zqa-062.eng.zimbra.com
+From: globaladmin@testdomain.com
 To: globaladmin@testdomain.com
 Subject: Very large message
 MIME-Version: 1.0

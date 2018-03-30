@@ -49,8 +49,7 @@ public class ReplyToMessageWithSignatureContainsImage extends AjaxCore {
 		ZimbraAccount account = ZimbraAccount.AccountZCS();
 		account.authenticate();
 
-		FolderItem briefcaseFolder = FolderItem.importFromSOAP(account,
-				SystemFolder.Briefcase);
+		FolderItem briefcaseFolder = FolderItem.importFromSOAP(account, SystemFolder.Briefcase);
 
 		// Create file item
 		String filePath = ConfigProperties.getBaseDirectory() + "/data/public/other/logo_sigclub.png";
@@ -87,7 +86,7 @@ public class ReplyToMessageWithSignatureContainsImage extends AjaxCore {
 	 * Verify that the body of reply compose form contains the signature with image displayed.
 	 */
 
-	@Test (description = "Verify the display of signature image in reply compose window!",
+	@Test (description = "Verify the display of signature image in reply compose window",
 			groups = { "functional", "L2" })
 
 	public void ReplyToMessageWithSignatureContainsImage_01() throws HarnessException {
@@ -123,10 +122,11 @@ public class ReplyToMessageWithSignatureContainsImage extends AjaxCore {
 		// Reply to the the mail
 		mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_REPLY);
 
-		//Get Signature image src value
+		// Get Signature image src value
 		String imgSrc = mailform.zGetSignatueImageSrc();
 
 		// Verify that signature image src has value containing the the server URL
-		ZAssert.assertStringContains(imgSrc, "https://" + ConfigProperties.getStringProperty("server.host")+ "/", "Signature Image source is not correct in reply compose page!");
+		ZAssert.assertStringContains(imgSrc, "https://" + ConfigProperties.getStringProperty("server.host") + "/",
+				"Signature Image source is not correct in reply compose page!");
 	}
 }

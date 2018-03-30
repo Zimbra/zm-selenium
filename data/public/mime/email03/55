@@ -29,7 +29,7 @@ X-MS-Has-Attach:
 X-MS-TNEF-Correlator: 
 Thread-Topic: deep equals implementation?
 Thread-Index: AcOY+g1p3kAYoER0Rjup9R242UzWPAAAd5rg
-From: "Eric Vasilik" <ericvas@bea.com>
+From: globaladmin@testdomain.com
 To: globaladmin@testdomain.com
 X-OriginalArrivalTime: 23 Oct 2003 00:33:51.0353 (UTC)
 	FILETIME=[54CF5E90:01C398FD]
@@ -63,8 +63,7 @@ There are probably other techniques you can use, but this should put you in=
 - Eric
 
 -----Original Message-----
-From: Dmitri.Colebatch@toyota.com.au
-[mailto:Dmitri.Colebatch@toyota.com.au]
+From: globaladmin@testdomain.com
 Sent: Wednesday, October 22, 2003 5:08 PM
 To: globaladmin@testdomain.com
 Subject: Re: deep equals implementation?
@@ -107,7 +106,7 @@ marshal non-document nodes, but it works.
 
 -Rob
 
-Dmitri.Colebatch@toyota.com.au wrote:
+globaladmin@testdomain.com wrote:
 
 >Eric,
 >

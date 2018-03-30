@@ -23,7 +23,7 @@ Received: from dogfood.zimbra.com (dogfood.zimbra.com [207.126.229.140])
 	by testdomain.com (Postfix) with ESMTP id 09202C78065;
 	Wed, 26 Aug 2009 08:54:19 -0700 (PDT)
 Date: Wed, 26 Aug 2009 08:54:18 -0700 (PDT)
-From: Raja Rao <raja.rao@testdomain.com>
+From: globaladmin@testdomain.com
 To: globaladmin@testdomain.com
 Message-ID: <853467217.3141251302058811.JavaMail.root@dogfood.zimbra.com>
 In-Reply-To: <75735487.3091251301972578.JavaMail.root@dogfood.zimbra.com>
@@ -56,8 +56,8 @@ What kind of world do YOU want?
 http://www.youtube.com/watch?v=ZiJG6fW3leQ 
 
 
------ "Juan Bocanegra" <juan.bocanegra@testdomain.com> wrote: 
-| From: "Juan Bocanegra" <juan.bocanegra@testdomain.com> 
+----- "Juan Bocanegra" <globaladmin@testdomain.com> wrote: 
+| From: globaladmin@testdomain.com
 | To: globaladmin@testdomain.com
 | Sent: Wednesday, August 26, 2009 7:52:42 AM 
 | Subject: Re: **CORP UPGRADE 8/25** 
@@ -72,27 +72,27 @@ http://www.youtube.com/watch?v=ZiJG6fW3leQ
 | jim@ 
 | etc. 
 | 
-| ----- "Juan Bocanegra" <juan.bocanegra@testdomain.com> wrote: 
+| ----- "Juan Bocanegra" <globaladmin@testdomain.com> wrote: 
 | > 
 | > Anything? Just want to be able to demo this tab life... thx! 
 | > 
 | > Also, some of the images/pics in my Facebook account show the broken icon even after I reload/refresh the page (only a few though)... for the most part look great 
 | > 
-| > ----- "Jason Bryan" <jbryan@testdomain.com> wrote: 
+| > ----- "Jason Bryan" <globaladmin@testdomain.com> wrote: 
 | > > 
 | > > Sure, what name do you want? broadsoft@? 
 | > > 
 | > > -- 
 | > > Jason 
 | > > 
-| > > ----- "Juan Bocanegra" <juan.bocanegra@testdomain.com> wrote: 
+| > > ----- "Juan Bocanegra" <globaladmin@testdomain.com> wrote: 
 | > > | 
 | > > | Hi Jason, 
 | > > | Can you get us a test account for the Broadsoft Zimlet? For demo purposes? 
 | > > | 
 | > > | thx, 
 | > > | juan 
-| > > | ----- "Jason Bryan" <jbryan@testdomain.com> wrote: 
+| > > | ----- "Jason Bryan" <globaladmin@testdomain.com> wrote: 
 | > > | > All, 
 | > > | > 
 | > > | > Welcome to 6.0.0_GA_1789! Please reply if you have any trouble...and fast since it is our 6.0 GA build after all. First one to find a bug gets a free email alias. 
@@ -104,7 +104,7 @@ http://www.youtube.com/watch?v=ZiJG6fW3leQ
 | > > | > -- 
 | > > | > Jason 
 | > > | > 
-| > > | > ----- "Jason Bryan" <jbryan@testdomain.com> wrote: 
+| > > | > ----- "Jason Bryan" <globaladmin@testdomain.com> wrote: 
 | > > | > 
 | > > | > | Hi All, 
 | > > | > | 
@@ -229,32 +229,32 @@ n shots of Broadsoft Zimlet. <br><br><div><div><div><div><div><div>thanks,<=
 br>raja<br><br><font style=3D"color: rgb(102, 102, 102);" size=3D"1">What k=
 ind of world do YOU want?<br>http://www.youtube.com/watch?v=3DZiJG6fW3leQ</=
 font><br></div></div></div></div></div></div><br></span><br>----- "Juan Boc=
-anegra" &lt;juan.bocanegra@testdomain.com&gt; wrote:
-<br>| From: "Juan Bocanegra" &lt;juan.bocanegra@testdomain.com&gt;<br>| To: globaladmin@testdomain.com<br>| Sent: Wednesday, August 26, 200=
+anegra" &lt;globaladmin@testdomain.com&gt; wrote:
+<br>| From: "Juan Bocanegra" &lt;globaladmin@testdomain.com&gt;<br>| To: globaladmin@testdomain.com<br>| Sent: Wednesday, August 26, 200=
 9 7:52:42 AM<br>| Subject: Re: **CORP UPGRADE 8/25**<br>|<br>| <style>p { m=
 argin: 0; }</style><div style=3D"font-family: Times New Roman; font-size: 1=
 2pt; color: rgb(0, 0, 0);">| Sorry, I meant to say anything for the account=
  name...<br>| <br>| So we can configure it&nbsp; and show it. If we need on=
 e for every SE then I should say:<br>| <br>| juan@<br>| anup@<br>| jim@<br>=
-| etc.<br>| <br>| ----- "Juan Bocanegra" &lt;juan.bocanegra@testdomain.com&gt; =
+| etc.<br>| <br>| ----- "Juan Bocanegra" &lt;globaladmin@testdomain.com&gt; =
 wrote:
 <br>| &gt; <style>p { margin: 0; }</style><div style=3D"font-family: Times =
 New Roman; font-size: 12pt; color: rgb(0, 0, 0);">| &gt; Anything? Just wan=
 t to be able to demo this tab life...&nbsp; thx!<br>| &gt; <br>| &gt; Also,=
  some of the images/pics in my Facebook account show the broken icon even a=
 fter I reload/refresh the page (only a few though)... for the most part loo=
-k great<br>| &gt; <br>| &gt; ----- "Jason Bryan" &lt;jbryan@testdomain.com&gt; =
+k great<br>| &gt; <br>| &gt; ----- "Jason Bryan" &lt;globaladmin@testdomain.com&gt; =
 wrote:
 <br>| &gt; &gt; <style>p { margin: 0; }</style><div style=3D"font-family: V=
 erdana; font-size: 10pt; color: rgb(0, 0, 0);">| &gt; &gt; Sure, what name =
 do you want? broadsoft@?<span><br>| &gt; &gt; <br>| &gt; &gt; --<br>| &gt; =
 &gt; Jason<br>| &gt; &gt; </span><br>| &gt; &gt; ----- "Juan Bocanegra" &lt=
-;juan.bocanegra@testdomain.com&gt; wrote:
+;globaladmin@testdomain.com&gt; wrote:
 <br>| &gt; &gt; | <style>p { margin: 0; }</style><div style=3D"font-family:=
  Times New Roman; font-size: 12pt; color: rgb(0, 0, 0);">| &gt; &gt; | Hi J=
 ason,<br>| &gt; &gt; | Can you get us a test account for the Broadsoft Ziml=
 et? For demo purposes?<br>| &gt; &gt; | <br>| &gt; &gt; | thx,<br>| &gt; &g=
-t; | juan<br>| &gt; &gt; | ----- "Jason Bryan" &lt;jbryan@testdomain.com&gt; wr=
+t; | juan<br>| &gt; &gt; | ----- "Jason Bryan" &lt;globaladmin@testdomain.com&gt; wr=
 ote:
 <br>| &gt; &gt; | &gt; All,<br>| &gt; &gt; | &gt; <br>| &gt; &gt; | &gt; We=
 lcome to 6.0.0_GA_1789! Please reply if you have any trouble...and fast sin=
@@ -264,7 +264,7 @@ ail alias.<br>| &gt; &gt; | &gt; <br>| &gt; &gt; | &gt; No Tweetzi? Tweetzi=
 ck the box for Zimbra Social in your Zimlet preferences in ZWC to enable.<b=
 r>| &gt; &gt; | &gt; <br>| &gt; &gt; | &gt; Have fun,<br>| &gt; &gt; | &gt;=
  <br>| &gt; &gt; | &gt; --<br>| &gt; &gt; | &gt; Jason<br>| &gt; &gt; | &gt=
-; <br>| &gt; &gt; | &gt; ----- "Jason Bryan" &lt;jbryan@testdomain.com&gt; wrot=
+; <br>| &gt; &gt; | &gt; ----- "Jason Bryan" &lt;globaladmin@testdomain.com&gt; wrot=
 e:<br>| &gt; &gt; | &gt; <br>| &gt; &gt; | &gt; | Hi All,<br>| &gt; &gt; | =
 &gt; | <br>| &gt; &gt; | &gt; | I am going to push D5 (6.0 RC) on 8/25 at 7=
 PM PT if there are no<br>| &gt; &gt; | &gt; | objections. Please reply if t=
@@ -624,8 +624,7 @@ Content-Type: message/rfc822
 Content-Disposition: attachment
 
 Date: Mon, 17 Aug 2009 17:20:26 -0700 (PDT)
-From: raja.rao@testdomain.com
-Sender: rrao@testdomain.com
+From: globaladmin@testdomain.com
 To: globaladmin@testdomain.com
 Message-ID: <969601365.14241250554826177.JavaMail.root@dogfood.zimbra.com>
 In-Reply-To: <705023160.14221250554801408.JavaMail.root@dogfood.zimbra.com>

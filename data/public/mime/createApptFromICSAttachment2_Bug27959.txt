@@ -1,5 +1,5 @@
 Date: Tue, 8 Jun 2010 12:01:35 +0530 (IST)
-From: root@z54.puneqa.lab
+From: globaladmin@testdomain.com
 To: globaladmin@testdomain.com
 Message-ID: <30143368.2205.1275978695889.JavaMail.root@z54.puneqa.lab>
 In-Reply-To: <14851388.2197.1275978673352.JavaMail.root@z54.puneqa.lab>
