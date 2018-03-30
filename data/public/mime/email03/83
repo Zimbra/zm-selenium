@@ -20,7 +20,7 @@ Message-Id: <sf7adde3.097@corp-gw.mantech.com>
 X-Mailer: Novell GroupWise Internet Agent 5.5.6.1
 Date: Wed, 01 Oct 2003 13:59:38 -0400
 X-Zimbra-Received: Wed, 01 Oct 2003 13:59:38 -0400
-From: "Darrell Teague" <darrell.teague@mantech.com>
+From: globaladmin@testdomain.com
 To: globaladmin@testdomain.com
 Subject: RE: Finalizers
 Mime-Version: 1.0
@@ -105,7 +105,7 @@ ar object no longer needed finalization.  Does such a thing exist?
 - Eric
 
 -----Original Message-----
-From: Darrell Teague [mailto:darrell.teague@mantech.com]
+From: globaladmin@testdomain.com
 Sent: Wednesday, October 01, 2003 8:49 AM
 To: globaladmin@testdomain.com
 Subject: Re: Finalizers
@@ -285,7 +285,7 @@ eeded=20
 finalization.&nbsp; Does such a thing exist?<BR><BR>- Eric<BR><BR>-----Orig=
 inal=20
 Message-----<BR>From: Darrell Teague [<A=20
-href=3D"mailto:darrell.teague@mantech.com]">mailto:darrell.teague@mantech.c=
+href=3D"mailto:globaladmin@testdomain.com]">mailto:globaladmin@testdomain.c=
 om]</A><BR>Sent:=20
 Wednesday, October 01, 2003 8:49 AM<BR>To:=20
 globaladmin@testdomain.com<BR>Subject: Re: Finalizers<BR><BR><BR>Two more =

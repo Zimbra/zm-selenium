@@ -18,7 +18,7 @@ Delivered-To: mailing list globaladmin@testdomain.com
 Received: (qmail 12697 invoked from network); 3 Oct 2003 19:52:33 -0000
 Date: Fri, 3 Oct 2003 12:52:38 -0700
 X-Zimbra-Received: Fri, 3 Oct 2003 12:52:38 -0700
-From: Scott Ziegler <zieg@bea.com>
+From: globaladmin@testdomain.com
 To: globaladmin@testdomain.com
 Subject: Re: builtin type conversions
 Message-ID: <20031003195238.GA19811@zieg.beasys.com>

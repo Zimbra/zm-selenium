@@ -33,7 +33,7 @@ Content-Type: multipart/mixed; boundary=Apple-Mail-7--322391395
 Subject: subject13010064065623
 Date: Thu, 18 Jan 2007 10:00:53 +0100
 X-Mailer: Apple Mail (2.752.3)
-From: Test Account <x@gmail.com>
+From: globaladmin@testdomain.com
 
 
 --Apple-Mail-7--322391395

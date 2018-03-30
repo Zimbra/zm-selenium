@@ -29,7 +29,7 @@ X-MS-Has-Attach:
 X-MS-TNEF-Correlator: 
 Thread-Topic: Feature Request: Serialization
 Thread-Index: AcOX57d/YJEy0WgrQDO8kSPXRyy+ewABM2xg
-From: "Jochen Rebhan" <jochen.rebhan@primaverasoft.pt>
+From: globaladmin@testdomain.com
 To: globaladmin@testdomain.com
 X-Spam-Rating: daedalus.apache.org 1.6.2 0/1000/N
 X-Evolution-Source: imap://smith@smith.pobox.stanford.edu/
@@ -58,7 +58,7 @@ j.rebhan@web.de
 
 
  -----Original Message-----
-From: 	David Bau [mailto:david.bau@bea.com]=20
+From: globaladmin@testdomain.com=20
 Sent:	ter=E7a-feira, 21 de Outubro de 2003 16:26
 To:	globaladmin@testdomain.com
 Subject:	Re: Feature Request: Serialization
@@ -78,7 +78,7 @@ David
 
 
 ----- Original Message -----=20
-From: "Jochen Rebhan" <jochen.rebhan@primaverasoft.pt>
+From: globaladmin@testdomain.com
 To: globaladmin@testdomain.com
 Sent: Tuesday, October 21, 2003 10:04 AM
 Subject: [xmlbeans-dev] Feature Request: Serialization

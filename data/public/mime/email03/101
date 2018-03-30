@@ -18,7 +18,7 @@ Reply-To: globaladmin@testdomain.com
 Delivered-To: mailing list globaladmin@testdomain.com
 Received: (qmail 70209 invoked from network); 23 Sep 2003 16:25:06 -0000
 Message-ID: <001301c381ef$3a69b980$0fa8a8c0@lightbox>
-From: "David Bau" <david.bau@bea.com>
+From: globaladmin@testdomain.com
 To: globaladmin@testdomain.com
 References: <4B2B4C417991364996F035E1EE39E2E11E9D5D@uskiex01.amer.bea.com>
 Subject: RE: GDateBuilder question
@@ -55,7 +55,7 @@ difference between Z and +0:00?
 
 David
 ----- Original Message ----- 
-From: "Eric Vasilik" <ericvas@bea.com>
+From: globaladmin@testdomain.com
 To: globaladmin@testdomain.com
 Sent: Tuesday, September 23, 2003 11:38 AM
 Subject: [bea-readme] RE: GDateBuilder question
@@ -93,7 +93,7 @@ GDateBuilder.java.
 betwen -14:00 and +14:00");
 
 -----Original Message-----
-From: Robert Wyrick [mailto:rwyrick@fedex.com]
+From: globaladmin@testdomain.com
 Sent: Monday, September 22, 2003 3:02 PM
 To: globaladmin@testdomain.com
 Subject: GDateBuilder question

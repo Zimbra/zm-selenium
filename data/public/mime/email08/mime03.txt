@@ -1,5 +1,5 @@
 Date: Mon, 1 Jul 2013 00:42:35 -0700 (PDT)
-From: uwm01@zqa-062.eng.zimbra.com
+From: globaladmin@testdomain.com
 To: globaladmin@testdomain.com
 Message-ID: <1216464744.48.1372664555113.JavaMail.zimbra@zqa-062.eng.zimbra.com>
 In-Reply-To: <258809959.34.1372664526352.JavaMail.zimbra@zqa-062.eng.zimbra.com>

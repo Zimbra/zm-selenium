@@ -17,7 +17,7 @@ Reply-To: globaladmin@testdomain.com
 Delivered-To: mailing list globaladmin@testdomain.com
 Received: (qmail 11168 invoked from network); 3 Oct 2003 20:53:05 -0000
 Message-ID: <019401c389f0$58380ad0$0fa8a8c0@lightbox>
-From: "David Bau" <david.bau@bea.com>
+From: globaladmin@testdomain.com
 To: globaladmin@testdomain.com
 References: <4B2B4C417991364996F035E1EE39E2E11DF1EF@uskiex01.amer.bea.com>
 Subject: Re: Replacement for SniffedXmlInputStream.java

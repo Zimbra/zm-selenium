@@ -30,8 +30,6 @@ import com.zimbra.qa.selenium.projects.ajax.pages.mail.DisplayMail.Field;
 
 public class ViewMail extends SetGroupMailByMessagePreference {
 
-	final String mimeFolder = ConfigProperties.getBaseDirectory() + "/data/public/mime/email00";
-
 	public ViewMail() throws HarnessException {
 		logger.info("New "+ ViewMail.class.getCanonicalName());
 	}
@@ -43,10 +41,12 @@ public class ViewMail extends SetGroupMailByMessagePreference {
 	public void ViewMail_01() throws HarnessException {
 
 		final String subject = "subject12996131112962";
-		final String from = "from12996131112962@example.com";
+		final String from = ConfigProperties.getStringProperty("adminUser") + "@" + ConfigProperties.getStringProperty("testdomain");
 		final String sender = "sender12996131112962@example.com";
+		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email00/mime_wSender.txt";
 
-		injectMessage(app.zGetActiveAccount(), mimeFolder + "/mime_wSender.txt");
+		// Inject the sample mime
+		injectMessage(app.zGetActiveAccount(), mimeFile);
 
 		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), subject);
 		ZAssert.assertNotNull(mail, "Verify message is received");
@@ -90,10 +90,12 @@ public class ViewMail extends SetGroupMailByMessagePreference {
 	public void ViewMail_02() throws HarnessException {
 
 		final String subject = "subject13016959916873";
-		final String from = "from13016959916873@example.com";
+		final String from = ConfigProperties.getStringProperty("adminUser") + "@" + ConfigProperties.getStringProperty("testdomain");
 		final String replyto = "replyto13016959916873@example.com";
+		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email00/mime_wReplyTo.txt";
 
-		injectMessage(app.zGetActiveAccount(), mimeFolder + "/mime_wReplyTo.txt");
+		// Inject the sample mime
+		injectMessage(app.zGetActiveAccount(), mimeFile);
 
 		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), subject);
 		ZAssert.assertNotNull(mail, "Verify message is received");
@@ -137,10 +139,12 @@ public class ViewMail extends SetGroupMailByMessagePreference {
 	public void ViewMail_03() throws HarnessException {
 
 		final String subject = "subject13147509564213";
-		final String from = "from13011239916873@example.com";
+		final String from = ConfigProperties.getStringProperty("adminUser") + "@" + ConfigProperties.getStringProperty("testdomain");
 		final String resentfrom = "resentfrom13016943216873@example.com";
+		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email00/mime_wResentFrom.txt";
 
-		injectMessage(app.zGetActiveAccount(), mimeFolder + "/mime_wResentFrom.txt");
+		// Inject the sample mime
+		injectMessage(app.zGetActiveAccount(), mimeFile);
 
 		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), subject);
 		ZAssert.assertNotNull(mail, "Verify message is received");
@@ -181,9 +185,9 @@ public class ViewMail extends SetGroupMailByMessagePreference {
 
 	public void ViewMail_04() throws HarnessException {
 
-		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug72233";
 		final String subject = "bug72233";
 		final String htmlcontent = "html1328844621404";
+		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug72233/mime.txt";
 
 		// Inject the sample mime
 		injectMessage(app.zGetActiveAccount(), mimeFile);

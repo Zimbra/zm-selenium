@@ -91,7 +91,7 @@ public class DistributionListItem extends ContactItem implements IItem {
 		// Set the name
 		String unique = ConfigProperties.getUniqueString(); // group name is max 20 chars
 		String listname = "dlist" + unique.substring(unique.length() - 10) + "@"
-				+ ConfigProperties.getStringProperty("testdomain", "testdomain.com");
+				+ ConfigProperties.getStringProperty("testdomain");
 
 		// Create the new list
 		ZimbraAdminAccount.GlobalAdmin()

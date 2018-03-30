@@ -1,4 +1,4 @@
-From: from12996131112962@example.com
+From: globaladmin@testdomain.com
 To: globaladmin@testdomain.com
 Sender: sender12996131112962@example.com
 Subject: subject12996131112962

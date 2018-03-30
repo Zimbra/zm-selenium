@@ -31,7 +31,7 @@ X-MS-TNEF-Correlator:
 Thread-Topic: Failed to build with "network downloads disabled" error
 	message.
 Thread-Index: AcOuAPi1kRB+uVAYQHCjlXVIOFoYTAAACWag
-From: "Eric Vasilik" <ericvas@bea.com>
+From: globaladmin@testdomain.com
 To: globaladmin@testdomain.com
 X-OriginalArrivalTime: 18 Nov 2003 18:24:59.0311 (UTC)
 	FILETIME=[463D03F0:01C3AE01]
@@ -45,7 +45,7 @@ on target namespace which, in some cases, can blow past this limit.  You ma=
 y be experiencing this.
 
 -----Original Message-----
-From: Calvin Powers [mailto:calvin@cspowers.com]
+From: globaladmin@testdomain.com
 Sent: Tuesday, November 18, 2003 10:20 AM
 To: globaladmin@testdomain.com
 Subject: Re: Failed to build with "network downloads disabled" error

@@ -23,7 +23,7 @@ Received: (qmail 53235 invoked by uid 1739); 30 Sep 2003 23:18:15 -0000
 Date: 30 Sep 2003 23:18:15 -0000
 X-Zimbra-Received: 30 Sep 2003 23:18:15 -0000
 Message-ID: <20030930231815.53234.qmail@minotaur.apache.org>
-From: ericvas@apache.org
+From: globaladmin@testdomain.com
 To: globaladmin@testdomain.com
 Subject: cvs commit: xml-xmlbeans/v2/test/src/erictest EricTest.java
 X-Spam-Rating: daedalus.apache.org 1.6.2 0/1000/N

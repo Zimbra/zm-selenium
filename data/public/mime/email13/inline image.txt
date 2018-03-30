@@ -1,5 +1,5 @@
 Date: Tue, 17 Sep 2013 00:17:23 -0700 (PDT)
-From: uwm01@zqa-062.eng.vmware.com
+From: globaladmin@testdomain.com
 To: globaladmin@testdomain.com
 Subject: inline image testing
 MIME-Version: 1.0

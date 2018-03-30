@@ -842,12 +842,13 @@ public class AjaxCore {
 
 		// Add message in selected account
 		try {
-			app.zGetActiveAccount().soapSend(
+			account.soapSend(
 				"<AddMsgRequest xmlns='urn:zimbraMail'>" +
 					"<m l='Inbox' f='u' aid='"+ attachmentId + "'></m>" +
 				"</AddMsgRequest>");
 		} catch (HarnessException e) {
 			throw new HarnessException("Unable to inject message: " + e);
 		}
+		SleepUtil.sleepMedium();
 	}
 }

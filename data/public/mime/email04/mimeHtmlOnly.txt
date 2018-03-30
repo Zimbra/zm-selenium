@@ -1,5 +1,5 @@
 Date: Tue, 15 Nov 2011 17:10:42 -0800 (PST)
-From: foo@example.com
+From: globaladmin@testdomain.com
 To: globaladmin@testdomain.com
 Subject: subject13214016672655
 Content-Type: text/html; charset=utf-8

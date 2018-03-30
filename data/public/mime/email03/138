@@ -28,7 +28,7 @@ X-MS-Has-Attach:
 X-MS-TNEF-Correlator: 
 Thread-Topic: Finalizers
 Thread-Index: AcOI73v+ImO1hg37TJeq+ovAWlrBXwAFrutQ
-From: "Eric Vasilik" <ericvas@bea.com>
+From: globaladmin@testdomain.com
 To: globaladmin@testdomain.com
 X-OriginalArrivalTime: 02 Oct 2003 17:07:04.0817 (UTC)
 	FILETIME=[9A9B9610:01C38907]
@@ -61,7 +61,7 @@ ould be called.
 - Eric
 
 -----Original Message-----
-From: Chris Maeda [mailto:cmaeda@granitehealth.com]
+From: globaladmin@testdomain.com
 Sent: Thursday, October 02, 2003 7:14 AM
 To: globaladmin@testdomain.com
 Subject: RE: Finalizers
@@ -70,7 +70,7 @@ Subject: RE: Finalizers
 Have you looked at using weak references for the XML->Cursor references?
 
 -----Original Message-----
-From: Eric Vasilik [mailto:ericvas@bea.com]=20
+From: globaladmin@testdomain.com=20
 Sent: Wednesday, October 01, 2003 1:14 PM
 To: globaladmin@testdomain.com
 Subject: RE: Finalizers
@@ -119,7 +119,7 @@ particular object no longer needed finalization.  Does such a thing exist?
 - Eric
 
 -----Original Message-----
-From: Darrell Teague [mailto:darrell.teague@mantech.com]
+From: globaladmin@testdomain.com
 Sent: Wednesday, October 01, 2003 8:49 AM
 To: globaladmin@testdomain.com
 Subject: Re: Finalizers

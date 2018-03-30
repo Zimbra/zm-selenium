@@ -42,7 +42,7 @@ public class FromAlias extends SetGroupMailByConversationPreference {
 		String aliasFromDisplay = "alias" + ConfigProperties.getUniqueString();
 		String aliasEmailAddress = aliasFromDisplay +
 					"@" +
-					ConfigProperties.getStringProperty("testdomain", "testdomain.com");
+					ConfigProperties.getStringProperty("testdomain");
 
 		ZimbraAdminAccount.GlobalAdmin().soapSend(
 				"<AddAccountAliasRequest xmlns='urn:zimbraAdmin'>"

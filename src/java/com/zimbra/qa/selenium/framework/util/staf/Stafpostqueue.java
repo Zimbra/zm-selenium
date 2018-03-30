@@ -125,7 +125,7 @@ public class Stafpostqueue extends StafServicePROCESS {
 			int totalDeferredMessages = 0;
 			SleepUtil.sleepMedium();
 
-			for (int i=0; i<=10; i++) {
+			for (int i=0; i<=5; i++) {
 				totalDeferredMessages = 0;
 				for (int mtaServer=0; mtaServer<ExecuteHarnessMain.mtaServers.size(); mtaServer++) {
 					ZimbraAdminAccount.GlobalAdmin().soapSend("<GetMailQueueRequest xmlns='urn:zimbraAdmin'>"

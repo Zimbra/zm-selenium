@@ -47,7 +47,7 @@ Thread-Index: AciqLIbOS5CXZn++THuoAHUqwgjdZQ==
 X-Priority: 1 (High)
 Priority: Urgent
 Importance: High
-From: "GACC ENCERRAMENTO" <gacc.encerramento@testdomain.com>
+From: globaladmin@testdomain.com
 To: globaladmin@testdomain.com
 X-OriginalArrivalTime: 29 Apr 2008 19:09:35.0109 (UTC) FILETIME=[8FFD6350:01C8AA2C]
 X-MIMETrack: Itemize by SMTP Server on Zeus/Itaubanco(Release 6.5.4FP1 | June 19, 2005) at
@@ -63,7 +63,7 @@ X-SuchyGiozza-MailScanner: Mensagem OK
 X-SuchyGiozza-HSC_MAILINSPECTOR-SpamCheck: nao spam, AntiSpam (not cached,
 	escore=-0.521, requerido 6, BAYES_00 -2.60, HTML_MESSAGE 0.00,
 	SUBJ_ALL_CAPS 2.08)
-X-SuchyGiozza-HSC_MAILINSPECTOR-From: gacc.encerramento@testdomain.com
+X-SuchyGiozza-HSC_MAILINSPECTOR-From: globaladmin@testdomain.com
 
 This is a multi-part message in MIME format.
 

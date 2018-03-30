@@ -22,7 +22,7 @@ Subject: RE: deep equals implementation?
 To: globaladmin@testdomain.com
 X-Mailer: Lotus Notes Release 5.0.8  June 18, 2001
 Message-ID: <OF27BE0517.D02F021E-ONCA256DC7.008108C4@tmca.com.au>
-From: Dmitri.Colebatch@toyota.com.au
+From: globaladmin@testdomain.com
 Date: Thu, 23 Oct 2004 09:31:41 +1000
 X-Zimbra-Received: Thu, 23 Oct 2004 09:31:41 +1000
 X-MIMETrack: Serialize by Router on SHM_ISD_A2_80/TMCA(Release 5.0.12 
@@ -76,8 +76,7 @@ needs.
 - Eric
 
 -----Original Message-----
-From: Dmitri.Colebatch@toyota.com.au
-[mailto:Dmitri.Colebatch@toyota.com.au]
+From: globaladmin@testdomain.com
 Sent: Tuesday, October 21, 2003 10:30 PM
 To: globaladmin@testdomain.com
 Subject: deep equals implementation?

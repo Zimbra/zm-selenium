@@ -196,7 +196,7 @@ public class CheckMailContentForSpecificMimes extends SetGroupMailByMessagePrefe
 
 		String subject = "Fwd: test bug66192";
 		String bodytext = "Kind regards,";
-		String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/Bugs/bug66192.txt";
+		String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug66192/bug66192.txt";
 
 		// Inject the sample mime
 		injectMessage(app.zGetActiveAccount(), mimeFile);

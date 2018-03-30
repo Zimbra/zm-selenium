@@ -28,7 +28,7 @@ X-MS-Has-Attach:
 X-MS-TNEF-Correlator: 
 Thread-Topic: problems with inheritance while saving XML
 Thread-Index: AcOIOlM+sKLv+KFdRhaSNzMSIz1FpAAJu9hw
-From: "David Remy" <dremy@bea.com>
+From: globaladmin@testdomain.com
 To: globaladmin@testdomain.com
 X-OriginalArrivalTime: 01 Oct 2003 21:21:44.0738 (UTC)
 	FILETIME=[03BCC020:01C38862]
@@ -88,7 +88,7 @@ ance();
 }=20
 
 -----Original Message-----
-From: Carl_Elkin@vrtx.com [mailto:Carl_Elkin@vrtx.com]
+From: globaladmin@testdomain.com
 Sent: Wednesday, October 01, 2003 9:37 AM
 To: globaladmin@testdomain.com
 Subject: problems with inheritance while saving XML

@@ -20,7 +20,7 @@ Message-Id: <sf7bfdd5.032@corp-gw.mantech.com>
 X-Mailer: Novell GroupWise Internet Agent 5.5.6.1
 Date: Thu, 02 Oct 2003 10:28:33 -0400
 X-Zimbra-Received: Thu, 02 Oct 2003 10:28:33 -0400
-From: "Darrell Teague" <darrell.teague@mantech.com>
+From: globaladmin@testdomain.com
 To: globaladmin@testdomain.com
 Subject: RE: Finalizers
 Mime-Version: 1.0
@@ -62,7 +62,7 @@ There is plenty of documentation on the subject at
 Have you looked at using weak references for the XML->Cursor references?
 
 -----Original Message-----
-From: Eric Vasilik [mailto:ericvas@bea.com]=20
+From: globaladmin@testdomain.com=20
 Sent: Wednesday, October 01, 2003 1:14 PM
 To: globaladmin@testdomain.com
 Subject: RE: Finalizers
@@ -111,7 +111,7 @@ particular object no longer needed finalization.  Does such a thing exist?
 - Eric
 
 -----Original Message-----
-From: Darrell Teague [mailto:darrell.teague@mantech.com]
+From: globaladmin@testdomain.com
 Sent: Wednesday, October 01, 2003 8:49 AM
 To: globaladmin@testdomain.com
 Subject: Re: Finalizers
@@ -283,7 +283,7 @@ notified the VM that a<BR>particular object no longer needed finalization.&=
 nbsp;=20
 Does such a thing exist?<BR><BR>- Eric<BR><BR>-----Original=20
 Message-----<BR>From: Darrell Teague [<A=20
-href=3D"mailto:darrell.teague@mantech.com]">mailto:darrell.teague@mantech.c=
+href=3D"mailto:globaladmin@testdomain.com]">mailto:darrell.teague@mantech.c=
 om]</A><BR>Sent:=20
 Wednesday, October 01, 2003 8:49 AM<BR>To:=20
 globaladmin@testdomain.com<BR>Subject: Re: Finalizers<BR><BR><BR>Two more =

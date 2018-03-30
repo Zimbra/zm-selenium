@@ -100,7 +100,7 @@ public class Cancel extends AjaxCore {
 		apptSubject = ConfigProperties.getUniqueString();
 		apptBody = ConfigProperties.getUniqueString();
 		apptAttendee1 = ZimbraAccount.AccountA().EmailAddress;
-		fromAddress = ConfigProperties.getUniqueString() + "." + ConfigProperties.getUniqueString() + "@" + ConfigProperties.getStringProperty("testdomain", "testdomain.com");
+		fromAddress = ConfigProperties.getUniqueString() + "." + ConfigProperties.getUniqueString() + "@" + ConfigProperties.getStringProperty("testdomain");
 
 	    ZimbraAdminAccount.GlobalAdmin().soapSend(
 	    	      "<ModifyAccountRequest xmlns='urn:zimbraAdmin'><id>" +

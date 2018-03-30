@@ -28,7 +28,7 @@ X-MS-Has-Attach:
 X-MS-TNEF-Correlator: 
 Thread-Topic: Finalizers
 Thread-Index: AcOIM6KhGv/ZLmAyR8eg1QrVBIbC4gACNCSw
-From: "Eric Vasilik" <ericvas@bea.com>
+From: globaladmin@testdomain.com
 To: globaladmin@testdomain.com
 X-OriginalArrivalTime: 01 Oct 2003 17:14:27.0714 (UTC)
 	FILETIME=[782E8E20:01C3883F]
@@ -77,7 +77,7 @@ ar object no longer needed finalization.  Does such a thing exist?
 - Eric
 
 -----Original Message-----
-From: Darrell Teague [mailto:darrell.teague@mantech.com]
+From: globaladmin@testdomain.com
 Sent: Wednesday, October 01, 2003 8:49 AM
 To: globaladmin@testdomain.com
 Subject: Re: Finalizers

@@ -37,7 +37,7 @@ public class SaveDraftMailWithInlineImageAttachment extends SetGroupMailByMessag
 
 
 	@Test (description = "Save draft a mail with inline attachment and send a mail",
-			groups = { "smoke", "L1", "upload" })
+			groups = { "smoke", "L1", "upload", "non-msedge" })
 
 	public void SaveDraftAndSendMailWithInlineImageAttachment_01() throws HarnessException {
 
@@ -116,7 +116,7 @@ public class SaveDraftMailWithInlineImageAttachment extends SetGroupMailByMessag
 
 			// Create file item
 			final String mimeSubject = "subjectAttachment";
-			final String mimeFile = ConfigProperties.getBaseDirectory() + "\\data\\public\\mime\\email17\\mime.txt";
+			final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email17/mime.txt";
 			final String mimeAttachmentName = "samplejpg.jpg";
 
 			FolderItem sent = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Sent);
@@ -147,7 +147,7 @@ public class SaveDraftMailWithInlineImageAttachment extends SetGroupMailByMessag
 			mailform.zFillField(Field.To, ZimbraAccount.AccountA().EmailAddress);
 
 			final String anotherFileName = "structure.jpg";
-			final String anotherFilePath = ConfigProperties.getBaseDirectory() + "/data/public/other/" + anotherFileName;
+			final String anotherFilePath = ConfigProperties.getBaseDirectory() + "\\data\\public\\other\\" + anotherFileName;
 
 			app.zPageMail.zPressButton(Button.O_ATTACH_DROPDOWN);
 			app.zPageMail.zPressButton(Button.B_ATTACH_INLINE);

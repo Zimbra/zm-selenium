@@ -1,6 +1,6 @@
-Return-Path: foo@example.com
+Return-Path: globaladmin@testdomain.com
 Date: Thu, 22 Dec 2011 11:38:03 -0800 (PST)
-From: Foo User <foo@example.com>
+From: globaladmin@testdomain.com
 To: globaladmin@testdomain.com
 Subject: Conversation13155016716714
 Content-Type: multipart/alternative;

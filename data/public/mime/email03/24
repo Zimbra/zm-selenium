@@ -18,7 +18,7 @@ Reply-To: globaladmin@testdomain.com
 Delivered-To: mailing list globaladmin@testdomain.com
 Received: (qmail 48096 invoked from network); 10 Oct 2003 15:18:13 -0000
 Message-ID: <033f01c38f41$b021d7c0$0fa8a8c0@lightbox>
-From: "David Bau" <david.bau@bea.com>
+From: globaladmin@testdomain.com
 To: globaladmin@testdomain.com
 References: <sf868fcc.033@corp-gw.mantech.com>
 Subject: Re: Parallel Extension Question
@@ -43,7 +43,7 @@ XMLBeans itself, you may want to try something else... :-)
 David
 
 ----- Original Message ----- 
-From: "Darrell Teague" <darrell.teague@mantech.com>
+From: globaladmin@testdomain.com
 To: globaladmin@testdomain.com
 Sent: Friday, October 10, 2003 10:53 AM
 Subject: [xmlbeans-dev] Re: Parallel Extension Question

@@ -5,7 +5,7 @@ X-Sieve: CMU Sieve 2.2
 Received: from churchill (unknown [10.10.130.116]) by kenny.example.zimbra.com
 	(Postfix) with ESMTP id B586640040E for <smith@example.zimbra.com>; Sat, 27
 	Mar 2004 14:42:18 -0800 (PST)
-From: "Ross Davidson, Ph.D." <davidson@example.zimbra.com>
+From: globaladmin@testdomain.com
 To: globaladmin@testdomain.com
 Subject: Linux Desktop Info
 Date: Sat, 27 Mar 2004 14:46:48 -0800

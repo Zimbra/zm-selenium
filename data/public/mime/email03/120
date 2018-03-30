@@ -16,7 +16,7 @@ Reply-To: globaladmin@testdomain.com
 Delivered-To: mailing list globaladmin@testdomain.com
 Received: (qmail 6287 invoked from network); 4 Dec 2003 21:31:18 -0000
 Message-ID: <015a01c3baad$e640c9a0$0fa8a8c0@lightbox>
-From: "David Bau" <david.bau@bea.com>
+From: globaladmin@testdomain.com
 To: globaladmin@testdomain.com
 References: <FAF98113-25D3-11D8-BCCC-000393D5A006@vrtx.com>
 Subject: Re: XMLBeans or perhaps just an XML question...
@@ -56,7 +56,7 @@ document) subtrees, complete with subelements and so on, into your <body>.
 
 David
 ----- Original Message ----- 
-From: "Thomas Condon" <tom_condon@vrtx.com>
+From: globaladmin@testdomain.com
 To: globaladmin@testdomain.com
 Sent: Wednesday, December 03, 2003 4:02 PM
 Subject: [xmlbeans-user] XMLBeans or perhaps just an XML question...

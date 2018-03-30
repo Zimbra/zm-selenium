@@ -91,7 +91,7 @@ public class CreateMeetingWithAttachment extends AjaxCore {
 			ZAssert.assertEquals(received.getAttendees(), apptAttendee1, "Attendees: Verify the appointment data");
 			ZAssert.assertEquals(received.getContent(), appt.getContent(), "Content: Verify the appointment data");
 
-			 nodes = ZimbraAccount.Account2().soapSelectNodes("//mail:mp[@filename='" + fileName + "']");
+			nodes = ZimbraAccount.Account2().soapSelectNodes("//mail:mp[@filename='" + fileName + "']");
 			ZAssert.assertEquals(nodes.length, 1, "Verify attachment exist in the received meeting");
 
 			// Verify the attendee receives the invitation

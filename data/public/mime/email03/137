@@ -23,7 +23,7 @@ X-Mailer: QUALCOMM Windows Eudora Version 5.2.1
 Date: Mon, 29 Sep 2003 11:23:48 -0700
 X-Zimbra-Received: Mon, 29 Sep 2003 11:23:48 -0700
 To: globaladmin@testdomain.com, <globaladmin@testdomain.com>
-From: Patrick Calahan <pcal@bea.com>
+From: globaladmin@testdomain.com
 Subject: RE: V2 Store discussion...
 In-Reply-To: globaladmin@testdomain.com
 Mime-Version: 1.0
@@ -67,7 +67,7 @@ how much of a requirement threadsafe XMLBeans really is going to be for users.
 >- Eric
 >
 >-----Original Message-----
->From: Chris Fry [mailto:christopher.fry@bea.com]
+>From: globaladmin@testdomain.com
 >Sent: Monday, September 29, 2003 9:55 AM
 >To: globaladmin@testdomain.com
 >Subject: RE: V2 Store discussion...
@@ -84,7 +84,7 @@ how much of a requirement threadsafe XMLBeans really is going to be for users.
 >-C
 >
 > > -----Original Message-----
-> > From: David Bau [mailto:david.bau@bea.com]
+> > From: globaladmin@testdomain.com
 > > Sent: Monday, September 29, 2003 8:27 AM
 > > To: globaladmin@testdomain.com
 > > Subject: V2 Store discussion...
@@ -154,7 +154,7 @@ Any thoughts?&nbsp; Any confusion about this trade off?&nbsp; <br><br>
 - Eric<br><br>
 -----Original Message-----<br>
 From: Chris Fry
-[<a href="mailto:christopher.fry@bea.com" eudora="autourl">mailto:christopher.fry@bea.com</a>]<br>
+[<a href="mailto:globaladmin@testdomain.com" eudora="autourl">mailto:globaladmin@testdomain.com</a>]<br>
 Sent: Monday, September 29, 2003 9:55 AM<br>
 To: globaladmin@testdomain.com;<br>
 Subject: RE: V2 Store discussion...<br><br>
@@ -175,7 +175,7 @@ in WS-invocations...<br><br>
 -C<br><br>
 &gt; -----Original Message-----<br>
 &gt; From: David Bau
-[<a href="mailto:david.bau@bea.com" eudora="autourl">mailto:david.bau@bea.com</a>]<br>
+[<a href="mailto:globaladmin@testdomain.com" eudora="autourl">mailto:globaladmin@testdomain.com</a>]<br>
 &gt; Sent: Monday, September 29, 2003 8:27 AM<br>
 &gt; To: globaladmin@testdomain.com<br>
 &gt; Subject: V2 Store discussion...<br>

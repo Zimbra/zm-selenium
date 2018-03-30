@@ -1291,6 +1291,7 @@ public class FormMailNew extends AbsForm {
 	}
 
 	public String zGetSignatueImageSrc() throws HarnessException {
+		SleepUtil.sleepMedium();
 		String imageSrc;
 		try {
 

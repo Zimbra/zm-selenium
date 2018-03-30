@@ -18,7 +18,7 @@ Reply-To: globaladmin@testdomain.com
 Delivered-To: mailing list globaladmin@testdomain.com
 Received: (qmail 80658 invoked from network); 29 Sep 2003 17:24:56 -0000
 Message-ID: <00c201c386ad$8f81d2a0$0fa8a8c0@lightbox>
-From: "David Bau" <david.bau@bea.com>
+From: globaladmin@testdomain.com
 To: globaladmin@testdomain.com
 References: <005201c386aa$5fe5bdc0$2f1e11ac@farralon>
 Subject: Re: [xmlbeans-dev] RE: V2 Store discussion...
@@ -36,7 +36,7 @@ X-Evolution-Source: imap://smith@smith.pobox.stanford.edu/
 X-Evolution: 0000003f-0010
 
 ----- Original Message ----- 
-From: "Chris Fry" <christopher.fry@bea.com>
+From: globaladmin@testdomain.com
 
 
 > I think you should be careful not to make the same mistakes that the JDK

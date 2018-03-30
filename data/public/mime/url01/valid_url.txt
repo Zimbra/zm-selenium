@@ -1,4 +1,4 @@
-From: foo@foo.com 
+From: globaladmin@testdomain.com 
 To: globaladmin@testdomain.com 
 Subject: subject12955323015009
 MIME-Version: 1.0 

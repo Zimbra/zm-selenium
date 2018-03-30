@@ -1,4 +1,4 @@
-Delivered-To: testmail@gmail.com
+Delivered-To: globaladmin@testdomain.com
 Received: by 10.231.15.129 with SMTP id k1cs40560iba;
         Mon, 14 Mar 2011 03:05:31 -0700 (PDT)
 Received: from mr.google.com ([10.231.181.20])
@@ -6,26 +6,26 @@ Received: from mr.google.com ([10.231.181.20])
         Mon, 14 Mar 2011 03:05:31 -0700 (PDT)
 Received: by 10.231.181.20 with SMTP id bw20mr9575747ibb.101.1300097131023;
         Mon, 14 Mar 2011 03:05:31 -0700 (PDT)
-X-Forwarded-To: testmail@gmail.com
-X-Forwarded-For: testmail@gmail.com testmail@gmail.com
-Delivered-To: testmail@gmail.com
+X-Forwarded-To: globaladmin@testdomain.com
+X-Forwarded-For: globaladmin@testdomain.com globaladmin@testdomain.com
+Delivered-To: globaladmin@testdomain.com
 Received: by 10.231.31.10 with SMTP id w10cs93537ibc;
         Mon, 14 Mar 2011 03:05:30 -0700 (PDT)
 Received: by 10.42.117.68 with SMTP id s4mr1138352icq.348.1300097129833;
         Mon, 14 Mar 2011 03:05:29 -0700 (PDT)
-Return-Path: <killroy35.5@hotmail.com>
+Return-Path: <globaladmin@testdomain.com>
 Received: from blu0-omc1-s12.blu0.hotmail.com (blu0-omc1-s12.blu0.hotmail.com [65.55.116.23])
         by mx.google.com with ESMTP id xf6si18994529icb.86.2011.03.14.03.05.27;
         Mon, 14 Mar 2011 03:05:29 -0700 (PDT)
-Received-SPF: pass (google.com: domain of killroy35.5@hotmail.com designates 65.55.116.23 as permitted sender) client-ip=65.55.116.23;
-Authentication-Results: mx.google.com; spf=pass (google.com: domain of killroy35.5@hotmail.com designates 65.55.116.23 as permitted sender) smtp.mail=killroy35.5@hotmail.com
+Received-SPF: pass (google.com: domain of globaladmin@testdomain.com designates 65.55.116.23 as permitted sender) client-ip=65.55.116.23;
+Authentication-Results: mx.google.com; spf=pass (google.com: domain of globaladmin@testdomain.com designates 65.55.116.23 as permitted sender) smtp.mail=globaladmin@testdomain.com
 Received: from BLU154-W56 ([65.55.116.8]) by blu0-omc1-s12.blu0.hotmail.com with Microsoft SMTPSVC(6.0.3790.4675);
 	 Mon, 14 Mar 2011 03:05:27 -0700
-Return-Path: killroy35.5@hotmail.com
+Return-Path: globaladmin@testdomain.com
 Content-Type: multipart/alternative;
 	boundary="_5c38a7c9-bf62-4cff-b65a-a31e5eb3e9c8_"
 X-Originating-IP: [88.243.143.150]
-From: =?windows-1254?B?bXV6YWZmZXIgdGH+5/0=?= <killroy35.5@hotmail.com>
+From: =?windows-1254?B?bXV6YWZmZXIgdGH+5/0=?= <globaladmin@testdomain.com>
 To: <ay__@msn.com>, <godoxs_@hotmail.com>, <cenkkaya@residencehotel.com.tr>, <cettia@cettia.com>,
 	<cilgin.kiz.35@hotmail.com>, <cizgi1963@hotmail.com>, <deniz-sirtikkizil@hotmail.com>
 Subject: Email address bubble check
@@ -44,8 +44,8 @@ Content-Transfer-Encoding: 8bit
 
 
 
-From: tdidem84@hotmail.com
-To: benidemadan@hotmail.com; camur85@gmail.com; camurun_erki@hotmail.com; can_850@hotmail.com; dnzknclr@hotmail.com; deniz-sirtikkizil@hotmail.com; elcin_durukan@hotmail.com; ezelokcu@hotmail.com; nemesisnewa@hotmail.com; gamzedogan2011@hotmail.com; hvurmaz@hotmail.com; killroy35.5@hotmail.com; midwife_nirse@hotmail.com; umitdogan78@hotmail.com
+From: globaladmin@testdomain.com
+To: benidemadan@hotmail.com; camur85@gmail.com; camurun_erki@hotmail.com; can_850@hotmail.com; dnzknclr@hotmail.com; deniz-sirtikkizil@hotmail.com; elcin_durukan@hotmail.com; ezelokcu@hotmail.com; nemesisnewa@hotmail.com; gamzedogan2011@hotmail.com; hvurmaz@hotmail.com; globaladmin@testdomain.com; midwife_nirse@hotmail.com; umitdogan78@hotmail.com
 Subject: FW: Ben �zel insanlara g�nderdim::)))
 Date: Wed, 9 Mar 2011 11:36:55 +0200
 
@@ -63,7 +63,7 @@ Date: Wed, 9 Mar 2011 11:36:55 +0200
 
 Date: Fri, 4 Mar 2011 12:26:31 +0200
 Subject: Ben �zel insanlara g�nderdim::)))
-From: hvurmaz@gmail.com
+From: globaladmin@testdomain.com
 
 
 
@@ -221,7 +221,7 @@ font-family:Tahoma
 --></style>
 </head>
 <body class='hmmessage'>
-<br><br><hr id="stopSpelling">From: tdidem84@hotmail.com<br>To: benidemadan@hotmail.com; camur85@gmail.com; camurun_erki@hotmail.com; can_850@hotmail.com; dnzknclr@hotmail.com; deniz-sirtikkizil@hotmail.com; elcin_durukan@hotmail.com; ezelokcu@hotmail.com; nemesisnewa@hotmail.com; gamzedogan2011@hotmail.com; hvurmaz@hotmail.com; killroy35.5@hotmail.com; midwife_nirse@hotmail.com; umitdogan78@hotmail.com<br>Subject: FW: Ben �zel insanlara g�nderdim::)))<br>Date: Wed, 9 Mar 2011 11:36:55 +0200<br><br>
+<br><br><hr id="stopSpelling">From: globaladmin@testdomain.com<br>To: benidemadan@hotmail.com; camur85@gmail.com; camurun_erki@hotmail.com; can_850@hotmail.com; dnzknclr@hotmail.com; deniz-sirtikkizil@hotmail.com; elcin_durukan@hotmail.com; ezelokcu@hotmail.com; nemesisnewa@hotmail.com; gamzedogan2011@hotmail.com; hvurmaz@hotmail.com; globaladmin@testdomain.com; midwife_nirse@hotmail.com; umitdogan78@hotmail.com<br>Subject: FW: Ben �zel insanlara g�nderdim::)))<br>Date: Wed, 9 Mar 2011 11:36:55 +0200<br><br>
 
 <meta http-equiv="Content-Type" content="text/html; charset=unicode">
 <meta name="Generator" content="Microsoft SafeHTML">
@@ -237,7 +237,7 @@ font-family:Tahoma
 <br>&nbsp;<br>
 
 <hr id="ecxstopSpelling">
-Date: Fri, 4 Mar 2011 12:26:31 +0200<br>Subject: Ben �zel insanlara g�nderdim::)))<br>From: hvurmaz@gmail.com<br><br><br>
+Date: Fri, 4 Mar 2011 12:26:31 +0200<br>Subject: Ben �zel insanlara g�nderdim::)))<br>From: globaladmin@testdomain.com<br><br><br>
 <div class="ecxgmail_quote">
 <div lang="TR">
 <div>

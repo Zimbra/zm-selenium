@@ -37,14 +37,14 @@ public class ReplyMailWithInlineImageAttachment extends SetGroupMailByMessagePre
 
 
 	@Test (description = "Reply to a mail with attachment - Verify inline image sent",
-			groups = { "smoke", "L1", "upload" })
+			groups = { "smoke", "L1", "upload", "non-msedge" })
 
 	public void ReplyMailWithInlineImageAttachment_01() throws HarnessException {
 
 		try {
 
 			final String mimeSubject = "subjectAttachment";
-			final String mimeFile = ConfigProperties.getBaseDirectory() + "\\data\\public\\mime\\email17\\mime.txt";
+			final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email17/mime.txt";
 			FolderItem sent = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Sent);
 
 			// Inject the sample mime
@@ -65,7 +65,7 @@ public class ReplyMailWithInlineImageAttachment extends SetGroupMailByMessagePre
 			mailform.zFillField(Field.To, ZimbraAccount.AccountA().EmailAddress);
 
 			final String fileName = "samplejpg.jpg";
-			final String filePath = ConfigProperties.getBaseDirectory() + "/data/public/other/" + fileName;
+			final String filePath = ConfigProperties.getBaseDirectory() + "\\data\\public\\other\\" + fileName;
 
 			app.zPageMail.zPressButton(Button.O_ATTACH_DROPDOWN);
 			app.zPageMail.zPressButton(Button.B_ATTACH_INLINE);

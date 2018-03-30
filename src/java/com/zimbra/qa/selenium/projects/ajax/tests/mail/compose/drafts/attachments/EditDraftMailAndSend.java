@@ -39,7 +39,8 @@ public class EditDraftMailAndSend extends SetGroupMailByMessagePreference {
 		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "html");
 	}
 
-	@Bugs(ids = "47699")
+
+	@Bugs(ids = "ZCS-4696, 47699")
 	@Test (description = "Save draft a mail, edit, add an attachment, send the mail and verify the presence of the mail in Draft",
 			groups = { "functional", "L2", "upload", "non-msedge" })
 
@@ -79,10 +80,10 @@ public class EditDraftMailAndSend extends SetGroupMailByMessagePreference {
 			app.zPageMail.zPressButton(Button.B_ATTACH);
 			zUpload(filePath);
 
-			// send the mail
+			// Send the mail
 			mailform.zSubmit();
 			
-			// check that mail is removed from draft folder
+			// Check that mail is removed from draft folder
 			ZAssert.assertTrue(app.zPageMail.zListGetMessages().size() == 0, "Verify that the mail is removed from draft folder");
 			
 			// Verify using soap that mail is sent to the recipients
