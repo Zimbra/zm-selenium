@@ -1042,7 +1042,7 @@ public class FormMailNew extends AbsForm {
 		
 		// Check attachment name 
 		for(WebElement a : attachments) {
-			if(a.getText().equals(attachmentName)) {
+			if(a.getText().contains(attachmentName)) {
 				logger.info("Found folder item: "+ a.getText());
 				return true;
 			}

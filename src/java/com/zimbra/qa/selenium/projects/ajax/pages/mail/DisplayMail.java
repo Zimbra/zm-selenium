@@ -54,6 +54,7 @@ public class DisplayMail extends AbsDisplay {
 		public static final String MessageViewPreviewAtRightCSS = "css=div[id='zv__TV-main__MSG']";
 		public static final String MessageViewPreviewOff = "css=td[id='off_check'] div[class='ImgMenuRadio']";
 		public static final String MessageViewOpenMessageCSS = "css=div[id^='zv__MSG-'][id$='__MSG']";
+		public static final String MessageViewInSeparateTabCSS = "css=div[id^='zv__MSG-'][id$='__MSG']";
 
 		public static final String ConversationViewPreviewAtBottomCSS = "css=div[id='zv__CLV-main__CV']";
 		public static final String ConversationViewPreviewAtRightCSS = "css=div[id='zv__CLV-main__CV']";
@@ -98,6 +99,7 @@ public class DisplayMail extends AbsDisplay {
 	}
 
 	public String ContainerLocator = Locators.MessageViewPreviewAtBottomCSS;
+	public String SeparateTabContainerLocator = Locators.MessageViewInSeparateTabCSS;
 
 	protected DisplayMail(AbsApplication application) {
 		super(application);
@@ -1036,6 +1038,111 @@ public class DisplayMail extends AbsDisplay {
 			if (!sIsElementPresent(locator)) {
 				// no email zimlet case
 				locator = this.ContainerLocator + " tr[id$='_to'] td[class='LabelColValue'] ";
+			}
+
+		} else {
+
+			throw new HarnessException("no logic defined for field " + field);
+
+		}
+
+		// Make sure the subject is present
+		if (!this.sIsElementPresent(locator))
+			throw new HarnessException("Unable to find the field = " + field + " using locator = " + locator);
+
+		// Get the subject value
+		String value = this.sGetText(locator).trim();
+
+		logger.info("DisplayMail.zGetDisplayedValue(" + field + ") = " + value);
+		return (value);
+
+	}
+
+	public String zGetMailPropertyDisplayedInSeparateTab(Field field) throws HarnessException {
+		logger.info("DisplayMail.zGetDisplayedValue(" + field + ")");
+
+		String locator = null;
+
+		if (field == Field.Bcc) {
+
+			// Does this show in any mail views? Maybe in Sent?
+			throw new HarnessException("implement me!");
+
+		} else if (field == Field.Body) {
+
+			int frames = this.sGetCssCount("css=iframe");
+			logger.debug("Body: # of frames: " + frames);
+
+			try {
+				String bodyLocator = "body";
+				webDriver().switchTo().defaultContent();
+
+				if (frames >= 1) {
+					webDriver().switchTo().frame(0);
+					we = webDriver().findElement(By.cssSelector(bodyLocator));
+				} else {
+					we = webDriver().findElement(By.className("MsgBody-text"));
+				}
+
+				String html = this.sGetHtmlSource();
+				logger.info("DisplayMail.zGetBody(" + bodyLocator + ") = " + html);
+				return (html);
+
+			} finally {
+				this.sSelectFrame("relative=top");
+				webDriver().switchTo().defaultContent();
+			}
+
+		} else if (field == Field.Cc) {
+
+			locator = this.SeparateTabContainerLocator
+					+ " tr[id$='_cc'] td[class~='LabelColValue'] span[id$='_com_zimbra_email'] span span";
+			if (!sIsElementPresent(locator)) {
+				// no email zimlet case
+				locator = this.SeparateTabContainerLocator + " tr[id$='_cc'] td[class~='LabelColValue']";
+			}
+
+		} else if (field == Field.From) {
+
+			locator = this.SeparateTabContainerLocator + " td[id$='_from'] span[id$='_com_zimbra_email'] span span";
+			if (!sIsElementPresent(locator)) {
+				// no email zimlet case
+				locator = this.SeparateTabContainerLocator + " td[id$='_from']";
+			}
+
+		} else if (field == Field.ReceivedDate) {
+
+			locator = this.SeparateTabContainerLocator + " tr[id$='_hdrTableTopRow'] td[class~='DateCol']";
+
+		} else if (field == Field.ReceivedTime) {
+
+			String timeAndDateLocator = this.SeparateTabContainerLocator + " td[class~='DateCol']";
+
+			// Make sure the subject is present
+			if (!this.sIsElementPresent(timeAndDateLocator))
+				throw new HarnessException("Unable to find the time and date field!");
+
+			// Get the subject value
+			String timeAndDate = this.sGetText(timeAndDateLocator).trim();
+			String date = this.zGetMailProperty(Field.ReceivedDate);
+
+			// Strip the date so that only the time remains
+			String time = timeAndDate.replace(date, "").trim();
+
+			logger.info("DisplayMail.zGetDisplayedValue(" + field + ") = " + time);
+			return (time);
+
+		} else if (field == Field.Subject) {
+
+			locator = this.SeparateTabContainerLocator + " tr[id$='_hdrTableTopRow'] td[class~='SubjectCol']";
+
+		} else if (field == Field.To) {
+
+			locator = this.SeparateTabContainerLocator
+					+ " tr[id$='_to'] td[class='LabelColValue'] span[id$='_com_zimbra_email'] span span";
+			if (!sIsElementPresent(locator)) {
+				// no email zimlet case
+				locator = this.SeparateTabContainerLocator + " tr[id$='_to'] td[class='LabelColValue'] ";
 			}
 
 		} else {

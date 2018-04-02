@@ -64,12 +64,12 @@ public class OpenMail extends SetGroupMailByMessagePreference {
 		DisplayMail actual = (DisplayMail) app.zPageMail.zListItem(Action.A_DOUBLECLICK, mail.dSubject);
 
 		// Verify the To, From, Subject, Body
-		ZAssert.assertEquals(actual.zGetMailProperty(Field.Subject), mail.dSubject, "Verify the subject matches");
-		ZAssert.assertNotNull(actual.zGetMailProperty(Field.ReceivedDate), "Verify the date is displayed");
-		ZAssert.assertNotNull(actual.zGetMailProperty(Field.ReceivedTime), "Verify the time is displayed");
-		ZAssert.assertEquals(actual.zGetMailProperty(Field.From), ZimbraAccount.AccountA().EmailAddress, "Verify the From matches");
-		ZAssert.assertEquals(actual.zGetMailProperty(Field.Cc), ZimbraAccount.AccountB().EmailAddress, "Verify the Cc matches");
-		ZAssert.assertEquals(actual.zGetMailProperty(Field.To), app.zGetActiveAccount().EmailAddress, "Verify the To matches");
-		ZAssert.assertStringContains(actual.zGetMailProperty(Field.Body), mail.dBodyText, "Verify the body matches");
+		ZAssert.assertEquals(actual.zGetMailPropertyDisplayedInSeparateTab(Field.Subject), mail.dSubject, "Verify the subject matches");
+		ZAssert.assertNotNull(actual.zGetMailPropertyDisplayedInSeparateTab(Field.ReceivedDate), "Verify the date is displayed");
+		ZAssert.assertNotNull(actual.zGetMailPropertyDisplayedInSeparateTab(Field.ReceivedTime), "Verify the time is displayed");
+		ZAssert.assertEquals(actual.zGetMailPropertyDisplayedInSeparateTab(Field.From), ZimbraAccount.AccountA().EmailAddress, "Verify the From matches");
+		ZAssert.assertEquals(actual.zGetMailPropertyDisplayedInSeparateTab(Field.Cc), ZimbraAccount.AccountB().EmailAddress, "Verify the Cc matches");
+		ZAssert.assertEquals(actual.zGetMailPropertyDisplayedInSeparateTab(Field.To), app.zGetActiveAccount().EmailAddress, "Verify the To matches");
+		ZAssert.assertStringContains(actual.zGetMailPropertyDisplayedInSeparateTab(Field.Body), mail.dBodyText, "Verify the body matches");
 	}
 }
