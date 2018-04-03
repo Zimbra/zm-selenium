@@ -84,6 +84,7 @@ public class ExecuteHarnessMain {
 	public static String testTotalMinutes;
 	protected AbsTab startingPage = null;
 
+	public static String hostname;
 	public static String zimbraVersion = null;
 	public static Boolean isNGEnabled = false;
 	public static Boolean isDLRightGranted = false;
@@ -289,11 +290,18 @@ public class ExecuteHarnessMain {
 			excludeGroups.add("network");
 		}
 
+		// Upload file through file explorer
 		if (OperatingSystem.isWindows() == false || ConfigProperties.getStringProperty("browser").contains("edge")) {
 			excludeGroups.add("upload");
 			excludeGroups.add("non-msedge");
 		}
 
+		// Server restart
+		if (!ConfigProperties.getStringProperty("server.host").endsWith(".zimbra.com")) {
+			excludeGroups.add("non-aws");
+		}
+
+		// NG modules
 		if (CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"), "zmprov gs "
 				+ ExecuteHarnessMain.storeServers.get(0)
 				+ " zimbraNetworkModulesNGEnabled | grep -i 'zimbraNetworkModulesNGEnabled' | cut -d : -f 2 | tr -d '[:blank:]'")
@@ -1334,6 +1342,13 @@ public class ExecuteHarnessMain {
 		// Selenium service
 		SeleniumService seleniumService = new SeleniumService();
 
+		// Hostname
+		try {
+			hostname = InetAddress.getLocalHost().getHostName();
+		} catch (UnknownHostException e) {
+			e.printStackTrace();
+		}
+
 		// Harness log
 		StafIntegration.sHarnessLogFileFolderPath = testoutputfoldername + "/debug/projects";
 		StafIntegration.sHarnessLogFilePath = StafIntegration.sHarnessLogFileFolderPath + "/" + StafIntegration.sHarnessLogFileName;
@@ -1355,8 +1370,6 @@ public class ExecuteHarnessMain {
 			logger.info(StafIntegration.logInfo);
 			Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo),
 					Charset.forName("UTF-8"), StandardOpenOption.APPEND);
-
-
 
 			// Get total zimbra servers
 			logger.info("Get total zimbra servers...");

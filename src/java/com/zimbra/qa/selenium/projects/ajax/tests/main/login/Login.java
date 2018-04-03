@@ -225,22 +225,19 @@ public class Login extends AjaxCore {
 	}
 
 
-	@DataProvider(name = "DataProvider_zimbraMailURL")
-	public Object[][] DataProvider_zimbraMailURL() {
+	@DataProvider(name = "ZimbraMailURLDataProvider")
+	public Object[][] ZimbraMailURLDataProvider() {
 		  return new Object[][] {
-				    new Object[] { "", null },
-				    new Object[] { "/", null },
-				    new Object[] { "/foobar", null },
-				    new Object[] { "/foobar/", null },
-				  };
+			  new Object[] { "/foobar", null },
+		  };
 		}
 
 	@Bugs (ids = "66788")
 	@Test (description = "Change the zimbraMailURL and login", priority=5,
-			groups = { "functional-skip", "L3-skip" },
-			dataProvider = "DataProvider_zimbraMailURL")
+			groups = { "functional", "L3", "non-aws" },
+			dataProvider = "ZimbraMailURLDataProvider")
 
-	public void Login_05(String zimbraMailURLtemp, String notused) throws HarnessException {
+	public void Login_05(String zimbraMailURLtemp) throws HarnessException {
 
 		String zimbraMailURL = null;
 
@@ -256,20 +253,23 @@ public class Login extends AjaxCore {
 			// Change to the new zimbraMailURL temp value
 			ZimbraAdminAccount.GlobalAdmin().soapSend(
 					"<ModifyConfigRequest xmlns='urn:zimbraAdmin'>"
-				+		"<a n='zimbraMailURL'>"+ zimbraMailURLtemp + "</a>"
+				+		"<a n='zimbraMailURL'>" + zimbraMailURLtemp + "</a>"
 				+	"</ModifyConfigRequest>");
 
 			CommandLineUtility.runCommandOnZimbraServer(ZimbraAccount.AccountZCS().zGetAccountStoreHost(),
 					"zmmailboxdctl restart");
 
-			// Wait for the service to come up
-			SleepUtil.sleep(60000);
-
-			CommandLineUtility.runCommandOnZimbraServer(ZimbraAccount.AccountZCS().zGetAccountStoreHost(),
-					"zmmailboxdctl status");
-
-			// Open the login page
-			app.zPageLogin.sOpen(ConfigProperties.getBaseURL());
+			SleepUtil.sleepVeryLong();
+			for (int i = 0; i <= 10; i++) {
+				app.zPageMain.sOpen(ConfigProperties.getBaseURL() + zimbraMailURLtemp);
+				if (app.zPageLogin.sIsElementPresent("css=input[class^='ZLoginButton']") == true ||
+						app.zPageLogin.sIsElementPresent("css=div[id$='parent-ZIMLET'] td[id$='ZIMLET_textCell']") == true) {
+					break;
+				} else {
+					SleepUtil.sleepLong();
+					continue;
+				}
+			}
 
 			// Login
 			app.zPageLogin.zLogin(ZimbraAccount.AccountZCS());
@@ -287,7 +287,7 @@ public class Login extends AjaxCore {
 				// Change the URL back to the original
 				ZimbraAdminAccount.GlobalAdmin().soapSend(
 						"<ModifyConfigRequest xmlns='urn:zimbraAdmin'>"
-					+		"<a n='zimbraMailURL'>"+ zimbraMailURL + "</a>"
+					+		"<a n='zimbraMailURL'>" + zimbraMailURL + "</a>"
 					+	"</ModifyConfigRequest>");
 
 				CommandLineUtility.runCommandOnZimbraServer(ZimbraAccount.AccountZCS().zGetAccountStoreHost(),
@@ -295,17 +295,12 @@ public class Login extends AjaxCore {
 
 				SleepUtil.sleepVeryLong();
 				for (int i = 0; i <= 10; i++) {
-					app.zPageLogin.zRefreshMainUI();
+					app.zPageLogin.zRefreshUI();
 					if (app.zPageLogin.sIsElementPresent("css=input[class^='ZLoginButton']") == true ||
 							app.zPageLogin.sIsElementPresent("css=div[id$='parent-ZIMLET'] td[id$='ZIMLET_textCell']") == true) {
 						break;
 					} else {
 						SleepUtil.sleepLong();
-						if (i == 5) {
-							CommandLineUtility.runCommandOnZimbraServer(ZimbraAccount.AccountZCS().zGetAccountStoreHost(),
-									"zmmailboxdctl restart");
-							SleepUtil.sleepVeryLong();
-						}
 						continue;
 					}
 				}

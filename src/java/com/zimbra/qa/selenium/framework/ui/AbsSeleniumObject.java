@@ -837,13 +837,11 @@ public abstract class AbsSeleniumObject {
 
 	// Refreshes UI till loading completes successfully
 	public void zRefreshMainUI() throws HarnessException {
-		logger.info("Refresh UI");
+		logger.info("Refresh main UI");
 		webDriver().navigate().refresh();
-
 		zHandleAlert();
 
 		if (ConfigProperties.getAppType().toString().equals("AJAX")) {
-
 			if (ConfigProperties.getStringProperty("server.host").contains("zimbra.com")) {
 				zWaitTillElementPresent(
 						com.zimbra.qa.selenium.projects.ajax.pages.mail.PageMail.Locators.zMailZimletsPane);
@@ -852,11 +850,9 @@ public abstract class AbsSeleniumObject {
 			}
 
 		} else if (ConfigProperties.getAppType().name().equals("ADMIN")) {
-
 			boolean loginPagePresent = false, mainUIPresent = false;
 
 			SleepUtil.sleepSmall();
-
 			for (int i = 0; i <= 15; i++) {
 				if (webDriver().getTitle().contains("502 Bad Gateway") || webDriver().getTitle().contains("404 - Not Found")) {
 					webDriver().get(webDriver().getCurrentUrl());
