@@ -331,12 +331,14 @@ public class ZimbraAccount {
 	@SuppressWarnings("serial")
 	private static final Map<String, String> accountAttrs = new HashMap<String, String>() {
 		{
-			if (ConfigProperties.getStringProperty("server.host").contains(".eng.")) {
+			// Timezone
+			if (ExecuteHarnessMain.hostname.contains("zqa")) {
 				put("zimbraPrefTimeZoneId", "America/Chicago");
 			} else {
 				put("zimbraPrefTimeZoneId", "Asia/Kolkata");
 			}
 
+			// Calendar view
 			if (Calendar.getInstance().get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY
 					|| Calendar.getInstance().get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) {
 				put("zimbraPrefCalendarInitialView", "week");

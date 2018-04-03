@@ -23,7 +23,6 @@ import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.CommandLineUtility;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
-import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
@@ -98,7 +97,7 @@ public class ZimbraHelpAdvancedURL extends AjaxCore {
 			}
 
 			// Check the URL
-			ZAssert.assertTrue(tempURL.contains("/helpUrl/help/adv/advhelp.html"),	"Product Help URL is not as set in zimbraHelpAdvancedURL");
+			ZAssert.assertTrue(tempURL.contains("/helpUrl/help/adv/advhelp.html"), "Product Help URL is not as set in zimbraHelpAdvancedURL");
 
 		} finally {
 
@@ -107,28 +106,6 @@ public class ZimbraHelpAdvancedURL extends AjaxCore {
 					.soapSend("<ModifyDomainRequest xmlns='urn:zimbraAdmin'>" + "<id>" + domainID + "</id>"
 							+ "<a n='zimbraHelpAdvancedURL'>" + url + "</a>" + "<a n='zimbraVirtualHostname'>" + ""
 							+ "</a>" + "</ModifyDomainRequest>");
-
-			// Restart zimbra services
-			CommandLineUtility.runCommandOnZimbraServer(ZimbraAccount.AccountZCS().zGetAccountStoreHost(),
-					"zmmailboxdctl restart");
-
-			SleepUtil.sleepVeryLong();
-			for (int i = 0; i <= 10; i++) {
-				app.zPageLogin.zRefreshMainUI();
-				if (app.zPageLogin.sIsElementPresent("css=input[class^='ZLoginButton']") == true ||
-						app.zPageLogin.sIsElementPresent("css=div[id$='parent-ZIMLET'] td[id$='ZIMLET_textCell']") == true) {
-					break;
-				} else {
-					SleepUtil.sleepLong();
-					if (i == 5) {
-						CommandLineUtility.runCommandOnZimbraServer(ZimbraAccount.AccountZCS().zGetAccountStoreHost(),
-								"zmmailboxdctl restart");
-						SleepUtil.sleepVeryLong();
-					}
-					continue;
-				}
-			}
-
 		}
 	}
 

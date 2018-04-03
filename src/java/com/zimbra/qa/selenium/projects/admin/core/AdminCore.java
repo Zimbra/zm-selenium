@@ -100,8 +100,7 @@ public class AdminCore {
 		logger.info("BeforeSuite: start");
 
 		// For coverage ?mode=mjsf&gzip=false
-		if (ConfigProperties.getStringProperty(ConfigProperties.getLocalHost() + ".coverage.enabled",
-				ConfigProperties.getStringProperty("coverage.enabled")).contains("true") == true) {
+		if (ConfigProperties.getStringProperty("coverage.enabled").contains("true") == true) {
 			try {
 				CommandLineUtility.runCommandOnZimbraServer(ExecuteHarnessMain.proxyServers.get(0),
 						"zmprov mcf +zimbraHttpThrottleSafeIPs " + InetAddress.getLocalHost().getHostAddress());

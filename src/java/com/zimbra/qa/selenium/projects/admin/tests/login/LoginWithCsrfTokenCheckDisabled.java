@@ -35,7 +35,7 @@ public class LoginWithCsrfTokenCheckDisabled extends AdminCore {
 
 
 	@Test (description = "Login to the admin console after disabling csrf check", priority=5,
-			groups = { "smoke", "L1" })
+			groups = { "smoke", "L1", "non-aws" })
 
 	public void LoginWithCsrfTokenCheckDisabled_01() throws HarnessException {
 		try {
@@ -82,6 +82,7 @@ public class LoginWithCsrfTokenCheckDisabled extends AdminCore {
 					"zmmailboxdctl restart");
 
 			app.zPageMain.zRefreshMainUI();
+
 			// Open the base URL
 			app.zPageLogin.sOpen(ConfigProperties.getBaseURL());
 			app.zPageLogin.zLogin(gAdmin);
