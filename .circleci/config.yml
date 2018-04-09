@@ -13,7 +13,7 @@ config: &config
       - SELENIUM_PATTERN: projects.ajax.tests
    docker:
       - image: jiteshsojitra/docker-ubuntu-xfce-container:1.0
-        entrypoint: $HOME/scripts/vnc-startup.sh
+        entrypoint: /root/scripts/vnc-startup.sh
 
 ##############################
 
