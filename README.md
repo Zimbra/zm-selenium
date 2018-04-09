@@ -3,8 +3,9 @@
 1. Create .zcs-deps directory at your %UserProfile%.
 2. Install ant, ivy, Java1.8+ and set respective environment variables.
 3. Download ant-contrib-1.0b1 from below URL put into %UserProfile%/.zcs-deps location.
-   https://files.zimbra.com/repository/ant-contrib/ant-contrib-1.0b1.jar
-
+    ```
+    https://files.zimbra.com/repository/ant-contrib/ant-contrib-1.0b1.jar
+    ```
 4. Clone following git repos:
     ```
     git clone https://github.com/Zimbra/zm-mailbox.git
