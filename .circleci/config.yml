@@ -5,12 +5,6 @@ version: 2
 config: &config
    context: selenium
    working_directory: ~/zm-selenium
-   environment:
-      - ZIMBRA_VERSION: 8.8.0_GA
-      - SELENIUM_BROWSER: chrome
-      - SELENIUM_SERVER_HOST: ec2-35-154-223-151.ap-south-1.compute.amazonaws.com
-      - SELENIUM_GROUPS: L0
-      - SELENIUM_PATTERN: projects.ajax.tests
    docker:
       - image: jiteshsojitra/docker-ubuntu-xfce-container:1.0
         entrypoint: /root/scripts/vnc-startup.sh
@@ -31,18 +25,18 @@ jobs:
          - run:
               name: Compile zimbra native
               working_directory: ~/zm-mailbox/native
-              command: ant publish-local -Ddev.home=$HOME -Dzimbra.buildinfo.version=$ZIMBRA_VERSION
+              command: ant publish-local -Ddev.home=$HOME -Dzimbra.buildinfo.version=$ENV_ZIMBRA_VERSION
          - run:
               name: Compile zimbra common
               working_directory: ~/zm-mailbox/common
-              command: ant publish-local -Ddev.home=$HOME -Dzimbra.buildinfo.version=$ZIMBRA_VERSION
+              command: ant publish-local -Ddev.home=$HOME -Dzimbra.buildinfo.version=$ENV_ZIMBRA_VERSION
          - run:
               name: Configure selenium suite
               command: bash -x .circleci/pre-configurations.sh
          - run:
               name: Execute selenium tests
               working_directory: ~/zm-selenium
-              command: ant Run-ExecuteHarnessMain -Duser.home=$HOME -Dpattern=$SELENIUM_PATTERN -Dgroups=always,$SELENIUM_GROUPS
+              command: ant Run-ExecuteHarnessMain -Duser.home=$HOME -Dpattern=$ENV_SELENIUM_TESTS_PATTERN -Dgroups=always,$ENV_SELENIUM_GROUPS
          - run:
               name: Generate test output
               command: bash -x .circleci/post-configurations.sh

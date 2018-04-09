@@ -10,5 +10,5 @@ echo $CONTAINER_IP_ADDRESS
 GITHUB_ORG_URL="https://github.com/Zimbra"
 GITHUB_REPOS=( "zm-mailbox" "zm-ajax" "zm-web-client" "zm-zimlets" "zm-network-selenium" )
 for GITHUB_REPO in "${GITHUB_REPOS[@]}"; do
-	git clone --depth=1 -b $CIRCLE_BRANCH $GITHUB_ORG_URL/$GITHUB_REPO ~/$GITHUB_REPO
+	git clone --depth=1 -b $ENV_BRANCH $GITHUB_ORG_URL/$GITHUB_REPO ~/$GITHUB_REPO
 done
