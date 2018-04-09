@@ -1,0 +1,64 @@
+version: 2
+
+############################################################################
+
+config: &config
+   context: selenium
+   working_directory: ~/zm-selenium
+   environment:
+      - ZIMBRA_VERSION: 8.8.0_GA
+      - SELENIUM_BROWSER: chrome
+      - SELENIUM_SERVER_HOST: ec2-35-154-223-151.ap-south-1.compute.amazonaws.com
+      - SELENIUM_GROUPS: L0
+      - SELENIUM_PATTERN: projects.ajax.tests
+   docker:
+      - image: jiteshsojitra/docker-ubuntu-xfce-container:1.0
+        entrypoint: $HOME/scripts/vnc-startup.sh
+
+##############################
+
+jobs:
+   Execute:
+      <<: *config
+
+      steps:
+         - checkout
+         - add_ssh_keys:
+              fingerprints: 47:28:e4:00:8e:67:f5:3e:42:c0:85:2c:84:8f:d1:3e
+         - run:
+              name: Checkout dependent repos
+              command: bash -x .circleci/checkout-repos.sh
+         - run:
+              name: Compile zimbra native
+              working_directory: ~/zm-mailbox/native
+              command: ant publish-local -Ddev.home=$HOME -Dzimbra.buildinfo.version=$ZIMBRA_VERSION
+         - run:
+              name: Compile zimbra common
+              working_directory: ~/zm-mailbox/common
+              command: ant publish-local -Ddev.home=$HOME -Dzimbra.buildinfo.version=$ZIMBRA_VERSION
+         - run:
+              name: Configure selenium suite
+              command: bash -x .circleci/pre-configurations.sh
+         - run:
+              name: Execute selenium tests
+              working_directory: ~/zm-selenium
+              command: ant Run-ExecuteHarnessMain -Duser.home=$HOME -Dpattern=$SELENIUM_PATTERN -Dgroups=always,$SELENIUM_GROUPS
+         - run:
+              name: Generate test output
+              command: bash -x .circleci/post-configurations.sh
+         - store_artifacts:
+              name: Store artifacts
+              path: ~/zm-selenium/test-output
+         - store_test_results:
+              name: Store rest results
+              path: ~/zm-selenium/test-output
+
+##############################
+
+workflows:
+   version: 2
+   SeleniumCI:
+      jobs:
+         - Execute
+
+############################################################################
