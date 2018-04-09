@@ -2,14 +2,20 @@
 
 set -euxo pipefail
 
-# Configuration
+# Selenium configuration
 seleniumConfigFile="$HOME/zm-selenium/conf/config.properties"
 
-# Update server
+# Update server host
 echo -e "Updating server host in config.properties file"
-configServer=`cat $seleniumConfigFile | grep server.host`
-configServer=`echo $configServer | cut -d \= -f 2`
-sed -i "0,/$configServer/s/$configServer/$ENV_SELENIUM_SERVER_HOST/" $seleniumConfigFile
+configServerHost=`cat $seleniumConfigFile | grep server.host`
+configServerHost=`echo $configServerHost | cut -d \= -f 2`
+sed -i "0,/$configServerHost/s/$configServerHost/$ENV_SELENIUM_SERVER_HOST/" $seleniumConfigFile
+
+# Update server user
+echo -e "Updating server user in config.properties file"
+configServerUser=`cat $seleniumConfigFile | grep server.user`
+configServerUser=`echo $configServerUser | cut -d \= -f 2`
+sed -i "0,/$configServerUser/s/$configServerUser/$ENV_SELENIUM_SERVER_USER/" $seleniumConfigFile
 
 # Update browser
 echo -e "Updating browser in config.properties file"
