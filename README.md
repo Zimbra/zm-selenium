@@ -2,10 +2,9 @@
 
 1. Create .zcs-deps directory at your %UserProfile%.
 2. Install ant, ivy, Java1.8+ and set respective environment variables.
-3. Copy following jars at %UserProfile%/.zcs-deps:
-    ```
-    ant-contrib-1.0b1.jar
-    ```
+3. Download ant-contrib-1.0b1 from below URL put into %UserProfile%/.zcs-deps location.
+   https://files.zimbra.com/repository/ant-contrib/ant-contrib-1.0b1.jar
+
 4. Clone following git repos:
     ```
     git clone https://github.com/Zimbra/zm-mailbox.git
@@ -17,7 +16,7 @@
 5. Build zm-native and zm-common jar using zm-mailbox repo.
    ```
    Go to zm-mailbox and build using following command.
-         ant publish-local-all -Dzimbra.buildinfo.version=8.8.5_GA
+         ant publish-local-all -Dzimbra.buildinfo.version=8.8.0_GA
  
    It will create zm-common.jar and zm-native.jar file
 6. Build zm-selenium using the following command:
@@ -33,7 +32,7 @@
     Build.xml:
         ant Run-ExecuteHarnessMain -Dpattern ajax.tests.mail.folders -Dgroups always,smoke
 
-    zimbraselenium.jar:
+    ZimbraSelenium.jar:
     - Create new configuration
     - Select 'zm-selenium' project and 'com.zimbra.qa.selenium.framework.core.ExecuteHarnessMain' as main class
     - Give '-j C:\pathToZm-selenium\build\dist\lib\ZimbraSelenium.jar -p com.zimbra.qa.selenium.projects.admin.tests.login.BasicLogin -g always,L0,L1,L2,L3 -l conf/log4j.properties' in argument
