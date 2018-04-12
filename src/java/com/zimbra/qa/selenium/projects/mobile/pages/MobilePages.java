@@ -38,7 +38,7 @@ public class MobilePages extends AbsApplication {
 		}
 		return MobilePages;
 	}
-	public MobilePages() {
+	private MobilePages() {
 		super();
 
 		logger.info("new " + MobilePages.class.getCanonicalName());

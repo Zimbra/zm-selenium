@@ -117,7 +117,7 @@ public class AdminPages extends AbsApplication {
 		}
 		return AdminPages;
 	}
-	public AdminPages() {
+	private AdminPages() {
 		super();
 
 		logger.info("new " + AdminPages.class.getCanonicalName());

@@ -65,7 +65,7 @@ public class HtmlPages extends AbsApplication {
 		}
 		return HtmlPages;
 	}
-	public HtmlPages() {
+	private HtmlPages() {
 		super();
 
 		logger.info("new " + HtmlPages.class.getCanonicalName());

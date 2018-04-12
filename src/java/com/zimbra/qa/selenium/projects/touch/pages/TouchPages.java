@@ -79,7 +79,7 @@ public class TouchPages extends AbsApplication {
 		}
 		return TouchPages;
 	}
-	public TouchPages() {
+	private TouchPages() {
 		super();
 
 		logger.info("new " + TouchPages.class.getCanonicalName());
