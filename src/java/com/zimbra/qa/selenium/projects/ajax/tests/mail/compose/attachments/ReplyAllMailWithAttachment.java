@@ -36,7 +36,7 @@ public class ReplyAllMailWithAttachment extends SetGroupMailByMessagePreference 
 
 
 	@Test (description = "Reply to a mail with attachment - Verify both attachment sent",
-			groups = { "sanity", "L0", "upload" })
+			groups = { "sanity", "L1", "upload" })
 
 	public void ReplyAllMailWithAttachment_01() throws HarnessException {
 

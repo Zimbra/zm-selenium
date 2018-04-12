@@ -41,7 +41,7 @@ public class DisplayDocument extends EnableBriefcaseFeature {
 
 
 	@Test (description = "Create document through SOAP - verify through GUI",
-			groups = { "smoke", "L0" })
+			groups = { "smoke", "L1" })
 
 	public void DisplayDocument_01() throws HarnessException {
 

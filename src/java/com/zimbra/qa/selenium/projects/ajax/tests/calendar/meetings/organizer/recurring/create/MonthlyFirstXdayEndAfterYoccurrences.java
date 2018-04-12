@@ -36,7 +36,7 @@ public class MonthlyFirstXdayEndAfterYoccurrences extends AjaxCore {
 
 
 	@Test (description = "Create monthly recurring invite with attendee and location with particular week & end date",
-			groups = { "sanity", "L0" })
+			groups = { "sanity", "L1" })
 
 	public void MonthlyFirstXdayEndAfterYoccurrences_01() throws HarnessException {
 

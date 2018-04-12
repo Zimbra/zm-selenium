@@ -39,7 +39,7 @@ public class GetAppointment extends AjaxCore {
 
 
 	@Test (description = "Verify the presence of appointment in Trash after deletion",
-			groups = { "smoke", "L0" })
+			groups = { "smoke", "L1" })
 
 	public void GetAppointment_01() throws HarnessException {
 

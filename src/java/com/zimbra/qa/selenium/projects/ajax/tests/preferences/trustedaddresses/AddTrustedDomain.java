@@ -33,7 +33,7 @@ public class AddTrustedDomain extends AjaxCore {
 
 	@Bugs (ids = "101356")
 	@Test (description = "Add a trusted domain address",
-			groups = { "sanity", "L0" } )
+			groups = { "sanity", "L1" } )
 
 	public void AddTrustedDomain_01() throws HarnessException {
 

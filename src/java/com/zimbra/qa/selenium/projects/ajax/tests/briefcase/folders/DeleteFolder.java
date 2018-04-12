@@ -34,7 +34,7 @@ public class DeleteFolder extends EnableBriefcaseFeature {
 
 
 	@Test (description = "Delete a briefcase sub-folder - Right click, Delete",
-			groups = { "smoke", "L0" })
+			groups = { "smoke", "L1" })
 
 	public void DeleteFolder_01() throws HarnessException {
 

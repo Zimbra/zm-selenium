@@ -34,7 +34,7 @@ public class LoginWithCsrfTokenCheckDisabled extends AjaxCore {
 
 
 	@Test (description = "Login to the webclient after disabling csrf check", priority=5,
-			groups = { "smoke", "L0", "non-aws" })
+			groups = { "smoke", "L1", "non-aws" })
 
 	public void LoginWithCsrfTokenCheckDisabled_01() throws HarnessException {
 		try {

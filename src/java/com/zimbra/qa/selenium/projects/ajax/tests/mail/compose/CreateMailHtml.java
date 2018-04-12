@@ -35,7 +35,7 @@ public class CreateMailHtml extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Send a mail using HTML editor",
-			groups = { "sanity", "L0" })
+			groups = { "sanity", "L1" })
 
 	public void CreateMailHtml_01() throws HarnessException {
 

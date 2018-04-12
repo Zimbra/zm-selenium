@@ -45,7 +45,7 @@ public class ViewInviteWithDisplayMailPreference extends AjaxCore {
 
 
 	@Test (description = "View invite with display mail preference as HTML and verify body multiline HTML content ",
-			groups = { "sanity", "L0" } )
+			groups = { "sanity", "L1" } )
 
 	public void ViewHTMLInviteWithHTMLPreference_01() throws HarnessException {
 
@@ -113,7 +113,7 @@ public class ViewInviteWithDisplayMailPreference extends AjaxCore {
 
 
 	@Test (description = "View invite with display mail preference as Plain text and verify body multiline HTML content ",
-			groups = { "sanity", "L0" } )
+			groups = { "sanity", "L1" } )
 
 	public void ViewHTMLInviteWithPlainTextPreference_02() throws HarnessException {
 
@@ -163,7 +163,7 @@ public class ViewInviteWithDisplayMailPreference extends AjaxCore {
 
 
 	@Test (description = "View invite with display mail preference as HTML and verify body multiline plain text content ",
-			groups = { "sanity", "L0" } )
+			groups = { "sanity", "L1" } )
 
 	public void ViewPlainTextInviteWithHTMLPreference_03() throws HarnessException {
 
@@ -244,7 +244,7 @@ public class ViewInviteWithDisplayMailPreference extends AjaxCore {
 
 
 	@Test (description = "Verify invite with display mail as PlainText and verify body multiline plain text content ",
-			groups = { "sanity", "L0" })
+			groups = { "sanity", "L1" })
 
 	public void ViewPlainTextInviteWithPlainTextPreference_04() throws HarnessException {
 

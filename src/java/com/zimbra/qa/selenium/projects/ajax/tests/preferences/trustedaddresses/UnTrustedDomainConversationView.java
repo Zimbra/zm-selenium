@@ -52,7 +52,7 @@ public class UnTrustedDomainConversationView extends AjaxCore {
 
 	@Bugs (ids = "74691,64830")
 	@Test (description = "Verify Display Image link in UnTrusted doamin for conversation view",
-			groups = { "sanity", "L0" })
+			groups = { "sanity", "L1" })
 
 	public void UnTrustedDomainConversationView_01() throws HarnessException {
 

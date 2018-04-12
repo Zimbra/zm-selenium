@@ -41,7 +41,7 @@ public class AppPreferences extends AjaxCore {
 
 
 	@Test (description = "?app=options in url",
-			groups = { "smoke", "L0" })
+			groups = { "smoke", "L1" })
 
 	public void AppPreferences_01() throws HarnessException {
 

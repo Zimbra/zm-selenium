@@ -162,7 +162,7 @@ public class DeleteContact extends AjaxCore  {
 
 
 	@Test (description = "Right click then click delete",
-			groups = { "smoke", "L0" })
+			groups = { "smoke", "L1" })
 
 	public void DeleteFromContextMenu_04() throws HarnessException {
 

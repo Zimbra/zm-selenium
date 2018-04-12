@@ -52,7 +52,7 @@ public class EditTask extends AjaxCore{
 
 
 	@Test (description = "Create task through SOAP - edit subject and verify through GUI",
-			groups = { "smoke", "L0" })
+			groups = { "smoke", "L1" })
 
 	public void EditTask_01() throws HarnessException {
 

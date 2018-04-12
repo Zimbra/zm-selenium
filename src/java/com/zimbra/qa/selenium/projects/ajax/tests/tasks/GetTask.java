@@ -44,7 +44,7 @@ public class GetTask extends AjaxCore {
 
 
 	@Test (description = "View a simple task",
-			groups = { "smoke", "L0" })
+			groups = { "smoke", "L1" })
 
 	public void GetTask_01() throws HarnessException {
 
@@ -92,7 +92,7 @@ public class GetTask extends AjaxCore {
 
 	@Bugs (ids = "72236")
 	@Test (description = "Verify Text Only Task that can display the body in the preview pane",
-			groups = { "smoke", "L0" })
+			groups = { "smoke", "L1" })
 
 	public void GetTask_02() throws HarnessException {
 
@@ -133,7 +133,7 @@ public class GetTask extends AjaxCore {
 
 
 	@Test (description = "Verify Multipart/alternative (text and html) task that can be display the body in preview pane",
-			groups = { "smoke", "L0" })
+			groups = { "smoke", "L1" })
 
 	public void GetTask_03() throws HarnessException {
 

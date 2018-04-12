@@ -34,7 +34,7 @@ public class MoveSavedSearch extends AjaxCore  {
 
 	@Bugs (ids = "102547")
 	@Test (description = "Move a saved search",
-			groups = { "smoke","L0" })
+			groups = { "smoke","L1" })
 
 	public void MoveSavedSearch_01() throws HarnessException {
 

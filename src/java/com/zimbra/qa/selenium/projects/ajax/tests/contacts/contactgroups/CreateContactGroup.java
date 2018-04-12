@@ -139,7 +139,7 @@ public class CreateContactGroup extends AjaxCore  {
 
 
 	@Test (description = "Create a contact group with existing contacts",
-			groups = { "smoke", "L0" })
+			groups = { "smoke", "L1" })
 
 	public void CreateContactGroup_03() throws HarnessException {
 
@@ -184,7 +184,7 @@ public class CreateContactGroup extends AjaxCore  {
 
 	@Bugs (ids = "77968")
 	@Test (description = "Create a new contact group from GAL search result",
-		groups= { "smoke", "L0" })
+		groups= { "smoke", "L1" })
 
 	public void CreateContactGroupFromGALSearchResult_04() throws HarnessException{
 

@@ -40,7 +40,7 @@ public class CreateMeeting extends AjaxCore {
 
 	@Bugs (ids = "95899,95900,46442")
 	@Test (description = "Create basic meeting invite with one attendee",
-			groups = { "sanity", "L0" })
+			groups = { "sanity", "L1" })
 
 	public void CreateMeeting_01() throws HarnessException {
 

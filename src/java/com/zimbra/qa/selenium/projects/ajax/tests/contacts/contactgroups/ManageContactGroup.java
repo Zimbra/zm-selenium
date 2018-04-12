@@ -39,7 +39,7 @@ public class ManageContactGroup extends AjaxCore  {
 
 
 	@Test (description = "Create a new contact group by right click on existing contact",
-			groups = { "smoke", "L0" })
+			groups = { "smoke", "L1" })
 
 	public void CreateContactGroupWith1Contact_01() throws HarnessException {
 

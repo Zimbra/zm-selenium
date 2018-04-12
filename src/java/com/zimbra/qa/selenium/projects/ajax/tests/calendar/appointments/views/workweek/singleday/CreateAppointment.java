@@ -36,7 +36,7 @@ public class CreateAppointment extends AjaxCore {
 
 
 	@Test (description = "Create a basic appointment without an attendee",
-			groups = { "sanity", "L0" } )
+			groups = { "sanity", "L1" } )
 
 	public void CreateAppointment_01() throws HarnessException {
 

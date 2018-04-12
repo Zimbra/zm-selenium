@@ -44,7 +44,7 @@ public class SaveDraftMail extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Save a basic draft (subject only)",
-			groups = { "smoke", "L1" })
+			groups = { "smoke", "L0" })
 
 	public void SaveDraftMail_01() throws HarnessException {
 

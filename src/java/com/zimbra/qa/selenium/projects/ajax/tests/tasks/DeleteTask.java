@@ -43,7 +43,7 @@ public class DeleteTask extends AjaxCore {
 
 
 	@Test (description = "Delete a task using toolbar delete button",
-			groups = { "smoke", "L0" })
+			groups = { "smoke", "L1" })
 
 	public void DeleteTask_01() throws HarnessException {
 
@@ -96,7 +96,7 @@ public class DeleteTask extends AjaxCore {
 
 
 	@Test (description = "Delete a task using checkbox and toolbar delete button",
-			groups = { "smoke", "L0" })
+			groups = { "smoke", "L1" })
 
 	public void DeleteTask_02() throws HarnessException {
 
@@ -373,7 +373,7 @@ public class DeleteTask extends AjaxCore {
 
 
 	@Test (description = "Delete a task using context menu delete button",
-			groups = { "smoke", "L0" })
+			groups = { "smoke", "L1" })
 
 	public void DeleteTask_06() throws HarnessException {
 

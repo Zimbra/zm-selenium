@@ -31,7 +31,7 @@ public class AboutDialog extends AjaxCore {
 
 
 	@Test (description = "Open the 'About' dialog",
-			groups = { "smoke", "L0" })
+			groups = { "smoke", "L1" })
 
 	public void AboutDialog_01() throws HarnessException {
 

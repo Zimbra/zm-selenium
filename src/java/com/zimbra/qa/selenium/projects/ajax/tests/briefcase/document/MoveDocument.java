@@ -42,7 +42,7 @@ public class MoveDocument extends EnableBriefcaseFeature {
 
 
 	@Test (description = "Create document through SOAP - move & verify through GUI",
-			groups = { "smoke", "L0" })
+			groups = { "smoke", "L1" })
 
 	public void MoveDocument_01() throws HarnessException {
 

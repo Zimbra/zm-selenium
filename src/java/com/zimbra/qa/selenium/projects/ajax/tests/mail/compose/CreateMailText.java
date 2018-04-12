@@ -37,7 +37,7 @@ public class CreateMailText extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Send a mail using Text editor",
-			groups = { "sanity", "L0" })
+			groups = { "sanity", "L1" })
 
 	public void CreateMailText_01() throws HarnessException {
 

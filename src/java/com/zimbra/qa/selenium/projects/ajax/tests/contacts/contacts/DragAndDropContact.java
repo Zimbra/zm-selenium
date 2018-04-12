@@ -32,7 +32,7 @@ public class DragAndDropContact extends AjaxCore  {
 
 
 	@Test (description = "Move a contact item to sub-addressbook",
-			groups = { "smoke", "L0" })
+			groups = { "smoke", "L1" })
 
 	public void DragAndDropContact_01() throws HarnessException {
 

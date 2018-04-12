@@ -103,7 +103,7 @@ public class DeleteHtmlTask extends AjaxCore {
 
 
 	@Test (description = "Delete a Html task using checkbox and toolbar delete button",
-			groups = { "smoke", "L0" })
+			groups = { "smoke", "L1" })
 
 	public void DeleteHtmlTask_02() throws HarnessException {
 
@@ -174,7 +174,7 @@ public class DeleteHtmlTask extends AjaxCore {
 	}
 
 	@Test (description = "Delete a html task by selecting and typing 'delete' keyboard",
-			groups = { "smoke", "L0"},
+			groups = { "smoke", "L1"},
 			dataProvider = "DataProviderDeleteKeys")
 
 	public void DeleteHtmlTask_03(String name, Keys keyEvent) throws HarnessException {
@@ -430,7 +430,7 @@ public class DeleteHtmlTask extends AjaxCore {
 
 
 	@Test (description = "Delete a html task using context menu delete button",
-			groups = { "smoke", "L0" })
+			groups = { "smoke", "L1" })
 
 	public void DeleteHtmlTask_06() throws HarnessException {
 

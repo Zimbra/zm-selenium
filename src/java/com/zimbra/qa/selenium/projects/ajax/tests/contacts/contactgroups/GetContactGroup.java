@@ -34,7 +34,7 @@ public class GetContactGroup extends AjaxCore {
 	}
 
 	@Test (description = "Click Alphabetbar button All: Verify contact groups started with digit and A-Z listed",
-			groups = { "smoke", "L0" })
+			groups = { "smoke", "L1" })
 
 	public void GetContactGroup_All_Button_01() throws HarnessException {
 
@@ -96,7 +96,7 @@ public class GetContactGroup extends AjaxCore {
 
 
 	@Test (description = "Click Alphabetbar button All: Verify contact groups started with digit and A-Z listed",
-			groups = { "smoke", "L0" })
+			groups = { "smoke", "L1" })
 
 	public void GetContactGroup_123_Button_02() throws HarnessException {
 

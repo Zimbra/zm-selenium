@@ -35,7 +35,7 @@ public class LoginScreen extends AjaxCore {
 
 
 	@Test (description = "Verify the label text on the ajax client login screen",
-			groups = { "smoke", "L0" })
+			groups = { "smoke", "L1" })
 
 	public void LoginScreen_01() throws HarnessException {
 

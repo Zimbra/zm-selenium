@@ -34,7 +34,7 @@ public class MoveContactGroup extends AjaxCore {
 
 
 	@Test (description = "Move a contact group to folder Emailed Contacts by click Move dropdown on toolbar",
-			groups = { "smoke", "L0" })
+			groups = { "smoke", "L1" })
 
 	public void MoveToEmailedContactsFromMoveDropdownOnToolbar_01() throws HarnessException {
 

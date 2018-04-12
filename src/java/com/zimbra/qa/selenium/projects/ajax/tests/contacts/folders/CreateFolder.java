@@ -52,7 +52,7 @@ public class CreateFolder extends AjaxCore {
 
 
 	@Test (description = "Create a new folder using context menu from root folder",
-			groups = { "sanity", "L0" })
+			groups = { "sanity", "L1" })
 
 	public void ClickContextMenuNewAddressbook_02() throws HarnessException {
 

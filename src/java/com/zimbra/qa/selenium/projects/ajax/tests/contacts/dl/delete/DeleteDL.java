@@ -34,7 +34,7 @@ public class DeleteDL extends AjaxCore  {
 
 
 	@Test (description = "Delete DL using toolbar button",
-			groups = { "smoke", "L0" })
+			groups = { "smoke", "L1" })
 
 	public void DeleteDLUsingToolbarButton_01() throws HarnessException {
 

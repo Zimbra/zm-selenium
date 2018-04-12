@@ -116,7 +116,7 @@ public class CreateMeetingWithMultilineBody extends AjaxCore {
 
 
 	@Test (description = "Send a meeting invite by entering multiline body content with Plain text compose preferences",
-			groups = { "sanity", "L0" })
+			groups = { "sanity", "L1" })
 
 	public void CreateMeetingWithMultilinePlainTextBody_02() throws HarnessException {
 
