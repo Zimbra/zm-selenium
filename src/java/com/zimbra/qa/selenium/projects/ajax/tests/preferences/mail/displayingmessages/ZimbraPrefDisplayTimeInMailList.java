@@ -43,7 +43,7 @@ public class ZimbraPrefDisplayTimeInMailList extends AjaxCore {
 
 	@Bugs( ids = "77129" )
 	@Test (description = "Verify the display of email received time in email list",
-			groups = { "functional", "L2", "upload" })
+			groups = { "functional", "L2", "upload", "non-msedge" })
 
 	public void ZimbraPrefDisplayTimeInMailList_01() throws HarnessException {
 		

@@ -1400,7 +1400,7 @@ public class ExecuteHarnessMain {
 				for (String noOfProxyServers : CommandLineUtility.runCommandOnZimbraServer(
 						ConfigProperties.getStringProperty("server.host"), "zmprov -l gas proxy | wc -l")) {
 					totalProxyServers = Integer.parseInt(noOfProxyServers);
-					if (totalProxyServers >=1) {
+					if (totalProxyServers >= 1) {
 						adminPort = 9071;
 					}
 				}
@@ -1508,8 +1508,7 @@ public class ExecuteHarnessMain {
 			CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"),
 					"zmprov cd " + ConfigProperties.getStringProperty("testdomain"));
 			CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"),
-					"zmprov ca " + ConfigProperties.getStringProperty("adminUser") + "@"
-							+ proxyServers.get(0) + " "
+					"zmprov ca " + ConfigProperties.getStringProperty("adminUser") + "@" + proxyServers.get(0) + " "
 							+ ConfigProperties.getStringProperty("adminPassword") + " zimbraIsAdminAccount TRUE");
 			CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"),
 					"zmprov ca " + ConfigProperties.getStringProperty("adminUser") + "@"
@@ -1520,8 +1519,7 @@ public class ExecuteHarnessMain {
 							+ " -n InternalGAL --domain " + ConfigProperties.getStringProperty("testdomain") + " -s "
 							+ storeServers.get(0) + " -t zimbra -f _InternalGAL");
 			CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"),
-					"zmprov sp " + ConfigProperties.getStringProperty("adminUser") + "@"
-							+ proxyServers.get(0) + " "
+					"zmprov sp " + ConfigProperties.getStringProperty("adminUser") + "@" + proxyServers.get(0) + " "
 							+ ConfigProperties.getStringProperty("adminPassword"));
 			CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"),
 					"zmprov sp " + ConfigProperties.getStringProperty("adminUser") + "@"
@@ -1548,6 +1546,7 @@ public class ExecuteHarnessMain {
 
 			// Ajax project settings
 			} else if (project.contains("ajax")) {
+
 				// Initially disable chat and drive zimlets on COS if they are enabled
 				ArrayList<String> availableZimlets = CommandLineUtility.runCommandOnZimbraServer(
 						ConfigProperties.getStringProperty("server.host"),
@@ -1560,7 +1559,7 @@ public class ExecuteHarnessMain {
 					CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"),
 							"zmprov mc default -zimbraZimletAvailableZimlets '+com_zextras_chat_open'");
 				}
-				if (availableZimlets.contains("com_zextras_drive_open")){
+				if (availableZimlets.contains("com_zextras_drive_open")) {
 					StafIntegration.logInfo = "Initially disable zimbra drive zimlet on COS";
 					logger.info(StafIntegration.logInfo);
 					Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo),
@@ -1568,8 +1567,9 @@ public class ExecuteHarnessMain {
 					CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"),
 							"zmprov mc default -zimbraZimletAvailableZimlets '+com_zextras_drive_open'");
 				}
-				if (availableZimlets.contains("com_zextras_chat_open") || availableZimlets.contains("com_zextras_drive_open")) {
-					for (int i=0; i<storeServers.size(); i++) {
+				if (availableZimlets.contains("com_zextras_chat_open")
+						|| availableZimlets.contains("com_zextras_drive_open")) {
+					for (int i = 0; i < storeServers.size(); i++) {
 						CommandLineUtility.runCommandOnZimbraServer(storeServers.get(i), "zmprov fc -a all");
 					}
 				}
