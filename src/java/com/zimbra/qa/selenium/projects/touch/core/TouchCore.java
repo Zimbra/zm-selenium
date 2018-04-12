@@ -35,7 +35,7 @@ public class TouchCore {
 
 	protected static Logger logger = LogManager.getLogger(TouchCore.class);
 	protected TouchPages app = null;
-	
+
 	private WebDriver webDriver = ClientSessionFactory.session().webDriver();
 	WebElement we = null;
 
@@ -54,7 +54,7 @@ public class TouchCore {
 	protected TouchCore() {
 		logger.info("New "+ TouchCore.class.getCanonicalName());
 
-		app = new TouchPages();
+		app = TouchPages.getInstance();
 
 		startingPage = app.zPageMain;
 		startingAccountPreferences = new HashMap<String, String>();
@@ -88,7 +88,7 @@ public class TouchCore {
 					retry ++;
 					webDriver.navigate().to(ConfigProperties.getBaseURL());
 					appIsReady = true;
-					
+
 				} catch (WebDriverException e) {
 					if (retry == maxRetry) {
 						logger.error("Unable to open admin app." +

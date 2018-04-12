@@ -38,7 +38,8 @@ public class ViewContact extends TouchCore  {
 		// Create a contact item
 		String firstname = "first"+ ConfigProperties.getUniqueString();
 		String lastname = "last"+ ConfigProperties.getUniqueString();
-		String email = "email"+ ConfigProperties.getUniqueString() + "@example.com";
+		String email = "globaladmin" + ConfigProperties.getUniqueString() + "@"
+				+ ConfigProperties.getStringProperty("testdomain");
 		String company = "company"+ ConfigProperties.getUniqueString();
 		
 		String prefix = "prefix" + ConfigProperties.getUniqueString();
@@ -101,15 +102,12 @@ public class ViewContact extends TouchCore  {
 	
 		ZAssert.assertNotNull(contactId, "Verify the contact is returned in the search");
 			
-		String fullContact = prefix+" "+firstname+" "+middleName+" ("+maidenName+") "+lastname+", "+suffix+" \""+nickname+"\"";
+		String fullContact = prefix + " " + firstname + " " + middleName + " (" + maidenName + ") " + lastname + ", "
+				+ suffix + " \"" + nickname + "\"";
 		
 		Boolean foundFullContactname = app.zPageAddressbook.sIsElementPresent("css=div[class='zcs-contactview-personalInfo'] span[name='contactname']:contains('"+fullContact+"')");
 		Boolean foundCompany = app.zPageAddressbook.sIsElementPresent("css=div[class='zcs-contactview-personalInfo'] span:contains('"+company+"')");
 		Boolean foundJobtitle = app.zPageAddressbook.sIsElementPresent("css=div[class='zcs-contactview-personalInfo'] span:contains('"+jobTitle+"')");
-				
-		// TODO check only some basic attributes for now. maybe implement below to check other fields as well
-		//ContactItem ci = ContactItem.importFromSOAP(GetCreateResponse);
-		//Boolean otherAttributes = app.zPageAddressbook.zIsContactDisplayed(ci);
 
 		ZAssert.assertTrue(foundFullContactname, "Verify contact (" + fullContact + ") displayed ");
 		ZAssert.assertTrue(foundCompany, "Verify contact (" + company + ") displayed ");

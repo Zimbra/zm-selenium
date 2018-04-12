@@ -88,8 +88,7 @@ public class AdminCore {
 	protected AdminCore() {
 		logger.info("New " + AdminCore.class.getCanonicalName());
 
-		app = new AdminPages();
-
+		app = AdminPages.getInstance();
 		startingPage = app.zPageMain;
 		startingAccount = gAdmin;
 	}

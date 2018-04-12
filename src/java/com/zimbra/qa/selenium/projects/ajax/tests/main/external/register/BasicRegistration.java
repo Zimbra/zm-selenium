@@ -37,10 +37,12 @@ public class BasicRegistration extends AjaxCore {
 
 	public void BasicRegistration_01() throws HarnessException {
 
+		String domain = "external.com";
+
 		try {
 
 			ZimbraExternalAccount external = new ZimbraExternalAccount();
-			external.setEmailAddress("external" + ConfigProperties.getUniqueString() + "@example.com");
+			external.setEmailAddress("external" + ConfigProperties.getUniqueString() + "@" + domain);
 
 			FolderItem inbox = FolderItem.importFromSOAP(ZimbraAccount.AccountZCS(), FolderItem.SystemFolder.Inbox);
 			String foldername = "folder" + ConfigProperties.getUniqueString();
@@ -95,6 +97,7 @@ public class BasicRegistration extends AjaxCore {
 			ZAssert.assertTrue(loaded, "Verify that the main page became active");
 
 		} finally {
+			flushMailQueue(domain);
 			zFreshLogin();
 			logger.info(app.zGetActiveAccount().EmailAddress);
 		}

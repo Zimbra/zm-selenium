@@ -32,10 +32,10 @@ import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
 import com.zimbra.qa.selenium.projects.ajax.pages.preferences.PagePreferences.Locators;
 import com.zimbra.qa.selenium.projects.ajax.pages.preferences.TreePreferences.TreeItem;
 
-public class zimbraPrefDisplayTimeInMailList extends AjaxCore {
+public class ZimbraPrefDisplayTimeInMailList extends AjaxCore {
 
-	public zimbraPrefDisplayTimeInMailList() {
-		logger.info("New "+ zimbraPrefDisplayTimeInMailList.class.getCanonicalName());
+	public ZimbraPrefDisplayTimeInMailList() {
+		logger.info("New "+ ZimbraPrefDisplayTimeInMailList.class.getCanonicalName());
 
 		super.startingPage = app.zPagePreferences;
 		super.startingAccountPreferences.put("zimbraPrefDisplayTimeInMailList", "FALSE");
@@ -43,9 +43,9 @@ public class zimbraPrefDisplayTimeInMailList extends AjaxCore {
 
 	@Bugs( ids = "77129" )
 	@Test (description = "Verify the display of email received time in email list",
-			groups = { "functional", "L2", "upload" })
+			groups = { "functional", "L2", "upload", "non-msedge" })
 
-	public void zimbraPrefDisplayTimeInMailList_01() throws HarnessException {
+	public void ZimbraPrefDisplayTimeInMailList_01() throws HarnessException {
 		
 		// File to import: contains mail delivered in past
 		final String fileName = "inbox.tgz";

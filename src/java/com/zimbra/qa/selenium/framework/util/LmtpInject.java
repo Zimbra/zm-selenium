@@ -65,7 +65,8 @@ public class LmtpInject {
 	public static void injectFile(List<ZimbraAccount> recipients, File mime) throws HarnessException {
 
 		// Use default sender
-		injectFile(recipients, "foo@example.com", mime);
+		injectFile(recipients, ConfigProperties.getStringProperty("adminUser") + ConfigProperties.getUniqueString()
+				+ "@" + ConfigProperties.getStringProperty("testdomain"), mime);
 
 	}
 

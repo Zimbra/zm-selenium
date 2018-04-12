@@ -38,10 +38,10 @@ import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.mobile.pages.MobilePages;
 
 public class MobileCore {
-	
+
 	protected static Logger logger = LogManager.getLogger(MobileCore.class);
 	protected MobilePages app = null;
-	
+
 	private WebDriver webDriver = ClientSessionFactory.session().webDriver();
 	WebElement we = null;
 
@@ -55,21 +55,21 @@ public class MobileCore {
 
 	protected MobileCore() {
 		logger.info("New "+ MobileCore.class.getCanonicalName());
-		
-		app = new MobilePages();
-		
+
+		app = MobilePages.getInstance();
+
 		startingPage = app.zPageMain;
 		startingAccount = ZimbraAccount.AccountZCS();
-		
+
 		app.zPageLogin.DefaultLoginAccount = startingAccount;
-		
+
 	}
-	
+
 	/**
 	 * Global BeforeSuite
-	 * 
+	 *
 	 * 1. Make sure the selenium server is available
-	 * 
+	 *
 	 * @throws HarnessException
 	 */
 	@BeforeSuite( groups = { "always" } )
@@ -80,7 +80,7 @@ public class MobileCore {
 
       	// Make sure there is a new default account
 		ZimbraAccount.ResetAccountZCS();
-				
+
 		// Set the app type
 		ConfigProperties.setAppType(ConfigProperties.AppType.MOBILE);
 
@@ -89,24 +89,24 @@ public class MobileCore {
 			webDriver = ClientSessionFactory.session().webDriver();
 
 			Capabilities cp =  ((RemoteWebDriver)webDriver).getCapabilities();
-			if (cp.getBrowserName().equals(DesiredCapabilities.firefox().getBrowserName())||cp.getBrowserName().equals(DesiredCapabilities.chrome().getBrowserName())||cp.getBrowserName().equals(DesiredCapabilities.internetExplorer().getBrowserName())) {				
+			if (cp.getBrowserName().equals(DesiredCapabilities.firefox().getBrowserName())||cp.getBrowserName().equals(DesiredCapabilities.chrome().getBrowserName())||cp.getBrowserName().equals(DesiredCapabilities.internetExplorer().getBrowserName())) {
 				webDriver.manage().window().setPosition(new Point(0, 0));
 				webDriver.manage().window().setSize(new Dimension((int)Toolkit.getDefaultToolkit().getScreenSize().getWidth(),(int)Toolkit.getDefaultToolkit().getScreenSize().getHeight()));
 			}
-			
+
 			// Dynamic wait for App to be ready
 			int maxRetry = 10;
 			int retry = 0;
 			boolean appIsReady = false;
-			
+
 			while (retry < maxRetry && !appIsReady) {
-				
+
 				try
 				{
 					logger.info("Retry #" + retry);
 					retry ++;
 					webDriver.navigate().to(ConfigProperties.getBaseURL());
-					
+
 					appIsReady = true;
 				} catch (WebDriverException e) {
 					if (retry >= maxRetry) {
@@ -121,18 +121,18 @@ public class MobileCore {
 			}
 			logger.info("App is ready!");
 
-			
+
 		} catch (WebDriverException e) {
 			logger.error("Unable to mobile app.", e);
 			throw e;
 		}
 
-		logger.info("coreBeforeSuite: finish");		
+		logger.info("coreBeforeSuite: finish");
 	}
-	
+
 	/**
 	 * Global BeforeClass
-	 * 
+	 *
 	 * @throws HarnessException
 	 */
 	@BeforeClass( groups = { "always" } )
@@ -145,17 +145,17 @@ public class MobileCore {
 
 	/**
 	 * Global BeforeMethod
-	 * 
+	 *
 	 * 1. For all tests, make sure the startingPage is active
-	 * 2. For all tests, make sure the logged in user is 
-	 * 
+	 * 2. For all tests, make sure the logged in user is
+	 *
 	 * @throws HarnessException
 	 */
 	@BeforeMethod( groups = { "always" } )
 	public void coreBeforeMethod(Method method, ITestContext testContext) throws HarnessException {
 		logger.info("coreBeforeMethod: start");
 
-		
+
 		// Get the test description
 		// By default, the test description is set to method's name
 		// if it is set, then change it to the specified one
@@ -196,19 +196,19 @@ public class MobileCore {
 		// If a startingPage is defined, then make sure we are on that page
 		if ( startingPage != null ) {
 			logger.debug("coreBeforeMethod: startingPage is defined");
-			
+
 			// If the starting page is not active, navigate to it
 			if ( !startingPage.zIsActive() ) {
 				startingPage.zNavigateTo();
 			}
-			
+
 			// Confirm that the page is active
 			if ( !startingPage.zIsActive() ) {
 				throw new HarnessException("Unable to navigate to "+ startingPage.myPageName());
 			}
-			
+
 		}
-		
+
 
 		logger.info("coreBeforeMethod: finish");
 
@@ -216,32 +216,32 @@ public class MobileCore {
 
 	/**
 	 * Global AfterSuite
-	 * 
+	 *
 	 * @throws HarnessException
 	 */
 	@AfterSuite( groups = { "always" } )
-	public void coreAfterSuite() throws HarnessException {	
+	public void coreAfterSuite() throws HarnessException {
 		logger.info("coreAfterSuite: start");
 		webDriver.quit();
 		logger.info("coreAfterSuite: finish");
 
 	}
-	
+
 	/**
 	 * Global AfterClass
-	 * 
+	 *
 	 * @throws HarnessException
 	 */
 	@AfterClass( groups = { "always" } )
 	public void coreAfterClass() throws HarnessException {
 		logger.info("coreAfterClass: start");
-		
+
 		logger.info("coreAfterClass: finish");
 	}
 
 	/**
 	 * Global AfterMethod
-	 * 
+	 *
 	 * @throws HarnessException
 	 */
 	@AfterMethod( groups = { "always" } )

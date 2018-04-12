@@ -303,7 +303,7 @@ public class ExecuteHarnessMain {
 
 		// NG modules
 		if (CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"), "zmprov gs "
-				+ ExecuteHarnessMain.storeServers.get(0)
+				+ storeServers.get(0)
 				+ " zimbraNetworkModulesNGEnabled | grep -i 'zimbraNetworkModulesNGEnabled' | cut -d : -f 2 | tr -d '[:blank:]'")
 				.toString().contains("TRUE")) {
 			excludeGroups.add("non-ngmodule");
@@ -362,7 +362,7 @@ public class ExecuteHarnessMain {
 		logger.info("Execute ...");
 
 		// Zimbra Pre-configuration and required setup
-		ExecuteHarnessMain.ZimbraPreConfiguration(ConfigProperties.getAppType().toString().toLowerCase());
+		ZimbraPreConfiguration(ConfigProperties.getAppType().toString().toLowerCase());
 
 		Date start = new Date();
 		Date finish;
@@ -479,14 +479,14 @@ public class ExecuteHarnessMain {
 
 			// Configure the runner
 			testNG.setXmlSuites(suites);
-			testNG.addListener(new MethodListener(ExecuteHarnessMain.testoutputfoldername));
+			testNG.addListener(new MethodListener(testoutputfoldername));
 			testNG.addListener(new ErrorDialogListener());
-			testNG.addListener(currentResultListener = new ResultListener(ExecuteHarnessMain.testoutputfoldername));
+			testNG.addListener(currentResultListener = new ResultListener(testoutputfoldername));
 			testNG.addListener(new AnnotationTransformer());
 			testNG.addListener(new TestListener());
 
 			try {
-				testNG.setOutputDirectory(ExecuteHarnessMain.testoutputfoldername + "/TestNG");
+				testNG.setOutputDirectory(testoutputfoldername + "/TestNG");
 			} catch (Exception e) {
 				throw new HarnessException(e);
 			}
@@ -547,7 +547,7 @@ public class ExecuteHarnessMain {
 		StringBuilder stringBuilder = new StringBuilder();
 		int count = 0;
 
-		List<String> classes = ExecuteHarnessMain.getClassesFromJar(new File(jarfilename),
+		List<String> classes = getClassesFromJar(new File(jarfilename),
 				(classfilter == null ? null : Pattern.compile(classfilter)), excludefilter);
 
 		for (String s : classes) {
@@ -572,7 +572,7 @@ public class ExecuteHarnessMain {
 							// Check the groups to make sure they match
 							for (String group : Arrays.asList(testAnnotation.groups())) {
 
-								if (ExecuteHarnessMain.groups.contains(group)) {
+								if (groups.contains(group)) {
 
 									logger.debug("countTests: matched: " + group);
 
@@ -916,7 +916,7 @@ public class ExecuteHarnessMain {
 
 		@Override
 		public void transform(ITestAnnotation annotation, Class testClass, Constructor testConstructor, Method testMethod) {
-			annotation.setRetryAnalyzer(ExecuteHarnessMain.RetryAnalyzer.class);
+			annotation.setRetryAnalyzer(RetryAnalyzer.class);
 		}
 	}
 
@@ -1262,22 +1262,22 @@ public class ExecuteHarnessMain {
 
 			if (cmd.hasOption('p')) {
 				String filter = cmd.getOptionValue('p');
-				ExecuteHarnessMain.classfilter = filter;
+				classfilter = filter;
 
 				// Set the app type on the properties
 				for (AppType t : AppType.values()) {
 					// Look for ".type." (e.g. ".ajax.") in the pattern
-					if (ExecuteHarnessMain.classfilter.contains(t.toString().toLowerCase())) {
+					if (classfilter.contains(t.toString().toLowerCase())) {
 						ConfigProperties.setAppType(t);
 						break;
 					}
 				}
 
-				if (ExecuteHarnessMain.classfilter.equals("selenium.projects.html.tests")) {
+				if (classfilter.equals("selenium.projects.html.tests")) {
 					throw new HarnessException("Currently Html client tests are not being executed.");
 				}
 
-				if (ExecuteHarnessMain.classfilter.equals("selenium.projects.mobile.tests")) {
+				if (classfilter.equals("selenium.projects.mobile.tests")) {
 					throw new HarnessException("Currently Mobile client tests are not being executed.");
 				}
 
@@ -1311,7 +1311,7 @@ public class ExecuteHarnessMain {
 			if (cmd.hasOption('g')) {
 				// Remove spaces and split on commas
 				String[] values = cmd.getOptionValue('g').replaceAll("\\s+", "").split(",");
-				ExecuteHarnessMain.groups = new ArrayList<String>(Arrays.asList(values));
+				groups = new ArrayList<String>(Arrays.asList(values));
 			}
 
 			if (cmd.hasOption("eg")) {
@@ -1400,7 +1400,7 @@ public class ExecuteHarnessMain {
 				for (String noOfProxyServers : CommandLineUtility.runCommandOnZimbraServer(
 						ConfigProperties.getStringProperty("server.host"), "zmprov -l gas proxy | wc -l")) {
 					totalProxyServers = Integer.parseInt(noOfProxyServers);
-					if (totalProxyServers >=1) {
+					if (totalProxyServers >= 1) {
 						adminPort = 9071;
 					}
 				}
@@ -1463,13 +1463,13 @@ public class ExecuteHarnessMain {
 			// Single-node settings
 			} else {
 				// Get single zimbra server
-				logger.info("Get single zimbra server...");
+				logger.info("Get single-node zimbra server...");
 				proxyServers = CommandLineUtility.runCommandOnZimbraServer(
 						ConfigProperties.getStringProperty("server.host"), "zmprov -l gas");
 				storeServers.add(proxyServers.get(0));
 				mtaServers.add(proxyServers.get(0));
 
-				StafIntegration.logInfo = "Single server(s): " + proxyServers;
+				StafIntegration.logInfo = "Single-node server: " + proxyServers;
 				logger.info(StafIntegration.logInfo);
 				Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo),
 						Charset.forName("UTF-8"), StandardOpenOption.APPEND);
@@ -1483,28 +1483,43 @@ public class ExecuteHarnessMain {
 				}
 			}
 
+			// Check amavisd service for AWS server
+			if (!ConfigProperties.getStringProperty("server.host").endsWith(".zimbra.com")) {
+				for (String amavisdServiceStatus : CommandLineUtility.runCommandOnZimbraServer(
+						ConfigProperties.getStringProperty("server.host"), "zmamavisdctl status")) {
+					if (amavisdServiceStatus.contains("not running")) {
+						StafIntegration.logInfo = "Amavisd service is not running, restarting it...\n";
+						logger.info(StafIntegration.logInfo);
+						Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo),
+								Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+						CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"),
+								"zmamavisdctl restart");
+					} else {
+						logger.info("Amavisd service is running fine");
+					}
+				}
+			}
+
 			// Create test domain and accounts
 			StafIntegration.logInfo = "Create test domain and accounts...\n";
-			logger.info("Create test domain and accounts...");
+			logger.info(StafIntegration.logInfo);
 			Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo),
 					Charset.forName("UTF-8"), StandardOpenOption.APPEND);
 			CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"),
 					"zmprov cd " + ConfigProperties.getStringProperty("testdomain"));
 			CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"),
-					"zmprov ca " + ConfigProperties.getStringProperty("adminUser") + "@"
-							+ ExecuteHarnessMain.proxyServers.get(0) + " "
+					"zmprov ca " + ConfigProperties.getStringProperty("adminUser") + "@" + proxyServers.get(0) + " "
 							+ ConfigProperties.getStringProperty("adminPassword") + " zimbraIsAdminAccount TRUE");
 			CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"),
 					"zmprov ca " + ConfigProperties.getStringProperty("adminUser") + "@"
 							+ ConfigProperties.getStringProperty("testdomain") + " "
 							+ ConfigProperties.getStringProperty("adminPassword") + " zimbraIsAdminAccount TRUE");
-			CommandLineUtility.runCommandOnZimbraServer(ExecuteHarnessMain.storeServers.get(0),
+			CommandLineUtility.runCommandOnZimbraServer(storeServers.get(0),
 					"zmgsautil createAccount -a galsync@" + ConfigProperties.getStringProperty("testdomain")
 							+ " -n InternalGAL --domain " + ConfigProperties.getStringProperty("testdomain") + " -s "
-							+ ExecuteHarnessMain.storeServers.get(0) + " -t zimbra -f _InternalGAL");
+							+ storeServers.get(0) + " -t zimbra -f _InternalGAL");
 			CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"),
-					"zmprov sp " + ConfigProperties.getStringProperty("adminUser") + "@"
-							+ ExecuteHarnessMain.proxyServers.get(0) + " "
+					"zmprov sp " + ConfigProperties.getStringProperty("adminUser") + "@" + proxyServers.get(0) + " "
 							+ ConfigProperties.getStringProperty("adminPassword"));
 			CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"),
 					"zmprov sp " + ConfigProperties.getStringProperty("adminUser") + "@"
@@ -1531,6 +1546,7 @@ public class ExecuteHarnessMain {
 
 			// Ajax project settings
 			} else if (project.contains("ajax")) {
+
 				// Initially disable chat and drive zimlets on COS if they are enabled
 				ArrayList<String> availableZimlets = CommandLineUtility.runCommandOnZimbraServer(
 						ConfigProperties.getStringProperty("server.host"),
@@ -1543,7 +1559,7 @@ public class ExecuteHarnessMain {
 					CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"),
 							"zmprov mc default -zimbraZimletAvailableZimlets '+com_zextras_chat_open'");
 				}
-				if (availableZimlets.contains("com_zextras_drive_open")){
+				if (availableZimlets.contains("com_zextras_drive_open")) {
 					StafIntegration.logInfo = "Initially disable zimbra drive zimlet on COS";
 					logger.info(StafIntegration.logInfo);
 					Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo),
@@ -1551,8 +1567,9 @@ public class ExecuteHarnessMain {
 					CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"),
 							"zmprov mc default -zimbraZimletAvailableZimlets '+com_zextras_drive_open'");
 				}
-				if (availableZimlets.contains("com_zextras_chat_open") || availableZimlets.contains("com_zextras_drive_open")) {
-					for (int i=0; i<storeServers.size(); i++) {
+				if (availableZimlets.contains("com_zextras_chat_open")
+						|| availableZimlets.contains("com_zextras_drive_open")) {
+					for (int i = 0; i < storeServers.size(); i++) {
 						CommandLineUtility.runCommandOnZimbraServer(storeServers.get(i), "zmprov fc -a all");
 					}
 				}

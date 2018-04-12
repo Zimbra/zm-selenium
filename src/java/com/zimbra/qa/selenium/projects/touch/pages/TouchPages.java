@@ -27,7 +27,6 @@ import com.zimbra.qa.selenium.projects.touch.pages.calendar.PageCalendar;
 import com.zimbra.qa.selenium.projects.touch.pages.calendar.TreeCalendar;
 import com.zimbra.qa.selenium.projects.touch.pages.mail.*;
 
-
 /**
  * The <code>AppTouchClient</code> class defines the Zimbra Ajax client.
  * <p>
@@ -35,29 +34,29 @@ import com.zimbra.qa.selenium.projects.touch.pages.mail.*;
  * dialog boxes, forms, menus for the Ajax client.
  * <p>
  * In {@link TouchCore}, there is one
- * AppTouchClient object created per test case class (ensuring 
+ * AppTouchClient object created per test case class (ensuring
  * class-level concurrency).  The test case methods can access
  * different application pages and trees, using the object
  * properties.
  * <p>
  * <pre>
  * {@code
- * 
+ *
  * // Navigate to the addresbook
  * app.zPageAddressbook.navigateTo();
- * 
+ *
  * // Click "New" button to create a new contact
  * app.zPageAddressbook.zToolbarPressButton(Button.B_NEW);
- * 
+ *
  * }
  * </pre>
  * <p>
- * 
+ *
  * @author Matt Rhoades
  *
  */
 public class TouchPages extends AbsApplication {
-	
+
 	// Pages
 	public PageLogin					zPageLogin = null;
 	public PageMain						zPageMain = null;
@@ -66,62 +65,69 @@ public class TouchPages extends AbsApplication {
 	public PageCalendar					zPageCalendar = null;
 	public PageSearch					zPageSearch = null;
 	public FormMailNew					zFormMailNew=null;
-	
+
 
 	// Trees
 	public TreeMail						zTreeMail = null;
 	public TreeContacts					zTreeContacts = null;
 	public TreeCalendar					zTreeCalendar = null;
-	
-	public TouchPages() {
+
+	private static TouchPages TouchPages;
+	public static TouchPages getInstance() {
+		if (TouchPages == null) {
+			TouchPages = new TouchPages();
+		}
+		return TouchPages;
+	}
+	private TouchPages() {
 		super();
-		
+
 		logger.info("new " + TouchPages.class.getCanonicalName());
-		
-		
+
+
 		// Login page
 		zPageLogin = new PageLogin(this);
 		pages.put(zPageLogin.myPageName(), zPageLogin);
-		
+
 		// Main page
 		zPageMain = new PageMain(this);
 		pages.put(zPageMain.myPageName(), zPageMain);
-		
+
 		// Mail page
 		zPageMail = new PageMail(this);
 		pages.put(zPageMail.myPageName(), zPageMail);
-		
+
 		// Mail form
 		zFormMailNew = new FormMailNew(this);
 		forms.put(zFormMailNew.myPageName(), zFormMailNew);
-		
+
 		zTreeMail = new TreeMail(this);
 		trees.put(zTreeMail.myPageName(), zTreeMail);
-		
-		// Addressbook page    
+
+		// Addressbook page
 		zPageAddressbook = new PageAddressbook(this);
 		pages.put(zPageAddressbook.myPageName(), zPageAddressbook);
 
 		zTreeContacts = new TreeContacts(this);
 		trees.put(zTreeContacts.myPageName(), zTreeContacts);
-		
+
 		// Calendar page
 		zPageCalendar = new PageCalendar(this);
 		pages.put(zPageCalendar.myPageName(), zPageCalendar);
-		
+
 		zTreeCalendar = new TreeCalendar(this);
 		trees.put(zTreeCalendar.myPageName(), zTreeCalendar);
-		
+
 		// Configure the localization strings
 		getL10N().zAddBundlename(I18N.Catalog.I18nMsg);
 		getL10N().zAddBundlename(I18N.Catalog.AjxMsg);
 		getL10N().zAddBundlename(I18N.Catalog.ZMsg);
 		getL10N().zAddBundlename(I18N.Catalog.ZsMsg);
 		getL10N().zAddBundlename(I18N.Catalog.ZmMsg);
-		
+
 	}
-	
-	
+
+
 	/* (non-Javadoc)
 	 * @see projects.admin.pages.AbsApplication#isLoaded()
 	 */

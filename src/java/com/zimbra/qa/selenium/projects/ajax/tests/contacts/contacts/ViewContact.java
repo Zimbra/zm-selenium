@@ -40,7 +40,8 @@ public class ViewContact extends AjaxCore  {
 		// Create a contact item
 		String firstname = "first"+ ConfigProperties.getUniqueString();
 		String lastname = "last"+ ConfigProperties.getUniqueString();
-		String email = "email"+ ConfigProperties.getUniqueString() + "@example.com";
+		String email = ConfigProperties.getStringProperty("adminUser") + ConfigProperties.getUniqueString() + "@"
+				+ ConfigProperties.getStringProperty("testdomain");
 		String company = "company"+ ConfigProperties.getUniqueString();
 
 		String expected = String.format("%s %s", firstname, lastname);
@@ -92,7 +93,8 @@ public class ViewContact extends AjaxCore  {
 		// Create a contact item
 		String firstname = "first"+ ConfigProperties.getUniqueString();
 		String lastname = "last"+ ConfigProperties.getUniqueString();
-		String email = "email"+ ConfigProperties.getUniqueString() + "@example.com";
+		String email = ConfigProperties.getStringProperty("adminUser") + ConfigProperties.getUniqueString() + "@"
+				+ ConfigProperties.getStringProperty("testdomain");
 		String company = "company"+ ConfigProperties.getUniqueString();
 
 		String expected = String.format("%s, %s", lastname, firstname);
@@ -145,7 +147,8 @@ public class ViewContact extends AjaxCore  {
 		// Create a contact item
 		String firstname = "first"+ ConfigProperties.getUniqueString();
 		String lastname = "last"+ ConfigProperties.getUniqueString();
-		String email = "email"+ ConfigProperties.getUniqueString() + "@example.com";
+		String email = ConfigProperties.getStringProperty("adminUser") + ConfigProperties.getUniqueString() + "@"
+				+ ConfigProperties.getStringProperty("testdomain");
 		String company = "company"+ ConfigProperties.getUniqueString();
 
 		String expected = String.format("%s (%s, %s)", company, lastname, firstname);
@@ -197,7 +200,8 @@ public class ViewContact extends AjaxCore  {
 		// Create a contact item
 		String firstname = "first"+ ConfigProperties.getUniqueString();
 		String lastname = "last"+ ConfigProperties.getUniqueString();
-		String email = "email"+ ConfigProperties.getUniqueString() + "@example.com";
+		String email = ConfigProperties.getStringProperty("adminUser") + ConfigProperties.getUniqueString() + "@"
+				+ ConfigProperties.getStringProperty("testdomain");
 		String company = "company"+ ConfigProperties.getUniqueString();
 		String expected = String.format("%s", company);
 
@@ -248,7 +252,8 @@ public class ViewContact extends AjaxCore  {
 		// Create a contact item
 		String firstname = "first"+ ConfigProperties.getUniqueString();
 		String lastname = "last"+ ConfigProperties.getUniqueString();
-		String email = "email"+ ConfigProperties.getUniqueString() + "@example.com";
+		String email = ConfigProperties.getStringProperty("adminUser") + ConfigProperties.getUniqueString() + "@"
+				+ ConfigProperties.getStringProperty("testdomain");
 		String company = "company"+ ConfigProperties.getUniqueString();
 
 		String expected = String.format("%s, %s (%s)", lastname, firstname, company);
@@ -300,7 +305,8 @@ public class ViewContact extends AjaxCore  {
 		// Create a contact item
 		String firstname = "first"+ ConfigProperties.getUniqueString();
 		String lastname = "last"+ ConfigProperties.getUniqueString();
-		String email = "email"+ ConfigProperties.getUniqueString() + "@example.com";
+		String email = ConfigProperties.getStringProperty("adminUser") + ConfigProperties.getUniqueString() + "@"
+				+ ConfigProperties.getStringProperty("testdomain");
 		String company = "company"+ ConfigProperties.getUniqueString();
 
 		String expected = String.format("%s %s (%s)", firstname, lastname, company);
@@ -352,7 +358,8 @@ public class ViewContact extends AjaxCore  {
 		// Create a contact item
 		String firstname = "first"+ ConfigProperties.getUniqueString();
 		String lastname = "last"+ ConfigProperties.getUniqueString();
-		String email = "email"+ ConfigProperties.getUniqueString() + "@example.com";
+		String email = ConfigProperties.getStringProperty("adminUser") + ConfigProperties.getUniqueString() + "@"
+				+ ConfigProperties.getStringProperty("testdomain");
 		String company = "company"+ ConfigProperties.getUniqueString();
 
 		String expected = String.format("%s (%s %s)", company, firstname, lastname);

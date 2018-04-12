@@ -31,7 +31,6 @@ import com.zimbra.qa.selenium.framework.core.ExecuteHarnessMain;
 public class ConfigProperties {
 	private static final Logger logger = LogManager.getLogger(ConfigProperties.class);
 
-	public static final String PropZimbraVersion = "zimbraserverversion";
 	private static InetAddress localMachine;
 	private static ConfigProperties instance = null;
 	private File BaseDirectory = null;

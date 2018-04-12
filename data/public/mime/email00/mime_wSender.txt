@@ -1,6 +1,6 @@
 From: globaladmin@testdomain.com
 To: globaladmin@testdomain.com
-Sender: sender12996131112962@example.com
+Sender: sender12996131112962@testdomain.com
 Subject: subject12996131112962
 MIME-Version: 1.0 
 Content-Type: text/plain; charset=utf-8 
