@@ -48,7 +48,7 @@ public class CreateContact extends MobileCore {
 		ContactItem contact = new ContactItem();
 		contact.lastName = "last" + ConfigProperties.getUniqueString();
 		contact.firstName = "first" + ConfigProperties.getUniqueString();
-		contact.email = "email" + ConfigProperties.getUniqueString() + "@example.com";
+		contact.email = "globaladmin" + ConfigProperties.getUniqueString() + "@" + ConfigProperties.getStringProperty("testdomain");
 
 		// Get the "new contact" page and fill it out (automatically)
 		FormContactNew form = (FormContactNew) app.zPageContacts.zToolbarPressButton(Button.B_NEW);

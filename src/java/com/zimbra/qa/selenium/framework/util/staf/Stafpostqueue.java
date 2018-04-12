@@ -41,7 +41,7 @@ public class Stafpostqueue extends StafServicePROCESS {
 
 			// emailaddress could be null or blank
 			if ((emailaddress == null) || (emailaddress.equals(""))) {
-				logger.warn("Unable to determine current user account. Use @testdomain.com instead");
+				logger.warn("Unable to determine current user account. Use " + ConfigProperties.getStringProperty("testdomain") + " instead");
 				emailaddress = "@" + ConfigProperties.getStringProperty("testdomain");
 			}
 
@@ -121,33 +121,24 @@ public class Stafpostqueue extends StafServicePROCESS {
 
 		} else {
 
-			Boolean isMessageDelivered = false;
+			String mailqInfo;
 			int totalDeferredMessages = 0;
-			SleepUtil.sleepMedium();
+			SleepUtil.sleepLong();
 
-			for (int i=0; i<=5; i++) {
-				totalDeferredMessages = 0;
-				for (int mtaServer=0; mtaServer<ExecuteHarnessMain.mtaServers.size(); mtaServer++) {
-					ZimbraAdminAccount.GlobalAdmin().soapSend("<GetMailQueueRequest xmlns='urn:zimbraAdmin'>"
-							+ "<server name='" + ExecuteHarnessMain.mtaServers.get(mtaServer) + "'>"
-			        		+	"<queue name='deferred'>"
-			          		+		"<query limit='25' offset='0'/>"
-			        		+	"</queue>"
-			        		+ "</server>"
-							+ "</GetMailQueueRequest>");
-					String mtaDeferredMessages = ZimbraAdminAccount.GlobalAdmin().soapSelectValue("//admin:GetMailQueueResponse//admin:queue", "total");
-					totalDeferredMessages = totalDeferredMessages + Integer.parseInt(mtaDeferredMessages);
-				}
-				if (totalDeferredMessages == 0) {
-					isMessageDelivered = true;
-					break;
-				}
+			for (int mtaServer=0; mtaServer<ExecuteHarnessMain.mtaServers.size(); mtaServer++) {
+				ZimbraAdminAccount.GlobalAdmin().soapSend("<GetMailQueueRequest xmlns='urn:zimbraAdmin'>"
+						+ "<server name='" + ExecuteHarnessMain.mtaServers.get(mtaServer) + "'>"
+						+	"<queue name='deferred'>"
+						+		"<query limit='25' offset='0'/>"
+						+	"</queue>"
+						+ "</server>"
+						+ "</GetMailQueueRequest>");
+				String mtaDeferredMessages = ZimbraAdminAccount.GlobalAdmin().soapSelectValue("//admin:GetMailQueueResponse//admin:queue", "total");
+				totalDeferredMessages = totalDeferredMessages + Integer.parseInt(mtaDeferredMessages);
 			}
-			if (isMessageDelivered.equals(false)) {
-				String mailqInfo;
+			if (totalDeferredMessages >= 1) {
 				mailqInfo = "Mailq not empty, total deffered messages: " + totalDeferredMessages;
 				logger.info(mailqInfo);
-				//throw new HarnessException("Mailq not empty, total deffered messages: " + totalDeferredMessages);
 			}
 		}
 	}

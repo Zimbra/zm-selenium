@@ -43,14 +43,18 @@ public class ZimbraPrefIncludeTrashInSearchFalse extends SetGroupMailByMessagePr
 
 		MailItem message1 = new MailItem();
 		message1.dSubject = "subject" + ConfigProperties.getUniqueString();
-		message1.dFromRecipient = new RecipientItem("foo@example.com", RecipientType.From);
-		message1.dToRecipients.add(new RecipientItem("bar@example.com", RecipientType.To));
+		message1.dFromRecipient = new RecipientItem(
+				"globaladmin" + "@" + ConfigProperties.getStringProperty("testdomain"), RecipientType.From);
+		message1.dToRecipients.add(new RecipientItem(
+				"globaladmin" + "@" + ConfigProperties.getStringProperty("testdomain"), RecipientType.To));
 		message1.dBodyText = query;
 
 		MailItem message2 = new MailItem();
 		message2.dSubject = "subject" + ConfigProperties.getUniqueString();
-		message2.dFromRecipient = new RecipientItem("foo@example.com", RecipientType.From);
-		message2.dToRecipients.add(new RecipientItem("bar@example.com", RecipientType.To));
+		message2.dFromRecipient = new RecipientItem(
+				"globaladmin" + "@" + ConfigProperties.getStringProperty("testdomain"), RecipientType.From);
+		message2.dToRecipients.add(new RecipientItem(
+				"globaladmin" + "@" + ConfigProperties.getStringProperty("testdomain"), RecipientType.To));
 		message2.dBodyText = query;
 
 		// Add a message to the inbox

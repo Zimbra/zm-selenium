@@ -1,6 +1,6 @@
-Return-Path: from13011239916873@example.com
+Return-Path: from13011239916873@testdomain.com
 Resent-Date: Tue, 30 Aug 2011 19:30:06 -0700 (PDT)
-Resent-From: resentfrom13016943216873@example.com
+Resent-From: resentfrom13016943216873@testdomain.com
 Resent-To: globaladmin@testdomain.com
 Date: Mon, 29 Aug 2011 16:10:42 -0700 (PDT)
 From: globaladmin@testdomain.com

@@ -43,7 +43,7 @@ public class ViewMail extends SetGroupMailByMessagePreference {
 
 		final String subject = "subject12996131112962";
 		final String from = ConfigProperties.getStringProperty("adminUser") + "@" + ConfigProperties.getStringProperty("testdomain");
-		final String sender = "sender12996131112962@example.com";
+		final String sender = "sender12996131112962@" + ConfigProperties.getStringProperty("testdomain");
 		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email00/mime_wSender.txt";
 
 		// Inject the sample mime
@@ -76,7 +76,7 @@ public class ViewMail extends SetGroupMailByMessagePreference {
 
 		final String subject = "subject13016959916873";
 		final String from = ConfigProperties.getStringProperty("adminUser") + "@" + ConfigProperties.getStringProperty("testdomain");
-		final String replyto = "replyto13016959916873@example.com";
+		final String replyto = "replyto13016959916873@" + ConfigProperties.getStringProperty("testdomain");
 		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email00/mime_wReplyTo.txt";
 
 		// Inject the sample mime
@@ -110,7 +110,7 @@ public class ViewMail extends SetGroupMailByMessagePreference {
 
 		final String subject = "subject13147509564213";
 		final String from = ConfigProperties.getStringProperty("adminUser") + "@" + ConfigProperties.getStringProperty("testdomain");
-		final String resentfrom = "resentfrom13016943216873@example.com";
+		final String resentfrom = "resentfrom13016943216873@" + ConfigProperties.getStringProperty("testdomain");
 		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email00/mime_wResentFrom.txt";
 
 		// Inject the sample mime

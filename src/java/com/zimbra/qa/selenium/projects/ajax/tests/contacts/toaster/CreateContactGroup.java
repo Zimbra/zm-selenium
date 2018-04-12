@@ -41,8 +41,8 @@ public class CreateContactGroup extends AjaxCore {
 	public void CreateContactGroup_01() throws HarnessException {
 
 		String groupName = "group" + ConfigProperties.getUniqueString();
-		String member1 = "m" + ConfigProperties.getUniqueString() + "@example.com";
-		String member2 = "m" + ConfigProperties.getUniqueString() + "@example.com";
+		String member1 = "m" + ConfigProperties.getUniqueString() + "@" + ConfigProperties.getStringProperty("testdomain");
+		String member2 = "m" + ConfigProperties.getUniqueString() + "@" + ConfigProperties.getStringProperty("testdomain");
 
 		// Refresh the addressbook
 		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);

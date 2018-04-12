@@ -41,7 +41,7 @@ public class GetContactGroup extends AjaxCore {
 		String groupname;
 
 		// -- Data
-		String member = "email" + ConfigProperties.getUniqueString() + "@example.com";
+		String member = "email" + ConfigProperties.getUniqueString() + "@" + ConfigProperties.getStringProperty("testdomain");
 
 		// Create three contact groups
 		groupname = "Bp" + ConfigProperties.getUniqueString();
@@ -101,7 +101,7 @@ public class GetContactGroup extends AjaxCore {
 	public void GetContactGroup_123_Button_02() throws HarnessException {
 
 		String groupname;
-		String member = "email" + ConfigProperties.getUniqueString() + "@example.com";
+		String member = "email" + ConfigProperties.getUniqueString() + "@" + ConfigProperties.getStringProperty("testdomain");
 
 		// Create three contact groups
 		groupname = "Bp" + ConfigProperties.getUniqueString();
@@ -162,7 +162,7 @@ public class GetContactGroup extends AjaxCore {
 	public void GetContactGroup_B_Button_03() throws HarnessException {
 
 		String groupname;
-		String member = "email" + ConfigProperties.getUniqueString() + "@example.com";
+		String member = "email" + ConfigProperties.getUniqueString() + "@" + ConfigProperties.getStringProperty("testdomain");
 
 		// Create three contact groups
 		groupname = "Bp" + ConfigProperties.getUniqueString();
@@ -234,7 +234,7 @@ public class GetContactGroup extends AjaxCore {
 			app.zGetActiveAccount()
 					.soapSend("<CreateContactRequest xmlns='urn:zimbraMail'>" + "<cn >" + "<a n='type'>group</a>"
 							+ "<a n='nickname'>" + groupname + "</a>" + "<a n='fileAs'>8:" + groupname + "</a>"
-							+ "<m type='I' value='email" + ConfigProperties.getUniqueString() + "@example.com' />"
+							+ "<m type='I' value='email" + ConfigProperties.getUniqueString() + "@" + ConfigProperties.getStringProperty("testdomain") + "' />"
 							+ "</cn>" + "</CreateContactRequest>");
 			ContactGroupItem group = ContactGroupItem.importFromSOAP(app.zGetActiveAccount(), groupname);
 

@@ -80,8 +80,7 @@ public class AjaxCore {
 	protected AjaxCore() {
 		logger.info("New " + AjaxCore.class.getCanonicalName());
 
-		app = new AjaxPages();
-
+		app = AjaxPages.getInstance();
 		startingPage = app.zPageMain;
 		startingAccountPreferences = new HashMap<String, String>();
 		startingUserZimletPreferences = new HashMap<String, String>();
@@ -837,7 +836,7 @@ public class AjaxCore {
 	}
 
 	// Inject message using REST upload & SOAP AddMsgRequest
-	public void injectMessage (ZimbraAccount account, String filePath) throws HarnessException {
+	public void injectMessage(ZimbraAccount account, String filePath) throws HarnessException {
 		String attachmentId = account.uploadFileUsingRestUtil(filePath);
 
 		// Add message in selected account
@@ -850,5 +849,34 @@ public class AjaxCore {
 			throw new HarnessException("Unable to inject message: " + e);
 		}
 		SleepUtil.sleepMedium();
+	}
+
+	// Flush mail queue
+	public static void flushMailQueue() throws HarnessException {
+		coreFlushMailQueue("");
+	}
+	public static void flushMailQueue(String domain) throws HarnessException {
+		coreFlushMailQueue(domain);
+	}
+	public static void coreFlushMailQueue(String domain) throws HarnessException {
+		try {
+			for (int i=0; i<ExecuteHarnessMain.mtaServers.size(); i++) {
+				if (domain == "") {
+					ZimbraAdminAccount.GlobalAdmin().soapSend("<MailQueueActionRequest xmlns='urn:zimbraAdmin'>"
+							+ "<server name='" + ExecuteHarnessMain.mtaServers.get(i) + "'>"
+							+ "<queue name='deferred'><action op='delete' by='query'><query>"
+							+ "</query></action></queue></server>"
+							+ "</MailQueueActionRequest>");
+				} else {
+					ZimbraAdminAccount.GlobalAdmin().soapSend("<MailQueueActionRequest xmlns='urn:zimbraAdmin'>"
+							+ "<server name='" + ExecuteHarnessMain.mtaServers.get(i) + "'>"
+							+ "<queue name='deferred'><action op='delete' by='query'><query>"
+							+ "<field name='todomain'><match value='" + domain + "'/></field></query></action></queue></server>"
+							+ "</MailQueueActionRequest>");
+				}
+			}
+		} catch (HarnessException e) {
+			throw new HarnessException("Unable to flush mail queue: " + e);
+		}
 	}
 }

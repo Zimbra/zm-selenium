@@ -30,7 +30,7 @@ import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.html.pages.HtmlPages;
 
 public class HtmlCore {
-	
+
 	protected static Logger logger = LogManager.getLogger(HtmlCore.class);
 	protected HtmlPages app = null;
 
@@ -49,8 +49,7 @@ public class HtmlCore {
 	protected HtmlCore() {
 		logger.info("New "+ HtmlCore.class.getCanonicalName());
 
-		app = new HtmlPages();
-
+		app = HtmlPages.getInstance();
 		startingPage = app.zPageMain;
 		startingAccountPreferences = new HashMap<String, String>();
 		startingAccountZimletPreferences = new HashMap<String, String>();
@@ -64,9 +63,9 @@ public class HtmlCore {
 	 * </ol>
 	 * <p>
 	 * @throws HarnessException
-	 * @throws InterruptedException 
-	 * @throws IOException 
-	 * @throws SAXException 
+	 * @throws InterruptedException
+	 * @throws IOException
+	 * @throws SAXException
 	 */
 	@BeforeSuite( groups = { "always" } )
 	public void coreBeforeSuite() throws HarnessException {
@@ -77,31 +76,31 @@ public class HtmlCore {
 
 		try {
 			webDriver = ClientSessionFactory.session().webDriver();
-	
+
 			Capabilities cp =  ((RemoteWebDriver)webDriver).getCapabilities();
-			if (cp.getBrowserName().equals(DesiredCapabilities.firefox().getBrowserName())||cp.getBrowserName().equals(DesiredCapabilities.chrome().getBrowserName())||cp.getBrowserName().equals(DesiredCapabilities.internetExplorer().getBrowserName())) {				
+			if (cp.getBrowserName().equals(DesiredCapabilities.firefox().getBrowserName())||cp.getBrowserName().equals(DesiredCapabilities.chrome().getBrowserName())||cp.getBrowserName().equals(DesiredCapabilities.internetExplorer().getBrowserName())) {
 				webDriver.manage().window().setPosition(new Point(0, 0));
 				webDriver.manage().window().setSize(new Dimension((int)Toolkit.getDefaultToolkit().getScreenSize().getWidth(),(int)Toolkit.getDefaultToolkit().getScreenSize().getHeight()));
 			}
-			
+
 		} catch (WebDriverException e) {
 			logger.error("Unable to mobile app.", e);
 			throw new HarnessException(e);
 		}
 
-		// Dynamic wait for App to be ready	
+		// Dynamic wait for App to be ready
 		final int maxRetry = 10;
 		for ( int retry = 0; retry < maxRetry; retry++ ) {
-			
+
 			try
 			{
 				logger.info("Retry #" + retry);
 				webDriver.navigate().to(ConfigProperties.getBaseURL());
-				
+
 				// If we made it here, everything is ok
 				logger.info("App is ready!");
 				break; // for ( int retry = 0; retry ...
-				
+
 			} catch (WebDriverException e) {
 				if ( retry >= maxRetry ) {
 					logger.error("Unable to open browser app.  Is a valid cert installed?", e);
@@ -114,7 +113,7 @@ public class HtmlCore {
 		}
 
 
-		logger.info("coreBeforeSuite: finish");		
+		logger.info("coreBeforeSuite: finish");
 	}
 
 	@BeforeClass( groups = { "always" } )
@@ -209,8 +208,8 @@ public class HtmlCore {
 		// For Ajax and Html, if account is considered dirty (modified),
 		// then recreate a new account
 		ZimbraAccount currentAccount = app.zGetActiveAccount();
-		if (currentAccount != null 
-				&& currentAccount.accountIsDirty 
+		if (currentAccount != null
+				&& currentAccount.accountIsDirty
 				&& currentAccount == ZimbraAccount.AccountZCS()) {
 
 			ZimbraAccount.ResetAccountZCS();

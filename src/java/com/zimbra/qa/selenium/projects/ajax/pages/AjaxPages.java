@@ -98,7 +98,14 @@ public class AjaxPages extends AbsApplication {
 	// Zimlets
 	public PageSocial zPageSocial = null;
 
-	public AjaxPages() {
+	private static AjaxPages AjaxPages;
+	public static AjaxPages getInstance() {
+		if (AjaxPages == null) {
+			AjaxPages = new AjaxPages();
+		}
+		return AjaxPages;
+	}
+	private AjaxPages() {
 		super();
 
 		logger.info("new " + AjaxPages.class.getCanonicalName());

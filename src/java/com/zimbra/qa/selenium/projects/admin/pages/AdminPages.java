@@ -110,6 +110,13 @@ public class AdminPages extends AbsApplication {
 	public PageManageMigrationCoexistance zPageManageMigrationCoexistance = null;
 	public PageManageHelp zPageManageHelp = null;
 
+	private static AdminPages AdminPages;
+	public static AdminPages getInstance() {
+		if (AdminPages == null) {
+			AdminPages = new AdminPages();
+		}
+		return AdminPages;
+	}
 	public AdminPages() {
 		super();
 
