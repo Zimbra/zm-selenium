@@ -51,6 +51,7 @@ public class ContextMenuOptions extends SetGroupMailByMessagePreference {
 		mailform.zFill(mail);
 
 		app.zPageMail.zRightClickAddressBubble(Field.To);
-		ZAssert.assertTrue(app.zPageMail.zVerifyAllAddressContextMenu(""), "Delete, Copy, Edit, Expand, Add to Contact and Move To cc, bcc options doesn't exists");
+		ZAssert.assertTrue(app.zPageMail.zVerifyAllAddressContextMenu(""),
+				"Delete, Copy, Edit, Expand, Add to Contact and Move To, Cc, Bcc options exists");
 	}
 }

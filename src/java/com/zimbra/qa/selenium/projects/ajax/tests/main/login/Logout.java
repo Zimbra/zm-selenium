@@ -21,17 +21,17 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
 
-public class BasicLogout extends AjaxCore {
+public class Logout extends AjaxCore {
 
-	public BasicLogout() {
-		logger.info("New "+ BasicLogout.class.getCanonicalName());
+	public Logout() {
+		logger.info("New "+ Logout.class.getCanonicalName());
 	}
 
 
 	@Test (description = "Logout of the Ajax Client",
 			groups = { "sanity", "L0" })
 
-	public void BasicLogout_01() throws HarnessException {
+	public void Logout_01() throws HarnessException {
 
 		// Login
 		app.zPageMain.zLogout();

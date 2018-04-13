@@ -48,8 +48,6 @@ public class ChangePassword extends AjaxCore {
 
 		try {
 			window = (SeparateWindowChangePassword)app.zPagePreferences.zToolbarPressButton(Button.B_CHANGE_PASSWORD);
-			ZAssert.assertNotNull(window, "Verify the dialog was created");
-
 			window.zSetWindowTitle(windowTitle);
 			ZAssert.assertTrue(window.zIsWindowOpen(windowTitle),"Verify the window is opened and switch to it");
 

@@ -35,7 +35,7 @@ public class ViewContactGroup extends AjaxCore  {
 	@Test (description = "View a contact group",
 			groups = { "smoke", "L0" } )
 
-	public void DisplayContactGroupInfo_01() throws HarnessException {
+	public void ViewContactGroup_01() throws HarnessException {
 
 		ContactGroupItem group = ContactGroupItem.createContactGroupItem(app.zGetActiveAccount());
 
