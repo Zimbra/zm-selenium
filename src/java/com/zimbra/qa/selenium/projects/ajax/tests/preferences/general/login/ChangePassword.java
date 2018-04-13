@@ -16,7 +16,6 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.preferences.general.login;
 
-import java.util.HashMap;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
@@ -29,14 +28,9 @@ import com.zimbra.qa.selenium.projects.ajax.pages.preferences.TreePreferences.Tr
 
 public class ChangePassword extends AjaxCore {
 
-	@SuppressWarnings("serial")
 	public ChangePassword() {
 		logger.info("New "+ ChangePassword.class.getCanonicalName());
-
 		super.startingPage = app.zPagePreferences;
-		super.startingAccountPreferences = new HashMap<String, String>() {{
-			put("zimbraPrefGroupMailBy", "message");
-		}};
 	}
 
 
@@ -45,11 +39,11 @@ public class ChangePassword extends AjaxCore {
 
 	public void ChangePassword_01() throws HarnessException {
 
-		String password = "password"+ ConfigProperties.getUniqueString();
+		String password = "password" + ConfigProperties.getUniqueString();
 		String windowTitle = "Change password";
 		SeparateWindowChangePassword window = null;
 
-		// Go to "General"
+		// Go to "General" tab
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.General);
 
 		try {

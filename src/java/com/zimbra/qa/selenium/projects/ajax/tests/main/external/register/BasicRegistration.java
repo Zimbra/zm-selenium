@@ -99,7 +99,6 @@ public class BasicRegistration extends AjaxCore {
 		} finally {
 			flushMailQueue(domain);
 			zFreshLogin();
-			logger.info(app.zGetActiveAccount().EmailAddress);
 		}
 	}
 }

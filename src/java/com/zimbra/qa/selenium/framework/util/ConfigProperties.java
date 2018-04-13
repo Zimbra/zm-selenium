@@ -253,8 +253,13 @@ public class ConfigProperties {
 				Date date = new Date();
 				SimpleDateFormat dateTimeFormat = new SimpleDateFormat("hh.mm");
 
-				ExecuteHarnessMain.zimbraVersion = zimbraVersion.replace("Release ", "").split(" ")[0] + "_" + buildType
-						+ "-" + dateTimeFormat.format(date);
+				if (!ExecuteHarnessMain.hostname.contains(".")) {
+					ExecuteHarnessMain.zimbraVersion = zimbraVersion.replace("Release ", "").split(" ")[0] + "_"
+							+ buildType;
+				} else {
+					ExecuteHarnessMain.zimbraVersion = zimbraVersion.replace("Release ", "").split(" ")[0] + "_"
+							+ buildType + "-" + dateTimeFormat.format(date);
+				}
 			}
 		}
 		return ExecuteHarnessMain.zimbraVersion;
