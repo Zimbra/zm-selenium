@@ -76,7 +76,7 @@ public class ManageContactGroup extends AjaxCore  {
 
 	@Bugs (ids = "77882")
 	@Test (description = "Add a contact to an existing group",
-			groups = { "smoke", "L0" })
+			groups = { "smoke", "L1" })
 
 	public void Add1ContactToExistingContactGroup_02() throws HarnessException {
 

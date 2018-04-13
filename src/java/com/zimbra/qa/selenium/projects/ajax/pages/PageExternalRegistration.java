@@ -84,7 +84,11 @@ public class PageExternalRegistration extends PageLogin {
 		}
 
 		// Open MyURL
-		this.sOpen(this.MyUrl.toString());
+		if (!ConfigProperties.getStringProperty("server.host").endsWith(".zimbra.com")) {
+			this.sOpen(this.MyUrl.toString().replace(":8443", ":443"));
+		} else {
+			this.sOpen(this.MyUrl.toString());
+		}
 	}
 
 	public void zLogin(ZimbraAccount account) throws HarnessException {

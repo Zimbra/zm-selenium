@@ -147,7 +147,6 @@ public class AjaxCore {
 				&& this.getClass().getName().contains(ExecuteHarnessMain.SeleniumBasePackage + ".projects.ajax.tests.contacts.dl")) {
 			StafIntegration.logInfo = "Grant createDistList right to domain using CLI utility";
 			logger.info(StafIntegration.logInfo);
-			Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
 			CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"),
 					"zmprov grr domain " + ConfigProperties.getStringProperty("testdomain") + " dom "
 							+ ConfigProperties.getStringProperty("testdomain") + " createDistList");
@@ -159,7 +158,6 @@ public class AjaxCore {
 				&& this.getClass().getName().contains(ExecuteHarnessMain.SeleniumBasePackage + ".projects.ajax.tests.network.zimlets.smime")) {
 			StafIntegration.logInfo = "Disable zimbraSmimeOCSPEnabled attribute for S/MIME using CLI utility";
 			logger.info(StafIntegration.logInfo);
-			Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo), Charset.forName("UTF-8"), StandardOpenOption.APPEND);
 			CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"), "zmprov mcf zimbraSmimeOCSPEnabled FALSE");
 			ExecuteHarnessMain.isSmimeOcspDisabled = true;
 		}
@@ -171,7 +169,6 @@ public class AjaxCore {
 					"zmprov -l gc default zimbraZimletAvailableZimlets | grep zimbraZimletAvailableZimlets | cut -c 32-");
 			if (!availableZimlets.contains("com_zextras_chat_open")) {
 				logger.info("Enable zimbra chat zimlet on default COS");
-				Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo),Charset.forName("UTF-8"), StandardOpenOption.APPEND);
 				CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"),
 						"zmprov mc default +zimbraZimletAvailableZimlets '+com_zextras_chat_open'");
 				for (int i=0; i<ExecuteHarnessMain.storeServers.size(); i++) {
@@ -189,7 +186,6 @@ public class AjaxCore {
 					"zmprov -l gc default zimbraZimletAvailableZimlets | grep zimbraZimletAvailableZimlets | cut -c 32-");
 			if (!availableZimlets.contains("com_zextras_drive_open")) {
 				logger.info("Enable zimbra drive zimlet on default COS");
-				Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo),Charset.forName("UTF-8"), StandardOpenOption.APPEND);
 				CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"),
 						"zmprov mc default +zimbraZimletAvailableZimlets '+com_zextras_drive_open'");
 				for (int i=0; i<ExecuteHarnessMain.storeServers.size(); i++) {

@@ -39,7 +39,7 @@ public class GetMessage extends AjaxCore {
 
 
 	@Test (description = "Receive a mail with a basic URL",
-			groups = { "smoke", "L0" })
+			groups = { "smoke", "L1" })
 
 	public void GetMessage_01() throws HarnessException {
 

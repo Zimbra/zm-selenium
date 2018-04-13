@@ -40,7 +40,7 @@ public class DeleteContactGroup extends AjaxCore  {
 
 
 	@Test (description = "Delete a contact group by click Delete button on toolbar",
-			groups = { "smoke", "L0" })
+			groups = { "smoke", "L1" })
 
 	public void ClickDeleteOnToolbar_01() throws HarnessException {
 
