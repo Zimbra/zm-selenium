@@ -3,7 +3,7 @@
 set -euxo pipefail
 
 # Additionally get circleci container public ip address and hostname
-CONTAINER_IP_ADDRESS=$(wget -qO- http://checkip.amazonaws.com)
+CONTAINER_IP_ADDRESS=$(wget -qO- https://checkip.amazonaws.com)
 echo $CONTAINER_IP_ADDRESS
 echo $(hostname -s)
 
