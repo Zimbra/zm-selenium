@@ -18,6 +18,7 @@ package com.zimbra.qa.selenium.framework.util;
 
 import java.io.File;
 import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -253,7 +254,14 @@ public class ConfigProperties {
 				Date date = new Date();
 				SimpleDateFormat dateTimeFormat = new SimpleDateFormat("hh.mm");
 
-				if (!ExecuteHarnessMain.hostname.contains(".")) {
+				// Get hostname
+				try {
+					ExecuteHarnessMain.hostname = InetAddress.getLocalHost().getHostName();
+				} catch (UnknownHostException e) {
+					e.printStackTrace();
+				}
+
+				if (!ExecuteHarnessMain.hostname.contains(".") && !ExecuteHarnessMain.hostname.contains("-")) {
 					ExecuteHarnessMain.zimbraVersion = zimbraVersion.replace("Release ", "").split(" ")[0] + "_"
 							+ buildType;
 				} else {

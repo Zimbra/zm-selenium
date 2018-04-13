@@ -1342,13 +1342,6 @@ public class ExecuteHarnessMain {
 		// Selenium service
 		SeleniumService seleniumService = new SeleniumService();
 
-		// Hostname
-		try {
-			hostname = InetAddress.getLocalHost().getHostName();
-		} catch (UnknownHostException e) {
-			e.printStackTrace();
-		}
-
 		// Harness log
 		StafIntegration.sHarnessLogFileFolderPath = testoutputfoldername + "/debug/projects";
 		StafIntegration.sHarnessLogFilePath = StafIntegration.sHarnessLogFileFolderPath + "/" + StafIntegration.sHarnessLogFileName;
