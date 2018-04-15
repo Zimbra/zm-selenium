@@ -3,7 +3,6 @@ version: 2
 ############################################################################
 
 config: &config
-   context: selenium
    working_directory: ~/zm-selenium
    docker:
       - image: jiteshsojitra/docker-ubuntu-xfce-container:1.0
