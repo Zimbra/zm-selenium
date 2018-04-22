@@ -278,6 +278,16 @@ public class ZDate {
 	public String toMM_DD_YYYY() throws HarnessException {
 		return (format("MM/dd/yyyy"));
 	}
+	
+	/**
+	 * M/D/YYYY (i.e. 4/12/2011)
+	 * 
+	 * @return
+	 * @throws HarnessException
+	 */
+	public String toM_D_YYYY() throws HarnessException {
+		return (format("M/d/yyyy"));
+	}
 
 	/**
 	 * hh:mm aa (i.e. 04:30 PM)

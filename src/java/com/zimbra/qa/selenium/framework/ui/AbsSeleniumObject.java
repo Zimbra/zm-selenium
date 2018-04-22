@@ -520,10 +520,9 @@ public abstract class AbsSeleniumObject {
 			} else {
 				we = getElement(locator);
 			}
-			((JavascriptExecutor) webDriver()).executeScript("var evt = document.createEvent('MouseEvents');"
-					+ "evt.initMouseEvent('dblclick',true, true, window, 0, 0, 0, 0, 0, false, false, false,"
-					+ "false, 0,null); arguments[0].dispatchEvent(evt);", we);
-
+			Actions action = new Actions(webDriver());
+			action.doubleClick(we).perform();
+			zWaitForBusyOverlay();
 		} catch (Exception ex) {
 			throw new HarnessException("Unable to doubleclick on locator " + locator, ex);
 		}

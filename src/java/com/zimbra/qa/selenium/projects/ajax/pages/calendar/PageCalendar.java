@@ -223,6 +223,9 @@ public class PageCalendar extends AbsTab {
 		public static final String CloseAptTab = "css= div[id^='zb__App__tab_APPT'] tr td>div[class='ImgCloseGray']";
 		public static final String Cal_FirstOverviewHeader = "css=td[id='ztih__main_Calendar__CALENDAR_textCell']";
 		public static final String zAppointmentReminderDialog = "css=div[id='ZmReminderDialog_appt']";
+		
+		// Appointments
+		public static final String zDeclinedAppointments = "xpath=(//div[@class='ImgApptExceptionIndicator']//ancestor::div[@class='appt'])";
 	}
 
 	public PageCalendar(AbsApplication application) {
