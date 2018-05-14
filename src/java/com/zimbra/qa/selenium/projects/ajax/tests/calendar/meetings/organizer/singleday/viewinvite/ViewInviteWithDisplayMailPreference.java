@@ -46,7 +46,7 @@ public class ViewInviteWithDisplayMailPreference extends AjaxCore {
 
 
 	@Test (description = "View invite with display mail preference as HTML and verify body multiline HTML content ",
-			groups = { "sanity", "L00" } )
+			groups = { "sanity", "L0" } )
 
 	public void ViewHTMLInviteWithHTMLPreference_01() throws HarnessException {
 
