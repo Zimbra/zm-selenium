@@ -153,12 +153,15 @@ public class AjaxCore {
 			ExecuteHarnessMain.isDLRightGranted = true;
 		}
 
-		// Disable zimbraSmimeOCSPEnabled attribute for S/MIME
+		// Disable zimbraSmimeOCSPEnabled attribute for S/MIME	
 		if (!ExecuteHarnessMain.isSmimeOcspDisabled
 				&& this.getClass().getName().contains(ExecuteHarnessMain.SeleniumBasePackage + ".projects.ajax.tests.network.zimlets.smime")) {
 			StafIntegration.logInfo = "Disable zimbraSmimeOCSPEnabled attribute for S/MIME using CLI utility";
 			logger.info(StafIntegration.logInfo);
 			CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"), "zmprov mcf zimbraSmimeOCSPEnabled FALSE");
+			for (int i=0; i<ExecuteHarnessMain.storeServers.size(); i++) {
+				CommandLineUtility.runCommandOnZimbraServer(ExecuteHarnessMain.storeServers.get(i), "zmprov ms '" + ExecuteHarnessMain.storeServers.get(i) + "' zimbraSmimeOCSPEnabled FALSE" );
+			}
 			ExecuteHarnessMain.isSmimeOcspDisabled = true;
 		}
 
