@@ -36,7 +36,8 @@ public class VerifyTimezoneView extends AjaxCore {
 			groups = { "smoke", "L1" } )
 
 	public void VerifyTimezoneView_01() throws HarnessException {
-
+		
+		String SingleQuoteUnicode = "\u2019";
 		String[] Timezone = { "GMT -12:00 Dateline",
 				"GMT -11:00 Samoa",
 				"GMT -10:00 Adak",
@@ -167,7 +168,7 @@ public class VerifyTimezoneView extends AjaxCore {
 				"GMT +12:00 Fiji",
 				"GMT +12:45 Chatham",
 				"GMT +13:00 Samoa",
-				"GMT +13:00 Nuku\u2019alofa",
+				"GMT +13:00 Nuku"+SingleQuoteUnicode+"alofa",
 				"GMT +14:00 Kiritimati Island" };
 
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.General);
