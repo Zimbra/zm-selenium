@@ -236,7 +236,7 @@ public class DeleteMail extends SetGroupMailByMessagePreference {
 
 	public void DeleteMailFromFolderWithRetention_03() throws HarnessException {
 
-		String warningMessagePart1 = "You are deleting a message that is within its folder's retention period.";
+		String warningMessagePart1 = "You are deleting a message that is within its folder’s retention period.";
 		String warningMessagePart2 = "Do you wish to delete the message?";
 		String subject = "subject" + ConfigProperties.getUniqueString();
 		String mountpointname = "mountpoint" + ConfigProperties.getUniqueString();
