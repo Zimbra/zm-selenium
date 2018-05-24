@@ -47,7 +47,7 @@ public class MoveMessage extends SetGroupMailByMessagePreference {
 		}
 	}
 
-
+	
 	@Test (description = "Move all mails by selecting 'select all', then clicking toolbar 'Move' button",
 			groups = { "functional", "L2" })
 
@@ -105,7 +105,7 @@ public class MoveMessage extends SetGroupMailByMessagePreference {
 	}
 
 
-	@Bugs (ids = "106905")
+	@Bugs (ids = "ZCS-259")
 	@Test (description = "Move all mails by selecting 'shift-select all', then clicking toolbar 'Move' button",
 			groups = { "functional", "L3" })
 
