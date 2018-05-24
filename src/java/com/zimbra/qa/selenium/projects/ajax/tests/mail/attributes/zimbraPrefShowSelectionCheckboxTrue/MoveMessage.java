@@ -46,7 +46,6 @@ public class MoveMessage extends SetGroupMailByMessagePreference {
 			dialog.zPressButton(Button.B_CANCEL);
 		}
 	}
-
 	
 	@Test (description = "Move all mails by selecting 'select all', then clicking toolbar 'Move' button",
 			groups = { "functional", "L2" })
