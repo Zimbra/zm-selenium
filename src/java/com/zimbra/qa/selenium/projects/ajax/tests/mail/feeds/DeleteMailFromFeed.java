@@ -110,7 +110,7 @@ public class DeleteMailFromFeed extends SetGroupMailByMessagePreference {
 		app.zPageMail.zListItem(Action.A_MAIL_CHECKBOX, feedMailSubject2);
 
 		// Right click the item, select delete
-		app.zPageMail.zListItem(Action.A_RIGHTCLICK, Button.B_DELETE, feedMailSubject2);
+		app.zPageMail.zListItem(Action.A_RIGHTCLICK, Button.B_DELETE,feedMailSubject2);
 
 		ZAssert.assertFalse(app.zPageMail.zVerifyMailExists(feedMailSubject1),"The deleted feed mail is present in feed folder even after deletion!");
 		ZAssert.assertFalse(app.zPageMail.zVerifyMailExists(feedMailSubject2),"The deleted feed mail is present in feed folder even after deletion!");
@@ -123,7 +123,7 @@ public class DeleteMailFromFeed extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Verify the hard deletion of a mail from feed folder using 'shift-del' shortcut",
-			groups = { "functional", "L3" })
+			groups = { "functional", "L2" })
 
 	public void DeleteMailFromFeed_03() throws HarnessException, MalformedURLException {
 

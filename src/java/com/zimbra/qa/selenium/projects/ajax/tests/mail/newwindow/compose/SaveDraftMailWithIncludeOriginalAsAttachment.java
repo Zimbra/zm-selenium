@@ -37,7 +37,7 @@ public class SaveDraftMailWithIncludeOriginalAsAttachment extends SetGroupMailBy
 
 	@Bugs (ids = "104334")
 	@Test (description = "Reply to a mail with include original as attachment, format as HTML and save draft",
-			groups = { "functional", "L3" })
+			groups = { "functional", "L2" })
 
 	public void SaveDraftMailWithIncludeOriginalAsAttachment_01() throws HarnessException {
 
@@ -146,6 +146,9 @@ public class SaveDraftMailWithIncludeOriginalAsAttachment extends SetGroupMailBy
 
 			window.zToolbarPressPulldown(Button.B_OPTIONS,Button.O_FORMAT_AS_HTML_MULTI_WINDOW);
 			window.zToolbarPressPulldown(Button.B_OPTIONS, Button.O_INCLUDE_ORIGINAL_AS_ATTACHMENT);
+			window.sClick("css=td[id='OkCancel_button2_title']"); //Click on OK button locator
+			SleepUtil.sleepSmall();
+			
 			window.zFillField(DisplayMail.Field.Body, body);
 			window.zToolbarPressPulldown(Button.B_OPTIONS,Button.O_FORMAT_AS_PLAIN_TEXT_MULTI_WINDOW);
 

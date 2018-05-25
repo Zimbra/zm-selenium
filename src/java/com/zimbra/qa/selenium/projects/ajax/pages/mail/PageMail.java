@@ -1488,7 +1488,6 @@ public class PageMail extends AbsTab {
 				break;
 			}
 
-			itemlocator = null;
 		}
 
 		if (itemlocator == null) {
