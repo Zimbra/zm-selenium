@@ -302,7 +302,8 @@ public class CommandLineUtility {
 			}
 
 			Session session = jsch.getSession(ConfigProperties.getStringProperty("server.user"), host, 22);
-			if (ConfigProperties.getStringProperty("server.host").endsWith(".zimbra.com")) {
+			if (ConfigProperties.getStringProperty("server.host").endsWith(".zimbra.com")
+					|| ConfigProperties.getStringProperty("server.host").endsWith(".nic.uat")) {
 				session.setPassword(ConfigProperties.getStringProperty("server.password"));
 			}
 

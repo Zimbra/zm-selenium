@@ -42,6 +42,9 @@ public class PageLogin extends AbsTab {
 
 		// Toolbar links
 		public static final String zLogoutLink = "css=[id='skin_container_logoff']>a";
+		
+		// NIC login history page
+		public static final String zProceedToDashboard = "//a[contains(text(),'Dashboard')]";
 
 	}
 
@@ -120,6 +123,12 @@ public class PageLogin extends AbsTab {
 			zSetLoginName(account.EmailAddress);
 			zSetLoginPassword(account.Password);
 			sClick(Locators.zBtnLogin);
+			
+			// Check for NIC login history page
+			if(sIsElementPresent(Locators.zProceedToDashboard)) {
+				sClick(Locators.zProceedToDashboard);
+			}
+			
 			SleepUtil.sleepLong();
 			zWaitForBusyOverlay();
 
