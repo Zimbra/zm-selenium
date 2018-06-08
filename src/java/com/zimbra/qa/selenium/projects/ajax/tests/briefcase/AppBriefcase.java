@@ -30,6 +30,8 @@ import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ZimbraURI;
 import com.zimbra.qa.selenium.projects.ajax.core.EnableBriefcaseFeature;
+import com.zimbra.qa.selenium.projects.ajax.pages.PageLogin.Locators;
+import com.zimbra.qa.selenium.framework.ui.AbsSeleniumObject;
 
 public class AppBriefcase extends EnableBriefcaseFeature {
 
@@ -42,7 +44,7 @@ public class AppBriefcase extends EnableBriefcaseFeature {
 
 
 	@Test (description = "?app=briefcase in url",
-			groups = { "smoke", "L1" })
+			groups = { "smoke", "L1"  })
 
 	public void AppBriefcase_01() throws HarnessException {
 
@@ -77,8 +79,11 @@ public class AppBriefcase extends EnableBriefcaseFeature {
 		// Reload the application, with app=tasks query parameter
 		ZimbraURI uri = new ZimbraURI(ZimbraURI.getBaseURI());
 		uri.addQuery("app", "briefcase");
-		app.zPageMail.sOpen(uri.toString());
+		app.zPageMail.sOpen(uri.toString() + "&skipLoginHistory=true");
 		SleepUtil.sleepMedium();
+			
+		
+		
 
 		// Select briefcase folder
 		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseFolder, true);
