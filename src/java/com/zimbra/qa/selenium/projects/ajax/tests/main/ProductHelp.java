@@ -45,7 +45,7 @@ public class ProductHelp extends AjaxCore {
 
 			for (String title : app.zPageMain.sGetAllWindowTitles()) {
 				logger.info("Window title: " + title);
-				if (title.contains("Zimbra: Inbox")) {
+				if (title.contains(": Inbox")) {
 					logger.info("Already existing Name: " + title);
 
 				} else if (title.contains(windowTitle)) {

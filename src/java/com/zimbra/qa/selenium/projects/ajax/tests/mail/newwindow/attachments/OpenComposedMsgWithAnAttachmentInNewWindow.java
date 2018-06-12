@@ -52,7 +52,7 @@ public class OpenComposedMsgWithAnAttachmentInNewWindow extends SetGroupMailByMe
 		zUpload(filePath);
 
 		SeparateWindowFormMailNew window = null;
-		String windowTitle = "Zimbra: Compose";
+		String windowTitle = ": Compose";
 
 		try {
 

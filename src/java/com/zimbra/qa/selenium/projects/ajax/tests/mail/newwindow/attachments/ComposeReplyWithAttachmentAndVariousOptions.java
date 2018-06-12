@@ -84,7 +84,7 @@ public class ComposeReplyWithAttachmentAndVariousOptions extends SetGroupMailByM
 
 			// Open it in new window
 			SeparateWindowFormMailNew window = null;
-			String windowTitle = "Zimbra: Reply";
+			String windowTitle = ": Reply";
 
 			final String fileName = "inlineImage.jpg";
 			final String filePath = ConfigProperties.getBaseDirectory() + "\\data\\public\\other\\" + fileName;
@@ -181,7 +181,7 @@ public class ComposeReplyWithAttachmentAndVariousOptions extends SetGroupMailByM
 
 			// Open it in new window
 			SeparateWindowFormMailNew window = null;
-			String windowTitle = "Zimbra: Reply";
+			String windowTitle = ": Reply";
 
 			try {
 
@@ -263,7 +263,7 @@ public class ComposeReplyWithAttachmentAndVariousOptions extends SetGroupMailByM
 
 			// Open message in a separate window
 			SeparateWindowFormMailNew window = null;
-			String windowTitle = "Zimbra: Reply";
+			String windowTitle = ": Reply";
 
 			try {
 

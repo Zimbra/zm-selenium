@@ -50,7 +50,7 @@ public class OpenComposedMsgWithAnInlineAttachmentInNewWindow extends SetGroupMa
 		zUploadInlineImageAttachment(filePath);
 
 		SeparateWindowFormMailNew window = null;
-		String windowTitle = "Zimbra: Compose";
+		String windowTitle = ": Compose";
 
 		try {
 

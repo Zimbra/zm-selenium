@@ -82,7 +82,7 @@ public class FwdMailWithAnInlineAttachment extends SetGroupMailByMessagePreferen
 		final String filePath = ConfigProperties.getBaseDirectory()+ "\\data\\public\\other\\" + fileName;
 
 		SeparateWindowDisplayMail window = null;
-		String windowTitle = "Zimbra: " + subject;
+		String windowTitle = ": " + subject;
 
 		try {
 

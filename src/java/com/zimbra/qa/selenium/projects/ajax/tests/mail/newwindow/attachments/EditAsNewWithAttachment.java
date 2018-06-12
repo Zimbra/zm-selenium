@@ -58,7 +58,7 @@ public class EditAsNewWithAttachment extends SetGroupMailByMessagePreference {
 		final String filePath = ConfigProperties.getBaseDirectory() + "\\data\\public\\other\\" + fileName;
 
 		SeparateWindowDisplayMail window = null;
-		String windowTitle = "Zimbra: " + subject;
+		String windowTitle = ": " + subject;
 
 		MailItem mail = new MailItem();
 		mail.dBodyHtml = " body"+ ConfigProperties.getUniqueString();
