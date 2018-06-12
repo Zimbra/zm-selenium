@@ -91,7 +91,7 @@ public class DisplayDocument extends EnableBriefcaseFeature {
 
 		// Create document item
 		DocumentItem document = new DocumentItem();
-		String docName = "test���test";
+		String docName = "testäöütest";
 		document.setDocName(docName);
 		String docText = document.getDocText();
 
