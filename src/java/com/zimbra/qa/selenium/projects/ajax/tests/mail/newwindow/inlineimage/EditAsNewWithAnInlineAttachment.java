@@ -67,7 +67,7 @@ public class EditAsNewWithAnInlineAttachment extends SetGroupMailByMessagePrefer
 		MailItem mail = new MailItem();
 		mail.dBodyHtml = "body"+ ConfigProperties.getUniqueString();
 
-		String windowTitle = "Zimbra: " + subject;
+		String windowTitle = ": " + subject;
 
 		try {
 

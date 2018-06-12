@@ -81,7 +81,7 @@ public class UnTagMail extends SetGroupMailByMessagePreference {
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, mail.dSubject);
 
 		SeparateWindowDisplayMail window = null;
-		String windowTitle = "Zimbra: " + subject;
+		String windowTitle = ": " + subject;
 
 		try {
 
@@ -144,7 +144,7 @@ public class UnTagMail extends SetGroupMailByMessagePreference {
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, mail.dSubject);
 
 		SeparateWindowDisplayMail window = null;
-		String windowTitle = "Zimbra: " + subject;
+		String windowTitle = ": " + subject;
 
 		try {
 
@@ -207,7 +207,7 @@ public class UnTagMail extends SetGroupMailByMessagePreference {
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, mail.dSubject);
 
 		SeparateWindowDisplayMail window = null;
-		String windowTitle = "Zimbra: " + subject;
+		String windowTitle = ": " + subject;
 
 		try {
 

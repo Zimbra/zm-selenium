@@ -47,7 +47,7 @@ public class PageBriefcase extends AbsTab {
 
 	WebElement we = null;
 
-	public static final String pageTitle = "Zimbra: Briefcase";
+	public static final String pageTitle = ": Briefcase";
 
 	public static class Locators {
 

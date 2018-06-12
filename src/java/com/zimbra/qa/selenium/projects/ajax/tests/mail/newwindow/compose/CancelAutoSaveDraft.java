@@ -74,7 +74,7 @@ public class CancelAutoSaveDraft extends SetGroupMailByMessagePreference {
 		ZAssert.assertNotNull(mailform, "Verify the new form opened");
 
 		SeparateWindowFormMailNew window = null;
-		String windowTitle = "Zimbra: Forward";
+		String windowTitle = ": Forward";
 
 		try {
 

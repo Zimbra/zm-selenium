@@ -103,7 +103,7 @@ public class CreateMountpoint extends SetGroupMailByMessagePreference {
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, shareMessageSubject);
 
 		SeparateWindowDisplayMail window = null;
-		String windowTitle = "Zimbra: " + shareMessageSubject;
+		String windowTitle = ": " + shareMessageSubject;
 
 		try {
 

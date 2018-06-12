@@ -28,7 +28,7 @@ public class DocumentPreview extends AbsDisplay {
 		Name, Time, Date, Body
 	}
 
-	public final String pageTitle = "Zimbra: Briefcase";
+	public final String pageTitle = ": Briefcase";
 
 	protected DocumentPreview(AbsApplication application) {
 		super(application);

@@ -91,7 +91,7 @@ public class DisplayDocument extends EnableBriefcaseFeature {
 
 		// Create document item
 		DocumentItem document = new DocumentItem();
-		String docName = "testäöütest";
+		String docName = "testÃ¤Ã¶Ã¼test";
 		document.setDocName(docName);
 		String docText = document.getDocText();
 
@@ -136,7 +136,7 @@ public class DisplayDocument extends EnableBriefcaseFeature {
 
 			app.zPageBriefcase.closeWindow();
 		} finally {
-			app.zPageBriefcase.zSelectWindow("Zimbra: Briefcase");
+			app.zPageBriefcase.zSelectWindow(": Briefcase");
 		}
 
 		ZAssert.assertStringContains(text, docText,	"Verify document text through GUI");

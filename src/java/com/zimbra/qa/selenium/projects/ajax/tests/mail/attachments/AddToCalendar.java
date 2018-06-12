@@ -140,7 +140,7 @@ public class AddToCalendar extends SetGroupMailByMessagePreference {
 		ZAssert.assertNotNull(item, "Verify one attachment is in the message");
 
 		SeparateWindow window = (SeparateWindow)app.zPageMail.zToolbarPressButton(Button.B_LAUNCH_IN_SEPARATE_WINDOW);
-		String windowTitle = "Zimbra: " + subject;
+		String windowTitle = ": " + subject;
 
 		try {
 			window.zWaitForActive();
@@ -209,7 +209,7 @@ public class AddToCalendar extends SetGroupMailByMessagePreference {
 		ZAssert.assertNotNull(item, "Verify one attachment is in the message");
 
 		SeparateWindow window = (SeparateWindow)app.zPageMail.zToolbarPressButton(Button.B_LAUNCH_IN_SEPARATE_WINDOW);
-		String windowTitle = "Zimbra: " + subject;
+		String windowTitle = ": " + subject;
 
 		try {
 			window.zWaitForActive();
@@ -278,7 +278,7 @@ public class AddToCalendar extends SetGroupMailByMessagePreference {
 		// Select the message so that it shows in the reading pane
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 		SeparateWindow window = (SeparateWindow)app.zPageMail.zToolbarPressButton(Button.B_RFC822_ATTACHMENT_LINK);
-		String windowTitle = "Zimbra: " + subject;
+		String windowTitle = ": " + subject;
 
 		try {
 			window.zWaitForActive();

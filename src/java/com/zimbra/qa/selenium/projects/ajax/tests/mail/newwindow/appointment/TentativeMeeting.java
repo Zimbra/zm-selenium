@@ -96,7 +96,7 @@ public class TentativeMeeting extends AjaxCore {
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);
 
 		SeparateWindowDisplayMail window = null;
-		String windowTitle = "Zimbra: " + apptSubject;
+		String windowTitle = ": " + apptSubject;
 
 		try {
 
@@ -168,7 +168,7 @@ public class TentativeMeeting extends AjaxCore {
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);
 
 		SeparateWindowDisplayMail window = null;
-		String windowTitle = "Zimbra: " + apptSubject;
+		String windowTitle = ": " + apptSubject;
 
 		try {
 
@@ -237,7 +237,7 @@ public class TentativeMeeting extends AjaxCore {
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);
 
 		SeparateWindowDisplayMail window = null;
-		String windowTitle = "Zimbra: " + apptSubject;
+		String windowTitle = ": " + apptSubject;
 
 		try {
 
@@ -343,7 +343,7 @@ public class TentativeMeeting extends AjaxCore {
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);
 
 		SeparateWindowDisplayMail window = null;
-		String windowTitle = "Zimbra: " + apptSubject;
+		String windowTitle = ": " + apptSubject;
 
 		try {
 

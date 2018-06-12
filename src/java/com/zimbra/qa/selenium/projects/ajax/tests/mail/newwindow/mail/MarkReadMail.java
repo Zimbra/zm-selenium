@@ -59,7 +59,7 @@ public class MarkReadMail extends SetGroupMailByMessagePreference {
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 
 		SeparateWindowDisplayMail window = null;
-		String windowTitle = "Zimbra: " + subject;
+		String windowTitle = ": " + subject;
 
 		try {
 
@@ -108,7 +108,7 @@ public class MarkReadMail extends SetGroupMailByMessagePreference {
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 
 		SeparateWindowDisplayMail window = null;
-		String windowTitle = "Zimbra: " + subject;
+		String windowTitle = ": " + subject;
 
 		try {
 
@@ -156,7 +156,7 @@ public class MarkReadMail extends SetGroupMailByMessagePreference {
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 
 		SeparateWindowDisplayMail window = null;
-		String windowTitle = "Zimbra: " + subject;
+		String windowTitle = ": " + subject;
 
 		try {
 

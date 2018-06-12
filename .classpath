@@ -8,3 +8,4 @@
 	<classpathentry kind="lib" path="build/dist/lib/ZimbraSelenium.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
+

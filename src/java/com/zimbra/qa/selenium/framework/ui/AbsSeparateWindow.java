@@ -152,11 +152,11 @@ public abstract class AbsSeparateWindow extends AbsPage {
 			if (windows.size() != 1) {
 				for (String winHandle : windows) {
 					WebDriver window = webDriver().switchTo().window(winHandle);
-					if (!window.getTitle().equals("Zimbra: Inbox") && !window.getTitle().equals("Zimbra: Contacts")
-							&& !window.getTitle().equals("Zimbra: Calendar")
-							&& !window.getTitle().equals("Zimbra: Tasks")
-							&& !window.getTitle().equals("Zimbra: Briefcase")
-							&& !window.getTitle().equals("Zimbra: Preferences")) {
+					if (!window.getTitle().equals(": Inbox") && !window.getTitle().equals(": Contacts")
+							&& !window.getTitle().equals(": Calendar")
+							&& !window.getTitle().equals(": Tasks")
+							&& !window.getTitle().equals(": Briefcase")
+							&& !window.getTitle().equals(": Preferences")) {
 						webDriver().close();
 					}
 				}
@@ -211,10 +211,10 @@ public abstract class AbsSeparateWindow extends AbsPage {
 					if (windows.size() >= 2) {
 
 						if ((sGetTitle().equals(title) || sGetLocation().contains("/" + title + "?"))
-								&& !sGetTitle().equals("Zimbra: Inbox") && !sGetTitle().equals("Zimbra: Contacts")
-								&& !sGetTitle().equals("Zimbra: Calendar") && !sGetTitle().equals("Zimbra: Tasks")
-								&& !sGetTitle().equals("Zimbra: Briefcase")
-								&& !sGetTitle().equals("Zimbra: Preferences")) {
+								&& !sGetTitle().equals(": Inbox") && !sGetTitle().equals(": Contacts")
+								&& !sGetTitle().equals(": Calendar") && !sGetTitle().equals(": Tasks")
+								&& !sGetTitle().equals(": Briefcase")
+								&& !sGetTitle().equals(": Preferences")) {
 							logger.info("Closing winodw: " + title);
 							webDriver().close();
 
@@ -222,12 +222,12 @@ public abstract class AbsSeparateWindow extends AbsPage {
 							for (String winHandle : windows) {
 								WebDriver window = webDriver().switchTo().window(winHandle);
 								if ((sGetTitle().equals(title) || window.getCurrentUrl().contains("/" + title + "?"))
-										&& !sGetTitle().equals("Zimbra: Inbox")
-										&& !sGetTitle().equals("Zimbra: Contacts")
-										&& !sGetTitle().equals("Zimbra: Calendar")
-										&& !sGetTitle().equals("Zimbra: Tasks")
-										&& !sGetTitle().equals("Zimbra: Briefcase")
-										&& !sGetTitle().equals("Zimbra: Preferences")) {
+										&& !sGetTitle().equals(": Inbox")
+										&& !sGetTitle().equals(": Contacts")
+										&& !sGetTitle().equals(": Calendar")
+										&& !sGetTitle().equals(": Tasks")
+										&& !sGetTitle().equals(": Briefcase")
+										&& !sGetTitle().equals(": Preferences")) {
 									webDriver().close();
 								}
 								if (title.equals("selenium_blank")) {

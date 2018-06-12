@@ -61,7 +61,7 @@ public class EditAsNew extends SetGroupMailByMessagePreference {
 		MailItem mail = new MailItem();
 		mail.dBodyHtml = " body"+ ConfigProperties.getUniqueString();
 
-		String windowTitle = "Zimbra: " + subject;
+		String windowTitle = ": " + subject;
 
 		try {
 
