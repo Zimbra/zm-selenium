@@ -1339,9 +1339,6 @@ public class ExecuteHarnessMain {
 
 	public static void ZimbraPreConfiguration(String project) throws HarnessException, IOException {
 
-		// Selenium service
-		SeleniumService seleniumService = new SeleniumService();
-
 		// Harness log
 		StafIntegration.sHarnessLogFileFolderPath = testoutputfoldername + "/debug/projects";
 		StafIntegration.sHarnessLogFilePath = StafIntegration.sHarnessLogFileFolderPath + "/" + StafIntegration.sHarnessLogFileName;
@@ -1369,10 +1366,6 @@ public class ExecuteHarnessMain {
 			for (String noOfZimbraServers : CommandLineUtility.runCommandOnZimbraServer(
 					ConfigProperties.getStringProperty("server.host"), "zmprov -l gas | wc -l")) {
 				totalZimbraServers = Integer.parseInt(noOfZimbraServers);
-			}
-			if (totalZimbraServers == 0) {
-				seleniumService.stopSeleniumExecution();
-				System.exit(0);
 			}
 			StafIntegration.logInfo = "Total zimbra server(s): " + totalZimbraServers;
 			logger.info(StafIntegration.logInfo);
@@ -1411,12 +1404,10 @@ public class ExecuteHarnessMain {
 				Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo),
 						Charset.forName("UTF-8"), StandardOpenOption.APPEND);
 				if (proxyServers.equals(null) || proxyServers.isEmpty()) {
-					seleniumService.stopSeleniumExecution();
 					StafIntegration.logInfo = "Couldn't get proxy servers (" + proxyServers + ") using CLI command";
 					logger.info(StafIntegration.logInfo);
 					Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo),
 							Charset.forName("UTF-8"), StandardOpenOption.APPEND);
-					System.exit(0);
 				}
 
 				// Get all store servers
@@ -1428,12 +1419,10 @@ public class ExecuteHarnessMain {
 				Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo),
 						Charset.forName("UTF-8"), StandardOpenOption.APPEND);
 				if (storeServers.equals(null) || storeServers.isEmpty()) {
-					seleniumService.stopSeleniumExecution();
 					StafIntegration.logInfo = "Couldn't get store servers (" + storeServers + ") using CLI command";
 					logger.info(StafIntegration.logInfo);
 					Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo),
 							Charset.forName("UTF-8"), StandardOpenOption.APPEND);
-					System.exit(0);
 				}
 
 				// Get all mta servers
@@ -1445,12 +1434,10 @@ public class ExecuteHarnessMain {
 				Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo),
 						Charset.forName("UTF-8"), StandardOpenOption.APPEND);
 				if (mtaServers.equals(null) || mtaServers.isEmpty()) {
-					seleniumService.stopSeleniumExecution();
 					StafIntegration.logInfo = "Couldn't get mta servers (" + mtaServers + ") using CLI command";
 					logger.info(StafIntegration.logInfo);
 					Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo),
 							Charset.forName("UTF-8"), StandardOpenOption.APPEND);
-					System.exit(0);
 				}
 
 			// Single-node settings
@@ -1467,12 +1454,10 @@ public class ExecuteHarnessMain {
 				Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo),
 						Charset.forName("UTF-8"), StandardOpenOption.APPEND);
 				if (proxyServers.equals(null) || proxyServers.isEmpty()) {
-					seleniumService.stopSeleniumExecution();
 					StafIntegration.logInfo = "Couldn't get proxy servers (" + proxyServers + ") using CLI command";
 					logger.info(StafIntegration.logInfo);
 					Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo),
 							Charset.forName("UTF-8"), StandardOpenOption.APPEND);
-					System.exit(0);
 				}
 			}
 
@@ -1581,12 +1566,10 @@ public class ExecuteHarnessMain {
 					}
 				}
 				if (!themeFound.equals(true)) {
-					seleniumService.stopSeleniumExecution();
 					StafIntegration.logInfo = "Couldn't find or set " + universalUITheme + " theme for Univeral UI project";
 					logger.info(StafIntegration.logInfo);
 					Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo),
 							Charset.forName("UTF-8"), StandardOpenOption.APPEND);
-					System.exit(0);
 				} else {
 					StafIntegration.logInfo = universalUITheme + " theme set for Univeral UI project";
 					logger.info(StafIntegration.logInfo);
@@ -1607,12 +1590,10 @@ public class ExecuteHarnessMain {
 				for (String serverUniversalUITheme : CommandLineUtility.runCommandOnZimbraServer(
 						ConfigProperties.getStringProperty("server.host"), "zmprov gc default | grep zimbraPrefSkin")) {
 					if (!serverUniversalUITheme.split(": ")[1].trim().equals(universalUITheme)) {
-						seleniumService.stopSeleniumExecution();
 						StafIntegration.logInfo = "Couldn't set " + universalUITheme + " theme for Univeral UI project";
 						logger.info(StafIntegration.logInfo);
 						Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo),
 								Charset.forName("UTF-8"), StandardOpenOption.APPEND);
-						System.exit(0);
 					}
 				}
 			}

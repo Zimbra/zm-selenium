@@ -42,16 +42,16 @@
 		<dependency org="org.testng" name="testng" rev="5.12.1"/>
 		<dependency org="xalan" name="serializer" rev="2.7.2"/>
 		<dependency org="xml-apis" name="xml-apis" rev="2.0.2"/>
-		<dependency org="org.seleniumhq.selenium" name="selenium-api" rev="3.11.0"/>
-		<dependency org="org.seleniumhq.selenium" name="selenium-chrome-driver" rev="3.11.0"/>
-		<dependency org="org.seleniumhq.selenium" name="selenium-edge-driver" rev="3.11.0"/>
-		<dependency org="org.seleniumhq.selenium" name="selenium-firefox-driver" rev="3.11.0"/>
-		<dependency org="org.seleniumhq.selenium" name="selenium-ie-driver" rev="3.11.0"/>
-		<dependency org="org.seleniumhq.selenium" name="selenium-java" rev="3.11.0"/>
-		<dependency org="org.seleniumhq.selenium" name="selenium-remote-driver" rev="3.11.0"/>
-		<dependency org="org.seleniumhq.selenium" name="selenium-safari-driver" rev="3.11.0"/>
-		<dependency org="org.seleniumhq.selenium" name="selenium-server" rev="3.11.0"/>
-		<dependency org="org.seleniumhq.selenium" name="selenium-support" rev="3.11.0"/>
+		<dependency org="org.seleniumhq.selenium" name="selenium-api" rev="3.12.0"/>
+		<dependency org="org.seleniumhq.selenium" name="selenium-chrome-driver" rev="3.12.0"/>
+		<dependency org="org.seleniumhq.selenium" name="selenium-edge-driver" rev="3.12.0"/>
+		<dependency org="org.seleniumhq.selenium" name="selenium-firefox-driver" rev="3.12.0"/>
+		<dependency org="org.seleniumhq.selenium" name="selenium-ie-driver" rev="3.12.0"/>
+		<dependency org="org.seleniumhq.selenium" name="selenium-java" rev="3.12.0"/>
+		<dependency org="org.seleniumhq.selenium" name="selenium-remote-driver" rev="3.12.0"/>
+		<dependency org="org.seleniumhq.selenium" name="selenium-safari-driver" rev="3.12.0"/>
+		<dependency org="org.seleniumhq.selenium" name="selenium-server" rev="3.12.0"/>
+		<dependency org="org.seleniumhq.selenium" name="selenium-support" rev="3.12.0"/>
 		<dependency org="zimbra" name="zm-native" rev="latest.integration"/>
         <dependency org="zimbra" name="zm-common" rev="latest.integration"/>
 	</dependencies>
