@@ -98,7 +98,7 @@ public class OpenDocument extends EnableBriefcaseFeature {
 
 			app.zPageBriefcase.closeWindow();
 		} finally {
-			app.zPageBriefcase.zSelectWindow(": Briefcase");
+			app.zPageBriefcase.zSelectWindow("Email: Briefcase");
 		}
 
 		ZAssert.assertStringContains(text, docText, "Verify document text through GUI");
@@ -163,7 +163,7 @@ public class OpenDocument extends EnableBriefcaseFeature {
 			app.zPageBriefcase.closeWindow();
 
 		} finally {
-			app.zPageBriefcase.zSelectWindow(": Briefcase");
+			app.zPageBriefcase.zSelectWindow("Email: Briefcase");
 		}
 
 		ZAssert.assertStringContains(text, docText, "Verify document text through GUI");
@@ -227,7 +227,7 @@ public class OpenDocument extends EnableBriefcaseFeature {
 			app.zPageBriefcase.closeWindow();
 
 		} finally {
-			app.zPageBriefcase.zSelectWindow(": Briefcase");
+			app.zPageBriefcase.zSelectWindow("Email: Briefcase");
 		}
 
 		ZAssert.assertStringContains(text, docText, "Verify document text through GUI");

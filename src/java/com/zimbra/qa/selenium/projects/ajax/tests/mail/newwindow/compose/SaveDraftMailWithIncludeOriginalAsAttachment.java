@@ -64,8 +64,8 @@ public class SaveDraftMailWithIncludeOriginalAsAttachment extends SetGroupMailBy
 
 		// Reply the item
 		SeparateWindowDisplayMail window = null;
-		String windowTitle1 = ": " + subject;
-		String windowTitle2 = ": Reply";
+		String windowTitle1 = "Email: " + subject;
+		String windowTitle2 = "Email: Reply";
 
 		try {
 
@@ -129,8 +129,8 @@ public class SaveDraftMailWithIncludeOriginalAsAttachment extends SetGroupMailBy
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 
 		SeparateWindowDisplayMail window = null;
-		String windowTitle1 = ": " + subject;
-		String windowTitle2 = ": Reply";
+		String windowTitle1 = "Email: " + subject;
+		String windowTitle2 = "Email: Reply";
 
 		try {
 

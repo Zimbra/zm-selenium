@@ -52,7 +52,7 @@ public class OpenComposedMsgWithAnAttachmentInNewWindow extends SetGroupMailByMe
 		zUpload(filePath);
 
 		SeparateWindowFormMailNew window = null;
-		String windowTitle = ": Compose";
+		String windowTitle = "Email: Compose";
 
 		try {
 

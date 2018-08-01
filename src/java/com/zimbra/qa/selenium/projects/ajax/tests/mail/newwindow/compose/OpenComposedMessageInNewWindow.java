@@ -54,7 +54,7 @@ public class OpenComposedMessageInNewWindow extends SetGroupMailByMessagePrefere
 		mailform.zFillField(Field.Body, body);
 
 		SeparateWindowFormMailNew window = null;
-		String windowTitle = ": Compose";
+		String windowTitle = "Email: Compose";
 
 		try {
 

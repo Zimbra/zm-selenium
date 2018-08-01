@@ -64,7 +64,7 @@ public class ArchiveMessage extends ArchiveZimletByMessageTest {
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 
 		SeparateWindowDisplayMail window = null;
-		String windowTitle = ": " + subject;
+		String windowTitle = "Email: " + subject;
 
 		try {
 
@@ -118,7 +118,7 @@ public class ArchiveMessage extends ArchiveZimletByMessageTest {
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 
 		SeparateWindowDisplayMail window = null;
-		String windowTitle = ": " + subject;
+		String windowTitle = "Email: " + subject;
 
 		try {
 			window = (SeparateWindowDisplayMail)app.zPageMail.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW);

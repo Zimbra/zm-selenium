@@ -88,7 +88,7 @@ public class MoveMessage extends SetGroupMailByMessagePreference {
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, mail.dSubject);
 
 		SeparateWindowDisplayMail window = null;
-		String windowTitle = ": " + subject;
+		String windowTitle = "Email: " + subject;
 
 		try {
 
@@ -159,7 +159,7 @@ public class MoveMessage extends SetGroupMailByMessagePreference {
 		// Select the item
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, mail.dSubject);
 		SeparateWindowDisplayMail window = null;
-		String windowTitle = ": " + subject;
+		String windowTitle = "Email: " + subject;
 
 		try {
 
@@ -217,7 +217,7 @@ public class MoveMessage extends SetGroupMailByMessagePreference {
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, mail.dSubject);
 
 		SeparateWindowDisplayMail window = null;
-		String windowTitle = ": " + subject;
+		String windowTitle = "Email: " + subject;
 
 		try {
 

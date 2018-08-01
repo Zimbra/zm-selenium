@@ -41,7 +41,7 @@ public class SeparateWindowFormMailNew extends AbsSeparateWindow {
 
 	public SeparateWindowFormMailNew(AbsApplication application) {
 		super(application);
-		this.DialogWindowTitle = ": Compose";
+		this.DialogWindowTitle = "Email: Compose";
 	}
 
 	@Override

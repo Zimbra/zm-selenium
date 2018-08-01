@@ -46,7 +46,6 @@ public class PrintTask extends AjaxCore {
 		}};
 	}
 
-
 	@Test (description = "Print Task using RightClick -> Print and Verify Contents in Print view",
 			groups = { "functional", "L3" })
 
@@ -81,7 +80,7 @@ public class PrintTask extends AjaxCore {
 		app.zPageTasks.zListItem(Action.A_MAIL_CHECKBOX, subject);
 
 		SeparateWindowPrintPreview window = null;
-		String windowTitle = "Zimbra";
+		String windowTitle = "Email";
 
 		try {
 
@@ -144,7 +143,7 @@ public class PrintTask extends AjaxCore {
 		app.zPageTasks.zListItem(Action.A_MAIL_CHECKBOX, subject);
 
 		SeparateWindowPrintPreview window = null;
-		String windowTitle = "Zimbra";
+		String windowTitle = "Email";
 
 		try {
 
@@ -239,7 +238,7 @@ public class PrintTask extends AjaxCore {
 		app.zTreeTasks.zTreeItem(Action.A_LEFTCLICK, taskFolder);
 
 		SeparateWindowPrintPreview window = null;
-		String windowTitle = "Zimbra";
+		String windowTitle = "Email";
 
 		try {
 

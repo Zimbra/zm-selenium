@@ -154,7 +154,7 @@ public class AddToBriefcase extends SetGroupMailByMessagePreference {
 
 	 	//Open message in a separate window
 		SeparateWindow window = (SeparateWindow)app.zPageMail.zToolbarPressButton(Button.B_LAUNCH_IN_SEPARATE_WINDOW);
-		String windowTitle = ": " + subject;
+		String windowTitle = "Email: " + subject;
 
 		try {
 

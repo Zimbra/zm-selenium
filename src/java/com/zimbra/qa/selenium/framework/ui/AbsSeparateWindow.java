@@ -152,11 +152,11 @@ public abstract class AbsSeparateWindow extends AbsPage {
 			if (windows.size() != 1) {
 				for (String winHandle : windows) {
 					WebDriver window = webDriver().switchTo().window(winHandle);
-					if (!window.getTitle().equals(": Inbox") && !window.getTitle().equals(": Contacts")
-							&& !window.getTitle().equals(": Calendar")
-							&& !window.getTitle().equals(": Tasks")
-							&& !window.getTitle().equals(": Briefcase")
-							&& !window.getTitle().equals(": Preferences")) {
+					if (!window.getTitle().equals("Email: Inbox") && !window.getTitle().equals("Email: Contacts")
+							&& !window.getTitle().equals("Email: Calendar")
+							&& !window.getTitle().equals("Email: Tasks")
+							&& !window.getTitle().equals("Email: Briefcase")
+							&& !window.getTitle().equals("Email: Preferences")) {
 						webDriver().close();
 					}
 				}
@@ -211,10 +211,10 @@ public abstract class AbsSeparateWindow extends AbsPage {
 					if (windows.size() >= 2) {
 
 						if ((sGetTitle().equals(title) || sGetLocation().contains("/" + title + "?"))
-								&& !sGetTitle().equals(": Inbox") && !sGetTitle().equals(": Contacts")
-								&& !sGetTitle().equals(": Calendar") && !sGetTitle().equals(": Tasks")
-								&& !sGetTitle().equals(": Briefcase")
-								&& !sGetTitle().equals(": Preferences")) {
+								&& !sGetTitle().equals("Email: Inbox") && !sGetTitle().equals("Email: Contacts")
+								&& !sGetTitle().equals("Email: Calendar") && !sGetTitle().equals("Email: Tasks")
+								&& !sGetTitle().equals("Email: Briefcase")
+								&& !sGetTitle().equals("Email: Preferences")) {
 							logger.info("Closing winodw: " + title);
 							webDriver().close();
 
@@ -222,12 +222,12 @@ public abstract class AbsSeparateWindow extends AbsPage {
 							for (String winHandle : windows) {
 								WebDriver window = webDriver().switchTo().window(winHandle);
 								if ((sGetTitle().equals(title) || window.getCurrentUrl().contains("/" + title + "?"))
-										&& !sGetTitle().equals(": Inbox")
-										&& !sGetTitle().equals(": Contacts")
-										&& !sGetTitle().equals(": Calendar")
-										&& !sGetTitle().equals(": Tasks")
-										&& !sGetTitle().equals(": Briefcase")
-										&& !sGetTitle().equals(": Preferences")) {
+										&& !sGetTitle().equals("Email: Inbox")
+										&& !sGetTitle().equals("Email: Contacts")
+										&& !sGetTitle().equals("Email: Calendar")
+										&& !sGetTitle().equals("Email: Tasks")
+										&& !sGetTitle().equals("Email: Briefcase")
+										&& !sGetTitle().equals("Email: Preferences")) {
 									webDriver().close();
 								}
 								if (title.equals("selenium_blank")) {

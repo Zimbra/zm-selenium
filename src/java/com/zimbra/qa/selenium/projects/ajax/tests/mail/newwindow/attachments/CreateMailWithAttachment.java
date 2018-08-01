@@ -52,7 +52,7 @@ public class CreateMailWithAttachment extends SetGroupMailByMessagePreference {
 			final String fileName = "testtextfile.txt";
 			final String filePath = ConfigProperties.getBaseDirectory() + "\\data\\public\\other\\" + fileName;
 			SeparateWindowFormMailNew window = null;
-			String windowTitle = ": Compose";
+			String windowTitle = "Email: Compose";
 
 			// Open the new mail form
 			try {
