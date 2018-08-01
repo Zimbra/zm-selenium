@@ -57,7 +57,7 @@ public class ShortcutDialog extends AjaxCore {
 		DialogInformational dialog = (DialogInformational) app.zPageMain.zToolbarPressPulldown(Button.B_ACCOUNT, Button.O_SHORTCUT);
 
 		SeparateWindow window = null;
-		String windowTitle = "Zimbra";
+		String windowTitle = "Email";
 
 		try {
 			window = (SeparateWindow) dialog.zPressButton(Button.B_NEWWINDOW);

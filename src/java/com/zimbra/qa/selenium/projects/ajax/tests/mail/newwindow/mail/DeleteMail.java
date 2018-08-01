@@ -59,7 +59,7 @@ public class DeleteMail extends SetGroupMailByMessagePreference {
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 
 		SeparateWindowDisplayMail window = null;
-		String windowTitle = ": " + subject;
+		String windowTitle = "Email: " + subject;
 
 		try {
 

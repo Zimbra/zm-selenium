@@ -48,7 +48,7 @@ public class AddContactToEmailedContactNewWindow extends SetGroupMailByMessagePr
 		app.zPagePreferences.zToolbarPressButton(Button.B_SAVE);
 
 		FolderItem emailedContacts = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.EmailedContacts);
-		String windowTitle = ": Compose";
+		String windowTitle = "Email: Compose";
 
 		ZimbraAccount receiver = new ZimbraAccount();
 		receiver.provision();

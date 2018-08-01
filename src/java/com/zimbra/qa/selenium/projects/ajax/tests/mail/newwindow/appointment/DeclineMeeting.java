@@ -94,7 +94,7 @@ public class DeclineMeeting extends AjaxCore {
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);
 
 		SeparateWindowDisplayMail window = null;
-		String windowTitle = ": " + apptSubject;
+		String windowTitle = "Email: " + apptSubject;
 
 		try {
 
@@ -176,7 +176,7 @@ public class DeclineMeeting extends AjaxCore {
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);
 
 		SeparateWindowDisplayMail window = null;
-		String windowTitle = ": " + apptSubject;
+		String windowTitle = "Email: " + apptSubject;
 
 		try {
 
@@ -245,7 +245,7 @@ public class DeclineMeeting extends AjaxCore {
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);
 
 		SeparateWindowDisplayMail window = null;
-		String windowTitle = ": " + apptSubject;
+		String windowTitle = "Email: " + apptSubject;
 
 		try {
 
@@ -348,7 +348,7 @@ public class DeclineMeeting extends AjaxCore {
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);
 
 		SeparateWindowDisplayMail window = null;
-		String windowTitle = ": " + apptSubject;
+		String windowTitle = "Email: " + apptSubject;
 
 		try {
 

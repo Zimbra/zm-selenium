@@ -45,7 +45,7 @@ public class DocumentBriefcaseNew extends AbsForm {
 		}
 	}
 
-	public static final String pageTitle = "Zimbra";
+	public static final String pageTitle = "Email";
 
 	public DocumentBriefcaseNew(AbsApplication application) {
 		super(application);

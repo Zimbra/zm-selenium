@@ -136,7 +136,7 @@ public class DisplayDocument extends EnableBriefcaseFeature {
 
 			app.zPageBriefcase.closeWindow();
 		} finally {
-			app.zPageBriefcase.zSelectWindow(": Briefcase");
+			app.zPageBriefcase.zSelectWindow("Email: Briefcase");
 		}
 
 		ZAssert.assertStringContains(text, docText,	"Verify document text through GUI");

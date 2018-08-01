@@ -67,7 +67,7 @@ public class EditAsNewWithAnInlineAttachment extends SetGroupMailByMessagePrefer
 		MailItem mail = new MailItem();
 		mail.dBodyHtml = "body"+ ConfigProperties.getUniqueString();
 
-		String windowTitle = ": " + subject;
+		String windowTitle = "Email: " + subject;
 
 		try {
 

@@ -75,7 +75,7 @@ public class ReplyMailWithAnInlineAttachment extends SetGroupMailByMessagePrefer
 		final String filePath = ConfigProperties.getBaseDirectory()+ "\\data\\public\\other\\" + fileName;
 
 		SeparateWindowDisplayMail window = null;
-		String windowTitle = ": " + subject;
+		String windowTitle = "Email: " + subject;
 
 		try {
 

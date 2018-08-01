@@ -83,7 +83,7 @@ public class ZimbraHelpAdvancedURL extends AjaxCore {
 						found = true;
 						app.zPageMain.zSeparateWindowClose(app.zPageMain.sGetTitle());
 						break;
-					} else if (!(app.zPageMain.sGetTitle().contains(": Inbox"))) {
+					} else if (!(app.zPageMain.sGetTitle().contains("Email: Inbox"))) {
 								app.zPageMain.zSeparateWindowClose(app.zPageMain.sGetTitle());
 					}
 				}
@@ -145,7 +145,7 @@ public class ZimbraHelpAdvancedURL extends AjaxCore {
 						app.zPageMain.zSeparateWindowClose(app.zPageMain.sGetTitle());
 						break;
 
-					} else if (!(app.zPageMain.sGetTitle().contains(": Inbox"))) {
+					} else if (!(app.zPageMain.sGetTitle().contains("Email: Inbox"))) {
 						app.zPageMain.zSeparateWindowClose(app.zPageMain.sGetTitle());
 					}
 				}

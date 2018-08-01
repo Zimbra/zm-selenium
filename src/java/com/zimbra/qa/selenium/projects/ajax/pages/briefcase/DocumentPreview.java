@@ -28,7 +28,7 @@ public class DocumentPreview extends AbsDisplay {
 		Name, Time, Date, Body
 	}
 
-	public final String pageTitle = ": Briefcase";
+	public final String pageTitle = "Email: Briefcase";
 
 	protected DocumentPreview(AbsApplication application) {
 		super(application);

@@ -84,7 +84,7 @@ public class ComposeReplyMailWithAttachmentAndVariousOptions extends SetGroupMai
 
 			// Open it in new window
 			SeparateWindowFormMailNew window = null;
-			String windowTitle = ": Reply";
+			String windowTitle = "Email: Reply";
 
 			final String fileName = "inlineImage.jpg";
 			final String filePath = ConfigProperties.getBaseDirectory() + "\\data\\public\\other\\" + fileName;
@@ -177,7 +177,7 @@ public class ComposeReplyMailWithAttachmentAndVariousOptions extends SetGroupMai
 
 			// Open it in new window
 			SeparateWindowFormMailNew window = null;
-			String windowTitle = ": Reply";
+			String windowTitle = "Email: Reply";
 
 			try {
 
@@ -259,7 +259,7 @@ public class ComposeReplyMailWithAttachmentAndVariousOptions extends SetGroupMai
 
 			// Open message in a separate window
 			SeparateWindowFormMailNew window = null;
-			String windowTitle = ": Reply";
+			String windowTitle = "Email: Reply";
 
 			try {
 
