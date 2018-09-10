@@ -22,7 +22,7 @@
    It will create zm-common.jar and zm-native.jar file
 6. Build zm-selenium using the following command:
 
-    ant jar
+    ant selenium-jar
     ```
     It will create 3 jars at ..\zm-selenium\build\dist\lib:
     coverage.jar
