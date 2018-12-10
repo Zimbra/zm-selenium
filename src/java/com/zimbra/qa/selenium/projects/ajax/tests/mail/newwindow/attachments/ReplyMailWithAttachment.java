@@ -30,7 +30,7 @@ public class ReplyMailWithAttachment extends SetGroupMailByMessagePreference {
 	}
 
 
-	@Test (description = "Reply to a mail  with an attachment by pressing Reply button>>attach - in separate window",
+	@Test (description = "Reply to mail with attachment by attaching in a separate window",
 			groups = { "smoke", "L1", "upload" })
 
 	public void ReplyMailWithAttachment_01() throws HarnessException {

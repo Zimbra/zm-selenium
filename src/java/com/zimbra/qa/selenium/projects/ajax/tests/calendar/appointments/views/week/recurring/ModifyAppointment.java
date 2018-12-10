@@ -45,7 +45,7 @@ public class ModifyAppointment extends AjaxCore {
 
 	
 	@Test (description = "Modify appointment with subject & body and verify it in week view",
-			groups = { "functional", "L3" })
+			groups = { "functional-skip", "L3-skip" })
 	
 	public void ModifyAppointment_01() throws HarnessException {
 
