@@ -1,6 +1,6 @@
 <project xmlns:ivy="antlib:org.apache.ivy.ant" name="zm-selenium" default="selenium-jar" basedir=".">
 
-	<property name="selenium.version" value="3.12.0"/>
+	<property name="selenium.version" value="3.14.0"/>
 
 	<property name="ivy.jar.dir" location="${user.home}/.ant/lib"/>
 	<property name="ivy.install.version" value="2.3.0"/>
