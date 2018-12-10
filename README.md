@@ -38,3 +38,5 @@
     - Create new configuration
     - Select 'zm-selenium' project and 'com.zimbra.qa.selenium.framework.core.ExecuteHarnessMain' as main class
     - Give '-j C:\pathToZm-selenium\build\dist\lib\ZimbraSelenium.jar -p com.zimbra.qa.selenium.projects.admin.tests.login.BasicLogin -g always,L0,L1,L2,L3 -l conf/log4j.properties' in argument
+
+    Note: You can use special group 'setup' to create server data like testdomain.com domain, galsync account and creating globaladmin account.

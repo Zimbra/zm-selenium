@@ -22,27 +22,28 @@ import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
 
-public class ChangePasswordFeatureDisabled extends AjaxCore {
+public class ChangePasswordEnabled extends AjaxCore {
 
-	public ChangePasswordFeatureDisabled() {
-		logger.info("New " + ChangePasswordFeatureDisabled.class.getCanonicalName());
+	public ChangePasswordEnabled() {
+		logger.info("New " + ChangePasswordEnabled.class.getCanonicalName());
 
 		super.startingPage = app.zPageMail;
+
 		super.startingAccountPreferences = new HashMap<String, String>() {
-			private static final long serialVersionUID = -6950184638729472879L; {
-				put("zimbraFeatureChangePasswordEnabled", "FALSE");
+			private static final long serialVersionUID = 6992909181069185672L; {
+				put("zimbraFeatureChangePasswordEnabled", "TRUE");
 			}
 		};
 	}
 
 
 	@Bugs (ids = "81522")
-	@Test (description = "Verify the 'Change Password' option is not present in main->account->Change Password",
+	@Test (description = "Verify the 'Change Password' option is present in main -> account -> Change Password",
 			groups = { "functional", "L2" })
 
-	public void ChangePasswordFeatureDisabled_01() throws HarnessException {
+	public void ChangePasswordEnabled_01() throws HarnessException {
 
-		// Click the account pulldown to see the menu
+		// Click the account pull down to see the menu
 		String locator = "css=td[id='skin_dropMenu'] td[id$='_dropdown']";
 
 		app.zPageMain.sClickAt(locator, "");
@@ -54,6 +55,6 @@ public class ChangePasswordFeatureDisabled extends AjaxCore {
 
 		locator = "css=div[id^='POPUP'] div#changePassword td[id$='_title']";
 		present = app.zPageMain.sIsElementPresent(locator);
-		ZAssert.assertFalse(present, "Verify the change password option is not present");
+		ZAssert.assertTrue(present, "Verify the change password option is not present");
 	}
 }

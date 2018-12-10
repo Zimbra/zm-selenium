@@ -26,10 +26,10 @@ import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.SetGroupMailByMessagePreference;
 import com.zimbra.qa.selenium.projects.ajax.pages.mail.SeparateWindowFormMailNew;
 
-public class CreateMailWithAnInlineImg extends SetGroupMailByMessagePreference {
+public class CreateMailWithInlineImage extends SetGroupMailByMessagePreference {
 
-	public CreateMailWithAnInlineImg() {
-		logger.info("New " + CreateMailWithAnInlineImg.class.getCanonicalName());
+	public CreateMailWithInlineImage() {
+		logger.info("New " + CreateMailWithInlineImage.class.getCanonicalName());
 		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "html");
 		super.startingAccountPreferences.put("zimbraPrefComposeInNewWindow","TRUE");
 	}
@@ -38,7 +38,7 @@ public class CreateMailWithAnInlineImg extends SetGroupMailByMessagePreference {
 	@Test (description = "Create and send email with an inline attachment - in a separate window",
 			groups = { "smoke", "L1", "upload" })
 
-	public void CreateMailWithAnInlineImg_01() throws HarnessException {
+	public void CreateMailWithInlineImage_01() throws HarnessException {
 
 		try {
 

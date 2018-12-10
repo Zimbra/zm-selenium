@@ -17,24 +17,31 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.newwindow.inlineimage;
 
 import org.testng.annotations.Test;
-import com.zimbra.qa.selenium.framework.items.*;
-import com.zimbra.qa.selenium.framework.ui.*;
-import com.zimbra.qa.selenium.framework.util.*;
+import com.zimbra.qa.selenium.framework.items.FolderItem;
+import com.zimbra.qa.selenium.framework.items.MailItem;
+import com.zimbra.qa.selenium.framework.ui.Action;
+import com.zimbra.qa.selenium.framework.ui.Button;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
+import com.zimbra.qa.selenium.framework.util.HarnessException;
+import com.zimbra.qa.selenium.framework.util.XmlStringUtil;
+import com.zimbra.qa.selenium.framework.util.ZAssert;
+import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.projects.ajax.core.SetGroupMailByMessagePreference;
+import com.zimbra.qa.selenium.projects.ajax.pages.mail.FormMailNew;
 import com.zimbra.qa.selenium.projects.ajax.pages.mail.SeparateWindowDisplayMail;
 
-public class ReplyMailWithAnInlineAttachment extends SetGroupMailByMessagePreference {
+public class ForwardMailWithInlineImage extends SetGroupMailByMessagePreference {
 
-	public ReplyMailWithAnInlineAttachment() {
-		logger.info("New "+ ReplyMailWithAnInlineAttachment.class.getCanonicalName());
+	public ForwardMailWithInlineImage() {
+		logger.info("New "+ ForwardMailWithInlineImage.class.getCanonicalName());
 		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "html");
 	}
 
 
-	@Test (description = "Reply a mail  with an inline attachment by pressing Reply button>>attach>>Inline - in separate window",
+	@Test (description = "Fwd a mail  with an inline attachment by pressing Forward button>>attach>>Inline - in separate window",
 			groups = { "smoke", "L1", "upload" })
 
-	public void ReplyMailWithAnInlineAttachment_01() throws HarnessException {
+	public void ForwardMailWithInlineImage_01() throws HarnessException {
 
 		String subject = "subject"+ ConfigProperties.getUniqueString();
 		String bodyText = "text" + ConfigProperties.getUniqueString();
@@ -85,15 +92,17 @@ public class ReplyMailWithAnInlineAttachment extends SetGroupMailByMessagePrefer
 			window.zSetWindowTitle(windowTitle);
 			ZAssert.assertTrue(window.zIsWindowOpen(windowTitle),"Verify the window is opened and switch to it");
 
-			window.zToolbarPressButton(Button.B_REPLY);
+			//Forward Mail
+			window.zToolbarPressButton(Button.B_FORWARD);
+			String locator = FormMailNew.Locators.zToField;
+			window.sType(locator, ZimbraAccount.AccountB().EmailAddress + ",");
 
-			//Add an attachment
 			// Click Attach>>inline image
 			window.zPressButton(Button.O_ATTACH_DROPDOWN);
 			window.zPressButton(Button.B_ATTACH_INLINE);
 			zUploadInlineImageAttachment(filePath);
 
-			ZAssert.assertTrue(app.zPageMail.zVerifyInlineImageAttachmentExistsInComposeWindow(windowTitle, 1),"Verify inline image is present in Reply compose window");
+			ZAssert.assertTrue(app.zPageMail.zVerifyInlineImageAttachmentExistsInComposeWindow(windowTitle, 1),"Verify inline image is present in Fwd compose window");
 
 			// Click Send
 			window.zToolbarPressButton(Button.B_SEND);
@@ -108,10 +117,10 @@ public class ReplyMailWithAnInlineAttachment extends SetGroupMailByMessagePrefer
 		ZAssert.assertTrue(app.zPageMail.zVerifyInlineImageAttachmentExistsInMail(),"Verify inline attachment exists in the email");
 
 		// From the receiving end, verify the message details
-		MailItem received = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "in:inbox subject:("+subject +")");
+		MailItem received = MailItem.importFromSOAP(ZimbraAccount.AccountB(), "in:inbox subject:("+subject +")");
 
 		ZAssert.assertEquals(received.dFromRecipient.dEmailAddress, app.zGetActiveAccount().EmailAddress, "Verify the from field is correct");
-		ZAssert.assertEquals(received.dToRecipients.get(0).dEmailAddress, ZimbraAccount.AccountA().EmailAddress, "Verify the to field is correct");
-		ZAssert.assertStringContains(received.dSubject, "Re: " + subject, "Verify reply subject field is correct");
+		ZAssert.assertEquals(received.dToRecipients.get(0).dEmailAddress, ZimbraAccount.AccountB().EmailAddress, "Verify the to field is correct");
+		ZAssert.assertStringContains(received.dSubject, "Fwd: " + subject, "Verify forward subject field is correct");
 	}
 }

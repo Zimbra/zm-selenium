@@ -87,7 +87,7 @@ public class CreateMailText extends SetGroupMailByMessagePreference {
 		mailform.sClick(Locators.zPlainTextBodyField);
 		mailform.zKeyboard.zTypeCharacters("Plain text line 1");
 		mailform.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
-		mailform.zKeyboard.zTypeCharacters("Plain text line two");
+		mailform.zKeyboard.zTypeCharacters("Plain text line 2");
 		mailform.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
 		mailform.zKeyboard.zTypeCharacters("Plain text line 3");
 

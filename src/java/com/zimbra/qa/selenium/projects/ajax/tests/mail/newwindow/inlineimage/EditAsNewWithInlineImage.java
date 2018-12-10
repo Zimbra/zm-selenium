@@ -24,18 +24,18 @@ import com.zimbra.qa.selenium.projects.ajax.core.SetGroupMailByMessagePreference
 import com.zimbra.qa.selenium.projects.ajax.pages.mail.SeparateWindowDisplayMail;
 import com.zimbra.qa.selenium.projects.ajax.pages.mail.DisplayMail.Field;
 
-public class EditAsNewWithAnInlineAttachment extends SetGroupMailByMessagePreference {
+public class EditAsNewWithInlineImage extends SetGroupMailByMessagePreference {
 
-	public EditAsNewWithAnInlineAttachment() {
+	public EditAsNewWithInlineImage() {
 		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "html");
-		logger.info("New "+ EditAsNewWithAnInlineAttachment.class.getCanonicalName());
+		logger.info("New "+ EditAsNewWithInlineImage.class.getCanonicalName());
 	}
 
 
 	@Test (description = "Edit as New message >> add inline Attchment from new window ",
 			groups = { "functional", "L2", "upload" })
 
-	public void EditAsNewWithAnInlineAttachment_01() throws HarnessException {
+	public void EditAsNewWithInlineImage_01() throws HarnessException {
 
 		String subject = "subject"+ ConfigProperties.getUniqueString();
 		FolderItem sent = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Sent);

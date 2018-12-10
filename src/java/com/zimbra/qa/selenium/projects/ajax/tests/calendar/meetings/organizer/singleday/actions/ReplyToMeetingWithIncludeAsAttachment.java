@@ -31,10 +31,10 @@ import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
 import com.zimbra.qa.selenium.projects.ajax.pages.mail.FormMailNew;
 import com.zimbra.qa.selenium.projects.ajax.pages.mail.FormMailNew.Locators;
 
-public class ReplyToMeetingInviteWithIncludeOriginalAsAttachment extends AjaxCore {
+public class ReplyToMeetingWithIncludeAsAttachment extends AjaxCore {
 
-	public ReplyToMeetingInviteWithIncludeOriginalAsAttachment() {
-		logger.info("New " + ReplyToMeetingInviteWithIncludeOriginalAsAttachment.class.getCanonicalName());
+	public ReplyToMeetingWithIncludeAsAttachment() {
+		logger.info("New " + ReplyToMeetingWithIncludeAsAttachment.class.getCanonicalName());
 		super.startingPage = app.zPageCalendar;
 	}
 
@@ -43,7 +43,7 @@ public class ReplyToMeetingInviteWithIncludeOriginalAsAttachment extends AjaxCor
 	@Test (description = "Bug 50729 - 'No such message exists' exception while replying to appointment via 'Include Original As Attachment'",
 			groups = { "functional", "L2" })
 
-	public void ReplyToMeetingInviteWithIncludeOriginalAsAttachment_01() throws HarnessException {
+	public void ReplyToMeetingWithIncludeAsAttachment_01() throws HarnessException {
 
 		// Creating object for appointment data
 		String tz, apptSubject, apptBody, apptAttendee;

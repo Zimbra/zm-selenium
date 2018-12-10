@@ -24,10 +24,10 @@ import com.zimbra.qa.selenium.projects.ajax.core.SetGroupMailByMessagePreference
 import com.zimbra.qa.selenium.projects.ajax.pages.mail.FormMailNew;
 import com.zimbra.qa.selenium.projects.ajax.pages.mail.FormMailNew.Field;
 
-public class DelegateSendOnBehalfOfSaveCopyOfMessage extends SetGroupMailByMessagePreference {
+public class SendOnBehalfOfSaveCopyOfMessage extends SetGroupMailByMessagePreference {
 
-	public DelegateSendOnBehalfOfSaveCopyOfMessage() {
-		logger.info("New "+ DelegateSendOnBehalfOfSaveCopyOfMessage.class.getCanonicalName());
+	public SendOnBehalfOfSaveCopyOfMessage() {
+		logger.info("New "+ SendOnBehalfOfSaveCopyOfMessage.class.getCanonicalName());
 		super.startingPage = app.zPageMail;
 	}
 
@@ -35,7 +35,7 @@ public class DelegateSendOnBehalfOfSaveCopyOfMessage extends SetGroupMailByMessa
 	@Test (description = "Save a copy of sent messages to owner's Sent folder",
 			groups = { "functional", "L3" })
 
-	public void DelegateSendOnBehalfOfSaveCopyOfMessage_01() throws HarnessException {
+	public void SendOnBehalfOfSaveCopyOfMessage_01() throws HarnessException {
 
 		// Mail data
 		String subject = "subject"+ ConfigProperties.getUniqueString();
@@ -84,7 +84,7 @@ public class DelegateSendOnBehalfOfSaveCopyOfMessage extends SetGroupMailByMessa
 	@Test (description = "Save a copy of sent messages to delegate's Sent folder",
 			groups = { "functional", "L3" })
 
-	public void DelegateSendOnBehalfOfSaveCopyOfMessage_02() throws HarnessException {
+	public void SendOnBehalfOfSaveCopyOfMessage_02() throws HarnessException {
 
 		// Mail data
 		String subject = "subject"+ ConfigProperties.getUniqueString();
@@ -133,7 +133,7 @@ public class DelegateSendOnBehalfOfSaveCopyOfMessage extends SetGroupMailByMessa
 	@Test (description = "Save a copy of sent messages to delegate's Sent folder and granter's Sent folder",
 			groups = { "functional", "L3" })
 
-	public void DelegateSendOnBehalfOfSaveCopyOfMessage_03() throws HarnessException {
+	public void SendOnBehalfOfSaveCopyOfMessage_03() throws HarnessException {
 
 		// Mail data
 		String subject = "subject"+ ConfigProperties.getUniqueString();
@@ -184,7 +184,7 @@ public class DelegateSendOnBehalfOfSaveCopyOfMessage extends SetGroupMailByMessa
 	@Test (description = "Don't save a copy of sent messages",
 			groups = { "functional", "L3" })
 
-	public void DelegateSendOnBehalfOfSaveCopyOfMessage_04() throws HarnessException {
+	public void SendOnBehalfOfSaveCopyOfMessage_04() throws HarnessException {
 
 		// Mail data
 		String subject = "subject"+ ConfigProperties.getUniqueString();

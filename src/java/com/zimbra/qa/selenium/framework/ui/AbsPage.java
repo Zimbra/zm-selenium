@@ -162,7 +162,6 @@ public abstract class AbsPage extends AbsSeleniumObject {
 			SleepUtil.sleepSmall();
 			RobotKeyboard keyboard = new RobotKeyboard();
 			keyboard.type(chars);
-			SleepUtil.sleepSmall();
 		}
 
 		public void zTypeCharactersUpload(String chars, String upload) throws HarnessException, InterruptedException {
@@ -170,7 +169,6 @@ public abstract class AbsPage extends AbsSeleniumObject {
 			logger.info("zTypeCharacters(" + chars + ")");
 			RobotKeyboard keyboard = new RobotKeyboard();
 			keyboard.typeUpload(chars, upload);
-			SleepUtil.sleepSmall();
 		}
 
 		private class RobotKeyboard {
@@ -231,9 +229,9 @@ public abstract class AbsPage extends AbsSeleniumObject {
 				} else {
 					for (char c : characters.toCharArray()) {
 						try {
-							Thread.sleep(100);
+							Thread.sleep(50);
 							type(c);
-							Thread.sleep(100);
+							Thread.sleep(50);
 						} catch (Exception e) {
 							logger.warn(e);
 						}
@@ -245,16 +243,11 @@ public abstract class AbsPage extends AbsSeleniumObject {
 			public void typeUpload(String characters, String upload) {
 
 				logger.info("type(" + characters + ")");
-				try {
-					Thread.sleep(500);
-				} catch (InterruptedException e1) {
-					e1.printStackTrace();
-				}
 				for (char c : characters.toCharArray()) {
 					try {
-						Thread.sleep(100);
+						Thread.sleep(50);
 						type(c);
-						Thread.sleep(100);
+						Thread.sleep(50);
 					} catch (Exception e) {
 						logger.warn(e);
 					}
@@ -262,7 +255,7 @@ public abstract class AbsPage extends AbsSeleniumObject {
 
 				RobotKeyboard keyboard;
 				try {
-					Thread.sleep(3000);
+					Thread.sleep(2000);
 					keyboard = new RobotKeyboard();
 					keyboard.robot.keyPress(KeyEvent.VK_ENTER);
 					keyboard.robot.keyRelease(KeyEvent.VK_ENTER);
@@ -617,7 +610,7 @@ public abstract class AbsPage extends AbsSeleniumObject {
 				}
 
 				robot.keyPress(keyCodes[offset]);
-				robot.delay(300);
+				robot.delay(50);
 				doType(keyCodes, offset + 1, length - 1);
 				robot.keyRelease(keyCodes[offset]);
 			}

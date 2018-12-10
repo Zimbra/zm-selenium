@@ -32,11 +32,11 @@ import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
 
-public class OpenTaskContainsAttachmentMultipleTimes extends AjaxCore {
+public class RepeatedlyOpenTaskWithAttachment extends AjaxCore {
 
 	@SuppressWarnings("serial")
-	public OpenTaskContainsAttachmentMultipleTimes() {
-		logger.info("New " + OpenTaskContainsAttachmentMultipleTimes.class.getCanonicalName());
+	public RepeatedlyOpenTaskWithAttachment() {
+		logger.info("New " + RepeatedlyOpenTaskWithAttachment.class.getCanonicalName());
 		super.startingPage = app.zPageTasks;
 		super.startingAccountPreferences = new HashMap<String , String>() {{
 			put("zimbraPrefShowSelectionCheckbox", "TRUE");
@@ -51,7 +51,7 @@ public class OpenTaskContainsAttachmentMultipleTimes extends AjaxCore {
 	@Test (description = "Same attachment keeps on adding while opening same task multiple times",
 			groups = { "smoke", "L1" })
 
-	public void OpenTaskContainsAttachmentMultipleTimes_01() throws HarnessException {
+	public void RepeatedlyOpenTaskWithAttachment_01() throws HarnessException {
 
 		String subject = "task" + ConfigProperties.getUniqueString();
 

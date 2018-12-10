@@ -26,10 +26,10 @@ import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
 import com.zimbra.qa.selenium.projects.ajax.pages.calendar.FormApptNew;
 
-public class CreateMeetingWithGroupCalendarFeatureDisabled extends AjaxCore {
+public class CreateMeetingWithGroupCalendarDisabled extends AjaxCore {
 
-	public CreateMeetingWithGroupCalendarFeatureDisabled() {
-		logger.info("New "+ CreateMeetingWithGroupCalendarFeatureDisabled.class.getCanonicalName());
+	public CreateMeetingWithGroupCalendarDisabled() {
+		logger.info("New "+ CreateMeetingWithGroupCalendarDisabled.class.getCanonicalName());
 		super.startingPage = app.zPageCalendar;
 		this.startingAccountPreferences.put("zimbraFeatureGroupCalendarEnabled", "FALSE");
 	}
@@ -39,7 +39,7 @@ public class CreateMeetingWithGroupCalendarFeatureDisabled extends AjaxCore {
 	@Test (description = "Appointment creation broken if 'Group Calendar' feature is disabled for calendar (zimbraFeatureGroupCalendarEnabled)",
 			groups = { "functional", "L2" } )
 
-	public void CreateMeetingWithGroupCalendarFeatureDisabled_01() throws HarnessException {
+	public void CreateMeetingWithGroupCalendarDisabled_01() throws HarnessException {
 
 		// Data
 		String apptSubject = ConfigProperties.getUniqueString();
