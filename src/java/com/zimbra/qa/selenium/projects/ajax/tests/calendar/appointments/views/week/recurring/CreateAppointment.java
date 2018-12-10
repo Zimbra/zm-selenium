@@ -39,7 +39,7 @@ public class CreateAppointment extends AjaxCore {
 	}
 
 	@Test (description = "Create basic recurring appointment (every day) in week view",
-			groups = { "smoke", "L3" } )
+			groups = { "smoke-skip", "L3-skip" } )
 
 	public void CreateRecurringAppointment_01() throws HarnessException {
 
@@ -70,27 +70,5 @@ public class CreateAppointment extends AjaxCore {
 		ZAssert.assertEquals(actual.getSubject(), appt.getSubject(), "Subject: Verify the appointment data");
 		ZAssert.assertEquals(app.zGetActiveAccount().soapSelectValue("//mail:s", "d"), startTime.toYYYYMMDDTHHMMSS(), "Verify recurring appointment start time and date");
 		ZAssert.assertEquals(app.zGetActiveAccount().soapSelectValue("//mail:e", "d"), endTime.toYYYYMMDDTHHMMSS(), "Verify recurring appointment end time and date");
-
-//		Move this verification to GetAppointment or ViewAppointment
-//
-//		// Open instance and verify corresponding UI
-//		app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
-//        app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, appt.getSubject());
-//        DialogOpenRecurringItem dlgConfirm = new DialogOpenRecurringItem(DialogOpenRecurringItem.Confirmation.OPENRECURRINGITEM, app, ((AppAjaxClient) app).zPageCalendar);
-//		dlgConfirm.zPressButton(Button.B_OK);
-//		ZAssert.assertEquals(app.zPageCalendar.sIsElementPresent(Locators.RepeatDisabled), true, "Verify 'Every Week' menu item is disabled");
-//		SleepUtil.sleepMedium();
-//		app.zPageCalendar.zToolbarPressButton(Button.B_CLOSE);
-//
-//		// Open entire series and verify corresponding UI
-//		app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, appt.getSubject());
-//        dlgConfirm = new DialogOpenRecurringItem(DialogOpenRecurringItem.Confirmation.OPENRECURRINGITEM, app, ((AppAjaxClient) app).zPageCalendar);
-//        app.zPageCalendar.zCheckRadioButton(Button.B_OPEN_THE_SERIES);
-//		dlgConfirm.zPressButton(Button.B_OK);
-//		ZAssert.assertEquals(app.zPageCalendar.sIsElementPresent(Locators.RepeatEnabled), true, "Verify 'Every Week' menu item is enabled");
-//		SleepUtil.sleepMedium();
-//		app.zPageCalendar.zToolbarPressButton(Button.B_CLOSE);
-
 	}
-
 }
