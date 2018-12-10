@@ -36,10 +36,10 @@ import com.zimbra.qa.selenium.projects.ajax.pages.mail.PageMail;
 import java.util.Calendar;
 import org.testng.annotations.Test;
 
-public class CreateMeetingInSharedCalendarWithMailFeatureDisabled extends AjaxCore {
+public class CreateMeetingInSharedFolderWithMailDisabled extends AjaxCore {
 
-	public CreateMeetingInSharedCalendarWithMailFeatureDisabled() {
-		logger.info("New " + CreateMeetingInSharedCalendarWithMailFeatureDisabled.class.getCanonicalName());
+	public CreateMeetingInSharedFolderWithMailDisabled() {
+		logger.info("New " + CreateMeetingInSharedFolderWithMailDisabled.class.getCanonicalName());
 	}
 
 
@@ -47,7 +47,7 @@ public class CreateMeetingInSharedCalendarWithMailFeatureDisabled extends AjaxCo
 	@Test (description = "Unable to create appointment in shared calendars if mail feature is disabled",
 			groups={ "functional", "L3" })
 
-	public void CreateMeetingInSharedCalendarWithMailFeatureDisabled_01() throws HarnessException {
+	public void CreateMeetingInSharedFolderWithMailDisabled_01() throws HarnessException {
 
 		try {
 

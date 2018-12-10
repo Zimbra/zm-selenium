@@ -64,7 +64,7 @@ public class SessionTimeout extends SetGroupMailByMessagePreference {
 		app.zPageLogin.zLogin(a);
 
 		// Confirm that the mailform is still visible
-		ZAssert.assertFalse(mailform.zIsActive(), "Confirm that the mailform is no longer visible");
+		ZAssert.assertFalse(mailform.zIsActive(), "Confirm that the mail form is no longer visible");
 
 		MailItem draft = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
 		ZAssert.assertNotNull(draft, "Verify the draft exists");

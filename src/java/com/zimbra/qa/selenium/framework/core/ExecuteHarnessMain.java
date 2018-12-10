@@ -1461,48 +1461,25 @@ public class ExecuteHarnessMain {
 				}
 			}
 
-			// Check amavisd service for AWS server
-			if (!ConfigProperties.getStringProperty("server.host").endsWith(".zimbra.com")) {
-				for (String amavisdServiceStatus : CommandLineUtility.runCommandOnZimbraServer(
-						ConfigProperties.getStringProperty("server.host"), "zmamavisdctl status")) {
-					if (amavisdServiceStatus.contains("not running")) {
-						StafIntegration.logInfo = "Amavisd service is not running, restarting it...\n";
-						logger.info(StafIntegration.logInfo);
-						Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo),
-								Charset.forName("UTF-8"), StandardOpenOption.APPEND);
-						CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"),
-								"zmamavisdctl restart");
-					} else {
-						logger.info("Amavisd service is running fine");
-					}
-				}
-			}
-
 			// Create test domain and accounts
-			StafIntegration.logInfo = "Create test domain and accounts...\n";
-			logger.info(StafIntegration.logInfo);
-			Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo),
-					Charset.forName("UTF-8"), StandardOpenOption.APPEND);
-			CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"),
-					"zmprov cd " + ConfigProperties.getStringProperty("testdomain"));
-			CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"),
-					"zmprov ca " + ConfigProperties.getStringProperty("adminUser") + "@" + proxyServers.get(0) + " "
-							+ ConfigProperties.getStringProperty("adminPassword") + " zimbraIsAdminAccount TRUE");
-			CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"),
-					"zmprov ca " + ConfigProperties.getStringProperty("adminUser") + "@"
-							+ ConfigProperties.getStringProperty("testdomain") + " "
-							+ ConfigProperties.getStringProperty("adminPassword") + " zimbraIsAdminAccount TRUE");
-			CommandLineUtility.runCommandOnZimbraServer(storeServers.get(0),
-					"zmgsautil createAccount -a galsync@" + ConfigProperties.getStringProperty("testdomain")
-							+ " -n InternalGAL --domain " + ConfigProperties.getStringProperty("testdomain") + " -s "
-							+ storeServers.get(0) + " -t zimbra -f _InternalGAL");
-			CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"),
-					"zmprov sp " + ConfigProperties.getStringProperty("adminUser") + "@" + proxyServers.get(0) + " "
-							+ ConfigProperties.getStringProperty("adminPassword"));
-			CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"),
-					"zmprov sp " + ConfigProperties.getStringProperty("adminUser") + "@"
-							+ ConfigProperties.getStringProperty("testdomain") + " "
-							+ ConfigProperties.getStringProperty("adminPassword"));
+			if (groups.contains("setup") ) {
+				StafIntegration.logInfo = "Create test domain and accounts...\n";
+				logger.info(StafIntegration.logInfo);
+				Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo),
+						Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+				CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"),
+						"zmprov cd " + ConfigProperties.getStringProperty("testdomain"));
+				CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"),
+						"zmprov ca " + ConfigProperties.getStringProperty("adminUser") + "@" + proxyServers.get(0) + " "
+								+ ConfigProperties.getStringProperty("adminPassword") + " zimbraIsAdminAccount TRUE");
+				CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"),
+						"zmprov sp " + ConfigProperties.getStringProperty("adminUser") + "@" + proxyServers.get(0) + " "
+								+ ConfigProperties.getStringProperty("adminPassword"));
+				CommandLineUtility.runCommandOnZimbraServer(storeServers.get(0),
+						"zmgsautil createAccount -a galsync@" + ConfigProperties.getStringProperty("testdomain")
+								+ " -n InternalGAL --domain " + ConfigProperties.getStringProperty("testdomain") + " -s "
+								+ storeServers.get(0) + " -t zimbra -f _InternalGAL");
+			}
 
 			// Admin project settings
 			if (project.contains("admin")) {
@@ -1549,51 +1526,6 @@ public class ExecuteHarnessMain {
 						|| availableZimlets.contains("com_zextras_drive_open")) {
 					for (int i = 0; i < storeServers.size(); i++) {
 						CommandLineUtility.runCommandOnZimbraServer(storeServers.get(i), "zmprov fc -a all");
-					}
-				}
-
-			// Universal project settings
-			} else if (project.contains("universal")) {
-				String universalUITheme = "clarity";
-
-				Boolean themeFound = false;
-				for (String serverUniversalUITheme : CommandLineUtility.runCommandOnZimbraServer(
-						ConfigProperties.getStringProperty("server.host"),
-						"ls /opt/zimbra/jetty/webapps/zimbra/skins | grep -i " + universalUITheme)) {
-					if (serverUniversalUITheme.contains(universalUITheme)) {
-						themeFound = true;
-						break ;
-					}
-				}
-				if (!themeFound.equals(true)) {
-					StafIntegration.logInfo = "Couldn't find or set " + universalUITheme + " theme for Univeral UI project";
-					logger.info(StafIntegration.logInfo);
-					Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo),
-							Charset.forName("UTF-8"), StandardOpenOption.APPEND);
-				} else {
-					StafIntegration.logInfo = universalUITheme + " theme set for Univeral UI project";
-					logger.info(StafIntegration.logInfo);
-					Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo),
-							Charset.forName("UTF-8"), StandardOpenOption.APPEND);
-				}
-
-				// Modify COS to always use Clarity theme for Universal UI
-				StafIntegration.logInfo = "Modify COS to always use Clarity theme for Universal UI";
-				logger.info(StafIntegration.logInfo);
-				Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo),
-						Charset.forName("UTF-8"), StandardOpenOption.APPEND);
-				CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"),
-						"zmprov mc default zimbraPrefSkin " + universalUITheme);
-
-				// Get modified COS value for check theme value for Universal UI
-				logger.info("Get modified COS value for check theme value for Universal UI");
-				for (String serverUniversalUITheme : CommandLineUtility.runCommandOnZimbraServer(
-						ConfigProperties.getStringProperty("server.host"), "zmprov gc default | grep zimbraPrefSkin")) {
-					if (!serverUniversalUITheme.split(": ")[1].trim().equals(universalUITheme)) {
-						StafIntegration.logInfo = "Couldn't set " + universalUITheme + " theme for Univeral UI project";
-						logger.info(StafIntegration.logInfo);
-						Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo),
-								Charset.forName("UTF-8"), StandardOpenOption.APPEND);
 					}
 				}
 			}

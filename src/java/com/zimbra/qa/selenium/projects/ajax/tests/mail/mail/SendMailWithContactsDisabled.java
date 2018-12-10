@@ -25,10 +25,10 @@ import com.zimbra.qa.selenium.projects.ajax.core.SetGroupMailByMessagePreference
 import com.zimbra.qa.selenium.projects.ajax.pages.mail.*;
 import com.zimbra.qa.selenium.projects.ajax.pages.mail.FormMailNew.*;
 
-public class SendMailFromAccountWithDisabledAddressBook extends SetGroupMailByMessagePreference {
+public class SendMailWithContactsDisabled extends SetGroupMailByMessagePreference {
 
-	public SendMailFromAccountWithDisabledAddressBook() {
-		logger.info("New " + SendMailFromAccountWithDisabledAddressBook.class.getCanonicalName());
+	public SendMailWithContactsDisabled() {
+		logger.info("New " + SendMailWithContactsDisabled.class.getCanonicalName());
 		super.startingAccountPreferences.put("zimbraFeatureContactsEnabled", "FALSE");
 	}
 
@@ -37,7 +37,7 @@ public class SendMailFromAccountWithDisabledAddressBook extends SetGroupMailByMe
 	@Test (description = "Send a mail from an account having Contacts disabled",
 			groups = { "functional", "L2" } )
 
-	public void SendMailFromAccountWithNoAddressBook_01() throws HarnessException {
+	public void SendMailWithContactsDisabled_01() throws HarnessException {
 
 		//Message data to be entered
 		String subject = "Subject "+ConfigProperties.getUniqueString();

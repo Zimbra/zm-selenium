@@ -32,10 +32,10 @@ import com.zimbra.qa.selenium.projects.ajax.core.SetGroupMailByMessagePreference
 import com.zimbra.qa.selenium.projects.ajax.pages.mail.FormMailNew;
 import com.zimbra.qa.selenium.projects.ajax.pages.mail.FormMailNew.Locators;
 
-public class ComposeReplyMailWithAttachmentAndVariousOptions extends SetGroupMailByMessagePreference {
+public class ReplyMailWithAttachmentOptions extends SetGroupMailByMessagePreference {
 
-	public ComposeReplyMailWithAttachmentAndVariousOptions() {
-		logger.info("New "+ ComposeReplyMailWithAttachmentAndVariousOptions.class.getCanonicalName());
+	public ReplyMailWithAttachmentOptions() {
+		logger.info("New "+ ReplyMailWithAttachmentOptions.class.getCanonicalName());
 		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "html");
 	}
 
@@ -44,7 +44,7 @@ public class ComposeReplyMailWithAttachmentAndVariousOptions extends SetGroupMai
 	@Test (description = "Verify the presence of attachment while replying to mail and changing option from  'Include Original as an attachment' to 'Include Original message'",
 			groups = { "functional", "L2", "upload" })
 
-	public void ComposeReplyWithAttachmentAndVariousOptions_01() throws HarnessException {
+	public void ReplyMailWithAttachmentOptions_01() throws HarnessException {
 
 		String subject = "subject" + ConfigProperties.getUniqueString();
 
@@ -123,7 +123,7 @@ public class ComposeReplyMailWithAttachmentAndVariousOptions extends SetGroupMai
 	@Test (description = "Verify the presence of attachment while replying to mail and selecting 'Use Prefixes' option from Options'",
 			groups = { "functional", "L3", "upload" })
 
-	public void ComposeReplyWithAttachmentAndVariousOptions_02() throws HarnessException {
+	public void ReplyMailWithAttachmentOptions_02() throws HarnessException {
 
 		String subject = "subject" + ConfigProperties.getUniqueString();
 
@@ -192,7 +192,7 @@ public class ComposeReplyMailWithAttachmentAndVariousOptions extends SetGroupMai
 	@Test (description = "Verify the presence of attachment while replying to mail and selecting 'Include Headers' option from Options'",
 			groups = { "functional", "L3", "upload" })
 
-	public void ComposeReplyWithAttachmentAndVariousOptions_03() throws HarnessException {
+	public void ReplyMailWithAttachmentOptions_03() throws HarnessException {
 
 		String subject = "subject" + ConfigProperties.getUniqueString();
 

@@ -23,10 +23,10 @@ import com.zimbra.qa.selenium.projects.ajax.core.SetGroupMailByMessagePreference
 import com.zimbra.qa.selenium.projects.ajax.pages.mail.FormMailNew;
 import com.zimbra.qa.selenium.projects.ajax.pages.mail.SeparateWindowFormMailNew;
 
-public class OpenComposedMsgWithAnInlineAttachmentInNewWindow extends SetGroupMailByMessagePreference {
+public class OpenComposedMailWithInlineImage extends SetGroupMailByMessagePreference {
 
-	public OpenComposedMsgWithAnInlineAttachmentInNewWindow() {
-		logger.info("New "+ OpenComposedMsgWithAnInlineAttachmentInNewWindow.class.getCanonicalName());
+	public OpenComposedMailWithInlineImage() {
+		logger.info("New "+ OpenComposedMailWithInlineImage.class.getCanonicalName());
 		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "html");
 	}
 
@@ -34,7 +34,7 @@ public class OpenComposedMsgWithAnInlineAttachmentInNewWindow extends SetGroupMa
 	@Test (description = "Verify inline attachment in Normal Compose window as well as in New compose window",
 			groups = { "functional", "L2", "upload" })
 
-	public void OpenComposedMsgWithAnAttachmentInNewWindow_01() throws HarnessException {
+	public void OpenComposedMailWithInlineImage_01() throws HarnessException {
 
 		// Create file item
 		final String fileName = "samplejpg.jpg";

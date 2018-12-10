@@ -24,10 +24,10 @@ import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
 import com.zimbra.qa.selenium.projects.ajax.pages.contacts.FormContactDistributionListNew;
 import com.zimbra.qa.selenium.projects.ajax.pages.contacts.FormContactDistributionListNew.Field;
 
-public class CreateDLUsingCommaSeparatedEmailAddresses extends AjaxCore  {
+public class CreateDLUsingCommaSeparatedEmails extends AjaxCore  {
 
-	public CreateDLUsingCommaSeparatedEmailAddresses() {
-		logger.info("New "+ CreateDLUsingCommaSeparatedEmailAddresses.class.getCanonicalName());
+	public CreateDLUsingCommaSeparatedEmails() {
+		logger.info("New "+ CreateDLUsingCommaSeparatedEmails.class.getCanonicalName());
 		super.startingPage = app.zPageContacts;
 	}
 
@@ -35,7 +35,7 @@ public class CreateDLUsingCommaSeparatedEmailAddresses extends AjaxCore  {
 	@Test (description = "Create user DL using comma separated email addresses",
 			groups = { "smoke", "L1" })
 
-	public void CreateDLUsingCommaSeparatedEmailAddresses_01 () throws HarnessException {
+	public void CreateDLUsingCommaSeparatedEmails_01 () throws HarnessException {
 
 		String firstContactEmail = ZimbraAccount.Account1().EmailAddress;
 		String secondContactEmail = ZimbraAccount.Account2().EmailAddress;
