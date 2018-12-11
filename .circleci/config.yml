@@ -35,7 +35,7 @@ jobs:
          - run:
               name: Execute selenium tests
               working_directory: ~/zm-selenium
-              command: ant Run-ExecuteHarnessMain -Duser.home=$HOME -Dpattern=$ENV_SELENIUM_TESTS_PATTERN -Dgroups=always,$ENV_SELENIUM_GROUPS
+              command: ant Run-ExecuteHarnessMain -Duser.home=$HOME -Dpattern=$ENV_SELENIUM_TESTS_PATTERN -Dgroups=always,setup,$ENV_SELENIUM_GROUPS
          - run:
               name: Generate test output
               command: bash -x .circleci/post-configurations.sh

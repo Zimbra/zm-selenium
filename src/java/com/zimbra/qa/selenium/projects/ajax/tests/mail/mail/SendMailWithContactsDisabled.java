@@ -39,7 +39,7 @@ public class SendMailWithContactsDisabled extends SetGroupMailByMessagePreferenc
 
 	public void SendMailWithContactsDisabled_01() throws HarnessException {
 
-		//Message data to be entered
+		// Message data to be entered
 		String subject = "Subject "+ConfigProperties.getUniqueString();
 		String body = "body " + ConfigProperties.getUniqueString();
 
