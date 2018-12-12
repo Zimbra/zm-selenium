@@ -39,7 +39,6 @@ import com.zimbra.qa.selenium.framework.ui.Shortcut;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
-import com.zimbra.qa.selenium.framework.util.staf.Stafpostqueue;
 import com.zimbra.qa.selenium.projects.ajax.pages.AjaxPages;
 import com.zimbra.qa.selenium.projects.ajax.pages.ContextMenu;
 import com.zimbra.qa.selenium.projects.ajax.pages.DialogAddToBriefcase;
@@ -232,7 +231,7 @@ public class PageMail extends AbsTab {
 
 		boolean found = false;
 
-		for (int i = 1; i <= 2; i++) {
+		for (int i = 1; i <= 3; i++) {
 
 			zToolbarPressButton(Button.B_REFRESH);
 
@@ -244,10 +243,6 @@ public class PageMail extends AbsTab {
 					break;
 				} else {
 					logger.info("Mail not displayed in current view");
-					if (i == 2) {
-						Stafpostqueue sp = new Stafpostqueue();
-						sp.waitForPostqueue();
-					}
 				}
 			}
 
