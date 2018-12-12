@@ -121,9 +121,10 @@ public class Stafpostqueue extends StafServicePROCESS {
 
 		} else {
 
-			String mailqInfo;
-			int totalDeferredMessages = 0;
 			SleepUtil.sleepLong();
+
+			/*String mailqInfo;
+			int totalDeferredMessages = 0;
 
 			for (int mtaServer=0; mtaServer<ExecuteHarnessMain.mtaServers.size(); mtaServer++) {
 				ZimbraAdminAccount.GlobalAdmin().soapSend("<GetMailQueueRequest xmlns='urn:zimbraAdmin'>"
@@ -137,9 +138,9 @@ public class Stafpostqueue extends StafServicePROCESS {
 				totalDeferredMessages = totalDeferredMessages + Integer.parseInt(mtaDeferredMessages);
 			}
 			if (totalDeferredMessages >= 1) {
-				mailqInfo = "Mailq not empty, total deffered messages: " + totalDeferredMessages;
+				mailqInfo = "Mailq not empty, total deferred messages: " + totalDeferredMessages;
 				logger.info(mailqInfo);
-			}
+			}*/
 		}
 	}
 
