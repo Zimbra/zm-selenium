@@ -165,7 +165,7 @@ public class UploadFile extends EnableBriefcaseFeature {
 	@Test (description = "Upload file of size greater than set zimbraFileUploadMaxSize through GUI - verify the upload failure message",
 		      groups = { "functional", "L3", "upload", "non-msedge" })
 
-		  public void UploadFile_04() throws HarnessException {
+	public void UploadFile_04() throws HarnessException {
 
 		try {
 			

@@ -5,7 +5,7 @@ version: 2
 config: &config
    working_directory: ~/zm-selenium
    docker:
-      - image: jiteshsojitra/docker-ubuntu-xfce-container:1.0
+      - image: jiteshsojitra/docker-ubuntu-xfce-container:2.0
         entrypoint: /root/scripts/vnc-startup.sh
 
 ##############################

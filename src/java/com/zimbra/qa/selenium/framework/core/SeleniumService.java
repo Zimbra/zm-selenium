@@ -29,6 +29,7 @@ import com.zimbra.qa.selenium.framework.util.OperatingSystem;
 import com.zimbra.qa.selenium.framework.util.SleepMetrics;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 
+@SuppressWarnings("unused")
 public class SeleniumService {
 	private static Logger logger = LogManager.getLogger(SeleniumService.class);
 
@@ -41,7 +42,7 @@ public class SeleniumService {
 		Date start = new Date();
 		try {
 			if ( mode == SeleniumMode.Local ) {
-				stopBrowsers();
+				// stopBrowsers();
 			}
 
 		} catch (Exception e) {
@@ -55,7 +56,7 @@ public class SeleniumService {
 
 	public void stopSeleniumExecution() throws HarnessException, IOException {
 
-		stopBrowsers();
+		// stopBrowsers();
 
 		try {
 
