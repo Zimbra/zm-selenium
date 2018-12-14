@@ -35,7 +35,6 @@ public class AcceptProposeNewTime extends AjaxCore {
 	}
 
 
-	@Bugs (ids = "ZCS-3456,69132,96556,96748")
 	@Test (description = "Rt-click to appointment -> Propose New Time and accept the new time using conversation view",
 			groups = { "smoke", "L1", "non-msedge" })
 

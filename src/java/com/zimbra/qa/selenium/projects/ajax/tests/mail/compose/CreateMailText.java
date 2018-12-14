@@ -73,7 +73,7 @@ public class CreateMailText extends SetGroupMailByMessagePreference {
 
 		final String toRecipients = ZimbraAccount.AccountC().EmailAddress;
 		final String subject = "subject" + ConfigProperties.getUniqueString();
-		final String plainTextBody = "Plain text line 1" + '\n' + "Plain text line two" + '\n' + "Plain text line 3";
+		final String plainTextBody = "Plain text line 1" + '\n' + "Plain text line 2" + '\n' + "Plain text line 3";
 
 		// Open the new mail form
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);

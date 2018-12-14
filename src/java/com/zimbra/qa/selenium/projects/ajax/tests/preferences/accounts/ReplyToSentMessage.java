@@ -17,7 +17,6 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.preferences.accounts;
 
 import org.testng.annotations.Test;
-import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.ui.Checkbox;
@@ -34,7 +33,7 @@ public class ReplyToSentMessage extends AjaxCore {
 		super.startingPage = app.zPagePreferences;
 	}
 
-	@Bugs( ids = "73225")
+
 	@Test (description = "Verify that reply-to-sent-message details are set/unset properly.",
 			groups = { "functional", "L3" })
 

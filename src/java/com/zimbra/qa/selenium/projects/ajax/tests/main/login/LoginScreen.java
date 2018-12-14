@@ -16,8 +16,6 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.main.login;
 
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
@@ -44,25 +42,10 @@ public class LoginScreen extends AjaxCore {
 	}
 
 
-	@Test (description = "Verify the copyright on the login screen contains the current year",
-			groups = { "functional","L2" })
-
-	public void LoginScreen_02() throws HarnessException {
-
-		Calendar calendar = new GregorianCalendar();
-		String thisYear = "" + calendar.get(Calendar.YEAR);
-
-		String copyright = app.zPageLogin.sGetText(PageLogin.Locators.zDisplayedcopyright);
-
-		String message = String.format("Verify the copyright (%s) on the login screen contains the current year (%s)", copyright, thisYear);
-		ZAssert.assertStringContains(copyright, thisYear, message);
-	}
-
-
 	@Test (description = "Verify initial focus on the login screen should be in username",
 			groups = { "functional","L2" })
 
-	public void LoginScreen_03() throws HarnessException {
+	public void LoginScreen_02() throws HarnessException {
 
 		app.zPageLogin.zNavigateTo();
 
@@ -81,7 +64,7 @@ public class LoginScreen extends AjaxCore {
 	@Test (description = "Verify 'web client' rather than 'collaboration suite'",
 			groups = { "functional", "L2" })
 
-	public void LoginScreen_04() throws HarnessException {
+	public void LoginScreen_03() throws HarnessException {
 
 		String title = app.zPageLogin.sGetTitle();
 

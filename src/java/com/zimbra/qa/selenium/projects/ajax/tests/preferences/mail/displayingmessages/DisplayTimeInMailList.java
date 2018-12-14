@@ -41,6 +41,7 @@ public class DisplayTimeInMailList extends AjaxCore {
 		super.startingAccountPreferences.put("zimbraPrefDisplayTimeInMailList", "FALSE");
 	}
 
+
 	@Bugs( ids = "77129" )
 	@Test (description = "Verify the display of email received time in email list",
 			groups = { "functional", "L2", "upload", "non-msedge" })

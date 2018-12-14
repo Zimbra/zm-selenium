@@ -53,7 +53,7 @@ public class TrustedDomainMessageView extends AjaxCore {
 	@Test (description = "Verify Display Image link in Trusted doamin for message view",
 			groups = { "smoke", "L1" })
 
-	public void TrustedDomainMsgView_01() throws HarnessException {
+	public void TrustedDomainMessageView_01() throws HarnessException {
 
 		final String subject = "TestTrustedAddress";
 		final String from = ConfigProperties.getStringProperty("adminUser") + "@" + ConfigProperties.getStringProperty("testdomain");

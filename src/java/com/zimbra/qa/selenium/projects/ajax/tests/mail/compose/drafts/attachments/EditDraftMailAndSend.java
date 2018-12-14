@@ -40,7 +40,7 @@ public class EditDraftMailAndSend extends SetGroupMailByMessagePreference {
 	}
 
 
-	@Bugs(ids = "ZCS-4696, 47699")
+	@Bugs(ids = "ZCS-4696")
 	@Test (description = "Save draft a mail, edit, add an attachment, send the mail and verify the presence of the mail in Draft",
 			groups = { "functional", "L2", "upload", "non-msedge" })
 

@@ -353,7 +353,6 @@ public class ModifySeries extends AjaxCore {
 	}
 
 
-	@Bugs (ids = "100575")
 	@Test (description = "Modify series by setting end date",
 			groups = { "functional", "L2" })
 
