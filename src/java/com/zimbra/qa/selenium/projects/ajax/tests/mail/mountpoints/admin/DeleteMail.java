@@ -230,7 +230,6 @@ public class DeleteMail extends SetGroupMailByMessagePreference {
 	}
 
 
-	@Bugs (ids = "66715")
 	@Test (description = "Delete a message from a mountpoint folder which has retention policy of 1 month and verify the warning dialog",
 			groups = { "functional", "L3" })
 

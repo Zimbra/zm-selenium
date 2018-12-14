@@ -99,8 +99,7 @@ public class QuickAddTask extends AjaxCore {
 		ZAssert.assertTrue(app.zPageTasks.zVerifyTaskBody(body), "Verify task body");
 	}
 	
-	
-	@Bugs( ids = "ZCS-4023" )
+
 	@Test (description = "Create a new task via quick add, edit it to add body and verify the editor displayed",
 			groups = { "functional", "L3" })
 
