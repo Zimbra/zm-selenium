@@ -18,7 +18,6 @@ package com.zimbra.qa.selenium.projects.ajax.tests.tasks;
 
 import java.awt.event.KeyEvent;
 import org.testng.annotations.Test;
-import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.items.TaskItem;

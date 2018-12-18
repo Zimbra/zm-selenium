@@ -232,7 +232,11 @@ public class CommandLineUtility {
 
 		String privateKey = null;
 		String host = ZimbraAccount.AccountZCS().zGetAccountStoreHost();
-		String command = "sudo su - zimbra -c 'zmtotp -a " + email + " -s " + secret + "'";
+		String command = "su - zimbra -c 'zmtotp -a " + email + " -s " + secret + "'";
+		if (!ConfigProperties.getStringProperty("server.host").endsWith(".zimbra.com")
+				&& !ConfigProperties.getStringProperty("server.host").endsWith(".domain1.com")) {
+			command = "sudo " + command;
+		}
 		String totp = "0";
 
 		try {
@@ -241,13 +245,15 @@ public class CommandLineUtility {
 			config.put("StrictHostKeyChecking", "no");
 			JSch jsch = new JSch();
 
-			if (!ConfigProperties.getStringProperty("server.host").endsWith(".zimbra.com")) {
+			if (!ConfigProperties.getStringProperty("server.host").endsWith(".zimbra.com")
+					&& !ConfigProperties.getStringProperty("server.host").endsWith(".domain1.com")) {
 				privateKey = getUserHome() + "/.ssh/id_rsa";
 				jsch.addIdentity(privateKey);
 			}
 
 			Session session = jsch.getSession(ConfigProperties.getStringProperty("server.user"), host, 22);
-			if (ConfigProperties.getStringProperty("server.host").endsWith(".zimbra.com")) {
+			if (ConfigProperties.getStringProperty("server.host").endsWith(".zimbra.com")
+					|| ConfigProperties.getStringProperty("server.host").endsWith(".domain1.com")) {
 				session.setPassword(ConfigProperties.getStringProperty("server.password"));
 			}
 
@@ -287,7 +293,11 @@ public class CommandLineUtility {
 	public static ArrayList<String> runCommandOnZimbraServer(String host, String zimbraCommand) {
 
 		String privateKey = null;
-		String command = "sudo su - zimbra -c '" + zimbraCommand + "'";
+		String command = "su - zimbra -c '" + zimbraCommand + "'";
+		if (!ConfigProperties.getStringProperty("server.host").endsWith(".zimbra.com")
+				&& !ConfigProperties.getStringProperty("server.host").endsWith(".domain1.com")) {
+			command = "sudo " + command;
+		}
 		ArrayList<String> out = null;
 
 		try {
@@ -296,13 +306,15 @@ public class CommandLineUtility {
 			config.put("StrictHostKeyChecking", "no");
 			JSch jsch = new JSch();
 
-			if (!ConfigProperties.getStringProperty("server.host").endsWith(".zimbra.com")) {
+			if (!ConfigProperties.getStringProperty("server.host").endsWith(".zimbra.com")
+					&& !ConfigProperties.getStringProperty("server.host").endsWith(".domain1.com")) {
 				privateKey = getUserHome() + "/.ssh/id_rsa";
 				jsch.addIdentity(privateKey);
 			}
 
 			Session session = jsch.getSession(ConfigProperties.getStringProperty("server.user"), host, 22);
-			if (ConfigProperties.getStringProperty("server.host").endsWith(".zimbra.com")) {
+			if (ConfigProperties.getStringProperty("server.host").endsWith(".zimbra.com")
+					|| ConfigProperties.getStringProperty("server.host").endsWith(".domain1.com")) {
 				session.setPassword(ConfigProperties.getStringProperty("server.password"));
 			}
 

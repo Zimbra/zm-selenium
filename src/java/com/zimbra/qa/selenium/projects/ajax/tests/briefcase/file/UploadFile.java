@@ -18,7 +18,6 @@ package com.zimbra.qa.selenium.projects.ajax.tests.briefcase.file;
 
 import org.openqa.selenium.Keys;
 import org.testng.annotations.Test;
-import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.FileItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
