@@ -19,7 +19,6 @@ package com.zimbra.qa.selenium.projects.ajax.tests.tasks.mountpoints;
 import java.awt.event.KeyEvent;
 import java.util.HashMap;
 import org.testng.annotations.Test;
-import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.FolderMountpointItem;
 import com.zimbra.qa.selenium.framework.items.TaskItem;
@@ -50,7 +49,6 @@ public class CheckCloseButtonInSharedFolder extends AjaxCore {
 	}
 
 
-	@Bugs (ids = "73226")
 	@Test (description = "Verify Close button on Share Task Window and its functionality",
 			groups = { "functional", "L2" })
 
@@ -127,7 +125,6 @@ public class CheckCloseButtonInSharedFolder extends AjaxCore {
 	}
 
 
-	@Bugs (ids = "75277")
 	@Test (description = "Verify Close button on Share Task Window and its functionality",
 			groups = { "smoke", "L1" })
 
