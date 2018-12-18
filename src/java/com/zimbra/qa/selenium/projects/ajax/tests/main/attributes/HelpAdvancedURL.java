@@ -110,7 +110,6 @@ public class HelpAdvancedURL extends AjaxCore {
 	}
 
 
-	@Bugs (ids = "ZCS-3487")
 	@Test (description = "Verify the product help URL as per the value set in attribute ZimbraHelpAdminURL at the global config", priority=5,
 			groups = { "functional", "L3" })
 
