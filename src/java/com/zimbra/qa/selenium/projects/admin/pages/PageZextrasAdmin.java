@@ -29,7 +29,7 @@ public class PageZextrasAdmin extends AbsTab{
 
 	public static class Locators {
 		public static final String AdminTab = "css=div[id='ztab__ZxAdmin']:not([aria-hidden='true'])";
-		public static final String Admin = "css=td[id^='zti__AppAdmin__ZeXtras__ZxAdmin']";
+		public static final String Admin = "css=td[id^='zti__AppAdmin__Home__Zimbra Network']";
 		public static final String DelegatedAddButton = "css=div[id='ztab__ZxAdmin']:not([aria-hidden='true']) table[id='ztabv__ZxAdmin_delegatedAdmins_table'] td.ZWidgetTitle:contains('Add')";
 		public static final String DelegatedEditButton = "css=div[id='ztab__ZxAdmin']:not([aria-hidden='true']) table[id='ztabv__ZxAdmin_delegatedAdmins_table'] td.ZWidgetTitle:contains('Edit')";
 		public static final String DelegatedDeleteButton = "css=div[id='ztab__ZxAdmin']:not([aria-hidden='true']) table[id='ztabv__ZxAdmin_delegatedAdmins_table'] td.ZWidgetTitle:contains('Delete')";

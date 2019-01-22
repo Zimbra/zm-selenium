@@ -34,19 +34,19 @@ import com.zimbra.qa.selenium.framework.util.SleepUtil;
 public class PageZextrasGeneral extends AbsTab {
 
 	public static class Locators {
-		public static final String NETWORK_MODULE_NG_ICON = "css=td[id^='zti__AppAdmin__Home__ZeXtras_'] div[class='ImgZeXtras']";
+		public static final String NETWORK_MODULE_NG_ICON = "css=td[id^='zti__AppAdmin__Home__Zimbra Network'] div[class='ImgZeXtras']";
 		public static final String CLOSE_BUTTON = "css=td[id^='zb__ZaCurrentAppBar__CLOSE_']:contains('Close')";
 		public static final String HOME = "Home";
 		public static final String NETWORK_MODULE_NG = "Network Modules NG";
 		public static final String GENERAL = "General";
-		public static final String GENERAL_TAB = "css=td[id^='zti__AppAdmin__ZeXtras__ZxCore_']:contains('General')";
-		public static final String BACKUP_TAB = "css=td[id^='zti__AppAdmin__ZeXtras__ZxBackup_']:contains('Backup')";
-		public static final String HSM_TAB = "css=td[id^='zti__AppAdmin__ZeXtras__ZxPowerstore_']:contains('HSM')";
-		public static final String MOBILE_TAB = "css=td[id^='zti__AppAdmin__ZeXtras__ZxMobile_']:contains('Mobile')";
+		public static final String GENERAL_TAB = "css=td[id^='zti__AppAdmin__Home__Zimbra Network']:contains('General')";
+		public static final String BACKUP_TAB = "css=td[id^='zti__AppAdmin__Home__Zimbra Network']:contains('Backup')";
+		public static final String HSM_TAB = "css=td[id^='zti__AppAdmin__Home__Zimbra Network']:contains('HSM')";
+		public static final String MOBILE_TAB = "css=td[id^='zti__AppAdmin__Home__Zimbra Network']:contains('Mobile')";
 		public static final String YES_BUTTON = "css=div[class='DwtDialog']:not([aria-hidden='true']) td[class='ZWidgetTitle']:contains('Yes')";
-		public static final String BACKUP_ALERT = "css=div#ztabv__ZxBackup_zx_alert_2";
-		public static final String MOBILE_ALERT = "css=div#ztabv__ZxMobile_zx_alert_2";
-		public static final String HSM_ALERT = "css=div#ztabv__ZxPowerstore_zx_alert_2";
+		public static final String BACKUP_ALERT = "css=div#ztabv__ZxBackup_output_2";
+		public static final String MOBILE_ALERT = "css=div#ztabv__ZxMobile_output_2";
+		public static final String HSM_ALERT = "css=div#ztabv__ZxPowerstore_output_2";
 
 	}
 
@@ -141,7 +141,7 @@ public class PageZextrasGeneral extends AbsTab {
 		WebElement we = this.getElement(
 				"xpath=//table[@id='ztabv__ZxCore_grouper_table']//td[@class='xform_label'][contains(text(),'" + module
 						+ "')]/following-sibling::td[1]");
-		if (we.getText().contains("Licensed")) {
+		if (we.getText().contains("Unlicensed")) {
 			return true;
 		} else {
 			return false;
