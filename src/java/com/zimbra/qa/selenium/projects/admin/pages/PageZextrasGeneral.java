@@ -37,7 +37,7 @@ public class PageZextrasGeneral extends AbsTab {
 		public static final String NETWORK_MODULE_NG_ICON = "css=td[id^='zti__AppAdmin__Home__Zimbra Network'] div[class='ImgZeXtras']";
 		public static final String CLOSE_BUTTON = "css=td[id^='zb__ZaCurrentAppBar__CLOSE_']:contains('Close')";
 		public static final String HOME = "Home";
-		public static final String NETWORK_MODULE_NG = "Network Modules NG";
+		public static final String NETWORK_MODULE_NG = "Zimbra Network";
 		public static final String GENERAL = "General";
 		public static final String GENERAL_TAB = "css=td[id^='zti__AppAdmin__Home__Zimbra Network']:contains('General')";
 		public static final String BACKUP_TAB = "css=td[id^='zti__AppAdmin__Home__Zimbra Network']:contains('Backup')";
