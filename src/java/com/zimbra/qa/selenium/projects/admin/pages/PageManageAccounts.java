@@ -60,6 +60,7 @@ public class PageManageAccounts extends AbsTab {
 		public static final String RIGHT_CLICK_MENU_VIEW_MAIL_BUTTON = "css=td[id='zmi__ACLV__VIEW_MAIL_title']";
 		public static final String RIGHT_CLICK_MENU_SEARCH_MAIL_BUTTON = "css=td[id^='zmi__ACLV__UNKNOWN']:contains('Search Mail')";
 		public static final String VIEW_MAIL = "css=td[id='zmi__zb_currentApp__VIEW_MAIL_title']";
+		public static final String VIEW_MAIL_FOR_DELEGATED_ADMIN = "css=td[id='zmi__ACLV__VIEW_MAIL_title']";
 		public static final String SEARCH_MAIL = "css=td[id^='zmi__zb_currentApp__UNKNOWN']:contains('Search Mail')";
 		public static final String RIGHT_CLICK_INVALIDATE_SESSIONS = "css=td[id='zmi__ACLV__EXPIRE_SESSION_title']";
 		public static final String INVALIDATE_SESSIONS = "css=td[id='zmi__zb_currentApp__EXPIRE_SESSION_title']";
@@ -125,7 +126,11 @@ public class PageManageAccounts extends AbsTab {
 	public Boolean IsViewMailEnabled() throws HarnessException {
 		return  sIsVisible(Locators.VIEW_MAIL);
 	}
-
+	
+	public Boolean IsViewMailEnabledForDelegatedAdmin() throws HarnessException {
+		return  sIsVisible(Locators.VIEW_MAIL_FOR_DELEGATED_ADMIN);
+	}
+	
 	@Override
 	public AbsPage zListItem(Action action, String accountEmailAddress) throws HarnessException {
 

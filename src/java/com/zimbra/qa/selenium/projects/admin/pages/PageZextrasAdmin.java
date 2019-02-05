@@ -28,21 +28,22 @@ import com.zimbra.qa.selenium.framework.util.SleepUtil;
 public class PageZextrasAdmin extends AbsTab{
 
 	public static class Locators {
-		public static final String AdminTab = "css=div[id='ztab__ZxAdmin']:not([aria-hidden='true'])";
-		public static final String Admin = "css=td[id^='zti__AppAdmin__ZeXtras__ZxAdmin']";
+		public static final String AdminTab = "css=td[id^='zti__AppAdmin__Home__Zimbra Network']:contains('Admin')";
+		public static final String Admin = "css=td[id^='zti__AppAdmin__Home__Zimbra Network']";
 		public static final String DelegatedAddButton = "css=div[id='ztab__ZxAdmin']:not([aria-hidden='true']) table[id='ztabv__ZxAdmin_delegatedAdmins_table'] td.ZWidgetTitle:contains('Add')";
 		public static final String DelegatedEditButton = "css=div[id='ztab__ZxAdmin']:not([aria-hidden='true']) table[id='ztabv__ZxAdmin_delegatedAdmins_table'] td.ZWidgetTitle:contains('Edit')";
 		public static final String DelegatedDeleteButton = "css=div[id='ztab__ZxAdmin']:not([aria-hidden='true']) table[id='ztabv__ZxAdmin_delegatedAdmins_table'] td.ZWidgetTitle:contains('Delete')";
-		public static final String Network_NG_ICON="css=div.ImgZeXtras";
+		public static final String Network_NG_ICON="css=td[id^='zti__AppAdmin__Home__Zimbra Network'] div[class='ImgZeXtras']";
 		public static final String DeleteDialogHeader = "css=div[class='DwtDialog']:not([aria-hidden='true']) td[class='DwtDialogTitle']:contains('Delete permissions')";
 		public static final String DeleteDialogYesButton = "css=div[class='DwtDialog']:not([aria-hidden='true']) td[class='ZWidgetTitle']:contains('Yes')";
 		public static final String zSaveDailog = "css=div.DwtDialog[style*='display: block;'] table tr:contains('Saving Settings')";
-		public static final String zSavedialogCloseButton = "css=div.DwtDialog[style*='display: block;'] td.ZWidgetTitle:contains('Close')";
+		public static final String zSavedialogCloseButton = "css=div.DwtDialog[style*='display: block;'] td.ZWidgetTitle:contains('OK')";
 		public static final String zResetDomainDialog = "css=div[class='DwtDialog']:not([aria-hidden='true']) td[class='DwtDialogTitle']:contains('Reset Domain settings')";
 		public static final String zResetDomainDialogYesButton = "css=div[class='DwtDialog']:not([aria-hidden='true']) 	td[class='ZWidgetTitle']:contains('Yes')";
 		public static final String zDomainResetButton = "css=div[id='ztab__ZxAdmin']:not([aria-hidden='true']) table[id='ztabv__ZxAdmin_domainSettings_table'] td.ZWidgetTitle:contains('Reset')";
 		public static final String zDomainEditButton = "css=div[id='ztab__ZxAdmin']:not([aria-hidden='true']) table[id='ztabv__ZxAdmin_domainSettings_table'] td.ZWidgetTitle:contains('Edit')";
 		public static final String zCompleteResetDialogOkButton = "css=div[class='DwtDialog']:not([aria-hidden='true']) td[class='ZWidgetTitle']:contains('OK')";
+		public static final String CLOSE_BUTTON = "css=td[id^='zb__ZaCurrentAppBar__CLOSE_']:contains('Close')";
 	}
 
 	public PageZextrasAdmin(AbsApplication application) {
@@ -60,10 +61,10 @@ public class PageZextrasAdmin extends AbsTab{
 		SleepUtil.sleepLong();
 		sClickAt(Locators.Network_NG_ICON, "");
 		zWaitForWorkInProgressDialogInVisible();
-		sClickAt(Locators.Admin, "");
+		sClickAt(Locators.AdminTab, "");
 		zWaitForWorkInProgressDialogInVisible();
 	}
-
+	
 	@Override
 	public boolean zIsActive() throws HarnessException {
 
@@ -71,17 +72,16 @@ public class PageZextrasAdmin extends AbsTab{
 		if (!MyApplication.zIsLoaded())
 			throw new HarnessException("Admin Console application is not active!");
 
-		boolean present = sIsElementPresent(Locators.AdminTab);
+		boolean present = sIsElementPresent(Locators.CLOSE_BUTTON);
 		if (!present) {
 			return (false);
 		}
 
-		boolean visible = zIsVisiblePerPosition(Locators.DelegatedAddButton, 0, 0);
+		boolean visible = zIsVisiblePerPosition(Locators.CLOSE_BUTTON, 0, 0);
 		if (!visible) {
 			logger.debug("isActive() visible = " + visible);
 			return (false);
 		}
-
 		return (true);
 	}
 
@@ -137,7 +137,7 @@ public class PageZextrasAdmin extends AbsTab{
 		if(button==Button.B_DELETE_ACCOUNT) {
 			if (zWaitForElementPresent(Locators.DeleteDialogHeader)) {
 				sClick(Locators.DeleteDialogYesButton);
-
+				SleepUtil.sleepMedium();
 				if(zWaitForElementPresent(Locators.zSaveDailog)) {
 					sClick(Locators.zSavedialogCloseButton);
 				} else {
