@@ -31,7 +31,7 @@ public class WizardAddDelegatedNG extends AbsWizard {
 		public static final String zGrantValue = zAddNewDelegatedAdminDialog + " input[id$='adminQuotaId']";
 		public static final String zOkButton = "div.DwtDialog:not([aria-hidden='true']) td[class='ZWidgetTitle']:contains('OK')";
 		public static final String zSaveDailog = "div.DwtDialog[style*='display: block;'] table tr:contains('Saving Settings')";
-		public static final String zSavedialogCloseButton = "div.DwtDialog[style*='display: block;'] td.ZWidgetTitle:contains('Close')";
+		public static final String zSavedialogCloseButton = "div.DwtDialog[style*='display: block;'] td.ZWidgetTitle:contains('OK')";
 	}
 
 	@Override
@@ -46,12 +46,14 @@ public class WizardAddDelegatedNG extends AbsWizard {
 			sType(Locators.zAccountField, delegatedadmin.getAccountAddress());
 			SleepUtil.sleepLong();
 			sClick("css=div[id='___OSELECT_MENU___'] table tr td div");
+			SleepUtil.sleepMedium();
 		}
 
 		if (delegatedadmin.getDomain() != null) {
 			sType(Locators.zDomainField, delegatedadmin.getDomain());
 			SleepUtil.sleepLong();
 			sClick("css=div[id='___OSELECT_MENU___'] table tr td div");
+			SleepUtil.sleepMedium();
 		}
 
 		if (delegatedadmin.getDelegatedAuth() != null) {
@@ -87,7 +89,8 @@ public class WizardAddDelegatedNG extends AbsWizard {
 			}
 		}
 		sClick(Locators.zOkButton);
-
+		SleepUtil.sleepMedium();
+		
 		if(zWaitForElementPresent(Locators.zSaveDailog)) {
 			sClick(Locators.zSavedialogCloseButton);
 		} else {
