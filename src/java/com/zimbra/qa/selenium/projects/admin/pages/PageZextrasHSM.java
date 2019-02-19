@@ -27,23 +27,23 @@ import com.zimbra.qa.selenium.framework.util.SleepUtil;
 public class PageZextrasHSM extends AbsTab {
 
 	public static class Locators {
-		public static final String NETWORK_MODULE_NG_ICON = "css=td[id^='zti__AppAdmin__Home__ZeXtras_'] div[class='ImgZeXtras']";
-		public static final String HSM_TAB = "css=td[id^='zti__AppAdmin__ZeXtras__ZxPowerstore_']:contains('HSM')";
+		public static final String NETWORK_MODULE_NG_ICON = "css=td[id^='zti__AppAdmin__Home__Zimbra Network'] div[class='ImgZeXtras']";
+		public static final String HSM_TAB = "css=td[id^='zti__AppAdmin__Home__Zimbra Network']:contains('HSM')";
 		public static final String CLOSE_BUTTON = "css=td[id^='zb__ZaCurrentAppBar__CLOSE_']:contains('Close')";
 		public static final String SAVE_BUTTON = "css=td[id^='zb__ZaCurrentAppBar__SAVE_']:contains('Save')";
 		public static final String APPLY_HSM_POLICY_NOW_BUTTON = "css=td[class='ZWidgetTitle']:contains('Apply HSM Policy Now')";
-		public static final String SECONDARY_VOLUME_ADD_BUTTON = "css=div[id='ztabv__ZxPowerstore_zawiz_top_grouper_2'] td[class='ZWidgetTitle']:contains('Add')";
+		public static final String SECONDARY_VOLUME_ADD_BUTTON = "css=div[id='ztabv__ZxPowerstore_group_10'] td[class='ZWidgetTitle']:contains('Add')";
 		public static final String SECONDARY_VOLUME_EDIT_BUTTON = "css=div[id='ztabv__ZxPowerstore_zawiz_top_grouper_2'] td[class='ZWidgetTitle']:contains('Edit')";
 		public static final String SECONDARY_VOLUME_DELETE_BUTTON = "css=div[id='ztabv__ZxPowerstore_zawiz_top_grouper_2'] td[class='ZWidgetTitle']:contains('Delete')";
-		public static final String HSM_POLICY_ADD_BUTTON = "css=div[id='ztabv__ZxPowerstore_group_14'] td[class='ZWidgetTitle']:contains('Add')";
-		public static final String HSM_POLICY_EDIT_BUTTON = "css=div[id='ztabv__ZxPowerstore_group_14'] td[class='ZWidgetTitle']:contains('Edit')";
-		public static final String HSM_POLICY_DELETE_BUTTON = "css=div[id='ztabv__ZxPowerstore_group_14'] td[class='ZWidgetTitle']:contains('Delete')";
-		public static final String lastPolicyInList = "css=div.hsmList div[class='DwtListView-Rows'] div:last-child";
+		public static final String HSM_POLICY_ADD_BUTTON = "css=div[id='ztabv__ZxPowerstore_group_16'] td[class='ZWidgetTitle']:contains('Add')";
+		public static final String HSM_POLICY_EDIT_BUTTON = "css=div[id='ztabv__ZxPowerstore_group_16'] td[class='ZWidgetTitle']:contains('Edit')";
+		public static final String HSM_POLICY_DELETE_BUTTON = "css=div[id='ztabv__ZxPowerstore_group_16'] td[class='ZWidgetTitle']:contains('Delete')";
+		public static final String UpdatedPolicyInList = "css=div[id^='ztabv__ZxPowerstore_group_'] td[id='ztabv__ZxPowerstore_hsmList___container']";
 		public static final String APPLY_HSM_POLICY_NOW_DIALOG = "css=div.DwtDialog[style*='display: block;'] table td:contains('Apply Storage Management Policy NOW!')";
 		public static final String APPLY_HSM_POLICY_YES_BUTTON = "css=div.DwtDialog[style*='z-index: 7'][role='alertdialog'] td[class='ZWidgetTitle']:contains('Yes')";
 		public static final String APPLY_HSM_POLICY_NO_BUTTON = "css=div.DwtDialog[style*='z-index: 7'][role='alertdialog'] td[class='ZWidgetTitle']:contains('No')";
 		public static final String SECONDARY_VOLUME = "css=div[id='ztabv__ZxPowerstore_zawiz_top_grouper_2'] div.Row td";
-		public static final String HSM_POLICY = "css=div[id='ztabv__ZxPowerstore_group_14'] div.Row td";
+		public static final String HSM_POLICY = "css=div[id^='ztabv__ZxPowerstore_group_'] td[id='ztabv__ZxPowerstore_hsmList___container'] div.Row td";
 	}
 
 	public PageZextrasHSM(AbsApplication application) {
@@ -84,8 +84,10 @@ public class PageZextrasHSM extends AbsTab {
 			return;
 		}
 
-		SleepUtil.sleepLong();
+		//SleepUtil.sleepLong();
+		if(zWaitForElementPresent(Locators.NETWORK_MODULE_NG_ICON)) {
 		sClickAt(Locators.NETWORK_MODULE_NG_ICON, "");
+		}
 		zWaitForWorkInProgressDialogInVisible();
 		sClickAt(Locators.HSM_TAB, "");
 		zWaitForWorkInProgressDialogInVisible();
@@ -191,7 +193,7 @@ public class PageZextrasHSM extends AbsTab {
 						+ volumeName + "')]/preceding-sibling::td[2]/div[@class='ImgCheck']"));
 	}
 
-	public String zGetLastHSMPolicyInList() throws HarnessException {
-		return (sGetText(Locators.lastPolicyInList));
+	public String zGetUpdatedHSMPolicyInList() throws HarnessException {
+		return (sGetText(Locators.UpdatedPolicyInList));
 	}
 }

@@ -26,13 +26,13 @@ import com.zimbra.qa.selenium.projects.admin.items.HSMItem;
 public class WizardAddNewVolume extends AbsWizard {
 	
 	public static class Locators {
-		public static final String VOLUME_TYPE_LOCAL = "css=[style*='z-index: 7'] input[id='zdlgv__DLG_NEW_PWRSTR_VOLUME_BObject_49']";
+		public static final String VOLUME_TYPE_LOCAL = "css=table[id^='zdlgv__DLG_NEW_PWRSTR_VOLUME_BObject_'] tbody tr:nth-child(5) tr:nth-child(1) input";
 		public static final String VOLUME_TYPE_S3_BUCKET = "css=[style*='z-index: 7'] input[id='zdlgv__DLG_NEW_PWRSTR_VOLUME_BObject_50']";
 		public static final String NEXT_BUTTON = "css=div[style*='z-index: 7'] td[id$='_button12_title']";
 		public static final String FINISH_BUTTON = "css=div[style*='z-index: 7'] td[id$='_button13_title']";
-		public static final String VOLUME_NAME_TEXT_BOX = "css=input[id='zdlgv__DLG_NEW_PWRSTR_VOLUME_BObject_10']";
-		public static final String VOLUME_PATH_TEXT_BOX = "css=input[id='zdlgv__DLG_NEW_PWRSTR_VOLUME_BObject_11']";
-		public static final String SET_CURRENT_CHECK_BOX = "css=input[id='zdlgv__DLG_NEW_PWRSTR_VOLUME_BObject_44']";
+		public static final String VOLUME_NAME_TEXT_BOX = "css=div#zdlg__DLG_NEW_PWRSTR_VOLUME_content td.step_body_container div.XFormCase[style*='visibility: visible'] table tr table tbody tr:nth-child(1) input";
+		public static final String VOLUME_PATH_TEXT_BOX = "css=div#zdlg__DLG_NEW_PWRSTR_VOLUME_content td.step_body_container div.XFormCase[style*='visibility: visible'] table tr table tbody tr:nth-child(2) input";
+		public static final String SET_CURRENT_CHECK_BOX = "css=div#zdlg__DLG_NEW_PWRSTR_VOLUME_content td.step_body_container div.XFormCase[style*='visibility: visible'] table tr table tbody tr:nth-child(5) input";
 		public static final String successfulDialog = "css=div.DwtDialog[style*='display: block;'] table td:contains('Zimbra Administration')";
 		public static final String VOLUME_ADDED_OK_BUTTON = "css=div#zdlg__MSG.DwtDialog[style*='z-index: 7'] td[class='ZWidgetTitle']:contains('OK')";
 	}
