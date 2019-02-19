@@ -26,7 +26,7 @@ import com.zimbra.qa.selenium.projects.admin.items.HSMItem;
 public class WizardAddNewVolume extends AbsWizard {
 	
 	public static class Locators {
-		public static final String VOLUME_TYPE_LOCAL = "css=input[id='zdlgv__DLG_NEW_PWRSTR_VOLUME_BObject_63']";
+		public static final String VOLUME_TYPE_LOCAL = "css=table[id^='zdlgv__DLG_NEW_PWRSTR_VOLUME_BObject_'] tbody tr:nth-child(5) tr:nth-child(1) input";
 		public static final String VOLUME_TYPE_S3_BUCKET = "css=[style*='z-index: 7'] input[id='zdlgv__DLG_NEW_PWRSTR_VOLUME_BObject_50']";
 		public static final String NEXT_BUTTON = "css=div[style*='z-index: 7'] td[id$='_button12_title']";
 		public static final String FINISH_BUTTON = "css=div[style*='z-index: 7'] td[id$='_button13_title']";
