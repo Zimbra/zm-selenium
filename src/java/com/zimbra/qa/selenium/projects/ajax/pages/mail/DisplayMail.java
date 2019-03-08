@@ -19,7 +19,6 @@ package com.zimbra.qa.selenium.projects.ajax.pages.mail;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import org.apache.commons.lang.StringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
@@ -96,7 +95,7 @@ public class DisplayMail extends AbsDisplay {
 	}
 
 	public static enum Field {
-		ReceivedTime, ReceivedDate, From, ResentFrom, ReplyTo, To, Cc, OnBehalfOf, OnBehalfOfLabel, Bcc, Subject, Body, ReadingPaneHeight
+		ReceivedTime, ReceivedDate, From, ResentFrom, ReplyTo, To, Cc, OnBehalfOf, OnBehalfOfLabel, Bcc, Subject, Body
 	}
 
 	public String ContainerLocator = Locators.MessageViewPreviewAtBottomCSS;
@@ -930,17 +929,10 @@ public class DisplayMail extends AbsDisplay {
 
 		String locator = null;
 
-		if (field == Field.ReadingPaneHeight) {
+		if (field == Field.Bcc) {
 
-			try {
-				String iFrameLocator = "iframe[id$='__body__iframe']";
-				String iFrameHeight = this.sGetAttribute(iFrameLocator + "@style");
-				iFrameHeight = StringUtils.substringBetween(iFrameHeight, "height: ", "px");
-				return iFrameHeight;
-
-			} finally {
-				webDriver().switchTo().defaultContent();
-			}
+			// Does this show in any mail views? Maybe in Sent?
+			throw new HarnessException("implement me!");
 
 		} else if (field == Field.Body) {
 
