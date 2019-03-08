@@ -16,12 +16,21 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.conversation.conversationview;
 
+import java.awt.event.KeyEvent;
 import java.util.List;
 import org.testng.annotations.Test;
-import com.zimbra.qa.selenium.framework.items.*;
-import com.zimbra.qa.selenium.framework.ui.*;
-import com.zimbra.qa.selenium.framework.util.*;
+import com.zimbra.qa.selenium.framework.items.ConversationItem;
+import com.zimbra.qa.selenium.framework.items.MailItem;
+import com.zimbra.qa.selenium.framework.ui.Action;
+import com.zimbra.qa.selenium.framework.ui.Button;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
+import com.zimbra.qa.selenium.framework.util.HarnessException;
+import com.zimbra.qa.selenium.framework.util.ZAssert;
+import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.projects.ajax.core.SetGroupMailByConversationPreference;
+import com.zimbra.qa.selenium.projects.ajax.pages.mail.DisplayMail;
+import com.zimbra.qa.selenium.projects.ajax.pages.mail.DisplayMail.Field;
+import com.zimbra.qa.selenium.projects.ajax.pages.mail.FormMailNew;
 
 public class ExpandConversation extends SetGroupMailByConversationPreference {
 
@@ -30,23 +39,76 @@ public class ExpandConversation extends SetGroupMailByConversationPreference {
 	}
 
 
-	@Test (description = "Expand a conversation",
-			groups = { "smoke", "L1" })
+	@Test (description = "Select conversation having html content message",
+			groups = { "sanity", "L0" })
 
 	public void ExpandConversation_01() throws HarnessException {
 
 		// Create the message data to be sent
 		String subject = "subject" + ConfigProperties.getUniqueString();
-		String fragment1 = "fragment" + ConfigProperties.getUniqueString();
-		String fragment2 = "fragment" + ConfigProperties.getUniqueString();
+		String fragment = "fragment" + ConfigProperties.getUniqueString();
 
 		ZimbraAccount.AccountA().soapSend(
 				"<SendMsgRequest xmlns='urn:zimbraMail'>" +
 					"<m>" +
-						"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
-						"<su>"+ subject +"</su>" +
+						"<e t='t' a='" + app.zGetActiveAccount().EmailAddress + "'/>" +
+						"<su>" + subject + "</su>" +
+						"<mp ct='text/html'>" +
+							"<content>" + fragment + "</content>" +
+						"</mp>" +
+					"</m>" +
+				"</SendMsgRequest>");
+
+		// Refresh current view
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
+
+		// Select the item
+		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
+
+		// Reply to the item
+		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_REPLY);
+		mailform.zKeyboard.zTypeCharacters("Line 1");
+		mailform.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
+		mailform.zKeyboard.zTypeCharacters("Line 2");
+		mailform.zSubmit();
+
+		// Select conversation
+		DisplayMail actual = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
+		ZAssert.assertGreaterThanEqualTo(Integer.parseInt(actual.zGetMailProperty(Field.ReadingPaneHeight)), 50, "Verify height of iframe from reading pane");
+
+		// Verify the list shows: 1 conversation with 2 messages
+		List<MailItem> items = app.zPageMail.zListGetMessages();
+		ZAssert.assertNotNull(items, "Verify the conversation list exists");
+
+		boolean found = false;
+		for (MailItem c : items) {
+			logger.info("Subject: looking for " + subject + " found: " + c.gSubject);
+			if ( subject.equals(c.gSubject) ) {
+				found = true;
+				break;
+			}
+		}
+		ZAssert.assertTrue(found, "Verify the conversation is in the inbox");
+	}
+
+
+	@Test (description = "Expand conversation having plain text messages",
+			groups = { "sanity", "L0" })
+
+	public void ExpandConversation_02() throws HarnessException {
+
+		// Create the message data to be sent
+		String subject = "subject" + ConfigProperties.getUniqueString();
+		String fragment1 = "fragment1" + ConfigProperties.getUniqueString();
+		String fragment2 = "fragment2" + ConfigProperties.getUniqueString();
+
+		ZimbraAccount.AccountA().soapSend(
+				"<SendMsgRequest xmlns='urn:zimbraMail'>" +
+					"<m>" +
+						"<e t='t' a='" + app.zGetActiveAccount().EmailAddress + "'/>" +
+						"<su>" + subject + "</su>" +
 						"<mp ct='text/plain'>" +
-							"<content>"+ fragment1 +"</content>" +
+							"<content>" + fragment1 + "</content>" +
 						"</mp>" +
 					"</m>" +
 				"</SendMsgRequest>");
@@ -54,10 +116,10 @@ public class ExpandConversation extends SetGroupMailByConversationPreference {
 		ZimbraAccount.AccountA().soapSend(
 				"<SendMsgRequest xmlns='urn:zimbraMail'>" +
 					"<m>" +
-						"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
-						"<su>RE: "+ subject +"</su>" +
+						"<e t='t' a='" + app.zGetActiveAccount().EmailAddress + "'/>" +
+						"<su>RE: " + subject + "</su>" +
 						"<mp ct='text/plain'>" +
-							"<content>"+ fragment2 +"</content>" +
+							"<content>" + fragment2 + "</content>" +
 						"</mp>" +
 					"</m>" +
 				"</SendMsgRequest>");
@@ -72,13 +134,12 @@ public class ExpandConversation extends SetGroupMailByConversationPreference {
 		app.zPageMail.zListItem(Action.A_MAIL_EXPANDCONVERSATION, subject);
 
 		// Verify the list shows: 1 conversation with 2 messages
-
 		List<MailItem> items = app.zPageMail.zListGetMessages();
 		ZAssert.assertNotNull(items, "Verify the conversation list exists");
 
 		boolean found = false;
 		for (MailItem c : items) {
-			logger.info("Subject: looking for "+ subject +" found: "+ c.gSubject);
+			logger.info("Subject: looking for " + subject + " found: " + c.gSubject);
 			if ( subject.equals(c.gSubject) ) {
 				found = true;
 				break;
@@ -88,10 +149,9 @@ public class ExpandConversation extends SetGroupMailByConversationPreference {
 
 		int count = 0;
 		for (MailItem m : items) {
-			logger.info("Subject: looking for "+ fragment1 +" or "+ fragment2 +" found: "+ m.gFragment);
+			logger.info("Subject: looking for " + fragment1 + " or " + fragment2 + " found: " + m.gFragment);
 
 			if ( m instanceof ConversationItem ) {
-
 				ConversationItem c = (ConversationItem)m;
 
 				if ( !c.gIsConvExpanded ) {
@@ -100,16 +160,14 @@ public class ExpandConversation extends SetGroupMailByConversationPreference {
 				}
 
 				if ( fragment1.equals(c.gFragment) ) {
-					logger.info("Subject: Found "+ fragment1);
+					logger.info("Subject: Found " + fragment1);
 					count++;
 				}
 				if ( fragment2.equals(c.gFragment) ) {
-					logger.info("Subject: Found "+ fragment2);
+					logger.info("Subject: Found " + fragment2);
 					count++;
 				}
-
 			}
-
 		}
 		ZAssert.assertEquals(count, 2, "Verify two messages in the conversation");
 	}
