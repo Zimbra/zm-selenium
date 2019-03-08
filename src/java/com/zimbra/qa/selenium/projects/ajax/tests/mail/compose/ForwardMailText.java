@@ -33,7 +33,7 @@ public class ForwardMailText extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Forward a plain text mail using Text editor",
-			groups = { "smoke", "L1" })
+			groups = { "sanity", "L0" })
 
 	public void ForwardMailText_01() throws HarnessException {
 

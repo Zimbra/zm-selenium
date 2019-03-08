@@ -32,11 +32,12 @@ public class ReplyMailText extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Reply a plain text mail using Text editor",
-			groups = { "smoke", "L1" })
+			groups = { "sanity", "L0" })
 
 	public void ReplyPlainTextMail_01() throws HarnessException {
 
 		String subject = "subject"+ ConfigProperties.getUniqueString();
+		String replyBody = "reply text";
 
 		// Send a message to the account
 		ZimbraAccount.AccountA().soapSend(
@@ -61,9 +62,7 @@ public class ReplyMailText extends SetGroupMailByMessagePreference {
 
 		// Forward the item
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_REPLY);
-		ZAssert.assertNotNull(mailform, "Verify the new form opened");
-
-		// Send the message
+		mailform.zKeyboard.zTypeCharacters(replyBody);
 		mailform.zSubmit();
 
 		// From the receiving end, verify the message details
@@ -73,5 +72,6 @@ public class ReplyMailText extends SetGroupMailByMessagePreference {
 		ZAssert.assertEquals(received.dToRecipients.get(0).dEmailAddress, ZimbraAccount.AccountA().EmailAddress, "Verify the to field is correct");
 		ZAssert.assertStringContains(received.dSubject, mail.dSubject, "Verify the subject field is correct");
 		ZAssert.assertStringContains(received.dSubject, "Re", "Verify the subject field contains the 'Re' prefix");
+		ZAssert.assertStringContains(received.dBodyText, replyBody, "Verify the replied body content reply value is correct");
 	}
 }

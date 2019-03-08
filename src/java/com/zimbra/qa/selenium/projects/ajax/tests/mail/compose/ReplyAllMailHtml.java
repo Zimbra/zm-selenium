@@ -22,6 +22,7 @@ import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.SetGroupMailByMessagePreference;
 import com.zimbra.qa.selenium.projects.ajax.pages.mail.FormMailNew;
+import com.zimbra.qa.selenium.projects.ajax.pages.mail.PageMail;
 
 public class ReplyAllMailHtml extends SetGroupMailByMessagePreference {
 
@@ -32,7 +33,7 @@ public class ReplyAllMailHtml extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Reply All to an html mail using html editor",
-			groups = { "smoke", "L1" })
+			groups = { "sanity", "L0" })
 
 	public void ReplyAllMailHtml_01() throws HarnessException {
 
@@ -44,6 +45,7 @@ public class ReplyAllMailHtml extends SetGroupMailByMessagePreference {
 					"<head></head>" +
 					"<body>"+ bodyHTML +"</body>" +
 				"</html>");
+		String replyBody = "reply text";
 
 		// Send a message to the account
 		ZimbraAccount.AccountA().soapSend(
@@ -73,17 +75,18 @@ public class ReplyAllMailHtml extends SetGroupMailByMessagePreference {
 
 		// Reply to the item
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_REPLYALL);
-		ZAssert.assertNotNull(mailform, "Verify the new form opened");
+		app.zPageMain.zWaitTillElementPresent(PageMail.Locators.zEditorPanel);
+		mailform.zKeyboard.zTypeCharacters(replyBody);
 
 		// Send the message
 		mailform.zSubmit();
 
 		// From the receiving end, verify the message details
-		MailItem received = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "in:inbox subject:("+ mail.dSubject +")");
-
+		MailItem received = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "in:inbox subject:(" + mail.dSubject + ")");
 		ZAssert.assertEquals(received.dFromRecipient.dEmailAddress, app.zGetActiveAccount().EmailAddress, "Verify the from field is correct");
 		ZAssert.assertEquals(received.dToRecipients.get(0).dEmailAddress, ZimbraAccount.AccountA().EmailAddress, "Verify the to field is correct");
 		ZAssert.assertStringContains(received.dSubject, mail.dSubject, "Verify the subject field is correct");
 		ZAssert.assertStringContains(received.dSubject, "Re", "Verify the subject field contains the 'Re' prefix");
+		ZAssert.assertStringContains(received.dBodyText, replyBody, "Verify the replied body content reply value is correct");
 	}
 }
