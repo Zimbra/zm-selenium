@@ -88,7 +88,7 @@ public class AcceptProposeNewTime extends AjaxCore {
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);
 
 		SeparateWindowDisplayMail window = null;
-		String windowTitle = ": " + apptSubject;
+		String windowTitle = "Email: " + apptSubject;
 
 		try {
 

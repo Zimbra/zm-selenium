@@ -103,7 +103,7 @@ public class CreateMountpoint extends SetGroupMailByMessagePreference {
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, shareMessageSubject);
 
 		SeparateWindowDisplayMail window = null;
-		String windowTitle = ": " + shareMessageSubject;
+		String windowTitle = "Email: " + shareMessageSubject;
 
 		try {
 

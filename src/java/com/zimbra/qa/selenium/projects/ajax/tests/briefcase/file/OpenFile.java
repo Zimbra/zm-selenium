@@ -90,7 +90,7 @@ public class OpenFile extends EnableBriefcaseFeature {
 
 			app.zPageBriefcase.closeWindow();
 		} finally {
-			app.zPageBriefcase.zSelectWindow(": Briefcase");
+			app.zPageBriefcase.zSelectWindow("Email: Briefcase");
 		}
 
 		ZAssert.assertStringContains(text, fileText, "Verify document text through GUI");

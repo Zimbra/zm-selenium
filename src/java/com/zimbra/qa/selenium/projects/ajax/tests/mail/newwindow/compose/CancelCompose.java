@@ -38,7 +38,7 @@ public class CancelCompose extends SetGroupMailByMessagePreference {
 	public void CancelCompose_01() throws HarnessException {
 
 		SeparateWindowFormMailNew window = null;
-		String windowTitle = ": Compose";
+		String windowTitle = "Email: Compose";
 
 		try {
 

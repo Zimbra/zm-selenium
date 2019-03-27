@@ -84,7 +84,7 @@ public class ComposeForwardMailWithAttachmentAndVariousOptions extends SetGroupM
 
 			// Open it in new window
 			SeparateWindowFormMailNew window = null;
-			String windowTitle = ": Forward";
+			String windowTitle = "Email: Forward";
 
 			final String fileName = "inlineImage.jpg";
 			final String filePath = ConfigProperties.getBaseDirectory() + "\\data\\public\\other\\" + fileName;
@@ -175,7 +175,7 @@ public class ComposeForwardMailWithAttachmentAndVariousOptions extends SetGroupM
 
 			// Open it in new window
 			SeparateWindowFormMailNew window = null;
-			String windowTitle = ": Forward";
+			String windowTitle = "Email: Forward";
 
 			try {
 
@@ -258,7 +258,7 @@ public class ComposeForwardMailWithAttachmentAndVariousOptions extends SetGroupM
 
 			// Open message in a separate window
 			SeparateWindowFormMailNew window = null;
-			String windowTitle = ": Forward";
+			String windowTitle = "Email: Forward";
 
 			try {
 
