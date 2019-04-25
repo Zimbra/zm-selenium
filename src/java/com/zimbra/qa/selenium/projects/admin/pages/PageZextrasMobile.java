@@ -27,12 +27,12 @@ import com.zimbra.qa.selenium.framework.util.SleepUtil;
 public class PageZextrasMobile extends AbsTab{
 
 	public static class Locators {
-		public static final String NETWORK_MODULE_NG_ICON = "css=td[id^='zti__AppAdmin__Home__ZeXtras_'] div[class='ImgZeXtras']";
+		public static final String NETWORK_MODULE_NG_ICON = "css=td[id^='zti__AppAdmin__Home__Zimbra Network'] div[class='ImgZeXtras']";
 		public static final String CLOSE_BUTTON = "css=td[id^='zb__ZaCurrentAppBar__CLOSE_']:contains('Close')";
 		public static final String HOME = "Home";
 		public static final String NETWORK_MODULE_NG = "Network Modules NG";
 		public static final String MOBILE = "Mobile";
-		public static final String MOBILE_TAB = "css=td[id^='zti__AppAdmin__ZeXtras__ZxMobile_']:contains('Mobile')";
+		public static final String MOBILE_TAB = "css=td[id^='zti__AppAdmin__Home__Zimbra Network']:contains('Mobile')";
 		public static final String MOBILE_DEVICE_MANAGEMENT = "xpath=//input[contains(@id,'ZxMobile_DeviceManagementEnabled')]";
 		public static final String OK_BUTTON = "css=div[class='DwtDialog']:not([aria-hidden='true']) td[class='ZWidgetTitle']:contains('OK')";
 		public static final String SAVE_BUTTON = "css=td[id^='zb__ZaCurrentAppBar__SAVE_']:contains('Save')";
