@@ -224,7 +224,7 @@ public class PageMail extends AbsTab {
 			return;
 		}
 
-		((AjaxPages) MyApplication).zPageMain.zCheckAppLoaded(Locators.zMailZimletsPane);
+		((AjaxPages) MyApplication).zPageMain.zNavigateToAppTab(Locators.zMailZimletsPane);
 	}
 
 	public boolean zVerifyMailExists(String subject) throws HarnessException {
@@ -1100,10 +1100,6 @@ public class PageMail extends AbsTab {
 				this.sClickAt(optionLocator, "0,0");
 				zWaitForBusyOverlay();
 				SleepUtil.sleepSmall();
-			}
-
-			if (page != null) {
-				page.zWaitForActive();
 			}
 		}
 

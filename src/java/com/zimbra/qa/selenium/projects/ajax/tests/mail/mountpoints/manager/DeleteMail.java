@@ -230,8 +230,9 @@ public class DeleteMail extends SetGroupMailByMessagePreference {
 	}
 
 
+	@Bugs (ids = "ZCS-7511")
 	@Test (description = "Delete a message from a mountpoint folder which has retention policy of 1 month and verify the warning dialog",
-			groups = { "functional" })
+			groups = { "functional-application-bug" })
 
 	public void DeleteMailFromFolderWithRetention_03() throws HarnessException {
 
@@ -305,12 +306,12 @@ public class DeleteMail extends SetGroupMailByMessagePreference {
 			warning.zWaitForActive();
 
 			// Verify the warning message displayed in the dialog
-			ZAssert.assertStringContains(warning.zGetWarningContent(), warningMessagePart1, 
+			ZAssert.assertStringContains(warning.zGetWarningContent(), warningMessagePart1,
 					"Verify the warning message displayed while deleting the mail from retention folder");
-			ZAssert.assertStringContains(warning.zGetWarningContent(), warningMessagePart2, 
+			ZAssert.assertStringContains(warning.zGetWarningContent(), warningMessagePart2,
 					"Verify the warning message displayed while deleting the mail from retention folder");
 
-			// Confirm the deletion 
+			// Confirm the deletion
 			warning.zPressButton(Button.B_OK);
 
 		} finally {

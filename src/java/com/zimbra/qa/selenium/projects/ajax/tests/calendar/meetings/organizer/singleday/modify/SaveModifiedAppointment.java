@@ -32,6 +32,7 @@ import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
 import com.zimbra.qa.selenium.projects.ajax.pages.calendar.DialogSendUpdatetoAttendees;
 import com.zimbra.qa.selenium.projects.ajax.pages.calendar.FormApptNew;
 import com.zimbra.qa.selenium.projects.ajax.pages.calendar.DialogConfirmModification;
+
 public class SaveModifiedAppointment extends AjaxCore {
 
 	public SaveModifiedAppointment() {
@@ -181,9 +182,12 @@ public class SaveModifiedAppointment extends AjaxCore {
 
 
 	@Test (description = "Save modified appt and take action from warning dialog : Dont save But keep open",
-			groups = { "sanity" })
+			groups = { "sanity1" })
 
 	public void SaveModifiedAppointment_03() throws HarnessException {
+		// Refresh UI due to dialog locator changes
+		app.zPageMain.zRefreshMainUI();
+		app.zPageCalendar.zNavigateTo();
 
 		// Creating object for appointment data
 		AppointmentItem appt = new AppointmentItem();

@@ -50,7 +50,7 @@ public class SMSNotificationViaEmail extends AjaxCore {
 
 
 	@Test (description = "Verify SMS notification via Email for appointment reminder.",
-			groups = { "sanity" } )
+			groups = { "functional-known-failure" } )
 
 	public void SMSNotificationViaEmail_01() throws HarnessException {
 

@@ -24,6 +24,7 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
+import com.zimbra.qa.selenium.projects.ajax.pages.PageMain;
 import com.zimbra.qa.selenium.projects.ajax.pages.preferences.PagePreferences.Locators;
 import com.zimbra.qa.selenium.projects.ajax.pages.preferences.TreePreferences.TreeItem;
 
@@ -34,7 +35,7 @@ public class ReplyToSentMessage extends AjaxCore {
 	}
 
 
-	@Test (description = "Verify that reply-to-sent-message details are set/unset properly.",
+	@Test (description = "Verify that reply-to-sent-message details are set/unset properly",
 			groups = { "functional" })
 
 	public void ReplyToSentMessage_01() throws HarnessException {
@@ -50,13 +51,14 @@ public class ReplyToSentMessage extends AjaxCore {
 		app.zPagePreferences.zCheckboxSet(Checkbox.C_REPLY_TO_SENT_MESSAGE, true);
 		
 		// Enter name and email address
+		app.zPagePreferences.sType(Locators.zFromAccountName, account.DisplayName);
 		app.zPagePreferences.sType(Locators.zReplyToSentMessageName, account.DisplayName);
 		app.zPagePreferences.sType(Locators.zReplyToSentMessageEmail, account.EmailAddress);
 		app.zPagePreferences.zToolbarPressButton(Button.B_SAVE);
 		
 		// Refresh the web-client
-		app.zPagePreferences.zRefreshUI();
-		startingPage.zNavigateTo();
+		app.zPageMain.zRefreshMainUI();
+		app.zPageMain.zNavigateToAppTab(PageMain.Locators.zPreferencesTab);
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.MailAccounts);
 		
 		// Verify that all the entered details are saved

@@ -38,218 +38,207 @@ public class ColorMessagesEnabledTrue extends SetGroupMailByMessagePreference {
 	}
 
 
-	@Test (description = "Set 'Set color of messages and conversations according to tag color.': Enabled",
-			groups = { "functional" })
-
-	public void ColorMessagesEnabled_01() throws HarnessException {
-
-		// Navigate to preferences -> mail -> displaying messages
-		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.Mail);
-
-		// Click checkbox: Set color of messages and conversations according to tag color
-		app.zPagePreferences.zCheckboxSet("css=div.ZmPreferencesPage div[id$='COLOR_MESSAGES_control'] input[id$='COLOR_MESSAGES']", true);
-
-		// Click save
-		app.zPagePreferences.zToolbarPressButton(Button.B_SAVE);
-
-		// Verification
-		app.zGetActiveAccount().soapSend(
-						"<GetPrefsRequest xmlns='urn:zimbraAccount'>"
-				+			"<pref name='zimbraPrefColorMessagesEnabled'/>"
-				+		"</GetPrefsRequest>");
-
-		String value = app.zGetActiveAccount().soapSelectValue("//acct:pref[@name='zimbraPrefColorMessagesEnabled']", null);
-		ZAssert.assertEquals(value, "TRUE", "Verify the preference was changed to TRUE");
-	}
-
-
 	@Test (description = "Verify if the background color of messages is according to the tag color when 'zimbraPrefColorMessagesEnabled' is Set TRUE",
 			groups = { "sanity" })
 
-	public void ColorMessagesEnabled_02() throws HarnessException {
+	public void ColorMessagesEnabled_01() throws HarnessException {
 
-		// Data for messages
-		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
-		String subject1 = "subjectX"+ ConfigProperties.getUniqueString();
-		String subject2 = "subjectY"+ ConfigProperties.getUniqueString();
-		String tagName1 = "tagOrange";
-		String tagName2 = "tagBlue";
+		try {
 
-		// Create a message
-		app.zGetActiveAccount().soapSend(
-				"<AddMsgRequest xmlns='urn:zimbraMail'>"
-						+		"<m l='" + inbox.getId() + "'>"
-						+			"<content>"
-						+				"From: foo@foo.com\n"
-						+ 				"To: foo@foo.com \n"
-						+				"Subject: " + subject1 + "\n"
-						+ 				"MIME-Version: 1.0 \n"
-						+				"Content-Type: text/plain; charset=utf-8 \n"
-						+				"Content-Transfer-Encoding: 7bit\n"
-						+				"\n"
-						+				"content \n"
-						+				"\n"
-						+				"\n"
-						+			"</content>"
-						+		"</m>"
-						+	"</AddMsgRequest>");
+			// Data for messages
+			FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
+			String subject1 = "subjectX" + ConfigProperties.getUniqueString();
+			String subject2 = "subjectY" + ConfigProperties.getUniqueString();
+			String tagName1 = "tagOrange";
+			String tagName2 = "tagBlue";
 
-		// Refresh current view
-		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
+			// Create a message
+			app.zGetActiveAccount().soapSend(
+					"<AddMsgRequest xmlns='urn:zimbraMail'>"
+							+		"<m l='" + inbox.getId() + "'>"
+							+			"<content>"
+							+				"From: foo@foo.com\n"
+							+ 				"To: foo@foo.com \n"
+							+				"Subject: " + subject1 + "\n"
+							+ 				"MIME-Version: 1.0 \n"
+							+				"Content-Type: text/plain; charset=utf-8 \n"
+							+				"Content-Transfer-Encoding: 7bit\n"
+							+				"\n"
+							+				"content \n"
+							+				"\n"
+							+				"\n"
+							+			"</content>"
+							+		"</m>"
+							+	"</AddMsgRequest>");
 
-		// Select the item
-		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject1);
+			// Refresh current view
+			app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
-		// Create new tag
-		DialogTag dialog = (DialogTag)app.zPageMail.zToolbarPressPulldown(Button.B_NEW, Button.O_NEW_TAG);
-		dialog.zSetTagName(tagName1);
-		dialog.zSubmit();
+			// Create new tag
+			DialogTag dialog = (DialogTag)app.zTreeMail.zPressButton(Button.B_TREE_NEWTAG);
+			dialog.zSetTagName(tagName1);
+			dialog.zSubmit();
 
-		TagItem tag = TagItem.importFromSOAP(app.zGetActiveAccount(), tagName1);
+			TagItem tag = TagItem.importFromSOAP(app.zGetActiveAccount(), tagName1);
 
-		// Tag it
-		app.zPageMail.zToolbarPressPulldown(Button.B_TAG, tag);
+			// Select the item
+			app.zPageMail.zListItem(Action.A_LEFTCLICK, subject1);
 
-		// Verify that color of the message is not displayed yet
-		ZAssert.assertFalse(app.zPageMail.sIsElementPresent("css=li[style^='background:'][style*='#ffeed5']"),
-				"Verify that message is not colored as per tag color when 'zimbraPrefColorMessagesEnabled' is FALSE");
+			// Tag it
+			app.zPageMail.zToolbarPressPulldown(Button.B_TAG, tag);
 
-		// Changing the preference zimbraPrefColorMessagesEnabled to TRUE
+			// Verify that color of the message is not displayed yet
+			ZAssert.assertFalse(app.zPageMail.sIsElementPresent("css=li[style^='background:'][style*='#ffeed5']"),
+					"Verify that message is not colored as per tag color when 'zimbraPrefColorMessagesEnabled' is FALSE");
 
-		// Navigate to Preferences -> General
-		startingPage=app.zPagePreferences;
-		startingPage.zNavigateTo();
+			// Changing the preference zimbraPrefColorMessagesEnabled to TRUE
 
-		// Navigate to preferences -> mail
-		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.Mail);
+			// Navigate to Preferences -> General
+			startingPage = app.zPagePreferences;
+			startingPage.zNavigateTo();
 
-		// Select the check box for Automatic display of External images
-		app.zPagePreferences.sClick(PagePreferences.Locators.zDisplayMessageColor);
+			// Navigate to preferences -> mail
+			app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.Mail);
 
-		// Click save
-		app.zPagePreferences.zToolbarPressButton(Button.B_SAVE);
+			// Select the check box for Automatic display of External images
+			app.zPagePreferences.sClick(PagePreferences.Locators.zDisplayMessageColor);
 
-		// Verification through SOAP
-		app.zGetActiveAccount().soapSend(
-				"<GetPrefsRequest xmlns='urn:zimbraAccount'>"
-						+			"<pref name='zimbraPrefColorMessagesEnabled'/>"
-						+		"</GetPrefsRequest>");
+			// Click save
+			app.zPagePreferences.zToolbarPressButton(Button.B_SAVE);
 
-		// Verifying that the 'zimbraPrefColorMessagesEnabled' is set to TRUE
-		String value = app.zGetActiveAccount().soapSelectValue("//acct:pref[@name='zimbraPrefColorMessagesEnabled']", null);
-		ZAssert.assertEquals(value, "TRUE", "Verify that show message color is enabled");
+			// Verification through SOAP
+			app.zGetActiveAccount().soapSend(
+					"<GetPrefsRequest xmlns='urn:zimbraAccount'>"
+							+			"<pref name='zimbraPrefColorMessagesEnabled'/>"
+							+		"</GetPrefsRequest>");
 
-		// Verifying the background color of message in inbox
+			// Verifying that the 'zimbraPrefColorMessagesEnabled' is set to TRUE
+			String value = app.zGetActiveAccount().soapSelectValue("//acct:pref[@name='zimbraPrefColorMessagesEnabled']", null);
+			ZAssert.assertEquals(value, "TRUE", "Verify that show message color is enabled");
 
-		// Refresh current view
-		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, inbox);
+			// Verifying the background color of message in inbox
 
-		// Verifying the background color of message now
-		ZAssert.assertTrue(app.zPageMail.sIsElementPresent("css=li[style^='background:'][style*='#ffeed5'][aria-label*='" + subject1 + "']"),
-				"Verify that message is colored as per tag color when 'zimbraPrefColorMessagesEnabled' is TRUE");
+			// Refresh current view
+			app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, inbox);
 
-		// Create another message and tag it with another color
-		app.zGetActiveAccount().soapSend(
-				"<AddMsgRequest xmlns='urn:zimbraMail'>"
-						+		"<m l='" + inbox.getId() + "'>"
-						+			"<content>"
-						+				"From: foo@foo.com\n"
-						+ 				"To: foo@foo.com \n"
-						+				"Subject: " + subject2 + "\n"
-						+ 				"MIME-Version: 1.0 \n"
-						+				"Content-Type: text/plain; charset=utf-8 \n"
-						+				"Content-Transfer-Encoding: 7bit\n"
-						+				"\n"
-						+				"content \n"
-						+				"\n"
-						+				"\n"
-						+			"</content>"
-						+		"</m>"
-						+	"</AddMsgRequest>");
+			// Verifying the background color of message now
+			ZAssert.assertTrue(app.zPageMail.sIsElementPresent("css=li[style^='background:'][style*='#ffeed5'][aria-label*='" + subject1 + "']"),
+					"Verify that message is colored as per tag color when 'zimbraPrefColorMessagesEnabled' is TRUE");
 
-		// Refresh current view
-		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
+			// Create another message and tag it with another color
+			app.zGetActiveAccount().soapSend(
+					"<AddMsgRequest xmlns='urn:zimbraMail'>"
+							+		"<m l='" + inbox.getId() + "'>"
+							+			"<content>"
+							+				"From: foo@foo.com\n"
+							+ 				"To: foo@foo.com \n"
+							+				"Subject: " + subject2 + "\n"
+							+ 				"MIME-Version: 1.0 \n"
+							+				"Content-Type: text/plain; charset=utf-8 \n"
+							+				"Content-Transfer-Encoding: 7bit\n"
+							+				"\n"
+							+				"content \n"
+							+				"\n"
+							+				"\n"
+							+			"</content>"
+							+		"</m>"
+							+	"</AddMsgRequest>");
 
-		// Select the item
-		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject2);
+			// Refresh current view
+			app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
-		// Create another tag with different color
-		dialog = (DialogTag)app.zPageMail.zToolbarPressPulldown(Button.B_NEW, Button.O_NEW_TAG);
-		dialog.zSetTagName(tagName2);
-		dialog.zSubmit();
+			// Select the item
+			app.zPageMail.zListItem(Action.A_LEFTCLICK, subject2);
 
-		tag = TagItem.importFromSOAP(app.zGetActiveAccount(), tagName2);
+			// Create another tag with different color
+			dialog = (DialogTag)app.zTreeMail.zPressButton(Button.B_TREE_NEWTAG);
+			dialog.zSetTagName(tagName2);
+			dialog.zSubmit();
 
-		// Tag it
-		app.zPageMail.zToolbarPressPulldown(Button.B_TAG, tag);
+			tag = TagItem.importFromSOAP(app.zGetActiveAccount(), tagName2);
 
-		// Verifying the background color of message
-		ZAssert.assertTrue(app.zPageMail.sIsElementPresent("css=li[style^='background:'][style*='#84b4f5'][aria-label*='" + subject2 + "']"),
-				"Verify that message is colored as per tag color when 'zimbraPrefColorMessagesEnabled' is TRUE");
+			// Tag it
+			app.zPageMail.zToolbarPressPulldown(Button.B_TAG, tag);
 
-		// Changing the starting page for test below
-		super.startingPage = app.zPageMail;
+			// Verifying the background color of message
+			ZAssert.assertTrue(app.zPageMail.sIsElementPresent("css=li[style^='background:'][style*='#84b4f5'][aria-label*='" + subject2 + "']"),
+					"Verify that message is colored as per tag color when 'zimbraPrefColorMessagesEnabled' is TRUE");
+
+		} finally {
+			startingPage = app.zPageMail;
+			startingPage.zNavigateTo();
+		}
 	}
 
 
 	@Test (description = "Verify the color of message when it is tagged with two tags and 'zimbraPrefColorMessagesEnabled' is Set TRUE",
 			groups = { "functional" })
 
-	public void ColorMessagesEnabled_03() throws HarnessException {
+	public void ColorMessagesEnabled_02() throws HarnessException {
 
-		// Data for messages
-		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
-		String subject = "subjectZ"+ ConfigProperties.getUniqueString();
-		String tagName1 = "tagA";
-		String tagName2 = "tagB";
+		try {
 
-		// Create a message
-		app.zGetActiveAccount().soapSend(
-				"<AddMsgRequest xmlns='urn:zimbraMail'>"
-						+		"<m l='" + inbox.getId() + "'>"
-						+			"<content>"
-						+				"From: foo@foo.com\n"
-						+ 				"To: foo@foo.com \n"
-						+				"Subject: " + subject + "\n"
-						+ 				"MIME-Version: 1.0 \n"
-						+				"Content-Type: text/plain; charset=utf-8 \n"
-						+				"Content-Transfer-Encoding: 7bit\n"
-						+				"\n"
-						+				"content \n"
-						+				"\n"
-						+				"\n"
-						+			"</content>"
-						+		"</m>"
-						+	"</AddMsgRequest>");
+			// Data for messages
+			FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
+			String subject = "subjectZ" + ConfigProperties.getUniqueString();
+			String tagName1 = "tagA";
+			String tagName2 = "tagB";
 
-		// Refresh current view
-		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
+			// Create a message
+			app.zGetActiveAccount().soapSend(
+					"<AddMsgRequest xmlns='urn:zimbraMail'>"
+							+		"<m l='" + inbox.getId() + "'>"
+							+			"<content>"
+							+				"From: foo@foo.com\n"
+							+ 				"To: foo@foo.com \n"
+							+				"Subject: " + subject + "\n"
+							+ 				"MIME-Version: 1.0 \n"
+							+				"Content-Type: text/plain; charset=utf-8 \n"
+							+				"Content-Transfer-Encoding: 7bit\n"
+							+				"\n"
+							+				"content \n"
+							+				"\n"
+							+				"\n"
+							+			"</content>"
+							+		"</m>"
+							+	"</AddMsgRequest>");
 
-		// Select the item
-		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
+			// Refresh current view
+			app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
 
-		// Create new tag
-		DialogTag dialog = (DialogTag)app.zPageMail.zToolbarPressPulldown(Button.B_NEW, Button.O_NEW_TAG);
-		dialog.zSetTagName(tagName1);
-		dialog.zSubmit();
+			// Select the item
+			app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 
-		TagItem tag = TagItem.importFromSOAP(app.zGetActiveAccount(), tagName1);
+			// Create new tag
+			DialogTag dialog = (DialogTag)app.zTreeMail.zPressButton(Button.B_TREE_NEWTAG);
+			dialog.zSetTagName(tagName1);
+			dialog.zSubmit();
 
-		// Tag it
-		app.zPageMail.zToolbarPressPulldown(Button.B_TAG, tag);
+			TagItem tag = TagItem.importFromSOAP(app.zGetActiveAccount(), tagName1);
 
-		// Create another tag with different color
-		dialog = (DialogTag)app.zPageMail.zToolbarPressPulldown(Button.B_NEW, Button.O_NEW_TAG);
-		dialog.zSetTagName(tagName2);
-		dialog.zSubmit();
+			// Select the item
+			app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 
-		tag = TagItem.importFromSOAP(app.zGetActiveAccount(), tagName2);
+			// Tag it
+			app.zPageMail.zToolbarPressPulldown(Button.B_TAG, tag);
 
-		// Tag it
-		app.zPageMail.zToolbarPressPulldown(Button.B_TAG, tag);
+			// Create another tag with different color
+			dialog = (DialogTag)app.zTreeMail.zPressButton(Button.B_TREE_NEWTAG);
+			dialog.zSetTagName(tagName2);
+			dialog.zSubmit();
 
-		// Verifying the background color of message
-		ZAssert.assertFalse(app.zPageMail.sIsElementPresent("css=li[style^='background:'][aria-label*='" + subject + "']"),
-				"Verify that message is not colored when it is tagged with two tags");
+			tag = TagItem.importFromSOAP(app.zGetActiveAccount(), tagName2);
+
+			// Tag it
+			app.zPageMail.zToolbarPressPulldown(Button.B_TAG, tag);
+
+			// Verifying the background color of message
+			ZAssert.assertFalse(app.zPageMail.sIsElementPresent("css=li[style^='background:'][aria-label*='" + subject + "']"),
+					"Verify that message is not colored when it is tagged with two tags");
+
+		} finally {
+			startingPage = app.zPageMail;
+			startingPage.zNavigateTo();
+		}
 	}
 }

@@ -23,7 +23,6 @@ import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.SetGroupMailByMessagePreference;
 import com.zimbra.qa.selenium.projects.ajax.pages.mail.*;
-import com.zimbra.qa.selenium.projects.ajax.pages.mail.FormMailNew.*;
 
 public class SendMailWithContactsDisabled extends SetGroupMailByMessagePreference {
 
@@ -39,51 +38,45 @@ public class SendMailWithContactsDisabled extends SetGroupMailByMessagePreferenc
 
 	public void SendMailWithContactsDisabled_01() throws HarnessException {
 
-		// Message data to be entered
-		String subject = "Subject "+ConfigProperties.getUniqueString();
-		String body = "body " + ConfigProperties.getUniqueString();
+		// Create the message data to be sent
+		MailItem mail = new MailItem();
+		mail.dToRecipients.add(new RecipientItem(ZimbraAccount.AccountA()));
+		mail.dSubject = "subject" + ConfigProperties.getUniqueString();
+		mail.dBodyHtml = "body" + ConfigProperties.getUniqueString();
 
 		// Open the new mail form
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
-		ZAssert.assertNotNull(mailform, "Verify the new form opened");
-
-		// Fill out the form with the data
-		mailform.zFillField(Field.To, ZimbraAccount.AccountA().EmailAddress);
-		mailform.zFillField(Field.Subject, subject);
-		mailform.zFillField(Field.Body, body);
+		mailform.zFill(mail);
 
 		// Send the message
 		mailform.zSubmit();
 
-		// Verification through SOAP
 		ZimbraAccount.AccountA().soapSend(
 				"<SearchRequest types='message' xmlns='urn:zimbraMail'>"
-						+			"<query>subject:("+ subject +")</query>"
-						+		"</SearchRequest>");
+				+	"<query>subject:("+ mail.dSubject +")</query>"
+				+	"</SearchRequest>");
 		String id = ZimbraAccount.AccountA().soapSelectValue("//mail:m", "id");
 
 		ZimbraAccount.AccountA().soapSend(
 				"<GetMsgRequest xmlns='urn:zimbraMail'>"
-						+			"<m id='"+ id +"' html='1'/>"
-						+		"</GetMsgRequest>");
+				+	"<m id='"+ id +"' html='1'/>"
+				+	"</GetMsgRequest>");
 
 		String from = ZimbraAccount.AccountA().soapSelectValue("//mail:e[@t='f']", "a");
 		String to = ZimbraAccount.AccountA().soapSelectValue("//mail:e[@t='t']", "a");
-		String subjectSoap = ZimbraAccount.AccountA().soapSelectValue("//mail:su", null);
+		String subject = ZimbraAccount.AccountA().soapSelectValue("//mail:su", null);
 		String html = ZimbraAccount.AccountA().soapSelectValue("//mail:mp[@ct='text/html']//mail:content", null);
 
 		ZAssert.assertEquals(from, app.zGetActiveAccount().EmailAddress, "Verify the from field is correct");
 		ZAssert.assertEquals(to, ZimbraAccount.AccountA().EmailAddress, "Verify the to field is correct");
-		ZAssert.assertEquals(subjectSoap, subject, "Verify the subject field is correct");
-		ZAssert.assertStringContains(html,body, "Verify the body of mail is correct");
-
-		// Verification through UI
+		ZAssert.assertEquals(subject, mail.dSubject, "Verify the subject field is correct");
+		ZAssert.assertStringContains(html, mail.dBodyHtml, "Verify the html content");
 
 		// Go to Sent
 		FolderItem sent = FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Sent);
 		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, sent);
 
 		// Verify that mail is present in Sent folder
-		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject),"Verify that mail is present in sent folder");
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(mail.dSubject),"Verify that mail is present in sent folder");
 	}
 }

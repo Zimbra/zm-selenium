@@ -24,6 +24,7 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
+import com.zimbra.qa.selenium.projects.ajax.pages.Toaster;
 import com.zimbra.qa.selenium.projects.ajax.pages.preferences.TreePreferences.TreeItem;
 import com.zimbra.qa.selenium.projects.ajax.pages.preferences.signature.FormSignatureNew;
 import com.zimbra.qa.selenium.projects.ajax.pages.preferences.signature.FormSignatureNew.Field;
@@ -53,6 +54,11 @@ public class CreateSignature extends AjaxCore {
 		signew.zFillField(Field.SignatureName, sigName);
 		signew.zFillField(Field.SignatureBody, sigBody);
 		signew.zSubmit();
+
+		// Verifying the toaster message
+		Toaster toast = app.zPageMain.zGetToaster();
+		String toastMessage = toast.zGetToastMessage();
+		ZAssert.assertStringContains(toastMessage, "Preferences Saved", "Verify toast message: Preferences Saved");
 
 		SignatureItem signature = SignatureItem.importFromSOAP(app.zGetActiveAccount(), sigName);
 

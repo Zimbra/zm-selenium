@@ -114,7 +114,7 @@ public class PageDrive extends AbsTab {
 		}
 
 		try {
-			((AjaxPages) MyApplication).zPageMain.zCheckAppLoaded(Locators.zDriveFolderPane);
+			((AjaxPages) MyApplication).zPageMain.zNavigateToAppTab(Locators.zDriveFolderPane);
 		} catch (Exception ex) {
 			throw new HarnessException("Try connecting Nextcloud Server first or check zimbra settings. Drive not Connected");
 		}

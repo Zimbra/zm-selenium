@@ -393,6 +393,6 @@ public class FormTaskNew extends AbsForm {
 	}
 	
 	public boolean zIsTextEditorDisplayed() throws HarnessException {
-		return sIsElementPresent("css=div[id^='ZmHtmlEditor'] div[id^='mceu_'][style*='display: none']");
+		return sIsElementPresent("css=textarea[id^='ZmHtmlEditor1_body']");
 	}
 }

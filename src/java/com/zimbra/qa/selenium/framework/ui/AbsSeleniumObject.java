@@ -1076,14 +1076,13 @@ public abstract class AbsSeleniumObject {
 		logger.info("zWaitTillElementPresent(" + locator + ")");
 
 		boolean present = false;
-		SleepUtil.sleepSmall();
-		for (int i = 0; i <= 15; i++) {
+		for (int i = 0; i <= 10; i++) {
 			present = zIsVisiblePerPosition(locator, 10, 10);
 			if (present == true) {
 				SleepUtil.sleepSmall();
 				return true;
 			} else {
-				SleepUtil.sleepMedium();
+				SleepUtil.sleepSmall();
 			}
 		}
 		if (present == false) {

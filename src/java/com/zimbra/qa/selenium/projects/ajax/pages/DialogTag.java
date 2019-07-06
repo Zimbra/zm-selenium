@@ -110,25 +110,9 @@ public class DialogTag extends AbsDialog {
 	}
 
 	public void zSubmit() throws HarnessException {
-
-		// Determine how many tags are currently in the mailbox
-		this.MyApplication.zGetActiveAccount().soapSend("<GetTagRequest xmlns='urn:zimbraMail'/>");
-		int original = this.MyApplication.zGetActiveAccount().soapSelectNodes("//mail:tag").length;
-
 		// Click OK
 		zPressButton(Button.B_OK);
-
-		// Now, make sure more tags are in the mailbox.
-		boolean found = false;
-		for (int i = 0; i < 30 && !found; i++) {
-
-			this.MyApplication.zGetActiveAccount().soapSend("<GetTagRequest xmlns='urn:zimbraMail'/>");
-			int now = this.MyApplication.zGetActiveAccount().soapSelectNodes("//mail:tag").length;
-
-			found = (now > original);
-
-			SleepUtil.sleep(1000);
-		}
+		SleepUtil.sleepSmall();
 	}
 
 	@Override
