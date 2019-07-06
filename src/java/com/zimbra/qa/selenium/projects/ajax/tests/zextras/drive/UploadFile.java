@@ -33,7 +33,7 @@ public class UploadFile extends AjaxCore {
 	}
 
 	@Test (description = "Upload file through UI and verify it",
-			groups = { "sanity", "L0", "upload", "non-msedge", "drive" } )
+			groups = { "smoke", "upload", "non-msedge", "drive" } )
 
 	public void UploadFile_01() throws HarnessException {
 

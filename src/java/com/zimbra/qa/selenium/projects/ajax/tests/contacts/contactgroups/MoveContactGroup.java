@@ -34,7 +34,7 @@ public class MoveContactGroup extends AjaxCore {
 
 
 	@Test (description = "Move a contact group to folder Emailed Contacts by click Move dropdown on toolbar",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void MoveToEmailedContactsFromMoveDropdownOnToolbar_01() throws HarnessException {
 
@@ -67,7 +67,7 @@ public class MoveContactGroup extends AjaxCore {
 	}
 
 	@Test (description = "Move a contact group to folder Emailed Contacts by click Move on Context menu",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void MoveToEmailedContactsClickMoveOnContextmenu_02() throws HarnessException {
 
@@ -101,7 +101,7 @@ public class MoveContactGroup extends AjaxCore {
 
 
 	@Test (description = "Move a contact group to folder Emailed Contacts with shortcut m",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void MoveToEmailedContactsClickShortcutm_03() throws HarnessException {
 
@@ -138,7 +138,7 @@ public class MoveContactGroup extends AjaxCore {
 
 
 	@Test (description = "Move a group to folder Emailed Contacts by click toolbar Edit then open folder dropdown",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void MoveToEmailedContactsClickToolbarEditThenFolderDropdown_04() throws HarnessException {
 

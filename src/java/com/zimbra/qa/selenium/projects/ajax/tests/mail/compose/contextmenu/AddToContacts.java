@@ -40,7 +40,7 @@ public class AddToContacts extends SetGroupMailByMessagePreference {
 
 	@Bugs (ids = "102204")
 	@Test (description = "Right click to from header and verify AddToContact option",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void AddToContacts_01() throws HarnessException {
 
@@ -106,7 +106,7 @@ public class AddToContacts extends SetGroupMailByMessagePreference {
 	
 	@Bugs (ids = "102204")
 	@Test (description = "Right click to bubble address and hit AddToContact",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void AddToContact_02() throws HarnessException {
 

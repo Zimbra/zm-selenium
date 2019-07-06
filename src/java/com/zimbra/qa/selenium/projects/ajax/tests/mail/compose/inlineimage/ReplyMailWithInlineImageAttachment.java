@@ -37,7 +37,7 @@ public class ReplyMailWithInlineImageAttachment extends SetGroupMailByMessagePre
 
 
 	@Test (description = "Reply to a mail with attachment - Verify inline image sent",
-			groups = { "smoke", "L1", "upload", "non-msedge" })
+			groups = { "bhr", "upload", "non-msedge" })
 
 	public void ReplyMailWithInlineImageAttachment_01() throws HarnessException {
 

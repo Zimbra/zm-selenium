@@ -39,7 +39,7 @@ public class ShowSearchStringTrue extends AjaxCore {
 
 
 	@Test (description = "Change zimbraPrefShowSearchString setting TRUE",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void ShowSearchStringTrue_01() throws HarnessException {
 

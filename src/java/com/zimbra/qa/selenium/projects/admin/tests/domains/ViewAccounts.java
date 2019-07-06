@@ -36,7 +36,7 @@ public class ViewAccounts extends AdminCore {
 
 
 	@Test (description = "Verify edit domain operation --  View Accounts",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void ViewAccounts_01() throws HarnessException {
 

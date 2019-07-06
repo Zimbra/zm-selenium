@@ -38,7 +38,7 @@ public class ModifyCalendarFolder extends CalendarWorkWeekPreference {
 	}
 	
 	@Test (description = "Edit appointment and modify calendar folder",
-			groups = { "smoke" })
+			groups = { "bhr" })
 	
 	public void ModifyCalendarFolder_01() throws HarnessException {
 		

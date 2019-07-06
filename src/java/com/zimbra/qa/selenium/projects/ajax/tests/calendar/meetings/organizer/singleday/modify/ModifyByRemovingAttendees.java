@@ -36,7 +36,7 @@ public class ModifyByRemovingAttendees extends AjaxCore {
 
 	@Bugs (ids = "77588,77590")
 	@Test (description = "Modify meeting by removing attendee and send updates only to added/removed attendees",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void ModifyMeetingByRemovingAttendees_01() throws HarnessException {
 
@@ -105,7 +105,7 @@ public class ModifyByRemovingAttendees extends AjaxCore {
 
 	@Bugs (ids = "77588,77590")
 	@Test (description = "Modify meeting by removing attendee and send updates to all attendees",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void ModifyMeetingByRemovingAttendees_02() throws HarnessException {
 

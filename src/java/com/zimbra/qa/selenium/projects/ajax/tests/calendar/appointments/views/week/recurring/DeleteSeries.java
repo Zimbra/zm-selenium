@@ -43,7 +43,7 @@ public class DeleteSeries extends AjaxCore {
 
 	@Bugs (ids = "69132")
 	@Test (description = "Delete entire series of recurring appointment (every day) using toolbar button in week view",
-			groups = { "smoke-skip", "L3-skip" } )
+			groups = { "functional-duplicate" } )
 
 	public void DeleteSeries_01() throws HarnessException {
 
@@ -115,7 +115,7 @@ public class DeleteSeries extends AjaxCore {
 
 	@Bugs (ids = "69132")
 	@Test (description = "Delete entire series of recurring appointment (every week) using context menu in week view",
-			groups = { "smoke-skip", "L3-skip" } )
+			groups = { "functional-duplicate" } )
 
 	public void DeleteSeries_02() throws HarnessException {
 
@@ -189,7 +189,7 @@ public class DeleteSeries extends AjaxCore {
 
 	@Bugs (ids = "69132")
 	@Test (description = "Delete entire series appointment (every week) using keyboard shortcuts Del & Backspace in week view",
-			groups = { "functional-skip", "L3-skip" },
+			groups = { "functional-duplicate" },
 			dataProvider = "DataProviderShortcutKeys")
 
 	public void DeleteSeries_03(String name, int keyEvent) throws HarnessException {

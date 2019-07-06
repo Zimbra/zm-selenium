@@ -35,7 +35,7 @@ public class ReplyingMessageDoesntCreateDraft extends SetGroupMailByMessagePrefe
 
 	@Bugs (ids = "67686, 69384")
 	@Test (description = "Verify bug 67686",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void ReplyingMessageDoesntCreateDraft_01() throws HarnessException {
 

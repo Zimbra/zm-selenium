@@ -38,7 +38,7 @@ public class NavigateMessageCount extends AdminCore {
 	 */
 
 	@Test (description = "Navigate to Message Count",
-			groups = { "sanity", "L0" })
+			groups = { "smoke" })
 
 	public void NavigateMessageCount_01() throws HarnessException {
 

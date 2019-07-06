@@ -39,7 +39,7 @@ public class MoveContactFromTrashToLocalFolder extends AjaxCore  {
 
 
 	@Test (description = "Bug 102685 - Delete a contact item then moved it back to contact folder from trash",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void MoveContactFromTrashToLocalFolder_01() throws HarnessException {
 

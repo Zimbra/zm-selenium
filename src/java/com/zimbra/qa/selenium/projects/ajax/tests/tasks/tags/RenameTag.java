@@ -35,7 +35,7 @@ public class RenameTag extends AjaxCore {
 
 
 	@Test (description = "Rename a tag - Right click, Rename",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void RenameTag_01() throws HarnessException {
 

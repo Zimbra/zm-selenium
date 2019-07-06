@@ -34,7 +34,7 @@ public class UnTagFile extends EnableBriefcaseFeature {
 
 
 	@Test (description = "Remove a tag from a File using Toolbar -> Tag -> Remove Tag",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void UnTagFile_01() throws HarnessException {
 

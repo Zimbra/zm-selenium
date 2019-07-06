@@ -30,7 +30,7 @@ public class GetConversation extends SetGroupMailByConversationPreference {
 
 
 	@Test (description = "Receive a conversation",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void GetConversation_01() throws HarnessException {
 

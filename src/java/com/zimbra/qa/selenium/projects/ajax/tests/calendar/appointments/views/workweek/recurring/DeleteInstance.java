@@ -36,7 +36,7 @@ public class DeleteInstance extends AjaxCore {
 
 	@Bugs (ids = "69132")
 	@Test (description = "Delete instance of recurring appointment (every month) using toolbar button",
-			groups = { "functional", "L2" } )
+			groups = { "sanity" } )
 
 	public void DeleteInstance_01() throws HarnessException {
 
@@ -111,7 +111,7 @@ public class DeleteInstance extends AjaxCore {
 
 	@Bugs (ids = "69132")
 	@Test (description = "Delete instance of recurring appointment (every year) using context menu",
-			groups = { "functional", "L2" } )
+			groups = { "sanity" } )
 
 	public void DeleteInstance_02() throws HarnessException {
 
@@ -192,7 +192,7 @@ public class DeleteInstance extends AjaxCore {
 
 	@Bugs (ids = "69132")
 	@Test (description = "Delete instance of series appointment (every week) using keyboard shortcuts Del & Backspace",
-			groups = { "functional", "L2" },
+			groups = { "sanity" },
 			dataProvider = "DataProviderShortcutKeys" )
 
 	public void DeleteInstance_03(String name, int keyEvent) throws HarnessException {

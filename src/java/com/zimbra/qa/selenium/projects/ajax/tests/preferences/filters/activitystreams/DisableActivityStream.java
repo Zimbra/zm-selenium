@@ -48,7 +48,7 @@ public class DisableActivityStream extends AjaxCore {
 
 
 	@Test (description = "Disable the Activity Streams feature",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void DisableActivityStream_01() throws HarnessException {
 

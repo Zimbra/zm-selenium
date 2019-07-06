@@ -32,7 +32,7 @@ public class VerifyAttachment extends AjaxCore {
 
 
 	@Test (description = "View invite which has attachment present as an organizer",
-			groups = { "functional", "L2" } )
+			groups = { "sanity" } )
 
 	public void VerifyAttachment_01() throws HarnessException {
 

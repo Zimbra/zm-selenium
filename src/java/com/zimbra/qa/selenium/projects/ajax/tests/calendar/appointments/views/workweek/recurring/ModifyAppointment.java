@@ -38,7 +38,7 @@ public class ModifyAppointment extends AjaxCore {
 
 
 	@Test (description = "Modify appointment with subject & body and verify it",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void ModifyAppointment_01() throws HarnessException {
 

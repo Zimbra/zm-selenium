@@ -47,7 +47,7 @@ public class DisableZimlet extends AjaxCore {
 
 
    @Test (description = "Receive a text mail - verify numeric mail contents is not converted into phone number hyperlink",
-         groups = { "functional", "L2" })
+         groups = { "sanity" })
 
    public void DisableZimlet_01() throws HarnessException {
 
@@ -91,7 +91,7 @@ public class DisableZimlet extends AjaxCore {
 
 
    @Test(   description = "Receive an html mail - verify numeric mail contents is not converted into phone number hyperlink",
-         groups = { "functional", "L3" })
+         groups = { "functional" })
 
    public void DisableZimlet_02() throws HarnessException {
 

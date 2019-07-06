@@ -34,7 +34,7 @@ public class EditProperties extends AjaxCore {
 
 
 	@Test (description = "Edit a folder, change the color (Context menu -> Edit)",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void ChangeColorOfTopLevelFolder_01() throws HarnessException {
 
@@ -63,7 +63,7 @@ public class EditProperties extends AjaxCore {
 
 
 	@Test (description = "Edit a folder, change the color (Context menu -> Edit)",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void ChangeColorOfSystemFolders_02() throws HarnessException {
 
@@ -86,7 +86,7 @@ public class EditProperties extends AjaxCore {
 
 
 	@Test (description = "Edit a folder, change the color (Context menu -> Edit)",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void ChangeColorOfSubFolder_03() throws HarnessException {
 
@@ -115,7 +115,7 @@ public class EditProperties extends AjaxCore {
 
 
 	@Test (description = "Edit a folder, change name(Context menu -> Edit)",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void ChangeNameOfTopLevelFolder_04() throws HarnessException {
 
@@ -149,7 +149,7 @@ public class EditProperties extends AjaxCore {
 
 
 	@Test (description = "Edit a folder, change name(Context menu -> Edit)",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void ChangeNameOfSubFolder_05() throws HarnessException {
 
@@ -183,7 +183,7 @@ public class EditProperties extends AjaxCore {
 
 
 	@Test (description = "Edit a top level folder, change name and color Context menu -> Edit)",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void ChangeNameColorOfTopLevelFolder_06() throws HarnessException {
 
@@ -219,7 +219,7 @@ public class EditProperties extends AjaxCore {
 
 
 	@Test (description = "Edit a subfolder, change name and color Context menu -> Edit)",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void ChangeNameColorOfSubFolder_07() throws HarnessException {
 

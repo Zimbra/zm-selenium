@@ -38,7 +38,7 @@ public class Forward extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Forward a mail with attachment - Verify attachment sent",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void Forward_01() throws HarnessException {
 
@@ -81,7 +81,7 @@ public class Forward extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Forward a mail after removing the attachemnt",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void Forward_02() throws HarnessException {
 
@@ -128,7 +128,7 @@ public class Forward extends SetGroupMailByMessagePreference {
 	@Bugs(ids = "76776")
 	@Test (description = "Forward a mail having two attachments --> Remove one attachement and Cancel --> "
 								+ "Forward Again - Verify the number of attachments",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void Forward_03() throws HarnessException {
 

@@ -47,7 +47,7 @@ public class ResetPassword extends AdminCore {
 
 	@Bugs (ids = "72655")
 	@Test (description = "Edit password  -- manage account > Select account > Options > Edit > change password",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void ResetPassword_01() throws HarnessException {
 

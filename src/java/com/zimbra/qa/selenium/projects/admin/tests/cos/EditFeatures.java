@@ -46,7 +46,7 @@ public class EditFeatures extends AdminCore {
 	 */
 
 	@Test (description = "Edit COS - Edit features",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void EditFeatures_01() throws HarnessException {
 

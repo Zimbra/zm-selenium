@@ -45,7 +45,7 @@ public class CheckFreeBusyURLLink extends AjaxCore {
 
 	@Bugs (ids = "60277")
 	@Test (description = "Verify free busy link is accessible and no error is thrown",
-			groups = { "functional", "L2" }, dataProvider = "DataProviderFB")
+			groups = { "sanity" }, dataProvider = "DataProviderFB")
 
 	public void CheckFreeBusyURLLink_01(String locator , String viewName, String label) throws HarnessException {
 

@@ -34,7 +34,7 @@ public class RedirectMessage extends SetGroupMailByMessagePreference {
 
 	@Bugs (ids = "14110")
 	@Test (description = "Redirect message, using 'Redirect' toolbar button",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void RedirectMessage_01() throws HarnessException {
 
@@ -74,7 +74,7 @@ public class RedirectMessage extends SetGroupMailByMessagePreference {
 
 	@Bugs (ids = "62170")
 	@Test (description = "Redirect message, using 'Redirect' shortcut key",
-			groups = { "functional-skip", "application-bug" })
+			groups = { "application-bug" })
 
 	public void RedirectMessage_02() throws HarnessException {
 		throw new HarnessException("See bug https://bugzilla.zimbra.com/show_bug.cgi?id=62170");
@@ -82,7 +82,7 @@ public class RedirectMessage extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Redirect message, using 'Right Click' -> 'Redirect'",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void RedirectMessage_03() throws HarnessException {
 

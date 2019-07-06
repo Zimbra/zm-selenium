@@ -38,7 +38,7 @@ public class SearchResourceUsingDescription extends AjaxCore {
 
 	@Bugs (ids = "60134")
 	@Test (description = "Cannot search resource using 'description'",
-			groups = { "functional", "L2" } )
+			groups = { "sanity" } )
 
 	public void SearchResourceUsingDescription_01() throws HarnessException {
 

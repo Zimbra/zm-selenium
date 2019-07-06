@@ -30,7 +30,7 @@ public class PriorityMail extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Receive a high priority mail",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void GetMail_01() throws HarnessException {
 
@@ -71,7 +71,7 @@ public class PriorityMail extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Receive a low priority mail",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void GetMail_02() throws HarnessException {
 
@@ -113,7 +113,7 @@ public class PriorityMail extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Receive a normal priority mail",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void GetMail_03() throws HarnessException {
 

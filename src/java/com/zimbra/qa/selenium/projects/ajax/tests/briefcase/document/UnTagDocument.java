@@ -33,7 +33,7 @@ public class UnTagDocument extends EnableBriefcaseFeature {
 
 
 	@Test (description = "Remove a tag from a Document using Toolbar -> Tag -> Remove Tag",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void UnTagDocument_01() throws HarnessException {
 

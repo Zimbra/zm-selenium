@@ -33,7 +33,7 @@ public class EditAsNewWithInlineImage extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Edit as New message >> add inline Attchment from new window ",
-			groups = { "functional", "L2", "upload" })
+			groups = { "sanity", "upload" })
 
 	public void EditAsNewWithInlineImage_01() throws HarnessException {
 

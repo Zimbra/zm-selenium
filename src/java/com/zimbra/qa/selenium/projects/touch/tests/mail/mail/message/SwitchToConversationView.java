@@ -31,7 +31,7 @@ public class SwitchToConversationView extends SetGroupMailByMessagePreference{
 		logger.info("New "+ SwitchToConversationView.class.getCanonicalName());
 	}
 	@Test (description = "Switch to conversation view",
-			groups = { "smoke"})
+			groups = { "bhr"})
 
 	public void SwitchToConversationView_01() throws HarnessException, AWTException {
 

@@ -35,7 +35,7 @@ public class Cancel extends AjaxCore {
 
 	@Bugs (ids = "69132")
 	@Test (description = "Cancel meeting using context menu",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void CancelMeeting_01() throws HarnessException {
 
@@ -91,7 +91,7 @@ public class Cancel extends AjaxCore {
 
 	@Bugs (ids = "65749")
 	@Test (description = "Reply to Cancelled Appointments not using zimbraPrefFromAddress",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void CancelMeeting_02() throws HarnessException {
 

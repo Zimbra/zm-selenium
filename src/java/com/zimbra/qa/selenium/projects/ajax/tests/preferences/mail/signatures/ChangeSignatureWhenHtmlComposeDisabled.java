@@ -64,7 +64,7 @@ public class ChangeSignatureWhenHtmlComposeDisabled extends AjaxCore {
 	 */
 	@Bugs (ids = "83194")
 	@Test (description = "User should be able to change/select signature when zimbraFeatureHtmlComposeEnabled = FALSE", 
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void ChangeSignatureWhenHtmlComposeDisabled_01() throws HarnessException {
 

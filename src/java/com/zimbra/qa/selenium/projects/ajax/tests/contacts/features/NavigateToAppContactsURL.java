@@ -31,7 +31,7 @@ public class NavigateToAppContactsURL extends AjaxCore {
 
 
 	@Test (description = "?app=contacts in url",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void NavigateToAppContactsURL_01() throws HarnessException {
 

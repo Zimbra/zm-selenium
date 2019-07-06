@@ -40,7 +40,7 @@ public class FindShares extends AjaxCore {
 	
 	@Bugs (ids = "82125,84339")
 	@Test (description = "Search for a share using 'Find Shares' and add it",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 			
 	public void FindShares_01() throws HarnessException {
 		

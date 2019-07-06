@@ -31,7 +31,7 @@ public class MarkReadMail extends SetGroupMailByConversationPreference {
 	}
 	
 	@Test (description = "mark mail as read",
-			groups = { "smoke" })
+			groups = { "bhr" })
 			
 	public void readMail_01() throws HarnessException {
 		

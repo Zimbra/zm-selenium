@@ -35,7 +35,7 @@ public class CheckForwardingMeetingDoesntSendInvite extends AjaxCore {
 
 	@Bugs (ids = "56465")
 	@Test (description = "Bug 56465 - Forwarding of Calendar events sending invites to all attendees",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void CheckForwardingMeetingDoesntSendInvite_01() throws HarnessException {
 

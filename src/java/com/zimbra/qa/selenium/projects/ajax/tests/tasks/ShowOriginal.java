@@ -42,7 +42,7 @@ public class ShowOriginal extends AjaxCore {
 
 	@Bugs (ids = "51017")
 	@Test (description = "Show Original Pop Up should Get Open With Proper Content",
-		groups = { "smoke", "L2" })
+		groups = { "sanity" })
 
 	public void ShowOriginal_01() throws HarnessException {
 

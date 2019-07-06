@@ -47,7 +47,7 @@ public class GetResource extends AdminCore {
 	 */
 
 	@Test (description = "Verify get resource operation -- Manage resource View -- Location",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void GetResource_01() throws HarnessException {
 
@@ -93,7 +93,7 @@ public class GetResource extends AdminCore {
 	 */
 
 	@Test (description = "Verify get resource operation -- Manage resource View -- Equipment",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void GetResource_02() throws HarnessException {
 
@@ -136,7 +136,7 @@ public class GetResource extends AdminCore {
 	 */
 
 	@Test (description = "Verify created resource is present in the resource list view",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void GetResource_03() throws HarnessException {
 
@@ -182,7 +182,7 @@ public class GetResource extends AdminCore {
 	 */
 
 	@Test (description = "Verify created resource is present in the resource list view",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void GetResource_04() throws HarnessException {
 

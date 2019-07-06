@@ -33,7 +33,7 @@ public class CancelCompose extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Compose a message in a separate window - click Cancel",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void CancelCompose_01() throws HarnessException {
 

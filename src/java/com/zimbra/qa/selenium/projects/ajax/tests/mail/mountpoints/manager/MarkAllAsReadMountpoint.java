@@ -30,7 +30,7 @@ public class MarkAllAsReadMountpoint extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Mark all messages as read in folder (context menu)",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void MarkAllAsReadMountpoint_01() throws HarnessException {
 

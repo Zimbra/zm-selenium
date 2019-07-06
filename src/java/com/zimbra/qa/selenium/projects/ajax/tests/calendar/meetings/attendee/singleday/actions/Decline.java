@@ -33,7 +33,7 @@ public class Decline extends AjaxCore {
 
 
 	@Test (description = "Rt-click to appointment and Decline the meeting invite by selecting 'Don't notify organizer'",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void DeclineMeeting_01() throws HarnessException {
 
@@ -133,7 +133,7 @@ public class Decline extends AjaxCore {
 
 
 	@Test (description = "Rt-click to appointment and Decline the meeting invite by selecting 'Notify organizer'",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void DeclineMeeting_02() throws HarnessException {
 

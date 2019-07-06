@@ -39,7 +39,7 @@ public class ChatWithUser extends AjaxCore {
 
 
 	@Test (description = "Chat with online user after adding buddy",
-			groups = { "sanity", "L0", "chat" })
+			groups = { "smoke", "chat" })
 
 	public void ChatWithOnlineUser_01() throws HarnessException {
 
@@ -72,7 +72,7 @@ public class ChatWithUser extends AjaxCore {
 
 
 	@Test (description = "Chat with offline user after adding buddy",
-			groups = { "smoke", "L1", "chat" })
+			groups = { "bhr", "chat" })
 
 	public void ChatWithOfflineUser_02() throws HarnessException {
 

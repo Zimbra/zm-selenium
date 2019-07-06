@@ -31,7 +31,7 @@ public class CreateMailText extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Create a text mail using the deep link URL",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void CreateMailText_01() throws HarnessException {
 

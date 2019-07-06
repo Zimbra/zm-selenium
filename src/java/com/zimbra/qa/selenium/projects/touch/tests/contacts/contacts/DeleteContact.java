@@ -30,7 +30,7 @@ public class DeleteContact extends TouchCore  {
 }
 
 @Test (description = "Delete a contact item",
-		groups = { "sanity" })
+		groups = { "bhr" })
 
 public void DeleteContact_01() throws HarnessException {
 

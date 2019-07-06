@@ -36,7 +36,7 @@ public class ProposeNewTime extends AjaxCore {
 
 	@Bugs (ids = "80559")
 	@Test (description = "Assistant right clicks to calendar invite from shared calendar and proposes new time OBO boss",
-			groups = { "functional-skip", "application-bug" })
+			groups = { "application-bug" })
 
 	public void ProposeNewTime_01() throws HarnessException {
 

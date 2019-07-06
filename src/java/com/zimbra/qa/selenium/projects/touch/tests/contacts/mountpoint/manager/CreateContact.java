@@ -36,7 +36,7 @@ public class CreateContact extends TouchCore  {
 	}
 
 	@Test (description = "create a contact item in mount folder with manager rights",
-			groups = { "functional" })
+			groups = { "bhr" })
 
 	public void CreateContact_01() throws HarnessException {
 

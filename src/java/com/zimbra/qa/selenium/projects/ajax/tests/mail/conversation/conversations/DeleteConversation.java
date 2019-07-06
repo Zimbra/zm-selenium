@@ -35,7 +35,7 @@ public class DeleteConversation extends SetGroupMailByConversationPreference {
 
 
 	@Test (description = "Delete a conversation",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void DeleteConversation_01() throws HarnessException {
 
@@ -67,7 +67,7 @@ public class DeleteConversation extends SetGroupMailByConversationPreference {
 
 
 	@Test (description = "Delete a conversation using checkbox and toolbar delete button",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void DeleteConversation_02() throws HarnessException {
 
@@ -102,7 +102,7 @@ public class DeleteConversation extends SetGroupMailByConversationPreference {
 	}
 
 	@Test (description = "Delete a conversation by selecting and typing 'delete' keyboard",
-			groups = { "functional", "L2" },
+			groups = { "sanity" },
 			dataProvider = "DataProviderDeleteKeys")
 
 	public void DeleteConversation_03(String name, Keys keyEvent) throws HarnessException {
@@ -131,7 +131,7 @@ public class DeleteConversation extends SetGroupMailByConversationPreference {
 
 
 	@Test (description = "Delete a conversation by selecting and typing '.t' shortcut",
-			groups = { "functional", "L3" } )
+			groups = { "functional" } )
 
 	public void DeleteConversation_04() throws HarnessException {
 
@@ -158,7 +158,7 @@ public class DeleteConversation extends SetGroupMailByConversationPreference {
 
 
 	@Test (description = "Delete multiple messages (3) by select and toolbar delete",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void DeleteConversation_05() throws HarnessException {
 
@@ -199,7 +199,7 @@ public class DeleteConversation extends SetGroupMailByConversationPreference {
 
 
 	@Test (description = "Delete a mail using context menu delete button",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void DeleteConversation_06() throws HarnessException {
 
@@ -222,7 +222,7 @@ public class DeleteConversation extends SetGroupMailByConversationPreference {
 	}
 
 	@Test (description = "Delete a conversation - 1 message in inbox, 1 message in sent, 1 message in subfolder",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void DeleteConversation_07() throws HarnessException {
 
@@ -293,7 +293,7 @@ public class DeleteConversation extends SetGroupMailByConversationPreference {
 
 	@Bugs (ids = "79188")
 	@Test (description = "Delete a conversation - 1 message in inbox, 1 message in draft",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void DeleteConversation_08() throws HarnessException {
 
@@ -363,7 +363,7 @@ public class DeleteConversation extends SetGroupMailByConversationPreference {
 
 	@Bugs (ids = "82704")
 	@Test (description = "Delete a conversation (1 message) that receives a new message : Delete Toolbar button",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void DeleteConversation_09() throws HarnessException {
 
@@ -426,7 +426,7 @@ public class DeleteConversation extends SetGroupMailByConversationPreference {
 
 	@Bugs (ids = "82704")
 	@Test (description = "Delete a conversation (1 message) that receives a new message : Right click -> Delete",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void DeleteConversation_10() throws HarnessException {
 
@@ -486,7 +486,7 @@ public class DeleteConversation extends SetGroupMailByConversationPreference {
 
 	@Bugs (ids = "82704")
 	@Test (description = "Delete a conversation (2 messages) that receives a new message : Delete Toolbar button",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void DeleteConversation_11() throws HarnessException {
 
@@ -570,7 +570,7 @@ public class DeleteConversation extends SetGroupMailByConversationPreference {
 
 	@Bugs (ids = "82704")
 	@Test (description = "Delete a conversation (2 messages) that receives a new message : Right click -> Delete",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void DeleteConversation_12() throws HarnessException {
 

@@ -32,7 +32,7 @@ public class CreateFeed extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Create a new feed by clicking 'new folder' on folder tree",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void CreateFeed_01() throws HarnessException, MalformedURLException {
 

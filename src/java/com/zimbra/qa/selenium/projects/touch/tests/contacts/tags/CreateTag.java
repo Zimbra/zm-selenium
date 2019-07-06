@@ -43,7 +43,7 @@ public class CreateTag extends TouchCore {
 	 */
 	
 	@Test (description = "Create a new tag by clicking to Edit -> 'New tag'", 
-			groups = { "sanity" })
+			groups = { "bhr" })
 	
 	public void CreateTag_01() throws HarnessException  {
 		

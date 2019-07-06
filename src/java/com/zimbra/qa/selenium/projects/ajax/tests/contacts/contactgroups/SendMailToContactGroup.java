@@ -35,7 +35,7 @@ public class SendMailToContactGroup extends AjaxCore {
 
 	@Bugs (ids = "97157")
 	@Test (description = "Right click then click New Email",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void SendMailToContactGroup_01() throws HarnessException {
 

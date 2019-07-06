@@ -32,7 +32,7 @@ public class TagMail extends SetGroupMailByConversationPreference {
 	}
 	
 	@Test (description = "Tag a mail in message view",
-			groups = { "smoke" })
+			groups = { "bhr" })
 			
 	public void TagMail_01() throws HarnessException {
 		

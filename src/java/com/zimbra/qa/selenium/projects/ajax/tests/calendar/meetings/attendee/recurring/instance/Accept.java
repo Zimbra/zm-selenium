@@ -34,7 +34,7 @@ public class Accept extends AjaxCore {
 
 	@Bugs (ids = "83240")
 	@Test (description = "Rt-click to appointment from the calendar app and Accept the meeting invite (Instance)",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void AcceptMeeting_01() throws HarnessException {
 

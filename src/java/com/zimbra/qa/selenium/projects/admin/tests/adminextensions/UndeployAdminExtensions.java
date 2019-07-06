@@ -41,7 +41,7 @@ public class UndeployAdminExtensions extends AdminCore {
 	 */
 
 	@Test (description = "Deploy admin extension",
-			groups = { "functional", "L1" })
+			groups = { "bhr" })
 
 	public void UndeployAdminExtensions_01() throws HarnessException {
 

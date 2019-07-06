@@ -33,7 +33,7 @@ public class ShowOriginal extends AjaxCore {
 
 
 	@Test (description = "Grantee views show original of the appointment from grantor's calendar (Actions -> Show Original)",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void ShowOriginal_01() throws HarnessException {
 

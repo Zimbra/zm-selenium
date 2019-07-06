@@ -33,7 +33,7 @@ public class MoveFeed extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Move a feed folder - Right click, Move",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void MoveFeed_01() throws HarnessException, MalformedURLException {
 

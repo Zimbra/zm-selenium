@@ -39,7 +39,7 @@ public class CreateReshare extends SetGroupMailByMessagePreference {
 
 	@Bugs (ids = "68760")
 	@Test (description = "Reshare a folder that is shared as admin",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void CreateReshare_01() throws HarnessException {
 

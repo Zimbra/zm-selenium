@@ -38,7 +38,7 @@ public class ModifyByAddingAttachment extends AjaxCore {
 
 	@Bugs (ids = "104231")
 	@Test (description = "Modify meeting by adding attachment to an existing invite",
-			groups = { "smoke", "L1", "upload" })
+			groups = { "bhr", "upload" })
 
 	public void ModifyByAddingAttachment_01() throws HarnessException {
 

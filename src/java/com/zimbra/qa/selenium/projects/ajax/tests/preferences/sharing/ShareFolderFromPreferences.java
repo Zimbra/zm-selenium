@@ -33,7 +33,7 @@ public class ShareFolderFromPreferences extends AjaxCore {
 
 
 	@Test (description = "Share folder from preferences/sharing",
-			groups = { "functional", "L2" } )
+			groups = { "sanity" } )
 
 	public void ShareFolderFromPreferences_01() throws HarnessException {
 

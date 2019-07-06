@@ -34,7 +34,7 @@ public class GetCalendar extends AjaxCore {
 
 
 	@Test (description = "Get a calendar (under USER_ROOT)",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void GetCalendar_01() throws HarnessException {
 
@@ -72,7 +72,7 @@ public class GetCalendar extends AjaxCore {
 
 
 	@Test (description = "Get a calendar (under subcalendar)",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void GetCalendar_02() throws HarnessException {
 
@@ -126,7 +126,7 @@ public class GetCalendar extends AjaxCore {
 
 	@Bugs (ids = "28846")
 	@Test (description = "Get a calendar (under subcalendar) - verify appointments appear",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void GetCalendar_03() throws HarnessException {
 

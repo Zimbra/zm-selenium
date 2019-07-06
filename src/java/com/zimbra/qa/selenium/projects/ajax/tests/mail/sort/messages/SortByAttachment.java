@@ -33,7 +33,7 @@ public class SortByAttachment extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Sort a list of messages by attachment",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void SortByAttachment_01() throws HarnessException {
 
@@ -125,7 +125,7 @@ public class SortByAttachment extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Sort a list of messages by attachment",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void SortByAttachment_02() throws HarnessException {
 

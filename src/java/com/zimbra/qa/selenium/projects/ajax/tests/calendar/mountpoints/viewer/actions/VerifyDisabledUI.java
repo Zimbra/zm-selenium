@@ -33,7 +33,7 @@ public class VerifyDisabledUI extends AjaxCore {
 
 
 	@Test (description = "Verify Share Calendar, Reinvite Attendees, Forward, Delete, Move & Tag Appointment right click menus are non-functional on mountpoint appointment (read-only share)",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void VerifyDisabledUI_01() throws HarnessException {
 
@@ -116,7 +116,7 @@ public class VerifyDisabledUI extends AjaxCore {
 
 	@Bugs (ids = "99947")
 	@Test (description = "Verify Share Calendar, Reinvite Attendees, Forward, Delete, Move & Tag Appointment right click menus are non-functional on mountpoint appointment (read-only share)",
-			groups = { "functional-skip", "application-bug" })
+			groups = { "application-bug" })
 
 	public void VerifyDisabledUI_02() throws HarnessException {
 

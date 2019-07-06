@@ -44,7 +44,7 @@ public class EditAlias extends AdminCore {
 	 */
 
 	@Test (description = "Edit a basic alias",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void EditAlias_01() throws HarnessException {
 
@@ -86,7 +86,7 @@ public class EditAlias extends AdminCore {
 
 	@Bugs (ids = "58191")
 	@Test (description = "Bug 58191 - JavaScript error while clicking on alias of resource",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void EditAlias_02() throws HarnessException {
 

@@ -39,7 +39,7 @@ public class IncludeTrashInSearchTrue extends AjaxCore {
 
 
 	@Test (description = "Verify that mails in trash are also included in search when 'zimbraPrefIncludeTrashInSearch' is TRUE",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void IncludeTrashInSearchTrue_01() throws HarnessException {
 

@@ -49,7 +49,7 @@ public class GlobalHomeSearch extends AdminCore {
 	 */
 
 	@Test (description = "Verify search functionality of COS.",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void HomeSearchFunctionalityCOS_01() throws HarnessException {
 
@@ -95,7 +95,7 @@ public class GlobalHomeSearch extends AdminCore {
 
 	@Bugs (ids = "96768")
 	@Test (description = "Verify search functionality of Account Object.",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void HomeSearchFunctionalityAccount_02() throws HarnessException {
 
@@ -139,7 +139,7 @@ public class GlobalHomeSearch extends AdminCore {
 	 */
 
 	@Test (description = "Verify search functionality of Resource Object.",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void HomeSearchFunctionalityResource_03() throws HarnessException {
 
@@ -187,7 +187,7 @@ public class GlobalHomeSearch extends AdminCore {
 	 */
 
 	@Test (description = "Verify search functionality of DL Object.",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void HomeSearchFunctionalityDL_04() throws HarnessException {
 
@@ -232,7 +232,7 @@ public class GlobalHomeSearch extends AdminCore {
 	 */
 
 	@Test (description = "Verify search functionality of Alias Object.",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void HomeSearchFunctionalityAlias_05() throws HarnessException {
 
@@ -280,7 +280,7 @@ public class GlobalHomeSearch extends AdminCore {
 	 */
 
 	@Test (description = "Verify search functionality of domain Object.",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void HomeSearchFunctionalityDomain_06() throws HarnessException {
 

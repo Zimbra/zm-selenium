@@ -44,7 +44,7 @@ public class OpenDocument extends EnableBriefcaseFeature {
 
 	@Bugs (ids = "97124")
 	@Test (description = "Create document through SOAP - open & verify through GUI",
-			groups = { "smoke", "L0" })
+			groups = { "smoke" })
 
 	public void OpenDocument_01() throws HarnessException {
 
@@ -109,7 +109,7 @@ public class OpenDocument extends EnableBriefcaseFeature {
 
 
 	@Test (description = "Create document through SOAP - Double click to open in new window & verify through GUI",
-			groups = { "functional","L1" })
+			groups = { "bhr" })
 
 	public void OpenDocument_02() throws HarnessException {
 
@@ -174,7 +174,7 @@ public class OpenDocument extends EnableBriefcaseFeature {
 
 
 	@Test (description = "Create document through SOAP - open using Right Click Context Menu & verify through GUI",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void OpenDocument_03() throws HarnessException {
 

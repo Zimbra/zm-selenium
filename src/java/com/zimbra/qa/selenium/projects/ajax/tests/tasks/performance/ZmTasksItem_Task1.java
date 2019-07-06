@@ -36,7 +36,7 @@ public class ZmTasksItem_Task1 extends AjaxCore{
 
 
    @Test (description = "Measure the time to view a task",
-		   groups={"performance", "deprecated"})
+		   groups = { "performance", "deprecated" })
 
    public void ZmTasksItem_01() throws HarnessException {
 

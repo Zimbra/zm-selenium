@@ -33,7 +33,7 @@ public class VerifyTimezoneView extends AjaxCore {
 
 
 	@Test (description = "Check timezone options in preferences",
-			groups = { "smoke", "L1" } )
+			groups = { "bhr" } )
 
 	public void VerifyTimezoneView_01() throws HarnessException {
 		

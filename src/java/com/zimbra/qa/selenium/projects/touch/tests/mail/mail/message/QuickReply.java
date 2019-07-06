@@ -31,7 +31,7 @@ public class QuickReply extends SetGroupMailByMessagePreference {
 	}
 	
 	@Test (description = "Quick Reply to a conversation (1 message, 1 recipient)",
-			groups = { "smoke" })
+			groups = { "sanity" })
 	
 	public void QuickReply_01() throws HarnessException {
 						

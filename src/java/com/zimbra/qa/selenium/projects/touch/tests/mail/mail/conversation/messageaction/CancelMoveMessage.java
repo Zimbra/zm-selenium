@@ -35,7 +35,7 @@ import com.zimbra.qa.selenium.projects.touch.core.SetGroupMailByConversationPref
 			logger.info("New "+ CancelMoveMessage.class.getCanonicalName());
 		}
 			@Test (description = "cancel move mail operation",
-					groups = { "smoke" })
+					groups = { "sanity" })
 			
 			
 			public void CancelMoveMail_01() throws HarnessException, AWTException {

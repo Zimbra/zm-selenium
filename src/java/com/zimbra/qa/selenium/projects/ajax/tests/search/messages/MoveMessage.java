@@ -32,7 +32,7 @@ public class MoveMessage extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "From serch: Move a message to a subfolder",
-			groups = { "functional","L2" })
+			groups = { "sanity" })
 
 	public void MoveConversation01() throws HarnessException {
 
@@ -89,7 +89,7 @@ public class MoveMessage extends SetGroupMailByMessagePreference {
 
 	@Bugs (ids = "77217")
 	@Test (description = "From search: Move a message in Trash to a subfolder",
-			groups = { "functional","L2" })
+			groups = { "sanity" })
 
 	public void MoveConversation02() throws HarnessException {
 
@@ -147,7 +147,7 @@ public class MoveMessage extends SetGroupMailByMessagePreference {
 
 	@Bugs (ids = "80611")
 	@Test (description = "From search: Move a message in Sent to a subfolder",
-			groups = { "functional","L2" })
+			groups = { "sanity" })
 
 	public void MoveConversation03() throws HarnessException {
 

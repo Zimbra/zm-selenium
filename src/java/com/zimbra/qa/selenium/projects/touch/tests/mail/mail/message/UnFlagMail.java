@@ -31,7 +31,7 @@ public class UnFlagMail extends SetGroupMailByConversationPreference {
 	}
 
 	@Test (description = "Unflag mail",
-			groups = { "sanity" })
+			groups = { "bhr" })
 
 	public void UnFlagMail_01() throws HarnessException {
 

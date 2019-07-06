@@ -31,7 +31,7 @@ public class ResendShareFromPreferences extends AjaxCore {
 
 
 	@Test (description = "Resend share folder request from preferences",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void ResendShareFromPreferences_01() throws HarnessException {
 

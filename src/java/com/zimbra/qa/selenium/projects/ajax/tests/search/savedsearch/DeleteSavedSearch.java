@@ -34,7 +34,7 @@ public class DeleteSavedSearch extends AjaxCore  {
 
 
 	@Test (description = "Delete a saved search",
-			groups = { "smoke","L1" })
+			groups = { "bhr" })
 
 	public void DeleteSavedSearch_01() throws HarnessException {
 

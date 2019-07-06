@@ -35,7 +35,7 @@ public class AcceptProposeNewTime extends AjaxCore {
 
 
 	@Test (description = "Rt-click to appointment -> Propose New Time and accept the new time using conversation view",
-			groups = { "smoke", "L1", "non-msedge" })
+			groups = { "bhr", "non-msedge" })
 
 	public void AcceptProposeNewTime_01() throws HarnessException {
 

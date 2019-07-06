@@ -32,7 +32,7 @@ public class CloseMail extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Close a separate window",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void CloseMail_01() throws HarnessException {
 
@@ -73,7 +73,7 @@ public class CloseMail extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Close a separate window - press Esc",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void CloseMail_02() throws HarnessException {
 

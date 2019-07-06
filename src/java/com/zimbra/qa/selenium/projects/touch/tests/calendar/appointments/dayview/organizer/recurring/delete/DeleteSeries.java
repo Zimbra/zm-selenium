@@ -41,7 +41,7 @@ public class DeleteSeries extends CalendarWorkWeekPreference {
 	}
 	
 	@Test (description = "Delete entire series of recurring invite", 
-			groups = { "smoke" } )
+			groups = { "sanity" } )
 	
 	public void DeleteSeries_01() throws HarnessException {
 		

@@ -37,7 +37,7 @@ public class GalAutoCompleteEnabledTrue extends AjaxCore {
 
 
 	@Test (description = "Set zimbraPrefGalAutoCompleteEnabled to 'TRUE'",
-			groups = { "functional", "L2" } )
+			groups = { "sanity" } )
 
 	public void zimbraPrefGalAutoCompleteEnabledTrue_01() throws HarnessException {
 

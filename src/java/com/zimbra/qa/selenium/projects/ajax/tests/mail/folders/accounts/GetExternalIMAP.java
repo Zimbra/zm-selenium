@@ -48,7 +48,7 @@ public class GetExternalIMAP extends SetGroupMailByMessagePreference {
 	 */
 
 	@Test (description = "View an external folder - IMAP",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void GetExternalIMAP_01() throws HarnessException {
 
@@ -160,7 +160,7 @@ public class GetExternalIMAP extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "IMAP: get updates from the external account - 'refresh' button",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void GetExternalIMAP_02() throws HarnessException {
 
@@ -287,7 +287,7 @@ public class GetExternalIMAP extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "IMAP: get updates from the external account - right click -> sync",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void GetExternalIMAP_03() throws HarnessException {
 

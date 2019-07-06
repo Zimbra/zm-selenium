@@ -40,7 +40,7 @@ public class ExpandConversation extends SetGroupMailByConversationPreference {
 
 
 	@Test (description = "Select conversation having html content message",
-			groups = { "sanity", "L0" })
+			groups = { "smoke" })
 
 	public void ExpandConversation_01() throws HarnessException {
 
@@ -93,7 +93,7 @@ public class ExpandConversation extends SetGroupMailByConversationPreference {
 
 
 	@Test (description = "Expand conversation having plain text messages",
-			groups = { "sanity", "L0" })
+			groups = { "smoke" })
 
 	public void ExpandConversation_02() throws HarnessException {
 

@@ -37,7 +37,7 @@ public class ForwardMailWithInlineImageAttachment extends SetGroupMailByMessageP
 
 
 	@Test (description = "Forward to a mail with attachment - Verify inline image sent",
-			groups = { "smoke", "L1", "upload", "non-msedge" })
+			groups = { "bhr", "upload", "non-msedge" })
 
 	public void ForwardMailWithInlineImageAttachment_01() throws HarnessException {
 

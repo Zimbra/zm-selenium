@@ -36,7 +36,7 @@ public class EditReplyAccept extends AjaxCore {
 
 	@Bugs (ids = "80559")
 	@Test (description = "Assistant right clicks to calendar invite from shared calendar and accepts the invite OBO boss using Edit Reply -> Accept",
-			groups = { "functional-skip", "application-bug" })
+			groups = { "application-bug" })
 
 	public void EditReplyAccept_01() throws HarnessException {
 

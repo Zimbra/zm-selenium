@@ -35,7 +35,7 @@ public class ModifyTime extends CalendarWorkWeekPreference {
 	}
 	
 	@Test (description = "Modify meeting time",
-			groups = { "smoke" })
+			groups = { "bhr" })
 			
 	public void ModifyTime_01() throws HarnessException, ParseException {
 		

@@ -33,7 +33,7 @@ public class EditAsNew extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Edit as new' message, using 'Actions -> Edit as New' from new window ",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void EditAsNewFromNewWindow_01() throws HarnessException {
 

@@ -37,7 +37,7 @@ public class Edit extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Right click to bubble address and hit Edit",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void EditTo_01() throws HarnessException {
 

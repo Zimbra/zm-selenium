@@ -70,7 +70,7 @@ public class AcceptMeeting extends AjaxCore {
 
 	@Bugs (ids = "69132,96556")
 	@Test (description = "Accept a meeting using Accept button from invitation message",
-			groups = { "sanity", "L0" })
+			groups = { "smoke" })
 
 	public void AcceptMeeting_01() throws HarnessException {
 
@@ -165,7 +165,7 @@ public class AcceptMeeting extends AjaxCore {
 
 	@Bugs (ids = "69132,96556")
 	@Test (description = "Accept meeting - Verify organizer gets notification message",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void AcceptMeeting_02() throws HarnessException {
 
@@ -219,7 +219,7 @@ public class AcceptMeeting extends AjaxCore {
 
 	@Bugs (ids = "69132,96556")
 	@Test (description = "Accept meeting using 'Accept -> Notify Organizer'",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void AcceptMeeting_03() throws HarnessException {
 
@@ -327,7 +327,7 @@ public class AcceptMeeting extends AjaxCore {
 
 	@Bugs (ids = "69132,96556")
 	@Test (description = "Accept meeting using 'Accept -> Edit Reply' and verify modified content",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void AcceptMeeting_04() throws HarnessException {
 
@@ -431,7 +431,7 @@ public class AcceptMeeting extends AjaxCore {
 
 	@Bugs (ids = "69132,65356,96556")
 	@Test (description = "Accept meeting using 'Accept -> Don't Notify Organizer'",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void AcceptMeeting_05() throws HarnessException {
 

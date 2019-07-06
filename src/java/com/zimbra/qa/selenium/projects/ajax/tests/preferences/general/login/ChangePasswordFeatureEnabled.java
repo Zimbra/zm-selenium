@@ -40,7 +40,7 @@ public class ChangePasswordFeatureEnabled extends AjaxCore {
 
 	@Bugs (ids = "63439")
 	@Test (description = "Verify the 'Change Password' option is present in preferences",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void ChangePasswordFeatureEnabled_01() throws HarnessException {
 

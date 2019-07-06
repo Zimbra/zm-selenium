@@ -40,7 +40,7 @@ public class GroupByFrom extends SetGroupMailByMessagePreference {
 	 */
 
 	@Test (description = "Group a list of messages by From",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void GroupByFrom_01() throws HarnessException {
 

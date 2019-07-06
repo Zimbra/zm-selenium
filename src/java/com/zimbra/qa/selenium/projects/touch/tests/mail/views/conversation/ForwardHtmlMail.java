@@ -32,7 +32,7 @@ public class ForwardHtmlMail extends SetGroupMailByConversationPreference {
 	
 	@Bugs (ids = "85534")
 	@Test (description = "Forward a html mail and verify body content",
-			groups = { "sanity" })
+			groups = { "bhr" })
 			
 	public void ForwardHtmlMail_01() throws HarnessException {
 		

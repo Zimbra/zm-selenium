@@ -37,7 +37,7 @@ public class CreateFilter extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Right click from message header and verify Create Filter option",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void CreateFilter_01() throws HarnessException {
 

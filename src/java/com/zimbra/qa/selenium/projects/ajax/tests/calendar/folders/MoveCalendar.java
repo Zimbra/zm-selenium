@@ -33,7 +33,7 @@ public class MoveCalendar extends AjaxCore {
 
 
 	@Test (description = "Move a calendar - Right click, Move",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void MoveCalendar_01() throws HarnessException {
 

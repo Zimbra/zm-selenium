@@ -33,7 +33,7 @@ public class AddTrustedEmail extends AjaxCore {
 
 	@Bugs (ids = "101356")
 	@Test (description = "Add a trusted email address",
-			groups = { "smoke", "L1" } )
+			groups = { "bhr" } )
 
 	public void AddTrustedEmail_01() throws HarnessException {
 

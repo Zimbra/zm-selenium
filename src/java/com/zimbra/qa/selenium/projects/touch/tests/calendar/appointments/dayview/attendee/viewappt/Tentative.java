@@ -35,7 +35,7 @@ public class Tentative extends CalendarWorkWeekPreference {
 
 	@Bugs (ids = "95807")
 	@Test (description = "Mark invite as tentative using view appointment options", 
-			groups = { "sanity" })
+			groups = { "bhr" })
 	
 	public void TentativeMeeting_01() throws HarnessException {
 

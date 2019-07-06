@@ -33,7 +33,7 @@ public class CreateDLUsingCommaSeparatedEmails extends AjaxCore  {
 
 
 	@Test (description = "Create user DL using comma separated email addresses",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void CreateDLUsingCommaSeparatedEmails_01 () throws HarnessException {
 

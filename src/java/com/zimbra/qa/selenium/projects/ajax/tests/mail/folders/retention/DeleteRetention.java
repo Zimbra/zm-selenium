@@ -31,7 +31,7 @@ public class DeleteRetention extends SetGroupMailByMessagePreference {
 	}
 
 	@Test (description = "Delete a basic retention (Context menu -> Edit -> Retention)",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void DeleteRetention_01() throws HarnessException {
 

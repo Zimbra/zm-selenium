@@ -41,7 +41,7 @@ public class CreateAppointment extends AjaxCore {
 
 	@Bugs (ids = "69132")
 	@Test (description = "Create simple all day appointment in day view",
-			groups = { "smoke", "L1" } )
+			groups = { "bhr" } )
 
 	public void CreateAllDayAppointment_01() throws HarnessException {
 

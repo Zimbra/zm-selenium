@@ -39,7 +39,7 @@ public class NavigateDistributionList extends AdminCore {
 	 */
 
 	@Test (description = "Navigate to DL",
-			groups = { "sanity", "L0" })
+			groups = { "smoke" })
 
 	public void NavigateDistributionList_01() throws HarnessException {
 

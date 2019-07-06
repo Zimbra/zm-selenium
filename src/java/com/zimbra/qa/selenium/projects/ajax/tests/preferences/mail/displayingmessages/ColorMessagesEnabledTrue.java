@@ -39,7 +39,7 @@ public class ColorMessagesEnabledTrue extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Set 'Set color of messages and conversations according to tag color.': Enabled",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void ColorMessagesEnabled_01() throws HarnessException {
 
@@ -64,7 +64,7 @@ public class ColorMessagesEnabledTrue extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Verify if the background color of messages is according to the tag color when 'zimbraPrefColorMessagesEnabled' is Set TRUE",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void ColorMessagesEnabled_02() throws HarnessException {
 
@@ -193,7 +193,7 @@ public class ColorMessagesEnabledTrue extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Verify the color of message when it is tagged with two tags and 'zimbraPrefColorMessagesEnabled' is Set TRUE",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void ColorMessagesEnabled_03() throws HarnessException {
 

@@ -58,7 +58,7 @@ public class CancelTask extends AjaxCore {
 	 * @throws HarnessException
 	 */
 	@Test (description = "Cancel composing of new task through GUI",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void CancelTask_01() throws HarnessException {
 
@@ -96,7 +96,7 @@ public class CancelTask extends AjaxCore {
 
 
 	@Test (description = "Cancel composing of new task using Esc shortcut",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void CancelTask_02() throws HarnessException {
 
@@ -150,7 +150,7 @@ public class CancelTask extends AjaxCore {
 
 	@Bugs (ids = "74670")
 	@Test (description = "cancelling empty attachment task in 2nd attempt",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void CancelTask_Bug74670_03() throws HarnessException {
 

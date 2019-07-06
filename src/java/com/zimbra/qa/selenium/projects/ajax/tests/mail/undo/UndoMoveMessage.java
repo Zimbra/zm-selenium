@@ -31,7 +31,7 @@ public class UndoMoveMessage extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Undo - Move a mail by selecting message, then clicking toolbar 'Move' button",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void Undo_MoveMail_01() throws HarnessException {
 

@@ -35,7 +35,7 @@ public class CreateAppointment extends AjaxCore {
 
 	@Bugs (ids = "107050")
 	@Test (description = "Create basic appointment using quick add dialog",
-			groups = { "smoke", "L0" } )
+			groups = { "smoke" } )
 
 	public void CreateAppointment_01() throws HarnessException {
 
@@ -60,7 +60,7 @@ public class CreateAppointment extends AjaxCore {
 
 
 	@Test (description = "Create basic appointment using quick add dialog in the past and verify the warning message",
-			groups = { "smoke", "L1" } )
+			groups = { "bhr" } )
 
 	public void CreateAppointment_02() throws HarnessException {
 
@@ -112,7 +112,7 @@ public class CreateAppointment extends AjaxCore {
 
 
 	@Test (description = "Create appointment using quick add dialog and add date from date picker",
-			groups = { "sanity", "L1" } )
+			groups = { "bhr" } )
 
 	public void CreateAppointment_03() throws HarnessException {
 
@@ -152,7 +152,7 @@ public class CreateAppointment extends AjaxCore {
 
 
 	@Test (description = "Create basic appointment using quick add dialog and add date and time using date/time picker",
-			groups = { "smoke", "L0", "non-msedge" } )
+			groups = { "smoke", "non-msedge" } )
 
 	public void CreateAppointment_04() throws HarnessException {
 

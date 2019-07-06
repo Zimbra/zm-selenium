@@ -39,7 +39,7 @@ public class ManageContactGroup extends AjaxCore  {
 
 
 	@Test (description = "Create a new contact group by right click on existing contact",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void CreateContactGroupWith1Contact_01() throws HarnessException {
 
@@ -76,7 +76,7 @@ public class ManageContactGroup extends AjaxCore  {
 
 	@Bugs (ids = "77882")
 	@Test (description = "Add a contact to an existing group",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void Add1ContactToExistingContactGroup_02() throws HarnessException {
 
@@ -110,7 +110,7 @@ public class ManageContactGroup extends AjaxCore  {
 
 	@Bugs (ids = "77882")
 	@Test (description = "Add 3 contacts to an existing group",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void Add3ContactsToExistingContactGroup_03() throws HarnessException {
 
@@ -160,7 +160,7 @@ public class ManageContactGroup extends AjaxCore  {
 
 
 	@Test (description = "Create a contact group with 3 contacts",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void CreateContactGroupWith3Contacts_04() throws HarnessException {
 
@@ -216,7 +216,7 @@ public class ManageContactGroup extends AjaxCore  {
 
 	@Bugs (ids = "65500,15646")
 	@Test (description = "Create a contact group with 1 contact + 1 group",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void CreateContactGroupWith1ContactAnd1ContactGroup_05() throws HarnessException {
 
@@ -266,7 +266,7 @@ public class ManageContactGroup extends AjaxCore  {
 
 	@Bugs (ids = "77882,15646")
 	@Test (description = "Add 1 contact + 1 group to an existing group",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void Add1ContactAnd1GroupToExistingContactGroup_06() throws HarnessException {
 

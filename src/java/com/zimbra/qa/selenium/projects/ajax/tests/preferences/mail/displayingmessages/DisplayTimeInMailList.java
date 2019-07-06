@@ -44,7 +44,7 @@ public class DisplayTimeInMailList extends AjaxCore {
 
 	@Bugs( ids = "77129" )
 	@Test (description = "Verify the display of email received time in email list",
-			groups = { "functional", "L2", "upload", "non-msedge" })
+			groups = { "sanity", "upload", "non-msedge" })
 
 	public void DisplayTimeInMailList_01() throws HarnessException {
 		

@@ -36,7 +36,7 @@ public class AttachAndSendMail extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Attach an email to a mail",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void AttachAndSendMail_01() throws HarnessException {
 

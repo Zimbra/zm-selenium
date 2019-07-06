@@ -32,7 +32,7 @@ public class AttachmentsViewInHtmlOnlyTrue extends SetGroupMailByMessagePreferen
 
 
 	@Test (description = "Verify 'download' link does not appear when zimbraAttachmentsViewInHtmlOnly = TRUE",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void AttachmentsViewInHtmlOnlyTrue_01() throws HarnessException {
 

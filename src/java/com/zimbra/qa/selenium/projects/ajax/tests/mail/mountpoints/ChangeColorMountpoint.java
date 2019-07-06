@@ -37,7 +37,7 @@ public class ChangeColorMountpoint extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Edit a folder, change the color (Context menu -> Edit)",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void ChangeColorMountpoint_01() throws HarnessException {
 

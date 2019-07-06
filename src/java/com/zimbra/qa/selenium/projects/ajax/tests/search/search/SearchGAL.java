@@ -32,7 +32,7 @@ public class SearchGAL extends AjaxCore {
 
 
 	@Test (description = "Search for a GAL contact",
-			groups = { "functional","L2" })
+			groups = { "sanity" })
 
 	public void SearchGAL_01() throws HarnessException {
 
@@ -76,7 +76,7 @@ public class SearchGAL extends AjaxCore {
 
 
 	@Test (description = "Search for a non-existing GAL contact",
-			groups = { "functional","L2" })
+			groups = { "sanity" })
 
 	public void SearchGAL_02() throws HarnessException {
 

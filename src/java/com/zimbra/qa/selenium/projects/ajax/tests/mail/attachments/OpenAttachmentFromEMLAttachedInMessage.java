@@ -32,7 +32,7 @@ public class OpenAttachmentFromEMLAttachedInMessage extends SetGroupMailByMessag
 
 
 	@Test (description = "Bug 80447 - Open attachment from an eml attached in message",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void OpenAttachmentInForwardEmail_01() throws HarnessException, IOException {
 

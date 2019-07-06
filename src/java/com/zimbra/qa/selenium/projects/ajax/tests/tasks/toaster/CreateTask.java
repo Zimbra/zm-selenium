@@ -41,7 +41,7 @@ public class CreateTask extends AjaxCore {
 
 
 	@Test (description = "Verify Toaster message on Create Task",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void CreateTask_01() throws HarnessException {
 

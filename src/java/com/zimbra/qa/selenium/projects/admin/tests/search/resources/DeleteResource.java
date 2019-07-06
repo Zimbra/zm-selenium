@@ -48,7 +48,7 @@ public class DeleteResource extends AdminCore {
 	 */
 
 	@Test (description = "Verify delete resource operation -- Search List View -- Location",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void DeleteResource_01() throws HarnessException {
 
@@ -111,7 +111,7 @@ public class DeleteResource extends AdminCore {
 	 */
 
 	@Test (description = "Verify delete resource operation -- Search List View -- Equipment",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void DeleteResource_02() throws HarnessException {
 
@@ -172,7 +172,7 @@ public class DeleteResource extends AdminCore {
 	 */
 
 	@Test (description = "Verify delete resource operation -- Search List View/Right Click Menu -- Location",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void DeleteResource_03() throws HarnessException {
 
@@ -235,7 +235,7 @@ public class DeleteResource extends AdminCore {
 	 */
 
 	@Test (description = "Verify delete resource operation -- Search List View/Right Click Menu -- Equipment",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void DeleteResource_04() throws HarnessException {
 

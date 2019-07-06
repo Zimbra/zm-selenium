@@ -36,7 +36,7 @@ public class SelectAddressUsingAutoComplete extends CalendarWorkWeekPreference {
 	}
 	
 	@Test (description = "Select address using auto-complete when creating meeting invite",
-			groups = { "smoke" })
+			groups = { "bhr" })
 			
 	public void SelectAddressUsingAutoComplete_01() throws HarnessException {
 		

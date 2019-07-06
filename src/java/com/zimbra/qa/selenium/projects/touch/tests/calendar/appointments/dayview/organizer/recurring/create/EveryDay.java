@@ -33,7 +33,7 @@ public class EveryDay extends CalendarWorkWeekPreference {
 	}
 
 	@Test (description = "Create daily recurring invite with attendee and location",
-			groups = { "sanity" })
+			groups = { "bhr" })
 
 	public void EveryDay_01() throws HarnessException {
 

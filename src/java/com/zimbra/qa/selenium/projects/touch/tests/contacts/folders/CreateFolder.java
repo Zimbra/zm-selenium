@@ -34,7 +34,7 @@ public class CreateFolder extends SetGroupMailByMessagePreference {
 	}
 
 	@Test (description = "Create a folder under contacts",
-			groups = { "sanity" })
+			groups = { "smoke" })
 	
 	public void CreateFolder_01() throws HarnessException  {
 		

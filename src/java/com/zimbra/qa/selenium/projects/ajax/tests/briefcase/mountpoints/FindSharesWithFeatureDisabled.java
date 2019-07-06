@@ -40,7 +40,7 @@ public class FindSharesWithFeatureDisabled extends EnableBriefcaseFeature {
 
 	@Bugs (ids = "60854")
 	@Test (description = "Click on Find Shares link when some of the Features are disabled - Verify Find Shares dialog is displayed",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void FindSharesWithFeatureDisabled_01() throws HarnessException {
 

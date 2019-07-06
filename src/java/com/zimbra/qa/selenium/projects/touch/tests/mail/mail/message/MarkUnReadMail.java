@@ -30,7 +30,7 @@ public class MarkUnReadMail extends SetGroupMailByMessagePreference {
 	}
 	
 	@Test (description = "mark mail as unread",
-			groups = { "smoke" })
+			groups = { "bhr" })
 			
 	public void UnreadMail_01() throws HarnessException {
 		

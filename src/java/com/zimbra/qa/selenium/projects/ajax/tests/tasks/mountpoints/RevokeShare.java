@@ -49,7 +49,7 @@ public class RevokeShare extends AjaxCore {
 
 
 	@Test (description = "Share and Revoke folder ",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void DeleteShare_01() throws HarnessException {
 

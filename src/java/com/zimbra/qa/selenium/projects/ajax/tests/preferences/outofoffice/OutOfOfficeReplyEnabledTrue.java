@@ -42,7 +42,7 @@ public class OutOfOfficeReplyEnabledTrue extends AjaxCore {
 
 	@Bugs (ids = "101356")
 	@Test (description = "Enable out of office", priority = 4,
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void OutOfOfficeReplyEnabledTrue_01() throws HarnessException {
 

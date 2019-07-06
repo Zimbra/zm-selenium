@@ -36,7 +36,7 @@ public class WeeklyEveryXdayEndByY extends AjaxCore {
 
 
 	@Test (description = "Create weekly recurring invite with attendee and location which ends by particular date",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void WeeklyEveryXdayEndByY_01() throws HarnessException {
 

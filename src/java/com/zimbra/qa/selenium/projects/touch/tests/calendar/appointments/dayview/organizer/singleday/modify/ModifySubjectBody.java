@@ -35,7 +35,7 @@ public class ModifySubjectBody extends CalendarWorkWeekPreference {
 	}
 	
 	@Test (description = "Modify meeting subject and body",
-			groups = { "smoke" })
+			groups = { "bhr" })
 			
 	public void ModifySubjectBody_01() throws HarnessException {
 		

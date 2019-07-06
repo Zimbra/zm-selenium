@@ -32,7 +32,7 @@ public class MoveConversation extends SetGroupMailByConversationPreference {
 
 
 	@Test (description = "From search: Move a conversation to a subfolder",
-			groups = { "functional","L2" })
+			groups = { "sanity" })
 
 	public void MoveConversation_01() throws HarnessException {
 
@@ -75,7 +75,7 @@ public class MoveConversation extends SetGroupMailByConversationPreference {
 
 	@Bugs (ids = "77217")
 	@Test (description = "From search: Move a conversation in Trash to a subfolder",
-			groups = { "functional","L2" })
+			groups = { "sanity" })
 
 	public void MoveConversation_02() throws HarnessException {
 
@@ -133,7 +133,7 @@ public class MoveConversation extends SetGroupMailByConversationPreference {
 
 	@Bugs (ids = "80611")
 	@Test (description = "From search: Move a conversation in Sent to a subfolder",
-			groups = { "functional","L2" })
+			groups = { "sanity" })
 
 	public void MoveConversation_03() throws HarnessException {
 

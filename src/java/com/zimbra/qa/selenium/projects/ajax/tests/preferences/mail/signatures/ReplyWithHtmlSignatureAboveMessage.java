@@ -67,7 +67,7 @@ public class ReplyWithHtmlSignatureAboveMessage extends AjaxCore {
 	 */
 
 	@Test (description = "Verify html signature placed above included message when replying",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void ReplyWithHtmlSignatureAboveMessage_01() throws HarnessException {
 

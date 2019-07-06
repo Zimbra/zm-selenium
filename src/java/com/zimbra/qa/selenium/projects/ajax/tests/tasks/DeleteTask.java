@@ -43,7 +43,7 @@ public class DeleteTask extends AjaxCore {
 
 
 	@Test (description = "Delete a task using toolbar delete button",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void DeleteTask_01() throws HarnessException {
 
@@ -96,7 +96,7 @@ public class DeleteTask extends AjaxCore {
 
 
 	@Test (description = "Delete a task using checkbox and toolbar delete button",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void DeleteTask_02() throws HarnessException {
 
@@ -158,7 +158,7 @@ public class DeleteTask extends AjaxCore {
 	}
 
 	@Test (description = "Delete a task by selecting and typing 'delete' keyboard",
-			groups = { "smoke", "L1"},
+			groups = { "bhr"},
 			dataProvider = "DataProviderDeleteKeys")
 
 	public void DeleteTask_03(String name, Keys keyEvent) throws HarnessException {
@@ -216,7 +216,7 @@ public class DeleteTask extends AjaxCore {
 
 	@Bugs (ids = "56467")
 	@Test (description = "Delete a task by selecting and typing '.t' shortcut",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void DeleteTask_04() throws HarnessException {
 
@@ -270,7 +270,7 @@ public class DeleteTask extends AjaxCore {
 
 
 	@Test (description = "Delete multiple tasks (3) by select and toolbar delete",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void DeleteTask_05() throws HarnessException {
 
@@ -373,7 +373,7 @@ public class DeleteTask extends AjaxCore {
 
 
 	@Test (description = "Delete a task using context menu delete button",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void DeleteTask_06() throws HarnessException {
 

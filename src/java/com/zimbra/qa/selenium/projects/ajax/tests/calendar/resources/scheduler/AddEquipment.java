@@ -44,7 +44,7 @@ public class AddEquipment extends AjaxCore {
 	}
 
 	@Test (description = "Add equipment from scheduler pane using keyboard Enter and Tab key",
-			groups = { "functional", "L2" },
+			groups = { "sanity" },
 			dataProvider = "DataProviderShortcutKeys")
 
 	public void AddEquipment_01(String name, int keyEvent) throws HarnessException {

@@ -35,7 +35,7 @@ public class ReplyToSentMessage extends AjaxCore {
 
 
 	@Test (description = "Verify that reply-to-sent-message details are set/unset properly.",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void ReplyToSentMessage_01() throws HarnessException {
 		

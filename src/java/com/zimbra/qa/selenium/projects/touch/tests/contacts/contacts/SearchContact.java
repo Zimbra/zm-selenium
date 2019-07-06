@@ -34,7 +34,7 @@ public class SearchContact extends TouchCore  {
 	}
 
 	@Test (description = "Search contact item with first name",
-			groups = { "smoke" })
+			groups = { "bhr" })
 
 	public void CreateContact_01() throws HarnessException{
 

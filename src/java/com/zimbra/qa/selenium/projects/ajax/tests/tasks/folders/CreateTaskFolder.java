@@ -50,7 +50,7 @@ public class CreateTaskFolder extends AjaxCore {
 
 
 	@Test (description = "Create a new tasklist by clicking 'Create a new task' on task folders tree",
-			groups = { "sanity", "L0" })
+			groups = { "smoke" })
 
 	public void CreateTaskFolder_01() throws HarnessException {
 
@@ -77,7 +77,7 @@ public class CreateTaskFolder extends AjaxCore {
 
 
 	@Test (description = "Create a new tasklist using tasks app New -> New Task Folder",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void CreateTaskFolder_02() throws HarnessException {
 
@@ -106,7 +106,7 @@ public class CreateTaskFolder extends AjaxCore {
 	
 	@Bugs( ids = "50877" )
 	@Test (description = "Create a new sub tasklist using task context menu:Right Click Tasks --> New Task List",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void CreateTaskFolder_03() throws HarnessException {
 

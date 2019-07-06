@@ -38,7 +38,7 @@ public class GetAppointment extends AjaxCore {
 
 	@Bugs (ids = "69132")
 	@Test (description = "View a basic appointment in week view",
-			groups = { "smoke-skip", "L3-skip" })
+			groups = { "functional-duplicate" })
 
 	public void GetAppointment_01() throws HarnessException {
 

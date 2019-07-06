@@ -44,7 +44,7 @@ public class AddRequiredAttendee extends AjaxCore {
 	}
 
 	@Test (description = "Add required attendee from scheduler pane using keyboard Enter and Tab key",
-			groups = { "functional", "L2"},
+			groups = { "sanity"},
 			dataProvider = "DataProviderShortcutKeys")
 
 	public void AddRequiredAttendee_01(String name, int keyEvent) throws HarnessException {

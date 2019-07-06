@@ -40,7 +40,7 @@ public class CreateMountpoint extends SetGroupMailByMessagePreference {
 
 	@Bugs (ids = "101616,106661")
 	@Test (description = "Receive an invitation to a shared folder, accept it - in a separate window",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void CreateMountpoint_01() throws HarnessException {
 

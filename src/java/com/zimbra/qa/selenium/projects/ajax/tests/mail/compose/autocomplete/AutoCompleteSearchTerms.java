@@ -39,7 +39,7 @@ public class AutoCompleteSearchTerms extends SetGroupMailByMessagePreference {
 
 	@Bugs (ids = "46718")
 	@Test (description = "Autocomplete using stop word - IT",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void AutCompleteSearchTerms_01() throws HarnessException {
 
@@ -95,7 +95,7 @@ public class AutoCompleteSearchTerms extends SetGroupMailByMessagePreference {
 
 	@Bugs (ids = "46950")
 	@Test (description = "Autocomplete using search term - And",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void AutCompleteSearchTerms_02() throws HarnessException {
 

@@ -43,7 +43,7 @@ public class DeleteShare extends AjaxCore {
 	
 	@Bugs(ids = "60990")
 	@Test (description = "Delete a shared task folder and verify its presence in trash after deletion",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void DeleteShare_01() throws HarnessException {
 

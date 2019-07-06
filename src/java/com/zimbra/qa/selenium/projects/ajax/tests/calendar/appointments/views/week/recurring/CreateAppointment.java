@@ -39,7 +39,7 @@ public class CreateAppointment extends AjaxCore {
 	}
 
 	@Test (description = "Create basic recurring appointment (every day) in week view",
-			groups = { "smoke-skip", "L3-skip" } )
+			groups = { "functional-duplicate" } )
 
 	public void CreateRecurringAppointment_01() throws HarnessException {
 

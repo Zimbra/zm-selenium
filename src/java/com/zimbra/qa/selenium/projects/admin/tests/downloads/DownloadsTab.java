@@ -50,7 +50,7 @@ public class DownloadsTab extends AdminCore {
 	};
 
 	@Test (description = "Verify the Downloads Tab contains the correct download links",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void DownloadsTab_01() throws HarnessException {
 
@@ -77,7 +77,7 @@ public class DownloadsTab extends AdminCore {
 
 	@Bugs (ids = "100755")
 	@Test (description = "Verify the downloads links are accessible",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void DownloadsTab_02() throws HarnessException {
 
@@ -111,7 +111,7 @@ public class DownloadsTab extends AdminCore {
 	}
 
 
-	@AfterMethod(groups={"always"})
+	@AfterMethod(groups = { "always" })
 	public void afterMethod() throws HarnessException {
 		logger.info("Opening base URL...");
 		app.zPageMain.sOpen(ConfigProperties.getBaseURL());

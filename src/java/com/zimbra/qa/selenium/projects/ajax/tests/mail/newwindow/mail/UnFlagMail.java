@@ -37,7 +37,7 @@ public class UnFlagMail extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Unflag from new window ,action menu -> UnFlag",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void UnFlagFromNewWindow_01() throws HarnessException {
 
@@ -112,7 +112,7 @@ public class UnFlagMail extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Un Flag mail from new window ,using shortcut 'mf'",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void UnFlagFromNewWindow_02() throws HarnessException {
 

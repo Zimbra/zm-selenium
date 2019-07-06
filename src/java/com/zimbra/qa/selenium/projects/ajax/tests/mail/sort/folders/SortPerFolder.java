@@ -35,7 +35,7 @@ public class SortPerFolder extends SetGroupMailByMessagePreference {
 
 	@Bugs (ids = "30319")
 	@Test (description = "Sort a list of messages by subject in folderA and by From in folderB",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void SortPerFolder_01() throws HarnessException {
 

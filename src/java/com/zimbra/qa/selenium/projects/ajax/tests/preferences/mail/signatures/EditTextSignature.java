@@ -67,7 +67,7 @@ public class EditTextSignature extends AjaxCore {
 	 */
 
 	@Test (description = "Edit and verify text signature through soap",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void EditTextSignature_01() throws HarnessException {
 

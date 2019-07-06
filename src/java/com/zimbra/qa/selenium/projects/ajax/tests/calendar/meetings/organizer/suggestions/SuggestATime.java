@@ -34,7 +34,7 @@ public class SuggestATime extends AjaxCore {
 
 	@Bugs (ids = "73966,88287")
 	@Test (description = "Suggest a free time while creating appointment",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void SuggestATime_01() throws HarnessException {
 

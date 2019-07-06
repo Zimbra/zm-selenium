@@ -32,7 +32,7 @@ public class FlagMail extends SetGroupMailByMessagePreference{
 	}
 
 	@Test (description = "Verify user can flag a  email on mount point with manager rights",
-			groups = { "functional" })
+			groups = { "sanity" })
 
 	public void FlagMail_01() throws HarnessException  {
 

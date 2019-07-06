@@ -34,7 +34,7 @@ public class AutoCompleteDL extends AjaxCore  {
 
 
 	@Test (description = "Auto complete DL and send mail to DL",
-			groups = { "smoke", "L0" })
+			groups = { "smoke" })
 
 	public void AutoCompleteDL_01() throws HarnessException {
 

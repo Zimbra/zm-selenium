@@ -33,7 +33,7 @@ public class SpellCheckText extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Spell check an Text message",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void SpellCheckText_01() throws HarnessException {
 

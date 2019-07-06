@@ -38,7 +38,7 @@ public class AddAlias extends AdminCore {
 
 
 	@Test (description = "Edit DL - Add Alias",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void AddAlias_01() throws HarnessException {
 

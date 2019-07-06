@@ -35,7 +35,7 @@ public class AddBuddy extends AjaxCore {
 
 
 	@Test (description = "Add new buddy",
-			groups = { "sanity", "L0", "chat" })
+			groups = { "smoke", "chat" })
 
 	public void AddNewBuddy_01() throws HarnessException {
 

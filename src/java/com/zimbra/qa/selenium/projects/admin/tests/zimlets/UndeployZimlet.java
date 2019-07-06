@@ -41,7 +41,7 @@ public class UndeployZimlet extends AdminCore {
 	 */
 
 	@Test (description = "Deploy Zimlet",
-			groups = { "functional", "L1" })
+			groups = { "bhr" })
 
 	public void UndeployZimlet_01() throws HarnessException {
 

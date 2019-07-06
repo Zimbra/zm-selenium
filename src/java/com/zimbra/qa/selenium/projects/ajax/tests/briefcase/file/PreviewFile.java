@@ -36,7 +36,7 @@ public class PreviewFile extends EnableBriefcaseFeature {
 	}
 
 	@Test (description = "Verify JPEG fiew preview in reading pane",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void PreviewJPEGFile_01() throws HarnessException {
 
@@ -71,7 +71,7 @@ public class PreviewFile extends EnableBriefcaseFeature {
 
 
 	@Test (description = "Verify text fiew preview in reading pane",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void PreviewTextFile_02() throws HarnessException {
 
@@ -106,7 +106,7 @@ public class PreviewFile extends EnableBriefcaseFeature {
 
 
 	@Test (description = "Verify PDF fiew preview in reading pane",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void PreviewPDFFile_03() throws HarnessException {
 

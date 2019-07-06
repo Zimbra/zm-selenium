@@ -42,7 +42,7 @@ public class RemoveTrustedEmail extends AjaxCore {
 
 	@Bugs (ids = "101356")
 	@Test (description = "Remove a trusted email address",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void RemoveTrustedEmail_01() throws HarnessException {
 

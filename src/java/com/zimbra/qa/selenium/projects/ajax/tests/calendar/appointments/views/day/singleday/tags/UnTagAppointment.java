@@ -41,7 +41,7 @@ public class UnTagAppointment extends AjaxCore {
 
 
 	@Test (description = "Untag an appointment using toolbar button in day view",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void UnTagAppointment_01() throws HarnessException {
 
@@ -80,7 +80,7 @@ public class UnTagAppointment extends AjaxCore {
 
 
 	@Test (description = "Untag tagged appointment using context menu in day view",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void UnTagAppointment_02() throws HarnessException, AWTException {
 

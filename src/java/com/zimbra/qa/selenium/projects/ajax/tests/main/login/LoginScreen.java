@@ -33,7 +33,7 @@ public class LoginScreen extends AjaxCore {
 
 
 	@Test (description = "Verify the label text on the ajax client login screen",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void LoginScreen_01() throws HarnessException {
 
@@ -43,7 +43,7 @@ public class LoginScreen extends AjaxCore {
 
 
 	@Test (description = "Verify initial focus on the login screen should be in username",
-			groups = { "functional","L2" })
+			groups = { "sanity" })
 
 	public void LoginScreen_02() throws HarnessException {
 
@@ -62,7 +62,7 @@ public class LoginScreen extends AjaxCore {
 
 	@Bugs (ids = "50457")
 	@Test (description = "Verify 'web client' rather than 'collaboration suite'",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void LoginScreen_03() throws HarnessException {
 

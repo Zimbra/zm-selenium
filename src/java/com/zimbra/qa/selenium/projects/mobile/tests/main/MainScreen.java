@@ -39,7 +39,7 @@ public class MainScreen extends MobileCore {
 	}
 	
 	@Test (description = "Verify basic elements on the Main Screen",
-			groups = { "sanity" })
+			groups = { "smoke" })
 	public void MainScreen_01() throws HarnessException {
 				
 		ZAssert.assertTrue(app.zPageMain.sIsElementPresent(PageMain.Locators.zAppbarMail),		"Verify that the appbar Mail icon is present");

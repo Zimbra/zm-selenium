@@ -35,7 +35,7 @@ public class CreateSavedSearch extends AjaxCore  {
 
 
 	@Test (description = "Create a basic saved search",
-			groups = { "sanity","L0" })
+			groups = { "smoke" })
 
 	public void CreateSavedSearch_01() throws HarnessException {
 

@@ -34,7 +34,7 @@ public class DeleteFolder extends AjaxCore {
 
 
 	@Test (description = "Delete a top level addressbook - Right click, Delete",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void DeleteTopLevelFolderFromContextmenu_01() throws HarnessException {
 
@@ -61,7 +61,7 @@ public class DeleteFolder extends AjaxCore {
 
 
 	@Test (description = "Delete a sub folder - Right click, Delete",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void DeleteSubFolderFromContextmenu_02() throws HarnessException {
 
@@ -88,7 +88,7 @@ public class DeleteFolder extends AjaxCore {
 
 
 	@Test (description = "Drag one sub folder to Trash folder",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void DnDFromSubFolderToTrash_03() throws HarnessException {
 
@@ -118,7 +118,7 @@ public class DeleteFolder extends AjaxCore {
 
 	@Bugs (ids = "103601")
 	@Test (description = "Delete an addressbook folder- Use shortcut Del",
-			groups = { "functional-skip", "application-bug"})
+			groups = { "application-bug"})
 
 	public void UseShortcutDel_04() throws HarnessException {
 

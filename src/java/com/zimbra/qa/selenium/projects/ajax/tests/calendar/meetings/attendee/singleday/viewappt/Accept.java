@@ -33,7 +33,7 @@ public class Accept extends AjaxCore {
 
 
 	@Test (description = "View meeting invite by opening it and Accept the invitation",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void AcceptMeeting_01() throws HarnessException {
 

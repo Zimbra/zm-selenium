@@ -32,7 +32,7 @@ public class ShowOriginal extends AjaxCore {
 
 
 	@Test (description = "check context menu for Show Original option and check of the its displayed",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void ShowOriginal_01() throws HarnessException {
 

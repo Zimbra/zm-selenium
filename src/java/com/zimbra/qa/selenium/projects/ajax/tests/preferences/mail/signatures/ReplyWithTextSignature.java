@@ -69,7 +69,7 @@ public class ReplyWithTextSignature extends AjaxCore {
 	 */
 
 	@Test (description = "Reply message with text signature and Verify signature through soap",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void ReplyWithTextSignature_01() throws HarnessException {
 

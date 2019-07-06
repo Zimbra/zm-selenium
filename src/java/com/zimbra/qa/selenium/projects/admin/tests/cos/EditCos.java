@@ -49,7 +49,7 @@ public class EditCos extends AdminCore {
 	 */
 
 	@Test (description = "Edit Cos name  - Manage Cos View",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void EditCos_01() throws HarnessException {
 
@@ -98,7 +98,7 @@ public class EditCos extends AdminCore {
 	 */
 
 	@Test (description = "Edit cos name -- right click",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void EditCos_02() throws HarnessException {
 
@@ -152,7 +152,7 @@ public class EditCos extends AdminCore {
 	 */
 
 	@Test (description = "Edit Cos name  - Search Cos View",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void EditCos_03() throws HarnessException {
 
@@ -210,7 +210,7 @@ public class EditCos extends AdminCore {
 	 */
 
 	@Test (description = "Edit cos name -- right click",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void EditCos_04() throws HarnessException {
 

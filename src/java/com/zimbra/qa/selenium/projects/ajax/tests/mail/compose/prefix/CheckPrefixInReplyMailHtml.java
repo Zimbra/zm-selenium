@@ -44,7 +44,7 @@ public class CheckPrefixInReplyMailHtml extends SetGroupMailByMessagePreference 
 
 	@Bugs( ids = "45446" )
 	@Test (description = "Reply to an html mail and verify the display of blue color prefix before the original message",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void CheckPrefixInReplyMailHtml_01() throws HarnessException {
 		

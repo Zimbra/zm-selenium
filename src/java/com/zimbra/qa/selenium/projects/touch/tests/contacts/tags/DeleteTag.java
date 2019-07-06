@@ -40,7 +40,7 @@ public class DeleteTag extends TouchCore  {
 	 */
 	
 	@Test (description = "Delete a tag item", 
-			groups = { "sanity" })
+			groups = { "bhr" })
 	
 	public void DeleteTag_01() throws HarnessException {
 		//----------------------- Data ------------------------------

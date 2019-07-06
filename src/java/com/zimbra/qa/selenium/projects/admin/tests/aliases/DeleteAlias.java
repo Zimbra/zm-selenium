@@ -50,7 +50,7 @@ public class DeleteAlias extends AdminCore {
 	 */
 
 	@Test (description = "Verify delete alias operation  -- Manage alias View",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void DeleteAlias_01() throws HarnessException {
 
@@ -110,7 +110,7 @@ public class DeleteAlias extends AdminCore {
 	 */
 
 	@Test (description = "Verify delete alias operation-- Manage alias View/Right Click Menu",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void DeleteAlias_02() throws HarnessException {
 
@@ -168,7 +168,7 @@ public class DeleteAlias extends AdminCore {
 	 */
 
 	@Test (description = "Verify delete alias operation - Search list view",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void DeleteAlias_03() throws HarnessException {
 
@@ -230,7 +230,7 @@ public class DeleteAlias extends AdminCore {
 	 */
 
 	@Test (description = "Verify delete alias operation - Search list view/Right Click menu.",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void DeleteAlias_04() throws HarnessException {
 

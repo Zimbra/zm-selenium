@@ -33,7 +33,7 @@ public class BasicRegistration extends AjaxCore {
 
 	@Bugs (ids = "103011")
 	@Test (description = "Register as and external user", priority=3,
-			groups = { "smoke", "L0" })
+			groups = { "smoke" })
 
 	public void BasicRegistration_01() throws HarnessException {
 

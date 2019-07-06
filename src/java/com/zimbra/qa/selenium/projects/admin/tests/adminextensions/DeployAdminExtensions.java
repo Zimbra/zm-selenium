@@ -46,7 +46,7 @@ public class DeployAdminExtensions extends AdminCore {
 
 	@Bugs (ids = "ZCS-1059")
 	@Test (description = "Deploy admin extension",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void DeployAdminExtension_01() throws HarnessException {
 

@@ -38,7 +38,7 @@ public class ClientTypeAdvanced extends AjaxCore {
 
 
 	@Test (description = "Verify the 'Sign in using' option can be toggled",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void ClientTypeAdvanced_01() throws HarnessException {
 

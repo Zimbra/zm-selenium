@@ -33,7 +33,7 @@ public class EveryWeek extends CalendarWorkWeekPreference {
 	}
 
 	@Test (description = "Create weekly recurring invite with attendee and location",
-			groups = { "sanity" })
+			groups = { "bhr" })
 
 	public void EveryWeek_01() throws HarnessException {
 

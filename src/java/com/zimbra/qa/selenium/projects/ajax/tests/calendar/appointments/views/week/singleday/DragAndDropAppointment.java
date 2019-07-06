@@ -40,7 +40,7 @@ public class DragAndDropAppointment extends AjaxCore {
 
 
 	@Test (description = "Drag and Drop a appointment from calendar to different calendar in week view",
-			groups = { "functional-skip", "L3-skip" })
+			groups = { "functional-duplicate" })
 
 	public void DragAndDropAppointment_01() throws HarnessException {
 
@@ -98,7 +98,7 @@ public class DragAndDropAppointment extends AjaxCore {
 
 
 	@Test (description = "Drag and Drop a appointment from one time to a different time in week view",
-			groups = { "functional-skip", "L3-skip" })
+			groups = { "functional-duplicate" })
 
 	public void DragAndDropAppointment_02() throws HarnessException {
 

@@ -104,7 +104,7 @@ public class AutoCompleteContactGroup extends SetGroupMailByMessagePreference {
 
 	@Bugs (ids = "97112")
 	@Test (description = "Autocomplete using a Contact Group - Group Name",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void AutoCompleteContactGroups_01() throws HarnessException {
 
@@ -147,7 +147,7 @@ public class AutoCompleteContactGroup extends SetGroupMailByMessagePreference {
 
 	@Bugs (ids = "97112")
 	@Test (description = "Autocomplete using the Contacts - Partial First Name",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void AutoCompleteContactGroups_02() throws HarnessException {
 
@@ -188,7 +188,7 @@ public class AutoCompleteContactGroup extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Autocomplete using a Contact - Multiple Matches",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void AutoCompleteContactGroups_03() throws HarnessException {
 

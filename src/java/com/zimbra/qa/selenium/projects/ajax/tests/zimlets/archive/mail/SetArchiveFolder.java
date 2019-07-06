@@ -31,7 +31,7 @@ public class SetArchiveFolder extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "On clicking 'Archive', client should prompt to set the archive folder",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void SetArchiveFolder_01() throws HarnessException {
 

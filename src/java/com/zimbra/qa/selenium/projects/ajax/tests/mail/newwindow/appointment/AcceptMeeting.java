@@ -59,7 +59,7 @@ public class AcceptMeeting extends AjaxCore {
 
 
 	@Test (description = "Accept a meeting using Accept button from  New window invitation message",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void AcceptMeeting_01() throws HarnessException {
 
@@ -147,7 +147,7 @@ public class AcceptMeeting extends AjaxCore {
 
 
 	@Test (description = "Accept meeting from New window - Verify organizer gets notification message",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void AcceptMeeting_02() throws HarnessException {
 
@@ -199,7 +199,7 @@ public class AcceptMeeting extends AjaxCore {
 
 
 	@Test (description = "Accept meeting using 'Accept -> Notify Organizer' from new window",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void AcceptMeeting_03() throws HarnessException {
 
@@ -301,7 +301,7 @@ public class AcceptMeeting extends AjaxCore {
 
 
 	@Test (description = "Accept meeting using 'Accept -> Don't Notify Organizer' from New window",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void AcceptMeeting_04() throws HarnessException {
 

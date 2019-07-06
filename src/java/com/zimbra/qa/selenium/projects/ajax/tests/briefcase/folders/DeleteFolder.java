@@ -34,7 +34,7 @@ public class DeleteFolder extends EnableBriefcaseFeature {
 
 
 	@Test (description = "Delete a briefcase sub-folder - Right click, Delete",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void DeleteFolder_01() throws HarnessException {
 
@@ -71,7 +71,7 @@ public class DeleteFolder extends EnableBriefcaseFeature {
 
 
 	@Test (description = "Delete a a top level briefcase folder - Right click, Delete",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void DeleteFolder_02() throws HarnessException {
 
@@ -111,7 +111,7 @@ public class DeleteFolder extends EnableBriefcaseFeature {
 
 	@Bugs (ids = "80600")
 	@Test (description = "Delete a briefcase sub-folder from list view and hitting toolbar delete button",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void DeleteFolder_03() throws HarnessException {
 

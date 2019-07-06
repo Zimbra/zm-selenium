@@ -48,7 +48,7 @@ public class RenameTaskFolder extends AjaxCore {
 
 
 	@Test (description = "Rename Task list -right click Rename",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void RenameTaskFolder_01() throws HarnessException {
 
@@ -90,7 +90,7 @@ public class RenameTaskFolder extends AjaxCore {
 
 	@Bugs (ids = "62365")
 	@Test (description = "Rename a tasklist - set to an invalid name with ':'",
-		groups = { "functional", "L3" })
+		groups = { "functional" })
 
 	public void RenameTaskFolder_02() throws HarnessException {
 
@@ -129,7 +129,7 @@ public class RenameTaskFolder extends AjaxCore {
 
 
 	@Test (description = "Rename Task list -right click Edit, Change name(Context menu -> Edit)",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void RenameTaskFolder_03() throws HarnessException {
 

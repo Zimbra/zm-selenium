@@ -33,7 +33,7 @@ public class HoverOverEmail extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Hover over a contact in a message body",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void HoverOverEmail_01() throws HarnessException {
 
@@ -85,7 +85,7 @@ public class HoverOverEmail extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Hover over a GAL contact in a message body",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void HoverOverEmail_02() throws HarnessException {
 
@@ -130,7 +130,7 @@ public class HoverOverEmail extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Hover over a contact group in a message body",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void HoverOverEmail_03() throws HarnessException {
 
@@ -181,7 +181,7 @@ public class HoverOverEmail extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Hover over an unknown email address",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void HoverOverEmail_04() throws HarnessException {
 
@@ -224,7 +224,7 @@ public class HoverOverEmail extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Hover over a contact in a message body (zimbraFeatureGalEnabled=FALSE)",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void HoverOverEmail_05() throws HarnessException {
 
@@ -277,7 +277,7 @@ public class HoverOverEmail extends SetGroupMailByMessagePreference {
 
 	@Bugs (ids = "80286" )
 	@Test (description = "Hover over a GAL contact in a message body (zimbraFeatureGalEnabled=FALSE)",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void HoverOverEmail_06() throws HarnessException {
 
@@ -322,7 +322,7 @@ public class HoverOverEmail extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Hover over a contact group in a message body (zimbraFeatureGalEnabled=FALSE)",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void HoverOverEmail_07() throws HarnessException {
 
@@ -374,7 +374,7 @@ public class HoverOverEmail extends SetGroupMailByMessagePreference {
 
 	@Bugs (ids = "80286" )
 	@Test (description = "Hover over an unknown email address (zimbraFeatureGalEnabled=FALSE)",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void HoverOverEmail_08() throws HarnessException {
 

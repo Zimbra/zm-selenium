@@ -35,7 +35,7 @@ public class Decline extends AjaxCore {
 	
 	@Bugs (ids = "83240")
 	@Test (description = "Rt-click to appointment from the calendar app and Decline the meeting invite (Instance)",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void DeclineMeeting_01() throws HarnessException {
 

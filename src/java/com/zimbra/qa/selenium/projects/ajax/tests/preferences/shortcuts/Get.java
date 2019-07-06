@@ -30,7 +30,7 @@ public class Get extends AjaxCore {
 	}
 
 	@Test (description = "View the shortcuts preference page",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void Get_01() throws HarnessException {
 

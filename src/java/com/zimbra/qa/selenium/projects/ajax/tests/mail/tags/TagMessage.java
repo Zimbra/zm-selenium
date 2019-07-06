@@ -32,7 +32,7 @@ public class TagMessage extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Tag a message using Toolbar -> Tag -> New Tag",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void TagMessage_01() throws HarnessException {
 
@@ -83,7 +83,7 @@ public class TagMessage extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Tag a message using Toolbar -> Tag -> Existing Tag",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void TagMessage_02() throws HarnessException {
 
@@ -142,7 +142,7 @@ public class TagMessage extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Tag a message by DnD onto a tag",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void TagMessage_03() throws HarnessException {
 

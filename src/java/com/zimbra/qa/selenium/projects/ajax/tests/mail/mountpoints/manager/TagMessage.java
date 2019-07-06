@@ -33,7 +33,7 @@ public class TagMessage extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Verify success on Tag a shared mail (manager share)",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void TagMessage_01() throws HarnessException {
 
@@ -128,7 +128,7 @@ public class TagMessage extends SetGroupMailByMessagePreference {
 
 	@Bugs (ids = "79948")
 	@Test (description = "Verify success on Tag (keyboard='t') a shared mail (manager share)",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void TagMessage_02() throws HarnessException {
 

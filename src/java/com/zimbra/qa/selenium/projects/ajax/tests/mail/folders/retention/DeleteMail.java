@@ -33,7 +33,7 @@ public class DeleteMail extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Delete a mail that falls within the retention time",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void DeleteMail_01() throws HarnessException {
 
@@ -100,7 +100,7 @@ public class DeleteMail extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Delete a mail that falls within the retention time - click cancel to the confirmation",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void DeleteMail_02() throws HarnessException {
 
@@ -165,7 +165,7 @@ public class DeleteMail extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Hard-delete a mail by selecting and typing 'shift-del' shortcut",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void HardDeleteMail_01() throws HarnessException {
 
@@ -227,7 +227,7 @@ public class DeleteMail extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Hard-delete a mail by selecting and typing 'shift-del' shortcut - click cancel to the confirmation",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void HardDeleteMail_02() throws HarnessException {
 

@@ -37,7 +37,7 @@ public class ViewMail extends SetGroupMailByMessagePreference {
 
 	@Bugs (ids = "57047" )
 	@Test (description = "Receive a mail with Sender: specified",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void ViewMail_01() throws HarnessException {
 
@@ -70,7 +70,7 @@ public class ViewMail extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Receive a mail with Reply-To: specified",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void ViewMail_02() throws HarnessException {
 
@@ -104,7 +104,7 @@ public class ViewMail extends SetGroupMailByMessagePreference {
 
 	@Bugs (ids = "61575")
 	@Test (description = "Receive a mail with Resent-From: specified",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void ViewMail_03() throws HarnessException {
 
@@ -137,7 +137,7 @@ public class ViewMail extends SetGroupMailByMessagePreference {
 
 	@Bugs (ids = "102049")	
 	@Test (description = "Receive a mail with only audio/wav content",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void ViewMail_04() throws HarnessException {
 
@@ -166,7 +166,7 @@ public class ViewMail extends SetGroupMailByMessagePreference {
 
 	@Bugs (ids = "66565")
 	@Test (description = "Receive a mail formatting in the subject",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void ViewMail_05() throws HarnessException {
 
@@ -197,7 +197,7 @@ public class ViewMail extends SetGroupMailByMessagePreference {
 
 	@Bugs (ids = "65933,65623")
 	@Test (description = "Verify message with only HTML part",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void ViewMail_06() throws HarnessException {
 
@@ -221,7 +221,7 @@ public class ViewMail extends SetGroupMailByMessagePreference {
 
 	@Bugs (ids = "65933,65623")
 	@Test (description = "Verify message with only HTML part and charset",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void ViewMail_07() throws HarnessException {
 
@@ -245,7 +245,7 @@ public class ViewMail extends SetGroupMailByMessagePreference {
 
 	@Bugs (ids = "65079")
 	@Test (description = "Verify message with only HTML part and charset",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void ViewMail_08() throws HarnessException {
 
@@ -268,7 +268,7 @@ public class ViewMail extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "zimbraPrefMessageViewHtmlPreferred=TRUE: Receive message with text only parts - should be rendered as text",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void ViewMail_09() throws HarnessException {
 
@@ -291,7 +291,7 @@ public class ViewMail extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "zimbraPrefMessageViewHtmlPreferred=TRUE: Receive message with html only parts - should be rendered as html",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void ViewMail_10() throws HarnessException {
 
@@ -314,7 +314,7 @@ public class ViewMail extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "zimbraPrefMessageViewHtmlPreferred=TRUE: Receive message with text and html  parts - should be rendered as html",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void ViewMail_11() throws HarnessException {
 
@@ -338,7 +338,7 @@ public class ViewMail extends SetGroupMailByMessagePreference {
 
 	@Bugs (ids = "67854")
 	@Test (description = "Verify empty message shows 'no content'",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void ViewMail_12() throws HarnessException {
 
@@ -368,7 +368,7 @@ public class ViewMail extends SetGroupMailByMessagePreference {
 
 	@Bugs (ids = "72248")
 	@Test (description = "Verify multipart/alternative with only 1 part",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void ViewMail_13() throws HarnessException {
 
@@ -394,7 +394,7 @@ public class ViewMail extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Verify multipart/alternative with text and html parts",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void ViewMail_14() throws HarnessException {
 
@@ -420,7 +420,7 @@ public class ViewMail extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "View a message with external images",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void ViewMail_15() throws HarnessException {
 
@@ -443,7 +443,7 @@ public class ViewMail extends SetGroupMailByMessagePreference {
 
 	@Bugs (ids = "96820")
 	@Test (description = "View very large message using 'View entire message' link",
-			groups = { "functional", "L3" } )
+			groups = { "functional" } )
 
 	public void ViewMail_16() throws HarnessException {
 

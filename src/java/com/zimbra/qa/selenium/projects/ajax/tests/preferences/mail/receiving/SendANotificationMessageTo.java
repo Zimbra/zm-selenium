@@ -34,7 +34,7 @@ public class SendANotificationMessageTo extends SetGroupMailByMessagePreference 
 
 
 	@Test (description = "Send a notification to other user after recieving a message",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void SendANotificationMessageTo_01() throws HarnessException {
 

@@ -32,7 +32,7 @@ public class EmptyMountpoint extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Empty a mountpoint folder (context menu)",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void EmptyMountpoint_01() throws HarnessException {
 

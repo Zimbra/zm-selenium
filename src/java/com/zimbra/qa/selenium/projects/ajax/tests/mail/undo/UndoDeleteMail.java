@@ -31,7 +31,7 @@ public class UndoDeleteMail extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Undo a delete",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void Undo_DeleteMail_01() throws HarnessException {
 

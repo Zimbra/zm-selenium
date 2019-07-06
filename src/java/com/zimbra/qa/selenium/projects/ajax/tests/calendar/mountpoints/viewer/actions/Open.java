@@ -32,7 +32,7 @@ public class Open extends AjaxCore {
 
 
 	@Test (description = "Grantee opens appointment from grantor's calendar and close it without making any changes",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void Open_01() throws HarnessException {
 

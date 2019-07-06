@@ -43,7 +43,7 @@ public class SearchMail extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Search for a message by subject",
-			groups = { "functional","L2" })
+			groups = { "sanity" })
 
 	public void SearchMail_01() throws HarnessException {
 

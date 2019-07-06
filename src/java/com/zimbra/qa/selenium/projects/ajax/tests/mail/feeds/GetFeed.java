@@ -19,11 +19,15 @@ package com.zimbra.qa.selenium.projects.ajax.tests.mail.feeds;
 import java.net.*;
 import java.util.*;
 import org.testng.annotations.Test;
+
+import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.SetGroupMailByMessagePreference;
+import com.zimbra.qa.selenium.projects.ajax.pages.mail.DisplayMail;
+import com.zimbra.qa.selenium.projects.ajax.pages.mail.DisplayMail.Field;
 
 public class GetFeed extends SetGroupMailByMessagePreference {
 
@@ -33,7 +37,7 @@ public class GetFeed extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Verify a feed appears in the folder tree",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void GetFeed_01() throws HarnessException, MalformedURLException {
 
@@ -69,7 +73,7 @@ public class GetFeed extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Reload a feed",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void GetFeed_02() throws HarnessException, MalformedURLException {
 
@@ -99,5 +103,30 @@ public class GetFeed extends SetGroupMailByMessagePreference {
 		// Get the list of items
 		List<MailItem> messages = app.zPageMail.zListGetMessages();
 		ZAssert.assertGreaterThan(messages.size(), 0, "Verify that RSS items exist in the list");
+	}
+	
+	
+	@Bugs (ids = "52121")
+	@Test (description = "Bug 52121: Feed-generated messages do not render in AJAX client ",
+			groups = { "sanity" })
+
+	public void GetFeed_03() throws HarnessException {
+
+		String subject = "\"Wear-with-all\"";
+		String bodytext = "Barbara's suggestion:";
+		String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/Bugs/Bug52121/bug52121.txt";
+
+		// Inject the sample mime
+		injectMessage(app.zGetActiveAccount(), mimeFile);
+
+		// Refresh current view
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
+
+		// Select the message so that it shows in the reading pane
+		DisplayMail display = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
+		String body = display.zGetMailProperty(Field.Body);
+
+		// Verify message is rendered correctly
+		ZAssert.assertStringContains(body, bodytext, "Verify the ending text appears");
 	}
 }

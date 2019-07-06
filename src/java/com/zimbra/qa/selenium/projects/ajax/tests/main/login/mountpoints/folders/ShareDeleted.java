@@ -43,7 +43,7 @@ public class ShareDeleted extends AjaxCore {
 
 
 	@Test (description = "Login to the Ajax Client - with a mountpoint to a deleted share",
-			groups = { "functional" , "L3" })
+			groups = { "functional" })
 
 	public void ShareDeleted_01() throws HarnessException {
 

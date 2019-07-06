@@ -46,7 +46,7 @@ public class HoverOverAttachment extends SetGroupMailByMessagePreference {
 	@Bugs (ids = "82807")
 	@Test (description = "Hover over an image attachment",
 			dataProvider = "DataProviderMimeWithImageAttachments",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void HoverOverAttachment_01(String subject, String path) throws HarnessException {
 

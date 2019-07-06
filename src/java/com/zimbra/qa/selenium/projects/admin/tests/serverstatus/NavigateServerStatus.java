@@ -38,7 +38,7 @@ public class NavigateServerStatus extends AdminCore {
 	 */
 
 	@Test (description = "Navigate to Server Status",
-			groups = { "sanity", "L0" })
+			groups = { "smoke" })
 
 	public void NavigateServerStatus_01() throws HarnessException {
 

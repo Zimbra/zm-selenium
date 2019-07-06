@@ -39,7 +39,7 @@ public class HtmlComposeEnabledFalse extends AjaxCore {
 
 	@Bugs (ids = "59504")
 	@Test (description = "If zimbraFeatureHtmlComposeEnabled to FALSE then check if user can create appt",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void HtmlComposeEnabledFalse_01() throws HarnessException {
 

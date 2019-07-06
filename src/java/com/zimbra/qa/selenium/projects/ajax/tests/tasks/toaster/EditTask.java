@@ -47,7 +47,7 @@ public class EditTask extends AjaxCore{
 
 
 	@Test (description = "Unchecked Attachment from edit window and - verify Toast message",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void EditTaskToast_01() throws HarnessException {
 

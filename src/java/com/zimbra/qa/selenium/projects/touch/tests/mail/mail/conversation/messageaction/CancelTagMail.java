@@ -31,7 +31,7 @@ public class CancelTagMail extends SetGroupMailByConversationPreference {
 	}
 	
 	@Test (description = "Cancel tag operation in conversation view",
-			groups = { "smoke" })
+			groups = { "functional" })
 			
 	public void CancelTagMail_01() throws HarnessException {
 		

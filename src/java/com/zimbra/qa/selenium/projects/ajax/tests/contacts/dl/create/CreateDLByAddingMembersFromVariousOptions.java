@@ -33,7 +33,7 @@ public class CreateDLByAddingMembersFromVariousOptions extends AjaxCore  {
 
 
 	@Test (description = "Create DL by adding DL members from various options",
-			groups = { "sanity", "L1" })
+			groups = { "bhr" })
 
 	public void CreateDLByAddingMembersFromVariousOptions_01 () throws HarnessException {
 

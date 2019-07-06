@@ -40,7 +40,7 @@ public class CreateMeeting extends AjaxCore {
 
 	@Bugs (ids = "95899,95900,46442")
 	@Test (description = "Create basic meeting invite with one attendee",
-			groups = { "sanity", "L1" })
+			groups = { "bhr" })
 
 	public void CreateMeeting_01() throws HarnessException {
 
@@ -99,7 +99,7 @@ public class CreateMeeting extends AjaxCore {
 
 
 	@Test (description = "Verify new appointment creation is based on mail compose preference set to TEXT",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void CreateMeeting_02() throws HarnessException {
 
@@ -138,7 +138,7 @@ public class CreateMeeting extends AjaxCore {
 
 
 	@Test (description = "Create basic meeting invite with required and optional attendee",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void CreateMeeting_03() throws HarnessException {
 
@@ -191,7 +191,7 @@ public class CreateMeeting extends AjaxCore {
 
 
 	@Test (description = "Create basic meeting invite by selecting date from date picker and time from dropdown",
-			groups = { "sanity", "L0", "non-msedge" })
+			groups = { "smoke", "non-msedge" })
 
 	public void CreateMeeting_04() throws HarnessException {
 

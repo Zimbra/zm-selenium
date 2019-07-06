@@ -33,7 +33,7 @@ public class EditAsNewWithAttachment extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Edit as New message >> add attachment from new window",
-			groups = { "functional", "L2", "upload" })
+			groups = { "sanity", "upload" })
 
 	public void EditAsNewWithAttachment_01() throws HarnessException {
 

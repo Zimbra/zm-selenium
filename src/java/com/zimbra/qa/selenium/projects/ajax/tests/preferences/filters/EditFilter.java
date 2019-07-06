@@ -38,7 +38,7 @@ public class EditFilter extends AjaxCore {
 
 
     @Test (description = "Edit an incoming filter",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void EditFilter_01() throws HarnessException {
 
@@ -91,7 +91,7 @@ public class EditFilter extends AjaxCore {
 
 
     @Test (description = "Edit a outgoing filter",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void EditFilter_02() throws HarnessException {
 

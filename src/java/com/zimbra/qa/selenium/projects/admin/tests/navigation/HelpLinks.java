@@ -40,7 +40,7 @@ public class HelpLinks extends AdminCore {
 	 */
 
 	@Test (description = "Verify Help Center links",
-			groups = { "sanity", "L0" })
+			groups = { "smoke" })
 
 	public void HelpLinks_01() throws HarnessException {
 

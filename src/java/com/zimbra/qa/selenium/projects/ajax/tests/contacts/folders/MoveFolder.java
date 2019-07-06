@@ -32,7 +32,7 @@ public class MoveFolder extends AjaxCore {
 
 
 	@Test (description = "Drag one folder from top level and Drop into sub folder",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void DnDFromTopLevelToSubFolder_01() throws HarnessException {
 

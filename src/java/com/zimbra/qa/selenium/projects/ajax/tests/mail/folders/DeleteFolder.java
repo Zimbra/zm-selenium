@@ -31,7 +31,7 @@ public class DeleteFolder extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Delete a folder - Right click, Delete",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void DeleteFolder_01() throws HarnessException {
 
@@ -66,7 +66,7 @@ public class DeleteFolder extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Deleting the folder where the Trash already has a folder with the same name",
-	      groups = { "functional", "L3" })
+	      groups = { "functional" })
 
 	public void DeleteFolder_02() throws HarnessException {
 

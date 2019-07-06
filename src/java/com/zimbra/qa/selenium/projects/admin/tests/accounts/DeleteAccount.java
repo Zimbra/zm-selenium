@@ -50,7 +50,7 @@ public class DeleteAccount extends AdminCore {
 	 */
 
 	@Test (description = "Delete a basic account -- Manage Account View",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void DeleteAccount_01() throws HarnessException {
 
@@ -100,7 +100,7 @@ public class DeleteAccount extends AdminCore {
 	 */
 
 	@Test (description = "Delete a basic account - Manage Account View/Right Click Menu",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void DeleteAccount_02() throws HarnessException {
 
@@ -150,7 +150,7 @@ public class DeleteAccount extends AdminCore {
 	 */
 
 	@Test (description = "Delete a basic account - Search List View",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void DeleteAccount_03() throws HarnessException {
 
@@ -202,7 +202,7 @@ public class DeleteAccount extends AdminCore {
 	 */
 
 	@Test (description = "Delete a basic account - Search List View/Right Click Menu",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void DeleteAccount_04() throws HarnessException {
 

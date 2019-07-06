@@ -30,7 +30,7 @@ public class WorkWeekView extends AjaxCore {
 
 
 	@Test (description = "Verify quick add dialog opens after hitting new appointment in work week view",
-			groups = { "functional", "L2" } )
+			groups = { "sanity" } )
 
 	public void WorkWeekView_01() throws HarnessException {
 

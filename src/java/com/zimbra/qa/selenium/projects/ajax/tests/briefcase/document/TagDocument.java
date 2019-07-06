@@ -34,7 +34,7 @@ public class TagDocument extends EnableBriefcaseFeature {
 
 
 	@Test (description = "Tag a Document using Toolbar -> Tag -> New Tag",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void TagDocument_01() throws HarnessException {
 
@@ -95,7 +95,7 @@ public class TagDocument extends EnableBriefcaseFeature {
 
 
 	@Test (description = "Tag a Document using pre-existing Tag",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void TagDocument_02() throws HarnessException {
 
@@ -149,7 +149,7 @@ public class TagDocument extends EnableBriefcaseFeature {
 
 
 	@Test (description = "Tag a Document using Right Click context menu",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void TagDocument_03() throws HarnessException {
 

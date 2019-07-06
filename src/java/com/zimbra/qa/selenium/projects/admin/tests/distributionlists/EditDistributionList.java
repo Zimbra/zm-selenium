@@ -50,7 +50,7 @@ public class EditDistributionList extends AdminCore {
 	 */
 
 	@Test (description = "Edit Distribution List name - Manage Distribution List view",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void EditDistributionList_01() throws HarnessException {
 
@@ -106,7 +106,7 @@ public class EditDistributionList extends AdminCore {
 	 */
 
 	@Test (description = "Edit Distribution List name - Manage Distribution List view + Right Click Menu",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void EditDistributionList_02() throws HarnessException {
 
@@ -161,7 +161,7 @@ public class EditDistributionList extends AdminCore {
 	 */
 
 	@Test (description = "Edit Admin Distribution List name - Manage Distribution List view",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void EditDistributionList_03() throws HarnessException {
 
@@ -218,7 +218,7 @@ public class EditDistributionList extends AdminCore {
 	 */
 
 	@Test (description = "Edit Dynamic Admin Distribution List name - Manage Distribution List view",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void EditDistributionList_04() throws HarnessException {
 
@@ -279,7 +279,7 @@ public class EditDistributionList extends AdminCore {
 
 	@Bugs (ids = "97150")
 	@Test (description = "Edit dynamic Distribution List name - Manage Distribution List view",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void EditDistributionList_05() throws HarnessException {
 
@@ -339,7 +339,7 @@ public class EditDistributionList extends AdminCore {
 
 	@Bugs (ids = "97150")
 	@Test (description = "Edit Dynamic Distribution List name - Manage Distribution List view + Right Click Menu",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void EditDistributionList_06() throws HarnessException {
 

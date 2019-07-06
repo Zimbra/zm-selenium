@@ -33,7 +33,7 @@ public class EmptyTrashFolder extends AjaxCore {
 
 
 	@Test (description = "Delete a contact, group, and folder permanently by Empty Trash folder on context menu",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void EmptyTrashFolder_01() throws HarnessException {
 
@@ -83,7 +83,7 @@ public class EmptyTrashFolder extends AjaxCore {
 
 
 	@Test (description = "Cancel Empty Trash folder option",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void EmptyTrashFolder_02() throws HarnessException {
 

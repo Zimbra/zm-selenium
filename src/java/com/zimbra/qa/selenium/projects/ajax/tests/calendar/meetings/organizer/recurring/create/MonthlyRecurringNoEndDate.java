@@ -35,7 +35,7 @@ public class MonthlyRecurringNoEndDate extends AjaxCore {
 
 
 	@Test (description = "Create monthly recurring invite with attendee and location with no end date, effective from today",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void MonthlyRecurringNoEndDate_01() throws HarnessException {
 

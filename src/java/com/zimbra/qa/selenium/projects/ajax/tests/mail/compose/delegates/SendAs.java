@@ -36,7 +36,7 @@ public class SendAs extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Send As another user",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void SendAs_01() throws HarnessException {
 
@@ -99,7 +99,7 @@ public class SendAs extends SetGroupMailByMessagePreference {
 
 	@Bugs (ids = "106931,102475")
 	@Test (description = "Forward a mail with attachment as a delegate - Verify attachment sent",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void SendAs_02() throws HarnessException {
 

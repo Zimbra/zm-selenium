@@ -40,7 +40,7 @@ public class ModifyInstanceModifySeries extends AjaxCore {
 
 	@Bugs (ids = "66800")
 	@Test (description = "Delete series from third instance and onwards",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void ModifyInstanceModifySeries_01() throws HarnessException {
 
@@ -145,7 +145,7 @@ public class ModifyInstanceModifySeries extends AjaxCore {
 
 	@Bugs (ids = "66800")
 	@Test (description = "Delete series from third instance and onwards",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void ModifyInstanceModifySeries_02() throws HarnessException {
 

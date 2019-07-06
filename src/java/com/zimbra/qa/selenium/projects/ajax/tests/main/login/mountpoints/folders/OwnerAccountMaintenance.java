@@ -42,7 +42,7 @@ public class OwnerAccountMaintenance extends AjaxCore {
 
 
 	@Test (description = "Login to the Ajax Client - with a mountpoint to a 'in-maintenance' account",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void OwnerAccountMaintenance_01() throws HarnessException {
 

@@ -37,7 +37,7 @@ public class ModifyCalendar extends AjaxCore {
 
 	@Bugs (ids = "102771")
 	@Test (description = "Modify meeting calendar",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void ModifyMeetingCalendar_01() throws HarnessException {
 

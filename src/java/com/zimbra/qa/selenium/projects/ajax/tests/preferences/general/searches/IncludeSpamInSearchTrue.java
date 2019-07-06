@@ -39,7 +39,7 @@ public class IncludeSpamInSearchTrue extends AjaxCore {
 
 
 	@Test (description = "Change zimbraPrefIncludeSpamInSearch setting TRUE",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void IncludeSpamInSearchTrue_01() throws HarnessException {
 

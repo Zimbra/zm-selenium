@@ -34,7 +34,7 @@ public class Edit extends AjaxCore {
 
 
 	@Test (description = "View meeting invite by opening it, Edit the invitation and locally save it",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void EditMeeting_01() throws HarnessException {
 

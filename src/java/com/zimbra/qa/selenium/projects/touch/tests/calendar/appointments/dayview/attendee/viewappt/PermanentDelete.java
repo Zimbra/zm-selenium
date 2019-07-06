@@ -33,7 +33,7 @@ public class PermanentDelete extends CalendarWorkWeekPreference {
 	}
 
 	@Test (description = "Permanently delete meeting invite as an attendee", 
-			groups = { "smoke" })
+			groups = { "sanity" })
 	
 	public void PermanentDeleteMeeting_01() throws HarnessException {
 

@@ -33,7 +33,7 @@ public class SortBySubject extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Sort a list of messages by subject (A->Z)",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void SortBySubject_01() throws HarnessException {
 
@@ -108,7 +108,7 @@ public class SortBySubject extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Sort a list of messages by subject (Z->A)",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void SortBySubject_02() throws HarnessException {
 

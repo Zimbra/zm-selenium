@@ -35,7 +35,7 @@ public class Edit extends CalendarWorkWeekPreference {
 	}
 
 	@Test (description = "Edit meeting and locally save it", 
-			groups = { "functional" })
+			groups = { "bhr" })
 	
 	public void EditMeeting_01() throws HarnessException {
 

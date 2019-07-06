@@ -41,7 +41,7 @@ public class SelectDLMember extends AjaxCore  {
 
 
 	@Test (description = "Select a DL member from the expanded list while composing mail",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void SelectDLMember_01() throws HarnessException {
 

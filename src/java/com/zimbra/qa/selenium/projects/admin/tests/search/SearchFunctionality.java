@@ -45,7 +45,7 @@ public class SearchFunctionality extends AdminCore {
 	 */
 
 	@Test (description = "Verify search functionality of all results.",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void SearchFunctionality_01() throws HarnessException {
 
@@ -87,7 +87,7 @@ public class SearchFunctionality extends AdminCore {
 	 */
 
 	@Test (description = "Verify search functionality of accounts",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void SearchFunctionality_02() throws HarnessException {
 
@@ -130,7 +130,7 @@ public class SearchFunctionality extends AdminCore {
 	 */
 
 	@Test (description = "Verify search functionality of DL",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void SearchFunctionality_03() throws HarnessException {
 
@@ -173,7 +173,7 @@ public class SearchFunctionality extends AdminCore {
 	 */
 
 	@Test (description = "Verify search functionality of Domain",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void SearchFunctionality_04() throws HarnessException {
 
@@ -215,7 +215,7 @@ public class SearchFunctionality extends AdminCore {
 	 */
 
 	@Test (description = "Verify search functionality of locked out accounts",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void SearchFunctionality_05() throws HarnessException {
 
@@ -258,7 +258,7 @@ public class SearchFunctionality extends AdminCore {
 	 */
 
 	@Test (description = "Verify search functionality of non-active accounts",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void SearchFunctionality_06() throws HarnessException {
 
@@ -301,7 +301,7 @@ public class SearchFunctionality extends AdminCore {
 	 */
 
 	@Test (description = "Verify search functionality of admin accounts",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void SearchFunctionality_07() throws HarnessException {
 
@@ -363,7 +363,7 @@ public class SearchFunctionality extends AdminCore {
 	 */
 
 	@Test (description = "Verify search functionality of closed accounts",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void SearchFunctionality_08() throws HarnessException {
 
@@ -406,7 +406,7 @@ public class SearchFunctionality extends AdminCore {
 	 */
 
 	@Test (description = "Verify search functionality of maintenance accounts",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void SearchFunctionality_09() throws HarnessException {
 

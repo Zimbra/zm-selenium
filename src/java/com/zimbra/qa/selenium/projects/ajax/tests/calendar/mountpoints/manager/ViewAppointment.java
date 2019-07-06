@@ -33,7 +33,7 @@ public class ViewAppointment extends AjaxCore {
 
 	@Bugs (ids = "46416")
 	@Test (description = "Shared root and Calendar: appointment visibility issues",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void ViewAppointment_01() throws HarnessException {
 

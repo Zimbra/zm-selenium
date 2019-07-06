@@ -31,7 +31,7 @@ public class Print extends AjaxCore {
 
 
 	@Test (description = "Print the shortcuts preference page",
-			groups = { "functional", "L3" } )
+			groups = { "functional" } )
 
 	public void Print_01() throws HarnessException {
 

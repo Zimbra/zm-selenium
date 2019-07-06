@@ -40,7 +40,7 @@ public class DeleteContactGroup extends AjaxCore  {
 
 
 	@Test (description = "Delete a contact group by click Delete button on toolbar",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void ClickDeleteOnToolbar_01() throws HarnessException {
 
@@ -68,7 +68,7 @@ public class DeleteContactGroup extends AjaxCore  {
 
 
 	@Test (description = "Delete a contact group by click Delete on Context Menu",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void ClickDeleteOnContextMenu_02() throws HarnessException {
 
@@ -94,7 +94,7 @@ public class DeleteContactGroup extends AjaxCore  {
 
 
 	@Test (description = "Delete a contact group selected by checkbox by click Delete button on toolbar",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void DeleteContactGroupSelectedWithCheckbox_03() throws HarnessException {
 
@@ -120,7 +120,7 @@ public class DeleteContactGroup extends AjaxCore  {
 
 
 	@Test (description = "Delete a contact group use shortcut Del",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void UseShortcutDel_04() throws HarnessException {
 
@@ -149,7 +149,7 @@ public class DeleteContactGroup extends AjaxCore  {
 
 
 	@Test (description = "Delete a contact group use shortcut backspace",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void  UseShortcutBackspace_05() throws HarnessException {
 
@@ -178,7 +178,7 @@ public class DeleteContactGroup extends AjaxCore  {
 
 
 	@Test (description = "Delete multiple contact groups at once",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void DeleteMultipleContactGroups_06() throws HarnessException {
 
@@ -217,7 +217,7 @@ public class DeleteContactGroup extends AjaxCore  {
 
 
 	@Test (description = "Delete contact + contact group at once",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void DeleteMixOfContactAndGroup_07() throws HarnessException {
 
@@ -250,7 +250,7 @@ public class DeleteContactGroup extends AjaxCore  {
 
 
 	@Test (description = "Move a contact group to folder Trash by expand Move dropdown then select Trash",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void MoveToTrashFromMoveDropdownOnToolbar_08() throws HarnessException {
 
@@ -277,7 +277,7 @@ public class DeleteContactGroup extends AjaxCore  {
 
 
 	@Test (description = "Click Delete Toolbar button in Edit Contact Group form",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void DeleteContactGroupFromEditContactGroupUI_09() throws HarnessException {
 

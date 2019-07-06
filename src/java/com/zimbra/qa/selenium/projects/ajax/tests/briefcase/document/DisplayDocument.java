@@ -41,7 +41,7 @@ public class DisplayDocument extends EnableBriefcaseFeature {
 
 
 	@Test (description = "Create document through SOAP - verify through GUI",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void DisplayDocument_01() throws HarnessException {
 
@@ -81,7 +81,7 @@ public class DisplayDocument extends EnableBriefcaseFeature {
 
 	@Bugs (ids = "79994")
 	@Test (description = "german umlauts breaks briefcase ",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void DisplayDocument_02() throws HarnessException {
 

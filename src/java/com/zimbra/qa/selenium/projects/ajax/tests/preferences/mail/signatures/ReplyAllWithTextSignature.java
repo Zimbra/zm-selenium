@@ -68,7 +68,7 @@ public class ReplyAllWithTextSignature extends AjaxCore {
 	 */
 
 	@Test (description = "Reply all message with text signature and verify signature through soap",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void ReplyAllWithTextSignature_01() throws HarnessException {
 

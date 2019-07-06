@@ -45,7 +45,7 @@ public class MoveConversation extends SetGroupMailByConversationPreference {
 
 
 	@Test (description = "Move a conversation by selecting message, then clicking toolbar 'Move' button",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void MoveConversation_01() throws HarnessException {
 
@@ -81,7 +81,7 @@ public class MoveConversation extends SetGroupMailByConversationPreference {
 
 
 	@Test (description = "Move a conversation by selecting message, then click 'm' shortcut",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void MoveConversation_02() throws HarnessException {
 
@@ -122,7 +122,7 @@ public class MoveConversation extends SetGroupMailByConversationPreference {
 
 
 	@Test (description = "Move a conversation by using 'move to trash' shortcut '.t'",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void MoveConversation_03() throws HarnessException {
 
@@ -150,7 +150,7 @@ public class MoveConversation extends SetGroupMailByConversationPreference {
 
 
 	@Test (description = "Move a conversation by using 'move to inbox' shortcut '.i'",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void MoveConversation_04() throws HarnessException {
 
@@ -195,7 +195,7 @@ public class MoveConversation extends SetGroupMailByConversationPreference {
 
 
 	@Test (description = "Move a conversation by using Move -> New folder",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void MoveConversation_05() throws HarnessException {
 
@@ -230,7 +230,7 @@ public class MoveConversation extends SetGroupMailByConversationPreference {
 
 
 	@Test (description = "Move a conversation - 1 message in inbox, 1 message in sent, 1 message in subfolder",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void MoveConversation_10() throws HarnessException {
 

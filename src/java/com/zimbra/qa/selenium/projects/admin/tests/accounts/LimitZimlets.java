@@ -36,7 +36,7 @@ public class LimitZimlets extends AdminCore {
 	}
 
 	@Test (description = "Modify account to verify limited Zimlets available",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void LimitZimlets_01() throws HarnessException {
 

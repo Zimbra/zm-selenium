@@ -32,7 +32,7 @@ public class MarkSpamMessage extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Mark a message as spam, using 'Spam' toolbar button",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void MarkSpamMessage_01() throws HarnessException {
 
@@ -73,7 +73,7 @@ public class MarkSpamMessage extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Mark a message as spam, using keyboard shortcut (keyboard='ms')",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void MarkSpamMessage_02() throws HarnessException {
 
@@ -114,7 +114,7 @@ public class MarkSpamMessage extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Mark multiple messages (3) as spam by select and toolbar delete",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void MarkSpamMessage_03() throws HarnessException {
 

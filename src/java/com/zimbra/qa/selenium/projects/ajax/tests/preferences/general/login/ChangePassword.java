@@ -35,7 +35,7 @@ public class ChangePassword extends AjaxCore {
 
 
 	@Test (description = "Change the account password",
-			groups = { "sanity", "L0" })
+			groups = { "smoke" })
 
 	public void ChangePassword_01() throws HarnessException {
 

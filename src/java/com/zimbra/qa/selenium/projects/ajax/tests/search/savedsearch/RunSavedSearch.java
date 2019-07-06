@@ -37,7 +37,7 @@ public class RunSavedSearch extends AjaxCore  {
 
 
 	@Test (description = "Run a saved search",
-			groups = { "smoke","L1" })
+			groups = { "bhr" })
 
 	public void RunSavedSearch_01() throws HarnessException {
 

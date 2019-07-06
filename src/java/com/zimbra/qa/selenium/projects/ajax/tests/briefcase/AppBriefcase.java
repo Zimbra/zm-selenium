@@ -42,7 +42,7 @@ public class AppBriefcase extends EnableBriefcaseFeature {
 
 
 	@Test (description = "?app=briefcase in url",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void AppBriefcase_01() throws HarnessException {
 

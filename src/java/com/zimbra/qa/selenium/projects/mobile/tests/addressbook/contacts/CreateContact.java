@@ -41,7 +41,7 @@ public class CreateContact extends MobileCore {
 	}
 	
 	@Test (description = "Create a new contact",
-			groups = { "sanity" })
+			groups = { "smoke" })
 	public void CreateContact_01() throws HarnessException, InterruptedException {
 
 		// Define a new contact

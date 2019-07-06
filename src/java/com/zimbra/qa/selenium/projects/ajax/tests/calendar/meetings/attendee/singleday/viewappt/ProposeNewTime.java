@@ -34,7 +34,7 @@ public class ProposeNewTime extends AjaxCore {
 
 
 	@Test (description = "View meeting invite by opening it and propose new time to organizer",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void MeetingProposeNewTime_01() throws HarnessException {
 

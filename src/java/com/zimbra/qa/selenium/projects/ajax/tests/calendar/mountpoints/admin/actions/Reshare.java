@@ -36,7 +36,7 @@ public class Reshare extends AjaxCore {
 
 	@Bugs (ids = "36754")
 	@Test (description = "Unwanted 'Accept Share' and 'Decline Share' buttons appeared in sent mail ",
-			groups = { "smoke","L1" })
+			groups = { "bhr" })
 
 	public void Reshare_01() throws HarnessException {
 

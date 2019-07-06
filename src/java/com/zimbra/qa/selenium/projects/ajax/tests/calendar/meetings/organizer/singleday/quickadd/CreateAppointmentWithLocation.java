@@ -35,7 +35,7 @@ public class CreateAppointmentWithLocation extends AjaxCore {
 
 	@Bugs (ids = "101584")
 	@Test (description = "Create appointment with location using quick add dialog",
-			groups = { "functional", "L2" } )
+			groups = { "sanity" } )
 
 	public void CreateAppointmentWithLocation_01() throws HarnessException {
 

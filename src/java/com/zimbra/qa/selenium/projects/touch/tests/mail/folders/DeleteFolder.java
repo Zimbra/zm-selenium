@@ -32,7 +32,7 @@ public class DeleteFolder extends SetGroupMailByMessagePreference {
 	}
 
 	@Test (description = "Delete mail folder",
-			groups = { "smoke" })
+			groups = { "bhr" })
 	
 	public void DeleteFolder_01() throws HarnessException  {
 	

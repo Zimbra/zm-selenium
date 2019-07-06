@@ -35,7 +35,7 @@ public class ViewInviteWithSchedulePolicyofEquipment extends AjaxCore {
 
 
 	@Test (description = "Verify that invite appears correctly in resource's account when schedule policy is set to 'Manual accept, auto decline on conflict'",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void ManualAcceptAutoDeclineOnConflict_01() throws HarnessException {
 
@@ -101,7 +101,7 @@ public class ViewInviteWithSchedulePolicyofEquipment extends AjaxCore {
 	}
 
 	@Test (description = "Verify that invite appears correctly in resource's account when schedule policy is set to 'Auto accept always'",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 	public void AutoAcceptAlways_02() throws HarnessException {
 
 		// Create appointment data
@@ -164,7 +164,7 @@ public class ViewInviteWithSchedulePolicyofEquipment extends AjaxCore {
 
 
 	@Test (description = "Verify that invite appears correctly in resource's account when schedule policy is set to 'No auto accept or decline'",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void NoAutoAcceptOrDecline_03() throws HarnessException {
 

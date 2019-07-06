@@ -46,7 +46,7 @@ public class SaveCancelledConflicts extends AjaxCore {
 
 	@Bugs (ids = "77991,75434")
 	@Test (description = "Unable to save when cancelling conflicts", 
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void SaveCancelledConflicts_01() throws HarnessException  {
 

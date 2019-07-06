@@ -31,7 +31,7 @@ public class ExpandFolder extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Expand a subfolder",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void ExpandFolder_01() throws HarnessException {
 
@@ -79,7 +79,7 @@ public class ExpandFolder extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Expand 2 subfolders",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void ExpandFolder_02() throws HarnessException {
 
@@ -146,7 +146,7 @@ public class ExpandFolder extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Expand-All subfolders",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void ExpandAllFolders_01() throws HarnessException {
 

@@ -38,7 +38,7 @@ public class ZimbraHelpAdminURLModification extends AdminCore {
 
 	@Bugs (ids = "101023")
 	@Test (description = "Verify that zimbra admin help page is opened as per the value set in attribute ZimbraHelpAdminURL",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void ZimbraHelpAdminURLModification_01() throws HarnessException {
 
@@ -115,7 +115,7 @@ public class ZimbraHelpAdminURLModification extends AdminCore {
 
 	@Bugs (ids = "ZCS-3487")
 	@Test (description = "Verify that zimbra admin help page is opened as per the value set in attribute ZimbraHelpAdminURL at the global config",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void ZimbraHelpAdminURLModification_02() throws HarnessException {
 

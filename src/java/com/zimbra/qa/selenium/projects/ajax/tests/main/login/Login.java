@@ -41,7 +41,7 @@ public class Login extends AjaxCore {
 
 
 	@Test (description = "Login to the Ajax Client",
-			groups = { "sanity", "L0" })
+			groups = { "smoke" })
 
 	public void Login_01() throws HarnessException {
 
@@ -54,7 +54,7 @@ public class Login extends AjaxCore {
 
 
 	@Test (description = "Login to the Ajax Client using a locked account",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void Login_02() throws HarnessException {
 
@@ -82,7 +82,7 @@ public class Login extends AjaxCore {
 
 
 	@Test (description = "Login to the Ajax Client, with a mounted folder",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void Login_03() throws HarnessException {
 
@@ -149,7 +149,7 @@ public class Login extends AjaxCore {
 
 	@Bugs (ids = "59847")
 	@Test (description = "Login to the Ajax Client, with a mounted folder of a deleted account",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void Login_04() throws HarnessException {
 
@@ -234,7 +234,7 @@ public class Login extends AjaxCore {
 
 	@Bugs (ids = "66788")
 	@Test (description = "Change the zimbraMailURL and login", priority=5,
-			groups = { "functional", "L3", "non-aws" },
+			groups = { "functional", "non-aws" },
 			dataProvider = "ZimbraMailURLDataProvider")
 
 	public void Login_05(String zimbraMailURLtemp) throws HarnessException {

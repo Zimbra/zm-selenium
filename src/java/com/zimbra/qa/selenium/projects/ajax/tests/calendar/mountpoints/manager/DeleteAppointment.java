@@ -39,7 +39,7 @@ public class DeleteAppointment extends AjaxCore {
 
 
 	@Test (description = "Verify Delete button is enabled and functional on mountpoint appointment (manager share)",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void DeleteAppointment_01() throws HarnessException {
 
@@ -132,7 +132,7 @@ public class DeleteAppointment extends AjaxCore {
 	}
 
 	@Test (description = "Verify Delete keyboard shortcut is functional on mountpoint appointment (manager share)",
-			groups = { "functional-skip", "application-bug" },
+			groups = { "application-bug" },
 			dataProvider = "DataProviderShortcutKeys")
 
 	public void DeleteAppointment_02(String name, int keyEvent) throws HarnessException {

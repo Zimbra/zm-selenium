@@ -71,7 +71,7 @@ public class AcceptMeetingInDifferentFolder extends AjaxCore {
 
 
 	@Test (description = "Accept a meeting using Accept button from invitation message",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void AcceptMeetingInDifferentFolder_01() throws HarnessException {
 
@@ -177,7 +177,7 @@ public class AcceptMeetingInDifferentFolder extends AjaxCore {
 
 
 	@Test (description = "Accept meeting - Verify organizer gets notification message",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void AcceptMeetingInDifferentFolder_02() throws HarnessException {
 
@@ -245,7 +245,7 @@ public class AcceptMeetingInDifferentFolder extends AjaxCore {
 
 
 	@Test (description = "Accept meeting using 'Accept -> Notify Organizer'",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void AcceptMeetingInDifferentFolder_03() throws HarnessException {
 
@@ -365,7 +365,7 @@ public class AcceptMeetingInDifferentFolder extends AjaxCore {
 
 
 	@Test (description = "Accept meeting using 'Accept -> Edit Reply' and verify modified content",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void AcceptMeetingInDifferentFolder_04() throws HarnessException {
 
@@ -485,7 +485,7 @@ public class AcceptMeetingInDifferentFolder extends AjaxCore {
 
 	@Bugs (ids = "80407")
 	@Test (description = "Accept meeting using 'Accept -> Don't Notify Organizer'",
-			groups = { "functional-skip", "application-bug" })
+			groups = { "application-bug" })
 
 	public void AcceptMeetingInDifferentFolder_05() throws HarnessException {
 

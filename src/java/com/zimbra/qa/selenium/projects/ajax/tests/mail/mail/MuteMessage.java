@@ -32,7 +32,7 @@ public class MuteMessage extends SetGroupMailByMessagePreference {
 
 	@Bugs (ids = "38449")
 	@Test (description = "Mute a message (conversation) using Actions -> Mute",
-			groups = { "smoke-skip", "application-bug" })
+			groups = { "application-bug" })
 
 	public void MuteMessage_01() throws HarnessException {
 
@@ -69,7 +69,7 @@ public class MuteMessage extends SetGroupMailByMessagePreference {
 
 	@Bugs (ids = "38449")
 	@Test (description = "Mute message, using 'Mute' shortcut key",
-			groups = { "functional-skip", "application-bug" })
+			groups = { "application-bug" })
 
 	public void MuteMessage_02() throws HarnessException {
 		throw new HarnessException("See bug https://bugzilla.zimbra.com/show_bug.cgi?id=65844");
@@ -77,7 +77,7 @@ public class MuteMessage extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Mute message, using 'Right Click' -> 'Mute'",
-			groups = { "smoke-skip", "application-bug" })
+			groups = { "application-bug" })
 
 	public void MuteMessage_03() throws HarnessException {
 

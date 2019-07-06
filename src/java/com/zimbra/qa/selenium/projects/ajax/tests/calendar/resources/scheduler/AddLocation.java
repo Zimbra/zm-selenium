@@ -43,7 +43,7 @@ public class AddLocation extends AjaxCore {
 		};
 	}
 	@Test (description = "Add location from scheduler pane using keyboard Enter and Tab key",
-			groups = { "functional", "L2" },
+			groups = { "sanity" },
 			dataProvider = "DataProviderShortcutKeys")
 
 	public void AddLocation_01(String name, int keyEvent) throws HarnessException {

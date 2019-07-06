@@ -42,7 +42,7 @@ public class CreateAccount extends AdminCore {
 
 	@Bugs (ids = "100779")
 	@Test (description = "Create a basic account using New->Account",
-			groups = { "sanity", "L0" })
+			groups = { "smoke" })
 
 	public void CreateAccount_01() throws HarnessException {
 

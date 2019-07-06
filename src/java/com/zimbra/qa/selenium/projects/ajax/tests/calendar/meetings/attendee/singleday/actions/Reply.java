@@ -36,7 +36,7 @@ public class Reply extends AjaxCore {
 
 	@Bugs (ids = "102475")
 	@Test (description = "Verify organizer receives message while attendee replies to",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void Reply_01() throws HarnessException {
 

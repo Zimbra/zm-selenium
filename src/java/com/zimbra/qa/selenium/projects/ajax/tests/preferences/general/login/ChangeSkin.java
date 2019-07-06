@@ -38,7 +38,7 @@ public class ChangeSkin extends AjaxCore {
 
 
 	@Test (description = "Verify the 'zimbraPrefSkin' option can be changed",
-			groups = { "functional", "L2" } )
+			groups = { "sanity" } )
 
 	public void ChangeSkin_01() throws HarnessException {
 

@@ -38,7 +38,7 @@ public class NavigateClientUpload extends AdminCore {
 	 */
 
 	@Test (description = "Navigate to Client Upload",
-			groups = { "sanity", "L0" })
+			groups = { "smoke" })
 
 	public void NavigateClientUpload_01() throws HarnessException {
 

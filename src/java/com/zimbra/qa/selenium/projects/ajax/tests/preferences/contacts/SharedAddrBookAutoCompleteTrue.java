@@ -36,7 +36,7 @@ public class SharedAddrBookAutoCompleteTrue extends AjaxCore {
 	}
 
 	@Test (description = "Set zimbraPrefSharedAddrBookAutoCompleteEnabled to 'TRUE'",
-			groups = { "functional", "L2" } )
+			groups = { "sanity" } )
 
 	public void SharedAddrBookAutoCompleteTrue_01() throws HarnessException {
 

@@ -40,7 +40,7 @@ public class QuickAddTask extends AjaxCore {
 
 
 	@Test (description = "Create a new task via quick add",
-			groups = { "sanity", "L0" })
+			groups = { "smoke" })
 
 	public void QuickAddTask_01() throws HarnessException {
 		
@@ -62,7 +62,7 @@ public class QuickAddTask extends AjaxCore {
 	
 	
 	@Test (description = "Create a new task via quick add, edit it to add body",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void QuickAddTask_02() throws HarnessException {
 		
@@ -100,7 +100,7 @@ public class QuickAddTask extends AjaxCore {
 	
 
 	@Test (description = "Create a new task via quick add, edit it to add body and verify the editor displayed",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void QuickAddTask_03() throws HarnessException {
 		

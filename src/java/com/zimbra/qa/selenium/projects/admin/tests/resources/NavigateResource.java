@@ -39,7 +39,7 @@ public class NavigateResource extends AdminCore {
 	 */
 
 	@Test (description = "Navigate to Resource",
-			groups = { "sanity", "L0" })
+			groups = { "smoke" })
 
 	public void NavigateResource_01() throws HarnessException {
 

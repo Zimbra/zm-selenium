@@ -35,7 +35,7 @@ public class Decline extends CalendarWorkWeekPreference {
 	
 	@Bugs (ids = "95870")
 	@Test (description = "Assistant selects calendar invite from shared calendar and declines the invite OBO boss (Notify organizer)",
-			groups = { "smoke" })
+			groups = { "sanity" })
 
 	public void Decline_01() throws HarnessException {
 		

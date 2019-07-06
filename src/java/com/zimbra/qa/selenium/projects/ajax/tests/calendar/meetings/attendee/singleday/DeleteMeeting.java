@@ -36,7 +36,7 @@ public class DeleteMeeting extends AjaxCore {
 
 
 	@Test (description = "Delete appointment in the week view - Don't Notify Organizer",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void DeleteMeeting_01() throws HarnessException {
 
@@ -117,7 +117,7 @@ public class DeleteMeeting extends AjaxCore {
 
 	@Bugs (ids = "104604")
 	@Test (description = "Delete appointment in the week view - Notify Organizer",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void DeleteMeeting_02() throws HarnessException {
 

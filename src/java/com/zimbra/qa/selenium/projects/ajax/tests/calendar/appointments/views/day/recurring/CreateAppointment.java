@@ -40,7 +40,7 @@ public class CreateAppointment extends AjaxCore {
 
 
 	@Test (description = "Create basic recurring appointment (every day) in day view",
-			groups = { "smoke", "L1" } )
+			groups = { "bhr" } )
 
 	public void CreateRecurringAppointment_01() throws HarnessException {
 

@@ -32,7 +32,7 @@ public class ContextMenuAddressbooks extends AjaxCore {
 
 
 	@Test (description = "Cannot delete an addressbook system folder- Right click, Delete",
-			groups = { "functional", "L3"},
+			groups = { "functional"},
 			dataProvider = "DataProviderSystemFolders")
 
 	public void SystemFoldersDeleteButtonDisabledFromContextmenu_01(String name, SystemFolder systemFolder) throws HarnessException {
@@ -65,7 +65,7 @@ public class ContextMenuAddressbooks extends AjaxCore {
 
 
 	@Test (description = "Verify 'Rename folder' dialog is not present from right click context menu",
-			groups = { "functional", "L3"},
+			groups = { "functional"},
 			dataProvider = "DataProviderSystemFolders" )
 
 	public void CannotRenameSystemFolders_02(String name, SystemFolder systemFolder) throws HarnessException {

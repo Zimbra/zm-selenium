@@ -32,7 +32,7 @@ public class OpenMail extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Double click a mail",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void OpenMail_01() throws HarnessException {
 

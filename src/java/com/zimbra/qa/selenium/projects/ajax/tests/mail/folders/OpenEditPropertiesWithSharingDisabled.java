@@ -34,7 +34,7 @@ public class OpenEditPropertiesWithSharingDisabled extends AjaxCore {
 
 
 	@Test (description = "Bug 104040 - Open Edit properties with sharing disabled for a user ",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void OpenEditPropertiesWithSharingDisabled_01() throws HarnessException {
 

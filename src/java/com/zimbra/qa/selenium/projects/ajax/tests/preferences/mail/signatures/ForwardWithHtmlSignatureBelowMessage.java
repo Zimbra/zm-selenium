@@ -70,7 +70,7 @@ public class ForwardWithHtmlSignatureBelowMessage extends AjaxCore {
 
 	@Bugs (ids = "102479")
 	@Test (description = "Verify html signature place below included message when forwarding",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void ForwardWithHtmlSignatureBelowMessage_01() throws HarnessException {
 

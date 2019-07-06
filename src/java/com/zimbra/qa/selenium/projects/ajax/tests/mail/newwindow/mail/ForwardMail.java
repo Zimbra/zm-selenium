@@ -32,7 +32,7 @@ public class ForwardMail extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Forward mail from new window",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void ForwardMailFromNewWindow_01() throws HarnessException {
 
@@ -86,7 +86,7 @@ public class ForwardMail extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Forward a  message , using keyboard shortcut (keyboard='f') - in a separate window",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void ForwardMailFromNewWindow_02() throws HarnessException {
 

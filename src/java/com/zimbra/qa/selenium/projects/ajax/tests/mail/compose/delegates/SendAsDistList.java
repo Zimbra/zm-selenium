@@ -33,7 +33,7 @@ public class SendAsDistList extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Send As Distribution List",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void SendAsDistList_01() throws HarnessException {
 

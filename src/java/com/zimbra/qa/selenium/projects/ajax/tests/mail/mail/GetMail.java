@@ -36,7 +36,7 @@ public class GetMail extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Receive a mail",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void GetMail_01() throws HarnessException {
 
@@ -78,7 +78,7 @@ public class GetMail extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Receive a text mail - verify mail contents",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void GetMail_02() throws HarnessException {
 
@@ -118,7 +118,7 @@ public class GetMail extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Receive an html mail - verify mail contents",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void GetMail_03() throws HarnessException {
 
@@ -169,7 +169,7 @@ public class GetMail extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Click 'Get Mail' to receive any new messages",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void GetMail_04() throws HarnessException {
 
@@ -208,7 +208,7 @@ public class GetMail extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Verify new messages are polled based on the preference setting",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void GetMail_05() throws HarnessException {
 
@@ -248,7 +248,7 @@ public class GetMail extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Type keyboard shortcut (=) for 'Get Mail' to receive any new messages",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void GetMail_06() throws HarnessException {
 

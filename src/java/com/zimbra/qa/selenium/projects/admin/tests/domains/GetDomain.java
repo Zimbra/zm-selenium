@@ -45,7 +45,7 @@ public class GetDomain extends AdminCore {
 	 */
 
 	@Test (description = "Verify created domain is present in the domain list view",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void GetDomain_01() throws HarnessException {
 
@@ -88,7 +88,7 @@ public class GetDomain extends AdminCore {
 	 */
 
 	@Test (description = "Verify get domain alias operation",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void GetDomain_02() throws HarnessException {
 
@@ -142,7 +142,7 @@ public class GetDomain extends AdminCore {
 	 */
 
 	@Test (description = "Verify created domain is present in the domain list view",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void GetDomain_03() throws HarnessException {
 
@@ -187,7 +187,7 @@ public class GetDomain extends AdminCore {
 	 */
 
 	@Test (description = "Verify get domain alias operation - Search list view",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void GetDomain_04() throws HarnessException {
 

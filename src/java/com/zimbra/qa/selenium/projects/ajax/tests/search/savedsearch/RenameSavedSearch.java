@@ -33,7 +33,7 @@ public class RenameSavedSearch extends AjaxCore  {
 
 
 	@Test (description = "Rename a saved search",
-			groups = { "smoke","L1" })
+			groups = { "bhr" })
 
 	public void RenameSavedSearch_01() throws HarnessException {
 

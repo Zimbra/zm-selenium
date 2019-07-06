@@ -32,7 +32,7 @@ public class DeleteFeed extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Delete a feed folder - Right click, Delete",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void DeleteFeed_01() throws HarnessException, MalformedURLException {
 

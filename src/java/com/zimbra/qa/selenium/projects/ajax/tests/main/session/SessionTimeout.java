@@ -38,7 +38,7 @@ public class SessionTimeout extends SetGroupMailByMessagePreference {
 
 	@Bugs (ids = "75133")
 	@Test (description = "Verify content is saved when compose is interupted by zimbraMailIdleSessionTimeout",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void SessionTimeout_01() throws HarnessException {
 

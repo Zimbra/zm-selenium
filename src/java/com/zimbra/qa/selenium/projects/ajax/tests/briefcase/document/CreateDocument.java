@@ -17,21 +17,16 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.briefcase.document;
 
 import java.util.Date;
-import java.util.EnumMap;
-import java.util.HashMap;
 import java.util.List;
-import java.util.regex.Pattern;
 import java.text.SimpleDateFormat;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
-import com.zimbra.qa.selenium.framework.util.HtmlElement;
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.DocumentItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
-import com.zimbra.qa.selenium.framework.ui.Shortcut;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
@@ -52,7 +47,7 @@ public class CreateDocument extends EnableBriefcaseFeature {
 
 	@Bugs (ids = "97124")
 	@Test (description = "Create document through GUI - verify through GUI",
-		groups = { "sanity", "L0" })
+		groups = { "smoke" })
 
 	public void CreateDocument_01() throws HarnessException {
 
@@ -121,79 +116,11 @@ public class CreateDocument extends EnableBriefcaseFeature {
 	}
 
 
-	@Test (description = "Create document using keyboard shortcut - verify through SOAP & RestUtil",
-			groups = { "functional", "L3" })
-
-	public void CreateDocument_02() throws HarnessException {
-
-		ZimbraAccount account = app.zGetActiveAccount();
-
-		FolderItem briefcaseFolder = FolderItem.importFromSOAP(account, SystemFolder.Briefcase);
-
-		// Create document item
-		DocumentItem document = new DocumentItem();
-
-		String docName = document.getName();
-		String docText = document.getDocText();
-
-		Shortcut shortcut = Shortcut.S_NEWDOCUMENT;
-
-		// Open new document page using keyboard shortcut
-		app.zPageBriefcase.zSelectWindow(PageBriefcase.pageTitle);
-		app.zPageBriefcase.sWindowFocus();
-		DocumentBriefcaseNew documentBriefcaseNew = (DocumentBriefcaseNew) app.zPageBriefcase.zKeyboardShortcut(shortcut);
-
-		try {
-			app.zPageBriefcase.zSelectWindow(DocumentBriefcaseNew.pageTitle);
-			app.zPageBriefcase.sWindowFocus();
-
-			// Fill out the document with the data
-			documentBriefcaseNew.zFillField(DocumentBriefcaseNew.Field.Name, docName);
-			documentBriefcaseNew.zFillField(DocumentBriefcaseNew.Field.Body, docText);
-			documentBriefcaseNew.zSubmit();
-
-		} finally {
-			app.zPageBriefcase.zSelectWindow(PageBriefcase.pageTitle);
-			app.zPageBriefcase.sWindowFocus();
-		}
-
-		app.zPageBriefcase.zWaitForWindowClosed(DocumentBriefcaseNew.pageTitle);
-
-		// Select briefcase folder
-		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseFolder, true);
-
-		// Display file through RestUtil
-		EnumMap<PageBriefcase.Response.ResponsePart, String> response = app.zPageBriefcase
-				.displayFile(docName, new HashMap<String, String>() {
-					private static final long serialVersionUID = 1L;
-					{
-						put("fmt", PageBriefcase.Response.Format.NATIVE
-								.getFormat());
-					}
-				});
-
-		// Search for created document
-		account.soapSend("<SearchRequest xmlns='urn:zimbraMail' types='document'>" + "<query>" + docName + "</query>" + "</SearchRequest>");
-
-		String name = account.soapSelectValue("//mail:SearchResponse//mail:doc", "name");
-		ZAssert.assertNotNull(name, "Verify the search response returns the document name");
-		ZAssert.assertStringContains(name, docName, "Verify document name through SOAP");
-
-		HtmlElement element = HtmlElement.clean(response.get(PageBriefcase.Response.ResponsePart.BODY));
-		HtmlElement.evaluate(element, "//body", null, Pattern.compile(".*" + docText + ".*"), 1);
-
-		ZAssert.assertStringContains(response.get(PageBriefcase.Response.ResponsePart.BODY), docText, "Verify document content through GUI");
-
-		// Delete file upon test completion
-		app.zPageBriefcase.deleteFileByName(docName);
-	}
-
-
 	@Bugs (ids = "81299")
 	@Test (description = "Create document using New menu pulldown menu - verify through SOAP & RestUtil",
-			groups = { "smoke", "L1", "non-msedge" })
+			groups = { "bhr", "non-msedge" })
 
-	public void CreateDocument_03() throws HarnessException {
+	public void CreateDocument_02() throws HarnessException {
 
 		ZimbraAccount account = app.zGetActiveAccount();
 

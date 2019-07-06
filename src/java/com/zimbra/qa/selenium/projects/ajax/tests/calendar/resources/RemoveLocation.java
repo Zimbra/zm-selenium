@@ -35,7 +35,7 @@ public class RemoveLocation extends AjaxCore {
 
 	@Bugs (ids = "77588,96593")
 	@Test (description = "Remove location from existing appointment and verify F/B",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void RemoveLocation_01() throws HarnessException {
 

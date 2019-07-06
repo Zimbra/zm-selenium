@@ -49,7 +49,7 @@ public class ViewMail extends AdminCore {
 	 */
 
 	@Test (description = " View mail  -- manage account >> Gearbox >> edit account >>  View mail",
-			groups = { "sanity", "L0" })
+			groups = { "smoke" })
 
 	public void ViewMail_01() throws HarnessException {
 
@@ -122,7 +122,7 @@ public class ViewMail extends AdminCore {
 
 	@Bugs (ids = "69155")
 	@Test (description = "View mail  -- manage account > right click > view mail",
-			groups = { "sanity", "L0" })
+			groups = { "smoke" })
 
 	public void ViewMail_02() throws HarnessException {
 
@@ -197,7 +197,7 @@ public class ViewMail extends AdminCore {
 	 */
 
 	@Test (description = "Edit a basic account - Search List View",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void ViewMail_03() throws HarnessException {
 
@@ -276,7 +276,7 @@ public class ViewMail extends AdminCore {
 	 * @throws HarnessException
 	 */
 	@Test (description = "Edit a basic account - Search List View",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void ViewMail_04() throws HarnessException {
 
@@ -337,7 +337,7 @@ public class ViewMail extends AdminCore {
 
 
 	@Test (description = "Verify that admin is able to view mails of a locked account",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void ViewMail_05() throws HarnessException {
 

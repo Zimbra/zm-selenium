@@ -46,7 +46,7 @@ public class PromptToTurnOffAutoreply extends AjaxCore {
 
 	@Bugs (ids = "51990")
 	@Test (description = "Enable auto-reply message - Verify after login  alert dialog promts to turn off auto-reply", priority = 4,
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void PromptToTurnOffAutoreply_01() throws HarnessException {
 

@@ -35,7 +35,7 @@ public class ContextMenuOptions extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Right click To bubble and verify Delete, Copy, Edit, Expand, Add to Contact and Move To cc, bcc options",
-			groups = { "sanity", "L0" })
+			groups = { "smoke" })
 
 	public void ContextMenuOptions_01() throws HarnessException {
 

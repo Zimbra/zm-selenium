@@ -36,7 +36,7 @@ public class RenameFolder extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Rename a folder - Context menu -> Rename",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void RenameFolder_01() throws HarnessException {
 
@@ -78,7 +78,7 @@ public class RenameFolder extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Rename a folder - set to an invalid name with ':'",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void RenameFolder_02() throws HarnessException {
 
@@ -119,7 +119,7 @@ public class RenameFolder extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Get a folder with non-ASCII special characters",
-			groups = { "functional", "L2" }, dataProvider = "DataProviderSupportedCharsets")
+			groups = { "sanity" }, dataProvider = "DataProviderSupportedCharsets")
 
 	public void RenameFolder_03(ZCharset charset, String foldername) throws HarnessException {
 

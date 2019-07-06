@@ -35,7 +35,7 @@ public class NavigateToToday extends AjaxCore {
 
 	@Bugs (ids = "78821")
 	@Test (description = "Verify clicking on Today button highlights today when moved to next week",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void NavigateToToday_01() throws HarnessException {
 
@@ -93,7 +93,7 @@ public class NavigateToToday extends AjaxCore {
 
 
 	@Test (description = "Verify clicking on Today button highlights today",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void NavigateToToday_02() throws HarnessException {
 

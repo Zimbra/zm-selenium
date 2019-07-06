@@ -67,7 +67,7 @@ public class ForwardWithTextSignatureBelowMessage extends AjaxCore {
 	 */
 
 	@Test (description = "Verify text signature below included message when forwarding",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void ForwardWithTextSignatureBelowMessage_01() throws HarnessException {
 

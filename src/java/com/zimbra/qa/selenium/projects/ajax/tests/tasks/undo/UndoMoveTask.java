@@ -43,7 +43,7 @@ public class UndoMoveTask extends AjaxCore {
 
 	@Bugs (ids = "96832")
 	@Test (description = "Undo moved task",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void UndoMoveTask_01() throws HarnessException {
 

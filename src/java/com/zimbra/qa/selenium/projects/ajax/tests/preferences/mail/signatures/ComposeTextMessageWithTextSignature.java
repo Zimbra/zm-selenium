@@ -65,7 +65,7 @@ public class ComposeTextMessageWithTextSignature extends AjaxCore {
 
 	@Bugs (ids = "78085")
 	@Test (description = "Compose message with text signature and verify signature through soap",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void ComposeTextMessageWithTextSignature_01() throws HarnessException {
 

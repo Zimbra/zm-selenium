@@ -33,7 +33,7 @@ public class CreateFolder extends SetGroupMailByMessagePreference {
 	}
 
 	@Test (description = "Create a new folder by clicking to Edit -> 'New Folder'", 
-			groups = { "sanity" })
+			groups = { "smoke" })
 	
 	public void CreateFolder_01() throws HarnessException  {
 		

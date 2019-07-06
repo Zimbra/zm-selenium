@@ -37,7 +37,7 @@ public class CalendarFirstDayOfWeek extends AjaxCore {
 
 	@Bugs (ids = "101729,103862")
 	@Test (description = "Set First day of the week and verify that first day is set correctly",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void CalendarFirstDayOfWeek_01() throws HarnessException {
 
@@ -77,7 +77,7 @@ public class CalendarFirstDayOfWeek extends AjaxCore {
 	}
 
 
-	@AfterMethod(groups={"always"})
+	@AfterMethod(groups = { "always" })
 	public void afterMethod() throws HarnessException {
 		zFreshLogin();
 		logger.info(app.zGetActiveAccount().EmailAddress);

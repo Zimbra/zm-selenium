@@ -32,7 +32,7 @@ public class ReplyMailText extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Reply a plain text mail using Text editor",
-			groups = { "sanity", "L0" })
+			groups = { "smoke" })
 
 	public void ReplyPlainTextMail_01() throws HarnessException {
 

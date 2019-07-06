@@ -35,7 +35,7 @@ public class BasicLogin extends HtmlCore {
 	}
 	
 	@Test (description = "Login to the Ajax Client",
-			groups = { "sanity" })
+			groups = { "smoke" })
 	public void BasicLogin01() throws HarnessException {
 		
 		// Login

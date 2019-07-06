@@ -29,7 +29,7 @@ public class ViewContact extends TouchCore  {
 	}
 
 	@Test (description = "View a contact",
-			groups = { "sanity" })
+			groups = { "smoke" })
 	
 	public void ViewContact_01() throws HarnessException {		         		
 

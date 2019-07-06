@@ -39,7 +39,7 @@ public class DeleteContact extends AjaxCore  {
 
 
 	@Test (description = "Delete a contact item",
-			groups = { "smoke", "L0" })
+			groups = { "smoke" })
 
 	public void ClickDeleteOnToolbar_01() throws HarnessException {
 
@@ -78,7 +78,7 @@ public class DeleteContact extends AjaxCore  {
 
 
 	@Test (description = "Delete a contact item selected with checkbox",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void DeleteContactSelectedWithCheckbox_02() throws HarnessException {
 
@@ -122,7 +122,7 @@ public class DeleteContact extends AjaxCore  {
 	}
 
 	@Test (description = "Delete a contact item using keyboard short cut Del",
-			groups = { "functional", "L2"},
+			groups = { "sanity"},
 			dataProvider = "DataProviderDeleteKeys")
 
 	public void UseShortcut_03(String name, Keys keyEvent) throws HarnessException {
@@ -162,7 +162,7 @@ public class DeleteContact extends AjaxCore  {
 
 
 	@Test (description = "Right click then click delete",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void DeleteFromContextMenu_04() throws HarnessException {
 
@@ -195,7 +195,7 @@ public class DeleteContact extends AjaxCore  {
 
 
 	@Test (description = "Delete multiple contact items",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void DeleteMultipleContacts_05() throws HarnessException {
 

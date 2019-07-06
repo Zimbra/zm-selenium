@@ -39,7 +39,7 @@ public class CreateMeetingWithAttachment extends AjaxCore {
 
 	@Bugs (ids = "104231")
 	@Test (description = "Create invite by attaching file",
-		groups = { "sanity", "L0", "upload" })
+		groups = { "smoke", "upload" })
 
 	public void CreateMeetingWithAttachment_01() throws HarnessException {
 

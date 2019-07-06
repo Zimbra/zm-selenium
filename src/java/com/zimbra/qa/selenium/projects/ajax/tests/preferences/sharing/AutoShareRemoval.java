@@ -31,7 +31,7 @@ public class AutoShareRemoval extends AjaxCore {
 
 
 	@Test (description = "check for autoshare removal prompt message and press 'ok' to revoke",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void AutoShareRemoval_01() throws HarnessException {
 

@@ -45,7 +45,7 @@ public class ReplyAllMail extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Reply to all (test account in To field)",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void ReplyAllMail_01() throws HarnessException {
 
@@ -126,7 +126,7 @@ public class ReplyAllMail extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Reply to all (test account in Cc field)",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void ReplyAllMail_02() throws HarnessException {
 
@@ -208,7 +208,7 @@ public class ReplyAllMail extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Reply to all from the sent folder (test account in From field)",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void ReplyAllMail_03() throws HarnessException {
 
@@ -300,7 +300,7 @@ public class ReplyAllMail extends SetGroupMailByMessagePreference {
 
 	@Bugs (ids = "79880")
 	@Test (description = "Verify user account is not To/Cc when mismatched case)",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void ReplyAllMail_04() throws HarnessException {
 
@@ -355,7 +355,7 @@ public class ReplyAllMail extends SetGroupMailByMessagePreference {
 	
 	
 	@Test (description = "ReplyAll to a message which has a differnt Reply To address set--verify the address displayed in To fields on reply-compose",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void ReplyAllMail_05() throws HarnessException {
 		
@@ -432,7 +432,7 @@ public class ReplyAllMail extends SetGroupMailByMessagePreference {
 	
 	@Bugs( ids = "54529")
 	@Test (description = "ReplyAll to a message which has a same Reply To address set -- verify the addresses displayed in To field are not duplicated",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void ReplyAllMail_06() throws HarnessException {
 

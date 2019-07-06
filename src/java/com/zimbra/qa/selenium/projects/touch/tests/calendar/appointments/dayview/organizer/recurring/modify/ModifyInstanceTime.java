@@ -38,7 +38,7 @@ public class ModifyInstanceTime extends CalendarWorkWeekPreference {
 	}
 
 	@Test (description = "Modify instance date of series and verify it",
-			groups = { "functional" })
+			groups = { "bhr" })
 
 	public void ModifyInstanceTime_01() throws HarnessException, ParseException {
 

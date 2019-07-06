@@ -33,7 +33,7 @@ public class OpenAttachment extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Open a text attachment",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void OpenTextAttachment_01() throws HarnessException {
 

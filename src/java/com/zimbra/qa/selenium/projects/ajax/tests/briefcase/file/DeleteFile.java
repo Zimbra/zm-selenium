@@ -42,7 +42,7 @@ public class DeleteFile extends EnableBriefcaseFeature {
 
 
 	@Test (description = "Upload file through RestUtil - delete & verify through GUI",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void DeleteFile_01() throws HarnessException {
 
@@ -86,7 +86,7 @@ public class DeleteFile extends EnableBriefcaseFeature {
 
 
 	@Test (description = "Upload file through RestUtil - delete using Delete Key & check trash",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void DeleteFile_02() throws HarnessException {
 
@@ -143,7 +143,7 @@ public class DeleteFile extends EnableBriefcaseFeature {
 
 
 	@Test (description = "Upload file through RestUtil - delete using <Backspace> Key & check trash",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void DeleteFile_03() throws HarnessException {
 
@@ -200,7 +200,7 @@ public class DeleteFile extends EnableBriefcaseFeature {
 
 
 	@Test (description = "Upload file through RestUtil - delete using Right Click context menu",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void DeleteFile_04() throws HarnessException {
 
@@ -246,7 +246,7 @@ public class DeleteFile extends EnableBriefcaseFeature {
 
 	@Bugs (ids = "46889")
 	@Test (description = "Cannot delete uploaded file if it was already deleted once before",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void DeleteFile_05() throws HarnessException {
 

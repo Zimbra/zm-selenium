@@ -16,7 +16,6 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.contacts.contacts;
 
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.items.ContactItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
@@ -28,10 +27,8 @@ import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
-import com.zimbra.qa.selenium.projects.ajax.pages.PagePrint;
 import com.zimbra.qa.selenium.projects.ajax.pages.contacts.PageContacts;
 import com.zimbra.qa.selenium.projects.ajax.pages.mail.FormMailNew;
-import com.zimbra.qa.selenium.projects.ajax.pages.search.PageAdvancedSearch;
 
 public class ContactContextMenu extends AjaxCore {
 
@@ -73,7 +70,7 @@ public class ContactContextMenu extends AjaxCore {
 
 
 	@Test (description = "Right click a contact to show a menu",
-			groups = { "smoke", "L0" })
+			groups = { "smoke" })
 
 	public void ShowContextMenu_01() throws HarnessException {
 
@@ -103,7 +100,7 @@ public class ContactContextMenu extends AjaxCore {
 
 
 	@Test (description = "Right click then click New Email",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void NewEmail_02() throws HarnessException {
 
@@ -124,53 +121,10 @@ public class ContactContextMenu extends AjaxCore {
 	}
 
 
-	@Test (description = "Right click then click Advanced Search",
-			groups = { "deprecated"})
-
-	public void AdvancedSearch_03() throws HarnessException {
-
-		ContactItem contactItem = createSelectARandomContactItem();
-
-		// Click Advanced Search
-		PageAdvancedSearch pageAdvancedSearch = (PageAdvancedSearch) app.zPageContacts.zListItem(Action.A_RIGHTCLICK, Button.B_SEARCHADVANCED, contactItem.fileAs);
-
-		// Verify Advanced Search page is active
-		ZAssert.assertTrue(pageAdvancedSearch.zIsActive(), "Verify Advanced Search page is active");
-
-		// Close pageAdvancedSearch panel
-		pageAdvancedSearch.zToolbarPressButton(Button.B_CLOSE);
-	}
-
-
-	@Test (description = "Right click then click Print",
-			groups = { "smoke-skip", "L3-skip" })
-
-	public void Print_04() throws HarnessException {
-
-		ContactItem contactItem = createSelectARandomContactItem();
-
-		PagePrint pagePrint = (PagePrint) app.zPageContacts.zListItem(Action.A_RIGHTCLICK, Button.B_PRINT,
-				contactItem.fileAs);
-
-		// Close Print Dialog
-		pagePrint.cancelPrintDialog();
-
-		// verify first,last,email displayed in Print View
-		Assert.assertTrue(
-				pagePrint.isContained("css=td[class='contactHeader']",
-						contactItem.lastName + ", " + contactItem.firstName),
-				" expected: " + contactItem.lastName + "," + contactItem.firstName + " not displayed in Print Page"
-						+ " was:");
-
-		Assert.assertTrue(pagePrint.isContained("css=td[class='contactOutput']", contactItem.email),
-				contactItem.firstName + " not displayed in Print Page");
-
-	}
-
 	@Test (description = "Right click then  click Find Emails->Received From contact",
-			groups = { "smoke" , "L1" })
+			groups = { "bhr" })
 
-	public void FindEmailsReceivedFromContact_05() throws HarnessException {
+	public void FindEmailsReceivedFromContact_03() throws HarnessException {
 
 		// Create email sent to this contacts
 		String subject = "subject" + ConfigProperties.getUniqueString();
@@ -206,9 +160,9 @@ public class ContactContextMenu extends AjaxCore {
 
 
 	@Test (description = "Right click then  click Find Emails->Sent To contact",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
-	public void FindEmailsSentToContact_06() throws HarnessException {
+	public void FindEmailsSentToContact_04() throws HarnessException {
 
 		// Create email sent to this contacts
 		String subject = "subject" + ConfigProperties.getUniqueString();

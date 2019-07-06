@@ -35,7 +35,7 @@ public class MarkSpamMessage extends SetGroupMailByConversationPreference{
 		logger.info("New "+ MarkSpamMessage.class.getCanonicalName());
 	}
 	@Test (description = "Mark message as spam, from option menu",
-			groups = { "smoke" })
+			groups = { "bhr" })
 
 
 	public void MarkSpamMessage_01() throws HarnessException, AWTException {

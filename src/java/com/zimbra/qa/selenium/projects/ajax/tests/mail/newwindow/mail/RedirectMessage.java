@@ -31,7 +31,7 @@ public class RedirectMessage extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Redirect message, using 'Redirect' toolbar button - in separate window",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void RedirectMessage_01() throws HarnessException {
 

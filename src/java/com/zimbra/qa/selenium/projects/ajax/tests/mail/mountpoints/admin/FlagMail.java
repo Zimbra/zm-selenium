@@ -30,7 +30,7 @@ public class FlagMail extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Verify success on Flag a shared mail (admin share)",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void FlagMail_01() throws HarnessException {
 
@@ -105,7 +105,7 @@ public class FlagMail extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Verify Permission Denied on Flag (keyboard='mf') a shared mail (read-only share)",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void FlagMail_02() throws HarnessException {
 

@@ -44,7 +44,7 @@ public class SaveDraftMail extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Save a basic draft (subject only)",
-			groups = { "smoke", "L0" })
+			groups = { "smoke" })
 
 	public void SaveDraftMail_01() throws HarnessException {
 
@@ -85,7 +85,7 @@ public class SaveDraftMail extends SetGroupMailByMessagePreference {
 	 */
 
 	@Test (description = "Save draft using keyboard shortcut 'Escape'",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void SaveDraftMail_02() throws HarnessException {
 
@@ -120,7 +120,7 @@ public class SaveDraftMail extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Save draft with To",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void SaveDraftMail_03() throws HarnessException {
 
@@ -161,7 +161,7 @@ public class SaveDraftMail extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Save draft with two receipients in To field",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void SaveDraftMail_04() throws HarnessException {
 
@@ -208,7 +208,7 @@ public class SaveDraftMail extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Save draft with Cc",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void SaveDraftMail_05() throws HarnessException {
 
@@ -250,7 +250,7 @@ public class SaveDraftMail extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Save draft with 2 Cc",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void SaveDraftMail_06() throws HarnessException {
 
@@ -303,7 +303,7 @@ public class SaveDraftMail extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Save draft with Bcc",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void SaveDraftMail_07() throws HarnessException {
 
@@ -350,7 +350,7 @@ public class SaveDraftMail extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Save draft with 2 Bcc",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void SaveDraftMail_08() throws HarnessException {
 

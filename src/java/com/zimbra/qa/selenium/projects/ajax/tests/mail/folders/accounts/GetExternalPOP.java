@@ -45,7 +45,7 @@ public class GetExternalPOP extends SetGroupMailByMessagePreference {
 	 */
 
 	@Test (description = "View an external folder - POP",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void GetExternalPOP_01() throws HarnessException {
 
@@ -147,7 +147,7 @@ public class GetExternalPOP extends SetGroupMailByMessagePreference {
 	 */
 
 	@Test (description = "POP: get updates from the external account - 'refresh' button",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void GetExternalPOP_02() throws HarnessException {
 
@@ -262,7 +262,7 @@ public class GetExternalPOP extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "POP: get updates from the external account - right click -> sync",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void GetExternalPOP_03() throws HarnessException {
 

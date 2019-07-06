@@ -32,7 +32,7 @@ public class SendOnBehalfOfDistList extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Send On Behalf Of Distribution List",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void SendOnBehalfOfDistList_01() throws HarnessException {
 

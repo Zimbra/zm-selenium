@@ -31,7 +31,7 @@ public class ShortcutDialog extends AjaxCore {
 
 
 	@Test (description = "Open the 'Shortcut' dialog >> Verify contents and Close Link",
-		groups = { "functional", "L3" })
+		groups = { "functional" })
 
 	public void Shortcutdialog_Close_01() throws HarnessException {
 
@@ -49,7 +49,7 @@ public class ShortcutDialog extends AjaxCore {
 
 
 	@Test (description = "Open the 'Shortcut' dialog >> Verify in New Window link and contents",
-		groups = { "functional", "L3" })
+		groups = { "functional" })
 
 	public void Shortcutdialog_NewWindow_02() throws HarnessException {
 

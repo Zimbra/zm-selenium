@@ -34,7 +34,7 @@ public class AddAttendee extends CalendarWorkWeekPreference {
 	}
 	
 	@Test (description = "Modify meeting by adding more attendees",
-			groups = { "smoke" })
+			groups = { "bhr" })
 			
 	public void AddAttendee_01() throws HarnessException {
 		

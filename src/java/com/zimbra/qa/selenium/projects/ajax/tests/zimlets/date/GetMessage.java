@@ -19,7 +19,6 @@ package com.zimbra.qa.selenium.projects.ajax.tests.zimlets.date;
 import java.util.*;
 import java.util.regex.Pattern;
 import org.testng.annotations.*;
-import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
@@ -40,7 +39,7 @@ public class GetMessage extends AjaxCore {
 
 
 	@Test (description = "Receive a mail with a basic date",
-			groups = { "smoke", "L0" })
+			groups = { "smoke" })
 
 	public void GetMessage_01() throws HarnessException {
 
@@ -78,7 +77,7 @@ public class GetMessage extends AjaxCore {
 
 
 	@Test (description = "Receive a mail with two dates in body",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void GetMessage_02() throws HarnessException {
 
@@ -119,7 +118,7 @@ public class GetMessage extends AjaxCore {
 
 
 	@Test (description = "Validate the date zimlet matches valid dates",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void GetMessage_03() throws HarnessException {
 
@@ -156,7 +155,7 @@ public class GetMessage extends AjaxCore {
 
 
 	@Test (description = "Validate the date zimlet does not match invalid dates",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void GetMessage_04() throws HarnessException {
 
@@ -183,49 +182,10 @@ public class GetMessage extends AjaxCore {
 	}
 
 
-	@Bugs (ids = "86667")
-	@Test (description = "Receive a mail with a date in subject(as Per bug this is invalid test case",
-			groups = { "deprecated" })
+	@Test (description = "Receive a mail with a date string, such as today, tomorrow, last night, etc.",
+			groups = { "sanity" })
 
 	public void GetMessage_05() throws HarnessException {
-
-		// Create the message data to be sent
-		String date = "12/25/2016";
-		String subject = "subject " + date;
-
-		// Send the message from AccountA to the ZCS user
-		ZimbraAccount.AccountA().soapSend(
-			"<SendMsgRequest xmlns='urn:zimbraMail'>" +
-				"<m>" +
-					"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
-					"<su>"+ subject +"</su>" +
-					"<mp ct='text/plain'>" +
-						"<content>content"+ ConfigProperties.getUniqueString() +"</content>" +
-					"</mp>" +
-				"</m>" +
-			"</SendMsgRequest>");
-
-		// Refresh current view
-		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
-
-		// Get all the messages in the inbox
-		DisplayMail display = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
-
-		// Wait for a bit so the zimlet can take affect
-		SleepUtil.sleep(5000);
-
-		// Find the subject and the phone span
-		String locator = "css=span[id$='_com_zimbra_date']";
-
-		ZAssert.assertTrue(display.sIsElementPresent(locator), "Verify the date zimlet applies to the subject");
-		ZAssert.assertEquals(display.sGetText(locator), date, "Verify the date zimlet highlights the date");
-	}
-
-
-	@Test (description = "Receive a mail with a date string, such as today, tomorrow, last night, etc.",
-			groups = { "functional", "L2" })
-
-	public void GetMessage_11() throws HarnessException {
 		String newline = String.format("%n");
 
 		List<String> values = Arrays.asList("today,tonight,this morning,tomorrow night,tomorrow morning,tomorrow,last night,yesterday morning,yesterday,this Monday,next Monday,Last Monday,first Monday in April,third Monday".split(","));

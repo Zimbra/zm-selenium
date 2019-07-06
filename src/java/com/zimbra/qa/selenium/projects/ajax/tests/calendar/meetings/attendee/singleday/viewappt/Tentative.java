@@ -33,7 +33,7 @@ public class Tentative extends AjaxCore {
 
 
 	@Test (description = "View meeting invite by opening it and mark as Tentative",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void TentativeMeeting_01() throws HarnessException {
 

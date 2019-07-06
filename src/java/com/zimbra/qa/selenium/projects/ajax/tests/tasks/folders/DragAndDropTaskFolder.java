@@ -43,7 +43,7 @@ public class DragAndDropTaskFolder extends AjaxCore {
 
 	@Bugs (ids = "69661")
 	@Test (description = "Drag one Task folder and Drop into other",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void DragAndDropTaskFolder_01() throws HarnessException {
 

@@ -35,7 +35,7 @@ public class ModifyTimeToAllDay extends CalendarWorkWeekPreference {
 	}
 	
 	@Test (description = "Modify meeting time by single day to all day",
-			groups = { "smoke" })
+			groups = { "bhr" })
 			
 	public void ModifyTimeToAllDay_01() throws HarnessException {
 		

@@ -35,7 +35,7 @@ public class ModifyDLDisplayNameAndDescription extends AjaxCore  {
 
 
 	@Test (description = "Modify DL display name and description",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void ModifyDLDisplayNameAndDescription_01 () throws HarnessException {
 

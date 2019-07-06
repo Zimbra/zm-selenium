@@ -38,7 +38,7 @@ public class AddEquipment extends AjaxCore {
 
 
 	@Test (description = "Add Equipment to existing appointment by typing equipment name and verify F/B",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void AddEquipment_01() throws HarnessException {
 
@@ -105,7 +105,7 @@ public class AddEquipment extends AjaxCore {
 
 
 	@Test (description = "Add equipment to exisiting appt by from Serach equipment dialog",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void AddEquipment_02() throws HarnessException {
 

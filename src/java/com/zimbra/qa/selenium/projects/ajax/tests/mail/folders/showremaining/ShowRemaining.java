@@ -31,7 +31,7 @@ public class ShowRemaining extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Click on 'show remaining folders'",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void ShowRemaining_01() throws HarnessException {
 

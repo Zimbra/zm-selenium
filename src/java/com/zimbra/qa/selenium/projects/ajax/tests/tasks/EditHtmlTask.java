@@ -51,7 +51,7 @@ public class EditHtmlTask extends AjaxCore{
 
 
 	@Test (description = "Create Html task through SOAP - edit subject and verify through Soap",
-			groups = { "smoke", "L0" })
+			groups = { "smoke" })
 
 	public void EditHtmlTask_01() throws HarnessException {
 
@@ -117,7 +117,7 @@ public class EditHtmlTask extends AjaxCore{
 
 	@Bugs (ids = "64647")
 	@Test (description = "Create Html task through SOAP - edit due date >> Refresh task >>verify Due Date in list view through GUI",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void EditHtmlTask_02() throws HarnessException {
 
@@ -184,7 +184,7 @@ public class EditHtmlTask extends AjaxCore{
 
 
 	@Test (description = "Create Html task through SOAP - Edit html task using Right Click Context Menu & verify through GUI",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void EditHtmlTask_03() throws HarnessException {
 
@@ -262,7 +262,7 @@ public class EditHtmlTask extends AjaxCore{
 
 
 	@Test (description = "Create Html task through SOAP - Edit> convert Html to Plain Text and veirfy Warning dialog and its content",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void EditHtmlTask_04() throws HarnessException {
 

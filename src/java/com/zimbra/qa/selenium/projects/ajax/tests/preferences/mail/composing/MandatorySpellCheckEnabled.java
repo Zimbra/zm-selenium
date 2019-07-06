@@ -40,7 +40,7 @@ public class MandatorySpellCheckEnabled extends AjaxCore {
 
 
 	@Test (description = "Verify mandatory spellcheck before sending a message",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void MandatorySpellCheckEnabled_01() throws HarnessException {
 

@@ -31,7 +31,7 @@ public class ColorMessagesEnabledTrue extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "ZimbraPrefColorMessagesEnabledTrue=TRUE: Display messages with 1 tag",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void ColorMessagesEnabledTrue_01() throws HarnessException {
 
@@ -83,7 +83,7 @@ public class ColorMessagesEnabledTrue extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "ZimbraPrefColorMessagesEnabledTrue=TRUE: Display messages with 2 tags",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void ColorMessagesEnabledTrue_02() throws HarnessException {
 

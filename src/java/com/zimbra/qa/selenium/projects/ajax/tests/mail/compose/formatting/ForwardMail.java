@@ -35,7 +35,7 @@ public class ForwardMail extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Forward an Excel formatting data message  and verify its formatting",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void ForwardMail_01() throws HarnessException {
 

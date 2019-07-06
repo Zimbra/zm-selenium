@@ -66,7 +66,7 @@ public class ReplyWithHtmlSignature extends AjaxCore {
 	 */
 
 	@Test (description = "Reply message with html signature and Verify signature through soap",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void ReplyWithHtmlSignature_01() throws HarnessException {
 

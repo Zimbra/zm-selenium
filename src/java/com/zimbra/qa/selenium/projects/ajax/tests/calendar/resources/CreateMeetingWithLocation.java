@@ -35,7 +35,7 @@ public class CreateMeetingWithLocation extends AjaxCore {
 
 	@Bugs (ids = "69132")
 	@Test (description = "Create simple meeting with location resource", 
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void CreateMeetingWithSingleLocation_01() throws HarnessException {
 
@@ -78,7 +78,7 @@ public class CreateMeetingWithLocation extends AjaxCore {
 
 	@Bugs (ids = "69132")
 	@Test (description = "Create simple meeting with two location resource", 
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void CreateMeetingWithMultiLocation_02() throws HarnessException {
 
@@ -120,7 +120,7 @@ public class CreateMeetingWithLocation extends AjaxCore {
 
 
 	@Test (description = "Create simple meeting with floating location resource", 
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void CreateMeetingWithFloatingLocation_03() throws HarnessException {
 

@@ -33,7 +33,7 @@ public class DeleteMount extends SetGroupMailByMessagePreference{
 	}
 
 	@Test (description = "Verify user can delete mount point with any rights",
-			groups = { "functional" })
+			groups = { "sanity" })
 
 	public void DeleteMount_01() throws HarnessException  {
 

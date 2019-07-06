@@ -36,7 +36,7 @@ public class CreateFilter extends SetGroupMailByMessagePreference {
 
 	@Bugs (ids = "88916")
 	@Test (description = "Verify Add Filter dialog from new window action menu -> Create Filter",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void CreateFilter_01() throws HarnessException {
 

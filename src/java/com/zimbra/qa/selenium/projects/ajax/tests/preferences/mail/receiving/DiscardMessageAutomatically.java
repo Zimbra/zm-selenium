@@ -35,7 +35,7 @@ public class DiscardMessageAutomatically extends SetGroupMailByMessagePreference
 
 
 	@Test (description = "Set discard message automatically and send a message to self",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void DiscardMessageAutomatically_01() throws HarnessException {
 

@@ -38,7 +38,7 @@ public class ModifyDLByAddingListOwnersAndOwnerDeletesDL extends AjaxCore  {
 
 
 	@Test (description = "Modify DL by adding list owners and owner deletes DL",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void ModifyDLByAddingListOwnersAndOwnerDeletesDL_01() throws HarnessException {
 

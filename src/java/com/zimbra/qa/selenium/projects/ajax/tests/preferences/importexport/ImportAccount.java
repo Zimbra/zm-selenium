@@ -37,7 +37,7 @@ public class ImportAccount extends AjaxCore {
 
 
 	@Test (description = "Verify the presence of mail, contacts, calendar appointments, tasks and Briefcase documents after importing an exported compressed file",
-			groups = { "sanity", "L0", "upload" })
+			groups = { "smoke", "upload" })
 
 	public void ImportAccount_01() throws HarnessException {
 

@@ -42,7 +42,7 @@ public class GetMail extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Open message in separate window",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void GetMail_01() throws HarnessException {
 
@@ -84,7 +84,7 @@ public class GetMail extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Open message in separate window - verify mail contents",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void GetMail_02() throws HarnessException {
 
@@ -134,7 +134,7 @@ public class GetMail extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Open html message in separate window - verify mail contents",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void GetMail_03() throws HarnessException {
 

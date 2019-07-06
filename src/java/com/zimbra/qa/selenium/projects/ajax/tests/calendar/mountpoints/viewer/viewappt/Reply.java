@@ -35,7 +35,7 @@ public class Reply extends AjaxCore {
 
 
 	@Test (description = "Grantee replies to appointment from grantor's calendar (Actions -> Reply)",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void Reply_01() throws HarnessException {
 

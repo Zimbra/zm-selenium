@@ -33,7 +33,7 @@ public class ExpandDL extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Verify the Expand icon a DL in the To field",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void ExpandDL_01() throws HarnessException {
 
@@ -81,7 +81,7 @@ public class ExpandDL extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Expand a DL in the To field",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void ExpandDL_02() throws HarnessException {
 

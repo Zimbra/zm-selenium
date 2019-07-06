@@ -36,7 +36,7 @@ public class NewEmail extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Right click from header and verify New Email option",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void NewEmail_01() throws HarnessException {
 

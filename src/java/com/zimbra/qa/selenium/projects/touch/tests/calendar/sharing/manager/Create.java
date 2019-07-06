@@ -37,7 +37,7 @@ public class Create extends CalendarWorkWeekPreference {
 	
 	@Bugs (ids = "95890")
 	@Test (description = "Create a basic meeting with attendee and location on shared mailbox",
-			groups = { "smoke" })
+			groups = { "bhr" })
 
 	public void CreateMeeting_01() throws HarnessException {
 		

@@ -49,7 +49,7 @@ public class RepeatedlyOpenTaskWithAttachment extends AjaxCore {
 
 	@Bugs (ids = "75283")
 	@Test (description = "Same attachment keeps on adding while opening same task multiple times",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void RepeatedlyOpenTaskWithAttachment_01() throws HarnessException {
 

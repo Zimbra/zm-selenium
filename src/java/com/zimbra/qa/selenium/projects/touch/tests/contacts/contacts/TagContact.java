@@ -33,7 +33,7 @@ public class TagContact extends TouchCore  {
 	}
 	
 	@Test (description = "Add Tag to a contact item",
-			groups = { "sanity" })
+			groups = { "bhr" })
 	
 	public void TagContact_01() throws HarnessException {
 

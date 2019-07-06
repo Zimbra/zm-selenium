@@ -42,7 +42,7 @@ public class UndoDeleteTask extends AjaxCore {
 
 	@Bugs (ids = "96832")
 	@Test (description = "Undone deleted  task",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void UndoDeleteTask_01() throws HarnessException {
 

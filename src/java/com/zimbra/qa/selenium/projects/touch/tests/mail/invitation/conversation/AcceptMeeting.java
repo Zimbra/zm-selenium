@@ -53,7 +53,7 @@ public class AcceptMeeting extends CalendarWorkWeekPreference {
 	}
 	
 	@Test (description = "Accept a meeting using Accept button from invitation message", 
-			groups = { "sanity" })
+			groups = { "smoke" })
 	
 	public void AcceptMeeting_01() throws HarnessException {
 
@@ -138,7 +138,7 @@ public class AcceptMeeting extends CalendarWorkWeekPreference {
 	}
 
 	@Test (description = "Accept meeting - Verify organizer gets notification message", 
-			groups = { "functional" })
+			groups = { "sanity" })
 	
 	public void AcceptMeeting_02() throws HarnessException {
 

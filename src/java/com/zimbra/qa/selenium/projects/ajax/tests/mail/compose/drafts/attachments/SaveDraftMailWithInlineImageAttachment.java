@@ -37,7 +37,7 @@ public class SaveDraftMailWithInlineImageAttachment extends SetGroupMailByMessag
 
 
 	@Test (description = "Save draft a mail with inline attachment and send a mail",
-			groups = { "smoke", "L1", "upload", "non-msedge" })
+			groups = { "bhr", "upload", "non-msedge" })
 
 	public void SaveDraftAndSendMailWithInlineImageAttachment_01() throws HarnessException {
 
@@ -108,7 +108,7 @@ public class SaveDraftMailWithInlineImageAttachment extends SetGroupMailByMessag
 
 
 	@Test (description = "Open existing saved draft with attachment and send a mail with inline image attachment",
-			groups = { "functional", "L2", "upload" })
+			groups = { "sanity", "upload" })
 
 	public void OpenExistingSavedDraftAndSendMailWithInlineImageAttachment_02() throws HarnessException {
 

@@ -35,7 +35,7 @@ public class CreateMeeting extends CalendarWorkWeekPreference {
 	}
 	
 	@Test (description = "Create a basic meeting with attendee and location",
-			groups = { "sanity" })
+			groups = { "smoke" })
 			
 	public void CreateMeeting_01() throws HarnessException {
 		
@@ -94,7 +94,7 @@ public class CreateMeeting extends CalendarWorkWeekPreference {
 	}
 	
 	@Test (description = "Create invite with multiple attendees and location",
-			groups = { "sanity" })
+			groups = { "bhr" })
 			
 	public void CreateMeeting_02() throws HarnessException {
 		

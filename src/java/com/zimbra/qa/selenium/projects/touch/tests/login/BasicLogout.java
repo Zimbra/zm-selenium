@@ -29,7 +29,7 @@ public class BasicLogout extends TouchCore {
 	}
 	
 	@Test (description = "Logout of the Touch Client",
-			groups = { "sanity" })
+			groups = { "smoke" })
 			
 	public void BasicLogout01() throws HarnessException {
 		

@@ -41,7 +41,7 @@ public class UnTagMail extends SetGroupMailByMessagePreference {
 
 	@Bugs (ids = "99519")
 	@Test (description = "Un-Tag a message using Toolbar -> Tag -> Remove Tag - in a separate window",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void UnTagMail_01() throws HarnessException {
 
@@ -107,7 +107,7 @@ public class UnTagMail extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Remove a tag from a message using Keyboard shortcut u >>in a separate window",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void UnTagMail_02() throws HarnessException {
 
@@ -172,7 +172,7 @@ public class UnTagMail extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Remove a tag from a message clicking 'x' from tag bubble >>in a separate window",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void UnTagMail_03() throws HarnessException {
 

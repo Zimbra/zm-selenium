@@ -38,7 +38,7 @@ public class TagFile extends EnableBriefcaseFeature {
 
 
 	@Test (description = "Tag a File using Toolbar -> Tag -> New Tag",
-			groups = { "smoke", "L0" })
+			groups = { "smoke" })
 
 	public void TagFile_01() throws HarnessException {
 
@@ -105,7 +105,7 @@ public class TagFile extends EnableBriefcaseFeature {
 
 
 	@Test (description = "Tag uploaded File using pre-existing Tag",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void TagFile_02() throws HarnessException {
 
@@ -163,7 +163,7 @@ public class TagFile extends EnableBriefcaseFeature {
 
 
 	@Test (description = "Tag uploaded File using Right Click context menu",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void TagFile_03() throws HarnessException {
 

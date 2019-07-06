@@ -41,7 +41,7 @@ public class OpenInTabMailFolder extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Verify Open in new tab option for mail app - Inbox",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void OpenInTabMailFolder_01() throws HarnessException {
 
@@ -85,7 +85,7 @@ public class OpenInTabMailFolder extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Verify Open in new tab option for mail app - Draft",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void OpenInTabMailFolder_02() throws HarnessException {
 
@@ -131,7 +131,7 @@ public class OpenInTabMailFolder extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Verify Open in new tab option for mail app - Custom folder",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void OpenInTabMailFolder_03() throws HarnessException {
 

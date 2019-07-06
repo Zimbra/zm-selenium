@@ -37,7 +37,7 @@ public class AppMail extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "?app=mail in url",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void AppMail_01() throws HarnessException {
 

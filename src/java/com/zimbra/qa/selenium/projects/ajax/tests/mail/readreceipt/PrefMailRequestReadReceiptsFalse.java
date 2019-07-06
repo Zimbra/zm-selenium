@@ -32,7 +32,7 @@ public class PrefMailRequestReadReceiptsFalse extends SetGroupMailByMessagePrefe
 
 
 	@Test (description = "Send a text message requesting a read receipt",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void CreateMailText_01() throws HarnessException {
 

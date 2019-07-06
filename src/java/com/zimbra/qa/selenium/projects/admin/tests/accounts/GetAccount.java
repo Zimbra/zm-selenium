@@ -44,7 +44,7 @@ public class GetAccount extends AdminCore {
 	 */
 
 	@Test (description = "Verify created account is displayed in UI -- Manage Account View.",
-			groups = { "sanity", "L0" })
+			groups = { "smoke" })
 
 	public void GetAccount_01() throws HarnessException {
 
@@ -85,7 +85,7 @@ public class GetAccount extends AdminCore {
 	 */
 
 	@Test (description = "Verify created account is displayed in UI -- Search list view",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void GetAccount_02() throws HarnessException {
 
@@ -130,7 +130,7 @@ public class GetAccount extends AdminCore {
 	 */
 
 	@Test (description = "Verify that system accounts such as spam/ham, wiki and galsync accounts are not displayed in the list.",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void GetAccount_03() throws HarnessException {
 
@@ -193,7 +193,7 @@ public class GetAccount extends AdminCore {
 	 */
 
 	@Test (description = "Verify system accounts i.e. spam/ham, wiki, galsync account is displayed in Search list view",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void GetAccount_04() throws HarnessException {
 

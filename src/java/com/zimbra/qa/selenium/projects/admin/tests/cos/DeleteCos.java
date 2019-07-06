@@ -51,7 +51,7 @@ public class DeleteCos extends AdminCore {
 	 */
 
 	@Test (description = "Verify delete cos operation -- Manage cos view",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void DeleteCos_01() throws HarnessException {
 
@@ -98,7 +98,7 @@ public class DeleteCos extends AdminCore {
 	 */
 
 	@Test (description = "Verify delete cos operation -- Manage COS list view/Right click menu",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void DeleteCos_02() throws HarnessException {
 
@@ -145,7 +145,7 @@ public class DeleteCos extends AdminCore {
 	 */
 
 	@Test (description = "Verify delete cos operation -- Search list view",
-			groups = { "functional-skip", "L3-skip" })
+			groups = { "functional-known-failure" })
 
 	public void DeleteCos_03() throws HarnessException {
 
@@ -203,7 +203,7 @@ public class DeleteCos extends AdminCore {
 	 */
 
 	@Test (description = "Verify delete cos in -- Search list view/Right click menu",
-			groups = { "functional-skip", "L3-skip" })
+			groups = { "functional-known-failure" })
 
 	public void DeleteCos_04() throws HarnessException {
 
@@ -251,7 +251,7 @@ public class DeleteCos extends AdminCore {
 
 
 	@Test (description = "Verify Delete COS operation via tree menu is disabled in search results",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void DeleteCos_05() throws HarnessException {
 
@@ -278,7 +278,7 @@ public class DeleteCos extends AdminCore {
 
 
 	@Test (description = "Verify Delete COS operation via context option is disabled inn search results",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void DeleteCos_06() throws HarnessException {
 

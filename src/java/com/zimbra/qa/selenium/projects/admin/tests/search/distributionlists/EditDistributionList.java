@@ -50,7 +50,7 @@ public class EditDistributionList extends AdminCore {
 	 */
 
 	@Test (description = "Verify edit operation for distribution list - Search distribution list view",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void EditDistributionList_01() throws HarnessException {
 
@@ -108,7 +108,7 @@ public class EditDistributionList extends AdminCore {
 	 */
 
 	@Test (description = "Verify edit operation for distribution list - Search distribution list view + right click",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void EditDistributionList_02() throws HarnessException {
 
@@ -167,7 +167,7 @@ public class EditDistributionList extends AdminCore {
 
 	@Bugs (ids = "97150")
 	@Test (description = "Verify edit operation for dynamic distribution list - Search distribution list view",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void EditDistributionList_03() throws HarnessException {
 

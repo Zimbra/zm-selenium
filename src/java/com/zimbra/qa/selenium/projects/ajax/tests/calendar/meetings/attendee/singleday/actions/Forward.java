@@ -42,7 +42,7 @@ public class Forward extends AjaxCore {
 
 
 	@Test (description = "Forward a meeting invite by changing content",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void ForwardMeeting_01() throws HarnessException {
 
@@ -115,7 +115,7 @@ public class Forward extends AjaxCore {
 
 	@Bugs (ids = "50663")
 	@Test (description = "Forward a meeting invite after accepting it",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void ForwardMeeting_02() throws HarnessException {
 
@@ -201,7 +201,7 @@ public class Forward extends AjaxCore {
 
 	@Bugs (ids = "100340")
 	@Test (description = "forwarding invite shows html source in meeting notes section",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void ForwardMeeting_03() throws HarnessException {
 
@@ -250,7 +250,7 @@ public class Forward extends AjaxCore {
 
 	@Bugs (ids = "100340")
 	@Test (description = "forwarding invite shows html source in meeting notes section",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void ForwardMeeting_04() throws HarnessException {
 

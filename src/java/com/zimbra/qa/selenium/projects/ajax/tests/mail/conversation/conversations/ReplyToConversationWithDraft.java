@@ -34,7 +34,7 @@ public class ReplyToConversationWithDraft extends SetGroupMailByConversationPref
 
 	@Bugs (ids = "97098")
 	@Test (description = "Reply to a conversation with a draft",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void ReplyToConversationWithDraft_01() throws HarnessException {
 
@@ -91,7 +91,7 @@ public class ReplyToConversationWithDraft extends SetGroupMailByConversationPref
 
 	@Bugs (ids = "81920")
 	@Test (description = "Reply to a conversation with a trashed message",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void ReplyToConversationWithDraft_02() throws HarnessException {
 
@@ -145,7 +145,7 @@ public class ReplyToConversationWithDraft extends SetGroupMailByConversationPref
 
 	@Bugs (ids = "81920")
 	@Test (description = "Reply to a conversation with a spammed message",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void ReplyToConversationWithDraft_03() throws HarnessException {
 
@@ -199,7 +199,7 @@ public class ReplyToConversationWithDraft extends SetGroupMailByConversationPref
 
 	@Bugs (ids = "81920")
 	@Test (description = "Reply to a conversation with a sent message",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void ReplyToConversationWithDraft_04() throws HarnessException {
 

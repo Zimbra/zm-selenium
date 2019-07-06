@@ -32,7 +32,7 @@ public class DeleteMail extends SetGroupMailByMessagePreference{
 	}
 
 	@Test (description = "Verify user can delete email on mount point with manager rights",
-			groups = { "smoke" })
+			groups = { "sanity" })
 
 	public void DeleteMail_01() throws HarnessException  {
 

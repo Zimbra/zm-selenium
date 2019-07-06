@@ -47,7 +47,7 @@ public class CheckExpandCollaseFolders extends SetGroupMailByMessagePreference {
 
 	@Bugs (ids = "57468")
 	@Test (description = "Verify collapsed folders remain collapsed when getting mail",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void CheckExpandCollaseFolders_01() throws HarnessException {
 

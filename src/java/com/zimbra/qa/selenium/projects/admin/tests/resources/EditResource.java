@@ -50,7 +50,7 @@ public class EditResource extends AdminCore {
 	 */
 
 	@Test (description = " Edit Resource name  -- Manage resource View -- Location",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void EditResource_01() throws HarnessException {
 
@@ -106,7 +106,7 @@ public class EditResource extends AdminCore {
 	 */
 
 	@Test (description = " Edit Resource name  -- Manage resource View -- Location",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void EditResource_02() throws HarnessException {
 
@@ -171,7 +171,7 @@ public class EditResource extends AdminCore {
 	 */
 
 	@Test (description = "Edit Resource name -- Manage resource View/Right Click Menu -- Location",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void EditResource_03() throws HarnessException {
 
@@ -227,7 +227,7 @@ public class EditResource extends AdminCore {
 	 */
 
 	@Test (description = "Edit Resource name -- Manage resource View/Right Click Menu -- Equipment",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void EditResource_04() throws HarnessException {
 
@@ -283,7 +283,7 @@ public class EditResource extends AdminCore {
 	 */
 
 	@Test (description = " Edit Resource name  -- Manage resource View -- Location",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void EditResource_05() throws HarnessException {
 
@@ -343,7 +343,7 @@ public class EditResource extends AdminCore {
 	 */
 
 	@Test (description = " Edit Resource name  -- Manage resource View -- Equipment",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void EditResource_06() throws HarnessException {
 
@@ -403,7 +403,7 @@ public class EditResource extends AdminCore {
 	 */
 
 	@Test (description = "Edit Resource name -- Manage resource View/Right Click Menu -- Location",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void EditResource_07() throws HarnessException {
 
@@ -463,7 +463,7 @@ public class EditResource extends AdminCore {
 	 */
 
 	@Test (description = "Edit Resource name -- Manage resource View/Right Click Menu -- Equipment",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void EditResource_08() throws HarnessException {
 

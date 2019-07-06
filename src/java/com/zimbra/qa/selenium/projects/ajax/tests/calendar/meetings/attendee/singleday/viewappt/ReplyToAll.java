@@ -35,7 +35,7 @@ public class ReplyToAll extends AjaxCore {
 
 	@Bugs (ids = "106759,102475")
 	@Test (description = "View meeting invite by opening it and reply to all by sending message",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void ReplyToAllMeeting_01() throws HarnessException {
 

@@ -38,7 +38,7 @@ public class OpenInTabSharedMailFolders extends SetGroupMailByMessagePreference 
 
 
 	@Test (description = "Verify Open in new tab option for shared folder - custom folder",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void OpenInTabSharedMailFolders_01() throws HarnessException {
 
@@ -111,7 +111,7 @@ public class OpenInTabSharedMailFolders extends SetGroupMailByMessagePreference 
 
 
 	@Test (description = "Verify Open in new tab option for shared folder - Inbox folder",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void OpenInTabSharedMailFolders_02() throws HarnessException {
 

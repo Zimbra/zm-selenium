@@ -41,7 +41,7 @@ public class ReplyToMeetingWithIncludeAsAttachment extends AjaxCore {
 
 	@Bugs (ids = "50729")
 	@Test (description = "Bug 50729 - 'No such message exists' exception while replying to appointment via 'Include Original As Attachment'",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void ReplyToMeetingWithIncludeAsAttachment_01() throws HarnessException {
 

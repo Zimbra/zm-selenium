@@ -32,7 +32,7 @@ public class EditFolderSharedByMeFromPreferences extends AjaxCore {
 
 
 	@Test (description = "Modify share folder rights from preferences",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void EditFolderSharedByMeFromPreferences_01() throws HarnessException {
 

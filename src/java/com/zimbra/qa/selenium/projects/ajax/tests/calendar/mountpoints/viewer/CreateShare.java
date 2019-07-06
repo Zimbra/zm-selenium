@@ -34,7 +34,7 @@ public class CreateShare extends AjaxCore {
 
 
 	@Test (description = "Share calendar folder with viewer rights",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void CreateShare_01() throws HarnessException {
 
@@ -81,7 +81,7 @@ public class CreateShare extends AjaxCore {
 
 
 	@Test (description = "Share folder with viewer rights and Do not send mail about the share",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void CreateShare_02() throws HarnessException {
 
@@ -113,7 +113,7 @@ public class CreateShare extends AjaxCore {
 
 
 	@Test (description = "Share folder with viewer rights and add a multiline note to it",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void CreateShare_03() throws HarnessException {
 

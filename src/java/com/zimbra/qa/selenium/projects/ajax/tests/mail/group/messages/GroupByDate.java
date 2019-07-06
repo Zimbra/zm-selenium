@@ -40,7 +40,7 @@ public class GroupByDate extends SetGroupMailByMessagePreference {
 	 */
 
 	@Test (description = "Group a list of messages by Date",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void GroupByDate_01() throws HarnessException {
 

@@ -38,7 +38,7 @@ public class CreateAllDayMeeting extends AjaxCore {
 
 	@Bugs (ids = "107050,81945")
 	@Test (description = "Create all day meeting invite from mini-calendar's date using quick add dialog",
-			groups = { "smoke", "L1" } )
+			groups = { "bhr" } )
 
 	public void CreateAllDayMeeting_01() throws HarnessException {
 

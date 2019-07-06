@@ -31,7 +31,7 @@ public class MarkUnSpamMessage extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Mark a message as not spam, using 'Not Spam' toolbar button",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void MarkUnSpamMessage_01() throws HarnessException {
 

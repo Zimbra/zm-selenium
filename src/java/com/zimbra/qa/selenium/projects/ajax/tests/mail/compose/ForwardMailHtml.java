@@ -32,7 +32,7 @@ public class ForwardMailHtml extends SetGroupMailByMessagePreference {
 	}
 
 	@Test (description = "Forward an html mail using html editor",
-			groups = { "sanity", "L0" })
+			groups = { "smoke" })
 
 	public void ForwardMailHtml_01() throws HarnessException {
 

@@ -35,7 +35,7 @@ public class ModifyBySelectAttendees extends AjaxCore {
 
 
 	@Test (description = "modify appt and Add attendee to existing appointment from contact picker",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void ModifyBySelectAttendees_01() throws HarnessException {
 

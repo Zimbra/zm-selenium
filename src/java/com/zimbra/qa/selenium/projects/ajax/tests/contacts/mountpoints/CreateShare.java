@@ -32,7 +32,7 @@ public class CreateShare extends AjaxCore  {
 
 
 	@Test (description = "Share an addressbook - Viewer",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void CreateShare_01() throws HarnessException {
 

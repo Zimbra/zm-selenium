@@ -42,7 +42,7 @@ public class TagAppointment extends AjaxCore {
 
 
 	@Test (description = "Tag an appointment using toolbar button in day view",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 	
 	public void TagAppointment_01() throws HarnessException {
 
@@ -75,7 +75,7 @@ public class TagAppointment extends AjaxCore {
 
 	
 	@Test (description = "Create new tag using toolbar button and apply same tag to appointment using toolbar in day view",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 	
 	public void TagAppointment_02() throws HarnessException {
 
@@ -111,7 +111,7 @@ public class TagAppointment extends AjaxCore {
 	}
 
 	@Test (description = "Apply existing tag to appointment using context menu in day view",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void TagAppointment_03() throws HarnessException {
 
@@ -145,7 +145,7 @@ public class TagAppointment extends AjaxCore {
 
 	
 	@Test (description = "Create new tag using context menu and apply same tag to appointment using context menu in day view",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 	
 	public void TagAppointment_04() throws HarnessException {
 

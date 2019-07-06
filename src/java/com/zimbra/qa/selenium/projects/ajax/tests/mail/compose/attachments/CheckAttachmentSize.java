@@ -49,7 +49,7 @@ public class CheckAttachmentSize extends SetGroupMailByMessagePreference {
 
 	@Bugs(ids = "76919")
 	@Test (description = "Try to add an attachment of size greater than max size and check the display of warning message.",
-			groups = { "functional", "L3", "upload", "non-msedge" })
+			groups = { "functional", "upload", "non-msedge" })
 
 	public void CheckAttachmentSize_01() throws HarnessException {
 

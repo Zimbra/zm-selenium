@@ -37,7 +37,7 @@ public class DeleteMountpoint extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Delete a mountpoint to a shared folder (right click -> Delete)",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void DeleteMountpoint_01() throws HarnessException {
 

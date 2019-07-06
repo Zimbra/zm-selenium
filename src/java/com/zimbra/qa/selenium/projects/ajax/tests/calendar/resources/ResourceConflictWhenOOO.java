@@ -37,7 +37,7 @@ public class ResourceConflictWhenOOO extends AjaxCore {
 
 	@Bugs (ids = "102271")
 	@Test (description = "Verify if OOO status of Location causes double booking",
-			groups = { "functional-skip", "application-bug" })
+			groups = { "application-bug" })
 
 	public void LocationConflictWhenOOO_01() throws HarnessException {
 

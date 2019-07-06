@@ -39,7 +39,7 @@ public class NavigateAlias extends AdminCore {
 	 */
 
 	@Test (description = "Navigate to Aliases",
-			groups = { "sanity", "L0" })
+			groups = { "smoke" })
 
 	public void NavigateAlias_01() throws HarnessException {
 

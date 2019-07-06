@@ -33,7 +33,7 @@ public class ChangeColorFolder extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Edit a folder, change the color (Context menu -> Edit)",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void ChangeColorFolder_01() throws HarnessException {
 

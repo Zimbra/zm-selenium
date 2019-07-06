@@ -28,7 +28,7 @@ public class DisableTagFromAdmin extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Bug # 80892 - Disable tag from admin and check in AJAX client",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void DisableTagFromAdmin_01() throws HarnessException {
 

@@ -42,7 +42,7 @@ public class MoveIntoFolderFilters extends AjaxCore {
 
 
 	@Test (description = "Create an Incoming Message Filter having criterion 'From - Contains - X - Move into Folder Y'",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void MoveIntoFolderFilters_01() throws HarnessException {
 
@@ -136,7 +136,7 @@ public class MoveIntoFolderFilters extends AjaxCore {
 
 
 	@Test (description = "Create an Incoming Message Filter having criterion 'Subject - Contains - X - Move into Folder Y'",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void MoveIntoFolderFilters_02() throws HarnessException {
 
@@ -231,7 +231,7 @@ public class MoveIntoFolderFilters extends AjaxCore {
 
 
 	@Test (description = "Create an Incoming Message Filter having criterion 'Body - Contains - X - Move into Folder Y'",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void MoveIntoFolderFilters_03() throws HarnessException {
 
@@ -326,7 +326,7 @@ public class MoveIntoFolderFilters extends AjaxCore {
 
 
 	@Test (description = "Create an outgoing Message Filter having criterion 'To - Contains - X - Move into Folder Y'",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void MoveIntoFolderFilters_04() throws HarnessException {
 

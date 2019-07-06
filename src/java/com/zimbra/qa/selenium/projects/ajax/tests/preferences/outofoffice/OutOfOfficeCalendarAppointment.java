@@ -39,7 +39,7 @@ public class OutOfOfficeCalendarAppointment extends AjaxCore {
 
 	@Bugs (ids = "78890")
 	@Test (description = "Set out of office along with calendar appointment and verify all-day appointment creation", priority = 4,
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void OutOfOfficeCalendarAppointment_01() throws HarnessException {
 

@@ -31,9 +31,9 @@ public class AddressContextMenuOptions extends SetGroupMailByMessagePreference {
 	}
 	
 	@Test (description = "Click from bubble address>>Verify AddtoContact/Newmessage/Search menus", 
-			groups = { "sanity" })
+			groups = { "functional" })
 	
-	public void AcceptMeeting_01() throws HarnessException {
+	public void AddressContextMenuOptions_01() throws HarnessException {
 
 		// ------------------------ Test data ------------------------------------
 		String subject = "subject" + ConfigProperties.getUniqueString();

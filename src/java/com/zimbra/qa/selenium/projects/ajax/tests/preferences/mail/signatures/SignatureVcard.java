@@ -45,7 +45,7 @@ public class SignatureVcard extends AjaxCore {
 
 
 	@Test (description = "Verify Signature Vcard through GUI",
-		groups = { "functional", "L2" })
+		groups = { "sanity" })
 
 	public void SignatureVcard_01() throws HarnessException {
 

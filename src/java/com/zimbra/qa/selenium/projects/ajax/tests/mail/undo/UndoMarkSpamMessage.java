@@ -30,7 +30,7 @@ public class UndoMarkSpamMessage extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Undo - Mark a message as spam, using 'Spam' toolbar button",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void UndoMarkSpamMessage_01() throws HarnessException {
 

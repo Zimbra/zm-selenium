@@ -31,7 +31,7 @@ public class DeleteMail extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Bug 77538 - Double click a mail and delete it",
-			groups = { "functional", "L2" } )
+			groups = { "sanity" } )
 
 	public void DeleteMail_01() throws HarnessException {
 
