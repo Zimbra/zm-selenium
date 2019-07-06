@@ -84,17 +84,14 @@ public class CreateMailHtml extends SetGroupMailByMessagePreference {
 	public void CreateMultilineContentMailHtml_02() throws HarnessException {
 
 		// Create the message data to be sent
-		final String dToRecipients = ZimbraAccount.AccountA().EmailAddress;
-		final String dSubject = "subject" + ConfigProperties.getUniqueString();
-		final String dBodyHtmlBold = "<strong>BoldString</strong>";
-		final String dBodyHtmlItalic = "<br></div><div><em>ItalicString</em><span id=\"_mce_caret\"></span>";
-		String dBodyHtmlRedColorText = "<br></div><div><span style=\"color: rgb(255, 0, 0);\">RedColorText</span><span id=\"_mce_caret\"></span>";
-		String dBodyHtmlGreenBackgroundText = "<br></div><div><span style=\"background-color: rgb(0, 128, 0);\">GreenBackgroundText</span><span id=\"_mce_caret\"></span>";
-
-		if (ConfigProperties.getStringProperty("browser").equals("edge")) {
-			dBodyHtmlRedColorText = "</span></span><br></div><div><span id=\"_mce_caret\"><span style=\"color: #ff0000;\">RedColorText</span><span id=\"_mce_caret\"></span></span>";
-			dBodyHtmlGreenBackgroundText = "<br></div><div><span id=\"_mce_caret\"><span style=\"background-color: #008000;\">GreenBackgroundText</span><span id=\"_mce_caret\"></span></span>";
-		}
+		String dToRecipients = ZimbraAccount.AccountA().EmailAddress;
+		String dSubject = "subject" + ConfigProperties.getUniqueString();
+		String dBodyHtmlBold = "<strong>Bold</strong>";
+		String dBodyHtmlItalic = "</div><div><em>Italic</em><span id=\"_mce_caret\"></span>";
+		String dBodyHtmlRedColor = "255";
+		String dBodyHtmlRedColorText = "Red</span><span id=\"_mce_caret\"></span>";
+		String dBodyHtmlGreenBackgroundColor = "128";
+		String dBodyHtmlGreenBackgroundText = "GreenBC</span><span id=\"_mce_caret\"></span>";
 
 		// Open the new mail form
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
@@ -106,22 +103,22 @@ public class CreateMailHtml extends SetGroupMailByMessagePreference {
 
 		// Enter multiline body HTML text
 		mailform.sClick(Locators.zBoldButton);
-		mailform.zKeyboard.zTypeCharacters("BoldString");
+		mailform.zKeyboard.zTypeCharacters("Bold");
 		mailform.sClick(Locators.zBoldButton);
 		mailform.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
 		mailform.sClick(Locators.zItalicButton);
-		mailform.zKeyboard.zTypeCharacters("ItalicString");
+		mailform.zKeyboard.zTypeCharacters("Italic");
 		mailform.sClick(Locators.zItalicButton);
 		mailform.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
 		mailform.sClick(Locators.zTextColorDropdown);
 		mailform.sClick(Locators.zTextColorRed);
-		mailform.zKeyboard.zTypeCharacters("RedColorText");
+		mailform.zKeyboard.zTypeCharacters("Red");
 		mailform.sClick(Locators.zTextColorDropdown);
 		mailform.sClick(Locators.zTextColorTransparent);
 		mailform.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
 		mailform.sClick(Locators.zTextBackgroundColorDropdown);
 		mailform.sClick(Locators.zTextBackgroundColorGreen);
-		mailform.zKeyboard.zTypeCharacters("GreenBackgroundText");
+		mailform.zKeyboard.zTypeCharacters("GreenBC");
 		mailform.sClick(Locators.zTextBackgroundColorDropdown);
 		mailform.sClick(Locators.zTextBackgroundColorTransparent);
 		mailform.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
@@ -147,10 +144,12 @@ public class CreateMailHtml extends SetGroupMailByMessagePreference {
 
 		ZAssert.assertEquals(from, app.zGetActiveAccount().EmailAddress, "Verify the from field is correct");
 		ZAssert.assertEquals(to, ZimbraAccount.AccountA().EmailAddress, "Verify the to field is correct");
-		ZAssert.assertEquals(subject, dSubject, "Verify the subject field is correct");
-		ZAssert.assertStringContains(html, dBodyHtmlBold, "Verify the html content");
-		ZAssert.assertStringContains(html, dBodyHtmlItalic, "Verify the html content");
-		ZAssert.assertStringContains(html, dBodyHtmlRedColorText, "Verify the html content");
-		ZAssert.assertStringContains(html, dBodyHtmlGreenBackgroundText, "Verify the html content");
+		ZAssert.assertEquals(subject, dSubject, "Verify subject field is correct");
+		ZAssert.assertStringContains(html, dBodyHtmlBold, "Verify bold html content");
+		ZAssert.assertStringContains(html, dBodyHtmlItalic, "Verify italic html content");
+		ZAssert.assertStringContains(html, dBodyHtmlRedColor, "Verify red color rgb in html content");
+		ZAssert.assertStringContains(html, dBodyHtmlRedColorText, "Verify red color text html content");
+		ZAssert.assertStringContains(html, dBodyHtmlGreenBackgroundColor, "Verify green color rgb html content");
+		ZAssert.assertStringContains(html, dBodyHtmlGreenBackgroundText, "Verify green color text html content");
 	}
 }
