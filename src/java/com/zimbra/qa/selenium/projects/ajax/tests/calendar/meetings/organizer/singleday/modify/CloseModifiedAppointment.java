@@ -182,9 +182,12 @@ public class CloseModifiedAppointment extends AjaxCore {
 
 
 	@Test (description = "Close modifying appt and take action from warning dialog : Dont save But keep open",
-			groups = { "sanity" })
+			groups = { "sanity1" })
 
 	public void CloseModifiedAppointment_03() throws HarnessException {
+		// Refresh UI due to dialog locator changes
+		app.zPageMain.zRefreshMainUI();
+		app.zPageCalendar.zNavigateTo();
 
 		// Creating object for appointment data
 		AppointmentItem appt = new AppointmentItem();

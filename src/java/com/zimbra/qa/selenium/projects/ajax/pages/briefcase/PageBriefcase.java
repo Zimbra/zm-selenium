@@ -167,7 +167,7 @@ public class PageBriefcase extends AbsTab {
 			return;
 		}
 
-		((AjaxPages) MyApplication).zPageMain.zCheckAppLoaded(Locators.zBriefcaseZimletsPane);
+		((AjaxPages) MyApplication).zPageMain.zNavigateToAppTab(Locators.zBriefcaseZimletsPane);
 	}
 
 	public AbsPage zToolbarPressButton(Button button, IItem item) throws HarnessException {

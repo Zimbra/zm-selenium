@@ -161,7 +161,7 @@ public class PageContacts extends AbsTab {
 			return;
 		}
 
-		((AjaxPages) MyApplication).zPageMain.zCheckAppLoaded(Locators.zContactsZimletsPane);
+		((AjaxPages) MyApplication).zPageMain.zNavigateToAppTab(Locators.zContactsZimletsPane);
 	}
 
 	// get subFolders

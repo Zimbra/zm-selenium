@@ -16,8 +16,6 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.preferences.mail.displayingmessages;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.ui.Action;
@@ -27,7 +25,6 @@ import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
-import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
 import com.zimbra.qa.selenium.projects.ajax.pages.preferences.PagePreferences.Locators;
 import com.zimbra.qa.selenium.projects.ajax.pages.preferences.TreePreferences.TreeItem;
@@ -53,8 +50,8 @@ public class DisplayTimeInMailList extends AjaxCore {
 		final String filePath = ConfigProperties.getBaseDirectory() + "\\data\\public\\tgz\\" + fileName;
 	
 		// Data present in the file to be imported
-		String subject1 = "RE: [Bug 108711] TIFF image preview is not showing in message body or as attachment";
-		String mailReceivedTime1 = "12/12/2017 7:42 PM";
+		String subject = "RE: [Bug 108711] TIFF image preview is not showing in message body or as attachment";
+		String mailReceivedTime = "12/12/2017 7:42 PM";
 		
 		// Navigate to preferences -> Import/Export
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.ImportExport);
@@ -70,7 +67,7 @@ public class DisplayTimeInMailList extends AjaxCore {
 		SleepUtil.sleepMedium();
 
 		// Check that file is imported successfully
-		ZAssert.assertStringContains(app.zPagePreferences.sGetText(Locators.zImportDialogContent),"Import succeeded.","Import is unsuccessfull!");
+		ZAssert.assertStringContains(app.zPagePreferences.sGetText(Locators.zImportDialogContent),"Import succeeded.", "Import is unsuccessfull!");
 
 		// Click OK on confirmation dialog after import
 		app.zPagePreferences.zPressButton(Button.B_IMPORT_OK);
@@ -95,33 +92,10 @@ public class DisplayTimeInMailList extends AjaxCore {
 		String value = app.zGetActiveAccount().soapSelectValue("//acct:pref[@name='zimbraPrefDisplayTimeInMailList']", null);
 		ZAssert.assertEquals(value, "TRUE", "Verify the preference was changed to TRUE");
 
-		// Create the message data to be sent to verify delivery time display for the latest mail received
-		String subject2 = "This is the subject of the mail " + ConfigProperties.getUniqueString();
-		String body2 = "This is the body of the mail " + ConfigProperties.getUniqueString();
-		
-		// Add a latest message
-		ZimbraAccount.AccountA().soapSend(
-				"<SendMsgRequest xmlns='urn:zimbraMail'>" +
-						"<m>" +
-						"<f>!</f>" +
-						"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
-						"<e t='c' a='"+ ZimbraAccount.AccountB().EmailAddress +"'/>" +
-						"<su>"+ subject2 +"</su>" +
-						"<mp ct='text/plain'>" +
-						"<content>" + body2 + "</content>" +
-						"</mp>" +
-						"</m>" +
-				"</SendMsgRequest>");
-		
-		// Time of mail delivery
-		SimpleDateFormat formatDate = new SimpleDateFormat("h:mm a");
-		String mailReceivedTime2 = formatDate.format(Calendar.getInstance().getTime());
-		
 		// Change the reading pane to bottom
 		app.zPageMail.zToolbarPressButton(Button.B_MAIL_VIEW_READING_PANE_BOTTOM);
 		
 		// Verify the mail received time displayed in mail list
-		ZAssert.assertStringContains(app.zPageMail.zGetMessageProperty(subject1, "time"), mailReceivedTime1, "Verify that message delivery date and time for past mail are displayed in the mail list.");
-		ZAssert.assertStringContains(app.zPageMail.zGetMessageProperty(subject2, "time"), mailReceivedTime2, "Verify that message delivery time for latest mail lis displayed correctly in the mail list");
+		ZAssert.assertStringContains(app.zPageMail.zGetMessageProperty(subject, "time"), mailReceivedTime, "Verify that message delivery date and time for past mail are displayed in the mail list.");
 	}
 }

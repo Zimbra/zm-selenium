@@ -2427,7 +2427,7 @@ public class PageCalendar extends AbsTab {
 			return;
 		}
 
-		((AjaxPages) MyApplication).zPageMain.zCheckAppLoaded(Locators.zCalendarZimletsPane);
+		((AjaxPages) MyApplication).zPageMain.zNavigateToAppTab(Locators.zCalendarZimletsPane);
 	}
 
 	@Override

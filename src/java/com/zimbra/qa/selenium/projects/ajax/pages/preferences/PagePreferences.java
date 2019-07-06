@@ -122,6 +122,7 @@ public class PagePreferences extends AbsTab {
 		public static final String zImapText = "css=div#Prefs_Pages_ACCOUNTS_EXTERNAL td.ZOptionsField:contains('IMAP')";
 		public static final String zPop3Text = "css=div#Prefs_Pages_ACCOUNTS_EXTERNAL td.ZOptionsField:contains('POP3')";
 		public static final String zReplyToSentMessageCheckbox = "css=input#Prefs_Pages_ACCOUNTS_PRIMARY_REPLY_TO";
+		public static final String zFromAccountName = "css=input#Prefs_Pages_ACCOUNTS_PRIMARY_FROM_NAME";
 		public static final String zReplyToSentMessageName = "css=input#Prefs_Pages_ACCOUNTS_PRIMARY_REPLY_TO_NAME";
 		public static final String zReplyToSentMessageEmail = "css=input#Prefs_ComboBox_REPLY_TO_EMAIL_input";
 		
@@ -243,7 +244,7 @@ public class PagePreferences extends AbsTab {
 			return;
 		}
 
-		((AjaxPages) MyApplication).zPageMain.zCheckAppLoaded(PageMain.Locators.zPreferencesTab);
+		((AjaxPages) MyApplication).zPageMain.zNavigateToAppTab(PageMain.Locators.zPreferencesTab);
 	}
 
 	public void zNavigateAway(Button savechanges) throws HarnessException {

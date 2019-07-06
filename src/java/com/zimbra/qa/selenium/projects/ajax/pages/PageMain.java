@@ -468,7 +468,6 @@ public class PageMain extends AbsTab {
 		generalPreferencesOverviewPane = PagePreferences.Locators.zGeneralPreferencesOverviewPane;
 		drivePane = PageDrive.Locators.zDriveFolderPane.toString();
 
-
 		if (sIsVisible(mailZimletsPane)) {
 			return ((AjaxPages) MyApplication).zPageMail;
 		} else if (sIsVisible(contactsZimletsPane)) {
@@ -489,7 +488,8 @@ public class PageMain extends AbsTab {
 		}
 	}
 
-	public void zCheckAppLoaded(String appIdentifier) throws HarnessException {
+	public void zNavigateToAppTab(String appIdentifier) throws HarnessException {
+		logger.info("zNavigateToAppTab " + appIdentifier);
 
 		AbsTab appTab;
 		String appLocator = null;
@@ -538,22 +538,17 @@ public class PageMain extends AbsTab {
 		logger.info("Navigate to " + appTab.myPageName());
 
 		for (int i = 0; i <= 2; i++) {
-
 			if (!appTab.zIsActive()) {
 				zHandleDialogs(appTab);
 
-				if (appTab.equals(((AjaxPages) MyApplication).zPageCalendar)) {
-					SleepUtil.sleepMedium();
-				} else {
-					SleepUtil.sleepLong();
-				}
-
 				sClickAt(appLocator, "");
+				SleepUtil.sleepLong();
 				this.zWaitForBusyOverlay();
-				SleepUtil.sleepMedium();
 				if (!appTab.equals(((AjaxPages) MyApplication).zPagePreferences)
 						&& !appTab.equals(((AjaxPages) MyApplication).zPageDrive)) {
 					zWaitForElementPresent(commonAppLocator);
+				} else {
+					zWaitForElementPresent(appLocator);
 				}
 
 				if (zGetCurrentApp().equals(appTab)) {

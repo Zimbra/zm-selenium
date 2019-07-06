@@ -126,7 +126,7 @@ public class PageTasks extends AbsTab {
 			return;
 		}
 
-		((AjaxPages) MyApplication).zPageMain.zCheckAppLoaded(Locators.zTasksZimletsPane);
+		((AjaxPages) MyApplication).zPageMain.zNavigateToAppTab(Locators.zTasksZimletsPane);
 	}
 
 	public boolean isPresent(String itemName) throws HarnessException {
