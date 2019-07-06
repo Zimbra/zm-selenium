@@ -620,7 +620,6 @@ public class FormMailNew extends AbsForm {
 			if (!this.sIsElementPresent(locator))
 				throw new HarnessException("Field is not present field=" + field + " locator=" + locator);
 
-			this.sFocus(locator);
 			this.sClick(locator);
 			this.zWaitForBusyOverlay();
 
@@ -628,7 +627,6 @@ public class FormMailNew extends AbsForm {
 			// this.zKeyboard.zTypeCharacters(value);
 			SleepUtil.sleepMedium();
 			this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
-			SleepUtil.sleepSmall();
 			this.zWaitForBusyOverlay();
 
 			return;
@@ -644,14 +642,12 @@ public class FormMailNew extends AbsForm {
 			if (!this.sIsElementPresent(locator))
 				throw new HarnessException("Field is not present field=" + field + " locator=" + locator);
 
-			this.sFocus(locator);
 			this.sClick(locator);
 			this.zWaitForBusyOverlay();
 
 			this.sType(locator, value);
 			SleepUtil.sleepSmall();
 			this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
-			SleepUtil.sleepSmall();
 			this.zWaitForBusyOverlay();
 
 			return;
@@ -671,14 +667,12 @@ public class FormMailNew extends AbsForm {
 			if (!this.sIsElementPresent(locator))
 				throw new HarnessException("Field is not present field=" + field + " locator=" + locator);
 
-			this.sFocus(locator);
 			this.sClick(locator);
 			this.zWaitForBusyOverlay();
 
 			this.sType(locator, value);
 			SleepUtil.sleepSmall();
 			this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
-			SleepUtil.sleepSmall();
 			this.zWaitForBusyOverlay();
 
 			return;

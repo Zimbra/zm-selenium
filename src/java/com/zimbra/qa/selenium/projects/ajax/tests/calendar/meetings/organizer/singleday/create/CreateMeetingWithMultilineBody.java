@@ -40,18 +40,14 @@ public class CreateMeetingWithMultilineBody extends AjaxCore {
 	public void CreateMeetingWithMultilineHtmlBody_01() throws HarnessException {
 
 		// Appointment data
-		final String attendees = ZimbraAccount.AccountC().EmailAddress;
-		final String dSubject = "subject" + ConfigProperties.getUniqueString();
-		final String dBodyHtmlBold = "<strong>BoldString</strong>";
-		final String dBodyHtmlItalic = "<br></div><div><em>ItalicString</em>";
-		String dBodyHtmlRedColorText = "<span id=\"_mce_caret\"></span><br></div><div><span style=\"color: rgb(255, 0, 0);\">RedColorText</span>";
-		String dBodyHtmlGreenBackgroundText = "<span id=\"_mce_caret\"></span><br></div><div><span style=\"background-color: rgb(0, 128, 0);\">GreenBackgroundText</span><span id=\"_mce_caret\"></span>";
-
-		if (ConfigProperties.getStringProperty("browser").equals("edge")) {
-			dBodyHtmlRedColorText = "</span></span><br></div><div><span id=\"_mce_caret\"><span style=\"color: #ff0000;\">RedColorText</span><span id=\"_mce_caret\"></span></span>";
-			dBodyHtmlGreenBackgroundText = "<br></div><div><span id=\"_mce_caret\"><span style=\"background-color: #008000;\">GreenBackgroundText</span><span id=\"_mce_caret\"></span></span>";
-		}
-
+		String attendees = ZimbraAccount.AccountC().EmailAddress;
+		String dSubject = "subject" + ConfigProperties.getUniqueString();
+		String dBodyHtmlBold = "<strong>Bold</strong>";
+		String dBodyHtmlItalic = "</div><div><em>Italic</em>";
+		String dBodyHtmlRedColor = "255";
+		String dBodyHtmlRedColorText = "Red</span><span id=\"_mce_caret\"></span>";
+		String dBodyHtmlGreenBackgroundColor = "128";
+		String dBodyHtmlGreenBackgroundText = "GreenBC</span><span id=\"_mce_caret\"></span>";
 		// Open the new appointment form
 		FormApptNew apptForm = (FormApptNew) app.zPageMail.zToolbarPressPulldown(Button.B_NEW, Button.O_NEW_APPOINTMENT);
 		ZAssert.assertNotNull(apptForm, "Verify the new form opened");
@@ -65,22 +61,22 @@ public class CreateMeetingWithMultilineBody extends AjaxCore {
 
 		// Enter multiline body HTML text
 		apptForm.sClick(Locators.zBoldButton);
-		apptForm.zKeyboard.zTypeCharacters("BoldString");
+		apptForm.zKeyboard.zTypeCharacters("Bold");
 		apptForm.sClick(Locators.zBoldButton);
 		apptForm.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
 		apptForm.sClick(Locators.zItalicButton);
-		apptForm.zKeyboard.zTypeCharacters("ItalicString");
+		apptForm.zKeyboard.zTypeCharacters("Italic");
 		apptForm.sClick(Locators.zItalicButton);
 		apptForm.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
 		apptForm.sClick(Locators.zTextColorDropdown);
 		apptForm.sClick(Locators.zTextColorRed);
-		apptForm.zKeyboard.zTypeCharacters("RedColorText");
+		apptForm.zKeyboard.zTypeCharacters("Red");
 		apptForm.sClick(Locators.zTextColorDropdown);
 		apptForm.sClick(Locators.zTextColorTransparent);
 		apptForm.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
 		apptForm.sClick(Locators.zTextBackgroundColorDropdown);
 		apptForm.sClick(Locators.zTextBackgroundColorGreen);
-		apptForm.zKeyboard.zTypeCharacters("GreenBackgroundText");
+		apptForm.zKeyboard.zTypeCharacters("GreenBC");
 		apptForm.sClick(Locators.zTextBackgroundColorDropdown);
 		apptForm.sClick(Locators.zTextBackgroundColorTransparent);
 		apptForm.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
@@ -108,10 +104,12 @@ public class CreateMeetingWithMultilineBody extends AjaxCore {
 		ZAssert.assertEquals(from, app.zGetActiveAccount().EmailAddress, "Verify the from field is correct");
 		ZAssert.assertEquals(to, ZimbraAccount.AccountC().EmailAddress, "Verify the to field is correct");
 		ZAssert.assertEquals(subject, dSubject, "Verify the subject field is correct");
-		ZAssert.assertStringContains(html, dBodyHtmlBold, "Verify the html content");
-		ZAssert.assertStringContains(html, dBodyHtmlItalic, "Verify the html content");
-		ZAssert.assertStringContains(html, dBodyHtmlRedColorText, "Verify the html content");
-		ZAssert.assertStringContains(html, dBodyHtmlGreenBackgroundText, "Verify the html content");
+		ZAssert.assertStringContains(html, dBodyHtmlBold, "Verify bold html content");
+		ZAssert.assertStringContains(html, dBodyHtmlItalic, "Verify italic html content");
+		ZAssert.assertStringContains(html, dBodyHtmlRedColor, "Verify red color rgb in html content");
+		ZAssert.assertStringContains(html, dBodyHtmlRedColorText, "Verify red color text html content");
+		ZAssert.assertStringContains(html, dBodyHtmlGreenBackgroundColor, "Verify green color rgb html content");
+		ZAssert.assertStringContains(html, dBodyHtmlGreenBackgroundText, "Verify green color text html content");
 	}
 
 

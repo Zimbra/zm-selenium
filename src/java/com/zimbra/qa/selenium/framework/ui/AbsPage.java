@@ -159,7 +159,7 @@ public abstract class AbsPage extends AbsSeleniumObject {
 
 		public void zTypeCharacters(String chars) throws HarnessException {
 			logger.info("zTypeCharacters(" + chars + ")");
-			SleepUtil.sleepSmall();
+			SleepUtil.sleepVerySmall();
 			RobotKeyboard keyboard = new RobotKeyboard();
 			keyboard.type(chars);
 		}
