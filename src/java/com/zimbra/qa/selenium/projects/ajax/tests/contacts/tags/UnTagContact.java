@@ -31,7 +31,7 @@ public class UnTagContact extends AjaxCore  {
 
 
 	@Test (description = "Untag a contact by click Toolbar Tag, then select Remove Tag",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void ClickToolbarTagRemoveTag_01() throws HarnessException {
 
@@ -69,7 +69,7 @@ public class UnTagContact extends AjaxCore  {
 
 
 	@Test (description = "Untag a contact by click Tag->Remove Tag on context menu",
-				groups = { "smoke", "L1" })
+				groups = { "bhr" })
 
 	public void ClickContextMenuTagRemoveTag_02() throws HarnessException {
 

@@ -34,7 +34,7 @@ public class ReplyMail extends SetGroupMailByMessagePreference {
 
 	@Bugs (ids = "86168")
 	@Test (description = "Reply (on behalf of) to a message in a shared folder (read-only rights)",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void ReplyMail_01() throws HarnessException {
 
@@ -128,7 +128,7 @@ public class ReplyMail extends SetGroupMailByMessagePreference {
 
 	@Bugs (ids = "102475")
 	@Test (description = "Reply (on behalf of) to a message in a shared folder (read-only rights) - no SOBO rights",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void ReplyMail_02() throws HarnessException {
 

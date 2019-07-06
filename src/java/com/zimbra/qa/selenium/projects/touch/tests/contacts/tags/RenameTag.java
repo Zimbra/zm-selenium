@@ -39,7 +39,7 @@ public class RenameTag extends TouchCore  {
 	 */
 	
 	@Test (description = "Rename a tag item", 
-			groups = { "smoke" })
+			groups = { "bhr" })
 	
 	public void RenameTag_01() throws HarnessException {
 		//----------------------- Data ------------------------------

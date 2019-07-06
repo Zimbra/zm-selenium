@@ -37,7 +37,7 @@ public class CreateAppointmentFromExternalIMAP extends AjaxCore {
 
 	@Bugs (ids = "50096,104525")
 	@Test (description = "Appt. invite received from primary account though external account selected while creating appointment",
-			groups = { "smoke-skip", "application-bug" })
+			groups = { "application-bug" })
 
 	public void CreateAppointmentFromExternalIMAP_01() throws HarnessException {
 

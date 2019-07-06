@@ -32,7 +32,7 @@ public class UndoDragAndDropMail extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Undo a Drag and Drop a message from Inbox to subfolder",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void Undo_DragAndDropMail_01() throws HarnessException {
 

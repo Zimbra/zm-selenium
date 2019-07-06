@@ -31,7 +31,7 @@ public class DeleteMail extends SetGroupMailByConversationPreference {
 	}
 	
 	@Test (description = "Delete a mail item in conversation view.",
-			groups = { "sanity" })
+			groups = { "bhr" })
 			
 	public void DeleteMail_01() throws HarnessException {
 		

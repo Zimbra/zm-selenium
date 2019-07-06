@@ -45,7 +45,7 @@ public class ShowHideDeclinedMeetings extends AjaxCore {
 
 	@Bugs (ids = "27661")
 	@Test (description = "Allow declined meetings to be hidden/shown based on preference",
-		groups={ "functional", "L2" })
+		groups = { "sanity" })
 
 	public void ShowHideDeclinedMeetings_01() throws HarnessException {
 

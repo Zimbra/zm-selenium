@@ -37,7 +37,7 @@ public class CreateMeetingWithDL extends AjaxCore {
 
 
 	@Test (description = "Create appointment with DL by choosing DL address from 'Select Addresses' dialog",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void CreateMeetingWithDL_01() throws HarnessException {
 

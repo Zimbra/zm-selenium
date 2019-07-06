@@ -41,7 +41,7 @@ public class CreateContact extends AjaxCore {
 
 
 	@Test (description = "Create a basic contact item by click New in page Addressbook ",
-			groups = { "sanity", "L0" })
+			groups = { "smoke" })
 
 	public void ClickContact_01() throws HarnessException {
 
@@ -74,7 +74,7 @@ public class CreateContact extends AjaxCore {
 	}
 
 	@Test (description = "Create a basic contact item by use PullDown Menu->Contacts",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void CreateContactFromPulldownMenu_02() throws HarnessException {
 
@@ -101,7 +101,7 @@ public class CreateContact extends AjaxCore {
 
 
 	@Test (description = "Cancel creating a contact item - Click Yes",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void CancelCreateContactClickYes_03() throws HarnessException {
 
@@ -131,7 +131,7 @@ public class CreateContact extends AjaxCore {
 
 
 	@Test (description = "Cancel creating a contact item - Click No",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void CancelCreateContactClickNo_04() throws HarnessException {
 
@@ -158,7 +158,7 @@ public class CreateContact extends AjaxCore {
 
 
 	@Test (description = "Cancel creating a contact item - Click Cancel",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void CancelCreateContactClickCancel_05() throws HarnessException {
 
@@ -194,7 +194,7 @@ public class CreateContact extends AjaxCore {
 
 
 	@Test (description = "Create a contact item with all attributes",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void CreateContactWithAllAttributes_06() throws HarnessException {
 
@@ -264,7 +264,7 @@ public class CreateContact extends AjaxCore {
 
 	@Bugs (ids = "99776")
 	@Test (description = "Create a contacts with non-ASCII special characters",
-			groups = { "functional", "L3"}, dataProvider = "DataProviderSupportedCharsets")
+			groups = { "functional"}, dataProvider = "DataProviderSupportedCharsets")
 
 	public void CreateContact_07(ZCharset charset, String charsetSample) throws HarnessException {
 
@@ -298,7 +298,7 @@ public class CreateContact extends AjaxCore {
 
 	@Bugs (ids = "66497")
 	@Test (description = "Create contact by selecting birthday and anniversary date using date picker",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void CreateContactBySelectingDateUsingDatePicker_08() throws HarnessException {
 

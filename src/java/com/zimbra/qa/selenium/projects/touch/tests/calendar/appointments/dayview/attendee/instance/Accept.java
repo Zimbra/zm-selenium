@@ -35,7 +35,7 @@ public class Accept extends CalendarWorkWeekPreference {
 
 	@Bugs (ids = "96437")
 	@Test (description = "Accept a instance using view appointment options", 
-			groups = { "functional" })
+			groups = { "smoke" })
 	
 	public void AcceptMeeting_01() throws HarnessException {
 

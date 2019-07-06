@@ -44,7 +44,7 @@ public class GetGmailImap extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "View an external Gmail - IMAP",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void GetExternalGmailIMAP_01() throws HarnessException {
 

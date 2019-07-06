@@ -31,7 +31,7 @@ public class MoveContact extends TouchCore  {
 	}
 	
 	@Test (description = "Move a contact item to EmailedContacts Address Book",
-			groups = { "sanity" })
+			groups = { "bhr" })
 	
 	public void MoveContact_01() throws HarnessException {
 

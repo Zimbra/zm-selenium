@@ -49,7 +49,7 @@ public class CreateMountpoint extends AjaxCore{
 
 
 	@Test (description = "Receive an invitation to a shared folder, accept it.",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void CreateMountpoint_01() throws HarnessException {
 

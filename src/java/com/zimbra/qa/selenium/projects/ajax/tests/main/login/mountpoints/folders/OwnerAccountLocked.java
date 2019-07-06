@@ -41,7 +41,7 @@ public class OwnerAccountLocked extends AjaxCore {
 
 
 	@Test (description = "Login to the Ajax Client - with a mountpoint to a 'locked' account",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void OwnerAccountLocked_01() throws HarnessException {
 

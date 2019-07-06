@@ -39,7 +39,7 @@ public class HoverOverURL extends AjaxCore {
 
 
 	@Test (description = "Hover over a URL",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void HoverOverURL_01() throws HarnessException {
 
@@ -77,7 +77,7 @@ public class HoverOverURL extends AjaxCore {
 
 
 	@Test (description = "Hover over a URL - verify tooltip content",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void HoverOverURL_02() throws HarnessException {
 
@@ -119,7 +119,7 @@ public class HoverOverURL extends AjaxCore {
 
 	@Bugs (ids = "82303")
 	@Test (description = "Hover over a URL with 'javascript' in the path.  Verify no change to JAVASCRIPT-BLOCKED",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void HoverOverURL_03() throws HarnessException {
 

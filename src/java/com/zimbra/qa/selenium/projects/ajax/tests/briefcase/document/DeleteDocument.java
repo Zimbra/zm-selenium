@@ -43,7 +43,7 @@ public class DeleteDocument extends EnableBriefcaseFeature {
 
 
 	@Test (description = "Create document through SOAP - delete & check trash",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void DeleteDocument_01() throws HarnessException {
 
@@ -112,7 +112,7 @@ public class DeleteDocument extends EnableBriefcaseFeature {
 
 
 	@Test (description = "Create document through SOAP - delete using Delete Key & verify through GUI",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void DeleteDocument_02() throws HarnessException {
 
@@ -163,63 +163,10 @@ public class DeleteDocument extends EnableBriefcaseFeature {
 	}
 
 
-	@Test (description = "Create document through SOAP - delete using Backspace Key & verify through GUI",
-			groups = { "functional","L3" })
+	@Test (description = "Create document through SOAP - delete using Right Click context menu & verify through GUI",
+			groups = { "bhr" })
 
 	public void DeleteDocument_03() throws HarnessException {
-
-		ZimbraAccount account = app.zGetActiveAccount();
-
-		FolderItem briefcaseFolder = FolderItem.importFromSOAP(account, SystemFolder.Briefcase);
-
-		// Create document item
-		DocumentItem docItem = new DocumentItem();
-
-		String docName = docItem.getName();
-		String docText = docItem.getDocText();
-
-		Shortcut shortcut = Shortcut.S_BACKSPACE;
-
-		// Create document using SOAP
-		String contentHTML = XmlStringUtil.escapeXml("<html>" + "<body>" + docText + "</body>" + "</html>");
-
-		account.soapSend("<SaveDocumentRequest requestId='0' xmlns='urn:zimbraMail'>"
-						+ "<doc name='"
-						+ docName
-						+ "' l='"
-						+ briefcaseFolder.getId()
-						+ "' ct='application/x-zimbra-doc'>"
-						+ "<content>"
-						+ contentHTML
-						+ "</content>"
-						+ "</doc>"
-						+ "</SaveDocumentRequest>");
-
-		// Select briefcase folder
-		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseFolder, true);
-
-		// Click on created document
-		app.zPageBriefcase.zListItem(Action.A_LEFTCLICK, docItem);
-
-		// Delete Document using Backspace keyboard shortcut
-		DialogConfirm deleteConfirm = (DialogConfirm) app.zPageBriefcase.zKeyboardShortcut(shortcut);
-
-		// Click OK on Confirmation dialog
-		deleteConfirm.zPressButton(Button.B_YES);
-
-		// Select briefcase folder
-		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseFolder, false);
-
-		// Verify document was deleted
-		boolean isDeleted = app.zPageBriefcase.waitForDeletedFromListView(docName);
-		ZAssert.assertTrue(isDeleted, "Verify document was deleted through GUI");
-	}
-
-
-	@Test (description = "Create document through SOAP - delete using Right Click context menu & verify through GUI",
-			groups = { "smoke", "L1" })
-
-	public void DeleteDocument_04() throws HarnessException {
 
 		ZimbraAccount account = app.zGetActiveAccount();
 
@@ -268,9 +215,9 @@ public class DeleteDocument extends EnableBriefcaseFeature {
 
 
 	@Test (description = "Delete multiple documents(3) by selecting check box and delete using toolbar",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
-	public void DeleteDocument_05() throws HarnessException {
+	public void DeleteDocument_04() throws HarnessException {
 
 		ZimbraAccount account = app.zGetActiveAccount();
 
@@ -344,9 +291,9 @@ public class DeleteDocument extends EnableBriefcaseFeature {
 
 	@Bugs (ids = "43836")
 	@Test (description = "can not delete documents in briefcase with the same file name",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
-	public void DeleteDocument_06() throws HarnessException {
+	public void DeleteDocument_05() throws HarnessException {
 
 		ZimbraAccount account = app.zGetActiveAccount();
 
@@ -460,9 +407,9 @@ public class DeleteDocument extends EnableBriefcaseFeature {
 
 	@Bugs (ids = "103343")
 	@Test (description = "Create document with 3 versions through SOAP - delete using Right Click context menu & verify through GUI", 
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
-	public void DeleteDocument_07() throws HarnessException {
+	public void DeleteDocument_06() throws HarnessException {
 
 		ZimbraAccount account = app.zGetActiveAccount();
 

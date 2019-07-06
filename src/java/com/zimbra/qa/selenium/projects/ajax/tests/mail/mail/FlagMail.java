@@ -30,7 +30,7 @@ public class FlagMail extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Flag a mail  clicking flagged icon",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void FlagMail_01() throws HarnessException {
 
@@ -70,7 +70,7 @@ public class FlagMail extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Flag a mail by using shortcut 'mf'",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void FlagMail_02() throws HarnessException {
 

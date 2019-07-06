@@ -47,7 +47,7 @@ public class EditShare extends AjaxCore {
 
 
 	@Test (description = "Share and edit folder with admin rights",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void EditShare_01() throws HarnessException {
 

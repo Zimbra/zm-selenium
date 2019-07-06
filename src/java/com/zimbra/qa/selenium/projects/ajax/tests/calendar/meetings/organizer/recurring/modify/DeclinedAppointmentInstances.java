@@ -39,7 +39,7 @@ public class DeclinedAppointmentInstances extends AjaxCore {
 
 
 	@Test (description = "Verify start date of the recurring appointment instances declined by recipients",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void DeclinedAppointmentInstances_01() throws HarnessException {
 

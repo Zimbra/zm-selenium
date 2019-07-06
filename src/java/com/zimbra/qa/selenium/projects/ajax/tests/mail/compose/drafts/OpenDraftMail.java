@@ -39,7 +39,7 @@ public class OpenDraftMail extends SetGroupMailByMessagePreference {
 
 	@Bugs (ids = "49907")
 	@Test (description = "Open existing drafts in Reading Pane",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void OpenDraftMail_01() throws HarnessException {
 

@@ -34,7 +34,7 @@ public class RenameFeed extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Rename a feed folder - Context menu -> Rename",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void RenameFeed_01() throws HarnessException, MalformedURLException {
 

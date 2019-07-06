@@ -31,7 +31,7 @@ public class UnFlagMail extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Un-Flag a mail by clicking flagged icon",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void UnFlagMail_01() throws HarnessException {
 
@@ -69,7 +69,7 @@ public class UnFlagMail extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Un-Flag a mail by using shortcut 'mf'",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void UnFlagMail_02() throws HarnessException {
 

@@ -33,7 +33,7 @@ import com.zimbra.qa.selenium.projects.touch.core.SetGroupMailByConversationPref
 			logger.info("New "+ MoveMessage.class.getCanonicalName());
 		}
 			@Test (description = "Move a mail by 'move conversation' button",
-					groups = { "sanity" })
+					groups = { "bhr" })
 			
 			
 			public void MoveMessage_01() throws HarnessException, AWTException {
@@ -83,7 +83,7 @@ import com.zimbra.qa.selenium.projects.touch.core.SetGroupMailByConversationPref
 
 		@Bugs (ids = "83506")
 		@Test (description = "Move a mail into subfolder",
-					groups = { "smoke" })
+					groups = { "sanity" })
 		public void MoveMessage_02() throws HarnessException {
 
 				String subject = "subject"+ ConfigProperties.getUniqueString();

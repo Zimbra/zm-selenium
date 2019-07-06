@@ -32,7 +32,7 @@ public class ReplyMailWithInlineImage extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Reply a mail  with an inline attachment by pressing Reply button>>attach>>Inline - in separate window",
-			groups = { "smoke", "L1", "upload" })
+			groups = { "bhr", "upload" })
 
 	public void ReplyMailWithInlineImage_01() throws HarnessException {
 

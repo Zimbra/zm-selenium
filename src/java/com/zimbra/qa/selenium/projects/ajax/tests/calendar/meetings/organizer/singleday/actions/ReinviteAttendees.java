@@ -34,7 +34,7 @@ public class ReinviteAttendees extends AjaxCore {
 
 	@Bugs (ids = "21181")
 	@Test (description = "Resend a meeting invite using context menu",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void ReinviteAttendees_01() throws HarnessException {
 

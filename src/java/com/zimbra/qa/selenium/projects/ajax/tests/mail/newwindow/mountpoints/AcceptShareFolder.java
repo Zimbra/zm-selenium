@@ -44,7 +44,7 @@ public class AcceptShareFolder extends SetGroupMailByMessagePreference {
 
 	@Bugs (ids = "27579")
 	@Test (description = "Receive an invitation for a shared folder, Accept it - in a separate window opened by double clicking on the mail",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void AcceptShareFolder_01() throws HarnessException {
 

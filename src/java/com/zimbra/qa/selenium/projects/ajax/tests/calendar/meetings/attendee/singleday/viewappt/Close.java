@@ -31,7 +31,7 @@ public class Close extends AjaxCore {
 
 
 	@Test (description = "View meeting invite by opening it and close it",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void CloseMeeting_01() throws HarnessException {
 

@@ -31,7 +31,7 @@ public class ReplyMail extends SetGroupMailByMessagePreference {
 	}
 
 	@Test (description = "Reply a mail in message view",
-			groups = { "sanity" })
+			groups = { "bhr" })
 
 	public void ReplyMail_01() throws HarnessException {
 

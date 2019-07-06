@@ -36,7 +36,7 @@ public class BasicLogin extends MobileCore {
 	}
 	
 	@Test (description = "Login to the Mobile Client",
-			groups = { "sanity" })
+			groups = { "smoke" })
 	public void BasicLogin01() throws HarnessException {
 		
 		// Login

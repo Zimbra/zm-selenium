@@ -38,7 +38,7 @@ public class NavigateSoftwareUpdates extends AdminCore {
 	 */
 
 	@Test (description = "Navigate to Software Updates",
-			groups = { "sanity", "L0" })
+			groups = { "smoke" })
 
 	public void NavigateAccountMigration_01() throws HarnessException {
 

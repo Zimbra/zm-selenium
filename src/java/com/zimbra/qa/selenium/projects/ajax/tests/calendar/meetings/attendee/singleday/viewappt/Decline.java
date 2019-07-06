@@ -35,7 +35,7 @@ public class Decline extends AjaxCore {
 
 
 	@Test (description = "View meeting invite by opening it and Decline the invitation by selecting 'Don't notify organizer'",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void DeclineMeeting_01() throws HarnessException {
 
@@ -140,7 +140,7 @@ public class Decline extends AjaxCore {
 
 	@Bugs (ids = "96565")
 	@Test (description = "View meeting invite by opening it and Decline the invitation by selecting 'Notify organizer'",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void DeclineMeeting_02() throws HarnessException {
 

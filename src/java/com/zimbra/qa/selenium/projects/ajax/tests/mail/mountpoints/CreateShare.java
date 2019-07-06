@@ -33,7 +33,7 @@ public class CreateShare extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Share a folder - Viewer",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void CreateShare_01() throws HarnessException {
 
@@ -83,7 +83,7 @@ public class CreateShare extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Share a folder - Manager",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void CreateShare_02() throws HarnessException {
 

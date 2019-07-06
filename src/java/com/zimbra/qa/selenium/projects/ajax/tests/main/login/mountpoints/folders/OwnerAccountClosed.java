@@ -42,7 +42,7 @@ public class OwnerAccountClosed extends AjaxCore {
 
 
 	@Test (description = "Login to the Ajax Client - with a mountpoint to a closed account",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void OwnerAccountClosed_01() throws HarnessException {
 

@@ -31,7 +31,7 @@ public class Open extends AjaxCore {
 
 
 	@Test (description = "Rt-click to invite and open it",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void OpenMeeting_01() throws HarnessException {
 

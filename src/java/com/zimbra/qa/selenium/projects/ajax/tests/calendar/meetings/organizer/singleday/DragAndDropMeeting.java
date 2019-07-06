@@ -39,7 +39,7 @@ public class DragAndDropMeeting extends AjaxCore {
 
 	@Bugs (ids = "77866")
 	@Test (description = "Drag and drop meeting to different date in month view",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void DragAndDropMeeting_01() throws HarnessException {
 

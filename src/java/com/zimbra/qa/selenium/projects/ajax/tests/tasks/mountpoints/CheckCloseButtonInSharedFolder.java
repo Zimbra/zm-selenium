@@ -50,7 +50,7 @@ public class CheckCloseButtonInSharedFolder extends AjaxCore {
 
 
 	@Test (description = "Verify Close button on Share Task Window and its functionality",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void CheckCloseButtonInSharedFolder_01() throws HarnessException {
 
@@ -126,7 +126,7 @@ public class CheckCloseButtonInSharedFolder extends AjaxCore {
 
 
 	@Test (description = "Verify Close button on Share Task Window and its functionality",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void CheckCloseButtonInSharedFolder_02() throws HarnessException {
 

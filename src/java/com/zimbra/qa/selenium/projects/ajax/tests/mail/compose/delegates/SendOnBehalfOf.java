@@ -32,7 +32,7 @@ public class SendOnBehalfOf extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Send On Behalf Of another user",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void SendOnBehalfOf_01() throws HarnessException {
 

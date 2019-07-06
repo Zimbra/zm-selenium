@@ -45,7 +45,7 @@ public class SendFileLink extends EnableBriefcaseFeature {
 
 	@Bugs (ids = "46371")
 	@Test (description = "Briefcase linking problems upon renames",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void SendFileLink_01() throws HarnessException {
 

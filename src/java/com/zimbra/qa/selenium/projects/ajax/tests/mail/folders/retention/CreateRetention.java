@@ -31,7 +31,7 @@ public class CreateRetention extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Save a new basic retention on a folder (Context menu -> Edit -> Retention)",
-			groups = { "smoke", "L1" } )
+			groups = { "bhr" } )
 
 	public void CreateRetention_01() throws HarnessException {
 
@@ -86,7 +86,7 @@ public class CreateRetention extends SetGroupMailByMessagePreference {
 	}
 
 	@Test (description = "Create day, week, month, year retentions",
-			groups = { "functional", "L2" }, dataProvider = "DataProviderRetentions" )
+			groups = { "sanity" }, dataProvider = "DataProviderRetentions" )
 
 	public void CreateRetention_02(DialogEditFolder.RetentionRangeUnits units, String expected) throws HarnessException {
 

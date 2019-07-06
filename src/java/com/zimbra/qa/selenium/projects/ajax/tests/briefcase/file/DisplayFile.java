@@ -17,7 +17,6 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.briefcase.file;
 
 import org.testng.annotations.Test;
-import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.FileItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
@@ -39,7 +38,7 @@ public class DisplayFile extends EnableBriefcaseFeature {
 
 
 	@Test (description = "Upload file through RestUtil - verify through GUI",
-			groups = { "smoke", "L0" })
+			groups = { "smoke" })
 
 	public void DisplayFile_01() throws HarnessException {
 
@@ -68,36 +67,5 @@ public class DisplayFile extends EnableBriefcaseFeature {
 		// Verify document is created
 		String name = app.zPageBriefcase.getItemNameFromListView(fileName);
 		ZAssert.assertStringContains(name, fileName, "Verify file name through GUI");
-	}
-
-
-	@Bugs (ids = "79994")
-	@Test (description = "german umlauts breaks briefcase",
-			groups = { "functional-skip", "L3-skip" })
-
-	public void DisplayFile_02() throws HarnessException {
-
-		ZimbraAccount account = app.zGetActiveAccount();
-
-		FolderItem briefcaseFolder = FolderItem.importFromSOAP(account, SystemFolder.Briefcase);
-
-		// Create file item
-		String filePath = ConfigProperties.getBaseDirectory() + "/data/public/other/testäöütest.txt";
-		String subject = "test???test.txt";
-
-		// Upload file to server through RestUtil
-		String attachmentId = account.uploadFileUsingRestUtil(filePath);
-
-		// Save uploaded file to briefcase through SOAP
-		account.soapSend("<SaveDocumentRequest xmlns='urn:zimbraMail'>" + "<doc l='" + briefcaseFolder.getId()
-				+ "'><upload id='" + attachmentId + "'/></doc></SaveDocumentRequest>");
-
-		// Select briefcase folder
-		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseFolder, true);
-
-		// Verify document is created
-		String name = app.zPageBriefcase.getItemNameFromListView(subject);
-		ZAssert.assertStringContains(name, subject, "Verify file name through GUI");
-		app.zPageBriefcase.zListItem(Action.A_BRIEFCASE_CHECKBOX, subject);
 	}
 }

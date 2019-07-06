@@ -39,7 +39,7 @@ public class NavigateDomain extends AdminCore {
 	 */
 
 	@Test (description = "Navigate to Domain",
-			groups = { "sanity", "L0" })
+			groups = { "smoke" })
 
 	public void NavigateDomain_01() throws HarnessException {
 

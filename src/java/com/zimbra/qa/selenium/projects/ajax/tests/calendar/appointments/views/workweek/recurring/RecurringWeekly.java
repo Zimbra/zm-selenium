@@ -40,7 +40,7 @@ public class RecurringWeekly extends AjaxCore {
 
 	@Bugs (ids = "103157")
 	@Test (description = "Create weekly recurring appointment and verify that start date and other details appear correct after opening",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void RecurringWeekly_01() throws HarnessException, ParseException {
 

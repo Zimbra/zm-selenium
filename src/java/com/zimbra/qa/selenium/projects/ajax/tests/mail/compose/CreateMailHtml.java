@@ -35,7 +35,7 @@ public class CreateMailHtml extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Send a mail using HTML editor",
-			groups = { "sanity", "L1" })
+			groups = { "bhr" })
 
 	public void CreateMailHtml_01() throws HarnessException {
 
@@ -79,7 +79,7 @@ public class CreateMailHtml extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Send a mail multiline body content using HTML editor",
-			groups = { "sanity", "L0" })
+			groups = { "smoke" })
 
 	public void CreateMultilineContentMailHtml_02() throws HarnessException {
 

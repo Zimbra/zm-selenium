@@ -32,7 +32,7 @@ public class MailPollingIntervalAsMailArrives extends SetGroupMailByMessagePrefe
 
 
 	@Test (description = "Receive a mail with - As Mail Arrives set",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void MailPollingIntervalAsMailArrives_01() throws HarnessException {
 

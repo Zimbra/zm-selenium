@@ -36,7 +36,7 @@ public class SearchAppointment extends AjaxCore {
 
 
 	@Test (description = "Search for an appointment by subject",
-			groups = { "functional","L2" })
+			groups = { "sanity" })
 
 	public void SearchAppointment_01() throws HarnessException {
 
@@ -84,7 +84,7 @@ public class SearchAppointment extends AjaxCore {
 
 	@Bugs (ids = "49386")
 	@Test (description = "Script error when searching in calendar list view",
-			groups = { "functional","L2" })
+			groups = { "sanity" })
 
 	public void SearchAppointment_02() throws HarnessException {
 

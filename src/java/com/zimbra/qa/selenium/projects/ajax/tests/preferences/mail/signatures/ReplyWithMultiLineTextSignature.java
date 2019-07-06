@@ -53,7 +53,7 @@ public class ReplyWithMultiLineTextSignature extends AjaxCore {
 
 	@Bugs (ids = "45490")
 	@Test (description = "Reply message with text signature with multiple lines and verify signature through soap",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void ReplyWithMultiLineTextSignature_01() throws HarnessException {
 

@@ -35,7 +35,7 @@ public class RemoveAttachment extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Remove an attachment from a mail",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void RemoveAttachment_01() throws HarnessException {
 
@@ -112,7 +112,7 @@ public class RemoveAttachment extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Remove all attachments (2 attachments) from a mail",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void RemoveAttachment_02() throws HarnessException {
 
@@ -180,7 +180,7 @@ public class RemoveAttachment extends SetGroupMailByMessagePreference {
 
 	@Bugs (ids = "81565")
 	@Test (description = "Remove an attachment from a meeting invite",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void RemoveAttachment_03() throws HarnessException {
 
@@ -258,7 +258,7 @@ public class RemoveAttachment extends SetGroupMailByMessagePreference {
 
 	@Bugs (ids = "81565")
 	@Test (description = "Remove all attachments (2 attachments) from a meeting invite",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void RemoveAttachment_04() throws HarnessException {
 
@@ -325,7 +325,7 @@ public class RemoveAttachment extends SetGroupMailByMessagePreference {
 
 	@Bugs (ids = "83243")
 	@Test (description = "Remove an attachment from a mail from Show Conversation view",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void RemoveAttachment_05() throws HarnessException {
 

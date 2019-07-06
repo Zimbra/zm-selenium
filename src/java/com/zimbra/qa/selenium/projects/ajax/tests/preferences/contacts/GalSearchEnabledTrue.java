@@ -37,7 +37,7 @@ public class GalSearchEnabledTrue extends AjaxCore {
 
 
 	@Test (description = "Set zimbraPrefGalSearchEnabled to 'TRUE'",
-			groups = { "functional", "L2" } )
+			groups = { "sanity" } )
 
 	public void GalSearchEnabledTrue_01() throws HarnessException {
 

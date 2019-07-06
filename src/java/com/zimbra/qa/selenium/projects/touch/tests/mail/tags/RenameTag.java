@@ -39,7 +39,7 @@ public class RenameTag extends SetGroupMailByMessagePreference  {
 	 */
 	
 	@Test (description = "Rename a tag item", 
-			groups = { "sanity" })
+			groups = { "bhr" })
 	
 	public void RenameTag_01() throws HarnessException {
 		//----------------------- Data ------------------------------

@@ -71,7 +71,7 @@ public class FromAlias extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Send a mail using an alias as From",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void FromAlias_01() throws HarnessException {
 

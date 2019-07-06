@@ -31,7 +31,7 @@ public class MarkAllAsReadFeed extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Mark all messages as read in folder (context menu)",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void MarkAllAsReadFolder_01() throws HarnessException, MalformedURLException {
 

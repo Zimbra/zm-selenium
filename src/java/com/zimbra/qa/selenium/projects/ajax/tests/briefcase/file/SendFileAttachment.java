@@ -42,7 +42,7 @@ public class SendFileAttachment extends EnableBriefcaseFeature {
 
 
 	@Test (description = "Upload file through RestUtil - click Send as attachment, Cancel & verify through GUI",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void SendFileAttachment_01() throws HarnessException {
 
@@ -98,7 +98,7 @@ public class SendFileAttachment extends EnableBriefcaseFeature {
 
 
 	@Test (description = "Send File as attachment using Right Click Context Menu & verify through GUI",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void SendFileAttachment_02() throws HarnessException {
 

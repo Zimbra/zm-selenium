@@ -48,7 +48,7 @@ public class TaskEnabled extends AjaxCore {
 
 
 	@Test (description = "Load the Task tab with just Tasks enabled",
-			groups = { "functional-skip", "L3-skip"})
+			groups = { "functional-known-failure" })
 
 	public void TaskEnabled_01() throws HarnessException {
 

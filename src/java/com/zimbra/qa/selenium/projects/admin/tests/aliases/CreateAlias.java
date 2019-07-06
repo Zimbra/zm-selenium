@@ -42,7 +42,7 @@ public class CreateAlias extends AdminCore {
 	 */
 
 	@Test (description = "Create a basic alias",
-			groups = { "sanity", "L0" })
+			groups = { "smoke" })
 
 	public void CreateAlias_01() throws HarnessException {
 

@@ -46,7 +46,7 @@ public class EditServer extends AdminCore {
 	 */
 
 	@Test (description = "Edit Server from gear menu option",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void EditServer_01() throws HarnessException {
 

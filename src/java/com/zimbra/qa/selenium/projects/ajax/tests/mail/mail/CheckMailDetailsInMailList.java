@@ -39,7 +39,7 @@ public class CheckMailDetailsInMailList extends SetGroupMailByMessagePreference 
 
 
 	@Test (description = "Verify mail details displayed in inbox mail list",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void CheckMailDetailsInMailList_01() throws HarnessException {
 
@@ -87,7 +87,7 @@ public class CheckMailDetailsInMailList extends SetGroupMailByMessagePreference 
 	}
 	
 	@Test (description = "Verify mail details displayed in sent mail list",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void CheckMailDetailsInMailList_02() throws HarnessException {
 

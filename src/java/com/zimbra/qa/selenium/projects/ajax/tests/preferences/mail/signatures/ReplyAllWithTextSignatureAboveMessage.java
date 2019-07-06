@@ -69,7 +69,7 @@ public class ReplyAllWithTextSignatureAboveMessage extends AjaxCore {
 	 */
 
 	@Test (description = "Verify text signature above included message when replying all",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void ReplyAllWithTextSignatureAboveMessage_02() throws HarnessException {
 

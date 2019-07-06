@@ -49,7 +49,7 @@ public class EditAccount extends AdminCore {
 	 */
 
 	@Test (description = "Edit Account name  - Manage Account View",
-			groups = { "sanity", "L0" })
+			groups = { "smoke" })
 
 	public void EditAccount_01() throws HarnessException {
 
@@ -96,7 +96,7 @@ public class EditAccount extends AdminCore {
 	 */
 
 	@Test (description = "Edit account name -- right click",
-			groups = { "sanity", "L0" })
+			groups = { "smoke" })
 
 	public void EditAccount_02() throws HarnessException {
 
@@ -148,7 +148,7 @@ public class EditAccount extends AdminCore {
 	 */
 
 	@Test (description = "Edit a basic account - Search List View",
-			groups = { "smmoke", "L1" })
+			groups = { "bhr" })
 
 	public void EditAccount_03() throws HarnessException {
 
@@ -207,7 +207,7 @@ public class EditAccount extends AdminCore {
 	 */
 
 	@Test (description = "Edit a basic account - Search List View",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void EditAccount_04() throws HarnessException {
 

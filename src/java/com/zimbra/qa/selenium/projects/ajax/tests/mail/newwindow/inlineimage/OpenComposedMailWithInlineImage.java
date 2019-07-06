@@ -32,7 +32,7 @@ public class OpenComposedMailWithInlineImage extends SetGroupMailByMessagePrefer
 
 
 	@Test (description = "Verify inline attachment in Normal Compose window as well as in New compose window",
-			groups = { "functional", "L2", "upload" })
+			groups = { "sanity", "upload" })
 
 	public void OpenComposedMailWithInlineImage_01() throws HarnessException {
 

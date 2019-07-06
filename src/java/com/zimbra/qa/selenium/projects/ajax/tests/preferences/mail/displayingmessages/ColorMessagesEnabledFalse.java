@@ -37,7 +37,7 @@ public class ColorMessagesEnabledFalse extends AjaxCore {
 
 
 	@Test (description = "Set 'Set color of messages and conversations according to tag color.': Disabled",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void ColorMessagesEnabledFalse_01() throws HarnessException {
 

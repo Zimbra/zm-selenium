@@ -36,7 +36,7 @@ public class DeleteSeries extends AjaxCore {
 
 	@Bugs (ids = "69920,75559")
 	@Test (description = "Delete series from third instance and onwards",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 	public void DeleteSeries_01() throws HarnessException {
 
 		// ------------------------ Test data ------------------------------------
@@ -103,7 +103,7 @@ public class DeleteSeries extends AjaxCore {
 
 	@Bugs (ids = "69920,75559")
 	@Test (description = "Delete series from third instance and onwards",
-			groups = { "functional-skip", "application-bug" })
+			groups = { "application-bug" })
 
 	public void DeleteSeries_02() throws HarnessException {
 

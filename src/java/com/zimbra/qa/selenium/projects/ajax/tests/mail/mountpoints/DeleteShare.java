@@ -37,7 +37,7 @@ public class DeleteShare extends SetGroupMailByMessagePreference{
 
 
 	@Test (description = "Delete (Revoke) an existing share",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void DeleteShare_01() throws HarnessException {
 

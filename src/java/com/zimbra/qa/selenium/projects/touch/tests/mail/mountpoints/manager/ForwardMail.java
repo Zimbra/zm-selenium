@@ -34,7 +34,7 @@ public class ForwardMail extends SetGroupMailByMessagePreference{
 	}
 
 	@Test (description = "Forward a email on mount point with manager rights",
-			groups = { "functional" })
+			groups = { "bhr" })
 
 	public void ForwardMail_01() throws HarnessException  {
 

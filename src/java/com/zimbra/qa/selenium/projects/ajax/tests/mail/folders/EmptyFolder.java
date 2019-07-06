@@ -32,7 +32,7 @@ public class EmptyFolder extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Empty a folder (context menu)",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void EmptyFolder_01() throws HarnessException {
 

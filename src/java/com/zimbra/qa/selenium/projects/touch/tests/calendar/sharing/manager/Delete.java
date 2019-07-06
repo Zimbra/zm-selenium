@@ -35,7 +35,7 @@ public class Delete extends CalendarWorkWeekPreference {
 	
 	@Bugs (ids = "95870")
 	@Test (description = "Assistant selects calendar invite from shared calendar and deletes the invite OBO boss",
-			groups = { "t" })
+			groups = { "functional" })
 
 	public void Delete_01() throws HarnessException {
 		

@@ -36,7 +36,7 @@ public class AttachBriefcaseFileAndSendMail extends SetGroupMailByMessagePrefere
 
 
 	@Test (description = "Attach an briefcase file to a mail",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void AttachBriefcaseFileAndSendMail_01() throws HarnessException {
 

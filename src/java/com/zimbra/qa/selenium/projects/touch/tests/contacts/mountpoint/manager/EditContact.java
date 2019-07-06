@@ -36,7 +36,7 @@ public class EditContact extends TouchCore  {
 	}
 
 	@Test (description = "Edit a contact item in mount folder with manager rights",
-			groups = { "functional" })
+			groups = { "sanity" })
 
 	public void EditContact_01() throws HarnessException {
 

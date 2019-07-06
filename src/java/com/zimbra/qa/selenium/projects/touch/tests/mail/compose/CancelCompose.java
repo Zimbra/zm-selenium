@@ -17,8 +17,6 @@
 package com.zimbra.qa.selenium.projects.touch.tests.mail.compose;
 
 import org.testng.annotations.Test;
-
-import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.items.MailItem;
 import com.zimbra.qa.selenium.framework.items.RecipientItem;
@@ -37,7 +35,7 @@ public class CancelCompose extends TouchCore {
 	}
 	
 	@Test (description = "Compose message, specify subject, body and cancel it without saving as draft",
-			groups = { "functional" })
+			groups = { "sanity" })
 			
 	public void CancelCompose_DontSaveDraft_01() throws HarnessException {
 		
@@ -97,58 +95,8 @@ public class CancelCompose extends TouchCore {
 		
 	}
 	
-	@Bugs (ids = "83978")
-	@Test (description = "Compose message, specify subject, body and send a mail after saving as draft",
-			groups = { "obsolete" }) // obsolete testcase because UI has been changed (after saving draft, dialog is closed)
-		
-	public void CancelCompose_SendMail_03() throws HarnessException {
-		
-		// Create the message data
-		MailItem mail = new MailItem();
-		mail.dToRecipients.add(new RecipientItem(ZimbraAccount.AccountA(), RecipientType.To));
-		mail.dSubject = "subject" + ConfigProperties.getUniqueString();
-		mail.dBodyText = "body" + ConfigProperties.getUniqueString();
-		
-		// Try to cancel the compose and again send it
-		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
-		mailform.zFill(mail);
-		mailform.zToolbarPressButton(Button.B_CANCEL);
-		mailform.zPressButton(Button.B_YES);
-		mailform.zSubmit();
-		
-		// Get the message from server and verify draft data matches
-		app.zGetActiveAccount().soapSend(
-				"<SearchRequest types='message' xmlns='urn:zimbraMail'>"
-						+ "<query>" + "in:drafts " + "subject:(" + mail.dSubject + ")</query>"
-						+ "</SearchRequest>");
-		String id = app.zGetActiveAccount().soapSelectValue("//mail:m", "id");
-		ZAssert.assertNull(id, "Verify the draft folder id is null");
-			
-		// Verify received mail to To: user
-		ZimbraAccount.AccountA().soapSend(
-				"<SearchRequest types='message' xmlns='urn:zimbraMail'>"
-						+ "<query>subject:(" + mail.dSubject + ")</query>"
-						+ "</SearchRequest>");
-		String toid = ZimbraAccount.AccountA().soapSelectValue("//mail:m", "id");
-		
-		ZimbraAccount.AccountA().soapSend(
-				"<GetMsgRequest xmlns='urn:zimbraMail'>" + "<m id='" + toid
-						+ "' html='1'/>" + "</GetMsgRequest>");
-
-		String tofrom = ZimbraAccount.AccountA().soapSelectValue("//mail:e[@t='f']", "a");
-		String toto = ZimbraAccount.AccountA().soapSelectValue("//mail:e[@t='t']", "a");
-		String tosubject = ZimbraAccount.AccountA().soapSelectValue("//mail:su", null);
-		String tobody = ZimbraAccount.AccountA().soapSelectValue("//mail:content", null);
-		
-		ZAssert.assertEquals(tofrom, app.zGetActiveAccount().EmailAddress, "Verify the from field is correct");
-		ZAssert.assertEquals(toto, ZimbraAccount.AccountA().EmailAddress, "Verify the to field is correct");
-		ZAssert.assertEquals(tosubject, mail.dSubject, "Verify the subject field is correct");
-		ZAssert.assertStringContains(tobody, mail.dBodyText, "Verify the body content");
-		
-	}
-	
 	@Test (description = "Compose message, specify subject, body and send a mail without saving as draft",
-			groups = { "functional" })
+			groups = { "sanity" })
 			
 	public void CancelCompose_SendMail_04() throws HarnessException {
 		

@@ -31,7 +31,7 @@ public class LoggedInUsername extends AdminCore {
 
 
 	@Test (description = "Verify the Top Menu displays the correct Admin username",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void LoggedInUsername_01() throws HarnessException {
 

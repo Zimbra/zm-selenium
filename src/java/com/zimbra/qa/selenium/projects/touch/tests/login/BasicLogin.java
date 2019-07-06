@@ -34,7 +34,7 @@ public class BasicLogin extends TouchCore {
 	}
 	
 	@Test (description = "Login to the Touch Client",
-			groups = { "sanity" })
+			groups = { "smoke" })
 			
 	public void BasicLogin01() throws HarnessException {
 		

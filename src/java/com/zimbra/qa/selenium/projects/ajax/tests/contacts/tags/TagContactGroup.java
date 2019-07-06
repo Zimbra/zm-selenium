@@ -38,7 +38,7 @@ public class TagContactGroup extends AjaxCore  {
 
 
 	@Test (description = "Tag a contact group, click pulldown menu Tag->New Tag",
-			groups = { "smoke", "L1", "non-msedge" })
+			groups = { "bhr", "non-msedge" })
 
 	public void  ClickPulldownMenuTagNewTag_01() throws HarnessException {
 
@@ -76,7 +76,7 @@ public class TagContactGroup extends AjaxCore  {
 
 
 	@Test (description = "Right click then click Tag Contact->New Tag",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void ClickContextMenuTagGroupNewTag_02() throws HarnessException {
 
@@ -107,7 +107,7 @@ public class TagContactGroup extends AjaxCore  {
 
 
 	@Test (description = "Right click then click Tag Contact Group->a tag name",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void ClickContextMenuTagContactExistingTag_03() throws HarnessException {
 
@@ -136,7 +136,7 @@ public class TagContactGroup extends AjaxCore  {
 
 
 	@Test (description = "Click pulldown menu Tag->A tag name",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void ClickPulldownMenuTagExistingTag_04() throws HarnessException {
 
@@ -168,7 +168,7 @@ public class TagContactGroup extends AjaxCore  {
 
 
 	@Test (description = "Double tag a group ",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void DoubleTag_05() throws HarnessException {
 
@@ -203,7 +203,7 @@ public class TagContactGroup extends AjaxCore  {
 
 
 	@Test (description = "Tag a contact group by dnd on an existing tag",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void DnDOnExistingTag_06() throws HarnessException {
 

@@ -36,7 +36,7 @@ public class OpenComposedMail extends SetGroupMailByMessagePreference {
 
 	@Bugs (ids = "89778")
 	@Test (description = "Send a mail using HTML editor - from a separate window using DETACH COMPOSE button",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void OpenComposedMail_01() throws HarnessException {
 

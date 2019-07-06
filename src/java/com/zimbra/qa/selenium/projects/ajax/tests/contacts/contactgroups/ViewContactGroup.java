@@ -33,7 +33,7 @@ public class ViewContactGroup extends AjaxCore  {
 
 
 	@Test (description = "View a contact group",
-			groups = { "smoke", "L0" } )
+			groups = { "smoke" } )
 
 	public void ViewContactGroup_01() throws HarnessException {
 

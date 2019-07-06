@@ -33,7 +33,7 @@ public class SendOnBehalfOfSaveCopyOfMessage extends SetGroupMailByMessagePrefer
 
 
 	@Test (description = "Save a copy of sent messages to owner's Sent folder",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void SendOnBehalfOfSaveCopyOfMessage_01() throws HarnessException {
 
@@ -82,7 +82,7 @@ public class SendOnBehalfOfSaveCopyOfMessage extends SetGroupMailByMessagePrefer
 
 
 	@Test (description = "Save a copy of sent messages to delegate's Sent folder",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void SendOnBehalfOfSaveCopyOfMessage_02() throws HarnessException {
 
@@ -131,7 +131,7 @@ public class SendOnBehalfOfSaveCopyOfMessage extends SetGroupMailByMessagePrefer
 
 
 	@Test (description = "Save a copy of sent messages to delegate's Sent folder and granter's Sent folder",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void SendOnBehalfOfSaveCopyOfMessage_03() throws HarnessException {
 
@@ -182,7 +182,7 @@ public class SendOnBehalfOfSaveCopyOfMessage extends SetGroupMailByMessagePrefer
 
 
 	@Test (description = "Don't save a copy of sent messages",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void SendOnBehalfOfSaveCopyOfMessage_04() throws HarnessException {
 

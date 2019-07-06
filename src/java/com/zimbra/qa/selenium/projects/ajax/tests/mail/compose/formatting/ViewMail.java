@@ -31,7 +31,7 @@ public class ViewMail extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "View a message with Excel data formatting",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void ViewMail_01() throws HarnessException {
 

@@ -21,11 +21,12 @@ import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
-import com.zimbra.qa.selenium.projects.ajax.tests.calendar.performance.ZmCalendarApp_ViewDay_Appointment1;
 import com.zimbra.qa.selenium.projects.ajax.pages.mail.DisplayMail;
 import com.zimbra.qa.selenium.projects.ajax.pages.mail.DisplayMail.Field;
 import com.zimbra.qa.selenium.projects.ajax.pages.preferences.PagePreferences;
 import com.zimbra.qa.selenium.projects.ajax.pages.preferences.TreePreferences.TreeItem;
+import com.zimbra.qa.selenium.projects.ajax.tests.performance.ZmCalendarApp_ViewDay_Appointment1;
+
 import java.util.Calendar;
 
 public class ViewInviteWithDisplayMailPreference extends AjaxCore {
@@ -45,7 +46,7 @@ public class ViewInviteWithDisplayMailPreference extends AjaxCore {
 
 
 	@Test (description = "View invite with display mail preference as HTML and verify body multiline HTML content ",
-			groups = { "sanity", "L1" } )
+			groups = { "bhr" } )
 
 	public void ViewHTMLInviteWithHTMLPreference_01() throws HarnessException {
 
@@ -113,7 +114,7 @@ public class ViewInviteWithDisplayMailPreference extends AjaxCore {
 
 
 	@Test (description = "View invite with display mail preference as Plain text and verify body multiline HTML content ",
-			groups = { "sanity", "L1" } )
+			groups = { "bhr" } )
 
 	public void ViewHTMLInviteWithPlainTextPreference_02() throws HarnessException {
 
@@ -163,7 +164,7 @@ public class ViewInviteWithDisplayMailPreference extends AjaxCore {
 
 
 	@Test (description = "View invite with display mail preference as HTML and verify body multiline plain text content ",
-			groups = { "sanity", "L1" } )
+			groups = { "bhr" } )
 
 	public void ViewPlainTextInviteWithHTMLPreference_03() throws HarnessException {
 
@@ -244,7 +245,7 @@ public class ViewInviteWithDisplayMailPreference extends AjaxCore {
 
 
 	@Test (description = "Verify invite with display mail as PlainText and verify body multiline plain text content ",
-			groups = { "sanity", "L1" })
+			groups = { "bhr" })
 
 	public void ViewPlainTextInviteWithPlainTextPreference_04() throws HarnessException {
 

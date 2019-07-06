@@ -37,7 +37,7 @@ public class AddCc extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Select a 'Cc' address in the addresspicker",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void AddCc_01() throws HarnessException {
 

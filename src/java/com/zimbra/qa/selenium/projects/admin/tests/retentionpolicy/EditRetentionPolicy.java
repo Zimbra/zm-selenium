@@ -44,7 +44,7 @@ public class EditRetentionPolicy extends AdminCore {
 	 */
 
 	@Test (description = "Edit retention policy",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void EditRetentionPolicy_01() throws HarnessException {
 

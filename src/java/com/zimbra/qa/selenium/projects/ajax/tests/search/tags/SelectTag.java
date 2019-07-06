@@ -39,7 +39,7 @@ public class SelectTag extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Left click on tag - verify tagged messages are shown",
-			groups = { "functional","L2" })
+			groups = { "sanity" })
 
 	public void SelectTag_01() throws HarnessException {
 

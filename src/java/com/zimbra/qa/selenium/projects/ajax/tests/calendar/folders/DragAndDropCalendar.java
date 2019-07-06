@@ -34,7 +34,7 @@ public class DragAndDropCalendar extends AjaxCore{
 
 
 	@Test (description = "Drag one calendar and Drop into other",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void DragDropCalendar_01() throws HarnessException {
 

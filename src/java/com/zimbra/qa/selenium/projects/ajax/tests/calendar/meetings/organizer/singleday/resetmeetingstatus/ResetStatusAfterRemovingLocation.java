@@ -34,7 +34,7 @@ public class ResetStatusAfterRemovingLocation extends AjaxCore {
 
 	@Bugs (ids = "49881")
 	@Test (description = "Check reset status of meeting after removing attendee",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void ResetStatusAfterRemovingLocation_01() throws HarnessException {
 

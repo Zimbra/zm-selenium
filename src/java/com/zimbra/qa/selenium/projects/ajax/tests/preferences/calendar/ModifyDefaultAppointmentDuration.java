@@ -42,7 +42,7 @@ public class ModifyDefaultAppointmentDuration extends AjaxCore {
 
 
 	 @Test (description = "Modify calendar default appointment duration",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	 public void ModifyDefaultAppointmentDuration_01() throws HarnessException  {
 

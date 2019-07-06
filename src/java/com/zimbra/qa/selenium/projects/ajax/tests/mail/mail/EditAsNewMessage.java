@@ -31,7 +31,7 @@ public class EditAsNewMessage extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "'Edit as new' message, using 'Actions -> Edit as New' toolbar button",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void EditAsNewMessage_01() throws HarnessException {
 
@@ -73,7 +73,7 @@ public class EditAsNewMessage extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "'Edit as new' message, using 'Right Click' -> 'Edit as new'",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void EditAsNewMessage_02() throws HarnessException {
 

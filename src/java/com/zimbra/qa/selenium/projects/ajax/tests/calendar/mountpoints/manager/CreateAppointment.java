@@ -36,7 +36,7 @@ public class CreateAppointment extends AjaxCore {
 
 
 	@Test (description = "Create a basic meeting with attendee and location on shared mailbox",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void CreateAppointment_01() throws HarnessException {
 

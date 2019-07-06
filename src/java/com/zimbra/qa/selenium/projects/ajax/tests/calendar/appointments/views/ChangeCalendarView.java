@@ -32,7 +32,7 @@ public class ChangeCalendarView extends AjaxCore {
 
 
 	@Test (description = "Verify changing calendar view works using right click menu options",
-			groups = { "sanity", "L1" } )
+			groups = { "bhr" } )
 
 	public void ChangeCalendarView_01() throws HarnessException {
 

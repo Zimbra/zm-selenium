@@ -48,7 +48,7 @@ public class DeleteDomain extends AdminCore {
 	 */
 
 	@Test (description = "Verify delete domain operation --  Manage Domain List View",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void DeleteDomain_01() throws HarnessException {
 
@@ -95,7 +95,7 @@ public class DeleteDomain extends AdminCore {
 	 */
 
 	@Test (description = "Verify delete domain operation",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void DeleteDomain_02() throws HarnessException {
 
@@ -140,7 +140,7 @@ public class DeleteDomain extends AdminCore {
 	 */
 
 	@Test (description = "Verify delete domain alias operation - Manage Domain list view",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void DeleteDomain_03() throws HarnessException {
 
@@ -204,7 +204,7 @@ public class DeleteDomain extends AdminCore {
 	 */
 
 	@Test (description = "Verify delete domain alias operation - Manage Domain list view",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void DeleteDomain_04() throws HarnessException {
 

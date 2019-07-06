@@ -34,7 +34,7 @@ public class Delete extends TouchCore  {
 	}
 
 	@Test (description = "Delete a contact item in mount folder with manager rights",
-			groups = { "functional" })
+			groups = { "sanity" })
 
 	public void Delete_01() throws HarnessException {
 

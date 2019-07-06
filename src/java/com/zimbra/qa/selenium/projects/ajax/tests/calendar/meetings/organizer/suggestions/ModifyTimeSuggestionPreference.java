@@ -35,7 +35,7 @@ public class ModifyTimeSuggestionPreference extends AjaxCore {
 
 
 	@Test (description = "Create a meeting invite by modifying time suggestion preferences",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void ModifyTimeSuggestionPreference_01() throws HarnessException {
 

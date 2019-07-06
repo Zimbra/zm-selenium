@@ -34,7 +34,7 @@ public class CreateDuplicateDL extends AjaxCore  {
 
 
 	@Test (description = "Try to create duplicate DL",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void TryToCreateDuplicateDL_01 () throws HarnessException {
 

@@ -36,7 +36,7 @@ public class MailReadReceiptFalse extends AjaxCore {
 	}
 
 	@Test (description = "Set zimbraPrefMailRequestReadReceipts to 'false'",
-			groups = { "functional", "L3" } )
+			groups = { "functional" } )
 
 	public void MailReadReceiptsFalse_01() throws HarnessException {
 

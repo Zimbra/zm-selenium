@@ -35,7 +35,7 @@ public class RunFilter extends AjaxCore {
 
 
    	@Test (description = "Create an incoming filter, run it and check the results",
-			groups = { "sanity", "L0"  } )
+			groups = { "smoke"  } )
 
 	public void RunFilter_01() throws HarnessException {
 
@@ -123,7 +123,7 @@ public class RunFilter extends AjaxCore {
 
 
    	@Test (description = "Create an Outgoinging filter, run it and check the results",
-			groups = { "functional", "L3" } )
+			groups = { "functional" } )
 
 	public void RunFilter_02() throws HarnessException {
 

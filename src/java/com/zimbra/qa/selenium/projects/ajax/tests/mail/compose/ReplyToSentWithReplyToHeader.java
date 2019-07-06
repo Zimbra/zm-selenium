@@ -36,7 +36,7 @@ public class ReplyToSentWithReplyToHeader extends SetGroupMailByMessagePreferenc
 
 
 	@Test (description = "Reply to all from the sent folder (alias in Reply-to header)",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void ReplyToSentWithReplyToHeader_01() throws HarnessException {
 
@@ -144,7 +144,7 @@ public class ReplyToSentWithReplyToHeader extends SetGroupMailByMessagePreferenc
 
 
 	@Test (description = "Reply to all from the sent folder (primary address in Reply-to header)",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void ReplyToSentWithReplyToHeader_02() throws HarnessException {
 

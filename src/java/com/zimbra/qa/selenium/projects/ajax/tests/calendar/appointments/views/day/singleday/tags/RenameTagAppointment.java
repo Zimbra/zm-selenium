@@ -42,7 +42,7 @@ public class RenameTagAppointment extends AjaxCore {
 
 
 	@Test (description = "Apply tag to appointment and rename tag name in day view",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void RenameTagAppointment_01() throws HarnessException {
 

@@ -39,7 +39,7 @@ public class GetMessage extends AjaxCore {
 
 
 	@Test (description = "Receive a mail with a basic US Phone number",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void GetMessage_01() throws HarnessException {
 
@@ -81,7 +81,7 @@ public class GetMessage extends AjaxCore {
 
 
 	@Test (description = "Receive a mail with two phone numbers in body",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void GetMessage_02() throws HarnessException {
 
@@ -127,7 +127,7 @@ public class GetMessage extends AjaxCore {
 
 
 	@Test (description = "Validate the phone zimlet matches NANP phone numbers",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void GetMessage_03() throws HarnessException {
 
@@ -180,7 +180,7 @@ public class GetMessage extends AjaxCore {
 
 
 	@Test (description = "Validate the phone zimlet matches NANP phone numbers",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void GetMessage_04() throws HarnessException {
 
@@ -227,49 +227,11 @@ public class GetMessage extends AjaxCore {
 	}
 
 
-	@Test (description = "Receive a mail with a phone numbers in subject( reference bug 86667)",
-			groups = { "deprecated" })
-
-	public void GetMessage_05() throws HarnessException {
-
-		// Create the message data to be sent
-		String phonenumber = "1-877-486-9273";
-		String subject = "subject " + phonenumber;
-
-		// Send the message from AccountA to the ZCS user
-		ZimbraAccount.AccountA().soapSend(
-					"<SendMsgRequest xmlns='urn:zimbraMail'>" +
-						"<m>" +
-							"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
-							"<su>"+ subject +"</su>" +
-							"<mp ct='text/plain'>" +
-								"<content>content"+ ConfigProperties.getUniqueString() +"</content>" +
-							"</mp>" +
-						"</m>" +
-					"</SendMsgRequest>");
-
-		// Refresh current view
-		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
-
-		// Get all the messages in the inbox
-		DisplayMail display = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
-
-		// Wait for a bit so the zimlet can take affect
-		SleepUtil.sleep(5000);
-
-		// Find the subject and the phone span
-		String locator = "css=span[id$='_com_zimbra_phone']";
-
-		ZAssert.assertTrue(display.sIsElementPresent(locator), "Verify the phone zimlet applies to the subject");
-		ZAssert.assertEquals(display.sGetText(locator), phonenumber, "Verify the phone zimlet highlights the phone number");
-	}
-
-
 	@Bugs (ids = "73264")
 	@Test (description = "Receive a mail with an unformated number string - should not match",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
-	public void GetMessage_06() throws HarnessException {
+	public void GetMessage_05() throws HarnessException {
 
 		// Create the message data to be sent
 		String subject = "subject" + ConfigProperties.getUniqueString();

@@ -38,7 +38,7 @@ public class Tentative extends AjaxCore {
 
 	@Bugs (ids = "69342")
 	@Test (description = "Rt-click to appointment from the calendar app and mark as Tentative",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void TentativeMeeting_01() throws HarnessException {
 

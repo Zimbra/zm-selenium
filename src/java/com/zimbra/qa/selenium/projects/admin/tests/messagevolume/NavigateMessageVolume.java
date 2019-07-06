@@ -37,7 +37,7 @@ public class NavigateMessageVolume extends AdminCore {
 	 */
 
 	@Test (description = "Navigate to Message Volume",
-			groups = { "sanity", "L0" })
+			groups = { "smoke" })
 
 	public void NavigateMessageVolume_01() throws HarnessException {
 

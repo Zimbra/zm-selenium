@@ -36,7 +36,7 @@ public class Reply extends AjaxCore {
 
 
 	@Test (description = "Check Reply to a meeting is disabled for organizer ",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void Reply_01() throws HarnessException {
 

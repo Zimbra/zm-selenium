@@ -44,7 +44,7 @@ public class ChangeColorTaskFolder extends AjaxCore {
 
 
 	@Test (description = "Edit a folder, change the color (Context menu -> Edit)",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void ChangeColorTaskFolder_01() throws HarnessException {
 

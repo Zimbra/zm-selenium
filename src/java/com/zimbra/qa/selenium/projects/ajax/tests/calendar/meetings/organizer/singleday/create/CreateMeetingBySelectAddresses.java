@@ -34,7 +34,7 @@ public class CreateMeetingBySelectAddresses extends AjaxCore {
 
 
 	@Test (description = "Compose appointment by selecting attendees using 'Select Addresses' dialog and send the appointment",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void CreateMeetingBySelectAttendees_01() throws HarnessException {
 

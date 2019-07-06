@@ -32,7 +32,7 @@ public class DeleteMountpoint extends AjaxCore {
 
 
 	@Test (description = "Delete a mountpoint to a shared calendar (right click -> Delete)",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void DeleteMountpoint_01() throws HarnessException {
 

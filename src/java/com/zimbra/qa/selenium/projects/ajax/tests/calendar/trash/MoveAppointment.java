@@ -40,7 +40,7 @@ public class MoveAppointment extends AjaxCore {
 
 
 	@Test (description = "Verify the move of an appointment from trash to Calendar",
-			groups = { "sanity", "L1" })
+			groups = { "bhr" })
 
 	public void MoveAppointment_01() throws HarnessException {
 

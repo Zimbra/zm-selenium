@@ -31,7 +31,7 @@ public class GetPrimaryAccount extends AjaxCore {
 
 
 	@Test (description = "View the accounts preference page shows the default primary account",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void GetPrimaryAccount_01() throws HarnessException {
 

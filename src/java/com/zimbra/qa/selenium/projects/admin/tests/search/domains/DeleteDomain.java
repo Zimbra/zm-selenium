@@ -47,7 +47,7 @@ public class DeleteDomain extends AdminCore {
 	 */
 
 	@Test (description = "Verify delete domain operation is absent from leftclick > gear icon --  Search List View",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void DeleteDomain_01() throws HarnessException {
 
@@ -87,7 +87,7 @@ public class DeleteDomain extends AdminCore {
 	 */
 
 	@Test (description = " Verify delete domain operation is disabled -- Search List View/Right Click Menu",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void DeleteDomain_02() throws HarnessException {
 
@@ -124,7 +124,7 @@ public class DeleteDomain extends AdminCore {
 	 */
 
 	@Test (description = "Verify delete domain alias operation is disabled- Search list view.",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void DeleteDomain_03() throws HarnessException {
 
@@ -176,7 +176,7 @@ public class DeleteDomain extends AdminCore {
 	 */
 
 	@Test (description = "Verify delete domain alias operation is disabled- Search list view.",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void DeleteDomain_04() throws HarnessException {
 

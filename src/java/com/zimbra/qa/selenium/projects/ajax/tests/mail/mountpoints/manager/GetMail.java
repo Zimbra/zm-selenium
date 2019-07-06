@@ -33,7 +33,7 @@ public class GetMail extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "View a mail in a mountpoint",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void GetMail_01() throws HarnessException {
 		String foldername = "folder" + ConfigProperties.getUniqueString();
@@ -112,7 +112,7 @@ public class GetMail extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "View the contents of a mail in a mountpoint",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void GetMail_02() throws HarnessException {
 

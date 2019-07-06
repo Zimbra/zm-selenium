@@ -35,7 +35,7 @@ public class SendMailWithContactsDisabled extends SetGroupMailByMessagePreferenc
 
 	@Bugs (ids = "48923")
 	@Test (description = "Send a mail from an account having Contacts disabled",
-			groups = { "functional", "L2" } )
+			groups = { "sanity" } )
 
 	public void SendMailWithContactsDisabled_01() throws HarnessException {
 

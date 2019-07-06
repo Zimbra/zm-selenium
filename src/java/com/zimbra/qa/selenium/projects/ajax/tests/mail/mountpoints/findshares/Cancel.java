@@ -31,7 +31,7 @@ public class Cancel extends SetGroupMailByMessagePreference {
 	}
 
 	@Test (description = "Open the find shares dialog.  Cancel the dialog.",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void CancelFindShares_01() throws HarnessException {
 

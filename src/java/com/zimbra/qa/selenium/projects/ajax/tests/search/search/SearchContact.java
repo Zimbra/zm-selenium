@@ -32,7 +32,7 @@ public class SearchContact extends AjaxCore {
 
 
 	@Test (description = "Search for a contact",
-			groups = { "functional","L2" })
+			groups = { "sanity" })
 
 	public void SearchContact_01() throws HarnessException {
 
@@ -63,7 +63,7 @@ public class SearchContact extends AjaxCore {
 
 
 	@Test (description = "Search for a non-existing contact",
-			groups = { "functional","L3" })
+			groups = { "functional" })
 
 	public void SearchContact_02() throws HarnessException {
 

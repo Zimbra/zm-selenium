@@ -36,7 +36,7 @@ public class TagContact extends TouchCore  {
 	}
 
 	@Test (description = "Tag a contact item in mount folder with viewer rights",
-			groups = { "functional" })
+			groups = { "sanity" })
 
 	public void TagContact_01() throws HarnessException {
 

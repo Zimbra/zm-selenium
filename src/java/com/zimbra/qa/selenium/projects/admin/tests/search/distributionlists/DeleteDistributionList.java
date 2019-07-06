@@ -36,7 +36,7 @@ public class DeleteDistributionList extends AdminCore {
 
 
 	@Test (description = "Verify delete operation for distribution list - Search distribution list view",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void DeleteDistributionList_01() throws HarnessException {
 
@@ -91,7 +91,7 @@ public class DeleteDistributionList extends AdminCore {
 	 */
 
 	@Test (description = "Verify delete operation for distribution list - Search distribution list view/Right Click Menu.",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void DeleteDistributionList_02() throws HarnessException {
 

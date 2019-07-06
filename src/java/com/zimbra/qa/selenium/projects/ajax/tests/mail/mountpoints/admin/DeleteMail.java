@@ -41,7 +41,7 @@ public class DeleteMail extends SetGroupMailByMessagePreference {
 
 	@Bugs (ids = "66525, 26103")
 	@Test (description = "Delete a message from a mountpoint folder",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void DeleteMail_01() throws HarnessException {
 
@@ -125,7 +125,7 @@ public class DeleteMail extends SetGroupMailByMessagePreference {
 
 	@Bugs (ids = "66525, 26103")
 	@Test (description = "Delete multiple messages from a mountpoint folder",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void DeleteMail_02() throws HarnessException {
 
@@ -231,7 +231,7 @@ public class DeleteMail extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Delete a message from a mountpoint folder which has retention policy of 1 month and verify the warning dialog",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void DeleteMailFromFolderWithRetention_03() throws HarnessException {
 

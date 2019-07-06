@@ -34,7 +34,7 @@ public class GetAttachment extends SetGroupMailByConversationPreference {
 
 
 	@Test (description = "Receive a conversation with one attachment",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void GetAttachment_01() throws HarnessException {
 
@@ -71,7 +71,7 @@ public class GetAttachment extends SetGroupMailByConversationPreference {
 
 
 	@Test (description = "Receive a conversation with three attachments",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void GetAttachment_02() throws HarnessException {
 

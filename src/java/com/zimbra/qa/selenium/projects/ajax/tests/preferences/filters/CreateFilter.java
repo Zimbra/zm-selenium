@@ -40,7 +40,7 @@ public class CreateFilter extends AjaxCore {
 
 	@Bugs (ids = "97040")
 	@Test (description = "Create a basic Incoming Message Filter",
-			groups = { "sanity", "L0" } )
+			groups = { "smoke" } )
 
 	public void CreateFilter_01() throws HarnessException {
 
@@ -82,7 +82,7 @@ public class CreateFilter extends AjaxCore {
 
 
     @Test (description = "Create a basic Outgoing Message Filter",
-			groups = { "smoke", "L1"  } )
+			groups = { "bhr"  } )
 
 	public void CreateFilter_02() throws HarnessException {
 

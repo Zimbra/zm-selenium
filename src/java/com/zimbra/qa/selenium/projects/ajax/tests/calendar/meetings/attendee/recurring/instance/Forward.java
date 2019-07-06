@@ -34,7 +34,7 @@ public class Forward extends AjaxCore {
 
 
 	@Test (description = "Forward particular instance by changing content",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void ForwardMeeting_01() throws HarnessException {
 

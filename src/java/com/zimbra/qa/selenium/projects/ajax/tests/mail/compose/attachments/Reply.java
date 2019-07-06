@@ -33,7 +33,7 @@ public class Reply extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Reply to a mail with attachment - Verify no attachment sent",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void Reply_01() throws HarnessException {
 

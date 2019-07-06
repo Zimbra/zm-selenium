@@ -41,7 +41,7 @@ public class VerifySplitView extends AjaxCore {
 
 	@Bugs (ids = "66603")
 	@Test (description = "Verify that in Day-split view all calendars are visible correctly",
-			groups = { "smoke", "L1" } )
+			groups = { "bhr" } )
 	
 	public void VerifySplitView_01() throws HarnessException {
 

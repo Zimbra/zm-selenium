@@ -31,7 +31,7 @@ public class AddDelegate extends AjaxCore {
 
 
 	@Test (description = "Add a 'Send As' delegate to the primary account",
-			groups = { "sanity", "L0" })
+			groups = { "smoke" })
 
 	public void AddDelegate_01() throws HarnessException {
 
@@ -65,7 +65,7 @@ public class AddDelegate extends AjaxCore {
 
 
 	@Test (description = "Add a 'Send On Behalf Of' delegate to the primary account",
-			groups = { "sanity", "L0" })
+			groups = { "smoke" })
 
 	public void AddDelegate_02() throws HarnessException {
 

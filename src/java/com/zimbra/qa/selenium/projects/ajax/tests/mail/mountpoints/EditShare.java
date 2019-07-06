@@ -37,7 +37,7 @@ public class EditShare extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Share and edit folder with admin rights",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void EditShare_01() throws HarnessException {
 

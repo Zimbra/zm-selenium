@@ -45,7 +45,7 @@ public class CreateMeetingInSharedFolderWithMailDisabled extends AjaxCore {
 
 	@Bugs (ids = "71542")
 	@Test (description = "Unable to create appointment in shared calendars if mail feature is disabled",
-			groups={ "functional", "L3" })
+			groups ={ "functional" })
 
 	public void CreateMeetingInSharedFolderWithMailDisabled_01() throws HarnessException {
 

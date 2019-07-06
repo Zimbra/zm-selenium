@@ -48,7 +48,7 @@ public class GetAlias extends AdminCore {
 	 */
 
 	@Test (description = "Verify alias creation operation   -- Manage alias View",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void GetAlias_01() throws HarnessException {
 
@@ -93,7 +93,7 @@ public class GetAlias extends AdminCore {
 	 */
 
 	@Test (description = "Verify created alias is present in the list view",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void GetAlias_02() throws HarnessException {
 

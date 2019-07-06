@@ -37,7 +37,7 @@ public class ShowComposeDirection extends AjaxCore {
 
 	@Bugs (ids = "ZCS-3528")
 	@Test (description = "Verify the presence and working of direction buttons in compose mail screen",
-			groups = { "functional", "L3" })
+			groups = { "functional-application-bug" })
 
 	public void ShowComposeDirection_01() throws HarnessException {
 

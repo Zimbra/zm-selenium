@@ -40,7 +40,7 @@ public class ToggleStatus extends AdminCore {
 	 */
 
 	@Test (description = "Verify administrator should be able to toggle zimlet status",
-			groups = { "smoke","L1" })
+			groups = { "functional" })
 
 	public void ToggleStatus_01() throws HarnessException {
 

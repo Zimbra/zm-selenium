@@ -36,7 +36,7 @@ public class LocationDisplayName extends AjaxCore {
 
 	@Bugs (ids = "57039")
 	@Test (description = "Verify the serach location dialog shows location display name for location",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void LocationDisplayName_01() throws HarnessException {
 

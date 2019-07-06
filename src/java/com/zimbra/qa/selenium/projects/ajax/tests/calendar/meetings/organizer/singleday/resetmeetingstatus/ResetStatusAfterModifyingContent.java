@@ -35,7 +35,7 @@ public class ResetStatusAfterModifyingContent extends AjaxCore {
 
 	@Bugs (ids = "49881")
 	@Test (description = "Check reset status of meeting after modifying Content",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void ResetStatusAfterModifyingContent_01() throws HarnessException {
 

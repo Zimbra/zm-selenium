@@ -32,7 +32,7 @@ public class DeleteMessage extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "From search: Delete a mail using toolbar delete button",
-			groups = { "smoke","L1" })
+			groups = { "bhr" })
 
 	public void DeleteMail_01() throws HarnessException {
 

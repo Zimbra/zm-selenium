@@ -46,7 +46,7 @@ public class ChangePassword extends AdminCore {
 	 */
 
 	@Test (description = "Edit password  -- manage account > Gearbox > edit account > change password",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void ChangePassword_01() throws HarnessException {
 
@@ -96,7 +96,7 @@ public class ChangePassword extends AdminCore {
 	 */
 
 	@Test (description = "Edit password  -- manage account > right click > change password",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void ChangePassword_02() throws HarnessException {
 

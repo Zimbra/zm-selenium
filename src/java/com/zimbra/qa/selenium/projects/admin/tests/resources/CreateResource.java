@@ -43,7 +43,7 @@ public class CreateResource extends AdminCore {
 	 */
 
 	@Test (description = "Create a basic resource",
-			groups = { "functional-skip", "L3-skip" })
+			groups = { "functional-known-failure" })
 
 	public void CreateResource_01() throws HarnessException {
 
@@ -76,7 +76,7 @@ public class CreateResource extends AdminCore {
 	 */
 
 	@Test (description = "Create a basic resource using Manage Accounts --> Resources --> Gear box --> New",
-			groups = { "functional-skip", "L3-skip" })
+			groups = { "functional-known-failure" })
 
 	public void CreateResource_02() throws HarnessException {
 
@@ -110,7 +110,7 @@ public class CreateResource extends AdminCore {
 	 */
 
 	@Test (description = "Create a basic Location resource",
-			groups = { "sanity", "L0" })
+			groups = { "smoke" })
 
 	public void CreateResource_03() throws HarnessException {
 
@@ -145,7 +145,7 @@ public class CreateResource extends AdminCore {
 	 */
 
 	@Test (description = "Create a basic Equipment resource",
-			groups = { "sanity", "L0" })
+			groups = { "smoke" })
 
 	public void CreateResource_04() throws HarnessException {
 

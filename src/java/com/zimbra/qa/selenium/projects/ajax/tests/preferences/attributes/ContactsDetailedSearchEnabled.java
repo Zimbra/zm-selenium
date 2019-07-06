@@ -37,7 +37,7 @@ public class ContactsDetailedSearchEnabled extends SetGroupMailByMessagePreferen
 
 	@Bugs (ids = "70708")
 	@Test (description = "Filter addresses using department name after selecting To: while composing mail",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void ContactsDetailedSearchEnabled_01() throws HarnessException {
 
@@ -101,7 +101,7 @@ public class ContactsDetailedSearchEnabled extends SetGroupMailByMessagePreferen
 
 	@Bugs (ids = "70708")
 	@Test (description = "Filter addresses using department name after selecting To: while composing appointments",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void ContactsDetailedSearchEnabled_02() throws HarnessException {
 

@@ -46,7 +46,7 @@ public class EditFile extends EnableBriefcaseFeature {
 
 
 	@Test (description = "Upload file, edit name - verify the content remains the same",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void EditFile_01() throws HarnessException {
 
@@ -101,7 +101,7 @@ public class EditFile extends EnableBriefcaseFeature {
 
 
 	@Test (description = "Upload file through RestUtil - Verify 'Edit' toolbar button is disabled",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void EditFile_03() throws HarnessException {
 
@@ -136,7 +136,7 @@ public class EditFile extends EnableBriefcaseFeature {
 
 
 	@Test (description = "Upload file through RestUtil - Verify 'Edit' context menu is disabled",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void EditFile_04() throws HarnessException {
 
@@ -173,7 +173,7 @@ public class EditFile extends EnableBriefcaseFeature {
 
 	@Bugs (ids = "54706")
 	@Test (description = "'Restore As Current Version' does not restore notes",
-		groups = { "functional", "L3" })
+		groups = { "functional" })
 
 	public void EditFile_05() throws HarnessException {
 
@@ -231,7 +231,7 @@ public class EditFile extends EnableBriefcaseFeature {
 
 	@Bugs (ids = "74644")
 	@Test (description = "Cannot rename the file's latest version",
-		groups = { "functional", "L3" })
+		groups = { "functional" })
 
 	public void EditFile_06() throws HarnessException {
 

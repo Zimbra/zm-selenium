@@ -35,7 +35,7 @@ public class CreateAppointment extends AjaxCore {
 
 	@Bugs (ids = "69132,95899,95900")
 	@Test (description = "Create simple all day appointment",
-			groups = { "smoke", "L0" } )
+			groups = { "smoke" } )
 
 	public void CreateAllDayAppointment_01() throws HarnessException {
 
@@ -73,7 +73,7 @@ public class CreateAppointment extends AjaxCore {
 
 	@Bugs (ids = "104312")
 	@Test (description = "Create multi-day all day appointment in week view",
-			groups = { "smoke", "L1" } )
+			groups = { "bhr" } )
 
 	public void CreateAllDayAppointment_02() throws HarnessException {
 
@@ -112,7 +112,7 @@ public class CreateAppointment extends AjaxCore {
 
 
 	@Test (description = "Create simple all day appointment which occurs in past",
-			groups = { "smoke", "L1" } )
+			groups = { "bhr" } )
 
 	public void CreateAllDayAppointment_03() throws HarnessException {
 

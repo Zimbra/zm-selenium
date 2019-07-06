@@ -37,7 +37,7 @@ public class ReplyToAllMail extends SetGroupMailByConversationPreference {
 	}
 
 	@Test (description = "Reply to all in message view",
-			groups = { "t1" })
+			groups = { "sanity" })
 
 	public void ReplyToAllMail_01() throws HarnessException {
 

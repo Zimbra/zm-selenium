@@ -34,7 +34,7 @@ public class SendMailUsingKeyboardShortcuts extends SetGroupMailByMessagePrefere
 
 	@Bugs (ids = "76547")
 	@Test (description = "Send a mail using Text editor - zimbraPrefUseKeyboardShortcuts = FALSE",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void SendMailUsingKeyboardShortcuts_01() throws HarnessException {
 

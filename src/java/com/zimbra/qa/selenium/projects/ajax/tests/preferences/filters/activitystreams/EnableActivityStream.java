@@ -31,7 +31,7 @@ public class EnableActivityStream extends AjaxCore {
 
 
 	@Test (description = "Enable the Activity Streams feature",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void EnableActivityStream_01() throws HarnessException {
 

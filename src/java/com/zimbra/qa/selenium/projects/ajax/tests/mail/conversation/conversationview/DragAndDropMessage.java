@@ -39,7 +39,7 @@ public class DragAndDropMessage extends AjaxCore {
 
 
 	@Test (description = "Delete a message from a conversation",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void DeleteConversation_01() throws HarnessException {
 

@@ -52,7 +52,7 @@ public class TentativeMeeting extends CalendarWorkWeekPreference {
 	}
 	
 	@Test (description = "Tentative a meeting using Tentative button from invitation message", 
-			groups = { "sanity" })
+			groups = { "functional" })
 	
 	public void TentativeMeeting_01() throws HarnessException {
 

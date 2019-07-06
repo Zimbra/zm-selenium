@@ -42,7 +42,7 @@ public class CloseModifiedAppointment extends AjaxCore {
 
 
 	@Test (description = "Close modifying appt and take action from warning dialog : Save Changes and send updates",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void CloseModifiedAppointment_01() throws HarnessException {
 
@@ -109,7 +109,7 @@ public class CloseModifiedAppointment extends AjaxCore {
 
 
 	@Test (description = "Close modifying appt and take action from warning dialog : Discard and close",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void CloseModifiedAppointment_02() throws HarnessException {
 
@@ -182,7 +182,7 @@ public class CloseModifiedAppointment extends AjaxCore {
 
 
 	@Test (description = "Close modifying appt and take action from warning dialog : Dont save But keep open",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void CloseModifiedAppointment_03() throws HarnessException {
 

@@ -40,7 +40,7 @@ public class ChangeBodyFormatWithSignature extends AjaxCore {
 
 	@Bugs (ids = "98736")
 	@Test (description = "Verify that body content of signature is not lost when changed from HTML to text",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void BodyFormatHtmlToTextSignature_01() throws HarnessException {
 
@@ -101,7 +101,7 @@ public class ChangeBodyFormatWithSignature extends AjaxCore {
 
 	@Bugs (ids = "98736")
 	@Test (description = "Verify that body content of signature is not lost when changed from text to HTMl",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void BodyFormatTextToHtmlSignature_02() throws HarnessException {
 

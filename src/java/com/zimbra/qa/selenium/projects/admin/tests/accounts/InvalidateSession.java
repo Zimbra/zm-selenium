@@ -47,7 +47,7 @@ public class InvalidateSession extends AdminCore {
 	 */
 
 	@Test (description = " Invalidate Session  -- manage account >> Gearbox >> edit account >>  Invalidate Session",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void InvalidateSession_01() throws HarnessException {
 
@@ -88,7 +88,7 @@ public class InvalidateSession extends AdminCore {
 
 	@Bugs (ids = "74482")
 	@Test (description = "Invalidate Session -- manage account > right click > Invalidate Session",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void InvalidateSession_02() throws HarnessException {
 

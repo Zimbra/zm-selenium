@@ -38,7 +38,7 @@ public class EditColumnView extends AjaxCore {
 
 	@Bugs (ids = "44785")
 	@Test (description = "Edit the columns to display in message view and verify that change is preserved in new session",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void EditColumnView_01() throws HarnessException {
 
@@ -89,7 +89,7 @@ public class EditColumnView extends AjaxCore {
 
 
 	@Test (description = "Edit the column to display in conversation view and verify that change is preserved in new session",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void EditColumnView_02() throws HarnessException {
 

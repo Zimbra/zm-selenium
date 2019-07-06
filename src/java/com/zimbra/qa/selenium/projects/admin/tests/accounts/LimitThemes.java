@@ -37,7 +37,7 @@ public class LimitThemes extends AdminCore {
 
 
 	@Test (description = "Modify account to verify limited themes available",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void LimitThemes_01() throws HarnessException {
 

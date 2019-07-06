@@ -33,7 +33,7 @@ public class EditContact extends TouchCore  {
 	}
 	
 	@Test (description = "Edit a contact item and save it",
-			groups = { "sanity" })
+			groups = { "bhr" })
 	
 	public void EditContact_01() throws HarnessException {
 		

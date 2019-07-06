@@ -31,7 +31,7 @@ public class MarkUnReadMail extends SetGroupMailByMessagePreference{
 	}
 
 	@Test (description = "Verify error message is displayed when on deleting email on mountpoint message (read-only share)",
-			groups = { "functional" })
+			groups = { "sanity" })
 
 	public void MarkReadMail_01() throws HarnessException  {
 

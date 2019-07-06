@@ -34,7 +34,7 @@ public class ForwardMail extends SetGroupMailByConversationPreference {
 	}
 
 	@Test (description = "Forward a mail in message view",
-			groups = { "sanity" })
+			groups = { "bhr" })
 
 	public void ForwardMail_01() throws HarnessException {
 

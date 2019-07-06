@@ -46,7 +46,7 @@ public class RecurringMonthly extends AjaxCore {
 
 	@Bugs (ids = "103157")
 	@Test (description = "Create Monthly recurring appointment and verify that start date and other details appear correct after opening",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void RecurringMonthly_01() throws HarnessException, ParseException {
 

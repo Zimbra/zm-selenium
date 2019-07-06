@@ -36,7 +36,7 @@ public class CreateMailWithInlineImage extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Create and send email with an inline attachment - in a separate window",
-			groups = { "smoke", "L1", "upload" })
+			groups = { "bhr", "upload" })
 
 	public void CreateMailWithInlineImage_01() throws HarnessException {
 

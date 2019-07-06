@@ -31,7 +31,7 @@ public class UnTagContactGroup extends AjaxCore  {
 
 
 	@Test (description = "Untag a contact group by click Tag->Remove tag on toolbar",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void UnTagContactGroup_01() throws HarnessException {
 
@@ -69,7 +69,7 @@ public class UnTagContactGroup extends AjaxCore  {
 
 
 	@Test (description = "Untag a contact group by click Tag->Remove tag on Context Menu",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void UnTagContactGroup_02() throws HarnessException {
 
@@ -105,7 +105,7 @@ public class UnTagContactGroup extends AjaxCore  {
 
 
 	@Test (description = "Untag a double-tagged-contact group by click Tag->Remove tag->tag name on toolbar",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void UnTagContactGroup_03() throws HarnessException {
 
@@ -151,7 +151,7 @@ public class UnTagContactGroup extends AjaxCore  {
 
 
 	@Test (description = "Untag a double-tagged-contact group by right click on group, click Tag ->Remove tag->tag name on context menu",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void UnTagContactGroup_04() throws HarnessException {
 
@@ -195,7 +195,7 @@ public class UnTagContactGroup extends AjaxCore  {
    	}
 
 	@Test (description = "Remove all tags from a double-tagged-contact group by click Tag->Remove tag->All Tags on toolbar",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 	public void UnTagContactGroup_05() throws HarnessException {
 
 		// Create a tag
@@ -238,7 +238,7 @@ public class UnTagContactGroup extends AjaxCore  {
 
 
 	@Test (description = "Remove all tags from a double-tagged-contact group by right click on group, click Tag ->Remove tag->All Tags on context menu",
-			groups = { "smoke", "L1", "non-msedge" })
+			groups = { "bhr", "non-msedge" })
 
 	public void UnTagContactGroup_06() throws HarnessException {
 
@@ -286,7 +286,7 @@ public class UnTagContactGroup extends AjaxCore  {
 
 
 	@Test (description = "Remove all tags from a double-tagged-contact group by click short cut u",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void UnTagContactGroup_07() throws HarnessException {
 
@@ -331,7 +331,7 @@ public class UnTagContactGroup extends AjaxCore  {
 
 
 	@Test (description = "Remove all tags from a single-tagged-contact group by click short cut u",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void UnTagContactGroup_08() throws HarnessException {
 

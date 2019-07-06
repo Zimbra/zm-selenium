@@ -33,7 +33,7 @@ public class SearchContextMenu extends CalendarWorkWeekPreference {
 	}
 
 	@Test (description = "Click on To msg Header and verify context menu>> Search", 
-			groups = { "smoke" })
+			groups = { "functional" })
 
 	public void SearchContextMenu_01() throws HarnessException {
 

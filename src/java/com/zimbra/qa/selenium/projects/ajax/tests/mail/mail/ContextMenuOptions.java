@@ -32,7 +32,7 @@ public class ContextMenuOptions extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Right click from address header and verify all context menus",
-			groups = { "sanity", "L0" })
+			groups = { "smoke" })
 
 	public void ContextMenuOptions_01() throws HarnessException {
 

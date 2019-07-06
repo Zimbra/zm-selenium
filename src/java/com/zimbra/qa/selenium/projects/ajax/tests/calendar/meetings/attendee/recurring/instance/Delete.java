@@ -33,7 +33,7 @@ public class Delete extends AjaxCore {
 
 
 	@Test (description = "Rt-click to appointment from the calendar app and delete the meeting invite (Instance)",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void DeleteMeeting_01() throws HarnessException {
 

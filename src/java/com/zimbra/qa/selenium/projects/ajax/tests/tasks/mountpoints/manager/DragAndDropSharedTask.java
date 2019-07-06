@@ -49,7 +49,7 @@ public class DragAndDropSharedTask extends AjaxCore {
 
 
 	@Test (description = "Drag task  from shared folder and drop into local task folder (manager rights)",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void DragAndDropSharedTaskToLocalFolder() throws HarnessException {
 
@@ -157,7 +157,7 @@ public class DragAndDropSharedTask extends AjaxCore {
 
 
 	@Test (description = "Drag task from local task folder to shared folder(manager rights)",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void DragAndDropTaskToSharedFolder() throws HarnessException {
 

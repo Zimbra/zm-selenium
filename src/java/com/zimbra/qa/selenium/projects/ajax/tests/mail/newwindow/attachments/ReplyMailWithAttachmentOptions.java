@@ -41,7 +41,7 @@ public class ReplyMailWithAttachmentOptions extends SetGroupMailByMessagePrefere
 
 	@Bugs (ids = "103903, 106583")
 	@Test (description = "Verify the presence of attachment while replying to a mail and changing option from  'Include Original as an attachment' to 'Include Original message' in new window",
-			groups = { "functional", "L3", "upload" })
+			groups = { "functional", "upload" })
 
 	public void ReplyMailWithAttachmentOptions_01() throws HarnessException {
 
@@ -124,7 +124,7 @@ public class ReplyMailWithAttachmentOptions extends SetGroupMailByMessagePrefere
 
 	@Bugs (ids = "103903")
 	@Test (description = "Verify the presence of attachment in new window while replying to a mail and selecting 'Use Prefixes' option from Options.",
-			groups = { "functional", "L3", "upload" })
+			groups = { "functional", "upload" })
 
 	public void ReplyMailWithAttachmentOptions_02() throws HarnessException {
 
@@ -201,7 +201,7 @@ public class ReplyMailWithAttachmentOptions extends SetGroupMailByMessagePrefere
 
 	@Bugs (ids = "103903")
 	@Test (description = "Verify the presence of attachment in new window while replying to a mail and selecting 'Include Headers' option from Options'",
-			groups = { "functional", "L3", "upload" })
+			groups = { "functional", "upload" })
 
 	public void ReplyMailWithAttachmentOptions_03() throws HarnessException {
 

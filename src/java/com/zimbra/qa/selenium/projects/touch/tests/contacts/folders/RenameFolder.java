@@ -33,7 +33,7 @@ public class RenameFolder extends SetGroupMailByMessagePreference {
 	}
 
 	@Test (description = "Rename contact folder",
-			groups = { "smoke" })
+			groups = { "bhr" })
 	
 	public void RenameFolder_01() throws HarnessException  {
 		

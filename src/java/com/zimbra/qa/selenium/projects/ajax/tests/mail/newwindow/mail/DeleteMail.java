@@ -35,7 +35,7 @@ public class DeleteMail extends SetGroupMailByMessagePreference {
 
 	@Bugs (ids = "103950")
 	@Test (description = "Delete a message from a separate window",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void DeleteMail_01() throws HarnessException {
 

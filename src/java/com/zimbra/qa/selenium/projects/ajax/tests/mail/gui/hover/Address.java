@@ -35,7 +35,7 @@ public class Address extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Hover over GAL address",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void Address_01() throws HarnessException {
 
@@ -70,7 +70,7 @@ public class Address extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Hover over External (non-GAL) address",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void Address_02() throws HarnessException {
 

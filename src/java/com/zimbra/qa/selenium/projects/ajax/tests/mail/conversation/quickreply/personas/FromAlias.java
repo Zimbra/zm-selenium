@@ -35,7 +35,7 @@ public class FromAlias extends SetGroupMailByConversationPreference {
 
 	@Bugs (ids = "73698")
 	@Test (description = "Send a quick reply with alias as from",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void FromAlias_01() throws HarnessException {
 

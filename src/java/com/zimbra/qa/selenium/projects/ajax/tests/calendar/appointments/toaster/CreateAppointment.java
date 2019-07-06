@@ -32,7 +32,7 @@ public class CreateAppointment extends AjaxCore {
 	
 	
 	@Test (description = "Verify Toaster message on Create Appointment",
-			groups = { "smoke", "L1" } )
+			groups = { "bhr" } )
 	
 	public void Toaster_CreateAppointment_01() throws HarnessException {
 		

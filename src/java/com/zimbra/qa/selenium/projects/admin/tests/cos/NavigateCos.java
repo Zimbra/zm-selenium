@@ -39,7 +39,7 @@ public class NavigateCos extends AdminCore {
 	 */
 
 	@Test (description = "Navigate to Cos",
-			groups = { "sanity", "L0" })
+			groups = { "smoke" })
 
 	public void NavigateCos_01() throws HarnessException {
 

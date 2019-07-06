@@ -33,7 +33,7 @@ public class GetFolder extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Get a folder",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void GetFolder_01() throws HarnessException {
 
@@ -69,7 +69,7 @@ public class GetFolder extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Get a folder with non-ASCII special characters",
-			groups = { "functional", "L3" },
+			groups = { "functional" },
 			dataProvider = "DataProviderSupportedCharsets")
 
 	public void GetFolder_02(ZCharset charset, String foldername) throws HarnessException {

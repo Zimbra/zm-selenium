@@ -33,7 +33,7 @@ public class VerifyOptionalAttendee extends AjaxCore {
 
 
 	@Test (description = "View meeting invite by opening it, Edit the invitation and locally save it",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void VerifyOptionalAttendee_01() throws HarnessException {
 

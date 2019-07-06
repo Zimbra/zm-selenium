@@ -36,7 +36,7 @@ public class CreateAppointment extends AjaxCore {
 
 
 	@Test (description = "Create a basic appointment without an attendee",
-			groups = { "sanity", "L1" } )
+			groups = { "bhr" } )
 
 	public void CreateAppointment_01() throws HarnessException {
 
@@ -66,7 +66,7 @@ public class CreateAppointment extends AjaxCore {
 
 
 	@Test (description = "Create appointment with all the fields and verify it",
-			groups = { "smoke", "L1" } )
+			groups = { "bhr" } )
 
 	public void CreateAppointment_02() throws HarnessException {
 
@@ -123,7 +123,7 @@ public class CreateAppointment extends AjaxCore {
 
 
 	@Test (description = "Create private appointment",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void CreatePrivateAppointment_03() throws HarnessException {
 
@@ -157,7 +157,7 @@ public class CreateAppointment extends AjaxCore {
 
 
 	@Test (description = "Create a basic appointment without an attendee in the past ",
-			groups = { "smoke", "L1" } )
+			groups = { "bhr" } )
 
 	public void CreateAppointment_04() throws HarnessException {
 

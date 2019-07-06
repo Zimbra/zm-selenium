@@ -31,7 +31,7 @@ public class CreateMail extends SetGroupMailByMessagePreference {
 
 	@Bugs (ids = "21624")
 	@Test (description = "Create a mail using the deep link URL",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void CreateMail_01() throws HarnessException {
 
@@ -61,7 +61,7 @@ public class CreateMail extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Create a mail with cc and bcc using the deep link URL",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void CreateMail_02() throws HarnessException {
 
@@ -105,7 +105,7 @@ public class CreateMail extends SetGroupMailByMessagePreference {
 
 	@Bugs (ids = "82734")
 	@Test (description = "Create a mail with two 'to' adn two 'cc' addresses using the deep link URL",
-			groups = { "functional-skip", "application-bug" })
+			groups = { "application-bug" })
 
 	public void CreateMail_03() throws HarnessException {
 
@@ -166,7 +166,7 @@ public class CreateMail extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Create a mail with two 'to' adn two 'cc' addresses (comma separated) using the deep link URL",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void CreateMail_04() throws HarnessException {
 
@@ -245,7 +245,7 @@ public class CreateMail extends SetGroupMailByMessagePreference {
 	@Bugs (ids = "76182,80816")
 	@Test (description = "Create a mail with to with angled brackets, i.e. to=First Last<email@domain.com>",
 			dataProvider = "DataProviderMailtoBrackets",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void CreateMail_05(String name, String value) throws HarnessException {
 

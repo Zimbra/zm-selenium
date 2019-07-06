@@ -31,7 +31,7 @@ public class DeleteDisposal extends SetGroupMailByMessagePreference {
 	}
 
 	@Test (description = "Delete a basic disposal (Context menu -> Edit -> Retention)",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void DeleteDisposal_01() throws HarnessException {
 

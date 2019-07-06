@@ -34,7 +34,7 @@ public class ReplyMail extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Reply an Excel formatting data message  and verify its formatting",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void ReplyHtmlMail_01() throws HarnessException {
 

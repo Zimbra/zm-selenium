@@ -42,7 +42,7 @@ public class OwnerAccountPending extends AjaxCore {
 
 
 	@Test (description = "Login to the Ajax Client - with a mountpoint to a 'pending' account",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void OwnerAccountPending_01() throws HarnessException {
 

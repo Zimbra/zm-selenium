@@ -35,7 +35,7 @@ public class Copy extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Right click in To bubble address and hit Copy",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void Copy_01() throws HarnessException {
 

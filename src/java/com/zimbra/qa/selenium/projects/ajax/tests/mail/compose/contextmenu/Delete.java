@@ -35,7 +35,7 @@ public class Delete extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Right click To bubble address and hit Delete",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void DeleteTo_01() throws HarnessException {
 
@@ -57,7 +57,7 @@ public class Delete extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Right click Cc bubble address and hit Delete",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void DeleteCc_02() throws HarnessException {
 
@@ -78,7 +78,7 @@ public class Delete extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Right click BCc bubble address and hit Delete",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void DeleteBcc_03() throws HarnessException {
 

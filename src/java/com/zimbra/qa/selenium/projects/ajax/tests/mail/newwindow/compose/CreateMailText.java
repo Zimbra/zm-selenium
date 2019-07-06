@@ -36,7 +36,7 @@ public class CreateMailText extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Send a mail using Text editor - in a separate window",
-			groups = { "sanity", "L0" })
+			groups = { "smoke" })
 
 	public void CreateMailText_01() throws HarnessException {
 
@@ -97,7 +97,7 @@ public class CreateMailText extends SetGroupMailByMessagePreference {
 	}
 
 	@Test (description = "Send a mail using Text editor using keyboard shortcuts - in separate window",
-			groups = { "functional", "L2" }, dataProvider = "DataProvideNewMessageShortcuts")
+			groups = { "sanity" }, dataProvider = "DataProvideNewMessageShortcuts")
 
 	public void CreateMailText_02(Shortcut shortcut, String keys) throws HarnessException {
 
@@ -140,7 +140,7 @@ public class CreateMailText extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Send a mail with CC - in a separate window",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void CreateMailText_03() throws HarnessException {
 
@@ -195,56 +195,6 @@ public class CreateMailText extends SetGroupMailByMessagePreference {
 	}
 
 
-	@Test (description = "Send a mail with BCC",
-			groups = { "deprecated" })
-
-	public void CreateMailText_04() throws HarnessException {
-
-		// Create the message data to be sent
-		MailItem mail = new MailItem();
-		mail.dToRecipients.add(new RecipientItem(ZimbraAccount.AccountA(), RecipientItem.RecipientType.To));
-		mail.dBccRecipients.add(new RecipientItem(ZimbraAccount.AccountB(), RecipientItem.RecipientType.Bcc));
-		mail.dSubject = "subject" + ConfigProperties.getUniqueString();
-		mail.dBodyText = "body" + ConfigProperties.getUniqueString();
-
-		// Open the new mail form
-		SeparateWindowFormMailNew window = null;
-		String windowTitle = "Zimbra: Compose";
-
-		try {
-
-			window = (SeparateWindowFormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW_IN_NEW_WINDOW);
-
-			window.zSetWindowTitle(windowTitle);
-			ZAssert.assertTrue(window.zIsWindowOpen(windowTitle),"Verify the window is opened and switch to it");
-
-			// Fill out the form with the data
-			window.zFill(mail);
-
-			// Send the message
-			window.zToolbarPressButton(Button.B_SEND);
-
-		} finally {
-			app.zPageMain.zCloseWindow(window, windowTitle, app);
-		}
-
-		MailItem sent = MailItem.importFromSOAP(app.zGetActiveAccount(), "in:sent subject:(" + mail.dSubject + ")");
-		ZAssert.assertNotNull(sent, "Verify the message is in the sent folder");
-
-		StringBuilder to = new StringBuilder();
-		for (RecipientItem r : sent.dToRecipients) {
-			to.append(r.dEmailAddress).append(",");
-		}
-		ZAssert.assertStringContains(to.toString(), ZimbraAccount.AccountA().EmailAddress, "Verify TO contains AccountA");
-
-		MailItem toReceived = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "subject:(" + mail.dSubject + ")");
-		ZAssert.assertNotNull(toReceived, "Verify the TO recipient receives the message");
-
-		MailItem bccReceived = MailItem.importFromSOAP(ZimbraAccount.AccountB(), "subject:(" + mail.dSubject + ")");
-		ZAssert.assertNotNull(bccReceived, "Verify the BCC recipient receives the message");
-	}
-
-
 	@DataProvider(name = "DataProvidePriorities")
 	public Object[][] DataProvidePriorities() {
 		return new Object[][] { new Object[] { Button.O_PRIORITY_HIGH, "!" },
@@ -252,9 +202,9 @@ public class CreateMailText extends SetGroupMailByMessagePreference {
 	}
 
 	@Test (description = "Send a mail with different priorities high/normal/low - in a separate window",
-			groups = { "functional", "L2" }, dataProvider = "DataProvidePriorities")
+			groups = { "sanity" }, dataProvider = "DataProvidePriorities")
 
-	public void CreateMailText_05(Button option, String verify) throws HarnessException {
+	public void CreateMailText_04(Button option, String verify) throws HarnessException {
 
 		// Create the message data to be sent
 		String subject = "subject" + ConfigProperties.getUniqueString();

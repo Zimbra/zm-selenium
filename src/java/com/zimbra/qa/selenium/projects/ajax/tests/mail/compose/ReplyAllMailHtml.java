@@ -33,7 +33,7 @@ public class ReplyAllMailHtml extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Reply All to an html mail using html editor",
-			groups = { "sanity", "L0" })
+			groups = { "smoke" })
 
 	public void ReplyAllMailHtml_01() throws HarnessException {
 

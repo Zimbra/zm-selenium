@@ -31,7 +31,7 @@ public class ProductHelp extends AjaxCore {
 
 
 	@Test (description = "Open 'Product Help'",
-			groups = { "smoke", "L0" })
+			groups = { "smoke" })
 
 	public void ProductHelp_01() throws HarnessException {
 

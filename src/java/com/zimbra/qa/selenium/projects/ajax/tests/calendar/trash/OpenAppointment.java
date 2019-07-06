@@ -37,7 +37,7 @@ public class OpenAppointment extends AjaxCore {
 
 
 	@Test (description = "Open an appointment in trash and verify its details.",
-			groups = { "sanity", "L1" })
+			groups = { "bhr" })
 
 	public void OpenAppointment_01() throws HarnessException {
 

@@ -32,7 +32,7 @@ public class NewMessageContextMenu extends CalendarWorkWeekPreference {
 	}
 
 	@Test (description = "Click on To msg Header and verify context menu>> New message", 
-			groups = { "smoke" })
+			groups = { "functional" })
 
 	public void NewMessageContextMenu_01() throws HarnessException {
 

@@ -32,7 +32,7 @@ public class MoveFolder extends SetGroupMailByMessagePreference {
 	}
 
 	@Test (description = "Move mail folder",
-			groups = { "t1" })
+			groups = { "bhr" })
 	
 	public void MoveFolder_01() throws HarnessException  {
 		

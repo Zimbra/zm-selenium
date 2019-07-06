@@ -37,7 +37,7 @@ public class CancelTextSignature extends AjaxCore {
 
 
 	@Test (description = "Cancel text signature",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void CancelTextSignature_01() throws HarnessException {
 

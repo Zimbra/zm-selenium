@@ -36,7 +36,7 @@ public class SuggestALocation extends AjaxCore {
 
 	@Bugs (ids = "107050")
 	@Test (description = "Suggest a free location while creating appointment from quick add dialog",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void SuggestALocation_01() throws HarnessException {
 

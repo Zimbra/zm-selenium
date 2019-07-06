@@ -36,7 +36,7 @@ public class SaveDraftMailWithAttachment extends SetGroupMailByMessagePreference
 
 
 	@Test (description = "Save draft a mail with attachment and send a mail",
-			groups = { "sanity", "L0", "upload", "non-msedge" })
+			groups = { "smoke", "upload", "non-msedge" })
 
 	public void SaveDraftMailWithAttachment_01() throws HarnessException {
 
@@ -105,7 +105,7 @@ public class SaveDraftMailWithAttachment extends SetGroupMailByMessagePreference
 
 
 	@Test (description = "Open existing saved draft with attachment and send a mail",
-			groups = { "functional", "L2", "upload", "non-msedge" })
+			groups = { "sanity", "upload", "non-msedge" })
 
 	public void OpenExistingSavedDraftMailWithAttachment_02() throws HarnessException {
 

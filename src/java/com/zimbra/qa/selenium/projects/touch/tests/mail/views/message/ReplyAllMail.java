@@ -32,7 +32,7 @@ public class ReplyAllMail extends SetGroupMailByMessagePreference {
 	
 	@Bugs (ids = "85534")
 	@Test (description = "Reply all to message and verify it",
-			groups = { "sanity" })
+			groups = { "bhr" })
 			
 	public void ReplyAllMail_01() throws HarnessException {
 		

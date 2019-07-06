@@ -37,7 +37,7 @@ public class ComposeFormatHtml extends AjaxCore {
 
 
 	@Test (description = "Set zimbraPrefComposeFormat to 'html'",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void ComposeFormatHtml_01() throws HarnessException {
 

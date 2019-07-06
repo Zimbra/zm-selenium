@@ -35,7 +35,7 @@ public class EmptySignature extends AjaxCore {
 
 
 	@Test (description = "Verify toast message for Empty Signature Name",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void EmptySignature_01() throws HarnessException {
 

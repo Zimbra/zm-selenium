@@ -32,7 +32,7 @@ public class MarkAsUnread extends SetGroupMailByMessagePreference{
 	}
 
 	@Test (description = "Verify user can mark unread a email on mount point with manager rights",
-			groups = { "functional" })
+			groups = { "sanity" })
 
 	public void MarkAsUnread_01() throws HarnessException  {
 

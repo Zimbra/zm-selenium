@@ -37,7 +37,7 @@ public class AddTo extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Select a 'To' address in the addresspicker",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void AddTo_01() throws HarnessException {
 

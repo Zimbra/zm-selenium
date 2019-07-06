@@ -65,7 +65,7 @@ public class DeclineMeeting extends AjaxCore {
 
 	@Bugs (ids = "69132")
 	@Test (description = "Decline a meeting using Decline button from invitation message",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void DeclineMeeting_01() throws HarnessException {
 
@@ -160,7 +160,7 @@ public class DeclineMeeting extends AjaxCore {
 
 	@Bugs (ids = "69132")
 	@Test (description = "Decline meeting - Verify organizer gets notification message",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void DeclineMeeting_02() throws HarnessException {
 
@@ -220,7 +220,7 @@ public class DeclineMeeting extends AjaxCore {
 
 	@Bugs (ids = "69132")
 	@Test (description = "Decline meeting using 'Decline -> Notify Organizer'",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void DeclineMeeting_03() throws HarnessException {
 
@@ -328,7 +328,7 @@ public class DeclineMeeting extends AjaxCore {
 
 	@Bugs (ids = "69132")
 	@Test (description = "Decline meeting using 'Decline -> Edit Reply' and verify modified content",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void DeclineMeeting_04() throws HarnessException {
 
@@ -435,7 +435,7 @@ public class DeclineMeeting extends AjaxCore {
 
 	@Bugs (ids = "69132,65356")
 	@Test (description = "Decline meeting using 'Decline -> Don't Notify Organizer'",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void DeclineMeeting_05() throws HarnessException {
 

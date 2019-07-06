@@ -46,7 +46,7 @@ public class AppTasks extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "?app=tasks in url",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void AppTasks_01() throws HarnessException {
 

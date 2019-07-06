@@ -40,7 +40,7 @@ public class GroupBySize extends SetGroupMailByMessagePreference {
 	 */
 
 	@Test (description = "Group a list of messages by Size",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void GroupBySize_01() throws HarnessException {
 

@@ -52,7 +52,7 @@ public class DeclineMeeting extends CalendarWorkWeekPreference {
 	}
 	
 	@Test (description = "Decline a meeting using Decline button from invitation message", 
-			groups = { "sanity" })
+			groups = { "bhr" })
 	
 	public void DeclineMeeting_01() throws HarnessException {
 

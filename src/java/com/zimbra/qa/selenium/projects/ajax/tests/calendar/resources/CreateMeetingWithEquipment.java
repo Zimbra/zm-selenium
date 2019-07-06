@@ -38,7 +38,7 @@ public class CreateMeetingWithEquipment extends AjaxCore {
 
 	@Bugs (ids = "69132")
 	@Test (description = "Create simple meeting with equipment",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void CreateMeetingWithEquipment_01() throws HarnessException {
 

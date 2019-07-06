@@ -49,7 +49,7 @@ public class EditDomain extends AdminCore {
 	 */
 
 	@Test (description = "Verify edit domain operation --  Manage Domain List View",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void EditDomain_01() throws HarnessException {
 
@@ -97,7 +97,7 @@ public class EditDomain extends AdminCore {
 	 */
 
 	@Test (description = "Verify edit domain operation",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void EditDomain_02() throws HarnessException {
 
@@ -144,7 +144,7 @@ public class EditDomain extends AdminCore {
 	 */
 
 	@Test (description = "Edit domain name  - Search list View",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void Editdomain_03() throws HarnessException {
 
@@ -197,7 +197,7 @@ public class EditDomain extends AdminCore {
 	 */
 
 	@Test (description = "Edit domain name -- right click",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void Editdomain_04() throws HarnessException {
 

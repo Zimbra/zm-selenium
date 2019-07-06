@@ -35,7 +35,7 @@ public class ModifyMeetingByModifyingAttendees extends AjaxCore {
 
 	@Bugs (ids = "58104, 100809")
 	@Test (description = "Blank row added in f/b scheduler after removing and adding attendee back from attendees field",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void ModifyMeetingByModifyingAttendees_01() throws HarnessException {
 

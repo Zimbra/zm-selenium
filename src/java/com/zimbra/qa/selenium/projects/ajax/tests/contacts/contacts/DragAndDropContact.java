@@ -32,7 +32,7 @@ public class DragAndDropContact extends AjaxCore  {
 
 
 	@Test (description = "Move a contact item to sub-addressbook",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void DragAndDropContact_01() throws HarnessException {
 
@@ -80,7 +80,7 @@ public class DragAndDropContact extends AjaxCore  {
 
 
 	@Test (description = "Move a contact item to trash folder by drag and drop",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void DnDToTrash_02() throws HarnessException {
 

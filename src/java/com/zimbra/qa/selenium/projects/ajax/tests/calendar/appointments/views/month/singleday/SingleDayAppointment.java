@@ -43,7 +43,7 @@ public class SingleDayAppointment extends AjaxCore {
 
 	@Bugs (ids = "69132")
 	@Test (description = "Verify the display of a basic appointment in the month view",
-			groups = { "sanity", "L1" })
+			groups = { "bhr" })
 
 	public void SingleDayAppointment_01() throws HarnessException {
 

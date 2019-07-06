@@ -34,7 +34,7 @@ public class VerifyDisabledUI extends AjaxCore {
 
 	@Bugs (ids = "82558")
 	@Test (description = "Verify Share Calendar option remains disabled & Reply option is enabled on mountpoint appointment (manager share)",
-			groups = { "functional-skip", "application-bug" })
+			groups = { "application-bug" })
 
 	public void VerifyDisabledUI_01() throws HarnessException {
 

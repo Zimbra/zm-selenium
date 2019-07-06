@@ -33,7 +33,7 @@ public class RevokeShare extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Revoke a folder share - External",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void RevokeShare_01() throws HarnessException {
 

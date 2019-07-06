@@ -47,7 +47,7 @@ public class MonthView extends AjaxCore {
 	}
 
 	@Test (description = "Verify quick add dialog opens after double/right clicking to any date slot in month view",
-			groups = { "functional", "L2" },
+			groups = { "sanity" },
 			dataProvider = "DataProviderQuickAdd")
 
 	public void MonthView_01(Action option) throws HarnessException {

@@ -40,7 +40,7 @@ public class PortalEnabled extends AjaxCore {
 
 	@Bugs (ids = "67462")
 	@Test (description = "Login to the Ajax Client with the 'example' portal enabled",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void PortalEnabled_01() throws HarnessException {
 

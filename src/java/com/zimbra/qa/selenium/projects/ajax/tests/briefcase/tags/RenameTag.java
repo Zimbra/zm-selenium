@@ -35,7 +35,7 @@ public class RenameTag extends EnableBriefcaseFeature {
 
 
 	@Test (description = "Rename a tag - Right click, Rename",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void RenameTag_01() throws HarnessException {
 

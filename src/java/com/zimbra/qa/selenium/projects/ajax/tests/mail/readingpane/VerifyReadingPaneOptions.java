@@ -42,7 +42,7 @@ public class VerifyReadingPaneOptions extends SetGroupMailByConversationPreferen
 
 	@Bugs (ids = "91533")
 	@Test (description = "Verify reading pane options in message view (bottom, right, off)",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void VerifyReadingPaneOptionsInMessageView_01() throws HarnessException {
 
@@ -69,7 +69,7 @@ public class VerifyReadingPaneOptions extends SetGroupMailByConversationPreferen
 
 	@Bugs (ids = "91533")
 	@Test (description = "Verify reading pane options in conversation view (bottom, right, off)",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void VerifyReadingPaneOptionsInConversationView_02() throws HarnessException {
 

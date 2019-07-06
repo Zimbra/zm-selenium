@@ -37,7 +37,7 @@ public class AuthTokenTimeout extends SetGroupMailByMessagePreference {
 
 	@Bugs (ids = "75133")
 	@Test (description = "Verify content is saved when Send is interupted by zimbraAuthTokenLifetime",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void AuthTokenTimeout_01() throws HarnessException {
 

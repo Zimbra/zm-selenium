@@ -35,7 +35,7 @@ public class AutoCompleteDLExpandMembers extends AjaxCore  {
 
 
 	@Test (description = "Auto complete DL, expand members and send mail to all",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void AutoCompleteDLExpandMembers_01() throws HarnessException {
 

@@ -34,7 +34,7 @@ public class OpenInTab extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Folder Context menu -> Open In Tab",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void OpenInTab_01() throws HarnessException {
 

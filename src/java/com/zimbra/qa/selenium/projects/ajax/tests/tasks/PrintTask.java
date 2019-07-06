@@ -48,7 +48,7 @@ public class PrintTask extends AjaxCore {
 
 
 	@Test (description = "Print Task using RightClick -> Print and Verify Contents in Print view",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void PrintTask_01() throws HarnessException {
 
@@ -108,7 +108,7 @@ public class PrintTask extends AjaxCore {
 
 
 	@Test (description = "Print Task using shortcut 'p' and verify its content from GUI",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void PrintTask_02() throws HarnessException {
 
@@ -171,7 +171,7 @@ public class PrintTask extends AjaxCore {
 
 
 	@Test (description = "Print multiple tasks using Print-> Print TaskFolder and  and verify its content from GUI",
-			groups = { "functional", "L3"}	)
+			groups = { "functional"}	)
 
 	public void PrintTask_03() throws HarnessException {
 

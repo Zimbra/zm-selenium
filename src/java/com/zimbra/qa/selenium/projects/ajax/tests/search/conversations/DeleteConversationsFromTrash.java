@@ -41,7 +41,7 @@ public class DeleteConversationsFromTrash extends SetGroupMailByMessagePreferenc
 
 	@Bugs (ids = "44826")
 	@Test (description = "Search in Trash and delete, does not delete",
-			groups = { "functional","L2" })
+			groups = { "sanity" })
 
 	public void DeleteConversationsFromTrash_01() throws HarnessException {
 
@@ -134,7 +134,7 @@ public class DeleteConversationsFromTrash extends SetGroupMailByMessagePreferenc
 
 	@Bugs (ids = "44826")
 	@Test (description = "Search in Trash and delete, does not delete",
-			groups = { "functional","L2" })
+			groups = { "sanity" })
 
 	public void DeleteConversationsFromTrash_02() throws HarnessException {
 

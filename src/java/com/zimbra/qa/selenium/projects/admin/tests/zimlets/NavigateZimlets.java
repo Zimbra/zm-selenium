@@ -38,7 +38,7 @@ public class NavigateZimlets extends AdminCore {
 	 */
 
 	@Test (description = "Navigate to Zimlets",
-			groups = { "sanity", "L0" })
+			groups = { "smoke" })
 
 	public void NavigateZimlets_01() throws HarnessException {
 

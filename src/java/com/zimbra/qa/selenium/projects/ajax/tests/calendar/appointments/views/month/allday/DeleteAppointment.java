@@ -41,7 +41,7 @@ public class DeleteAppointment extends AjaxCore {
 
 	@Bugs (ids = "69132")
 	@Test (description = "Delete an all-day appointment in the month view",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void DeleteAppointment_01() throws HarnessException {
 

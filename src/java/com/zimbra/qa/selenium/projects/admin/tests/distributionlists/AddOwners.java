@@ -38,7 +38,7 @@ public class AddOwners extends AdminCore {
 
 
 	@Test (description = "Edit DL - Add Owner to DL",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void AddOwner_01() throws HarnessException {
 

@@ -42,7 +42,7 @@ public class SendDocLink extends EnableBriefcaseFeature {
 
 
 	@Test (description = "Create document through SOAP - click Send Link, Cancel & verify through GUI",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void SendDocLink_01() throws HarnessException {
 
@@ -110,7 +110,7 @@ public class SendDocLink extends EnableBriefcaseFeature {
 
 
 	@Test (description = "Send document link using Right Click Context Menu & verify through GUI",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void SendDocLink_02() throws HarnessException {
 

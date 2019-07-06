@@ -31,7 +31,7 @@ public class ExportAccount extends AjaxCore {
 
 
 	@Test (description = "Verify clicking on 'export account' radio button",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void ExportAccount_01() throws HarnessException {
 
@@ -50,7 +50,7 @@ public class ExportAccount extends AjaxCore {
 
 
 	@Test (description = "Verify clicking on 'Advanced Settings' checkbox",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void ExportAccount_02() throws HarnessException {
 

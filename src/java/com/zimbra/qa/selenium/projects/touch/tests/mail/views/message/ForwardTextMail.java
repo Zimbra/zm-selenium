@@ -32,7 +32,7 @@ public class ForwardTextMail extends SetGroupMailByMessagePreference {
 	
 	@Bugs (ids = "85534")
 	@Test (description = "Forward a text mail and verify subject, from and to fields",
-			groups = { "sanity" })
+			groups = { "bhr" })
 			
 	public void ForwardTextMail_01() throws HarnessException {
 		
@@ -85,7 +85,7 @@ public class ForwardTextMail extends SetGroupMailByMessagePreference {
 	}
 	
 	@Test (description = "Forward a text mail and verify body content",
-			groups = { "sanity" })
+			groups = { "bhr" })
 			
 	public void ForwardTextMail_02() throws HarnessException {
 		

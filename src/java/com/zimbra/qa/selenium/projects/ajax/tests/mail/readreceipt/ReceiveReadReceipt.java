@@ -33,7 +33,7 @@ public class ReceiveReadReceipt extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Receive/view a read receipt",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void CreateMailText_01() throws HarnessException {
 

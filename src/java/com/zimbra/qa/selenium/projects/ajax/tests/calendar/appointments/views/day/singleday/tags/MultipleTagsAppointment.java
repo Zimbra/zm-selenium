@@ -40,7 +40,7 @@ public class MultipleTagsAppointment extends AjaxCore {
 	
 
 	@Test (description = "Apply multiple tags to appointment using toolbar button in day view and remove all tags in day view",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 	
 	public void MultipleTagsAppointment_01() throws HarnessException {
 

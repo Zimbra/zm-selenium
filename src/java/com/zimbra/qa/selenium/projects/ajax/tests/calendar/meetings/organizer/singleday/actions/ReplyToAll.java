@@ -40,7 +40,7 @@ public class ReplyToAll extends AjaxCore {
 
 
 	@Test (description = "Check when attendees get the reply when organizer ReplyAll to a meeting",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void ReplyToAll_01() throws HarnessException {
 
@@ -95,7 +95,7 @@ public class ReplyToAll extends AjaxCore {
 
 	@Bugs (ids = "57418")
 	@Test (description = "Verify if optional attendees appear as CC contact in the mail when organizer replies all to meeting",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void ReplyToAll_02() throws HarnessException {
 

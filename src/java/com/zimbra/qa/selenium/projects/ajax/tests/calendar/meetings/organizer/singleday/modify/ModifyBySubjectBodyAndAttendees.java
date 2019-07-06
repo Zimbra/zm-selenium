@@ -36,7 +36,7 @@ public class ModifyBySubjectBodyAndAttendees extends AjaxCore {
 
 	@Bugs (ids = "69132")
 	@Test (description = "Modify meeting subject, body and attendees",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void ModifyMeetingBySubjectBodyAndAttendees_01() throws HarnessException {
 

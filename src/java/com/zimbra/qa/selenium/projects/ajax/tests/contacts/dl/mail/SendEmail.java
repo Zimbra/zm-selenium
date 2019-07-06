@@ -33,7 +33,7 @@ public class SendEmail extends AjaxCore  {
 
 
 	@Test (description = "Right click to DL and send email",
-			groups = { "smoke", "L0" })
+			groups = { "smoke" })
 
 	public void SendEmail_01 () throws HarnessException {
 

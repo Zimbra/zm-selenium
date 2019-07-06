@@ -32,7 +32,7 @@ public class DragAndDropFolder extends EnableBriefcaseFeature {
 
 
 	@Test (description = "Drag one briefcase sub-folder and Drop into other",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void DragAndDropFolder_01() throws HarnessException {
 

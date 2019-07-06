@@ -36,7 +36,7 @@ public class CreateMeetingWithGALFeatureDisabled extends AjaxCore {
 
 	@Bugs (ids = "99777,65926")
 	@Test (description = "Create a basic appointment this zimbraFeatureGalEnabled=FALSE",
-			groups = { "smoke", "L1" } )
+			groups = { "bhr" } )
 
 	public void CreateMeetingWithGALFeatureDisabled_01() throws HarnessException {
 
@@ -78,7 +78,7 @@ public class CreateMeetingWithGALFeatureDisabled extends AjaxCore {
 
 	@Bugs (ids = "99777,65926")
 	@Test (description = "Create a basic appointment this GAL features disabled",
-			groups = { "functional", "L2" } )
+			groups = { "sanity" } )
 
 	public void CreateMeetingWithGALFeatureDisabled_02() throws HarnessException {
 

@@ -31,7 +31,7 @@ public class GetConversation extends SetGroupMailByConversationPreference {
 
 
 	@Test (description = "View a conversation in a mountpoint",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void GetConversation_01() throws HarnessException {
 
@@ -105,7 +105,7 @@ public class GetConversation extends SetGroupMailByConversationPreference {
 
 
 	@Test (description = "View the contents of a conversation in a mountpoint",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void GetConversation_02() throws HarnessException {
 

@@ -36,7 +36,7 @@ public class ForwardMailWithAttachment extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Forward a mail by adding attachment - Verify both attachment sent",
-			groups = { "sanity", "L0", "upload" })
+			groups = { "smoke", "upload" })
 
 	public void ForwardMailWithAttachment_01() throws HarnessException {
 

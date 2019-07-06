@@ -35,7 +35,7 @@ public class CancelComposeText extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Verify message dialog, when cancel a plain text draft (body filled)",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void CancelComposeText_01() throws HarnessException {
 
@@ -70,7 +70,7 @@ public class CancelComposeText extends SetGroupMailByMessagePreference {
 	 */
 
 	@Test (description = "Cancel Text composed mail using keyboard shortcut 'Escape'",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void CancelComposeText_02() throws HarnessException {
 

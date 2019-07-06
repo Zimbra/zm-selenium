@@ -38,7 +38,7 @@ public class SelectFolder extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Left click on folder - verify messages in that folder are shown",
-			groups = { "functional","L2" })
+			groups = { "sanity" })
 
 	public void SelectFolder_01() throws HarnessException {
 

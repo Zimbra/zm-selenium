@@ -40,7 +40,7 @@ public class UndoDeleteContact extends AjaxCore {
 
 
 	@Test (description = "Undone deleted contact",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void UndoDeleteContact_01() throws HarnessException {
 
@@ -83,7 +83,7 @@ public class UndoDeleteContact extends AjaxCore {
 
 
 	@Test (description = "Undone deleted a contact item selected with checkbox",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void UndoDeleteContact_02() throws HarnessException {
 
@@ -125,7 +125,7 @@ public class UndoDeleteContact extends AjaxCore {
 
 
 	@Test (description = "Undone deleted multiple contact items",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void UndoDeleteContact_03() throws HarnessException {
 

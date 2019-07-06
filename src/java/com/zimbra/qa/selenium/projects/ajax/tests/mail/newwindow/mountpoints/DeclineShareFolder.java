@@ -42,7 +42,7 @@ public class DeclineShareFolder extends SetGroupMailByMessagePreference {
 
 	@Bugs (ids = "70082")
 	@Test (description = "Receive an invitation to a shared folder, Decline it - in a separate window",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void DeclineShareFolder_01() throws HarnessException {
 

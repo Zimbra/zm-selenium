@@ -36,7 +36,7 @@ public class CreateContactGroup extends AjaxCore {
 
 
 	@Test (description = "Create a basic contact group with 2 addresses.  New -> Contact Group and verify toast message",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void CreateContactGroup_01() throws HarnessException {
 
@@ -70,7 +70,7 @@ public class CreateContactGroup extends AjaxCore {
 
 
 	@Test (description = "Create a contact group with existing contacts and verify toast message",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void CreateContactGroup_02() throws HarnessException {
 

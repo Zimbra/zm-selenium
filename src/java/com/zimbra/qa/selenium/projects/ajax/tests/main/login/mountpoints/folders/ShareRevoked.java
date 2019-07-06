@@ -43,7 +43,7 @@ public class ShareRevoked extends AjaxCore {
 
 
 	@Test (description = "Login to the Ajax Client - with a mountpoint to a revoked share",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void ShareRevoked_01() throws HarnessException {
 

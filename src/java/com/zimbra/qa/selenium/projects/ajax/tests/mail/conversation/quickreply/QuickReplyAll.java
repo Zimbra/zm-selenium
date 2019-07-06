@@ -37,7 +37,7 @@ public class QuickReplyAll extends SetGroupMailByConversationPreference {
 
 
 	@Test (description = "Quick Reply All to a conversation (1 message, 1 recipient)",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void QuickReplyAll_01() throws HarnessException {
 
@@ -86,7 +86,7 @@ public class QuickReplyAll extends SetGroupMailByConversationPreference {
 
 
 	@Test (description = "Quick Reply to a conversation (1 message, 2 recipients)",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void QuickReplyAll_02() throws HarnessException {
 
@@ -148,7 +148,7 @@ public class QuickReplyAll extends SetGroupMailByConversationPreference {
 
 
 	@Test (description = "Quick Reply to a conversation (1 message, 1 recipient, 1 CC, 1 BCC)",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void QuickReplyAll_03() throws HarnessException {
 
@@ -224,7 +224,7 @@ public class QuickReplyAll extends SetGroupMailByConversationPreference {
 
 
 	@Test (description = "Quick Reply-All to a 3 message conversation - first message",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void QuickReplyAll_10() throws HarnessException {
 
@@ -326,7 +326,7 @@ public class QuickReplyAll extends SetGroupMailByConversationPreference {
 
 
 	@Test (description = "Quick Reply-All to a 3 message conversation - middle message",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void QuickReplyAll_11() throws HarnessException {
 
@@ -428,7 +428,7 @@ public class QuickReplyAll extends SetGroupMailByConversationPreference {
 
 
 	@Test (description = "Quick Reply-All to a 3 message conversation - last message",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void QuickReplyAll_12() throws HarnessException {
 

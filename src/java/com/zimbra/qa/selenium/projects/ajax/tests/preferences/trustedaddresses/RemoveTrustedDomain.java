@@ -42,7 +42,7 @@ public class RemoveTrustedDomain extends AjaxCore {
 
 	@Bugs (ids = "101356")
 	@Test (description = "Remove a trusted domain",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void RemoveTrustedDomain_01() throws HarnessException {
 

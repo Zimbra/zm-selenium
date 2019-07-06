@@ -32,7 +32,7 @@ public class CreateShare extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Share a folder - External",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void CreateShare_01() throws HarnessException {
 

@@ -30,7 +30,7 @@ public class BasicLogout extends HtmlCore {
 	}
 	
 	@Test (description = "Logout of the Mobile Client",
-			groups = { "sanity" })
+			groups = { "smoke" })
 	public void BasicLogout01() throws HarnessException {
 		
 		// Login

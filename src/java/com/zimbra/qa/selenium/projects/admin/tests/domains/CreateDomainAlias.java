@@ -43,7 +43,7 @@ public class CreateDomainAlias extends AdminCore {
 	 */
 
 	@Test (description = "Create a domain alias",
-			groups = { "sanity", "L0" })
+			groups = { "smoke" })
 
 	public void CreateAlias_01() throws HarnessException {
 

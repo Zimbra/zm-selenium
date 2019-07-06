@@ -295,7 +295,7 @@ public class TouchCore {
     /**
      * Performance test after method
      */
-    @AfterMethod(groups={"performance"})
+    @AfterMethod(groups = { "performance" })
     public void performanceTestAfterMethod() {
 
        // Resetting the account to flush after each performance test method,

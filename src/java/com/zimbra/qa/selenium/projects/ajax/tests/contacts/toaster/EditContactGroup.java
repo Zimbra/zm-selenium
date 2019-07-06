@@ -36,7 +36,7 @@ public class EditContactGroup extends AjaxCore {
 
 	@Bugs (ids = "97157")
 	@Test (description = "Edit a contact group by click Edit on Toolbar button and verify toast message",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void EditContactGroup_01() throws HarnessException {
 
@@ -77,7 +77,7 @@ public class EditContactGroup extends AjaxCore {
 
 	@Bugs (ids = "97157")
 	@Test (description = "Edit a contact group by click Edit Group on Context Menu and verify toast message",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void EditContactGroup_02() throws HarnessException {
 
@@ -114,7 +114,7 @@ public class EditContactGroup extends AjaxCore {
 
 	@Bugs (ids = "97157")
 	@Test (description = "Edit a contact group by double click on the contact group and verify toast message  ",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void EditContactGroup_03() throws HarnessException {
 

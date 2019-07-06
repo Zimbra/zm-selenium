@@ -35,7 +35,7 @@ public class ModifyDLHiddenInGAL extends AjaxCore  {
 
 
 	@Test (description = "Modify DL using 'Private - List is Hidden in Global Address List",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void HiddenDLInGALAutoComplete_01() throws HarnessException {
 

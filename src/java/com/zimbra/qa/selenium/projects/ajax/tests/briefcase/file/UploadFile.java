@@ -42,7 +42,7 @@ public class UploadFile extends EnableBriefcaseFeature {
 
 
 	@Test (description = "Upload file through RestUtil - verify through GUI",
-			groups = { "sanity", "L0" })
+			groups = { "smoke" })
 
 	public void UploadFile_01() throws HarnessException {
 
@@ -78,7 +78,7 @@ public class UploadFile extends EnableBriefcaseFeature {
 
 
 	@Test (description = "Upload file through GUI - verify through GUI",
-			groups = { "sanity", "L0", "upload" })
+			groups = { "smoke", "upload" })
 
 	public void UploadFile_02() throws HarnessException {
 
@@ -119,7 +119,7 @@ public class UploadFile extends EnableBriefcaseFeature {
 
 
 	@Test (description = "Upload file through RestUtil - verify through SOAP",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void UploadFile_03() throws HarnessException {
 
@@ -161,7 +161,7 @@ public class UploadFile extends EnableBriefcaseFeature {
 	
 	
 	@Test (description = "Upload file of size greater than set zimbraFileUploadMaxSize through GUI - verify the upload failure message",
-		      groups = { "functional", "L3", "upload", "non-msedge" })
+		      groups = { "functional", "upload", "non-msedge" })
 
 	public void UploadFile_04() throws HarnessException {
 
@@ -185,7 +185,7 @@ public class UploadFile extends EnableBriefcaseFeature {
 			final String fileName1 = "BasicPng.PNG";
 			final String filePath1 = ConfigProperties.getBaseDirectory() + "\\data\\public\\Files\\Basic01\\" + fileName1; // Size of the file is 530 KB
 			final String fileName2 = "BasicTiff.TIF";
-			final String filePath2 = ConfigProperties.getBaseDirectory() + "\\data\\public\\Files\\Basic01\\" + fileName1; // Size of the file is 794 KB
+			final String filePath2 = ConfigProperties.getBaseDirectory() + "\\data\\public\\Files\\Basic01\\" + fileName2; // Size of the file is 794 KB
 
 			// Select briefcase folder
 			app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseFolder);
@@ -194,6 +194,7 @@ public class UploadFile extends EnableBriefcaseFeature {
 			DialogUploadFile dlg = (DialogUploadFile) app.zPageBriefcase.zToolbarPressButton(Button.B_UPLOAD_FILE);
 			
 			app.zPageBriefcase.sClickAt("css=div[class='ZmUploadDialog'] input[name='uploadFile']", "10,10");
+
 			// Upload file
 			zUpload(filePath2);
 			dlg.zPressButton(Button.B_OK);

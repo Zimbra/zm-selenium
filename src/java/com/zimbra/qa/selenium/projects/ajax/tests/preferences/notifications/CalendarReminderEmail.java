@@ -33,7 +33,7 @@ public class CalendarReminderEmail extends AjaxCore {
 
 
 	@Test (description = "Set zimbraPrefCalendarReminderEmail to a valid Email address'",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void CalendarReminderEmail_01() throws HarnessException {
 

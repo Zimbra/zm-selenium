@@ -33,7 +33,7 @@ public class BodyHtmlToText extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Compose a meeting with html body, change to Plain Text and verify if text is not lost",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void BodyHtmltoText_01() throws HarnessException {
 

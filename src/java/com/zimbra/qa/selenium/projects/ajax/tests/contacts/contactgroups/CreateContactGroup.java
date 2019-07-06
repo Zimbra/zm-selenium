@@ -41,7 +41,7 @@ public class CreateContactGroup extends AjaxCore  {
 
 
 	@Test (description = "Create a basic contact group with 2 addresses using  New -> Contact Group",
-			groups = { "sanity", "L0" })
+			groups = { "smoke" })
 
 	public void CreateContactGroup_01() throws HarnessException {
 
@@ -100,7 +100,7 @@ public class CreateContactGroup extends AjaxCore  {
 
 
 	@Test (description = "Create a basic contact group with 2 GAL addresses",
-			groups = { "smoke", "L0" })
+			groups = { "smoke" })
 
 	public void CreateContactGroup_02() throws HarnessException {
 
@@ -139,7 +139,7 @@ public class CreateContactGroup extends AjaxCore  {
 
 
 	@Test (description = "Create a contact group with existing contacts",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void CreateContactGroup_03() throws HarnessException {
 
@@ -184,7 +184,7 @@ public class CreateContactGroup extends AjaxCore  {
 
 	@Bugs (ids = "77968")
 	@Test (description = "Create a new contact group from GAL search result",
-		groups= { "smoke", "L1" })
+		groups = { "bhr" })
 
 	public void CreateContactGroupFromGALSearchResult_04() throws HarnessException{
 
@@ -246,7 +246,7 @@ public class CreateContactGroup extends AjaxCore  {
 
 
 	@Test (description = "Create a contact group with GAL + existing contacts + new emails",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void CreateContactGroup_05() throws HarnessException {
 
@@ -298,7 +298,7 @@ public class CreateContactGroup extends AjaxCore  {
 
 	@Bugs (ids = "60652")
 	@Test (description = "Bug 60652 - Contacts are not populated while creating a new contact group",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void CreateContactGroup_06() throws HarnessException {
 

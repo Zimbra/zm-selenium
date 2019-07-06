@@ -40,7 +40,7 @@ public class ReceiveMail extends MobileCore {
 	}
 	
 	@Test (description = "Verify a new mail shows up in the message list",
-			groups = { "sanity" })
+			groups = { "smoke" })
 	public void ReceiveMail_01() throws HarnessException, InterruptedException {
 
 		String subject = "subject" + ConfigProperties.getUniqueString();

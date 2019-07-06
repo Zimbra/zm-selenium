@@ -39,7 +39,7 @@ public class MoveTask extends AjaxCore {
 
 
 	@Test (description = "Verify Toaster message on moving Task",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void MoveTask_01() throws HarnessException {
 

@@ -31,7 +31,7 @@ public class ComposeMail extends TouchCore {
 	}
 	
 	@Test (description = "Send a mail with To, Cc, Bcc user and verify it for all recipients",
-			groups = { "sanity" })
+			groups = { "smoke" })
 			
 	public void ComposeMail_01() throws HarnessException {
 		

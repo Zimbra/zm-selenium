@@ -43,7 +43,7 @@ public class NavigateDownloads extends AdminCore {
 	 */
 
 	@Test (description = "Navigate to Downloads",
-			groups = { "sanity", "L0" })
+			groups = { "smoke" })
 
 	public void NavigateDownloads_01() throws HarnessException {
 
@@ -59,7 +59,7 @@ public class NavigateDownloads extends AdminCore {
 	}
 
 
-	@AfterMethod(groups={"always"})
+	@AfterMethod(groups = { "always" })
 	public void afterMethod() throws HarnessException {
 		logger.info("Opening base URL...");
 		app.zPageMain.sOpen(ConfigProperties.getBaseURL());

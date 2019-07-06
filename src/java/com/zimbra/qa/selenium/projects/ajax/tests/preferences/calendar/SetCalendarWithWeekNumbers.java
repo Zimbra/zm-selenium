@@ -40,7 +40,7 @@ public class SetCalendarWithWeekNumbers extends AjaxCore {
 
 
 	@Test (description = "Set 'Show Calendars with week numbers' and verify accordingly",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void SetCalendarWithWeekNumbers_01() throws HarnessException {
 

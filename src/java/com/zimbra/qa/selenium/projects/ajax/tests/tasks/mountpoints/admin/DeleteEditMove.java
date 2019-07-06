@@ -48,7 +48,7 @@ public class DeleteEditMove extends AjaxCore {
 
 
 	@Test (description = "Verify Delete Edit Move button are visible on mountpoint task (admin rights)",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void DeleteEditMove_01() throws HarnessException {
 

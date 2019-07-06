@@ -37,7 +37,7 @@ public class CheckEmailAddressBubble extends SetGroupMailByMessagePreference {
 
 	@Bugs (ids = "57895" )
 	@Test (description = "Verify that email address containing '-', '_' etc. are also displayed in address bubble",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void CheckEmailAddressBubble_01() throws HarnessException {
 

@@ -32,7 +32,7 @@ public class ChangeColorSavedSearch extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Edit a folder, change the color (Context menu -> Edit)",
-			groups = { "functional","L3" } )
+			groups = { "functional" } )
 
 	public void ChangeColorSavedSearch_01() throws HarnessException {
 

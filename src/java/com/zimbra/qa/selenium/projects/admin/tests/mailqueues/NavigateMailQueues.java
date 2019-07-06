@@ -38,7 +38,7 @@ public class NavigateMailQueues extends AdminCore {
 	 */
 
 	@Test (description = "Navigate to Mail Queues",
-			groups = { "sanity", "L0" })
+			groups = { "smoke" })
 
 	public void NavigateMailQueues_01() throws HarnessException {
 

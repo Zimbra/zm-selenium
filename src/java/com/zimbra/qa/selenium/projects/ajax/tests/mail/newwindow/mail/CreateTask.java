@@ -34,7 +34,7 @@ public class CreateTask extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Create Task from new window by action menu -> Create Task",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void CreateTask_01() throws HarnessException {
 

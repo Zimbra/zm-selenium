@@ -34,7 +34,7 @@ public class DragAndDropAppointment extends AjaxCore {
 
 
 	@Test (description = "Drag and Drop a appointment from calendar to different calendar",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void DragAndDropAppointment_01() throws HarnessException {
 
@@ -101,7 +101,7 @@ public class DragAndDropAppointment extends AjaxCore {
 
 
 	@Test (description = "Drag and Drop a appointment from one time to a different time",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void DragAndDropAppointment_02() throws HarnessException {
 

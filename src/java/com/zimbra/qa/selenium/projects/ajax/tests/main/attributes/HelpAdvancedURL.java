@@ -37,7 +37,7 @@ public class HelpAdvancedURL extends AjaxCore {
 
 	@Bugs (ids = "101023")
 	@Test (description = "Verify the product help URL", priority=5,
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void HelpAdvancedURL_01() throws HarnessException {
 
@@ -75,8 +75,7 @@ public class HelpAdvancedURL extends AjaxCore {
 			if (windowIds.size() > 1) {
 
 				for(String id: windowIds) {
-
-				app.zPageMain.sSelectWindow(id);
+					app.zPageMain.sSelectWindow(id);
 					if (app.zPageMain.sGetTitle().contains("Not Found") || app.zPageMain.sGetTitle().contains("Help")) {
 						//Get the opened URL
 						tempURL=app.zPageMain.sGetLocation();
@@ -84,7 +83,7 @@ public class HelpAdvancedURL extends AjaxCore {
 						app.zPageMain.zSeparateWindowClose(app.zPageMain.sGetTitle());
 						break;
 					} else if (!(app.zPageMain.sGetTitle().contains("Zimbra: Inbox"))) {
-								app.zPageMain.zSeparateWindowClose(app.zPageMain.sGetTitle());
+						app.zPageMain.zSeparateWindowClose(app.zPageMain.sGetTitle());
 					}
 				}
 				if (!found) {
@@ -111,7 +110,7 @@ public class HelpAdvancedURL extends AjaxCore {
 
 
 	@Test (description = "Verify the product help URL as per the value set in attribute ZimbraHelpAdminURL at the global config", priority=5,
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void HelpAdvancedURL_02() throws HarnessException {
 

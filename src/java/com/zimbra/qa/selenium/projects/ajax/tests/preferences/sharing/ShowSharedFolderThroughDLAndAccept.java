@@ -39,7 +39,7 @@ public class ShowSharedFolderThroughDLAndAccept extends AjaxCore {
 
 
 	@Test (description = "Accept share folder with user through a distribution list",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void ShowSharedFolderThroughDLAndAccept_01() throws HarnessException {
 

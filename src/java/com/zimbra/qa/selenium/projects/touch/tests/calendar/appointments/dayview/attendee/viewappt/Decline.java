@@ -35,7 +35,7 @@ public class Decline extends CalendarWorkWeekPreference {
 	
 	@Bugs (ids = "95807")
 	@Test (description = "Decline a meeting using view appointment options", 
-			groups = { "sanity" })
+			groups = { "bhr" })
 	
 	public void DeclineMeeting_01() throws HarnessException {
 

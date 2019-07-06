@@ -37,7 +37,7 @@ public class MoveMessage extends SetGroupMailByConversationPreference{
 		logger.info("New "+ MoveMessage.class.getCanonicalName());
 	}
 	@Test (description = "Move a mail by 'move conversation' button",
-			groups = { "sanity" })
+			groups = { "bhr" })
 
 
 	public void MoveMail_01() throws HarnessException, AWTException {

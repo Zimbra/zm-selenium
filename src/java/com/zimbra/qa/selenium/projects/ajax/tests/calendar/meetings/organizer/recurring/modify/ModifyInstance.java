@@ -36,7 +36,7 @@ public class ModifyInstance extends AjaxCore {
 
 
 	@Test (description = "Modify series instance by adding one more attendee & modified subject/body",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void ModifyInstance_01() throws HarnessException {
 

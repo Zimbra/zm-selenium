@@ -60,7 +60,7 @@ public class DeclineMeeting extends AjaxCore {
 
 
 	@Test (description = "From New Windoow Decline a meeting using Decline button from invitation message",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void DeclineMeeting_01() throws HarnessException {
 
@@ -159,7 +159,7 @@ public class DeclineMeeting extends AjaxCore {
 
 
 	@Test (description = "Verify organizer gets notification message when declining meeting from new window",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void DeclineMeeting_02() throws HarnessException {
 
@@ -212,7 +212,7 @@ public class DeclineMeeting extends AjaxCore {
 
 
 	@Test (description = "From New Window >>Decline meeting using 'Decline -> Notify Organizer'",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void DeclineMeeting_03() throws HarnessException {
 
@@ -315,7 +315,7 @@ public class DeclineMeeting extends AjaxCore {
 
 
 	@Test (description = "Decline meeting using 'Decline -> Don't Notify Organizer'",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void DeclineMeeting_04() throws HarnessException {
 

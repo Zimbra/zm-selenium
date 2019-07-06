@@ -45,7 +45,7 @@ public class GetDistributionList extends AdminCore {
 	 */
 
 	@Test (description = "Verify created dl is present in the list view",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void GetDistributionList_01() throws HarnessException {
 
@@ -87,7 +87,7 @@ public class GetDistributionList extends AdminCore {
 	 */
 
 	@Test (description = "Verify created admin dl is present in the list view",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void GetDistributionList_02() throws HarnessException {
 
@@ -130,7 +130,7 @@ public class GetDistributionList extends AdminCore {
 	 */
 
 	@Test (description = "Verify created dynamic admin dl is present in the list view",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void GetDistributionList_03() throws HarnessException {
 
@@ -174,7 +174,7 @@ public class GetDistributionList extends AdminCore {
 	 */
 
 	@Test (description = "Verify created dl is present in the list view  - Search view",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void GetDistributionList_04() throws HarnessException {
 

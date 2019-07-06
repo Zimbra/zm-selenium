@@ -71,7 +71,7 @@ public class FromAllowAddress extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Send a mail using zimbraAllowFromAddress",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void FromAllowAddress_01() throws HarnessException {
 

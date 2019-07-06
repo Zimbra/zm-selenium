@@ -87,7 +87,7 @@ public class ReplyWithSignatureContainsImage extends AjaxCore {
 	 */
 
 	@Test (description = "Verify the display of signature image in reply compose window",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void ReplyWithSignatureContainsImage_01() throws HarnessException {
 

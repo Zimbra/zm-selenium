@@ -32,7 +32,7 @@ public class GetAppointment extends AjaxCore {
 
 	@Bugs (ids = "69132")
 	@Test (description = "View a basic appointment in the work week view",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void GetAppointment_01() throws HarnessException {
 

@@ -34,7 +34,7 @@ public class MarkUnReadMail extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Mark a message as unread by clicking on it, then using 'mu' hotkeys",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void MarkUnReadMail_01() throws HarnessException {
 
@@ -77,7 +77,7 @@ public class MarkUnReadMail extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Mark a message as read by context menu -> mark unread",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void MarkUnReadMail_02() throws HarnessException {
 

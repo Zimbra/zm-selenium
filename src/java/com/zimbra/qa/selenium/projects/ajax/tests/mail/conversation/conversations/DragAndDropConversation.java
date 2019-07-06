@@ -31,7 +31,7 @@ public class DragAndDropConversation extends SetGroupMailByConversationPreferenc
 
 
 	@Test (description = "Drag and Drop a conversation",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void DragAndDropConversation_01() throws HarnessException {
 
@@ -109,7 +109,7 @@ public class DragAndDropConversation extends SetGroupMailByConversationPreferenc
 
 
 	@Test (description = "Drag and Drop a conversation - verify sent messages are not moved",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void DragAndDropConversation_02() throws HarnessException {
 
@@ -199,7 +199,7 @@ public class DragAndDropConversation extends SetGroupMailByConversationPreferenc
 
 
 	@Test (description = "Drag and Drop a conversation - verify trashed messages are not moved",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void DragAndDropConversation_03() throws HarnessException {
 

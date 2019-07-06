@@ -34,7 +34,7 @@ public class ResetStatusAfterRemovingEquipment extends AjaxCore {
 
 	@Bugs (ids = "49881")
 	@Test (description = "Check reset status of meeting after Removing Equipment",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void ResetStatusAfterRemovingEquipment_01() throws HarnessException {
 

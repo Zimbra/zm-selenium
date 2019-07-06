@@ -43,7 +43,7 @@ public class OpenFile extends EnableBriefcaseFeature {
 
 
 	@Test (description = "Upload file through RestUtil - open & verify through GUI",
-			groups = { "smoke", "L0" })
+			groups = { "smoke" })
 
 	public void OpenFile_01() throws HarnessException {
 

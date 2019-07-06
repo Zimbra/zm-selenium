@@ -45,7 +45,7 @@ public class DeleteAppointment extends AjaxCore {
 
 	@Bugs (ids = "69132")
 	@Test (description = "Delete all-day appointment using Delete toolbar button in week view",
-			groups = { "smoke-skip", "L3-skip" })
+			groups = { "functional-skip" })
 
 	public void DeleteAllDayAppointment_01() throws HarnessException {
 
@@ -95,7 +95,7 @@ public class DeleteAppointment extends AjaxCore {
 
 	@Bugs (ids = "69132")
 	@Test (description = "Delete all-day appointment using context menu in week view",
-			groups = { "smoke-skip", "L3-skip" })
+			groups = { "functional-skip" })
 
 	public void DeleteAllDayAppointment_02() throws HarnessException {
 
@@ -149,7 +149,7 @@ public class DeleteAppointment extends AjaxCore {
 
 	@Bugs (ids = "69132")
 	@Test (description = "Delete all-day appointment using keyboard shortcuts (Del & Backspace) in week view",
-			groups = { "functional-skip", "L3-skip" },
+			groups = { "functional-duplicate" },
 			dataProvider = "DataProviderShortcutKeys")
 
 	public void DeleteAllDayAppointment_03(String name, int keyEvent) throws HarnessException {

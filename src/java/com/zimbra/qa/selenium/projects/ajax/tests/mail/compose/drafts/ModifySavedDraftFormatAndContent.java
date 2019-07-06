@@ -41,7 +41,7 @@ public class ModifySavedDraftFormatAndContent extends SetGroupMailByMessagePrefe
 
 	@Bugs (ids = "53373")
 	@Test (description = "Modify compose html draft mail and verify its format",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void ReopenAndCheckFormat_01() throws HarnessException {
 

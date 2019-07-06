@@ -46,7 +46,7 @@ public class MoveMountpoint extends AjaxCore {
 
 	@Bugs (ids = "69661")
 	@Test (description = "Move a mountpoint under a subfolder - Drag and Drop, Move",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void MoveMountpoint_01() throws HarnessException {
 

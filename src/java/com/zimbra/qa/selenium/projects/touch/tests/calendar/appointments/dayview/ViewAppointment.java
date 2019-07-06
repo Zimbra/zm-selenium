@@ -35,7 +35,7 @@ public class ViewAppointment extends CalendarWorkWeekPreference {
 	}
 	
 	@Test (description = "View appointment and verify reading pane shows invite details correctly",
-			groups = { "sanity" })
+			groups = { "smoke" })
 			
 	public void ViewAppointment_01() throws HarnessException {
 		

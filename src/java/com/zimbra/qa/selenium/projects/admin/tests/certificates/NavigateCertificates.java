@@ -39,7 +39,7 @@ public class NavigateCertificates extends AdminCore {
 	 */
 
 	@Test (description = "Navigate to Certificates",
-			groups = { "sanity", "L0" })
+			groups = { "smoke" })
 
 	public void NavigateCertificates_01() throws HarnessException {
 

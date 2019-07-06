@@ -33,7 +33,7 @@ public class CreateMeetingWithDL extends CalendarWorkWeekPreference {
 	}
 
 	@Test (description = "Create meeting invite using DL",
-			groups = { "smoke" })
+			groups = { "bhr" })
 	
 	public void CreateMeetingWithDL_01() throws HarnessException {
 				

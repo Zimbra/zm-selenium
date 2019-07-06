@@ -48,7 +48,7 @@ public class AutoAddAddressEnabledTrue extends AjaxCore {
 	 */
 
 	@Test (description = "send message to 1 receiver, the address should be added into Emailed Contact",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void SendEmailTo1Receiver_01() throws HarnessException {
 
@@ -93,7 +93,7 @@ public class AutoAddAddressEnabledTrue extends AjaxCore {
 	 */
 
 	@Test (description = "Send message to 2 receiver, the addresses should be added into Emailed Contact",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void SendEmailTo2Receivers_02() throws HarnessException {
 

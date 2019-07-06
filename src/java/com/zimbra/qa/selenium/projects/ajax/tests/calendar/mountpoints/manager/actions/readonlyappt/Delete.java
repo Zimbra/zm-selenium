@@ -33,7 +33,7 @@ public class Delete extends AjaxCore {
 
 
 	@Test (description = "Assistant right clicks to calendar invite from shared calendar and deletes the invite OBO boss (Don't notify organizer)",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void Delete_01() throws HarnessException {
 
@@ -125,7 +125,7 @@ public class Delete extends AjaxCore {
 
 
 	@Test (description = "Assistant right clicks to calendar invite from shared calendar and deletes the invite OBO boss (Notify organizer)",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void Delete_02() throws HarnessException {
 
@@ -272,7 +272,7 @@ public class Delete extends AjaxCore {
 
 
 	@Test (description = "Assistant clicks to calendar invite from shared calendar and deletes the invite OBO boss",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void Delete_03() throws HarnessException {
 

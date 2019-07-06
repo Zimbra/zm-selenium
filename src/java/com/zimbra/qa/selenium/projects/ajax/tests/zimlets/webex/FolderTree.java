@@ -35,7 +35,7 @@ public class FolderTree extends AjaxCore {
 
 
 	@Test (description = "Verify the WebEx zimlet appears in the folder tree",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void FolderTree_01() throws HarnessException {
 		ZimletItem webex = CoreZimletItem.getCoreZimlet(CoreZimletName.com_zimbra_webex, app);

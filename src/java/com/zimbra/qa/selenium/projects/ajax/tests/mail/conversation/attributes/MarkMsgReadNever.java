@@ -35,7 +35,7 @@ public class MarkMsgReadNever extends SetGroupMailByConversationPreference {
 
 	@Bugs (ids = "78178")
 	@Test (description = "Verify a conversation (1 message) is not marked read if zimbraPrefMarkMsgRead=Never",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void MarkMsgReadNever_01() throws HarnessException {
 
@@ -76,7 +76,7 @@ public class MarkMsgReadNever extends SetGroupMailByConversationPreference {
 
 	@Bugs (ids = "78178")
 	@Test (description = "Verify a conversation (multiple message) is not marked read if zimbraPrefMarkMsgRead=Never",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void MarkMsgReadNever_02() throws HarnessException {
 

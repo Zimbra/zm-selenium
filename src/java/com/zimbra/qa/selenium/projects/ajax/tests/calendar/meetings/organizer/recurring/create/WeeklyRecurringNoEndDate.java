@@ -37,7 +37,7 @@ public class WeeklyRecurringNoEndDate extends AjaxCore {
 
 
 	@Test (description = "Create weekly recurring invite with attendee and location with no end date, effective from today",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void WeeklyRecurringNoEndDate_01() throws HarnessException {
 

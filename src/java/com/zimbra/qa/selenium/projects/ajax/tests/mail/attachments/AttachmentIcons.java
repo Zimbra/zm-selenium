@@ -31,7 +31,7 @@ public class AttachmentIcons extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Verify icon: ImgGenericDoc",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void ImgGenericDoc_01() throws HarnessException {
 
@@ -61,7 +61,7 @@ public class AttachmentIcons extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Verify icon: ImgImageDoc",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void ImgImageDoc_01() throws HarnessException {
 

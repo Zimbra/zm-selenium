@@ -38,7 +38,7 @@ public class ImportContact extends AjaxCore {
 
 	@Bugs( ids = "78607" )	
 	@Test (description = "Verify that while importing, ZCS accepts only csv format address book",
-			groups = { "smoke", "L1", "upload" })
+			groups = { "bhr", "upload" })
 
 	public void ImportContact_01() throws HarnessException {
 

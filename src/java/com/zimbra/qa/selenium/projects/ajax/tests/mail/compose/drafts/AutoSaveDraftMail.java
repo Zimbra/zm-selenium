@@ -44,7 +44,7 @@ public class AutoSaveDraftMail extends SetGroupMailByMessagePreference {
 
 	@Bugs (ids = "66393")
 	@Test (description = "Auto save a basic draft (subject only)",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void AutoSaveDraftMail_01() throws HarnessException {
 

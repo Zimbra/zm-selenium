@@ -38,7 +38,7 @@ public class NavigateSearch extends AdminCore {
 	 */
 
 	@Test (description = "Navigate to Search",
-			groups = { "sanity", "L0" })
+			groups = { "smoke" })
 
 	public void NavigateSearch_01() throws HarnessException {
 
@@ -89,7 +89,7 @@ public class NavigateSearch extends AdminCore {
 	 */
 
 	@Test (description = "Navigate to Search",
-			groups = { "sanity", "L0" })
+			groups = { "smoke" })
 
 	public void NavigateSearch_02() throws HarnessException {
 
@@ -173,7 +173,7 @@ public class NavigateSearch extends AdminCore {
 	 */
 
 	@Test (description = "Navigate to Search",
-			groups = { "sanity", "L0" })
+			groups = { "smoke" })
 
 	public void NavigateSearch_03() throws HarnessException {
 

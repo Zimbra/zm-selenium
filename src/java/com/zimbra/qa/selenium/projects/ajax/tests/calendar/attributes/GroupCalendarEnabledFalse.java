@@ -44,7 +44,7 @@ public class GroupCalendarEnabledFalse extends AjaxCore {
 
 	@Bugs (ids = "56440")
 	@Test (description = "If zimbraFeatureGroupCalendarEnabled to FALSE then check if user can edit existing appt",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void GroupCalendarEnabledFalse_01() throws HarnessException {
 
@@ -110,7 +110,7 @@ public class GroupCalendarEnabledFalse extends AjaxCore {
 
 
 	@Test (description = "Bug 59940 -  Location: edit field can display upto 4 characters only if group calendar feature is OFF",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void GroupCalendarEnabledFalse_02() throws HarnessException {
 

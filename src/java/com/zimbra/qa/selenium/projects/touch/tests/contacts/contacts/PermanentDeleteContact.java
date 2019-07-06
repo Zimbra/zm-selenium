@@ -30,7 +30,7 @@ public class PermanentDeleteContact extends TouchCore  {
 	}
 	
 	@Test (description = "Permanently delete a contact item",
-			groups = { "functional" })
+			groups = { "sanity" })
 	
 	public void PermanentDeleteContact_01() throws HarnessException {
 

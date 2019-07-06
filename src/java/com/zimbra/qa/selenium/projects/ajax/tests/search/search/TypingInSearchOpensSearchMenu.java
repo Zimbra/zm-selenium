@@ -36,7 +36,7 @@ public class TypingInSearchOpensSearchMenu extends SetGroupMailByMessagePreferen
 
 	@Bugs (ids = "102600" )
 	@Test (description = "Typing in: in search input and pressing down arrow >> it opens Search menu list as well",
-			groups = { "functional","L1" })
+			groups = { "bhr" })
 
 	public void TypingInSearchOpensSearchMenu_01() throws HarnessException {
 

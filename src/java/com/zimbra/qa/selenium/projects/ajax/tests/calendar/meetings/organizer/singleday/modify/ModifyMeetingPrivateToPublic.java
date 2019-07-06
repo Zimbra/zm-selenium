@@ -40,7 +40,7 @@ public class ModifyMeetingPrivateToPublic extends AjaxCore {
 
 
 	@Test (description = "Modify Meeting class from Private to Public",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void ModifyMeetingPrivateToPublic_01() throws HarnessException {
 
@@ -100,7 +100,7 @@ public class ModifyMeetingPrivateToPublic extends AjaxCore {
 
 
 	@Test (description = "Modify Meeting class from Public to Private",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void ModifyMeetingPublicToPrivate_02() throws HarnessException {
 

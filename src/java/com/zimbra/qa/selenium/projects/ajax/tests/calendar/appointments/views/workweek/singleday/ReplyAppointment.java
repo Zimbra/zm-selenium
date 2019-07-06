@@ -40,7 +40,7 @@ public class ReplyAppointment extends AjaxCore {
 	}
 
 	@Test (description = "Verify Reply & ReplyAll context menu option for saved appt",
-			groups = { "functional", "L2" },
+			groups = { "sanity" },
 			dataProvider = "DataProviderReply")
 
 	public void ReplyAppointment_01(String menuName) throws HarnessException {

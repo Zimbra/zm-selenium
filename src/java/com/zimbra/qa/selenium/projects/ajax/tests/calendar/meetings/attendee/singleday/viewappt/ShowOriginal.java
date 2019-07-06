@@ -32,7 +32,7 @@ public class ShowOriginal extends AjaxCore {
 
 
 	@Test (description = "View meeting invite by opening it and view meeting show original",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void MeetingShowOriginal_01() throws HarnessException {
 

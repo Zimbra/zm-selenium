@@ -38,7 +38,7 @@ public class ZimbraHelpDelegatedURLModification extends AdminCore {
 
 	@Bugs (ids = "ZCS-3526,105789")
 	@Test (description = "Verify that zimbra delegated admin help page is opened as per the value set in attribute zimbraHelpDelegatedURL",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void ZimbraHelpDelegatedURLModification_01() throws HarnessException {
 

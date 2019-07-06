@@ -31,7 +31,7 @@ public class ArchiveConversation extends ArchiveZimletByConversationTest {
 
 
 	@Test (description = "Archive a conversation",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void ArchiveConversation_01() throws HarnessException {
 
@@ -59,7 +59,7 @@ public class ArchiveConversation extends ArchiveZimletByConversationTest {
 
 	@Bugs (ids = "89122")
 	@Test (description = "Archive a single message in a conversation",
-			groups = { "smoke","L1" })
+			groups = { "bhr" })
 
 	public void ArchiveConversation_02() throws HarnessException {
 

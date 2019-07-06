@@ -43,7 +43,7 @@ public class AcceptProposeNewTime extends AjaxCore {
 
 	@Bugs (ids = "69132,96556,96748")
 	@Test (description = "Receive meeting invite -> Propose New Time to organizer and organizer accepts the new time using message view",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void AcceptProposeNewTime_01() throws HarnessException {
 

@@ -39,7 +39,7 @@ public class DeleteAppointment extends AjaxCore {
 
 
 	@Test (description = "Verify the deletion of an appointment from trash",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void DeleteAppointment_01() throws HarnessException {
 

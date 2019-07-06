@@ -43,7 +43,7 @@ public class CreateDistributionList extends AdminCore {
 	 */
 
 	@Test (description = "Create a basic DL",
-			groups = { "sanity", "L0" })
+			groups = { "smoke" })
 
 	public void CreateDistributionList_01() throws HarnessException {
 
@@ -75,7 +75,7 @@ public class CreateDistributionList extends AdminCore {
 	 */
 
 	@Test (description = "Create a basic dynamic DL",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void CreateDistributionList_02() throws HarnessException, ServiceException {
 
@@ -112,7 +112,7 @@ public class CreateDistributionList extends AdminCore {
 	
 	@Bugs(ids = "51011")
 	@Test (description = "Create a DL and add it as a member of another DL",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void CreateDistributionList_03() throws HarnessException {
 

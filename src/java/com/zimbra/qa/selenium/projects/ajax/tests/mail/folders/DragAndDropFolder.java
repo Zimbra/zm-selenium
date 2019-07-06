@@ -31,7 +31,7 @@ public class DragAndDropFolder extends SetGroupMailByMessagePreference{
 
 
 	@Test (description = "Drag one folder and Drop into other",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void DragDropFolder_01() throws HarnessException {
 

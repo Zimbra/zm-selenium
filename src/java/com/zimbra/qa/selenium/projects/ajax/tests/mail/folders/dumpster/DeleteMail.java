@@ -34,7 +34,7 @@ public class DeleteMail extends SetGroupMailByMessagePreference {
 
 	@Bugs (ids = "65915")
 	@Test (description = "Delete a mail with zimbraDumpsterEnabled=TRUE",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void DeleteMail_01() throws HarnessException {
 

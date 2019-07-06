@@ -43,7 +43,7 @@ public class CreateAppointment extends AjaxCore {
 
 
 	@Test (description = "Create a basic appointment without an attendee in week view",
-			groups = { "smoke-skip", "L3-skip" } )
+			groups = { "functional-duplicate" } )
 
 	public void CreateAppointment_01() throws HarnessException {
 
@@ -73,7 +73,7 @@ public class CreateAppointment extends AjaxCore {
 
 
 	@Test (description = "Create appointment with all the fields and verify it",
-			groups = { "functional-skip", "L3-skip" } )
+			groups = { "functional-skip" } )
 
 	public void CreateAppointment_02() throws HarnessException {
 
@@ -129,7 +129,7 @@ public class CreateAppointment extends AjaxCore {
 
 
 	@Test (description = "Create private appointment in week view",
-			groups = { "functional-skip", "L3-skip" } )
+			groups = { "functional-skip" } )
 
 	public void CreatePrivateAppointment_03() throws HarnessException {
 

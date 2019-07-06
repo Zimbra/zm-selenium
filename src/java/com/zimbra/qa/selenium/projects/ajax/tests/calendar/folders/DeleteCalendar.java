@@ -32,7 +32,7 @@ public class DeleteCalendar extends AjaxCore {
 
 
 	@Test (description = "Delete a calendar - Right click, Delete",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void DeleteCalendar_01() throws HarnessException {
 

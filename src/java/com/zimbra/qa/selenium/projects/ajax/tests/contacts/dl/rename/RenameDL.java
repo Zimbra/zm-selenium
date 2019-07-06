@@ -34,7 +34,7 @@ public class RenameDL extends AjaxCore  {
 
 
 	@Test (description = "Rename DL",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void RenameDL_01 () throws HarnessException {
 

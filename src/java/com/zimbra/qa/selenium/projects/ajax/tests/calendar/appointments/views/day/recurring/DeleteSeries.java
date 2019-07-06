@@ -43,7 +43,7 @@ public class DeleteSeries extends AjaxCore {
 	
 	@Bugs (ids = "69132")
 	@Test (description = "Delete entire series of recurring appointment (every day) using toolbar button in day view",
-			groups = { "smoke", "L1" } )
+			groups = { "bhr" } )
 	
 	public void DeleteSeries_01() throws HarnessException {
 
@@ -123,7 +123,7 @@ public class DeleteSeries extends AjaxCore {
 	
 	@Bugs (ids = "69132")
 	@Test (description = "Delete entire series of recurring appointment (every week) using context menu in day view",
-			groups = { "smoke", "L1" } )
+			groups = { "bhr" } )
 	
 	public void DeleteSeries_02() throws HarnessException {
 
@@ -206,7 +206,7 @@ public class DeleteSeries extends AjaxCore {
 
 	@Bugs (ids = "69132")
 	@Test (description = "Delete entire series appointment (every week) using keyboard shortcuts Del & Backspace in day view",
-			groups = { "functional", "L3" },
+			groups = { "functional" },
 			dataProvider = "DataProviderShortcutKeys")
 
 	public void DeleteSeries_03(String name, int keyEvent) throws HarnessException {

@@ -37,7 +37,7 @@ public class ModifyByAddingAttendees extends AjaxCore {
 
 	@Bugs (ids = "47335")
 	@Test (description = "Modify a meeting in shared caledndar by adding more attendee and send updates only to added/removed attendees",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void ModifyMeetingByAddingAttendees_01() throws HarnessException {
 

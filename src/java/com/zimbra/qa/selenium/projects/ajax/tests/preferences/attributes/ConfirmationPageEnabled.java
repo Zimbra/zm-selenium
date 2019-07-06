@@ -36,7 +36,7 @@ public class ConfirmationPageEnabled extends SetGroupMailByMessagePreference {
 
 	@Bugs (ids = "21979")
 	@Test (description = "Send a message and confirm the confirmation page",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void ConfirmationPageEnabled_01() throws HarnessException {
 

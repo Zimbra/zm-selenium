@@ -33,7 +33,7 @@ public class ViewInviteWhichContainsAttachment extends AjaxCore {
 
 
 	@Test (description = "View invite which has attachment present as an organizer",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void ViewInviteWhichContainsAttachment_01() throws HarnessException {
 

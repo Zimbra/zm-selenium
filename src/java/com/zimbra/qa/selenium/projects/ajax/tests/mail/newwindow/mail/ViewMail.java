@@ -36,7 +36,7 @@ public class ViewMail extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Receive a mail with Sender: specified",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void ViewMail_01() throws HarnessException {
 
@@ -85,7 +85,7 @@ public class ViewMail extends SetGroupMailByMessagePreference {
 
 	@Bugs (ids = "86168")
 	@Test (description = "Receive a mail with Reply-To: specified",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void ViewMail_02() throws HarnessException {
 
@@ -134,7 +134,7 @@ public class ViewMail extends SetGroupMailByMessagePreference {
 
 	@Bugs (ids = "61575")
 	@Test (description = "Receive a mail with Resent-From: specified",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void ViewMail_03() throws HarnessException {
 
@@ -181,7 +181,7 @@ public class ViewMail extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Verify multipart/alternative with text and html parts",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void ViewMail_04() throws HarnessException {
 

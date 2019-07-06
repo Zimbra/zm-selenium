@@ -29,7 +29,7 @@ public class FlagMail extends SetGroupMailByConversationPreference {
 	}
 	
 	@Test (description = "mark mail flag",
-			groups = { "sanity" })
+			groups = { "bhr" })
 			
 	public void FlagMail_01() throws HarnessException {
 		

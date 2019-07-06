@@ -32,7 +32,7 @@ public class FromExternalPOP extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Compose message from - External POP",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void FromExternalPOP_01() throws HarnessException {
 

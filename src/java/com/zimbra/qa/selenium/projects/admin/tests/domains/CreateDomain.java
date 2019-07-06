@@ -45,7 +45,7 @@ public class CreateDomain extends AdminCore {
 
 	@Bugs (ids = "58795")
 	@Test (description = "Create a simple domain",
-			groups = { "sanity", "L0" })
+			groups = { "smoke" })
 
 	public void CreateDomain_01() throws HarnessException {
 

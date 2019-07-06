@@ -32,7 +32,7 @@ public class ReplyMail extends SetGroupMailByConversationPreference {
 	
 	@Bugs (ids = "85534")
 	@Test (description = "Reply to a message and verify it",
-			groups = { "sanity" })
+			groups = { "bhr" })
 			
 	public void ReplyMail_01() throws HarnessException {
 		

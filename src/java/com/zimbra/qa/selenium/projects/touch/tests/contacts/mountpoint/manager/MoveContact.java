@@ -35,7 +35,7 @@ public class MoveContact extends TouchCore  {
 	}
 
 	@Test (description = "Move a contact item in mount folder with manager rights to emailed contact folder",
-			groups = { "functional" })
+			groups = { "sanity" })
 
 	public void MoveContact_01() throws HarnessException {
 

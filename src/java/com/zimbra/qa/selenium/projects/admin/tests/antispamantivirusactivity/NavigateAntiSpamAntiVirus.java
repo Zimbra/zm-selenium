@@ -38,7 +38,7 @@ public class NavigateAntiSpamAntiVirus extends AdminCore {
 	 */
 
 	@Test (description = "Navigate to Anti-Spam/Anti-Virus Activity",
-			groups = { "sanity", "L0" })
+			groups = { "smoke" })
 
 	public void NavigateAnitSpamAntiVirus_01() throws HarnessException {
 

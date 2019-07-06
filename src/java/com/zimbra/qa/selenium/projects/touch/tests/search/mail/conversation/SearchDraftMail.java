@@ -17,7 +17,6 @@
 package com.zimbra.qa.selenium.projects.touch.tests.search.mail.conversation;
 
 import org.testng.annotations.Test;
-
 import java.awt.AWTException;
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.FolderItem;
@@ -37,17 +36,17 @@ public class SearchDraftMail extends SetGroupMailByConversationPreference {
 		logger.info("New "+ SearchDraftMail.class.getCanonicalName());
 
 	}
-	
+
 	@Bugs (ids = "93246")
 	@Test (description = "Bug 93246: Draft message content showing blank from search results",
-			groups = { "smoke" })
-			
+			groups = { "functional" })
+
 	public void SearchDraftMail_01() throws HarnessException, AWTException {
-		
+
 		//-- DATA
 				String subject = "subject"+ ConfigProperties.getUniqueString();
 				String body = "body"+ ConfigProperties.getUniqueString();
-				
+
 				app.zGetActiveAccount().soapSend(
 						"<SaveDraftRequest xmlns='urn:zimbraMail'>" +
 							"<m >" +
@@ -58,29 +57,29 @@ public class SearchDraftMail extends SetGroupMailByConversationPreference {
 								"</mp>" +
 							"</m>" +
 						"</SaveDraftRequest>");
-		
+
 		// Get the message from server and verify draft data matches
 		MailItem draft = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
 		FolderItem draftsFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Drafts);
-		
+
 		app.zPageMail.zRefresh();
-		
+
 		// Click on Drafts
 		app.zPageMail.zToolbarPressButton(Button.B_FOLDER_TREE);
 		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, "Drafts");
-		
-		// Search email		
+
+		// Search email
 		app.zTreeMail.zFillField(Button.B_SEARCH, subject);
 
 		// Select mail
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
-		
+
 		//Verify body contents
 		ZAssert.assertEquals(draft.dBodyText, body, "Verify the body field is correct");
 		ZAssert.assertEquals(draft.dFolderId, draftsFolder.getId(), "Verify the draft is saved in the drafts folder");
-		
+
 		app.zPageMail.zPressButton(Button.B_BACK);
-		
+
 	}
-	
+
 }

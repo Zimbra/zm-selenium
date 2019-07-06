@@ -98,7 +98,7 @@ public class AddToContactsContextMenu extends CalendarWorkWeekPreference {
 	}
 
 	@Test (description = "Click on To msg Header and verify context menu>> AddToContact", 
-			groups = { "smoke" })
+			groups = { "functional" })
 
 	public void AddToContactsContextMenu_02() throws HarnessException {
 

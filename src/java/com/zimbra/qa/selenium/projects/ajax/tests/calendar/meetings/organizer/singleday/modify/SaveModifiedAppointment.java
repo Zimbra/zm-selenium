@@ -41,7 +41,7 @@ public class SaveModifiedAppointment extends AjaxCore {
 
 
 	@Test (description = "Save modified appt and take action from warning dialog : Save Chnages and send updates",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void SaveModifiedAppointment_01() throws HarnessException {
 
@@ -108,7 +108,7 @@ public class SaveModifiedAppointment extends AjaxCore {
 
 
 	@Test (description = "Save modified appt and take action from warning dialog : Discard and close",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void SaveModifiedAppointment_02() throws HarnessException {
 
@@ -181,7 +181,7 @@ public class SaveModifiedAppointment extends AjaxCore {
 
 
 	@Test (description = "Save modified appt and take action from warning dialog : Dont save But keep open",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void SaveModifiedAppointment_03() throws HarnessException {
 

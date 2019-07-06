@@ -44,7 +44,7 @@ public class MoveTask extends AjaxCore {
 
 
 	@Test (description = "Create task through SOAP - move & verify through GUI",
-			groups = { "smoke", "L0" })
+			groups = { "smoke" })
 
 	public void MoveTask_01() throws HarnessException {
 
@@ -125,7 +125,7 @@ public class MoveTask extends AjaxCore {
 
 
 	@Test (description = "Move a task by selecting task, then click 'm' shortcut",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void MoveTask_02() throws HarnessException {
 
@@ -209,7 +209,7 @@ public class MoveTask extends AjaxCore {
 
 
 	@Test (description = "Create task through SOAP - move using Right Click Context Menu & verify through GUI",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void MoveTask_03() throws HarnessException {
 
@@ -294,7 +294,7 @@ public class MoveTask extends AjaxCore {
 
 
 	@Test (description = "Move a task by using Move -> New folder & verify through GUI",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void MoveTask_04() throws HarnessException {
 

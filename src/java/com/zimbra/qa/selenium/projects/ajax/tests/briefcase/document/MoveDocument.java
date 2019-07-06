@@ -42,7 +42,7 @@ public class MoveDocument extends EnableBriefcaseFeature {
 
 
 	@Test (description = "Create document through SOAP - move & verify through GUI",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void MoveDocument_01() throws HarnessException {
 
@@ -105,7 +105,7 @@ public class MoveDocument extends EnableBriefcaseFeature {
 
 
 	@Test (description = "Move Document using 'm' keyboard shortcut",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void MoveDocument_02() throws HarnessException {
 
@@ -185,7 +185,7 @@ public class MoveDocument extends EnableBriefcaseFeature {
 
 
 	@Test (description = "Create document through SOAP - move using Right Click Context Menu & verify through GUI",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void MoveDocument_03() throws HarnessException {
 

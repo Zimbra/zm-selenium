@@ -37,7 +37,7 @@ public class PermanentDeleteAppointment extends CalendarWorkWeekPreference {
 	
 	@Bugs (ids = "104559")
 	@Test (description = "Permanently delete all day appointment",
-			groups = { "smoke" })
+			groups = { "sanity" })
 	
 	public void PermanentDeleteAppointment_01() throws HarnessException {
 		

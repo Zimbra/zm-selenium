@@ -32,7 +32,7 @@ public class ReplyAllConversationText extends SetGroupMailByConversationPreferen
 
 
 	@Test (description = "Reply-All to a conversation",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void ReplyAllConversationText_01() throws HarnessException {
 

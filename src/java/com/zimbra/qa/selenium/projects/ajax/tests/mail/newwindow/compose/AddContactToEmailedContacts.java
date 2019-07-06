@@ -37,7 +37,7 @@ public class AddContactToEmailedContacts extends SetGroupMailByMessagePreference
 
 
 	@Test (description = "Bug 62727 - Sending email to from new window should register contact under email contact list ",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void AddContactToEmailedContacts_01() throws HarnessException {
 

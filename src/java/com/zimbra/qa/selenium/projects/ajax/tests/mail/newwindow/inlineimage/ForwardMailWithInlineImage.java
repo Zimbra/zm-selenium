@@ -39,7 +39,7 @@ public class ForwardMailWithInlineImage extends SetGroupMailByMessagePreference 
 
 
 	@Test (description = "Fwd a mail  with an inline attachment by pressing Forward button>>attach>>Inline - in separate window",
-			groups = { "smoke", "L1", "upload" })
+			groups = { "bhr", "upload" })
 
 	public void ForwardMailWithInlineImage_01() throws HarnessException {
 

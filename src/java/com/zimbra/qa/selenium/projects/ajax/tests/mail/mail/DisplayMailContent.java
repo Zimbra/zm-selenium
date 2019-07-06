@@ -34,7 +34,7 @@ public class DisplayMailContent extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Verify multiline body mail(HTML content) displayed properly when display mail pref set to HTML",
-			groups = { "sanity", "L1" })
+			groups = { "bhr" })
 
 	public void DisplayHTMLMailWithHTMLPref_01() throws HarnessException {
 
@@ -71,7 +71,7 @@ public class DisplayMailContent extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Verify multiline body mail(HTML content) displayed properly when display mail pref set to PlainText",
-			groups = { "sanity", "L1" })
+			groups = { "bhr" })
 
 	public void DisplayHTMLMailWithTextPref_02() throws HarnessException {
 
@@ -116,7 +116,7 @@ public class DisplayMailContent extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Verify multiline body mail(plain text content) displayed properly when display mail pref set to HTML",
-			groups = { "sanity", "L1" })
+			groups = { "bhr" })
 
 	public void DisplayTextMailWithHTMLPref_03() throws HarnessException {
 
@@ -171,7 +171,7 @@ public class DisplayMailContent extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Verify multiline body mail(plain text content) displayed properly when display mail pref set to PlainText",
-			groups = { "sanity", "L1" })
+			groups = { "bhr" })
 
 	public void DisplayTextMailWithTextPref_04() throws HarnessException {
 

@@ -48,7 +48,7 @@ public class EditPreferences extends AdminCore {
 	 */
 
 	@Test (description = "Edit account - Edit preferences at account level",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void EditPreferences_01() throws HarnessException {
 

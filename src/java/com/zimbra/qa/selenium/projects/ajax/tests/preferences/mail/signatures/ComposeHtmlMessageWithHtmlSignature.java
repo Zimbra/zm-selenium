@@ -67,7 +67,7 @@ public class ComposeHtmlMessageWithHtmlSignature extends AjaxCore {
 	 */
 
 	@Test (description = "Compose Html message with html signature and Verify signature through soap",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void ComposeHtmlMessageWithHtmlSignature_01() throws HarnessException {
 

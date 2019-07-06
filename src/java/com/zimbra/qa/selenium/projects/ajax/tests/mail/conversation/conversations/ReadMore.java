@@ -29,7 +29,7 @@ public class ReadMore extends SetGroupMailByConversationPreference {
 
 
 	@Test (description = "Use the 'Read More' button to scroll through the conversation content",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void ReadMore_01() throws HarnessException {
 

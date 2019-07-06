@@ -83,7 +83,7 @@ public class CalendarReminderSMS extends AjaxCore {
 
 
 	@Test (description = "Send VerifyCodeRequest to an SMS address",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void CalendarReminderSMS_02() throws HarnessException {
 

@@ -45,7 +45,7 @@ public class HomePageLinks extends AdminCore {
 	 */
 
 	@Test (description = "Navigate to Install certificate wizard",
-			groups = { "sanity", "L0" })
+			groups = { "smoke" })
 
 	public void NavigateHomePageLinks_01() throws HarnessException {
 
@@ -68,7 +68,7 @@ public class HomePageLinks extends AdminCore {
 	 */
 
 	@Test (description = "Navigate to Configure default COS",
-			groups = { "sanity", "L0" })
+			groups = { "smoke" })
 
 	public void NavigateHomePageLinks_02() throws HarnessException {
 
@@ -90,7 +90,7 @@ public class HomePageLinks extends AdminCore {
 	 */
 
 	@Test (description = "Navigate to create Domain wizard",
-			groups = { "sanity", "L0" })
+			groups = { "smoke" })
 
 	public void NavigateHomePageLinks_03() throws HarnessException {
 
@@ -114,7 +114,7 @@ public class HomePageLinks extends AdminCore {
 	 */
 
 	@Test (description = "Navigate to Configure GAL wizard",
-			groups = { "sanity", "L0" })
+			groups = { "smoke" })
 
 	public void NavigateHomePageLinks_04() throws HarnessException {
 
@@ -140,7 +140,7 @@ public class HomePageLinks extends AdminCore {
 	 */
 
 	@Test (description = "Navigate to Configure Authentication wizard",
-			groups = { "sanity", "L0" })
+			groups = { "smoke" })
 
 	public void NavigateHomePageLinks_05() throws HarnessException {
 
@@ -164,7 +164,7 @@ public class HomePageLinks extends AdminCore {
 	 */
 
 	@Test (description = "Navigate to create account wizard",
-			groups = { "sanity", "L0" })
+			groups = { "smoke" })
 
 	public void NavigateHomePageLinks_06() throws HarnessException {
 
@@ -189,7 +189,7 @@ public class HomePageLinks extends AdminCore {
 	 */
 
 	@Test (description = "Navigate to Configure manage accounts",
-			groups = { "sanity", "L0" })
+			groups = { "smoke" })
 
 	public void NavigateHomePageLinks_07() throws HarnessException {
 
@@ -210,7 +210,7 @@ public class HomePageLinks extends AdminCore {
 	 */
 
 	@Test (description = "Navigate to migration and co Existance wizard",
-			groups = { "sanity", "L0" })
+			groups = { "smoke" })
 
 	public void NavigateHomePageLinks_08() throws HarnessException {
 

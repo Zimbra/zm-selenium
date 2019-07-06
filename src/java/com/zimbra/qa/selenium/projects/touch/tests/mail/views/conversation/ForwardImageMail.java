@@ -32,7 +32,7 @@ public class ForwardImageMail extends SetGroupMailByConversationPreference {
 
 	@Bugs (ids = "81331")
 	@Test (description = "Verify inline image present after hitting Forward from the mail",
-			groups = { "smoke" })
+			groups = { "bhr" })
 
 	public void ForwardInlineImageMail_01() throws HarnessException {
 

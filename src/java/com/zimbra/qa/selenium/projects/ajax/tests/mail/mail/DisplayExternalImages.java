@@ -37,7 +37,7 @@ public class DisplayExternalImages extends SetGroupMailByMessagePreference {
 
 	@Bugs (ids = "75010" )
 	@Test (description = "View the display of external images when user clicks on 'Always display images sent from' email link",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void DisplayExternalImages_01() throws HarnessException {
 
@@ -89,7 +89,7 @@ public class DisplayExternalImages extends SetGroupMailByMessagePreference {
 
 	@Bugs (ids = "70600" )
 	@Test (description = "View the display of external images when user clicks on 'Always display images sent from' domain link",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void DisplayExternalImages_02() throws HarnessException {
 

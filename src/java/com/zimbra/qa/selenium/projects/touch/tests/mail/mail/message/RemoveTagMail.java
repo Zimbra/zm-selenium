@@ -31,7 +31,7 @@ public class RemoveTagMail extends SetGroupMailByMessagePreference {
 	}
 	
 	@Test (description = "Cancel tag operation in message view",
-			groups = { "smoke" })
+			groups = { "sanity" })
 			
 	public void RemoveTagMail_01() throws HarnessException {
 		

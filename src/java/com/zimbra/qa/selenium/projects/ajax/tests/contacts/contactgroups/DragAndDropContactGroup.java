@@ -38,7 +38,7 @@ public class DragAndDropContactGroup extends AjaxCore  {
 
 
 	@Test (description = "Move a contact group to folder Emailed Contacts by drag and drop",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void DnDToEmailedContacts_01() throws HarnessException {
 
@@ -70,7 +70,7 @@ public class DragAndDropContactGroup extends AjaxCore  {
 
 
 	@Test (description = "Move a contact group to trash folder by drag and drop",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void DnDToTrash_02() throws HarnessException {
 

@@ -30,7 +30,7 @@ public class UnFlagConversation extends SetGroupMailByConversationPreference {
 
 
 	@Test (description = "Un-Flag a conversation by clicking flagged icon",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void UnFlagConversation_01() throws HarnessException {
 
@@ -60,7 +60,7 @@ public class UnFlagConversation extends SetGroupMailByConversationPreference {
 
 
 	@Test (description = "Un-Flag a conversation by using shortcut 'mf'",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void UnFlagConversation_02() throws HarnessException {
 

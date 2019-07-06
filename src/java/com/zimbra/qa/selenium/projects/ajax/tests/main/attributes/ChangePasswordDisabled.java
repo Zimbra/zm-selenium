@@ -38,7 +38,7 @@ public class ChangePasswordDisabled extends AjaxCore {
 
 	@Bugs (ids = "81522")
 	@Test (description = "Verify the 'Change Password' option is not present in main->account->Change Password",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void ChangePasswordDisabled_01() throws HarnessException {
 

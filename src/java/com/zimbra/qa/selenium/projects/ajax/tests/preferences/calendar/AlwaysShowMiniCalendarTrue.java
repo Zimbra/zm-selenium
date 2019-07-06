@@ -39,7 +39,7 @@ public class AlwaysShowMiniCalendarTrue extends AjaxCore {
 
 	@Bugs (ids = "78547")
 	@Test (description = "Set zimbraPrefCalendarAlwaysShowMiniCal to 'TRUE'",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void AlwaysShowMiniCalendarTrue_01() throws HarnessException {
 

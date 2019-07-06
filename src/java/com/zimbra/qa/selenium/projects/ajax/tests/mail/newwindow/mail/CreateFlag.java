@@ -35,7 +35,7 @@ public class CreateFlag extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Create flag from new window from action menu -> Create Flag",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void CreateFlagFromNewWindow_01() throws HarnessException {
 
@@ -106,7 +106,7 @@ public class CreateFlag extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Create flag from new window using shortcut key 'mf'",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void CreateFlagFromNewWindow_02() throws HarnessException {
 

@@ -35,7 +35,7 @@ public class ModifyDLByAddingRemovingMembers extends AjaxCore  {
 
 
 	@Test (description = "Modify DL by adding and removing members",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void ModifyDLByAddingRemovingMembers_01 () throws HarnessException {
 

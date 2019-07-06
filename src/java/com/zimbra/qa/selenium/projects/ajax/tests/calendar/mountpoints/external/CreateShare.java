@@ -38,7 +38,7 @@ public class CreateShare extends AjaxCore {
 
 	@Bugs (ids = "46674")
 	@Test (description = "Share folder with external rights and add note to it",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void CreateShare_01() throws HarnessException {
 

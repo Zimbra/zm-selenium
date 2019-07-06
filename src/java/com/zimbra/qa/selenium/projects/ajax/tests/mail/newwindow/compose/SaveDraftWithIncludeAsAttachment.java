@@ -37,7 +37,7 @@ public class SaveDraftWithIncludeAsAttachment extends SetGroupMailByMessagePrefe
 
 	@Bugs (ids = "104334")
 	@Test (description = "Reply to a mail with include original as attachment, format as HTML and save draft",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void SaveDraftWithIncludeAsAttachment_01() throws HarnessException {
 
@@ -103,7 +103,7 @@ public class SaveDraftWithIncludeAsAttachment extends SetGroupMailByMessagePrefe
 
 	@Bugs (ids = "104334")
 	@Test (description = "Reply to a mail with include original as attachment, format as text and save draft",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void SaveDraftWithIncludeAsAttachment_02() throws HarnessException {
 

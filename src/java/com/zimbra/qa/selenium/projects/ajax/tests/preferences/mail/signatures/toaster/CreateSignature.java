@@ -36,7 +36,7 @@ public class CreateSignature extends AjaxCore {
 
 
 	@Test (description = "Create Simple text signature and verify toast message through GUI",
-		groups = { "functional", "L3" })
+		groups = { "functional" })
 
 	public void CreateTextSignature_01() throws HarnessException {
 

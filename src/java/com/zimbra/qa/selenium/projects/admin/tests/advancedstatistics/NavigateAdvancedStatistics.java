@@ -38,7 +38,7 @@ public class NavigateAdvancedStatistics extends AdminCore {
 	 */
 	
 	@Test (description = "Navigate to Advanced Statistics",
-			groups = { "sanity", "L0" })
+			groups = { "smoke" })
 	
 	public void NavigateAdvancedStatistics_01() throws HarnessException {
 

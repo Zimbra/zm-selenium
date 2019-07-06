@@ -37,7 +37,7 @@ public class SaveDraftMail extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Save a basic draft (subject only) - in a separate window",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void SaveDraftMail_01() throws HarnessException {
 
@@ -92,7 +92,7 @@ public class SaveDraftMail extends SetGroupMailByMessagePreference {
 	 */
 
 	@Test (description = "Save draft using keyboard shortcut 'Escape'",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void SaveDraftMail_02() throws HarnessException {
 

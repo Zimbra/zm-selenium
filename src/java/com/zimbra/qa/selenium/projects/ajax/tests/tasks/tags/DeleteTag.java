@@ -43,7 +43,7 @@ public class DeleteTag extends AjaxCore {
 
 
 	@Test (description = "Delete a tag - Right click, Delete",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void DeleteTag_01() throws HarnessException {
 

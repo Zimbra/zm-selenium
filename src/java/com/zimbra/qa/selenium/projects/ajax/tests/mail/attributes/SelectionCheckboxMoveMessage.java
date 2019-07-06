@@ -48,7 +48,7 @@ public class SelectionCheckboxMoveMessage extends SetGroupMailByMessagePreferenc
 	}
 	
 	@Test (description = "Move all mails by selecting 'select all', then clicking toolbar 'Move' button",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void SelectionCheckboxMoveMessage_01() throws HarnessException {
 
@@ -106,7 +106,7 @@ public class SelectionCheckboxMoveMessage extends SetGroupMailByMessagePreferenc
 
 	@Bugs (ids = "ZCS-259")
 	@Test (description = "Move all mails by selecting 'shift-select all', then clicking toolbar 'Move' button",
-			groups = { "functional", "L3" })
+			groups = { "functional-application-bug" })
 
 	public void SelectionCheckboxMoveMessage_02() throws HarnessException {
 

@@ -24,7 +24,7 @@ public class CancelCreateContact extends TouchCore  {
 		super.startingPage = app.zPageAddressbook;
 	}	
 	@Test (description = "Fill up creat contact form with basic attributes and cancel it",
-			groups = { "smoke" })
+			groups = { "sanity" })
 	public void CancelCreateContact_01() throws HarnessException {
 		//-- DATA
 		// generate basic attribute values for new account

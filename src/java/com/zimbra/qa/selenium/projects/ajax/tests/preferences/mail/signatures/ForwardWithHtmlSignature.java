@@ -71,7 +71,7 @@ public class ForwardWithHtmlSignature extends AjaxCore {
 	 */
 
 	@Test (description = "Forward message with html signature and verify html signature through soap",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void ForwardWithHtmlSignature_01() throws HarnessException {
 

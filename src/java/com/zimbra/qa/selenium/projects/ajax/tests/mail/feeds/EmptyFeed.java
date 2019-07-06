@@ -32,7 +32,7 @@ public class EmptyFeed extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Empty a feed folder (context menu)",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void EmptyFeed_01() throws HarnessException, MalformedURLException {
 

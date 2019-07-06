@@ -46,7 +46,7 @@ public class UnTagTask extends AjaxCore{
 
 
 	@Test (description = "UnTag a Task using Toolbar -> Tag -> Remove Tag",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void UnTagTask_01() throws HarnessException {
 
@@ -121,7 +121,7 @@ public class UnTagTask extends AjaxCore{
 
 
 	@Test (description = "UnTag a Task using shortcut u",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void UnTagTask_02() throws HarnessException {
 
@@ -205,7 +205,7 @@ public class UnTagTask extends AjaxCore{
 
 
 	@Test (description = "Remove a tag from a task clicking 'x' from tag bubble",
-			groups = { "functional","L2" })
+			groups = { "sanity" })
 
 	public void UnTagTask_03() throws HarnessException {
 

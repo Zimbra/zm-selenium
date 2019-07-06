@@ -39,7 +39,7 @@ public class AutoAddAddressEnabledFalse extends AjaxCore {
 
 
 	@Test (description= "Select the checkbox to set zimbraPrefAutoAddAddressEnabled=false ",
-			groups= { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void AutoAddAddressEnabledFalse_01() throws HarnessException {
 

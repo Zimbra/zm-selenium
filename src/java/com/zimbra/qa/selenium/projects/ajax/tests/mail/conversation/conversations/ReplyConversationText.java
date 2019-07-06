@@ -31,7 +31,7 @@ public class ReplyConversationText extends SetGroupMailByConversationPreference 
 	}
 
 	@Test (description = "Reply to a conversation",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void ReplyConversationText_01() throws HarnessException {
 

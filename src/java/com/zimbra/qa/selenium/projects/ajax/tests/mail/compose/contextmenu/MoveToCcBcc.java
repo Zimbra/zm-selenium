@@ -36,7 +36,7 @@ public class MoveToCcBcc extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Right click To bubble address and hit Move To Cc",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void MoveToCc_01() throws HarnessException {
 
@@ -64,7 +64,7 @@ public class MoveToCcBcc extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Right click To bubble address and hit move to Bcc",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void MoveToBcc_02() throws HarnessException {
 

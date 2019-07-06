@@ -34,7 +34,7 @@ public class MarkSpamMail extends SetGroupMailByMessagePreference {
 
 	@Bugs (ids = "103950")
 	@Test (description = "Mark a message as spam, using 'Spam' toolbar button - in separate window",
-			groups = { "smoke", "L1" })
+			groups = { "bhr" })
 
 	public void MarkSpamMail_01() throws HarnessException {
 
@@ -87,7 +87,7 @@ public class MarkSpamMail extends SetGroupMailByMessagePreference {
 
 	@Bugs (ids = "103950")
 	@Test (description = "Mark a message as spam, using keyboard shortcut (keyboard='ms') - in a separate window",
-			groups = { "functional", "L2" })
+			groups = { "sanity" })
 
 	public void MarkSpamMail_02() throws HarnessException {
 

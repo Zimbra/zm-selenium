@@ -35,7 +35,7 @@ public class DeleteAppointment extends CalendarWorkWeekPreference {
 	}
 	
 	@Test (description = "Delete an appointment using Delete toolbar button in day view",
-			groups = { "sanity" })
+			groups = { "bhr" })
 	
 	public void DeleteAppointment_01() throws HarnessException {
 		

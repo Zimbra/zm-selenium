@@ -34,7 +34,7 @@ public class VerifyConfigureReminderRemoved extends AjaxCore {
 
 	@Bugs (ids = "97410")
 	@Test (description = "Verify 'configure' link from quick add dialog for calendar",
-			groups = { "smoke", "L1" } )
+			groups = { "bhr" } )
 
 	public void VerifyConfigureReminderRemoved_01() throws HarnessException {
 

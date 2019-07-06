@@ -17,7 +17,6 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.compose;
 
 import java.awt.event.KeyEvent;
-import java.util.ArrayList;
 import org.testng.annotations.*;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
@@ -37,7 +36,7 @@ public class CreateMailText extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Send a mail using Text editor",
-			groups = { "sanity", "L1" })
+			groups = { "bhr" })
 
 	public void CreateMailText_01() throws HarnessException {
 
@@ -67,7 +66,7 @@ public class CreateMailText extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Send a multiline plain text mail using Text editor",
-			groups = { "sanity", "L0" })
+			groups = { "smoke" })
 
 	public void CreateMailWithMultilineText_02() throws HarnessException {
 
@@ -113,7 +112,7 @@ public class CreateMailText extends SetGroupMailByMessagePreference {
 	}
 
 	@Test (description = "Send a mail using Text editor using keyboard shortcuts",
-			groups = { "functional", "L2" },
+			groups = { "sanity" },
 			dataProvider = "DataProvideNewMessageShortcuts")
 
 	public void CreateMailText_03(Shortcut shortcut, String keys) throws HarnessException {
@@ -145,7 +144,7 @@ public class CreateMailText extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Send a mail with CC",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void CreateMailText_04() throws HarnessException {
 
@@ -190,7 +189,7 @@ public class CreateMailText extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Send a mail with BCC",
-			groups = { "functional", "L3" })
+			groups = { "functional" })
 
 	public void CreateMailText_05() throws HarnessException {
 
@@ -238,7 +237,7 @@ public class CreateMailText extends SetGroupMailByMessagePreference {
 	}
 
 	@Test (description = "Send a mail with different priorities high/normal/low",
-			groups = { "functional", "L2" },
+			groups = { "sanity" },
 			dataProvider = "DataProvidePriorities")
 
 	public void CreateMailText_06(Button option, String verify) throws HarnessException {
@@ -266,38 +265,5 @@ public class CreateMailText extends SetGroupMailByMessagePreference {
 
 		ZAssert.assertNotNull(received, "Verify the message is received");
 		ZAssert.assertStringContains(received.getFlags(), verify, "Verify the correct priority was sent");
-	}
-
-
-	@Test (description = "Send a mail to 100 recipients",
-			groups = { "deprecated" } ) // The harness doesn't handle the postqueue for such a large message
-
-	public void CreateMailText_07() throws HarnessException {
-
-		//-- Data
-		String subject = "subject" + ConfigProperties.getUniqueString();
-
-		// Create 100 accounts
-		StringBuilder destination = new StringBuilder(ZimbraAccount.AccountA().EmailAddress);
-		ArrayList<ZimbraAccount> destinations = new ArrayList<ZimbraAccount>();
-		for(int i=0;i<100;i++) {
-			ZimbraAccount account = new ZimbraAccount();
-			account.provision();
-			destinations.add(account);
-			destination.append("; ").append(account.EmailAddress);
-		}
-
-		// Open the new mail form
-		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
-		ZAssert.assertNotNull(mailform, "Verify the new form opened");
-
-		mailform.zFillField(Field.Subject, subject);
-		mailform.zFillField(Field.Body, "body" + ConfigProperties.getUniqueString());
-		mailform.zFillField(Field.To, destination.toString());
-
-		mailform.zSubmit();
-
-		MailItem received = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "subject:("+ subject +")");
-		ZAssert.assertNotNull(received, "Verify the message is received");
 	}
 }

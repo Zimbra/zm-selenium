@@ -35,7 +35,7 @@ public class CreateMeeting extends CalendarWorkWeekPreference {
 	}
 
 	@Test (description = "Create all day meeting with attendee and location",
-			groups = { "sanity" })
+			groups = { "smoke" })
 
 	public void CreateMeeting_01() throws HarnessException {
 

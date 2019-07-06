@@ -39,7 +39,7 @@ public class NavigateAdminExtensions extends AdminCore {
 	 */
 
 	@Test (description = "Navigate to Admin Extensions",
-			groups = { "sanity", "L0" })
+			groups = { "smoke" })
 
 	public void NavigateAdminExtensions_01() throws HarnessException {
 
