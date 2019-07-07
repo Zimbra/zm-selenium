@@ -291,15 +291,21 @@ public class CommandLineUtility {
 	}
 
 	public static ArrayList<String> runCommandOnZimbraServer(String host, String zimbraCommand) {
-
 		String privateKey = null;
-		String command = "su - zimbra -c '" + zimbraCommand + "'";
+		String command = null;
+
+		if (zimbraCommand.contains("sh -c")) {
+			command = zimbraCommand;
+		} else {
+			command = "su - zimbra -c '" + zimbraCommand + "'";
+		}
 		if (!ConfigProperties.getStringProperty("server.host").endsWith(".zimbra.com")
 				&& !ConfigProperties.getStringProperty("server.host").endsWith(".domain1.com")) {
 			command = "sudo " + command;
 		}
-		ArrayList<String> out = null;
+		System.out.println(command);
 
+		ArrayList<String> out = null;
 		try {
 
 			java.util.Properties config = new java.util.Properties();
@@ -321,7 +327,6 @@ public class CommandLineUtility {
 			session.setConfig(config);
 			session.connect();
 			System.out.println("Connected");
-			System.out.println(command);
 
 			Channel channel = session.openChannel("exec");
 			((ChannelExec) channel).setCommand(command);

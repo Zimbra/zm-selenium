@@ -37,9 +37,9 @@ public class DeleteMail extends SetGroupMailByMessagePreference {
 	}
 
 
-	@Bugs (ids = "66525, 26103")
+	@Bugs (ids = "ZCS-7511")
 	@Test (description = "Delete a message from a mountpoint folder",
-			groups = { "sanity" })
+			groups = { "sanity-application-bug" })
 
 	public void DeleteMail_01() throws HarnessException {
 

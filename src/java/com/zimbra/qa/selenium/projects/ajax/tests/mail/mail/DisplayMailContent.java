@@ -34,7 +34,7 @@ public class DisplayMailContent extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Verify multiline body mail(HTML content) displayed properly when display mail pref set to HTML",
-			groups = { "bhr" })
+			groups = { "smoke" })
 
 	public void DisplayHTMLMailWithHTMLPref_01() throws HarnessException {
 
@@ -70,17 +70,13 @@ public class DisplayMailContent extends SetGroupMailByMessagePreference {
 	}
 
 
-	@Test (description = "Verify multiline body mail(HTML content) displayed properly when display mail pref set to PlainText",
+	@Test (description = "Verify multiline body mail(HTML content) displayed properly when display mail pref set to plain text",
 			groups = { "bhr" })
 
 	public void DisplayHTMLMailWithTextPref_02() throws HarnessException {
 
 		String multilineTextData = null;
-		if (ConfigProperties.getStringProperty("browser").contains("firefox")) {
-			multilineTextData = "BoldString <br>ItalicString <br>Underline text <br>Red color text <br>Green background <br><br>Number list below : <br><br><br>&nbsp;&nbsp; &nbsp;1. point one <br>&nbsp;&nbsp; &nbsp;2. point two <br>&nbsp;&nbsp; &nbsp;3. point three";
-		} else {
-			multilineTextData = "BoldString <br />ItalicString <br />Underline text <br />Red color text <br />Green background <br /><br />Number list below : <br /><br /><br />    1. point one <br />    2. point two <br />    3. point three";
-		}
+		multilineTextData = "<div><div>BoldString <br>ItalicString <br>Underline text <br>Red color text <br>Green background <br><br>Number list below : <br><br><br>&nbsp;&nbsp; &nbsp;1. point one <br>&nbsp;&nbsp; &nbsp;2. point two <br>&nbsp;&nbsp; &nbsp;3. point three <br></div></div>";
 
 		// Navigate to preference -> Mail and set display mail pref to Text and verify
 		app.zPagePreferences.zNavigateTo();
@@ -94,9 +90,9 @@ public class DisplayMailContent extends SetGroupMailByMessagePreference {
 		app.zPagePreferences.zToolbarPressButton(Button.B_SAVE);
 
 		app.zGetActiveAccount().soapSend(
-				"<GetPrefsRequest xmlns='urn:zimbraAccount'>"
-		+			"<pref name='zimbraPrefMessageViewHtmlPreferred'/>"
-		+		"</GetPrefsRequest>");
+					"<GetPrefsRequest xmlns='urn:zimbraAccount'>"
+			+			"<pref name='zimbraPrefMessageViewHtmlPreferred'/>"
+			+		"</GetPrefsRequest>");
 
 		String value = app.zGetActiveAccount().soapSelectValue("//acct:pref[@name='zimbraPrefMessageViewHtmlPreferred']", null);
 		ZAssert.assertEquals(value, "FALSE", "Verify zimbraPrefMessageViewHtmlPreferred preference changed to Text");
@@ -116,20 +112,17 @@ public class DisplayMailContent extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Verify multiline body mail(plain text content) displayed properly when display mail pref set to HTML",
-			groups = { "bhr" })
+			groups = { "smoke" })
 
 	public void DisplayTextMailWithHTMLPref_03() throws HarnessException {
 
 		String multilineTextData = null;
-		if (ConfigProperties.getStringProperty("browser").contains("firefox")) {
-			multilineTextData = "line 1<br>line 2<br>line 3<br><br>line 4";
-		} else {
-			multilineTextData = "line 1<br />line 2<br />line 3<br /><br />line 4";
-		}
+		multilineTextData = "<div><div>line 1<br>line 2<br>line 3<br><br>line 4<br></div></div>";
+
 		app.zGetActiveAccount().soapSend(
-				"<GetPrefsRequest xmlns='urn:zimbraAccount'>"
-		+			"<pref name='zimbraPrefMessageViewHtmlPreferred'/>"
-		+		"</GetPrefsRequest>");
+					"<GetPrefsRequest xmlns='urn:zimbraAccount'>"
+			+			"<pref name='zimbraPrefMessageViewHtmlPreferred'/>"
+			+		"</GetPrefsRequest>");
 
 		String value = app.zGetActiveAccount().soapSelectValue("//acct:pref[@name='zimbraPrefMessageViewHtmlPreferred']", null);
 
@@ -147,9 +140,9 @@ public class DisplayMailContent extends SetGroupMailByMessagePreference {
 			app.zPagePreferences.zToolbarPressButton(Button.B_SAVE);
 
 			app.zGetActiveAccount().soapSend(
-					"<GetPrefsRequest xmlns='urn:zimbraAccount'>"
-			+			"<pref name='zimbraPrefMessageViewHtmlPreferred'/>"
-			+		"</GetPrefsRequest>");
+						"<GetPrefsRequest xmlns='urn:zimbraAccount'>"
+				+			"<pref name='zimbraPrefMessageViewHtmlPreferred'/>"
+				+		"</GetPrefsRequest>");
 
 			String value1 = app.zGetActiveAccount().soapSelectValue("//acct:pref[@name='zimbraPrefMessageViewHtmlPreferred']", null);
 			ZAssert.assertEquals(value1, "TRUE", "Verify zimbraPrefMessageViewHtmlPreferred preference changed to HTML");
@@ -170,22 +163,18 @@ public class DisplayMailContent extends SetGroupMailByMessagePreference {
 	}
 
 
-	@Test (description = "Verify multiline body mail(plain text content) displayed properly when display mail pref set to PlainText",
+	@Test (description = "Verify multiline body mail(plain text content) displayed properly when display mail pref set to plain text",
 			groups = { "bhr" })
 
 	public void DisplayTextMailWithTextPref_04() throws HarnessException {
 
 		String multilineTextData = null;
-		if (ConfigProperties.getStringProperty("browser").contains("firefox")) {
-			multilineTextData = "line 1<br>line 2<br>line 3<br><br>line 4";
-		} else {
-			multilineTextData = "line 1<br />line 2<br />line 3<br /><br />line 4";
-		}
+		multilineTextData = "<div><div>line 1<br>line 2<br>line 3<br><br>line 4<br></div></div>";
 
 		app.zGetActiveAccount().soapSend(
-				"<GetPrefsRequest xmlns='urn:zimbraAccount'>"
-		+			"<pref name='zimbraPrefMessageViewHtmlPreferred'/>"
-		+		"</GetPrefsRequest>");
+					"<GetPrefsRequest xmlns='urn:zimbraAccount'>"
+			+			"<pref name='zimbraPrefMessageViewHtmlPreferred'/>"
+			+		"</GetPrefsRequest>");
 
 		String value = app.zGetActiveAccount().soapSelectValue("//acct:pref[@name='zimbraPrefMessageViewHtmlPreferred']", null);
 
@@ -203,9 +192,9 @@ public class DisplayMailContent extends SetGroupMailByMessagePreference {
 			app.zPagePreferences.zToolbarPressButton(Button.B_SAVE);
 
 			app.zGetActiveAccount().soapSend(
-					"<GetPrefsRequest xmlns='urn:zimbraAccount'>"
-			+			"<pref name='zimbraPrefMessageViewHtmlPreferred'/>"
-			+		"</GetPrefsRequest>");
+						"<GetPrefsRequest xmlns='urn:zimbraAccount'>"
+				+			"<pref name='zimbraPrefMessageViewHtmlPreferred'/>"
+				+		"</GetPrefsRequest>");
 
 			String value1 = app.zGetActiveAccount().soapSelectValue("//acct:pref[@name='zimbraPrefMessageViewHtmlPreferred']", null);
 			ZAssert.assertEquals(value1, "FALSE", "Verify zimbraPrefMessageViewHtmlPreferred preference changed to Text");

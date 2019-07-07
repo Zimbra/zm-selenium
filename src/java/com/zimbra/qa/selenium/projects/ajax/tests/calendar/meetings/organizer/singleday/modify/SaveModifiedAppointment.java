@@ -182,7 +182,7 @@ public class SaveModifiedAppointment extends AjaxCore {
 
 
 	@Test (description = "Save modified appt and take action from warning dialog : Dont save But keep open",
-			groups = { "sanity1" })
+			groups = { "sanity" })
 
 	public void SaveModifiedAppointment_03() throws HarnessException {
 		// Refresh UI due to dialog locator changes

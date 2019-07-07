@@ -37,7 +37,8 @@ public class ViewInviteWithDisplayMailPreference extends AjaxCore {
 		super.startingPage = app.zPageMail;
 
 		super.startingAccountPreferences = new HashMap<String, String>() {
-			private static final long serialVersionUID = 3038458962443347843L; {
+			private static final long serialVersionUID = 1L;
+			{
 				put("zimbraPrefCalendarInitialView", "day");
 				put("zimbraPrefMessageViewHtmlPreferred", "TRUE");
 			}
@@ -46,27 +47,23 @@ public class ViewInviteWithDisplayMailPreference extends AjaxCore {
 
 
 	@Test (description = "View invite with display mail preference as HTML and verify body multiline HTML content ",
-			groups = { "bhr" } )
+			groups = { "smoke" } )
 
 	public void ViewHTMLInviteWithHTMLPreference_01() throws HarnessException {
 
 		String multiLineHtmlContent = null;
-		if (ConfigProperties.getStringProperty("browser").contains("chrome")) {
-			multiLineHtmlContent = "<div><span style=\"font-family: &quot;comic sans ms&quot;, &quot;comic sans&quot;, sans-serif; font-size: 14pt;\">Number list below :";
-		} else {
-			multiLineHtmlContent = "<div><span style=\"font-family: &quot;comic sans ms&quot;,&quot;comic sans&quot;,sans-serif; font-size: 14pt;\">Number list below :";
-		}
+		multiLineHtmlContent = "<div><span style=\"font-family: &quot;comic sans ms&quot;, &quot;comic sans&quot;, sans-serif; font-size: 14pt;\">Number list below :</span>&nbsp;</div>";
 
 		// Import appointment using text mime
-		final String subject = "multiline HTML body";
-		final String boldContent = "<div><strong>BoldString</strong></div>";
-		final String italicContent = "<div><em>ItalicString</em></div>";
-		final String underlineContent ="<div><span style=\"text-decoration: underline;\">Underline String</span></div>";
-		final String colorFontContent ="<div><span style=\"color: rgb(255, 0, 0);\">Red Color text</span></div>";
-		final String colorBackgroundContent ="<div><span style=\"background-color: rgb(0, 128, 0);\">Green Background</span></div>";
-		final String numberedListContent ="<ol><li>point one</li><li>point two</li><li>point three</li></ol>";
-		final String htmlContentForSOAP = XmlStringUtil.escapeXml("<html><body id='htmlmode'><h3>The following is a new meeting request:</h3><p><table border='0'><tr><th align=left>Subject:</th><td>multiline HTML body </td></tr><tr><th align=left>Organizer:</th><td>'globaladmin' &lt;globaladmin@testdomain.com&gt; </td></tr></table><p><table border='0'><tr><th align=left>Location:</th><td>https://test.webex.com/testweb </td></tr><tr><th align=left>Time:</th><td>Monday, November 7, 2016, 1:30:00 PM - 2:00:00 PM GMT +05:30 Chennai, Kolkata, Mumbai, New Delhi </td></tr></table><p><table border='0'><tr><th align=left>Invitees:</th><td>globaladmin@testdomain.com </td></tr></table><div>*~*~*~*~*~*~*~*~*~*</div><br><div style='font-family: arial, helvetica, sans-serif; font-size: 12pt; color: #000000'><div><strong>BoldString</strong></div><div><em>ItalicString</em></div><div><span style='text-decoration: underline;' data-mce-style='text-decoration: underline;'>Underline String</span></div><div><span style='color: rgb(255, 0, 0);' data-mce-style='color: #ff0000;'>Red Color text</span></div><div><span style='background-color: rgb(0, 128, 0);' data-mce-style='background-color: #008000;'>Green Background</span></div><div><br data-mce-bogus='1'></div><div><span style='font-family: &quot;comic sans ms&quot;, &quot;comic sans&quot;, sans-serif; font-size: 14pt;' data-mce-style='font-family: 'comic sans ms', 'comic sans', sans-serif; font-size: 14pt;'>Number list below :</span>&nbsp;</div><div><br data-mce-bogus='1'></div><ol><li>point one</li><li>point two</li><li>point three</li></ol></div></body></html>");
-		final String plainTextContentForSOAP = "BoldString\nItalicString\nUnderline String\nRed Color text\nGreen Background\n\nNumber list below :\n\n\n1. point one\n2. point two\n3. point three";
+		String subject = "multiline HTML body";
+		String boldContent = "<div><strong>BoldString</strong></div>";
+		String italicContent = "<div><em>ItalicString</em></div>";
+		String underlineContent ="<div><span style=\"text-decoration: underline;\">Underline String</span></div>";
+		String colorFontContent ="Red Color text</span></div>";
+		String colorBackgroundContent ="Green Background</span></div>";
+		String numberedListContent ="<ol><li>point one</li><li>point two</li><li>point three</li></ol>";
+		String htmlContentForSOAP = XmlStringUtil.escapeXml("<html><body id='htmlmode'><h3>The following is a new meeting request:</h3><p><table border='0'><tr><th align=left>Subject:</th><td>multiline HTML body </td></tr><tr><th align=left>Organizer:</th><td>'globaladmin' &lt;globaladmin@testdomain.com&gt; </td></tr></table><p><table border='0'><tr><th align=left>Location:</th><td>https://test.webex.com/testweb </td></tr><tr><th align=left>Time:</th><td>Monday, November 7, 2016, 1:30:00 PM - 2:00:00 PM GMT +05:30 Chennai, Kolkata, Mumbai, New Delhi </td></tr></table><p><table border='0'><tr><th align=left>Invitees:</th><td>globaladmin@testdomain.com </td></tr></table><div>*~*~*~*~*~*~*~*~*~*</div><br><div style='font-family: arial, helvetica, sans-serif; font-size: 12pt; color: #000000'><div><strong>BoldString</strong></div><div><em>ItalicString</em></div><div><span style='text-decoration: underline;' data-mce-style='text-decoration: underline;'>Underline String</span></div><div><span style='color: rgb(255, 0, 0);' data-mce-style='color: #ff0000;'>Red Color text</span></div><div><span style='background-color: rgb(0, 128, 0);' data-mce-style='background-color: #008000;'>Green Background</span></div><div><br data-mce-bogus='1'></div><div><span style='font-family: &quot;comic sans ms&quot;, &quot;comic sans&quot;, sans-serif; font-size: 14pt;' data-mce-style='font-family: 'comic sans ms', 'comic sans', sans-serif; font-size: 14pt;'>Number list below :</span>&nbsp;</div><div><br data-mce-bogus='1'></div><ol><li>point one</li><li>point two</li><li>point three</li></ol></div></body></html>");
+		String plainTextContentForSOAP = "BoldString\nItalicString\nUnderline String\nRed Color text\nGreen Background\n\nNumber list below :\n\n\n1. point one\n2. point two\n3. point three";
 
 		// Absolute dates in UTC zone
 		Calendar now = Calendar.getInstance();
@@ -119,12 +116,7 @@ public class ViewInviteWithDisplayMailPreference extends AjaxCore {
 	public void ViewHTMLInviteWithPlainTextPreference_02() throws HarnessException {
 
 		String multiLinePlainTextData = null;
-		if (ConfigProperties.getStringProperty("browser").contains("firefox")) {
-			multiLinePlainTextData = "BoldString<br>ItalicString<br>Underline String<br>Red Color text<br>Green Background<br><br>Number list below :<br><br><br>1. point one<br>2. point two<br>3. point three";
-		} else {
-			multiLinePlainTextData = "BoldString<br />ItalicString<br />Underline String<br />Red Color text<br />Green Background<br /><br />Number list below :<br /><br /><br />1. point one<br />2. point two<br />3. point three";
-		}
-
+		multiLinePlainTextData = "<div><br><br>BoldString<br>ItalicString<br>Underline String<br>Red Color text<br>Green Background<br><br>Number list below :<br><br><br>1. point one<br>2. point two<br>3. point three</div></div>";
 		// Work around for getting correct body locator
 		app.zPageMain.zRefreshMainUI();
 
@@ -140,9 +132,9 @@ public class ViewInviteWithDisplayMailPreference extends AjaxCore {
 		app.zPagePreferences.zToolbarPressButton(Button.B_SAVE);
 
 		app.zGetActiveAccount().soapSend(
-				"<GetPrefsRequest xmlns='urn:zimbraAccount'>"
-		+			"<pref name='zimbraPrefMessageViewHtmlPreferred'/>"
-		+		"</GetPrefsRequest>");
+					"<GetPrefsRequest xmlns='urn:zimbraAccount'>"
+			+			"<pref name='zimbraPrefMessageViewHtmlPreferred'/>"
+			+		"</GetPrefsRequest>");
 
 		String value = app.zGetActiveAccount().soapSelectValue("//acct:pref[@name='zimbraPrefMessageViewHtmlPreferred']", null);
 		ZAssert.assertEquals(value, "FALSE", "Verify zimbraPrefMessageViewHtmlPreferred preference changed to Text");
@@ -164,21 +156,17 @@ public class ViewInviteWithDisplayMailPreference extends AjaxCore {
 
 
 	@Test (description = "View invite with display mail preference as HTML and verify body multiline plain text content ",
-			groups = { "bhr" } )
+			groups = { "smoke" } )
 
 	public void ViewPlainTextInviteWithHTMLPreference_03() throws HarnessException {
 
 		String multiLinePlainTextData = null;
-		if (ConfigProperties.getStringProperty("browser").contains("firefox")){
-			multiLinePlainTextData = "line 1<br>line two<br><br><br>line 3";
-		} else {
-			multiLinePlainTextData = "line 1<br />line two<br /><br /><br />line 3";
-		}
+		multiLinePlainTextData = "<div>line 1<br>line two<br><br><br>line 3</div></div>";
 
 		app.zGetActiveAccount().soapSend(
-				"<GetPrefsRequest xmlns='urn:zimbraAccount'>"
-		+			"<pref name='zimbraPrefMessageViewHtmlPreferred'/>"
-		+		"</GetPrefsRequest>");
+					"<GetPrefsRequest xmlns='urn:zimbraAccount'>"
+			+			"<pref name='zimbraPrefMessageViewHtmlPreferred'/>"
+			+		"</GetPrefsRequest>");
 
 		String value = app.zGetActiveAccount().soapSelectValue("//acct:pref[@name='zimbraPrefMessageViewHtmlPreferred']", null);
 
@@ -195,9 +183,9 @@ public class ViewInviteWithDisplayMailPreference extends AjaxCore {
 			app.zPagePreferences.zToolbarPressButton(Button.B_SAVE);
 
 			app.zGetActiveAccount().soapSend(
-					"<GetPrefsRequest xmlns='urn:zimbraAccount'>"
-			+			"<pref name='zimbraPrefMessageViewHtmlPreferred'/>"
-			+		"</GetPrefsRequest>");
+						"<GetPrefsRequest xmlns='urn:zimbraAccount'>"
+				+			"<pref name='zimbraPrefMessageViewHtmlPreferred'/>"
+				+		"</GetPrefsRequest>");
 
 			String value1 = app.zGetActiveAccount().soapSelectValue("//acct:pref[@name='zimbraPrefMessageViewHtmlPreferred']", null);
 			ZAssert.assertEquals(value1, "TRUE", "Verify zimbraPrefMessageViewHtmlPreferred preference changed to HTML");
@@ -250,19 +238,15 @@ public class ViewInviteWithDisplayMailPreference extends AjaxCore {
 	public void ViewPlainTextInviteWithPlainTextPreference_04() throws HarnessException {
 
 		String multiLinePlainTextData = null;
-		if (ConfigProperties.getStringProperty("browser").contains("firefox")) {
-			multiLinePlainTextData = "line 1<br>line two<br><br><br>line 3";
-		} else {
-			multiLinePlainTextData = "line 1<br />line two<br /><br /><br />line 3";
-		}
+		multiLinePlainTextData = "<div>line 1<br>line two<br><br><br>line 3</div></div>";
 
 		// Work around for getting correct body locator
 		app.zPageMain.zRefreshMainUI();
 
 		app.zGetActiveAccount().soapSend(
-				"<GetPrefsRequest xmlns='urn:zimbraAccount'>"
-		+			"<pref name='zimbraPrefMessageViewHtmlPreferred'/>"
-		+		"</GetPrefsRequest>");
+					"<GetPrefsRequest xmlns='urn:zimbraAccount'>"
+			+			"<pref name='zimbraPrefMessageViewHtmlPreferred'/>"
+			+		"</GetPrefsRequest>");
 
 		String value = app.zGetActiveAccount().soapSelectValue("//acct:pref[@name='zimbraPrefMessageViewHtmlPreferred']", null);
 
@@ -280,26 +264,26 @@ public class ViewInviteWithDisplayMailPreference extends AjaxCore {
 			app.zPagePreferences.zToolbarPressButton(Button.B_SAVE);
 
 			app.zGetActiveAccount().soapSend(
-					"<GetPrefsRequest xmlns='urn:zimbraAccount'>"
-			+			"<pref name='zimbraPrefMessageViewHtmlPreferred'/>"
-			+		"</GetPrefsRequest>");
+						"<GetPrefsRequest xmlns='urn:zimbraAccount'>"
+				+			"<pref name='zimbraPrefMessageViewHtmlPreferred'/>"
+				+		"</GetPrefsRequest>");
 
 			String value1 = app.zGetActiveAccount().soapSelectValue("//acct:pref[@name='zimbraPrefMessageViewHtmlPreferred']", null);
 			ZAssert.assertEquals(value1, "FALSE", "Verify zimbraPrefMessageViewHtmlPreferred preference changed to Text");
 		}
 
-		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email20/CalendarPlainTextBody.txt";
-		final String subject = "multiline plain text body";
+		String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email20/CalendarPlainTextBody.txt";
+		String subject = "multiline plain text body";
 
 		if (!app.zPageMail.zVerifyMailExists(subject)) {
 			injectMessage(app.zGetActiveAccount(), mimeFile);
 			ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 		}
+
 		// Select the message so that it shows in the reading pane
 		DisplayMail actual = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 
 		// Verify body content
 		ZAssert.assertStringContains(actual.zGetMailProperty(Field.Body), multiLinePlainTextData, "Verify plain text content");
 	}
-
 }

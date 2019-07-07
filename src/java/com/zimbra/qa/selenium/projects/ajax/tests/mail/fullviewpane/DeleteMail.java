@@ -57,7 +57,7 @@ public class DeleteMail extends SetGroupMailByMessagePreference {
 		// Double click the message to open in full reading pane
 		app.zPageMail.zListItem(Action.A_DOUBLECLICK, subject);
 
-		app.zPageMail.zToolbarPressButtonFullViewPane (Button.B_DELETE_FULL_VIEW_PANE);
+		app.zPageMail.zToolbarPressButtonFullViewPane(Button.B_DELETE_FULL_VIEW_PANE);
 
 		// Verify the message no longer exist in the list
 		List<MailItem> messages = app.zPageMail.zListGetMessages();

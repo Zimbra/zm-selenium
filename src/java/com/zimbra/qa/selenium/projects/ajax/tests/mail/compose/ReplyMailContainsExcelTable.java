@@ -14,26 +14,30 @@
  * If not, see <https://www.gnu.org/licenses/>.
  * ***** END LICENSE BLOCK *****
  */
-package com.zimbra.qa.selenium.projects.ajax.tests.mail.compose.formatting;
+package com.zimbra.qa.selenium.projects.ajax.tests.mail.compose;
 
 import org.testng.annotations.Test;
+import com.zimbra.qa.selenium.framework.items.FolderItem;
+import com.zimbra.qa.selenium.framework.items.MailItem;
+import com.zimbra.qa.selenium.framework.items.FolderItem.SystemFolder;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.SetGroupMailByMessagePreference;
 import com.zimbra.qa.selenium.projects.ajax.pages.mail.DisplayMail;
+import com.zimbra.qa.selenium.projects.ajax.pages.mail.FormMailNew;
 import com.zimbra.qa.selenium.projects.ajax.pages.mail.DisplayMail.Field;
 
-public class ViewMail extends SetGroupMailByMessagePreference {
+public class ReplyMailContainsExcelTable extends SetGroupMailByMessagePreference {
 
-	public ViewMail() throws HarnessException {
-		logger.info("New " + ViewMail.class.getCanonicalName());
+	public ReplyMailContainsExcelTable() {
+		logger.info("New "+ ReplyMailContainsExcelTable.class.getCanonicalName());
 	}
 
 
-	@Test (description = "View a message with Excel data formatting",
+	@Test (description = "View and reply to message contains table and verify formatting",
 			groups = { "bhr" })
 
-	public void ViewMail_01() throws HarnessException {
+	public void ReplyMailContainsExcelTable_01() throws HarnessException {
 
 		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/Excel_Data_Formatting_Mime.txt";
 		final String subject = "Test Excel Data Formatting";
@@ -44,9 +48,25 @@ public class ViewMail extends SetGroupMailByMessagePreference {
 		// Refresh current view
 		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
 
+		// Select the message so that it shows in the reading pane
+		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
+		ZAssert.assertTrue(app.zPageMail.zVerifyDisplayMailElement("div table[border='1']"), "Verify Excel Table border ");
+
+		// Reply the item
+		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_REPLY);
+		ZAssert.assertNotNull(mailform, "Verify the new form opened");
+		mailform.zSubmit();
+
+		// From the receiving end, verify the message details
+		MailItem received = MailItem.importFromSOAP(app.zGetActiveAccount(),"in:sent subject:(" + subject + ")");
+		ZAssert.assertStringContains(received.dSubject, "Re", "Verify the subject field contains the 'Re' prefix");
+
+		// Click to sent
+		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Sent));
+
 		// Verify Excel Table border and its contents
 		DisplayMail actual = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
-		ZAssert.assertTrue(app.zPageMail.zVerifyDisplayMailElement("div[id='zimbraEditorContainer'] div table[border='1']"), "Verify Excel Table border ");
+		ZAssert.assertTrue(app.zPageMail.zVerifyDisplayMailElement("div table[border='1']"), "Verify Excel Table border ");
 		ZAssert.assertStringContains(actual.zGetMailProperty(Field.Body), "ID", "Verify the body content matches");
 		ZAssert.assertStringContains(actual.zGetMailProperty(Field.Body), "Fname", "Verify the body content matches");
 		ZAssert.assertStringContains(actual.zGetMailProperty(Field.Body), "Lname", "Verify the body content matches");

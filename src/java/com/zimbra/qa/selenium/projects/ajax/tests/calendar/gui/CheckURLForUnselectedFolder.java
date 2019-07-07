@@ -29,7 +29,6 @@ import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.framework.util.ZimbraURI;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
-import com.zimbra.qa.selenium.projects.ajax.pages.calendar.PageCalendar.Locators;
 
 public class CheckURLForUnselectedFolder extends AjaxCore {
 
@@ -94,9 +93,6 @@ public class CheckURLForUnselectedFolder extends AjaxCore {
 				break;
 			}
 		}
-
 		ZAssert.assertFalse(found, "Verify appt is not displayed in work week view");
-        ZAssert.assertTrue(app.zPageCalendar.sIsElementPresent(Locators.CalendarViewWorkWeekCSS), "Changed to WorkWeek view");
-
 	}
 }

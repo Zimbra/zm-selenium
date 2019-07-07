@@ -35,7 +35,7 @@ public class CreateMailText extends SetGroupMailByMessagePreference {
 	}
 
 
-	@Test (description = "Send a mail using Text editor",
+	@Test (description = "Send mail using Text editor",
 			groups = { "bhr" })
 
 	public void CreateMailText_01() throws HarnessException {
@@ -65,7 +65,7 @@ public class CreateMailText extends SetGroupMailByMessagePreference {
 	}
 
 
-	@Test (description = "Send a multiline plain text mail using Text editor",
+	@Test (description = "Send multiline plain text mail using Text editor",
 			groups = { "smoke" })
 
 	public void CreateMailWithMultilineText_02() throws HarnessException {
@@ -111,7 +111,7 @@ public class CreateMailText extends SetGroupMailByMessagePreference {
 	  };
 	}
 
-	@Test (description = "Send a mail using Text editor using keyboard shortcuts",
+	@Test (description = "Send mail using Text editor using keyboard shortcuts",
 			groups = { "sanity" },
 			dataProvider = "DataProvideNewMessageShortcuts")
 
@@ -143,7 +143,7 @@ public class CreateMailText extends SetGroupMailByMessagePreference {
 	}
 
 
-	@Test (description = "Send a mail with CC",
+	@Test (description = "Send mail with CC",
 			groups = { "functional" })
 
 	public void CreateMailText_04() throws HarnessException {
@@ -188,7 +188,7 @@ public class CreateMailText extends SetGroupMailByMessagePreference {
 	}
 
 
-	@Test (description = "Send a mail with BCC",
+	@Test (description = "Send mail with BCC",
 			groups = { "functional" })
 
 	public void CreateMailText_05() throws HarnessException {
@@ -236,7 +236,7 @@ public class CreateMailText extends SetGroupMailByMessagePreference {
 	  };
 	}
 
-	@Test (description = "Send a mail with different priorities high/normal/low",
+	@Test (description = "Send mail with different priorities high/normal/low",
 			groups = { "sanity" },
 			dataProvider = "DataProvidePriorities")
 
