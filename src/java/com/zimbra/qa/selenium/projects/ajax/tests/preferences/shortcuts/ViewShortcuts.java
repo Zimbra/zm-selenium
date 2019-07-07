@@ -23,16 +23,16 @@ import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
 import com.zimbra.qa.selenium.projects.ajax.pages.preferences.TreePreferences.TreeItem;
 
-public class Get extends AjaxCore {
+public class ViewShortcuts extends AjaxCore {
 
-	public Get() {
+	public ViewShortcuts() {
 		super.startingPage = app.zPagePreferences;
 	}
 
 	@Test (description = "View the shortcuts preference page",
 			groups = { "sanity" })
 
-	public void Get_01() throws HarnessException {
+	public void ViewShortcuts_01() throws HarnessException {
 
 		// Navigate to preferences -> notifications
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.Shortcuts);

@@ -90,7 +90,7 @@ public class ReplyMailWithAttachmentOptions extends SetGroupMailByMessagePrefere
 			ZAssert.assertTrue(mailform.zHasAttachment(subject),"Original message is not present as attachment");
 
 			//Attach a new file
-			final String fileName = "inlineImage.jpg";
+			final String fileName = "samplejpg.jpg";
 			final String filePath = ConfigProperties.getBaseDirectory() + "\\data\\public\\other\\" + fileName;
 
 			app.zPageMail.zPressButton(Button.O_ATTACH_DROPDOWN);
@@ -156,7 +156,7 @@ public class ReplyMailWithAttachmentOptions extends SetGroupMailByMessagePrefere
 			SleepUtil.sleepLong();
 
 			//Attach a new file
-			final String fileName = "inlineImage.jpg";
+			final String fileName = "samplejpg.jpg";
 			final String filePath = ConfigProperties.getBaseDirectory() + "\\data\\public\\other\\" + fileName;
 
 			app.zPageMail.zPressButton(Button.O_ATTACH_DROPDOWN);
@@ -225,7 +225,7 @@ public class ReplyMailWithAttachmentOptions extends SetGroupMailByMessagePrefere
 			SleepUtil.sleepLong();
 
 			//Attach a new file
-			final String fileName = "inlineImage.jpg";
+			final String fileName = "samplejpg.jpg";
 			final String filePath = ConfigProperties.getBaseDirectory() + "\\data\\public\\other\\" + fileName;
 
 			app.zPageMail.zPressButton(Button.O_ATTACH_DROPDOWN);

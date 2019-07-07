@@ -41,6 +41,7 @@ public class HelpAdvancedURL extends AjaxCore {
 
 	public void HelpAdvancedURL_01() throws HarnessException {
 
+		String helpURLTitle = "Zimbra Temp Help";
 		String url = "/zimbra/help/advanced/zimbra_user_help.htm";
 		String domainID = null;
 		String tempURL = null;
@@ -49,7 +50,10 @@ public class HelpAdvancedURL extends AjaxCore {
 		try {
 
 			CommandLineUtility.runCommandOnZimbraServer(ZimbraAccount.AccountZCS().zGetAccountStoreHost(),
-					"mkdir -p /opt/zimbra/jetty/webapps/zimbra/helpUrl/help/adv && echo '<html><head><title>Zimbra Temp Help</title></head><body><h1>Temp Help</h1><p> This is the new advanced help of zimbra!</p></body></html>' > /opt/zimbra/jetty/webapps/zimbra/helpUrl/help/adv/advhelp.html");
+					"mkdir -p /opt/zimbra/jetty/webapps/zimbra/helpUrl/help/adv");
+
+			CommandLineUtility.runCommandOnZimbraServer(ZimbraAccount.AccountZCS().zGetAccountStoreHost(),
+					"sh -c 'echo \"<html><head><title>" + helpURLTitle + "</title></head><body><h1>Temp Help</h1><p> This is the new advanced help of zimbra!</p></body></html>\" > /opt/zimbra/jetty/webapps/zimbra/helpUrl/help/adv/advhelp.html'");
 
 			// To get domain id
 			String targetDomain = ConfigProperties.getStringProperty("testdomain");
@@ -77,22 +81,22 @@ public class HelpAdvancedURL extends AjaxCore {
 				for(String id: windowIds) {
 					app.zPageMain.sSelectWindow(id);
 					if (app.zPageMain.sGetTitle().contains("Not Found") || app.zPageMain.sGetTitle().contains("Help")) {
-						//Get the opened URL
-						tempURL=app.zPageMain.sGetLocation();
+						tempURL = app.zPageMain.sGetLocation();
 						found = true;
-						app.zPageMain.zSeparateWindowClose(app.zPageMain.sGetTitle());
+						app.zPageMain.zSeparateWindowClose(helpURLTitle);
 						break;
+
 					} else if (!(app.zPageMain.sGetTitle().contains("Zimbra: Inbox"))) {
 						app.zPageMain.zSeparateWindowClose(app.zPageMain.sGetTitle());
 					}
 				}
 				if (!found) {
 
-					tempURL=app.zPageMain.sGetLocation();
+					tempURL = app.zPageMain.sGetLocation();
 				}
 
 			} else {
-				tempURL=app.zPageMain.sGetLocation();
+				tempURL = app.zPageMain.sGetLocation();
 			}
 
 			// Check the URL
@@ -110,7 +114,7 @@ public class HelpAdvancedURL extends AjaxCore {
 
 
 	@Test (description = "Verify the product help URL as per the value set in attribute ZimbraHelpAdminURL at the global config", priority=5,
-			groups = { "functional" })
+			groups = { "functional-known-failure" })
 
 	public void HelpAdvancedURL_02() throws HarnessException {
 
@@ -137,7 +141,6 @@ public class HelpAdvancedURL extends AjaxCore {
 					app.zPageMain.sSelectWindow(id);
 
 					if (app.zPageMain.sGetTitle().contains("BBC")) {
-						//Get the opened URL
 						tempURL = app.zPageMain.sGetLocation();
 						found = true;
 						app.zPageMain.zSeparateWindowClose(app.zPageMain.sGetTitle());

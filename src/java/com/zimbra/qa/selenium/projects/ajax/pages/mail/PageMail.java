@@ -1315,6 +1315,8 @@ public class PageMail extends AbsTab {
 		} else if (action == Action.A_DOUBLECLICK) {
 
 			// Double-Click on the item
+			this.sClick(itemlocator);
+			SleepUtil.sleepVerySmall();
 			this.sDoubleClick(itemlocator);
 
 			this.zWaitForBusyOverlay();

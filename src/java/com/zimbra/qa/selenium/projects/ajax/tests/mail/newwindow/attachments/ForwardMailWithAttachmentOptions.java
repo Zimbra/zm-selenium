@@ -86,7 +86,7 @@ public class ForwardMailWithAttachmentOptions extends SetGroupMailByMessagePrefe
 			SeparateWindowFormMailNew window = null;
 			String windowTitle = "Zimbra: Forward";
 
-			final String fileName = "inlineImage.jpg";
+			final String fileName = "samplejpg.jpg";
 			final String filePath = ConfigProperties.getBaseDirectory() + "\\data\\public\\other\\" + fileName;
 
 			try {
@@ -159,7 +159,7 @@ public class ForwardMailWithAttachmentOptions extends SetGroupMailByMessagePrefe
 			SleepUtil.sleepLong();
 
 			// Attach a new file
-			final String fileName = "inlineImage.jpg";
+			final String fileName = "samplejpg.jpg";
 			final String filePath = ConfigProperties.getBaseDirectory() + "\\data\\public\\other\\" + fileName;
 
 			app.zPageMail.zPressButton(Button.O_ATTACH_DROPDOWN);
@@ -234,7 +234,7 @@ public class ForwardMailWithAttachmentOptions extends SetGroupMailByMessagePrefe
 			SleepUtil.sleepLong();
 
 			// Attach a new file
-			final String fileName = "inlineImage.jpg";
+			final String fileName = "samplejpg.jpg";
 			final String filePath = ConfigProperties.getBaseDirectory() + "\\data\\public\\other\\" + fileName;
 
 			app.zPageMail.zPressButton(Button.O_ATTACH_DROPDOWN);

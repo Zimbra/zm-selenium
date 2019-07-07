@@ -147,8 +147,8 @@ public class Decline extends AjaxCore {
 				+	"</SearchRequest>");
 		messageId = ZimbraAccount.Account5().soapSelectValue("//mail:m", "id");
 		ZAssert.assertNull(messageId, "Verify sent mail not present for declined appointment notification (action performed by assistant)");
-
 	}
+
 
 	@Test (description = "Assistant right clicks to calendar invite from shared calendar and declines the invite OBO boss (Notify organizer)",
 			groups = { "bhr" })
@@ -286,6 +286,5 @@ public class Decline extends AjaxCore {
 
 		ZAssert.assertEquals(ZimbraAccount.Account5().soapSelectValue("//mail:e[@t='f']", "a"), ZimbraAccount.Account5().EmailAddress, "Verify From address in decline invitation message");
 		ZAssert.assertEquals(ZimbraAccount.Account5().soapSelectValue("//mail:e[@t='s']", "a"), app.zGetActiveAccount().EmailAddress, "Verify Sender address in decline invitation message");
-
 	}
 }

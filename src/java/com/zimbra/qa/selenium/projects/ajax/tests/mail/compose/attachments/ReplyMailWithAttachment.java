@@ -27,18 +27,83 @@ import com.zimbra.qa.selenium.projects.ajax.core.SetGroupMailByMessagePreference
 import com.zimbra.qa.selenium.projects.ajax.pages.mail.FormMailNew;
 import com.zimbra.qa.selenium.projects.ajax.pages.mail.FormMailNew.Field;
 
-public class ReplyAllMailWithAttachment extends SetGroupMailByMessagePreference {
+public class ReplyMailWithAttachment extends SetGroupMailByMessagePreference {
 
-	public ReplyAllMailWithAttachment() {
-		logger.info("New "+ ReplyAllMailWithAttachment.class.getCanonicalName());
+	public ReplyMailWithAttachment() {
+		logger.info("New "+ ReplyMailWithAttachment.class.getCanonicalName());
 		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "html");
 	}
 
 
-	@Test (description = "Reply to a mail with attachment - Verify both attachment sent",
+	@Test (description = "Reply to mail with attachment - Verify no attachment sent",
+			groups = { "smoke" })
+
+	public void ReplyMailWithAttachment_01() throws HarnessException {
+
+		final String mimeSubject = "subject03431362517016470";
+		final String mimeFile = ConfigProperties.getBaseDirectory() + "/data/public/mime/email09/mime.txt";
+		final String subject = "subject13625192398933";
+
+		// Inject the sample mime
+		injectMessage(ZimbraAccount.AccountA(), mimeFile);
+
+		MailItem original = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "subject:("+ mimeSubject +")");
+		ZAssert.assertNotNull(original, "Verify the message is received correctly");
+
+		// Get the part ID
+		ZimbraAccount.AccountA().soapSend(
+					"<GetMsgRequest xmlns='urn:zimbraMail'>"
+				+		"<m id='"+ original.getId() +"'/>"
+				+	"</GetMsgRequest>");
+
+		String partID = ZimbraAccount.AccountA().soapSelectValue("//mail:mp[@cd='attachment']", "part");
+
+		ZimbraAccount.AccountA().soapSend(
+				"<SendMsgRequest xmlns='urn:zimbraMail'>" +
+					"<m>" +
+						"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
+						"<su>"+ subject +"</su>" +
+						"<mp ct='text/plain'>" +
+							"<content>"+ "body" + ConfigProperties.getUniqueString() +"</content>" +
+						"</mp>" +
+						"<attach>" +
+							"<mp mid='"+ original.getId() +"' part='"+ partID +"'/>" +
+						"</attach>" +
+					"</m>" +
+				"</SendMsgRequest>");
+
+		// Refresh current view
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
+
+		// Select the item
+		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
+
+		// Reply to the mail
+		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_REPLY);
+		ZAssert.assertNotNull(mailform, "Verify the new form opened");
+
+		// Send the message
+		mailform.zSubmit();
+
+		// From the receiving end, verify the message details
+		MailItem received = MailItem.importFromSOAP(ZimbraAccount.AccountA(), "from:("+ app.zGetActiveAccount().EmailAddress +") subject:("+ subject +")");
+		ZAssert.assertNotNull(received, "Verify the message is received correctly");
+
+		// Verify the attachment exists in the forwarded mail
+		ZimbraAccount.AccountA().soapSend(
+				"<GetMsgRequest xmlns='urn:zimbraMail'>"
+				+		"<m id='"+ received.getId() +"'/>"
+				+	"</GetMsgRequest>");
+
+		Element[] nodes = ZimbraAccount.AccountA().soapSelectNodes("//mail:mp[@cd='attachment']");
+		ZAssert.assertEquals(nodes.length, 0, "Verify the attachment does not exist in the replied mail");
+	}
+
+
+	@Test (description = "Reply to mail with attachment - Verify both attachment sent",
 			groups = { "bhr", "upload" })
 
-	public void ReplyAllMailWithAttachment_01() throws HarnessException {
+	public void ReplyMailWithAttachment_02() throws HarnessException {
 
 		try {
 

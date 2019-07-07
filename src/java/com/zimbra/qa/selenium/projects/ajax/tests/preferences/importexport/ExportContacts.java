@@ -38,7 +38,6 @@ public class ExportContacts extends AjaxCore {
 		// Navigate to preferences -> notifications
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.ImportExport);
 
-		// TODO: See https://bugzilla.zimbra.com/show_bug.cgi?id=63289
 		String locator = "css=div[id$='_TYPE_CSV_control'] input[type='radio']";
 		app.zPagePreferences.sFocus(locator);
 		app.zPagePreferences.sClick(locator);
