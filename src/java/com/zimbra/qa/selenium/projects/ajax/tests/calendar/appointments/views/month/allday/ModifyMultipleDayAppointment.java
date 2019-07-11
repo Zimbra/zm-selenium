@@ -29,8 +29,6 @@ import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
-import com.zimbra.qa.selenium.projects.ajax.pages.calendar.DialogFindAttendees;
-import com.zimbra.qa.selenium.projects.ajax.pages.calendar.DialogFindAttendees.Locators;
 import com.zimbra.qa.selenium.projects.ajax.pages.calendar.FormApptNew;
 import com.zimbra.qa.selenium.projects.ajax.pages.calendar.FormApptNew.Field;
 
@@ -101,75 +99,5 @@ public class ModifyMultipleDayAppointment extends AjaxCore {
 		// Verify that multi-day appointments are displayed correctly in month view
 		boolean displayed = app.zPageCalendar.zVerifyMultidayAllDayAppointmentInMonthView(now, 4, subject+"_new");
 		ZAssert.assertTrue(displayed, "Multi-day all-day appointments are not created and displayed correctly in month view");
-	}
-
-
-	@Test (description = "Modify multiple-day all-day appointment (Add attendee) and verify its display in month view.",
-			groups = { "functional" })
-
-	public void ModifyAllDayAppointment_02() throws HarnessException {
-
-		// Appointment subject
-		String subject = ConfigProperties.getUniqueString();
-		int noOfDays = 5;
-		ZimbraAccount attendee = new ZimbraAccount().provision();
-
-		// Start Date is 2 days ahead if current date is less than or equal to 21 else 8 days behind
-		Calendar now = Calendar.getInstance();
-		if(now.get(Calendar.DAY_OF_MONTH) <= 21) {
-			now.set(Calendar.DAY_OF_MONTH, now.get(Calendar.DAY_OF_MONTH) + 2 );
-		} else {
-			now.set(Calendar.DAY_OF_MONTH, now.get(Calendar.DAY_OF_MONTH) - 8 );
-		}
-
-		// Create multiple day spanning all-day appointments for 5 days
-		AppointmentItem.createAppointmentAllDay(
-				app.zGetActiveAccount(),
-				now,
-				noOfDays,
-				subject,
-				"content" + ConfigProperties.getUniqueString(),
-				"location" + ConfigProperties.getUniqueString(),
-				null);
-
-		// Refresh the calendar
-		app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
-
-		// Verify appointment exists in current view
-		ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(subject), "Verify appointment displayed in current view");
-
-		// Open appointment & modify start date, end date and subject, and send it.
-		FormApptNew form = (FormApptNew)app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, subject);
-		ZAssert.assertNotNull(form, "Verify the appointment form opens correctly");
-
-		form.zToolbarPressButton(Button.B_TO);
-        DialogFindAttendees dialogFindAttendees = (DialogFindAttendees) new DialogFindAttendees(app, app.zPageCalendar);
-
-        // Type attendee email address in search box & perform search
-        dialogFindAttendees.zType(Locators.ContactPickerSerachField, attendee.EmailAddress);
-        dialogFindAttendees.zPressButton(Button.B_SEARCH);
-        dialogFindAttendees.zWaitForBusyOverlay();
-
-        // Add the attendee from the search result
-        dialogFindAttendees.sClick(Locators.ContactPickerFirstContact);
-        dialogFindAttendees.zPressButton(Button.B_CHOOSE_CONTACT_FROM_PICKER);
-        dialogFindAttendees.zWaitForBusyOverlay();
-        dialogFindAttendees.zPressButton(Button.B_OK);
-
-        // Save and send the appointment
-		form.zToolbarPressButton(Button.B_SAVE);
-		form.zToolbarPressButton(Button.B_SEND);
-
-		// Login to attendee's account and go to calendar
-		app.zPageLogin.zLogin(attendee);
-		startingPage.zNavigateTo();
-
-		// Go to month view
-		app.zPageCalendar.zToolbarPressButton(Button.B_MONTH_VIEW);
-
-		// Verify that multi-day appointments are displayed correctly in month view
-		boolean displayed = app.zPageCalendar.zVerifyMultidayAllDayAppointmentInMonthView(now, noOfDays, subject);
-		ZAssert.assertTrue(displayed, "Multi-day all-day appointments are not created and displayed correctly in month view");
-		ZimbraAccount.ResetAccountZCS();
 	}
 }
