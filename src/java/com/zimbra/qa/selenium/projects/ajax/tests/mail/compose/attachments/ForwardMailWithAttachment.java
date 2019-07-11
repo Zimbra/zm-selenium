@@ -192,8 +192,7 @@ public class ForwardMailWithAttachment extends SetGroupMailByMessagePreference {
 
 
 	@Bugs(ids = "76776")
-	@Test (description = "Forward a mail having two attachments --> Remove one attachement and Cancel --> "
-								+ "Forward Again - Verify the number of attachments",
+	@Test (description = "Forward a mail having two attachments, remove one attachement and Cancel, again forward and verify number of attachments",
 			groups = { "functional" })
 
 	public void ForwardMailWithAttachment_04() throws HarnessException {
