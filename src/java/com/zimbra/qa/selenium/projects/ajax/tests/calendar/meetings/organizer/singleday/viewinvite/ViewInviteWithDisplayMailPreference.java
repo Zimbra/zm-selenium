@@ -238,7 +238,7 @@ public class ViewInviteWithDisplayMailPreference extends AjaxCore {
 	public void ViewPlainTextInviteWithPlainTextPreference_04() throws HarnessException {
 
 		String multiLinePlainTextData = null;
-		multiLinePlainTextData = "<div>line 1<br>line two<br><br><br>line 3</div></div>";
+		multiLinePlainTextData = "<div><br><br>line 1<br>line two<br><br><br>line 3</div>";
 
 		// Work around for getting correct body locator
 		app.zPageMain.zRefreshMainUI();
