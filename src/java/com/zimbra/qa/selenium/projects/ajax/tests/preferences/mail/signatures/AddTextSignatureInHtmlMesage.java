@@ -60,7 +60,7 @@ public class AddTextSignatureInHtmlMesage extends AjaxCore {
 
 	@Bugs (ids = "45274")
 	@Test (description = "Compose html message with text signature and verify signature through soap",
-			groups = { "functional1" })
+			groups = { "functional" })
 
 	public void AddTextSignatureInHtmlMesage_01() throws HarnessException {
 
