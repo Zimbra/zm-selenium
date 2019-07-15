@@ -110,6 +110,11 @@ public class CreateMailWithAttachment extends SetGroupMailByMessagePreference {
 			groups = { "functional", "upload", "non-msedge" })
 
 	public void CreateMailWithAttachment_02() throws HarnessException {
+			// Setting the maximum message size to 1.5MB
+			ZimbraAdminAccount.GlobalAdmin().soapSend(
+						"<ModifyConfigRequest xmlns='urn:zimbraAdmin'>"
+					+   "<a n='zimbraMtaMaxMessageSize'>1572864</a>"
+					+ "</ModifyConfigRequest>");
 
 		try {
 
