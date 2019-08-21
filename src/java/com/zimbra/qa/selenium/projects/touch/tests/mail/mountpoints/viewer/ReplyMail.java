@@ -24,11 +24,10 @@ import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.touch.core.SetGroupMailByMessagePreference;
 import com.zimbra.qa.selenium.projects.touch.pages.PageCreateFolder;
 
-public class ReplyMail extends SetGroupMailByMessagePreference{
+public class Replymail extends SetGroupMailByMessagePreference{
 
-
-	public ReplyMail() {
-		logger.info("New " + ReplyMail.class.getCanonicalName());
+	public Replymail() {
+		logger.info("New " + Replymail.class.getCanonicalName());
 	}
 
 	@Test (description = "reply to an email on mountpoint message (read-only share)",

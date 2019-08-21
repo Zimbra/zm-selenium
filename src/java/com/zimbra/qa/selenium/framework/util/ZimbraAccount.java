@@ -333,7 +333,7 @@ public class ZimbraAccount {
 		{
 			// Timezone
 			if (ExecuteHarnessMain.hostname.contains("zqa")) {
-				put("zimbraPrefTimeZoneId", "America/Chicago");
+				put("zimbraPrefTimeZoneId", "America/Kolkata");
 			} else {
 				put("zimbraPrefTimeZoneId", "Asia/Kolkata");
 			}
