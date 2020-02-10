@@ -45,6 +45,17 @@ public class ConfigProperties {
 	public static String getStringProperty(String key, String defaultValue) {
 		return (ConfigProperties.getInstance().getConfigProp().getString(key, defaultValue));
 	}
+	
+	public static Boolean isZimbra9x() {
+		String value = (ConfigProperties.getInstance().getConfigProp().getString("env"));
+		if (value == null) {
+			return false;
+		} else if (value.contains("zimbra9x")) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 
 	public static String getStringProperty(String key) {
 		return (getStringProperty(key, null));
