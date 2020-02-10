@@ -46,11 +46,9 @@ public class ConfigProperties {
 		return (ConfigProperties.getInstance().getConfigProp().getString(key, defaultValue));
 	}
 	
-	public static Boolean isZimbra9x() {
-		String value = (ConfigProperties.getInstance().getConfigProp().getString("env"));
-		if (value == null) {
-			return false;
-		} else if (value.contains("zimbra9x")) {
+	public static Boolean isZimbra9XEnvironment() {
+		String environment = ExecuteHarnessMain.zimbraVersion.split("GA")[0].replaceAll("\\.", "");
+		if (environment.toLowerCase().equals("8816") || environment.toLowerCase().equals("900")) {
 			return true;
 		} else {
 			return false;
