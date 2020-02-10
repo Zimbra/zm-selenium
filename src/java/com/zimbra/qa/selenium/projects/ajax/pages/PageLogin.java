@@ -27,6 +27,7 @@ public class PageLogin extends AbsTab {
 
 		// Buttons
 		public static final String zBtnLogin = "css=input[class^='ZLoginButton']";
+		public static final String zBtnLogin9x = "css=input[class^='loginButton']";
 
 		// Text Input
 		public static final String zInputUsername = "css=input[id='username']";
@@ -53,14 +54,24 @@ public class PageLogin extends AbsTab {
 	@Override
 	public boolean zIsActive() throws HarnessException {
 		AppType appType = ConfigProperties.getAppType();
+		Boolean isAjax = false;
 		String locator = null;
 
 		switch (appType) {
 		case AJAX:
-			locator = Locators.zBtnLogin;
+			isAjax = true;
 			break;
 		default:
 			throw new HarnessException("Please add a support for appType: " + appType);
+		}
+
+		if (isAjax) {
+			if (ConfigProperties.isZimbra9x()) {
+				locator = Locators.zBtnLogin9x;
+			}
+			else {
+				locator = Locators.zBtnLogin;
+			}
 		}
 
 		// Look for the login button.
@@ -114,12 +125,22 @@ public class PageLogin extends AbsTab {
 		Date start = new Date();
 
 		try {
-
-			((AjaxPages) MyApplication).zPageMain.zRefreshUITillElementPresent(Locators.zBtnLogin);
+			
+			if (ConfigProperties.isZimbra9x()) {
+				((AjaxPages) MyApplication).zPageMain.zRefreshUITillElementPresent(Locators.zBtnLogin9x);
+			} else {
+				((AjaxPages) MyApplication).zPageMain.zRefreshUITillElementPresent(Locators.zBtnLogin);		
+			}
 
 			zSetLoginName(account.EmailAddress);
 			zSetLoginPassword(account.Password);
-			sClick(Locators.zBtnLogin);
+			// zimbra9x check
+			if (ConfigProperties.isZimbra9x()) {
+				sClick(Locators.zBtnLogin9x);
+			} else {
+				sClick(Locators.zBtnLogin);
+			}
+
 			SleepUtil.sleepLong();
 			zWaitForBusyOverlay();
 
