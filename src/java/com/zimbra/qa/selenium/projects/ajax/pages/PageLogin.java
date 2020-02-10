@@ -27,7 +27,7 @@ public class PageLogin extends AbsTab {
 
 		// Buttons
 		public static final String zBtnLogin = "css=input[class^='ZLoginButton']";
-		public static final String zBtnLogin9x = "css=input[class^='loginButton']";
+		public static final String zBtnLogin9X = "css=input[class^='loginButton']";
 
 		// Text Input
 		public static final String zInputUsername = "css=input[id='username']";
@@ -66,10 +66,9 @@ public class PageLogin extends AbsTab {
 		}
 
 		if (isAjax) {
-			if (ConfigProperties.isZimbra9x()) {
-				locator = Locators.zBtnLogin9x;
-			}
-			else {
+			if (ConfigProperties.isZimbra9XEnvironment()) {
+				locator = Locators.zBtnLogin9X;
+			} else {
 				locator = Locators.zBtnLogin;
 			}
 		}
@@ -125,18 +124,19 @@ public class PageLogin extends AbsTab {
 		Date start = new Date();
 
 		try {
-			
-			if (ConfigProperties.isZimbra9x()) {
-				((AjaxPages) MyApplication).zPageMain.zRefreshUITillElementPresent(Locators.zBtnLogin9x);
+
+			if (ConfigProperties.isZimbra9XEnvironment()) {
+				((AjaxPages) MyApplication).zPageMain.zRefreshUITillElementPresent(Locators.zBtnLogin9X);
 			} else {
-				((AjaxPages) MyApplication).zPageMain.zRefreshUITillElementPresent(Locators.zBtnLogin);		
+				((AjaxPages) MyApplication).zPageMain.zRefreshUITillElementPresent(Locators.zBtnLogin);
 			}
 
 			zSetLoginName(account.EmailAddress);
 			zSetLoginPassword(account.Password);
-			// zimbra9x check
-			if (ConfigProperties.isZimbra9x()) {
-				sClick(Locators.zBtnLogin9x);
+
+			// Check environment
+			if (ConfigProperties.isZimbra9XEnvironment()) {
+				sClick(Locators.zBtnLogin9X);
 			} else {
 				sClick(Locators.zBtnLogin);
 			}
@@ -266,7 +266,7 @@ public class PageLogin extends AbsTab {
 	public boolean zVerifyTrustThisComputer() throws HarnessException {
 		return sIsElementPresent(Locators.zTrustThisComputer);
 	}
-	
+
 	public boolean zVerifyLoginErrorMessage() throws HarnessException {
 		String loginErrorMessage = "The username or password is incorrect. Verify that CAPS LOCK is not on, and then retype the current username and password.";
 		return sGetText(Locators.zLoginErrorMessage).equals(loginErrorMessage);
