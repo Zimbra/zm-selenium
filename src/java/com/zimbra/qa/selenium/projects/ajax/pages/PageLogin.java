@@ -26,8 +26,7 @@ public class PageLogin extends AbsTab {
 	public static class Locators {
 
 		// Buttons
-		public static final String zBtnLogin = "css=input[class^='ZLoginButton']";
-		public static final String zBtnLogin9X = "css=input[class^='loginButton']";
+		public static final String zBtnLogin = "css=input[value='Sign In']";
 
 		// Text Input
 		public static final String zInputUsername = "css=input[id='username']";
@@ -66,11 +65,7 @@ public class PageLogin extends AbsTab {
 		}
 
 		if (isAjax) {
-			if (ConfigProperties.isZimbra9XEnvironment()) {
-				locator = Locators.zBtnLogin9X;
-			} else {
-				locator = Locators.zBtnLogin;
-			}
+			locator = Locators.zBtnLogin;
 		}
 
 		// Look for the login button.
@@ -124,22 +119,11 @@ public class PageLogin extends AbsTab {
 		Date start = new Date();
 
 		try {
-
-			if (ConfigProperties.isZimbra9XEnvironment()) {
-				((AjaxPages) MyApplication).zPageMain.zRefreshUITillElementPresent(Locators.zBtnLogin9X);
-			} else {
-				((AjaxPages) MyApplication).zPageMain.zRefreshUITillElementPresent(Locators.zBtnLogin);
-			}
+			((AjaxPages) MyApplication).zPageMain.zRefreshUITillElementPresent(Locators.zBtnLogin);
 
 			zSetLoginName(account.EmailAddress);
 			zSetLoginPassword(account.Password);
-
-			// Check environment
-			if (ConfigProperties.isZimbra9XEnvironment()) {
-				sClick(Locators.zBtnLogin9X);
-			} else {
-				sClick(Locators.zBtnLogin);
-			}
+			sClick(Locators.zBtnLogin);
 
 			SleepUtil.sleepLong();
 			zWaitForBusyOverlay();
@@ -148,9 +132,7 @@ public class PageLogin extends AbsTab {
 			((AjaxPages) MyApplication).zSetActiveAccount(account);
 
 		} finally {
-
 			SleepMetrics.RecordProcessing((new Throwable()).getStackTrace(), start, new Date());
-
 		}
 	}
 
