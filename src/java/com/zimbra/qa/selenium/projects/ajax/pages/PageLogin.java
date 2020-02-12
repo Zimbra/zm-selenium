@@ -27,6 +27,7 @@ public class PageLogin extends AbsTab {
 
 		// Buttons
 		public static final String zBtnLogin = "css=input[value='Sign In']";
+		public static final String zBtnVerify = "css=input[value='Verify']";
 
 		// Text Input
 		public static final String zInputUsername = "css=input[id='username']";
@@ -185,7 +186,7 @@ public class PageLogin extends AbsTab {
 				zMarkTrustThisComputer();
 			}
 
-			sClickAt(Locators.zBtnLogin, "");
+			sClickAt(Locators.zBtnVerify, "");
 
 			((AjaxPages) MyApplication).zPageMain.zWaitForActive(180000);
 
