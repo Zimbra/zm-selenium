@@ -1,6 +1,6 @@
 Date: Mon, 7 Nov 2016 13:17:52 +0530 (IST)
-From: globaladmin@testdomain.com
-To: globaladmin@testdomain.com
+From: admin@testdomain.com
+To: admin@testdomain.com
 Subject: multiline plain text body
 MIME-Version: 1.0
 Content-Type: multipart/alternative; 
@@ -13,12 +13,12 @@ Content-Transfer-Encoding: 7bit
 The following is a new meeting request:
 
 Subject: multiline plain text body 
-Organizer: "foo" <globaladmin@testdomain.com> 
+Organizer: "foo" <admin@testdomain.com> 
 
 Location: https://test.webex.com/testweb 
 Time: Monday, November 7, 2016, 1:30:00 PM - 2:00:00 PM GMT +05:30 Chennai, Kolkata, Mumbai, New Delhi
  
-Invitees: globaladmin@testdomain.com 
+Invitees: admin@testdomain.com 
 
 
 *~*~*~*~*~*~*~*~*~*
@@ -50,8 +50,8 @@ UID:a35295a9-c9a1-4115-a28f-f92f0e666164
 SUMMARY:multiline plain text body
 LOCATION:webex.com
 ATTENDEE;CN=bar;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;RSVP=TRUE:mailto:
- globaladmin@testdomain.com
-ORGANIZER:mailto:globaladmin@testdomain.com
+ admin@testdomain.com
+ORGANIZER:mailto:admin@testdomain.com
 DTSTART;TZID="Asia/Kolkata":20161107T163000
 DTEND;TZID="Asia/Kolkata":20161107T173000
 STATUS:CONFIRMED
@@ -62,9 +62,9 @@ LAST-MODIFIED:20161107T105341Z
 DTSTAMP:20161107T105341Z
 SEQUENCE:0
 DESCRIPTION:The following is a new meeting request:\n\nSubject: multiline pl
- ain text body \nOrganizer: "foo" <globaladmin@testdomain.com> \n\nLocation: webex.co
+ ain text body \nOrganizer: "foo" <admin@testdomain.com> \n\nLocation: webex.co
  m \nTime: Monday\, November 7\, 2016\, 4:30:00 PM - 5:30:00 PM GMT +05:30 Ch
- ennai\, Kolkata\, Mumbai\, New Delhi\n \nInvitees: globaladmin@testdomain.com \n\n\n
+ ennai\, Kolkata\, Mumbai\, New Delhi\n \nInvitees: admin@testdomain.com \n\n\n
  *~*~*~*~*~*~*~*~*~*\n\nline 1\nline two\n\n\nline 3
 BEGIN:VALARM
 ACTION:DISPLAY

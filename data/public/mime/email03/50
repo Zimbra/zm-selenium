@@ -10,16 +10,16 @@ Received: (qmail 94354 invoked by uid 500); 10 Oct 2003 15:45:12 -0000
 Mailing-List: contact xmlbeans-dev-help@xml.apache.org; run by ezmlm
 Precedence: bulk
 X-No-Archive: yes
-List-Post: <mailto:globaladmin@testdomain.com>
+List-Post: <mailto:admin@testdomain.com>
 List-Help: <mailto:xmlbeans-dev-help@xml.apache.org>
 List-Unsubscribe: <mailto:xmlbeans-dev-unsubscribe@xml.apache.org>
 List-Subscribe: <mailto:xmlbeans-dev-subscribe@xml.apache.org>
-Reply-To: globaladmin@testdomain.com
-Delivered-To: mailing list globaladmin@testdomain.com
+Reply-To: admin@testdomain.com
+Delivered-To: mailing list admin@testdomain.com
 Received: (qmail 94326 invoked from network); 10 Oct 2003 15:45:11 -0000
 Message-ID: <035601c38f45$75309760$0fa8a8c0@lightbox>
-From: globaladmin@testdomain.com
-To: globaladmin@testdomain.com
+From: admin@testdomain.com
+To: admin@testdomain.com
 References: <5.2.1.1.0.20031009120354.03384fe8@san-francisco.beasys.com>
 	 <030c01c38eae$78d032f0$0fa8a8c0@lightbox> <1065748890.15848.28.camel@zieg>
 Subject: Re: bts notes
@@ -39,8 +39,8 @@ X-Evolution: 00000032-0010
 Thanks again, notes below for both emails.
 
 ----- Original Message ----- 
-From: globaladmin@testdomain.com
-To: globaladmin@testdomain.com
+From: admin@testdomain.com
+To: admin@testdomain.com
 Sent: Thursday, October 09, 2003 9:21 PM
 Subject: [xmlbeans-dev] Re: bts notes
 
@@ -87,8 +87,8 @@ Will add factory methods that opeate on files/streams.
 > >
 > > David
 > > ----- Original Message ----- 
-> > From: globaladmin@testdomain.com
-> > To: globaladmin@testdomain.com
+> > From: admin@testdomain.com
+> > To: admin@testdomain.com
 > > Sent: Thursday, October 09, 2003 3:06 PM
 > > Subject: bts notes
 > >

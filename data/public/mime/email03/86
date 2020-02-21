@@ -14,8 +14,8 @@ List-Post: <mailto:xmlbeans-cvs@xml.apache.org>
 List-Help: <mailto:xmlbeans-cvs-help@xml.apache.org>
 List-Unsubscribe: <mailto:xmlbeans-cvs-unsubscribe@xml.apache.org>
 List-Subscribe: <mailto:xmlbeans-cvs-subscribe@xml.apache.org>
-Reply-To: globaladmin@testdomain.com
-Delivered-To: globaladmin@testdomain.com
+Reply-To: admin@testdomain.com
+Delivered-To: admin@testdomain.com
 Received: (qmail 78116 invoked from network); 29 Sep 2003 19:20:20 -0000
 Received: from unknown (HELO minotaur.apache.org) (209.237.227.194) by
 	daedalus.apache.org with SMTP; 29 Sep 2003 19:20:20 -0000
@@ -23,8 +23,8 @@ Received: (qmail 71001 invoked by uid 1738); 29 Sep 2003 19:20:29 -0000
 Date: 29 Sep 2003 19:20:29 -0000
 X-Zimbra-Received: 29 Sep 2003 19:20:29 -0000
 Message-ID: <20030929192029.71000.qmail@minotaur.apache.org>
-From: globaladmin@testdomain.com
-To: globaladmin@testdomain.com
+From: admin@testdomain.com
+To: admin@testdomain.com
 Subject: cvs commit: xml-xmlbeans/v2 build.xml
 X-Spam-Rating: daedalus.apache.org 1.6.2 0/1000/N
 X-Evolution-Source: imap://smith@smith.pobox.stanford.edu/

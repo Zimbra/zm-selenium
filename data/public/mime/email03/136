@@ -9,16 +9,16 @@ Received: (qmail 83704 invoked by uid 500); 3 Oct 2003 20:36:33 -0000
 Mailing-List: contact xmlbeans-dev-help@xml.apache.org; run by ezmlm
 Precedence: bulk
 X-No-Archive: yes
-List-Post: <mailto:globaladmin@testdomain.com>
+List-Post: <mailto:admin@testdomain.com>
 List-Help: <mailto:xmlbeans-dev-help@xml.apache.org>
 List-Unsubscribe: <mailto:xmlbeans-dev-unsubscribe@xml.apache.org>
 List-Subscribe: <mailto:xmlbeans-dev-subscribe@xml.apache.org>
-Reply-To: globaladmin@testdomain.com
-Delivered-To: mailing list globaladmin@testdomain.com
+Reply-To: admin@testdomain.com
+Delivered-To: mailing list admin@testdomain.com
 Received: (qmail 83681 invoked from network); 3 Oct 2003 20:36:33 -0000
 Message-ID: <018b01c389ee$08912ea0$0fa8a8c0@lightbox>
-From: globaladmin@testdomain.com
-To: globaladmin@testdomain.com
+From: admin@testdomain.com
+To: admin@testdomain.com
 Subject: Binding-config api checkin coming
 Date: Fri, 3 Oct 2003 16:36:29 -0400
 X-Zimbra-Received: Fri, 3 Oct 2003 16:36:29 -0400

@@ -9,12 +9,12 @@ Received: (qmail 96594 invoked by uid 500); 1 Oct 2003 17:14:28 -0000
 Mailing-List: contact xmlbeans-dev-help@xml.apache.org; run by ezmlm
 Precedence: bulk
 X-No-Archive: yes
-List-Post: <mailto:globaladmin@testdomain.com>
+List-Post: <mailto:admin@testdomain.com>
 List-Help: <mailto:xmlbeans-dev-help@xml.apache.org>
 List-Unsubscribe: <mailto:xmlbeans-dev-unsubscribe@xml.apache.org>
 List-Subscribe: <mailto:xmlbeans-dev-subscribe@xml.apache.org>
-Reply-To: globaladmin@testdomain.com
-Delivered-To: mailing list globaladmin@testdomain.com
+Reply-To: admin@testdomain.com
+Delivered-To: mailing list admin@testdomain.com
 Received: (qmail 96581 invoked from network); 1 Oct 2003 17:14:27 -0000
 X-MimeOLE: Produced By Microsoft Exchange V6.0.6375.0
 content-class: urn:content-classes:message
@@ -28,8 +28,8 @@ X-MS-Has-Attach:
 X-MS-TNEF-Correlator: 
 Thread-Topic: Finalizers
 Thread-Index: AcOIM6KhGv/ZLmAyR8eg1QrVBIbC4gACNCSw
-From: globaladmin@testdomain.com
-To: globaladmin@testdomain.com
+From: admin@testdomain.com
+To: admin@testdomain.com
 X-OriginalArrivalTime: 01 Oct 2003 17:14:27.0714 (UTC)
 	FILETIME=[782E8E20:01C3883F]
 X-Spam-Rating: daedalus.apache.org 1.6.2 0/1000/N
@@ -77,9 +77,9 @@ ar object no longer needed finalization.  Does such a thing exist?
 - Eric
 
 -----Original Message-----
-From: globaladmin@testdomain.com
+From: admin@testdomain.com
 Sent: Wednesday, October 01, 2003 8:49 AM
-To: globaladmin@testdomain.com
+To: admin@testdomain.com
 Subject: Re: Finalizers
 
 

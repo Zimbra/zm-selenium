@@ -1,7 +1,7 @@
-﻿From: "User 1" <globaladmin@testdomain.com>
-To: "'User 2'" <globaladmin@testdomain.com>
+﻿From: "User 1" <admin@testdomain.com>
+To: "'User 2'" <admin@testdomain.com>
 References: <1460921948.730077.1340312105003.JavaMail.root@testdomain.com> <979016627.730884.1340313033566.JavaMail.root@testdomain.com>
-In-Reply-To: globaladmin@testdomain.com
+In-Reply-To: admin@testdomain.com
 Subject: ZCS 8 triage
 Date: Mon, 25 Jun 2012 12:20:34 -0700
 Message-ID: <11d9ee62.00000ff0.00000050@zimbra-PC7632>
@@ -58,9 +58,9 @@ Hopefully the list will be quite short.  I’ll send out an email next Monday.
 
 
 
-From: globaladmin@testdomain.com
+From: admin@testdomain.com
 Sent: Thursday, June 21, 2012 2:11 PM
-To: globaladmin@testdomain.com
+To: admin@testdomain.com
 Subject: zcs 8 triage
 
 

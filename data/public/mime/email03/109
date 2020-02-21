@@ -13,8 +13,8 @@ List-Post: <mailto:xmlbeans-cvs@xml.apache.org>
 List-Help: <mailto:xmlbeans-cvs-help@xml.apache.org>
 List-Unsubscribe: <mailto:xmlbeans-cvs-unsubscribe@xml.apache.org>
 List-Subscribe: <mailto:xmlbeans-cvs-subscribe@xml.apache.org>
-Reply-To: globaladmin@testdomain.com
-Delivered-To: globaladmin@testdomain.com
+Reply-To: admin@testdomain.com
+Delivered-To: admin@testdomain.com
 Received: (qmail 95589 invoked from network); 16 Sep 2003 19:57:48 -0000
 Received: from unknown (HELO minotaur.apache.org) (209.237.227.194) by
 	daedalus.apache.org with SMTP; 16 Sep 2003 19:57:48 -0000
@@ -22,8 +22,8 @@ Received: (qmail 90403 invoked by uid 1739); 16 Sep 2003 19:57:59 -0000
 Date: 16 Sep 2003 19:57:59 -0000
 X-Zimbra-Received: 16 Sep 2003 19:57:59 -0000
 Message-ID: <20030916195759.90402.qmail@minotaur.apache.org>
-From: globaladmin@testdomain.com
-To: globaladmin@testdomain.com
+From: admin@testdomain.com
+To: admin@testdomain.com
 Subject: cvs commit:
 	xml-xmlbeans/v1/src/xmlcomp/org/apache/xmlbeans/impl/tool CodeGenUtil.java
 X-Spam-Rating: daedalus.apache.org 1.6.2 0/1000/N
@@ -65,7 +65,7 @@ ericvas     2003/09/16 12:57:59
   -eric.vasilik@bea.com.
   -
   +In the mean time, if you've got more questions, please post your questions
-  +to globaladmin@testdomain.com (you need to subscribe prior to posting,
+  +to admin@testdomain.com (you need to subscribe prior to posting,
   +by sending a blank mail to xmlbeans-user-subscribe@xml.apache.org).
    
    

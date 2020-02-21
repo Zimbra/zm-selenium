@@ -1,6 +1,6 @@
 Date: Tue, 18 Jun 2013 10:20:14 -0700 (PDT)
-From: globaladmin@testdomain.com
-To: globaladmin@testdomain.com
+From: admin@testdomain.com
+To: admin@testdomain.com
 Subject: subject13715024766995
 MIME-Version: 1.0
 Content-Type: multipart/mixed; 

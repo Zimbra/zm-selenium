@@ -9,16 +9,16 @@ Received: (qmail 10819 invoked by uid 500); 10 Oct 2003 21:03:25 -0000
 Mailing-List: contact xmlbeans-user-help@xml.apache.org; run by ezmlm
 Precedence: bulk
 X-No-Archive: yes
-List-Post: <mailto:globaladmin@testdomain.com>
+List-Post: <mailto:admin@testdomain.com>
 List-Help: <mailto:xmlbeans-user-help@xml.apache.org>
 List-Unsubscribe: <mailto:xmlbeans-user-unsubscribe@xml.apache.org>
 List-Subscribe: <mailto:xmlbeans-user-subscribe@xml.apache.org>
-Reply-To: globaladmin@testdomain.com
-Delivered-To: mailing list globaladmin@testdomain.com
+Reply-To: admin@testdomain.com
+Delivered-To: mailing list admin@testdomain.com
 Received: (qmail 10802 invoked from network); 10 Oct 2003 21:03:24 -0000
 Message-ID: <D44A54C298394F4E967EC8538B1E00F10248C932@lgchexch002.lgc.com>
-From: globaladmin@testdomain.com
-To: globaladmin@testdomain.com
+From: admin@testdomain.com
+To: admin@testdomain.com
 Subject: RE: XMLBeans/Java Web Start Issues
 Date: Fri, 10 Oct 2003 16:02:49 -0500
 X-Zimbra-Received: Fri, 10 Oct 2003 16:02:49 -0500
@@ -30,7 +30,7 @@ X-Evolution-Source: imap://smith@smith.pobox.stanford.edu/
 X-Evolution: 00000052-0010
 
 > -----Original Message-----
-> From: globaladmin@testdomain.com
+> From: admin@testdomain.com
 > 
 > We assume that the classloader that was used to load the TypeSystemHolder
 > class for each compiled schema also has access to the .xsb files that are

@@ -28,8 +28,8 @@ Received: from zqa-061.eng.zimbra.com (zqa-061.eng.vmware.com [10.137.244.145])
 	by zqa-061.eng.zimbra.com (Postfix) with ESMTP id B31F5103D33
 	for <user2@zqa-061.eng.zimbra.com>; Wed, 22 Jul 2015 02:23:40 -0900 (HDT)
 Date: Wed, 22 Jul 2015 02:23:40 -0900 (HADT)
-From: globaladmin@testdomain.com
-To: globaladmin@testdomain.com
+From: admin@testdomain.com
+To: admin@testdomain.com
 Message-ID: <721503481.352.1437564220356.JavaMail.zimbra@zqa-061.eng.zimbra.com>
 Subject: Test Excel Data Formatting
 MIME-Version: 1.0

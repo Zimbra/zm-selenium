@@ -9,12 +9,12 @@ Received: (qmail 70045 invoked by uid 500); 2 Oct 2003 17:07:01 -0000
 Mailing-List: contact xmlbeans-dev-help@xml.apache.org; run by ezmlm
 Precedence: bulk
 X-No-Archive: yes
-List-Post: <mailto:globaladmin@testdomain.com>
+List-Post: <mailto:admin@testdomain.com>
 List-Help: <mailto:xmlbeans-dev-help@xml.apache.org>
 List-Unsubscribe: <mailto:xmlbeans-dev-unsubscribe@xml.apache.org>
 List-Subscribe: <mailto:xmlbeans-dev-subscribe@xml.apache.org>
-Reply-To: globaladmin@testdomain.com
-Delivered-To: mailing list globaladmin@testdomain.com
+Reply-To: admin@testdomain.com
+Delivered-To: mailing list admin@testdomain.com
 Received: (qmail 69967 invoked from network); 2 Oct 2003 17:07:01 -0000
 X-MimeOLE: Produced By Microsoft Exchange V6.0.6375.0
 content-class: urn:content-classes:message
@@ -28,8 +28,8 @@ X-MS-Has-Attach:
 X-MS-TNEF-Correlator: 
 Thread-Topic: Finalizers
 Thread-Index: AcOI73v+ImO1hg37TJeq+ovAWlrBXwAFrutQ
-From: globaladmin@testdomain.com
-To: globaladmin@testdomain.com
+From: admin@testdomain.com
+To: admin@testdomain.com
 X-OriginalArrivalTime: 02 Oct 2003 17:07:04.0817 (UTC)
 	FILETIME=[9A9B9610:01C38907]
 X-Spam-Rating: daedalus.apache.org 1.6.2 0/1000/N
@@ -61,18 +61,18 @@ ould be called.
 - Eric
 
 -----Original Message-----
-From: globaladmin@testdomain.com
+From: admin@testdomain.com
 Sent: Thursday, October 02, 2003 7:14 AM
-To: globaladmin@testdomain.com
+To: admin@testdomain.com
 Subject: RE: Finalizers
 
 
 Have you looked at using weak references for the XML->Cursor references?
 
 -----Original Message-----
-From: globaladmin@testdomain.com=20
+From: admin@testdomain.com=20
 Sent: Wednesday, October 01, 2003 1:14 PM
-To: globaladmin@testdomain.com
+To: admin@testdomain.com
 Subject: RE: Finalizers
 
 
@@ -119,9 +119,9 @@ particular object no longer needed finalization.  Does such a thing exist?
 - Eric
 
 -----Original Message-----
-From: globaladmin@testdomain.com
+From: admin@testdomain.com
 Sent: Wednesday, October 01, 2003 8:49 AM
-To: globaladmin@testdomain.com
+To: admin@testdomain.com
 Subject: Re: Finalizers
 
 

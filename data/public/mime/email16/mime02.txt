@@ -1,6 +1,6 @@
 Date: Fri, 19 Feb 2016 13:20:34 +0530 (IST)
-From: globaladmin@testdomain.com
-To: globaladmin@testdomain.com
+From: admin@testdomain.com
+To: admin@testdomain.com
 Subject: remove attachment from conversation view
 MIME-Version: 1.0
 Content-Type: multipart/mixed; 

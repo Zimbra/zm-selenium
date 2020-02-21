@@ -1,7 +1,7 @@
-﻿From: globaladmin@testdomain.com
-To: globaladmin@testdomain.com
+﻿From: admin@testdomain.com
+To: admin@testdomain.com
 References: <1460921948.730077.1340312105003.JavaMail.root@testdomain.com> <979016627.730884.1340313033566.JavaMail.root@testdomain.com>
-In-Reply-To: globaladmin@testdomain.com
+In-Reply-To: admin@testdomain.com
 Subject: ZCS 8 triage
 Date: Mon, 25 Jun 2012 12:20:34 -0700
 Message-ID: <11d9ee62.00000ff0.00000050@zimbra-PC7632>
@@ -58,9 +58,9 @@ Hopefully the list will be quite short.  I’ll send out an email next Monday.
 
 
 
-From: globaladmin@testdomain.com
+From: admin@testdomain.com
 Sent: Thursday, June 21, 2012 2:11 PM
-To: globaladmin@testdomain.com
+To: admin@testdomain.com
 Subject: zcs 8 triage
 
 
@@ -1804,7 +1804,7 @@ style=3D'border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt 0in =
 0in 0in'><p class=3DMsoNormal><b><span =
 style=3D'font-size:10.0pt;font-family:"Tahoma","sans-serif"'>From:</span>=
 </b><span style=3D'font-size:10.0pt;font-family:"Tahoma","sans-serif"'> =
-Kevin Henrikson [mailto:globaladmin@testdomain.com] <br><b>Sent:</b> Thursday, =
+Kevin Henrikson [mailto:admin@testdomain.com] <br><b>Sent:</b> Thursday, =
 June 21, 2012 2:11 PM<br><b>To:</b> Jeff Wagner; Jeff Flanigan; Todd =
 Richmond; Brian P. Peterson; Ellen Shen; Matt Rhoades; Bill Hwang; =
 Sandesh Joseph Almeida<br><b><br><b>Subject:</b> zcs 8 triage<o:p></o:p></span></p></div></div><p =

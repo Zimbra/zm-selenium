@@ -1,6 +1,6 @@
 Date: Thu, 21 Feb 2013 13:25:27 +0400 (GMT+04:00)
-From: globaladmin@testdomain.com
-To: globaladmin@testdomain.com
+From: admin@testdomain.com
+To: admin@testdomain.com
 Message-ID: <833740842.90.1361438727782.JavaMail.root@zqa-061.eng.zimbra.com>
 In-Reply-To: <1665548816.83.1361438704884.JavaMail.root@zqa-061.eng.zimbra.com>
 Subject: Import ics using add to calendar

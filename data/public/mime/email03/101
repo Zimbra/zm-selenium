@@ -10,16 +10,16 @@ Received: (qmail 70224 invoked by uid 500); 23 Sep 2003 16:25:06 -0000
 Mailing-List: contact xmlbeans-dev-help@xml.apache.org; run by ezmlm
 Precedence: bulk
 X-No-Archive: yes
-List-Post: <mailto:globaladmin@testdomain.com>
+List-Post: <mailto:admin@testdomain.com>
 List-Help: <mailto:xmlbeans-dev-help@xml.apache.org>
 List-Unsubscribe: <mailto:xmlbeans-dev-unsubscribe@xml.apache.org>
 List-Subscribe: <mailto:xmlbeans-dev-subscribe@xml.apache.org>
-Reply-To: globaladmin@testdomain.com
-Delivered-To: mailing list globaladmin@testdomain.com
+Reply-To: admin@testdomain.com
+Delivered-To: mailing list admin@testdomain.com
 Received: (qmail 70209 invoked from network); 23 Sep 2003 16:25:06 -0000
 Message-ID: <001301c381ef$3a69b980$0fa8a8c0@lightbox>
-From: globaladmin@testdomain.com
-To: globaladmin@testdomain.com
+From: admin@testdomain.com
+To: admin@testdomain.com
 References: <4B2B4C417991364996F035E1EE39E2E11E9D5D@uskiex01.amer.bea.com>
 Subject: RE: GDateBuilder question
 Date: Tue, 23 Sep 2003 12:24:55 -0400
@@ -55,8 +55,8 @@ difference between Z and +0:00?
 
 David
 ----- Original Message ----- 
-From: globaladmin@testdomain.com
-To: globaladmin@testdomain.com
+From: admin@testdomain.com
+To: admin@testdomain.com
 Sent: Tuesday, September 23, 2003 11:38 AM
 Subject: [bea-readme] RE: GDateBuilder question
 
@@ -93,9 +93,9 @@ GDateBuilder.java.
 betwen -14:00 and +14:00");
 
 -----Original Message-----
-From: globaladmin@testdomain.com
+From: admin@testdomain.com
 Sent: Monday, September 22, 2003 3:02 PM
-To: globaladmin@testdomain.com
+To: admin@testdomain.com
 Subject: GDateBuilder question
 
 

@@ -1,6 +1,6 @@
 Date: Thu, 01 Dec 2011 09:43:36 -0800 (PST)
-From: globaladmin@testdomain.com
-To: globaladmin@testdomain.com
+From: admin@testdomain.com
+To: admin@testdomain.com
 Subject: subject13218526621403
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 7bit

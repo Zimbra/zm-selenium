@@ -1,7 +1,7 @@
-Return-Path: globaladmin@testdomain.com
+Return-Path: admin@testdomain.com
 Date: Thu, 22 Dec 2011 11:38:03 -0800 (PST)
-From: globaladmin@testdomain.com
-To: globaladmin@testdomain.com
+From: admin@testdomain.com
+To: admin@testdomain.com
 Subject: Conversation13155016716713
 Content-Type: multipart/alternative;
  boundary="=_8b4ca532-ca02-4f09-9eaf-a977ac68af6c"

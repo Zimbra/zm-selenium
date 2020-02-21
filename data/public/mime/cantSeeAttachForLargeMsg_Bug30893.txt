@@ -1,4 +1,4 @@
-Return-Path: globaladmin@testdomain.com
+Return-Path: admin@testdomain.com
 Received: from mta03.zimbra.com (LHLO mta03.zimbra.com) (66.163.172.82) by
  dogfood.zimbra.com with LMTP; Mon, 4 Aug 2008 03:51:39 -0700 (PDT)
 Received: from localhost (localhost.localdomain [127.0.0.1])
@@ -43,8 +43,8 @@ Thread-Index: Acj19yeml704AqX+RoWUmoEInMZGEQAJtytg
 X-Priority: 1
 Priority: Urgent
 Importance: high
-From: globaladmin@testdomain.com
-To: globaladmin@testdomain.com
+From: admin@testdomain.com
+To: admin@testdomain.com
 X-OriginalArrivalTime: 04 Aug 2008 10:51:01.0331 (UTC) FILETIME=[FC0EDA30:01C8F61F]
 
 This is a multi-part message in MIME format.
@@ -129,9 +129,9 @@ Contact- 000-00000000 / 00000000000
 =20
 
 -----Original Message-----
-From: globaladmin@testdomain.com=20
+From: admin@testdomain.com=20
 Sent: Monday, August 04, 2008 11:28 AM
-To: globaladmin@testdomain.com
+To: admin@testdomain.com
 Subject: RE: Pl find eco class itinerary! Pl confirm the same!
 
 =20
@@ -172,7 +172,7 @@ Rajesh Segu
 
 --- original message ---
 
-From: globaladmin@testdomain.com
+From: admin@testdomain.com
 
 Subject: RE: Pl find eco class itinerary! Pl confirm the same!
 
@@ -546,11 +546,11 @@ ________________________________
 
 =20
 
-From: globaladmin@testdomain.com=20
+From: admin@testdomain.com=20
 
 Sent: Monday, August 04, 2008 9:55 AM
 
-To: globaladmin@testdomain.com
+To: admin@testdomain.com
 
 Subject: Re: Pl find eco class itinerary! Pl confirm the same!
 
@@ -588,9 +588,9 @@ Otherwise we have to again start rescheduling.
 
 > ----- Forwarded Message -----
 
-> From: globaladmin@testdomain.com
+> From: admin@testdomain.com
 
-> To: globaladmin@testdomain.com
+> To: admin@testdomain.com
 
 > Sent: Friday, August 1, 2008 5:58:32 AM GMT -08:00 US/Canada Pacific
 
@@ -620,7 +620,7 @@ approval.
 
 >=20
 
-> ----- "Neena Kulkarni" <globaladmin@testdomain.com> wrote:=20
+> ----- "Neena Kulkarni" <admin@testdomain.com> wrote:=20
 
 > >=20
 
@@ -984,11 +984,11 @@ ________________________________
 
 =20
 
-From: globaladmin@testdomain.com=20
+From: admin@testdomain.com=20
 
 > > Sent: Friday, August 01, 2008 2:31 PM
 
-> > To: globaladmin@testdomain.com
+> > To: admin@testdomain.com
 
 > > Subject: Re: US Travel Details
 
@@ -1028,7 +1028,7 @@ quickly.
 
 > >=20
 
-> > ----- "Neena Kulkarni" <globaladmin@testdomain.com> wrote:=20
+> > ----- "Neena Kulkarni" <admin@testdomain.com> wrote:=20
 
 > > >=20
 
@@ -1102,11 +1102,11 @@ ________________________________
 
 =20
 
-From: globaladmin@testdomain.com=20
+From: admin@testdomain.com=20
 
 > > > Sent: Friday, August 01, 2008 2:19 PM
 
-> > > To: globaladmin@testdomain.com
+> > > To: admin@testdomain.com
 
 > > > Subject: Re: US Travel Details
 
@@ -1136,7 +1136,7 @@ we can still have the jouney at a later date.
 
 > > >=20
 
-> > > ----- "Neena Kulkarni" <globaladmin@testdomain.com> wrote:=20
+> > > ----- "Neena Kulkarni" <admin@testdomain.com> wrote:=20
 
 > > > >=20
 
@@ -1418,11 +1418,11 @@ ________________________________
 
 =20
 
-From: globaladmin@testdomain.com=20
+From: admin@testdomain.com=20
 
 > > > > Sent: Thursday, July 31, 2008 1:48 PM
 
-> > > > To: globaladmin@testdomain.com
+> > > > To: admin@testdomain.com
 
 > > > > Subject: Re: US Travel Details
 
@@ -1478,7 +1478,7 @@ Rajesh Segu
 
 > > > >=20
 
-> > > > ----- "Neena Kulkarni" <globaladmin@testdomain.com> wrote:=20
+> > > > ----- "Neena Kulkarni" <admin@testdomain.com> wrote:=20
 
 > > > > >=20
 
@@ -2319,9 +2319,9 @@ style=3D'font-size:
 <p class=3DMsoPlainText><font size=3D2 face=3D"Courier New"><span =
 style=3D'font-size:
 10.0pt'>-----Original Message-----<br>
-From: globaladmin@testdomain.com <br>
+From: admin@testdomain.com <br>
 Sent: Monday, August 04, 2008 11:28 AM<br>
-To: globaladmin@testdomain.com<br>
+To: admin@testdomain.com<br>
 Subject: RE: Pl find eco class itinerary! Pl confirm the =
 same!</span></font></p>
 
@@ -2406,7 +2406,7 @@ style=3D'font-size:
 <p class=3DMsoPlainText><font size=3D2 face=3D"Courier New"><span =
 style=3D'font-size:
 10.0pt'>From: &quot;Neena Kulkarni&quot; =
-&lt;globaladmin@testdomain.com&gt;<o:p></o:p></span></font></p>
+&lt;admin@testdomain.com&gt;<o:p></o:p></span></font></p>
 
 <p class=3DMsoPlainText><font size=3D2 face=3D"Courier New"><span =
 style=3D'font-size:
@@ -3195,7 +3195,7 @@ AM<o:p></o:p></span></font></p>
 
 <p class=3DMsoPlainText><font size=3D2 face=3D"Courier New"><span =
 style=3D'font-size:
-10.0pt'>To: globaladmin@testdomain.com<o:p></o:p></span></font></p>
+10.0pt'>To: admin@testdomain.com<o:p></o:p></span></font></p>
 
 <p class=3DMsoPlainText><font size=3D2 face=3D"Courier New"><span =
 style=3D'font-size:
@@ -3281,7 +3281,7 @@ style=3D'font-size:
 
 <p class=3DMsoPlainText><font size=3D2 face=3D"Courier New"><span =
 style=3D'font-size:
-10.0pt'>&gt; To: globaladmin@testdomain.com<o:p></o:p></span></font></p>
+10.0pt'>&gt; To: admin@testdomain.com<o:p></o:p></span></font></p>
 
 <p class=3DMsoPlainText><font size=3D2 face=3D"Courier New"><span =
 style=3D'font-size:
@@ -3351,7 +3351,7 @@ style=3D'font-size:
 <p class=3DMsoPlainText><font size=3D2 face=3D"Courier New"><span =
 style=3D'font-size:
 10.0pt'>&gt; ----- &quot;Neena Kulkarni&quot; =
-&lt;globaladmin@testdomain.com&gt; wrote:
+&lt;admin@testdomain.com&gt; wrote:
 <o:p></o:p></span></font></p>
 
 <p class=3DMsoPlainText><font size=3D2 face=3D"Courier New"><span =
@@ -4105,7 +4105,7 @@ style=3D'font-size:
 
 <p class=3DMsoPlainText><font size=3D2 face=3D"Courier New"><span =
 style=3D'font-size:
-10.0pt'>From: globaladmin@testdomain.com =
+10.0pt'>From: admin@testdomain.com =
 <o:p></o:p></span></font></p>
 
 <p class=3DMsoPlainText><font size=3D2 face=3D"Courier New"><span =
@@ -4115,7 +4115,7 @@ PM<o:p></o:p></span></font></p>
 
 <p class=3DMsoPlainText><font size=3D2 face=3D"Courier New"><span =
 style=3D'font-size:
-10.0pt'>&gt; &gt; To: globaladmin@testdomain.com<o:p></o:p></span></font></p>
+10.0pt'>&gt; &gt; To: admin@testdomain.com<o:p></o:p></span></font></p>
 
 <p class=3DMsoPlainText><font size=3D2 face=3D"Courier New"><span =
 style=3D'font-size:
@@ -4200,7 +4200,7 @@ style=3D'font-size:
 <p class=3DMsoPlainText><font size=3D2 face=3D"Courier New"><span =
 style=3D'font-size:
 10.0pt'>&gt; &gt; ----- &quot;Neena Kulkarni&quot;
-&lt;globaladmin@testdomain.com&gt; wrote: <o:p></o:p></span></font></p>
+&lt;admin@testdomain.com&gt; wrote: <o:p></o:p></span></font></p>
 
 <p class=3DMsoPlainText><font size=3D2 face=3D"Courier New"><span =
 style=3D'font-size:
@@ -4351,7 +4351,7 @@ style=3D'font-size:
 
 <p class=3DMsoPlainText><font size=3D2 face=3D"Courier New"><span =
 style=3D'font-size:
-10.0pt'>From: globaladmin@testdomain.com =
+10.0pt'>From: admin@testdomain.com =
 <o:p></o:p></span></font></p>
 
 <p class=3DMsoPlainText><font size=3D2 face=3D"Courier New"><span =
@@ -4361,7 +4361,7 @@ PM<o:p></o:p></span></font></p>
 
 <p class=3DMsoPlainText><font size=3D2 face=3D"Courier New"><span =
 style=3D'font-size:
-10.0pt'>&gt; &gt; &gt; To: globaladmin@testdomain.com<o:p></o:p></span></font></p>
+10.0pt'>&gt; &gt; &gt; To: admin@testdomain.com<o:p></o:p></span></font></p>
 
 <p class=3DMsoPlainText><font size=3D2 face=3D"Courier New"><span =
 style=3D'font-size:
@@ -4429,7 +4429,7 @@ style=3D'font-size:
 <p class=3DMsoPlainText><font size=3D2 face=3D"Courier New"><span =
 style=3D'font-size:
 10.0pt'>&gt; &gt; &gt; ----- &quot;Neena Kulkarni&quot;
-&lt;globaladmin@testdomain.com&gt; wrote: <o:p></o:p></span></font></p>
+&lt;admin@testdomain.com&gt; wrote: <o:p></o:p></span></font></p>
 
 <p class=3DMsoPlainText><font size=3D2 face=3D"Courier New"><span =
 style=3D'font-size:
@@ -5042,7 +5042,7 @@ style=3D'font-size:
 
 <p class=3DMsoPlainText><font size=3D2 face=3D"Courier New"><span =
 style=3D'font-size:
-10.0pt'>From: globaladmin@testdomain.com =
+10.0pt'>From: admin@testdomain.com =
 <o:p></o:p></span></font></p>
 
 <p class=3DMsoPlainText><font size=3D2 face=3D"Courier New"><span =
@@ -5179,7 +5179,7 @@ style=3D'font-size:
 <p class=3DMsoPlainText><font size=3D2 face=3D"Courier New"><span =
 style=3D'font-size:
 10.0pt'>&gt; &gt; &gt; &gt; ----- &quot;Neena Kulkarni&quot;
-&lt;globaladmin@testdomain.com&gt; wrote: <o:p></o:p></span></font></p>
+&lt;admin@testdomain.com&gt; wrote: <o:p></o:p></span></font></p>
 
 <p class=3DMsoPlainText><font size=3D2 face=3D"Courier New"><span =
 style=3D'font-size:
@@ -6284,8 +6284,8 @@ Content-Type: multipart/alternative;
 	boundary="----_=_NextPart_003_01C8F61D.8E2F2D00"
 Received:  from mrout1-b.corp.re1.yahoo.com ([69.147.107.20]) by SNV-EXBH01.ds.corp.yahoo.com with Microsoft SMTPSVC(6.0.3790.3959); Mon, 4 Aug 2008 03:33:37 -0700
 Received:  from mrin1-b.corp.re1.yahoo.com (mrin1-b.corp.re1.yahoo.com [69.147.105.207]) by mrout1-b.corp.re1.yahoo.com (8.13.8/8.13.8/y.out) with ESMTP id m74AXA86003468 for <mum-bcd@exchange.corp.yahoo.com>; Mon, 4 Aug 2008 03:33:10 -0700 (PDT)
-Received:  from mail1.testdomain.com (mail1.testdomain.com [82.150.225.79]) by mrin1-b.corp.re1.yahoo.com (8.13.8/8.13.8/y.in) with ESMTP id m74AX8Ns068643 for <globaladmin@testdomain.com>; Mon, 4 Aug 2008 03:33:08 -0700 (PDT)
-Received:  from mucddp02 (unknown [82.150.225.129]) by mail1.testdomain.com (Postfix) with ESMTP id 2D0441D9C7A for <globaladmin@testdomain.com>; Mon,  4 Aug 2008 10:33:08 +0000 (GMT)
+Received:  from mail1.testdomain.com (mail1.testdomain.com [82.150.225.79]) by mrin1-b.corp.re1.yahoo.com (8.13.8/8.13.8/y.in) with ESMTP id m74AX8Ns068643 for <admin@testdomain.com>; Mon, 4 Aug 2008 03:33:08 -0700 (PDT)
+Received:  from mucddp02 (unknown [82.150.225.129]) by mail1.testdomain.com (Postfix) with ESMTP id 2D0441D9C7A for <admin@testdomain.com>; Mon,  4 Aug 2008 10:33:08 +0000 (GMT)
 Content-class: urn:content-classes:message
 Subject: YOUR TRAVEL INFORMATION
 Date: Mon, 4 Aug 2008 03:33:08 -0700
@@ -6294,8 +6294,8 @@ X-MS-Has-Attach:
 X-MS-TNEF-Correlator: 
 Thread-Topic: YOUR TRAVEL INFORMATION
 Thread-Index: Acj2HZC7PnItKKLwTuyN9A7vznE66Q==
-From: globaladmin@testdomain.com
-To: globaladmin@testdomain.com
+From: admin@testdomain.com
+To: admin@testdomain.com
 
 This is a multi-part message in MIME format.
 

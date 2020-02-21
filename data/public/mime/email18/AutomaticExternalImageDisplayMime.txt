@@ -1,6 +1,6 @@
 Date: Wed, 30 Mar 2016 11:47:09 +0400 (GMT+04:00)
-From: globaladmin@testdomain.com
-To: globaladmin@testdomain.com
+From: admin@testdomain.com
+To: admin@testdomain.com
 Subject: Display external image preference check
 MIME-Version: 1.0
 Content-Type: multipart/alternative; 

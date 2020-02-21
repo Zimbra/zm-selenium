@@ -1,5 +1,5 @@
-From: globaladmin@testdomain.com 
-To: globaladmin@testdomain.com 
+From: admin@testdomain.com 
+To: admin@testdomain.com 
 Subject: subject12912323015009
 MIME-Version: 1.0 
 Content-Type: text/plain; charset=utf-8 

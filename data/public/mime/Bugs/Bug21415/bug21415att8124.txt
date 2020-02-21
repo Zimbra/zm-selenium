@@ -17,8 +17,8 @@ Received: from dogfood.zimbra.com ([127.0.0.1])
 Received: from depot.liquidsys.com (unknown [10.10.130.31])
 	by dogfood.zimbra.com (Postfix) with ESMTP id 19AC5185CE5;
 	Wed, 12 Dec 2007 18:39:43 -0800 (PST)
-From: globaladmin@testdomain.com
-To: globaladmin@testdomain.com
+From: admin@testdomain.com
+To: admin@testdomain.com
 X-From-Perforce: Indeed
 Precedence: bulk
 Subject: subject12998912514374

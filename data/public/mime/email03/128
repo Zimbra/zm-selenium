@@ -9,19 +9,19 @@ Received: (qmail 69113 invoked by uid 500); 2 Oct 2003 14:28:36 -0000
 Mailing-List: contact xmlbeans-dev-help@xml.apache.org; run by ezmlm
 Precedence: bulk
 X-No-Archive: yes
-List-Post: <mailto:globaladmin@testdomain.com>
+List-Post: <mailto:admin@testdomain.com>
 List-Help: <mailto:xmlbeans-dev-help@xml.apache.org>
 List-Unsubscribe: <mailto:xmlbeans-dev-unsubscribe@xml.apache.org>
 List-Subscribe: <mailto:xmlbeans-dev-subscribe@xml.apache.org>
-Reply-To: globaladmin@testdomain.com
-Delivered-To: mailing list globaladmin@testdomain.com
+Reply-To: admin@testdomain.com
+Delivered-To: mailing list admin@testdomain.com
 Received: (qmail 69096 invoked from network); 2 Oct 2003 14:28:35 -0000
 Message-Id: <sf7bfdd5.032@corp-gw.mantech.com>
 X-Mailer: Novell GroupWise Internet Agent 5.5.6.1
 Date: Thu, 02 Oct 2003 10:28:33 -0400
 X-Zimbra-Received: Thu, 02 Oct 2003 10:28:33 -0400
-From: globaladmin@testdomain.com
-To: globaladmin@testdomain.com
+From: admin@testdomain.com
+To: admin@testdomain.com
 Subject: RE: Finalizers
 Mime-Version: 1.0
 Content-Type: multipart/alternative; boundary="=_18465605.4B2AA21F"
@@ -62,9 +62,9 @@ There is plenty of documentation on the subject at
 Have you looked at using weak references for the XML->Cursor references?
 
 -----Original Message-----
-From: globaladmin@testdomain.com=20
+From: admin@testdomain.com=20
 Sent: Wednesday, October 01, 2003 1:14 PM
-To: globaladmin@testdomain.com
+To: admin@testdomain.com
 Subject: RE: Finalizers
 
 
@@ -111,9 +111,9 @@ particular object no longer needed finalization.  Does such a thing exist?
 - Eric
 
 -----Original Message-----
-From: globaladmin@testdomain.com
+From: admin@testdomain.com
 Sent: Wednesday, October 01, 2003 8:49 AM
-To: globaladmin@testdomain.com
+To: admin@testdomain.com
 Subject: Re: Finalizers
 
 
@@ -235,7 +235,7 @@ rsor=20
 references?<BR><BR>-----Original Message-----<BR>From: Eric Vasilik [<A=20
 href=3D"mailto:ericvas@bea.com]">mailto:ericvas@bea.com]</A> <BR>Sent: Wedn=
 esday,=20
-October 01, 2003 1:14 PM<BR>To: globaladmin@testdomain.com<BR>Subject: RE:=
+October 01, 2003 1:14 PM<BR>To: admin@testdomain.com<BR>Subject: RE:=
 =20
 Finalizers<BR><BR><BR>My plans for the next version of the store are to rem=
 ove=20
@@ -283,10 +283,10 @@ notified the VM that a<BR>particular object no longer needed finalization.&=
 nbsp;=20
 Does such a thing exist?<BR><BR>- Eric<BR><BR>-----Original=20
 Message-----<BR>From: Darrell Teague [<A=20
-href=3D"mailto:globaladmin@testdomain.com]">mailto:darrell.teague@mantech.c=
+href=3D"mailto:admin@testdomain.com]">mailto:darrell.teague@mantech.c=
 om]</A><BR>Sent:=20
 Wednesday, October 01, 2003 8:49 AM<BR>To:=20
-globaladmin@testdomain.com<BR>Subject: Re: Finalizers<BR><BR><BR>Two more =
+admin@testdomain.com<BR>Subject: Re: Finalizers<BR><BR><BR>Two more =
 cents=20
 on this topic...<BR><BR>Joshua Bloch of Sun and many others (myself include=
 d)=20

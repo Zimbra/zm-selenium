@@ -9,19 +9,19 @@ Received: (qmail 64050 invoked by uid 500); 1 Oct 2003 18:00:00 -0000
 Mailing-List: contact xmlbeans-dev-help@xml.apache.org; run by ezmlm
 Precedence: bulk
 X-No-Archive: yes
-List-Post: <mailto:globaladmin@testdomain.com>
+List-Post: <mailto:admin@testdomain.com>
 List-Help: <mailto:xmlbeans-dev-help@xml.apache.org>
 List-Unsubscribe: <mailto:xmlbeans-dev-unsubscribe@xml.apache.org>
 List-Subscribe: <mailto:xmlbeans-dev-subscribe@xml.apache.org>
-Reply-To: globaladmin@testdomain.com
-Delivered-To: mailing list globaladmin@testdomain.com
+Reply-To: admin@testdomain.com
+Delivered-To: mailing list admin@testdomain.com
 Received: (qmail 64033 invoked from network); 1 Oct 2003 17:59:59 -0000
 Message-Id: <sf7adde3.097@corp-gw.mantech.com>
 X-Mailer: Novell GroupWise Internet Agent 5.5.6.1
 Date: Wed, 01 Oct 2003 13:59:38 -0400
 X-Zimbra-Received: Wed, 01 Oct 2003 13:59:38 -0400
-From: globaladmin@testdomain.com
-To: globaladmin@testdomain.com
+From: admin@testdomain.com
+To: admin@testdomain.com
 Subject: RE: Finalizers
 Mime-Version: 1.0
 Content-Type: multipart/alternative; boundary="=_09574033.0061E9C7"
@@ -105,9 +105,9 @@ ar object no longer needed finalization.  Does such a thing exist?
 - Eric
 
 -----Original Message-----
-From: globaladmin@testdomain.com
+From: admin@testdomain.com
 Sent: Wednesday, October 01, 2003 8:49 AM
-To: globaladmin@testdomain.com
+To: admin@testdomain.com
 Subject: Re: Finalizers
 
 
@@ -285,10 +285,10 @@ eeded=20
 finalization.&nbsp; Does such a thing exist?<BR><BR>- Eric<BR><BR>-----Orig=
 inal=20
 Message-----<BR>From: Darrell Teague [<A=20
-href=3D"mailto:globaladmin@testdomain.com]">mailto:globaladmin@testdomain.c=
+href=3D"mailto:admin@testdomain.com]">mailto:globaladmin@testdomain.c=
 om]</A><BR>Sent:=20
 Wednesday, October 01, 2003 8:49 AM<BR>To:=20
-globaladmin@testdomain.com<BR>Subject: Re: Finalizers<BR><BR><BR>Two more =
+admin@testdomain.com<BR>Subject: Re: Finalizers<BR><BR><BR>Two more =
 cents=20
 on this topic...<BR><BR>Joshua Bloch of Sun and many others (myself include=
 d)=20

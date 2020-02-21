@@ -4,7 +4,7 @@ Received: from fermat.axiomtech.co.uk (LHLO fermat.axiomtech.co.uk)
  05:45:14 +0000 (GMT)
 Received: from localhost (localhost.localdomain [127.0.0.1])
 	by fermat.axiomtech.co.uk (Postfix) with ESMTP id C6306860067
-	for <globaladmin@testdomain.com>; Wed, 20 Feb 2013 05:45:14 +0000 (GMT)
+	for <admin@testdomain.com>; Wed, 20 Feb 2013 05:45:14 +0000 (GMT)
 X-Virus-Scanned: amavisd-new at fermat.axiomtech.co.uk
 X-Spam-Flag: NO
 X-Spam-Score: -1.83
@@ -17,7 +17,7 @@ X-Spam-Status: No, score=-1.83 tagged_above=-10 required=6.6
 	autolearn=ham
 Received: from fermat.axiomtech.co.uk ([127.0.0.1])
 	by localhost (fermat.axiomtech.co.uk [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id OlSAHTAbfM1G for <globaladmin@testdomain.com>;
+	with ESMTP id OlSAHTAbfM1G for <admin@testdomain.com>;
 	Wed, 20 Feb 2013 05:45:14 +0000 (GMT)
 Received: from rouge.axnoc.net (rouge.axnoc.net [89.145.71.187])
 	by fermat.axiomtech.co.uk (Postfix) with ESMTP id 2910D860039
@@ -34,8 +34,8 @@ Date: Wed, 20 Feb 2013 05:44:59 +0000
 X-Mailer: Chilkat Software Inc (http://www.chilkatsoft.com)
 X-Priority: 3 (Normal)
 Subject: Print2PDF Error
-To: globaladmin@testdomain.com
-From: globaladmin@testdomain.com
+To: admin@testdomain.com
+From: admin@testdomain.com
 Content-Type: multipart/mixed;
 	boundary="-----_chilkat_24d_07e5_c2694143.76aafb15_.MIX"
 Message-ID: <CHILKAT-MID-f39b6b25-2bf4-0a35-d071-ce612d970a26@transcribe>

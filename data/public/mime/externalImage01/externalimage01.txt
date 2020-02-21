@@ -1,5 +1,5 @@
-From: globaladmin@testdomain.com
-To: globaladmin@testdomain.com
+From: admin@testdomain.com
+To: admin@testdomain.com
 Subject: externalimage01
 Date: Mon, 7 May 2012 13:51:53 -0700 (PDT)
 MIME-Version: 1.0

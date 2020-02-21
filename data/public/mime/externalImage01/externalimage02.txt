@@ -3,7 +3,7 @@ Received: from 10.113.63.62 (LHLO mta02.zimbra.com) (10.113.63.62) by
  catfood.zimbra.com with LMTP; Mon, 27 Feb 2012 03:13:15 -0800 (PST)
 Received: from localhost (localhost.localdomain [127.0.0.1])
 	by mta02.zimbra.com (Postfix) with ESMTP id D26547C005D
-	for <globaladmin@testdomain.com>; Mon, 27 Feb 2012 03:13:15 -0800 (PST)
+	for <admin@testdomain.com>; Mon, 27 Feb 2012 03:13:15 -0800 (PST)
 X-Virus-Scanned: amavisd-new at zimbra.com
 X-Spam-Flag: NO
 X-Spam-Score: -1.999
@@ -15,29 +15,29 @@ X-Spam-Status: No, score=-1.999 tagged_above=-10 required=3
 Authentication-Results: mta02.zimbra.com (amavisd-new); dkim=pass
 	header.i=@socialcast.com
 Authentication-Results: mta02.zimbra.com (amavisd-new); domainkeys=pass
-	header.from=globaladmin@testdomain.com
-	header.sender=globaladmin@testdomain.com
+	header.from=admin@testdomain.com
+	header.sender=admin@testdomain.com
 Authentication-Results: mta02.zimbra.com (amavisd-new); dkim=softfail (fail,
 	body has been altered) header.i=@socialcast.com
 Received: from mta02.zimbra.com ([127.0.0.1])
 	by localhost (mta02.zimbra.com [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id dld8y28uiVqo for <globaladmin@testdomain.com>;
+	with ESMTP id dld8y28uiVqo for <admin@testdomain.com>;
 	Mon, 27 Feb 2012 03:13:13 -0800 (PST)
 Received: from sc9-mailhost2.vmware.com (unknown [10.113.161.72])
 	by mta02.zimbra.com (Postfix) with ESMTP id B24617C0061
-	for <globaladmin@testdomain.com>; Mon, 27 Feb 2012 03:13:13 -0800 (PST)
+	for <admin@testdomain.com>; Mon, 27 Feb 2012 03:13:13 -0800 (PST)
 Received: by sc9-mailhost2.vmware.com (Postfix)
 	id A8836B00DB; Mon, 27 Feb 2012 03:13:13 -0800 (PST)
-Delivered-To: globaladmin@testdomain.com
+Delivered-To: admin@testdomain.com
 Received: from proofpoint-master.vmware.com (sc9-proofpoint-agent-1.vmware.com [10.113.208.31])
 	by sc9-mailhost2.vmware.com (Postfix) with ESMTP id A23E5B00C8
-	for <globaladmin@testdomain.com>; Mon, 27 Feb 2012 03:13:13 -0800 (PST)
+	for <admin@testdomain.com>; Mon, 27 Feb 2012 03:13:13 -0800 (PST)
 Received: from sc9-mail1b.vmware.com (sc9-mail1b.vmware.com [10.113.208.35])
 	by sc9-proofpoint-agent-1.vmware.com (8.14.3/8.14.3) with ESMTP id q1RBDDqw017570
-	for <globaladmin@testdomain.com>; Mon, 27 Feb 2012 03:13:13 -0800
+	for <admin@testdomain.com>; Mon, 27 Feb 2012 03:13:13 -0800
 Received: from o1.email.strides.do (o1.email.strides.do [208.115.214.220])
 	by sc9-mail1b.vmware.com (Postfix) with SMTP id 0A795876C
-	for <globaladmin@testdomain.com>; Mon, 27 Feb 2012 03:13:12 -0800 (PST)
+	for <admin@testdomain.com>; Mon, 27 Feb 2012 03:13:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha1; c=relaxed; d=socialcast.com; h=date
 	:from:sender:reply-to:to:message-id:subject:mime-version
 	:content-type:content-transfer-encoding; s=smtpapi; bh=+lTRJvm87
@@ -55,7 +55,7 @@ Received: by 10.12.16.8 with SMTP id mf37.28617.4F4B65484
         Mon, 27 Feb 2012 05:13:12 -0600 (CST)
 Received: from default.socialcast.com (unknown [10.9.180.5])
 	by mi7 (SG) with ESMTP id 4f4b6548.38b5.26342f2
-	for <globaladmin@testdomain.com>; Mon, 27 Feb 2012 05:13:12 -0600 (CST)
+	for <admin@testdomain.com>; Mon, 27 Feb 2012 05:13:12 -0600 (CST)
 Received: by default.socialcast.com (Postfix, from userid 500)
 	id 366E9228810F; Mon, 27 Feb 2012 06:13:12 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=socialcast.com;
@@ -67,10 +67,10 @@ DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=socialcast.com;
 	 hh4oBZovD9RYtj7fY50M3F+m4011n433fQv/K5jI5PSAveILMKuOmAH4e6lALDMDE7
 	 1qy3aOYe5IDr4lFqzoajeecjAGyes1HkyFznQSF0=
 Date: Mon, 27 Feb 2012 06:13:11 -0500
-From: globaladmin@testdomain.com
-Sender: globaladmin@testdomain.com
-Reply-To: globaladmin@testdomain.com
-To: globaladmin@testdomain.com
+From: admin@testdomain.com
+Sender: admin@testdomain.com
+Reply-To: admin@testdomain.com
+To: admin@testdomain.com
 Subject: external image test
 Mime-Version: 1.0
 Content-Type: multipart/alternative;

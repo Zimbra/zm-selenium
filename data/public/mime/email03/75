@@ -9,19 +9,19 @@ Received: (qmail 47424 invoked by uid 500); 8 Oct 2003 17:17:17 -0000
 Mailing-List: contact xmlbeans-user-help@xml.apache.org; run by ezmlm
 Precedence: bulk
 X-No-Archive: yes
-List-Post: <mailto:globaladmin@testdomain.com>
+List-Post: <mailto:admin@testdomain.com>
 List-Help: <mailto:xmlbeans-user-help@xml.apache.org>
 List-Unsubscribe: <mailto:xmlbeans-user-unsubscribe@xml.apache.org>
 List-Subscribe: <mailto:xmlbeans-user-subscribe@xml.apache.org>
-Reply-To: globaladmin@testdomain.com
-Delivered-To: mailing list globaladmin@testdomain.com
+Reply-To: admin@testdomain.com
+Delivered-To: mailing list admin@testdomain.com
 Received: (qmail 47405 invoked from network); 8 Oct 2003 17:17:17 -0000
-To: globaladmin@testdomain.com
+To: admin@testdomain.com
 Subject: Classloader problems
 MIME-Version: 1.0
 X-Mailer: Lotus Notes Release 6.0.1 February 07, 2003
 Message-ID: <OFECD5C82E.6395ABBA-ON85256DB9.005D97EF-85256DB9.005EF6FE@vrtx.com>
-From: globaladmin@testdomain.com
+From: admin@testdomain.com
 Date: Wed, 8 Oct 2003 13:17:15 -0400
 X-Zimbra-Received: Wed, 8 Oct 2003 13:17:15 -0400
 X-MIMETrack: Serialize by Router on BOS01MAIL01/M/BOS1/VRTX(Release

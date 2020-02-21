@@ -1,6 +1,6 @@
 Date: Tue, 10 Aug 2010 07:22:15 -0700 (PDT)
-From: globaladmin@testdomain.com
-To: globaladmin@testdomain.com
+From: admin@testdomain.com
+To: admin@testdomain.com
 Subject: add to calendar using ics link
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8

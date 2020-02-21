@@ -6,19 +6,19 @@ Received: from mail.testdomain.com (LHLO
 Received: from nodoa.infagri.lan (nodoa.infagri.lan [192.168.50.4])
 	by webmail.testdomain.com (Postfix) with ESMTP id 919E1202C35B
 	for <l.andreotti@webmail.testdomain.com>; Tue, 15 Dec 2009 14:54:54 +0100 (CET)
-Resent-To: globaladmin@testdomain.com
-Resent-From: globaladmin@testdomain.com
+Resent-To: admin@testdomain.com
+Resent-From: admin@testdomain.com
 Resent-Message-Id: <B0003570366@nodoa.infagri.lan>
 Resent-Date: Tue, 15 Dec 2009 14:54:54 +0100
 Received: from mail.testdomain.com (unverified [213.171.100.43]) by testdomain.com
- (Rockliffe SMTPRA 5.3.11) with SMTP id <B0003570365@nodoa.infagri.lan> for <globaladmin@testdomain.com>;
+ (Rockliffe SMTPRA 5.3.11) with SMTP id <B0003570365@nodoa.infagri.lan> for <admin@testdomain.com>;
  Tue, 15 Dec 2009 14:54:54 +0100
 Received: from www.agrinform.it ([88.61.38.130]) by eSafe SMTP Relay 1260857651; Tue, 15 Dec 2009 14:51:57 +0100
 Received: from www.agrinform.it (localhost [127.0.0.1]) by www.agrinform.it (8.13.3/8.13.3) with ESMTP id nBFDfPWD005708;
 	 Tue, 15 Dec 2009 14:41:25 +0100
 Message-ID: <31582402.1260884485318.JavaMail.tomcat@www.agrinform.it>
 Date: Tue, 15 Dec 2009 14:41:25 +0100 (CET)
-From: globaladmin@testdomain.com
+From: admin@testdomain.com
 Subject: dal Territorio
 Mime-Version: 1.0
 Content-Type: multipart/alternative;

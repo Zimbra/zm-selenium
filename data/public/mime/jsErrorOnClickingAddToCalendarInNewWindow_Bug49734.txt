@@ -1,4 +1,4 @@
-Return-Path: globaladmin@testdomain.com
+Return-Path: admin@testdomain.com
 Received: from testdomain.com (LHLO testdomain.com) (10.18.97.160)
  by testdomain.com with LMTP; Wed, 11 Aug 2010 10:17:10 -0700 (PDT)
 Received: from localhost (localhost.localdomain [127.0.0.1])
@@ -18,8 +18,8 @@ Received: from testdomain.com (testdomain.com [10.18.97.160])
 	by testdomain.com (Postfix) with ESMTP id 66C879265C
 	for <att@testdomain.com>; Wed, 11 Aug 2010 10:17:09 -0700 (PDT)
 Date: Wed, 11 Aug 2010 10:17:09 -0700 (PDT)
-From: globaladmin@testdomain.com
-To: globaladmin@testdomain.com
+From: admin@testdomain.com
+To: admin@testdomain.com
 Message-ID: <14386466.8.1281547029321.JavaMail.root@qa60>
 In-Reply-To: <30856257.5.1281547028431.JavaMail.root@qa60>
 Subject: ics attachment from new window

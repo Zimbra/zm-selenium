@@ -10,22 +10,22 @@ Received: (qmail 24357 invoked by uid 500); 29 Sep 2003 18:51:28 -0000
 Mailing-List: contact xmlbeans-dev-help@xml.apache.org; run by ezmlm
 Precedence: bulk
 X-No-Archive: yes
-List-Post: <mailto:globaladmin@testdomain.com>
+List-Post: <mailto:admin@testdomain.com>
 List-Help: <mailto:xmlbeans-dev-help@xml.apache.org>
 List-Unsubscribe: <mailto:xmlbeans-dev-unsubscribe@xml.apache.org>
 List-Subscribe: <mailto:xmlbeans-dev-subscribe@xml.apache.org>
-Reply-To: globaladmin@testdomain.com
-Delivered-To: mailing list globaladmin@testdomain.com
+Reply-To: admin@testdomain.com
+Delivered-To: mailing list admin@testdomain.com
 Received: (qmail 24317 invoked from network); 29 Sep 2003 18:51:28 -0000
 Message-Id: <5.2.1.1.0.20030929114718.020b2e98@san-francisco.beasys.com>
 X-Sender: pcal@san-francisco.beasys.com (Unverified)
 X-Mailer: QUALCOMM Windows Eudora Version 5.2.1
 Date: Mon, 29 Sep 2003 11:47:56 -0700
 X-Zimbra-Received: Mon, 29 Sep 2003 11:47:56 -0700
-To: globaladmin@testdomain.com
-From: globaladmin@testdomain.com
+To: admin@testdomain.com
+From: admin@testdomain.com
 Subject: RE: V2 Store discussion...
-In-Reply-To: globaladmin@testdomain.com
+In-Reply-To: admin@testdomain.com
 Mime-Version: 1.0
 Content-Type: multipart/alternative; boundary="=====================_3384796==.ALT"
 X-Spam-Rating: daedalus.apache.org 1.6.2 0/1000/N
@@ -51,10 +51,10 @@ I see.  Right, good point.
 >- Eric
 >
 >-----Original Message-----
->From: globaladmin@testdomain.com
+>From: admin@testdomain.com
 >Sent: Monday, September 29, 2003 11:24 AM
->To: globaladmin@testdomain.com; globaladmin@testdomain.com; 
->globaladmin@testdomain.com
+>To: admin@testdomain.com; admin@testdomain.com; 
+>admin@testdomain.com
 >Subject: RE: V2 Store discussion...
 >
 >
@@ -92,9 +92,9 @@ I see.  Right, good point.
 >- Eric
 >
 >-----Original Message-----
->From: globaladmin@testdomain.com
+>From: admin@testdomain.com
 >Sent: Monday, September 29, 2003 9:55 AM
->To: globaladmin@testdomain.com; Eric Vasilik
+>To: admin@testdomain.com; Eric Vasilik
 >Subject: RE: V2 Store discussion...
 >
 >
@@ -109,9 +109,9 @@ I see.  Right, good point.
 >-C
 >
 > > -----Original Message-----
-> > From: globaladmin@testdomain.com
+> > From: admin@testdomain.com
 > > Sent: Monday, September 29, 2003 8:27 AM
-> > To: globaladmin@testdomain.com
+> > To: admin@testdomain.com
 > > Subject: V2 Store discussion...
 > >
 > >
@@ -173,8 +173,8 @@ I see.&nbsp; Right, good point.<br>
 From: Patrick Calahan
 [<a href="mailto:pcal@bea.com" eudora="autourl">mailto:pcal@bea.com</a>]<br>
 Sent: Monday, September 29, 2003 11:24 AM<br>
-To: globaladmin@testdomain.com; globaladmin@testdomain.com;
-globaladmin@testdomain.com<br>
+To: admin@testdomain.com; admin@testdomain.com;
+admin@testdomain.com<br>
 Subject: RE: V2 Store discussion...<br><br>
 <br>
 At 10:25 AM 9/29/2003 -0700, Eric Vasilik wrote:<br><br>
@@ -202,9 +202,9 @@ Any thoughts?&nbsp; Any confusion about this trade off?&nbsp; <br><br>
 - Eric<br><br>
 -----Original Message-----<br>
 From: Chris Fry
-[<a href="mailto:globaladmin@testdomain.com" eudora="autourl">mailto:globaladmin@testdomain.com</a>]<br>
+[<a href="mailto:admin@testdomain.com" eudora="autourl">mailto:admin@testdomain.com</a>]<br>
 Sent: Monday, September 29, 2003 9:55 AM<br>
-To: globaladmin@testdomain.com; Eric Vasilik<br>
+To: admin@testdomain.com; Eric Vasilik<br>
 Subject: RE: V2 Store discussion...<br><br>
 <br>
 I think you should be careful not to make the same mistakes that the
@@ -223,9 +223,9 @@ in WS-invocations...<br><br>
 -C<br><br>
 &gt; -----Original Message-----<br>
 &gt; From: David Bau
-[<a href="mailto:globaladmin@testdomain.com" eudora="autourl">mailto:globaladmin@testdomain.com</a>]<br>
+[<a href="mailto:admin@testdomain.com" eudora="autourl">mailto:admin@testdomain.com</a>]<br>
 &gt; Sent: Monday, September 29, 2003 8:27 AM<br>
-&gt; To: globaladmin@testdomain.com<br>
+&gt; To: admin@testdomain.com<br>
 &gt; Subject: V2 Store discussion...<br>
 &gt;<br>
 &gt;<br>
