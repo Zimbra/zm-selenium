@@ -1497,7 +1497,7 @@ public class ExecuteHarnessMain {
 			// Ajax project settings
 			} else if (project.contains("ajax")) {
 
-				// Initially disable chat and drive zimlets on COS if they are enabled
+				/* Initially disable chat and drive zimlets on COS if they are enabled
 				ArrayList<String> availableZimlets = CommandLineUtility.runCommandOnZimbraServer(
 						ConfigProperties.getStringProperty("server.host"),
 						"zmprov -l gc default zimbraZimletAvailableZimlets | grep zimbraZimletAvailableZimlets | cut -c 32-");
@@ -1522,7 +1522,7 @@ public class ExecuteHarnessMain {
 					for (int i = 0; i < storeServers.size(); i++) {
 						CommandLineUtility.runCommandOnZimbraServer(storeServers.get(i), "zmprov fc -a all");
 					}
-				}
+				}*/
 			}
 		}
 	}

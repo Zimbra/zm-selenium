@@ -89,18 +89,13 @@ public class ZimbraResource extends ZimbraAccount {
 	}
 
 	public ZimbraAccount provision() {
-		try {
+		ZimbraDomain domain = new ZimbraDomain(EmailAddress.split("@")[1]);
 
-			// Check if the account already exists
-			// If yes, don't provision again
-			//
+		try {
 			if (exists()) {
 				logger.info(EmailAddress + " already exists.  Not provisioning again.");
 				return (this);
 			}
-
-			// Make sure the domain exists
-			ZimbraDomain domain = new ZimbraDomain(EmailAddress.split("@")[1]);
 			domain.provision();
 
 			Map<String, String> attrs = null;
@@ -140,7 +135,6 @@ public class ZimbraResource extends ZimbraAccount {
 				}
 
 				throw new HarnessException("Unknown error when provisioning account");
-
 			}
 
 			// Set the account settings based on the response
@@ -148,14 +142,19 @@ public class ZimbraResource extends ZimbraAccount {
 			ZimbraMailHost = ZimbraAdminAccount.GlobalAdmin()
 					.soapSelectValue("//admin:calresource/admin:a[@n='zimbraMailHost']", null);
 
-			// Sync the GAL to put the account into the list
-			domain.syncGalAccount();
-
 		} catch (HarnessException e) {
 			logger.error("Unable to provision account: " + EmailAddress, e);
 			ZimbraId = null;
 			ZimbraMailHost = null;
 		}
+
+		// Sync the GAL to put the account into the list
+		try {
+			domain.syncGalAccount();
+		} catch (HarnessException e) {
+			logger.error("Unable to sync GAL", e);
+		}
+
 		return (this);
 	}
 }

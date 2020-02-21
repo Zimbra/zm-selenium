@@ -26,6 +26,7 @@ import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
+import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.projects.ajax.core.SetGroupMailByMessagePreference;
@@ -168,6 +169,7 @@ public class ForwardMailWithAttachment extends SetGroupMailByMessagePreference {
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_FORWARD);
 
 		// Remove the attachment
+		SleepUtil.sleepLong();
 		mailform.zRemoveAttachment(attachmentName);
 
 		// Fill out the form with the data
@@ -215,6 +217,7 @@ public class ForwardMailWithAttachment extends SetGroupMailByMessagePreference {
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_FORWARD);
 
 		// Remove one of the attachments
+		SleepUtil.sleepLong();
 		mailform.zRemoveAttachment(attachmentName1);
 
 		// Cancel the forward compose

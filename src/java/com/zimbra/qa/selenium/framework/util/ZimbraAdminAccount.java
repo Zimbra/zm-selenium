@@ -36,22 +36,10 @@ public class ZimbraAdminAccount extends ZimbraAccount {
 	 * CreateAccountRequest zimbraIsAdminAccount is set to TRUE
 	 */
 	public ZimbraAdminAccount provisionDA(String email) {
+		ZimbraDomain domain = new ZimbraDomain(EmailAddress.split("@")[1]);
 
 		try {
-
-			// Make sure domain exists
-			ZimbraDomain domain = new ZimbraDomain(EmailAddress.split("@")[1]);
 			domain.provision();
-
-			// Build the list of default preferences
-			Map<String, String> attributes = new HashMap<String, String>();
-			attributes.put("zimbraPrefAdminConsoleWarnOnExit", "FALSE");
-
-			// Add the display name
-			StringBuilder prefs = new StringBuilder();
-			for (Map.Entry<String, String> entry : attributes.entrySet()) {
-				prefs.append(String.format("<a n='%s'>%s</a>", entry.getKey(), entry.getValue()));
-			}
 
 			// Create a new account in the Admin Console using SOAP
 			AccountItem account = new AccountItem(email, ConfigProperties.getStringProperty("testdomain"));
@@ -68,14 +56,11 @@ public class ZimbraAdminAccount extends ZimbraAccount {
 
 				Element[] soapFault = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNodes("//soap:Fault");
 				if (soapFault != null && soapFault.length > 0) {
-
 					String error = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectValue("//zimbra:Code", null);
 					throw new HarnessException("Unable to create account: " + error);
-
 				}
 
 				throw new HarnessException("Unknown error when provisioning account");
-
 			}
 
 			// Set the account settings based on the response
@@ -105,16 +90,19 @@ public class ZimbraAdminAccount extends ZimbraAccount {
 						.soapSend("<AddAccountLoggerRequest xmlns='urn:zimbraAdmin'>" + "<account by='name'>"
 								+ EmailAddress + "</account>" + "<logger category='zimbra.soap' level='trace'/>"
 								+ "</AddAccountLoggerRequest>");
-
 			}
-
-			// Sync the GAL to put the account into the list
-			domain.syncGalAccount();
 
 		} catch (HarnessException e) {
 			logger.error("Unable to provision account: " + EmailAddress);
 			ZimbraId = null;
 			ZimbraMailHost = null;
+		}
+
+		// Sync the GAL to put the account into the list
+		try {
+			domain.syncGalAccount();
+		} catch (HarnessException e) {
+			logger.error("Unable to sync GAL", e);
 		}
 
 		return (this);
@@ -125,16 +113,14 @@ public class ZimbraAdminAccount extends ZimbraAccount {
 	 * zimbraIsAdminAccount is set to TRUE
 	 */
 	public ZimbraAccount provision() {
+		ZimbraDomain domain = new ZimbraDomain(EmailAddress.split("@")[1]);
 
 		try {
-
 			if (exists()) {
 				logger.info(EmailAddress + " already exists.  Not provisioning again.");
 				return (this);
 			}
 
-			// Make sure domain exists
-			ZimbraDomain domain = new ZimbraDomain(EmailAddress.split("@")[1]);
 			domain.provision();
 
 			// Build the list of default preferences
@@ -179,16 +165,19 @@ public class ZimbraAdminAccount extends ZimbraAccount {
 						.soapSend("<AddAccountLoggerRequest xmlns='urn:zimbraAdmin'>" + "<account by='name'>"
 								+ EmailAddress + "</account>" + "<logger category='zimbra.soap' level='trace'/>"
 								+ "</AddAccountLoggerRequest>");
-
 			}
-
-			// Sync the GAL to put the account into the list
-			domain.syncGalAccount();
 
 		} catch (HarnessException e) {
 			logger.error("Unable to provision account: " + EmailAddress);
 			ZimbraId = null;
 			ZimbraMailHost = null;
+		}
+
+		// Sync the GAL to put the account into the list
+		try {
+			domain.syncGalAccount();
+		} catch (HarnessException e) {
+			logger.error("Unable to sync GAL", e);
 		}
 
 		return (this);
