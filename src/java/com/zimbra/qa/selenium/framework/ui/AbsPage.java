@@ -229,9 +229,9 @@ public abstract class AbsPage extends AbsSeleniumObject {
 				} else {
 					for (char c : characters.toCharArray()) {
 						try {
-							Thread.sleep(50);
+							Thread.sleep(25);
 							type(c);
-							Thread.sleep(50);
+							Thread.sleep(25);
 						} catch (Exception e) {
 							logger.warn(e);
 						}
@@ -245,9 +245,9 @@ public abstract class AbsPage extends AbsSeleniumObject {
 				logger.info("type(" + characters + ")");
 				for (char c : characters.toCharArray()) {
 					try {
-						Thread.sleep(50);
+						Thread.sleep(25);
 						type(c);
-						Thread.sleep(50);
+						Thread.sleep(25);
 					} catch (Exception e) {
 						logger.warn(e);
 					}
