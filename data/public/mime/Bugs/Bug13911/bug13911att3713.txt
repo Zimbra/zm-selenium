@@ -27,13 +27,13 @@ Received: from ?192.168.0.5? ( [83.95.130.147])
         by mx.google.com with ESMTP id s7sm657909uge.2007.01.18.01.00.55;
         Thu, 18 Jan 2007 01:00:59 -0800 (PST)
 Mime-Version: 1.0 (Apple Message framework v752.3)
-To: globaladmin@testdomain.com
+To: admin@testdomain.com
 Message-Id: <81D27E3F-0881-4A14-B793-462E1D4C6CF6@peytz.dk>
 Content-Type: multipart/mixed; boundary=Apple-Mail-7--322391395
 Subject: subject13010064065623
 Date: Thu, 18 Jan 2007 10:00:53 +0100
 X-Mailer: Apple Mail (2.752.3)
-From: globaladmin@testdomain.com
+From: admin@testdomain.com
 
 
 --Apple-Mail-7--322391395

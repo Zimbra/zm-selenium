@@ -10,15 +10,15 @@ Received: (qmail 46671 invoked by uid 500); 29 Sep 2003 17:03:24 -0000
 Mailing-List: contact xmlbeans-dev-help@xml.apache.org; run by ezmlm
 Precedence: bulk
 X-No-Archive: yes
-List-Post: <mailto:globaladmin@testdomain.com>
+List-Post: <mailto:admin@testdomain.com>
 List-Help: <mailto:xmlbeans-dev-help@xml.apache.org>
 List-Unsubscribe: <mailto:xmlbeans-dev-unsubscribe@xml.apache.org>
 List-Subscribe: <mailto:xmlbeans-dev-subscribe@xml.apache.org>
-Delivered-To: mailing list globaladmin@testdomain.com
+Delivered-To: mailing list admin@testdomain.com
 Received: (qmail 46653 invoked from network); 29 Sep 2003 17:03:23 -0000
-Reply-To: globaladmin@testdomain.com
-From: globaladmin@testdomain.com
-To: globaladmin@testdomain.com
+Reply-To: admin@testdomain.com
+From: admin@testdomain.com
+To: admin@testdomain.com
 Subject: RE: V2 Store discussion...
 Date: Mon, 29 Sep 2003 09:54:39 -0700
 X-Zimbra-Received: Mon, 29 Sep 2003 09:54:39 -0700
@@ -30,7 +30,7 @@ X-Priority: 3 (Normal)
 X-MSMail-Priority: Normal
 X-Mailer: Microsoft Outlook CWS, Build 9.0.2416 (9.0.2911.0)
 X-MimeOLE: Produced By Microsoft MimeOLE V6.00.2800.1106
-In-Reply-To: globaladmin@testdomain.com
+In-Reply-To: admin@testdomain.com
 Importance: Normal
 X-Spam-Rating: daedalus.apache.org 1.6.2 0/1000/N
 X-Evolution-Source: imap://smith@smith.pobox.stanford.edu/
@@ -47,9 +47,9 @@ in WS-invocations...
 -C
 
 > -----Original Message-----
-> From: globaladmin@testdomain.com
+> From: admin@testdomain.com
 > Sent: Monday, September 29, 2003 8:27 AM
-> To: globaladmin@testdomain.com
+> To: admin@testdomain.com
 > Subject: V2 Store discussion...
 >
 >

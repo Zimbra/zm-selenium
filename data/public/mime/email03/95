@@ -10,12 +10,12 @@ Received: (qmail 79483 invoked by uid 500); 18 Nov 2003 18:24:54 -0000
 Mailing-List: contact xmlbeans-dev-help@xml.apache.org; run by ezmlm
 Precedence: bulk
 X-No-Archive: yes
-List-Post: <mailto:globaladmin@testdomain.com>
+List-Post: <mailto:admin@testdomain.com>
 List-Help: <mailto:xmlbeans-dev-help@xml.apache.org>
 List-Unsubscribe: <mailto:xmlbeans-dev-unsubscribe@xml.apache.org>
 List-Subscribe: <mailto:xmlbeans-dev-subscribe@xml.apache.org>
-Reply-To: globaladmin@testdomain.com
-Delivered-To: mailing list globaladmin@testdomain.com
+Reply-To: admin@testdomain.com
+Delivered-To: mailing list admin@testdomain.com
 Received: (qmail 79469 invoked from network); 18 Nov 2003 18:24:54 -0000
 content-class: urn:content-classes:message
 Subject: RE: Failed to build with "network downloads disabled" error
@@ -31,8 +31,8 @@ X-MS-TNEF-Correlator:
 Thread-Topic: Failed to build with "network downloads disabled" error
 	message.
 Thread-Index: AcOuAPi1kRB+uVAYQHCjlXVIOFoYTAAACWag
-From: globaladmin@testdomain.com
-To: globaladmin@testdomain.com
+From: admin@testdomain.com
+To: admin@testdomain.com
 X-OriginalArrivalTime: 18 Nov 2003 18:24:59.0311 (UTC)
 	FILETIME=[463D03F0:01C3AE01]
 X-Spam-Rating: daedalus.apache.org 1.6.2 0/1000/N
@@ -45,9 +45,9 @@ on target namespace which, in some cases, can blow past this limit.  You ma=
 y be experiencing this.
 
 -----Original Message-----
-From: globaladmin@testdomain.com
+From: admin@testdomain.com
 Sent: Tuesday, November 18, 2003 10:20 AM
-To: globaladmin@testdomain.com
+To: admin@testdomain.com
 Subject: Re: Failed to build with "network downloads disabled" error
 message.
 

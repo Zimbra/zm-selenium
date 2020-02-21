@@ -9,12 +9,12 @@ Received: (qmail 68452 invoked by uid 500); 6 Nov 2003 18:01:16 -0000
 Mailing-List: contact xmlbeans-user-help@xml.apache.org; run by ezmlm
 Precedence: bulk
 X-No-Archive: yes
-List-Post: <mailto:globaladmin@testdomain.com>
+List-Post: <mailto:admin@testdomain.com>
 List-Help: <mailto:xmlbeans-user-help@xml.apache.org>
 List-Unsubscribe: <mailto:xmlbeans-user-unsubscribe@xml.apache.org>
 List-Subscribe: <mailto:xmlbeans-user-subscribe@xml.apache.org>
-Reply-To: globaladmin@testdomain.com
-Delivered-To: mailing list globaladmin@testdomain.com
+Reply-To: admin@testdomain.com
+Delivered-To: mailing list admin@testdomain.com
 Received: (qmail 68421 invoked from network); 6 Nov 2003 18:01:16 -0000
 X-MimeOLE: Produced By Microsoft Exchange V6.0.6375.0
 content-class: urn:content-classes:message
@@ -28,8 +28,8 @@ X-MS-Has-Attach:
 X-MS-TNEF-Correlator: 
 Thread-Topic: Official release yet?
 Thread-Index: AcOj9WAq9yphtrGeTPycgjKg+rWC7wAlMavA
-From: globaladmin@testdomain.com
-To: globaladmin@testdomain.com
+From: admin@testdomain.com
+To: admin@testdomain.com
 X-OriginalArrivalTime: 06 Nov 2003 18:01:19.0897 (UTC)
 	FILETIME=[FB3EA090:01C3A48F]
 X-Spam-Rating: daedalus.apache.org 1.6.2 0/1000/N
@@ -108,9 +108,9 @@ rem
 (Dave Remy, other job: BEA XMLBeans dev lead)
 
 > -----Original Message-----
-> From: globaladmin@testdomain.com
+> From: admin@testdomain.com
 > Sent: Wednesday, November 05, 2003 2:25 PM
-> To: globaladmin@testdomain.com
+> To: admin@testdomain.com
 > Subject: Official release yet?
 >=20
 >=20

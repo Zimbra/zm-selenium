@@ -14,8 +14,8 @@ List-Post: <mailto:xmlbeans-cvs@xml.apache.org>
 List-Help: <mailto:xmlbeans-cvs-help@xml.apache.org>
 List-Unsubscribe: <mailto:xmlbeans-cvs-unsubscribe@xml.apache.org>
 List-Subscribe: <mailto:xmlbeans-cvs-subscribe@xml.apache.org>
-Reply-To: globaladmin@testdomain.com
-Delivered-To: globaladmin@testdomain.com
+Reply-To: admin@testdomain.com
+Delivered-To: admin@testdomain.com
 Received: (qmail 64992 invoked from network); 30 Sep 2003 23:18:01 -0000
 Received: from unknown (HELO minotaur.apache.org) (209.237.227.194) by
 	daedalus.apache.org with SMTP; 30 Sep 2003 23:18:01 -0000
@@ -23,8 +23,8 @@ Received: (qmail 53235 invoked by uid 1739); 30 Sep 2003 23:18:15 -0000
 Date: 30 Sep 2003 23:18:15 -0000
 X-Zimbra-Received: 30 Sep 2003 23:18:15 -0000
 Message-ID: <20030930231815.53234.qmail@minotaur.apache.org>
-From: globaladmin@testdomain.com
-To: globaladmin@testdomain.com
+From: admin@testdomain.com
+To: admin@testdomain.com
 Subject: cvs commit: xml-xmlbeans/v2/test/src/erictest EricTest.java
 X-Spam-Rating: daedalus.apache.org 1.6.2 0/1000/N
 Content-Type: text/plain; CHARSET=us-ascii

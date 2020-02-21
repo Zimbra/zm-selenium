@@ -1,5 +1,5 @@
-From: globaladmin@testdomain.com
-To: globaladmin@testdomain.com
+From: admin@testdomain.com
+To: admin@testdomain.com
 Subject: Re: subject13690880312762 Account moves - good news!
 Importance: Normal
 MIME-Version: 1.0
@@ -22,10 +22,10 @@ Sent from my Verizon Wireless Phone
 
 
 ----- Reply message -----
-From: globaladmin@testdomain.com
+From: admin@testdomain.com
 Date: Fri, Dec 9, 2011 17:51
 Subject: Account moves - good news!
-To: globaladmin@testdomain.com
+To: admin@testdomain.com
 
 I just moved another account to each mail host and I am NOT seeing the issue with the folder list.  
 It is also worth noting that I did not purge the originals (Justin had suggested this could be a memcache issue)

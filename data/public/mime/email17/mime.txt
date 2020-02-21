@@ -1,6 +1,6 @@
 Date: Sat, 20 Feb 2016 22:48:29 -0600 (CST)
-From: globaladmin@testdomain.com
-To: globaladmin@testdomain.com
+From: admin@testdomain.com
+To: admin@testdomain.com
 Subject: subjectAttachment
 MIME-Version: 1.0
 Content-Type: multipart/mixed; 

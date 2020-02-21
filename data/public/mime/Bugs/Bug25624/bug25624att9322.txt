@@ -29,8 +29,8 @@ DomainKey-Signature: a=rsa-sha1; s=serpent; d=testdomain.com; c=nofws; q=dns;
 	h=from:to:subject:date:message-id:mime-version:content-type:
 	content-transfer-encoding:x-mailer:x-mimeole:thread-index;
 	b=uZw13Cast6fDmQxVYl4wjU7u4vyPZBphGfp0Spat14/ACeRZaDVdrZpt8Wm7VdvQ
-From: globaladmin@testdomain.com
-To: globaladmin@testdomain.com
+From: admin@testdomain.com
+To: admin@testdomain.com
 Subject: Accepted: subject13001430504373
 Date: Fri, 7 Mar 2008 14:29:53 -0800
 Message-ID: <00d501c880a2$c3eee610$d41c490a@ds.corp.testdomain.com>

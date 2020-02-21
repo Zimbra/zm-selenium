@@ -1,5 +1,5 @@
-From: globaladmin@testdomain.com
-To: globaladmin@testdomain.com
+From: admin@testdomain.com
+To: admin@testdomain.com
 References: <000001c8002a$743b2a00$fa810a0a@testdomain.com> <1139275496.182791190831291532.JavaMail.root@dogfood.zimbra.com>
 In-Reply-To: <1139275496.182791190831291532.JavaMail.root@dogfood.zimbra.com>
 Subject: Bug39246
@@ -43,9 +43,9 @@ Is the P4 sync server up and running in SF?
 
 
 
-From: globaladmin@testdomain.com
+From: admin@testdomain.com
 Sent: Wednesday, September 26, 2007 11:28 AM
-To: globaladmin@testdomain.com
+To: admin@testdomain.com
 Subject: QTP update:
 
 
@@ -84,8 +84,8 @@ on a btn but the btn is Disabled.
 
 
 ----- Original Message -----
-From: globaladmin@testdomain.com
-To: globaladmin@testdomain.com
+From: admin@testdomain.com
+To: admin@testdomain.com
 Sent: Wednesday, September 26, 2007 3:46:11 AM (GMT-0800) 
 America/Los_Angeles
 Subject: QTPResult_FULL_FF2.0(main 5.0.0_RC1.1_1532.RHEL4.NETWORK qa32 
@@ -2741,8 +2741,8 @@ btn but the btn is Disabled.<br>
 <br>
 <br>
 ----- Original Message -----<br>
-From: globaladmin@testdomain.com<br>
-To: globaladmin@testdomain.com<br>
+From: admin@testdomain.com<br>
+To: admin@testdomain.com<br>
 Sent: Wednesday, September 26, 2007 3:46:11 AM (GMT-0800) =
 America/Los_Angeles<br>
 Subject: QTPResult_FULL_FF2.0(main 5.0.0_RC1.1_1532.RHEL4.NETWORK qa32 =

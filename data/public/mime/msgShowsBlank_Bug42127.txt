@@ -23,8 +23,8 @@ Received: from testdomain.com ([127.0.0.1])
 Received: from corp.zimbra.com (mail-archive.zimbra.com [207.126.229.142])
 	by testdomain.com (Postfix) with ESMTP id 1835778401
 	for <candace@testdomain.com>; Mon, 26 Oct 2009 16:41:47 -0700 (PDT)
-From: globaladmin@testdomain.com
-To: globaladmin@testdomain.com
+From: admin@testdomain.com
+To: admin@testdomain.com
 Date: Mon, 26 Oct 2009 16:41:46 -0700 (PDT)
 Subject: Fwd: Bad Link to 6.0 User Guide on Zimbra Site
 In-Reply-To: <63722BBB75A5AC489D42D6EEFBF7B3FED4A4C8@ASHS00053.amers.itestdomain.com>
@@ -66,7 +66,7 @@ Content-Type: text/html; charset=us-ascii
 style="font-family: Times New Roman; font-size: 12pt; color: rgb(0, 0, 0);"
 ><span><br><br><div><div>Mark Nichols<br>Yahoo!/Zimbra Professional
 Services</div></div><br></span><br>----- Forwarded Message -----<br>From:
-"Julie Watson" &lt;jawatson@testdomain.com&gt;<br>To: globaladmin@testdomain.com<br><br
+"Julie Watson" &lt;jawatson@testdomain.com&gt;<br>To: admin@testdomain.com<br><br
 >Sent: Monday, October 26, 2009 2:20:19 PM<br>Subject: Bad Link to 6.0 User
 Guide on Zimbra Site<br><br>
 

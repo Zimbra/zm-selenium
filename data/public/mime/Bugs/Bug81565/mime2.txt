@@ -1,6 +1,6 @@
 Date: Wed, 8 May 2013 13:47:18 -0700 (PDT)
-From: globaladmin@testdomain.com
-To: globaladmin@testdomain.com
+From: admin@testdomain.com
+To: admin@testdomain.com
 Subject: Bug81565B
 MIME-Version: 1.0
 Content-Type: multipart/mixed; 
@@ -19,12 +19,12 @@ Content-Transfer-Encoding: 7bit
 The following is a new meeting request:
 
 Subject: Bug81565B 
-Organizer: globaladmin@testdomain.com 
+Organizer: admin@testdomain.com 
 
 Location: Location 
 Time: Sunday, May 8, 2016, 5:00:00 PM - 6:00:00 PM GMT -08:00 US/Canada Pacific
  
-Invitees: globaladmin@testdomain.com 
+Invitees: admin@testdomain.com 
 
 
 *~*~*~*~*~*~*~*~*~*
@@ -60,8 +60,8 @@ UID:2297d493-99aa-40ce-8707-8fe1f60f0def
 SUMMARY:Bug81565B
 LOCATION:Location
 ATTENDEE;CN=vmwen2;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;RSVP=TRUE:mail
- to:globaladmin@testdomain.com
-ORGANIZER:mailto:globaladmin@testdomain.com
+ to:admin@testdomain.com
+ORGANIZER:mailto:admin@testdomain.com
 DTSTART;TZID="America/Los_Angeles":20160508T170000
 DTEND;TZID="America/Los_Angeles":20160508T180000
 STATUS:CONFIRMED
@@ -72,9 +72,9 @@ LAST-MODIFIED:20130508T204718Z
 DTSTAMP:20130508T204718Z
 SEQUENCE:0
 DESCRIPTION:The following is a new meeting request:\n\nSubject: Bug81565B \n
- Organizer: globaladmin@testdomain.com \n\nLocation: Location \nTime: Sund
+ Organizer: admin@testdomain.com \n\nLocation: Location \nTime: Sund
  ay\, May 8\, 2016\, 5:00:00 PM - 6:00:00 PM GMT -08:00 US/Canada Pacific\n \
- nInvitees: globaladmin@testdomain.com \n\n\n*~*~*~*~*~*~*~*~*~*\n\nConten
+ nInvitees: admin@testdomain.com \n\n\n*~*~*~*~*~*~*~*~*~*\n\nConten
  t
 BEGIN:VALARM
 ACTION:DISPLAY

@@ -9,12 +9,12 @@ Received: (qmail 43300 invoked by uid 500); 21 Oct 2003 16:06:45 -0000
 Mailing-List: contact xmlbeans-dev-help@xml.apache.org; run by ezmlm
 Precedence: bulk
 X-No-Archive: yes
-List-Post: <mailto:globaladmin@testdomain.com>
+List-Post: <mailto:admin@testdomain.com>
 List-Help: <mailto:xmlbeans-dev-help@xml.apache.org>
 List-Unsubscribe: <mailto:xmlbeans-dev-unsubscribe@xml.apache.org>
 List-Subscribe: <mailto:xmlbeans-dev-subscribe@xml.apache.org>
-Reply-To: globaladmin@testdomain.com
-Delivered-To: mailing list globaladmin@testdomain.com
+Reply-To: admin@testdomain.com
+Delivered-To: mailing list admin@testdomain.com
 Received: (qmail 43173 invoked from network); 21 Oct 2003 16:06:44 -0000
 X-MIMEOLE: Produced By Microsoft Exchange V6.0.6487.1
 content-class: urn:content-classes:message
@@ -29,8 +29,8 @@ X-MS-Has-Attach:
 X-MS-TNEF-Correlator: 
 Thread-Topic: Feature Request: Serialization
 Thread-Index: AcOX57d/YJEy0WgrQDO8kSPXRyy+ewABM2xg
-From: globaladmin@testdomain.com
-To: globaladmin@testdomain.com
+From: admin@testdomain.com
+To: admin@testdomain.com
 X-Spam-Rating: daedalus.apache.org 1.6.2 0/1000/N
 X-Evolution-Source: imap://smith@smith.pobox.stanford.edu/
 X-Evolution: 00000026-0010
@@ -58,9 +58,9 @@ j.rebhan@web.de
 
 
  -----Original Message-----
-From: globaladmin@testdomain.com=20
+From: admin@testdomain.com=20
 Sent:	ter=E7a-feira, 21 de Outubro de 2003 16:26
-To:	globaladmin@testdomain.com
+To:	admin@testdomain.com
 Subject:	Re: Feature Request: Serialization
 
 Hi Jochen -
@@ -78,8 +78,8 @@ David
 
 
 ----- Original Message -----=20
-From: globaladmin@testdomain.com
-To: globaladmin@testdomain.com
+From: admin@testdomain.com
+To: admin@testdomain.com
 Sent: Tuesday, October 21, 2003 10:04 AM
 Subject: [xmlbeans-dev] Feature Request: Serialization
 

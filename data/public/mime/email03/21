@@ -8,12 +8,12 @@ Received: from mail.apache.org (daedalus.apache.org [208.185.179.12]) by
 Received: (qmail 42154 invoked by uid 500); 2 Dec 2003 23:53:38 -0000
 Mailing-List: contact xmlbeans-user-help@xml.apache.org; run by ezmlm
 Precedence: bulk
-List-Post: <mailto:globaladmin@testdomain.com>
+List-Post: <mailto:admin@testdomain.com>
 List-Help: <mailto:xmlbeans-user-help@xml.apache.org>
 List-Unsubscribe: <mailto:xmlbeans-user-unsubscribe@xml.apache.org>
 List-Subscribe: <mailto:xmlbeans-user-subscribe@xml.apache.org>
-Reply-To: globaladmin@testdomain.com
-Delivered-To: mailing list globaladmin@testdomain.com
+Reply-To: admin@testdomain.com
+Delivered-To: mailing list admin@testdomain.com
 Received: (qmail 42141 invoked from network); 2 Dec 2003 23:53:37 -0000
 X-MimeOLE: Produced By Microsoft Exchange V6.5.6944.0
 Content-class: urn:content-classes:message
@@ -30,8 +30,8 @@ X-MS-TNEF-Correlator:
 Thread-Topic: java.lang.UnsupportedOperationException: This operation
 	requires xqrl.jar
 Thread-Index: AcO5L1p1SbwNauYyR4+V6oufZRZEMA==
-From: globaladmin@testdomain.com
-To: globaladmin@testdomain.com
+From: admin@testdomain.com
+To: admin@testdomain.com
 X-Spam-Rating: daedalus.apache.org 1.6.2 0/1000/N
 X-Evolution-Source: imap://smith@smith.pobox.stanford.edu/
 X-Evolution: 00000015-0010

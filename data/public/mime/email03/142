@@ -9,16 +9,16 @@ Received: (qmail 65751 invoked by uid 500); 2 Oct 2003 19:46:51 -0000
 Mailing-List: contact xmlbeans-dev-help@xml.apache.org; run by ezmlm
 Precedence: bulk
 X-No-Archive: yes
-List-Post: <mailto:globaladmin@testdomain.com>
+List-Post: <mailto:admin@testdomain.com>
 List-Help: <mailto:xmlbeans-dev-help@xml.apache.org>
 List-Unsubscribe: <mailto:xmlbeans-dev-unsubscribe@xml.apache.org>
 List-Subscribe: <mailto:xmlbeans-dev-subscribe@xml.apache.org>
-Reply-To: globaladmin@testdomain.com
-Delivered-To: mailing list globaladmin@testdomain.com
+Reply-To: admin@testdomain.com
+Delivered-To: mailing list admin@testdomain.com
 Received: (qmail 65738 invoked from network); 2 Oct 2003 19:46:51 -0000
 Message-ID: <00f201c3891d$eda75810$0fa8a8c0@lightbox>
-From: globaladmin@testdomain.com
-To: globaladmin@testdomain.com
+From: admin@testdomain.com
+To: admin@testdomain.com
 References: <sf7c27f2.095@corp-gw.mantech.com>
 Subject: Re: Source Build Problem
 Date: Thu, 2 Oct 2003 15:46:51 -0400

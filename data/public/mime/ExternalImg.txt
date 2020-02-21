@@ -20,8 +20,8 @@ Received: from z54.puneqa.lab (z54.puneqa.lab [10.117.82.54])
 	by z54.puneqa.lab (Postfix) with ESMTP id CECC6204115
 	for <girish1@z54.puneqa.lab>; Thu, 21 Apr 2011 16:14:30 +0530 (IST)
 Date: Thu, 21 Apr 2011 16:14:29 +0530 (IST)
-From: globaladmin@testdomain.com
-To: globaladmin@testdomain.com
+From: admin@testdomain.com
+To: admin@testdomain.com
 Subject: TestTrustedAddress
 Content-Type: multipart/alternative;
  boundary="=_32bbf761-05c7-4906-addb-d192adb12f68"

@@ -1,6 +1,6 @@
 Date: Thu, 08 Sep 2011 10:16:46 -0700 (PDT)
-From: globaladmin@testdomain.com
-To: globaladmin@testdomain.com
+From: admin@testdomain.com
+To: admin@testdomain.com
 Subject: <u><i> subject13197565510464 </i></u>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 7bit

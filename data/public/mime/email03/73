@@ -10,17 +10,17 @@ Received: (qmail 62889 invoked by uid 500); 19 Sep 2003 00:21:20 -0000
 Mailing-List: contact xmlbeans-dev-help@xml.apache.org; run by ezmlm
 Precedence: bulk
 X-No-Archive: yes
-List-Post: <mailto:globaladmin@testdomain.com>
+List-Post: <mailto:admin@testdomain.com>
 List-Help: <mailto:xmlbeans-dev-help@xml.apache.org>
 List-Unsubscribe: <mailto:xmlbeans-dev-unsubscribe@xml.apache.org>
 List-Subscribe: <mailto:xmlbeans-dev-subscribe@xml.apache.org>
-Reply-To: globaladmin@testdomain.com
-Delivered-To: mailing list globaladmin@testdomain.com
+Reply-To: admin@testdomain.com
+Delivered-To: mailing list admin@testdomain.com
 Received: (qmail 62874 invoked from network); 19 Sep 2003 00:21:19 -0000
 Date: Fri, 19 Sep 2003 09:26:06 +0900
 X-Zimbra-Received: Fri, 19 Sep 2003 09:26:06 +0900
-From: globaladmin@testdomain.com
-To: globaladmin@testdomain.com
+From: admin@testdomain.com
+To: admin@testdomain.com
 Subject: Re: Getting an XMLBeans distribution onto a download site somewhere
 In-Reply-To: <017301c37e40$9be37e10$d41e11ac@lightbox>
 References: <20030919084349.B9A0.TETSUYA@apache.org>
@@ -37,7 +37,7 @@ X-Evolution: 00000049-0010
 
 On Thu, 18 Sep 2003 19:57:25 -0400
 (Subject: Re: Getting an XMLBeans distribution onto a download site somewhere)
-"David Bau" <globaladmin@testdomain.com> wrote:
+"David Bau" <admin@testdomain.com> wrote:
 
 > imho I like the punctuation between 1 and the following number, e.g., 1-0 or
 > 1_0, since eventually we'll get into the 17s and 18's I'm sure.  I don't

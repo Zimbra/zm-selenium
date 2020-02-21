@@ -1,10 +1,10 @@
 Return-Path: from13011239916873@testdomain.com
 Resent-Date: Tue, 30 Aug 2011 19:30:06 -0700 (PDT)
 Resent-From: resentfrom13016943216873@testdomain.com
-Resent-To: globaladmin@testdomain.com
+Resent-To: admin@testdomain.com
 Date: Mon, 29 Aug 2011 16:10:42 -0700 (PDT)
-From: globaladmin@testdomain.com
-To: globaladmin@testdomain.com
+From: admin@testdomain.com
+To: admin@testdomain.com
 Subject: subject13147509564213
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 7bit

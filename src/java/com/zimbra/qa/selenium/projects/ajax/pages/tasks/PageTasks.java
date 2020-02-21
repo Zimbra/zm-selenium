@@ -243,9 +243,12 @@ public class PageTasks extends AbsTab {
 
 		} else if (action == Action.A_DOUBLECLICK) {
 
-			// double-click on the item
+			// Double-click on the item
 			this.sDoubleClick(itemLocator);
-			page = new FormTaskNew(this.MyApplication);
+			
+			if (!subject.contains("view shared item")) {
+				page = new FormTaskNew(this.MyApplication);
+			}
 
 		} else if (action == Action.A_MAIL_UNCHECKBOX) {
 

@@ -19,7 +19,7 @@ Received: by 10.35.22.17 with SMTP id z17mr13692098pyi;
 Received: by 10.35.9.5 with HTTP; Thu, 27 Jul 2006 13:49:44 -0700 (PDT)
 Message-ID: <1b5a348d06sdg072713@mail.gmail.com>
 Date: Thu, 27 Jul 2006 17:49:44 -0300
-To: globaladmin@testdomain.com
+To: admin@testdomain.com
 Subject: Re: =?ISO-8859-1?Q?Encoding_test_-_ISO-8?=
  =?ISO-8859-1?Q?859-1_=E1=E1=E1_=E9=E9=E9_=ED=ED=ED_=E7=E7=E7?=
 MIME-Version: 1.0

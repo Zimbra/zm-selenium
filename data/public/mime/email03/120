@@ -8,16 +8,16 @@ Received: from mail.apache.org (daedalus.apache.org [208.185.179.12]) by
 Received: (qmail 6300 invoked by uid 500); 4 Dec 2003 21:31:18 -0000
 Mailing-List: contact xmlbeans-user-help@xml.apache.org; run by ezmlm
 Precedence: bulk
-List-Post: <mailto:globaladmin@testdomain.com>
+List-Post: <mailto:admin@testdomain.com>
 List-Help: <mailto:xmlbeans-user-help@xml.apache.org>
 List-Unsubscribe: <mailto:xmlbeans-user-unsubscribe@xml.apache.org>
 List-Subscribe: <mailto:xmlbeans-user-subscribe@xml.apache.org>
-Reply-To: globaladmin@testdomain.com
-Delivered-To: mailing list globaladmin@testdomain.com
+Reply-To: admin@testdomain.com
+Delivered-To: mailing list admin@testdomain.com
 Received: (qmail 6287 invoked from network); 4 Dec 2003 21:31:18 -0000
 Message-ID: <015a01c3baad$e640c9a0$0fa8a8c0@lightbox>
-From: globaladmin@testdomain.com
-To: globaladmin@testdomain.com
+From: admin@testdomain.com
+To: admin@testdomain.com
 References: <FAF98113-25D3-11D8-BCCC-000393D5A006@vrtx.com>
 Subject: Re: XMLBeans or perhaps just an XML question...
 Date: Thu, 4 Dec 2003 16:30:53 -0500
@@ -56,8 +56,8 @@ document) subtrees, complete with subelements and so on, into your <body>.
 
 David
 ----- Original Message ----- 
-From: globaladmin@testdomain.com
-To: globaladmin@testdomain.com
+From: admin@testdomain.com
+To: admin@testdomain.com
 Sent: Wednesday, December 03, 2003 4:02 PM
 Subject: [xmlbeans-user] XMLBeans or perhaps just an XML question...
 

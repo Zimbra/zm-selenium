@@ -10,12 +10,12 @@ Received: (qmail 12818 invoked by uid 500); 23 Oct 2003 00:33:43 -0000
 Mailing-List: contact xmlbeans-user-help@xml.apache.org; run by ezmlm
 Precedence: bulk
 X-No-Archive: yes
-List-Post: <mailto:globaladmin@testdomain.com>
+List-Post: <mailto:admin@testdomain.com>
 List-Help: <mailto:xmlbeans-user-help@xml.apache.org>
 List-Unsubscribe: <mailto:xmlbeans-user-unsubscribe@xml.apache.org>
 List-Subscribe: <mailto:xmlbeans-user-subscribe@xml.apache.org>
-Reply-To: globaladmin@testdomain.com
-Delivered-To: mailing list globaladmin@testdomain.com
+Reply-To: admin@testdomain.com
+Delivered-To: mailing list admin@testdomain.com
 Received: (qmail 12805 invoked from network); 23 Oct 2003 00:33:43 -0000
 X-MimeOLE: Produced By Microsoft Exchange V6.0.6375.0
 content-class: urn:content-classes:message
@@ -29,8 +29,8 @@ X-MS-Has-Attach:
 X-MS-TNEF-Correlator: 
 Thread-Topic: deep equals implementation?
 Thread-Index: AcOY+g1p3kAYoER0Rjup9R242UzWPAAAd5rg
-From: globaladmin@testdomain.com
-To: globaladmin@testdomain.com
+From: admin@testdomain.com
+To: admin@testdomain.com
 X-OriginalArrivalTime: 23 Oct 2003 00:33:51.0353 (UTC)
 	FILETIME=[54CF5E90:01C398FD]
 X-Spam-Rating: daedalus.apache.org 1.6.2 0/1000/N
@@ -63,9 +63,9 @@ There are probably other techniques you can use, but this should put you in=
 - Eric
 
 -----Original Message-----
-From: globaladmin@testdomain.com
+From: admin@testdomain.com
 Sent: Wednesday, October 22, 2003 5:08 PM
-To: globaladmin@testdomain.com
+To: admin@testdomain.com
 Subject: Re: deep equals implementation?
 
 
@@ -84,9 +84,9 @@ dim
 
 Robert Wyrick <rob@wyrick.org> on 23/10/2003 09:43:36 AM
 
-Please respond to globaladmin@testdomain.com
+Please respond to admin@testdomain.com
 
-To:    globaladmin@testdomain.com
+To:    admin@testdomain.com
 Subject:    Re: deep equals implementation?
 
 With careful use of :
@@ -106,7 +106,7 @@ marshal non-document nodes, but it works.
 
 -Rob
 
-globaladmin@testdomain.com wrote:
+admin@testdomain.com wrote:
 
 >Eric,
 >

@@ -10,16 +10,16 @@ Received: (qmail 7134 invoked by uid 500); 10 Oct 2003 19:29:20 -0000
 Mailing-List: contact xmlbeans-user-help@xml.apache.org; run by ezmlm
 Precedence: bulk
 X-No-Archive: yes
-List-Post: <mailto:globaladmin@testdomain.com>
+List-Post: <mailto:admin@testdomain.com>
 List-Help: <mailto:xmlbeans-user-help@xml.apache.org>
 List-Unsubscribe: <mailto:xmlbeans-user-unsubscribe@xml.apache.org>
 List-Subscribe: <mailto:xmlbeans-user-subscribe@xml.apache.org>
-Reply-To: globaladmin@testdomain.com
-Delivered-To: mailing list globaladmin@testdomain.com
+Reply-To: admin@testdomain.com
+Delivered-To: mailing list admin@testdomain.com
 Received: (qmail 7121 invoked from network); 10 Oct 2003 19:29:20 -0000
 Message-ID: <03c001c38f64$c60e66c0$0fa8a8c0@lightbox>
-From: globaladmin@testdomain.com
-To: globaladmin@testdomain.com
+From: admin@testdomain.com
+To: admin@testdomain.com
 References: <F876C2FA-FB4E-11D7-8890-000393D5A006@vrtx.com>
 Subject: Re: XMLBeans/Java Web Start Issues
 Date: Fri, 10 Oct 2003 15:29:04 -0400
@@ -59,8 +59,8 @@ should be using which would have access to classloader resources instead.
 David
 
 ----- Original Message ----- 
-From: globaladmin@testdomain.com
-To: globaladmin@testdomain.com
+From: admin@testdomain.com
+To: admin@testdomain.com
 Sent: Friday, October 10, 2003 2:24 PM
 Subject: [xmlbeans-dev] XMLBeans/Java Web Start Issues
 

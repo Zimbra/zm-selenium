@@ -1,6 +1,6 @@
 Return-Path: sender@testdomain.com
-From: globaladmin@testdomain.com
-To: globaladmin@testdomain.com
+From: admin@testdomain.com
+To: admin@testdomain.com
 Subject: subject13189993282183
 Date: Thu, 6 Oct 2011 08:33:52 -0700
 MIME-Version: 1.0

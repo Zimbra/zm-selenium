@@ -1,5 +1,5 @@
-From: globaladmin@testdomain.com
-To: globaladmin@testdomain.com
+From: admin@testdomain.com
+To: admin@testdomain.com
 Subject: subject13150123168433
 Date: Tue, 13 Sep 2011 14:18:50 -0700
 X-AV-Caller-ID:5095551212

@@ -10,16 +10,16 @@ Received: (qmail 26758 invoked by uid 500); 21 Oct 2003 15:26:30 -0000
 Mailing-List: contact xmlbeans-dev-help@xml.apache.org; run by ezmlm
 Precedence: bulk
 X-No-Archive: yes
-List-Post: <mailto:globaladmin@testdomain.com>
+List-Post: <mailto:admin@testdomain.com>
 List-Help: <mailto:xmlbeans-dev-help@xml.apache.org>
 List-Unsubscribe: <mailto:xmlbeans-dev-unsubscribe@xml.apache.org>
 List-Subscribe: <mailto:xmlbeans-dev-subscribe@xml.apache.org>
-Reply-To: globaladmin@testdomain.com
-Delivered-To: mailing list globaladmin@testdomain.com
+Reply-To: admin@testdomain.com
+Delivered-To: mailing list admin@testdomain.com
 Received: (qmail 26744 invoked from network); 21 Oct 2003 15:26:30 -0000
 Message-ID: <013701c397e7$af16c350$0fa8a8c0@lightbox>
-From: globaladmin@testdomain.com
-To: globaladmin@testdomain.com
+From: admin@testdomain.com
+To: admin@testdomain.com
 References:
 	 <1924BF350FC96B46A56BB38087B9B86E6A63BF@srvcorreio.primavera.local>
 Subject: Re: Feature Request: Serialization
@@ -50,8 +50,8 @@ David
 
 
 ----- Original Message ----- 
-From: globaladmin@testdomain.com
-To: globaladmin@testdomain.com
+From: admin@testdomain.com
+To: admin@testdomain.com
 Sent: Tuesday, October 21, 2003 10:04 AM
 Subject: [xmlbeans-dev] Feature Request: Serialization
 

@@ -1,7 +1,7 @@
 Date: Sat, 1 Oct 2011 00:01:07 -0400
-From: globaladmin@testdomain.com
+From: admin@testdomain.com
 Subject: subject13188948451403
-To: globaladmin@testdomain.com
+To: admin@testdomain.com
 MIME-Version: 1.0
 Content-Type: text/html
 

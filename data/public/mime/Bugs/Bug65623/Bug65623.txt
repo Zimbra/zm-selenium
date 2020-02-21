@@ -1,6 +1,6 @@
 Date: Mon, 10 Oct 2011 09:00:51 +0200 (CEST)
-From: globaladmin@testdomain.com
-To: globaladmin@testdomain.com
+From: admin@testdomain.com
+To: admin@testdomain.com
 Subject: subject13189485723753
 Content-Type: multipart/mixed;
  boundary="=_9838f3f9-dea8-4b54-ba14-652d55621b34"

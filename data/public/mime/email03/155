@@ -9,21 +9,21 @@ Received: (qmail 96946 invoked by uid 500); 3 Oct 2003 17:36:40 -0000
 Mailing-List: contact xmlbeans-dev-help@xml.apache.org; run by ezmlm
 Precedence: bulk
 X-No-Archive: yes
-List-Post: <mailto:globaladmin@testdomain.com>
+List-Post: <mailto:admin@testdomain.com>
 List-Help: <mailto:xmlbeans-dev-help@xml.apache.org>
 List-Unsubscribe: <mailto:xmlbeans-dev-unsubscribe@xml.apache.org>
 List-Subscribe: <mailto:xmlbeans-dev-subscribe@xml.apache.org>
-Reply-To: globaladmin@testdomain.com
-Delivered-To: mailing list globaladmin@testdomain.com
-Delivered-To: moderator for globaladmin@testdomain.com
+Reply-To: admin@testdomain.com
+Delivered-To: mailing list admin@testdomain.com
+Delivered-To: moderator for admin@testdomain.com
 Received: (qmail 17591 invoked from network); 3 Oct 2003 15:42:23 -0000
 In-Reply-To: <013701c389c2$b6a7d920$0fa8a8c0@lightbox>
-To: globaladmin@testdomain.com
+To: admin@testdomain.com
 Subject: Re: ArrayStoreException when using RMI
 MIME-Version: 1.0
 X-Mailer: Lotus Notes Release 6.0.1 February 07, 2003
 Message-ID: <OFE6867712.B3D5F68E-ON85256DB4.00559031-85256DB4.005645CE@vrtx.com>
-From: globaladmin@testdomain.com
+From: admin@testdomain.com
 Date: Fri, 3 Oct 2003 11:42:19 -0400
 X-Zimbra-Received: Fri, 3 Oct 2003 11:42:19 -0400
 X-MIMETrack: Serialize by Router on BOS01MAIL01/M/BOS1/VRTX(Release
@@ -96,14 +96,14 @@ minOccurs="0" maxOccurs="unbounded"/>
 
 
 
-"David Bau" <globaladmin@testdomain.com> 
+"David Bau" <admin@testdomain.com> 
 10/03/2003 11:26 AM
 Please respond to
-globaladmin@testdomain.com
+admin@testdomain.com
 
 
 To
-<globaladmin@testdomain.com>, <globaladmin@testdomain.com>
+<admin@testdomain.com>, <admin@testdomain.com>
 cc
 
 Subject
@@ -130,8 +130,8 @@ Anybody else on xmlbeans-dev have any insights?
 
 David
 ----- Original Message ----- 
-From: globaladmin@testdomain.com
-To: globaladmin@testdomain.com
+From: admin@testdomain.com
+To: admin@testdomain.com
 Sent: Friday, October 03, 2003 10:51 AM
 Subject: [xmlbeans-dev] ArrayStoreException when using RMI
 
@@ -315,22 +315,22 @@ follows at the end of this message.]</font>
 <br>
 <table width=100%>
 <tr valign=top>
-<td width=40%><font size=1 face="sans-serif"><b>&quot;David Bau&quot; &lt;globaladmin@testdomain.com&gt;</b>
+<td width=40%><font size=1 face="sans-serif"><b>&quot;David Bau&quot; &lt;admin@testdomain.com&gt;</b>
 </font>
 <p><font size=1 face="sans-serif">10/03/2003 11:26 AM</font>
 <table border>
 <tr valign=top>
 <td bgcolor=white>
 <div align=center><font size=1 face="sans-serif">Please respond to<br>
-globaladmin@testdomain.com</font></div></table>
+admin@testdomain.com</font></div></table>
 <br>
 <td width=59%>
 <table width=100%>
 <tr>
 <td>
 <div align=right><font size=1 face="sans-serif">To</font></div>
-<td valign=top><font size=1 face="sans-serif">&lt;globaladmin@testdomain.com&gt;,
-&lt;globaladmin@testdomain.com&gt;</font>
+<td valign=top><font size=1 face="sans-serif">&lt;admin@testdomain.com&gt;,
+&lt;admin@testdomain.com&gt;</font>
 <tr>
 <td>
 <div align=right><font size=1 face="sans-serif">cc</font></div>
@@ -363,8 +363,8 @@ Anybody else on xmlbeans-dev have any insights?<br>
 <br>
 David<br>
 ----- Original Message ----- <br>
-From: globaladmin@testdomain.com<br>
-To: globaladmin@testdomain.com<br>
+From: admin@testdomain.com<br>
+To: admin@testdomain.com<br>
 Sent: Friday, October 03, 2003 10:51 AM<br>
 Subject: [xmlbeans-dev] ArrayStoreException when using RMI<br>
 <br>

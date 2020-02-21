@@ -54,7 +54,7 @@ public class CheckCloseButtonInSharedFolder extends AjaxCore {
 	public void CheckCloseButtonInSharedFolder_01() throws HarnessException {
 
 		String foldername = "tasklist" + ConfigProperties.getUniqueString();
-		String subject = "subject" + ConfigProperties.getUniqueString();
+		String subject = "view shared item" + ConfigProperties.getUniqueString();
 		String mountpointname = "mountpoint" + ConfigProperties.getUniqueString();
 
 		FolderItem task = FolderItem.importFromSOAP(ZimbraAccount.AccountA(), FolderItem.SystemFolder.Tasks );
@@ -106,7 +106,7 @@ public class CheckCloseButtonInSharedFolder extends AjaxCore {
 		app.zPageTasks.zToolbarPressButton(Button.B_REFRESH);
 		app.zTreeTasks.zTreeItem(Action.A_LEFTCLICK, task);
 
-		// Click on the mountpoint
+		// Click on the mount point
 		app.zTreeTasks.zTreeItem(Action.A_LEFTCLICK, mountpoint);
 
 		// Select the item

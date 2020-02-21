@@ -9,16 +9,16 @@ Received: (qmail 10734 invoked by uid 500); 16 Sep 2003 05:22:25 -0000
 Mailing-List: contact xmlbeans-dev-help@xml.apache.org; run by ezmlm
 Precedence: bulk
 X-No-Archive: yes
-List-Post: <mailto:globaladmin@testdomain.com>
+List-Post: <mailto:admin@testdomain.com>
 List-Help: <mailto:xmlbeans-dev-help@xml.apache.org>
 List-Unsubscribe: <mailto:xmlbeans-dev-unsubscribe@xml.apache.org>
 List-Subscribe: <mailto:xmlbeans-dev-subscribe@xml.apache.org>
-Reply-To: globaladmin@testdomain.com
-Delivered-To: mailing list globaladmin@testdomain.com
-Delivered-To: moderator for globaladmin@testdomain.com
+Reply-To: admin@testdomain.com
+Delivered-To: mailing list admin@testdomain.com
+Delivered-To: moderator for admin@testdomain.com
 Received: (qmail 97557 invoked from network); 16 Sep 2003 05:05:57 -0000
-From: globaladmin@testdomain.com
-To: globaladmin@testdomain.com
+From: admin@testdomain.com
+To: admin@testdomain.com
 Subject: Patch for Unicode-Build-Bug
 Date: Tue, 16 Sep 2003 07:07:06 +0200
 X-Zimbra-Received: Tue, 16 Sep 2003 07:07:06 +0200

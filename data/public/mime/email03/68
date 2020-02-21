@@ -10,12 +10,12 @@ Received: (qmail 81296 invoked by uid 500); 25 Sep 2003 01:43:05 -0000
 Mailing-List: contact xmlbeans-dev-help@xml.apache.org; run by ezmlm
 Precedence: bulk
 X-No-Archive: yes
-List-Post: <mailto:globaladmin@testdomain.com>
+List-Post: <mailto:admin@testdomain.com>
 List-Help: <mailto:xmlbeans-dev-help@xml.apache.org>
 List-Unsubscribe: <mailto:xmlbeans-dev-unsubscribe@xml.apache.org>
 List-Subscribe: <mailto:xmlbeans-dev-subscribe@xml.apache.org>
-Reply-To: globaladmin@testdomain.com
-Delivered-To: mailing list globaladmin@testdomain.com
+Reply-To: admin@testdomain.com
+Delivered-To: mailing list admin@testdomain.com
 Received: (qmail 81281 invoked from network); 25 Sep 2003 01:43:05 -0000
 content-class: urn:content-classes:message
 MIME-Version: 1.0
@@ -30,8 +30,8 @@ X-MS-Has-Attach:
 X-MS-TNEF-Correlator: 
 Thread-Topic: STAX
 Thread-Index: AcOC+n4NPM3IJJvlQdyzdXUSS/qi9AABcRlQ
-From: globaladmin@testdomain.com
-To: globaladmin@testdomain.com
+From: admin@testdomain.com
+To: admin@testdomain.com
 X-OriginalArrivalTime: 25 Sep 2003 01:43:14.0162 (UTC)
 	FILETIME=[62789D20:01C38306]
 X-Spam-Rating: daedalus.apache.org 1.6.2 0/1000/N

@@ -1,6 +1,6 @@
 Date: Tue, 15 Nov 2011 17:10:42 -0800 (PST)
-From: globaladmin@testdomain.com
-To: globaladmin@testdomain.com
+From: admin@testdomain.com
+To: admin@testdomain.com
 Subject: subject13214016621403
 Content-Type: multipart/alternative;
  boundary="=_169984f8-32cb-424f-b79d-befb3997c0ea"

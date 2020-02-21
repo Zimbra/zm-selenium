@@ -10,16 +10,16 @@ Received: (qmail 87321 invoked by uid 500); 18 Sep 2005 23:10:34 -0000
 Mailing-List: contact xmlbeans-dev-help@xml.apache.org; run by ezmlm
 Precedence: bulk
 X-No-Archive: yes
-List-Post: <mailto:globaladmin@testdomain.com>
+List-Post: <mailto:admin@testdomain.com>
 List-Help: <mailto:xmlbeans-dev-help@xml.apache.org>
 List-Unsubscribe: <mailto:xmlbeans-dev-unsubscribe@xml.apache.org>
 List-Subscribe: <mailto:xmlbeans-dev-subscribe@xml.apache.org>
-Reply-To: globaladmin@testdomain.com
-Delivered-To: mailing list globaladmin@testdomain.com
+Reply-To: admin@testdomain.com
+Delivered-To: mailing list admin@testdomain.com
 Received: (qmail 87307 invoked from network); 18 Sep 2005 23:10:34 -0000
 Message-ID: <014501c37e3a$0ef13e80$d41e11ac@lightbox>
-From: globaladmin@testdomain.com
-To: globaladmin@testdomain.com
+From: admin@testdomain.com
+To: admin@testdomain.com
 References: <002201c37e22$9ded0550$0363050a@madcat>
 Subject: Re: Future XMLBeans feature work?
 Date: Thu, 18 Sep 2005 19:10:31 -0400
@@ -116,7 +116,7 @@ David
 
 
 ----- Original Message ----- 
-From: globaladmin@testdomain.com
+From: admin@testdomain.com
 
 
 I would most interested in seeing XQuery support
