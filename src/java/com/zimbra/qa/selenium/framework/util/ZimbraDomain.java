@@ -31,7 +31,7 @@ public class ZimbraDomain {
 	protected String DomainGalSyncDatasourceID = null;
 
 	/**
-	 * 
+	 *
 	 * @param name
 	 */
 	public ZimbraDomain(String name) {
@@ -40,12 +40,11 @@ public class ZimbraDomain {
 
 	/**
 	 * Does the domain exist already?
-	 * 
+	 *
 	 * @return
 	 * @throws HarnessException
 	 */
 	public boolean exists() throws HarnessException {
-
 		// Check if the domain exists
 		ZimbraAdminAccount.GlobalAdmin().soapSend("<GetDomainRequest xmlns='urn:zimbraAdmin'>" + "<domain by='name'>"
 				+ DomainName + "</domain>" + "</GetDomainRequest>");
@@ -70,16 +69,14 @@ public class ZimbraDomain {
 		logger.info("DomainGalSyncDatasourceID=" + DomainGalSyncDatasourceID);
 
 		return (true);
-
 	}
 
 	/**
 	 * Create the domain
-	 * 
+	 *
 	 * @throws HarnessException
 	 */
 	public void provision() throws HarnessException {
-
 		if (exists()) {
 			logger.info(DomainName + " already exists.  Not provisioning again.");
 			return;
@@ -92,18 +89,15 @@ public class ZimbraDomain {
 						+ "</CreateDomainRequest>");
 
 		this.createGalSyncAccount();
-
 		this.syncGalAccount();
-
 	}
 
 	/**
 	 * Create the GAL sync account for this domain
-	 * 
+	 *
 	 * @throws HarnessException
 	 */
 	public void createGalSyncAccount() throws HarnessException {
-
 		// Create the Sync GAL Account
 		String galaccount = "galaccount" + ConfigProperties.getUniqueString() + "@" + DomainName;
 		String datasourcename = "datasource" + ConfigProperties.getUniqueString();
@@ -124,17 +118,9 @@ public class ZimbraDomain {
 		DomainGalSyncDatasourceID = ZimbraAdminAccount.GlobalAdmin()
 				.soapSelectValue("//admin:GetDataSourcesResponse//admin:dataSource", "id");
 		logger.info("DomainGalSyncDatasourceID=" + DomainGalSyncDatasourceID);
-
 	}
 
-	/**
-	 * Sync the GAL for this domain
-	 * 
-	 * @throws HarnessException
-	 */
 	public void syncGalAccount() throws HarnessException {
-
-		// Sync the GAL Account
 		ZimbraAdminAccount.GlobalAdmin()
 				.soapSend("<SyncGalAccountRequest xmlns='urn:zimbraAdmin'>" + "<account id='" + DomainGalSyncAccountID
 						+ "'>" + "<datasource by='id' fullSync='true' reset='true'>" + DomainGalSyncDatasourceID
@@ -146,7 +132,5 @@ public class ZimbraDomain {
 			throw new HarnessException("Unable to sync GAL account.  Response was: "
 					+ ZimbraAdminAccount.GlobalAdmin().soapLastResponse());
 		}
-
 	}
-
 }

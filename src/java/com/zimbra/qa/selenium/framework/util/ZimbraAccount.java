@@ -389,18 +389,13 @@ public class ZimbraAccount {
 	 * Creates the account on the ZCS using CreateAccountRequest
 	 */
 	public ZimbraAccount provision() {
-
-		// Make sure domain exists
 		ZimbraDomain domain = new ZimbraDomain(EmailAddress.split("@")[1]);
 
 		try {
-
 			if (exists()) {
 				logger.info(EmailAddress + " already exists. Not provisioning again.");
 				return (this);
 			}
-
-			// Provision domain
 			domain.provision();
 
 			// Build the list of default preferences
@@ -552,7 +547,6 @@ public class ZimbraAccount {
 				"<ModifyZimletPrefsRequest xmlns='urn:zimbraAccount'>" + sb.toString() + "</ModifyZimletPrefsRequest>");
 
 		return (this);
-
 	}
 
 	/**
