@@ -229,6 +229,7 @@ public class PageManageAliases extends AbsTab {
 
 			this.sClickAt(pulldownLocator, "");
 			SleepUtil.sleepMedium();
+			SleepUtil.sleepLong();
 
 			if (optionLocator != null) {
 
