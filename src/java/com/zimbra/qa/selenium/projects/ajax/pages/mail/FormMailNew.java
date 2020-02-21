@@ -55,7 +55,7 @@ public class FormMailNew extends AbsForm {
 
 	public static class Locators {
 
-		public static final String zSendIconBtn = "css=div[id^='ztb__COMPOSE-1'] td[id$='zb__COMPOSE-1__SEND_title']";
+		public static final String zSendIconBtn = "css=div[id^='ztb__COMPOSE-1'] td[id^='zb__COMPOSE-1__SEND'][id$='_title']";
 		public static final String zCancelIconBtn = "css=[id^=zb__COMPOSE][id$=__CANCEL_title]";
 		public static final String zEditIconBtn = "css=[id$='main__EDIT_title']";
 		public static final String zCloseIconBtn = "css=[id^=zb__COMPOSE][id$=__CANCEL_title]";
@@ -195,8 +195,8 @@ public class FormMailNew extends AbsForm {
 
 		if (button == Button.B_SEND) {
 
-			if (sIsElementPresent("css=div[id^='ztb__COMPOSE-2'] td[id='zb__COMPOSE-2__SEND_title']")) {
-				locator = "css=div[id^='ztb__COMPOSE-2'] td[id='zb__COMPOSE-2__SEND_title']";
+			if (sIsElementPresent("css=div[id^='ztb__COMPOSE-2'] td[id^='zb__COMPOSE-2__SEND'][id$='_title']")) {
+				locator = "css=div[id^='ztb__COMPOSE-2'] td[id^='zb__COMPOSE-2__SEND'][id$='_title']";
 			} else {
 				locator = Locators.zSendIconBtn;
 			}
