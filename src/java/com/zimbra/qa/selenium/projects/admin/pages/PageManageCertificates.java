@@ -137,7 +137,6 @@ public class PageManageCertificates extends AbsTab {
 			SleepUtil.sleepMedium();
 		}
 
-		sMouseOut(locator);
 		return (page);
 	}
 

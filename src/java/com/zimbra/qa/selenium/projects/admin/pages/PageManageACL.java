@@ -128,7 +128,6 @@ public class PageManageACL extends AbsTab {
 			SleepUtil.sleepLong();
 		}
 
-		sMouseOut(locator);
 		return (page);
 	}
 
@@ -181,7 +180,6 @@ public class PageManageACL extends AbsTab {
 
 	@Override
 	public AbsPage zListItem(Action action, String item) throws HarnessException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -246,6 +244,5 @@ public class PageManageACL extends AbsTab {
 	@Override
 	public void zNavigateTo() throws HarnessException {
 		// TODO Auto-generated method stub
-
 	}
 }
