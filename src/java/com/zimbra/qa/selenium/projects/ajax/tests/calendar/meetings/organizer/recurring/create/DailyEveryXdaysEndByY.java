@@ -68,8 +68,8 @@ public class DailyEveryXdaysEndByY extends AjaxCore {
 		// Compose appointment and send it to invitee
 		FormApptNew apptForm = (FormApptNew) app.zPageCalendar.zToolbarPressButton(Button.B_NEW);
 		apptForm.zFill(appt);
-		apptForm.zRepeat(Button.O_EVERY_DAY_MENU, Button.B_EVERY_X_DAYS_RADIO_BUTTON, "1", Button.B_END_BY_DATE_RADIO_BUTTON, "01/01/2020");
-		ZAssert.assertEquals(app.zPageCalendar.zGetRecurringLink(), "Every day. End by Jan 1, 2020. Effective " + getInviteDate(), "Recurring link: Verify the appointment data");
+		apptForm.zRepeat(Button.O_EVERY_DAY_MENU, Button.B_EVERY_X_DAYS_RADIO_BUTTON, "1", Button.B_END_BY_DATE_RADIO_BUTTON, "01/01/2021");
+		ZAssert.assertEquals(app.zPageCalendar.zGetRecurringLink(), "Every day. End by Jan 1, 2021. Effective " + getInviteDate(), "Recurring link: Verify the appointment data");
 		apptForm.zSubmitWithResources();
 
 		app.zGetActiveAccount().soapSend(

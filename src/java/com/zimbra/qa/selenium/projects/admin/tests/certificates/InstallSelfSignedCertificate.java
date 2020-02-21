@@ -47,7 +47,7 @@ public class InstallSelfSignedCertificate extends AdminCore {
 	 */
 
 	@Test (description = "Install self-signed certificate", priority=5,
-			groups = { "bhr", "non-aws" })
+			groups = { "bhr", "non-cloud" })
 
 	public void InstallSelfSignedCertificate_01() throws HarnessException {
 

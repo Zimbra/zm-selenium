@@ -58,7 +58,7 @@ public class Login extends AjaxCore {
 
 	public void Login_02() throws HarnessException {
 
-		//Create a Zimbra account
+		// Create a Zimbra account
 		ZimbraAccount locked = new ZimbraAccount();
 		locked.provision();
 
@@ -234,7 +234,7 @@ public class Login extends AjaxCore {
 
 	@Bugs (ids = "66788")
 	@Test (description = "Change the zimbraMailURL and login", priority=5,
-			groups = { "functional", "non-aws" },
+			groups = { "functional", "non-cloud" },
 			dataProvider = "ZimbraMailURLDataProvider")
 
 	public void Login_05(String zimbraMailURLtemp) throws HarnessException {

@@ -181,6 +181,7 @@ public class ClientSession {
 				}
 
 				FirefoxProfile profile = new FirefoxProfile();
+				profile.setAcceptUntrustedCertificates(true);
 				profile.setPreference("extensions.firebug.showFirstRunPage", false);
 
 				FirefoxOptions options = new FirefoxOptions();
@@ -262,6 +263,8 @@ public class ClientSession {
 		        options.setCapability("chrome.switches", Arrays.asList("--disable-extensions"));
 		        options.setCapability(ChromeOptions.CAPABILITY, options);
 		        options.setCapability(CapabilityType.LOGGING_PREFS, logs);
+		        options.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
+		        options.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS, true);
 		        webDriver = new ChromeDriver(options);
 		        webDriver.manage().window().maximize();
 			}

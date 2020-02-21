@@ -403,8 +403,8 @@ public class ModifySeries extends AjaxCore {
 		openRecurring.zPressButton(Button.B_OK);
 
 		FormApptNew apptForm = new FormApptNew(app);
-		apptForm.zRepeat(Button.O_EVERY_WEEK_MENU, Button.B_EVERY_X_RADIO_BUTTON, getTomorrowDayOfWeek, Button.B_END_BY_DATE_RADIO_BUTTON, "01/02/2020");
-		ZAssert.assertStringContains(app.zPageCalendar.zGetRecurringLink(), "Every " + getTomorrowDayOfWeek + ". End by Jan 2, 2020. Effective ", "Recurring link: Verify the appointment data");
+		apptForm.zRepeat(Button.O_EVERY_WEEK_MENU, Button.B_EVERY_X_RADIO_BUTTON, getTomorrowDayOfWeek, Button.B_END_BY_DATE_RADIO_BUTTON, "01/02/2021");
+		ZAssert.assertStringContains(app.zPageCalendar.zGetRecurringLink(), "Every " + getTomorrowDayOfWeek + ". End by Jan 2, 2021. Effective ", "Recurring link: Verify the appointment data");
 		apptForm.zSubmit();
 
 		// ---------------- Verification at organizer & invitee side both -------------------------------------
@@ -430,7 +430,7 @@ public class ModifySeries extends AjaxCore {
 		ZAssert.assertEquals(interval, "1", "Repeat interval: Verify the appointment data");
 		ZAssert.assertStringContains(modifiedStartTime, startUTC.addDays(1).toyyyyMMddT(), "Start time: Verify the appointment data");
 		ZAssert.assertStringContains(modifiedEndTime, endUTC.addDays(1).toyyyyMMddT(), "End time: Verify the appointment data");
-		ZAssert.assertStringContains(untilDate, "202001", "Until date: Verify the appointment data");
+		ZAssert.assertStringContains(untilDate, "202101", "Until date: Verify the appointment data");
 
 
 		// Attendee1: Search for the appointment (InvId)
@@ -455,7 +455,7 @@ public class ModifySeries extends AjaxCore {
 		ZAssert.assertEquals(interval, "1", "Repeat interval: Verify the appointment data");
 		ZAssert.assertStringContains(modifiedStartTime, startUTC.addDays(1).toyyyyMMddT(), "Start time: Verify the appointment data");
 		ZAssert.assertStringContains(modifiedEndTime, endUTC.addDays(1).toyyyyMMddT(), "End time: Verify the appointment data");
-		ZAssert.assertStringContains(untilDate, "202001", "Until date: Verify the appointment data");
+		ZAssert.assertStringContains(untilDate, "202101", "Until date: Verify the appointment data");
 
 		String inboxId = FolderItem.importFromSOAP(ZimbraAccount.Account1(), FolderItem.SystemFolder.Inbox).getId();
 		ZimbraAccount.Account1().soapSend(
