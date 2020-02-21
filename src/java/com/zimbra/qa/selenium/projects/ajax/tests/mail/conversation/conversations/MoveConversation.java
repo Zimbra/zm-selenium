@@ -68,10 +68,10 @@ public class MoveConversation extends SetGroupMailByConversationPreference {
 		// Select the item
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, c.getSubject());
 
-		// Click move -> subfolder
+		// Click move -> sub-folder
 		app.zPageMail.zToolbarPressPulldown(Button.B_MOVE, subfolder);
 
-		// Verify all mesages are in the subfolder
+		// Verify all messages are in the sub-folder
 		ConversationItem actual = ConversationItem.importFromSOAP(app.zGetActiveAccount(), "is:anywhere subject:"+ c.getSubject());
 
 		for (MailItem m : actual.getMessageList()) {
@@ -88,9 +88,10 @@ public class MoveConversation extends SetGroupMailByConversationPreference {
 		// Create a conversation
 		ConversationItem c = ConversationItem.createConversationItem(app.zGetActiveAccount());
 
-		// Create a subfolder to move the message into
+		// Create a sub-folder to move the message into
 		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
 		String foldername = "folder"+ ConfigProperties.getUniqueString();
+
 		app.zGetActiveAccount().soapSend(
 					"<CreateFolderRequest xmlns='urn:zimbraMail'>" +
 						"<folder name='" + foldername +"' l='"+ inbox.getId() +"'/>" +
@@ -105,14 +106,16 @@ public class MoveConversation extends SetGroupMailByConversationPreference {
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, c.getSubject());
 
 		// Click move
+		SleepUtil.sleepMedium();
 		app.zPageMail.zKeyboardShortcut(Shortcut.S_MOVE);
+		SleepUtil.sleepMedium();
 
 		// A move dialog will pop up
 		DialogMove dialog = new DialogMove(app, ((AjaxPages)app).zPageMail);
 		dialog.sClickTreeFolder(subfolder);
 		dialog.zPressButton(Button.B_OK);
 
-		// Verify all mesages are in the subfolder
+		// Verify all messages are in the sub-folder
 		ConversationItem actual = ConversationItem.importFromSOAP(app.zGetActiveAccount(), "is:anywhere subject:"+ c.getSubject());
 
 		for (MailItem m : actual.getMessageList()) {

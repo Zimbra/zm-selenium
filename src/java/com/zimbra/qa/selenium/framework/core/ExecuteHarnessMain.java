@@ -298,7 +298,7 @@ public class ExecuteHarnessMain {
 
 		// Server restart
 		if (!ConfigProperties.getStringProperty("server.host").endsWith(".zimbra.com")) {
-			excludeGroups.add("non-aws");
+			excludeGroups.add("non-cloud");
 		}
 
 		// NG modules
@@ -1485,7 +1485,6 @@ public class ExecuteHarnessMain {
 			if (project.contains("admin")) {
 
 				// Setup license directory
-				String serverMachinelicenseFile = "/tmp/regular.xml";
 				String licenseDirPath = ConfigProperties.getBaseDirectory() + "/data/private/license";
 				File licenseDir = new File(licenseDirPath);
 				if (!licenseDir.exists()) {
@@ -1494,10 +1493,6 @@ public class ExecuteHarnessMain {
 							StandardOpenOption.APPEND);
 					licenseDir.mkdirs();
 				}
-
-				StafServiceFS staf = new StafServiceFS(ConfigProperties.getStringProperty("server.host"));
-				staf.execute("COPY FILE " + serverMachinelicenseFile + " TODIRECTORY " + licenseDir + " TOMACHINE "
-						+ getLocalMachineName());
 
 			// Ajax project settings
 			} else if (project.contains("ajax")) {

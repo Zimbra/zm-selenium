@@ -122,11 +122,10 @@ public class DialogMove extends AbsDialog {
 
 		logger.info(myPageName() + " sClickTreeFolder(" + folder + ")");
 
-		if (folder == null)
-
-			throw new HarnessException("folder must not be null");
-
 		String locator = null;
+		if (folder == null) {
+			throw new HarnessException("folder must not be null");
+		}
 
 		if (MyTab instanceof PageMail) {
 			locator = "css=div[id='" + Locators.zDialogId + "'] div[id^='zti__ZmChooseFolderDialog_Mail'] td[id$='"
@@ -137,7 +136,6 @@ public class DialogMove extends AbsDialog {
 					+ folder.getId() + "_textCell']";
 
 		} else if (MyTab instanceof PageCalendar) {
-
 			locator = String.format("css=div[id='%s'] td[id='zti__ZmChooseFolderDialog_Calendar__%s_textCell']",
 					Locators.zDialogId, folder.getId());
 
@@ -145,7 +143,6 @@ public class DialogMove extends AbsDialog {
 				locator = String.format(
 						"css=div[id='%s'] td[id='zti__ZmChooseFolderDialog_Calendar_CALENDAR__%s_textCell']",
 						Locators.zDialogId, folder.getId());
-
 			}
 
 		} else if (MyTab instanceof PageTasks) {

@@ -81,7 +81,7 @@ public class MoveMessage extends SetGroupMailByMessagePreference {
 		// Select the item
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, mail.dSubject);
 
-		// Click move -> subfolder
+		// Click move -> sub-folder
 		app.zPageMail.zToolbarPressPulldown(Button.B_MOVE, subfolder);
 
 		// Get the message, make sure it is in the correct folder
@@ -103,7 +103,7 @@ public class MoveMessage extends SetGroupMailByMessagePreference {
 		String subject = "subject"+ ConfigProperties.getUniqueString();
 		String foldername = "folder"+ ConfigProperties.getUniqueString();
 
-		// Create a subfolder to move the message into
+		// Create a sub-folder to move the message into
 		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
 		app.zGetActiveAccount().soapSend(
 					"<CreateFolderRequest xmlns='urn:zimbraMail'>" +
@@ -133,7 +133,9 @@ public class MoveMessage extends SetGroupMailByMessagePreference {
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, mail.dSubject);
 
 		// Click move
+		SleepUtil.sleepMedium();
 		app.zPageMail.zKeyboardShortcut(Shortcut.S_MOVE);
+		SleepUtil.sleepMedium();
 
 		// A move dialog will pop up
 		DialogMove dialog = new DialogMove(app, ((AjaxPages)app).zPageMail);

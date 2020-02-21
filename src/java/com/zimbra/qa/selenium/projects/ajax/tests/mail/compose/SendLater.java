@@ -61,8 +61,6 @@ public class SendLater extends SetGroupMailByMessagePreference {
 		mailform.zFillField(Field.To, ZimbraAccount.AccountA().EmailAddress);
 
 		DialogSendLater dialog = (DialogSendLater)mailform.zToolbarPressPulldown(Button.B_SEND, Button.O_SEND_SEND_LATER);
-
-		// Don't change the default information.  Just click OK.
 		dialog.zPressButton(Button.B_OK);
 
 		DialogWarning warning = (DialogWarning) app.zPageMain.zGetWarningDialog(DialogWarningID.SelectedTimeIsInPast);
@@ -79,7 +77,7 @@ public class SendLater extends SetGroupMailByMessagePreference {
 	public void SendLater_02() throws HarnessException {
 
 		// Create the message data to be sent
-		GregorianCalendar calendar = new GregorianCalendar(2020, 11, 25, 12, 0, 0);// Use below code once bug (zcs-700) get fixed
+		GregorianCalendar calendar = new GregorianCalendar(2025, 11, 25, 12, 0, 0);// Use below code once bug (zcs-700) get fixed
 		String subject = "subject" + ConfigProperties.getUniqueString();
 
 		// Open the new mail form

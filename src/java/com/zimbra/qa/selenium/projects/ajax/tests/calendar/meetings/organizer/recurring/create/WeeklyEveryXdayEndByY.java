@@ -68,8 +68,8 @@ public class WeeklyEveryXdayEndByY extends AjaxCore {
 		// Compose appointment and send it to invitee
 		FormApptNew apptForm = (FormApptNew) app.zPageCalendar.zToolbarPressButton(Button.B_NEW);
 		apptForm.zFill(appt);
-		apptForm.zRepeat(Button.O_EVERY_WEEK_MENU, Button.B_EVERY_X_RADIO_BUTTON, getTomorrowDayOfWeek, Button.B_END_BY_DATE_RADIO_BUTTON, "01/01/2020");
-		ZAssert.assertStringContains(app.zPageCalendar.zGetRecurringLink(), "Every " + getTomorrowDayOfWeek + ". End by Jan 1, 2020. Effective ", "Recurring link: Verify the appointment data");
+		apptForm.zRepeat(Button.O_EVERY_WEEK_MENU, Button.B_EVERY_X_RADIO_BUTTON, getTomorrowDayOfWeek, Button.B_END_BY_DATE_RADIO_BUTTON, "01/01/2021");
+		ZAssert.assertStringContains(app.zPageCalendar.zGetRecurringLink(), "Every " + getTomorrowDayOfWeek + ". End by Jan 1, 2021. Effective ", "Recurring link: Verify the appointment data");
 		apptForm.zSubmitWithResources();
 
 		app.zGetActiveAccount().soapSend(
@@ -92,7 +92,7 @@ public class WeeklyEveryXdayEndByY extends AjaxCore {
 		ZAssert.assertEquals(actual.getAttendees(), apptAttendee, "Attendees: Verify the appointment data");
 		ZAssert.assertTrue(actual.getLocation().contains(apptLocation), "Location: Verify the appointment data");
 		ZAssert.assertEquals(ruleFrequency, "WEE", "Repeat frequency: Verify the appointment data");
-		ZAssert.assertStringContains(until, "202001", "Recurrence until: Verify the appointment data");
+		ZAssert.assertStringContains(until, "202101", "Recurrence until: Verify the appointment data");
 		ZAssert.assertEquals(interval, "1", "Repeat interval: Verify the appointment data");
 		ZAssert.assertEquals(weekday, getShortTomorrowDayOfWeek.subSequence(0, 2), "Weekday: Verify the appointment data");
 		ZAssert.assertEquals(actual.getContent(), appt.getContent(), "Content: Verify the appointment data");
@@ -121,7 +121,7 @@ public class WeeklyEveryXdayEndByY extends AjaxCore {
 		ZAssert.assertEquals(received.getAttendees(), apptAttendee, "Attendees: Verify the appointment data");
 		ZAssert.assertTrue(received.getLocation().contains(apptLocation), "Location: Verify the appointment data");
 		ZAssert.assertEquals(ruleFrequency, "WEE", "Repeat frequency: Verify the appointment data");
-		ZAssert.assertStringContains(until, "202001", "Recurrence until: Verify the appointment data");
+		ZAssert.assertStringContains(until, "202101", "Recurrence until: Verify the appointment data");
 		ZAssert.assertEquals(interval, "1", "Repeat interval: Verify the appointment data");
 		ZAssert.assertEquals(weekday, getShortTomorrowDayOfWeek.subSequence(0, 2), "Weekday: Verify the appointment data");
 		ZAssert.assertEquals(received.getContent(), appt.getContent(), "Content: Verify the appointment data");

@@ -39,7 +39,7 @@ public class PageLogin extends AbsTab {
 		// Displayed text
 		public static final String zDisplayedusername = "css=form[name='loginForm'] label[for='username']";
 		public static final String zDisplayedcopyright = "css=div[class='copyright']";
-		public static final String zLoginErrorMessage = "css=div#ZLoginErrorPanel";
+		public static final String zLoginErrorMessage = "css=div[class='errorMessage']";
 
 		// Toolbar links
 		public static final String zLogoutLink = "css=[id='skin_container_logoff']>a";
@@ -124,8 +124,14 @@ public class PageLogin extends AbsTab {
 
 			zSetLoginName(account.EmailAddress);
 			zSetLoginPassword(account.Password);
-			sClick(Locators.zBtnLogin);
 
+			if (!zGetLoginName().equals(account.EmailAddress)) {
+				System.out.println(zGetLoginName());
+				System.out.println(account.EmailAddress);
+				zSetLoginName(account.EmailAddress);
+			}
+
+			sClick(Locators.zBtnLogin);
 			SleepUtil.sleepLong();
 			zWaitForBusyOverlay();
 
@@ -199,6 +205,11 @@ public class PageLogin extends AbsTab {
 		}
 	}
 
+	public String zGetLoginName() throws HarnessException {
+		String locator = Locators.zInputUsername;
+		return sGetValue(locator);
+	}
+
 	public void zSetLoginName(String name) throws HarnessException {
 		String locator = Locators.zInputUsername;
 		if (name == null) {
@@ -210,7 +221,6 @@ public class PageLogin extends AbsTab {
 		}
 		clearField(locator);
 		sType(locator, name);
-		SleepUtil.sleepSmall();
 	}
 
 	public void zSetLoginPassword(String password) throws HarnessException {
@@ -223,7 +233,6 @@ public class PageLogin extends AbsTab {
 		}
 		clearField(locator);
 		sType(locator, password);
-		SleepUtil.sleepSmall();
 	}
 
 	public void zSetLoginTOTPCode(String totpCode) throws HarnessException {
@@ -252,7 +261,7 @@ public class PageLogin extends AbsTab {
 
 	public boolean zVerifyLoginErrorMessage() throws HarnessException {
 		String loginErrorMessage = "The username or password is incorrect. Verify that CAPS LOCK is not on, and then retype the current username and password.";
-		return sGetText(Locators.zLoginErrorMessage).equals(loginErrorMessage);
+		return sGetText(Locators.zLoginErrorMessage).contains(loginErrorMessage);
 	}
 
 	@Override

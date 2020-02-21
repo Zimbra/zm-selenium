@@ -41,12 +41,15 @@ public class ClientTypeAdvanced extends AjaxCore {
 			groups = { "functional" })
 
 	public void ClientTypeAdvanced_01() throws HarnessException {
-
 		// Go to "General"
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.General);
 
-		String locator = "css=input[id$='_input'][value='standard']";
+		String clientType = "standard";
+		if (ConfigProperties.isZimbra9XEnvironment()) {
+			clientType = "modern";
+		}
 
+		String locator = "css=input[id$='_input'][value='" + clientType + "']";
 		ZAssert.assertTrue(app.zPagePreferences.sIsElementPresent(locator), "Verify the 'Sign in using: advanced' radio is present");
 
 		app.zPagePreferences.sClick(locator);
@@ -59,6 +62,6 @@ public class ClientTypeAdvanced extends AjaxCore {
 				+		"</GetPrefsRequest>");
 
 		String value = app.zGetActiveAccount().soapSelectValue("//acct:pref[@name='zimbraPrefClientType']", null);
-		ZAssert.assertEquals(value, "standard", "Verify the zimbraPrefClientType preference was changed to 'standard'");
+		ZAssert.assertEquals(value, clientType, "Verify the zimbraPrefClientType preference was changed");
 	}
 }

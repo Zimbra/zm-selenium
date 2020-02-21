@@ -28,6 +28,7 @@ public class ReplyAllMailText extends SetGroupMailByMessagePreference {
 	public ReplyAllMailText() {
 		logger.info("New "+ ReplyAllMailText.class.getCanonicalName());
 		super.startingAccountPreferences.put("zimbraPrefComposeFormat", "text");
+		super.startingAccountPreferences.put("zimbraFeatureMailSendLaterEnabled", "TRUE");
 	}
 
 

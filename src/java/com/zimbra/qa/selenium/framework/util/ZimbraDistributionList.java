@@ -31,10 +31,6 @@ public class ZimbraDistributionList {
 		this(null, null);
 	}
 
-	/*
-	 * Create an account with the email address <name>@<domain> The password is set
-	 * to config property "adminPassword"
-	 */
 	public ZimbraDistributionList(String email, String password) {
 
 		EmailAddress = email;
@@ -45,7 +41,7 @@ public class ZimbraDistributionList {
 
 		Password = password;
 		if ((password == null) || (password.trim().length() == 0)) {
-			password = ConfigProperties.getStringProperty("adminPassword");
+			password = ConfigProperties.getStringProperty("accountPassword");
 		}
 	}
 

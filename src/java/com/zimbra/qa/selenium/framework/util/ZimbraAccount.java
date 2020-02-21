@@ -85,19 +85,9 @@ public class ZimbraAccount {
 	protected Map<String, String> startingAccountPreferences = new HashMap<String, String>();
 	// These attributes are set for the zimlets per each test case
 	protected Map<String, String> startingUserZimletPreferences = new HashMap<String, String>();
-
-	/*
-	 * Create an account with the email address account<num>@<testdomain> The
-	 * password is set to config property "adminPassword"
-	 */
 	public ZimbraAccount() {
 		this(null, null);
 	}
-
-	/*
-	 * Create an account with the email address <name>@<domain> The password is set
-	 * to config property "adminPassword"
-	 */
 	public ZimbraAccount(String email, String password) {
 
 		if (email == null) {
@@ -110,7 +100,7 @@ public class ZimbraAccount {
 		EmailAddress = email;
 
 		if (password == null) {
-			password = ConfigProperties.getStringProperty("adminPassword");
+			password = ConfigProperties.getStringProperty("accountPassword");
 		}
 		Password = password;
 	}
@@ -400,6 +390,9 @@ public class ZimbraAccount {
 	 */
 	public ZimbraAccount provision() {
 
+		// Make sure domain exists
+		ZimbraDomain domain = new ZimbraDomain(EmailAddress.split("@")[1]);
+
 		try {
 
 			if (exists()) {
@@ -407,8 +400,7 @@ public class ZimbraAccount {
 				return (this);
 			}
 
-			// Make sure domain exists
-			ZimbraDomain domain = new ZimbraDomain(EmailAddress.split("@")[1]);
+			// Provision domain
 			domain.provision();
 
 			// Build the list of default preferences
@@ -462,18 +454,19 @@ public class ZimbraAccount {
 						.soapSend("<AddAccountLoggerRequest xmlns='urn:zimbraAdmin'>" + "<account by='name'>"
 								+ EmailAddress + "</account>" + "<logger category='zimbra.soap' level='trace'/>"
 								+ "</AddAccountLoggerRequest>");
-
 			}
 
-			// Sync the GAL to put the account into the list
-			domain.syncGalAccount();
-
 		} catch (HarnessException e) {
-
 			logger.error("Unable to provision account: " + EmailAddress, e);
 			ZimbraId = null;
 			ZimbraMailHost = null;
+		}
 
+		// Sync the GAL to put the account into the list
+		try {
+			domain.syncGalAccount();
+		} catch (HarnessException e) {
+			logger.error("Unable to sync GAL", e);
 		}
 
 		return (this);

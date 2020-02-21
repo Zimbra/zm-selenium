@@ -121,9 +121,10 @@ public class ZimbraResource extends ZimbraAccount {
 			}
 
 			ZimbraAdminAccount.GlobalAdmin()
-					.soapSend("<CreateCalendarResourceRequest xmlns='urn:zimbraAdmin'>" + "<name>" + EmailAddress
-							+ "</name>" + "<password>" + Password + "</password>" + "<a n='displayName'>" + EmailAddress
-							+ "</a>" + prefs.toString() + "</CreateCalendarResourceRequest>");
+				.soapSend("<CreateCalendarResourceRequest xmlns='urn:zimbraAdmin'>" + "<name>" + EmailAddress
+						+ "</name>" + "<password>" + Password + "</password>" + "<a n='displayName'>" + EmailAddress
+						+ "</a>" + prefs.toString() + "<a n='zimbraPrefClientType'>" + "advanced" + "</a>"
+						+ "<a n='zimbraFeatureConversationsEnabled'>" + "FALSE" + "</a></CreateCalendarResourceRequest>");
 
 			Element[] createCalendarResourceResponse = ZimbraAdminAccount.GlobalAdmin()
 					.soapSelectNodes("//admin:CreateCalendarResourceResponse");

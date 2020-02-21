@@ -75,7 +75,7 @@ public class DisplayTimeInMailList extends AjaxCore {
 		// Navigate to preferences -> mail -> displaying messages
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.Mail);
 
-		// Check the checkbox: Always display received time in email list
+		// Check the check box: Always display received time in email list
 		app.zPagePreferences.zCheckboxSet(Checkbox.C_DISPLAY_RECEIVED_TIME, true);
 
 		// Click save

@@ -21,7 +21,6 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import org.testng.annotations.Test;
-import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
@@ -42,8 +41,6 @@ public class MultipleDayAppointment extends AjaxCore {
 		}};
 	}
 
-
-	@Bugs (ids = "107583, 69132, ZCS-725")
 	@Test (description = "Verify the display of a multi-day all-day appointment in the month view",
 			groups = { "sanity" })
 
@@ -51,7 +48,7 @@ public class MultipleDayAppointment extends AjaxCore {
 
 		// Appointment subject
 		String subject = ConfigProperties.getUniqueString();
-		int noOfDays =5;
+		int noOfDays = 5;
 
 		// Start Date is 2 days ahead if current date is less than or equal to 21 else 8 days behind
 		Calendar now = Calendar.getInstance();

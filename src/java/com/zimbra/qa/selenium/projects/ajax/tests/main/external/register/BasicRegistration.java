@@ -31,9 +31,9 @@ public class BasicRegistration extends AjaxCore {
 	}
 
 
-	@Bugs (ids = "103011")
+	@Bugs (ids = "ZCS-8702")
 	@Test (description = "Register as and external user", priority=3,
-			groups = { "smoke" })
+			groups = { "smoke-application-bug" })
 
 	public void BasicRegistration_01() throws HarnessException {
 

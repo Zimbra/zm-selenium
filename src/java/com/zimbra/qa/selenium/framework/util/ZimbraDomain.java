@@ -111,7 +111,7 @@ public class ZimbraDomain {
 		ZimbraAdminAccount.GlobalAdmin()
 				.soapSend("<CreateGalSyncAccountRequest xmlns='urn:zimbraAdmin' name='" + datasourcename
 						+ "' type='zimbra' domain='" + DomainName + "' >" + "<account by='name'>" + galaccount
-						+ "</account>" + "<password>" + ConfigProperties.getStringProperty("adminPassword")
+						+ "</account>" + "<password>" + ConfigProperties.getStringProperty("accountPassword")
 						+ "</password>" + "</CreateGalSyncAccountRequest>");
 
 		DomainGalSyncAccountID = ZimbraAdminAccount.GlobalAdmin()

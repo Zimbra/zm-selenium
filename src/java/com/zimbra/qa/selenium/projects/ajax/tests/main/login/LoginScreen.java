@@ -36,9 +36,13 @@ public class LoginScreen extends AjaxCore {
 			groups = { "bhr" })
 
 	public void LoginScreen_01() throws HarnessException {
-
 		String username = app.zPageLogin.sGetText(PageLogin.Locators.zDisplayedusername);
-		ZAssert.assertEquals(username, app.zGetLocaleString("usernameLabel"), "Verify the displayed label 'username'");
+
+		if (ConfigProperties.isZimbra9XEnvironment()) {
+			ZAssert.assertEquals(username, "Username", "Verify the displayed label 'username'");
+		} else {
+			ZAssert.assertEquals(username, app.zGetLocaleString("usernameLabel"), "Verify the displayed label 'username'");
+		}
 	}
 
 
@@ -46,7 +50,6 @@ public class LoginScreen extends AjaxCore {
 			groups = { "sanity" })
 
 	public void LoginScreen_02() throws HarnessException {
-
 		app.zPageLogin.zNavigateTo();
 
 		String value = "foo" + ConfigProperties.getUniqueString();
@@ -65,10 +68,7 @@ public class LoginScreen extends AjaxCore {
 			groups = { "sanity" })
 
 	public void LoginScreen_03() throws HarnessException {
-
 		String title = app.zPageLogin.sGetTitle();
-
-		// TODO: Need to I18N
 		ZAssert.assertStringContains(title, "Web Client", "Verify 'web client' rather than 'collaboration suite'");
 	}
 }
