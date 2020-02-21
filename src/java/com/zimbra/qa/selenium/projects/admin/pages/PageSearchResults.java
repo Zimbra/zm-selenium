@@ -231,7 +231,6 @@ public class PageSearchResults extends AbsTab {
 			SleepUtil.sleepMedium();
 		}
 
-		sMouseOut(locator);
 		return (page);
 	}
 
