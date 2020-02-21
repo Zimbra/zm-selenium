@@ -224,7 +224,6 @@ public class PageManageServers extends AbsTab {
 			SleepUtil.sleepLong();
 		}
 
-		sMouseOut(locator);
 		return (page);
 	}
 

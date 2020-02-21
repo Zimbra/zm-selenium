@@ -205,7 +205,6 @@ public class PageManageLicense extends AbsTab {
 			SleepUtil.sleepMedium();
 		}
 
-		sMouseOut(locator);
 		return (page);
 	}
 

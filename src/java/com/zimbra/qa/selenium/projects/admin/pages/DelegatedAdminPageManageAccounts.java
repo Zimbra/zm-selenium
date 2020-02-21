@@ -195,7 +195,6 @@ public class DelegatedAdminPageManageAccounts extends AbsTab {
 			SleepUtil.sleepMedium();
 		}
 
-		sMouseOut(locator);
 		return (page);
 	}
 

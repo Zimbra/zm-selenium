@@ -188,7 +188,6 @@ public class PageManageRetentionPolicy extends AbsTab {
 			SleepUtil.sleepMedium();
 		}
 
-		sMouseOut(locator);
 		return (page);
 
 	}
@@ -276,7 +275,6 @@ public class PageManageRetentionPolicy extends AbsTab {
 			SleepUtil.sleepMedium();
 		}
 
-		sMouseOut(locator);
 		return (page);
 	}
 

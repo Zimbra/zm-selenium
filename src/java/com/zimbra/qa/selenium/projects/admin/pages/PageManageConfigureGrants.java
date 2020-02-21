@@ -114,7 +114,6 @@ public class PageManageConfigureGrants extends AbsTab {
 			SleepUtil.sleepLong();
 		}
 
-		sMouseOut(locator);
 		return (page);
 	}
 
