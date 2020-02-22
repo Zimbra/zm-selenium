@@ -105,7 +105,6 @@ public class WizardCreateAccount extends AbsWizard {
 
 	@Override
 	public boolean zIsActive() throws HarnessException {
-
 		boolean present = sIsElementPresent(Locators.zdlg_NEW_ACCT);
 		if (!present) {
 			return (false);

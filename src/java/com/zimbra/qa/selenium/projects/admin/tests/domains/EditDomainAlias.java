@@ -143,7 +143,7 @@ public class EditDomainAlias extends AdminCore {
 		// Click on account to be edited.
 		app.zPageManageDomains.zListItem(Action.A_RIGHTCLICK, domainAliasName);
 
-		//Set object type and initialize creatdomainalias wizard
+		// Set object type and initialize creatdomainalias wizard
 		app.zPageManageDomains.zSetType(PageManageDomains.TypeOfObject.DOMAIN_ALIAS);
 		WizardCreateDomainAlias wizard = (WizardCreateDomainAlias) app.zPageManageDomains.zToolbarPressButton(Button.B_TREE_EDIT);
 

@@ -59,7 +59,6 @@ public abstract class AbsPage extends AbsSeleniumObject {
 	}
 
 	public void zWaitForActive(long millis) throws HarnessException {
-
 		for (int time = 0; time <= millis; time += SleepUtil.SleepGranularity) {
 			if (zIsActive()) {
 				return;
@@ -71,7 +70,6 @@ public abstract class AbsPage extends AbsSeleniumObject {
 	}
 
 	public void zDragAndDrop(String locatorSource, String locatorDestination) throws HarnessException {
-
 		if (!this.sIsElementPresent(locatorSource)) {
 			throw new HarnessException("locator (source) cannot be found: " + locatorSource);
 		}
@@ -83,7 +81,6 @@ public abstract class AbsPage extends AbsSeleniumObject {
 		action.dragAndDrop(getElement(locatorSource), getElement(locatorDestination)).build().perform();
 
 		this.zWaitForBusyOverlay();
-
 	}
 
 	public void zMouseClick(int x, int y) throws HarnessException {
@@ -237,7 +234,6 @@ public abstract class AbsPage extends AbsSeleniumObject {
 						}
 					}
 				}
-
 			}
 
 			public void typeUpload(String characters, String upload) {
@@ -264,7 +260,6 @@ public abstract class AbsPage extends AbsSeleniumObject {
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
-
 			}
 
 			private void type(char character) {
@@ -616,7 +611,6 @@ public abstract class AbsPage extends AbsSeleniumObject {
 			}
 
 			private void doTypeAltCode(String code) {
-
 				robot.keyPress(KeyEvent.VK_ALT);
 
 				for (int i = 0; i < code.length(); i++) {

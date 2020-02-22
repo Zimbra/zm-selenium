@@ -137,7 +137,6 @@ public class PageManageHelp extends AbsTab {
 	@Override
 	public void zNavigateTo() throws HarnessException {
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override
@@ -153,8 +152,11 @@ public class PageManageHelp extends AbsTab {
 	}
 
 	public boolean zVerifyHelpCenterLink(String link) throws HarnessException {
-		if (this.sIsElementPresent("css=table[id$='helpDocsGroup_table'] a:contains('" + link + "')"))
+		String locator = "css=table[id$='helpDocsGroup_table'] a:contains('" + link + "')";
+		this.zWaitTillElementPresent(locator);
+		if (this.sIsElementPresent(locator)) {
 			return true;
+		}
 		return false;
 	}
 }
