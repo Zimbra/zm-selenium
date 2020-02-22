@@ -410,23 +410,21 @@ public class PageSearchResults extends AbsTab {
 	}
 
 	public void zSelectSearchObject(String object) throws HarnessException {
+		this.sClickAt(Locators.zArrowSelectSearchObject, "");
 
 		if (object == S_COS) {
-			this.sClickAt(Locators.zArrowSelectSearchObject, "");
 			this.sClickAt(Locators.zCosSearchObject, "");
 
 		} else if (object == S_DOMAIN) {
 			this.sClickAt(Locators.zDomainSearchObject, "");
 
 		} else if (object == S_ACCOUNT) {
-			this.sClickAt(Locators.zArrowSelectSearchObject, "");
 			this.sClickAt(Locators.zAccountsSearchObject, "");
 
 		} else if (object == S_RESOURCE) {
 			this.sClickAt(Locators.zResourcesSearchObject, "");
 
 		} else if (object == S_DISTRIBUTION_LIST) {
-			SleepUtil.sleepMedium();
 			this.sClickAt(Locators.zDLSearchObject, "");
 
 		} else if (object == S_ALIAS) {

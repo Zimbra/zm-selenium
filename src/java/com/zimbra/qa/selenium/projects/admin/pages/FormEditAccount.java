@@ -134,7 +134,11 @@ public class FormEditAccount extends AbsForm {
 	}
 
 	public void zSetNameAsDelegatedAdmin(String name) throws HarnessException {
-		sType(Locators.DA_NAME_TEXT_BOX, name);
+		String locator = "css=input[id='ztabv__ACCT_EDIT_name_3']";
+		if (!this.sIsElementPresent(locator)) {
+			locator = "css=input[id='ztabv__ACCT_EDIT_2_name_3']";
+		}
+		sType(locator, name);
 	}
 
 	public void zSetPassword(String password) throws HarnessException {

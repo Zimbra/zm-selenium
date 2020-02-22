@@ -73,8 +73,8 @@ public class FormEditDomain extends AbsForm {
 	@Override
 	public void zSubmit() throws HarnessException {
 		sClickAt(Locators.SAVE_BUTTON, "");
-		SleepUtil.sleepSmall();
-		sClickAt(Locators.CLOSE_BUTTON, "0,0");
+		SleepUtil.sleepLong();
+		sClickAt(Locators.CLOSE_BUTTON, "");
 	}
 
 	public void zSelectTreeItem(String treeItem) throws HarnessException {

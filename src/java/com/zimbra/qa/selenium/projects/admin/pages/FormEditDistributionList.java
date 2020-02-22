@@ -46,7 +46,7 @@ public class FormEditDistributionList extends AbsForm {
 		public static final String HIDE_IN_GAL = "css=input[id$='zimbraHideInGal']";
 		public static final String SET_REPLY_TO = "css=input[id$='zimbraPrefReplyToEnabled']";
 		public static final String REPLY_TO_DISPLAY_NAME = "css=input[id$='zimbraPrefReplyToDisplay']";
-		public static final String REPLY_TO_ADDRESS = "css=input[id$='zimbraPrefReplyToAddress_display']";
+		public static final String REPLY_TO_ADDRESS = "css=input[id$='zimbraPrefReplyToAddress']";
 		public static final String ALIAS_NAME = "css=input[id^='zdlgv__EDIT_ALIAS']";
 		public static final String ALIAS_DOMAIN_NAME = "css=input[id$='_name_3_display']";
 		public static final String zdlg_OK = "css=td[id$='_button2_title']:contains('OK')";
@@ -215,9 +215,7 @@ public class FormEditDistributionList extends AbsForm {
 			throw new HarnessException("zSetReplyToAddress " + Locators.REPLY_TO_ADDRESS + " is not present");
 		}
 
-		this.sFocus(Locators.REPLY_TO_ADDRESS);
 		this.sClick(Locators.REPLY_TO_ADDRESS);
-		this.zWaitForBusyOverlay();
 		this.sType(Locators.REPLY_TO_ADDRESS, email);
 		SleepUtil.sleepSmall();
 		this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);

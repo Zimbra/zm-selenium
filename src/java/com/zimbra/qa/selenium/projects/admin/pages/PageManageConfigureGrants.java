@@ -215,7 +215,6 @@ public class PageManageConfigureGrants extends AbsTab {
 						+ pulldownLocator + " not present!");
 			}
 
-			this.sFocus(pulldownLocator);
 			this.sClickAt(pulldownLocator, "");
 			SleepUtil.sleepMedium();
 

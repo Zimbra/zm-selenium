@@ -136,9 +136,7 @@ public abstract class AbsWizard extends AbsPage {
 			throw new HarnessException("buttonPath was null for " + button);
 		}
 
-		if (sIsElementPresent(buttonPath)) {
-			SleepUtil.sleepMedium();
-			sClickAt(buttonPath, "");
-		}
+		sClickAt(buttonPath, "");
+		SleepUtil.sleepMedium();
 	}
 }

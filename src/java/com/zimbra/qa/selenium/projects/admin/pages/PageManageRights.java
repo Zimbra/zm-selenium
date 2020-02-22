@@ -194,7 +194,7 @@ public class PageManageRights extends AbsTab {
 			}
 
 			this.sClickAt(pulldownLocator, "");
-			SleepUtil.sleepSmall();
+			SleepUtil.sleepMedium();
 
 			if (optionLocator != null) {
 

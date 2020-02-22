@@ -46,7 +46,7 @@ public class HelpLinks extends AdminCore {
 
 		// Navigate to Help > Help links
 		app.zPageManageHelp.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_HELP_CENTRAL_ONLINE);
-		SleepUtil.sleepMedium();
+		SleepUtil.sleepLong();
 
 		// Verify "Zimbra Online Help" link is present
 		boolean isZimbraOnlineHelpLinkPresent = app.zPageManageHelp.zVerifyHelpCenterLink("Zimbra Online Help");

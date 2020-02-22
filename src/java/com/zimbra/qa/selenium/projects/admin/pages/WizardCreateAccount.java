@@ -16,6 +16,10 @@
  */
 package com.zimbra.qa.selenium.projects.admin.pages;
 
+import java.awt.AWTException;
+import java.awt.Robot;
+import java.awt.event.KeyEvent;
+
 import org.openqa.selenium.JavascriptExecutor;
 import com.zimbra.qa.selenium.framework.core.ExecuteHarnessMain;
 import com.zimbra.qa.selenium.framework.items.IItem;
@@ -58,16 +62,22 @@ public class WizardCreateAccount extends AbsWizard {
 		this.clearField(Locators.zdlg_DOMAIN_NAME);
 		zType(Locators.zdlg_DOMAIN_NAME, "");
 		zType(Locators.zdlg_DOMAIN_NAME, domain);
+		SleepUtil.sleepMedium();
+
+		Robot robot = null;
+		try {
+			robot = new Robot();
+		} catch (AWTException e) {
+			e.printStackTrace();
+		}
+		robot.keyPress(KeyEvent.VK_ENTER);
+		robot.keyRelease(KeyEvent.VK_ENTER);
 
 		for (String key : account.getAccountAttrs().keySet()) {
-
-			// TODO: Handle Previous/Next to find the input field, if necessary
 			if (key.equals("sn")) {
 				zType(Locators.zdlg_LAST_NAME, account.getAccountAttrs().get(key));
 				continue;
 			}
-
-			// TODO: add all account keys
 			throw new HarnessException("Unknown account attribute key " + key);
 		}
 
@@ -90,9 +100,7 @@ public class WizardCreateAccount extends AbsWizard {
 			}
 		}
 		clickFinish(AbsWizard.Locators.ACCOUNT_DIALOG);
-
 		return (account);
-
 	}
 
 	@Override

@@ -270,9 +270,8 @@ public class PageManageResources extends AbsTab {
 						+ pulldownLocator + " not present!");
 			}
 
-			SleepUtil.sleepLong();
 			this.sClickAt(pulldownLocator, "");
-			SleepUtil.sleepLong();
+			SleepUtil.sleepMedium();
 
 			if (optionLocator != null) {
 

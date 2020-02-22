@@ -255,7 +255,6 @@ public class PageManageDistributionLists extends AbsTab {
 						+ pulldownLocator + " not present!");
 			}
 
-			SleepUtil.sleepLong();
 			this.sClickAt(pulldownLocator, "");
 			SleepUtil.sleepLong();
 

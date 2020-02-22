@@ -120,6 +120,7 @@ public class PageLogin extends AbsTab {
 		zNavigateTo();
 
 		// Fill out the form
+		this.zWaitForElementPresent(Locators.zLoginButtonContainer);
 		zFillLoginFormFields(account);
 
 		// Click the Login button

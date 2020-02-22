@@ -19,10 +19,10 @@ package com.zimbra.qa.selenium.projects.admin.tests.domains;
 import java.util.List;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.core.Bugs;
+import com.zimbra.qa.selenium.framework.core.ExecuteHarnessMain;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
-import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
 import com.zimbra.qa.selenium.framework.util.CommandLineUtility;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
@@ -38,21 +38,21 @@ public class ZimbraHelpAdminURLModification extends AdminCore {
 
 	@Bugs (ids = "101023")
 	@Test (description = "Verify that zimbra admin help page is opened as per the value set in attribute ZimbraHelpAdminURL",
-			groups = { "sanity" })
+			groups = { "sanity-known-failure" })
 
 	public void ZimbraHelpAdminURLModification_01() throws HarnessException {
 
-		CommandLineUtility.runCommandOnZimbraServer(ZimbraAccount.AccountZCS().zGetAccountStoreHost(),
+		CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"),
 				"mkdir -p /opt/zimbra/jetty/webapps/zimbraAdmin/helpUrl/help/admin && echo '<html><head><title>Zimbra Temp Admin Help</title></head><body><h1>Temp Admin Help</h1><p> This is the new admin help of zimbra!</p></body></html>' > /opt/zimbra/jetty/webapps/zimbraAdmin/helpUrl/help/admin/adminhelp.html");
 
 		// To get domain id
-		String targetDomain = ConfigProperties.getStringProperty("server.host");
+		String targetDomain = ExecuteHarnessMain.proxyServers.get(0);
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<GetDomainRequest xmlns='urn:zimbraAdmin'>"
 						+	"<domain by='name'>" + targetDomain + "</domain>"
 						+	"</GetDomainRequest>");
 
-		String domainID=ZimbraAdminAccount.AdminConsoleAdmin().soapSelectValue("//admin:GetDomainResponse/admin:domain", "id").toString();
+		String domainID = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectValue("//admin:GetDomainResponse/admin:domain", "id").toString();
 
 		// Modify the domain and change the help URL
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
@@ -65,13 +65,11 @@ public class ZimbraHelpAdminURLModification extends AdminCore {
 		boolean found = false;
 
 		// Click on the Help drop down arrow
-		app.zPageMain.sMouseMoveAt(PageMain.Locators.zSkinContainerHelpDropDownArrow,"0,0");
-		app.zPageMain.sClickAt(PageMain.Locators.zSkinContainerHelpDropDownArrow,"0,0");
+		app.zPageMain.sClickAt(PageMain.Locators.zSkinContainerHelpDropDownArrow, "");
 		SleepUtil.sleepSmall();
 
 		// Select Help Center option
-		app.zPageMain.sMouseMoveAt(PageMain.Locators.zHelpCenterOption,"0,0");
-		app.zPageMain.sClickAt(PageMain.Locators.zHelpCenterOption,"0,0");
+		app.zPageMain.sClickAt(PageMain.Locators.zHelpCenterOption, "");
 		SleepUtil.sleepSmall();
 
 		// Zimbra admin help page opens in separate window
@@ -108,7 +106,7 @@ public class ZimbraHelpAdminURLModification extends AdminCore {
 						+  "<a n='zimbraHelpAdminURL'>" + "" + "</a>"
 						+	"</ModifyDomainRequest>");
 		// Check the URL
-		ZAssert.assertTrue(tempURL.contains("/zimbraAdmin/helpUrl/help/admin/adminhelp.html"),"Admin Help URL is not as set in zimbraHelpAdminURL");
+		ZAssert.assertTrue(tempURL.contains("/zimbraAdmin/helpUrl/help/admin/adminhelp.html"), "Admin Help URL is not as set in zimbraHelpAdminURL");
 
 	}
 
