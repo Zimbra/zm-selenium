@@ -22,7 +22,6 @@ import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
-import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
 import com.zimbra.qa.selenium.framework.util.CommandLineUtility;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
@@ -38,7 +37,7 @@ public class ZimbraHelpDelegatedURLModification extends AdminCore {
 
 	@Bugs (ids = "ZCS-3526,105789")
 	@Test (description = "Verify that zimbra delegated admin help page is opened as per the value set in attribute zimbraHelpDelegatedURL",
-			groups = { "functional" })
+			groups = { "functional-known-failure" })
 
 	public void ZimbraHelpDelegatedURLModification_01() throws HarnessException {
 
@@ -46,7 +45,7 @@ public class ZimbraHelpDelegatedURLModification extends AdminCore {
 
 		try {
 
-			CommandLineUtility.runCommandOnZimbraServer(ZimbraAccount.AccountZCS().zGetAccountStoreHost(),
+			CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"),
 					"mkdir -p /opt/zimbra/jetty/webapps/zimbraAdmin/helpUrl/help/DelegatedAdmin && echo '<html><head><title>Zimbra Temp Delegated Admin Help</title></head><body><h1>Temp Delegated Admin Help</h1><p> This is the new Delegated admin help of zimbra!</p></body></html>' > /opt/zimbra/jetty/webapps/zimbraAdmin/helpUrl/help/DelegatedAdmin/dahelp.html");
 
 			// Login using a delegated admin account

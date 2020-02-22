@@ -18,12 +18,14 @@ package com.zimbra.qa.selenium.projects.admin.tests.zimlets;
 
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.items.FileItem;
+import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.projects.admin.core.AdminCore;
+import com.zimbra.qa.selenium.projects.admin.pages.DialogForUndeployZimlet;
 import com.zimbra.qa.selenium.projects.admin.pages.WizardDeployZimlet;
 import com.zimbra.qa.selenium.projects.admin.pages.WizardDeployZimlet.Locators;
 
@@ -64,12 +66,11 @@ public class DeployZimlet extends AdminCore {
 		zUpload(filePath);
 
 		// Check flush chache
-		wizard.zCheckboxSet(Locators.FLUSH_CHACHE,true);
-		SleepUtil.sleepMedium();
+		wizard.zCheckboxSet(Locators.FLUSH_CHACHE, true);
 
 		// Click on Deploy
 		wizard.sClickAt(Locators.DEPLOY_BUTTON,"");
-		SleepUtil.sleepMedium();
+		SleepUtil.sleepVeryLong();
 
 		// Verify zimlet is uploaded successfully
 		boolean isUploadSuccessful = app.zPageManageZimlets.zVerifyUploadSuccessMessage();
@@ -86,5 +87,19 @@ public class DeployZimlet extends AdminCore {
 		// Verify the zimlet is listed on zimlet page
 		boolean isDeploySuccessful = app.zPageManageZimlets.zVerifyZimletName(zimletName);
 		ZAssert.assertTrue(isDeploySuccessful, "Verify zimlet is deployed!");
+
+		// Click on Zimlets
+		app.zPageManageZimlets.zListItem(Action.A_LEFTCLICK, zimletName);
+
+		// Click on undeploy from gear menu option
+		DialogForUndeployZimlet dialog = (DialogForUndeployZimlet) app.zPageManageZimlets
+				.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.B_UNDEPLOY_ZIMLET);
+
+		// Click Yes in Confirmation dialog
+		dialog.zPressButton(Button.B_YES);
+
+		// Verify the zimlet is not listed on zimlet page
+		boolean isUndeploySuccessful = app.zPageManageZimlets.zVerifyZimletName(zimletName);
+		ZAssert.assertFalse(isUndeploySuccessful, "Verify zimlet is undeployed!");
 	}
 }

@@ -314,6 +314,7 @@ public class PageManageDomains extends AbsTab {
 			}
 
 			this.sClickAt(pulldownLocator, "");
+			SleepUtil.sleepMedium();
 
 			if (optionLocator != null) {
 
@@ -322,7 +323,7 @@ public class PageManageDomains extends AbsTab {
 							+ optionLocator + " not present!");
 				}
 
-				SleepUtil.sleepMedium();
+				SleepUtil.sleepSmall();
 				this.sClickAt(optionLocator, "");
 			}
 
@@ -383,12 +384,12 @@ public class PageManageDomains extends AbsTab {
 		AbsPage page = null;
 
 		// Click on accounts limit tab
+		this.zWaitForElementPresent(Locators.DOMAIN_ACCOUNTS_LIMITS);
 		this.sClickAt(Locators.DOMAIN_ACCOUNTS_LIMITS, "");
 
 		// Click on Add button
 		this.sClickAt(Locators.DOMAIN_ACCOUNTS_LIMITS_ADD, "");
-
-		SleepUtil.sleepLong();
+		SleepUtil.sleepMedium();
 
 		// Enter COS name
 		if (this.sIsElementPresent(Locators.DOMAIN_ACCOUNTS_LIMITS_COS_NAME)) {
@@ -404,6 +405,7 @@ public class PageManageDomains extends AbsTab {
 
 		// Click on OK button
 		this.sClickAt(Locators.DOMAIN_ACCOUNTS_LIMITS_AT_COS_OK, "");
+		SleepUtil.sleepMedium();
 
 		return (page);
 	}

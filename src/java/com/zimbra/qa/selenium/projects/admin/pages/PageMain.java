@@ -125,8 +125,9 @@ public class PageMain extends AbsTab {
 		}
 
 		// Click on logout
-		sClickAt(Locators.zLogoffDropDownArrow, "");
-		sClickAt(Locators.zLogOff, "");
+		this.zWaitForElementPresent(Locators.zLogoffDropDownArrow);
+		sClick(Locators.zLogoffDropDownArrow);
+		sClick(Locators.zLogOff);
 		SleepUtil.sleepLong();
 
 		((AdminPages) MyApplication).zPageLogin.zWaitForActive();

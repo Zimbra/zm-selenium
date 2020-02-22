@@ -135,7 +135,7 @@ public class PageManageAdminExtensions extends AbsTab {
 			}
 
 			this.sClickAt(pulldownLocator, "");
-			SleepUtil.sleepLong();
+			SleepUtil.sleepSmall();
 
 			if (optionLocator != null) {
 

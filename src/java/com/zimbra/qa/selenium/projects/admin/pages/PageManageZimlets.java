@@ -153,16 +153,13 @@ public class PageManageZimlets extends AbsTab {
 			pulldownLocator = Locators.GEAR_ICON;
 
 			if (option == Button.B_TOGGLE_STATUS) {
-
 				optionLocator = Locators.TOGGLE_STATUS;
 
 			} else if (option == Button.B_DEPLOY_ZIMLET) {
-
 				optionLocator = Locators.DEPLOY_ZIMLET;
 				page = new WizardDeployZimlet(this);
 
 			} else if (option == Button.B_UNDEPLOY_ZIMLET) {
-
 				optionLocator = Locators.UNDEPLOY_ZIMLET;
 				page = new DialogForUndeployZimlet(this.MyApplication, null);
 
@@ -175,17 +172,15 @@ public class PageManageZimlets extends AbsTab {
 		}
 
 		if (pulldownLocator != null) {
-
 			if (!this.sIsElementPresent(pulldownLocator)) {
 				throw new HarnessException("Button " + pulldown + " option " + option + " pulldownLocator "
 						+ pulldownLocator + " not present!");
 			}
 
 			this.sClickAt(pulldownLocator, "");
-			SleepUtil.sleepLong();
+			SleepUtil.sleepSmall();
 
 			if (optionLocator != null) {
-
 				if (!this.sIsElementPresent(optionLocator)) {
 					throw new HarnessException("Button " + pulldown + " option " + option + " optionLocator "
 							+ optionLocator + " not present!");
@@ -193,9 +188,7 @@ public class PageManageZimlets extends AbsTab {
 
 				this.sClickAt(optionLocator, "");
 				SleepUtil.sleepLong();
-
 			}
-
 		}
 
 		return (page);
