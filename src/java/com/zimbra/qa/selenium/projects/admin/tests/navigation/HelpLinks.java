@@ -19,7 +19,6 @@ package com.zimbra.qa.selenium.projects.admin.tests.navigation;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
-import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.projects.admin.core.AdminCore;
 
@@ -46,17 +45,14 @@ public class HelpLinks extends AdminCore {
 
 		// Navigate to Help > Help links
 		app.zPageManageHelp.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_HELP_CENTRAL_ONLINE);
-		SleepUtil.sleepLong();
 
 		// Verify "Zimbra Online Help" link is present
 		boolean isZimbraOnlineHelpLinkPresent = app.zPageManageHelp.zVerifyHelpCenterLink("Zimbra Online Help");
 		ZAssert.assertTrue(isZimbraOnlineHelpLinkPresent, "Verify Zimbra Online Help link is present");
-		SleepUtil.sleepSmall();
 
 		// Verify "Administrators Guide" link is present
 		boolean isAdministratorGuideLinkPresent = app.zPageManageHelp.zVerifyHelpCenterLink("Administrators’ Guide");
 		ZAssert.assertTrue(isAdministratorGuideLinkPresent, "Verify Zimbra Administrators' Guide link is present");
-		SleepUtil.sleepSmall();
 
 		// Verify "End Users' Guide" link is present
 		boolean isEndUsersGuideLinkPresent = app.zPageManageHelp.zVerifyHelpCenterLink("End Users’ Guide");

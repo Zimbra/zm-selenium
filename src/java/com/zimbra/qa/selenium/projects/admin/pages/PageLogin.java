@@ -56,9 +56,6 @@ public class PageLogin extends AbsTab {
 		return (this.getClass().getName());
 	}
 
-	/**
-	 * If the "Login" button is visible, assume the LoginPage is active
-	 */
 	public boolean zIsActive() throws HarnessException {
 
 		// Make sure the application is loaded first
@@ -84,7 +81,6 @@ public class PageLogin extends AbsTab {
 
 	@Override
 	public void zNavigateTo() throws HarnessException {
-
 		if (zIsActive()) {
 			return;
 		}
@@ -93,27 +89,14 @@ public class PageLogin extends AbsTab {
 		if (((AdminPages) MyApplication).zPageMain.zIsActive()) {
 			((AdminPages) MyApplication).zPageMain.zLogout();
 		}
-
 		zWaitForActive();
 	}
 
-	/**
-	 * Login as the GlobalAdmin
-	 *
-	 * @throws HarnessException
-	 */
 	public void zLogin() throws HarnessException {
 		logger.debug("zLogin()");
-
 		zLogin(ZimbraAdminAccount.AdminConsoleAdmin());
 	}
 
-	/**
-	 * Login as the specified account
-	 *
-	 * @param account
-	 * @throws HarnessException
-	 */
 	public void zLogin(ZimbraAccount account) throws HarnessException {
 		logger.debug("zLogin(ZimbraAccount account)" + account.EmailAddress);
 
@@ -130,16 +113,11 @@ public class PageLogin extends AbsTab {
 		((AdminPages) MyApplication).zPageMain.zWaitForActive();
 		((AdminPages) MyApplication).zSetActiveAccount(account);
 
-		SleepUtil.sleep(10000);
+		SleepUtil.sleep(5000);
 
 		AdminCore.zHandleNetworkModulesNGDialog();
 	}
 
-	/**
-	 * Fill the form with the specified user
-	 *
-	 * @throws HarnessException
-	 */
 	public void zFillLoginFormFields(ZimbraAccount account) throws HarnessException {
 		logger.debug("zFillLoginFormFields(ZimbraAccount account)" + account.EmailAddress);
 
@@ -151,11 +129,6 @@ public class PageLogin extends AbsTab {
 		sType(Locators.zLoginPassword, account.Password);
 	}
 
-	/**
-	 * Fill the reset password form with the specified user
-	 *
-	 * @throws HarnessException
-	 */
 	public void zFillResetLoginPasswordFormFields(String NewPassword, String ConfirmPassword) throws HarnessException {
 		logger.debug("zFillResetLoginPasswordFormFields(ZimbraAccount account)" + NewPassword);
 
@@ -172,7 +145,7 @@ public class PageLogin extends AbsTab {
 
 		// Wait for the app to load
 		((AdminPages) MyApplication).zPageMain.zWaitForActive();
-		SleepUtil.sleep(10000);
+		SleepUtil.sleep(5000);
 	}
 
 	@Override

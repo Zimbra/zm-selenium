@@ -282,10 +282,11 @@ public class PageManageDomains extends AbsTab {
 			} else if (option == Button.O_EDIT) {
 				optionLocator = Locators.EDIT_BUTTON;
 
-				if (typeOfObject.equals(TypeOfObject.DOMAIN))
+				if (typeOfObject.equals(TypeOfObject.DOMAIN)) {
 					page = new FormEditDomain(this.MyApplication);
-				else if (typeOfObject.equals(TypeOfObject.DOMAIN_ALIAS))
+				} else if (typeOfObject.equals(TypeOfObject.DOMAIN_ALIAS)) {
 					page = new WizardCreateDomainAlias(this);
+				}
 
 			} else if (option == Button.O_CONFIGURE_GAL) {
 				optionLocator = Locators.CONFIGURE_GAL;
