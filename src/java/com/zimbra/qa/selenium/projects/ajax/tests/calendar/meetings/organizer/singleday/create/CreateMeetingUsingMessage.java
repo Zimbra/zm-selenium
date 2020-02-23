@@ -61,7 +61,7 @@ public class CreateMeetingUsingMessage extends AjaxCore {
 		injectMessage(app.zGetActiveAccount(), mimeFile);
 
 		// Verify mail exists
-		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message present in current view");
 
 		// Rt-click to message and hit 'Create Appointment'
 		DialogAddAttendees dlgAddAttendees = (DialogAddAttendees) app.zPageMail.zListItem(Action.A_RIGHTCLICK, Button.O_CREATE_APPOINTMENT, subject);
@@ -123,7 +123,7 @@ public class CreateMeetingUsingMessage extends AjaxCore {
 		injectMessage(app.zGetActiveAccount(), mimeFile);
 
 		// Verify mail exists
-		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message present in current view");
 
 		// Rt-click to message and hit 'Create Appointment'
 		DialogAddAttendees dlgAddAttendees = (DialogAddAttendees) app.zPageMail.zListItem(Action.A_RIGHTCLICK, Button.O_CREATE_APPOINTMENT, subject);
@@ -184,7 +184,7 @@ public class CreateMeetingUsingMessage extends AjaxCore {
 		injectMessage(app.zGetActiveAccount(), mimeFile);
 
 		// Verify mail exists
-		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message present in current view");
 
 		// Rt-click to message and hit 'Create Appointment'
 		DialogAddAttendees dlgAddAttendees = (DialogAddAttendees) app.zPageMail.zListItem(Action.A_RIGHTCLICK, Button.O_CREATE_APPOINTMENT, subject);
@@ -245,7 +245,7 @@ public class CreateMeetingUsingMessage extends AjaxCore {
 		injectMessage(app.zGetActiveAccount(), mimeFile);
 
 		// Verify mail exists
-		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message present in current view");
 
 		// Rt-click to message and hit 'Create Appointment'
 		DialogAddAttendees dlgAddAttendees = (DialogAddAttendees) app.zPageMail.zListItem(Action.A_RIGHTCLICK, Button.O_CREATE_APPOINTMENT, subject);
@@ -305,7 +305,7 @@ public class CreateMeetingUsingMessage extends AjaxCore {
 		injectMessage(app.zGetActiveAccount(), mimeFile);
 
 		// Verify mail exists
-		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message present in current view");
 
 		// Rt-click to message and hit 'Create Appointment'
 		DialogAddAttendees dlgAddAttendees = (DialogAddAttendees) app.zPageMail.zListItem(Action.A_RIGHTCLICK, Button.O_CREATE_APPOINTMENT, subject);
@@ -365,7 +365,7 @@ public class CreateMeetingUsingMessage extends AjaxCore {
 		injectMessage(app.zGetActiveAccount(), mimeFile);
 
 		// Verify mail exists
-		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message present in current view");
 
 		// Rt-click to message and hit 'Create Appointment'
 		DialogAddAttendees dlgAddAttendees = (DialogAddAttendees) app.zPageMail.zListItem(Action.A_RIGHTCLICK, Button.O_CREATE_APPOINTMENT, subject);
@@ -426,7 +426,7 @@ public class CreateMeetingUsingMessage extends AjaxCore {
 		injectMessage(app.zGetActiveAccount(), mimeFile);
 
 		// Verify mail exists
-		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message present in current view");
 
 		// Rt-click to message and hit 'Create Appointment'
 		DialogAddAttendees dlgAddAttendees = (DialogAddAttendees) app.zPageMail.zListItem(Action.A_RIGHTCLICK, Button.O_CREATE_APPOINTMENT, subject);
@@ -488,7 +488,7 @@ public class CreateMeetingUsingMessage extends AjaxCore {
 		injectMessage(app.zGetActiveAccount(), mimeFile);
 
 		// Verify mail exists
-		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message present in current view");
 
 		// Rt-click to message and hit 'Create Appointment'
 		DialogAddAttendees dlgAddAttendees = (DialogAddAttendees) app.zPageMail.zListItem(Action.A_RIGHTCLICK, Button.O_CREATE_APPOINTMENT, subject);
@@ -548,7 +548,7 @@ public class CreateMeetingUsingMessage extends AjaxCore {
 		injectMessage(app.zGetActiveAccount(), mimeFile);
 
 		// Verify mail exists
-		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message present in current view");
 
 		// Rt-click to message and hit 'Create Appointment'
 		DialogAddAttendees dlgAddAttendees = (DialogAddAttendees) app.zPageMail.zListItem(Action.A_RIGHTCLICK, Button.O_CREATE_APPOINTMENT, subject);

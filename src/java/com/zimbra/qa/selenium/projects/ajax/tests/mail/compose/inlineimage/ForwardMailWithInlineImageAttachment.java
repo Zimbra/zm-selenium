@@ -54,7 +54,7 @@ public class ForwardMailWithInlineImageAttachment extends SetGroupMailByMessageP
 			ZAssert.assertNotNull(original, "Verify the message is received correctly");
 
 			// Refresh current view
-			ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(mimeSubject), "Verify message displayed in current view");
+			ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(mimeSubject), "Verify message present in current view");
 
 			// Select the item
 			app.zPageMail.zListItem(Action.A_LEFTCLICK, mimeSubject);

@@ -56,7 +56,7 @@ public class HoverOverAttachment extends SetGroupMailByMessagePreference {
 		injectMessage(app.zGetActiveAccount(), mimeFile);
 
 		// Click on Get Mail to refresh the folder list
-		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message present in current view");
 
 		// Select the message
 		DisplayMail display = (DisplayMail)app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);

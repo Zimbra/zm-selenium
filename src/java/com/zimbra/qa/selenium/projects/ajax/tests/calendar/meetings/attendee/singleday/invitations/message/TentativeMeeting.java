@@ -108,7 +108,7 @@ public class TentativeMeeting extends AjaxCore {
 		// --------------- Login to attendee & mark invitation as Tentative ------------------------------------
 
 		// Refresh current view
-		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(apptSubject), "Verify message displayed in current view");
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(apptSubject), "Verify message present in current view");
 
 		// Select the mail
 		DisplayMail display = (DisplayMail)app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);
@@ -260,7 +260,7 @@ public class TentativeMeeting extends AjaxCore {
 		// --------------- Login to attendee & mark invitation as tentative -----------------------------------
 
 		// Refresh current view
-		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(apptSubject), "Verify message displayed in current view");
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(apptSubject), "Verify message present in current view");
 
 		// Select the mail
 		DisplayMail display = (DisplayMail)app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);
@@ -369,7 +369,7 @@ public class TentativeMeeting extends AjaxCore {
 		// --------------- Login to attendee & mark invitation as tentative ----------------------------------
 
 		// Refresh current view
-		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(apptSubject), "Verify message displayed in current view");
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(apptSubject), "Verify message present in current view");
 
 		// Select the mail
 		DisplayMail display = (DisplayMail)app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);
@@ -472,7 +472,7 @@ public class TentativeMeeting extends AjaxCore {
 		// --------------- Login to attendee & mark invitation as tentative -----------------------------------
 
 		// Refresh current view
-		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(apptSubject), "Verify message displayed in current view");
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(apptSubject), "Verify message present in current view");
 
 		// Select the mail
 		DisplayMail display = (DisplayMail)app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);

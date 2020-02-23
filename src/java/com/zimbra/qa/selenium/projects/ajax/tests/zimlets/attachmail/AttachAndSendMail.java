@@ -65,7 +65,7 @@ public class AttachAndSendMail extends SetGroupMailByMessagePreference {
 		mail.dBodyText = "body" + ConfigProperties.getUniqueString();
 
 		// Refresh current view
-		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message present in current view");
 
 		// Open the new mail form
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);

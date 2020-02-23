@@ -87,7 +87,7 @@ public class AcceptMeeting extends AjaxCore {
 						+	"</CreateAppointmentRequest>");
 
 		// Refresh the view
-		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(apptSubject), "Verify message displayed in current view");
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(apptSubject), "Verify message present in current view");
 
 		// Select the invitation
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);
@@ -157,7 +157,7 @@ public class AcceptMeeting extends AjaxCore {
 
 		this.SendCreateAppointmentRequest(apptSubject, startUTC);
 
-		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(apptSubject), "Verify message displayed in current view");
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(apptSubject), "Verify message present in current view");
 
 		// Select the invitation
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);
@@ -227,7 +227,7 @@ public class AcceptMeeting extends AjaxCore {
 						+	"</CreateAppointmentRequest>");
 
 		// Refresh the view
-		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(apptSubject), "Verify message displayed in current view");
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(apptSubject), "Verify message present in current view");
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);
 
 		SeparateWindowDisplayMail window = null;
@@ -329,7 +329,7 @@ public class AcceptMeeting extends AjaxCore {
 						+	"</CreateAppointmentRequest>");
 
 		// Refresh the view
-		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(apptSubject), "Verify message displayed in current view");
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(apptSubject), "Verify message present in current view");
 
 		// Select the invitation
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);

@@ -51,7 +51,7 @@ public class UnFlagMail extends SetGroupMailByMessagePreference {
 		ZAssert.assertStringContains(mail.getFlags(), "f", "Verify message is initially flagged");
 
 		// Refresh current view
-		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message present in current view");
 
 		// Select the item
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, mail.dSubject);
@@ -89,7 +89,7 @@ public class UnFlagMail extends SetGroupMailByMessagePreference {
 		ZAssert.assertStringContains(mail.getFlags(), "f", "Verify message is initially flagged");
 
 		// Refresh current view
-		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message present in current view");
 
 		// Select the item
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, mail.dSubject);

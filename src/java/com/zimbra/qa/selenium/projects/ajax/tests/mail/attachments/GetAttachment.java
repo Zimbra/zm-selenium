@@ -51,7 +51,7 @@ public class GetAttachment extends SetGroupMailByMessagePreference {
 		injectMessage(app.zGetActiveAccount(), mimeFile);
 
 		// Refresh current view
-		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message present in current view");
 
 		// Select the message so that it shows in the reading pane
 		DisplayMail display = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
@@ -85,7 +85,7 @@ public class GetAttachment extends SetGroupMailByMessagePreference {
 		injectMessage(app.zGetActiveAccount(), mimeFile);
 
 		// Refresh current view
-		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message present in current view");
 
 		// Select the message so that it shows in the reading pane
 		DisplayMail display = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
@@ -131,7 +131,7 @@ public class GetAttachment extends SetGroupMailByMessagePreference {
 		injectMessage(app.zGetActiveAccount(), mimeFile);
 
 		// Refresh current view
-		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message present in current view");
 
 		// Verify UI for attachment
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
@@ -180,7 +180,7 @@ public class GetAttachment extends SetGroupMailByMessagePreference {
 		ZAssert.assertGreaterThan(nodes.length, 0, "Verify the message has the attachment");
 
 		// Refresh current view and check the presence of mail
-		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message present in current view");
 
 		// Switch to message view
 		app.zPageMail.zToolbarPressButton(Button.B_MAIL_VIEW_BY_MESSAGE);

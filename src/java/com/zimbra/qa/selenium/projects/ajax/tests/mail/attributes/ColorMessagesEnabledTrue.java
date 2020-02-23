@@ -64,7 +64,7 @@ public class ColorMessagesEnabledTrue extends SetGroupMailByMessagePreference {
 				"</AddMsgRequest>");
 
 		// Refresh current view
-		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message present in current view");
 
 		// Verify the message is in the list
 		List<MailItem> messages = app.zPageMail.zListGetMessages();
@@ -124,7 +124,7 @@ public class ColorMessagesEnabledTrue extends SetGroupMailByMessagePreference {
 				"</AddMsgRequest>");
 
 		// Refresh current view
-		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message present in current view");
 
 		// Verify the message is in the list
 		List<MailItem> messages = app.zPageMail.zListGetMessages();

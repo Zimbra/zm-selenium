@@ -49,7 +49,7 @@ public class GetConversation extends SetGroupMailByConversationPreference {
 					"</SendMsgRequest>");
 
 		// Refresh current view
-		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message present in current view");
 
 		// Get the list of messages
 		List<MailItem> conversations = app.zPageMail.zListGetMessages();

@@ -73,7 +73,7 @@ public class ReplyMailWithAttachment extends SetGroupMailByMessagePreference {
 				"</SendMsgRequest>");
 
 		// Refresh current view
-		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message present in current view");
 
 		// Select the item
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
@@ -119,7 +119,7 @@ public class ReplyMailWithAttachment extends SetGroupMailByMessagePreference {
 			ZAssert.assertNotNull(original, "Verify the message is received correctly");
 
 			// Refresh current view
-			ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(mimeSubject), "Verify message displayed in current view");
+			ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(mimeSubject), "Verify message present in current view");
 
 			// Select the item
 			app.zPageMail.zListItem(Action.A_LEFTCLICK, mimeSubject);

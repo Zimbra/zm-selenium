@@ -71,6 +71,6 @@ public class SendMailWithSpecialCharacter extends SetGroupMailByMessagePreferenc
 		// Inject the sample mime
 		injectMessage(app.zGetActiveAccount(), mimeFile);
 
-		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message present in current view");
 	}
 }

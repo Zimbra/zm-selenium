@@ -144,7 +144,7 @@ public class ViewInviteWithDisplayMailPreference extends AjaxCore {
 
 		if (!app.zPageMail.zVerifyMailExists(subject)) {
 			injectMessage(app.zGetActiveAccount(), mimeFile);
-			ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
+			ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message present in current view");
 		}
 
 		// Select the message so that it shows in reading pane
@@ -277,7 +277,7 @@ public class ViewInviteWithDisplayMailPreference extends AjaxCore {
 
 		if (!app.zPageMail.zVerifyMailExists(subject)) {
 			injectMessage(app.zGetActiveAccount(), mimeFile);
-			ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
+			ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message present in current view");
 		}
 
 		// Select the message so that it shows in the reading pane

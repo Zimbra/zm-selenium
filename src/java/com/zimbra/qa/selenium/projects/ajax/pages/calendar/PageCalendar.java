@@ -301,11 +301,9 @@ public class PageCalendar extends AbsTab {
 	}
 
 	public boolean zVerifyAppointmentExists(String apptSubject) throws HarnessException {
-
 		boolean found = false;
 
 		for (int i = 1; i <= 2; i++) {
-
 			zToolbarPressButton(Button.B_REFRESH);
 
 			if (zIsAppointmentExists(apptSubject)) {

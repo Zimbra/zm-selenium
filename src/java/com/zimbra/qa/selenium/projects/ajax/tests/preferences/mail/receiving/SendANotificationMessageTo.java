@@ -72,7 +72,7 @@ public class SendANotificationMessageTo extends SetGroupMailByMessagePreference 
 
 		// Get the mail item for the new message
 		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
-		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message present in current view");
 
 		mail = MailItem.importFromSOAP(ZimbraAccount.AccountB(), "subject:("+ "New message received at " + app.zGetActiveAccount().EmailAddress +")");
 		ZAssert.assertStringContains(mail.dBodyText, "New message received at " + app.zGetActiveAccount().EmailAddress, "Verify body field is correct");

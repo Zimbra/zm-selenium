@@ -91,6 +91,6 @@ public class DiscardMessageAutomatically extends SetGroupMailByMessagePreference
 
 		// UI verification
 		app.zTreeMail.sClick("css=td[id='zti__main_Mail__5_textCell']:contains('Sent')"); // Go to sent folder
-		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message present in current view");
 	}
 }
