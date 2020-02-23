@@ -79,17 +79,14 @@ public class ZimbraAccount {
 	protected String MyAuthToken = null;
 	protected String MyClientAuthToken = null;
 	public final static String clientAccountName = "local@host.local";
-
-	// Account Attributes
-	// These attributes are set per each test class
 	protected Map<String, String> startingAccountPreferences = new HashMap<String, String>();
-	// These attributes are set for the zimlets per each test case
 	protected Map<String, String> startingUserZimletPreferences = new HashMap<String, String>();
+
 	public ZimbraAccount() {
 		this(null, null);
 	}
-	public ZimbraAccount(String email, String password) {
 
+	public ZimbraAccount(String email, String password) {
 		if (email == null) {
 			DisplayName = "tc" + ConfigProperties.getUniqueString();
 			email = DisplayName + "@" + ConfigProperties.getStringProperty("testdomain");

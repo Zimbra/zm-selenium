@@ -77,7 +77,7 @@ public class EditDistributionList extends AdminCore {
 		form.zSelectTreeItem(FormEditDistributionList.TreeItem.MEMBERS);
 
 		// Edit the name
-		String editedName = "tcEditedDL_" + ConfigProperties.getUniqueString();
+		String editedName = "tcediteddl" + ConfigProperties.getUniqueString();
 		form.zSetName(editedName);
 
 		// Submit
@@ -132,7 +132,7 @@ public class EditDistributionList extends AdminCore {
 		form.zSelectTreeItem(FormEditDistributionList.TreeItem.MEMBERS);
 
 		// Edit the name
-		String editedName = "tcEditedDL_" + ConfigProperties.getUniqueString();
+		String editedName = "tcediteddl" + ConfigProperties.getUniqueString();
 		form.zSetName(editedName);
 
 		// Submit
@@ -172,7 +172,7 @@ public class EditDistributionList extends AdminCore {
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<CreateDistributionListRequest xmlns='urn:zimbraAdmin'>"
 						+			"<name>" + dlEmailAddress + "</name>"
-						+			"<a xmlns='' n='zimbraIsAdminGroup'>TRUE</a>"
+						+			"<a n='zimbraIsAdminGroup'>TRUE</a>"
 						+		"</CreateDistributionListRequest>");
 
 		// Refresh the list
@@ -189,7 +189,7 @@ public class EditDistributionList extends AdminCore {
 		form.zSelectTreeItem(FormEditDistributionList.TreeItem.MEMBERS);
 
 		// Edit the name
-		String editedName = "tcEditedDL_" + ConfigProperties.getUniqueString();
+		String editedName = "tcediteddl" + ConfigProperties.getUniqueString();
 		form.zSetName(editedName);
 
 		// Submit
@@ -230,9 +230,9 @@ public class EditDistributionList extends AdminCore {
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<CreateDistributionListRequest dynamic='1' xmlns='urn:zimbraAdmin'>"
 						+ "<name>" + dlEmailAddress + "</name>"
-						+ "<a xmlns='' n='zimbraIsACLGroup'>FALSE</a>"
-						+ "<a xmlns='' n='zimbraMailStatus'>enabled</a>"
-						+ "<a xmlns='' n='memberURL'>" +memberURL+ "</a>"
+						+ "<a n='zimbraIsACLGroup'>FALSE</a>"
+						+ "<a n='zimbraMailStatus'>enabled</a>"
+						+ "<a n='memberURL'>" +memberURL+ "</a>"
 						+ "</CreateDistributionListRequest>");
 
 		// Refresh the list
@@ -249,7 +249,7 @@ public class EditDistributionList extends AdminCore {
 		form.zSelectTreeItem(FormEditDistributionList.TreeItem.MEMBERS);
 
 		// Edit the name
-		String editedName = "tcEditedDL_" + ConfigProperties.getUniqueString();
+		String editedName = "tcediteddl" + ConfigProperties.getUniqueString();
 		form.zSetName(editedName);
 
 		// Submit
@@ -291,9 +291,9 @@ public class EditDistributionList extends AdminCore {
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<CreateDistributionListRequest dynamic='1' xmlns='urn:zimbraAdmin'>"
 						+ "<name>" + dlEmailAddress + "</name>"
-						+ "<a xmlns='' n='zimbraIsACLGroup'>FALSE</a>"
-						+ "<a xmlns='' n='zimbraMailStatus'>enabled</a>"
-						+ "<a xmlns='' n='memberURL'>" +memberURL+ "</a>"
+						+ "<a n='zimbraIsACLGroup'>FALSE</a>"
+						+ "<a n='zimbraMailStatus'>enabled</a>"
+						+ "<a n='memberURL'>" +memberURL+ "</a>"
 						+ "</CreateDistributionListRequest>");
 
 		// Refresh the list
@@ -309,7 +309,7 @@ public class EditDistributionList extends AdminCore {
 		form.zSelectTreeItem(FormEditDistributionList.TreeItem.MEMBERS);
 
 		// Edit the name
-		String editedName = "tcEditedDL_" + ConfigProperties.getUniqueString();
+		String editedName = "tcediteddl" + ConfigProperties.getUniqueString();
 		form.zSetName(editedName);
 
 		// Submit
@@ -351,9 +351,9 @@ public class EditDistributionList extends AdminCore {
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<CreateDistributionListRequest dynamic='1' xmlns='urn:zimbraAdmin'>"
 						+ "<name>" + dlEmailAddress + "</name>"
-						+ "<a xmlns='' n='zimbraIsACLGroup'>FALSE</a>"
-						+ "<a xmlns='' n='zimbraMailStatus'>enabled</a>"
-						+ "<a xmlns='' n='memberURL'>" +memberURL+ "</a>"
+						+ "<a n='zimbraIsACLGroup'>FALSE</a>"
+						+ "<a n='zimbraMailStatus'>enabled</a>"
+						+ "<a n='memberURL'>" +memberURL+ "</a>"
 						+ "</CreateDistributionListRequest>");
 
 		// Refresh the list
@@ -369,7 +369,7 @@ public class EditDistributionList extends AdminCore {
 		form.zSelectTreeItem(FormEditDistributionList.TreeItem.MEMBERS);
 
 		// Edit the name
-		String editedName = "tcEditedDL_" + ConfigProperties.getUniqueString();
+		String editedName = "tcediteddl" + ConfigProperties.getUniqueString();
 		form.zSetName(editedName);
 
 		// Submit

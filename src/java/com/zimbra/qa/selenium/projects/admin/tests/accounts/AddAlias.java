@@ -52,14 +52,15 @@ public class AddAlias extends AdminCore {
 	public void AddAlias_01() throws HarnessException {
 
 		// Create a new account in the Admin Console using SOAP
-		AccountItem account = new AccountItem("tc" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
+		AccountItem account = new AccountItem("tc" + ConfigProperties.getUniqueString(), ConfigProperties.getStringProperty("testdomain"));
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<CreateAccountRequest xmlns='urn:zimbraAdmin'>"
 						+			"<name>" + account.getEmailAddress() + "</name>"
 						+			"<password>test123</password>"
+						+			"<a n='description'>Created by Selenium automation</a>"
 						+		"</CreateAccountRequest>");
 
-		AccountItem target = new AccountItem("tc" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
+		AccountItem target = new AccountItem(ConfigProperties.getUniqueString(), ConfigProperties.getStringProperty("testdomain"));
 		AccountItem.createUsingSOAP(target);
 
 		String aliasLocalName = "alias" + ConfigProperties.getUniqueString();

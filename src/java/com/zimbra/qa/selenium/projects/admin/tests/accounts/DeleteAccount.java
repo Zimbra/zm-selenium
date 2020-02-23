@@ -55,11 +55,12 @@ public class DeleteAccount extends AdminCore {
 	public void DeleteAccount_01() throws HarnessException {
 
 		// Create a new account in the Admin Console using SOAP
-		AccountItem account = new AccountItem("tc" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
+		AccountItem account = new AccountItem("tc" + ConfigProperties.getUniqueString(), ConfigProperties.getStringProperty("testdomain"));
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<CreateAccountRequest xmlns='urn:zimbraAdmin'>"
 				+			"<name>" + account.getEmailAddress() + "</name>"
 				+			"<password>test123</password>"
+				+			"<a n='description'>Created by Selenium automation</a>"
 				+		"</CreateAccountRequest>");
 
 		// Refresh the account list
@@ -105,12 +106,13 @@ public class DeleteAccount extends AdminCore {
 	public void DeleteAccount_02() throws HarnessException {
 
 		// Create a new account in the Admin Console using SOAP
-		AccountItem account = new AccountItem("tc" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
+		AccountItem account = new AccountItem("tc" + ConfigProperties.getUniqueString(), ConfigProperties.getStringProperty("testdomain"));
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<CreateAccountRequest xmlns='urn:zimbraAdmin'>"
 				+			"<name>" + account.getEmailAddress() + "</name>"
 				+			"<password>test123</password>"
-						+ "</CreateAccountRequest>");
+				+			"<a n='description'>Created by Selenium automation</a>"
+				+ "</CreateAccountRequest>");
 
 		// Refresh the account list
 		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
@@ -155,11 +157,12 @@ public class DeleteAccount extends AdminCore {
 	public void DeleteAccount_03() throws HarnessException {
 
 		// Create a new account in the Admin Console using SOAP
-		AccountItem account = new AccountItem("tc" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
+		AccountItem account = new AccountItem("tc" + ConfigProperties.getUniqueString(), ConfigProperties.getStringProperty("testdomain"));
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<CreateAccountRequest xmlns='urn:zimbraAdmin'>"
 				+			"<name>" + account.getEmailAddress() + "</name>"
 				+			"<password>test123</password>"
+				+			"<a n='description'>Created by Selenium automation</a>"
 				+		"</CreateAccountRequest>");
 
 		// Enter the search string to find the account
@@ -207,11 +210,12 @@ public class DeleteAccount extends AdminCore {
 	public void DeleteAccount_04() throws HarnessException {
 
 		// Create a new account in the Admin Console using SOAP
-		AccountItem account = new AccountItem("tc" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
+		AccountItem account = new AccountItem("tc" + ConfigProperties.getUniqueString(), ConfigProperties.getStringProperty("testdomain"));
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<CreateAccountRequest xmlns='urn:zimbraAdmin'>"
 				+			"<name>" + account.getEmailAddress() + "</name>"
 				+			"<password>test123</password>"
+				+			"<a n='description'>Created by Selenium automation</a>"
 				+		"</CreateAccountRequest>");
 
 		// Enter the search string to find the account

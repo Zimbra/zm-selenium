@@ -54,11 +54,12 @@ public class ViewMail extends AdminCore {
 	public void ViewMail_01() throws HarnessException {
 
 		// Create a new account in the admin Console using SOAP
-		AccountItem account = new AccountItem("tc" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
+		AccountItem account = new AccountItem("tc" + ConfigProperties.getUniqueString(), ConfigProperties.getStringProperty("testdomain"));
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<CreateAccountRequest xmlns='urn:zimbraAdmin'>"
 						+			"<name>" + account.getEmailAddress() + "</name>"
 						+			"<password>test123</password>"
+						+			"<a n='description'>Created by Selenium automation</a>"
 						+		"</CreateAccountRequest>");
 
 		// Send a mail to the account
@@ -130,11 +131,12 @@ public class ViewMail extends AdminCore {
 	public void ViewMail_02() throws HarnessException {
 
 		// Create a new account in the admin Console using SOAP
-		AccountItem account = new AccountItem("tc" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
+		AccountItem account = new AccountItem("tc" + ConfigProperties.getUniqueString(), ConfigProperties.getStringProperty("testdomain"));
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<CreateAccountRequest xmlns='urn:zimbraAdmin'>"
 						+			"<name>" + account.getEmailAddress() + "</name>"
 						+			"<password>test123</password>"
+						+			"<a n='description'>Created by Selenium automation</a>"
 						+		"</CreateAccountRequest>");
 
 		// Send a mail to the account
@@ -208,12 +210,13 @@ public class ViewMail extends AdminCore {
 	public void ViewMail_03() throws HarnessException {
 
 		// Create a new account in the Admin Console using SOAP
-		AccountItem account = new AccountItem("tc" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
+		AccountItem account = new AccountItem("tc" + ConfigProperties.getUniqueString(), ConfigProperties.getStringProperty("testdomain"));
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<CreateAccountRequest xmlns='urn:zimbraAdmin'>"
 						+			"<name>" + account.getEmailAddress() + "</name>"
 						+			"<password>test123</password>"
-						+			"<a xmlns='' n='zimbraAccountStatus'>lockout</a>"
+						+			"<a n='zimbraAccountStatus'>lockout</a>"
+						+			"<a n='description'>Created by Selenium automation</a>"
 						+		"</CreateAccountRequest>");
 
 		// Send a mail to the account
@@ -289,11 +292,12 @@ public class ViewMail extends AdminCore {
 	public void ViewMail_04() throws HarnessException {
 
 		// Create a new account in the Admin Console using SOAP
-		AccountItem account = new AccountItem("tc" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
+		AccountItem account = new AccountItem("tc" + ConfigProperties.getUniqueString(), ConfigProperties.getStringProperty("testdomain"));
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<CreateAccountRequest xmlns='urn:zimbraAdmin'>"
 						+			"<name>" + account.getEmailAddress() + "</name>"
 						+			"<password>test123</password>"
+						+			"<a n='description'>Created by Selenium automation</a>"
 						+		"</CreateAccountRequest>");
 
 		// Send a mail to the account

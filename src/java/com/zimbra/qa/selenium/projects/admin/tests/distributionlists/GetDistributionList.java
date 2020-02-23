@@ -98,7 +98,7 @@ public class GetDistributionList extends AdminCore {
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<CreateDistributionListRequest xmlns='urn:zimbraAdmin'>"
 				+			"<name>" + dlEmailAddress + "</name>"
-				+			"<a xmlns='' n='zimbraIsAdminGroup'>TRUE</a>"
+				+			"<a n='zimbraIsAdminGroup'>TRUE</a>"
 				+		"</CreateDistributionListRequest>");
 
 		// Refresh the list
@@ -141,8 +141,8 @@ public class GetDistributionList extends AdminCore {
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<CreateDistributionListRequest xmlns='urn:zimbraAdmin' dynamic='1'>"
 				+			"<name>" + dlEmailAddress + "</name>"
-				+			"<a xmlns='' n='zimbraIsAdminGroup'>TRUE</a>"
-				+			"<a xmlns='' n='zimbraIsACLGroup'>TRUE</a>"
+				+			"<a n='zimbraIsAdminGroup'>TRUE</a>"
+				+			"<a n='zimbraIsACLGroup'>TRUE</a>"
 				+		"</CreateDistributionListRequest>");
 
 		// Refresh the list

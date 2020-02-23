@@ -77,7 +77,7 @@ public class EditDistributionList extends AdminCore {
 		FormEditDistributionList form = (FormEditDistributionList) app.zPageManageDistributionList.zToolbarPressPulldown(Button.B_GEAR_BOX,Button.O_EDIT);
 
 		// Edit the name
-		String editedName = "tcEditedDL_" + ConfigProperties.getUniqueString();
+		String editedName = "tcediteddl" + ConfigProperties.getUniqueString();
 		form.zSetName(editedName);
 
 		// Submit
@@ -136,7 +136,7 @@ public class EditDistributionList extends AdminCore {
 		FormEditDistributionList form = (FormEditDistributionList) app.zPageSearchResults.zToolbarPressButton(Button.B_TREE_EDIT);
 
 		// Edit the name
-		String editedName = "tcEditedDL_" + ConfigProperties.getUniqueString();
+		String editedName = "tcediteddl" + ConfigProperties.getUniqueString();
 		form.zSetName(editedName);
 
 		// Submit
@@ -179,9 +179,9 @@ public class EditDistributionList extends AdminCore {
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<CreateDistributionListRequest dynamic='1' xmlns='urn:zimbraAdmin'>"
 						+ "<name>" + dlEmailAddress + "</name>"
-						+ "<a xmlns='' n='zimbraIsACLGroup'>FALSE</a>"
-						+ "<a xmlns='' n='zimbraMailStatus'>enabled</a>"
-						+ "<a xmlns='' n='memberURL'>" +memberURL+ "</a>"
+						+ "<a n='zimbraIsACLGroup'>FALSE</a>"
+						+ "<a n='zimbraMailStatus'>enabled</a>"
+						+ "<a n='memberURL'>" +memberURL+ "</a>"
 						+ "</CreateDistributionListRequest>");
 
 		// Enter the search string to find the dl
@@ -199,7 +199,7 @@ public class EditDistributionList extends AdminCore {
 		FormEditDistributionList form = (FormEditDistributionList) app.zPageManageDistributionList.zToolbarPressPulldown(Button.B_GEAR_BOX,Button.O_EDIT);
 
 		// Edit the name
-		String editedName = "tcEditedDL_" + ConfigProperties.getUniqueString();
+		String editedName = "tcediteddl" + ConfigProperties.getUniqueString();
 		form.zSetName(editedName);
 
 		// Submit
