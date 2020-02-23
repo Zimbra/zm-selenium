@@ -256,7 +256,7 @@ public class PageManageDistributionLists extends AbsTab {
 			}
 
 			this.sClickAt(pulldownLocator, "");
-			SleepUtil.sleepLong();
+			SleepUtil.sleepSmall();
 
 			if (optionLocator != null) {
 
@@ -307,7 +307,7 @@ public class PageManageDistributionLists extends AbsTab {
 			final String accountLocator = rowsLocator + "[" + i + "]";
 			String locator;
 
-			AccountItem item = new AccountItem("email" + ConfigProperties.getUniqueString(),
+			AccountItem item = new AccountItem("tc" + ConfigProperties.getUniqueString(),
 					ConfigProperties.getStringProperty("testdomain"));
 
 			// Type (image)

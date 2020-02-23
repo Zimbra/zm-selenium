@@ -315,7 +315,7 @@ public class PageManageDomains extends AbsTab {
 			}
 
 			this.sClickAt(pulldownLocator, "");
-			SleepUtil.sleepMedium();
+			SleepUtil.sleepSmall();
 
 			if (optionLocator != null) {
 
@@ -346,25 +346,37 @@ public class PageManageDomains extends AbsTab {
 	 * Return a list of all domain entries in the current view
 	 */
 	public List<DomainItem> zListGetDomainList() throws HarnessException {
-
 		List<DomainItem> items = new ArrayList<DomainItem>();
 
-		if (!this.sIsElementPresent("css=div[id='zl__DOMAIN_MANAGE'] div[id$='__rows']"))
-			throw new HarnessException("Account Rows is not present");
-
 		// How many items are in the table?
-		String rowsLocator = "//div[@id='zl__DOMAIN_MANAGE']//div[contains(@id, '__rows')]//div[contains(@id,'zli__')]";
-		int count = this.sGetXpathCount(rowsLocator);
+		String rowsLocator = "css=div[id='zl__DOMAIN_MANAGE'] div[id$='__rows'] div[id^='zli__']";
+		int count = this.sGetCssCount(rowsLocator);
+		int scrollCounter = 50;
 		logger.debug(myPageName() + " zListGetdomain: number of domain: " + count);
 
+		if (count >= 50) {
+			for (int domainPaging = 1; domainPaging <= 100; domainPaging++) {
+				String pageCounter = rowsLocator + ":nth-child(" + scrollCounter + ")";
+
+				if (this.sIsElementPresent(pageCounter)) {
+					sClick(pageCounter);
+					SleepUtil.sleepVerySmall();
+					this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_DOWN);
+					SleepUtil.sleepVerySmall();
+					scrollCounter = scrollCounter + 20;
+				} else {
+					break;
+				}
+			}
+		}
+
+		count = this.sGetCssCount(rowsLocator);
 		for (int i = 1; i <= count; i++) {
-			final String domainLocator = rowsLocator + "[" + i + "]";
+			final String domainLocator = rowsLocator + ":nth-child(" + i + ")";
 			String locator;
 
 			DomainItem item = new DomainItem();
-
-			// Type (image)
-			locator = domainLocator + "//td[contains(@id,'domain_data_name')]";
+			locator = domainLocator + " td:nth-child(2)";
 			if (this.sIsElementPresent(locator)) {
 				item.setName(this.sGetText(locator).trim());
 			}

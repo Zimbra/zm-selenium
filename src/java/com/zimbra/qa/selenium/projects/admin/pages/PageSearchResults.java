@@ -369,7 +369,7 @@ public class PageSearchResults extends AbsTab {
 			final String accountLocator = rowsLocator + ":nth-child(" + i + ")";
 			String locator;
 
-			AccountItem item = new AccountItem("email" + ConfigProperties.getUniqueString(),
+			AccountItem item = new AccountItem("tc" + ConfigProperties.getUniqueString(),
 					ConfigProperties.getStringProperty("testdomain"));
 
 			// Type (image)

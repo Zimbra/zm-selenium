@@ -86,6 +86,7 @@ public class ZimbraDomain {
 		ZimbraAdminAccount.GlobalAdmin()
 				.soapSend("<CreateDomainRequest xmlns='urn:zimbraAdmin'>" + "<name>" + DomainName + "</name>"
 						+ "<a n='zimbraGalMode'>zimbra</a>" + "<a n='zimbraGalMaxResults'>15</a>"
+						+ "<a n='description'>Created by Selenium automation</a>"
 						+ "</CreateDomainRequest>");
 
 		this.createGalSyncAccount();

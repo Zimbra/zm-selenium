@@ -52,7 +52,7 @@ public class ResetPassword extends AdminCore {
 	public void ResetPassword_01() throws HarnessException {
 
 		// Create admin account
-		String adminaccount = "admin" + ConfigProperties.getUniqueString() + "@"
+		String adminaccount = "tc" + ConfigProperties.getUniqueString() + "@"
 				+ ConfigProperties.getStringProperty("testdomain");
 		ZimbraAdminAccount account = new ZimbraAdminAccount(adminaccount);
 		account.provision();

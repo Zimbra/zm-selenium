@@ -337,13 +337,13 @@ public class AdminPages extends AbsApplication {
 
 	public void provisionAuthenticateDA() throws HarnessException {
 		// Create a new AdminAccount
-		ZimbraAdminAccount accounta = new ZimbraAdminAccount(
-				"admin" + ConfigProperties.getUniqueString() + "@" + ConfigProperties.getStringProperty("testdomain"));
+		ZimbraAdminAccount delegatedAdmin = new ZimbraAdminAccount(
+				"tc" + ConfigProperties.getUniqueString() + "@" + ConfigProperties.getStringProperty("testdomain"));
 
-		accounta.provisionDA(accounta.EmailAddress);
+		delegatedAdmin.provisionDA(delegatedAdmin.EmailAddress);
 
 		ZimbraAdminAccount.GlobalAdmin()
-				.soapSend("<ModifyAccountRequest xmlns='urn:zimbraAdmin'>" + " <id>" + accounta.ZimbraId + "</id>"
+				.soapSend("<ModifyAccountRequest xmlns='urn:zimbraAdmin'>" + " <id>" + delegatedAdmin.ZimbraId + "</id>"
 						+ "<a n='zimbraAdminConsoleUIComponents'>accountListView</a>"
 						+ "<a n='zimbraAdminConsoleUIComponents'>downloadsView</a>"
 						+ "<a n='zimbraAdminConsoleUIComponents'>DLListView</a>"
@@ -356,9 +356,9 @@ public class AdminPages extends AbsApplication {
 				"<FlushCacheRequest  xmlns='urn:zimbraAdmin'>" + "<cache type='galgroup'/>" + "</FlushCacheRequest>");
 
 		this.zPageMain.zLogout();
-		accounta.authenticate();
+		delegatedAdmin.authenticate();
 
 		// Login
-		this.zPageLogin.zLogin(accounta);
+		this.zPageLogin.zLogin(delegatedAdmin);
 	}
 }

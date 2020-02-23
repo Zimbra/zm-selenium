@@ -33,8 +33,7 @@ public class CosItem implements IItem {
 
 	public CosItem() {
 		super();
-
-		cosName = "a_cos" + ConfigProperties.getUniqueString();
+		cosName = "tccos" + ConfigProperties.getUniqueString();
 		Id = null;
 	}
 

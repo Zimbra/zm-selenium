@@ -54,7 +54,7 @@ public class EditAccount extends AdminCore {
 	public void EditAccount_01() throws HarnessException {
 
 		// Create a new account in the Admin Console using SOAP
-		AccountItem account = new AccountItem("email" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
+		AccountItem account = new AccountItem("tc" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<CreateAccountRequest xmlns='urn:zimbraAdmin'>"
 						+			"<name>" + account.getEmailAddress() + "</name>"
@@ -71,7 +71,7 @@ public class EditAccount extends AdminCore {
 		FormEditAccount form = (FormEditAccount) app.zPageManageAccounts.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_EDIT);
 
 		// Edit the name
-		String editedName = "editedAccount_" + ConfigProperties.getUniqueString();
+		String editedName = "tcEditedAccount_" + ConfigProperties.getUniqueString();
 		form.zSetName(editedName);
 
 		// Save the changes
@@ -101,7 +101,7 @@ public class EditAccount extends AdminCore {
 	public void EditAccount_02() throws HarnessException {
 
 		// Create a new account in the Admin Console using SOAP
-		AccountItem account = new AccountItem("email" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
+		AccountItem account = new AccountItem("tc" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<CreateAccountRequest xmlns='urn:zimbraAdmin'>"
 						+			"<name>" + account.getEmailAddress() + "</name>"
@@ -119,7 +119,7 @@ public class EditAccount extends AdminCore {
 		FormEditAccount form = (FormEditAccount) app.zPageManageAccounts.zToolbarPressButton(Button.B_TREE_EDIT);
 
 		// Edit the name
-		String editedName = "editedAccount_" + ConfigProperties.getUniqueString();
+		String editedName = "tcEditedAccount_" + ConfigProperties.getUniqueString();
 		form.zSetName(editedName);
 
 		// Save the changes
@@ -153,7 +153,7 @@ public class EditAccount extends AdminCore {
 	public void EditAccount_03() throws HarnessException {
 
 		// Create a new account in the Admin Console using SOAP
-		AccountItem account = new AccountItem("email" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
+		AccountItem account = new AccountItem("tc" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<CreateAccountRequest xmlns='urn:zimbraAdmin'>"
 						+			"<name>" + account.getEmailAddress() + "</name>"
@@ -178,7 +178,7 @@ public class EditAccount extends AdminCore {
 		FormEditAccount form = (FormEditAccount) app.zPageSearchResults.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_EDIT);
 
 		// Edit the name
-		String editedName = "editedAccount_" + ConfigProperties.getUniqueString();
+		String editedName = "tcEditedAccount_" + ConfigProperties.getUniqueString();
 		form.zSetName(editedName);
 
 		// Save the changes
@@ -212,7 +212,7 @@ public class EditAccount extends AdminCore {
 	public void EditAccount_04() throws HarnessException {
 
 		// Create a new account in the Admin Console using SOAP
-		AccountItem account = new AccountItem("email" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
+		AccountItem account = new AccountItem("tc" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<CreateAccountRequest xmlns='urn:zimbraAdmin'>"
 						+			"<name>" + account.getEmailAddress() + "</name>"
@@ -225,8 +225,8 @@ public class EditAccount extends AdminCore {
 		// Click on Edit button
 		FormEditAccount form = (FormEditAccount) app.zPageManageAccounts.zListItem(Action.A_RIGHTCLICK, Button.O_EDIT, account.getEmailAddress());
 
-		//Edit the name
-		String editedName = "editedAccount_" + ConfigProperties.getUniqueString();
+		// Edit the name
+		String editedName = "tcEditedAccount_" + ConfigProperties.getUniqueString();
 		form.zSetName(editedName);
 
 		// Save the changes

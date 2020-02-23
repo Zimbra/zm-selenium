@@ -54,7 +54,7 @@ public class ViewMail extends AdminCore {
 	public void ViewMail_01() throws HarnessException {
 
 		// Create a new account in the admin Console using SOAP
-		AccountItem account = new AccountItem("email" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
+		AccountItem account = new AccountItem("tc" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<CreateAccountRequest xmlns='urn:zimbraAdmin'>"
 						+			"<name>" + account.getEmailAddress() + "</name>"
@@ -93,12 +93,15 @@ public class ViewMail extends AdminCore {
 		boolean mailFound = false;
 		for(String id: windowIds) {
 			app.zPageMain.sSelectWindow(id);
-			if (app.zPageMain.sGetTitle().contains("Zimbra: Inbox") && !(app.zPageMain.sGetTitle().contains("Zimbra Administration"))) {
-				// Get the presence of mail
+
+			String pageTitle = "Zimbra: Inbox";
+			if (ConfigProperties.isZimbra9XEnvironment()) {
+				pageTitle = "Zimbra";
+			}
+
+			if (app.zPageMain.sGetTitle().contains(pageTitle) && !(app.zPageMain.sGetTitle().contains("Zimbra Administration"))) {
 				mailFound = app.zPageMain.zVerifyMailExists(subject);
-				// Close the selected window
 				app.zPageMain.sClose();
-				// Select the parent window
 				app.zPageMain.sSelectWindow("null");
 				break;
 			} else if (!(app.zPageMain.sGetTitle().contains("Zimbra Administration"))) {
@@ -127,7 +130,7 @@ public class ViewMail extends AdminCore {
 	public void ViewMail_02() throws HarnessException {
 
 		// Create a new account in the admin Console using SOAP
-		AccountItem account = new AccountItem("email" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
+		AccountItem account = new AccountItem("tc" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<CreateAccountRequest xmlns='urn:zimbraAdmin'>"
 						+			"<name>" + account.getEmailAddress() + "</name>"
@@ -166,12 +169,15 @@ public class ViewMail extends AdminCore {
 		boolean mailFound = false;
 		for(String id: windowIds) {
 			app.zPageMain.sSelectWindow(id);
-			if (app.zPageMain.sGetTitle().contains("Zimbra: Inbox") && !(app.zPageMain.sGetTitle().contains("Zimbra Administration"))) {
-				// Get the presence of mail
+
+			String pageTitle = "Zimbra: Inbox";
+			if (ConfigProperties.isZimbra9XEnvironment()) {
+				pageTitle = "Zimbra";
+			}
+
+			if (app.zPageMain.sGetTitle().contains(pageTitle) && !(app.zPageMain.sGetTitle().contains("Zimbra Administration"))) {
 				mailFound = app.zPageMain.zVerifyMailExists(subject);
-				// Close the selected window
 				app.zPageMain.sClose();
-				// Select the parent window
 				app.zPageMain.sSelectWindow("null");
 				break;
 			} else if (!(app.zPageMain.sGetTitle().contains("Zimbra Administration"))) {
@@ -202,7 +208,7 @@ public class ViewMail extends AdminCore {
 	public void ViewMail_03() throws HarnessException {
 
 		// Create a new account in the Admin Console using SOAP
-		AccountItem account = new AccountItem("email" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
+		AccountItem account = new AccountItem("tc" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<CreateAccountRequest xmlns='urn:zimbraAdmin'>"
 						+			"<name>" + account.getEmailAddress() + "</name>"
@@ -245,12 +251,15 @@ public class ViewMail extends AdminCore {
 		boolean mailFound = false;
 		for(String id: windowIds) {
 			app.zPageMain.sSelectWindow(id);
-			if (app.zPageMain.sGetTitle().contains("Zimbra: Inbox") && !(app.zPageMain.sGetTitle().contains("Zimbra Administration"))) {
-				// Get the presence of mail
+
+			String pageTitle = "Zimbra: Inbox";
+			if (ConfigProperties.isZimbra9XEnvironment()) {
+				pageTitle = "Zimbra";
+			}
+
+			if (app.zPageMain.sGetTitle().contains(pageTitle) && !(app.zPageMain.sGetTitle().contains("Zimbra Administration"))) {
 				mailFound = app.zPageMain.zVerifyMailExists(subject);
-				// Close the selected window
 				app.zPageMain.sClose();
-				// Select the parent window
 				app.zPageMain.sSelectWindow("null");
 				break;
 			} else if (!(app.zPageMain.sGetTitle().contains("Zimbra Administration"))) {
@@ -260,7 +269,6 @@ public class ViewMail extends AdminCore {
 
 		// Verify that the mail is present
 		ZAssert.assertTrue(mailFound, "Verify that user's mail is displayed to admin");
-
 	}
 
 
@@ -281,7 +289,7 @@ public class ViewMail extends AdminCore {
 	public void ViewMail_04() throws HarnessException {
 
 		// Create a new account in the Admin Console using SOAP
-		AccountItem account = new AccountItem("email" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
+		AccountItem account = new AccountItem("tc" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<CreateAccountRequest xmlns='urn:zimbraAdmin'>"
 						+			"<name>" + account.getEmailAddress() + "</name>"
@@ -317,12 +325,15 @@ public class ViewMail extends AdminCore {
 		boolean mailFound = false;
 		for(String id: windowIds) {
 			app.zPageMain.sSelectWindow(id);
-			if (app.zPageMain.sGetTitle().contains("Zimbra: Inbox") && !(app.zPageMain.sGetTitle().contains("Zimbra Administration"))) {
-				// Get the presence of mail
+
+			String pageTitle = "Zimbra: Inbox";
+			if (ConfigProperties.isZimbra9XEnvironment()) {
+				pageTitle = "Zimbra";
+			}
+
+			if (app.zPageMain.sGetTitle().contains(pageTitle) && !(app.zPageMain.sGetTitle().contains("Zimbra Administration"))) {
 				mailFound = app.zPageMain.zVerifyMailExists(subject);
-				// Close the selected window
 				app.zPageMain.sClose();
-				// Select the parent window
 				app.zPageMain.sSelectWindow("null");
 				break;
 			} else if (!(app.zPageMain.sGetTitle().contains("Zimbra Administration"))) {
@@ -332,7 +343,6 @@ public class ViewMail extends AdminCore {
 
 		// Verify that the mail is present
 		ZAssert.assertTrue(mailFound, "Verify that user's mail is displayed to admin");
-
 	}
 
 

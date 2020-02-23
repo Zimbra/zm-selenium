@@ -271,7 +271,7 @@ public class PageManageResources extends AbsTab {
 			}
 
 			this.sClickAt(pulldownLocator, "");
-			SleepUtil.sleepMedium();
+			SleepUtil.sleepSmall();
 
 			if (optionLocator != null) {
 
@@ -321,7 +321,7 @@ public class PageManageResources extends AbsTab {
 			final String accountLocator = rowsLocator + ":nth-child(" + i + ")";
 			String locator;
 
-			AccountItem item = new AccountItem("email" + ConfigProperties.getUniqueString(),
+			AccountItem item = new AccountItem("tc" + ConfigProperties.getUniqueString(),
 					ConfigProperties.getStringProperty("testdomain"));
 
 			// Type (image)

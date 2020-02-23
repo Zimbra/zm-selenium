@@ -38,12 +38,11 @@ public class DistributionListItem implements IItem {
 	public DistributionListItem() {
 		super();
 
-		distributionListLocalName = "a_dl" + ConfigProperties.getUniqueString();
+		distributionListLocalName = "tcdl" + ConfigProperties.getUniqueString();
 		distributionListDomainName = ConfigProperties.getStringProperty("testdomain");
 		isDynamicDL = false;
 		isRightManagement = true;
 		memberURL = "ldap:///??sub?";
-		// Id = null;
 	}
 
 	public void createUsingSOAP(ZimbraAccount account) throws HarnessException {

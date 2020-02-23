@@ -50,7 +50,7 @@ public class ViewAccounts extends AdminCore {
 				+		"</CreateDomainRequest>");
 
 		// Create admin account
-		String adminaccount = "admin"+ ConfigProperties.getUniqueString() +"@"+domainName;
+		String adminaccount = "tc"+ ConfigProperties.getUniqueString() +"@"+domainName;
 		ZimbraAdminAccount account = new ZimbraAdminAccount(adminaccount);
 		account.provision();
 

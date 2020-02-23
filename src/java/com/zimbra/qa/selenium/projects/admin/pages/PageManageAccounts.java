@@ -448,22 +448,17 @@ public class PageManageAccounts extends AbsTab {
 	 * Return a list of all accounts in the current view
 	 */
 	public List<AccountItem> zListGetAccounts() throws HarnessException {
-
 		List<AccountItem> items = new ArrayList<AccountItem>();
-
 		SleepUtil.sleepMedium();
 
 		// How many items are in the table?
 		String rowsLocator = "css=div[id='zl__ACCT_MANAGE'] div[id$='__rows'] div[id^='zli__']";
 		int count = this.sGetCssCount(rowsLocator);
 		int scrollCounter = 50;
-
 		logger.debug(myPageName() + " zListGetAccounts: number of accounts: " + count);
 
 		if (count >= 50) {
-
 			for (int accountPaging = 1; accountPaging <= 100; accountPaging++) {
-
 				String pageCounter = rowsLocator + ":nth-child(" + scrollCounter + ")";
 
 				if (this.sIsElementPresent(pageCounter)) {
@@ -479,22 +474,21 @@ public class PageManageAccounts extends AbsTab {
 		}
 
 		count = this.sGetCssCount(rowsLocator);
-
 		for (int i = 1; i <= count; i++) {
 			final String accountLocator = rowsLocator + ":nth-child(" + i + ")";
 			String locator;
 
-			AccountItem item = new AccountItem("email" + ConfigProperties.getUniqueString(),
+			AccountItem item = new AccountItem("tc" + ConfigProperties.getUniqueString(),
 					ConfigProperties.getStringProperty("testdomain"));
 
 			// Type (image)
-			locator = accountLocator + "  td:nth-child(1)" + " div[class^=Img]";
+			locator = accountLocator + " td:nth-child(1)" + " div[class^=Img]";
 			if (this.sIsElementPresent(locator)) {
 				item.setGAccountType(this.sGetAttribute(locator + "@class"));
 			}
 
 			// Email Address
-			locator = accountLocator + "  td:nth-child(2)";
+			locator = accountLocator + " td:nth-child(2)";
 			if (this.sIsElementPresent(locator)) {
 				item.setGEmailAddress(this.sGetText(locator).trim());
 			}

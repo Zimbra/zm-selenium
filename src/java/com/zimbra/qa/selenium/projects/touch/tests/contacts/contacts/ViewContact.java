@@ -38,7 +38,7 @@ public class ViewContact extends TouchCore  {
 		// Create a contact item
 		String firstname = "first"+ ConfigProperties.getUniqueString();
 		String lastname = "last"+ ConfigProperties.getUniqueString();
-		String email = "globaladmin" + ConfigProperties.getUniqueString() + "@"
+		String email = "admin" + ConfigProperties.getUniqueString() + "@"
 				+ ConfigProperties.getStringProperty("testdomain");
 		String company = "company"+ ConfigProperties.getUniqueString();
 		

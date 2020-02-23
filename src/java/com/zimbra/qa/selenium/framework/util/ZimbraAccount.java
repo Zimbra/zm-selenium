@@ -91,8 +91,7 @@ public class ZimbraAccount {
 	public ZimbraAccount(String email, String password) {
 
 		if (email == null) {
-			DisplayName = ConfigProperties.getStringProperty("locale").toLowerCase().replace("_", "")
-					+ ConfigProperties.getUniqueString();
+			DisplayName = "tc" + ConfigProperties.getUniqueString();
 			email = DisplayName + "@" + ConfigProperties.getStringProperty("testdomain");
 		} else {
 			DisplayName = email.split("@")[0];
@@ -414,7 +413,9 @@ public class ZimbraAccount {
 			// Create the account
 			ZimbraAdminAccount.GlobalAdmin()
 					.soapSend("<CreateAccountRequest xmlns='urn:zimbraAdmin'>" + "<name>" + EmailAddress + "</name>"
-							+ "<password>" + Password + "</password>" + prefs.toString() + "</CreateAccountRequest>");
+							+ "<password>" + Password + "</password>" + prefs.toString()
+							+ "<a n='description'>Created by Selenium automation</a>"
+							+ "</CreateAccountRequest>");
 
 			Element[] createAccountResponse = ZimbraAdminAccount.GlobalAdmin()
 					.soapSelectNodes("//admin:CreateAccountResponse");

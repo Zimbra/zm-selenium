@@ -48,7 +48,6 @@ public class PageManageServers extends AbsTab {
 
 	@Override
 	public boolean zIsActive() throws HarnessException {
-
 		// Make sure the Admin Console is loaded in the browser
 		if (!MyApplication.zIsLoaded())
 			throw new HarnessException("Admin Console application is not active!");
@@ -75,7 +74,6 @@ public class PageManageServers extends AbsTab {
 
 	@Override
 	public void zNavigateTo() throws HarnessException {
-
 		if (zIsActive()) {
 			return;
 		}
@@ -202,11 +200,7 @@ public class PageManageServers extends AbsTab {
 		AbsPage page = null;
 
 		if (button == Button.B_ADD_ACL) {
-
-			// Add button
 			locator = Locators.ADD_ACL;
-
-			// Create the page
 			page = new WizardAddACLAtCos(this);
 
 		} else {
@@ -218,11 +212,7 @@ public class PageManageServers extends AbsTab {
 		}
 
 		this.sClickAt(locator, "");
-		SleepUtil.sleepMedium();
-
-		if (page != null) {
-			SleepUtil.sleepLong();
-		}
+		SleepUtil.sleepLong();
 
 		return (page);
 	}

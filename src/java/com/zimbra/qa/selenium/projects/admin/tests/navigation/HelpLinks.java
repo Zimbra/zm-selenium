@@ -19,6 +19,7 @@ package com.zimbra.qa.selenium.projects.admin.tests.navigation;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
+import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.projects.admin.core.AdminCore;
 
@@ -45,18 +46,35 @@ public class HelpLinks extends AdminCore {
 
 		// Navigate to Help > Help links
 		app.zPageManageHelp.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_HELP_CENTRAL_ONLINE);
+		SleepUtil.sleepMedium();
 
-		// Verify "Zimbra Online Help" link is present
-		boolean isZimbraOnlineHelpLinkPresent = app.zPageManageHelp.zVerifyHelpCenterLink("Zimbra Online Help");
-		ZAssert.assertTrue(isZimbraOnlineHelpLinkPresent, "Verify Zimbra Online Help link is present");
+		// Get help page content
+		String helpContent = app.zPageManageHelp.sGetHtmlBody();
 
-		// Verify "Administrators Guide" link is present
-		boolean isAdministratorGuideLinkPresent = app.zPageManageHelp.zVerifyHelpCenterLink("Administrators’ Guide");
-		ZAssert.assertTrue(isAdministratorGuideLinkPresent, "Verify Zimbra Administrators' Guide link is present");
+		// Verify help and doc links
+		ZAssert.assertStringContains(helpContent, "/zimbraAdmin/help/admin/html/administration_console_help.htm?locid=en_US",
+				"Verify admin console help link is present");
 
-		// Verify "End Users' Guide" link is present
-		boolean isEndUsersGuideLinkPresent = app.zPageManageHelp.zVerifyHelpCenterLink("End Users’ Guide");
-		ZAssert.assertTrue(isEndUsersGuideLinkPresent, "Verify End Users' Guide link is present");
+		ZAssert.assertStringContains(helpContent, "https://www.zimbra.com/support/documentation/zcs-ne-documentation.html",
+				"Verify zimbra documentatione html help link is present");
+
+		ZAssert.assertStringContains(helpContent, "/zimbraAdmin/adminhelp/pdf/admin.pdf?locid=en_US",
+				"Verify administrator guide pdf link is present");
+
+		ZAssert.assertStringContains(helpContent, "/zimbraAdmin/adminhelp/pdf/ZCS%20Connector%20for%20Outlook.pdf?locid=en_US",
+				"Verify administrator guide ZCS connector outlook pdf link is present");
+
+		ZAssert.assertStringContains(helpContent, "/zimbraAdmin/help/admin/pdf/zimbra_user_guide.pdf?locid=en_US",
+				"Verify end users guide pdf link is present");
+
+		ZAssert.assertStringContains(helpContent, "/zimbraAdmin/adminhelp/pdf/User%20Instructions%20Connector%20for%20Outlook.pdf?locid=en_US",
+				"Verify end user guide ZCS connector outlook pdf link is present");
+
+		ZAssert.assertStringContains(helpContent, "https://www.zimbra.com/forums",
+				"Verify forums link is present");
+
+		ZAssert.assertStringContains(helpContent, "https://wiki.zimbra.com",
+				"Verify wiki link is present");
 
 		app.zPageMain.zLogout();
 	}

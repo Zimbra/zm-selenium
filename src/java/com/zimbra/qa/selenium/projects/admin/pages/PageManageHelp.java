@@ -119,7 +119,7 @@ public class PageManageHelp extends AbsTab {
 			}
 
 			this.sClickAt(pulldownLocator, "");
-			SleepUtil.sleepMedium();
+			SleepUtil.sleepSmall();
 
 			if (optionLocator != null) {
 
@@ -153,7 +153,6 @@ public class PageManageHelp extends AbsTab {
 
 	public boolean zVerifyHelpCenterLink(String link) throws HarnessException {
 		String locator = "css=table[id$='helpDocsGroup_table'] a:contains('" + link + "')";
-		this.zWaitTillElementPresent(locator);
 		if (this.sIsElementPresent(locator)) {
 			return true;
 		}

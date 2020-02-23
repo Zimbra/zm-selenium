@@ -52,7 +52,7 @@ public class GetAlias extends AdminCore {
 
 	public void GetAlias_01() throws HarnessException {
 
-		AccountItem target = new AccountItem("email" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
+		AccountItem target = new AccountItem("tc" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
 		AccountItem.createUsingSOAP(target);
 
 		// Create a new account in the Admin Console using SOAP
@@ -97,7 +97,7 @@ public class GetAlias extends AdminCore {
 
 	public void GetAlias_02() throws HarnessException {
 
-		AccountItem target = new AccountItem("email" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
+		AccountItem target = new AccountItem("tc" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
 		AccountItem.createUsingSOAP(target);
 
 		// Create a new account in the Admin Console using SOAP

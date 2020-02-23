@@ -53,7 +53,7 @@ public class BasicLogin extends AdminCore {
 	public void BasicLogin_02() throws HarnessException {
 
 		// Create a new AdminAccount
-		ZimbraAdminAccount account = new ZimbraAdminAccount("admin"+ ConfigProperties.getUniqueString() + "@" + ConfigProperties.getStringProperty("testdomain"));
+		ZimbraAdminAccount account = new ZimbraAdminAccount("tc"+ ConfigProperties.getUniqueString() + "@" + ConfigProperties.getStringProperty("testdomain"));
 		account.provision();
 		account.authenticate();
 

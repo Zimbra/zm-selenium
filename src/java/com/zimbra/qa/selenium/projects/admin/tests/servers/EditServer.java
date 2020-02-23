@@ -18,6 +18,7 @@ package com.zimbra.qa.selenium.projects.admin.tests.servers;
 
 import org.testng.annotations.Test;
 import com.zimbra.common.soap.Element;
+import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.core.ExecuteHarnessMain;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
@@ -45,8 +46,9 @@ public class EditServer extends AdminCore {
 	 * @throws HarnessException
 	 */
 
+	@Bugs (ids = "ZCS-8706")
 	@Test (description = "Edit Server from gear menu option",
-			groups = { "bhr" })
+			groups = { "bhr-application-bug" })
 
 	public void EditServer_01() throws HarnessException {
 

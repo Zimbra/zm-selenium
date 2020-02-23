@@ -47,6 +47,7 @@ public class ZimbraAdminAccount extends ZimbraAccount {
 					.soapSend("<CreateAccountRequest xmlns='urn:zimbraAdmin'>" + "<name>" + account.getEmailAddress()
 							+ "</name>" + "<password>" + ConfigProperties.getStringProperty("adminPassword")
 							+ "</password>" + "<a xmlns='' n='zimbraIsDelegatedAdminAccount'>TRUE</a>"
+							+ "<a n='description'>Created by Selenium automation</a>"
 							+ "<a xmlns='' n='zimbraPrefAdminConsoleWarnOnExit'>FALSE</a>" + "</CreateAccountRequest>");
 
 			Element[] createAccountResponse = ZimbraAdminAccount.AdminConsoleAdmin()
@@ -301,7 +302,7 @@ public class ZimbraAdminAccount extends ZimbraAccount {
 
 		// Create a new global admin account
 		String domain = ConfigProperties.getStringProperty("server.host");
-		ZimbraAdminAccount admin = new ZimbraAdminAccount("admin" + System.currentTimeMillis() + "@" + domain);
+		ZimbraAdminAccount admin = new ZimbraAdminAccount("tc" + System.currentTimeMillis() + "@" + domain);
 		admin.provision(); // Create the account (CreateAccountRequest)
 		admin.authenticate(); // Authenticate the account (AuthRequest)
 
