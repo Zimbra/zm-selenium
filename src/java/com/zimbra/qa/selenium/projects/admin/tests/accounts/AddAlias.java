@@ -60,7 +60,7 @@ public class AddAlias extends AdminCore {
 						+			"<a n='description'>Created by Selenium automation</a>"
 						+		"</CreateAccountRequest>");
 
-		AccountItem target = new AccountItem(ConfigProperties.getUniqueString(), ConfigProperties.getStringProperty("testdomain"));
+		AccountItem target = new AccountItem("tc" + ConfigProperties.getUniqueString(), ConfigProperties.getStringProperty("testdomain"));
 		AccountItem.createUsingSOAP(target);
 
 		String aliasLocalName = "alias" + ConfigProperties.getUniqueString();

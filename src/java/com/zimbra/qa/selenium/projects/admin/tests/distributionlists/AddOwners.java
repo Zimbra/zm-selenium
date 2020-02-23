@@ -49,13 +49,13 @@ public class AddOwners extends AdminCore {
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<CreateDistributionListRequest xmlns='urn:zimbraAdmin'>"
 						+			"<name>" + dlEmailAddress + "</name>"
+						+			"<a n='description'>Created by Selenium automation</a>"
 						+		"</CreateDistributionListRequest>");
 
-		String hostname = ConfigProperties.getStringProperty("server.host");
 		String aliasDomainName = ConfigProperties.getStringProperty("testdomain");
 
 		// Create owner account
-		AccountItem account = new AccountItem("tc" + ConfigProperties.getUniqueString(), ConfigProperties.getStringProperty(hostname));
+		AccountItem account = new AccountItem("tc" + ConfigProperties.getUniqueString(), ConfigProperties.getStringProperty("testdomain"));
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<CreateAccountRequest xmlns='urn:zimbraAdmin'>"
 						+			"<name>" + account.getEmailAddress() + "</name>"

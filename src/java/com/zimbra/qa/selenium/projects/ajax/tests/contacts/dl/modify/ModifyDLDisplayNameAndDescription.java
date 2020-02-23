@@ -40,7 +40,7 @@ public class ModifyDLDisplayNameAndDescription extends AjaxCore  {
 	public void ModifyDLDisplayNameAndDescription_01 () throws HarnessException {
 
 		String dlFolder = "Distribution Lists";
-		String dlName = "dl" + ConfigProperties.getUniqueString();
+		String dlName = "tcdl" + ConfigProperties.getUniqueString();
 		String fullDLName = dlName + "@" + ConfigProperties.getStringProperty("testdomain");
 		String displayName = ConfigProperties.getUniqueString();
 		String description = ConfigProperties.getUniqueString();
@@ -52,6 +52,7 @@ public class ModifyDLDisplayNameAndDescription extends AjaxCore  {
 		app.zGetActiveAccount().soapSend(
 				"<CreateDistributionListRequest xmlns='urn:zimbraAccount'>"
 			+		"<name>" + fullDLName + "</name>"
+			+		"<a n='description'>Created by Selenium automation</a>"
 			+	"</CreateDistributionListRequest>");
 
 		// Add DL members

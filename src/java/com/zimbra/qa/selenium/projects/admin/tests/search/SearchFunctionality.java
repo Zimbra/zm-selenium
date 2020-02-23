@@ -143,6 +143,7 @@ public class SearchFunctionality extends AdminCore {
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 						"<CreateDistributionListRequest xmlns='urn:zimbraAdmin'>"
 				+			"<name>" + dlEmailAddress + "</name>"
+				+			"<a n='description'>Created by Selenium automation</a>"
 				+		"</CreateDistributionListRequest>");
 
 		/*

@@ -61,8 +61,9 @@ public class DeleteResource extends AdminCore {
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 						"<CreateCalendarResourceRequest xmlns='urn:zimbraAdmin'>"
 				 		+ "<name>" + resource.getEmailAddress() + "</name>"
-				 		+ "<a n=\"displayName\">" + resource.getName() + "</a>"
-				 		+ "<a n=\"zimbraCalResType\">" + "Location" + "</a>"
+				 		+ "<a n='displayName'>" + resource.getName() + "</a>"
+				 		+ "<a n='zimbraCalResType'>" + "Location" + "</a>"
+						+	"<a n='description'>Created by Selenium automation</a>"
 				 		+ "<password>test123</password>"
 				 		+ "</CreateCalendarResourceRequest>");
 
@@ -122,8 +123,9 @@ public class DeleteResource extends AdminCore {
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 						"<CreateCalendarResourceRequest xmlns='urn:zimbraAdmin'>"
 				 		+ "<name>" + resource.getEmailAddress() + "</name>"
-				 		+ "<a n=\"displayName\">" + resource.getName() + "</a>"
-				 		+ "<a n=\"zimbraCalResType\">" + "Equipment" + "</a>"
+				 		+ "<a n='displayName'>" + resource.getName() + "</a>"
+				 		+ "<a n='zimbraCalResType'>" + "Equipment" + "</a>"
+						+	"<a n='description'>Created by Selenium automation</a>"
 				 		+ "<password>test123</password>"
 				 		+ "</CreateCalendarResourceRequest>");
 
@@ -183,8 +185,9 @@ public class DeleteResource extends AdminCore {
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 						"<CreateCalendarResourceRequest xmlns='urn:zimbraAdmin'>"
 				 		+ "<name>" + resource.getEmailAddress() + "</name>"
-				 		+ "<a n=\"displayName\">" + resource.getName() + "</a>"
-				 		+ "<a n=\"zimbraCalResType\">" + "Location" + "</a>"
+				 		+ "<a n='displayName'>" + resource.getName() + "</a>"
+				 		+ "<a n='zimbraCalResType'>" + "Location" + "</a>"
+						+	"<a n='description'>Created by Selenium automation</a>"
 				 		+ "<password>test123</password>"
 				 		+ "</CreateCalendarResourceRequest>");
 
@@ -242,8 +245,9 @@ public class DeleteResource extends AdminCore {
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 						"<CreateCalendarResourceRequest xmlns='urn:zimbraAdmin'>"
 				 		+ "<name>" + resource.getEmailAddress() + "</name>"
-				 		+ "<a n=\"displayName\">" + resource.getName() + "</a>"
-				 		+ "<a n=\"zimbraCalResType\">" + "Equipment" + "</a>"
+				 		+ "<a n='displayName'>" + resource.getName() + "</a>"
+				 		+ "<a n='zimbraCalResType'>" + "Equipment" + "</a>"
+						+	"<a n='description'>Created by Selenium automation</a>"
 				 		+ "<password>test123</password>"
 				 		+ "</CreateCalendarResourceRequest>");
 

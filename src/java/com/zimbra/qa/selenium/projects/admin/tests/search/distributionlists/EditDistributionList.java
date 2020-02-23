@@ -61,6 +61,7 @@ public class EditDistributionList extends AdminCore {
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<CreateDistributionListRequest xmlns='urn:zimbraAdmin'>"
 						+			"<name>" + dlEmailAddress + "</name>"
+						+			"<a n='description'>Created by Selenium automation</a>"
 						+		"</CreateDistributionListRequest>");
 
 		// Enter the search string to find the dl
@@ -120,6 +121,7 @@ public class EditDistributionList extends AdminCore {
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<CreateDistributionListRequest xmlns='urn:zimbraAdmin'>"
 						+			"<name>" + dlEmailAddress + "</name>"
+						+			"<a n='description'>Created by Selenium automation</a>"
 						+		"</CreateDistributionListRequest>");
 
 		// Enter the search string to find the dl
@@ -181,7 +183,8 @@ public class EditDistributionList extends AdminCore {
 						+ "<name>" + dlEmailAddress + "</name>"
 						+ "<a n='zimbraIsACLGroup'>FALSE</a>"
 						+ "<a n='zimbraMailStatus'>enabled</a>"
-						+ "<a n='memberURL'>" +memberURL+ "</a>"
+						+ "<a n='memberURL'>" + memberURL + "</a>"
+						+	"<a n='description'>Created by Selenium automation</a>"
 						+ "</CreateDistributionListRequest>");
 
 		// Enter the search string to find the dl

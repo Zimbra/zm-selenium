@@ -35,7 +35,7 @@ public class ZimbraDistributionList {
 
 		EmailAddress = email;
 		if ((email == null) || (email.trim().length() == 0)) {
-			EmailAddress = "dl" + ConfigProperties.getUniqueString() + "@"
+			EmailAddress = "tcdl" + ConfigProperties.getUniqueString() + "@"
 					+ ConfigProperties.getStringProperty("testdomain");
 		}
 

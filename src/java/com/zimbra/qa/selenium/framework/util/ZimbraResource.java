@@ -37,9 +37,7 @@ public class ZimbraResource extends ZimbraAccount {
 
 	public ZimbraResource(Type type, String email, String password) {
 		super(email, password);
-
 		ResourceType = type;
-
 		provision();
 		authenticate();
 	}
