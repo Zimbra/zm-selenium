@@ -40,7 +40,7 @@ public class ModifyDLByAddingRemovingMembers extends AjaxCore  {
 	public void ModifyDLByAddingRemovingMembers_01 () throws HarnessException {
 
 		String dlFolder = "Distribution Lists";
-		String dlName = "dl" + ConfigProperties.getUniqueString();
+		String dlName = "tcdl" + ConfigProperties.getUniqueString();
 		String fullDLName = dlName + "@" + ConfigProperties.getStringProperty("testdomain");
 
 		String firstContactEmail = ZimbraAccount.Account1().EmailAddress;
@@ -51,6 +51,7 @@ public class ModifyDLByAddingRemovingMembers extends AjaxCore  {
 		app.zGetActiveAccount().soapSend(
 				"<CreateDistributionListRequest xmlns='urn:zimbraAccount'>"
 			+		"<name>" + fullDLName + "</name>"
+			+		"<a n='description'>Created by Selenium automation</a>"
 			+	"</CreateDistributionListRequest>");
 
 		// Add DL members

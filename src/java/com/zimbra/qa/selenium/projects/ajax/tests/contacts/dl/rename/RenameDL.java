@@ -42,7 +42,7 @@ public class RenameDL extends AjaxCore  {
 		String secondContactEmail = ZimbraAccount.Account2().EmailAddress;
 
 		String dlFolder = "Distribution Lists";
-		String dlName = "dl" + ConfigProperties.getUniqueString();
+		String dlName = "tcdl" + ConfigProperties.getUniqueString();
 		String renamedDlName = "dl" + ConfigProperties.getUniqueString();
 		String fullDLName = dlName + "@" + ConfigProperties.getStringProperty("testdomain");
 		String renamedFullDLName = renamedDlName + "@" + ConfigProperties.getStringProperty("testdomain");
@@ -51,6 +51,7 @@ public class RenameDL extends AjaxCore  {
 		app.zGetActiveAccount().soapSend(
 				"<CreateDistributionListRequest xmlns='urn:zimbraAccount'>"
 			+		"<name>" + fullDLName + "</name>"
+			+		"<a n='description'>Created by Selenium automation</a>"
 			+	"</CreateDistributionListRequest>");
 
 		// Add DL members

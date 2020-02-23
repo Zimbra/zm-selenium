@@ -401,12 +401,15 @@ public class ViewMail extends AdminCore {
 		boolean mailFound = false;
 		for(String id: windowIds) {
 			app.zPageMain.sSelectWindow(id);
-			if (app.zPageMain.sGetTitle().contains("Zimbra: Inbox") && !(app.zPageMain.sGetTitle().contains("Zimbra Administration"))) {
-				// Get the presence of mail
+
+			String pageTitle = "Zimbra: Inbox";
+			if (ConfigProperties.isZimbra9XEnvironment()) {
+				pageTitle = "Zimbra";
+			}
+
+			if (app.zPageMain.sGetTitle().contains(pageTitle) && !(app.zPageMain.sGetTitle().contains("Zimbra Administration"))) {
 				mailFound = app.zPageMain.zVerifyMailExists(subject);
-				// Close the selected window
 				app.zPageMain.sClose();
-				// Select the parent window
 				app.zPageMain.sSelectWindow("null");
 				break;
 			} else if (!(app.zPageMain.sGetTitle().contains("Zimbra Administration"))) {

@@ -41,13 +41,14 @@ public class CreateDuplicateDL extends AjaxCore  {
 		String firstContactEmail = ZimbraAccount.Account1().EmailAddress;
 		String secondContactEmail = ZimbraAccount.Account2().EmailAddress;
 
-		String dlName = "dl" + ConfigProperties.getUniqueString();
+		String dlName = "tcdl" + ConfigProperties.getUniqueString();
 		String fullDLName = dlName + "@" + ConfigProperties.getStringProperty("testdomain");
 
 		// Create DL
 		app.zGetActiveAccount().soapSend(
 				"<CreateDistributionListRequest xmlns='urn:zimbraAccount'>"
 			+		"<name>" + fullDLName + "</name>"
+			+		"<a n='description'>Created by Selenium automation</a>"
 			+	"</CreateDistributionListRequest>");
 
 		// Add DL members

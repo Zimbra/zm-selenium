@@ -52,16 +52,19 @@ public class AddIndirectMemberOfDistributionList extends AdminCore {
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<CreateDistributionListRequest xmlns='urn:zimbraAdmin'>"
 						+			"<name>" + dl1.getEmailAddress() + "</name>"
+						+			"<a n='description'>Created by Selenium automation</a>"
 						+		"</CreateDistributionListRequest>");
 
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<CreateDistributionListRequest xmlns='urn:zimbraAdmin'>"
 						+			"<name>" + dl2.getEmailAddress() + "</name>"
+						+			"<a n='description'>Created by Selenium automation</a>"
 						+		"</CreateDistributionListRequest>");
 
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<CreateDistributionListRequest xmlns='urn:zimbraAdmin'>"
 						+			"<name>" + dl3.getEmailAddress() + "</name>"
+						+			"<a n='description'>Created by Selenium automation</a>"
 						+		"</CreateDistributionListRequest>");
 
 		// Refresh the list

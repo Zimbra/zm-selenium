@@ -77,7 +77,7 @@ public class DeployAdminExtensions extends AdminCore {
 		boolean isUploadSuccessful = app.zPageManageZimlets.zVerifyUploadSuccessMessage();
 		ZAssert.assertTrue(isUploadSuccessful, "Verify extension is uploaded successfully!");
 
-		// Verify extension is delployed successfully
+		// Verify extension is deployed successfully
 		boolean isPresent = app.zPageManageZimlets.zVerifyDeploySuccessMessage();
 		ZAssert.assertTrue(isPresent, "Verify extension is delployed successfully!");
 

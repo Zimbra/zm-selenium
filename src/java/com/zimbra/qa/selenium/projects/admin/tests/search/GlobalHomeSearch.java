@@ -150,8 +150,9 @@ public class GlobalHomeSearch extends AdminCore {
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<CreateCalendarResourceRequest xmlns='urn:zimbraAdmin'>"
 		 		+ "<name>" + resource.getEmailAddress() + "</name>"
-		 		+ "<a n=\"displayName\">" + resource.getName() + "</a>"
-		 		+ "<a n=\"zimbraCalResType\">" + "Location" + "</a>"
+		 		+ "<a n='displayName'>" + resource.getName() + "</a>"
+		 		+ "<a n='zimbraCalResType'>" + "Location" + "</a>"
+				+	"<a n='description'>Created by Selenium automation</a>"
 		 		+ "<password>test123</password>"
 		 		+ "</CreateCalendarResourceRequest>");
 
@@ -199,6 +200,7 @@ public class GlobalHomeSearch extends AdminCore {
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<CreateDistributionListRequest xmlns='urn:zimbraAdmin'>"
 				+			"<name>" + dlEmailAddress + "</name>"
+				+			"<a n='description'>Created by Selenium automation</a>"
 				+		"</CreateDistributionListRequest>");
 
 		app.zPageSearchResults.zSelectSearchObject(app.zPageSearchResults.S_DISTRIBUTION_LIST);

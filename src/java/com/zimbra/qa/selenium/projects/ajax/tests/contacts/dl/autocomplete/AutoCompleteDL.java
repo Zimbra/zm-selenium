@@ -42,7 +42,7 @@ public class AutoCompleteDL extends AjaxCore  {
 		ZimbraAccount secondContact = ZimbraAccount.Account2();
 		ZimbraAccount thirdContact = ZimbraAccount.Account3();
 
-		String dlName = "dl" + ConfigProperties.getUniqueString();
+		String dlName = "tcdl" + ConfigProperties.getUniqueString();
 		String fullDLName = dlName + "@" + ConfigProperties.getStringProperty("testdomain");
 
 		String subject = "subject" + ConfigProperties.getUniqueString();
@@ -52,6 +52,7 @@ public class AutoCompleteDL extends AjaxCore  {
 		app.zGetActiveAccount().soapSend(
 				"<CreateDistributionListRequest xmlns='urn:zimbraAccount'>"
 			+		"<name>" + fullDLName + "</name>"
+			+		"<a n='description'>Created by Selenium automation</a>"
 			+	"</CreateDistributionListRequest>");
 
 		// Add DL members

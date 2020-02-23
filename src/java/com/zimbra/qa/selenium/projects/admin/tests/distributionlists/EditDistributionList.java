@@ -61,6 +61,7 @@ public class EditDistributionList extends AdminCore {
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<CreateDistributionListRequest xmlns='urn:zimbraAdmin'>"
 						+			"<name>" + dlEmailAddress + "</name>"
+						+			"<a n='description'>Created by Selenium automation</a>"
 						+		"</CreateDistributionListRequest>");
 
 		// Refresh the list
@@ -117,6 +118,7 @@ public class EditDistributionList extends AdminCore {
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<CreateDistributionListRequest xmlns='urn:zimbraAdmin'>"
 						+			"<name>" + dlEmailAddress + "</name>"
+						+			"<a n='description'>Created by Selenium automation</a>"
 						+		"</CreateDistributionListRequest>");
 
 		// Refresh the list
@@ -173,6 +175,7 @@ public class EditDistributionList extends AdminCore {
 				"<CreateDistributionListRequest xmlns='urn:zimbraAdmin'>"
 						+			"<name>" + dlEmailAddress + "</name>"
 						+			"<a n='zimbraIsAdminGroup'>TRUE</a>"
+						+			"<a n='description'>Created by Selenium automation</a>"
 						+		"</CreateDistributionListRequest>");
 
 		// Refresh the list
@@ -232,7 +235,8 @@ public class EditDistributionList extends AdminCore {
 						+ "<name>" + dlEmailAddress + "</name>"
 						+ "<a n='zimbraIsACLGroup'>FALSE</a>"
 						+ "<a n='zimbraMailStatus'>enabled</a>"
-						+ "<a n='memberURL'>" +memberURL+ "</a>"
+						+ "<a n='memberURL'>" + memberURL + "</a>"
+						+	"<a n='description'>Created by Selenium automation</a>"
 						+ "</CreateDistributionListRequest>");
 
 		// Refresh the list
@@ -293,7 +297,8 @@ public class EditDistributionList extends AdminCore {
 						+ "<name>" + dlEmailAddress + "</name>"
 						+ "<a n='zimbraIsACLGroup'>FALSE</a>"
 						+ "<a n='zimbraMailStatus'>enabled</a>"
-						+ "<a n='memberURL'>" +memberURL+ "</a>"
+						+ "<a n='memberURL'>" + memberURL+ "</a>"
+						+	"<a n='description'>Created by Selenium automation</a>"
 						+ "</CreateDistributionListRequest>");
 
 		// Refresh the list
@@ -353,7 +358,8 @@ public class EditDistributionList extends AdminCore {
 						+ "<name>" + dlEmailAddress + "</name>"
 						+ "<a n='zimbraIsACLGroup'>FALSE</a>"
 						+ "<a n='zimbraMailStatus'>enabled</a>"
-						+ "<a n='memberURL'>" +memberURL+ "</a>"
+						+ "<a n='memberURL'>" + memberURL+ "</a>"
+						+	"<a n='description'>Created by Selenium automation</a>"
 						+ "</CreateDistributionListRequest>");
 
 		// Refresh the list

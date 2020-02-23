@@ -90,13 +90,14 @@ public class DistributionListItem extends ContactItem implements IItem {
 
 		// Set the name
 		String unique = ConfigProperties.getUniqueString(); // group name is max 20 chars
-		String listname = "dlist" + unique.substring(unique.length() - 10) + "@"
+		String listname = "tcdl" + unique.substring(unique.length() - 10) + "@"
 				+ ConfigProperties.getStringProperty("testdomain");
 
 		// Create the new list
 		ZimbraAdminAccount.GlobalAdmin()
 				.soapSend("<CreateDistributionListRequest xmlns='urn:zimbraAdmin'>" + "<name>" + listname + "</name>"
 						+ "<a n='zimbraMailStatus'>enabled</a>" + "<a n='displayName'>" + listname + "</a>"
+						+	"<a n='description'>Created by Selenium automation</a>"
 						+ "</CreateDistributionListRequest>");
 		String id = ZimbraAdminAccount.GlobalAdmin().soapSelectValue("//admin:CreateDistributionListResponse/admin:dl",
 				"id");
@@ -174,11 +175,6 @@ public class DistributionListItem extends ContactItem implements IItem {
 				.soapSend("<GrantRightRequest xmlns='urn:zimbraAdmin'>" + "<target xmlns='' by='name' type='domain'>"
 						+ accountDomain + "</target>" + "<grantee xmlns='' by='name' type='usr'>" + account.EmailAddress
 						+ "</grantee>" + "<right xmlns=''>createDistList</right>" + "</GrantRightRequest>");
-
-		// TODO: verification
-		// Element response =
-		// ZimbraAdminAccount.GlobalAdmin().soapSelectNode("//admin:GrantRightResponse/?????",
-		// 1);
 	}
 
 	public static DistributionListItem createUsingSOAP(ZimbraAccount owner, AjaxPages app,
@@ -186,7 +182,7 @@ public class DistributionListItem extends ContactItem implements IItem {
 
 		// Create a dlist
 		DistributionListItem dlist = null;
-		String name = "dl_";
+		String name = "tcdl";
 
 		String soapStr = "";
 
@@ -194,7 +190,9 @@ public class DistributionListItem extends ContactItem implements IItem {
 			soapStr += "<a n='mail'>" + member.EmailAddress + "</a> ";
 		}
 		owner.soapSend("<CreateDistributionListRequest xmlns='urn:zimbraAccount'>" + "<name>" + name
-				+ memberList[0].EmailAddress + "</name>" + soapStr + "</CreateDistributionListRequest>");
+				+ memberList[0].EmailAddress + "</name>" + soapStr
+				+	"<a n='description'>Created by Selenium automation</a>"
+				+	"</CreateDistributionListRequest>");
 
 		// TODO: check CreateDistribution
 		dlist = new DistributionListItem(name);
@@ -214,28 +212,6 @@ public class DistributionListItem extends ContactItem implements IItem {
 	public static DistributionListItem importFromSOAP(Element GetDistributionListResponse) throws HarnessException {
 		if (GetDistributionListResponse == null)
 			throw new HarnessException("GetDistributionListResponse cannot be null");
-
-		/**
-		 * <GetDistributionListResponse total="2" more="0" xmlns="urn:zimbraAdmin">
-		 * <dl id="bdd639dd-81db-44ba-b7ee-06beb9e8b762" dynamic="0" name=
-		 * "dlist9873588964@testdomain.com">
-		 * <a n="uid">dlist9873588964</a> <a n="mail">dlist9873588964@testdomain.com</a>
-		 * <a n="zimbraMailStatus">enabled</a>
-		 * <a n="cn">dlist9873588964@testdomain.com</a> <a n="zimbraMailHost">server</a>
-		 * <a n="zimbraId">bdd639dd-81db-44ba-b7ee-06beb9e8b762</a>
-		 * <a n="zimbraCreateTimestamp">20121011201749Z</a>
-		 * <a n="objectClass">zimbraDistributionList</a>
-		 * <a n="objectClass">zimbraMailRecipient</a>
-		 * <a n="displayName">dlist9873588964@testdomain.com</a>
-		 * <a n="zimbraACE">672d7f71-3629-4bab-9318-35f35f949e4a usr ownDistList</a>
-		 * <a n="zimbraMailAlias">dlist9873588964@testdomain.com</a> <owners>
-		 * <owner id="672d7f71-3629-4bab-9318-35f35f949e4a" name=
-		 * "enus13499873466623@testdomain.com" type="usr"/> </owners>
-		 * <dlm>enus13499873592055@testdomain.com</dlm>
-		 * <dlm>enus13499873610526@testdomain.com</dlm>
-		 * </dl>
-		 * </GetDistributionListResponse>
-		 */
 
 		DistributionListItem dlist = null;
 

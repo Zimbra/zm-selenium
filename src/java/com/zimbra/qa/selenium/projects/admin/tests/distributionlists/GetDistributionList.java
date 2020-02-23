@@ -56,6 +56,7 @@ public class GetDistributionList extends AdminCore {
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 						"<CreateDistributionListRequest xmlns='urn:zimbraAdmin'>"
 				+			"<name>" + dlEmailAddress + "</name>"
+				+			"<a n='description'>Created by Selenium automation</a>"
 				+		"</CreateDistributionListRequest>");
 
 		// Refresh the list
@@ -99,6 +100,7 @@ public class GetDistributionList extends AdminCore {
 				"<CreateDistributionListRequest xmlns='urn:zimbraAdmin'>"
 				+			"<name>" + dlEmailAddress + "</name>"
 				+			"<a n='zimbraIsAdminGroup'>TRUE</a>"
+				+			"<a n='description'>Created by Selenium automation</a>"
 				+		"</CreateDistributionListRequest>");
 
 		// Refresh the list
@@ -143,6 +145,7 @@ public class GetDistributionList extends AdminCore {
 				+			"<name>" + dlEmailAddress + "</name>"
 				+			"<a n='zimbraIsAdminGroup'>TRUE</a>"
 				+			"<a n='zimbraIsACLGroup'>TRUE</a>"
+				+			"<a n='description'>Created by Selenium automation</a>"
 				+		"</CreateDistributionListRequest>");
 
 		// Refresh the list
@@ -185,6 +188,7 @@ public class GetDistributionList extends AdminCore {
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 						"<CreateDistributionListRequest xmlns='urn:zimbraAdmin'>"
 				+			"<name>" + dlEmailAddress + "</name>"
+				+			"<a n='description'>Created by Selenium automation</a>"
 				+		"</CreateDistributionListRequest>");
 
 		// Enter the search string to find the account
