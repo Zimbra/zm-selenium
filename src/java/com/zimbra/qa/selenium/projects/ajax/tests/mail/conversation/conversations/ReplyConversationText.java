@@ -38,7 +38,7 @@ public class ReplyConversationText extends SetGroupMailByConversationPreference 
 		ConversationItem c = ConversationItem.createConversationItem(app.zGetActiveAccount());
 
 		// Refresh current view
-		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(c.getSubject()), "Verify message displayed in current view");
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(c.getSubject()), "Verify message present in current view");
 
 		// Select the item
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, c.getSubject());

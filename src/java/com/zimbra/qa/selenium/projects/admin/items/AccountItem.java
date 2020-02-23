@@ -39,17 +39,15 @@ public class AccountItem implements IItem {
 
 	public AccountItem(String emailAddress, String lastName) {
 		accountAttrs = new HashMap<String, String>();
-
 		if (emailAddress.contains("@")) {
 			localName = emailAddress.split("@")[0];
-			domainName = emailAddress.split("@")[1];
 		} else {
 			localName = emailAddress;
-			domainName = ConfigProperties.getStringProperty("testdomain");
 		}
 
-		// Surname is required in Admin Console
+		domainName = ConfigProperties.getStringProperty("testdomain");
 		accountAttrs.put("sn", lastName);
+		accountAttrs.put("description", "Created by Selenium automation");
 	}
 
 	@Override
@@ -173,7 +171,6 @@ public class AccountItem implements IItem {
 		ZimbraAdminAccount.AdminConsoleAdmin()
 				.soapSend("<CreateAccountRequest xmlns='urn:zimbraAdmin'>" + "<name>" + account.getEmailAddress()
 						+ "</name>" + elementPassword.toString() + elementAttrs.toString()
-						+ "<a n='description'>Created by Selenium automation</a>"
 						+ "</CreateAccountRequest>");
 
 		Id = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectValue("//admin:CreateAccountResponse/admin:account", "id")

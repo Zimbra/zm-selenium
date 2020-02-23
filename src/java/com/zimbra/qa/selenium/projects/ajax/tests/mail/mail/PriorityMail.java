@@ -50,7 +50,7 @@ public class PriorityMail extends SetGroupMailByMessagePreference {
 					"</SendMsgRequest>");
 
 		// Refresh current view
-		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message present in current view");
 
 		// Get all the messages in the inbox
 		List<MailItem> messages = app.zPageMail.zListGetMessages();
@@ -91,7 +91,7 @@ public class PriorityMail extends SetGroupMailByMessagePreference {
 					"</SendMsgRequest>");
 
 		// Refresh current view
-		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message present in current view");
 
 		// Get all the messages in the inbox
 		List<MailItem> messages = app.zPageMail.zListGetMessages();
@@ -133,7 +133,7 @@ public class PriorityMail extends SetGroupMailByMessagePreference {
 					"</SendMsgRequest>");
 
 		// Refresh current view
-		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message present in current view");
 
 		// Get all the messages in the inbox
 		List<MailItem> messages = app.zPageMail.zListGetMessages();

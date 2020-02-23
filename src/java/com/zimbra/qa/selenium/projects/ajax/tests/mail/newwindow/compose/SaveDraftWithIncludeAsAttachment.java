@@ -57,7 +57,7 @@ public class SaveDraftWithIncludeAsAttachment extends SetGroupMailByMessagePrefe
 					"</SendMsgRequest>");
 
 		// Refresh current view
-		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message present in current view");
 
 		// Select the item
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
@@ -123,7 +123,7 @@ public class SaveDraftWithIncludeAsAttachment extends SetGroupMailByMessagePrefe
 					"</SendMsgRequest>");
 
 		// Refresh current view
-		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message present in current view");
 
 		// Select the item
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);

@@ -53,7 +53,7 @@ public class DuplicateCos extends AdminCore {
 
 		// Create a new cos in the Admin Console using SOAP
 		CosItem cos = new CosItem();
-		String cosName=cos.getName();
+		String cosName = cos.getName();
 
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<CreateCosRequest xmlns='urn:zimbraAdmin'>"
@@ -70,7 +70,7 @@ public class DuplicateCos extends AdminCore {
 		WizardCreateCos cosDialog = (WizardCreateCos) app.zPageManageCOS.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_DUPLICATE_COS);
 
 		CosItem dupCos = new CosItem();
-		dupCos.setCosName("Duplicate of menu "+cosName);
+		dupCos.setCosName(cosName + "duplicate");
 
 		// Fill out the necessary input fields and submit
 		cosDialog.zCompleteWizard(dupCos);
@@ -101,7 +101,7 @@ public class DuplicateCos extends AdminCore {
 
 		// Create a new cos in the Admin Console using SOAP
 		CosItem cos = new CosItem();
-		String cosname=cos.getName();
+		String cosname = cos.getName();
 
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<CreateCosRequest xmlns='urn:zimbraAdmin'>"
@@ -118,7 +118,7 @@ public class DuplicateCos extends AdminCore {
 		WizardCreateCos form = (WizardCreateCos) app.zPageManageCOS.zToolbarPressButton(Button.O_DUPLICATE_COS);
 
 		CosItem dupCos = new CosItem();
-		dupCos.setCosName("On rightclick Duplicate of "+cosname);
+		dupCos.setCosName(cosname + "duplicate");
 
 		// Fill out the necessary input fields and submit
 		form.zCompleteWizard(dupCos);

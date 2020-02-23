@@ -43,7 +43,7 @@ public class UnFlagConversation extends SetGroupMailByConversationPreference {
 				);
 
 		// Refresh current view
-		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(c.getSubject()), "Verify message displayed in current view");
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(c.getSubject()), "Verify message present in current view");
 
 		// Select the item
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, c.getSubject());
@@ -73,7 +73,7 @@ public class UnFlagConversation extends SetGroupMailByConversationPreference {
 			);
 
 		// Refresh current view
-		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(c.getSubject()), "Verify message displayed in current view");
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(c.getSubject()), "Verify message present in current view");
 
 		// Select the item
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, c.getSubject());

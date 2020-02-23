@@ -89,7 +89,7 @@ public class DeclineProposeNewTime extends AjaxCore {
 				+	"</CreateAppointmentRequest>");
 
 		// Refresh current view
-		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(apptSubject), "Verify message displayed in current view");
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(apptSubject), "Verify message present in current view");
 
 		// --------------- Login to attendee & propose new time ----------------------------------------------------
 

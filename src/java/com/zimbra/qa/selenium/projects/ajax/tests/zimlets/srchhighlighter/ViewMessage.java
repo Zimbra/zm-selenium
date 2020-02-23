@@ -60,7 +60,7 @@ public class ViewMessage extends AjaxCore {
 					"</SendMsgRequest>");
 
 		// Refresh current view
-		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message present in current view");
 
 		try {
 

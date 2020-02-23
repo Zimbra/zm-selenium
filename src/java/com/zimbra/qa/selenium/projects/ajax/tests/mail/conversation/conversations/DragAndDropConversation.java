@@ -80,7 +80,7 @@ public class DragAndDropConversation extends SetGroupMailByConversationPreferenc
 		String cid = app.zGetActiveAccount().soapSelectValue("//mail:c", "id");
 
 		// Refresh current view
-		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message present in current view");
 
 		// Select the conversation (optional step)
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
@@ -169,7 +169,7 @@ public class DragAndDropConversation extends SetGroupMailByConversationPreferenc
 		String cid = app.zGetActiveAccount().soapSelectValue("//mail:c", "id");
 
 		// Refresh current view
-		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message present in current view");
 
 		// Select the conversation (optional step)
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
@@ -261,7 +261,7 @@ public class DragAndDropConversation extends SetGroupMailByConversationPreferenc
 		String cid = app.zGetActiveAccount().soapSelectValue("//mail:c", "id");
 
 		// Refresh current view
-		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message present in current view");
 
 		// Select the conversation (optional step)
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);

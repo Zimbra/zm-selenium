@@ -57,7 +57,7 @@ public class MarkSpamMessage extends SetGroupMailByMessagePreference {
 		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
 
 		// Refresh current view
-		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message present in current view");
 
 		// Select the item
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, mail.dSubject);
@@ -98,7 +98,7 @@ public class MarkSpamMessage extends SetGroupMailByMessagePreference {
 		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
 
 		// Refresh current view
-		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message present in current view");
 
 		// Select the item
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, mail.dSubject);

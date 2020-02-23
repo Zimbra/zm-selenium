@@ -80,7 +80,7 @@ public class ZmMailAppFwdCompose extends AjaxCore {
 		injectMessage(app.zGetActiveAccount(), mimeFile);
 
 		// Refresh current view
-		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message present in current view");
 
 		PerfToken token = PerfMetrics.startTimestamp(PerfKey.ZmMailAppCompose, "Load Forward-Compose window for large conversation");
 

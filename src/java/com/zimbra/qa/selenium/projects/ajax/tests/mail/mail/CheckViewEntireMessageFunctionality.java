@@ -44,7 +44,7 @@ public class CheckViewEntireMessageFunctionality extends SetGroupMailByMessagePr
 		injectMessage(app.zGetActiveAccount(), mimeFile);
 
 		// Get Mail
-		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message present in current view");
 
 		// Select the message
 		DisplayMail display = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);

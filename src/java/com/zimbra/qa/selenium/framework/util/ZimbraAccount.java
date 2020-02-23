@@ -343,7 +343,6 @@ public class ZimbraAccount {
 			put("zimbraPrefOutOfOfficeStatusAlertOnLogin", "FALSE");
 			put("zimbraPrefOutOfOfficeReplyEnabled", "FALSE");
 			put("zimbraPrefWarnOnExit", "FALSE");
-
 		}
 	};
 

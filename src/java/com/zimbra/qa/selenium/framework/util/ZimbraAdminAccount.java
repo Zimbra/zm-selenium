@@ -241,9 +241,9 @@ public class ZimbraAdminAccount extends ZimbraAccount {
 	public static synchronized ZimbraAdminAccount AdminConsoleAdmin() {
 		if (_AdminConsoleAdmin == null) {
 			try {
-				String name = ConfigProperties.getStringProperty("adminUser") + ConfigProperties.getUniqueString();
-				String domain = ExecuteHarnessMain.proxyServers.get(0);
-				_AdminConsoleAdmin = new ZimbraAdminAccount(name + "@" + domain);
+				String account = "tcadmin" + ConfigProperties.getUniqueString();
+				String domain = ConfigProperties.getStringProperty("testdomain");
+				_AdminConsoleAdmin = new ZimbraAdminAccount(account + "@" + domain);
 				_AdminConsoleAdmin.provision();
 				_AdminConsoleAdmin.authenticate();
 				_AdminConsoleAdmin.soapSend("<ModifyAccountRequest xmlns='urn:zimbraAdmin'>" + "<id>"

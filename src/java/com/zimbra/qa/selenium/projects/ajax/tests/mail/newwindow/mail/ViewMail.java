@@ -54,7 +54,7 @@ public class ViewMail extends SetGroupMailByMessagePreference {
 		ZAssert.assertEquals(sender, mail.dSenderRecipient.dEmailAddress, "Verify the sender matches");
 
 		// Refresh current view
-		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message present in current view");
 
 		// Select the item
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
@@ -103,7 +103,7 @@ public class ViewMail extends SetGroupMailByMessagePreference {
 		ZAssert.assertEquals(replyto, mail.dReplyToRecipient.dEmailAddress, "Verify the Reply-To matches");
 
 		// Refresh current view
-		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message present in current view");
 
 		// Select the message so that it shows in the reading pane
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
@@ -151,7 +151,7 @@ public class ViewMail extends SetGroupMailByMessagePreference {
 		ZAssert.assertEquals(resentfrom, mail.dRedirectedFromRecipient.dEmailAddress, "Verify the Resent-From matches");
 
 		// Refresh current view
-		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message present in current view");
 
 		// Select the message so that it shows in the reading pane
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
@@ -193,7 +193,7 @@ public class ViewMail extends SetGroupMailByMessagePreference {
 		injectMessage(app.zGetActiveAccount(), mimeFile);
 
 		// Refresh current view
-		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message present in current view");
 
 		// Select the message
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);

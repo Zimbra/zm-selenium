@@ -65,7 +65,7 @@ public class IncludeTrashInSearchTrue extends AjaxCore {
 
 		// Check the presence of mail in Trash folder
 		app.zTreeMail.zTreeItem(Action.A_LEFTCLICK, trash);
-		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message present in current view");
 
 		// Search the mail when 'zimbraPrefIncludeTrashInSearch' is FALSE
 		app.zPageSearch.zAddSearchQuery(subject );

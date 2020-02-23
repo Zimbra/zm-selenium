@@ -72,7 +72,7 @@ public class ForwardACopyTo extends SetGroupMailByMessagePreference {
 
 		// SOAP verification
 		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
-		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message present in current view");
 
 		mail = MailItem.importFromSOAP(ZimbraAccount.AccountB(), "subject:("+ subject +")");
 		ZAssert.assertEquals(mail.dFromRecipient.dEmailAddress, ZimbraAccount.AccountA().EmailAddress, "Verify the from field is correct");

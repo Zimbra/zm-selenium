@@ -51,7 +51,7 @@ public class ZmConv extends AjaxCore {
 		injectMessage(app.zGetActiveAccount(), mimeFile);
 
 		// Refresh current view
-		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message present in current view");
 
 		PerfToken token = PerfMetrics.startTimestamp(PerfKey.ZmConv, "Load preview pane, text message, initial load");
 

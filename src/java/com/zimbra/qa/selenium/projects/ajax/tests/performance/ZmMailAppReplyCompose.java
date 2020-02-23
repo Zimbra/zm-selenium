@@ -134,7 +134,7 @@ public class ZmMailAppReplyCompose extends AjaxCore {
 		injectMessage(app.zGetActiveAccount(), mimeFile);
 
 		// Refresh current view
-		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message present in current view");
 
 		PerfToken token = PerfMetrics.startTimestamp(PerfKey.ZmMailAppCompose, "Load Reply-Compose window for invite conversation with 7mb attachment");
 

@@ -126,7 +126,7 @@ public class SaveDraftMailWithInlineImageAttachment extends SetGroupMailByMessag
 			injectMessage(app.zGetActiveAccount(), mimeFile);
 
 			// Refresh current view
-			ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(mimeSubject), "Verify message displayed in current view");
+			ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(mimeSubject), "Verify message present in current view");
 
 			// Select the item
 			app.zPageMail.zListItem(Action.A_LEFTCLICK, mimeSubject);

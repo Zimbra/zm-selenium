@@ -34,7 +34,7 @@ public class Accept extends AjaxCore {
 
 	@Bugs (ids = "83240")
 	@Test (description = "Rt-click to appointment from the calendar app and Accept the meeting invite (Instance)",
-			groups = { "bhr" })
+			groups = { "bhr1" })
 
 	public void AcceptMeeting_01() throws HarnessException {
 
@@ -135,7 +135,5 @@ public class Accept extends AjaxCore {
 
 		String messageId = ZimbraAccount.AccountA().soapSelectValue("//mail:m", "id");
 		ZAssert.assertNotNull(messageId, "Verify organizer gets email notification");
-
 	}
-
 }

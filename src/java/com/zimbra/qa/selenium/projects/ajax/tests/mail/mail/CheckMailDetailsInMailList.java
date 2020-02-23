@@ -66,7 +66,7 @@ public class CheckMailDetailsInMailList extends SetGroupMailByMessagePreference 
 		String time = formatDate.format(Calendar.getInstance().getTime());
 
 		// Refresh current view and check for the mail
-		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message present in current view");
 		
 		// Change the reading pane to bottom
 		app.zPageMail.zToolbarPressButton(Button.B_MAIL_VIEW_READING_PANE_BOTTOM);

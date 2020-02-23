@@ -223,7 +223,7 @@ public class Forward extends AjaxCore {
 		injectMessage(app.zGetActiveAccount(), mimeFile);
 
 		// Verify mail exists
-		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(apptSubject), "Verify message displayed in current view");
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(apptSubject), "Verify message present in current view");
 
 		// Forward invite
 		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);
@@ -244,7 +244,7 @@ public class Forward extends AjaxCore {
 		app.zPageLogin.zLogin(ZimbraAccount.Account2());
 
 		// Verify mail exists
-		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists("Fwd: " + apptSubject), "Verify message displayed in current view");
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists("Fwd: " + apptSubject), "Verify message present in current view");
 	}
 
 
@@ -271,7 +271,7 @@ public class Forward extends AjaxCore {
 		injectMessage(app.zGetActiveAccount(), mimeFile);
 
 		// Verify mail exists
-		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(apptSubject), "Verify message displayed in current view");
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(apptSubject), "Verify message present in current view");
 
 		// Forward invite
 		FolderItem inbox = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Inbox);

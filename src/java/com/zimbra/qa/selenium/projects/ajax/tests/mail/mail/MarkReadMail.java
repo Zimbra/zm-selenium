@@ -55,7 +55,7 @@ public class MarkReadMail extends SetGroupMailByMessagePreference {
 		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
 
 		// Refresh current view
-		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message present in current view");
 
 		// Select the item
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, mail.dSubject);
@@ -108,8 +108,8 @@ public class MarkReadMail extends SetGroupMailByMessagePreference {
 		MailItem mail2 = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject2 +")");
 
 		// Refresh current view
-		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject1), "Verify message displayed in current view");
-		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject2), "Verify message displayed in current view");
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject1), "Verify message present in current view");
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject2), "Verify message present in current view");
 
 		// Select the item
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, mail1.dSubject);
@@ -146,7 +146,7 @@ public class MarkReadMail extends SetGroupMailByMessagePreference {
 		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
 
 		// Refresh current view
-		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message present in current view");
 
 		// Select the item
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, mail.dSubject);
@@ -181,7 +181,7 @@ public class MarkReadMail extends SetGroupMailByMessagePreference {
 		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
 
 		// Refresh current view
-		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message present in current view");
 		app.zPageMail.zListItem(Action.A_RIGHTCLICK, Button.O_MARK_AS_READ, mail.dSubject);
 
 		// Verify the message is marked read in the server (flags attribute should not contain (u)nread)

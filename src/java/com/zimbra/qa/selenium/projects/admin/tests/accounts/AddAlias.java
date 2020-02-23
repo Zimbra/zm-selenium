@@ -63,7 +63,7 @@ public class AddAlias extends AdminCore {
 		AccountItem target = new AccountItem("tc" + ConfigProperties.getUniqueString(), ConfigProperties.getStringProperty("testdomain"));
 		AccountItem.createUsingSOAP(target);
 
-		String aliasLocalName = "alias" + ConfigProperties.getUniqueString();
+		String aliasLocalName = "tcalias" + ConfigProperties.getUniqueString();
 		String aliasDomainName = ConfigProperties.getStringProperty("testdomain");
 		String aliasEmail = aliasLocalName + "@" + aliasDomainName;
 

@@ -71,7 +71,7 @@ public class AddToCalendar extends SetGroupMailByMessagePreference {
 		Element[] nodes = account.soapSelectNodes("//mail:mp[@cd='attachment']");
 		ZAssert.assertGreaterThan(nodes.length, 0, "Verify the message has the attachment");
 
-		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message present in current view");
 
 		// Select the message so that it shows in the reading pane
 		DisplayMail display = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
@@ -124,7 +124,7 @@ public class AddToCalendar extends SetGroupMailByMessagePreference {
 
 		// Inject the message
 		injectMessage(app.zGetActiveAccount(), mimeFile);
-		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message present in current view");
 
 		// Select the message so that it shows in the reading pane
 		DisplayMail display = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
@@ -193,7 +193,7 @@ public class AddToCalendar extends SetGroupMailByMessagePreference {
 
 		// Inject the sample mime
 		injectMessage(app.zGetActiveAccount(), mimeFile);
-		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message present in current view");
 
 		// Select the message so that it shows in the reading pane
 		DisplayMail display = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
@@ -272,7 +272,7 @@ public class AddToCalendar extends SetGroupMailByMessagePreference {
 
 		// Inject the message
 		injectMessage(app.zGetActiveAccount(), mimeFile);
-		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message present in current view");
 		SleepUtil.sleepMedium();
 
 		// Select the message so that it shows in the reading pane
@@ -372,7 +372,7 @@ public class AddToCalendar extends SetGroupMailByMessagePreference {
 		ZAssert.assertGreaterThan(nodes.length, 0, "Verify the message has the attachment");
 
 		// Select the message so that it shows in the reading pane
-		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message present in current view");
 		DisplayMail display = (DisplayMail) app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 
 		AttachmentItem item = null;
@@ -422,7 +422,7 @@ public class AddToCalendar extends SetGroupMailByMessagePreference {
 
 		// Inject the message
 		injectMessage(app.zGetActiveAccount(), mimeFile);
-		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message present in current view");
 
 		// Adding additional code to go to Cal tab and click explicitly on Calendar header, so that new folder will create in upper level.
 		app.zPageCalendar.zNavigateTo();
@@ -430,7 +430,7 @@ public class AddToCalendar extends SetGroupMailByMessagePreference {
 
 		// Navigate to Mail Tab again
 		app.zPageMail.zNavigateTo();
-		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message displayed in current view");
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message present in current view");
 
 		// Select the message so that it shows in the reading pane
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);

@@ -112,7 +112,7 @@ public class AcceptMeetingInDifferentFolder extends AjaxCore {
 		// --------------- Login to attendee & accept invitation ----------------------------------------------------
 
 		// Refresh current view
-		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(apptSubject), "Verify message displayed in current view");
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(apptSubject), "Verify message present in current view");
 
 		// Select the invitation
 		DisplayMail display = (DisplayMail)app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);
@@ -199,7 +199,7 @@ public class AcceptMeetingInDifferentFolder extends AjaxCore {
 		// --------------- Login to attendee & accept invitation ----------------------------------------------------
 
 		// Refresh current view
-		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(apptSubject), "Verify message displayed in current view");
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(apptSubject), "Verify message present in current view");
 
 		// Select the invitation
 		DisplayMail display = (DisplayMail)app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);
@@ -283,7 +283,7 @@ public class AcceptMeetingInDifferentFolder extends AjaxCore {
 		// --------------- Login to attendee & accept invitation ----------------------------------------------------
 
 		// Refresh current view
-		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(apptSubject), "Verify message displayed in current view");
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(apptSubject), "Verify message present in current view");
 
 		// Select the invitation
 		DisplayMail display = (DisplayMail)app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);
@@ -404,7 +404,7 @@ public class AcceptMeetingInDifferentFolder extends AjaxCore {
 		// --------------- Login to attendee & accept invitation ----------------------------------------------------
 
 		// Refresh current view
-		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(apptSubject), "Verify message displayed in current view");
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(apptSubject), "Verify message present in current view");
 
 		// Select the invitation
 		DisplayMail display = (DisplayMail)app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);
@@ -523,7 +523,7 @@ public class AcceptMeetingInDifferentFolder extends AjaxCore {
 		// --------------- Login to attendee & accept invitation ----------------------------------------------------
 
 		// Refresh current view
-		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(apptSubject), "Verify message displayed in current view");
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(apptSubject), "Verify message present in current view");
 
 		// Select the invitation
 		DisplayMail display = (DisplayMail)app.zPageMail.zListItem(Action.A_LEFTCLICK, apptSubject);
