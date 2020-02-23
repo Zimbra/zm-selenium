@@ -47,7 +47,7 @@ public class ConfigProperties {
 	}
 	
 	public static Boolean isZimbra9XEnvironment() {
-		String environment = ExecuteHarnessMain.zimbraVersion.split("GA")[0].replaceAll("\\.", "");
+		String environment = ExecuteHarnessMain.zimbraVersion.split("BETA")[0].split("GA")[0].replaceAll("\\.", "");
 		if (environment.toLowerCase().equals("8816") || environment.toLowerCase().equals("900")) {
 			return true;
 		} else {
