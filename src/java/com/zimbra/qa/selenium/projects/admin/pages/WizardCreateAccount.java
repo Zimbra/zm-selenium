@@ -37,6 +37,7 @@ public class WizardCreateAccount extends AbsWizard {
 		public static final String zdlg_ACCT_NAME = "zdlgv__NEW_ACCT_name_2";
 		public static final String zdlg_DOMAIN_NAME = "zdlgv__NEW_ACCT_name_3_display";
 		public static final String zdlg_LAST_NAME = "zdlgv__NEW_ACCT_sn";
+		public static final String zdlg_DESCRIPTION = "zdlgv__NEW_ACCT_description";
 		public static final String zdlg_OK = "zdlg__MSG_button2_title";
 		public static final String server_AUTO_CHECKBOX = "css=input[id='zdlgv__NEW_ACCT_automailserver']";
 		public static final String server_PULL_DOWN = "div[id^='zdlgv__NEW_ACCT'][id*='_zimbraMailHost'] div[class='ImgSelectPullDownArrow']";
@@ -62,7 +63,7 @@ public class WizardCreateAccount extends AbsWizard {
 		this.clearField(Locators.zdlg_DOMAIN_NAME);
 		zType(Locators.zdlg_DOMAIN_NAME, "");
 		zType(Locators.zdlg_DOMAIN_NAME, domain);
-		SleepUtil.sleepMedium();
+		SleepUtil.sleepLong();
 
 		Robot robot = null;
 		try {
@@ -77,7 +78,10 @@ public class WizardCreateAccount extends AbsWizard {
 			if (key.equals("sn")) {
 				zType(Locators.zdlg_LAST_NAME, account.getAccountAttrs().get(key));
 				continue;
-			}
+			} else if (key.equals("description")) {
+				zType(Locators.zdlg_DESCRIPTION, account.getAccountAttrs().get(key));
+				continue;
+			} 
 			throw new HarnessException("Unknown account attribute key " + key);
 		}
 
