@@ -48,7 +48,7 @@ public class EditAlias extends AdminCore {
 
 	public void EditAlias_01() throws HarnessException {
 
-		AccountItem target = new AccountItem("tc" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
+		AccountItem target = new AccountItem("tc" + ConfigProperties.getUniqueString(), ConfigProperties.getStringProperty("testdomain"));
 		AccountItem.createUsingSOAP(target);
 
 		// Create a new account in the Admin Console using SOAP

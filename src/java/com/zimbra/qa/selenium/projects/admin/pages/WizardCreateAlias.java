@@ -57,7 +57,6 @@ public class WizardCreateAlias extends AbsWizard {
 		sClick(Locators.zdlg_OK);
 		SleepUtil.sleepMedium();
 		return alias;
-
 	}
 
 	@Override
