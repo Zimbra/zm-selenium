@@ -44,7 +44,7 @@ public class AccountItem implements IItem {
 			localName = emailAddress.split("@")[0];
 			domainName = emailAddress.split("@")[1];
 		} else {
-			localName = "tc" + emailAddress; // "a" is prefixed to make sure account appears at the top of manage list.
+			localName = emailAddress;
 			domainName = ConfigProperties.getStringProperty("testdomain");
 		}
 
@@ -172,12 +172,12 @@ public class AccountItem implements IItem {
 
 		ZimbraAdminAccount.AdminConsoleAdmin()
 				.soapSend("<CreateAccountRequest xmlns='urn:zimbraAdmin'>" + "<name>" + account.getEmailAddress()
-						+ "</name>" + elementPassword.toString() + elementAttrs.toString() + "</CreateAccountRequest>");
+						+ "</name>" + elementPassword.toString() + elementAttrs.toString()
+						+ "<a n='description'>Created by Selenium automation</a>"
+						+ "</CreateAccountRequest>");
 
 		Id = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectValue("//admin:CreateAccountResponse/admin:account", "id")
 				.toString();
-		// TODO: Need to create a new AccountItem and set the account values to it, then
-		// return the new item
 
 		return (account);
 	}

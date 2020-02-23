@@ -32,8 +32,7 @@ public class ZimbraAdminAccount extends ZimbraAccount {
 	}
 
 	/**
-	 * Creates the Delegated Administrator account on the ZCS using
-	 * CreateAccountRequest zimbraIsAdminAccount is set to TRUE
+	 * Creates the Delegated Administrator account on the ZCS
 	 */
 	public ZimbraAdminAccount provisionDA(String email) {
 		ZimbraDomain domain = new ZimbraDomain(EmailAddress.split("@")[1]);
@@ -46,9 +45,9 @@ public class ZimbraAdminAccount extends ZimbraAccount {
 			ZimbraAdminAccount.AdminConsoleAdmin()
 					.soapSend("<CreateAccountRequest xmlns='urn:zimbraAdmin'>" + "<name>" + account.getEmailAddress()
 							+ "</name>" + "<password>" + ConfigProperties.getStringProperty("adminPassword")
-							+ "</password>" + "<a xmlns='' n='zimbraIsDelegatedAdminAccount'>TRUE</a>"
+							+ "</password>" + "<a n='zimbraIsDelegatedAdminAccount'>TRUE</a>"
 							+ "<a n='description'>Created by Selenium automation</a>"
-							+ "<a xmlns='' n='zimbraPrefAdminConsoleWarnOnExit'>FALSE</a>" + "</CreateAccountRequest>");
+							+ "<a n='zimbraPrefAdminConsoleWarnOnExit'>FALSE</a>" + "</CreateAccountRequest>");
 
 			Element[] createAccountResponse = ZimbraAdminAccount.AdminConsoleAdmin()
 					.soapSelectNodes("//admin:CreateAccountResponse");
@@ -111,7 +110,6 @@ public class ZimbraAdminAccount extends ZimbraAccount {
 
 	/**
 	 * Creates the account on the ZCS using CreateAccountRequest
-	 * zimbraIsAdminAccount is set to TRUE
 	 */
 	public ZimbraAccount provision() {
 		ZimbraDomain domain = new ZimbraDomain(EmailAddress.split("@")[1]);
@@ -138,7 +136,9 @@ public class ZimbraAdminAccount extends ZimbraAccount {
 			ZimbraAdminAccount.GlobalAdmin()
 					.soapSend("<CreateAccountRequest xmlns='urn:zimbraAdmin'>" + "<name>" + EmailAddress + "</name>"
 							+ "<password>" + Password + "</password>" + prefs.toString()
-							+ "<a n='zimbraIsAdminAccount'>TRUE</a>" + "</CreateAccountRequest>");
+							+ "<a n='zimbraIsAdminAccount'>TRUE</a>"
+							+ "<a n='description'>Created by Selenium automation</a>"
+							+ "</CreateAccountRequest>");
 
 			Element[] createAccountResponse = ZimbraAdminAccount.GlobalAdmin()
 					.soapSelectNodes("//admin:CreateAccountResponse");

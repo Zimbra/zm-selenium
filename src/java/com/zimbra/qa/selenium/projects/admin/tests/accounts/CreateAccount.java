@@ -46,9 +46,9 @@ public class CreateAccount extends AdminCore {
 
 	public void CreateAccount_01() throws HarnessException {
 
-		String surName = "lastName" + ConfigProperties.getUniqueString();
+		String accountLastname = "lastname" + ConfigProperties.getUniqueString();
 
-		AccountItem account = new AccountItem("tc" + ConfigProperties.getUniqueString(), surName);
+		AccountItem account = new AccountItem("tc" + ConfigProperties.getUniqueString(), accountLastname);
 
 		// Click "New" -> "Account"
 		WizardCreateAccount wizard = (WizardCreateAccount) app.zPageManageAccounts.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_NEW);
@@ -68,7 +68,7 @@ public class CreateAccount extends AdminCore {
 		ZAssert.assertEquals(
 				ZimbraAdminAccount.AdminConsoleAdmin()
 						.soapSelectValue("//admin:GetAccountResponse/admin:account/admin:a[@n='sn']", null),
-				surName, "Verify account lastname set successfully");
+				accountLastname, "Verify account lastname set successfully");
 		ZAssert.assertEquals(
 				ZimbraAdminAccount.AdminConsoleAdmin()
 						.soapSelectValue("//admin:GetAccountResponse/admin:account/admin:a[@n='zimbraMailHost']", null),

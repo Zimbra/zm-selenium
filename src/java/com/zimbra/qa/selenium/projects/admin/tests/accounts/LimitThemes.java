@@ -48,6 +48,7 @@ public class LimitThemes extends AdminCore {
 				"<CreateAccountRequest xmlns='urn:zimbraAdmin'>"
 						+			"<name>" + account.getEmailAddress() + "</name>"
 						+			"<password>test123</password>"
+						+			"<a n='description'>Created by Selenium automation</a>"
 						+		"</CreateAccountRequest>");
 
 		String theme="Harmony";

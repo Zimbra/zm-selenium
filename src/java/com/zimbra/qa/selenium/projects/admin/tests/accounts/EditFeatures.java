@@ -58,6 +58,7 @@ public class EditFeatures extends AdminCore {
 				"<CreateAccountRequest xmlns='urn:zimbraAdmin'>"
 						+			"<name>" + account.getEmailAddress() + "</name>"
 						+			"<password>test123</password>"
+						+			"<a n='description'>Created by Selenium automation</a>"
 						+		"</CreateAccountRequest>");
 
 		// Refresh the account list
