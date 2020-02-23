@@ -26,7 +26,6 @@ import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
-import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
 import com.zimbra.qa.selenium.projects.admin.core.AdminCore;
 import com.zimbra.qa.selenium.projects.admin.items.AccountItem;
@@ -48,7 +47,7 @@ public class ViewMail extends AdminCore {
 	 * @throws HarnessException
 	 */
 
-	@Test (description = " View mail  -- manage account >> Gearbox >> edit account >>  View mail",
+	@Test (description = "View mail - manage account >> Gearbox >> edit account >>  View mail",
 			groups = { "smoke" })
 
 	public void ViewMail_01() throws HarnessException {
@@ -125,7 +124,7 @@ public class ViewMail extends AdminCore {
 	 */
 
 	@Bugs (ids = "69155")
-	@Test (description = "View mail  -- manage account > right click > view mail",
+	@Test (description = "View mail - manage account > right click > view mail",
 			groups = { "smoke" })
 
 	public void ViewMail_02() throws HarnessException {
@@ -204,7 +203,7 @@ public class ViewMail extends AdminCore {
 	 * @throws HarnessException
 	 */
 
-	@Test (description = "Edit a basic account - Search List View",
+	@Test (description = "View mail - Edit a basic account - Search List View",
 			groups = { "bhr" })
 
 	public void ViewMail_03() throws HarnessException {
@@ -286,7 +285,7 @@ public class ViewMail extends AdminCore {
 	 *
 	 * @throws HarnessException
 	 */
-	@Test (description = "Edit a basic account - Search List View",
+	@Test (description = "View mail - Edit a basic account - Search List View",
 			groups = { "bhr" })
 
 	public void ViewMail_04() throws HarnessException {
@@ -350,28 +349,27 @@ public class ViewMail extends AdminCore {
 	}
 
 
-	@Test (description = "Verify that admin is able to view mails of a locked account",
+	@Test (description = "View mail of a locked account",
 			groups = { "sanity" })
 
 	public void ViewMail_05() throws HarnessException {
 
-		//Create a Zimbra account
-		ZimbraAccount locked = new ZimbraAccount();
-		locked.provision();
-
-		// Lock the account
-		ZimbraAdminAccount.GlobalAdmin().soapSend(
-				"<ModifyAccountRequest xmlns='urn:zimbraAdmin'>"
-						+		"<id>" + locked.ZimbraId + "</id>"
-						+		"<a n='zimbraAccountStatus'>locked</a>"
-						+	"</ModifyAccountRequest>");
+		// Create a new account in the Admin Console using SOAP
+		AccountItem account = new AccountItem("tc" + ConfigProperties.getUniqueString(), ConfigProperties.getStringProperty("testdomain"));
+		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
+				"<CreateAccountRequest xmlns='urn:zimbraAdmin'>"
+						+			"<name>" + account.getEmailAddress() + "</name>"
+						+			"<password>test123</password>"
+						+			"<a n='zimbraAccountStatus'>locked</a>"
+						+			"<a n='description'>Created by Selenium automation</a>"
+						+		"</CreateAccountRequest>");
 
 		// Send a mail to the account
 		String subject = "subject"+ ConfigProperties.getUniqueString();
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<SendMsgRequest xmlns='urn:zimbraMail'>" +
 						"<m>" +
-						"<e t='t' a='"+ locked.EmailAddress +"'/>" +
+						"<e t='t' a='"+ account.getEmailAddress() +"'/>" +
 						"<su>"+ subject +"</su>" +
 						"<mp ct='text/plain'>" +
 						"<content>content"+ ConfigProperties.getUniqueString() +"</content>" +
@@ -380,13 +378,13 @@ public class ViewMail extends AdminCore {
 				"</SendMsgRequest>");
 
 		// Enter the search string to find the account
-		app.zPageSearchResults.zAddSearchQuery(locked.EmailAddress);
+		app.zPageSearchResults.zAddSearchQuery(account.getEmailAddress());
 
 		// Click search
 		app.zPageSearchResults.zToolbarPressButton(Button.B_SEARCH);
 
 		// Click on account
-		app.zPageSearchResults.zListItem(Action.A_LEFTCLICK, locked.EmailAddress);
+		app.zPageSearchResults.zListItem(Action.A_LEFTCLICK, account.getEmailAddress());
 
 		// Gearbox >> View mail
 		app.zPageManageAccounts.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.B_VIEW_MAIL);
