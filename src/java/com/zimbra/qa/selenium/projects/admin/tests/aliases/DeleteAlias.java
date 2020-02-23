@@ -54,7 +54,7 @@ public class DeleteAlias extends AdminCore {
 
 	public void DeleteAlias_01() throws HarnessException {
 
-		AccountItem target = new AccountItem("email" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
+		AccountItem target = new AccountItem("tc" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
 		AccountItem.createUsingSOAP(target);
 
 		// Create a new account in the Admin Console using SOAP
@@ -114,7 +114,7 @@ public class DeleteAlias extends AdminCore {
 
 	public void DeleteAlias_02() throws HarnessException {
 
-		AccountItem target = new AccountItem("email" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
+		AccountItem target = new AccountItem("tc" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
 		AccountItem.createUsingSOAP(target);
 
 		// Create a new account in the Admin Console using SOAP
@@ -172,7 +172,7 @@ public class DeleteAlias extends AdminCore {
 
 	public void DeleteAlias_03() throws HarnessException {
 
-		AccountItem target = new AccountItem("email" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
+		AccountItem target = new AccountItem("tc" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
 		AccountItem.createUsingSOAP(target);
 
 		// Create a new account in the Admin Console using SOAP
@@ -234,7 +234,7 @@ public class DeleteAlias extends AdminCore {
 
 	public void DeleteAlias_04() throws HarnessException {
 
-		AccountItem target = new AccountItem("email" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
+		AccountItem target = new AccountItem("tc" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
 		AccountItem.createUsingSOAP(target);
 
 

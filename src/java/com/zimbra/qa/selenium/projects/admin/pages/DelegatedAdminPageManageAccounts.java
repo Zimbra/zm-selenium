@@ -282,7 +282,7 @@ public class DelegatedAdminPageManageAccounts extends AbsTab {
 			final String accountLocator = rowsLocator + "[" + i + "]";
 			String locator;
 
-			AccountItem item = new AccountItem("email" + ConfigProperties.getUniqueString(),
+			AccountItem item = new AccountItem("tc" + ConfigProperties.getUniqueString(),
 					ConfigProperties.getStringProperty("testdomain"));
 
 			// Type (image)

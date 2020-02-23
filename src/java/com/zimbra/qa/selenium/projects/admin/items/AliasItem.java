@@ -33,7 +33,7 @@ public class AliasItem implements IItem {
 	public AliasItem() {
 		super();
 
-		aliasLocalName = "alias" + ConfigProperties.getUniqueString();
+		aliasLocalName = "tcalias" + ConfigProperties.getUniqueString();
 		aliasDomainName = ConfigProperties.getStringProperty("testdomain");
 		aliasId = null;
 	}

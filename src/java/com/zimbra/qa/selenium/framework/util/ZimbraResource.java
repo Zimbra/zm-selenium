@@ -119,6 +119,7 @@ public class ZimbraResource extends ZimbraAccount {
 				.soapSend("<CreateCalendarResourceRequest xmlns='urn:zimbraAdmin'>" + "<name>" + EmailAddress
 						+ "</name>" + "<password>" + Password + "</password>" + "<a n='displayName'>" + EmailAddress
 						+ "</a>" + prefs.toString() + "<a n='zimbraPrefClientType'>" + "advanced" + "</a>"
+						+ "<a n='description'>Created by Selenium automation</a>"
 						+ "<a n='zimbraFeatureConversationsEnabled'>" + "FALSE" + "</a></CreateCalendarResourceRequest>");
 
 			Element[] createCalendarResourceResponse = ZimbraAdminAccount.GlobalAdmin()

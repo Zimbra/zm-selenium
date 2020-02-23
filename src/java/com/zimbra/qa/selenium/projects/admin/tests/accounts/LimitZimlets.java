@@ -41,7 +41,7 @@ public class LimitZimlets extends AdminCore {
 	public void LimitZimlets_01() throws HarnessException {
 
 		// Create a new account in the Admin Console using SOAP
-		AccountItem account = new AccountItem("email" + ConfigProperties.getUniqueString(), ConfigProperties.getStringProperty("testdomain"));
+		AccountItem account = new AccountItem("tc" + ConfigProperties.getUniqueString(), ConfigProperties.getStringProperty("testdomain"));
 
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<CreateAccountRequest xmlns='urn:zimbraAdmin'>"

@@ -58,7 +58,7 @@ public class ZimbraDistributionList {
 			// Create the account
 			ZimbraAdminAccount.GlobalAdmin()
 					.soapSend("<CreateDistributionListRequest xmlns='urn:zimbraAdmin'>" + "<name>" + this.EmailAddress
-							+ "</name>" + "<a n='description'>description" + ConfigProperties.getUniqueString() + "</a>"
+							+ "</name>" + "<a n='description'>Created by Selenium automation</a>"
 							+ "</CreateDistributionListRequest>");
 
 			ZimbraId = ZimbraAdminAccount.GlobalAdmin().soapSelectValue("//admin:dl", "id");

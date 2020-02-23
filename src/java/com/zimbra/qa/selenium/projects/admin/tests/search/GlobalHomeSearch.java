@@ -100,7 +100,7 @@ public class GlobalHomeSearch extends AdminCore {
 	public void HomeSearchFunctionalityAccount_02() throws HarnessException {
 
 		// Create a new account in the Admin Console using SOAP
-		AccountItem account = new AccountItem("email" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
+		AccountItem account = new AccountItem("tc" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 						"<CreateAccountRequest xmlns='urn:zimbraAdmin'>"
 				+			"<name>" + account.getEmailAddress() + "</name>"
@@ -236,7 +236,7 @@ public class GlobalHomeSearch extends AdminCore {
 
 	public void HomeSearchFunctionalityAlias_05() throws HarnessException {
 
-		AccountItem target = new AccountItem("email" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
+		AccountItem target = new AccountItem("tc" + ConfigProperties.getUniqueString(),ConfigProperties.getStringProperty("testdomain"));
 		AccountItem.createUsingSOAP(target);
 
 		// Create a new account in the Admin Console using SOAP

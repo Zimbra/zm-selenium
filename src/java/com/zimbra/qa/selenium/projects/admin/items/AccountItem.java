@@ -38,18 +38,15 @@ public class AccountItem implements IItem {
 	protected Map<String, String> accountAttrs;
 
 	public AccountItem(String emailAddress, String lastName) {
-
 		accountAttrs = new HashMap<String, String>();
 
 		if (emailAddress.contains("@")) {
 			localName = emailAddress.split("@")[0];
 			domainName = emailAddress.split("@")[1];
 		} else {
-			localName = "a_" + emailAddress; // "a" is prefixed to make sure account appears at the top of manage list.
+			localName = "tc" + emailAddress; // "a" is prefixed to make sure account appears at the top of manage list.
 			domainName = ConfigProperties.getStringProperty("testdomain");
 		}
-
-		// Id = null;
 
 		// Surname is required in Admin Console
 		accountAttrs.put("sn", lastName);

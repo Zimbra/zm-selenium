@@ -57,16 +57,15 @@ public class GetDomain extends AdminCore {
 				+			"<name>" + domain.getName() + "</name>"
 				+		"</CreateDomainRequest>");
 
-
 		// Refresh the domain list
 		app.zPageManageDomains.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
 
 		// Get the list of displayed domains
-		List<DomainItem> accounts = app.zPageManageDomains.zListGetDomainList();
-		ZAssert.assertNotNull(accounts, "Verify the account list is returned");
+		List<DomainItem> domains = app.zPageManageDomains.zListGetDomainList();
+		ZAssert.assertNotNull(domains, "Verify the account list is returned");
 
 		DomainItem found = null;
-		for (DomainItem a : accounts) {
+		for (DomainItem a : domains) {
 			logger.info("Looking for domain "+ domain.getName() + " found: "+ a.getName());
 			if ( domain.getName().equals(a.getName()) ) {
 				found = a;
@@ -118,11 +117,11 @@ public class GetDomain extends AdminCore {
 		app.zPageManageDomains.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
 
 		// Get the list of displayed domains
-		List<DomainItem> accounts = app.zPageManageDomains.zListGetDomainList();
-		ZAssert.assertNotNull(accounts, "Verify the account list is returned");
+		List<DomainItem> domains = app.zPageManageDomains.zListGetDomainList();
+		ZAssert.assertNotNull(domains, "Verify the account list is returned");
 
 		DomainItem found = null;
-		for (DomainItem a : accounts) {
+		for (DomainItem a : domains) {
 			logger.info("Looking for domain "+ domainAliasName + " found: "+ a.getName());
 			if ( domainAliasName.equals(a.getName()) ) {
 				found = a;
@@ -141,7 +140,7 @@ public class GetDomain extends AdminCore {
 	 * @throws HarnessException
 	 */
 
-	@Test (description = "Verify created domain is present in the domain list view",
+	@Test (description = "Search created domain",
 			groups = { "bhr" })
 
 	public void GetDomain_03() throws HarnessException {

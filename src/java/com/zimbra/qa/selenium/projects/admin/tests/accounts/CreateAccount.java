@@ -48,7 +48,7 @@ public class CreateAccount extends AdminCore {
 
 		String surName = "lastName" + ConfigProperties.getUniqueString();
 
-		AccountItem account = new AccountItem("email" + ConfigProperties.getUniqueString(), surName);
+		AccountItem account = new AccountItem("tc" + ConfigProperties.getUniqueString(), surName);
 
 		// Click "New" -> "Account"
 		WizardCreateAccount wizard = (WizardCreateAccount) app.zPageManageAccounts.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_NEW);

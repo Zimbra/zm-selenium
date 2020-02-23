@@ -72,7 +72,7 @@ public class EditCos extends AdminCore {
 		FormEditCos form = (FormEditCos) app.zPageManageCOS.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_EDIT);
 
 		// Edit the name
-		String editedName = "editedCos_" + ConfigProperties.getUniqueString();
+		String editedName = "tcEditedCos_" + ConfigProperties.getUniqueString();
 		form.zSetName(editedName);
 
 		// Submit
@@ -124,7 +124,7 @@ public class EditCos extends AdminCore {
 		form.zSelectTreeItem(FormEditCos.TreeItem.GENERAL_INFORMATION);
 
 		// Edit the name
-		String editedName = "editedCos_" + ConfigProperties.getUniqueString();
+		String editedName = "tcEditedCos_" + ConfigProperties.getUniqueString();
 		form.zSetName(editedName);
 
 		// Submit
@@ -183,7 +183,7 @@ public class EditCos extends AdminCore {
 		form.zSelectTreeItem(FormEditCos.TreeItem.GENERAL_INFORMATION);
 
 		// Edit the name
-		String editedName = "editedCos_" + ConfigProperties.getUniqueString();
+		String editedName = "tcEditedCos_" + ConfigProperties.getUniqueString();
 		form.zSetName(editedName);
 
 		// Submit
@@ -238,7 +238,7 @@ public class EditCos extends AdminCore {
 		FormEditCos form = (FormEditCos) app.zPageSearchResults.zToolbarPressButton(Button.B_TREE_EDIT);
 
 		// Edit the name
-		String editedName = "editedCos_" + ConfigProperties.getUniqueString();
+		String editedName = "tcEditedCos_" + ConfigProperties.getUniqueString();
 		form.zSetName(editedName);
 
 		// Submit

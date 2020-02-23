@@ -77,7 +77,7 @@ public class EditDistributionList extends AdminCore {
 		form.zSelectTreeItem(FormEditDistributionList.TreeItem.MEMBERS);
 
 		// Edit the name
-		String editedName = "editedDL_" + ConfigProperties.getUniqueString();
+		String editedName = "tcEditedDL_" + ConfigProperties.getUniqueString();
 		form.zSetName(editedName);
 
 		// Submit
@@ -132,7 +132,7 @@ public class EditDistributionList extends AdminCore {
 		form.zSelectTreeItem(FormEditDistributionList.TreeItem.MEMBERS);
 
 		// Edit the name
-		String editedName = "editedDL_" + ConfigProperties.getUniqueString();
+		String editedName = "tcEditedDL_" + ConfigProperties.getUniqueString();
 		form.zSetName(editedName);
 
 		// Submit
@@ -189,7 +189,7 @@ public class EditDistributionList extends AdminCore {
 		form.zSelectTreeItem(FormEditDistributionList.TreeItem.MEMBERS);
 
 		// Edit the name
-		String editedName = "editedDL_" + ConfigProperties.getUniqueString();
+		String editedName = "tcEditedDL_" + ConfigProperties.getUniqueString();
 		form.zSetName(editedName);
 
 		// Submit
@@ -249,7 +249,7 @@ public class EditDistributionList extends AdminCore {
 		form.zSelectTreeItem(FormEditDistributionList.TreeItem.MEMBERS);
 
 		// Edit the name
-		String editedName = "editedDL_" + ConfigProperties.getUniqueString();
+		String editedName = "tcEditedDL_" + ConfigProperties.getUniqueString();
 		form.zSetName(editedName);
 
 		// Submit
@@ -309,7 +309,7 @@ public class EditDistributionList extends AdminCore {
 		form.zSelectTreeItem(FormEditDistributionList.TreeItem.MEMBERS);
 
 		// Edit the name
-		String editedName = "editedDL_" + ConfigProperties.getUniqueString();
+		String editedName = "tcEditedDL_" + ConfigProperties.getUniqueString();
 		form.zSetName(editedName);
 
 		// Submit
@@ -369,7 +369,7 @@ public class EditDistributionList extends AdminCore {
 		form.zSelectTreeItem(FormEditDistributionList.TreeItem.MEMBERS);
 
 		// Edit the name
-		String editedName = "editedDL_" + ConfigProperties.getUniqueString();
+		String editedName = "tcEditedDL_" + ConfigProperties.getUniqueString();
 		form.zSetName(editedName);
 
 		// Submit

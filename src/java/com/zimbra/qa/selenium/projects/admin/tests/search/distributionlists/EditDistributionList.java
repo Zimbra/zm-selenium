@@ -77,7 +77,7 @@ public class EditDistributionList extends AdminCore {
 		FormEditDistributionList form = (FormEditDistributionList) app.zPageManageDistributionList.zToolbarPressPulldown(Button.B_GEAR_BOX,Button.O_EDIT);
 
 		// Edit the name
-		String editedName = "editedDL_" + ConfigProperties.getUniqueString();
+		String editedName = "tcEditedDL_" + ConfigProperties.getUniqueString();
 		form.zSetName(editedName);
 
 		// Submit
@@ -136,7 +136,7 @@ public class EditDistributionList extends AdminCore {
 		FormEditDistributionList form = (FormEditDistributionList) app.zPageSearchResults.zToolbarPressButton(Button.B_TREE_EDIT);
 
 		// Edit the name
-		String editedName = "editedDL_" + ConfigProperties.getUniqueString();
+		String editedName = "tcEditedDL_" + ConfigProperties.getUniqueString();
 		form.zSetName(editedName);
 
 		// Submit
@@ -199,7 +199,7 @@ public class EditDistributionList extends AdminCore {
 		FormEditDistributionList form = (FormEditDistributionList) app.zPageManageDistributionList.zToolbarPressPulldown(Button.B_GEAR_BOX,Button.O_EDIT);
 
 		// Edit the name
-		String editedName = "editedDL_" + ConfigProperties.getUniqueString();
+		String editedName = "tcEditedDL_" + ConfigProperties.getUniqueString();
 		form.zSetName(editedName);
 
 		// Submit

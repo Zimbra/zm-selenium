@@ -227,7 +227,7 @@ public class PageManageMTA extends AbsTab {
 			}
 
 			this.sClickAt(pulldownLocator, "");
-			SleepUtil.sleepMedium();
+			SleepUtil.sleepSmall();
 		}
 
 		return (page);

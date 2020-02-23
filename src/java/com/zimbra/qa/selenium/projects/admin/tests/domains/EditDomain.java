@@ -70,7 +70,7 @@ public class EditDomain extends AdminCore {
 				Button.O_EDIT);
 
 		// Edit the description.
-		String description = "editeddomain_" + ConfigProperties.getUniqueString();
+		String description = "tcediteddomain_" + ConfigProperties.getUniqueString();
 		form.zSetName(description);
 
 		// Submit
@@ -117,7 +117,7 @@ public class EditDomain extends AdminCore {
 		FormEditDomain form = (FormEditDomain) app.zPageManageDomains.zToolbarPressButton(Button.B_TREE_EDIT);
 
 		// Edit the description.
-		String description = "editeddomain_" + ConfigProperties.getUniqueString();
+		String description = "tcediteddomain_" + ConfigProperties.getUniqueString();
 		form.zSetName(description);
 
 		// Submit
@@ -170,7 +170,7 @@ public class EditDomain extends AdminCore {
 				Button.O_EDIT);
 
 		// Edit the description.
-		String description = "editeddomain_" + ConfigProperties.getUniqueString();
+		String description = "tcediteddomain_" + ConfigProperties.getUniqueString();
 		form.zSetName(description);
 
 		// Submit
@@ -228,7 +228,7 @@ public class EditDomain extends AdminCore {
 		FormEditDomain form = (FormEditDomain) app.zPageSearchResults.zToolbarPressButton(Button.B_TREE_EDIT);
 
 		// Edit the description.
-		String description = "editeddomain_" + ConfigProperties.getUniqueString();
+		String description = "tcediteddomain_" + ConfigProperties.getUniqueString();
 		form.zSetName(description);
 
 		// Submit

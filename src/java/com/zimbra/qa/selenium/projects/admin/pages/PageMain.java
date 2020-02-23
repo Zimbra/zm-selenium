@@ -21,6 +21,7 @@ import com.zimbra.qa.selenium.framework.ui.AbsPage;
 import com.zimbra.qa.selenium.framework.ui.AbsTab;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.projects.ajax.pages.Toaster;
@@ -215,7 +216,10 @@ public class PageMain extends AbsTab {
 	}
 	
 	public boolean zVerifyMailExists(String subject) throws HarnessException {
-		String mailLocator = "css=div#zl__CLV-main ul[id$='__rows'] div[id$='__rw'] div[id$='__su']";
-		return sIsElementPresent(mailLocator + ":contains('" + subject + "')");
+		String mailLocator = "css=div#zl__CLV-main ul[id$='__rows'] div[id$='__rw'] div[id$='__su']" + ":contains('" + subject + "')";
+		if (ConfigProperties.isZimbra9XEnvironment()) {
+			mailLocator = "css=div[class='zimbra-client_mail-list-item_row']" + " h4:contains('" + subject + "')";
+		}
+		return sIsElementPresent(mailLocator);
 	}
 }

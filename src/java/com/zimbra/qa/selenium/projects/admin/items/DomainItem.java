@@ -28,10 +28,8 @@ public class DomainItem implements IItem {
 
 	public DomainItem() {
 		super();
-
-		domainName = "adomain" + ConfigProperties.getUniqueString() + ".com";
+		domainName = "tcdomain" + ConfigProperties.getUniqueString() + ".com";
 		Id = null;
-
 	}
 
 	@Override

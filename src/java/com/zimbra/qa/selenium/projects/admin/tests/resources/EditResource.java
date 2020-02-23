@@ -77,7 +77,7 @@ public class EditResource extends AdminCore {
 		form.zSelectTreeItem(FormEditResource.TreeItem.PROPERTIES);
 
 		// Edit the name
-		String editedName = "editedResource_" + ConfigProperties.getUniqueString();
+		String editedName = "tcEditedResource_" + ConfigProperties.getUniqueString();
 		form.zSetName(editedName);
 
 		// Submit
@@ -142,7 +142,7 @@ public class EditResource extends AdminCore {
 		//form.zSelectTreeItem(FormEditResource.TreeItem.PROPERTIES);
 
 		// Edit the name
-		String editedName = "editedResource_" + ConfigProperties.getUniqueString();
+		String editedName = "tcEditedResource_" + ConfigProperties.getUniqueString();
 		form.zSetName(editedName);
 
 		// Submit
@@ -198,7 +198,7 @@ public class EditResource extends AdminCore {
 		form.zSelectTreeItem(FormEditResource.TreeItem.PROPERTIES);
 
 		// Edit the name
-		String editedName = "editedResource_" + ConfigProperties.getUniqueString();
+		String editedName = "tcEditedResource_" + ConfigProperties.getUniqueString();
 		form.zSetName(editedName);
 
 		// Submit
@@ -254,7 +254,7 @@ public class EditResource extends AdminCore {
 		form.zSelectTreeItem(FormEditResource.TreeItem.PROPERTIES);
 
 		// Edit the name
-		String editedName = "editedResource_" + ConfigProperties.getUniqueString();
+		String editedName = "tcEditedResource_" + ConfigProperties.getUniqueString();
 		form.zSetName(editedName);
 
 		// Submit
@@ -314,7 +314,7 @@ public class EditResource extends AdminCore {
 		form.zSelectTreeItem(FormEditResource.TreeItem.PROPERTIES);
 
 		// Edit the name
-		String editedName = "editedResource_" + ConfigProperties.getUniqueString();
+		String editedName = "tcEditedResource_" + ConfigProperties.getUniqueString();
 		form.zSetName(editedName);
 
 		// Submit
@@ -374,7 +374,7 @@ public class EditResource extends AdminCore {
 		form.zSelectTreeItem(FormEditResource.TreeItem.PROPERTIES);
 
 		// Edit the name
-		String editedName = "editedResource_" + ConfigProperties.getUniqueString();
+		String editedName = "tcEditedResource_" + ConfigProperties.getUniqueString();
 		form.zSetName(editedName);
 
 		// Submit
@@ -434,7 +434,7 @@ public class EditResource extends AdminCore {
 		form.zSelectTreeItem(FormEditResource.TreeItem.PROPERTIES);
 
 		// Edit the name
-		String editedName = "editedResource_" + ConfigProperties.getUniqueString();
+		String editedName = "tcEditedResource_" + ConfigProperties.getUniqueString();
 		form.zSetName(editedName);
 
 		// Submit
@@ -494,7 +494,7 @@ public class EditResource extends AdminCore {
 		form.zSelectTreeItem(FormEditResource.TreeItem.PROPERTIES);
 
 		// Edit the name
-		String editedName = "editedResource_" + ConfigProperties.getUniqueString();
+		String editedName = "tcEditedResource_" + ConfigProperties.getUniqueString();
 		form.zSetName(editedName);
 
 		// Submit
