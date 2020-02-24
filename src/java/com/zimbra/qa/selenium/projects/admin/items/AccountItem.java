@@ -21,10 +21,10 @@ import java.util.Map;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import com.zimbra.qa.selenium.framework.items.IItem;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
-import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 
 public class AccountItem implements IItem {
 	protected static Logger logger = LogManager.getLogger(IItem.class);
@@ -41,11 +41,25 @@ public class AccountItem implements IItem {
 		accountAttrs = new HashMap<String, String>();
 		if (emailAddress.contains("@")) {
 			localName = emailAddress.split("@")[0];
+			domainName = emailAddress.split("@")[1];
+		} else {
+			localName = emailAddress;
+			domainName = ConfigProperties.getStringProperty("testdomain");
+		}
+
+		accountAttrs.put("sn", lastName);
+		accountAttrs.put("description", "Created by Selenium automation");
+	}
+	
+	public AccountItem(String emailAddress, String lastName, String domainName) {
+		accountAttrs = new HashMap<String, String>();
+		if (emailAddress.contains("@")) {
+			localName = emailAddress.split("@")[0];
 		} else {
 			localName = emailAddress;
 		}
 
-		domainName = ConfigProperties.getStringProperty("testdomain");
+		domainName = emailAddress.split("@")[1];
 		accountAttrs.put("sn", lastName);
 		accountAttrs.put("description", "Created by Selenium automation");
 	}
@@ -157,7 +171,6 @@ public class AccountItem implements IItem {
 	}
 
 	public static AccountItem createUsingSOAP(AccountItem account) throws HarnessException {
-
 		StringBuilder elementPassword = new StringBuilder();
 		if (account.Password != null) {
 			elementPassword.append("<password>").append(account.Password).append("</password>");
@@ -183,5 +196,4 @@ public class AccountItem implements IItem {
 	public void createUsingSOAP(ZimbraAccount account) throws HarnessException {
 		throw new HarnessException("not applicable for this IItem type");
 	}
-
 }

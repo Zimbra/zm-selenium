@@ -51,10 +51,9 @@ public class AddAlias extends AdminCore {
 						+			"<name>" + dlEmailAddress + "</name>"
 						+		"</CreateDistributionListRequest>");
 
-		String hostname = ConfigProperties.getStringProperty("server.host");
+		String domain = ConfigProperties.getStringProperty("testdomain");
 		String aliasLocalName = "alias" + ConfigProperties.getUniqueString();
-		String aliasDomainName = ConfigProperties.getStringProperty("testdomain");
-		String aliasEmail = aliasLocalName + "@" + hostname;
+		String aliasEmail = aliasLocalName + "@" + domain;
 
 		// Refresh the list
 		app.zPageManageDistributionList.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
@@ -72,7 +71,7 @@ public class AddAlias extends AdminCore {
 		app.zPageEditDistributionList.zToolbarPressButton(Button.B_ADD);
 
 		// Add alias
-		form.zAddDLAliases(aliasLocalName, aliasDomainName);
+		form.zAddDLAliases(aliasLocalName, domain);
 
 		// Submit the form
 		form.zSubmit();

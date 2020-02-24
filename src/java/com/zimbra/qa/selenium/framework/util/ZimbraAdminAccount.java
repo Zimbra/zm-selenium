@@ -41,7 +41,8 @@ public class ZimbraAdminAccount extends ZimbraAccount {
 			domain.provision();
 
 			// Create a new account in the Admin Console using SOAP
-			AccountItem account = new AccountItem(email, ConfigProperties.getStringProperty("testdomain"));
+			AccountItem account = new AccountItem(email, EmailAddress.split("@")[1]);
+			
 			ZimbraAdminAccount.AdminConsoleAdmin()
 					.soapSend("<CreateAccountRequest xmlns='urn:zimbraAdmin'>" + "<name>" + account.getEmailAddress()
 							+ "</name>" + "<password>" + ConfigProperties.getStringProperty("adminPassword")
