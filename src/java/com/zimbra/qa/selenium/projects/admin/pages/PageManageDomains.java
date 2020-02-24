@@ -127,7 +127,7 @@ public class PageManageDomains extends AbsTab {
 		tracer.trace(action + " on subject = " + item);
 
 		AbsPage page = null;
-		SleepUtil.sleepSmall();
+		SleepUtil.sleepMedium();
 
 		// How many items are in the table?
 		String rowsLocator = "css=div#zl__DOMAIN_MANAGE div[id$='__rows'] div[id^='zli__']";
@@ -139,6 +139,7 @@ public class PageManageDomains extends AbsTab {
 				String p0 = rowsLocator + ":nth-child(" + m + ")";
 				if (this.sIsElementPresent(p0)) {
 					sClick(p0);
+					SleepUtil.sleepSmall();
 					this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_DOWN);
 					m = m + 20;
 				} else

@@ -45,7 +45,7 @@ public class ConfigProperties {
 	public static String getStringProperty(String key, String defaultValue) {
 		return (ConfigProperties.getInstance().getConfigProp().getString(key, defaultValue));
 	}
-	
+
 	public static Boolean isZimbra9XEnvironment() {
 		String environment = ExecuteHarnessMain.zimbraVersion.split("BETA")[0].split("GA")[0].replaceAll("\\.", "");
 		if (environment.toLowerCase().equals("8816") || environment.toLowerCase().equals("900")) {
@@ -246,39 +246,40 @@ public class ConfigProperties {
 	}
 
 	public static String zimbraGetVersionString() throws HarnessException {
+		String buildType = "NETWORK";
 
-		// Get zimbra server version
-		if (ExecuteHarnessMain.zimbraVersion == null || ExecuteHarnessMain.zimbraVersion == "") {
+		if (ExecuteHarnessMain.cmdVersion == null || ExecuteHarnessMain.cmdVersion == "") {
 			logger.info("Get zimbra server version...");
-
-			String buildType;
 			for (String zimbraVersion : CommandLineUtility
 					.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"), "zmcontrol -v")) {
-				if (zimbraVersion.toLowerCase().contains("network")) {
-					buildType = "NETWORK";
-				} else {
-					buildType = "FOSS";
-				}
-
-				Date date = new Date();
-				SimpleDateFormat dateTimeFormat = new SimpleDateFormat("hh.mm");
-
-				// Get hostname
-				try {
-					ExecuteHarnessMain.hostname = InetAddress.getLocalHost().getHostName();
-				} catch (UnknownHostException e) {
-					e.printStackTrace();
-				}
-
-				if (!ExecuteHarnessMain.hostname.contains(".") && !ExecuteHarnessMain.hostname.contains("-")) {
-					ExecuteHarnessMain.zimbraVersion = zimbraVersion.replace("Release ", "").split(" ")[0] + "_"
-							+ buildType;
-				} else {
-					ExecuteHarnessMain.zimbraVersion = zimbraVersion.replace("Release ", "").split(" ")[0] + "_"
-							+ buildType + "-" + dateTimeFormat.format(date);
-				}
+				ExecuteHarnessMain.cmdVersion = zimbraVersion;
 			}
 		}
+
+		if (ExecuteHarnessMain.zimbraVersion == null || ExecuteHarnessMain.zimbraVersion == "") {
+			if (!ExecuteHarnessMain.cmdVersion.toLowerCase().contains("network")) {
+				buildType = "FOSS";
+			}
+
+			Date date = new Date();
+			SimpleDateFormat dateTimeFormat = new SimpleDateFormat("hh.mm");
+
+			// Get hostname
+			try {
+				ExecuteHarnessMain.hostname = InetAddress.getLocalHost().getHostName();
+			} catch (UnknownHostException e) {
+				e.printStackTrace();
+			}
+
+			if (!ExecuteHarnessMain.hostname.contains(".") && !ExecuteHarnessMain.hostname.contains("-")) {
+				ExecuteHarnessMain.zimbraVersion = ExecuteHarnessMain.cmdVersion.replace("Release ", "")
+						.split(" ")[0] + "_" + buildType;
+			} else {
+				ExecuteHarnessMain.zimbraVersion = ExecuteHarnessMain.cmdVersion.replace("Release ", "")
+						.split(" ")[0] + "_" + buildType + "-" + dateTimeFormat.format(date);
+			}
+		}
+
 		return ExecuteHarnessMain.zimbraVersion;
 	}
 

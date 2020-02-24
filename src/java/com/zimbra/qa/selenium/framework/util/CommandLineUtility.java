@@ -231,9 +231,9 @@ public class CommandLineUtility {
 		String privateKey = null, host = null, totp = "0";
 
 		if (ConfigProperties.getStringProperty("server.host").endsWith(".zimbra.com")) {
-			host = ZimbraAccount.AccountZCS().zGetAccountStoreHost();
-		} else {
 			host = ConfigProperties.getStringProperty("server.host");
+		} else {
+			host = ZimbraAccount.AccountZCS().zGetAccountStoreHost();
 		}
 
 		String command = "su - zimbra -c 'zmtotp -a " + email + " -s " + secret + "'";
@@ -303,7 +303,6 @@ public class CommandLineUtility {
 		if (!ConfigProperties.getStringProperty("server.host").endsWith(".zimbra.com")) {
 			command = "sudo " + command;
 		}
-		System.out.println(command);
 
 		ArrayList<String> out = null;
 		try {

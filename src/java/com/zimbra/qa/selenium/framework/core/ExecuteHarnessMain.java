@@ -86,6 +86,7 @@ public class ExecuteHarnessMain {
 
 	public static String hostname;
 	public static String zimbraVersion = null;
+	public static String cmdVersion = null;
 	public static Boolean isNGEnabled = false;
 	public static Boolean isDLRightGranted = false;
 	public static Boolean isSmimeOcspDisabled = false;
@@ -95,7 +96,7 @@ public class ExecuteHarnessMain {
 	public ExecuteHarnessMain() {
 	}
 
-	public int verbosity = 10;
+	public int verbosity = 1;
 	public static boolean COUNT_TESTS = false;
 	public static String TEST_TOKEN = ".tests.";
 	public String jarfilename;
@@ -1213,7 +1214,6 @@ public class ExecuteHarnessMain {
 		options.addOption(new Option("p", "pattern", true, "class filter regex, i.e. projects.ajax.tests."));
 		options.addOption(new Option("g", "groups", true,
 				"comma separated list of groups to execute (always, sanity, smoke, functional)"));
-		options.addOption(new Option("v", "verbose", true, "set suite verbosity (default: " + verbosity + ")"));
 		options.addOption(new Option("o", "output", true, "output foldername"));
 		options.addOption(new Option("w", "working", true, "current working foldername"));
 		options.addOption(new Option("c", "config", true,
@@ -1223,6 +1223,7 @@ public class ExecuteHarnessMain {
 		options.addOption(new Option("e", "exclude", true, "exclude pattern  "));
 		options.addOption(new Option("eg", "excludeGroups", true,
 				"comma separated list of groups to exclude when execute (skip)"));
+		options.addOption(new Option("v", "version", true, "zimbra version"));
 
 		// Set required options
 		options.getOption("j").setRequired(true);
@@ -1289,6 +1290,10 @@ public class ExecuteHarnessMain {
 				}
 			}
 
+			if (cmd.hasOption('v')) {
+				ExecuteHarnessMain.cmdVersion = cmd.getOptionValue('v');
+			}
+
 			// 'o' check should be after 'p' check to avoid code redundancy
 			if (cmd.hasOption('o')) {
 				setTestOutputFolderName(cmd.getOptionValue('o'));
@@ -1320,10 +1325,6 @@ public class ExecuteHarnessMain {
 				this.excludeGroups = new ArrayList<String>(Arrays.asList(values));
 			}
 
-			if (cmd.hasOption('v')) {
-				this.verbosity = Integer.parseInt(cmd.getOptionValue('v'));
-			}
-
 			if (cmd.hasOption('w')) {
 				workingfoldername = cmd.getOptionValue('w');
 			}
@@ -1338,7 +1339,6 @@ public class ExecuteHarnessMain {
 	}
 
 	public static void ZimbraPreConfiguration(String project) throws HarnessException, IOException {
-
 		// Harness log
 		StafIntegration.sHarnessLogFileFolderPath = testoutputfoldername + "/debug/projects";
 		StafIntegration.sHarnessLogFilePath = StafIntegration.sHarnessLogFileFolderPath + "/" + StafIntegration.sHarnessLogFileName;
@@ -1353,15 +1353,14 @@ public class ExecuteHarnessMain {
 		}
 
 		// Zimbra pre-configuration and required setup
-		if (totalZimbraServers == 0) {
-
+		if (ConfigProperties.getStringProperty("server.type", "").equals("multi-node")) {
 			StafIntegration.logInfo = "-------------- Zimbra pre-configuration & setup for "
 					+ WordUtils.capitalize(project) + " project --------------\n";
 			logger.info(StafIntegration.logInfo);
 			Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo),
 					Charset.forName("UTF-8"), StandardOpenOption.APPEND);
 
-			// Get total zimbra servers
+			// Multi-node settings
 			logger.info("Get total zimbra servers...");
 			for (String noOfZimbraServers : CommandLineUtility.runCommandOnZimbraServer(
 					ConfigProperties.getStringProperty("server.host"), "zmprov -l gas | wc -l")) {
@@ -1372,132 +1371,106 @@ public class ExecuteHarnessMain {
 			Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo),
 					Charset.forName("UTF-8"), StandardOpenOption.APPEND);
 
-			// Get zimbra server ports
-			if (ConfigProperties.getStringProperty("server.scheme").equals("https")) {
-				serverPort = 443;
-			} else {
-				serverPort = 80;
+			logger.info("Get proxy servers...");
+			for (String noOfProxyServers : CommandLineUtility.runCommandOnZimbraServer(
+					ConfigProperties.getStringProperty("server.host"), "zmprov -l gas proxy | wc -l")) {
+				totalProxyServers = Integer.parseInt(noOfProxyServers);
+				if (totalProxyServers >= 1) {
+					adminPort = 9071;
+				}
 			}
+
+			// Get all proxy servers
+			logger.info("Get all proxy servers...");
+			proxyServers = CommandLineUtility.runCommandOnZimbraServer(
+					ConfigProperties.getStringProperty("server.host"), "zmprov -l gas proxy");
+			StafIntegration.logInfo = "Proxy server(s): " + proxyServers;
+			logger.info(StafIntegration.logInfo);
+			Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo),
+					Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+			if (proxyServers.equals(null) || proxyServers.isEmpty()) {
+				StafIntegration.logInfo = "Couldn't get proxy servers (" + proxyServers + ") using CLI command";
+				logger.info(StafIntegration.logInfo);
+				Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo),
+						Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+			}
+
+			// Get all store servers
+			logger.info("Get all store servers...");
+			storeServers = CommandLineUtility.runCommandOnZimbraServer(
+					ConfigProperties.getStringProperty("server.host"), "zmprov -l gas mailbox");
+			StafIntegration.logInfo = "Store server(s): " + storeServers;
+			logger.info(StafIntegration.logInfo);
+			Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo),
+					Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+			if (storeServers.equals(null) || storeServers.isEmpty()) {
+				StafIntegration.logInfo = "Couldn't get store servers (" + storeServers + ") using CLI command";
+				logger.info(StafIntegration.logInfo);
+				Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo),
+						Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+			}
+
+			// Get all mta servers
+			logger.info("Get all mta servers...");
+			mtaServers = CommandLineUtility.runCommandOnZimbraServer(
+					ConfigProperties.getStringProperty("server.host"), "zmprov -l gas mta");
+			StafIntegration.logInfo = "MTA server(s): " + mtaServers;
+			logger.info(StafIntegration.logInfo);
+			Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo),
+					Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+			if (mtaServers.equals(null) || mtaServers.isEmpty()) {
+				StafIntegration.logInfo = "Couldn't get mta servers (" + mtaServers + ") using CLI command";
+				logger.info(StafIntegration.logInfo);
+				Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo),
+						Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+			}
+
+		// Single-node settings
+		} else {
+			serverPort = 443;
 			adminPort = 7071;
 
-			// Multi-node settings
-			if (totalZimbraServers >= 2) {
-				logger.info("Get proxy servers...");
-				for (String noOfProxyServers : CommandLineUtility.runCommandOnZimbraServer(
-						ConfigProperties.getStringProperty("server.host"), "zmprov -l gas proxy | wc -l")) {
-					totalProxyServers = Integer.parseInt(noOfProxyServers);
-					if (totalProxyServers >= 1) {
-						adminPort = 9071;
-					}
-				}
-				StafIntegration.logInfo = "Server admin port: " + adminPort + ", server port: " + serverPort;
-				logger.info(StafIntegration.logInfo);
-				Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo),
-						Charset.forName("UTF-8"), StandardOpenOption.APPEND);
-
-				// Get all proxy servers
-				logger.info("Get all proxy servers...");
-				proxyServers = CommandLineUtility.runCommandOnZimbraServer(
-						ConfigProperties.getStringProperty("server.host"), "zmprov -l gas proxy");
-				StafIntegration.logInfo = "Proxy server(s): " + proxyServers;
-				logger.info(StafIntegration.logInfo);
-				Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo),
-						Charset.forName("UTF-8"), StandardOpenOption.APPEND);
-				if (proxyServers.equals(null) || proxyServers.isEmpty()) {
-					StafIntegration.logInfo = "Couldn't get proxy servers (" + proxyServers + ") using CLI command";
-					logger.info(StafIntegration.logInfo);
-					Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo),
-							Charset.forName("UTF-8"), StandardOpenOption.APPEND);
-				}
-
-				// Get all store servers
-				logger.info("Get all store servers...");
-				storeServers = CommandLineUtility.runCommandOnZimbraServer(
-						ConfigProperties.getStringProperty("server.host"), "zmprov -l gas mailbox");
-				StafIntegration.logInfo = "Store server(s): " + storeServers;
-				logger.info(StafIntegration.logInfo);
-				Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo),
-						Charset.forName("UTF-8"), StandardOpenOption.APPEND);
-				if (storeServers.equals(null) || storeServers.isEmpty()) {
-					StafIntegration.logInfo = "Couldn't get store servers (" + storeServers + ") using CLI command";
-					logger.info(StafIntegration.logInfo);
-					Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo),
-							Charset.forName("UTF-8"), StandardOpenOption.APPEND);
-				}
-
-				// Get all mta servers
-				logger.info("Get all mta servers...");
-				mtaServers = CommandLineUtility.runCommandOnZimbraServer(
-						ConfigProperties.getStringProperty("server.host"), "zmprov -l gas mta");
-				StafIntegration.logInfo = "MTA server(s): " + mtaServers;
-				logger.info(StafIntegration.logInfo);
-				Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo),
-						Charset.forName("UTF-8"), StandardOpenOption.APPEND);
-				if (mtaServers.equals(null) || mtaServers.isEmpty()) {
-					StafIntegration.logInfo = "Couldn't get mta servers (" + mtaServers + ") using CLI command";
-					logger.info(StafIntegration.logInfo);
-					Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo),
-							Charset.forName("UTF-8"), StandardOpenOption.APPEND);
-				}
-
-			// Single-node settings
+			String singleNodeServer;
+			if (ConfigProperties.getStringProperty("server.host").endsWith(".zimbra.com")) {
+				singleNodeServer = ConfigProperties.getStringProperty("server.host");
 			} else {
-				// Get single zimbra server
-				logger.info("Get single-node zimbra server...");
-				proxyServers = CommandLineUtility.runCommandOnZimbraServer(
-						ConfigProperties.getStringProperty("server.host"), "zmprov -l gas");
-				storeServers.add(proxyServers.get(0));
-				mtaServers.add(proxyServers.get(0));
-
-				StafIntegration.logInfo = "Single-node server: " + proxyServers;
-				logger.info(StafIntegration.logInfo);
-				Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo),
-						Charset.forName("UTF-8"), StandardOpenOption.APPEND);
-				if (proxyServers.equals(null) || proxyServers.isEmpty()) {
-					StafIntegration.logInfo = "Couldn't get proxy servers (" + proxyServers + ") using CLI command";
-					logger.info(StafIntegration.logInfo);
-					Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo),
-							Charset.forName("UTF-8"), StandardOpenOption.APPEND);
-				}
+				singleNodeServer = ZimbraAccount.AccountZCS().zGetAccountStoreHost();
 			}
+			proxyServers.add(singleNodeServer);
+			storeServers.add(proxyServers.get(0));
+			mtaServers.add(proxyServers.get(0));
+		}
 
-			// Create test domain and accounts
-			if (groups.contains("setup") ) {
-				StafIntegration.logInfo = "Create test domain and accounts...\n";
-				logger.info(StafIntegration.logInfo);
-				Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo),
-						Charset.forName("UTF-8"), StandardOpenOption.APPEND);
-				CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"),
-						"zmprov cd " + ConfigProperties.getStringProperty("testdomain"));
-				CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"),
-						"zmprov ca " + ConfigProperties.getStringProperty("adminUser") + "@" + proxyServers.get(0) + " "
-								+ ConfigProperties.getStringProperty("adminPassword") + " zimbraIsAdminAccount TRUE");
-				CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"),
-						"zmprov sp " + ConfigProperties.getStringProperty("adminUser") + "@" + proxyServers.get(0) + " "
-								+ ConfigProperties.getStringProperty("adminPassword"));
-				CommandLineUtility.runCommandOnZimbraServer(storeServers.get(0),
-						"zmgsautil createAccount -a galsync@" + ConfigProperties.getStringProperty("testdomain")
-								+ " -n InternalGAL --domain " + ConfigProperties.getStringProperty("testdomain") + " -s "
-								+ storeServers.get(0) + " -t zimbra -f _InternalGAL");
-			}
+		StafIntegration.logInfo = "Server details: " + proxyServers;
+		logger.info(StafIntegration.logInfo);
+		Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo),
+				Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+		StafIntegration.logInfo = "Server admin port: " + adminPort + ", server port: " + serverPort;
+		logger.info(StafIntegration.logInfo);
+		Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo),
+				Charset.forName("UTF-8"), StandardOpenOption.APPEND);
 
-			// Admin project settings
-			if (project.contains("admin")) {
+		// Create test domain and accounts
+		if (groups.contains("setup")) {
+			StafIntegration.logInfo = "Create test domain and accounts...\n";
+			logger.info(StafIntegration.logInfo);
+			Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo),
+					Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+			CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"),
+					"zmprov cd " + ConfigProperties.getStringProperty("testdomain"));
+			CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"),
+					"zmprov ca " + ConfigProperties.getStringProperty("adminUser") + "@" + proxyServers.get(0) + " "
+							+ ConfigProperties.getStringProperty("adminPassword") + " zimbraIsAdminAccount TRUE");
+			CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"),
+					"zmprov sp " + ConfigProperties.getStringProperty("adminUser") + "@" + proxyServers.get(0) + " "
+							+ ConfigProperties.getStringProperty("adminPassword"));
+			CommandLineUtility.runCommandOnZimbraServer(storeServers.get(0),
+					"zmgsautil createAccount -a galsync@" + ConfigProperties.getStringProperty("testdomain")
+							+ " -n InternalGAL --domain " + ConfigProperties.getStringProperty("testdomain") + " -s "
+							+ storeServers.get(0) + " -t zimbra -f _InternalGAL");
 
-				// Setup license directory
-				String licenseDirPath = ConfigProperties.getBaseDirectory() + "/data/private/license";
-				File licenseDir = new File(licenseDirPath);
-				if (!licenseDir.exists()) {
-					Files.write(StafIntegration.pHarnessLogFilePath,
-							Arrays.asList("Creating licence directory " + licenseDirPath), Charset.forName("UTF-8"),
-							StandardOpenOption.APPEND);
-					licenseDir.mkdirs();
-				}
-
-			// Ajax project settings
-			} else if (project.contains("ajax")) {
-
-				/* Initially disable chat and drive zimlets on COS if they are enabled
+			// Initially disable chat and drive zimlets on COS if they are enabled
+			if (project.contains("ajax")) {
 				ArrayList<String> availableZimlets = CommandLineUtility.runCommandOnZimbraServer(
 						ConfigProperties.getStringProperty("server.host"),
 						"zmprov -l gc default zimbraZimletAvailableZimlets | grep zimbraZimletAvailableZimlets | cut -c 32-");
@@ -1522,7 +1495,7 @@ public class ExecuteHarnessMain {
 					for (int i = 0; i < storeServers.size(); i++) {
 						CommandLineUtility.runCommandOnZimbraServer(storeServers.get(i), "zmprov fc -a all");
 					}
-				}*/
+				}
 			}
 		}
 	}

@@ -130,7 +130,7 @@ public class ZimbraDomain {
 				.soapSelectValue("//admin:SyncGalAccountResponse", null);
 
 		if (syncGalAccountResponse == null) {
-			throw new HarnessException("Unable to sync GAL account.  Response was: "
+			logger.error("Unable to sync GAL account.  Response was: "
 					+ ZimbraAdminAccount.GlobalAdmin().soapLastResponse());
 		}
 	}
