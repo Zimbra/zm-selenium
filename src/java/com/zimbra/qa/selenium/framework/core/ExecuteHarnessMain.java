@@ -75,7 +75,7 @@ public class ExecuteHarnessMain {
 	public static StringBuilder testsCountSummary = new StringBuilder();
 
 	public static int currentRunningTest = 1;
-	public static int retryLimit = 2;
+	public static int retryLimit = 0;
 	public static Boolean isTestRetried = false;
 
 	public static Date testStartTime;
@@ -1434,7 +1434,8 @@ public class ExecuteHarnessMain {
 			if (ConfigProperties.getStringProperty("server.host").endsWith(".zimbra.com")) {
 				singleNodeServer = ConfigProperties.getStringProperty("server.host");
 			} else {
-				singleNodeServer = ZimbraAccount.AccountZCS().zGetAccountStoreHost();
+				singleNodeServer = CommandLineUtility.runCommandOnZimbraServer(
+						ConfigProperties.getStringProperty("server.host"), "zmprov -l gas proxy").get(0);
 			}
 			proxyServers.add(singleNodeServer);
 			storeServers.add(proxyServers.get(0));
