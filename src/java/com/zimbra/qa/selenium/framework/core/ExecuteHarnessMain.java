@@ -75,7 +75,7 @@ public class ExecuteHarnessMain {
 	public static StringBuilder testsCountSummary = new StringBuilder();
 
 	public static int currentRunningTest = 1;
-	public static int retryLimit = 0;
+	public static int retryLimit = 2;
 	public static Boolean isTestRetried = false;
 
 	public static Date testStartTime;
