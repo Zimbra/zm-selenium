@@ -241,39 +241,9 @@ public class AjaxCore {
 			}
 		}
 
-		// If test account preferences are defined, then make sure the test account uses those preferences
-		if (startingAccountPreferences != null && !startingAccountPreferences.isEmpty()) {
-			logger.info("BeforeMethod: startingAccountPreferences are defined");
-
-			// If the current test accounts preferences match, then the account can be used
-			if (!ZimbraAccount.AccountZCS().compareAccountPreferences(startingAccountPreferences)) {
-
-				logger.info("BeforeMethod: startingAccountPreferences do not match active account");
-
-				// Reset the account
-				ZimbraAccount.ResetAccountZCS();
-
-				// Set the preferences accordingly
-				ZimbraAccount.AccountZCS().modifyAccountPreferences(startingAccountPreferences);
-				ZimbraAccount.AccountZCS().modifyUserZimletPreferences(startingUserZimletPreferences);
-			}
-		}
-
-		// If test account zimlet preferences are defined, then make sure the test account uses those zimlet preferences
-		if (startingUserZimletPreferences != null && !startingUserZimletPreferences.isEmpty()) {
-			logger.info("BeforeMethod: startingAccountZimletPreferences are defined");
-
-			// If the current test accounts preferences match, then the account can be used
-			if (!ZimbraAccount.AccountZCS().compareUserZimletPreferences(startingUserZimletPreferences)) {
-
-				logger.info("BeforeMethod: startingAccountZimletPreferences do not match active account");
-				ZimbraAccount.ResetAccountZCS();
-				ZimbraAccount.AccountZCS().modifyAccountPreferences(startingAccountPreferences);
-				ZimbraAccount.AccountZCS().modifyUserZimletPreferences(startingUserZimletPreferences);
-			}
-
-			ZimbraAccount.AccountZCS().modifyUserZimletPreferences(startingUserZimletPreferences);
-		}
+		// Set the preferences accordingly
+		ZimbraAccount.AccountZCS().modifyAccountPreferences(startingAccountPreferences);
+		ZimbraAccount.AccountZCS().modifyUserZimletPreferences(startingUserZimletPreferences);
 
 		// If AccountZCS is not currently logged in, then login now
 		if (!ZimbraAccount.AccountZCS().equals(app.zGetActiveAccount())) {

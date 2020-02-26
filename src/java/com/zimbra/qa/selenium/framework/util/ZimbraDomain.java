@@ -30,22 +30,20 @@ public class ZimbraDomain {
 	protected String DomainGalSyncAccountID = null;
 	protected String DomainGalSyncDatasourceID = null;
 
-	/**
-	 *
-	 * @param name
-	 */
 	public ZimbraDomain(String name) {
-		DomainName = name;
+		if(DomainName == null || DomainName != name) {
+			DomainName = name;
+			try {
+				if (!this.exists()) {
+					this.provision();
+				}
+			} catch (HarnessException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
-	/**
-	 * Does the domain exist already?
-	 *
-	 * @return
-	 * @throws HarnessException
-	 */
 	public boolean exists() throws HarnessException {
-		// Check if the domain exists
 		ZimbraAdminAccount.GlobalAdmin().soapSend("<GetDomainRequest xmlns='urn:zimbraAdmin'>" + "<domain by='name'>"
 				+ DomainName + "</domain>" + "</GetDomainRequest>");
 
@@ -71,18 +69,7 @@ public class ZimbraDomain {
 		return (true);
 	}
 
-	/**
-	 * Create the domain
-	 *
-	 * @throws HarnessException
-	 */
 	public void provision() throws HarnessException {
-		if (exists()) {
-			logger.info(DomainName + " already exists.  Not provisioning again.");
-			return;
-		}
-
-		// If the domain does not exist, create it
 		ZimbraAdminAccount.GlobalAdmin()
 				.soapSend("<CreateDomainRequest xmlns='urn:zimbraAdmin'>" + "<name>" + DomainName + "</name>"
 						+ "<a n='zimbraGalMode'>zimbra</a>" + "<a n='zimbraGalMaxResults'>15</a>"
@@ -93,14 +80,8 @@ public class ZimbraDomain {
 		this.syncGalAccount();
 	}
 
-	/**
-	 * Create the GAL sync account for this domain
-	 *
-	 * @throws HarnessException
-	 */
 	public void createGalSyncAccount() throws HarnessException {
-		// Create the Sync GAL Account
-		String galaccount = "galaccount" + ConfigProperties.getUniqueString() + "@" + DomainName;
+		String galaccount = "galsync" + ConfigProperties.getUniqueString() + "@" + DomainName;
 		String datasourcename = "datasource" + ConfigProperties.getUniqueString();
 
 		ZimbraAdminAccount.GlobalAdmin()
@@ -130,7 +111,7 @@ public class ZimbraDomain {
 				.soapSelectValue("//admin:SyncGalAccountResponse", null);
 
 		if (syncGalAccountResponse == null) {
-			logger.error("Unable to sync GAL account.  Response was: "
+			logger.error("Unable to sync GAL account. Response was: "
 					+ ZimbraAdminAccount.GlobalAdmin().soapLastResponse());
 		}
 	}

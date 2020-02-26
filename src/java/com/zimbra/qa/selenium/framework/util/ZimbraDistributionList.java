@@ -45,16 +45,10 @@ public class ZimbraDistributionList {
 		}
 	}
 
-	/**
-	 * Creates the account on the ZCS using CreateAccountRequest
-	 */
 	public ZimbraDistributionList provision() {
-		// Make sure domain exists
-		ZimbraDomain domain = new ZimbraDomain(EmailAddress.split("@")[1]);
+		Domain = new ZimbraDomain(EmailAddress.split("@")[1]);
 
 		try {
-			Domain.provision();
-
 			// Create the account
 			ZimbraAdminAccount.GlobalAdmin()
 					.soapSend("<CreateDistributionListRequest xmlns='urn:zimbraAdmin'>" + "<name>" + this.EmailAddress
@@ -63,8 +57,6 @@ public class ZimbraDistributionList {
 
 			ZimbraId = ZimbraAdminAccount.GlobalAdmin().soapSelectValue("//admin:dl", "id");
 
-			// Need to flush galgroup cache after creating a new DL
-			// (https://bugzilla.zimbra.com/show_bug.cgi?id=78970#c7)
 			ZimbraAdminAccount.GlobalAdmin().soapSend("<FlushCacheRequest  xmlns='urn:zimbraAdmin'>"
 					+ "<cache type='galgroup'/>" + "</FlushCacheRequest>");
 
@@ -75,7 +67,7 @@ public class ZimbraDistributionList {
 
 		// Sync the GAL to put the account into the list
 		try {
-			domain.syncGalAccount();
+			Domain.syncGalAccount();
 		} catch (HarnessException e) {
 			logger.error("Unable to sync GAL", e);
 		}
@@ -95,11 +87,8 @@ public class ZimbraDistributionList {
 		ZimbraAdminAccount.GlobalAdmin().soapSend("<AddDistributionListMemberRequest xmlns='urn:zimbraAdmin'>" + "<id>"
 				+ this.ZimbraId + "</id>" + "<dlm>" + email + "</dlm>" + "</AddDistributionListMemberRequest>");
 
-		// Sync the GSA
 		Domain.syncGalAccount();
 
-		// Need to flush galgroup cache after creating a new DL
-		// (https://bugzilla.zimbra.com/show_bug.cgi?id=78970#c7)
 		ZimbraAdminAccount.GlobalAdmin().soapSend(
 				"<FlushCacheRequest  xmlns='urn:zimbraAdmin'>" + "<cache type='galgroup'/>" + "</FlushCacheRequest>");
 

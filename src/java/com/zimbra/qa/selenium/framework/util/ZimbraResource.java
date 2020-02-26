@@ -91,7 +91,7 @@ public class ZimbraResource extends ZimbraAccount {
 
 		try {
 			if (exists()) {
-				logger.info(EmailAddress + " already exists.  Not provisioning again.");
+				logger.info(EmailAddress + " already exists. Not provisioning again.");
 				return (this);
 			}
 			domain.provision();

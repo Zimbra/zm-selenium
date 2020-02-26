@@ -117,7 +117,7 @@ public class ZimbraAdminAccount extends ZimbraAccount {
 
 		try {
 			if (exists()) {
-				logger.info(EmailAddress + " already exists.  Not provisioning again.");
+				logger.info(EmailAddress + " already exists. Not provisioning again.");
 				return (this);
 			}
 
@@ -281,8 +281,12 @@ public class ZimbraAdminAccount extends ZimbraAccount {
 	 */
 	public static synchronized ZimbraAdminAccount GlobalAdmin() {
 		if (_GlobalAdmin == null) {
-			String name = ConfigProperties.getStringProperty("adminUser") + "@"
-					+ ExecuteHarnessMain.proxyServers.get(0);
+			String domain = ConfigProperties.getStringProperty("server.host");
+			if (!ConfigProperties.getStringProperty("server.host").endsWith(".zimbra.com")) {
+				domain = ExecuteHarnessMain.proxyServers.get(0);
+			}
+
+			String name = ConfigProperties.getStringProperty("adminUser") + "@" + domain;
 			_GlobalAdmin = new ZimbraAdminAccount(name);
 			_GlobalAdmin.authenticate();
 		}

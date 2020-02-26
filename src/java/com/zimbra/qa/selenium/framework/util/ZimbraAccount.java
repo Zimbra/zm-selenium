@@ -387,12 +387,6 @@ public class ZimbraAccount {
 		ZimbraDomain domain = new ZimbraDomain(EmailAddress.split("@")[1]);
 
 		try {
-			if (exists()) {
-				logger.info(EmailAddress + " already exists. Not provisioning again.");
-				return (this);
-			}
-			domain.provision();
-
 			// Build the list of default preferences
 			Map<String, String> attributes = new HashMap<String, String>();
 
