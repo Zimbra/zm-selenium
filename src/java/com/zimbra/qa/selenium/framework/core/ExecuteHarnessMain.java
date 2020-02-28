@@ -93,6 +93,8 @@ public class ExecuteHarnessMain {
 	public static Boolean isChatConfigured = false;
 	public static Boolean isDriveConfigured = false;
 
+	public static HashMap<String, String[]> accounts = new HashMap<>();
+	public static HashMap<String, String[]> distributionlists = new HashMap<>();
 	public static HashMap<String, String[]> locations = new HashMap<>();
 	public static HashMap<String, String[]> equipments = new HashMap<>();
 
@@ -1451,11 +1453,24 @@ public class ExecuteHarnessMain {
 		Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo),
 				Charset.forName("UTF-8"), StandardOpenOption.APPEND);
 
-		// Test resources
+		// Test data
+		accounts.put("account1",
+				new String[] { "Josh Johnson", "seleniumaccount1@" + ConfigProperties.getStringProperty("testdomain") });
+		accounts.put("account2",
+				new String[] { "Maria Anderson", "seleniumaccount2@" + ConfigProperties.getStringProperty("testdomain") });
+		accounts.put("account3",
+				new String[] { "Jerry Wilson", "seleniumaccount3@" + ConfigProperties.getStringProperty("testdomain") });
+
+		distributionlists.put("distributionlist1",
+				new String[] { "Selenium DL1", "seleniumdl1@" + ConfigProperties.getStringProperty("testdomain") });
+		distributionlists.put("distributionlist2",
+				new String[] { "Selenium DL2", "seleniumdl2@" + ConfigProperties.getStringProperty("testdomain") });
+
 		locations.put("location1",
 				new String[] { "Jupiter ConfRoom", "seleniumlocation1@" + ConfigProperties.getStringProperty("testdomain") });
 		locations.put("location2",
 				new String[] { "Mars ConfRoom", "seleniumlocation2@" + ConfigProperties.getStringProperty("testdomain") });
+
 		equipments.put("equipment1",
 				new String[] { "Projector", "seleniumequipment1@" + ConfigProperties.getStringProperty("testdomain") });
 		equipments.put("equipment2",
@@ -1463,7 +1478,7 @@ public class ExecuteHarnessMain {
 
 		// Create test domain and accounts
 		if (groups.contains("configure")) {
-			StafIntegration.logInfo = "Create test domain and accounts...\n";
+			StafIntegration.logInfo = "Create test domain and admin accounts...\n";
 			logger.info(StafIntegration.logInfo);
 			Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo),
 					Charset.forName("UTF-8"), StandardOpenOption.APPEND);
@@ -1479,6 +1494,37 @@ public class ExecuteHarnessMain {
 					"zmgsautil createAccount -a galsync@" + ConfigProperties.getStringProperty("testdomain")
 							+ " -n InternalGAL --domain " + ConfigProperties.getStringProperty("testdomain") + " -s "
 							+ storeServers.get(0) + " -t zimbra -f _InternalGAL");
+
+			StafIntegration.logInfo = "Create test accounts...\n";
+			logger.info(StafIntegration.logInfo);
+			Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo),
+					Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+			CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"),
+					"zmprov ca " + ExecuteHarnessMain.accounts.get("account1")[1] + " test123 displayName \""
+							+ ExecuteHarnessMain.accounts.get("account1")[0]
+							+ "\" Description \"Created by Selenium Automation\"");
+			CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"),
+					"zmprov ca " + ExecuteHarnessMain.accounts.get("account2")[1] + " test123 displayName \""
+							+ ExecuteHarnessMain.accounts.get("account2")[0]
+							+ "\" Description \"Created by Selenium Automation\"");
+			CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"),
+					"zmprov ca " + ExecuteHarnessMain.accounts.get("account3")[1] + " test123 displayName \""
+							+ ExecuteHarnessMain.accounts.get("account3")[0]
+							+ "\" Description \"Created by Selenium Automation\"");
+
+			StafIntegration.logInfo = "Create test distribution list...\n";
+			logger.info(StafIntegration.logInfo);
+			Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo),
+					Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+			CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"),
+					"zmprov cdl " + ExecuteHarnessMain.distributionlists.get("distributionlist1")[1] + " displayName \""
+							+ ExecuteHarnessMain.distributionlists.get("distributionlist1")[0]
+							+ "\" Description \"Created by Selenium Automation\"");
+			CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"),
+					"zmprov adlm " + ExecuteHarnessMain.distributionlists.get("distributionlist1")[1] + " "
+							+ ExecuteHarnessMain.accounts.get("account1")[1] + " "
+							+ ExecuteHarnessMain.accounts.get("account2")[1] + " "
+							+ ExecuteHarnessMain.accounts.get("account3")[1]);
 
 			StafIntegration.logInfo = "Create resource account...\n";
 			CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"), "zmprov ccr "
