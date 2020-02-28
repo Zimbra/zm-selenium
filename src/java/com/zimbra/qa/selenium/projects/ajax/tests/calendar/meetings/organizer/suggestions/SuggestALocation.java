@@ -19,6 +19,7 @@ package com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.organizer.s
 import java.util.Calendar;
 import org.testng.annotations.*;
 import com.zimbra.qa.selenium.framework.core.Bugs;
+import com.zimbra.qa.selenium.framework.core.ExecuteHarnessMain;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -38,15 +39,14 @@ public class SuggestALocation extends AjaxCore {
 			groups = { "bhr", "non-msedge" })
 
 	public void SuggestALocation_01() throws HarnessException {
-
 		// Create a meeting
 		AppointmentItem appt = new AppointmentItem();
-		ZimbraResource location = new ZimbraResource(ZimbraResource.Type.LOCATION);
 
 		String tz = ZTimeZone.getLocalTimeZone().getID();
 		String apptSubject = ConfigProperties.getUniqueString();
 		String apptAttendee = ZimbraAccount.AccountA().EmailAddress;
-		String apptLocation = location.EmailAddress;
+		String apptLocationName = ExecuteHarnessMain.locations.get("location1")[0];
+		String apptLocationEmailAddress = ExecuteHarnessMain.locations.get("location1")[1];
 
 		// Absolute dates in UTC zone
 		Calendar now = Calendar.getInstance();
@@ -77,19 +77,19 @@ public class SuggestALocation extends AjaxCore {
         FormApptNew apptForm = (FormApptNew)app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, apptSubject);
         apptForm.zToolbarPressButton(Button.B_SUGGESTALOCATION);
         SleepUtil.sleepLong(); //specific sleep for suggested location pane because it searches free resources dynamically
-        apptForm.zPressButton(Button.B_SUGGESTEDLOCATION, apptLocation);
+        apptForm.zPressButton(Button.B_SUGGESTEDLOCATION, apptLocationName);
 
         // Verify 'free' location appears in suggested locations pane
-        ZAssert.assertEquals(apptForm.zVerifyLocation(apptLocation), true, "Verify 'free' location appear in suggested locations pane");
+        ZAssert.assertEquals(apptForm.zVerifyLocation(apptLocationEmailAddress), true, "Verify 'free' location appear in suggested locations pane");
         apptForm.zSubmitWithResources();
 
         // Verify location in the appointment
 		AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ apptSubject +")");
 		ZAssert.assertEquals(actual.getSubject(), apptSubject, "Subject: Verify the appointment data");
-		ZAssert.assertEquals(actual.getLocation(), apptLocation, "Location: Verify the appointment data");
+		ZAssert.assertEquals(actual.getLocation(), apptLocationEmailAddress, "Location: Verify the appointment data");
 
 		// Verify location status shows as ACCEPTED
-		String locationStatus = app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ apptLocation +"']", "ptst");
+		String locationStatus = app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ apptLocationEmailAddress +"']", "ptst");
 		ZAssert.assertEquals(locationStatus, "AC", "Verify location status shows accepted");
 
 		// Verify 'busy' location doesn't appear in suggested locations pane
@@ -98,6 +98,6 @@ public class SuggestALocation extends AjaxCore {
 		app.zPageCalendar.zToolbarPressButton(Button.B_NEW);
 		apptForm.zFill(appt);
 		apptForm.zToolbarPressButton(Button.B_SUGGESTALOCATION);
-        ZAssert.assertEquals(apptForm.zVerifyLocation(apptLocation), false, "Verify 'busy' location doesn't appear in suggested locations pane");
+        ZAssert.assertEquals(apptForm.zVerifyLocation(apptLocationEmailAddress), false, "Verify 'busy' location doesn't appear in suggested locations pane");
 	}
 }

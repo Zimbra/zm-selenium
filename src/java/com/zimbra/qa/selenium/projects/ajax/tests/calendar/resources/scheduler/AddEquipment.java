@@ -20,6 +20,7 @@ import java.awt.event.KeyEvent;
 import java.util.Calendar;
 import org.testng.annotations.*;
 import com.zimbra.qa.selenium.framework.core.Bugs;
+import com.zimbra.qa.selenium.framework.core.ExecuteHarnessMain;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -39,7 +40,6 @@ public class AddEquipment extends AjaxCore {
 	public Object[][] DataProviderShortcutKeys() {
 		return new Object[][] {
 				new Object[] { "VK_ENTER", KeyEvent.VK_ENTER },
-	//			new Object[] { "VK_TAB", KeyEvent.VK_TAB },
 		};
 	}
 
@@ -48,13 +48,9 @@ public class AddEquipment extends AjaxCore {
 			dataProvider = "DataProviderShortcutKeys")
 
 	public void AddEquipment_01(String name, int keyEvent) throws HarnessException {
-
-		// Create a meeting
-		ZimbraResource equipment = new ZimbraResource(ZimbraResource.Type.EQUIPMENT);
-
 		String tz = ZTimeZone.getLocalTimeZone().getID();
 		String apptSubject = ConfigProperties.getUniqueString();
-		String apptEquipment = equipment.EmailAddress;
+		String apptEquimentEmailAddress = ExecuteHarnessMain.equipments.get("equipment1")[1];
 
 		// Absolute dates in UTC zone
 		Calendar now = Calendar.getInstance();
@@ -82,19 +78,17 @@ public class AddEquipment extends AjaxCore {
 
         // Add equipment using scheduler and send the appointment
         FormApptNew apptForm = (FormApptNew)app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, apptSubject);
-        apptForm.zAddEquipmentFromScheduler(apptEquipment, keyEvent);
-        ZAssert.assertTrue(apptForm.zVerifyEquipment(apptEquipment), "Verify equipment bubble after adding equipment from scheduler");
+        apptForm.zAddEquipmentFromScheduler(apptEquimentEmailAddress, keyEvent);
+        ZAssert.assertTrue(apptForm.zVerifyEquipment(apptEquimentEmailAddress), "Verify equipment bubble after adding equipment from scheduler");
         apptForm.zSubmitWithResources();
 
         // Verify that equipment present in the appointment
         AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ apptSubject +")");
 		ZAssert.assertEquals(actual.getSubject(), apptSubject, "Subject: Verify the appointment data");
-		ZAssert.assertStringContains(actual.getEquipment(), apptEquipment, "Equipment: Verify the appointment data");
+		ZAssert.assertStringContains(actual.getEquipment(), apptEquimentEmailAddress, "Equipment: Verify the appointment data");
 
 		// Verify equipment free/busy status
-		String equipmentStatus = app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ apptEquipment +"']", "ptst");
+		String equipmentStatus = app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ apptEquimentEmailAddress +"']", "ptst");
 		ZAssert.assertEquals(equipmentStatus, "AC", "Verify equipment free/busy status");
-
 	}
-
 }

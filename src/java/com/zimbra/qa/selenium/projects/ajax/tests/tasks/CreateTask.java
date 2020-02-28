@@ -353,8 +353,8 @@ public class CreateTask extends AjaxCore {
 		FolderItem tasks = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
 		String subject = "task" + ConfigProperties.getUniqueString();
 		String body = "taskbody"+ ConfigProperties.getUniqueString();
-		String startDay = String.valueOf(now.get(Calendar.DAY_OF_MONTH) + 1);
-		String endDay = String.valueOf(now.get(Calendar.DAY_OF_MONTH) + 3);
+		String startDay = String.valueOf(now.get(Calendar.DAY_OF_MONTH));
+		String endDay = String.valueOf(now.get(Calendar.DAY_OF_MONTH));
 
 		// Click New button
 		FormTaskNew taskNew = (FormTaskNew) app.zPageTasks.zToolbarPressButton(Button.B_NEW);

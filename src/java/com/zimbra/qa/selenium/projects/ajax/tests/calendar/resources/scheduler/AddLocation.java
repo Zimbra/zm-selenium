@@ -20,6 +20,7 @@ import java.awt.event.KeyEvent;
 import java.util.Calendar;
 import org.testng.annotations.*;
 import com.zimbra.qa.selenium.framework.core.Bugs;
+import com.zimbra.qa.selenium.framework.core.ExecuteHarnessMain;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -39,7 +40,6 @@ public class AddLocation extends AjaxCore {
 	public Object[][] DataProviderShortcutKeys() {
 		return new Object[][] {
 				new Object[] { "VK_ENTER", KeyEvent.VK_ENTER },
-	//			new Object[] { "VK_TAB", KeyEvent.VK_TAB },
 		};
 	}
 	@Test (description = "Add location from scheduler pane using keyboard Enter and Tab key",
@@ -47,13 +47,9 @@ public class AddLocation extends AjaxCore {
 			dataProvider = "DataProviderShortcutKeys")
 
 	public void AddLocation_01(String name, int keyEvent) throws HarnessException {
-
-		// Create a meeting
-		ZimbraResource location = new ZimbraResource(ZimbraResource.Type.LOCATION);
-
 		String tz = ZTimeZone.getLocalTimeZone().getID();
 		String apptSubject = ConfigProperties.getUniqueString();
-		String apptLocation = location.EmailAddress;
+		String apptLocationEmailAddress = ExecuteHarnessMain.locations.get("location1")[1];
 
 		// Absolute dates in UTC zone
 		Calendar now = Calendar.getInstance();
@@ -81,17 +77,17 @@ public class AddLocation extends AjaxCore {
 
         // Add location using scheduler and send the appointment
         FormApptNew apptForm = (FormApptNew)app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, apptSubject);
-        apptForm.zAddLocationFromScheduler(apptLocation, keyEvent);
-        ZAssert.assertTrue(apptForm.zVerifyLocation(apptLocation), "Verify location bubble after adding location from scheduler");
+        apptForm.zAddLocationFromScheduler(apptLocationEmailAddress, keyEvent);
+        ZAssert.assertTrue(apptForm.zVerifyLocation(apptLocationEmailAddress), "Verify location bubble after adding location from scheduler");
         apptForm.zSubmitWithResources();
 
         // Verify that location present in the appointment
         AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ apptSubject +")");
 		ZAssert.assertEquals(actual.getSubject(), apptSubject, "Subject: Verify the appointment data");
-		ZAssert.assertStringContains(actual.getLocation(), apptLocation, "Location: Verify the appointment data");
+		ZAssert.assertStringContains(actual.getLocation(), apptLocationEmailAddress, "Location: Verify the appointment data");
 
 		// Verify location free/busy status
-		String locationStatus = app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ apptLocation +"']", "ptst");
+		String locationStatus = app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ apptLocationEmailAddress +"']", "ptst");
 		ZAssert.assertEquals(locationStatus, "AC", "Verify location free/busy status");
 	}
 }

@@ -63,7 +63,6 @@ public class ZimbraResource extends ZimbraAccount {
 	};
 
 	public boolean exists() throws HarnessException {
-
 		// Check if the account exists
 		ZimbraAdminAccount.GlobalAdmin().soapSend("<GetCalendarResourceRequest xmlns='urn:zimbraAdmin'>"
 				+ "<calresource by='name'>" + EmailAddress + "</calresource>" + "</GetCalendarResourceRequest>");
@@ -72,10 +71,8 @@ public class ZimbraResource extends ZimbraAccount {
 				.soapSelectNodes("//admin:GetCalendarResourceResponse");
 
 		if ((getCalendarResourceResponse == null) || (getCalendarResourceResponse.length == 0)) {
-
 			logger.debug("Resource does not exist");
 			return (false);
-
 		}
 
 		// Reset the account settings based on the response
@@ -124,13 +121,10 @@ public class ZimbraResource extends ZimbraAccount {
 					.soapSelectNodes("//admin:CreateCalendarResourceResponse");
 
 			if ((createCalendarResourceResponse == null) || (createCalendarResourceResponse.length == 0)) {
-
 				Element[] soapFault = ZimbraAdminAccount.GlobalAdmin().soapSelectNodes("//soap:Fault");
 				if (soapFault != null && soapFault.length > 0) {
-
 					String error = ZimbraAdminAccount.GlobalAdmin().soapSelectValue("//zimbra:Code", null);
 					throw new HarnessException("Unable to create account: " + error);
-
 				}
 
 				throw new HarnessException("Unknown error when provisioning account");

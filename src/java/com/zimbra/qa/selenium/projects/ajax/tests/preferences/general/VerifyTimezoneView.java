@@ -36,7 +36,7 @@ public class VerifyTimezoneView extends AjaxCore {
 			groups = { "bhr" } )
 
 	public void VerifyTimezoneView_01() throws HarnessException {
-		
+
 		String SingleQuoteUnicode = "\u2019";
 		String[] Timezone = { "GMT -12:00 Dateline",
 				"GMT -11:00 Samoa",
@@ -65,7 +65,6 @@ public class VerifyTimezoneView extends AjaxCore {
 				"GMT -04:00 Asuncion",
 				"GMT -04:00 Cuiaba",
 				"GMT -04:00 Pacific South America",
-				"GMT -04:00 Turks and Caicos Islands",
 				"GMT -04:00 Georgetown, La Paz, Manaus, San Juan",
 				"GMT -04:00 Atlantic Time (Canada)",
 				"GMT -03:30 Newfoundland",
@@ -81,7 +80,6 @@ public class VerifyTimezoneView extends AjaxCore {
 				"GMT -02:00 Mid-Atlantic",
 				"GMT -01:00 Azores",
 				"GMT -01:00 Cape Verde Is.",
-				"GMT +00:00 Casablanca",
 				"GMT +00:00 Monrovia",
 				"GMT +00:00 Britain, Ireland, Portugal",
 				"GMT/UTC Coordinated Universal Time",
@@ -143,11 +141,11 @@ public class VerifyTimezoneView extends AjaxCore {
 				"GMT +08:00 Taipei",
 				"GMT +08:00 Ulaanbaatar",
 				"GMT +08:00 Perth",
-				"GMT +08:30 Pyongyang",
 				"GMT +08:45 Eucla",
 				"GMT +09:00 Chita",
 				"GMT +09:00 Korea",
 				"GMT +09:00 Japan",
+				"GMT +09:00 Pyongyang",
 				"GMT +09:00 Yakutsk (RTZ 8)",
 				"GMT +09:30 Adelaide",
 				"GMT +09:30 Darwin",
@@ -168,7 +166,7 @@ public class VerifyTimezoneView extends AjaxCore {
 				"GMT +12:00 Fiji",
 				"GMT +12:45 Chatham",
 				"GMT +13:00 Samoa",
-				"GMT +13:00 Nuku"+SingleQuoteUnicode+"alofa",
+				"GMT +13:00 Nuku" + SingleQuoteUnicode + "alofa",
 				"GMT +14:00 Kiritimati Island" };
 
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.General);
@@ -180,7 +178,8 @@ public class VerifyTimezoneView extends AjaxCore {
 
 		for (int i=0; i<=Timezone.length-1; i++) {
 			System.out.println("Verify " + Timezone[i] + " timezone present");
-			ZAssert.assertTrue(app.zPagePreferences.sIsElementPresent(Locators.zTimezonelistXpath+"\""+ Timezone[i] +"\")]" ), "Verify " + Timezone[i] + " timezone present");
+			System.out.println(app.zPagePreferences.sIsElementPresent(Locators.zTimezonelistXpath +"\"" + Timezone[i] + "\")]"));
+			ZAssert.assertTrue(app.zPagePreferences.sIsElementPresent(Locators.zTimezonelistXpath +"\"" + Timezone[1] + "\")]"), "Verify " + Timezone[1] + " timezone present");
 		}
 	}
 }
