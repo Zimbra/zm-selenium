@@ -34,7 +34,6 @@ public class CheckDLFolderUI extends AjaxCore  {
 			groups = { "sanity" })
 
 	public void CheckDLFolderRightClickOptions_01 () throws HarnessException {
-
 		String firstContactEmail = ZimbraAccount.AccountA().EmailAddress;
 		String secondContactEmail = ZimbraAccount.AccountB().EmailAddress;
 

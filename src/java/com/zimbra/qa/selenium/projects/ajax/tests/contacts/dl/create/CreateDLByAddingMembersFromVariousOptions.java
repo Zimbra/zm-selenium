@@ -36,7 +36,6 @@ public class CreateDLByAddingMembersFromVariousOptions extends AjaxCore  {
 			groups = { "bhr" })
 
 	public void CreateDLByAddingMembersFromVariousOptions_01 () throws HarnessException {
-
 		String dlName = "dl" + ConfigProperties.getUniqueString();
 		String fullDLName = dlName + "@" + ConfigProperties.getStringProperty("testdomain");
 

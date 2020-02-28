@@ -18,13 +18,12 @@ package com.zimbra.qa.selenium.projects.ajax.tests.contacts.dl.autocomplete;
 
 import java.util.List;
 import org.testng.annotations.Test;
-import com.zimbra.qa.selenium.framework.items.MailItem;
+import com.zimbra.qa.selenium.framework.core.ExecuteHarnessMain;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
 import com.zimbra.qa.selenium.projects.ajax.pages.AutocompleteEntry;
 import com.zimbra.qa.selenium.projects.ajax.pages.mail.FormMailNew;
-import com.zimbra.qa.selenium.projects.ajax.pages.mail.FormMailNew.Field;
 
 public class AutoCompleteDLExpandMembers extends AjaxCore  {
 
@@ -38,50 +37,19 @@ public class AutoCompleteDLExpandMembers extends AjaxCore  {
 			groups = { "sanity" })
 
 	public void AutoCompleteDLExpandMembers_01() throws HarnessException {
-
-		ZimbraAccount firstContact = ZimbraAccount.Account1();
-		ZimbraAccount secondContact = ZimbraAccount.Account2();
-		ZimbraAccount thirdContact = ZimbraAccount.Account3();
-
-		String dlName = "tcdl" + ConfigProperties.getUniqueString();
-		String fullDLName = dlName + "@" + ConfigProperties.getStringProperty("testdomain");
-
 		String subject = "subject" + ConfigProperties.getUniqueString();
 		String body = "body" + ConfigProperties.getUniqueString();
 
-		// Create DL
-		app.zGetActiveAccount().soapSend(
-				"<CreateDistributionListRequest xmlns='urn:zimbraAccount'>"
-			+		"<name>" + fullDLName + "</name>"
-			+		"<a n='description'>Created by Selenium automation</a>"
-			+	"</CreateDistributionListRequest>");
-
-		// Add DL members
-		app.zGetActiveAccount().soapSend(
-				"<DistributionListActionRequest xmlns='urn:zimbraAccount'>"
-			+		"<dl by='name'>" + fullDLName + "</dl>"
-			+		"<action op='addMembers'>"
-         	+			"<dlm>" + firstContact.EmailAddress + "</dlm>"
-         	+			"<dlm>" + secondContact.EmailAddress + "</dlm>"
-         	+			"<dlm>" + thirdContact.EmailAddress + "</dlm>"
-         	+		"</action>"
-			+	"</DistributionListActionRequest>");
-
-		// GAL Sync
-		ZimbraDomain domain = new ZimbraDomain(firstContact.EmailAddress.split("@")[1]);
-		domain.provision();
-		domain.syncGalAccount();
-
 		// Compose mail
 		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
-		mailform.zFillField(Field.Subject, subject);
-		mailform.zFillField(Field.Body, body);
+		mailform.zFillField(FormMailNew.Field.Subject, subject);
+		mailform.zFillField(FormMailNew.Field.Body, body);
 
 		// Auto complete DL
-		List<AutocompleteEntry> entries = mailform.zAutocompleteFillField(Field.To, dlName.substring(0,16));
+		List<AutocompleteEntry> entries = mailform.zAutocompleteFillField(FormMailNew.Field.To, ExecuteHarnessMain.distributionlists.get("distributionlist1")[0]);
 		AutocompleteEntry found = null;
 		for (AutocompleteEntry entry : entries) {
-			if ( entry.getAddress().contains(fullDLName) ) {
+			if ( entry.getAddress().contains(ExecuteHarnessMain.distributionlists.get("distributionlist1")[0]) ) {
 				found = entry;
 				break;
 			}
@@ -95,12 +63,5 @@ public class AutoCompleteDLExpandMembers extends AjaxCore  {
 
 		// Send the message
 		mailform.zSubmit();
-
-		// Verify message received
-		ZimbraAccount[] accounts = { firstContact, secondContact, thirdContact };
-		for (int i=0; i<accounts.length; i++) {
-			MailItem received = MailItem.importFromSOAP(accounts[i], "subject:("+ subject +")");
-			ZAssert.assertNotNull(received, "Verify the message is received correctly to " + accounts[i].EmailAddress);
-		}
 	}
 }
