@@ -107,25 +107,14 @@ public class GetExternalIMAP extends SetGroupMailByMessagePreference {
 		app.zTreeMail.zWaitForBusyOverlay();
 		app.zTreeMail.sClickAt(Locators.ContextMenuTVFoldersCSS + " div[id^='SYNC'] td[id$='_title']", "");
 		app.zTreeMail.zWaitForBusyOverlay();
+		SleepUtil.sleepVeryLong();
 
 		// Sync is asynchronous, so we have to wait for the toaster
-		Toaster toaster = app.zPageMain.zGetToaster();
-		toaster.zWaitForActive();
-		SleepUtil.sleepMedium();
-		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
-		app.zTreeMail.zWaitForBusyOverlay();
-		SleepUtil.sleepMedium();
-		app.zPageMail.zToolbarPressButton(Button.B_REFRESH);
-		app.zTreeMail.zWaitForBusyOverlay();
-		SleepUtil.sleepMedium();
-
-		// See: https://bugzilla.zimbra.com/show_bug.cgi?id=66447
-		// Get the folder from the server
 		app.zGetActiveAccount().soapSend("<GetFolderRequest xmlns='urn:zimbraMail'/>");
 		String externalInbox = app.zGetActiveAccount().soapSelectValue("//mail:folder[@name='"+ foldername +"']//mail:folder[@name='INBOX']", "id");
 
 		String locator = "css=td[id='zti__main_Mail__" + externalInbox +"_textCell']";
-		app.zPageMail.zWaitForElementPresent(locator);
+		app.zPageMail.zRefreshUITillElementPresent(locator);
 
 		// Click on the Inbox
 		app.zTreeMail.sClickAt(locator, "");
@@ -140,7 +129,7 @@ public class GetExternalIMAP extends SetGroupMailByMessagePreference {
 		}
 
 		// Make sure the list exists
-		app.zPageMail.zWaitForElementPresent(listLocator+ " " + rowLocator);
+		app.zPageMail.zWaitForElementPresent(listLocator + " " + rowLocator);
 
 		// Get the messages
 		List<MailItem> messages = app.zPageMail.zListGetMessages();

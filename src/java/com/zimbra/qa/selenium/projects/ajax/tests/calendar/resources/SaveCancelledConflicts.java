@@ -19,6 +19,7 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.resources;
 
 import com.zimbra.qa.selenium.framework.core.Bugs;
+import com.zimbra.qa.selenium.framework.core.ExecuteHarnessMain;
 import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
@@ -27,7 +28,6 @@ import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZDate;
 import com.zimbra.qa.selenium.framework.util.ZTimeZone;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
-import com.zimbra.qa.selenium.framework.util.ZimbraResource;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
 import com.zimbra.qa.selenium.projects.ajax.pages.calendar.DialogWarningConflictingResources;
@@ -49,9 +49,7 @@ public class SaveCancelledConflicts extends AjaxCore {
 			groups = { "sanity" })
 
 	public void SaveCancelledConflicts_01() throws HarnessException  {
-
-		ZimbraResource location = new ZimbraResource(ZimbraResource.Type.LOCATION);
-		String apptLocation = location.EmailAddress;
+		String apptLocation = ExecuteHarnessMain.locations.get("location1")[1];
 		String apptAttendeeEmail1 = ZimbraAccount.AccountA().EmailAddress;
 		String apptAttendeeEmail2 = ZimbraAccount.AccountA().EmailAddress;
 		String apptContent = ConfigProperties.getUniqueString();
@@ -112,6 +110,5 @@ public class SaveCancelledConflicts extends AjaxCore {
 
 		String instance = app.zGetActiveAccount().soapSelectValue("//mail:inst[@ex='1']", "id");
 		ZAssert.assertEquals(instance, null, "Verify that exception is not created");
-
 	}
 }

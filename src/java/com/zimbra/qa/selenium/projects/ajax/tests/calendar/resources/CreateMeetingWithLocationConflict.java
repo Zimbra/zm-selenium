@@ -19,6 +19,7 @@ package com.zimbra.qa.selenium.projects.ajax.tests.calendar.resources;
 import java.util.*;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.core.Bugs;
+import com.zimbra.qa.selenium.framework.core.ExecuteHarnessMain;
 import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -40,15 +41,11 @@ public class CreateMeetingWithLocationConflict extends AjaxCore {
 			groups = { "application-bug"})
 
 	public void CreateMeetingWithLocationConflict_01() throws HarnessException {
-
-		// Creating object for meeting data
-		ZimbraResource location = new ZimbraResource(ZimbraResource.Type.LOCATION);
-
 		String tz, apptSubject1,apptSubject2, apptAttendeeEmail;
 		tz = ZTimeZone.getLocalTimeZone().getID();
 		apptSubject1 = "app" + ConfigProperties.getUniqueString();
 		apptAttendeeEmail = ZimbraAccount.AccountA().EmailAddress;
-		String apptLocation = location.EmailAddress;
+		String apptLocation = ExecuteHarnessMain.locations.get("location1")[1];
 
 		String apptContent = ConfigProperties.getUniqueString();
 		AppointmentItem appt = new AppointmentItem();
@@ -116,15 +113,11 @@ public class CreateMeetingWithLocationConflict extends AjaxCore {
 			groups = { "sanity" })
 
 	public void CreateMeetingWithLocationConflict_02() throws HarnessException {
-
-		// Creating object for meeting data
-		ZimbraResource location = new ZimbraResource(ZimbraResource.Type.LOCATION);
-
 		String tz, apptSubject1,apptSubject2, apptAttendeeEmail;
 		tz = ZTimeZone.getLocalTimeZone().getID();
 		apptSubject1 = "app" + ConfigProperties.getUniqueString();
 		apptAttendeeEmail = ZimbraAccount.AccountA().EmailAddress;
-		String apptLocation = location.EmailAddress;
+		String apptLocation = ExecuteHarnessMain.locations.get("location1")[1];
 
 		String apptContent = ConfigProperties.getUniqueString();
 		AppointmentItem appt = new AppointmentItem();
@@ -192,15 +185,11 @@ public class CreateMeetingWithLocationConflict extends AjaxCore {
 			groups = { "sanity" })
 
 	public void CreateMeetingWithLocationConflict_03() throws HarnessException {
-
-		// Creating object for meeting data
-		ZimbraResource location = new ZimbraResource(ZimbraResource.Type.LOCATION);
-
 		String tz, apptSubject1,apptSubject2, apptAttendeeEmail;
 		tz = ZTimeZone.getLocalTimeZone().getID();
 		apptSubject1 = "app" + ConfigProperties.getUniqueString();
 		apptAttendeeEmail = ZimbraAccount.AccountA().EmailAddress;
-		String apptLocation = location.EmailAddress;
+		String apptLocation = ExecuteHarnessMain.locations.get("location1")[1];
 
 		String apptContent = ConfigProperties.getUniqueString();
 		AppointmentItem appt = new AppointmentItem();
@@ -274,15 +263,11 @@ public class CreateMeetingWithLocationConflict extends AjaxCore {
 			groups = { "sanity" })
 
 	public void CreateMeetingWithLocationConflict_04() throws HarnessException {
-
-		// Creating object for meeting data
-		ZimbraResource location = new ZimbraResource(ZimbraResource.Type.LOCATION);
-
 		String tz, apptSubject1,apptSubject2, apptAttendeeEmail;
 		tz = ZTimeZone.getLocalTimeZone().getID();
 		apptSubject1 = "app" + ConfigProperties.getUniqueString();
 		apptAttendeeEmail = ZimbraAccount.AccountA().EmailAddress;
-		String apptLocation = location.EmailAddress;
+		String apptLocation = ExecuteHarnessMain.locations.get("location1")[1];
 
 		String apptContent = ConfigProperties.getUniqueString();
 		AppointmentItem appt = new AppointmentItem();

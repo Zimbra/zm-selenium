@@ -17,6 +17,7 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.organizer.suggestions;
 
 import org.testng.annotations.Test;
+import com.zimbra.qa.selenium.framework.core.ExecuteHarnessMain;
 import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.items.MailItem;
 import com.zimbra.qa.selenium.framework.ui.Button;
@@ -37,18 +38,16 @@ public class ModifyLocationSuggestionPreference extends AjaxCore {
 			groups = { "sanity" })
 
 	public void ModifyLocationSuggestionPreference_01() throws HarnessException {
-
 		// Create appointment data
 		AppointmentItem appt = new AppointmentItem();
-		ZimbraResource location1 = new ZimbraResource(ZimbraResource.Type.LOCATION);
-		ZimbraResource location2 = new ZimbraResource(ZimbraResource.Type.LOCATION);
 
-		String apptSubject, apptAttendee, apptLocation1, apptLocation2, apptContent;
+		String apptSubject, apptAttendee, apptContent;
 		apptSubject = ConfigProperties.getUniqueString();
 		apptAttendee = ZimbraAccount.AccountA().EmailAddress;
 		apptContent = ConfigProperties.getUniqueString();
-		apptLocation1 = location1.EmailAddress;
-		apptLocation2 = location2.EmailAddress;
+		String apptLocationName1 = ExecuteHarnessMain.locations.get("location1")[0];
+		String apptLocationEmailAddress1 = ExecuteHarnessMain.locations.get("location1")[1];
+		String apptLocationName2 = ExecuteHarnessMain.locations.get("location2")[0];
 
 		appt.setSubject(apptSubject);
 		appt.setAttendees(apptAttendee);
@@ -60,15 +59,15 @@ public class ModifyLocationSuggestionPreference extends AjaxCore {
 
 		apptForm.zToolbarPressPulldown(Button.B_OPTIONS, Button.O_SUGGESTION_PREFERENCES);
 		DialogSuggestionPreferences dialogSuggestionPref = (DialogSuggestionPreferences) new DialogSuggestionPreferences(app, app.zPageCalendar);
-		dialogSuggestionPref.zType(Button.F_NAME_EDIT_FIELD, apptLocation1);
+		dialogSuggestionPref.zType(Button.F_NAME_EDIT_FIELD, apptLocationName1);
 		dialogSuggestionPref.zPressButton(Button.B_OK);
 
 		// Verify apptLocation1 shows & apptLocation2 doesn't show in suggestion pane
 		apptForm.zToolbarPressButton(Button.B_SUGGESTALOCATION);
-		ZAssert.assertEquals(apptForm.zIsLocationExistsInSuggestPane(apptLocation1), true, "Verify location1 is showing according to location preference");
-		ZAssert.assertEquals(apptForm.zIsLocationExistsInSuggestPane(apptLocation2), false, "Verify location2 is not showing according to location preference");
+		ZAssert.assertEquals(apptForm.zIsLocationExistsInSuggestPane(apptLocationName1), true, "Verify location1 is showing according to location preference");
+		ZAssert.assertEquals(apptForm.zIsLocationExistsInSuggestPane(apptLocationName2), false, "Verify location2 is not showing according to location preference");
 
-		apptForm.zPressButton(Button.B_SUGGESTEDLOCATION, apptLocation1);
+		apptForm.zPressButton(Button.B_SUGGESTEDLOCATION, apptLocationName1);
 		apptForm.zSubmitWithResources();
 
 		// Verify appointment exists on the server
@@ -76,11 +75,11 @@ public class ModifyLocationSuggestionPreference extends AjaxCore {
 		ZAssert.assertNotNull(actual, "Verify the new appointment is created");
 		ZAssert.assertEquals(actual.getSubject(), appt.getSubject(), "Subject: Verify the appointment data");
 		ZAssert.assertEquals(actual.getAttendees(), apptAttendee, "Attendees: Verify the appointment data");
-		ZAssert.assertEquals(actual.getLocation(), apptLocation1, "Location: Verify the appointment data");
+		ZAssert.assertEquals(actual.getLocation(), apptLocationEmailAddress1, "Location: Verify the appointment data");
 		ZAssert.assertEquals(actual.getContent(), appt.getContent(), "Content: Verify the appointment data");
 
 		// Verify location status shows as ACCEPTED
-		String locationStatus = app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ apptLocation1 +"']", "ptst");
+		String locationStatus = app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ apptLocationEmailAddress1 +"']", "ptst");
 		ZAssert.assertEquals(locationStatus, "AC", "Verify location status shows accepted");
 
 		// Verify the attendee receives the meeting
@@ -88,7 +87,7 @@ public class ModifyLocationSuggestionPreference extends AjaxCore {
 		ZAssert.assertNotNull(received, "Verify the new appointment is created");
 		ZAssert.assertEquals(received.getSubject(), appt.getSubject(), "Subject: Verify the appointment data");
 		ZAssert.assertEquals(received.getAttendees(), apptAttendee, "Attendees: Verify the appointment data");
-		ZAssert.assertEquals(actual.getLocation(), apptLocation1, "Location: Verify the appointment data");
+		ZAssert.assertEquals(actual.getLocation(), apptLocationEmailAddress1, "Location: Verify the appointment data");
 		ZAssert.assertEquals(received.getContent(), appt.getContent(), "Content: Verify the appointment data");
 
 		// Verify the attendee receives the invitation

@@ -19,6 +19,7 @@ package com.zimbra.qa.selenium.projects.ajax.tests.calendar.resources;
 import java.util.Calendar;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.core.Bugs;
+import com.zimbra.qa.selenium.framework.core.ExecuteHarnessMain;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -40,14 +41,10 @@ public class ChangeLocationOfOneInstance extends AjaxCore {
 			groups = { "sanity" } )
 
 	public void ChangeLocationOfOneInstance_01() throws HarnessException {
-
-		// Create a meeting
-		ZimbraResource location = new ZimbraResource(ZimbraResource.Type.LOCATION);
-
 		String tz = ZTimeZone.getLocalTimeZone().getID();
 		String apptSubject = ConfigProperties.getUniqueString();
 		String apptAttendee = ZimbraAccount.AccountA().EmailAddress;
-		String apptLocation = location.EmailAddress;
+		String apptLocationEmailAddress = ExecuteHarnessMain.locations.get("location1")[1];
 
 		// Absolute dates in UTC zone
 		Calendar now = Calendar.getInstance();
@@ -88,7 +85,7 @@ public class ChangeLocationOfOneInstance extends AjaxCore {
 
 		FormApptNew apptForm = new FormApptNew(app);
 		apptForm.zVerifyDisabledControlInOpenInstance();
-	    apptForm.zFillField(Field.Location, apptLocation);
+	    apptForm.zFillField(Field.Location, apptLocationEmailAddress);
 	    apptForm.zSubmitWithResources();
 
 		// Organizer: Search for the appointment
@@ -99,7 +96,7 @@ public class ChangeLocationOfOneInstance extends AjaxCore {
 
 		String exceptionLocation = app.zGetActiveAccount().soapSelectValue("//mail:inst[@ex='1']", "loc");
 
-		ZAssert.assertStringContains(exceptionLocation, apptLocation, "Location: Verify the appointment data");
+		ZAssert.assertStringContains(exceptionLocation, apptLocationEmailAddress, "Location: Verify the appointment data");
 
 		// Verify location free/busy status is "Accepted"
 		String locationStatus = app.zGetActiveAccount().soapSelectValue("//mail:inst[@ex='1']", "ptst");

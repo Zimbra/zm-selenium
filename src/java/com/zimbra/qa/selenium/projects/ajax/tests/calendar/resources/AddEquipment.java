@@ -19,6 +19,8 @@ package com.zimbra.qa.selenium.projects.ajax.tests.calendar.resources;
 import java.util.Calendar;
 import java.util.List;
 import org.testng.annotations.*;
+
+import com.zimbra.qa.selenium.framework.core.ExecuteHarnessMain;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -41,12 +43,11 @@ public class AddEquipment extends AjaxCore {
 			groups = { "bhr" })
 
 	public void AddEquipment_01() throws HarnessException {
-
 		// Create a meeting
 		AppointmentItem appt = new AppointmentItem();
-		ZimbraResource equipment = new ZimbraResource(ZimbraResource.Type.EQUIPMENT);
 		String apptSubject = ConfigProperties.getUniqueString();
-		String apptEquipment = equipment.EmailAddress;
+		String apptEquimentName = ExecuteHarnessMain.equipments.get("equipment1")[0];
+		String apptEquimentEmailAddress = ExecuteHarnessMain.equipments.get("equipment1")[1];
 
 		// Absolute dates in UTC zone
 		String tz = ZTimeZone.getLocalTimeZone().getID();
@@ -74,32 +75,32 @@ public class AddEquipment extends AjaxCore {
         ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
 
         // Set meeting data
-        appt.setEquipment(apptEquipment);
+        appt.setEquipment(apptEquimentEmailAddress);
 
         // Modify the meeting , add equipment by typing in the field
         FormApptNew apptForm = (FormApptNew)app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, apptSubject);
         apptForm.zFill(appt);
-		List<AutocompleteEntry> entries = apptForm.zAutocompleteFillField(Field.Equipment, apptEquipment);
+		List<AutocompleteEntry> entries = apptForm.zAutocompleteFillField(Field.Equipment, apptEquimentEmailAddress);
 		AutocompleteEntry found = null;
 		for (AutocompleteEntry entry : entries) {
-			if ( entry.getAddress().contains(apptEquipment) ) {
+			if (entry.getAddress().contains(apptEquimentName)) {
 				found = entry;
 				break;
 			}
 		}
 		ZAssert.assertNotNull(found, "Verify the autocomplete entry exists in the returned list");
 		apptForm.zAutocompleteSelectItem(found);
-        ZAssert.assertTrue(apptForm.zVerifyEquipment(apptEquipment), "Verify appointment equipment");
+        ZAssert.assertTrue(apptForm.zVerifyEquipment(apptEquimentEmailAddress), "Verify appointment equipment");
         apptForm.zToolbarPressButton(Button.B_SHOW_EQUIPMENT); // Hiding for next test otherwise as per application behaviour equipment UI remains enabled.
         apptForm.zSubmitWithResources();
 
         // Verify equipment in the appointment
         AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ apptSubject +")");
 		ZAssert.assertEquals(actual.getSubject(), apptSubject, "Subject: Verify the meeting shows Subject correctly");
-		ZAssert.assertEquals(actual.getEquipment(), apptEquipment, "equipment: Verify the meeting shows equipment correctly");
+		ZAssert.assertEquals(actual.getEquipment(), apptEquimentEmailAddress, "equipment: Verify the meeting shows equipment correctly");
 
 		// Verify equipment free/busy status
-		String equipmentStatus = app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ apptEquipment +"']", "ptst");
+		String equipmentStatus = app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ apptEquimentEmailAddress +"']", "ptst");
 		ZAssert.assertEquals(equipmentStatus, "AC", "Verify equipment status shows accepted");
 	}
 
@@ -108,10 +109,9 @@ public class AddEquipment extends AjaxCore {
 			groups = { "sanity" })
 
 	public void AddEquipment_02() throws HarnessException {
-
-		ZimbraResource equipment = new ZimbraResource(ZimbraResource.Type.EQUIPMENT);
 		String apptSubject = ConfigProperties.getUniqueString();
-		String apptEquipment = equipment.EmailAddress;
+		String apptEquimentName = ExecuteHarnessMain.equipments.get("equipment1")[0];
+		String apptEquimentEmailAddress = ExecuteHarnessMain.equipments.get("equipment1")[1];
 
 		// Absolute dates in UTC zone
 		String tz = ZTimeZone.getLocalTimeZone().getID();
@@ -144,7 +144,7 @@ public class AddEquipment extends AjaxCore {
         apptForm.zToolbarPressButton(Button.B_EQUIPMENT);
 
         DialogFindEquipment dialogFindEquipment = (DialogFindEquipment) new DialogFindEquipment(app, app.zPageCalendar);
-        dialogFindEquipment.zType(Locators.EquipmentName, apptEquipment);
+        dialogFindEquipment.zType(Locators.EquipmentName, apptEquimentName);
         dialogFindEquipment.zPressButton(Button.B_SEARCH_EQUIPMENT);
         dialogFindEquipment.zPressButton(Button.B_SELECT_EQUIPMENT);
         dialogFindEquipment.zPressButton(Button.B_OK);
@@ -153,11 +153,10 @@ public class AddEquipment extends AjaxCore {
         // Verify equipment present in the appointment
         AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ apptSubject +")");
 		ZAssert.assertEquals(actual.getSubject(), apptSubject, "Subject: Verify the appointment data");
-		ZAssert.assertStringContains(actual.getEquipment(), apptEquipment, "Equipment: Verify the appointment data");
+		ZAssert.assertStringContains(actual.getEquipment(), apptEquimentEmailAddress, "Equipment: Verify the appointment data");
 
 		// Verify equipment free/busy status
-		String equipmentStatus = app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ apptEquipment +"']", "ptst");
+		String equipmentStatus = app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ apptEquimentEmailAddress +"']", "ptst");
 		ZAssert.assertEquals(equipmentStatus, "AC", "Verify equipment free/busy status");
 	}
-
 }

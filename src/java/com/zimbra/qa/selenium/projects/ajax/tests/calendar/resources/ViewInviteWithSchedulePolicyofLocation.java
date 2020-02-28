@@ -38,7 +38,6 @@ public class ViewInviteWithSchedulePolicyofLocation extends AjaxCore {
 			groups = { "bhr" })
 
 	public void ManualAcceptAutoDeclineOnConflict_01() throws HarnessException {
-
 		// Create appointment data
 		AppointmentItem appt = new AppointmentItem();
 		ZimbraResource location = new ZimbraResource(ZimbraResource.Type.LOCATION);
@@ -105,7 +104,6 @@ public class ViewInviteWithSchedulePolicyofLocation extends AjaxCore {
 		// Verify location free/busy status
 		String locationStatus = app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ apptLocation +"']", "ptst");
 		ZAssert.assertEquals(locationStatus, "AC", "Verify Location free/busy status");
-
 	}
 
 
@@ -113,7 +111,6 @@ public class ViewInviteWithSchedulePolicyofLocation extends AjaxCore {
 			groups = { "bhr" })
 
 	public void AutoAcceptAlways_02() throws HarnessException {
-
 		// Create appointment data
 		AppointmentItem appt = new AppointmentItem();
 		ZimbraResource location = new ZimbraResource(ZimbraResource.Type.LOCATION);
@@ -174,8 +171,8 @@ public class ViewInviteWithSchedulePolicyofLocation extends AjaxCore {
 		String organizer = "css=table[id='zv__TV__TV-main_MSG_hdrTable'] span[class='addrBubble']";
 		ZAssert.assertStringContains(app.zPageMail.sGetText(organizer).trim(), ZimbraAccount.AccountZCS().EmailAddress,
 				"Verify the From matches the 'Sender:' header");
-
 	}
+
 
 	@Test (description = "Verify that invite appears correctly in resource's account when schedule policy is set to 'No auto accept or decline'",
 			groups = { "bhr" })
@@ -244,7 +241,5 @@ public class ViewInviteWithSchedulePolicyofLocation extends AjaxCore {
 		// Verify location free/busy status
 		String locationStatus = app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ apptLocation +"']", "ptst");
 		ZAssert.assertEquals(locationStatus, "AC", "Verify Location free/busy status");
-
 	}
-
 }

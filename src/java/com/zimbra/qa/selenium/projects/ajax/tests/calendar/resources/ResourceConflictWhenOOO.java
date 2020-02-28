@@ -19,6 +19,7 @@ package com.zimbra.qa.selenium.projects.ajax.tests.calendar.resources;
 import java.util.Calendar;
 import org.testng.annotations.*;
 import com.zimbra.qa.selenium.framework.core.Bugs;
+import com.zimbra.qa.selenium.framework.core.ExecuteHarnessMain;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -40,16 +41,12 @@ public class ResourceConflictWhenOOO extends AjaxCore {
 			groups = { "application-bug" })
 
 	public void LocationConflictWhenOOO_01() throws HarnessException {
-
-		// Creating object for meeting data
-		ZimbraResource location = new ZimbraResource(ZimbraResource.Type.LOCATION);
-
 		String tz, apptSubject1,apptSubject2 , apptAttendeeEmail2 , apptAttendeeEmail3 ;
 		tz = ZTimeZone.getLocalTimeZone().getID();
 		apptSubject1 = "app" + ConfigProperties.getUniqueString();
 		apptAttendeeEmail2 = ZimbraAccount.AccountB().EmailAddress;
 		apptAttendeeEmail3 = ZimbraAccount.AccountC().EmailAddress;
-		String apptLocation = location.EmailAddress;
+		String apptLocation = ExecuteHarnessMain.locations.get("location1")[1];
 		ZimbraAccount apptAttendee = ZimbraAccount.AccountA();
 
 		String apptContent = ConfigProperties.getUniqueString();

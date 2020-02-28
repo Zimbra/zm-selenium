@@ -20,6 +20,7 @@ import java.util.Calendar;
 import java.util.List;
 import org.testng.annotations.*;
 import com.zimbra.qa.selenium.framework.core.Bugs;
+import com.zimbra.qa.selenium.framework.core.ExecuteHarnessMain;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -42,13 +43,10 @@ public class AddLocation extends AjaxCore {
 			groups = { "bhr" })
 
 	public void AddLocation_01() throws HarnessException {
-
-		ZimbraResource location = new ZimbraResource(ZimbraResource.Type.LOCATION);
-
 		String tz = ZTimeZone.getLocalTimeZone().getID();
 		String apptSubject = ConfigProperties.getUniqueString();
 		String apptAttendee = ZimbraAccount.AccountA().EmailAddress;
-		String apptLocation1 = location.EmailAddress;
+		String apptLocationEmailAddress = ExecuteHarnessMain.locations.get("location1")[1];
 
 		// Absolute dates in UTC zone
 		Calendar now = Calendar.getInstance();
@@ -79,7 +77,7 @@ public class AddLocation extends AjaxCore {
         SleepUtil.sleepMedium();
 
         DialogFindLocation dialogFindLocation = (DialogFindLocation) new DialogFindLocation(app, app.zPageCalendar);
-        dialogFindLocation.zType(Locators.LocationName, apptLocation1);
+        dialogFindLocation.zType(Locators.LocationName, apptLocationEmailAddress);
         SleepUtil.sleepSmall();
         dialogFindLocation.zPressButton(Button.B_SEARCH_LOCATION);
         SleepUtil.sleepMedium();
@@ -91,10 +89,10 @@ public class AddLocation extends AjaxCore {
         // Verify location in the appointment is not null
 		AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ apptSubject +")");
 		ZAssert.assertEquals(actual.getSubject(), apptSubject, "Subject: Verify the appointment data");
-		ZAssert.assertStringContains(actual.getLocation(), apptLocation1, "Verify if the Location has been added to the meeting");
+		ZAssert.assertStringContains(actual.getLocation(), apptLocationEmailAddress, "Verify if the Location has been added to the meeting");
 
 		// Verify location free/busy status
-		String locationStatus = app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ apptLocation1 +"']", "ptst");
+		String locationStatus = app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ apptLocationEmailAddress +"']", "ptst");
 		ZAssert.assertEquals(locationStatus, "AC", "Verify location status shows accepted");
 	}
 
@@ -103,14 +101,10 @@ public class AddLocation extends AjaxCore {
 			groups = { "bhr" })
 
 	public void AddLocation_02() throws HarnessException {
-
-		// Create a meeting
-		ZimbraResource location = new ZimbraResource(ZimbraResource.Type.LOCATION);
-
 		String tz = ZTimeZone.getLocalTimeZone().getID();
 		String apptSubject = ConfigProperties.getUniqueString();
 		String apptAttendee = ZimbraAccount.AccountA().EmailAddress;
-		String apptLocation = location.EmailAddress;
+		String apptLocationEmailAddress = ExecuteHarnessMain.locations.get("location1")[1];
 
 		// Absolute dates in UTC zone
 		Calendar now = Calendar.getInstance();
@@ -139,17 +133,17 @@ public class AddLocation extends AjaxCore {
 
         // Add location and resend the appointment
         FormApptNew apptForm = (FormApptNew)app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, apptSubject);
-        apptForm.zFillField(Field.Location, apptLocation);
+        apptForm.zFillField(Field.Location, apptLocationEmailAddress);
         apptForm.zSubmitWithResources();
 
         // Verify location in the appointment
 		AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ apptSubject +")");
 		ZAssert.assertEquals(actual.getSubject(), apptSubject, "Subject: Verify the appointment data");
 		ZAssert.assertEquals(actual.getAttendees(), apptAttendee, "Attendees: Verify the appointment data");
-		ZAssert.assertStringContains(actual.getLocation(), apptLocation, "Location: Verify the appointment data");
+		ZAssert.assertStringContains(actual.getLocation(), apptLocationEmailAddress, "Location: Verify the appointment data");
 
 		// Verify location free/busy status
-		String locationStatus = app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ apptLocation +"']", "ptst");
+		String locationStatus = app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ apptLocationEmailAddress +"']", "ptst");
 		ZAssert.assertEquals(locationStatus, "AC", "Verify location status shows accepted");
 	}
 
@@ -159,23 +153,11 @@ public class AddLocation extends AjaxCore {
 			groups = { "bhr" } )
 
 	public void AddLocation_03() throws HarnessException {
-
-		ZimbraResource location = new ZimbraResource(ZimbraResource.Type.LOCATION);
-		String locationName = ConfigProperties.getUniqueString();
 		String apptSubject = ConfigProperties.getUniqueString();
-		String apptLocation = location.EmailAddress;
-
-	    ZimbraAdminAccount.GlobalAdmin().soapSend(
-	    	      "<ModifyCalendarResourceRequest xmlns='urn:zimbraAdmin'><id>" + location.ZimbraId + "</id>" +
-		    	      "<a n='displayName'>" + locationName + "</a>" +
-	    	      "</ModifyCalendarResourceRequest>");
-
-		ZimbraDomain domain = new ZimbraDomain(location.EmailAddress.split("@")[1]);
-		domain.provision();
-		domain.syncGalAccount();
-
-		// Absolute dates in UTC zone
+		String apptLocationName = ExecuteHarnessMain.locations.get("location1")[0];
+		String apptLocationEmailAddress = ExecuteHarnessMain.locations.get("location1")[1];
 		String tz = ZTimeZone.getLocalTimeZone().getID();
+
 		Calendar now = Calendar.getInstance();
 		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 14, 0, 0);
 		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 15, 0, 0);
@@ -201,17 +183,17 @@ public class AddLocation extends AjaxCore {
 
 	    // Add equipment from 'Search Equipment' dialog and send the meeting
 	    FormApptNew apptForm = (FormApptNew)app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, apptSubject);
-		List<AutocompleteEntry> entries = apptForm.zAutocompleteFillField(Field.Location, locationName);
+		List<AutocompleteEntry> entries = apptForm.zAutocompleteFillField(Field.Location, apptLocationName);
 		AutocompleteEntry found = null;
 		for (AutocompleteEntry entry : entries) {
-			if ( entry.getAddress().contains(locationName) ) {
+			if ( entry.getAddress().contains(apptLocationName) ) {
 				found = entry;
 				break;
 			}
 		}
 		ZAssert.assertNotNull(found, "Verify the autocomplete entry exists in the returned list");
 		apptForm.zAutocompleteSelectItem(found);
-        ZAssert.assertTrue(apptForm.zVerifyLocation(locationName), "Verify appointment location");
+        ZAssert.assertTrue(apptForm.zVerifyLocation(apptLocationName), "Verify appointment location");
         apptForm.zSubmitWithResources();
 
 		// Organizer: Search for the appointment (InvId)
@@ -220,14 +202,14 @@ public class AddLocation extends AjaxCore {
 				+		"<query>"+ apptSubject +"</query>"
 				+	"</SearchRequest>");
 
-		ZAssert.assertTrue(app.zGetActiveAccount().soapSelectValue("//mail:appt", "loc").contains(apptLocation), "Location: Verify the appointment data");
+		ZAssert.assertTrue(app.zGetActiveAccount().soapSelectValue("//mail:appt", "loc").contains(apptLocationEmailAddress), "Location: Verify the appointment data");
 
 		// Verify Location present in the appointment
 	    AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ apptSubject +")");
 		ZAssert.assertEquals(actual.getSubject(), apptSubject, "Subject: Verify the appointment data");
 
 		// Verify location free/busy status
-		String locationStatus = app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ apptLocation +"']", "ptst");
+		String locationStatus = app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ apptLocationEmailAddress +"']", "ptst");
 		ZAssert.assertEquals(locationStatus, "AC", "Verify Location free/busy status");
 	}
 }

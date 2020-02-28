@@ -19,6 +19,7 @@ package com.zimbra.qa.selenium.projects.ajax.tests.calendar.resources;
 import java.util.Calendar;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.core.Bugs;
+import com.zimbra.qa.selenium.framework.core.ExecuteHarnessMain;
 import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
@@ -41,21 +42,9 @@ public class SearchResourceUsingDescription extends AjaxCore {
 			groups = { "sanity" } )
 
 	public void SearchResourceUsingDescription_01() throws HarnessException {
-
-		ZimbraResource equipment = new ZimbraResource(ZimbraResource.Type.EQUIPMENT);
-		String equipmentDescription = ConfigProperties.getUniqueString();
 		String apptSubject = ConfigProperties.getUniqueString();
-		String apptEquipment = equipment.EmailAddress;
-
-	    ZimbraAdminAccount.GlobalAdmin().soapSend(
-	    	      "<ModifyCalendarResourceRequest xmlns='urn:zimbraAdmin'><id>" +
-	    	      equipment.ZimbraId + "</id>" +
-	    	      "<a n='description'>" + equipmentDescription + "</a>" +
-	    	      "</ModifyCalendarResourceRequest>");
-
-		ZimbraDomain domain = new ZimbraDomain(equipment.EmailAddress.split("@")[1]);
-		domain.provision();
-		domain.syncGalAccount();
+		String apptEquimentName = ExecuteHarnessMain.equipments.get("equipment1")[0];
+		String apptEquimentEmailAddress = ExecuteHarnessMain.equipments.get("equipment1")[1];
 
 		// Absolute dates in UTC zone
 		String tz = ZTimeZone.getLocalTimeZone().getID();
@@ -90,8 +79,8 @@ public class SearchResourceUsingDescription extends AjaxCore {
 	    SleepUtil.sleepMedium();
 
 	    DialogFindEquipment dialogFindEquipment = (DialogFindEquipment) new DialogFindEquipment(app, app.zPageCalendar);
-	    dialogFindEquipment.zType(Locators.EquipmentName, apptEquipment);
-	    dialogFindEquipment.zType(Locators.EquipmentDescription, equipmentDescription);
+	    dialogFindEquipment.zType(Locators.EquipmentName, apptEquimentName);
+	    dialogFindEquipment.zType(Locators.EquipmentDescription, "Created By Selenium Automation");
 	    SleepUtil.sleepSmall();
 	    dialogFindEquipment.zPressButton(Button.B_SEARCH_EQUIPMENT);
 	    SleepUtil.sleepMedium();
@@ -104,10 +93,10 @@ public class SearchResourceUsingDescription extends AjaxCore {
 	    // Verify equipment present in the appointment
 	    AppointmentItem actual = AppointmentItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ apptSubject +")");
 		ZAssert.assertEquals(actual.getSubject(), apptSubject, "Subject: Verify the appointment data");
-		ZAssert.assertStringContains(actual.getEquipment(), apptEquipment, "Equipment: Verify the appointment data");
+		ZAssert.assertStringContains(actual.getEquipment(), apptEquimentEmailAddress, "Equipment: Verify the appointment data");
 
 		// Verify equipment free/busy status
-		String equipmentStatus = app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ apptEquipment +"']", "ptst");
+		String equipmentStatus = app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ apptEquimentEmailAddress +"']", "ptst");
 		ZAssert.assertEquals(equipmentStatus, "AC", "Verify equipment free/busy status");
 	}
 }

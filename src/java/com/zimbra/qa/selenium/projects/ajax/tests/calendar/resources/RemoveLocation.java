@@ -19,6 +19,7 @@ package com.zimbra.qa.selenium.projects.ajax.tests.calendar.resources;
 import java.util.Calendar;
 import org.testng.annotations.*;
 import com.zimbra.qa.selenium.framework.core.Bugs;
+import com.zimbra.qa.selenium.framework.core.ExecuteHarnessMain;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
@@ -38,15 +39,12 @@ public class RemoveLocation extends AjaxCore {
 			groups = { "bhr" })
 
 	public void RemoveLocation_01() throws HarnessException {
-
-		// Create a meeting
 		AppointmentItem appt = new AppointmentItem();
-		ZimbraResource location = new ZimbraResource(ZimbraResource.Type.LOCATION);
 
 		String tz = ZTimeZone.getLocalTimeZone().getID();
 		String apptSubject = ConfigProperties.getUniqueString();
 		String apptAttendee = ZimbraAccount.AccountA().EmailAddress;
-		String apptLocation = location.EmailAddress;
+		String apptLocation = ExecuteHarnessMain.locations.get("location1")[1];
 
 		// Absolute dates in UTC zone
 		Calendar now = Calendar.getInstance();
@@ -89,7 +87,5 @@ public class RemoveLocation extends AjaxCore {
 		// Verify location free/busy status
 		String locationStatus = app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ apptLocation +"']", "ptst");
 		ZAssert.assertNull(locationStatus, "Verify that location status shows null");
-
 	}
-
 }

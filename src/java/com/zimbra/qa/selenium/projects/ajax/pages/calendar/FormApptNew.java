@@ -245,16 +245,16 @@ public class FormApptNew extends AbsForm {
 		SleepUtil.sleepVeryLong();
 	}
 
-	public String zGetSuggestedLocation(String apptLocation) throws HarnessException {
-		return "css=div[id='zv__CSLP'] div[id^='zli__CSLP__']:contains('" + apptLocation + "')";
+	public String zGetSuggestedLocation(String locationName) throws HarnessException {
+		return "css=div[id='zv__CSLP'] div[id^='zli__CSLP__']:contains('" + locationName + "')";
 	}
 
-	public String zGetLocationVaueFromPopUp(String apptLocation) throws HarnessException {
-		return "css=div[id^='POPUP_DWT'] td[id^='" + apptLocation + "']";
+	public String zGetLocationVaueFromPopUp(String locationEmailAddress) throws HarnessException {
+		return "css=div[id^='POPUP_DWT'] td[id^='" + locationEmailAddress + "']";
 	}
 
-	public Boolean zIsLocationExistsInSuggestPane(String apptLocation) throws HarnessException {
-		return sIsElementPresent("css=div[id='zv__CSLP'] div[id^='zli__CSLP__']:contains('" + apptLocation + "')");
+	public Boolean zIsLocationExistsInSuggestPane(String locationName) throws HarnessException {
+		return sIsElementPresent("css=div[id='zv__CSLP'] div[id^='zli__CSLP__']:contains('" + locationName + "')");
 	}
 
 	public void zAddRequiredAttendeeFromScheduler(String attendee, int keyEvent) throws HarnessException {
@@ -569,11 +569,7 @@ public class FormApptNew extends AbsForm {
 	}
 
 	public AbsPage zPressButton(Button button, String value) throws HarnessException {
-
 		logger.info(myPageName() + " zPressButton(" + button + ")");
-		SleepUtil.sleepMedium();
-
-		tracer.trace("Click button " + button);
 
 		if (button == null)
 			throw new HarnessException("Button cannot be null!");
@@ -582,17 +578,13 @@ public class FormApptNew extends AbsForm {
 		String locator = null;
 
 		if (button == Button.B_SUGGESTEDLOCATION) {
-
 			locator = zGetSuggestedLocation(value);
 			page = null;
 
 		} else if (button == Button.B_LOCATIONMENU) {
-
 			locator = zGetLocationVaueFromPopUp(value);
-
 			this.sClickAt("css=div[id$='_suggest_view'] table:nth-child(2) tbody tr td:nth-child(3) span", "0,0");
 			SleepUtil.sleepSmall();
-
 			page = null;
 
 		} else {
@@ -604,7 +596,6 @@ public class FormApptNew extends AbsForm {
 
 		this.sClickAt(locator, "");
 		SleepUtil.sleepMedium();
-
 		this.zWaitForBusyOverlay();
 
 		return (page);
