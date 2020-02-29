@@ -38,7 +38,6 @@ public class ModifyDLDisplayNameAndDescription extends AjaxCore  {
 			groups = { "sanity" })
 
 	public void ModifyDLDisplayNameAndDescription_01 () throws HarnessException {
-
 		String dlFolder = "Distribution Lists";
 		String dlName = "tcdl" + ConfigProperties.getUniqueString();
 		String fullDLName = dlName + "@" + ConfigProperties.getStringProperty("testdomain");
@@ -101,12 +100,11 @@ public class ModifyDLDisplayNameAndDescription extends AjaxCore  {
 		List<AutocompleteEntry> entries = mailform.zAutocompleteFillField(FormMailNew.Field.To, displayName);
 		AutocompleteEntry found = null;
 		for (AutocompleteEntry entry : entries) {
-			if ( entry.getAddress().contains(fullDLName) ) {
+			if (entry.getAddress().contains(fullDLName)) {
 				found = entry;
 				break;
 			}
 		}
 		ZAssert.assertNotNull(found, "Verify the autocomplete entry exists in the returned list");
-
 	}
 }

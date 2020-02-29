@@ -34,14 +34,12 @@ public class Dialog2FactorAuthEnable extends AbsDialog {
 
 	public Dialog2FactorAuthEnable(AbsApplication application, AbsTab tab) {
 		super(application, tab);
-
 		logger.info("new " + Dialog2FactorAuthEnable.class.getCanonicalName());
 	}
 
 	@Override
 	public AbsPage zPressButton(Button button) throws HarnessException {
 		logger.info(myPageName() + " zPressButton(" + button + ")");
-
 		String locator = null;
 
 		if (button == Button.B_CANCEL) {
@@ -87,27 +85,22 @@ public class Dialog2FactorAuthEnable extends AbsDialog {
 	public void zSetTotpCode(String totpCode) throws HarnessException {
 		logger.info(myPageName() + " zSetTotpCode(" + totpCode + ")");
 
-		String locator = "css=td[class='WindowInnerContainer'] div[class='ZmTwoFactorSetupContainer'] input[id$='_code_input']";
-
+		String locator = "css=div[class='ZmTwoFactorCustomInputLoginPage'] input[id$='_code_input']";
 		if (!this.sIsElementPresent(locator)) {
 			throw new HarnessException("Secret key locator " + locator + " is not present");
 		}
 
 		this.sClickAt(locator, "");
 		this.zKeyboard.zTypeCharacters(totpCode);
-		SleepUtil.sleepMedium();
 	}
 
 	public String zGetSecretKey() throws HarnessException {
 		logger.info(myPageName() + " zGetSecretKey");
 
-		String locator = "css=td[class='WindowInnerContainer'] div[class='ZmTwoFactorSetupContainer'] span[id$='_email_key']";
-
+		String locator = "css=div[class='ZmTwoFactorCustomSetupContainerLoginPage'] span[id$='_email_key']";
 		if (!this.sIsElementPresent(locator)) {
 			throw new HarnessException("Secret key " + locator + " is not present");
 		}
-
-		SleepUtil.sleepSmall();
 		return (this.sGetText(locator));
 	}
 
@@ -115,7 +108,6 @@ public class Dialog2FactorAuthEnable extends AbsDialog {
 		logger.info(myPageName() + " zSetUserPassword(" + password + ")");
 
 		String locator = "css=div[class='DwtDialog'] td[class='WindowInnerContainer'] input[id$='_password_input']";
-
 		if (!this.sIsElementPresent(locator)) {
 			throw new HarnessException("Password " + locator + " is not present");
 		}
@@ -137,11 +129,9 @@ public class Dialog2FactorAuthEnable extends AbsDialog {
 
 	@Override
 	public boolean zIsActive() throws HarnessException {
-
 		logger.info(myPageName() + " zIsActive()");
 
 		String locator = "css=div[id=" + Locators.z2FASetUpDialogId + "]";
-
 		if (!this.sIsElementPresent(locator)) {
 			return (false);
 		}
@@ -153,5 +143,4 @@ public class Dialog2FactorAuthEnable extends AbsDialog {
 		logger.info(myPageName() + " zIsActive() = true");
 		return (true);
 	}
-
 }

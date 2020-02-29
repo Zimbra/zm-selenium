@@ -19,6 +19,7 @@ package com.zimbra.qa.selenium.projects.ajax.tests.calendar.meetings.organizer.s
 import java.util.Calendar;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.core.Bugs;
+import com.zimbra.qa.selenium.framework.core.ExecuteHarnessMain;
 import com.zimbra.qa.selenium.framework.items.AppointmentItem;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
@@ -38,11 +39,9 @@ public class CreateAppointmentWithLocation extends AjaxCore {
 			groups = { "sanity" } )
 
 	public void CreateAppointmentWithLocation_01() throws HarnessException {
-
 		// Create appointment
-		ZimbraResource location = new ZimbraResource(ZimbraResource.Type.LOCATION);
-		String locationName = location.DisplayName;
-		String apptLocation = location.EmailAddress;
+		String locationName = ExecuteHarnessMain.locations.get("location1")[0];
+		String apptLocation = ExecuteHarnessMain.locations.get("location1")[1];
 
 		AppointmentItem appt = new AppointmentItem();
 		Calendar now = Calendar.getInstance();

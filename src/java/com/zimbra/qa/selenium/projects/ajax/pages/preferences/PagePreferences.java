@@ -125,7 +125,7 @@ public class PagePreferences extends AbsTab {
 		public static final String zFromAccountName = "css=input#Prefs_Pages_ACCOUNTS_PRIMARY_FROM_NAME";
 		public static final String zReplyToSentMessageName = "css=input#Prefs_Pages_ACCOUNTS_PRIMARY_REPLY_TO_NAME";
 		public static final String zReplyToSentMessageEmail = "css=input#Prefs_ComboBox_REPLY_TO_EMAIL_input";
-		
+
 		// Import/Export
 		public static final String zBrowseFileButton = "css=input#ZmImportView_FILE";
 		public static final String zImportButton = "css=div[id='IMPORT_BUTTON'] td[id$='_title']";
@@ -139,7 +139,7 @@ public class PagePreferences extends AbsTab {
 		public static final String zDisplayMailAsHTML = "div[id='Prefs_RadioGroup_VIEW_AS_HTML'] input[value='true']";
 		public static final String zDisplayMailAsText = "div[id='Prefs_RadioGroup_VIEW_AS_HTML'] input[value='false']";
 		public static final String zDisplayMailReceivedTime = "css=input#Prefs_Pages_MAIL_DISPLAY_TIME_IN_MAIL_LIST";
-		
+
 		// Mail > composing
 		public static final String zMandatorySpellCheck = "css=input[id$='_MAIL_MANDATORY_SPELLCHECK']";
 		public static final String zPrefixEmailReply = "css=input#Prefs_Pages_MAIL_REPLY_USE_PREFIX";
@@ -348,8 +348,6 @@ public class PagePreferences extends AbsTab {
 	public AbsPage zToolbarPressButton(Button button) throws HarnessException {
 		logger.info(myPageName() + " zToolbarPressButton(" + button + ")");
 
-		tracer.trace("Click button " + button);
-
 		if (button == null)
 			throw new HarnessException("Button cannot be null!");
 
@@ -357,77 +355,67 @@ public class PagePreferences extends AbsTab {
 		AbsPage page = null;
 
 		if (button == Button.B_SAVE) {
-
 			locator = "id=" + Locators.zToolbarSaveID;
 			page = null;
 
 		} else if (button == Button.B_CANCEL) {
-
 			locator = "id=" + Locators.zToolbarCancelID;
 			page = null;
 
 		} else if (button == Button.B_BROWSE_TO_CERTIFICATE) {
-
 			locator = Locators.zBrowseToCertificate;
 
 		} else if (button == Button.B_CHANGE_PASSWORD) {
-
 			locator = Locators.zChangePwdButton;
 			page = new SeparateWindowChangePassword(MyApplication);
 
 		} else if (button == Button.B_NEW_IN_FILTER) {
-
 			locator = "css=div[id='zb__FRV__ADD_FILTER_RULE'] td[id$='_title']";
 			page = new DialogEditFilter(MyApplication, ((AjaxPages) MyApplication).zPagePreferences);
 
 		} else if (button == Button.B_EDIT_IN_FILTER) {
-
 			locator = "css=div[id='zb__FRV__EDIT_FILTER_RULE'] td[id$='_title']";
 			page = new DialogEditFilter(MyApplication, ((AjaxPages) MyApplication).zPagePreferences);
-		} else if (button == Button.B_DELETE_IN_FILTER) {
 
+		} else if (button == Button.B_DELETE_IN_FILTER) {
 			locator = "css=div[id='zb__FRV__REMOVE_FILTER_RULE'] td[id$='_title']";
 			page = new DialogWarning(DialogWarningID.DeleteFilterWarningMessage, MyApplication,
 					((AjaxPages) MyApplication).zPagePreferences);
-		} else if (button == Button.B_RUN_IN_FILTER) {
 
+		} else if (button == Button.B_RUN_IN_FILTER) {
 			locator = "css=div[id='zb__FRV__RUN_FILTER_RULE'] td[id$='_title']";
 			page = null;
-		} else if (button == Button.B_NEW_OUT_FILTER) {
 
+		} else if (button == Button.B_NEW_OUT_FILTER) {
 			locator = "css=div[id^='zb__FRV__ADD_FILTER_RULE__DWT'] td[id$='_title']";
 			page = new DialogEditFilter(MyApplication, ((AjaxPages) MyApplication).zPagePreferences);
 
 		} else if (button == Button.B_EDIT_OUT_FILTER) {
-
 			locator = "css=div[id^='zb__FRV__EDIT_FILTER_RULE__DWT'] td[id$='_title']";
 			page = new DialogEditFilter(MyApplication, ((AjaxPages) MyApplication).zPagePreferences);
-		} else if (button == Button.B_DELETE_OUT_FILTER) {
 
+		} else if (button == Button.B_DELETE_OUT_FILTER) {
 			locator = "css=div[id^='zb__FRV__REMOVE_FILTER_RULE__DWT'] td[id$='_title']";
 			page = new DialogWarning(DialogWarningID.DeleteFilterWarningMessage, MyApplication,
 					((AjaxPages) MyApplication).zPagePreferences);
-		} else if (button == Button.B_RUN_OUT_FILTER) {
 
+		} else if (button == Button.B_RUN_OUT_FILTER) {
 			locator = "css=div[id^='zb__FRV__RUN_FILTER_RULE__DWT'] td[id$='_title']";
 			page = null;
-		} else if (button == Button.B_ACTIVITY_STREAM_SETTINGS) {
 
+		} else if (button == Button.B_ACTIVITY_STREAM_SETTINGS) {
 			locator = "css=div[id$='_ACTIVITY_STREAM_BUTTON'] td[id$='_title']";
 			page = new DialogActivityStream(MyApplication, ((AjaxPages) MyApplication).zPagePreferences);
 
 		} else if (button == Button.B_NEW_QUICK_COMMAND) {
-
 			locator = "css=div[id='zb__QCV__ADD_QUICK_COMMAND'] td[id$='_title']";
 			page = new DialogEditQuickCommand(MyApplication, ((AjaxPages) MyApplication).zPagePreferences);
 
 		} else if (button == Button.B_EDIT_QUICK_COMMAND) {
-
 			locator = "css=div[id='zb__QCV__EDIT_QUICK_COMMAND'] td[id$='_title']";
 			page = new DialogEditQuickCommand(MyApplication, ((AjaxPages) MyApplication).zPagePreferences);
 
 		} else if (button == Button.B_DELETE_QUICK_COMMAND) {
-
 			locator = "css=div[id='zb__QCV__REMOVE_QUICK_COMMAND'] td[id$='_title']";
 			page = new DialogWarning(DialogWarningID.QuickCommandConfirmDelete, MyApplication,
 					((AjaxPages) MyApplication).zPagePreferences);
@@ -448,7 +436,6 @@ public class PagePreferences extends AbsTab {
 		}
 
 		SleepUtil.sleepMedium();
-
 		return (page);
 	}
 
@@ -855,7 +842,7 @@ public class PagePreferences extends AbsTab {
 		this.zWaitForBusyOverlay();
 
 	}
-	
+
 	public void zCheckboxSet(Checkbox checkbox, boolean status) throws HarnessException {
 		logger.info("zCheckboxSet(" + checkbox + ") = " + status);
 
@@ -870,11 +857,11 @@ public class PagePreferences extends AbsTab {
 		case "C_REPLY_TO_SENT_MESSAGE":
 			locator = Locators.zReplyToSentMessageCheckbox;
 			break;
-			
+
 		case "C_DISPLAY_RECEIVED_TIME":
 			locator = Locators.zDisplayMailReceivedTime;
 			break;
-			
+
 		case "C_PREFIX_EMAIL_REPLY":
 			locator = Locators.zPrefixEmailReply;
 			break;

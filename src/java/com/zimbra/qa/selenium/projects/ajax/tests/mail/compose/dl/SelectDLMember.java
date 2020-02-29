@@ -18,6 +18,7 @@ package com.zimbra.qa.selenium.projects.ajax.tests.mail.compose.dl;
 
 import java.util.List;
 import org.testng.annotations.Test;
+import com.zimbra.qa.selenium.framework.core.ExecuteHarnessMain;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
@@ -41,28 +42,26 @@ public class SelectDLMember extends AjaxCore  {
 
 
 	@Test (description = "Select a DL member from the expanded list while composing mail",
-			groups = { "sanity" })
+			groups = { "known-failure" })
 
 	public void SelectDLMember_01() throws HarnessException {
+		String dlMember1 = ExecuteHarnessMain.accounts.get("account1")[1];
+		String dlMember2 = ExecuteHarnessMain.accounts.get("account2")[1];
 
-		// DL data
-		String dlMember1 = ZimbraAccount.Account1().EmailAddress;
-		String dlMember2 = ZimbraAccount.Account2().EmailAddress;
-
-		String dlName = "tcdl" + ConfigProperties.getUniqueString();
-		String fullDLName = dlName + "@" + ConfigProperties.getStringProperty("testdomain");
+		String dlEmailAddress = ExecuteHarnessMain.distributionlists.get("distributionlist1")[1];
+		String dlName = ExecuteHarnessMain.distributionlists.get("distributionlist1")[0];
 
 		// Create DL
 		app.zGetActiveAccount().soapSend(
 				"<CreateDistributionListRequest xmlns='urn:zimbraAccount'>"
-						+		"<name>" + fullDLName + "</name>"
+						+		"<name>" + dlEmailAddress + "</name>"
 						+		"<a n='description'>Created by Selenium automation</a>"
 						+	"</CreateDistributionListRequest>");
 
 		// Add DL members
 		app.zGetActiveAccount().soapSend(
 				"<DistributionListActionRequest xmlns='urn:zimbraAccount'>"
-						+		"<dl by='name'>" + fullDLName + "</dl>"
+						+		"<dl by='name'>" + dlName + "</dl>"
 						+		"<action op='addMembers'>"
 						+			"<dlm>" + dlMember1 + "</dlm>"
 						+			"<dlm>" + dlMember2 + "</dlm>"
@@ -78,16 +77,15 @@ public class SelectDLMember extends AjaxCore  {
 		String subject = "subject" + ConfigProperties.getUniqueString();
 		String body = "body" + ConfigProperties.getUniqueString();
 
-		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
-
 		// Fill out the form with the data
+		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
 		mailform.zFillField(Field.Subject, subject);
 		mailform.zFillField(Field.Body, body);
 
 		List<AutocompleteEntry> entries = mailform.zAutocompleteFillField(FormMailNew.Field.To, dlName);
 		AutocompleteEntry found = null;
 		for (AutocompleteEntry entry : entries) {
-			if ( entry.getAddress().contains(fullDLName) ) {
+			if (entry.getAddress().contains(dlName)) {
 				found = entry;
 				break;
 			}
@@ -96,12 +94,11 @@ public class SelectDLMember extends AjaxCore  {
 		mailform.zAutocompleteSelectItem(found);
 
 		// Expand the DL and select the member
-		mailform.zSelectMemberFromDL(fullDLName, dlMember1);
-
+		mailform.zSelectMemberFromDL(dlName, dlMember1);
 
 		// Verify through UI that DL is removed and member is added in the To filed
 		ZAssert.assertStringContains(mailform.sGetText(Locators.zBubbleToField), dlMember1,"Verify that member email adderess is present in To field");
-		ZAssert.assertStringDoesNotContain(mailform.sGetText(Locators.zBubbleToField), dlName, "Verify that dl is removed from the To field");
+		ZAssert.assertStringDoesNotContain(mailform.sGetText(Locators.zBubbleToField), dlEmailAddress, "Verify that dl is removed from the To field");
 
 		// Send the mail
 		mailform.zSubmit();
@@ -122,7 +119,7 @@ public class SelectDLMember extends AjaxCore  {
 		String to = ZimbraAccount.Account1().soapSelectValue("//mail:e[@t='t']", "a");
 		String sub = ZimbraAccount.Account1().soapSelectValue("//mail:su", null);
 		String bodyText = ZimbraAccount.Account1().soapSelectValue("//mail:mp[@ct='text/html']//mail:content", null);
-		
+
 		ZAssert.assertEquals(from, app.zGetActiveAccount().EmailAddress, "Verify the from field is correct");
 		ZAssert.assertEquals(to, dlMember1, "Verify the To field is correct");
 		ZAssert.assertEquals(sub, subject, "Verify the subject field is correct");

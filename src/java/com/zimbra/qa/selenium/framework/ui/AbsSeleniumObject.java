@@ -90,7 +90,6 @@ import org.openqa.selenium.interactions.internal.Locatable;
 
 @SuppressWarnings("deprecation")
 public abstract class AbsSeleniumObject {
-
 	protected static final int LoadDelay = 30000;
 	protected static Logger logger = LogManager.getLogger(AbsSeleniumObject.class);
 	protected static final Logger tracer = LogManager.getLogger(ExecuteHarnessMain.TraceLoggerName);

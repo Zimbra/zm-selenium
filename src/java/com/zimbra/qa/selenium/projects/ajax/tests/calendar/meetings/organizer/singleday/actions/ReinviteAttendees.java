@@ -37,7 +37,6 @@ public class ReinviteAttendees extends AjaxCore {
 			groups = { "bhr" })
 
 	public void ReinviteAttendees_01() throws HarnessException {
-
 		// Creating a meeting
 		String tz = ZTimeZone.getLocalTimeZone().getID();
 		String apptSubject = ConfigProperties.getUniqueString();

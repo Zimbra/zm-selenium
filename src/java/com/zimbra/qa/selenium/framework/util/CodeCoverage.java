@@ -57,7 +57,7 @@ public class CodeCoverage {
 
 	/**
 	 * Set the output folder to write the coverage report
-	 * 
+	 *
 	 * @param path
 	 */
 	public void setOutputFolder(String path) {
@@ -534,7 +534,7 @@ public class CodeCoverage {
 	 * <p>
 	 * STAF must be installed on the client and server. Code will be instrumented
 	 * and the server restarted.
-	 * 
+	 *
 	 * @throws HarnessException
 	 */
 	public void instrumentServer() throws HarnessException {
@@ -675,7 +675,7 @@ public class CodeCoverage {
 	/**
 	 * Return a map of URL query parameters, required to enable code coverage from
 	 * the Zimbra ajax app
-	 * 
+	 *
 	 * @return
 	 */
 	public Map<String, String> getQueryMap() {
@@ -767,15 +767,13 @@ public class CodeCoverage {
 		Boolean isCoverageEnabled = Boolean.valueOf(ConfigProperties.getStringProperty("coverage.enabled"));
 		if (isCoverageEnabled.equals(true)) {
 			logger.info("Code coverage is enabled");
-		} else {
-			logger.info("Code coverage is disabled");
 		}
 		return (isCoverageEnabled);
 	}
 
 	/**
 	 * Get the CodeCoverage object
-	 * 
+	 *
 	 * @return
 	 */
 	public static CodeCoverage getInstance() {

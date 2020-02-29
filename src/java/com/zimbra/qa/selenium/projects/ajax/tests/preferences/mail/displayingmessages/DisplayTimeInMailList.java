@@ -44,15 +44,14 @@ public class DisplayTimeInMailList extends AjaxCore {
 			groups = { "sanity", "upload", "non-msedge" })
 
 	public void DisplayTimeInMailList_01() throws HarnessException {
-		
 		// File to import: contains mail delivered in past
 		final String fileName = "inbox.tgz";
 		final String filePath = ConfigProperties.getBaseDirectory() + "\\data\\public\\tgz\\" + fileName;
-	
+
 		// Data present in the file to be imported
 		String subject = "RE: [Bug 108711] TIFF image preview is not showing in message body or as attachment";
 		String mailReceivedTime = "12/12/2017 7:42 PM";
-		
+
 		// Navigate to preferences -> Import/Export
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.ImportExport);
 
@@ -71,7 +70,7 @@ public class DisplayTimeInMailList extends AjaxCore {
 
 		// Click OK on confirmation dialog after import
 		app.zPagePreferences.zPressButton(Button.B_IMPORT_OK);
-		
+
 		// Navigate to preferences -> mail -> displaying messages
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.Mail);
 
@@ -94,7 +93,7 @@ public class DisplayTimeInMailList extends AjaxCore {
 
 		// Change the reading pane to bottom
 		app.zPageMail.zToolbarPressButton(Button.B_MAIL_VIEW_READING_PANE_BOTTOM);
-		
+
 		// Verify the mail received time displayed in mail list
 		ZAssert.assertStringContains(app.zPageMail.zGetMessageProperty(subject, "time"), mailReceivedTime, "Verify that message delivery date and time for past mail are displayed in the mail list.");
 	}
