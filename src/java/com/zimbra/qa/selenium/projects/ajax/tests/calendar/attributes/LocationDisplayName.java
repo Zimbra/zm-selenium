@@ -20,6 +20,7 @@ import java.util.Calendar;
 import org.testng.annotations.*;
 import com.zimbra.common.soap.Element;
 import com.zimbra.qa.selenium.framework.core.Bugs;
+import com.zimbra.qa.selenium.framework.core.ExecuteHarnessMain;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
@@ -39,21 +40,7 @@ public class LocationDisplayName extends AjaxCore {
 			groups = { "sanity" })
 
 	public void LocationDisplayName_01() throws HarnessException {
-
-		ZimbraResource location = new ZimbraResource(ZimbraResource.Type.LOCATION);
-		String resourceDisplayName = "DisplayName" + ConfigProperties.getUniqueString();
-
-		// Modify the Location resource account and change zimbraCalResLocationDisplayName
-		ZimbraAdminAccount.GlobalAdmin().soapSend(
-				"<ModifyCalendarResourceRequest xmlns='urn:zimbraAdmin'>" +
-					"<name>" + location.EmailAddress + "</name>" +
-					"<id> " + location.ZimbraId + "</id> " +
-					"<a n='zimbraCalResLocationDisplayName'>"+ resourceDisplayName +"</a>" +
-				"</ModifyCalendarResourceRequest>");
-
-		ZimbraDomain domain = new ZimbraDomain(location.EmailAddress.split("@")[1]);
-		domain.provision();
-		domain.syncGalAccount();
+		String apptLocationName = ExecuteHarnessMain.locations.get("location1")[0];
 
 		Element[] ModifyCalendarResourceResponse = ZimbraAdminAccount.GlobalAdmin().soapSelectNodes("//admin:ModifyCalendarResourceRequest");
 		logger.info("ModifyCalendarResourceResponse is')" + ModifyCalendarResourceResponse);
@@ -106,14 +93,13 @@ public class LocationDisplayName extends AjaxCore {
         SleepUtil.sleepMedium();
 
         DialogFindLocation dialogFindLocation = (DialogFindLocation) new DialogFindLocation(app, app.zPageCalendar);
-        dialogFindLocation.zType(Locators.LocationName, location.EmailAddress);
+        dialogFindLocation.zType(Locators.LocationName, apptLocationName);
         dialogFindLocation.zPressButton(Button.B_SEARCH_LOCATION);
         SleepUtil.sleepMedium();
 
         // Verify the search dialog show name as email address and Location as Display name set above
         String searchResult = dialogFindLocation.zGetDisplayedText(Locators.LocationFirstSearchResult);
-		ZAssert.assertStringContains(searchResult, resourceDisplayName, "verify if the Location dispaly name is being displayed in the results");
-		ZAssert.assertStringContains(searchResult, location.EmailAddress, "verify if the Location  name is being displayed as email address in the results");
+		ZAssert.assertStringContains(searchResult, apptLocationName, "Verify if the Location dispaly name is being displayed in the results");
 
 		// Close the search location dialog
 		dialogFindLocation.zPressButton(Button.B_OK);

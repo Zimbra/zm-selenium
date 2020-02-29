@@ -60,7 +60,6 @@ import com.zimbra.qa.selenium.staf.StafIntegration;
  */
 
 public class ExecuteHarnessMain {
-
 	private static Logger logger = LogManager.getLogger(ExecuteHarnessMain.class);
 	public static final String TraceLoggerName = "testcase.trace";
 	public static Logger tracer = LogManager.getLogger(TraceLoggerName);
@@ -1492,8 +1491,8 @@ public class ExecuteHarnessMain {
 							+ ConfigProperties.getStringProperty("adminPassword"));
 			CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"),
 					"zmgsautil createAccount -a galsync@" + ConfigProperties.getStringProperty("testdomain")
-							+ " -n InternalGAL --domain " + ConfigProperties.getStringProperty("testdomain") + " -s "
-							+ storeServers.get(0) + " -t zimbra -f _InternalGAL");
+							+ " -n InternalGAL --domain " + ConfigProperties.getStringProperty("testdomain")
+							+ " -p 1m -s " + storeServers.get(0) + " -t zimbra -f _InternalGAL");
 
 			StafIntegration.logInfo = "Create test accounts...\n";
 			logger.info(StafIntegration.logInfo);

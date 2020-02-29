@@ -77,7 +77,7 @@ public class FormMailNew extends AbsForm {
 		public static final String zIncludeHeadersForward = "css=div[id$='_FORWARD_ATT__INCLUDE_HEADERS'] td[id$='_FORWARD_ATT__INCLUDE_HEADERS_title']";
 		public static final String zPrefixInHeaderReplyCompose = "css=div[data-marker='__HEADERS__'] blockquote[style*='border-left:2px solid #1010FF;']";
 		public static final String zPrefixInQuotedTextReplyCompose = "css=div[data-marker='__QUOTED_TEXT__'] blockquote[style*='border-left:2px solid #1010FF;']";
-		
+
 		public static final String zToField = "css=input[id^='zv__COMPOSE'][id$='_to_control']";
 		public static final String zToField_Edge = "css=textarea[id^='zv__COMPOSE'][id$='_to_control']";
 		public static final String zCcField = "css=input[id^=zv__COMPOSE][id$=_cc_control]";
@@ -106,7 +106,7 @@ public class FormMailNew extends AbsForm {
 		public static final String CcField = "css= td[id='zv__COMPOSE-1_cc_cell'] div[class='addrBubbleContainer']";
 		public static final String ToField = "css= td[id='zv__COMPOSE-1_to_cell'] div[class='addrBubbleContainer']";
 		public static final String zBubbleExpand = "css=div.ImgBubbleExpand";
-		
+
 		public static final String FormatAsHTMLMenu = "css=div[id^='zm__COMPOSE'][style*='z-index'] div[id$='__FORMAT_HTML'] tr[id^='POPUP_zmi__COMPOSE']";
 		public static final String FormatAsPlainTextMenu = "css=div[id^='zm__COMPOSE'][style*='z-index'] div[id$='__FORMAT_TEXT'] tr[id^='POPUP_zmi__COMPOSE']";
 		public static final String zOptionsdropdown = "css=div[id^='ztb__COMPOSE']:not([aria-hidden='true']) [id^=zb__COMPOSE][id$=__COMPOSE_OPTIONS_dropdown]";
@@ -1033,8 +1033,8 @@ public class FormMailNew extends AbsForm {
 
 		// Get all attachments
 		List<WebElement> attachments = getElements(locator);
-		
-		// Check attachment name 
+
+		// Check attachment name
 		for(WebElement a : attachments) {
 			if(a.getText().contains(attachmentName)) {
 				logger.info("Found folder item: "+ a.getText());
@@ -1043,21 +1043,21 @@ public class FormMailNew extends AbsForm {
 		}
 		return false;
 	}
-	
+
 	public void zRemoveAttachment(String attachmentName) throws HarnessException {
 		// Is the bubble there?
 		if (!zHasAttachment()) {
 			throw new HarnessException("Attchement bubble is not present!");
-		} 
-		
+		}
+
 		// Check for the presence of attachment
 		String attachmentLocator = "//div[@class='attBubbleContainer']//a[@class='AttLink'][.='" + attachmentName + "']";
 		if(!sIsElementPresent(attachmentLocator)) {
 			throw new HarnessException("Attchement '" + attachmentName + "' bubble is not present!");
 		}
-		
+
 		// Remove attachment
-		sClick(attachmentLocator + "/following-sibling::span");	
+		sClick(attachmentLocator + "/following-sibling::span");
 	}
 
 	public List<AutocompleteEntry> zAutocompleteFillField(Field field, String value) throws HarnessException {
@@ -1154,7 +1154,6 @@ public class FormMailNew extends AbsForm {
 		List<AutocompleteEntry> items = new ArrayList<AutocompleteEntry>();
 
 		String containerLocator = "css=div[id^='zac__COMPOSE-'][style*='display: block;']";
-
 		if (!this.zWaitForElementPresent(containerLocator, "5000")) {
 			// Autocomplete is not visible, return an empty list.
 			return (items);
@@ -1163,9 +1162,7 @@ public class FormMailNew extends AbsForm {
 		String rowsLocator = containerLocator + " tr[id*='_acRow_']";
 		int count = this.sGetCssCount(rowsLocator);
 		for (int i = 0; i < count; i++) {
-
 			items.add(parseAutocompleteEntry(containerLocator + " tr[id$='_acRow_" + i + "']"));
-
 		}
 
 		return (items);
@@ -1177,7 +1174,6 @@ public class FormMailNew extends AbsForm {
 		// Click on the address
 		this.sClick(entry.getLocator() + " td + td");
 		this.zWaitForBusyOverlay();
-
 	}
 
 	public void zAutocompleteForgetItem(AutocompleteEntry entry) throws HarnessException {
@@ -1189,7 +1185,6 @@ public class FormMailNew extends AbsForm {
 		// Click on the address
 		this.sClick(entry.getLocator() + " div[id*='_acForgetText_']");
 		this.zWaitForBusyOverlay();
-
 	}
 
 	public void zAutocompleteMouseOverItem(AutocompleteEntry entry) throws HarnessException {
@@ -1198,7 +1193,6 @@ public class FormMailNew extends AbsForm {
 		// Click on the address
 		this.sMouseOver(entry.getLocator() + " td + td");
 		this.zWaitForBusyOverlay();
-
 	}
 
 	public String zGetFieldValue(Field field) throws HarnessException {
@@ -1262,14 +1256,12 @@ public class FormMailNew extends AbsForm {
 		}
 
 		return BodyHtmlText;
-
 	}
 
 	public String zGetPlainBodyText() throws HarnessException {
 		String locator = "css=textarea[id*='ZmHtmlEditor'][class='ZmHtmlEditorTextArea']";
 		String BodyPlainText = sGetValue(locator);
 		return BodyPlainText;
-
 	}
 
 	public boolean zVerifyDisabledSendLater() throws HarnessException {
@@ -1298,7 +1290,7 @@ public class FormMailNew extends AbsForm {
 		}
 		return imageSrc;
 	}
-	
+
 	// Expand the DL and select the member
 	public void zSelectMemberFromDL(String dl, String member) throws HarnessException {
 		String dlLocator = Locators.zBubbleExpand + "[onclick*='" + dl + "']";
@@ -1308,7 +1300,7 @@ public class FormMailNew extends AbsForm {
 		SleepUtil.sleepLong();
 		this.sClick(dlMemberLcoator);
 	}
-	
+
 	public boolean zVerifyPrefixInHtmlMailBody() throws HarnessException {
 		boolean status = false;
 		SleepUtil.sleepMedium();
@@ -1317,7 +1309,7 @@ public class FormMailNew extends AbsForm {
 			status = this.sIsElementPresent(Locators.zPrefixInHeaderReplyCompose) && this.sIsElementPresent(Locators.zPrefixInQuotedTextReplyCompose);
 		} finally {
 			this.sSelectFrame("relative=top");
-		}		
+		}
 		return status;
 	}
 }

@@ -67,17 +67,17 @@ public class GetGmailImap extends SetGroupMailByMessagePreference {
 		// Create the data source
 		String datasourcename = "datasource" + ConfigProperties.getUniqueString();
 		String datasourceHost = "imap.gmail.com";
-		String datasourceImapPort = ConfigProperties.getStringProperty("server.imap.port");
+		String datasourceImapPort = "993";
 		String datasourceImapType = ConfigProperties.getStringProperty("server.imap.type");
 
 		app.zGetActiveAccount().soapSend(
-			"<CreateDataSourceRequest xmlns='urn:zimbraMail'>"
-					+		"<imap name='"+ datasourcename +"' l='"+ folder.getId() +"' isEnabled='true' "
-					+			"port='"+ datasourceImapPort +"' host='"+ datasourceHost +"' connectionType='"+ datasourceImapType +"' leaveOnServer='true' "
-					+			"username='"+ external +"' password='"+ Password +"' "
-					+			"useAddressForForwardReply='true' replyToDisplay='Bar Foo' replyToAddress='"+ app.zGetActiveAccount().EmailAddress +"' "
-					+			"fromDisplay='Foo Bar' fromAddress='"+ app.zGetActiveAccount().EmailAddress +"' />"
-					+	"</CreateDataSourceRequest>");
+				"<CreateDataSourceRequest xmlns='urn:zimbraMail'>" + "<imap name='" + datasourcename + "' l='"
+						+ folder.getId() + "' isEnabled='true' " + "port='" + datasourceImapPort + "' host='"
+						+ datasourceHost + "' connectionType='" + datasourceImapType + "' leaveOnServer='true' "
+						+ "username='" + external + "' password='" + Password + "' "
+						+ "useAddressForForwardReply='true' replyToDisplay='Bar Foo' replyToAddress='"
+						+ app.zGetActiveAccount().EmailAddress + "' " + "fromDisplay='Foo Bar' fromAddress='"
+						+ app.zGetActiveAccount().EmailAddress + "' />" + "</CreateDataSourceRequest>");
 
 		app.zPageMain.zRefreshMainUI();
 
@@ -101,7 +101,8 @@ public class GetGmailImap extends SetGroupMailByMessagePreference {
 		// See: https://bugzilla.zimbra.com/show_bug.cgi?id=66447
 		// Get the folder from the server
 		app.zGetActiveAccount().soapSend("<GetFolderRequest xmlns='urn:zimbraMail'/>");
-		String externalInbox = app.zGetActiveAccount().soapSelectValue("//mail:folder[@name='"+ foldername +"']//mail:folder[@name='Inbox']", "id");
+		String externalInbox = app.zGetActiveAccount()
+				.soapSelectValue("//mail:folder[@name='" + foldername + "']//mail:folder[@name='Inbox']", "id");
 
 		// Click on the Inbox
 		app.zTreeMail.sClickAt("css=td[id='zti__main_Mail__" + externalInbox +"_textCell']", "");

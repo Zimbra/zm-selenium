@@ -122,20 +122,23 @@ public class PageLogin extends AbsTab {
 		try {
 			((AjaxPages) MyApplication).zPageMain.zRefreshUITillElementPresent(Locators.zBtnLogin);
 
-			zSetLoginName(account.EmailAddress);
-			zSetLoginPassword(account.Password);
-
-			if (!zGetLoginName().equals(account.EmailAddress)) {
-				System.out.println(zGetLoginName());
-				System.out.println(account.EmailAddress);
+			for (int i=0; i<=2; i++) {
 				zSetLoginName(account.EmailAddress);
+				zSetLoginPassword(account.Password);
+
+				if (!zGetLoginName().equals(account.EmailAddress)) {
+					zSetLoginName(account.EmailAddress);
+				}
+
+				sClick(Locators.zBtnLogin);
+				zWaitForBusyOverlay();
+				SleepUtil.sleepLong();
+				if (!sIsElementPresent(Locators.zBtnLogin)) {
+					break;
+				}
 			}
 
-			sClick(Locators.zBtnLogin);
-			SleepUtil.sleepLong();
-			zWaitForBusyOverlay();
-
-			((AjaxPages) MyApplication).zPageMain.zWaitForActive(100000);
+			((AjaxPages) MyApplication).zPageMain.zWaitForActive(10000);
 			((AjaxPages) MyApplication).zSetActiveAccount(account);
 
 		} finally {
@@ -150,13 +153,22 @@ public class PageLogin extends AbsTab {
 				+ account.EmailAddress + "/" + account.Password);
 
 		zNavigateTo();
-		zSetLoginName(account.EmailAddress);
-		zSetLoginPassword(account.Password);
 
-		// Click the Login button
-		sClickAt(Locators.zBtnLogin, "");
+		for (int i=0; i<=2; i++) {
+			zSetLoginName(account.EmailAddress);
+			zSetLoginPassword(account.Password);
 
-		SleepUtil.sleepLong();
+			if (!zGetLoginName().equals(account.EmailAddress)) {
+				zSetLoginName(account.EmailAddress);
+			}
+
+			sClick(Locators.zBtnLogin);
+			zWaitForBusyOverlay();
+			SleepUtil.sleepLong();
+			if (!sIsElementPresent(Locators.zBtnLogin)) {
+				break;
+			}
+		}
 
 		AbsPage page = null;
 		page = new Dialog2FactorAuthEnable(MyApplication, ((AjaxPages) MyApplication).zPageLogin);
@@ -165,7 +177,6 @@ public class PageLogin extends AbsTab {
 		}
 
 		return (null);
-
 	}
 
 	public void zLogin(ZimbraAccount account, String totp, boolean trustThisComputer) throws HarnessException {
@@ -180,22 +191,29 @@ public class PageLogin extends AbsTab {
 
 		try {
 
-			zSetLoginName(account.EmailAddress);
-			zSetLoginPassword(account.Password);
+			for (int i=0; i<=2; i++) {
+				zSetLoginName(account.EmailAddress);
+				zSetLoginPassword(account.Password);
 
-			// Click the Login button
-			sClickAt(Locators.zBtnLogin, "");
-			SleepUtil.sleepMedium();
+				if (!zGetLoginName().equals(account.EmailAddress)) {
+					zSetLoginName(account.EmailAddress);
+				}
+
+				sClick(Locators.zBtnLogin);
+				zWaitForBusyOverlay();
+				SleepUtil.sleepLong();
+				if (!sIsElementPresent(Locators.zBtnLogin)) {
+					break;
+				}
+			}
+
 			zSetLoginTOTPCode(totp);
-
 			if (trustThisComputer == true) {
 				zMarkTrustThisComputer();
 			}
 
 			sClickAt(Locators.zBtnVerify, "");
-
-			((AjaxPages) MyApplication).zPageMain.zWaitForActive(180000);
-
+			((AjaxPages) MyApplication).zPageMain.zWaitForActive(10000);
 			((AjaxPages) MyApplication).zSetActiveAccount(account);
 
 		} finally {

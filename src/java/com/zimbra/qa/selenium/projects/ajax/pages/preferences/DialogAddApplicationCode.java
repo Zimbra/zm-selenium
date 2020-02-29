@@ -44,7 +44,6 @@ public class DialogAddApplicationCode extends AbsDialog {
 		logger.info(myPageName() + " zIsActive()");
 
 		String locator = Locators.zDialogTitleClass;
-
 		if (!this.sIsElementPresent(locator)) {
 			return (false);
 		}
@@ -83,19 +82,15 @@ public class DialogAddApplicationCode extends AbsDialog {
 	}
 
 	public void zEnterApplicationName(String application) throws HarnessException {
-
 		if (application == null)
 			throw new HarnessException("application must not be null");
 
 		String locator = Locators.zApplicationName;
-
 		if (!this.zWaitForElementPresent(locator, "10000"))
 			throw new HarnessException("unable to find body field " + locator);
 
-		this.sFocus(locator);
 		this.sClickAt(locator, "0,0");
-		this.sFocus(locator);
-		this.zKeyboard.zTypeCharacters(application);
+		this.sType(locator, application);
 		SleepUtil.sleepSmall();
 	}
 
@@ -104,7 +99,6 @@ public class DialogAddApplicationCode extends AbsDialog {
 		logger.info(myPageName() + " zGetSecretKey");
 
 		String locator = "css=td[class='WindowInnerContainer'] div[id$='_app_passcode'] span[id$='_app_passcode_value']";
-
 		if (!this.sIsElementPresent(locator)) {
 			throw new HarnessException("Secret key " + locator + " is not present");
 		}

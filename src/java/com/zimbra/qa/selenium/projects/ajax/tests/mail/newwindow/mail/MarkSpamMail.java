@@ -37,7 +37,6 @@ public class MarkSpamMail extends SetGroupMailByMessagePreference {
 			groups = { "bhr" })
 
 	public void MarkSpamMail_01() throws HarnessException {
-
 		String subject = "subject"+ ConfigProperties.getUniqueString();
 
 		// Get the junk folder
@@ -90,7 +89,6 @@ public class MarkSpamMail extends SetGroupMailByMessagePreference {
 			groups = { "sanity" })
 
 	public void MarkSpamMail_02() throws HarnessException {
-
 		String subject = "subject"+ ConfigProperties.getUniqueString();
 
 		// Get the junk folder
