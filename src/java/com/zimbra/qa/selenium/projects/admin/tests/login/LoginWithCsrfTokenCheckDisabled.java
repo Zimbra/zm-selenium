@@ -35,7 +35,7 @@ public class LoginWithCsrfTokenCheckDisabled extends AdminCore {
 
 
 	@Test (description = "Login to the admin console after disabling csrf check", priority=5,
-			groups = { "bhr-restart-skipped", "non-cloud" })
+			groups = { "known-failure", "non-cloud" })
 
 	public void LoginWithCsrfTokenCheckDisabled_01() throws HarnessException {
 		try {

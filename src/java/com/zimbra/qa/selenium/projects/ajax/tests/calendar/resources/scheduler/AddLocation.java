@@ -49,7 +49,7 @@ public class AddLocation extends AjaxCore {
 	public void AddLocation_01(String name, int keyEvent) throws HarnessException {
 		String tz = ZTimeZone.getLocalTimeZone().getID();
 		String apptSubject = ConfigProperties.getUniqueString();
-		String apptLocationEmailAddress = ExecuteHarnessMain.locations.get("location1")[1];
+		String apptLocationEmailAddress = ExecuteHarnessMain.locations.get("location2")[1];
 
 		// Absolute dates in UTC zone
 		Calendar now = Calendar.getInstance();

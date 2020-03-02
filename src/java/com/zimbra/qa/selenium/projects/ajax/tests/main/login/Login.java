@@ -234,7 +234,7 @@ public class Login extends AjaxCore {
 
 	@Bugs (ids = "66788")
 	@Test (description = "Change the zimbraMailURL and login", priority=5,
-			groups = { "functional-restart-skipped", "non-cloud" },
+			groups = { "known-failure", "non-cloud" },
 			dataProvider = "ZimbraMailURLDataProvider")
 
 	public void Login_05(String zimbraMailURLtemp) throws HarnessException {

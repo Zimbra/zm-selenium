@@ -48,8 +48,8 @@ public class SelectDLMember extends AjaxCore  {
 		String dlMember1 = ExecuteHarnessMain.accounts.get("account1")[1];
 		String dlMember2 = ExecuteHarnessMain.accounts.get("account2")[1];
 
-		String dlEmailAddress = ExecuteHarnessMain.distributionlists.get("distributionlist1")[1];
-		String dlName = ExecuteHarnessMain.distributionlists.get("distributionlist1")[0];
+		String dlEmailAddress = ExecuteHarnessMain.distributionlists.get("distributionlist")[1];
+		String dlName = ExecuteHarnessMain.distributionlists.get("distributionlist")[0];
 
 		// Create DL
 		app.zGetActiveAccount().soapSend(

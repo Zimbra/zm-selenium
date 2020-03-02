@@ -1460,10 +1460,8 @@ public class ExecuteHarnessMain {
 		accounts.put("account3",
 				new String[] { "Jerry Wilson", "seleniumaccount3@" + ConfigProperties.getStringProperty("testdomain") });
 
-		distributionlists.put("distributionlist1",
-				new String[] { "Selenium DL1", "seleniumdl1@" + ConfigProperties.getStringProperty("testdomain") });
-		distributionlists.put("distributionlist2",
-				new String[] { "Selenium DL2", "seleniumdl2@" + ConfigProperties.getStringProperty("testdomain") });
+		distributionlists.put("distributionlist",
+				new String[] { "Selenium DL", "seleniumdl@" + ConfigProperties.getStringProperty("testdomain") });
 
 		locations.put("location1",
 				new String[] { "Jupiter ConfRoom", "seleniumlocation1@" + ConfigProperties.getStringProperty("testdomain") });
@@ -1516,11 +1514,11 @@ public class ExecuteHarnessMain {
 			Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo),
 					Charset.forName("UTF-8"), StandardOpenOption.APPEND);
 			CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"),
-					"zmprov cdl " + ExecuteHarnessMain.distributionlists.get("distributionlist1")[1] + " displayName \""
-							+ ExecuteHarnessMain.distributionlists.get("distributionlist1")[0]
+					"zmprov cdl " + ExecuteHarnessMain.distributionlists.get("distributionlist")[1] + " displayName \""
+							+ ExecuteHarnessMain.distributionlists.get("distributionlist")[0]
 							+ "\" Description \"Created by Selenium Automation\"");
 			CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"),
-					"zmprov adlm " + ExecuteHarnessMain.distributionlists.get("distributionlist1")[1] + " "
+					"zmprov adlm " + ExecuteHarnessMain.distributionlists.get("distributionlist")[1] + " "
 							+ ExecuteHarnessMain.accounts.get("account1")[1] + " "
 							+ ExecuteHarnessMain.accounts.get("account2")[1] + " "
 							+ ExecuteHarnessMain.accounts.get("account3")[1]);

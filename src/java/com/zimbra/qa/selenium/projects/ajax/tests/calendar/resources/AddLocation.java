@@ -46,7 +46,7 @@ public class AddLocation extends AjaxCore {
 		String tz = ZTimeZone.getLocalTimeZone().getID();
 		String apptSubject = ConfigProperties.getUniqueString();
 		String apptAttendee = ZimbraAccount.AccountA().EmailAddress;
-		String apptLocationEmailAddress = ExecuteHarnessMain.locations.get("location1")[1];
+		String apptLocationEmailAddress = ExecuteHarnessMain.locations.get("location2")[1];
 
 		// Absolute dates in UTC zone
 		Calendar now = Calendar.getInstance();

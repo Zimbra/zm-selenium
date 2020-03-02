@@ -46,10 +46,10 @@ public class AutoCompleteDL extends AjaxCore  {
 		mailform.zFillField(FormMailNew.Field.Body, body);
 
 		// Auto complete DL
-		List<AutocompleteEntry> entries = mailform.zAutocompleteFillField(FormMailNew.Field.To, ExecuteHarnessMain.distributionlists.get("distributionlist1")[0]);
+		List<AutocompleteEntry> entries = mailform.zAutocompleteFillField(FormMailNew.Field.To, ExecuteHarnessMain.distributionlists.get("distributionlist")[0]);
 		AutocompleteEntry found = null;
 		for (AutocompleteEntry entry : entries) {
-			if ( entry.getAddress().contains(ExecuteHarnessMain.distributionlists.get("distributionlist1")[0]) ) {
+			if ( entry.getAddress().contains(ExecuteHarnessMain.distributionlists.get("distributionlist")[0]) ) {
 				found = entry;
 				break;
 			}
