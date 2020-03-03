@@ -276,7 +276,7 @@ public class GetExternalIMAP extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "IMAP: get updates from the external account - right click -> sync",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void GetExternalIMAP_03() throws HarnessException {
 

@@ -102,7 +102,7 @@ public class SortByReceived extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Sort a list of messages by received (newest -> oldest)",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void SortByReceived_02() throws HarnessException {
 

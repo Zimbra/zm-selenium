@@ -114,7 +114,7 @@ public class AutoCompleteQuickCompleteKeys extends SetGroupMailByMessagePreferen
 
 
 	@Test (description = "Type tab ('	') to automatically accept autocomplete",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void AutoCompleteQuickCompleteKeys_03() throws HarnessException {
 

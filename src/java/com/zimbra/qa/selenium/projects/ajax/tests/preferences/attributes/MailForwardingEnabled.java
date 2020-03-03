@@ -40,7 +40,7 @@ public class MailForwardingEnabled extends AjaxCore {
 
 	@Bugs (ids = "98850")
 	@Test (description = "Verify preferences does not show 'Forward a copy to', if zimbraFeatureMailForwardingEnabled=FALSE",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void MailForwardingEnabled_01() throws HarnessException {
 

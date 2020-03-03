@@ -30,7 +30,7 @@ public class ViewShortcuts extends AjaxCore {
 	}
 
 	@Test (description = "View the shortcuts preference page",
-			groups = { "sanity" })
+			groups = { "bhr" })
 
 	public void ViewShortcuts_01() throws HarnessException {
 

@@ -312,7 +312,7 @@ public class AutoCompleteGAL extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Autocomplete using the GAL - Multiple Matches",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void AutoCompleteGAL_07() throws HarnessException {
 
@@ -351,7 +351,7 @@ public class AutoCompleteGAL extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Autocomplete using the GAL - No Matches",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void AutoCompleteGAL_08() throws HarnessException {
 

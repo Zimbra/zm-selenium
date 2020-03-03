@@ -97,7 +97,7 @@ public class CreateMailText extends SetGroupMailByMessagePreference {
 	}
 
 	@Test (description = "Send a mail using Text editor using keyboard shortcuts - in separate window",
-			groups = { "sanity" }, dataProvider = "DataProvideNewMessageShortcuts")
+			groups = { "functional" }, dataProvider = "DataProvideNewMessageShortcuts")
 
 	public void CreateMailText_02(Shortcut shortcut, String keys) throws HarnessException {
 
@@ -140,7 +140,7 @@ public class CreateMailText extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Send a mail with CC - in a separate window",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void CreateMailText_03() throws HarnessException {
 
@@ -202,7 +202,7 @@ public class CreateMailText extends SetGroupMailByMessagePreference {
 	}
 
 	@Test (description = "Send a mail with different priorities high/normal/low - in a separate window",
-			groups = { "sanity" }, dataProvider = "DataProvidePriorities")
+			groups = { "functional" }, dataProvider = "DataProvidePriorities")
 
 	public void CreateMailText_04(Button option, String verify) throws HarnessException {
 

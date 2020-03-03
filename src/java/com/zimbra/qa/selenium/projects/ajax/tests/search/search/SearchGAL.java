@@ -76,7 +76,7 @@ public class SearchGAL extends AjaxCore {
 
 
 	@Test (description = "Search for a non-existing GAL contact",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void SearchGAL_02() throws HarnessException {
 

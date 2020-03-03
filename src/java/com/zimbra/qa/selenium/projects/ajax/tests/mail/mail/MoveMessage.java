@@ -154,7 +154,7 @@ public class MoveMessage extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Move a mail by using 'move to trash' shortcut '.t'",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void MoveMail_03() throws HarnessException {
 

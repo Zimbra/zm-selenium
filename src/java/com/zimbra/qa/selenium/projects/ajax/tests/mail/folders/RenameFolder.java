@@ -119,7 +119,7 @@ public class RenameFolder extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Get a folder with non-ASCII special characters",
-			groups = { "sanity" }, dataProvider = "DataProviderSupportedCharsets")
+			groups = { "functional" }, dataProvider = "DataProviderSupportedCharsets")
 
 	public void RenameFolder_03(ZCharset charset, String foldername) throws HarnessException {
 

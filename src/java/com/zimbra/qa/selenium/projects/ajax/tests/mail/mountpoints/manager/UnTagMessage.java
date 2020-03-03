@@ -127,7 +127,7 @@ public class UnTagMessage extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Verify success on Un Tag (keyboard='u') a shared mail (manager share)",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void UnTagMessage_02() throws HarnessException {
 

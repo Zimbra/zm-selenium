@@ -34,7 +34,7 @@ public class SendMailWithSpecialCharacter extends SetGroupMailByMessagePreferenc
 
 	@Bugs (ids = "82073")
 	@Test (description = "Send a mail with the '&' character in the subject - verify no '&amp;'",
-			groups = { "sanity" } )
+			groups = { "functional" } )
 
 	public void SendMailWithSpecialCharacter_01() throws HarnessException {
 
@@ -61,7 +61,7 @@ public class SendMailWithSpecialCharacter extends SetGroupMailByMessagePreferenc
 
 	@Bugs (ids = "82073")
 	@Test (description = "Receive a mail with the '&' character in the subject - verify no '&amp;'",
-			groups = { "sanity" } )
+			groups = { "functional" } )
 
 	public void ReceiveMailWithSpecialCharacter_02() throws HarnessException {
 

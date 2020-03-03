@@ -142,67 +142,10 @@ public class DeleteFile extends EnableBriefcaseFeature {
 	}
 
 
-	@Test (description = "Upload file through RestUtil - delete using <Backspace> Key & check trash",
-			groups = { "sanity" })
-
-	public void DeleteFile_03() throws HarnessException {
-
-		ZimbraAccount account = app.zGetActiveAccount();
-
-		FolderItem briefcaseFolder = FolderItem.importFromSOAP(account, SystemFolder.Briefcase);
-
-		FolderItem trashFolder = FolderItem.importFromSOAP(account, SystemFolder.Trash);
-
-		// Create file item
-		String filePath = ConfigProperties.getBaseDirectory() + "/data/public/other/testtextfile.txt";
-
-		FileItem fileItem = new FileItem(filePath);
-
-		String fileName = fileItem.getName();
-
-		Shortcut shortcut = Shortcut.S_BACKSPACE;
-
-		// Upload file to server through RestUtil
-		String attachmentId = account.uploadFileUsingRestUtil(filePath);
-
-		// Save uploaded file to briefcase through SOAP
-		account.soapSend("<SaveDocumentRequest xmlns='urn:zimbraMail'><doc l='"
-				+ briefcaseFolder.getId() + "'>" + "<upload id='"
-				+ attachmentId + "'/></doc></SaveDocumentRequest>");
-
-		String docId = account.soapSelectValue("//mail:SaveDocumentResponse//mail:doc", "id");
-
-		// Select briefcase folder
-		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseFolder, true);
-
-		// Click on created document
-		app.zPageBriefcase.zListItem(Action.A_BRIEFCASE_CHECKBOX, fileItem);
-
-		// Click the Backspace keyboard shortcut
-		DialogConfirm deleteConfirm = (DialogConfirm) app.zPageBriefcase.zKeyboardShortcut(shortcut);
-
-		// Click OK on Confirmation dialog
-		deleteConfirm.zPressButton(Button.B_YES);
-
-		// Select briefcase folder
-		app.zTreeBriefcase.zTreeItem(Action.A_LEFTCLICK, briefcaseFolder, false);
-
-		// Verify file was deleted from the list
-		ZAssert.assertFalse(app.zPageBriefcase.isPresentInListView(fileName), "Verify file was deleted through GUI");
-
-		// Verify document moved to Trash
-		account.soapSend("<SearchRequest xmlns='urn:zimbraMail' types='document'>" + "<query>in:"
-				+ trashFolder.getName() + " " + fileName + "</query>" + "</SearchRequest>");
-
-		String id = account.soapSelectValue("//mail:SearchResponse//mail:doc", "id");
-		ZAssert.assertEquals(id, docId, "Verify the file was moved to the trash folder: " + fileName + " id: " + id);
-	}
-
-
 	@Test (description = "Upload file through RestUtil - delete using Right Click context menu",
 			groups = { "sanity" })
 
-	public void DeleteFile_04() throws HarnessException {
+	public void DeleteFile_03() throws HarnessException {
 
 		ZimbraAccount account = app.zGetActiveAccount();
 
@@ -248,7 +191,7 @@ public class DeleteFile extends EnableBriefcaseFeature {
 	@Test (description = "Cannot delete uploaded file if it was already deleted once before",
 			groups = { "sanity" })
 
-	public void DeleteFile_05() throws HarnessException {
+	public void DeleteFile_04() throws HarnessException {
 
 		ZimbraAccount account = app.zGetActiveAccount();
 

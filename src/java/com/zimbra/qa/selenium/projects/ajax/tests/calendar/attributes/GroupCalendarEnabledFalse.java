@@ -110,7 +110,7 @@ public class GroupCalendarEnabledFalse extends AjaxCore {
 
 
 	@Test (description = "Bug 59940 -  Location: edit field can display upto 4 characters only if group calendar feature is OFF",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void GroupCalendarEnabledFalse_02() throws HarnessException {
 

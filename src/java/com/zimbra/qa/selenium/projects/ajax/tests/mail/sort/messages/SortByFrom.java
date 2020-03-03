@@ -110,7 +110,7 @@ public class SortByFrom extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Sort a list of messages by from (A->Z)",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void SortByFrom_02() throws HarnessException {
 

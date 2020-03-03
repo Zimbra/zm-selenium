@@ -127,7 +127,7 @@ public class ForwardMail extends SetGroupMailByMessagePreference {
 
 	@Bugs (ids = "102475")
 	@Test (description = "Forward (on behalf of) to a message in a shared folder (read-only rights)  - no SOBO rights",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void ForwardMail_02() throws HarnessException {
 

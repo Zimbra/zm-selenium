@@ -112,10 +112,9 @@ public class CreateDistributionList extends AdminCore {
 	
 	@Bugs(ids = "51011")
 	@Test (description = "Create a DL and add it as a member of another DL",
-			groups = { "bhr" })
+			groups = { "sanity" })
 
 	public void CreateDistributionList_03() throws HarnessException {
-
 		this.startingPage.zNavigateTo();
 		
 		// Create a distribution list in the Admin Console using SOAP

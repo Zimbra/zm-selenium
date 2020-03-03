@@ -70,7 +70,7 @@ public class SetCalendarWorkingHours extends AjaxCore {
 
 	@Bugs (ids = "103862")
 	@Test (description = "Verify that modifying 'Work Week:' preference prompts for UI refresh",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void SetCalendarWorkingHours_02() throws HarnessException {
 
@@ -99,7 +99,7 @@ public class SetCalendarWorkingHours extends AjaxCore {
 
 	@Bugs (ids = "102406,50479")
 	@Test (description = "When setting custom working hours, JS error",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void SetCalendarWorkingHours_03() throws HarnessException {
 

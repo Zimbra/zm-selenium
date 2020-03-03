@@ -58,20 +58,18 @@ public class DialogTag extends AbsDialog {
 		logger.info(myPageName() + " zSetTagName(" + name + ")");
 
 		String locator = "css=input#" + Locators.zTagNameFieldId;
-
 		if (!this.sIsElementPresent(locator)) {
 			throw new HarnessException("Tag name locator " + locator + " is not present");
 		}
 
+		this.zWaitForElementPresent(locator);
 		this.sType(locator, name);
-
 	}
 
 	public void zSetTagColor(String color) throws HarnessException {
 		logger.info(myPageName() + " zSetTagColor(" + color + ")");
 
 		throw new HarnessException("implement me!");
-
 	}
 
 	@Override

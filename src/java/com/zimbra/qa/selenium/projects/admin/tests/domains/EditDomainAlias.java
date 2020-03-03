@@ -50,7 +50,7 @@ public class EditDomainAlias extends AdminCore {
 	 */
 
 	@Test (description = "Verify edit domain operation --  Manage Domain List View",
-			groups = { "bhr" })
+			groups = { "sanity" })
 
 	public void EditDomainAlias_01() throws HarnessException {
 

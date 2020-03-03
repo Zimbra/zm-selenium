@@ -141,7 +141,7 @@ public class GetDomain extends AdminCore {
 	 */
 
 	@Test (description = "Search created domain",
-			groups = { "bhr" })
+			groups = { "sanity" })
 
 	public void GetDomain_03() throws HarnessException {
 

@@ -125,7 +125,7 @@ public class ViewMail extends AdminCore {
 
 	@Bugs (ids = "69155")
 	@Test (description = "View mail - manage account > right click > view mail",
-			groups = { "smoke" })
+			groups = { "functional" })
 
 	public void ViewMail_02() throws HarnessException {
 
@@ -286,7 +286,7 @@ public class ViewMail extends AdminCore {
 	 * @throws HarnessException
 	 */
 	@Test (description = "View mail - Edit a basic account - Search List View",
-			groups = { "bhr" })
+			groups = { "functional" })
 
 	public void ViewMail_04() throws HarnessException {
 

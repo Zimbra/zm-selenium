@@ -38,7 +38,7 @@ public class ViewMessage extends AjaxCore {
 	}
 
 
-	@Test (description = "Search for mail content.  Verify search terms are highlighted.",
+	@Test (description = "Search for mail content. Verify search terms are highlighted.",
 			groups = { "sanity" })
 
 	public void ViewMessage_01() throws HarnessException {

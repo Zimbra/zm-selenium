@@ -101,7 +101,7 @@ public class MoveContactGroup extends AjaxCore {
 
 
 	@Test (description = "Move a contact group to folder Emailed Contacts with shortcut m",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void MoveToEmailedContactsClickShortcutm_03() throws HarnessException {
 
@@ -138,7 +138,7 @@ public class MoveContactGroup extends AjaxCore {
 
 
 	@Test (description = "Move a group to folder Emailed Contacts by click toolbar Edit then open folder dropdown",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void MoveToEmailedContactsClickToolbarEditThenFolderDropdown_04() throws HarnessException {
 

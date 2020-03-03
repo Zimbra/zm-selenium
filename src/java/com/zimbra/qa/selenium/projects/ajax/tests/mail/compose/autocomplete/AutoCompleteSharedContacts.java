@@ -137,7 +137,7 @@ public class AutoCompleteSharedContacts extends SetGroupMailByMessagePreference 
 
 
 	@Test (description = "Autocomplete using the Shared Contacts - Partial First Name",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void AutoCompleteSharedContacts_02() throws HarnessException {
 
@@ -342,7 +342,7 @@ public class AutoCompleteSharedContacts extends SetGroupMailByMessagePreference 
 
 
 	@Test (description = "Autocomplete using a Shared Contact - Multiple Matches",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void AutoCompleteSharedContacts_08() throws HarnessException {
 
@@ -398,7 +398,7 @@ public class AutoCompleteSharedContacts extends SetGroupMailByMessagePreference 
 
 
 	@Test (description = "Autocomplete using a Shared Contact - No Matches",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void AutoCompleteSharedContacts_09() throws HarnessException {
 

@@ -210,7 +210,7 @@ public class EditAccount extends AdminCore {
 	 */
 
 	@Test (description = "Edit a basic account - Search List View",
-			groups = { "bhr" })
+			groups = { "sanity" })
 
 	public void EditAccount_04() throws HarnessException {
 

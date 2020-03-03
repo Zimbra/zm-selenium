@@ -326,7 +326,7 @@ public class MoveIntoFolderFilters extends AjaxCore {
 
 
 	@Test (description = "Create an outgoing Message Filter having criterion 'To - Contains - X - Move into Folder Y'",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void MoveIntoFolderFilters_04() throws HarnessException {
 

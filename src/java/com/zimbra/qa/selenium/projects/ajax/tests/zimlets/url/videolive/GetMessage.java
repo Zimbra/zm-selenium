@@ -29,7 +29,7 @@ public class GetMessage extends AjaxCore {
 
 
 	@Test (description = "Receive a mail with embedded video",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void GetMail_01() throws HarnessException {
 

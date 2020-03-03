@@ -85,19 +85,30 @@ public class Dialog2FactorAuthEnable extends AbsDialog {
 	public void zSetTotpCode(String totpCode) throws HarnessException {
 		logger.info(myPageName() + " zSetTotpCode(" + totpCode + ")");
 
-		String locator = "css=div[class='ZmTwoFactorCustomInputLoginPage'] input[id$='_code_input']";
+		String locator;
+		if (ConfigProperties.isZimbra9XEnvironment()) {
+			locator = "css=div[class='ZmTwoFactorCustomInputLoginPage'] input[id$='_code_input']";
+		} else {
+			locator = "css=td[class='WindowInnerContainer'] div[class='ZmTwoFactorSetupContainer'] input[id$='_code_input']";
+		}
 		if (!this.sIsElementPresent(locator)) {
 			throw new HarnessException("Secret key locator " + locator + " is not present");
 		}
 
 		this.sClickAt(locator, "");
-		this.zKeyboard.zTypeCharacters(totpCode);
+		this.sType(locator, totpCode);
+		SleepUtil.sleepSmall();
 	}
 
 	public String zGetSecretKey() throws HarnessException {
 		logger.info(myPageName() + " zGetSecretKey");
 
-		String locator = "css=div[class='ZmTwoFactorCustomSetupContainerLoginPage'] span[id$='_email_key']";
+		String locator;
+		if (ConfigProperties.isZimbra9XEnvironment()) {
+			locator = "css=div[class='ZmTwoFactorCustomSetupContainerLoginPage'] span[id$='_email_key']";
+		} else {
+			locator = "css=td[class='WindowInnerContainer'] div[class='ZmTwoFactorSetupContainer'] span[id$='_email_key']";
+		}
 		if (!this.sIsElementPresent(locator)) {
 			throw new HarnessException("Secret key " + locator + " is not present");
 		}
@@ -113,7 +124,7 @@ public class Dialog2FactorAuthEnable extends AbsDialog {
 		}
 
 		this.sClickAt(locator, "");
-		this.zKeyboard.zTypeCharacters(password);
+		this.sType(locator, password);
 		SleepUtil.sleepSmall();
 	}
 

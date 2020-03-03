@@ -108,7 +108,7 @@ public class GetFeed extends SetGroupMailByMessagePreference {
 	
 	@Bugs (ids = "52121")
 	@Test (description = "Bug 52121: Feed-generated messages do not render in AJAX client ",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void GetFeed_03() throws HarnessException {
 

@@ -219,7 +219,7 @@ public class CreateMeetingUsingMessage extends AjaxCore {
 
 
 	@Test (description = "Create a meeting invite by right clicking to plain text formatted message by setting zimbraPrefComposeFormat=text & zimbraPrefForwardReplyInOriginalFormat=TRUE",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void CreateMeetingUsingMessage_04() throws HarnessException {
 
@@ -280,7 +280,7 @@ public class CreateMeetingUsingMessage extends AjaxCore {
 
 
 	@Test (description = "Create a meeting invite by right clicking to HTML formatted message by setting zimbraPrefComposeFormat=html & zimbraPrefForwardReplyInOriginalFormat=TRUE",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void CreateMeetingUsingMessage_05() throws HarnessException {
 
@@ -340,7 +340,7 @@ public class CreateMeetingUsingMessage extends AjaxCore {
 
 
 	@Test (description = "Create a meeting invite by right clicking to HTML formatted message by setting zimbraPrefComposeFormat=html & zimbraPrefForwardReplyInOriginalFormat=FALSE",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void CreateMeetingUsingMessage_06() throws HarnessException {
 
@@ -400,7 +400,7 @@ public class CreateMeetingUsingMessage extends AjaxCore {
 
 
 	@Test (description = "Create a meeting invite by right clicking to plain text formatted message by setting zimbraPrefComposeFormat=html & zimbraPrefForwardReplyInOriginalFormat=TRUE",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void CreateMeetingUsingMessage_07() throws HarnessException {
 
@@ -462,7 +462,7 @@ public class CreateMeetingUsingMessage extends AjaxCore {
 
 	@Bugs (ids = "80922")
 	@Test (description = "Create a meeting invite by right clicking to plain text formatted message by setting zimbraPrefComposeFormat=html & zimbraPrefForwardReplyInOriginalFormat=FALSE",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void CreateMeetingUsingMessage_08() throws HarnessException {
 
@@ -524,7 +524,7 @@ public class CreateMeetingUsingMessage extends AjaxCore {
 
 	@Bugs (ids = "76043")
 	@Test (description = "Create a meeting invite by right clicking to plain text formatted message by setting zimbraPrefComposeFormat=html & zimbraPrefForwardReplyInOriginalFormat=TRUE",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void CreateMeetingUsingMessage_09() throws HarnessException {
 

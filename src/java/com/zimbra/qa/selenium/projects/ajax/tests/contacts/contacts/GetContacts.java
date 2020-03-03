@@ -247,7 +247,7 @@ public class GetContacts extends AjaxCore  {
 
 
 	@Test (description = "Click all Alphabetbar buttons: Verify only contact started with the alphabet is listed ",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void GetContact_Iterate_Buttons_04() throws HarnessException {
 

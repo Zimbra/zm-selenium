@@ -101,7 +101,7 @@ public class DeleteDistributionList extends AdminCore {
 	 */
 
 	@Test (description = "Verify delete operation for distribution list -- Manage distribution list/Right Click Menu",
-			groups = { "bhr" })
+			groups = { "functional" })
 
 	public void DeleteDistributionList_02() throws HarnessException {
 

@@ -28,7 +28,7 @@ public class Toolbar extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Hover over Delete button",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void Toolbar_01() throws HarnessException {
 

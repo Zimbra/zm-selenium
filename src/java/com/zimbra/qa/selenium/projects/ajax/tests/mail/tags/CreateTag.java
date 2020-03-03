@@ -54,7 +54,7 @@ public class CreateTag extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Create a new tag using keyboard shortcuts",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void CreateTag_02() throws HarnessException {
 

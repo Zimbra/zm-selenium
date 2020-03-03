@@ -125,7 +125,7 @@ public class MoveTask extends AjaxCore {
 
 
 	@Test (description = "Move a task by selecting task, then click 'm' shortcut",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void MoveTask_02() throws HarnessException {
 

@@ -91,7 +91,7 @@ public class Cancel extends AjaxCore {
 
 	@Bugs (ids = "65749")
 	@Test (description = "Reply to Cancelled Appointments not using zimbraPrefFromAddress",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void CancelMeeting_02() throws HarnessException {
 

@@ -76,7 +76,7 @@ public class GetCos extends AdminCore {
 	 */
 
 	@Test (description = "Verify created cos is displayed in UI - Search list view",
-			groups = { "bhr" })
+			groups = { "sanity" })
 
 	public void GetCos_02() throws HarnessException {
 

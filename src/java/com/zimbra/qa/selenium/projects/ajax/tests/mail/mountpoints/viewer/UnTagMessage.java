@@ -110,7 +110,7 @@ public class UnTagMessage extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Verify Permission Denied on Un Tag (keyboard='u') a shared mail (read-only share)",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void UnTagMessage_02() throws HarnessException {
 

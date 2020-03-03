@@ -48,8 +48,8 @@ public class GlobalHomeSearch extends AdminCore {
 	 * @throws HarnessException
 	 */
 
-	@Test (description = "Verify search functionality of COS.",
-			groups = { "sanity" })
+	@Test (description = "Verify search functionality of COS",
+			groups = { "smoke" })
 
 	public void HomeSearchFunctionalityCOS_01() throws HarnessException {
 
@@ -94,8 +94,8 @@ public class GlobalHomeSearch extends AdminCore {
 	 */
 
 	@Bugs (ids = "96768")
-	@Test (description = "Verify search functionality of Account Object.",
-			groups = { "sanity" })
+	@Test (description = "Verify search functionality of Account",
+			groups = { "smoke" })
 
 	public void HomeSearchFunctionalityAccount_02() throws HarnessException {
 
@@ -139,8 +139,8 @@ public class GlobalHomeSearch extends AdminCore {
 	 * @throws HarnessException
 	 */
 
-	@Test (description = "Verify search functionality of Resource Object.",
-			groups = { "sanity" })
+	@Test (description = "Verify search functionality of Resource",
+			groups = { "smoke" })
 
 	public void HomeSearchFunctionalityResource_03() throws HarnessException {
 
@@ -188,8 +188,8 @@ public class GlobalHomeSearch extends AdminCore {
 	 * @throws HarnessException
 	 */
 
-	@Test (description = "Verify search functionality of DL Object.",
-			groups = { "sanity" })
+	@Test (description = "Verify search functionality of DL",
+			groups = { "smoke" })
 
 	public void HomeSearchFunctionalityDL_04() throws HarnessException {
 
@@ -234,8 +234,8 @@ public class GlobalHomeSearch extends AdminCore {
 	 * @throws HarnessException
 	 */
 
-	@Test (description = "Verify search functionality of Alias Object.",
-			groups = { "sanity" })
+	@Test (description = "Verify search functionality of Alias",
+			groups = { "smoke" })
 
 	public void HomeSearchFunctionalityAlias_05() throws HarnessException {
 
@@ -282,8 +282,8 @@ public class GlobalHomeSearch extends AdminCore {
 	 * @throws HarnessException
 	 */
 
-	@Test (description = "Verify search functionality of domain Object.",
-			groups = { "sanity" })
+	@Test (description = "Verify search functionality of domain",
+			groups = { "smoke" })
 
 	public void HomeSearchFunctionalityDomain_06() throws HarnessException {
 

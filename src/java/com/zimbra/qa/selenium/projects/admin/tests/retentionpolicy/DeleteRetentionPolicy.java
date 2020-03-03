@@ -43,7 +43,7 @@ public class DeleteRetentionPolicy extends AdminCore {
 	 */
 
 	@Test (description = "Delete retention policy",
-			groups = { "bhr" })
+			groups = { "sanity" })
 
 	public void DeleteRetentionPolicy_01() throws HarnessException {
 
