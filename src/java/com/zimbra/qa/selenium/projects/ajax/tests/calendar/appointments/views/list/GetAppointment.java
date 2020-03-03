@@ -48,11 +48,13 @@ public class GetAppointment extends AjaxCore {
 
 		// Appointment data
 		String subject = ConfigProperties.getUniqueString();
+		String location = "location" + ConfigProperties.getUniqueString();
+		String content = "content" + ConfigProperties.getUniqueString();
 
 		// Absolute dates in UTC zone
 		Calendar now = Calendar.getInstance();
-		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 15, 0, 0);
-		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 16, 0, 0);
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 16, 0, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 17, 0, 0);
 
 		// Get local timezone value
 		String tz = ZTimeZone.getLocalTimeZone().getID();
@@ -62,7 +64,7 @@ public class GetAppointment extends AjaxCore {
 					"<CreateAppointmentRequest xmlns='urn:zimbraMail'>"
 				+		"<m>"
 				+			"<inv>"
-				+				"<comp status='CONF' fb='B' class='PUB' transp='O' allDay='0' name='"+ subject +"' >"
+				+				"<comp status='CONF' fb='B' class='PUB' transp='O' allDay='0' name='"+ subject +"' loc='"+ location +"' >"
 				+					"<s d='"+ startUTC.toTimeZone(tz).toYYYYMMDDTHHMMSS() +"' tz='"+ tz +"'/>"
 				+					"<e d='"+ endUTC.toTimeZone(tz).toYYYYMMDDTHHMMSS() +"' tz='"+ tz +"'/>"
 				+					"<or a='"+ app.zGetActiveAccount().EmailAddress + "'/>"
@@ -70,7 +72,7 @@ public class GetAppointment extends AjaxCore {
 				+			"</inv>"
 				+			"<su>"+ subject + "</su>"
 				+			"<mp ct='text/plain'>"
-				+				"<content>content</content>"
+				+				"<content>"+ content +"</content>"
 				+			"</mp>"
 				+		"</m>"
 				+	"</CreateAppointmentRequest>");

@@ -56,10 +56,6 @@ public class ContactsDetailedSearchEnabled extends SetGroupMailByMessagePreferen
 			ZimbraAdminAccount.GlobalAdmin().soapSend("<ModifyAccountRequest xmlns='urn:zimbraAdmin'>" + "<id>"
 					+ ZimbraAccount.Account7().ZimbraId + "</id>" + "<a n='ou'>HR</a>" + "</ModifyAccountRequest>");
 
-			ZimbraDomain domain = new ZimbraDomain(ZimbraAccount.Account5().EmailAddress.split("@")[1]);
-			domain.provision();
-			domain.syncGalAccount();
-
 			// Open the new mail form
 			FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
 			ZAssert.assertNotNull(mailform, "Verify the new form opened");

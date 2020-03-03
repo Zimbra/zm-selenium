@@ -140,11 +140,9 @@ public class FormMailNew extends AbsForm {
 		public static final String zOkBtnOnContinueComposeWarningDialog = "css=div#OkCancel.DwtDialog td[id^='OK'] td[id$='_title']";
 		public static final String zCancelBtnOnContinueComposeWarningDialog = "css=div#OkCancel.DwtDialog td[id^='Cancel'] td[id$='_title']";
 		public static final String zSendLaterDisabled = "css=div[id='SEND_LATER'][class*='ZDisabled']";
-
 	}
 
 	public static class Field {
-
 		public static final Field To = new Field("To");
 		public static final Field Cc = new Field("Cc");
 		public static final Field Bcc = new Field("Bcc");
@@ -162,14 +160,11 @@ public class FormMailNew extends AbsForm {
 		public String toString() {
 			return (field);
 		}
-
 	}
 
 	public FormMailNew(AbsApplication application) {
 		super(application);
-
 		logger.info("new " + FormMailNew.class.getCanonicalName());
-
 	}
 
 	@Override
@@ -571,12 +566,12 @@ public class FormMailNew extends AbsForm {
 		String optionLocator = "css=td[id$='_title']:contains(" + value + ")";
 
 		if (pulldownLocator != null) {
-
 			if (!this.sIsElementPresent(pulldownLocator)) {
 				throw new HarnessException("pulldownLocator not present! " + pulldownLocator);
 			}
 
 			this.sClickAt(pulldownLocator, "");
+			SleepUtil.sleepSmall();
 			this.zWaitForBusyOverlay();
 
 			if (optionLocator != null) {
@@ -598,19 +593,14 @@ public class FormMailNew extends AbsForm {
 	}
 
 	public void zFillField(Field field, String value) throws HarnessException {
-
 		tracer.trace("Set " + field + " to " + value);
 
 		String locator = null;
-
 		if (field == Field.From) {
-
 			zSetFromIdentity(value);
-
 			return;
 
 		} else if (field == Field.To) {
-
 			if (ConfigProperties.getStringProperty("browser").contains("edge")) {
 				locator = "css=textarea[id$='_to_control']";
 			} else {
