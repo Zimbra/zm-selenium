@@ -18,9 +18,7 @@ package com.zimbra.qa.selenium.projects.ajax.tests.mail.newwindow.appointment;
 
 import java.util.*;
 import org.testng.annotations.Test;
-import com.zimbra.common.soap.Element;
 import com.zimbra.qa.selenium.framework.core.Bugs;
-import com.zimbra.qa.selenium.framework.items.FolderItem;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.*;
@@ -38,26 +36,6 @@ public class TentativeMeeting extends AjaxCore {
 				put("zimbraPrefGroupMailBy", "message");
 			}
 		};
-	}
-
-	private void SendCreateAppointmentRequest(String subject, ZDate start) throws HarnessException {
-
-		ZimbraAccount.AccountA().soapSend(
-				"<CreateAppointmentRequest xmlns='urn:zimbraMail'>"
-				+		"<m>"
-				+			"<inv method='REQUEST' type='event' status='CONF' draft='0' class='PUB' fb='B' transp='O' allDay='0' name='"+ subject +"'>"
-				+				"<s d='"+ start.toTimeZone(ZTimeZone.getLocalTimeZone().getID()).toYYYYMMDDTHHMMSS() +"' tz='"+ ZTimeZone.getLocalTimeZone().getID() +"'/>"
-				+				"<e d='"+ start.addHours(2).toTimeZone(ZTimeZone.getLocalTimeZone().getID()).toYYYYMMDDTHHMMSS() +"' tz='"+ ZTimeZone.getLocalTimeZone().getID() +"'/>"
-				+				"<or a='"+ ZimbraAccount.AccountA().EmailAddress +"'/>"
-				+				"<at role='REQ' ptst='NE' rsvp='1' a='" + app.zGetActiveAccount().EmailAddress + "'/>"
-				+			"</inv>"
-				+			"<e a='"+ app.zGetActiveAccount().EmailAddress +"' t='t'/>"
-				+			"<su>"+ subject +"</su>"
-				+			"<mp content-type='text/plain'>"
-				+				"<content>content</content>"
-				+			"</mp>"
-				+		"</m>"
-				+	"</CreateAppointmentRequest>");
 	}
 
 
