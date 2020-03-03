@@ -117,7 +117,7 @@ public class DeleteMail extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Verify Delete keyboard shortcut is non-functional on mountpoint message (read-only share)",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void DeleteMail_02() throws HarnessException {
 

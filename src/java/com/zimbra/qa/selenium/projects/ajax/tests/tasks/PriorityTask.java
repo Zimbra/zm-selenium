@@ -125,7 +125,7 @@ public class PriorityTask extends AjaxCore {
 
 
 	@Test (description = "View a normal priority task (priority=5)",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void PriorityTask_03() throws HarnessException {
 

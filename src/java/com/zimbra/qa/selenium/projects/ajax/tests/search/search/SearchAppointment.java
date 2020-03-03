@@ -84,7 +84,7 @@ public class SearchAppointment extends AjaxCore {
 
 	@Bugs (ids = "49386")
 	@Test (description = "Script error when searching in calendar list view",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void SearchAppointment_02() throws HarnessException {
 

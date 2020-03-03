@@ -147,7 +147,7 @@ public class EditContact extends AjaxCore  {
 
 
 	@Test (description = "Cancel an edited contact by click Close, then click No",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void ClickToolbarCloseThenClickNo_05() throws HarnessException {
 
@@ -185,7 +185,7 @@ public class EditContact extends AjaxCore  {
 
 
 	@Test (description = "Cancel an edited contact by click Close, then click Cancel",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void ClickToolbarCloseThenClickCancel_06() throws HarnessException {
 
@@ -226,7 +226,7 @@ public class EditContact extends AjaxCore  {
 
 
 	@Test (description = "Cancel an edited contact by click Close, then click Yes",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void ClickToolbarCloseThenClickYes_07() throws HarnessException {
 

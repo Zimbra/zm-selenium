@@ -115,7 +115,7 @@ public class DeleteAppointment extends AjaxCore {
 
 
 	@Test (description = "Verify Delete keyboard shortcut is non-functional on mountpoint appointment (read-only share)",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void DeleteAppointment_02() throws HarnessException {
 

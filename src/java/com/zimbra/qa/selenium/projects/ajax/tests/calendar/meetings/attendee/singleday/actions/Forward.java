@@ -201,7 +201,7 @@ public class Forward extends AjaxCore {
 
 	@Bugs (ids = "100340")
 	@Test (description = "forwarding invite shows html source in meeting notes section",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void ForwardMeeting_03() throws HarnessException {
 

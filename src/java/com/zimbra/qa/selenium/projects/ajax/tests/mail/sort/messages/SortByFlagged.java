@@ -110,7 +110,7 @@ public class SortByFlagged extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Sort a list of messages by flagged",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void SortByFlagged_02() throws HarnessException {
 

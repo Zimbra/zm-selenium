@@ -195,7 +195,7 @@ public class GetMessage extends AjaxCore {
 
 	@Bugs (ids = "29018,67927")
 	@Test (description = "Receive a mail with a URL in angled brackets",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void GetMessage_05() throws HarnessException {
 

@@ -123,10 +123,42 @@ public class MarkReadMail extends SetGroupMailByMessagePreference {
 	}
 
 
-	@Test (description = "Mark a message as read by clicking on it, then using 'mr' hotkeys",
+	@Test (description = "Mark a message as read by context menu -> mark read",
 			groups = { "sanity" })
 
 	public void MarkReadMail_03() throws HarnessException {
+
+		// Create the message data to be sent
+		String subject = "subject"+ ConfigProperties.getUniqueString();
+
+		ZimbraAccount.AccountA().soapSend(
+				"<SendMsgRequest xmlns='urn:zimbraMail'>" +
+				"<m>" +
+				"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
+				"<su>"+ subject +"</su>" +
+				"<mp ct='text/plain'>" +
+				"<content>content"+ ConfigProperties.getUniqueString() +"</content>" +
+				"</mp>" +
+				"</m>" +
+		"</SendMsgRequest>");
+
+		// Create a mail item to represent the message
+		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
+
+		// Refresh current view
+		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message present in current view");
+		app.zPageMail.zListItem(Action.A_RIGHTCLICK, Button.O_MARK_AS_READ, mail.dSubject);
+
+		// Verify the message is marked read in the server (flags attribute should not contain (u)nread)
+		mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
+		ZAssert.assertStringDoesNotContain(mail.getFlags(), "u", "Verify the message is marked read in the server");
+	}
+
+
+	@Test (description = "Mark a message as read by clicking on it, then using 'mr' hotkeys",
+			groups = { "functional" })
+
+	public void MarkReadMail_04() throws HarnessException {
 
 		// Create the message data to be sent
 		String subject = "subject"+ ConfigProperties.getUniqueString();
@@ -151,38 +183,6 @@ public class MarkReadMail extends SetGroupMailByMessagePreference {
 		// Select the item
 		app.zPageMail.zListItem(Action.A_LEFTCLICK, mail.dSubject);
 		app.zPageMail.zKeyboardShortcut(Shortcut.S_MAIL_MARKREAD);
-
-		// Verify the message is marked read in the server (flags attribute should not contain (u)nread)
-		mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
-		ZAssert.assertStringDoesNotContain(mail.getFlags(), "u", "Verify the message is marked read in the server");
-	}
-
-
-	@Test (description = "Mark a message as read by context menu -> mark read",
-			groups = { "sanity" })
-
-	public void MarkReadMail_04() throws HarnessException {
-
-		// Create the message data to be sent
-		String subject = "subject"+ ConfigProperties.getUniqueString();
-
-		ZimbraAccount.AccountA().soapSend(
-				"<SendMsgRequest xmlns='urn:zimbraMail'>" +
-				"<m>" +
-				"<e t='t' a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
-				"<su>"+ subject +"</su>" +
-				"<mp ct='text/plain'>" +
-				"<content>content"+ ConfigProperties.getUniqueString() +"</content>" +
-				"</mp>" +
-				"</m>" +
-		"</SendMsgRequest>");
-
-		// Create a mail item to represent the message
-		MailItem mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");
-
-		// Refresh current view
-		ZAssert.assertTrue(app.zPageMail.zVerifyMailExists(subject), "Verify message present in current view");
-		app.zPageMail.zListItem(Action.A_RIGHTCLICK, Button.O_MARK_AS_READ, mail.dSubject);
 
 		// Verify the message is marked read in the server (flags attribute should not contain (u)nread)
 		mail = MailItem.importFromSOAP(app.zGetActiveAccount(), "subject:("+ subject +")");

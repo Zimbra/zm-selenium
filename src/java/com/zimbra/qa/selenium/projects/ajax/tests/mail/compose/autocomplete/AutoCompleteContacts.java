@@ -378,7 +378,7 @@ public class AutoCompleteContacts extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Autocomplete using a Contact - Multiple Matches",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void AutoCompleteContacts_08() throws HarnessException {
 
@@ -431,7 +431,7 @@ public class AutoCompleteContacts extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Autocomplete using a Contact - No Matches",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void AutoCompleteContacts_09() throws HarnessException {
 
@@ -690,7 +690,7 @@ public class AutoCompleteContacts extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Autocomplete should not match trashed contacts",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void AutoCompleteContacts_Bug47044_13() throws HarnessException {
 
@@ -754,7 +754,7 @@ public class AutoCompleteContacts extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Autocomplete should not match deleted contacts",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void AutoCompleteContacts_Bug47044_14() throws HarnessException {
 

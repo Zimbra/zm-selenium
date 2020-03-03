@@ -83,7 +83,7 @@ public class MarkReadMail extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Mark a message as read by clicking on it, then using 'mr' hotkeys",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void MarkReadMail_02() throws HarnessException {
 

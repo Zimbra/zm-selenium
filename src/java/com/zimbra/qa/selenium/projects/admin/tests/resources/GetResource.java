@@ -185,7 +185,7 @@ public class GetResource extends AdminCore {
 	 */
 
 	@Test (description = "Verify created resource is present in the resource list view",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void GetResource_04() throws HarnessException {
 

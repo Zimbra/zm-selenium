@@ -35,7 +35,7 @@ public class CancelComposeText extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Verify message dialog, when cancel a plain text draft (body filled)",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void CancelComposeText_01() throws HarnessException {
 

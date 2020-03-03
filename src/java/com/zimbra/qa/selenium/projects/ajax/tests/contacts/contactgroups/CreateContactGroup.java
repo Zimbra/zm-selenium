@@ -298,7 +298,7 @@ public class CreateContactGroup extends AjaxCore  {
 
 	@Bugs (ids = "60652")
 	@Test (description = "Bug 60652 - Contacts are not populated while creating a new contact group",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void CreateContactGroup_06() throws HarnessException {
 

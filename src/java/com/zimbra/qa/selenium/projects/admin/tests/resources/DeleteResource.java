@@ -111,7 +111,7 @@ public class DeleteResource extends AdminCore {
 	 */
 
 	@Test (description = "Verify delete resource operation -- Manage resource View -- Equipment",
-			groups = { "bhr" })
+			groups = { "sanity" })
 
 	public void DeleteResource_02() throws HarnessException {
 
@@ -235,7 +235,7 @@ public class DeleteResource extends AdminCore {
 	 */
 
 	@Test (description = "Verify delete resource operation -- Manage resource View/Right Click Menu -- Equipment",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void DeleteResource_04() throws HarnessException {
 

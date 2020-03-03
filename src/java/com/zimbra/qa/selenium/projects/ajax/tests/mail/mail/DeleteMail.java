@@ -469,7 +469,7 @@ public class DeleteMail extends SetGroupMailByMessagePreference {
 
 	@Bugs (ids = "53564")
 	@Test (description = "Hard-delete multiple messages (3) by selecting and typing 'shift-del' shortcut",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void HardDeleteMail_09() throws HarnessException {
 

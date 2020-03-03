@@ -38,7 +38,7 @@ public class IncludeTrashInSearchFalse extends AjaxCore {
 
 
 	@Test (description = "Verify zimbraPrefIncludeTrashInSearch setting when set to FALSE",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void IncludeTrashInSearchFalse_01() throws HarnessException {
 

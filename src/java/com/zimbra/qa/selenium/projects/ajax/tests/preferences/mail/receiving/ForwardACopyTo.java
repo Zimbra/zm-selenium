@@ -34,7 +34,7 @@ public class ForwardACopyTo extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Set forward a copy to when receiving the message from preferences",
-			groups = { "sanity" })
+			groups = { "bhr" })
 
 	public void ForwardACopyTo_01() throws HarnessException {
 

@@ -137,7 +137,7 @@ public class ChangeCustomColorWithExcludeFreeBusy extends AjaxCore {
 
 
 	@Test (description = "Verify user can set custom color and marking OFF to 'Exclude this Calendar' checkbox.",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void ChangeCustomColorWithExcludeFreeBusy_02() throws HarnessException {
 

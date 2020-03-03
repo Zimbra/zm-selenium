@@ -166,7 +166,7 @@ public class MoveContact extends AjaxCore {
 
 
 	@Test (description = "Move a contact item to Emailed Contacts by expand Move dropdown on toolbar, then select Trash",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void MoveContact_05() throws HarnessException {
 
@@ -192,8 +192,8 @@ public class MoveContact extends AjaxCore {
 	}
 
 
-	@Test (description = "Move a contact item to sub addressbook.  Click toolbar Edit then Location",
-			groups = { "sanity" })
+	@Test (description = "Move a contact item to sub addressbook. Click toolbar Edit then Location",
+			groups = { "functional" })
 
 	public void MoveContact_06() throws HarnessException {
 

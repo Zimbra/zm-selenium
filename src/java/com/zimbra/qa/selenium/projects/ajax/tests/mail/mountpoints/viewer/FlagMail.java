@@ -116,7 +116,7 @@ public class FlagMail extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Verify Permission Denied on Flag (keyboard='mf') a shared mail (read-only share)",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void FlagMail_02() throws HarnessException {
 

@@ -95,7 +95,7 @@ public class DuplicateCos extends AdminCore {
 	 */
 
 	@Test (description = "Verify Duplicate cos operation -- Search COS list view/Right click menu",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void DuplicateCos_02() throws HarnessException {
 

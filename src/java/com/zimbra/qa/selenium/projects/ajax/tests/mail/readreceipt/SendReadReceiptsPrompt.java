@@ -85,7 +85,7 @@ public class SendReadReceiptsPrompt extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "zimbraPrefMailSendReadReceipts=prompt - verify prompt, verify receipt is not sent",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void SendReadReceiptsPrompt_02() throws HarnessException {
 

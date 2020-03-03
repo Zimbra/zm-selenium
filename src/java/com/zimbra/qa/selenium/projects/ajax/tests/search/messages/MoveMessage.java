@@ -147,7 +147,7 @@ public class MoveMessage extends SetGroupMailByMessagePreference {
 
 	@Bugs (ids = "80611")
 	@Test (description = "From search: Move a message in Sent to a subfolder",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void MoveConversation03() throws HarnessException {
 

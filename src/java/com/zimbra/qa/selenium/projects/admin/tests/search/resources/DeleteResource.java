@@ -112,7 +112,7 @@ public class DeleteResource extends AdminCore {
 	 */
 
 	@Test (description = "Verify delete resource operation -- Search List View -- Equipment",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void DeleteResource_02() throws HarnessException {
 

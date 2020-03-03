@@ -97,7 +97,7 @@ public class ChangePassword extends AdminCore {
 	 */
 
 	@Test (description = "Edit password  -- manage account > right click > change password",
-			groups = { "bhr" })
+			groups = { "sanity" })
 
 	public void ChangePassword_02() throws HarnessException {
 

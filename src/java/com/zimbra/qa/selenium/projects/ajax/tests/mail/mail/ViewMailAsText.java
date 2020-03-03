@@ -62,7 +62,7 @@ public class ViewMailAsText extends AjaxCore {
 
 
 	@Test (description = "zimbraPrefMessageViewHtmlPreferred=FALSE: Receive message with html only parts - should be rendered as text conversion",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void ViewMail_02() throws HarnessException {
 
@@ -85,7 +85,7 @@ public class ViewMailAsText extends AjaxCore {
 
 
 	@Test (description = "zimbraPrefMessageViewHtmlPreferred=FALSE: Receive message with text and html  parts - should be rendered as text",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void ViewMail_03() throws HarnessException {
 

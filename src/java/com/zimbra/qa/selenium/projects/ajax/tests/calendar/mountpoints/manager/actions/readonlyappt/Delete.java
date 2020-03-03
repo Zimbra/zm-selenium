@@ -272,7 +272,7 @@ public class Delete extends AjaxCore {
 
 
 	@Test (description = "Assistant clicks to calendar invite from shared calendar and deletes the invite OBO boss",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void Delete_03() throws HarnessException {
 

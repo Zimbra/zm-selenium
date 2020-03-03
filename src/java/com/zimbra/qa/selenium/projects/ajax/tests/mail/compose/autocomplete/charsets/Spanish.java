@@ -98,7 +98,7 @@ public class Spanish extends SetGroupMailByMessagePreference {
 
 	@Bugs (ids = "48736")
 	@Test (description = "Autocomplete using Spanish characters in the name - GAL contact",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void AutoComplete_02() throws HarnessException {
 
@@ -156,7 +156,7 @@ public class Spanish extends SetGroupMailByMessagePreference {
 
 	@Bugs (ids = "65065")
 	@Test (description = "Autocomplete using Spanish characters in the name - local contact",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void AutoComplete_03() throws HarnessException {
 

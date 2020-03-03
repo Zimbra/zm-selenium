@@ -262,7 +262,7 @@ public class GetExternalPOP extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "POP: get updates from the external account - right click -> sync",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void GetExternalPOP_03() throws HarnessException {
 

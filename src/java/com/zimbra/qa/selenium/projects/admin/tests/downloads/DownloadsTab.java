@@ -50,7 +50,7 @@ public class DownloadsTab extends AdminCore {
 	};
 
 	@Test (description = "Verify the Downloads Tab contains the correct download links",
-			groups = { "sanity" })
+			groups = { "smoke" })
 
 	public void DownloadsTab_01() throws HarnessException {
 
@@ -77,7 +77,7 @@ public class DownloadsTab extends AdminCore {
 
 	@Bugs (ids = "100755")
 	@Test (description = "Verify the downloads links are accessible",
-			groups = { "sanity" })
+			groups = { "smoke" })
 
 	public void DownloadsTab_02() throws HarnessException {
 

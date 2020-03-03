@@ -125,7 +125,7 @@ public class SortBySize extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Sort a list of messages by size (small->large)",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void SortBySize_02() throws HarnessException {
 

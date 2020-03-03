@@ -16,15 +16,12 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.contacts.dl.modify;
 
-import java.util.List;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
-import com.zimbra.qa.selenium.projects.ajax.pages.AutocompleteEntry;
 import com.zimbra.qa.selenium.projects.ajax.pages.contacts.FormContactDistributionListNew;
-import com.zimbra.qa.selenium.projects.ajax.pages.mail.FormMailNew;
 
 public class ModifyDLDisplayNameAndDescription extends AjaxCore  {
 
@@ -88,23 +85,5 @@ public class ModifyDLDisplayNameAndDescription extends AjaxCore  {
 		String actualDLDescription = app.zGetActiveAccount().soapSelectValue("//acct:dl//acct:a[@n='description']", null);
 		ZAssert.assertEquals(actualDLDisplayName, displayName, "Verify DL display name");
 		ZAssert.assertEquals(actualDLDescription, description, "Verify DL description");
-
-		// GAL Sync
-		ZimbraDomain domain = new ZimbraDomain(ZimbraAccount.Account1().EmailAddress.split("@")[1]);
-		domain.provision();
-		domain.syncGalAccount();
-
-		// Try to auto complete DL using display name
-		app.zPageMail.zNavigateTo();
-		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
-		List<AutocompleteEntry> entries = mailform.zAutocompleteFillField(FormMailNew.Field.To, displayName);
-		AutocompleteEntry found = null;
-		for (AutocompleteEntry entry : entries) {
-			if (entry.getAddress().contains(fullDLName)) {
-				found = entry;
-				break;
-			}
-		}
-		ZAssert.assertNotNull(found, "Verify the autocomplete entry exists in the returned list");
 	}
 }

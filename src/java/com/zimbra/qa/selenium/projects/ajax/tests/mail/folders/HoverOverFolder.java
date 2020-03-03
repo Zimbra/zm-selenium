@@ -73,7 +73,7 @@ public class HoverOverFolder extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Hover over a folder - Verify contents",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void TooltipFolder_02() throws HarnessException {
 
@@ -169,7 +169,7 @@ public class HoverOverFolder extends SetGroupMailByMessagePreference {
 	}
 
 	@Test (description = "Hover over the system folders",
-			groups = { "sanity" },
+			groups = { "functional" },
 			dataProvider = "DataProviderSystemFolders")
 
 	public void TooltipFolder_10(String foldername, SystemFolder foldertype) throws HarnessException {

@@ -73,7 +73,7 @@ public class DeleteContact extends AjaxCore {
 
 
 	@Test (description = "Delete a contact item selected with checkbox and  verify toast message",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void DeleteContact_02() throws HarnessException {
 
@@ -112,7 +112,7 @@ public class DeleteContact extends AjaxCore {
 	}
 
 	@Test (description = "Delete a contact item using keyboard short cut Del and verify toast mesg",
-			groups = { "sanity"}, dataProvider = "DataProviderDeleteKeys")
+			groups = { "functional"}, dataProvider = "DataProviderDeleteKeys")
 
 	public void DeleteContact_03(String name, Keys keyEvent) throws HarnessException {
 
@@ -145,7 +145,7 @@ public class DeleteContact extends AjaxCore {
 
 
 	@Test (description = "Right click then click delete and verify toast message",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void DeleteContact_04() throws HarnessException {
 
@@ -175,7 +175,7 @@ public class DeleteContact extends AjaxCore {
 
 
 	@Test (description = "Delete multiple contact items and verify toast message",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void DeleteContact_05() throws HarnessException {
 

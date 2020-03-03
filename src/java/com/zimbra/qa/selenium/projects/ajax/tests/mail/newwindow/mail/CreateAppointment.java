@@ -34,7 +34,7 @@ public class CreateAppointment extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Create Appointment from new window by action menu -> Create Appointment",
-			groups = { "sanity" })
+			groups = { "bhr" })
 
 	public void CreateAppointment_01() throws HarnessException {
 

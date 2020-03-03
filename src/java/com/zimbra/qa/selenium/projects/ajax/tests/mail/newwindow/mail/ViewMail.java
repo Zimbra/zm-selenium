@@ -181,7 +181,7 @@ public class ViewMail extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Verify multipart/alternative with text and html parts",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void ViewMail_04() throws HarnessException {
 

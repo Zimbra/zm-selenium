@@ -71,7 +71,7 @@ public class PriorityMail extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Receive a low priority mail",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void GetMail_02() throws HarnessException {
 

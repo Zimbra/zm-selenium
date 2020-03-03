@@ -66,7 +66,7 @@ public class DeleteContactGroup extends AjaxCore {
 
 
 	@Test (description = "Delete a contact group by click Delete on Context Menu and verify toast message",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void DeleteContactGroup_02() throws HarnessException {
 
@@ -87,7 +87,7 @@ public class DeleteContactGroup extends AjaxCore {
 
 
 	@Test (description = "Delete a contact group selected by checkbox by click Delete button on toolbar and verify toast message",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void DeleteContactGroup_03() throws HarnessException {
 
@@ -107,7 +107,7 @@ public class DeleteContactGroup extends AjaxCore {
 
 
 	@Test (description = "Delete a contact group use shortcut Del and verify toast message",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void DeleteContactGroup_04() throws HarnessException {
 
@@ -131,7 +131,7 @@ public class DeleteContactGroup extends AjaxCore {
 
 
 	@Test (description = "Delete a contact group use shortcut backspace and verify toast message",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void DeleteContactGroup_05() throws HarnessException {
 

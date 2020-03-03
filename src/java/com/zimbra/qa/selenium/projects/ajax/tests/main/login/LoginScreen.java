@@ -65,7 +65,7 @@ public class LoginScreen extends AjaxCore {
 
 	@Bugs (ids = "50457")
 	@Test (description = "Verify 'web client' rather than 'collaboration suite'",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void LoginScreen_03() throws HarnessException {
 		String title = app.zPageLogin.sGetTitle();

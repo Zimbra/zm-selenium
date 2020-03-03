@@ -245,7 +245,7 @@ public class ViewContact extends AjaxCore  {
 
 	// Last, First (Company)
 	@Test (description = "View a contact, file as Last, First (Company)",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void FileAsLastFirstCompany_05() throws HarnessException {
 
@@ -298,7 +298,7 @@ public class ViewContact extends AjaxCore  {
 
 	// First Last (Company)
 	@Test (description = "View a contact, file as First Last (Company)",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void FileAsFirstLastCompany_06() throws HarnessException {
 
@@ -351,7 +351,7 @@ public class ViewContact extends AjaxCore  {
 
 	// Company (First Last)
 	@Test (description = "View a contact, file as Company (First Last)",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void FileAsCompanyFirstLast_07() throws HarnessException {
 

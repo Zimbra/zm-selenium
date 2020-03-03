@@ -250,7 +250,7 @@ public class SaveDraftMail extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Save draft with 2 Cc",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void SaveDraftMail_06() throws HarnessException {
 
@@ -350,7 +350,7 @@ public class SaveDraftMail extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Save draft with 2 Bcc",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void SaveDraftMail_08() throws HarnessException {
 

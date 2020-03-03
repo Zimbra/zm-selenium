@@ -32,7 +32,7 @@ public class EditDelegate extends AjaxCore {
 
 
 	@Test (description = "Edit a 'Send As' delegate - Add 'Send On Behalf Of'",
-			groups = { "sanity" })
+			groups = { "bhr" })
 
 	public void EditDelegate_01() throws HarnessException {
 

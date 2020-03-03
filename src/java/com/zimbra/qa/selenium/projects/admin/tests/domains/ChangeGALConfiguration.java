@@ -135,7 +135,7 @@ public class ChangeGALConfiguration extends AdminCore {
 
 	@Bugs (ids = "96777")
 	@Test (description = "Verify GAL Configuration after chnaging GAL mode of a domain from external to both",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void ChangeGALConfiguration_02() throws HarnessException {
 

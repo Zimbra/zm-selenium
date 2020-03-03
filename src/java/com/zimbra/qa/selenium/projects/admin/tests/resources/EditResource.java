@@ -348,7 +348,7 @@ public class EditResource extends AdminCore {
 	 */
 
 	@Test (description = " Edit Resource name  -- Manage resource View -- Equipment",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void EditResource_06() throws HarnessException {
 

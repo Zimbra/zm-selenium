@@ -34,7 +34,7 @@ public class MailPollingIntervalAsMailArrives extends AjaxCore {
 
 
 	@Test (description = "Set 'Check new mail': As Mail Arrives",
-			groups = { "sanity" })
+			groups = { "bhr" })
 
 	public void MailPollingIntervalAsMailArrives_01() throws HarnessException {
 

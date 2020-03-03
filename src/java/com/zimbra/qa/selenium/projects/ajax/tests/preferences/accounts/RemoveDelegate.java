@@ -32,7 +32,7 @@ public class RemoveDelegate extends AjaxCore {
 
 
 	@Test (description = "Remove a delegate",
-			groups = { "sanity" })
+			groups = { "bhr" })
 
 	public void RemoveDelegate_01() throws HarnessException {
 

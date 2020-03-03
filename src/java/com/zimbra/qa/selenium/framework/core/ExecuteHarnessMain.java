@@ -74,7 +74,7 @@ public class ExecuteHarnessMain {
 	public static StringBuilder testsCountSummary = new StringBuilder();
 
 	public static int currentRunningTest = 1;
-	public static int retryLimit = 2;
+	public static int retryLimit = 3;
 	public static Boolean isTestRetried = false;
 
 	public static Date testStartTime;
@@ -890,7 +890,6 @@ public class ExecuteHarnessMain {
 	}
 
 	public static class RetryAnalyzer implements IRetryAnalyzer {
-
 		int retryCounter = 0;
 
 		@Override
@@ -953,12 +952,7 @@ public class ExecuteHarnessMain {
 	}
 
 
-	/**
-	 * A TestNG TestListener that tracks the pass/fail/skip counts
-	 * <p>
-	 *
-	 * @author Matt Rhoades
-	 */
+	// TestNG TestListener that tracks the pass/fail/skip counts
 	public static class ResultListener extends TestListenerAdapter {
 
 		private static List<String> failedTests = new ArrayList<String>();
@@ -1136,9 +1130,7 @@ public class ExecuteHarnessMain {
 			getScreenCapture(result);
 		}
 
-		/**
-		 * Add failed tests
-		 */
+		// Add failed tests
 		@Override
 		public void onTestFailure(ITestResult result) {
 			testsFailed++;
@@ -1149,9 +1141,7 @@ public class ExecuteHarnessMain {
 			getScreenCapture(result);
 		}
 
-		/**
-		 * Add skipped tests
-		 */
+		// Add skipped tests
 		@Override
 		public void onTestSkipped(ITestResult result) {
 			testsSkipped++;
@@ -1161,9 +1151,7 @@ public class ExecuteHarnessMain {
 			getScreenCapture(result);
 		}
 
-		/**
-		 * Total tests
-		 */
+		// Total tests
 		@Override
 		public void onTestStart(ITestResult result) {
 			setRunningTestCase(result);
@@ -1225,6 +1213,7 @@ public class ExecuteHarnessMain {
 		options.addOption(new Option("eg", "excludeGroups", true,
 				"comma separated list of groups to exclude when execute (skip)"));
 		options.addOption(new Option("v", "version", true, "zimbra version"));
+		options.addOption(new Option("r", "retry", true, "test retry"));
 
 		// Set required options
 		options.getOption("j").setRequired(true);
@@ -1328,6 +1317,10 @@ public class ExecuteHarnessMain {
 
 			if (cmd.hasOption('w')) {
 				workingfoldername = cmd.getOptionValue('w');
+			}
+
+			if (cmd.hasOption('r')) {
+				retryLimit = Integer.parseInt(cmd.getOptionValue('r'));
 			}
 
 		} catch (ParseException e) {

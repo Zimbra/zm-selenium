@@ -157,7 +157,7 @@ public class GetContactGroup extends AjaxCore {
 
 	@Bugs (ids = "100227")
 	@Test (description = "Click Alphabetbar button Z: Verify only contact groups started with Z|z is listed",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void GetContactGroup_B_Button_03() throws HarnessException {
 
@@ -217,7 +217,7 @@ public class GetContactGroup extends AjaxCore {
 
 
 	@Test (description = "Click all Alphabetbar buttons: Verify only contact group started with the alphabet is listed",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void GetContactGroup_Iterate_Buttons_04() throws HarnessException {
 

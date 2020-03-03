@@ -108,7 +108,7 @@ public class EditDocument extends EnableBriefcaseFeature {
 
 	@Bugs (ids = "97124")
 	@Test (description = "Create document through SOAP - edit text & name & verify through GUI",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void EditDocument_02() throws HarnessException {
 

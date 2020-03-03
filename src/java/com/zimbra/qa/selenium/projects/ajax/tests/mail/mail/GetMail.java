@@ -248,7 +248,7 @@ public class GetMail extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Type keyboard shortcut (=) for 'Get Mail' to receive any new messages",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void GetMail_06() throws HarnessException {
 

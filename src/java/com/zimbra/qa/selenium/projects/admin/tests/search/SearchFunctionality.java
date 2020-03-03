@@ -44,7 +44,7 @@ public class SearchFunctionality extends AdminCore {
 	 * @throws HarnessException
 	 */
 
-	@Test (description = "Verify search functionality of all results.",
+	@Test (description = "Verify search functionality of all results",
 			groups = { "bhr" })
 
 	public void SearchFunctionality_01() throws HarnessException {
@@ -218,7 +218,7 @@ public class SearchFunctionality extends AdminCore {
 	 */
 
 	@Test (description = "Verify search functionality of locked out accounts",
-			groups = { "bhr" })
+			groups = { "functional" })
 
 	public void SearchFunctionality_05() throws HarnessException {
 
@@ -262,7 +262,7 @@ public class SearchFunctionality extends AdminCore {
 	 */
 
 	@Test (description = "Verify search functionality of non-active accounts",
-			groups = { "bhr" })
+			groups = { "functional" })
 
 	public void SearchFunctionality_06() throws HarnessException {
 
@@ -306,7 +306,7 @@ public class SearchFunctionality extends AdminCore {
 	 */
 
 	@Test (description = "Verify search functionality of admin accounts",
-			groups = { "bhr" })
+			groups = { "functional" })
 
 	public void SearchFunctionality_07() throws HarnessException {
 
@@ -370,7 +370,7 @@ public class SearchFunctionality extends AdminCore {
 	 */
 
 	@Test (description = "Verify search functionality of closed accounts",
-			groups = { "bhr" })
+			groups = { "functional" })
 
 	public void SearchFunctionality_08() throws HarnessException {
 
@@ -414,7 +414,7 @@ public class SearchFunctionality extends AdminCore {
 	 */
 
 	@Test (description = "Verify search functionality of maintenance accounts",
-			groups = { "bhr" })
+			groups = { "functional" })
 
 	public void SearchFunctionality_09() throws HarnessException {
 

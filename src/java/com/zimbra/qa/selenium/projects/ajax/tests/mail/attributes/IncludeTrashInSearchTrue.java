@@ -33,7 +33,7 @@ public class IncludeTrashInSearchTrue extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Verify when zimbraPrefIncludeTrashInSearch=TRUE, that trash is included in search",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void IncludeTrashInSearchTrue_01() throws HarnessException {
 

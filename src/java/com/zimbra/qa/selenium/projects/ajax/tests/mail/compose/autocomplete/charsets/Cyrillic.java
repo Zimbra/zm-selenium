@@ -85,7 +85,7 @@ public class Cyrillic extends SetGroupMailByMessagePreference {
 
 	@Bugs (ids = "48736")
 	@Test (description = "Autocomplete using Cyrillic characters in the name - GAL contact",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void AutoComplete_02() throws HarnessException {
 
