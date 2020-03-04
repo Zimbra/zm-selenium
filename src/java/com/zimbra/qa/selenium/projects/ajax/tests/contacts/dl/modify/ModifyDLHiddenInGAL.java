@@ -38,7 +38,6 @@ public class ModifyDLHiddenInGAL extends AjaxCore  {
 			groups = { "sanity" })
 
 	public void HiddenDLInGALAutoComplete_01() throws HarnessException {
-
 		String dlName = "dl" + ConfigProperties.getUniqueString();
 		String fullDLName = dlName + "@" + ConfigProperties.getStringProperty("testdomain");
 
@@ -64,11 +63,6 @@ public class ModifyDLHiddenInGAL extends AjaxCore  {
 		app.zPageContacts.sClickAt("css=input[id$='_dlHideInGal']", "0,0");
 		SleepUtil.sleepSmall();
 		FormContactDistributionListNew.zSubmit();
-
-		// GAL Sync
-		ZimbraDomain domain = new ZimbraDomain(ZimbraAccount.Account1().EmailAddress.split("@")[1]);
-		domain.provision();
-		domain.syncGalAccount();
 
 		// Try to auto complete DL
 		app.zPageMail.zNavigateTo();

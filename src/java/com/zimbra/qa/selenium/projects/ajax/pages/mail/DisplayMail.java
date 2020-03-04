@@ -158,6 +158,7 @@ public class DisplayMail extends AbsDisplay {
 				throw new HarnessException("locator is not present for button " + button + " : " + locator);
 
 			this.sClick(locator);
+			SleepUtil.sleepMedium();
 
 			this.zWaitForBusyOverlay();
 
