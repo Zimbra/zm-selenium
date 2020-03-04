@@ -180,8 +180,6 @@ public class FormMailNew extends AbsForm {
 	public AbsPage zToolbarPressButton(Button button) throws HarnessException {
 		logger.info(myPageName() + " zToolbarPressButton(" + button + ")");
 
-		tracer.trace("Click button " + button);
-
 		if (button == null)
 			throw new HarnessException("Button cannot be null!");
 
@@ -327,30 +325,24 @@ public class FormMailNew extends AbsForm {
 		String subject = we.getAttribute("value");
 
 		if (pulldown == Button.B_OPTIONS) {
-
 			if (option == Button.O_OPTION_REQUEST_READ_RECEIPT) {
-
 				pulldownLocator = "css=div[id^='ztb__COMPOSE'] div[id$='__COMPOSE_OPTIONS'] td[id$='_dropdown']";
 				optionLocator = "css=div[id^='zm__COMPOSE'] div[id*='REQUEST_READ_RECEIPT'] td[id$='_title']";
 				page = null;
 
 			} else if (option == Button.O_FORMAT_AS_HTML) {
-
 				pulldownLocator = Locators.zOptionsdropdown;
 				optionLocator = Locators.FormatAsHTMLMenu;
 
 				page = null;
 
 			} else if (option == Button.O_FORMAT_AS_PLAIN_TEXT) {
-
 				pulldownLocator = Locators.zOptionsdropdown;
 				optionLocator = Locators.FormatAsPlainTextMenu;
-
 				page = new DialogWarning(DialogWarning.DialogWarningID.ComposeOptionsChangeWarning, this.MyApplication,
 						((AjaxPages) this.MyApplication).zPageMail);
 
 			} else if (option == Button.O_DONT_INCLUDE_ORIGINAL_MESSAGE) {
-
 				pulldownLocator = Locators.zOptionsdropdown;
 
 				if (subject.startsWith("Re:")) {
@@ -362,7 +354,6 @@ public class FormMailNew extends AbsForm {
 				page = null;
 
 			} else if (option == Button.O_INCLUDE_ORIGINAL_MESSAGE) {
-
 				pulldownLocator = Locators.zOptionsdropdown;
 
 				if (subject.startsWith("Re:")) {
@@ -902,15 +893,14 @@ public class FormMailNew extends AbsForm {
 		// Handle the subject
 		if (mail.dSubject != null) {
 			zFillField(Field.Subject, mail.dSubject);
-
 		}
 
 		if (mail.dBodyText != null) {
 			String textBody = "css=textarea[id*=ZmHtmlEditor]";
 			sType(textBody, mail.dBodyText);
 			sFireEvent(textBody, "keyup");
-
 		}
+
 		if (mail.dBodyHtml != null) {
 			String bodyLocator = "css=iframe[id*='ifr']";
 			zWaitForElementPresent(bodyLocator, "10000");
@@ -918,8 +908,6 @@ public class FormMailNew extends AbsForm {
 			zTypeFormattedText(bodyLocator, mail.dBodyHtml);
 		}
 
-		// Handle the Recipient list, which can be a combination of To, Cc, Bcc, and
-		// From
 		StringBuilder to = null;
 		StringBuilder cc = null;
 		StringBuilder bcc = null;
@@ -980,7 +968,6 @@ public class FormMailNew extends AbsForm {
 		if (bcc != null) {
 			this.zFillField(Field.Bcc, bcc.toString());
 		}
-
 	}
 
 	@Override
@@ -1003,13 +990,9 @@ public class FormMailNew extends AbsForm {
 	}
 
 	public boolean zHasAttachment() throws HarnessException {
-
 		String locator = "css=div[id$='_attachments_div'] div.attBubbleContainer";
-
 		boolean hasBubble = this.sIsElementPresent(locator);
-
 		return (hasBubble);
-
 	}
 
 	public boolean zHasAttachment(String attachmentName) throws HarnessException {

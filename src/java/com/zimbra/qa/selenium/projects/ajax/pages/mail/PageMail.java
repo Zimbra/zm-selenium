@@ -463,7 +463,6 @@ public class PageMail extends AbsTab {
 		AbsPage page = null;
 
 		if (button == Button.B_NEW) {
-
 			locator = "css=div[id$='__NEW_MENU'] td[id$='__NEW_MENU_title']";
 			page = new FormMailNew(this.MyApplication);
 			zWaitForElementPresent(locator);
@@ -480,7 +479,6 @@ public class PageMail extends AbsTab {
 			}
 
 		} else if (button == Button.B_NEW_IN_NEW_WINDOW) {
-
 			locator = "css=div[id$='__NEW_MENU'] td[id$='__NEW_MENU_title']";
 			page = new SeparateWindowFormMailNew(this.MyApplication);
 			this.sClick(locator);
@@ -488,7 +486,6 @@ public class PageMail extends AbsTab {
 			return (page);
 
 		} else if (button == Button.B_DETACH_COMPOSE) {
-
 			locator = "css=div[id$='__DETACH_COMPOSE'] td[id$='COMPOSE_left_icon']";
 			page = new SeparateWindowFormMailNew(this.MyApplication);
 			this.sClickAt(locator, "0,0");
@@ -497,11 +494,9 @@ public class PageMail extends AbsTab {
 			return (page);
 
 		} else if (button == Button.B_REFRESH || button == Button.B_LOADFEED) {
-
 			return (((AjaxPages) this.MyApplication).zPageMain.zToolbarPressButton(Button.B_REFRESH));
 
 		} else if (button == Button.B_DELETE) {
-
 			String id;
 			if (zGetPropMailView() == PageMailView.BY_MESSAGE) {
 				id = "zb__TV-main__DELETE_left_icon";
@@ -518,7 +513,6 @@ public class PageMail extends AbsTab {
 			locator = "css=td#" + id;
 
 		} else if (button == Button.B_MOVE) {
-
 			// Check if the button is enabled
 			String attrs = sGetAttribute("xpath=(//td[contains(@id, '__MOVE_left_icon')]/div)@class");
 			if (attrs.contains("ZDisabledImage")) {
@@ -529,17 +523,14 @@ public class PageMail extends AbsTab {
 			page = new DialogMove(MyApplication, this);
 
 		} else if (button == Button.B_ADD_TO_CALENDAR) {
-
 			locator = "css=a[id$='2_calendar']";
 			page = new DialogAddToCalendar(MyApplication, this);
 
 		} else if (button == Button.B_BRIEFCASE) {
-
 			locator = "css=a[id$='2_briefcase']";
 			page = new DialogAddToBriefcase(MyApplication, this);
 
 		} else if (button == Button.B_LAUNCH_IN_SEPARATE_WINDOW) {
-
 			boolean isCLV = this.zIsVisiblePerPosition("css=div#ztb__CLV-main", 0, 0);
 
 			String pulldownLocator, optionLocator;
@@ -564,7 +555,6 @@ public class PageMail extends AbsTab {
 			return (page);
 
 		} else if (button == Button.B_PRINT) {
-
 			// Check if the button is enabled
 			String attrs = sGetAttribute("xpath=(//td[@id='" + Locators.zPrintIconBtnID + "']/div)@class");
 			if (attrs.contains("ZDisabledImage")) {
@@ -598,7 +588,6 @@ public class PageMail extends AbsTab {
 			}
 
 		} else if (button == Button.B_REPLYALL) {
-
 			page = new FormMailNew(this.MyApplication);
 			locator = Locators.zReplyAllToolbarButton;
 
@@ -613,7 +602,6 @@ public class PageMail extends AbsTab {
 			}
 
 		} else if (button == Button.B_FORWARD) {
-
 			page = new FormMailNew(this.MyApplication);
 			locator = Locators.zForwardToolbarButton;
 
@@ -628,7 +616,6 @@ public class PageMail extends AbsTab {
 			}
 
 		} else if ((button == Button.B_RESPORTSPAM) || (button == Button.B_RESPORTNOTSPAM)) {
-
 			page = null;
 			if (zGetPropMailView() == PageMailView.BY_MESSAGE) {
 				locator = "css=div[id='zb__TV-main__SPAM'] td[id$='_title']";
@@ -641,7 +628,6 @@ public class PageMail extends AbsTab {
 			}
 
 		} else if (button == Button.B_TAG) {
-
 			// Check if the button is enabled
 			String attrs = sGetAttribute("xpath=(//td[@id='" + Locators.zTagMenuDropdownBtnID + "']/div)@class");
 			if (attrs.contains("ZDisabledImage")) {
@@ -650,9 +636,7 @@ public class PageMail extends AbsTab {
 			locator = "id='" + Locators.zTagMenuDropdownBtnID + "'";
 
 		} else if (button == Button.B_RFC822_ATTACHMENT_LINK) {
-
 			locator = "css=a[id^='zv__TV__TV-main_MSG']";
-
 			page = new SeparateWindow(this.MyApplication);
 			((SeparateWindow) page).zInitializeWindowNames();
 			this.sClickAt(locator, "");
@@ -661,9 +645,7 @@ public class PageMail extends AbsTab {
 			return (page);
 
 		} else if (button == Button.B_ARCHIVE) {
-
 			page = null;
-
 			if (this.sIsElementPresent("css=div[id$='zb__TV-main__ARCHIVE'] td[id$='_title']")) {
 				locator = "css=div[id$='zb__TV-main__ARCHIVE'] td[id$='_title']";
 			} else if (this.sIsElementPresent("css=div[id$='zb__CLV-main__ARCHIVE'] td[id$='_title']")) {
@@ -673,7 +655,6 @@ public class PageMail extends AbsTab {
 			}
 
 		} else if (button == Button.B_READMORE) {
-
 			if (!this.sIsElementPresent("css=div[id$='__KEEP_READING']")) {
 				throw new HarnessException("Keep Reading button not present " + button);
 			}
@@ -686,11 +667,9 @@ public class PageMail extends AbsTab {
 			page = null;
 
 		} else if (button == Button.B_NEWWINDOW) {
-
 			return (this.zToolbarPressPulldown(Button.B_ACTIONS, Button.B_LAUNCH_IN_SEPARATE_WINDOW));
 
 		} else if (button == Button.B_LISTVIEW) {
-
 			// Check if the button is enabled
 			String attrs = sGetAttribute("xpath=(//td[@id='" + Locators.zViewMenuDropdownBtnID + "']/div)@class");
 			if (attrs.contains("ZDisabledImage")) {
@@ -699,12 +678,10 @@ public class PageMail extends AbsTab {
 			locator = "id='" + Locators.zViewMenuDropdownBtnID + "'";
 
 		} else if (button == Button.B_CLOSE_CONVERSATION) {
-
 			locator = "css=div[id^='ztb__CV'][style*='z-index: 3'] div[id$='__CLOSE'] td[id$='_title']";
 			page = null;
 
 		} else if (button == Button.B_SELECT_ALL) {
-
 			if (zGetPropMailView() == PageMailView.BY_MESSAGE) {
 				locator = "css=div#zv__TV-main td[id$='__se'] div[id$='__se']";
 			} else {
@@ -713,12 +690,10 @@ public class PageMail extends AbsTab {
 			page = null;
 
 		} else if (button == Button.B_EML_ATTACHEMENT) {
-
 			locator = "css=td a[id^='zv__TV__TV-main_MSG_attLinks']:contains('8989.eml')";
 			page = new SeparateWindowDisplayMail(this.MyApplication);
 
 		} else if (button == Button.B_SHIFT_SELECT_ALL) {
-
 			if (zGetPropMailView() == PageMailView.BY_MESSAGE) {
 				locator = "css=div#zv__TV-main td[id$='__se'] div[id$='__se']";
 			} else {
@@ -738,14 +713,15 @@ public class PageMail extends AbsTab {
 		} else if ((button == Button.B_MAIL_VIEW_READING_PANE_BOTTOM)
 				|| (button == Button.B_MAIL_VIEW_READING_PANE_RIGHT)
 				|| (button == Button.B_MAIL_VIEW_READING_PANE_OFF)) {
-
 			locator = "css=div.ZToolbar:not([aria-hidden='true']) td[id$=VIEW_MENU_dropdown]>div[class='ImgSelectPullDownArrow']";
 			this.sClick(locator);
+			SleepUtil.sleepSmall();
 			this.zWaitForBusyOverlay();
 
 			// Click on Reading pane
 			locator = "css=div[id^='POPUP'][style*='display: block'] td[id^=READING_PANE]>div[class='ImgCascade']";
 			this.sMouseOver(locator);
+			SleepUtil.sleepSmall();
 			this.zWaitForBusyOverlay();
 
 			// Select Reading Pane At the Bottom/On the Right/Off
@@ -762,7 +738,6 @@ public class PageMail extends AbsTab {
 			return (null);
 
 		} else if ((button == Button.B_MAIL_VIEW_BY_CONVERSATION) || (button == Button.B_MAIL_VIEW_BY_MESSAGE)) {
-
 			locator = "css=td[id$=VIEW_MENU_dropdown]>div[class='ImgSelectPullDownArrow']";
 			this.sClick(locator);
 			this.zWaitForBusyOverlay();
@@ -780,7 +755,6 @@ public class PageMail extends AbsTab {
 
 		} else if ((button == Button.B_MAIL_LIST_GROUPBY_FROM) || (button == Button.B_MAIL_LIST_GROUPBY_DATE)
 				|| (button == Button.B_MAIL_LIST_GROUPBY_SIZE)) {
-
 			locator = "css=td[id$=VIEW_MENU_dropdown]>div[class='ImgSelectPullDownArrow']";
 			this.sClick(locator);
 			this.zWaitForBusyOverlay();
@@ -804,42 +778,36 @@ public class PageMail extends AbsTab {
 			return (null);
 
 		} else if (button == Button.B_MAIL_LIST_SORTBY_FLAGGED) {
-
 			locator = "css=td[id='zlh__TV-main__fg'] div[class='ImgFlagRed']";
 			this.sClick(locator);
 			this.zWaitForBusyOverlay();
 			return (null);
 
 		} else if (button == Button.B_MAIL_LIST_SORTBY_FROM) {
-
 			locator = "css=td[id='zlh__TV-main__fr'] td[id='zlhl__TV-main__fr']";
 			this.sClick(locator);
 			this.zWaitForBusyOverlay();
 			return (null);
 
 		} else if (button == Button.B_MAIL_LIST_SORTBY_ATTACHMENT) {
-
 			locator = "css=td[id='zlh__TV-main__at'] div[class='ImgAttachment']";
 			this.sClick(locator);
 			this.zWaitForBusyOverlay();
 			return (null);
 
 		} else if (button == Button.B_MAIL_LIST_SORTBY_SUBJECT) {
-
 			locator = "css=td[id='zlh__TV-main__su'] td[id='zlhl__TV-main__su']";
 			this.sClick(locator);
 			this.zWaitForBusyOverlay();
 			return (null);
 
 		} else if (button == Button.B_MAIL_LIST_SORTBY_SIZE) {
-
 			locator = "css=td[id='zlh__TV-main__sz'] td[id='zlhl__TV-main__sz']";
 			this.sClick(locator);
 			this.zWaitForBusyOverlay();
 			return (null);
 
 		} else if (button == Button.B_MAIL_LIST_SORTBY_RECEIVED) {
-
 			locator = "css=td[id='zlh__TV-main__dt'] td[id='zlhl__TV-main__dt']";
 			this.sClick(locator);
 			this.zWaitForBusyOverlay();

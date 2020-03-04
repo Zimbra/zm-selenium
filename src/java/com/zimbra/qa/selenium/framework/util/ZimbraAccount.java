@@ -286,8 +286,78 @@ public class ZimbraAccount {
 		}
 		return (_Account10);
 	}
-
 	private static ZimbraAccount _Account10 = null;
+
+	public static synchronized ZimbraAccount User1() {
+		if (_User1 == null) {
+			_User1 = new ZimbraAccount("user1" + "@" + ConfigProperties.getStringProperty("testdomain"), null);
+			_User1.provision();
+			_User1.authenticate();
+		}
+		return (_User1);
+	}
+	private static ZimbraAccount _User1 = null;
+
+	public static synchronized ZimbraAccount User2() {
+		if (_User2 == null) {
+			_User2 = new ZimbraAccount("user2" + "@" + ConfigProperties.getStringProperty("testdomain"), null);
+			_User2.provision();
+			_User2.authenticate();
+		}
+		return (_User2);
+	}
+	private static ZimbraAccount _User2 = null;
+
+	public static synchronized ZimbraAccount User3() {
+		if (_User3 == null) {
+			_User3 = new ZimbraAccount("user3" + "@" + ConfigProperties.getStringProperty("testdomain"), null);
+			_User3.provision();
+			_User3.authenticate();
+		}
+		return (_User3);
+	}
+	private static ZimbraAccount _User3 = null;
+
+	public static synchronized ZimbraAccount User4() {
+		if (_User4 == null) {
+			_User4 = new ZimbraAccount("user4" + "@" + ConfigProperties.getStringProperty("testdomain"), null);
+			_User4.provision();
+			_User4.authenticate();
+		}
+		return (_User4);
+	}
+	private static ZimbraAccount _User4 = null;
+
+	public static synchronized ZimbraAccount User5() {
+		if (_User5 == null) {
+			_User5 = new ZimbraAccount("user5" + "@" + ConfigProperties.getStringProperty("testdomain"), null);
+			_User5.provision();
+			_User5.authenticate();
+		}
+		return (_User5);
+	}
+	private static ZimbraAccount _User5 = null;
+
+	public static synchronized ZimbraAccount User6() {
+		if (_User6 == null) {
+			_User6 = new ZimbraAccount("user6" + "@" + ConfigProperties.getStringProperty("testdomain"), null);
+			_User6.provision();
+			_User6.authenticate();
+		}
+		return (_User6);
+	}
+	private static ZimbraAccount _User6 = null;
+
+	public static synchronized ZimbraAccount User7() {
+		if (_User7 == null) {
+			_User7 = new ZimbraAccount("user7" + "@" + ConfigProperties.getStringProperty("testdomain"), null);
+			_User7.provision();
+			_User7.authenticate();
+		}
+		return (_User7);
+	}
+	private static ZimbraAccount _User7 = null;
+
 
 	/**
 	 * Reset all static accounts. This method should be used before/after the
@@ -311,6 +381,13 @@ public class ZimbraAccount {
 		ZimbraAccount._Account8 = null;
 		ZimbraAccount._Account9 = null;
 		ZimbraAccount._Account10 = null;
+		ZimbraAccount._User1 = null;
+		ZimbraAccount._User2 = null;
+		ZimbraAccount._User3 = null;
+		ZimbraAccount._User4 = null;
+		ZimbraAccount._User5 = null;
+		ZimbraAccount._User6 = null;
+		ZimbraAccount._User7 = null;
 	}
 
 	// Set the default account settings
@@ -411,14 +488,8 @@ public class ZimbraAccount {
 					.soapSelectNodes("//admin:CreateAccountResponse");
 
 			if ((createAccountResponse == null) || (createAccountResponse.length == 0)) {
-
-				Element[] soapFault = ZimbraAdminAccount.GlobalAdmin().soapSelectNodes("//soap:Fault");
-				if (soapFault != null && soapFault.length > 0) {
-					String error = ZimbraAdminAccount.GlobalAdmin().soapSelectValue("//zimbra:Code", null);
-					throw new HarnessException("Unable to create account: " + error);
-				}
-
-				throw new HarnessException("Unknown error when provisioning account");
+				this.exists();
+				return (this);
 			}
 
 			// Set the account settings based on the response

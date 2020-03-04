@@ -92,6 +92,7 @@ public class ExecuteHarnessMain {
 	public static Boolean isChatConfigured = false;
 	public static Boolean isDriveConfigured = false;
 
+	// Test data
 	public static HashMap<String, String[]> accounts = new HashMap<>();
 	public static HashMap<String, String[]> distributionlists = new HashMap<>();
 	public static HashMap<String, String[]> locations = new HashMap<>();
@@ -1466,8 +1467,8 @@ public class ExecuteHarnessMain {
 		equipments.put("equipment2",
 				new String[] { "LifeSize", "seleniumequipment2@" + ConfigProperties.getStringProperty("testdomain") });
 
-		// Create test domain and accounts
 		if (groups.contains("configure")) {
+			// Create test domain and admin accounts
 			StafIntegration.logInfo = "Create test domain and admin accounts...\n";
 			logger.info(StafIntegration.logInfo);
 			Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo),
@@ -1485,6 +1486,7 @@ public class ExecuteHarnessMain {
 							+ " -n InternalGAL --domain " + ConfigProperties.getStringProperty("testdomain")
 							+ " -p 1m -s " + storeServers.get(0) + " -t zimbra -f _InternalGAL");
 
+			// Create test accounts
 			StafIntegration.logInfo = "Create test accounts...\n";
 			logger.info(StafIntegration.logInfo);
 			Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo),
@@ -1502,6 +1504,7 @@ public class ExecuteHarnessMain {
 							+ ExecuteHarnessMain.accounts.get("account3")[0]
 							+ "\" Description \"Created by Selenium Automation\"");
 
+			// Create test dls
 			StafIntegration.logInfo = "Create test distribution list...\n";
 			logger.info(StafIntegration.logInfo);
 			Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo),
@@ -1516,7 +1519,8 @@ public class ExecuteHarnessMain {
 							+ ExecuteHarnessMain.accounts.get("account2")[1] + " "
 							+ ExecuteHarnessMain.accounts.get("account3")[1]);
 
-			StafIntegration.logInfo = "Create resource account...\n";
+			// Create resource accounts
+			StafIntegration.logInfo = "Create resource accounts...\n";
 			CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"), "zmprov ccr "
 					+ ExecuteHarnessMain.locations.get("location1")[1] + " test123 displayName \""
 					+ ExecuteHarnessMain.locations.get("location1")[0]

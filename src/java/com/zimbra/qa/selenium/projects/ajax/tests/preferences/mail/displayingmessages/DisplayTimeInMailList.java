@@ -79,6 +79,7 @@ public class DisplayTimeInMailList extends AjaxCore {
 
 		// Click save
 		app.zPagePreferences.zToolbarPressButton(Button.B_SAVE);
+
 		// Select yes to reload the client
 		app.zPagePreferences.zPressButton(Button.B_YES);
 
