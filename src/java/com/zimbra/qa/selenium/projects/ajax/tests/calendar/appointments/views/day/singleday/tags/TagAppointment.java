@@ -145,7 +145,7 @@ public class TagAppointment extends AjaxCore {
 
 	
 	@Test (description = "Create new tag using context menu and apply same tag to appointment using context menu in day view",
-			groups = { "sanity" })
+			groups = { "functional" })
 	
 	public void TagAppointment_04() throws HarnessException {
 

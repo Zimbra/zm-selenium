@@ -40,7 +40,7 @@ public class CheckURLForUnselectedFolder extends AjaxCore {
 
 	@Bugs (ids = "49924")
 	@Test (description = "Bug 49924 - 'Direct link for Zimbra calendar fails when no calendars are checked'",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void CheckURLForUnselectedFolder_01() throws HarnessException {
 

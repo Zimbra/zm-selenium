@@ -39,7 +39,6 @@ public class DeleteInstance extends AjaxCore {
 			groups = { "sanity" } )
 
 	public void DeleteInstance_01() throws HarnessException {
-
 		// Appointment data
 		String tz, apptSubject, apptBody;
 		tz = ZTimeZone.getLocalTimeZone().getID();
@@ -89,23 +88,11 @@ public class DeleteInstance extends AjaxCore {
 			+		"<query>is:anywhere "+ apptSubject +"</query>"
 			+	"</SearchRequest>");
 
-		// http://bugzilla.zimbra.com/show_bug.cgi?id=63412 - "Deleting instance from calendar series does not allow for user restoration from the Trash can"
-		// http://bugzilla.zimbra.com/show_bug.cgi?id=13527#c4 - "Moving an instance from one cal to other, moves complete series"
-		// For now, nothing should be returned in the SearchResponse
-		//
-		//		String folderID = app.zGetActiveAccount().soapSelectValue("//mail:appt", "l");
-		//		ZAssert.assertEquals(
-		//				folderID,
-		//				FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Trash).getId(),
-		//				"Verify appointment is in the trash folder");
-
 		Element[] appts = app.zGetActiveAccount().soapSelectNodes("//mail:appt");
 		ZAssert.assertEquals(appts.length, 0, "Verify the appt element does not exist ... See also bug 63412");
 
 		// Verify the appointment is not in the GUI view
 		ZAssert.assertEquals(app.zPageCalendar.zIsAppointmentExists(apptSubject), false, "Verify instance is deleted from the calendar");
-		//boolean deleted = app.zPageCalendar.zWaitForElementDeleted(app.zPageCalendar.zGetApptLocator(apptSubject), "5000");
-		//ZAssert.assertEquals(deleted, true, "Verify instance is deleted from the calendar");
 	}
 
 
@@ -153,7 +140,8 @@ public class DeleteInstance extends AjaxCore {
 
         app.zPageCalendar.zListItem(Action.A_LEFTCLICK, apptSubject);
 
-        DialogWarning dialogSeriesOrInstance = (DialogWarning)app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_INSTANCE_MENU, Button.O_DELETE_MENU, apptSubject);;
+		DialogWarning dialogSeriesOrInstance = (DialogWarning) app.zPageCalendar.zListItem(Action.A_RIGHTCLICK,
+				Button.O_INSTANCE_MENU, Button.O_DELETE_MENU, apptSubject);
         dialogSeriesOrInstance.zPressButton(Button.B_YES);
 
 		// On the server, verify the appointment is in the trash
@@ -162,23 +150,11 @@ public class DeleteInstance extends AjaxCore {
 			+		"<query>is:anywhere "+ apptSubject +"</query>"
 			+	"</SearchRequest>");
 
-		// http://bugzilla.zimbra.com/show_bug.cgi?id=63412 - "Deleting instance from calendar series does not allow for user restoration from the Trash can"
-		// http://bugzilla.zimbra.com/show_bug.cgi?id=13527#c4 - "Moving an instance from one cal to other, moves complete series"
-		// For now, nothing should be returned in the SearchResponse
-		//
-		//		String folderID = app.zGetActiveAccount().soapSelectValue("//mail:appt", "l");
-		//		ZAssert.assertEquals(
-		//				folderID,
-		//				FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Trash).getId(),
-		//				"Verify appointment is in the trash folder");
-
 		Element[] appts = app.zGetActiveAccount().soapSelectNodes("//mail:appt");
 		ZAssert.assertEquals(appts.length, 0, "Verify the appt element does not exist ... See also bug 63412");
 
 		// Verify the appointment is not in the GUI view
 		ZAssert.assertEquals(app.zPageCalendar.zIsAppointmentExists(apptSubject), false, "Verify instance is deleted from the calendar");
-		//boolean deleted = app.zPageCalendar.zWaitForElementDeleted(app.zPageCalendar.zGetApptLocator(apptSubject), "10000");
-		//ZAssert.assertEquals(deleted, true, "Verify instance is deleted from the calendar");
 	}
 
 	
@@ -186,12 +162,11 @@ public class DeleteInstance extends AjaxCore {
 	public Object[][] DataProviderShortcutKeys() {
 		return new Object[][] {
 				new Object[] { "VK_DELETE", KeyEvent.VK_DELETE },
-				new Object[] { "VK_BACK_SPACE", KeyEvent.VK_BACK_SPACE },
 		};
 	}
 
 	@Bugs (ids = "69132")
-	@Test (description = "Delete instance of series appointment (every week) using keyboard shortcuts Del & Backspace",
+	@Test (description = "Delete instance of series appointment (every week) using delete keyboard shortcut key",
 			groups = { "sanity" },
 			dataProvider = "DataProviderShortcutKeys" )
 
@@ -246,22 +221,10 @@ public class DeleteInstance extends AjaxCore {
 			+		"<query>is:anywhere "+ apptSubject +"</query>"
 			+	"</SearchRequest>");
 
-		// http://bugzilla.zimbra.com/show_bug.cgi?id=63412 - "Deleting instance from calendar series does not allow for user restoration from the Trash can"
-		// http://bugzilla.zimbra.com/show_bug.cgi?id=13527#c4 - "Moving an instance from one cal to other, moves complete series"
-		// For now, nothing should be returned in the SearchResponse
-		//
-		//		String folderID = app.zGetActiveAccount().soapSelectValue("//mail:appt", "l");
-		//		ZAssert.assertEquals(
-		//				folderID,
-		//				FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Trash).getId(),
-		//				"Verify appointment is in the trash folder");
-
 		Element[] appts = app.zGetActiveAccount().soapSelectNodes("//mail:appt");
 		ZAssert.assertEquals(appts.length, 0, "Verify the appt element does not exist ... See also bug 63412");
 
 		// Verify the appointment is not in the GUI view
 		ZAssert.assertEquals(app.zPageCalendar.zIsAppointmentExists(apptSubject), false, "Verify instance is deleted from the calendar");
-		//boolean deleted = app.zPageCalendar.zWaitForElementDeleted(app.zPageCalendar.zGetApptLocator(apptSubject), "10000");
-		//ZAssert.assertEquals(deleted, true, "Verify instance is deleted from the calendar");
 	}
 }

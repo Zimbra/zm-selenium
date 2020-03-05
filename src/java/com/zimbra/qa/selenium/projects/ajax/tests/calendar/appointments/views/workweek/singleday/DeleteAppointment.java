@@ -127,12 +127,11 @@ public class DeleteAppointment extends AjaxCore {
 	public Object[][] DataProviderShortcutKeys() {
 		return new Object[][] {
 				new Object[] { "VK_DELETE", KeyEvent.VK_DELETE },
-				new Object[] { "VK_BACK_SPACE", KeyEvent.VK_BACK_SPACE },
 		};
 	}
 
 	@Bugs (ids = "69132")
-	@Test (description = "Delete an appointment using keyboard shortcuts (Del & Backspace)",
+	@Test (description = "Delete an appointment using delete keyboard shortcut key",
 			groups = { "sanity" },
 			dataProvider = "DataProviderShortcutKeys")
 
@@ -167,7 +166,7 @@ public class DeleteAppointment extends AjaxCore {
         // Verify appointment exists in current view
         ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
 
-        // Delete appointment using keyboard Del and Backspace key
+        // Delete appointment using delete keyboard shortcut key
         app.zPageCalendar.zListItem(Action.A_LEFTCLICK, apptSubject);
         DialogConfirmDeleteAppointment dlgConfirm = (DialogConfirmDeleteAppointment)app.zPageCalendar.zKeyboardKeyEvent(keyEvent);
 		dlgConfirm.zPressButton(Button.B_YES);

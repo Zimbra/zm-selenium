@@ -89,7 +89,6 @@ public class DeleteContactGroup extends AjaxCore  {
 
         // Verify the contact group is in the trash
         ZAssert.assertEquals(actual.getFolderId(), trash.getId(), "Verify the contact group is in the trash");
-
    	}
 
 
@@ -115,7 +114,6 @@ public class DeleteContactGroup extends AjaxCore  {
 
         // Verify the contact group is in the trash
         ZAssert.assertEquals(actual.getFolderId(), trash.getId(), "Verify the contact group is in the trash");
-
    	}
 
 
@@ -144,43 +142,13 @@ public class DeleteContactGroup extends AjaxCore  {
 
         // Verify the contact group is in the trash
         ZAssert.assertEquals(actual.getFolderId(), trash.getId(), "Verify the contact group is in the trash");
-
-   	}
-
-
-	@Test (description = "Delete a contact group use shortcut backspace",
-			groups = { "functional" })
-
-	public void  UseShortcutBackspace_05() throws HarnessException {
-
-		// The trash folder
-		FolderItem trash = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Trash);
-
-		// Create a contact group
-		ContactGroupItem group = ContactGroupItem.createContactGroupItem(app.zGetActiveAccount());
-
-		// Refresh
-		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
-
-		// Select the contact group
-		app.zPageContacts.zListItem(Action.A_LEFTCLICK, group.getName());
-
-        // Delete contact group by click shortcut Del
-		app.zPageContacts.zKeyboardKeyEvent(Keys.BACK_SPACE);
-
-        ContactGroupItem actual = ContactGroupItem.importFromSOAP(app.zGetActiveAccount(), "is:anywhere #nickname:"+ group.getName());
-        ZAssert.assertNotNull(actual, "Verify the contact group exists");
-
-        // Verify the contact group is in the trash
-        ZAssert.assertEquals(actual.getFolderId(), trash.getId(), "Verify the contact group is in the trash");
-
    	}
 
 
 	@Test (description = "Delete multiple contact groups at once",
 			groups = { "functional" })
 
-	public void DeleteMultipleContactGroups_06() throws HarnessException {
+	public void DeleteMultipleContactGroups_05() throws HarnessException {
 
 		// The trash folder
 		FolderItem trash = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Trash);
@@ -212,14 +180,13 @@ public class DeleteContactGroup extends AjaxCore  {
         actual = ContactGroupItem.importFromSOAP(app.zGetActiveAccount(), "is:anywhere #nickname:"+ group3.getName());
         ZAssert.assertNotNull(actual, "Verify the contact group exists");
         ZAssert.assertEquals(actual.getFolderId(), trash.getId(), "Verify the contact group is in the trash");
-
 	}
 
 
 	@Test (description = "Delete contact + contact group at once",
 			groups = { "functional" })
 
-	public void DeleteMixOfContactAndGroup_07() throws HarnessException {
+	public void DeleteMixOfContactAndGroup_06() throws HarnessException {
 
 		// The trash folder
 		FolderItem trash = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Trash);
@@ -245,14 +212,13 @@ public class DeleteContactGroup extends AjaxCore  {
         ContactItem actual2 = ContactItem.importFromSOAP(app.zGetActiveAccount(), "is:anywhere #firstname:"+ contact.firstName);
         ZAssert.assertNotNull(actual2, "Verify the contact exists");
         ZAssert.assertEquals(actual2.getFolderId(), trash.getId(), "Verify the contact is in the trash");
-
 	}
 
 
 	@Test (description = "Move a contact group to folder Trash by expand Move dropdown then select Trash",
 			groups = { "functional" })
 
-	public void MoveToTrashFromMoveDropdownOnToolbar_08() throws HarnessException {
+	public void MoveToTrashFromMoveDropdownOnToolbar_07() throws HarnessException {
 
 		// The trash folder
 		FolderItem trash = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Trash);
@@ -272,14 +238,13 @@ public class DeleteContactGroup extends AjaxCore  {
         ContactGroupItem actual = ContactGroupItem.importFromSOAP(app.zGetActiveAccount(), "is:anywhere #nickname:"+ group.getName());
         ZAssert.assertNotNull(actual, "Verify the contact group exists");
         ZAssert.assertEquals(actual.getFolderId(), trash.getId(), "Verify the contact group is in the trash");
-
    	}
 
 
 	@Test (description = "Click Delete Toolbar button in Edit Contact Group form",
 			groups = { "functional" })
 
-	public void DeleteContactGroupFromEditContactGroupUI_09() throws HarnessException {
+	public void DeleteContactGroupFromEditContactGroupUI_08() throws HarnessException {
 
 		// The trash folder
 		FolderItem trash = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Trash);

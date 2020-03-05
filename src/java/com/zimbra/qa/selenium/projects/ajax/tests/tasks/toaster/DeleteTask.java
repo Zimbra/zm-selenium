@@ -137,7 +137,6 @@ public class DeleteTask extends AjaxCore {
 	public Object[][] DataProviderDeleteKeys() {
 		return new Object[][] {
 				new Object[] { "DELETE", Keys.DELETE },
-				new Object[] { "BACK_SPACE", Keys.BACK_SPACE },
 		};
 	}
 
@@ -360,52 +359,6 @@ public class DeleteTask extends AjaxCore {
 
 		// Right click the item, select delete
 		app.zPageTasks.zListItem(Action.A_RIGHTCLICK, Button.B_DELETE, subject);
-
-		// Verifying the toaster message
-		Toaster toast = app.zPageMain.zGetToaster();
-		String toastMessage = toast.zGetToastMessage();
-		ZAssert.assertStringContains(toastMessage, "1 task moved to Trash","Verify toast message: Task Moved to Trash");
-	}
-
-
-	@Test (description = "Create task through SOAP - delete using Backspace Key & verify Toast message through GUI",
-			groups = { "functional" })
-
-	public void DeleteTaskToast_07() throws HarnessException {
-
-		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);
-
-		// Create a basic task to delete
-		String subject = "task"+ ConfigProperties.getUniqueString();
-
-		app.zGetActiveAccount().soapSend(
-				"<CreateTaskRequest xmlns='urn:zimbraMail'>" +
-				"<m >" +
-				"<inv>" +
-				"<comp name='"+ subject +"'>" +
-				"<or a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
-				"</comp>" +
-				"</inv>" +
-				"<su>"+ subject +"</su>" +
-				"<mp ct='text/plain'>" +
-				"<content>content"+ ConfigProperties.getUniqueString() +"</content>" +
-				"</mp>" +
-				"</m>" +
-		"</CreateTaskRequest>");
-
-		TaskItem task = TaskItem.importFromSOAP(app.zGetActiveAccount(), subject);
-		ZAssert.assertNotNull(task, "Verify the task is created");
-
-		// Refresh the tasks view
-		app.zPageTasks.zToolbarPressButton(Button.B_REFRESH);
-		app.zTreeTasks.zTreeItem(Action.A_LEFTCLICK, taskFolder);
-
-		if (!app.zPageTasks.sIsElementPresent(PageTasks.Locators.zCheckboxenable)) {
-			app.zPageTasks.zListItem(Action.A_MAIL_CHECKBOX, subject);
-		}
-
-		// Use Backspace Keyboard Shortcut
-		app.zPageTasks.zKeyboardShortcut(Shortcut.S_BACKSPACE);
 
 		// Verifying the toaster message
 		Toaster toast = app.zPageMain.zGetToaster();

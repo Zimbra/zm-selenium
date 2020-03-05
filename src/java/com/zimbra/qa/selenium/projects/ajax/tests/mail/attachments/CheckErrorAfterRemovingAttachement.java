@@ -36,7 +36,7 @@ public class CheckErrorAfterRemovingAttachement extends SetGroupMailByMessagePre
 
 	@Bugs (ids = "88160")
 	@Test (description = "Bug 88160 - Remove an attachment from a mail and then delete mail",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void CheckErrorAfterRemovingAttachement_01() throws HarnessException {
 

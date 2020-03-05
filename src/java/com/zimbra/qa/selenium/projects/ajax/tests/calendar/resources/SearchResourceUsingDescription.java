@@ -39,7 +39,7 @@ public class SearchResourceUsingDescription extends AjaxCore {
 
 	@Bugs (ids = "60134")
 	@Test (description = "Cannot search resource using 'description'",
-			groups = { "sanity" } )
+			groups = { "functional" } )
 
 	public void SearchResourceUsingDescription_01() throws HarnessException {
 		String apptSubject = ConfigProperties.getUniqueString();

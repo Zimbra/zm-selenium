@@ -43,15 +43,12 @@ import com.zimbra.qa.selenium.projects.ajax.pages.ZimbraDOM;
 public class PageTasks extends AbsTab {
 
 	public static class Locators {
-
 		public static final String zTasksZimletsPane = "ztih__main_Tasks__ZIMLET_textCell";
 		public static final String zTasksTagsPane = "ztih__main_Tasks__TAG_textCell";
 		public static final String zTasksFolder = "zti__main_Tasks__15_textCell";
-
 		public static final String zl__TKL__rowsID = "zl__TKL-main__rows";
 		public static final String _upComingTaskListHdrID = "_upComingTaskListHdr";
 		public static final String zli__TKL__ = "zli__TKL-";
-
 		public static final String zb__TKE1__SAVE_left_icon = "zb__TKE1__SAVE_left_icon";
 		public static final String taskListView = "css=div[id='zl__TKL-main__rows'][class='DwtListView-Rows']";
 		public static final String zTasksTab = "zb__App__Tasks";
@@ -245,7 +242,7 @@ public class PageTasks extends AbsTab {
 
 			// Double-click on the item
 			this.sDoubleClick(itemLocator);
-			
+
 			if (!subject.contains("view shared item")) {
 				page = new FormTaskNew(this.MyApplication);
 			}
@@ -850,16 +847,12 @@ public class PageTasks extends AbsTab {
 		SleepUtil.sleepMedium();
 
 		if ((shortcut == Shortcut.S_NEWTAG)) {
-
-			// "New Message" shortcuts result in a compose form opening
-			// page = new FormMailNew(this.MyApplication);
 			page = new DialogTag(MyApplication, ((AjaxPages) MyApplication).zPageTasks);
 			keyCode = "78,84";
 
 		} else if (shortcut == Shortcut.S_ESCAPE) {
 			page = new DialogWarning(DialogWarning.DialogWarningID.SaveTaskChangeMessage, this.MyApplication,
 					((AjaxPages) this.MyApplication).zPageTasks);
-
 			keyCode = "27";
 
 		} else if (shortcut == Shortcut.S_ASSISTANT) {
@@ -867,14 +860,10 @@ public class PageTasks extends AbsTab {
 			keyCode = "192";
 
 		} else if (shortcut == Shortcut.S_NEWTASK) {
-			// page = new DialogAssistant(MyApplication, ((AppAjaxClient)
-			// MyApplication).zPageTasks);
 			page = new FormTaskNew(this.MyApplication);
 			keyCode = "78,75";
 
 		} else if (shortcut == Shortcut.S_TASK_HARDELETE) {
-			// Hard Delete shows the Warning Dialog : Are you sure you want to
-			// permanently delete it?
 			page = new DialogWarning(DialogWarning.DialogWarningID.PermanentlyDeleteTheItem, MyApplication,
 					((AjaxPages) MyApplication).zPageTasks);
 
@@ -882,22 +871,19 @@ public class PageTasks extends AbsTab {
 			return (page);
 
 		} else if (shortcut == Shortcut.S_MOVE) {
-
-			// "Move" shortcut opens "Choose Folder" dialog
 			page = new DialogMove(MyApplication, this);
-
 			keyCode = "77";
+
 		} else if (shortcut == Shortcut.S_BACKSPACE) {
 			page = null;
 			keyCode = "8";
 
 		} else if (shortcut == Shortcut.S_MAIL_MOVETOTRASH) {
-
 			zKeyboard.zTypeCharacters(shortcut.getKeys());
 			page = null;
 			return page;
-		} else if (shortcut == Shortcut.S_PRINTTASK) {
 
+		} else if (shortcut == Shortcut.S_PRINTTASK) {
 			page = new SeparateWindowPrintPreview(this.MyApplication);
 			((SeparateWindowPrintPreview) page).zInitializeWindowNames();
 
@@ -906,7 +892,6 @@ public class PageTasks extends AbsTab {
 			this.zWaitForBusyOverlay();
 
 			return (page);
-
 		}
 
 		else {
@@ -915,13 +900,11 @@ public class PageTasks extends AbsTab {
 		}
 
 		zKeyDown(keyCode);
-		// zKeyboard.zTypeCharacters(shortcut.getKeys());
-
 		this.zWaitForBusyOverlay();
 
 		// If a page is specified, wait for it to become active
 		if (page != null) {
-			page.zWaitForActive(); // This method throws a HarnessException if never active
+			page.zWaitForActive();
 		}
 		return (page);
 	}
@@ -967,12 +950,12 @@ public class PageTasks extends AbsTab {
 			return false;
 		}
 	}
-	
+
 	public boolean zVerifyTaskExists(String subject) throws HarnessException {
-		String taskLocator = "css=div[id^='zli__TKL-main'] td[id^='zlif__TKL-main'][id$='__su']"; 
+		String taskLocator = "css=div[id^='zli__TKL-main'] td[id^='zlif__TKL-main'][id$='__su']";
 		return sIsElementPresent(taskLocator + ":contains('" +  subject + "')");
 	}
-	
+
 	public boolean zVerifyTaskBody(String content) throws HarnessException {
 		try {
 			webDriver().switchTo().defaultContent();

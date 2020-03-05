@@ -130,35 +130,11 @@ public class DeleteContactGroup extends AjaxCore {
 	}
 
 
-	@Test (description = "Delete a contact group use shortcut backspace and verify toast message",
-			groups = { "functional" })
-
-	public void DeleteContactGroup_05() throws HarnessException {
-
-		// Create a contact group
-		ContactGroupItem group = ContactGroupItem.createContactGroupItem(app.zGetActiveAccount());
-
-		// Refresh
-		app.zPageContacts.zToolbarPressButton(Button.B_REFRESH);
-
-		// Select the contact group
-		app.zPageContacts.zListItem(Action.A_LEFTCLICK, group.getName());
-
-		// Delete contact group by click shortcut Del
-		app.zPageContacts.zKeyboardKeyEvent(Keys.BACK_SPACE);
-
-		// Verifying the toaster message
-		Toaster toast = app.zPageMain.zGetToaster();
-		String toastMessage = toast.zGetToastMessage();
-		ZAssert.assertStringContains(toastMessage, "1 contact group moved to Trash", "Verify toast message: Contact group Moved to Trash");
-	}
-
-
 	@Bugs (ids = "78829")
 	@Test (description = "Delete multiple contact groups at once and verify toast message",
 			groups = { "functional" })
 
-	public void DeleteContactGroup_06() throws HarnessException {
+	public void DeleteContactGroup_05() throws HarnessException {
 
 		// Create a contact group
 		ContactGroupItem group1 = ContactGroupItem.createContactGroupItem(app.zGetActiveAccount());
@@ -186,7 +162,7 @@ public class DeleteContactGroup extends AjaxCore {
 	@Test (description = "Delete contact + contact group at once and verify toast message",
 			groups = { "functional" })
 
-	public void DeleteContactGroup_07() throws HarnessException {
+	public void DeleteContactGroup_06() throws HarnessException {
 
 		// Create a contact group
 		ContactGroupItem group = ContactGroupItem.createContactGroupItem(app.zGetActiveAccount());
@@ -213,7 +189,7 @@ public class DeleteContactGroup extends AjaxCore {
 	@Test (description = "Move a contact group to folder Trash by expand Move dropdown then select Trash and verify toast message",
 			groups = { "functional" })
 
-	public void DeleteContactGroup_08() throws HarnessException {
+	public void DeleteContactGroup_07() throws HarnessException {
 
 		// The trash folder
 		FolderItem trash = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Trash);

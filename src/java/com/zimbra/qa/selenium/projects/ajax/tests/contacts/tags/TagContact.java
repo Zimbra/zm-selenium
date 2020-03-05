@@ -197,7 +197,7 @@ public class TagContact extends ShowSelectionCheckboxPreference {
 
 
 	@Test (description = "Tag a contact by dnd on an existing tag",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void DnDOnExistingTag_06() throws HarnessException {
 

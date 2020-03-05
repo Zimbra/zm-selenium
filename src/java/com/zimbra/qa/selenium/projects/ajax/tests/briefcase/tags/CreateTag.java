@@ -33,7 +33,7 @@ public class CreateTag extends EnableBriefcaseFeature {
 
 
 	@Test (description = "Create a new tag by clicking 'new tag' on folder tree",
-			groups = { "sanity" })
+			groups = { "bhr" })
 
 	public void CreateTag_01() throws HarnessException {
 

@@ -97,7 +97,6 @@ public class DeleteConversation extends SetGroupMailByConversationPreference {
 	public Object[][] DataProviderDeleteKeys() {
 	  return new Object[][] {
 	    new Object[] { "DELETE", Keys.DELETE },
-	    new Object[] { "BACK_SPACE", Keys.BACK_SPACE },
 	  };
 	}
 

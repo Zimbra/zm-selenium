@@ -118,7 +118,7 @@ public class DeleteTagAppointment extends AjaxCore {
 
 	@Bugs (ids = "67035")
 	@Test (description = "Apply tag to appointment, delete the tag and verify that the appointment is still visible",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void DeleteTagAppointment_03() throws HarnessException {
 

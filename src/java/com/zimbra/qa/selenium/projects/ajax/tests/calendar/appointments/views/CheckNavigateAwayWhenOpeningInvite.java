@@ -37,7 +37,7 @@ public class CheckNavigateAwayWhenOpeningInvite extends AjaxCore {
 
 	@Bugs (ids = "50432")
 	@Test (description = "Bug 50432 - Unwanted navigate away dialog after opening appointment/task",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void CheckNavigateAwayWhenOpeningInvite_01() throws HarnessException {
 

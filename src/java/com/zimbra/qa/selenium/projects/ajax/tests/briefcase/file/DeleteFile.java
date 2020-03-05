@@ -86,7 +86,7 @@ public class DeleteFile extends EnableBriefcaseFeature {
 
 
 	@Test (description = "Upload file through RestUtil - delete using Delete Key & check trash",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void DeleteFile_02() throws HarnessException {
 

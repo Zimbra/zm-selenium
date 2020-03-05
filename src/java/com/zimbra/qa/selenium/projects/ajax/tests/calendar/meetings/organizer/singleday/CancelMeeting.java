@@ -105,18 +105,16 @@ public class CancelMeeting extends AjaxCore {
 	public Object[][] DataProviderShortcutKeys() {
 		return new Object[][] {
 				new Object[] { "VK_DELETE", KeyEvent.VK_DELETE },
-				new Object[] { "VK_BACK_SPACE", KeyEvent.VK_BACK_SPACE },
 		};
 	}
 
 
 	@Bugs (ids = "69132")
-	@Test (description = "Cancel meeting using keyboard shortcuts Del & Backspace",
+	@Test (description = "Cancel meeting using delete keyboard shortcut key",
 			groups = { "sanity"},
 			dataProvider = "DataProviderShortcutKeys")
 
 	public void CancelMeeting_02(String name, int keyEvent) throws HarnessException {
-
 		// Creating object for meeting data
 		String tz, apptSubject, apptBody, apptAttendee1;
 		tz = ZTimeZone.getLocalTimeZone().getID();
@@ -154,14 +152,12 @@ public class CancelMeeting extends AjaxCore {
         // Select the appointment
         app.zPageCalendar.zListItem(Action.A_LEFTCLICK, apptSubject);
 
-        // Cancel meeting using keyboard Del and Backspace key
+        // Cancel meeting using delete keyboard shortcut key
         DialogWarning dialog = (DialogWarning)app.zPageCalendar.zKeyboardKeyEvent(keyEvent);
 
         // Wait for the "Send Cancellation" dialog
         // Click Send Cancellation
 		dialog.zPressButton(Button.B_SEND_CANCELLATION);
-
-		// Verification
 
 		// Verify the meeting disappears from the organizer's calendar
 		app.zGetActiveAccount().soapSend(
