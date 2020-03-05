@@ -16,12 +16,9 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.appointments.views.week.allday;
 
-import java.awt.event.KeyEvent;
 import java.util.Calendar;
 import java.util.HashMap;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import com.zimbra.common.soap.Element;
 import com.zimbra.qa.selenium.framework.core.Bugs;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;

@@ -16,7 +16,6 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.tests.calendar.appointments.views.week.recurring;
 
-import java.awt.event.KeyEvent;
 import java.util.Calendar;
 import java.util.HashMap;
 import org.testng.annotations.*;
