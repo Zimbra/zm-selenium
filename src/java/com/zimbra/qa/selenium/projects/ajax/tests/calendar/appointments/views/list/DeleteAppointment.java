@@ -205,7 +205,6 @@ public class DeleteAppointment extends AjaxCore {
 	public Object[][] DataProviderDeleteKeys() {
 		return new Object[][] {
 				new Object[] { "VK_DELETE", KeyEvent.VK_DELETE },
-				new Object[] { "VK_BACK_SPACE", KeyEvent.VK_BACK_SPACE },
 		};
 	}
 
@@ -359,11 +358,84 @@ public class DeleteAppointment extends AjaxCore {
 	}
 
 
-	@Bugs (ids = "69132,79524")
-	@Test (description = "Delete multiple appts (3) by select and toolbar delete",
-			groups = { "sanity" } )
+	@Bugs (ids = "69132")
+	@Test (description = "Delete a appt using context menu delete button",
+			groups = { "sanity" })
 
 	public void DeleteAppointment_05() throws HarnessException {
+
+		// Create the appointment on the server
+		String subject = ConfigProperties.getUniqueString();
+
+		// Absolute dates in UTC zone
+		Calendar now = Calendar.getInstance();
+		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 10, 0, 0);
+		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 11, 0, 0);
+
+		// Get local timezone value
+		String tz = ZTimeZone.getLocalTimeZone().getID();
+
+		// Create an appointment
+		app.zGetActiveAccount().soapSend(
+					"<CreateAppointmentRequest xmlns='urn:zimbraMail'>"
+				+		"<m>"
+				+			"<inv>"
+				+				"<comp status='CONF' fb='B' class='PUB' transp='O' allDay='0' name='"+ subject +"' >"
+				+					"<s d='"+ startUTC.toTimeZone(tz).toYYYYMMDDTHHMMSS() +"' tz='"+ tz +"'/>"
+				+					"<e d='"+ endUTC.toTimeZone(tz).toYYYYMMDDTHHMMSS() +"' tz='"+ tz +"'/>"
+				+					"<or a='"+ app.zGetActiveAccount().EmailAddress + "'/>"
+				+				"</comp>"
+				+			"</inv>"
+				+			"<su>"+ subject + "</su>"
+				+			"<mp ct='text/plain'>"
+				+				"<content>content</content>"
+				+			"</mp>"
+				+		"</m>"
+				+	"</CreateAppointmentRequest>");
+
+		// Refresh the calendar
+		app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
+
+		// Work around
+		app.zPageMain.zRefreshMainUI();
+		app.zPageCalendar.zNavigateTo();
+
+		// Right click the item, select delete
+		DialogConfirmDeleteAppointment dialog = (DialogConfirmDeleteAppointment)app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_DELETE, subject);
+		ZAssert.assertNotNull(dialog, "Verify the dialog appears correctly");
+		dialog.zPressButton(Button.B_YES);
+
+		// On the server, verify the appointment is in the trash
+		app.zGetActiveAccount().soapSend(
+				"<SearchRequest xmlns='urn:zimbraMail' types='appointment' calExpandInstStart='"+ startUTC.addDays(-7).toMillis() +"' calExpandInstEnd='"+ startUTC.addDays(7).toMillis() +"'>"
+			+		"<query>is:anywhere "+ subject +"</query>"
+			+	"</SearchRequest>");
+
+		String folderID = app.zGetActiveAccount().soapSelectValue("//mail:appt", "l");
+		ZAssert.assertEquals(
+				folderID,
+				FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Trash).getId(),
+				"Verify appointment is in the trash folder");
+
+		// Verify the appointment is gone
+		AppointmentItem found = null;
+		List<AppointmentItem> appts = app.zPageCalendar.zListGetAppointments();
+		for (AppointmentItem item : appts) {
+			if ( subject.contains(item.getGSubject()) ) {
+				found = item;
+				break;
+			}
+		}
+
+		ZAssert.assertNull(found, "Verify the appointment is no longer in the list");
+	}
+
+
+	@Bugs (ids = "69132,79524")
+	@Test (description = "Delete multiple appts (3) by select and toolbar delete",
+			groups = { "functional" } )
+
+	public void DeleteAppointment_04() throws HarnessException {
 
 		// Create three appointments on the server
 		String subject1 = ConfigProperties.getUniqueString();
@@ -507,79 +579,6 @@ public class DeleteAppointment extends AjaxCore {
 		ZAssert.assertNull(found1, "Verify the appointment "+ subject1 +" no longer exists");
 		ZAssert.assertNull(found2, "Verify the appointment "+ subject2 +" no longer exists");
 		ZAssert.assertNull(found3, "Verify the appointment "+ subject3 +" no longer exists");
-	}
-
-
-	@Bugs (ids = "69132")
-	@Test (description = "Delete a appt using context menu delete button",
-			groups = { "sanity" })
-
-	public void DeleteAppointment_06() throws HarnessException {
-
-		// Create the appointment on the server
-		String subject = ConfigProperties.getUniqueString();
-
-		// Absolute dates in UTC zone
-		Calendar now = Calendar.getInstance();
-		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 10, 0, 0);
-		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 11, 0, 0);
-
-		// Get local timezone value
-		String tz = ZTimeZone.getLocalTimeZone().getID();
-
-		// Create an appointment
-		app.zGetActiveAccount().soapSend(
-					"<CreateAppointmentRequest xmlns='urn:zimbraMail'>"
-				+		"<m>"
-				+			"<inv>"
-				+				"<comp status='CONF' fb='B' class='PUB' transp='O' allDay='0' name='"+ subject +"' >"
-				+					"<s d='"+ startUTC.toTimeZone(tz).toYYYYMMDDTHHMMSS() +"' tz='"+ tz +"'/>"
-				+					"<e d='"+ endUTC.toTimeZone(tz).toYYYYMMDDTHHMMSS() +"' tz='"+ tz +"'/>"
-				+					"<or a='"+ app.zGetActiveAccount().EmailAddress + "'/>"
-				+				"</comp>"
-				+			"</inv>"
-				+			"<su>"+ subject + "</su>"
-				+			"<mp ct='text/plain'>"
-				+				"<content>content</content>"
-				+			"</mp>"
-				+		"</m>"
-				+	"</CreateAppointmentRequest>");
-
-		// Refresh the calendar
-		app.zPageCalendar.zToolbarPressButton(Button.B_REFRESH);
-
-		// Work around
-		app.zPageMain.zRefreshMainUI();
-		app.zPageCalendar.zNavigateTo();
-
-		// Right click the item, select delete
-		DialogConfirmDeleteAppointment dialog = (DialogConfirmDeleteAppointment)app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_DELETE, subject);
-		ZAssert.assertNotNull(dialog, "Verify the dialog appears correctly");
-		dialog.zPressButton(Button.B_YES);
-
-		// On the server, verify the appointment is in the trash
-		app.zGetActiveAccount().soapSend(
-				"<SearchRequest xmlns='urn:zimbraMail' types='appointment' calExpandInstStart='"+ startUTC.addDays(-7).toMillis() +"' calExpandInstEnd='"+ startUTC.addDays(7).toMillis() +"'>"
-			+		"<query>is:anywhere "+ subject +"</query>"
-			+	"</SearchRequest>");
-
-		String folderID = app.zGetActiveAccount().soapSelectValue("//mail:appt", "l");
-		ZAssert.assertEquals(
-				folderID,
-				FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Trash).getId(),
-				"Verify appointment is in the trash folder");
-
-		// Verify the appointment is gone
-		AppointmentItem found = null;
-		List<AppointmentItem> appts = app.zPageCalendar.zListGetAppointments();
-		for (AppointmentItem item : appts) {
-			if ( subject.contains(item.getGSubject()) ) {
-				found = item;
-				break;
-			}
-		}
-
-		ZAssert.assertNull(found, "Verify the appointment is no longer in the list");
 	}
 
 

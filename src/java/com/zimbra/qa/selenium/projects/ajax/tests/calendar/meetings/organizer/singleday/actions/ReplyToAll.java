@@ -40,7 +40,7 @@ public class ReplyToAll extends AjaxCore {
 
 
 	@Test (description = "Check when attendees get the reply when organizer ReplyAll to a meeting",
-			groups = { "sanity" })
+			groups = { "smoke" })
 
 	public void ReplyToAll_01() throws HarnessException {
 
@@ -50,6 +50,7 @@ public class ReplyToAll extends AjaxCore {
 		apptSubject = "appt" + ConfigProperties.getUniqueString();
 		apptBody = ConfigProperties.getUniqueString();
 		apptAttendee1 = ZimbraAccount.AccountA().EmailAddress;
+
 		// Absolute dates in UTC zone
 		Calendar now = Calendar.getInstance();
 		ZDate startUTC = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 8, 0, 0);

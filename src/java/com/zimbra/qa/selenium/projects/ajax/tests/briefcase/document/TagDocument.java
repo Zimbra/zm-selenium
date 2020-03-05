@@ -149,7 +149,7 @@ public class TagDocument extends EnableBriefcaseFeature {
 
 
 	@Test (description = "Tag a Document using Right Click context menu",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void TagDocument_03() throws HarnessException {
 

@@ -39,6 +39,7 @@ public class PageSearchResults extends AbsTab {
 		public static final String RIGHT_CLICK_MENU_DELETE_BUTTON = "css=div[id='zm__SCHLV__MENU_POP'] td[id='zmi__SCHLV__DELETE_title']";
 		public static final String RIGHT_CLICK_MENU_DELETE_BUTTON_DISABLED = "css=div[id='zm__SCHLV__MENU_POP'] div[class='ImgDelete ZDisabledImage']";
 		public static final String RIGHT_CLICK_MENU_EDIT_BUTTON = "css=div[id='zm__SCHLV__MENU_POP'] td[id='zmi__SCHLV__EDIT_title']";
+		public static final String RIGHT_CLICK_MENU_VIEW_MAIL_BUTTON = "css=div[id='zm__SCHLV__MENU_POP']  td[id='zmi__SCHLV__VIEW_MAIL_title']";
 		public static final String EDIT_BUTTON = "css=td[id='zmi__zb_currentApp__EDIT_title']";
 		public static final String GEAR_ICON = "css=div.ImgConfigure";
 		public static final String zArrowSelectSearchObject = "css=td[id*='dropdown'] div[class='ImgSelectPullDownArrow']";
@@ -157,10 +158,7 @@ public class PageSearchResults extends AbsTab {
 
 	@Override
 	public AbsPage zToolbarPressButton(Button button) throws HarnessException {
-
 		logger.info(myPageName() + " zToolbarPressButton(" + button + ")");
-
-		tracer.trace("Click button " + button);
 
 		if (button == null)
 			throw new HarnessException("Button cannot be null!");
@@ -170,7 +168,6 @@ public class PageSearchResults extends AbsTab {
 
 		SleepUtil.sleepSmall();
 		if (button == Button.B_SEARCH) {
-
 			locator = Locators.SEARCH_BUTTON;
 			page = new PageSearchResults(MyApplication);
 
@@ -212,6 +209,9 @@ public class PageSearchResults extends AbsTab {
 		} else if (button == Button.B_ADVANCED) {
 			locator = Locators.ADVANCE_BUTTON;
 
+		} else if (button == Button.B_VIEW_MAIL) {
+			locator = Locators.RIGHT_CLICK_MENU_VIEW_MAIL_BUTTON;
+
 		} else {
 			throw new HarnessException("no logic defined for button " + button);
 		}
@@ -238,8 +238,6 @@ public class PageSearchResults extends AbsTab {
 	public AbsPage zToolbarPressPulldown(Button pulldown, Button option) throws HarnessException {
 		logger.info(myPageName() + " zToolbarPressButtonWithPulldown(" + pulldown + ", " + option + ")");
 
-		tracer.trace("Click pulldown " + pulldown + " then " + option);
-
 		if (pulldown == null)
 			throw new HarnessException("Pulldown cannot be null!");
 
@@ -251,19 +249,14 @@ public class PageSearchResults extends AbsTab {
 		AbsPage page = null;
 
 		if (pulldown == Button.B_GEAR_BOX) {
+			pulldownLocator = Locators.GEAR_ICON;
 
 			if (option == Button.O_DELETE) {
-
-				pulldownLocator = Locators.GEAR_ICON;
 				optionLocator = Locators.DELETE_BUTTON;
-
 				page = new DialogForDeleteOperation(this.MyApplication, null);
 
 			} else if (option == Button.O_EDIT) {
-
-				pulldownLocator = Locators.GEAR_ICON;
 				optionLocator = Locators.EDIT_BUTTON;
-
 				if (typeOfObject.equals(TypeOfObject.DISTRIBUTION_LIST))
 					page = new FormEditDistributionList(this.MyApplication);
 				else if (typeOfObject.equals(TypeOfObject.ACCOUNT))
@@ -278,6 +271,10 @@ public class PageSearchResults extends AbsTab {
 					page = new FormEditDomain(this.MyApplication);
 				else if (typeOfObject.equals(TypeOfObject.DOMAIN_ALIAS))
 					page = new WizardCreateDomainAlias(this);
+
+			} else if (option == Button.B_VIEW_MAIL) {
+				optionLocator = PageManageAccounts.Locators.VIEW_MAIL;
+
 			} else {
 				throw new HarnessException("no logic defined for pulldown/option " + pulldown + "/" + option);
 			}

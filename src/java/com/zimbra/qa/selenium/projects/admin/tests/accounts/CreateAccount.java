@@ -45,9 +45,7 @@ public class CreateAccount extends AdminCore {
 			groups = { "smoke" })
 
 	public void CreateAccount_01() throws HarnessException {
-
 		String accountLastname = "lastname" + ConfigProperties.getUniqueString();
-
 		AccountItem account = new AccountItem("tc" + ConfigProperties.getUniqueString(), accountLastname);
 
 		// Click "New" -> "Account"

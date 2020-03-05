@@ -36,7 +36,7 @@ public class DeclineProposeNewTime extends AjaxCore {
 
 	
 	@Test (description = "Rt-click to appointment -> Propose New Time and decline the new time using conversation view",
-			groups = { "sanity" })
+			groups = { "functional" })
 	
 	public void DeclineProposeNewTime_01() throws HarnessException {
 

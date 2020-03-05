@@ -45,7 +45,7 @@ public class OpenLinkToMessage extends EnableBriefcaseFeature {
 
 	@Bugs (ids = "56802,64833,65939,67059")
 	@Test (description = "Open link to the message - Verify List View Rows are displayed after message closed",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void OpenLinkToMessage_01() throws HarnessException {
 

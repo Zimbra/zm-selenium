@@ -35,7 +35,7 @@ public class HardDeleteConversation extends SetGroupMailByConversationPreference
 
 	@Bugs (ids = "53564")
 	@Test (description = "Hard-delete a mail by selecting and typing 'shift-del' shortcut",
-			groups = { "sanity" } )
+			groups = { "bhr" } )
 
 	public void HardDeleteConversation_01() throws HarnessException {
 

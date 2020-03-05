@@ -203,7 +203,7 @@ public class TagContactGroup extends AjaxCore  {
 
 
 	@Test (description = "Tag a contact group by dnd on an existing tag",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void DnDOnExistingTag_06() throws HarnessException {
 

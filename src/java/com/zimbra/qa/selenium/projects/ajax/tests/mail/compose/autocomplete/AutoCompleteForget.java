@@ -127,7 +127,7 @@ public class AutoCompleteForget extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Verify the 'forget' link for Contacts",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void AutoCompleteForget_02() throws HarnessException {
 
@@ -277,7 +277,7 @@ public class AutoCompleteForget extends SetGroupMailByMessagePreference {
 
 	@Bugs (ids = "97123")
 	@Test (description = "Verify 'forget' functionality resets the ranking order - Contacts",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void AutoCompleteForget_04() throws HarnessException {
 

@@ -39,7 +39,6 @@ public class DeleteDistributionList extends AdminCore {
 			groups = { "bhr" })
 
 	public void DeleteDistributionList_01() throws HarnessException {
-
 		// Create a new dl in the Admin Console using SOAP
 		DistributionListItem dl = new DistributionListItem();
 		String dlEmailAddress=dl.getEmailAddress();
@@ -95,7 +94,6 @@ public class DeleteDistributionList extends AdminCore {
 			groups = { "sanity" })
 
 	public void DeleteDistributionList_02() throws HarnessException {
-
 		// Create a new dl in the Admin Console using SOAP
 		DistributionListItem dl = new DistributionListItem();
 		String dlEmailAddress=dl.getEmailAddress();

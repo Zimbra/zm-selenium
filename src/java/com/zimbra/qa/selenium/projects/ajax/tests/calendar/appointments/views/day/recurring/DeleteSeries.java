@@ -84,12 +84,6 @@ public class DeleteSeries extends AjaxCore {
         ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
 
         app.zPageCalendar.zListItem(Action.A_LEFTCLICK, apptSubject);
-
-        // If you select an instance and click delete button, you
-        // Get two dialogs:
-        // First: do you want to delete the instance or series?
-        // Second: do you want to delete all occurrences or this instance and all future instances
-        //
         DialogWarning deleteRecurringItems = (DialogWarning)app.zPageCalendar.zToolbarPressButton(Button.B_DELETE);
         if (deleteRecurringItems == null) {
         	throw new HarnessException("The 'Delete Recurring Items' dialog never appeared.");
@@ -107,17 +101,14 @@ public class DeleteSeries extends AjaxCore {
         		+		"<query>is:anywhere "+ apptSubject +"</query>"
         		+	"</SearchRequest>");
 
-        String folderID = app.zGetActiveAccount().soapSelectValue("//mail:appt", "l");
-        ZAssert.assertEquals(
-        		folderID,
-        		FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Trash).getId(),
-        		"Verify appointment is in the trash folder");
+		String folderID = app.zGetActiveAccount().soapSelectValue("//mail:appt", "l");
+		ZAssert.assertEquals(folderID,
+				FolderItem.importFromSOAP(app.zGetActiveAccount(), FolderItem.SystemFolder.Trash).getId(),
+				"Verify appointment is in the trash folder");
 
 
         // Verify the appointment is not in the GUI view
         ZAssert.assertEquals(app.zPageCalendar.zIsAppointmentExists(apptSubject), false, "Verify instance is deleted from the calendar");
-        //boolean deleted = app.zPageCalendar.zWaitForElementDeleted(app.zPageCalendar.zGetApptLocator(apptSubject), "10000");
-        //ZAssert.assertEquals(deleted, true, "Verify instance is deleted from the calendar");
 	}
 
 	
@@ -164,13 +155,6 @@ public class DeleteSeries extends AjaxCore {
         ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
 
         app.zPageCalendar.zListItem(Action.A_LEFTCLICK, apptSubject);
-
-        // If you right-click an instance and select delete from the context menu, you
-        // Get one dialog:
-        // First: do you want to delete all occurrences or this instance and all future instances
-        //
-        // This is different from the "select an instance and click delete button" usage
-        //
         DialogWarning confirmDelete = (DialogWarning)app.zPageCalendar.zListItem(Action.A_RIGHTCLICK, Button.O_SERIES_MENU, Button.O_DELETE_MENU, apptSubject);
         if (confirmDelete == null) {
         	throw new HarnessException("The 'Confirm Delete' dialog never appeared.");
@@ -191,8 +175,6 @@ public class DeleteSeries extends AjaxCore {
 
         // Verify the appointment is not in the GUI view
         ZAssert.assertEquals(app.zPageCalendar.zIsAppointmentExists(apptSubject), false, "Verify instance is deleted from the calendar");
-        //boolean deleted = app.zPageCalendar.zWaitForElementDeleted(app.zPageCalendar.zGetApptLocator(apptSubject), "10000");
-        //ZAssert.assertEquals(deleted, true, "Verify instance is deleted from the calendar");
 	}
 
 	
@@ -200,12 +182,11 @@ public class DeleteSeries extends AjaxCore {
 	public Object[][] DataProviderShortcutKeys() {
 		return new Object[][] {
 				new Object[] { "VK_DELETE", KeyEvent.VK_DELETE },
-				new Object[] { "VK_BACK_SPACE", KeyEvent.VK_BACK_SPACE },
 		};
 	}
 
 	@Bugs (ids = "69132")
-	@Test (description = "Delete entire series appointment (every week) using keyboard shortcuts Del & Backspace in day view",
+	@Test (description = "Delete entire series appointment (every week) using delete keyboard shortcut key in day view",
 			groups = { "functional" },
 			dataProvider = "DataProviderShortcutKeys")
 
@@ -274,7 +255,5 @@ public class DeleteSeries extends AjaxCore {
 
         // Verify the appointment is not in the GUI view
         ZAssert.assertEquals(app.zPageCalendar.zIsAppointmentExists(apptSubject), false, "Verify instance is deleted from the calendar");
-        //boolean deleted = app.zPageCalendar.zWaitForElementDeleted(app.zPageCalendar.zGetApptLocator(apptSubject), "10000");
-        //ZAssert.assertEquals(deleted, true, "Verify instance is deleted from the calendar");
 	}
 }

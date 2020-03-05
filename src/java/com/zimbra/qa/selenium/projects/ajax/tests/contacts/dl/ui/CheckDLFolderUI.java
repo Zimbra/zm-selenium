@@ -31,7 +31,7 @@ public class CheckDLFolderUI extends AjaxCore  {
 
 
 	@Test (description = "Right click to DL folder and check respected UI options",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void CheckDLFolderRightClickOptions_01 () throws HarnessException {
 		String firstContactEmail = ZimbraAccount.AccountA().EmailAddress;

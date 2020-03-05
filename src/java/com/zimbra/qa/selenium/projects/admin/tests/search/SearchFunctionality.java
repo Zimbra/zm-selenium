@@ -48,7 +48,6 @@ public class SearchFunctionality extends AdminCore {
 			groups = { "bhr" })
 
 	public void SearchFunctionality_01() throws HarnessException {
-
 		// Create a new account in the Admin Console using SOAP
 		AccountItem account = new AccountItem("tc" + ConfigProperties.getUniqueString(), ConfigProperties.getStringProperty("testdomain"));
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
@@ -58,9 +57,7 @@ public class SearchFunctionality extends AdminCore {
 				+			"<a n='description'>Created by Selenium automation</a>"
 				+		"</CreateAccountRequest>");
 
-		/*
-		 * Go to navigation path -- "Home --> Search --> Search --> All Results"
-		 */
+		// Go to navigation path -- Home --> Search --> Search --> All Results
 		app.zPageManageSearch.zSelectTreeItemOfSearch(PageManageSearch.Locators.ALL_RESULT);
 
 		// Get the list of displayed accounts
@@ -91,7 +88,6 @@ public class SearchFunctionality extends AdminCore {
 			groups = { "bhr" })
 
 	public void SearchFunctionality_02() throws HarnessException {
-
 		// Create a new account in the Admin Console using SOAP
 		AccountItem account = new AccountItem("tc" + ConfigProperties.getUniqueString(), ConfigProperties.getStringProperty("testdomain"));
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
@@ -102,9 +98,7 @@ public class SearchFunctionality extends AdminCore {
 				+		"</CreateAccountRequest>");
 
 
-		/*
-		 * Go to navigation path -- "Home --> Search --> Search --> Accounts"
-		 */
+		// Go to navigation path -- Home --> Search --> Search --> Accounts
 		app.zPageManageSearch.zSelectTreeItemOfSearch(PageManageSearch.Locators.ACCOUNTS);
 
 		// Get the list of displayed accounts
@@ -135,7 +129,6 @@ public class SearchFunctionality extends AdminCore {
 			groups = { "bhr" })
 
 	public void SearchFunctionality_03() throws HarnessException {
-
 		// Create a new dl in the Admin Console using SOAP
 		DistributionListItem dl = new DistributionListItem();
 		String dlEmailAddress=dl.getEmailAddress();
@@ -146,9 +139,7 @@ public class SearchFunctionality extends AdminCore {
 				+			"<a n='description'>Created by Selenium automation</a>"
 				+		"</CreateDistributionListRequest>");
 
-		/*
-		 * Go to navigation path -- "Home --> Search --> Search --> DLs"
-		 */
+		// Go to navigation path -- Home --> Search --> Search --> DLs
 		app.zPageManageSearch.zSelectTreeItemOfSearch(PageManageSearch.Locators.DISTRIBUTION_LISTS);
 
 		// Get the list of displayed accounts
@@ -179,7 +170,6 @@ public class SearchFunctionality extends AdminCore {
 			groups = { "bhr" })
 
 	public void SearchFunctionality_04() throws HarnessException {
-
 		// Create a new domain in the Admin Console using SOAP
 		DomainItem domain = new DomainItem();
 
@@ -188,9 +178,7 @@ public class SearchFunctionality extends AdminCore {
 				+			"<name>" + domain.getName() + "</name>"
 				+		"</CreateDomainRequest>");
 
-		/*
-		 * Go to navigation path -- "Home --> Search --> Search --> Domains"
-		 */
+		// Go to navigation path -- Home --> Search --> Search --> Domains
 		app.zPageManageSearch.zSelectTreeItemOfSearch(PageManageSearch.Locators.DOMAINS);
 
 		// Get the list of displayed accounts
@@ -221,7 +209,6 @@ public class SearchFunctionality extends AdminCore {
 			groups = { "functional" })
 
 	public void SearchFunctionality_05() throws HarnessException {
-
 		// Create a new account in the Admin Console using SOAP
 		AccountItem account = new AccountItem("tc" + ConfigProperties.getUniqueString(), ConfigProperties.getStringProperty("testdomain"));
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
@@ -232,9 +219,7 @@ public class SearchFunctionality extends AdminCore {
 				+			"<a n='description'>Created by Selenium automation</a>"
 				+		"</CreateAccountRequest>");
 
-		/*
-		 * Go to navigation path -- "Home --> Search --> Saved Searches --> Locked Out"
-		 */
+		// Go to navigation path -- Home --> Search --> Saved Searches --> Locked Out
 		app.zPageManageSearch.zSelectTreeItem(PageManageSearch.TreeItem.LOCKED_OUT_ACCOUNTS);
 
 		// Get the list of displayed accounts
@@ -265,7 +250,6 @@ public class SearchFunctionality extends AdminCore {
 			groups = { "functional" })
 
 	public void SearchFunctionality_06() throws HarnessException {
-
 		// Create a new account in the Admin Console using SOAP
 		AccountItem account = new AccountItem("tc" + ConfigProperties.getUniqueString(), ConfigProperties.getStringProperty("testdomain"));
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
@@ -276,9 +260,7 @@ public class SearchFunctionality extends AdminCore {
 				+			"<a n='description'>Created by Selenium automation</a>"
 				+		"</CreateAccountRequest>");
 
-		/*
-		 * Go to navigation path -- "Home --> Search --> Saved Searches --> Non-Active accounts"
-		 */
+		// Go to navigation path -- Home --> Search --> Saved Searches --> Non-Active accounts
 		app.zPageManageSearch.zSelectTreeItem(PageManageSearch.TreeItem.NON_ACTIVE_ACCOUNTS);
 
 		// Get the list of displayed accounts
@@ -309,7 +291,6 @@ public class SearchFunctionality extends AdminCore {
 			groups = { "functional" })
 
 	public void SearchFunctionality_07() throws HarnessException {
-
 		// Create a new account in the Admin Console using SOAP
 		AccountItem account = new AccountItem("tcadmin" + ConfigProperties.getUniqueString(), ConfigProperties.getStringProperty("testdomain"));
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
@@ -330,9 +311,7 @@ public class SearchFunctionality extends AdminCore {
 				+			"<a n='description'>Created by Selenium automation</a>"
 				+		"</CreateAccountRequest>");
 
-		/*
-		 * Go to navigation path -- "Home --> Search --> Saved Searches --> admin"
-		 */
+		// Go to navigation path -- Home --> Search --> Saved Searches --> admin
 		app.zPageManageSearch.zSelectTreeItem(PageManageSearch.TreeItem.ADMIN_ACCOUNTS);
 
 		// Get the list of displayed accounts
@@ -373,7 +352,6 @@ public class SearchFunctionality extends AdminCore {
 			groups = { "functional" })
 
 	public void SearchFunctionality_08() throws HarnessException {
-
 		// Create a new closed account in the Admin Console using SOAP
 		AccountItem account = new AccountItem("tc" + ConfigProperties.getUniqueString(), ConfigProperties.getStringProperty("testdomain"));
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
@@ -384,9 +362,7 @@ public class SearchFunctionality extends AdminCore {
 				+			"<a n='description'>Created by Selenium automation</a>"
 				+		"</CreateAccountRequest>");
 
-		/*
-		 * Go to navigation path -- "Home --> Search --> Saved Searches --> Closed"
-		 */
+		// Go to navigation path -- Home --> Search --> Saved Searches --> Closed
 		app.zPageManageSearch.zSelectTreeItem(PageManageSearch.TreeItem.CLOSED_ACCOUNTS);
 
 		// Get the list of displayed accounts
@@ -417,7 +393,6 @@ public class SearchFunctionality extends AdminCore {
 			groups = { "functional" })
 
 	public void SearchFunctionality_09() throws HarnessException {
-
 		// Create a new maintenance account in the Admin Console using SOAP
 		AccountItem account = new AccountItem("tc" + ConfigProperties.getUniqueString(), ConfigProperties.getStringProperty("testdomain"));
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
@@ -428,9 +403,7 @@ public class SearchFunctionality extends AdminCore {
 				+			"<a n='description'>Created by Selenium automation</a>"
 				+		"</CreateAccountRequest>");
 
-		/*
-		 * Go to navigation path -- "Home --> Search --> Saved Searches --> maintenance"
-		 */
+		// Go to navigation path -- Home --> Search --> Saved Searches --> maintenance
 		app.zPageManageSearch.zSelectTreeItem(PageManageSearch.TreeItem.MAINTENANCE_ACCOUNTS);
 
 		// Get the list of displayed accounts

@@ -33,7 +33,7 @@ public class VerifyDisabledUI extends AjaxCore {
 
 
 	@Test (description = "Verify Share Calendar, Reinvite Attendees, Forward, Delete, Move & Tag Appointment right click menus are non-functional on mountpoint appointment (read-only share)",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void VerifyDisabledUI_01() throws HarnessException {
 

@@ -219,7 +219,7 @@ public class EditProperties extends AjaxCore {
 
 
 	@Test (description = "Edit a subfolder, change name and color Context menu -> Edit)",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void ChangeNameColorOfSubFolder_07() throws HarnessException {
 

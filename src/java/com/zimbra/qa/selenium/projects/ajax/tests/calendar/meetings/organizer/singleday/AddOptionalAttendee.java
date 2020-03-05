@@ -104,7 +104,7 @@ public class AddOptionalAttendee extends AjaxCore {
 
 
 	@Test (description = "Create appt and add optional attendee to existing appointment from contact picker",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void CreateMeetingBySelectAttendees_01() throws HarnessException {
 

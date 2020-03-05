@@ -126,11 +126,11 @@ public class PageManageAccounts extends AbsTab {
 	public Boolean IsViewMailEnabled() throws HarnessException {
 		return  sIsVisible(Locators.VIEW_MAIL);
 	}
-	
+
 	public Boolean IsViewMailEnabledForDelegatedAdmin() throws HarnessException {
 		return  sIsVisible(Locators.VIEW_MAIL_FOR_DELEGATED_ADMIN);
 	}
-	
+
 	@Override
 	public AbsPage zListItem(Action action, String accountEmailAddress) throws HarnessException {
 

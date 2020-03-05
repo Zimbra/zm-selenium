@@ -139,18 +139,15 @@ public class DeleteAppointment extends AjaxCore {
 	public Object[][] DataProviderShortcutKeys() {
 		return new Object[][] {
 				new Object[] { "VK_DELETE", KeyEvent.VK_DELETE },
-				new Object[] { "VK_BACK_SPACE", KeyEvent.VK_BACK_SPACE },
 		};
 	}
 
 	@Bugs (ids = "69132")
-	@Test (description = "Delete all-day appointment using keyboard shortcuts (Del & Backspace)",
+	@Test (description = "Delete all-day appointment using delete keyboard shortcut key",
 			groups = { "sanity" },
 			dataProvider = "DataProviderShortcutKeys")
 
 	public void DeleteAllDayAppointment_03(String name, int keyEvent) throws HarnessException {
-
-		//-- Data Setup
 
 		// Creating objects for appointment data
 		String tz, apptSubject, apptBody;
@@ -164,19 +161,19 @@ public class DeleteAppointment extends AjaxCore {
 		ZDate endUTC   = new ZDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH), 15, 0, 0);
 
         app.zGetActiveAccount().soapSend(
-                          "<CreateAppointmentRequest xmlns='urn:zimbraMail'>" +
-                               "<m>"+
-                               "<inv method='REQUEST' type='event' fb='B' transp='O' allDay='1' name='"+ apptSubject +"'>"+
-                               "<s d='"+ startUTC.toTimeZone(tz).toYYYYMMDDTHHMMSS() +"' tz='"+ tz +"'/>" +
-                               "<e d='"+ endUTC.toTimeZone(tz).toYYYYMMDDTHHMMSS() +"' tz='"+ tz +"'/>" +
-                               "<or a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
-                               "</inv>" +
-                               "<mp content-type='text/plain'>" +
-                               "<content>"+ apptBody +"</content>" +
-                               "</mp>" +
-                               "<su>"+ apptSubject +"</su>" +
-                               "</m>" +
-                         "</CreateAppointmentRequest>");
+              "<CreateAppointmentRequest xmlns='urn:zimbraMail'>" +
+                   "<m>"+
+                   "<inv method='REQUEST' type='event' fb='B' transp='O' allDay='1' name='"+ apptSubject +"'>"+
+                   "<s d='"+ startUTC.toTimeZone(tz).toYYYYMMDDTHHMMSS() +"' tz='"+ tz +"'/>" +
+                   "<e d='"+ endUTC.toTimeZone(tz).toYYYYMMDDTHHMMSS() +"' tz='"+ tz +"'/>" +
+                   "<or a='"+ app.zGetActiveAccount().EmailAddress +"'/>" +
+                   "</inv>" +
+                   "<mp content-type='text/plain'>" +
+                   "<content>"+ apptBody +"</content>" +
+                   "</mp>" +
+                   "<su>"+ apptSubject +"</su>" +
+                   "</m>" +
+             "</CreateAppointmentRequest>");
 
         // Verify appointment exists in current view
         ZAssert.assertTrue(app.zPageCalendar.zVerifyAppointmentExists(apptSubject), "Verify appointment displayed in current view");
@@ -184,7 +181,7 @@ public class DeleteAppointment extends AjaxCore {
         // Select the appointment
         app.zPageCalendar.zListItem(Action.A_LEFTCLICK, apptSubject);
 
-        // Delete appointment using keyboard Del and Backspace key
+        // Delete appointment using delete keyboard shortcut key
         DialogConfirmDeleteAppointment dlgConfirm = (DialogConfirmDeleteAppointment)app.zPageCalendar.zKeyboardKeyEvent(keyEvent);
 		dlgConfirm.zPressButton(Button.B_YES);
 

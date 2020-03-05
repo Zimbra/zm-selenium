@@ -74,14 +74,13 @@ public class ViewMail extends AdminCore {
 						"</m>" +
 				"</SendMsgRequest>");
 
-		// Refresh the account list
-		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
+		// Search account
+		app.zPageSearchResults.zAddSearchQuery(account.getEmailAddress());
+		app.zPageSearchResults.zToolbarPressButton(Button.B_SEARCH);
 
-		// Click on account
-		app.zPageManageAccounts.zListItem(Action.A_LEFTCLICK, account.getEmailAddress());
-
-		// Gearbox >> View mail
-		app.zPageManageAccounts.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.B_VIEW_MAIL);
+		// View mail
+		app.zPageSearchResults.zListItem(Action.A_LEFTCLICK, account.getEmailAddress());
+		app.zPageSearchResults.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.B_VIEW_MAIL);
 
 		// Wait for page to load
 		SleepUtil.sleepLong();
@@ -151,97 +150,13 @@ public class ViewMail extends AdminCore {
 						"</m>" +
 				"</SendMsgRequest>");
 
-		// Refresh the account list
-		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
-
-		// Right click on account
-		app.zPageManageAccounts.zListItem(Action.A_RIGHTCLICK, account.getEmailAddress());
-
-		// Right click account >>  view mail
-		app.zPageManageAccounts.zToolbarPressButton(Button.B_VIEW_MAIL);
-
-		// Wait for page to load
-		SleepUtil.sleepLong();
-
-		// Mail page opens in separate window
-		List<String> windowIds = app.zPageMain.sGetAllWindowIds();
-		ZAssert.assertTrue(windowIds.size() > 1, "User's mailbox is not opened in the separate window");
-
-		boolean mailFound = false;
-		for(String id: windowIds) {
-			app.zPageMain.sSelectWindow(id);
-
-			String pageTitle = "Zimbra: Inbox";
-			if (ConfigProperties.isZimbra9XEnvironment()) {
-				pageTitle = "Zimbra";
-			}
-
-			if (app.zPageMain.sGetTitle().contains(pageTitle) && !(app.zPageMain.sGetTitle().contains("Zimbra Administration"))) {
-				mailFound = app.zPageMain.zVerifyMailExists(subject);
-				app.zPageMain.sClose();
-				app.zPageMain.sSelectWindow("null");
-				break;
-			} else if (!(app.zPageMain.sGetTitle().contains("Zimbra Administration"))) {
-				app.zPageMain.zSeparateWindowClose(app.zPageMain.sGetTitle());
-			}
-		}
-
-		// Verify that the mail is present
-		ZAssert.assertTrue(mailFound, "Verify that user's mail is displayed to admin");
-	}
-
-
-	/**
-	 * Testcase : Edit a basic account -- Search List View
-	 * Steps :
-	 * 1. Create an account using SOAP.
-	 * 2. Search account.
-	 * 3. Select an Account.
-	 * 4. View mail
-	 * 5. Verify account mailbox is opened up
-	 *
-	 * @throws HarnessException
-	 */
-
-	@Test (description = "View mail - Edit a basic account - Search List View",
-			groups = { "bhr" })
-
-	public void ViewMail_03() throws HarnessException {
-
-		// Create a new account in the Admin Console using SOAP
-		AccountItem account = new AccountItem("tc" + ConfigProperties.getUniqueString(), ConfigProperties.getStringProperty("testdomain"));
-		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
-				"<CreateAccountRequest xmlns='urn:zimbraAdmin'>"
-						+			"<name>" + account.getEmailAddress() + "</name>"
-						+			"<password>test123</password>"
-						+			"<a n='zimbraAccountStatus'>lockout</a>"
-						+			"<a n='description'>Created by Selenium automation</a>"
-						+		"</CreateAccountRequest>");
-
-		// Send a mail to the account
-		String subject = "subject"+ ConfigProperties.getUniqueString();
-		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
-				"<SendMsgRequest xmlns='urn:zimbraMail'>" +
-						"<m>" +
-						"<e t='t' a='"+ account.getEmailAddress() +"'/>" +
-						"<su>"+ subject +"</su>" +
-						"<mp ct='text/plain'>" +
-						"<content>content"+ ConfigProperties.getUniqueString() +"</content>" +
-						"</mp>" +
-						"</m>" +
-				"</SendMsgRequest>");
-
-		// Enter the search string to find the account
+		// Search account
 		app.zPageSearchResults.zAddSearchQuery(account.getEmailAddress());
-
-		// Click search
 		app.zPageSearchResults.zToolbarPressButton(Button.B_SEARCH);
 
-		// Click on account
-		app.zPageSearchResults.zListItem(Action.A_LEFTCLICK, account.getEmailAddress());
-
-		// Gearbox >> View mail
-		app.zPageManageAccounts.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.B_VIEW_MAIL);
+		// View mail
+		app.zPageSearchResults.zListItem(Action.A_RIGHTCLICK, account.getEmailAddress());
+		app.zPageSearchResults.zToolbarPressButton(Button.B_VIEW_MAIL);
 
 		// Wait for page to load
 		SleepUtil.sleepLong();
@@ -288,8 +203,7 @@ public class ViewMail extends AdminCore {
 	@Test (description = "View mail - Edit a basic account - Search List View",
 			groups = { "functional" })
 
-	public void ViewMail_04() throws HarnessException {
-
+	public void ViewMail_03() throws HarnessException {
 		// Create a new account in the Admin Console using SOAP
 		AccountItem account = new AccountItem("tc" + ConfigProperties.getUniqueString(), ConfigProperties.getStringProperty("testdomain"));
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
@@ -317,77 +231,6 @@ public class ViewMail extends AdminCore {
 
 		// Click on view mail
 		app.zPageManageAccounts.zListItem(Action.A_RIGHTCLICK, Button.O_VIEW_MAIL, account.getEmailAddress());
-
-		// Wait for page to load
-		SleepUtil.sleepLong();
-
-		// Mail page opens in separate window
-		List<String> windowIds = app.zPageMain.sGetAllWindowIds();
-		ZAssert.assertTrue(windowIds.size() > 1, "User's mailbox is not opened in the separate window");
-
-		boolean mailFound = false;
-		for(String id: windowIds) {
-			app.zPageMain.sSelectWindow(id);
-
-			String pageTitle = "Zimbra: Inbox";
-			if (ConfigProperties.isZimbra9XEnvironment()) {
-				pageTitle = "Zimbra";
-			}
-
-			if (app.zPageMain.sGetTitle().contains(pageTitle) && !(app.zPageMain.sGetTitle().contains("Zimbra Administration"))) {
-				mailFound = app.zPageMain.zVerifyMailExists(subject);
-				app.zPageMain.sClose();
-				app.zPageMain.sSelectWindow("null");
-				break;
-			} else if (!(app.zPageMain.sGetTitle().contains("Zimbra Administration"))) {
-				app.zPageMain.zSeparateWindowClose(app.zPageMain.sGetTitle());
-			}
-		}
-
-		// Verify that the mail is present
-		ZAssert.assertTrue(mailFound, "Verify that user's mail is displayed to admin");
-	}
-
-
-	@Test (description = "View mail of a locked account",
-			groups = { "sanity" })
-
-	public void ViewMail_05() throws HarnessException {
-
-		// Create a new account in the Admin Console using SOAP
-		AccountItem account = new AccountItem("tc" + ConfigProperties.getUniqueString(), ConfigProperties.getStringProperty("testdomain"));
-		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
-				"<CreateAccountRequest xmlns='urn:zimbraAdmin'>"
-						+			"<name>" + account.getEmailAddress() + "</name>"
-						+			"<password>test123</password>"
-						+			"<a n='zimbraAccountStatus'>locked</a>"
-						+			"<a n='description'>Created by Selenium automation</a>"
-						+		"</CreateAccountRequest>");
-
-		// Send a mail to the account
-		String subject = "subject"+ ConfigProperties.getUniqueString();
-		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
-				"<SendMsgRequest xmlns='urn:zimbraMail'>" +
-						"<m>" +
-						"<e t='t' a='"+ account.getEmailAddress() +"'/>" +
-						"<su>"+ subject +"</su>" +
-						"<mp ct='text/plain'>" +
-						"<content>content"+ ConfigProperties.getUniqueString() +"</content>" +
-						"</mp>" +
-						"</m>" +
-				"</SendMsgRequest>");
-
-		// Enter the search string to find the account
-		app.zPageSearchResults.zAddSearchQuery(account.getEmailAddress());
-
-		// Click search
-		app.zPageSearchResults.zToolbarPressButton(Button.B_SEARCH);
-
-		// Click on account
-		app.zPageSearchResults.zListItem(Action.A_LEFTCLICK, account.getEmailAddress());
-
-		// Gearbox >> View mail
-		app.zPageManageAccounts.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.B_VIEW_MAIL);
 
 		// Wait for page to load
 		SleepUtil.sleepLong();

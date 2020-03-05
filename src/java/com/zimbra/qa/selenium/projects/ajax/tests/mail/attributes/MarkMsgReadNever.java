@@ -35,7 +35,7 @@ public class MarkMsgReadNever extends SetGroupMailByMessagePreference {
 
 	@Bugs (ids = "78178")
 	@Test (description = "Verify a message is not marked read if zimbraPrefMarkMsgRead=Never",
-			groups = { "sanity" })
+			groups = { "functional" })
 
 	public void MarkMsgReadNever_01() throws HarnessException {
 

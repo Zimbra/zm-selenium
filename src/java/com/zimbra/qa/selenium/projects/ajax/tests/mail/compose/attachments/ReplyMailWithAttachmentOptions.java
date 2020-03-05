@@ -45,7 +45,6 @@ public class ReplyMailWithAttachmentOptions extends SetGroupMailByMessagePrefere
 			groups = { "sanity", "upload" })
 
 	public void ReplyMailWithAttachmentOptions_01() throws HarnessException {
-
 		String subject = "subject" + ConfigProperties.getUniqueString();
 
 		try {

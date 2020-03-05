@@ -329,13 +329,8 @@ public class PageBriefcase extends AbsTab {
 				page = new DialogTag(this.MyApplication, this);
 
 			} else if (option == Button.O_TAG_REMOVETAG) {
-				// Using General shortcuts: Type "u" shortcut
-				// zKeyboard.zTypeCharacters(Shortcut.S_MAIL_REMOVETAG.getKeys());
-
 				pulldownLocator = "css=td[id$='__TAG_MENU_dropdown']>div[class='ImgSelectPullDownArrow']";
-
 				optionLocator = "css=div[id^=briefcase_removetag__]";
-
 				page = null;
 
 			} else {
@@ -941,61 +936,41 @@ public class PageBriefcase extends AbsTab {
 
 	@Override
 	public AbsPage zKeyboardShortcut(Shortcut shortcut) throws HarnessException {
-
 		if (shortcut == null)
 			throw new HarnessException("Shortcut cannot be null");
 
-		tracer.trace("Using the keyboard, press the " + shortcut.getKeys() + " keyboard shortcut");
-
 		AbsPage page = null;
-
 		String keyCode = "";
 
 		if ((shortcut == Shortcut.S_NEWITEM) || (shortcut == Shortcut.S_NEWDOCUMENT)) {
-
-			// "New Document" shortcut result in a new document page opening
 			page = new DocumentBriefcaseNew(this.MyApplication);
-
 			keyCode = "78,68";
+
 		} else if (shortcut == Shortcut.S_DELETE) {
-
-			// "Delete Document" shortcut leads to Confirmation Dialog opening
 			page = new DialogConfirm(DialogConfirm.Confirmation.DELETE, MyApplication, this);
-
 			keyCode = "46";
+
 		} else if (shortcut == Shortcut.S_BACKSPACE) {
-
-			// "Delete Document" shortcut leads to Confirmation Dialog opening
 			page = new DialogConfirm(DialogConfirm.Confirmation.DELETE, MyApplication, this);
-
 			keyCode = "8";
+
 		} else if (shortcut == Shortcut.S_NEWTAG) {
-
-			// "NEW TAG" shortcut opens "Create New Tag" dialog
 			page = new DialogTag(MyApplication, this);
-
 			keyCode = "78,84";
+
 		} else if (shortcut == Shortcut.S_NEWFOLDER) {
-
-			// "NEW Folder" shortcut opens "Create New Folder" dialog
-			// due to the bug #63029 it opens dialog with Mail tree view
 			page = new DialogCreateBriefcaseFolder(MyApplication, this);
-
 			keyCode = "78,70";
+
 		} else if (shortcut == Shortcut.S_MOVE) {
-
-			// "Move" shortcut opens "Choose Folder" dialog
 			page = new DialogMove(MyApplication, this);
-
 			keyCode = "77";
+
 		} else {
 			throw new HarnessException("implement shortcut: " + shortcut);
 		}
 
-		// zKeyboard.zTypeCharacters(shortcut.getKeys());
-
 		zKeyDown(keyCode);
-
 		this.zWaitForBusyOverlay();
 
 		// If a page is specified, wait for it to become active
@@ -1246,7 +1221,7 @@ public class PageBriefcase extends AbsTab {
 		logger.info(myPageName() + " zToolbarPressButton(" + button + ")");
 
 		tracer.trace("Press the " + button + " button");
-		
+
 		String locator = null;
 		AbsPage page = null;
 
@@ -1258,12 +1233,12 @@ public class PageBriefcase extends AbsTab {
 			return (((AjaxPages) this.MyApplication).zPageMain.zToolbarPressButton(Button.B_REFRESH));
 
 		} else if (button == Button.B_UPLOAD_FILE) {
-			
+
 			locator = Locators.zUploadFileTitleBtn.locator;
 
 			page = new DialogUploadFile(MyApplication, this);
 		}
-		
+
 		this.sClickAt(locator, "0,0");
 		SleepUtil.sleepMedium();
 

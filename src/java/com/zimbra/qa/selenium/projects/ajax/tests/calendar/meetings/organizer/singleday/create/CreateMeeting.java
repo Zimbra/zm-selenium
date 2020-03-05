@@ -138,7 +138,7 @@ public class CreateMeeting extends AjaxCore {
 
 
 	@Test (description = "Create basic meeting invite with required and optional attendee",
-			groups = { "sanity" })
+			groups = { "bhr" })
 
 	public void CreateMeeting_03() throws HarnessException {
 
