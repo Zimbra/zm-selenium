@@ -67,7 +67,7 @@ public class QuickReplyAll extends SetGroupMailByConversationPreference {
 		// Select the conversation
 		DisplayConversation display = (DisplayConversation)app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 
-		// Get the first mesage
+		// Get the first message
 		List<DisplayConversationMessage> messages = display.zListGetMessages();
 
 		// Quick Reply
@@ -121,7 +121,7 @@ public class QuickReplyAll extends SetGroupMailByConversationPreference {
 		// Select the conversation
 		DisplayConversation display = (DisplayConversation)app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 
-		// Get the first mesage
+		// Get the first message
 		List<DisplayConversationMessage> messages = display.zListGetMessages();
 
 		// Quick Reply
@@ -193,7 +193,7 @@ public class QuickReplyAll extends SetGroupMailByConversationPreference {
 		// Select the conversation
 		DisplayConversation display = (DisplayConversation)app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 
-		// Get the first mesage
+		// Get the first message
 		List<DisplayConversationMessage> messages = display.zListGetMessages();
 
 		// Quick Reply
@@ -296,7 +296,7 @@ public class QuickReplyAll extends SetGroupMailByConversationPreference {
 		// Select the conversation
 		DisplayConversation display = (DisplayConversation)app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 
-		// Get the first mesage
+		// Get the first message
 		List<DisplayConversationMessage> messages = display.zListGetMessages();
 
 		// Quick Reply
@@ -398,7 +398,7 @@ public class QuickReplyAll extends SetGroupMailByConversationPreference {
 		// Select the conversation
 		DisplayConversation display = (DisplayConversation)app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 
-		// Get the first mesage
+		// Get the first message
 		List<DisplayConversationMessage> messages = display.zListGetMessages();
 
 		// Quick Reply
@@ -500,7 +500,7 @@ public class QuickReplyAll extends SetGroupMailByConversationPreference {
 		// Select the conversation
 		DisplayConversation display = (DisplayConversation)app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 
-		// Get the first mesage
+		// Get the first message
 		List<DisplayConversationMessage> messages = display.zListGetMessages();
 
 		// Quick Reply

@@ -30,11 +30,11 @@ import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
 import com.zimbra.qa.selenium.projects.ajax.pages.mail.FormMailNew;
 
-public class AddTextSignatureInHtmlMesage extends AjaxCore {
+public class AddTextSignatureInHtmlMessage extends AjaxCore {
 	String sigName = "signame" + ConfigProperties.getUniqueString();
 	String sigBody = "sigbody" + ConfigProperties.getUniqueString();
 
-	public AddTextSignatureInHtmlMesage() {
+	public AddTextSignatureInHtmlMessage() {
 		super.startingPage = app.zPageMail;
 	}
 
@@ -62,7 +62,7 @@ public class AddTextSignatureInHtmlMesage extends AjaxCore {
 	@Test (description = "Compose html message with text signature and verify signature through soap",
 			groups = { "functional" })
 
-	public void AddTextSignatureInHtmlMesage_01() throws HarnessException {
+	public void AddTextSignatureInHtmlMessage_01() throws HarnessException {
 
 		// Signature is created
 		SignatureItem signature = SignatureItem.importFromSOAP(app.zGetActiveAccount(), this.sigName);

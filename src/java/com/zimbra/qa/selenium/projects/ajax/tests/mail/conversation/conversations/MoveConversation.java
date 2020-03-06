@@ -142,7 +142,7 @@ public class MoveConversation extends SetGroupMailByConversationPreference {
 		// Click move
 		app.zPageMail.zKeyboardShortcut(Shortcut.S_MAIL_MOVETOTRASH);
 
-		// Verify all mesages are in the subfolder
+		// Verify all messages are in the subfolder
 		FolderItem trash = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Trash);
 		ConversationItem actual = ConversationItem.importFromSOAP(app.zGetActiveAccount(), "is:anywhere subject:"+ c.getSubject());
 
@@ -188,7 +188,7 @@ public class MoveConversation extends SetGroupMailByConversationPreference {
 		// Click move
 		app.zPageMail.zKeyboardShortcut(Shortcut.S_MAIL_MOVETOINBOX);
 
-		// Verify all mesages are in the subfolder
+		// Verify all messages are in the subfolder
 		ConversationItem actual = ConversationItem.importFromSOAP(app.zGetActiveAccount(), "is:anywhere subject:"+ c.getSubject());
 
 		for (MailItem m : actual.getMessageList()) {
@@ -223,7 +223,7 @@ public class MoveConversation extends SetGroupMailByConversationPreference {
 		// Get the folder
 		FolderItem subfolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), foldername);
 
-		// Verify all mesages are in the subfolder
+		// Verify all messages are in the subfolder
 		ConversationItem actual = ConversationItem.importFromSOAP(app.zGetActiveAccount(), "is:anywhere subject:"+ c.getSubject());
 
 		for (MailItem m : actual.getMessageList()) {
