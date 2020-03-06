@@ -66,7 +66,7 @@ public class QuickForward extends SetGroupMailByConversationPreference {
 		// Select the conversation
 		DisplayConversation display = (DisplayConversation)app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 
-		// Get the first mesage
+		// Get the first message
 		List<DisplayConversationMessage> messages = display.zListGetMessages();
 
 		// Quick Forward
@@ -131,7 +131,7 @@ public class QuickForward extends SetGroupMailByConversationPreference {
 		// Select the conversation
 		DisplayConversation display = (DisplayConversation)app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 
-		// Get the first mesage
+		// Get the first message
 		List<DisplayConversationMessage> messages = display.zListGetMessages();
 
 		// Quick Forward
@@ -208,7 +208,7 @@ public class QuickForward extends SetGroupMailByConversationPreference {
 		// Select the conversation
 		DisplayConversation display = (DisplayConversation)app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 
-		// Get the first mesage
+		// Get the first message
 		List<DisplayConversationMessage> messages = display.zListGetMessages();
 
 		// Quick Forward
@@ -305,7 +305,7 @@ public class QuickForward extends SetGroupMailByConversationPreference {
 		// Select the conversation
 		DisplayConversation display = (DisplayConversation)app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 
-		// Get the first mesage
+		// Get the first message
 		List<DisplayConversationMessage> messages = display.zListGetMessages();
 
 		// Quick Forward
@@ -399,7 +399,7 @@ public class QuickForward extends SetGroupMailByConversationPreference {
 		// Select the conversation
 		DisplayConversation display = (DisplayConversation)app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 
-		// Get the first mesage
+		// Get the first message
 		List<DisplayConversationMessage> messages = display.zListGetMessages();
 
 		// Quick Forward
@@ -493,7 +493,7 @@ public class QuickForward extends SetGroupMailByConversationPreference {
 		// Select the conversation
 		DisplayConversation display = (DisplayConversation)app.zPageMail.zListItem(Action.A_LEFTCLICK, subject);
 
-		// Get the first mesage
+		// Get the first message
 		List<DisplayConversationMessage> messages = display.zListGetMessages();
 
 		// Quick Forward

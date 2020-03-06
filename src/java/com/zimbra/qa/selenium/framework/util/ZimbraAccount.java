@@ -290,7 +290,7 @@ public class ZimbraAccount {
 
 	public static synchronized ZimbraAccount User1() {
 		if (_User1 == null) {
-			_User1 = new ZimbraAccount("user1" + "@" + ConfigProperties.getStringProperty("testdomain"), null);
+			_User1 = new ZimbraAccount("user1@" + ConfigProperties.getStringProperty("testdomain"), null);
 			_User1.provision();
 			_User1.authenticate();
 		}
@@ -300,7 +300,7 @@ public class ZimbraAccount {
 
 	public static synchronized ZimbraAccount User2() {
 		if (_User2 == null) {
-			_User2 = new ZimbraAccount("user2" + "@" + ConfigProperties.getStringProperty("testdomain"), null);
+			_User2 = new ZimbraAccount("user2@" + ConfigProperties.getStringProperty("testdomain"), null);
 			_User2.provision();
 			_User2.authenticate();
 		}
@@ -310,7 +310,7 @@ public class ZimbraAccount {
 
 	public static synchronized ZimbraAccount User3() {
 		if (_User3 == null) {
-			_User3 = new ZimbraAccount("user3" + "@" + ConfigProperties.getStringProperty("testdomain"), null);
+			_User3 = new ZimbraAccount("user3@" + ConfigProperties.getStringProperty("testdomain"), null);
 			_User3.provision();
 			_User3.authenticate();
 		}
@@ -320,7 +320,7 @@ public class ZimbraAccount {
 
 	public static synchronized ZimbraAccount User4() {
 		if (_User4 == null) {
-			_User4 = new ZimbraAccount("user4" + "@" + ConfigProperties.getStringProperty("testdomain"), null);
+			_User4 = new ZimbraAccount("user4@" + ConfigProperties.getStringProperty("testdomain"), null);
 			_User4.provision();
 			_User4.authenticate();
 		}
@@ -330,7 +330,7 @@ public class ZimbraAccount {
 
 	public static synchronized ZimbraAccount User5() {
 		if (_User5 == null) {
-			_User5 = new ZimbraAccount("user5" + "@" + ConfigProperties.getStringProperty("testdomain"), null);
+			_User5 = new ZimbraAccount("user5@" + ConfigProperties.getStringProperty("testdomain"), null);
 			_User5.provision();
 			_User5.authenticate();
 		}
@@ -340,7 +340,7 @@ public class ZimbraAccount {
 
 	public static synchronized ZimbraAccount User6() {
 		if (_User6 == null) {
-			_User6 = new ZimbraAccount("user6" + "@" + ConfigProperties.getStringProperty("testdomain"), null);
+			_User6 = new ZimbraAccount("user6@" + ConfigProperties.getStringProperty("testdomain"), null);
 			_User6.provision();
 			_User6.authenticate();
 		}
@@ -350,7 +350,7 @@ public class ZimbraAccount {
 
 	public static synchronized ZimbraAccount User7() {
 		if (_User7 == null) {
-			_User7 = new ZimbraAccount("user7" + "@" + ConfigProperties.getStringProperty("testdomain"), null);
+			_User7 = new ZimbraAccount("user7@" + ConfigProperties.getStringProperty("testdomain"), null);
 			_User7.provision();
 			_User7.authenticate();
 		}
