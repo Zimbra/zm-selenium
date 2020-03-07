@@ -223,7 +223,6 @@ public class AjaxCore {
 
 	@BeforeMethod(groups = { "always" })
 	public void coreBeforeMethod(Method method, ITestContext testContext) throws HarnessException {
-
 		logger.info("BeforeMethod: start");
 
 		// Get the test name & description
@@ -534,7 +533,6 @@ public class AjaxCore {
 
 	public void zUpload(String filePath) throws HarnessException {
 		zUploadFile(filePath, "file");
-		// app.zPageMail.zKeyboardTypeStringUpload(filePath);
 	}
 
 	public void zUpload(String filePath, SeparateWindowFormMailNew window) throws HarnessException {
@@ -550,7 +548,6 @@ public class AjaxCore {
 	}
 
 	public void zUploadFile(String filePath, String attachmentType) throws HarnessException {
-
 		Boolean isFileAttached = false;
 		String fileName = filePath.substring(filePath.lastIndexOf('\\') + 1);
 
@@ -767,7 +764,6 @@ public class AjaxCore {
 		// Select option
 		app.zPageMail.sClickAt(locator, "");
 		app.zPageMail.zWaitForBusyOverlay();
-
 		SleepUtil.sleepSmall();
 
 		if (page != null) {
@@ -778,7 +774,6 @@ public class AjaxCore {
 	}
 
 	public void zFreshLogin() {
-
 		ZimbraAccount.ResetAccountZCS();
 
 		try {
@@ -791,7 +786,6 @@ public class AjaxCore {
 		}
 
 		try {
-
 			((AjaxPages) app).zPageLogin.sOpen(ConfigProperties.getLogoutURL());
 			if (ZimbraAccount.AccountZCS() != null) {
 				((AjaxPages) app).zPageLogin.zLogin(ZimbraAccount.AccountZCS());

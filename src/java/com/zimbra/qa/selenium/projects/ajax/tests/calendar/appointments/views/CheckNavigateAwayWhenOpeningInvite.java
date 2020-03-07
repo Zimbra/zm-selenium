@@ -73,7 +73,7 @@ public class CheckNavigateAwayWhenOpeningInvite extends AjaxCore {
         // Open appointment & close it
         app.zPageCalendar.zListItem(Action.A_DOUBLECLICK, apptSubject);
 
-		// If logout stucks then assume that browser dialog appeared
+		// If logout stuck then assume that browser dialog appeared
 		app.zPageMain.zLogout();
 	}
 }

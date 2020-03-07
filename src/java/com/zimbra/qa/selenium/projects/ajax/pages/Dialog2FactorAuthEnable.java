@@ -71,9 +71,9 @@ public class Dialog2FactorAuthEnable extends AbsDialog {
 			throw new HarnessException("Button " + button + " locator " + locator + " not present!");
 		}
 
-		sClickAt(locator, "0,0");
+		sClickAt(locator, "");
 		if (button == Button.B_FINISH) {
-			SleepUtil.sleepVeryVeryLong();
+			SleepUtil.sleepVeryLong();
 		} else {
 			SleepUtil.sleepLong();
 		}
@@ -82,15 +82,16 @@ public class Dialog2FactorAuthEnable extends AbsDialog {
 		return (null);
 	}
 
-	public void zSetTotpCode(String totpCode) throws HarnessException {
+	public void zSetTotpCode(String totpCode, Button sourcePage) throws HarnessException {
 		logger.info(myPageName() + " zSetTotpCode(" + totpCode + ")");
 
-		String locator;
-		if (ConfigProperties.isZimbra9XEnvironment()) {
+		String locator = null;
+		if (sourcePage == Button.B_PREFERENCES) {
+			locator = "css=div[class='ZmTwoFactorSetupContainer'] input[id$='_code_input']";
+		} else if (sourcePage == Button.B_SIGN_IN) {
 			locator = "css=div[class='ZmTwoFactorCustomInputLoginPage'] input[id$='_code_input']";
-		} else {
-			locator = "css=td[class='WindowInnerContainer'] div[class='ZmTwoFactorSetupContainer'] input[id$='_code_input']";
 		}
+
 		if (!this.sIsElementPresent(locator)) {
 			throw new HarnessException("Secret key locator " + locator + " is not present");
 		}
@@ -100,15 +101,16 @@ public class Dialog2FactorAuthEnable extends AbsDialog {
 		SleepUtil.sleepSmall();
 	}
 
-	public String zGetSecretKey() throws HarnessException {
+	public String zGetSecretKey(Button sourcePage) throws HarnessException {
 		logger.info(myPageName() + " zGetSecretKey");
 
-		String locator;
-		if (ConfigProperties.isZimbra9XEnvironment()) {
+		String locator = null;
+		if (sourcePage == Button.B_PREFERENCES) {
+			locator = "css=div[class='ZmTwoFactorSetupContainer'] span[id$='_email_key']";
+		} else if (sourcePage == Button.B_SIGN_IN) {
 			locator = "css=div[class='ZmTwoFactorCustomSetupContainerLoginPage'] span[id$='_email_key']";
-		} else {
-			locator = "css=td[class='WindowInnerContainer'] div[class='ZmTwoFactorSetupContainer'] span[id$='_email_key']";
 		}
+
 		if (!this.sIsElementPresent(locator)) {
 			throw new HarnessException("Secret key " + locator + " is not present");
 		}

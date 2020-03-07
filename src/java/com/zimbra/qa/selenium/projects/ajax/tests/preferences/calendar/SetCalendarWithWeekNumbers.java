@@ -43,7 +43,6 @@ public class SetCalendarWithWeekNumbers extends AjaxCore {
 			groups = { "sanity" })
 
 	public void SetCalendarWithWeekNumbers_01() throws HarnessException {
-
 		// Navigate to preferences -> calendar
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.Calendar);
 
@@ -55,7 +54,8 @@ public class SetCalendarWithWeekNumbers extends AjaxCore {
 
 		// Go to Calendar
 		app.zPageCalendar.zNavigateTo();
-		ZAssert.assertTrue(app.zPageCalendar.sIsElementPresent("css=td[class='calendar_month_weekno_td']"),"Verify that week number column appears");
+		ZAssert.assertTrue(app.zPageCalendar.sIsElementPresent("css=td[class='calendar_month_weekno_td']"),
+				"Verify that week number column appears");
 
 		// Verify the preference value
 		app.zGetActiveAccount().soapSend(
@@ -66,7 +66,7 @@ public class SetCalendarWithWeekNumbers extends AjaxCore {
 		String value = app.zGetActiveAccount().soapSelectValue("//acct:pref[@name='zimbraPrefShowCalendarWeek']", null);
 		ZAssert.assertEquals(value, "TRUE", "Verify zimbraPrefShowCalendarWeek value'");
 
-		// If logout stucks then assume that browser dialog appeared
+		// If logout stuck then assume that browser dialog appeared
 		app.zPageMain.zLogout();
 	}
 }
