@@ -38,64 +38,63 @@ public class ContactsDetailedSearchEnabled extends SetGroupMailByMessagePreferen
 			groups = { "sanity" })
 
 	public void ContactsDetailedSearchEnabled_01() throws HarnessException {
-		try {
+		String department = "dept" + ConfigProperties.getUniqueString();
 
-			String department = "dept" + ConfigProperties.getUniqueString();
+		// Add departments to three accounts
+		ZimbraAdminAccount.GlobalAdmin()
+				.soapSend("<ModifyAccountRequest xmlns='urn:zimbraAdmin'>" + "<id>"
+						+ ZimbraAccount.Account5().ZimbraId + "</id>" + "<a n='ou'>" + department + "</a>"
+						+ "</ModifyAccountRequest>");
 
-			// Add departments to three accounts
-			ZimbraAdminAccount.GlobalAdmin()
-					.soapSend("<ModifyAccountRequest xmlns='urn:zimbraAdmin'>" + "<id>"
-							+ ZimbraAccount.Account5().ZimbraId + "</id>" + "<a n='ou'>" + department + "</a>"
-							+ "</ModifyAccountRequest>");
+		ZimbraAdminAccount.GlobalAdmin()
+				.soapSend("<ModifyAccountRequest xmlns='urn:zimbraAdmin'>" + "<id>"
+						+ ZimbraAccount.Account6().ZimbraId + "</id>" + "<a n='ou'>" + department + "</a>"
+						+ "</ModifyAccountRequest>");
 
-			ZimbraAdminAccount.GlobalAdmin()
-					.soapSend("<ModifyAccountRequest xmlns='urn:zimbraAdmin'>" + "<id>"
-							+ ZimbraAccount.Account6().ZimbraId + "</id>" + "<a n='ou'>" + department + "</a>"
-							+ "</ModifyAccountRequest>");
+		ZimbraAdminAccount.GlobalAdmin().soapSend("<ModifyAccountRequest xmlns='urn:zimbraAdmin'>" + "<id>"
+				+ ZimbraAccount.Account7().ZimbraId + "</id>" + "<a n='ou'>HR</a>" + "</ModifyAccountRequest>");
 
-			ZimbraAdminAccount.GlobalAdmin().soapSend("<ModifyAccountRequest xmlns='urn:zimbraAdmin'>" + "<id>"
-					+ ZimbraAccount.Account7().ZimbraId + "</id>" + "<a n='ou'>HR</a>" + "</ModifyAccountRequest>");
+		// Open the new mail form
+		FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
+		ZAssert.assertNotNull(mailform, "Verify the new form opened");
 
-			// Open the new mail form
-			FormMailNew mailform = (FormMailNew) app.zPageMail.zToolbarPressButton(Button.B_NEW);
-			ZAssert.assertNotNull(mailform, "Verify the new form opened");
+		// Click on To button
+		FormAddressPicker selectAddress = (FormAddressPicker) mailform.zToolbarPressButton(Button.B_TO);
 
-			// Click on To button
-			FormAddressPicker selectAddress = (FormAddressPicker) mailform.zToolbarPressButton(Button.B_TO);
+		// Enter department to search
+		selectAddress.zFillField(Field.Department, department);
 
-			// Enter department to search
-			selectAddress.zFillField(Field.Department, department);
+		for (int i=0; i<=5;) {
 			selectAddress.zToolbarPressButton(Button.B_SEARCH);
 
-			// Check that correct addresses are filtered out
-			ZAssert.assertTrue(
-					selectAddress.sIsElementPresent(
-							Locators.SearchResultArea + ":contains('" + ZimbraAccount.Account5().EmailAddress + "')"),
-					"Verify that correct addresses are filtered out");
-			ZAssert.assertTrue(
-					selectAddress.sIsElementPresent(
-							Locators.SearchResultArea + ":contains('" + ZimbraAccount.Account6().EmailAddress + "')"),
-					"Verify that correct addresses are filtered out");
+			if (selectAddress.sIsElementPresent(
+							Locators.SearchResultArea + ":contains('" + ZimbraAccount.Account5().EmailAddress + "')")) {
 
-			// Check that department names are also displayed
-			ZAssert.assertTrue(
-					selectAddress.sIsElementPresent(Locators.SearchResultArea + ":contains('" + department + "')"),
-					"Verify that search result containing the department name is displayed ");
+				// Check that correct addresses are filtered out
+				ZAssert.assertTrue(
+						selectAddress.sIsElementPresent(
+								Locators.SearchResultArea + ":contains('" + ZimbraAccount.Account5().EmailAddress + "')"),
+						"Verify that correct addresses are filtered out");
+				ZAssert.assertTrue(
+						selectAddress.sIsElementPresent(
+								Locators.SearchResultArea + ":contains('" + ZimbraAccount.Account6().EmailAddress + "')"),
+						"Verify that correct addresses are filtered out");
 
-			// Selecting the first addresses from the search result and moving to recipient
-			// box
-			selectAddress.sClick(Locators.ContactPickerFirstContact);
-			selectAddress.zToolbarPressButton(Button.B_TO);
+				// Check that department names are also displayed
+				ZAssert.assertTrue(
+						selectAddress.sIsElementPresent(Locators.SearchResultArea + ":contains('" + department + "')"),
+						"Verify that search result containing the department name is displayed ");
 
-			// Verify that the selected address has been moved to recipient box and
-			// department name is displayed in recipient box as well
-			ZAssert.assertTrue(
-					selectAddress.sIsElementPresent(
-							Locators.SearchResultArea + ":contains('" + department + "'):contains('To:')"),
-					"Verify that department is displayed in recipient box as well");
+				// Select first address
+				selectAddress.sClick(Locators.ContactPickerFirstContact);
+				selectAddress.zToolbarPressButton(Button.B_TO);
+				ZAssert.assertTrue(
+						selectAddress.sIsElementPresent(
+								Locators.SearchResultArea + ":contains('" + department + "'):contains('To:')"),
+						"Verify department is displayed in recipient textarea");
 
-		} finally {
-			app.zPageMain.zRefreshMainUI();
+				break;
+			}
 		}
 	}
 }
