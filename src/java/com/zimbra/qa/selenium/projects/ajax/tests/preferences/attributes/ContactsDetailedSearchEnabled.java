@@ -64,7 +64,7 @@ public class ContactsDetailedSearchEnabled extends SetGroupMailByMessagePreferen
 		// Enter department to search
 		selectAddress.zFillField(Field.Department, department);
 
-		for (int i=0; i<=5;) {
+		for (int i=0; i<=5; i++) {
 			selectAddress.zToolbarPressButton(Button.B_SEARCH);
 
 			if (selectAddress.sIsElementPresent(
