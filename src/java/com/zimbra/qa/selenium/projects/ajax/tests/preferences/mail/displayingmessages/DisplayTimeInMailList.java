@@ -50,7 +50,7 @@ public class DisplayTimeInMailList extends AjaxCore {
 
 		// Data present in the file to be imported
 		String subject = "RE: [Bug 108711] TIFF image preview is not showing in message body or as attachment";
-		String mailReceivedTime = "12/12/2017 7:42 PM";
+		String mailReceivedTime = "12/12/2017 8:12 AM";
 
 		// Navigate to preferences -> Import/Export
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.ImportExport);

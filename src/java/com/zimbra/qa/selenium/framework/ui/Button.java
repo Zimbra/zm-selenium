@@ -41,8 +41,7 @@ package com.zimbra.qa.selenium.framework.ui;
  *
  */
 public class Button {
-
-	// General buttons and pulldown options
+	public static final Button B_SIGN_IN = new Button("B_SIGN_IN");
 	public static final Button B_NEW = new Button("B_NEW");
 	public static final Button B_NEW_FOLDER = new Button("B_NEW_FOLDER");
 	public static final Button B_NEW_TAG = new Button("B_NEW_TAG");
@@ -136,7 +135,7 @@ public class Button {
 	public static final Button B_CANCEL_CONFIRMDELETE = new Button("B_CANCEL_CONFIRMDELETE");
 
 	// Signature warning dialog buttons
-	public static final Button B_Signature_OK = new Button("B_Signature_Ok");
+	public static final Button B_SIGNATURE_OK = new Button("B_SIGNATURE_OK");
 
 	// Main Page buttons and pulldown options
 	public static final Button B_ACCOUNT = new Button("B_ACCOUNT");

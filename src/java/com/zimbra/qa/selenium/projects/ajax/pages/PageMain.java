@@ -136,7 +136,6 @@ public class PageMain extends AbsTab {
 
 	@Override
 	public void zNavigateTo() throws HarnessException {
-
 		if (zIsActive()) {
 			logger.info(myPageName() + " is already loaded");
 			return;
@@ -215,7 +214,6 @@ public class PageMain extends AbsTab {
 		if (pulldown == Button.B_ACCOUNT) {
 
 			if (option == Button.O_PRODUCT_HELP) {
-
 				pulldownLocator = "css=div#skin_outer td#skin_dropMenu div.DwtLinkButtonDropDownArrow";
 				optionLocator = "css=div[id^='POPUP'] div[id='documentation'] td[id$='_title']";
 
@@ -232,14 +230,12 @@ public class PageMain extends AbsTab {
 				return (window);
 
 			} else if (option == Button.O_ABOUT) {
-
 				pulldownLocator = "css=div#skin_outer td#skin_dropMenu div.DwtLinkButtonDropDownArrow";
 				optionLocator = "css=div[id^='POPUP'] div[id='about'] td[id$='_title']";
 				page = new DialogInformational(DialogInformational.DialogWarningID.InformationalDialog,
 						this.MyApplication, this);
 
 			} else if (option == Button.O_SHORTCUT) {
-
 				pulldownLocator = "css=div#skin_outer td#skin_dropMenu div.DwtLinkButtonDropDownArrow";
 				optionLocator = "css=div[id^='POPUP'] div[id='showCurrentShortcuts'] td[id$='_title']";
 				page = new DialogInformational(DialogInformational.DialogWarningID.ShortcutDialog, this.MyApplication,
@@ -342,7 +338,6 @@ public class PageMain extends AbsTab {
 	 * Close any extra compose tabs
 	 */
 	public void zHandleComposeTabs() throws HarnessException {
-
 		String locator = "css=div[id^='zb__App__tab']";
 		if (sIsElementPresent(locator)) {
 			int count = this.sGetCssCount(locator);
@@ -432,8 +427,6 @@ public class PageMain extends AbsTab {
 		}
 	}
 
-	// Various kind of close window (without title) methods
-
 	public void zCloseWindow(SeparateWindow window, AjaxPages app) throws HarnessException {
 		zCoreCloseWindow(window, app);
 	}
@@ -455,7 +448,6 @@ public class PageMain extends AbsTab {
 	}
 
 	public AbsTab zGetCurrentApp() throws HarnessException {
-
 		String mailZimletsPane = null, contactsZimletsPane = null, calendarZimletsPane = null;
 		String tasksZimletsPane = null, briefcaseZimletsPane = null, generalPreferencesOverviewPane = null;
 		String drivePane = null;
@@ -542,8 +534,8 @@ public class PageMain extends AbsTab {
 				zHandleDialogs(appTab);
 
 				sClickAt(appLocator, "");
-				SleepUtil.sleepLong();
 				this.zWaitForBusyOverlay();
+				SleepUtil.sleepLong();
 				if (!appTab.equals(((AjaxPages) MyApplication).zPagePreferences)
 						&& !appTab.equals(((AjaxPages) MyApplication).zPageDrive)) {
 					zWaitForElementPresent(commonAppLocator);

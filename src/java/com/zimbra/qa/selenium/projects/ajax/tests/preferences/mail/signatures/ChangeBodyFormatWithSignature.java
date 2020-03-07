@@ -62,7 +62,7 @@ public class ChangeBodyFormatWithSignature extends AjaxCore {
 
 		// Select text format from drop down
 		DialogWarning dialog = (DialogWarning) signew.zSelectFormat("text");
-		dialog.zPressButton(Button.B_Signature_OK);
+		dialog.zPressButton(Button.B_SIGNATURE_OK);
 		SleepUtil.sleepMedium();
 
 		ZAssert.assertStringContains(signew.zGetSignatureBodyText(), sigBody, "Verify the text content signature body");
@@ -84,7 +84,7 @@ public class ChangeBodyFormatWithSignature extends AjaxCore {
 
 		// Select text format from drop down
 		DialogWarning dialog1 = (DialogWarning) signew1.zSelectFormat("text");
-		dialog1.zPressButton(Button.B_Signature_OK);
+		dialog1.zPressButton(Button.B_SIGNATURE_OK);
 		SleepUtil.sleepMedium();
 
 		ZAssert.assertStringContains(signew1.zGetSignatureBodyText(), sigBody1, "Verify the text content signature body");

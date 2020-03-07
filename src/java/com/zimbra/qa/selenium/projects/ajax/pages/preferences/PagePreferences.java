@@ -45,8 +45,6 @@ import com.zimbra.qa.selenium.projects.ajax.pages.PageMain;
 public class PagePreferences extends AbsTab {
 
 	public static class Locators {
-
-		// Preferences Toolbar: Save, Cancel
 		public static final String zToolbarSaveID = "zb__PREF__SAVE_title";
 		public static final String zToolbarCancelID = "zb__PREF__CANCEL_title";
 		public static final String zGeneralPreferencesOverviewPane = "zti__main_Options__PREF_PAGE_GENERAL_div";
@@ -214,7 +212,6 @@ public class PagePreferences extends AbsTab {
 
 	@Override
 	public boolean zIsActive() throws HarnessException {
-
 		if (!((AjaxPages) MyApplication).zPageMain.zIsActive()) {
 			((AjaxPages) MyApplication).zPageMain.zNavigateTo();
 		}
@@ -238,7 +235,6 @@ public class PagePreferences extends AbsTab {
 
 	@Override
 	public void zNavigateTo() throws HarnessException {
-
 		if (zIsActive()) {
 			logger.info(myPageName() + " is already loaded");
 			return;
@@ -295,23 +291,18 @@ public class PagePreferences extends AbsTab {
 		String locator = null;
 
 		if (preference.equals("zimbraPrefIncludeSpamInSearch")) {
-
 			locator = "css=input[id$=_SEARCH_INCLUDES_SPAM]";
 
 		} else if (preference.equals("zimbraPrefIncludeTrashInSearch")) {
-
 			locator = "css=input[id$=_SEARCH_INCLUDES_TRASH]";
 
 		} else if (preference.equals("zimbraPrefShowSearchString")) {
-
 			locator = "css=input[id$=_SHOW_SEARCH_STRING]";
 
 		} else if (preference.equals("zimbraPrefAutoAddAddressEnabled")) {
-
 			locator = "css=input[id$=_AUTO_ADD_ADDRESS]";
 
 		} else if (preference.equals("zimbraPrefAutocompleteAddressBubblesEnabled")) {
-
 			locator = "css=input[id$=_USE_ADDR_BUBBLES]";
 
 		} else {
@@ -452,7 +443,6 @@ public class PagePreferences extends AbsTab {
 				}
 
 				this.sClick(Locators.zStartWeekOn);
-
 				this.zWaitForBusyOverlay();
 
 				if (option != null) {
@@ -463,7 +453,6 @@ public class PagePreferences extends AbsTab {
 						}
 
 						this.sClick(Locators.zStartWeekOnTuesday);
-
 						this.zWaitForBusyOverlay();
 					}
 				}
@@ -476,18 +465,15 @@ public class PagePreferences extends AbsTab {
 				}
 
 				this.sClick(Locators.zDefaultAppointmentDuration);
-
 				this.zWaitForBusyOverlay();
 
 				if (option != null) {
-
 					if (option == Button.O_APPOINTMENT_DURATION_90) {
 						if (!this.sIsElementPresent(Locators.zAppointmentDuration90)) {
 							throw new HarnessException("optionLocator not present! " + Locators.zAppointmentDuration90);
 						}
 
 						this.sClick(Locators.zAppointmentDuration90);
-
 						this.zWaitForBusyOverlay();
 					}
 				}
@@ -532,18 +518,15 @@ public class PagePreferences extends AbsTab {
 	}
 
 	public void zSelectRadioButton(Button option) throws HarnessException {
-
 		if (option == null)
 			throw new HarnessException("Option cannot be null!");
 
 		String locator = null;
 
 		if (option == Button.R_CUSTOM_WORK_HOURS) {
-
 			locator = Locators.zCustomWorkHours;
 
 		} else if (option == Button.R_SEND_AUTOREPLY_MESSAGE) {
-
 			locator = Locators.zSendAutoReplyMessage;
 
 		} else {
@@ -556,30 +539,24 @@ public class PagePreferences extends AbsTab {
 
 		this.sClick(locator);
 		this.zWaitForBusyOverlay();
-
 	}
 
 	public void zSelectCheckBox(Button option) throws HarnessException {
-
 		if (option == null)
 			throw new HarnessException("Option cannot be null!");
 
 		String locator = null;
 
 		if (option == Button.B_MONDAY_CHECK_BOX) {
-
 			locator = Locators.zMondayCustomWorkHour;
 
 		} else if (option == Button.C_SEND_AUTOREPLY_FOR_TIME_PERIOD) {
-
 			locator = Locators.zSendAutoRepliesForTimePeriod;
 
 		} else if (option == Button.C_OUT_OF_OFFICE_ALLDAY) {
-
 			locator = Locators.zOutOfOfficeAllDay;
 
 		} else if (option == Button.C_OUT_OF_OFFICE_CALENDAR_APPT) {
-
 			locator = Locators.zOutOfOfficeCalendarAppt;
 
 		} else {
@@ -592,11 +569,9 @@ public class PagePreferences extends AbsTab {
 
 		this.sClickAt(locator, "");
 		this.zWaitForBusyOverlay();
-
 	}
 
 	public AbsPage zPressButton(Button button) throws HarnessException {
-
 		logger.info(myPageName() + " zPressButton(" + button + ")");
 
 		tracer.trace("Click button " + button);
@@ -608,17 +583,14 @@ public class PagePreferences extends AbsTab {
 		AbsPage page = null;
 
 		if (button == Button.B_CUSTOMIZE) {
-
 			locator = Locators.zCustomizeButton;
 			page = null;
 
 		} else if (button == Button.B_YES) {
-
 			locator = Locators.zYesButtonWarningDialog;
 			page = null;
 
 		} else if (button == Button.B_OK) {
-
 			if (sIsElementPresent("css=div[id='" + Locators.zDialogShareId + "'] td[id^='OK'] td[id$='_title']")) {
 				locator = "css=div[id='" + Locators.zDialogShareId + "'] td[id^='OK'] td[id$='_title']";
 			} else {
@@ -627,7 +599,6 @@ public class PagePreferences extends AbsTab {
 			page = null;
 
 		} else if (button == Button.B_CANCEL) {
-
 			if (sIsElementPresent("css=div[id='" + Locators.zDialogShareId + "'] td[id^='Cancel'] td[id$='_title']")) {
 				locator = "css=div[id='" + Locators.zDialogShareId + "'] td[id^='Cancel'] td[id$='_title']";
 			} else {
@@ -636,48 +607,39 @@ public class PagePreferences extends AbsTab {
 			page = null;
 
 		} else if (button == Button.B_NO) {
-
 			locator = Locators.zNoButtonWarningDialog;
 			page = null;
 
 		} else if (button == Button.B_IMPORT) {
-
 			locator = Locators.zImportButton;
 			page = null;
 
 		} else if (button == Button.B_ADD_APPLICATION_CODE) {
-
 			locator = Locators.zAddApplicationCodeButton;
 			page = new DialogAddApplicationCode(MyApplication, ((AjaxPages) MyApplication).zPagePreferences);
 
 		} else if (button == Button.B_IMPORT_OK) {
-
 			locator = Locators.zImportDialogOkButton;
 			page = null;
 
 		} else if (button == Button.B_SEND_VERIFICATION_CODE) {
-
 			locator = Locators.zSendVerificationCodeBtn;
 			page = new DialogInformational(DialogInformational.DialogWarningID.InformationalDialog, this.MyApplication,
 					((AjaxPages) this.MyApplication).zPagePreferences);
 
 		} else if (button == Button.B_VALIDATE_CODE) {
-
 			locator = Locators.zValidateCodeBtn;
 			page = null;
 
 		} else if (button == Button.B_ADD_DELEGATE) {
-
 			locator = Locators.zAddDelegateButton;
 			page = null;
 
 		} else if (button == Button.B_EDIT_PERMISSIONS) {
-
 			locator = Locators.zEditPermissionsButton;
 			page = null;
 
 		} else if (button == Button.B_REMOVE_PERMISSIONS) {
-
 			locator = Locators.zRemovePermissionsButton;
 			page = null;
 
@@ -720,29 +682,19 @@ public class PagePreferences extends AbsTab {
 	}
 
 	public void zFillField(Field field, String value) throws HarnessException {
-
 		tracer.trace("Set " + field + " to " + value);
 
 		String locator = null;
-
-		// start date
 		if (field == Field.StartDate) {
-
 			locator = "css=input[id='Prefs_Pages_OUTOFOFFICE_VACATION_FROM1']";
 
-			// start time
 		} else if (field == Field.StartTime) {
-
 			locator = "css=input[id='DwtTimeInputSelect_5_startTimeInput']";
 
-			// end date
 		} else if (field == Field.EndDate) {
-
 			locator = "css=input[id='Prefs_Pages_OUTOFOFFICE_VACATION_UNTIL1']";
 
-			// end time
 		} else if (field == Field.EndTime) {
-
 			locator = "css=input[id='DwtTimeInputSelect_6_endTimeInput']";
 
 		} else {
@@ -776,10 +728,7 @@ public class PagePreferences extends AbsTab {
 	}
 
 	public void zCheckboxSet(Button checkbox, boolean status) throws HarnessException {
-
 		logger.info(myPageName() + " zPressButton(" + checkbox + ")");
-
-		tracer.trace("Click button " + checkbox);
 
 		if (checkbox == null)
 			throw new HarnessException("Button cannot be null!");
@@ -787,39 +736,30 @@ public class PagePreferences extends AbsTab {
 		String locator = null;
 
 		if (checkbox == Button.C_SUNDAY_WORK_HOUR) {
-
 			locator = Locators.zSundayCustomWorkHour;
 
 		} else if (checkbox == Button.C_MONDAY_WORK_HOUR) {
-
 			locator = Locators.zMondayCustomWorkHour;
 
 		} else if (checkbox == Button.C_TUESDAY_WORK_HOUR) {
-
 			locator = Locators.zTuesdayCustomWorkHour;
 
 		} else if (checkbox == Button.C_WEDNESDAY_WORK_HOUR) {
-
 			locator = Locators.zWednesdayCustomWorkHour;
 
 		} else if (checkbox == Button.C_THURSDAY_WORK_HOUR) {
-
 			locator = Locators.zThursdayCustomWorkHour;
 
 		} else if (checkbox == Button.C_FRIDAY_WORK_HOUR) {
-
 			locator = Locators.zFridayCustomWorkHour;
 
 		} else if (checkbox == Button.C_SATURDAY_WORK_HOUR) {
-
 			locator = Locators.zSaturdayCustomWorkHour;
 
 		} else if (checkbox == Button.C_MONDAY_WORK_WEEK) {
-
 			locator = Locators.zMondayWorkWeek;
 
 		} else if (checkbox == Button.C_SHOW_CALENDAR_WEEK_NUMBERS) {
-
 			locator = Locators.zShowCalendarsWithWeekNumbers;
 
 		} else {
@@ -840,7 +780,6 @@ public class PagePreferences extends AbsTab {
 		}
 
 		this.zWaitForBusyOverlay();
-
 	}
 
 	public void zCheckboxSet(Checkbox checkbox, boolean status) throws HarnessException {

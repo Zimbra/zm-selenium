@@ -40,7 +40,6 @@ public class SetCalendarWorkingHours extends AjaxCore {
 			groups = { "sanity" })
 
 	public void SetCalendarWorkingHours_01() throws HarnessException {
-
 		// Navigate to preferences -> calendar
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.Calendar);
 
@@ -61,9 +60,11 @@ public class SetCalendarWorkingHours extends AjaxCore {
 				+		"</GetPrefsRequest>");
 
 		String value = app.zGetActiveAccount().soapSelectValue("//acct:pref[@name='zimbraPrefCalendarWorkingHours']", null);
-		ZAssert.assertEquals(value, "1:N:0800:1700,2:Y:0800:1700,3:Y:0800:1700,4:Y:0800:1700,5:Y:0800:1700,6:N:0800:1700,7:N:0800:1700", "Verify zimbraPrefCalendarWorkingHours value (Sunday, Monday & Saturday as non-working days)'");
+		ZAssert.assertStringContains(value,
+				"1:N:0800:1700,2:Y:0800:1700,3:Y:0800:1700,4:Y:0800:1700,5:Y:0800:1700,6:N:0800:1700,7:N:0800:1700",
+				"Verify zimbraPrefCalendarWorkingHours value (Sunday, Monday & Saturday as non-working days)'");
 
-		// If logout stucks then assume that browser dialog appeared
+		// If logout stuck then assume that browser dialog appeared
 		app.zPageMain.zLogout();
 	}
 
@@ -73,7 +74,6 @@ public class SetCalendarWorkingHours extends AjaxCore {
 			groups = { "functional" })
 
 	public void SetCalendarWorkingHours_02() throws HarnessException {
-
 		// Navigate to preferences -> calendar
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.Calendar);
 
@@ -93,7 +93,9 @@ public class SetCalendarWorkingHours extends AjaxCore {
 				+		"</GetPrefsRequest>");
 
 		String value = app.zGetActiveAccount().soapSelectValue("//acct:pref[@name='zimbraPrefCalendarWorkingHours']", null);
-		ZAssert.assertEquals(value, "1:N:0800:1700,2:N:0800:1700,3:Y:0800:1700,4:Y:0800:1700,5:Y:0800:1700,6:N:0800:1700,7:N:0800:1700", "Verify zimbraPrefCalendarWorkingHours value (Sunday, Monday & Saturday as non-working days)'");
+		ZAssert.assertStringContains(value,
+				"1:N:0800:1700,2:N:0800:1700,3:Y:0800:1700,4:Y:0800:1700,5:Y:0800:1700,6:N:0800:1700,7:N:0800:1700",
+				"Verify zimbraPrefCalendarWorkingHours value (Sunday, Monday & Saturday as non-working days)'");
 		app.zPageMain.zLogout();
 	}
 
@@ -102,7 +104,6 @@ public class SetCalendarWorkingHours extends AjaxCore {
 			groups = { "functional" })
 
 	public void SetCalendarWorkingHours_03() throws HarnessException {
-
 		// Navigate to preferences -> calendar
 		app.zTreePreferences.zTreeItem(Action.A_LEFTCLICK, TreeItem.Calendar);
 
@@ -125,10 +126,11 @@ public class SetCalendarWorkingHours extends AjaxCore {
 				+		"</GetPrefsRequest>");
 
 		String value = app.zGetActiveAccount().soapSelectValue("//acct:pref[@name='zimbraPrefCalendarWorkingHours']", null);
-		ZAssert.assertEquals(value, "1:N:0800:1700,2:N:0800:1700,3:Y:0800:1700,4:Y:0800:1700,5:Y:0800:1700,6:Y:0800:1700,7:N:0800:1700", "Verify zimbraPrefCalendarWorkingHours value (Sunday & Saturday as non-working days)'");
+		ZAssert.assertStringContains(value,
+				"1:N:0800:1700,2:N:0800:1700,3:Y:0800:1700,4:Y:0800:1700,5:Y:0800:1700,6:Y:0800:1700,7:N:0800:1700",
+				"Verify zimbraPrefCalendarWorkingHours value (Sunday & Saturday as non-working days)'");
 
-		// If logout stucks then assume that browser dialog appeared
+		// If logout stuck then assume that browser dialog appeared
 		app.zPageMain.zLogout();
 	}
-
 }
