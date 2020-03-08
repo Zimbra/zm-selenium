@@ -64,7 +64,7 @@ public class RestUtil {
 	private static Logger logger = LogManager.getLogger(RestUtil.class);
 
 	// URI data
-	protected String scheme = null;
+	protected String scheme = "https";
 	protected String userInfo = null;
 	protected String host = null;
 	protected int port = 0;

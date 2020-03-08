@@ -45,16 +45,12 @@ public class UploadFile extends EnableBriefcaseFeature {
 			groups = { "smoke" })
 
 	public void UploadFile_01() throws HarnessException {
-
 		ZimbraAccount account = app.zGetActiveAccount();
-
 		FolderItem briefcaseFolder = FolderItem.importFromSOAP(account,	SystemFolder.Briefcase);
 
 		// Create file item
 		String filePath = ConfigProperties.getBaseDirectory() + "/data/public/other/testtextfile.txt";
-
 		FileItem fileItem = new FileItem(filePath);
-
 		String fileName = fileItem.getName();
 
 		// Upload file to server through RestUtil
@@ -83,9 +79,7 @@ public class UploadFile extends EnableBriefcaseFeature {
 	public void UploadFile_02() throws HarnessException {
 
 		try {
-
 			ZimbraAccount account = app.zGetActiveAccount();
-
 			FolderItem briefcaseFolder = FolderItem.importFromSOAP(account, SystemFolder.Briefcase);
 
 			// Create file item
@@ -122,9 +116,7 @@ public class UploadFile extends EnableBriefcaseFeature {
 			groups = { "bhr" })
 
 	public void UploadFile_03() throws HarnessException {
-
 		ZimbraAccount account = app.zGetActiveAccount();
-
 		FolderItem briefcaseFolder = FolderItem.importFromSOAP(account, SystemFolder.Briefcase);
 
 		// Create file item
@@ -166,7 +158,6 @@ public class UploadFile extends EnableBriefcaseFeature {
 	public void UploadFile_04() throws HarnessException {
 
 		try {
-			
 			// Set the max file upload limit to 1 MB so that user can upload file of size upto 764KB
 			ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 					" <ModifyConfigRequest  xmlns='urn:zimbraAdmin'>"
