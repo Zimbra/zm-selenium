@@ -47,6 +47,7 @@ public class ViewAccounts extends AdminCore {
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<CreateDomainRequest xmlns='urn:zimbraAdmin'>"
 				+			"<name>" + domainName + "</name>"
+				+			"<a n='description'>Created by Selenium automation</a>"
 				+		"</CreateDomainRequest>");
 
 		// Create admin account

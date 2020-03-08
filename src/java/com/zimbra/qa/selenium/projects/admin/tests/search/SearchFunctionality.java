@@ -53,7 +53,7 @@ public class SearchFunctionality extends AdminCore {
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 						"<CreateAccountRequest xmlns='urn:zimbraAdmin'>"
 				+			"<name>" + account.getEmailAddress() + "</name>"
-				+			"<password>test123</password>"
+				+			"<password>" + ConfigProperties.getStringProperty("accountPassword") + "</password>"
 				+			"<a n='description'>Created by Selenium automation</a>"
 				+		"</CreateAccountRequest>");
 
@@ -93,7 +93,7 @@ public class SearchFunctionality extends AdminCore {
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 						"<CreateAccountRequest xmlns='urn:zimbraAdmin'>"
 				+			"<name>" + account.getEmailAddress() + "</name>"
-				+			"<password>test123</password>"
+				+			"<password>" + ConfigProperties.getStringProperty("accountPassword") + "</password>"
 				+			"<a n='description'>Created by Selenium automation</a>"
 				+		"</CreateAccountRequest>");
 
@@ -176,6 +176,7 @@ public class SearchFunctionality extends AdminCore {
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 						"<CreateDomainRequest xmlns='urn:zimbraAdmin'>"
 				+			"<name>" + domain.getName() + "</name>"
+				+			"<a n='description'>Created by Selenium automation</a>"
 				+		"</CreateDomainRequest>");
 
 		// Go to navigation path -- Home --> Search --> Search --> Domains
@@ -214,7 +215,7 @@ public class SearchFunctionality extends AdminCore {
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 						"<CreateAccountRequest xmlns='urn:zimbraAdmin'>"
 				+			"<name>" + account.getEmailAddress() + "</name>"
-				+			"<password>test123</password>"
+				+			"<password>" + ConfigProperties.getStringProperty("accountPassword") + "</password>"
 				+			"<a n='zimbraAccountStatus'>lockout</a>"
 				+			"<a n='description'>Created by Selenium automation</a>"
 				+		"</CreateAccountRequest>");
@@ -255,7 +256,7 @@ public class SearchFunctionality extends AdminCore {
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 						"<CreateAccountRequest xmlns='urn:zimbraAdmin'>"
 				+			"<name>" + account.getEmailAddress() + "</name>"
-				+			"<password>test123</password>"
+				+			"<password>" + ConfigProperties.getStringProperty("accountPassword") + "</password>"
 				+			"<a n='zimbraAccountStatus'>pending</a>"
 				+			"<a n='description'>Created by Selenium automation</a>"
 				+		"</CreateAccountRequest>");
@@ -296,7 +297,7 @@ public class SearchFunctionality extends AdminCore {
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<CreateAccountRequest xmlns='urn:zimbraAdmin'>"
 				+			"<name>" + account.getEmailAddress() + "</name>"
-				+			"<password>test123</password>"
+				+			"<password>" + ConfigProperties.getStringProperty("accountPassword") + "</password>"
 				+			"<a n='zimbraIsAdminAccount'>TRUE</a>"
 				+			"<a n='description'>Created by Selenium automation</a>"
 				+		"</CreateAccountRequest>");
@@ -306,7 +307,7 @@ public class SearchFunctionality extends AdminCore {
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<CreateAccountRequest xmlns='urn:zimbraAdmin'>"
 				+			"<name>" + del_admin_account.getEmailAddress() + "</name>"
-				+			"<password>test123</password>"
+				+			"<password>" + ConfigProperties.getStringProperty("accountPassword") + "</password>"
 				+			"<a n='zimbraIsDelegatedAdminAccount'>TRUE</a>"
 				+			"<a n='description'>Created by Selenium automation</a>"
 				+		"</CreateAccountRequest>");
@@ -357,7 +358,7 @@ public class SearchFunctionality extends AdminCore {
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 						"<CreateAccountRequest xmlns='urn:zimbraAdmin'>"
 				+			"<name>" + account.getEmailAddress() + "</name>"
-				+			"<password>test123</password>"
+				+			"<password>" + ConfigProperties.getStringProperty("accountPassword") + "</password>"
 				+			"<a n='zimbraAccountStatus'>closed</a>"
 				+			"<a n='description'>Created by Selenium automation</a>"
 				+		"</CreateAccountRequest>");
@@ -398,7 +399,7 @@ public class SearchFunctionality extends AdminCore {
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 						"<CreateAccountRequest xmlns='urn:zimbraAdmin'>"
 				+			"<name>" + account.getEmailAddress() + "</name>"
-				+			"<password>test123</password>"
+				+			"<password>" + ConfigProperties.getStringProperty("accountPassword") + "</password>"
 				+			"<a n='zimbraAccountStatus'>maintenance</a>"
 				+			"<a n='description'>Created by Selenium automation</a>"
 				+		"</CreateAccountRequest>");

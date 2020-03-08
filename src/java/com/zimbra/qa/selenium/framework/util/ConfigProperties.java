@@ -55,6 +55,22 @@ public class ConfigProperties {
 		}
 	}
 
+	public static String getServerUser() {
+		if (ConfigProperties.getStringProperty("server.host").contains("zqa")) {
+			return "root";
+		} else {
+			return "ubuntu";
+		}
+	}
+
+	public static String getServerPassword() {
+		if (ConfigProperties.getStringProperty("server.host").contains("zqa")) {
+			return "zimbra";
+		} else {
+			return "passwordless";
+		}
+	}
+
 	public static String getStringProperty(String key) {
 		return (getStringProperty(key, null));
 	}

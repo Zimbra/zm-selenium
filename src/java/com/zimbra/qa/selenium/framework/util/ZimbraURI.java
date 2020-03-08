@@ -217,8 +217,7 @@ public class ZimbraURI {
 	}
 
 	public static URI getBaseURI() {
-
-		String scheme = ConfigProperties.getStringProperty("server.scheme");
+		String scheme = "https";
 		String userInfo = null;
 		String host = ConfigProperties.getStringProperty("server.host");
 
@@ -248,9 +247,10 @@ public class ZimbraURI {
 		}
 
 		if (ConfigProperties.getAppType() == AppType.ADMIN) {
-			scheme = "https";
-			// path = "/zimbraAdmin/";
 			path = "";
+			if (ConfigProperties.getStringProperty("server.zimbrax").equals("true")) {
+				path = "/zimbraAdmin/";
+			}
 		}
 
 		String query = buildQueryFromMap(queryMap);
@@ -267,7 +267,7 @@ public class ZimbraURI {
 			return (uri);
 
 		} catch (URISyntaxException e) {
-			logger.error("unalbe to parse uri", e);
+			logger.error("Unable to parse uri", e);
 			return (ZimbraURI.defaultURI());
 		}
 
@@ -331,18 +331,10 @@ public class ZimbraURI {
 	}
 
 	private static URI defaultURI() {
-
-		String scheme = ConfigProperties.getStringProperty("server.scheme");
 		String host = ConfigProperties.getStringProperty("server.host");
 		int port = 0;
-		if (scheme.equals("https")) {
-			port = 443;
-		} else {
-			port = 80;
-		}
-
 		try {
-			return (new URI(scheme, null, host, port, null, null, null));
+			return (new URI("https", null, host, port, null, null, null));
 		} catch (URISyntaxException e) {
 			logger.error("Unable to generate default URL", e);
 			return (null);

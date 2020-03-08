@@ -20,6 +20,7 @@ import java.util.List;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
@@ -60,12 +61,12 @@ public class DeleteResource extends AdminCore {
 
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 						"<CreateCalendarResourceRequest xmlns='urn:zimbraAdmin'>"
-				 		+ "<name>" + resource.getEmailAddress() + "</name>"
-				 		+ "<a n='displayName'>" + resource.getName() + "</a>"
-				 		+ "<a n='zimbraCalResType'>" + "Location" + "</a>"
-						+	"<a n='description'>Created by Selenium automation</a>"
-				 		+ "<password>test123</password>"
-				 		+ "</CreateCalendarResourceRequest>");
+						+ "<name>" + resource.getEmailAddress() + "</name>"
+						+ "<a n='displayName'>" + resource.getName() + "</a>"
+						+ "<a n='zimbraCalResType'>" + "Location" + "</a>"
+						+ "<a n='description'>Created by Selenium automation</a>"
+						+ "<password>" + ConfigProperties.getStringProperty("accountPassword") + "</password>"
+						+ "</CreateCalendarResourceRequest>");
 
 		// Refresh list to populate account.
 		app.zPageManageResources.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
@@ -122,12 +123,12 @@ public class DeleteResource extends AdminCore {
 
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 						"<CreateCalendarResourceRequest xmlns='urn:zimbraAdmin'>"
-				 		+ "<name>" + resource.getEmailAddress() + "</name>"
-				 		+ "<a n='displayName'>" + resource.getName() + "</a>"
-				 		+ "<a n='zimbraCalResType'>" + "Equipment" + "</a>"
-						+	"<a n='description'>Created by Selenium automation</a>"
-				 		+ "<password>test123</password>"
-				 		+ "</CreateCalendarResourceRequest>");
+						+ "<name>" + resource.getEmailAddress() + "</name>"
+						+ "<a n='displayName'>" + resource.getName() + "</a>"
+						+ "<a n='zimbraCalResType'>" + "Equipment" + "</a>"
+						+ "<a n='description'>Created by Selenium automation</a>"
+						+ "<password>" + ConfigProperties.getStringProperty("accountPassword") + "</password>"
+						+ "</CreateCalendarResourceRequest>");
 
 		// Refresh list to populate account.
 		app.zPageManageResources.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
@@ -184,12 +185,12 @@ public class DeleteResource extends AdminCore {
 
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 						"<CreateCalendarResourceRequest xmlns='urn:zimbraAdmin'>"
-				 		+ "<name>" + resource.getEmailAddress() + "</name>"
-				 		+ "<a n='displayName'>" + resource.getName() + "</a>"
-				 		+ "<a n='zimbraCalResType'>" + "Location" + "</a>"
-						+	"<a n='description'>Created by Selenium automation</a>"
-				 		+ "<password>test123</password>"
-				 		+ "</CreateCalendarResourceRequest>");
+						+ "<name>" + resource.getEmailAddress() + "</name>"
+						+ "<a n='displayName'>" + resource.getName() + "</a>"
+						+ "<a n='zimbraCalResType'>" + "Location" + "</a>"
+						+ "<a n='description'>Created by Selenium automation</a>"
+						+ "<password>" + ConfigProperties.getStringProperty("accountPassword") + "</password>"
+						+ "</CreateCalendarResourceRequest>");
 
 		// Refresh list to populate account.
 		app.zPageManageResources.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
@@ -244,12 +245,12 @@ public class DeleteResource extends AdminCore {
 
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 						"<CreateCalendarResourceRequest xmlns='urn:zimbraAdmin'>"
-				 		+ "<name>" + resource.getEmailAddress() + "</name>"
-				 		+ "<a n='displayName'>" + resource.getName() + "</a>"
-				 		+ "<a n='zimbraCalResType'>" + "Equipment" + "</a>"
-						+	"<a n='description'>Created by Selenium automation</a>"
-				 		+ "<password>test123</password>"
-				 		+ "</CreateCalendarResourceRequest>");
+						+ "<name>" + resource.getEmailAddress() + "</name>"
+						+ "<a n='displayName'>" + resource.getName() + "</a>"
+						+ "<a n='zimbraCalResType'>" + "Equipment" + "</a>"
+						+ "<a n='description'>Created by Selenium automation</a>"
+						+ "<password>" + ConfigProperties.getStringProperty("accountPassword") + "</password>"
+						+ "</CreateCalendarResourceRequest>");
 
 		// Refresh list to populate account.
 		app.zPageManageResources.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");

@@ -29,7 +29,6 @@ import com.zimbra.qa.selenium.framework.util.ConfigProperties;
  *
  */
 public class AdminPages extends AbsApplication {
-
 	// Login page
 	public PageLogin zPageLogin = null;
 

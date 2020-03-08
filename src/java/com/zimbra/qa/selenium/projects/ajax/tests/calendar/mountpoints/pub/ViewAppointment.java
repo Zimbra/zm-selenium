@@ -94,7 +94,7 @@ public class ViewAppointment extends AjaxCore {
 				port = ExecuteHarnessMain.serverPort;
 			}
 
-			app.zPageCalendar.sOpen(ConfigProperties.getStringProperty("server.scheme") + "://"
+			app.zPageCalendar.sOpen("https://"
 					+ ConfigProperties.getStringProperty("server.host") + ":" + port + "/home/"
 					+ ZimbraAccount.Account1().EmailAddress + "/Calendar/" + foldername + ".html");
 

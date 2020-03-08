@@ -100,13 +100,7 @@ public class RestUtil {
 	 */
 	public RestUtil() {
 		logger.info("new RestUtil()");
-
-		scheme = ConfigProperties.getStringProperty("server.scheme");
-		if (scheme.equals("https")) {
-			port = 443;
-		} else {
-			port = 80;
-		}
+		port = 443;
 		path = "service/home/~/";
 	}
 

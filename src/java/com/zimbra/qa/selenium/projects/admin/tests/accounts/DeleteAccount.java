@@ -59,7 +59,7 @@ public class DeleteAccount extends AdminCore {
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<CreateAccountRequest xmlns='urn:zimbraAdmin'>"
 				+			"<name>" + account.getEmailAddress() + "</name>"
-				+			"<password>test123</password>"
+				+			"<password>" + ConfigProperties.getStringProperty("accountPassword") + "</password>"
 				+			"<a n='description'>Created by Selenium automation</a>"
 				+		"</CreateAccountRequest>");
 
@@ -110,7 +110,7 @@ public class DeleteAccount extends AdminCore {
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<CreateAccountRequest xmlns='urn:zimbraAdmin'>"
 				+			"<name>" + account.getEmailAddress() + "</name>"
-				+			"<password>test123</password>"
+				+			"<password>" + ConfigProperties.getStringProperty("accountPassword") + "</password>"
 				+			"<a n='description'>Created by Selenium automation</a>"
 				+ "</CreateAccountRequest>");
 
@@ -161,7 +161,7 @@ public class DeleteAccount extends AdminCore {
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<CreateAccountRequest xmlns='urn:zimbraAdmin'>"
 				+			"<name>" + account.getEmailAddress() + "</name>"
-				+			"<password>test123</password>"
+				+			"<password>" + ConfigProperties.getStringProperty("accountPassword") + "</password>"
 				+			"<a n='description'>Created by Selenium automation</a>"
 				+		"</CreateAccountRequest>");
 
@@ -214,7 +214,7 @@ public class DeleteAccount extends AdminCore {
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<CreateAccountRequest xmlns='urn:zimbraAdmin'>"
 				+			"<name>" + account.getEmailAddress() + "</name>"
-				+			"<password>test123</password>"
+				+			"<password>" + ConfigProperties.getStringProperty("accountPassword") + "</password>"
 				+			"<a n='description'>Created by Selenium automation</a>"
 				+		"</CreateAccountRequest>");
 
