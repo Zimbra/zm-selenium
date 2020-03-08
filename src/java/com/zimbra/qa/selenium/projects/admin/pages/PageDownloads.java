@@ -151,7 +151,7 @@ public class PageDownloads extends AbsTab {
 	}
 
 	public int zGetAuthResponse(URL url) throws IOException {
-		String userpassword = "admin" + ":" + "test123";
+		String userpassword = "admin" + ":" + ConfigProperties.getStringProperty("accountPassword");
 		String encodedAuthorization = new String(Base64.getEncoder().encode(userpassword.getBytes()));
 		HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 		connection.setRequestProperty("Authorization", "Basic " + encodedAuthorization);

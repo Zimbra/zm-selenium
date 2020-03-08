@@ -309,7 +309,6 @@ public class PageManageDomains extends AbsTab {
 		}
 
 		if (pulldownLocator != null) {
-
 			if (!this.sIsElementPresent(pulldownLocator)) {
 				throw new HarnessException("Button " + pulldown + " option " + option + " pulldownLocator "
 						+ pulldownLocator + " not present!");
@@ -319,19 +318,14 @@ public class PageManageDomains extends AbsTab {
 			SleepUtil.sleepSmall();
 
 			if (optionLocator != null) {
-
 				if (!this.sIsElementPresent(optionLocator)) {
 					throw new HarnessException("Button " + pulldown + " option " + option + " optionLocator "
 							+ optionLocator + " not present!");
 				}
-
-				SleepUtil.sleepSmall();
 				this.sClickAt(optionLocator, "");
 			}
 
-			if (option == Button.O_EDIT) {
-				SleepUtil.sleepMedium();
-			}
+			SleepUtil.sleepMedium();
 		}
 
 		return (page);

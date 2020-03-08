@@ -1346,8 +1346,7 @@ public class ZimbraAccount {
 		}
 
 		protected boolean setURI(Element request) throws HarnessException {
-
-			String scheme = ConfigProperties.getStringProperty("server.scheme");
+			String scheme = "https";
 			String userInfo = null;
 			String host = ConfigProperties.getStringProperty("server.host");
 			String path = "/";
@@ -1360,7 +1359,6 @@ public class ZimbraAccount {
 
 			if (namespace.equals("urn:zimbraAdmin")) {
 				// https://server.com:7071/service/admin/soap/
-				scheme = "https";
 				path = "/service/admin/soap/";
 				port = ExecuteHarnessMain.adminPort;
 
@@ -1410,22 +1408,6 @@ public class ZimbraAccount {
 			}
 			return (null);
 		}
-		/*
-		 * protected Element[] getElementsFromPath(Element context, String path) {
-		 * org.dom4j.Element d4context = context.toXML(); org.dom4j.XPath xpath =
-		 * d4context.createXPath(path); xpath.setNamespaceURIs(getURIs());
-		 * org.dom4j.Node node; List dom4jElements = xpath.selectNodes(d4context);
-		 *
-		 * List<Element> zimbraElements = new ArrayList<Element>(); Iterator iter =
-		 * dom4jElements.iterator(); while (iter.hasNext()) { node =
-		 * (org.dom4j.Node)iter.next(); if (node instanceof org.dom4j.Element) { Element
-		 * zimbraElement = Element.convertDOM((org.dom4j.Element) node);
-		 * zimbraElements.add(zimbraElement); } }
-		 *
-		 * Element[] retVal = new Element[zimbraElements.size()];
-		 * zimbraElements.toArray(retVal); return retVal; }
-		 *
-		 */
 
 		private static Map<String, String> mURIs = null;
 		static {

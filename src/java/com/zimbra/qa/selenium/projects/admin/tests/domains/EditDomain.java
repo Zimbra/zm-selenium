@@ -57,8 +57,9 @@ public class EditDomain extends AdminCore {
 		DomainItem domain = new DomainItem();
 		String domainName = domain.getName();
 
-		ZimbraAdminAccount.AdminConsoleAdmin().soapSend("<CreateDomainRequest xmlns='urn:zimbraAdmin'>" + "<name>"
-				+ domainName + "</name>" + "</CreateDomainRequest>");
+		ZimbraAdminAccount.AdminConsoleAdmin()
+				.soapSend("<CreateDomainRequest xmlns='urn:zimbraAdmin'>" + "<name>" + domainName + "</name>"
+						+ "<a n='description'>Created by Selenium automation</a>" + "</CreateDomainRequest>");
 
 		// Refresh the domain list
 		app.zPageManageDomains.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
@@ -105,8 +106,9 @@ public class EditDomain extends AdminCore {
 		DomainItem domain = new DomainItem();
 		String domainName = domain.getName();
 
-		ZimbraAdminAccount.AdminConsoleAdmin().soapSend("<CreateDomainRequest xmlns='urn:zimbraAdmin'>" + "<name>"
-				+ domainName + "</name>" + "</CreateDomainRequest>");
+		ZimbraAdminAccount.AdminConsoleAdmin()
+				.soapSend("<CreateDomainRequest xmlns='urn:zimbraAdmin'>" + "<name>" + domainName + "</name>"
+						+ "<a n='description'>Created by Selenium automation</a>" + "</CreateDomainRequest>");
 
 		// Refresh the domain list
 		app.zPageManageDomains.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
@@ -152,8 +154,9 @@ public class EditDomain extends AdminCore {
 		DomainItem domain = new DomainItem();
 		String domainName = domain.getName();
 
-		ZimbraAdminAccount.AdminConsoleAdmin().soapSend("<CreateDomainRequest xmlns='urn:zimbraAdmin'>" + "<name>"
-				+ domainName + "</name>" + "</CreateDomainRequest>");
+		ZimbraAdminAccount.AdminConsoleAdmin()
+				.soapSend("<CreateDomainRequest xmlns='urn:zimbraAdmin'>" + "<name>" + domainName + "</name>"
+						+ "<a n='description'>Created by Selenium automation</a>" + "</CreateDomainRequest>");
 
 		// Enter the search string to find the account
 		app.zPageSearchResults.zAddSearchQuery(domainName);
@@ -207,8 +210,9 @@ public class EditDomain extends AdminCore {
 		this.startingPage = app.zPageManageDomains;
 		this.startingPage.zNavigateTo();
 
-		ZimbraAdminAccount.AdminConsoleAdmin().soapSend("<CreateDomainRequest xmlns='urn:zimbraAdmin'>" + "<name>"
-				+ domainName + "</name>" + "</CreateDomainRequest>");
+		ZimbraAdminAccount.AdminConsoleAdmin()
+				.soapSend("<CreateDomainRequest xmlns='urn:zimbraAdmin'>" + "<name>" + domainName + "</name>"
+						+ "<a n='description'>Created by Selenium automation</a>" + "</CreateDomainRequest>");
 
 		// Refresh the account list
 		app.zPageSearchResults.zSelectSearchObject(app.zPageSearchResults.S_DOMAIN);

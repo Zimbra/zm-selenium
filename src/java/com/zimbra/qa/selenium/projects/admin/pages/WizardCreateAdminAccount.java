@@ -19,6 +19,7 @@ package com.zimbra.qa.selenium.projects.admin.pages;
 import com.zimbra.qa.selenium.framework.items.IItem;
 import com.zimbra.qa.selenium.framework.ui.AbsTab;
 import com.zimbra.qa.selenium.framework.ui.AbsWizard;
+import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.projects.admin.items.AccountItem;
@@ -102,8 +103,8 @@ public class WizardCreateAdminAccount extends AbsWizard {
 			zType(Locators.zdlg_ACCT_NAME, CN);
 			this.clearField(Locators.zdlg_DOMAIN_NAME);
 			zType(Locators.zdlg_DOMAIN_NAME, domain);
-			zType(Locators.zdlg_PASSWORD, "test123");
-			zType(Locators.zdlg_CONFIRM_PASSWORD, "test123");
+			zType(Locators.zdlg_PASSWORD, ConfigProperties.getStringProperty("accountPassword"));
+			zType(Locators.zdlg_CONFIRM_PASSWORD, ConfigProperties.getStringProperty("accountPassword"));
 			SleepUtil.sleepSmall();
 			clickNext(AbsWizard.Locators.ADMIN_DIALOG);
 			clickFinish(AbsWizard.Locators.ADMIN_DIALOG);

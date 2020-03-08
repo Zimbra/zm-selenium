@@ -126,7 +126,7 @@ public class AdminCore {
 
 				} catch (WebDriverException e) {
 					if (retry == maxRetry) {
-						logger.error("Unable to open admin app. Is a valid certificate installed?", e);
+						logger.error("Unable to open admin app. Is valid certificate installed?", e);
 						throw e;
 					} else {
 						logger.info("App is still not ready...", e);
@@ -142,7 +142,7 @@ public class AdminCore {
 			throw e;
 		}
 
-		// Delete javascript error file
+		// Delete java script error file
 		if (fGetJavaScriptErrorsHtmlFile().exists()) {
 			fGetJavaScriptErrorsHtmlFile().delete();
 		}
@@ -180,8 +180,6 @@ public class AdminCore {
 		// Close all the dialogs left opened by the previous test
 		app.zPageMain.zHandleDialogs();
 
-		// If a startinAccount is defined, then make sure we are authenticated
-		// as that user
 		if (startingAccount != null) {
 			logger.debug("coreBeforeMethod: startingAccount is defined");
 
@@ -237,25 +235,26 @@ public class AdminCore {
 	}
 
 	public static void zWaitforDialog() throws HarnessException{
-		try {
-
-		(new WebDriverWait(ClientSessionFactory.session().webDriver(), 5))
-		.until(ExpectedConditions.presenceOfElementLocated(By.xpath(
-				"//div[contains(text(),' Network Modules NG Notification')]/ancestor::div[@class='DwtDialog'][not(@aria-hidden)]/descendant::td[contains(@id,'Close')]")));
-		} catch (Exception e) {
-			logger.info("Network Module NG Notification Dialog Not displayed");
+		if (!ConfigProperties.isZimbra9XEnvironment()) {
+			try {
+				(new WebDriverWait(ClientSessionFactory.session().webDriver(), 5))
+						.until(ExpectedConditions.presenceOfElementLocated(By.xpath(
+								"//div[contains(text(),' Network Modules NG Notification')]/ancestor::div[@class='DwtDialog'][not(@aria-hidden)]/descendant::td[contains(@id,'Close')]")));
+			} catch (Exception e) {
+				logger.info("Network Module NG Notification Dialog Not displayed");
+			}
 		}
 	}
 
-	public static void zHandleNetworkModulesNGDialog(){
-		try {
-
-			ClientSessionFactory.session().webDriver().findElement(By.xpath(
-					"//div[contains(text(),' Network Modules NG Notification')]/ancestor::div[@class='DwtDialog'][not(@aria-hidden)]/descendant::td[contains(@id,'Close')]"))
-					.click();
-		}
-		catch(Exception e) {
-			logger.info("Network Module NG Notification Dialog not found.");
+	public static void zHandleNetworkModulesNGDialog() {
+		if (!ConfigProperties.isZimbra9XEnvironment()) {
+			try {
+				ClientSessionFactory.session().webDriver().findElement(By.xpath(
+						"//div[contains(text(),' Network Modules NG Notification')]/ancestor::div[@class='DwtDialog'][not(@aria-hidden)]/descendant::td[contains(@id,'Close')]"))
+						.click();
+			} catch(Exception e) {
+				logger.info("Network Module NG Notification Dialog not found.");
+			}
 		}
 	}
 
@@ -309,7 +308,7 @@ public class AdminCore {
 			// **************** Capture JavaScript Errors ****************
 			logger.info("AfterMethod: Capture javascript errors");
 
-			// Logs, Javascript error folder
+			// Logs, Java script error folder
 			List<String> lines;
 			Logs webDriverLog = webDriver.manage().logs();
 			LogEntries[] logEntries = { webDriverLog.get(LogType.BROWSER) };
@@ -331,7 +330,7 @@ public class AdminCore {
 				String seleniumTestcase = method.getName().toString();
 				String testOutputFolderName = ExecuteHarnessMain.testoutputfoldername;
 
-				// Javascript error html file configuration
+				// Java script error html file configuration
 				String sJavaScriptErrorsFolderPath = testOutputFolderName + "/debug/projects/javascript-errors";
 				String sJavaScriptErrorsHtmlFile = sJavaScriptErrorsFolderPath + "/" + sJavaScriptErrorsHtmlFileName;
 				Path pJavaScriptErrorsHtmlFilePath = Paths.get(sJavaScriptErrorsFolderPath,
@@ -419,9 +418,9 @@ public class AdminCore {
 				}
 
 				if (fJavaScriptErrorsHtmlFile.createNewFile()) {
-					logger.info("Javascript errors file is created");
+					logger.info("Java script errors file is created");
 
-					// Javascript errors html file
+					// Java script errors html file
 					lines = Arrays.asList(
 							"<!DOCTYPE html PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN' 'http://www.w3.org/TR/html4/loose.dtd'>",
 							"<html>", "<head>", "<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>",
@@ -434,7 +433,7 @@ public class AdminCore {
 					Files.write(pJavaScriptErrorsHtmlFilePath, lines, Charset.forName("UTF-8"),
 							StandardOpenOption.APPEND);
 				} else {
-					logger.info("Javascript errors file already exists");
+					logger.info("Java script errors file already exists");
 				}
 
 				for (LogEntry entry : logEntries[i]) {
@@ -446,7 +445,7 @@ public class AdminCore {
 							+ method.getName();
 					logger.info("JavaScript error: " + javaScriptError);
 
-					// Javascript error
+					// Java script error
 					lines = Arrays.asList("<tr><td style='text-align:center'>" + application + "</td><td>"
 							+ seleniumTestcasePath + "</td><td style='color:brown;'>" + javaScriptError
 							+ "</td><td style='text-align:center'><a target='_blank' href='" + screenShotFilePath + "'>"

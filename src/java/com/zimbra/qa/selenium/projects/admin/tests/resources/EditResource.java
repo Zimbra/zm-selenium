@@ -58,12 +58,12 @@ public class EditResource extends AdminCore {
 		ResourceItem resource = new ResourceItem();
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<CreateCalendarResourceRequest xmlns='urn:zimbraAdmin'>"
-		 		+ "<name>" + resource.getEmailAddress() + "</name>"
-		 		+ "<a n='displayName'>" + resource.getName() + "</a>"
-		 		+ "<a n='zimbraCalResType'>" + "Location" + "</a>"
-				+	"<a n='description'>Created by Selenium automation</a>"
-		 		+ "<password>test123</password>"
-		 		+ "</CreateCalendarResourceRequest>");
+				+ "<name>" + resource.getEmailAddress() + "</name>"
+				+ "<a n='displayName'>" + resource.getName() + "</a>"
+				+ "<a n='zimbraCalResType'>" + "Location" + "</a>"
+				+ "<a n='description'>Created by Selenium automation</a>"
+				+ "<password>" + ConfigProperties.getStringProperty("accountPassword") + "</password>"
+				+ "</CreateCalendarResourceRequest>");
 
 		// Refresh the Resource list
 		app.zPageManageResources.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
@@ -116,12 +116,12 @@ public class EditResource extends AdminCore {
 
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 						"<CreateCalendarResourceRequest xmlns='urn:zimbraAdmin'>"
-				 		+ "<name>" + resource.getEmailAddress() + "</name>"
-				 		+ "<a n='displayName'>" + resource.getName() + "</a>"
-				 		+ "<a n='zimbraCalResType'>" + "Location" + "</a>"
-						+	"<a n='description'>Created by Selenium automation</a>"
-				 		+ "<password>test123</password>"
-				 		+ "</CreateCalendarResourceRequest>");
+						+ "<name>" + resource.getEmailAddress() + "</name>"
+						+ "<a n='displayName'>" + resource.getName() + "</a>"
+						+ "<a n='zimbraCalResType'>" + "Location" + "</a>"
+						+ "<a n='description'>Created by Selenium automation</a>"
+						+ "<password>" + ConfigProperties.getStringProperty("accountPassword") + "</password>"
+						+ "</CreateCalendarResourceRequest>");
 
 		// Verify the resource exists in the ZCS
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
@@ -181,12 +181,12 @@ public class EditResource extends AdminCore {
 		ResourceItem resource = new ResourceItem();
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<CreateCalendarResourceRequest xmlns='urn:zimbraAdmin'>"
-		 		+ "<name>" + resource.getEmailAddress() + "</name>"
-		 		+ "<a n='displayName'>" + resource.getName() + "</a>"
-		 		+ "<a n='zimbraCalResType'>" + "Location" + "</a>"
-				+	"<a n='description'>Created by Selenium automation</a>"
-		 		+ "<password>test123</password>"
-		 		+ "</CreateCalendarResourceRequest>");
+				+ "<name>" + resource.getEmailAddress() + "</name>"
+				+ "<a n='displayName'>" + resource.getName() + "</a>"
+				+ "<a n='zimbraCalResType'>" + "Location" + "</a>"
+				+ "<a n='description'>Created by Selenium automation</a>"
+				+ "<password>" + ConfigProperties.getStringProperty("accountPassword") + "</password>"
+				+ "</CreateCalendarResourceRequest>");
 
 		// Refresh the Resource list
 		app.zPageManageResources.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
@@ -238,12 +238,12 @@ public class EditResource extends AdminCore {
 		ResourceItem resource = new ResourceItem();
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<CreateCalendarResourceRequest xmlns='urn:zimbraAdmin'>"
-		 		+ "<name>" + resource.getEmailAddress() + "</name>"
-		 		+ "<a n='displayName'>" + resource.getName() + "</a>"
-		 		+ "<a n='zimbraCalResType'>" + "Equipment" + "</a>"
-				+	"<a n='description'>Created by Selenium automation</a>"
-		 		+ "<password>test123</password>"
-		 		+ "</CreateCalendarResourceRequest>");
+				+ "<name>" + resource.getEmailAddress() + "</name>"
+				+ "<a n='displayName'>" + resource.getName() + "</a>"
+				+ "<a n='zimbraCalResType'>" + "Equipment" + "</a>"
+				+ "<a n='description'>Created by Selenium automation</a>"
+				+ "<password>" + ConfigProperties.getStringProperty("accountPassword") + "</password>"
+				+ "</CreateCalendarResourceRequest>");
 
 		// Refresh the Resource list
 		app.zPageManageResources.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
@@ -295,12 +295,12 @@ public class EditResource extends AdminCore {
 		ResourceItem resource = new ResourceItem();
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<CreateCalendarResourceRequest xmlns='urn:zimbraAdmin'>"
-		 		+ "<name>" + resource.getEmailAddress() + "</name>"
-		 		+ "<a n='displayName'>" + resource.getName() + "</a>"
-		 		+ "<a n='zimbraCalResType'>" + "Location" + "</a>"
-				+	"<a n='description'>Created by Selenium automation</a>"
-		 		+ "<password>test123</password>"
-		 		+ "</CreateCalendarResourceRequest>");
+				+ "<name>" + resource.getEmailAddress() + "</name>"
+				+ "<a n='displayName'>" + resource.getName() + "</a>"
+				+ "<a n='zimbraCalResType'>" + "Location" + "</a>"
+				+ "<a n='description'>Created by Selenium automation</a>"
+				+ "<password>" + ConfigProperties.getStringProperty("accountPassword") + "</password>"
+				+ "</CreateCalendarResourceRequest>");
 
 		// Enter the search string to find the account
 		app.zPageSearchResults.zAddSearchQuery(resource.getEmailAddress());
@@ -356,12 +356,12 @@ public class EditResource extends AdminCore {
 		ResourceItem resource = new ResourceItem();
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<CreateCalendarResourceRequest xmlns='urn:zimbraAdmin'>"
-		 		+ "<name>" + resource.getEmailAddress() + "</name>"
-		 		+ "<a n='displayName'>" + resource.getName() + "</a>"
-		 		+ "<a n='zimbraCalResType'>" + "Equipment" + "</a>"
-				+	"<a n='description'>Created by Selenium automation</a>"
-		 		+ "<password>test123</password>"
-		 		+ "</CreateCalendarResourceRequest>");
+				+ "<name>" + resource.getEmailAddress() + "</name>"
+				+ "<a n='displayName'>" + resource.getName() + "</a>"
+				+ "<a n='zimbraCalResType'>" + "Equipment" + "</a>"
+				+ "<a n='description'>Created by Selenium automation</a>"
+				+ "<password>" + ConfigProperties.getStringProperty("accountPassword") + "</password>"
+				+ "</CreateCalendarResourceRequest>");
 
 		// Enter the search string to find the account
 		app.zPageSearchResults.zAddSearchQuery(resource.getEmailAddress());
@@ -417,12 +417,12 @@ public class EditResource extends AdminCore {
 		ResourceItem resource = new ResourceItem();
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<CreateCalendarResourceRequest xmlns='urn:zimbraAdmin'>"
-		 		+ "<name>" + resource.getEmailAddress() + "</name>"
-		 		+ "<a n='displayName'>" + resource.getName() + "</a>"
-		 		+ "<a n='zimbraCalResType'>" + "Location" + "</a>"
-				+	"<a n='description'>Created by Selenium automation</a>"
-		 		+ "<password>test123</password>"
-		 		+ "</CreateCalendarResourceRequest>");
+				+ "<name>" + resource.getEmailAddress() + "</name>"
+				+ "<a n='displayName'>" + resource.getName() + "</a>"
+				+ "<a n='zimbraCalResType'>" + "Location" + "</a>"
+				+ "<a n='description'>Created by Selenium automation</a>"
+				+ "<password>" + ConfigProperties.getStringProperty("accountPassword") + "</password>"
+				+ "</CreateCalendarResourceRequest>");
 
 		// Enter the search string to find the account
 		app.zPageSearchResults.zAddSearchQuery(resource.getEmailAddress());
@@ -478,12 +478,12 @@ public class EditResource extends AdminCore {
 		ResourceItem resource = new ResourceItem();
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<CreateCalendarResourceRequest xmlns='urn:zimbraAdmin'>"
-		 		+ "<name>" + resource.getEmailAddress() + "</name>"
-		 		+ "<a n='displayName'>" + resource.getName() + "</a>"
-		 		+ "<a n='zimbraCalResType'>" + "Equipment" + "</a>"
-				+	"<a n='description'>Created by Selenium automation</a>"
-		 		+ "<password>test123</password>"
-		 		+ "</CreateCalendarResourceRequest>");
+				+ "<name>" + resource.getEmailAddress() + "</name>"
+				+ "<a n='displayName'>" + resource.getName() + "</a>"
+				+ "<a n='zimbraCalResType'>" + "Equipment" + "</a>"
+				+ "<a n='description'>Created by Selenium automation</a>"
+				+ "<password>" + ConfigProperties.getStringProperty("accountPassword") + "</password>"
+				+ "</CreateCalendarResourceRequest>");
 
 		// Enter the search string to find the account
 		app.zPageSearchResults.zAddSearchQuery(resource.getEmailAddress());

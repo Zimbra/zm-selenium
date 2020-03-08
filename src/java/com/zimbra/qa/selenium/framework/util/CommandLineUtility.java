@@ -247,9 +247,9 @@ public class CommandLineUtility {
 				jsch.addIdentity(privateKey);
 			}
 
-			Session session = jsch.getSession(ConfigProperties.getStringProperty("server.user"), host, 22);
+			Session session = jsch.getSession(ConfigProperties.getServerUser(), host, 22);
 			if (ConfigProperties.getStringProperty("server.host").endsWith(".zimbra.com")) {
-				session.setPassword(ConfigProperties.getStringProperty("server.password"));
+				session.setPassword(ConfigProperties.getServerPassword());
 			}
 
 			session.setConfig(config);
@@ -311,9 +311,9 @@ public class CommandLineUtility {
 				jsch.addIdentity(privateKey);
 			}
 
-			Session session = jsch.getSession(ConfigProperties.getStringProperty("server.user"), host, 22);
+			Session session = jsch.getSession(ConfigProperties.getServerUser(), host, 22);
 			if (ConfigProperties.getStringProperty("server.host").endsWith(".zimbra.com")) {
-				session.setPassword(ConfigProperties.getStringProperty("server.password"));
+				session.setPassword(ConfigProperties.getServerPassword());
 			}
 
 			session.setConfig(config);

@@ -1349,11 +1349,14 @@ public class ExecuteHarnessMain {
 
 		// Zimbra pre-configuration
 		String zimbraServer;
-		if (ConfigProperties.getStringProperty("server.host").endsWith(".zimbra.com")) {
+		if (ConfigProperties.getStringProperty("server.zimbrax").equals("true")) {
+			zimbraServer = "zmc.com";
+		} else if (ConfigProperties.getStringProperty("server.host").endsWith(".zimbra.com")) {
 			zimbraServer = ConfigProperties.getStringProperty("server.host");
 		} else {
-			zimbraServer = CommandLineUtility.runCommandOnZimbraServer(
-					ConfigProperties.getStringProperty("server.host"), "zmprov -l gas proxy").get(0);
+			zimbraServer = CommandLineUtility
+					.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"), "zmprov -l gas proxy")
+					.get(0);
 		}
 
 		if (ConfigProperties.getStringProperty("server.type", "").equals("multi-node")) {
@@ -1432,6 +1435,9 @@ public class ExecuteHarnessMain {
 		} else {
 			serverPort = 443;
 			adminPort = 7071;
+			if (ConfigProperties.getStringProperty("server.zimbrax").equals("true")) {
+				adminPort = 31071;
+			}
 			proxyServers.add(zimbraServer);
 			storeServers.add(zimbraServer);
 			mtaServers.add(zimbraServer);

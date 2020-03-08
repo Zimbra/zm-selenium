@@ -47,6 +47,7 @@ public class WizardConfigureGAL extends AbsWizard {
 		public static final String LDAP_FILTER = "css=textarea[id^='zdlgv__UNDEFINE_'][id$='zimbraGalLdapFilter']";
 		public static final String LDAP_SEARCH_BASE = "css=textarea[id^='zdlgv__UNDEFINE_'][id$='zimbraGalLdapSearchBase']";
 		public static final String CONFIRM_BIND_PASSWORD = "css=td[id$='_zimbraGalLdapBindPasswordConfirm___container'][style*='visible'] input";
+		public static final String POLLING_INTERVAL = "css=input[id='zdlgv__UNDEFINE_gal_sync_accounts_set[0]/new_internal_gal_polling_interval_2']";
 		public static final String NEXT_BUTTON = "css=td[id^='Next'] td[id$='_button12_title']";
 		public static final String FINISH_BUTTON = "css=td[id^='Finish'] td[id$='_button13_title']";
 	}
@@ -57,19 +58,15 @@ public class WizardConfigureGAL extends AbsWizard {
 
 	@Override
 	public IItem zCompleteWizard(IItem item) throws HarnessException {
-
 		if (!(item instanceof GALItem))
 			throw new HarnessException("item must be a GALItem, was " + item.getClass().getCanonicalName());
 
 		GALItem gal = (GALItem) item;
 
-		// Check the current and new GAL modes
 		if (gal.getCurrentGALMode().equals(GALMode.Internal) && gal.getNewGALMode().equals(GALMode.Both)) {
-
 			// Select GAL mode as 'both' and fill the required fields
 			sClick(Locators.GAL_MODE_DROPDOWN);
 			sClick(Locators.GAL_MODE_OPTION_BOTH);
-			zWaitForElementVisible(Locators.MAIL_SERVER_DROPDOWN);
 
 			// Select the Mail Server
 			sClick(Locators.MAIL_SERVER_DROPDOWN);
@@ -95,7 +92,6 @@ public class WizardConfigureGAL extends AbsWizard {
 			sClick(Locators.FINISH_BUTTON);
 
 		} else if (gal.getCurrentGALMode().equals(GALMode.External) && gal.getNewGALMode().equals(GALMode.Both)) {
-
 			// Select GAL mode as 'both' and fill the required fields
 			sClick(Locators.GAL_MODE_DROPDOWN);
 			sClick(Locators.GAL_MODE_OPTION_BOTH);
@@ -108,13 +104,20 @@ public class WizardConfigureGAL extends AbsWizard {
 			sClick(Locators.NEXT_BUTTON);
 
 			// Enter bind password
-			sType(Locators.CONFIRM_BIND_PASSWORD, "z1mbr4@123");
+			sType(Locators.CONFIRM_BIND_PASSWORD, "password");
 
 			// Click next 5 times
 			for (int i = 0; i < 5; i++) {
 				sClick(Locators.NEXT_BUTTON);
 				SleepUtil.sleepSmall();
 			}
+			sClick(Locators.FINISH_BUTTON);
+
+		} else if (gal.getCurrentGALMode().equals(GALMode.Internal)) {
+			sClick(Locators.MAIL_SERVER_DROPDOWN);
+			sClick(Locators.MAIL_SERVER);
+			sType(Locators.POLLING_INTERVAL, "2");
+			sClick(Locators.NEXT_BUTTON);
 			sClick(Locators.FINISH_BUTTON);
 
 		} else {

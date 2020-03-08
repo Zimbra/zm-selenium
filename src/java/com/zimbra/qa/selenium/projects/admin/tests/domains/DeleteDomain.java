@@ -58,6 +58,7 @@ public class DeleteDomain extends AdminCore {
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<CreateDomainRequest xmlns='urn:zimbraAdmin'>"
 				+			"<name>" + domain.getName() + "</name>"
+				+			"<a n='description'>Created by Selenium automation</a>"
 				+		"</CreateDomainRequest>");
 
 		// Refresh the domain list
@@ -105,6 +106,7 @@ public class DeleteDomain extends AdminCore {
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<CreateDomainRequest xmlns='urn:zimbraAdmin'>"
 				+			"<name>" + domain.getName() + "</name>"
+				+			"<a n='description'>Created by Selenium automation</a>"
 				+		"</CreateDomainRequest>");
 
 		// Refresh the domain list
@@ -164,9 +166,9 @@ public class DeleteDomain extends AdminCore {
 				+ "<name>"+domainAliasName+"</name>"
 				+ "<a n='zimbraDomainType'>alias</a>"
 				+ "<a n='zimbraDomainAliasTargetId'>"+targetDomainID+"</a>"
-				+ "<a n='description'>"+"domain alias"+"</a>"
 				+ "<a n='zimbraMailCatchAllAddress'>@"+domainAliasName+"</a>"
-				+ "<a  n='zimbraMailCatchAllForwardingAddress'>@"+targetDomain+"</a>"
+				+ "<a n='zimbraMailCatchAllForwardingAddress'>@"+targetDomain+"</a>"
+				+ "<a n='description'>Created by Selenium automation</a>"
 				+ "</CreateDomainRequest>");
 
 		// Refresh the domain list
@@ -225,9 +227,9 @@ public class DeleteDomain extends AdminCore {
 				+ "<name>"+domainAliasName+"</name>"
 				+ "<a n='zimbraDomainType'>alias</a>"
 				+ "<a n='zimbraDomainAliasTargetId'>"+targetDomainID+"</a>"
-				+ "<a n='description'>"+"domain alias"+"</a>"
 				+ "<a n='zimbraMailCatchAllAddress'>@"+domainAliasName+"</a>"
-				+ "<a  n='zimbraMailCatchAllForwardingAddress'>@"+targetDomain+"</a>"
+				+ "<a n='zimbraMailCatchAllForwardingAddress'>@"+targetDomain+"</a>"
+				+ "<a n='description'>Created by Selenium automation</a>"
 				+ "</CreateDomainRequest>");
 
 		// Refresh the domain list

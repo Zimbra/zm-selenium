@@ -355,7 +355,7 @@ public class AjaxCore {
 			// **************** Capture JavaScript Errors ****************
 			logger.info("AfterMethod: Capture javascript errors");
 
-			// Logs, Javascript error folder
+			// Logs, Java script error folder
 			List<String> lines;
 			Logs webDriverLog = webDriver.manage().logs();
 			LogEntries[] logEntries = { webDriverLog.get(LogType.BROWSER) };
@@ -377,7 +377,7 @@ public class AjaxCore {
 				String seleniumTestcase = method.getName().toString();
 				String testOutputFolderName = ExecuteHarnessMain.testoutputfoldername;
 
-				// Javascript error html file configuration
+				// Java script error html file configuration
 				String sJavaScriptErrorsFolderPath = testOutputFolderName + "/debug/projects/javascript-errors";
 				String sJavaScriptErrorsHtmlFile = sJavaScriptErrorsFolderPath + "/" + sJavaScriptErrorsHtmlFileName;
 				Path pJavaScriptErrorsHtmlFilePath = Paths.get(sJavaScriptErrorsFolderPath,
@@ -465,9 +465,9 @@ public class AjaxCore {
 				}
 
 				if (fJavaScriptErrorsHtmlFile.createNewFile()) {
-					logger.info("Javascript errors file is created");
+					logger.info("Java script errors file is created");
 
-					// Javascript errors html file
+					// Java script errors html file
 					lines = Arrays.asList(
 							"<!DOCTYPE html PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN' 'http://www.w3.org/TR/html4/loose.dtd'>",
 							"<html>", "<head>", "<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>",
@@ -480,7 +480,7 @@ public class AjaxCore {
 					Files.write(pJavaScriptErrorsHtmlFilePath, lines, Charset.forName("UTF-8"),
 							StandardOpenOption.APPEND);
 				} else {
-					logger.info("Javascript errors file already exists");
+					logger.info("Java script errors file already exists");
 				}
 
 				for (LogEntry entry : logEntries[i]) {
@@ -492,7 +492,7 @@ public class AjaxCore {
 							+ method.getName();
 					logger.info("JavaScript error: " + javaScriptError);
 
-					// Javascript error
+					// Java script error
 					lines = Arrays.asList("<tr><td style='text-align:center'>" + application + "</td><td>"
 							+ seleniumTestcasePath + "</td><td style='color:brown;'>" + javaScriptError
 							+ "</td><td style='text-align:center'><a target='_blank' href='" + screenShotFilePath + "'>"

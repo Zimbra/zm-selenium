@@ -97,7 +97,7 @@ public class DistributionListItem extends ContactItem implements IItem {
 		ZimbraAdminAccount.GlobalAdmin()
 				.soapSend("<CreateDistributionListRequest xmlns='urn:zimbraAdmin'>" + "<name>" + listname + "</name>"
 						+ "<a n='zimbraMailStatus'>enabled</a>" + "<a n='displayName'>" + listname + "</a>"
-						+	"<a n='description'>Created by Selenium automation</a>"
+						+ "<a n='description'>Created by Selenium automation</a>"
 						+ "</CreateDistributionListRequest>");
 		String id = ZimbraAdminAccount.GlobalAdmin().soapSelectValue("//admin:CreateDistributionListResponse/admin:dl",
 				"id");
@@ -191,7 +191,7 @@ public class DistributionListItem extends ContactItem implements IItem {
 		}
 		owner.soapSend("<CreateDistributionListRequest xmlns='urn:zimbraAccount'>" + "<name>" + name
 				+ memberList[0].EmailAddress + "</name>" + soapStr
-				+	"<a n='description'>Created by Selenium automation</a>"
+				+ "<a n='description'>Created by Selenium automation</a>"
 				+	"</CreateDistributionListRequest>");
 
 		// TODO: check CreateDistribution

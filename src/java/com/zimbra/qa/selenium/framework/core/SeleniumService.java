@@ -38,7 +38,6 @@ public class SeleniumService {
 	}
 
 	public void startSeleniumExecution() throws HarnessException {
-
 		Date start = new Date();
 		try {
 			if ( mode == SeleniumMode.Local ) {
@@ -51,11 +50,9 @@ public class SeleniumService {
 		} finally {
 			SleepMetrics.RecordProcessing((new Throwable()).getStackTrace(), start, new Date());
 		}
-
 	}
 
 	public void stopSeleniumExecution() throws HarnessException, IOException {
-
 		// stopBrowsers();
 
 		try {
@@ -146,7 +143,6 @@ public class SeleniumService {
 	}
 
 	private void stopBrowsersLinux() throws HarnessException {
-
 		// Only run for Linux
 		if ( !OperatingSystem.isLinux() ) {
 			return;
@@ -169,7 +165,6 @@ public class SeleniumService {
 	}
 
 	private void stopBrowsersMac() throws HarnessException {
-
 		// Only run for Mac
 		if ( !OperatingSystem.isMac() ) {
 			return;
@@ -194,7 +189,6 @@ public class SeleniumService {
 	}
 	
 	private void stopExternalUtilities() throws HarnessException {
-
 		// Only run for windows
 		if ( !OperatingSystem.isWindows() )
 			return;

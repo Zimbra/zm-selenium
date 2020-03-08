@@ -125,7 +125,7 @@ public class CreateDistributionList extends AdminCore {
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<CreateDistributionListRequest xmlns='urn:zimbraAdmin'>"
 						+	"<name>" + dl1.getEmailAddress() + "</name>"
-						+	"<a n='description'>Created by Selenium automation</a>"
+						+ "<a n='description'>Created by Selenium automation</a>"
 						+	"</CreateDistributionListRequest>");
 
 		// Create a DL using GUI

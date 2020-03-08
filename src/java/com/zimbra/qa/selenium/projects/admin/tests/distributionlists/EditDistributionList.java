@@ -236,7 +236,7 @@ public class EditDistributionList extends AdminCore {
 						+ "<a n='zimbraIsACLGroup'>FALSE</a>"
 						+ "<a n='zimbraMailStatus'>enabled</a>"
 						+ "<a n='memberURL'>" + memberURL + "</a>"
-						+	"<a n='description'>Created by Selenium automation</a>"
+						+ "<a n='description'>Created by Selenium automation</a>"
 						+ "</CreateDistributionListRequest>");
 
 		// Refresh the list
@@ -298,7 +298,7 @@ public class EditDistributionList extends AdminCore {
 						+ "<a n='zimbraIsACLGroup'>FALSE</a>"
 						+ "<a n='zimbraMailStatus'>enabled</a>"
 						+ "<a n='memberURL'>" + memberURL+ "</a>"
-						+	"<a n='description'>Created by Selenium automation</a>"
+						+ "<a n='description'>Created by Selenium automation</a>"
 						+ "</CreateDistributionListRequest>");
 
 		// Refresh the list
@@ -359,7 +359,7 @@ public class EditDistributionList extends AdminCore {
 						+ "<a n='zimbraIsACLGroup'>FALSE</a>"
 						+ "<a n='zimbraMailStatus'>enabled</a>"
 						+ "<a n='memberURL'>" + memberURL+ "</a>"
-						+	"<a n='description'>Created by Selenium automation</a>"
+						+ "<a n='description'>Created by Selenium automation</a>"
 						+ "</CreateDistributionListRequest>");
 
 		// Refresh the list

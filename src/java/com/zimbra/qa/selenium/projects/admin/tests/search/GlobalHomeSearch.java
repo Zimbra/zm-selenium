@@ -104,7 +104,7 @@ public class GlobalHomeSearch extends AdminCore {
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 						"<CreateAccountRequest xmlns='urn:zimbraAdmin'>"
 				+			"<name>" + account.getEmailAddress() + "</name>"
-				+			"<password>test123</password>"
+				+			"<password>" + ConfigProperties.getStringProperty("accountPassword") + "</password>"
 				+			"<a n='description'>Created by Selenium automation</a>"
 				+		"</CreateAccountRequest>");
 
@@ -149,12 +149,12 @@ public class GlobalHomeSearch extends AdminCore {
 
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<CreateCalendarResourceRequest xmlns='urn:zimbraAdmin'>"
-		 		+ "<name>" + resource.getEmailAddress() + "</name>"
-		 		+ "<a n='displayName'>" + resource.getName() + "</a>"
-		 		+ "<a n='zimbraCalResType'>" + "Location" + "</a>"
-				+	"<a n='description'>Created by Selenium automation</a>"
-		 		+ "<password>test123</password>"
-		 		+ "</CreateCalendarResourceRequest>");
+				+ "<name>" + resource.getEmailAddress() + "</name>"
+				+ "<a n='displayName'>" + resource.getName() + "</a>"
+				+ "<a n='zimbraCalResType'>" + "Location" + "</a>"
+				+ "<a n='description'>Created by Selenium automation</a>"
+				+ "<password>" + ConfigProperties.getStringProperty("accountPassword") + "</password>"
+				+ "</CreateCalendarResourceRequest>");
 
 		// Refresh the  list
 		app.zPageSearchResults.zSelectSearchObject(app.zPageSearchResults.S_RESOURCE);
@@ -293,6 +293,7 @@ public class GlobalHomeSearch extends AdminCore {
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<CreateDomainRequest xmlns='urn:zimbraAdmin'>"
 				+			"<name>" + domain.getName() + "</name>"
+				+			"<a n='description'>Created by Selenium automation</a>"
 				+		"</CreateDomainRequest>");
 
 		app.zPageSearchResults.zSelectSearchObject(app.zPageSearchResults.S_DOMAIN);

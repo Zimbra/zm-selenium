@@ -73,7 +73,8 @@ public class EditDomainAlias extends AdminCore {
 				+ "<a n='zimbraDomainAliasTargetId'>"+targetDomainID+"</a>"
 				+ "<a n='description'>"+"domain alias"+"</a>"
 				+ "<a n='zimbraMailCatchAllAddress'>@"+domainAliasName+"</a>"
-				+ "<a  n='zimbraMailCatchAllForwardingAddress'>@"+targetDomain+"</a>"
+				+ "<a n='zimbraMailCatchAllForwardingAddress'>@"+targetDomain+"</a>"
+				+ "<a n='description'>Created by Selenium automation</a>"
 				+ "</CreateDomainRequest>");
 
 		// Refresh the domain list
@@ -134,7 +135,8 @@ public class EditDomainAlias extends AdminCore {
 				+ "<a n='zimbraDomainAliasTargetId'>"+targetDomainID+"</a>"
 				+ "<a n='description'>"+"domain alias"+"</a>"
 				+ "<a n='zimbraMailCatchAllAddress'>@"+domainAliasName+"</a>"
-				+ "<a  n='zimbraMailCatchAllForwardingAddress'>@"+targetDomain+"</a>"
+				+ "<a n='zimbraMailCatchAllForwardingAddress'>@"+targetDomain+"</a>"
+				+ "<a n='description'>Created by Selenium automation</a>"
 				+ "</CreateDomainRequest>");
 
 		// Refresh the domain list
@@ -195,7 +197,8 @@ public class EditDomainAlias extends AdminCore {
 				+ "<a n='zimbraDomainAliasTargetId'>"+targetDomainID+"</a>"
 				+ "<a n='description'>"+"domain alias"+"</a>"
 				+ "<a n='zimbraMailCatchAllAddress'>@"+domainAliasName+"</a>"
-				+ "<a  n='zimbraMailCatchAllForwardingAddress'>@"+targetDomain+"</a>"
+				+ "<a n='zimbraMailCatchAllForwardingAddress'>@"+targetDomain+"</a>"
+				+ "<a n='description'>Created by Selenium automation</a>"
 				+ "</CreateDomainRequest>");
 
 		// Enter the search string to find the alias
@@ -258,7 +261,8 @@ public class EditDomainAlias extends AdminCore {
 				+ "<a n='zimbraDomainAliasTargetId'>"+targetDomainID+"</a>"
 				+ "<a n='description'>"+"domain alias"+"</a>"
 				+ "<a n='zimbraMailCatchAllAddress'>@"+domainAliasName+"</a>"
-				+ "<a  n='zimbraMailCatchAllForwardingAddress'>@"+targetDomain+"</a>"
+				+ "<a n='zimbraMailCatchAllForwardingAddress'>@"+targetDomain+"</a>"
+				+ "<a n='description'>Created by Selenium automation</a>"
 				+ "</CreateDomainRequest>");
 
 		// Enter the search string to find the alias
