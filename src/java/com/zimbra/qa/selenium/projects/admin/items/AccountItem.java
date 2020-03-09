@@ -149,7 +149,6 @@ public class AccountItem implements IItem {
 		return (accountAttrs);
 	}
 
-	// ImgAdminUser ImgAccount ImgSystemResource (others?)
 	protected String GAccountType = null;
 
 	public void setGAccountType(String imagetype) {

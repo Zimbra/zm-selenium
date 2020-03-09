@@ -671,9 +671,6 @@ public class FormContactNew extends AbsForm {
 			throw new HarnessException("no logic defined for button "+ button);
 		}
 
-		if ( locator == null )
-			throw new HarnessException("locator was null for button "+ button);
-
 		sClickAt(locator, "0,0");
 		
 		SleepUtil.sleepMedium();
@@ -709,13 +706,9 @@ public class FormContactNew extends AbsForm {
 			locator = Locators.zCancelWarningDialog;
 			page = this;
 			
-		}
-		else {
+		} else {
 			throw new HarnessException("no logic defined for button "+ button);
 		}
-
-		if ( locator == null )
-			throw new HarnessException("locator was null for button "+ button);
 
 		this.sClickAt(locator, "");
 		

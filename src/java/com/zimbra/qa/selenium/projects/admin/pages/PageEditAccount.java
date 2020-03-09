@@ -145,10 +145,6 @@ public class PageEditAccount extends AbsTab {
 			throw new HarnessException("no logic defined for button " + button);
 		}
 
-		if (locator == null) {
-			throw new HarnessException("locator was null for button " + button);
-		}
-
 		this.sClickAt(locator, "");
 		SleepUtil.sleepLong();
 

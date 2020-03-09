@@ -225,14 +225,9 @@ public class TreeMail extends AbsTree {
 			page = new DialogEditFolder(MyApplication, ((AjaxPages) MyApplication).zPageMail);
 
 		} else if (option == Button.B_MOVE) {
-
 			optionLocator += " div[id^='MOVE'] td[id$='_title']";
 			page = new DialogMove(MyApplication, ((AjaxPages) MyApplication).zPageMail);
-
 		}
-
-		if (optionLocator == null)
-			throw new HarnessException("locator is null for option " + option);
 
 		sClick(optionLocator);
 		this.zWaitForBusyOverlay();
@@ -668,10 +663,6 @@ public class TreeMail extends AbsTree {
 
 		} else {
 			throw new HarnessException("no logic defined for button " + button);
-		}
-
-		if (locator == null) {
-			throw new HarnessException("locator was null for button " + button);
 		}
 
 		this.sClick(locator);

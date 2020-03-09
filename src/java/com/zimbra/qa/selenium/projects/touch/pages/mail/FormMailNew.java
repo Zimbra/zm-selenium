@@ -158,13 +158,9 @@ public class FormMailNew extends AbsForm {
 			if ( zCcBccIsActive() )
 				return (this);
 			
-		}
-		else {
+		} else {
 			throw new HarnessException("no logic defined for button "+ button);
 		}
-
-		if ( locator == null )
-			throw new HarnessException("locator was null for button "+ button);
 
 		this.sClickAt(locator, "");
 		SleepUtil.sleepMedium();
@@ -209,9 +205,6 @@ public class FormMailNew extends AbsForm {
 		else {
 			throw new HarnessException("no logic defined for button "+ button);
 		}
-
-		if ( locator == null )
-			throw new HarnessException("locator was null for button "+ button);
 
 		this.sClickAt(locator, "");
 		SleepUtil.sleepMedium();
@@ -358,10 +351,6 @@ public class FormMailNew extends AbsForm {
 			
 		} else {
 			throw new HarnessException("not implemented for field " + field);
-		}
-		
-		if ( locator == null ) {
-			throw new HarnessException("locator was null for field "+ field);
 		}
 		
 		if ( !this.sIsElementPresent(locator) )

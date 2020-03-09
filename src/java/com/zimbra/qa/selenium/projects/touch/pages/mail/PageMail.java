@@ -336,10 +336,6 @@ public class PageMail extends AbsTab {
 			throw new HarnessException("no logic defined for button "+ button);
 		}
 
-		if ( locator == null ) {
-			throw new HarnessException("locator was null for button "+ button);
-		}
-
 		this.sClickAt(locator,"0,0");
 
 		SleepUtil.sleepMedium();
@@ -377,17 +373,10 @@ public class PageMail extends AbsTab {
 			locator = Locators.BackButton;
 			page = this;
 
-		}
-		else {
+		} else {
 			throw new HarnessException("Button "+ button +" not implemented");
 		}
 
-		// Make sure the locator was set
-		if ( locator == null ) {
-			throw new HarnessException("Button "+ button +" not implemented");
-		}
-
-		// Make sure the locator exists
 		if ( !this.sIsElementPresent(locator) ) {
 			throw new HarnessException("Button "+ button +" locator "+ locator +" not present!");
 		}

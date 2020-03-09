@@ -128,10 +128,6 @@ public class PageEditCOS extends AbsTab {
 			throw new HarnessException("no logic defined for button " + button);
 		}
 
-		if (locator == null) {
-			throw new HarnessException("locator was null for button " + button);
-		}
-
 		this.sClickAt(locator, "");
 		SleepUtil.sleepMedium();
 
@@ -154,10 +150,6 @@ public class PageEditCOS extends AbsTab {
 			locator = Locators.zTwoFactorAuthNumScratchCodes;
 
 		} else {
-			throw new HarnessException("Button " + button + " not implemented");
-		}
-
-		if (locator == null) {
 			throw new HarnessException("Button " + button + " not implemented");
 		}
 
@@ -190,10 +182,6 @@ public class PageEditCOS extends AbsTab {
 			locator = Locators.zEnableApplicationPasscodes;
 
 		} else {
-			throw new HarnessException("Button " + button + " not implemented");
-		}
-
-		if (locator == null) {
 			throw new HarnessException("Button " + button + " not implemented");
 		}
 

@@ -329,8 +329,6 @@ public abstract class AbsSeleniumObject {
 		} else {
 			we = getElement(locator);
 		}
-		this.sFocus(locator, we);
-		this.sClickAt(locator, "0,0", we);
 		this.sType(locator, value, we);
 		SleepUtil.sleepVerySmall();
 	}

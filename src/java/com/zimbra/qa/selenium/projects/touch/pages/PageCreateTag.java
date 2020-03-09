@@ -131,12 +131,6 @@ public class PageCreateTag extends AbsPage {
 			throw new HarnessException("Button "+ button +" not implemented");
 		}
 
-		// Make sure the locator was set
-		if ( locator == null ) {
-			throw new HarnessException("Button "+ button +" not implemented");
-		}
-
-		// Make sure the locator exists
 		if ( !this.sIsElementPresent(locator) ) {
 			throw new HarnessException("Button "+ button +" locator "+ locator +" not present!");
 		}

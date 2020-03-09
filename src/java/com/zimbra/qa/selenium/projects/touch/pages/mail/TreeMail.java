@@ -232,11 +232,7 @@ public class TreeMail extends AbsTree {
 
 			optionLocator += " div[id^='MOVE'] td[id$='_title']";
 			//page = new DialogMove(MyApplication,((AppTouchClient) MyApplication).zPageMail);
-
 		}
-
-		if (optionLocator == null)
-			throw new HarnessException("locator is null for option " + option);
 
 		// Default behavior. Click the locator
 		sClick(optionLocator);
@@ -674,11 +670,6 @@ public class TreeMail extends AbsTree {
 			return (page);
 			
 		} 	else {
-			throw new HarnessException("Button "+ button +" not implemented");
-		}
-
-		// Make sure the locator was set
-		if ( locator == null ) {
 			throw new HarnessException("Button "+ button +" not implemented");
 		}
 

@@ -268,15 +268,6 @@ public class PagePreferences extends AbsTab {
 			} else {
 				throw new HarnessException("zNavigateAway() not defined for button " + savechanges);
 			}
-
-			if (locator == null) {
-				throw new HarnessException("zNavigateAway() no locator for button " + savechanges);
-			}
-
-			if (!sIsElementPresent(locator)) {
-				throw new HarnessException("zNavigateAway() locator is not present " + locator);
-			}
-
 			sClick(locator);
 
 		} else {
@@ -533,10 +524,6 @@ public class PagePreferences extends AbsTab {
 			throw new HarnessException("no logic defined for option " + option);
 		}
 
-		if (locator == null) {
-			throw new HarnessException("locator was null for option " + option);
-		}
-
 		this.sClick(locator);
 		this.zWaitForBusyOverlay();
 	}
@@ -561,10 +548,6 @@ public class PagePreferences extends AbsTab {
 
 		} else {
 			throw new HarnessException("no logic defined for option " + option);
-		}
-
-		if (locator == null) {
-			throw new HarnessException("locator was null for option " + option);
 		}
 
 		this.sClickAt(locator, "");
@@ -646,13 +629,6 @@ public class PagePreferences extends AbsTab {
 		} else {
 			throw new HarnessException("no logic defined for button " + button);
 		}
-
-		if (locator == null) {
-			throw new HarnessException("locator was null for button " + button);
-		}
-
-		if (!this.sIsElementPresent(locator))
-			throw new HarnessException("Button is not present locator=" + locator + " button=" + button);
 
 		this.sClick(locator);
 		SleepUtil.sleepMedium();
@@ -765,13 +741,6 @@ public class PagePreferences extends AbsTab {
 		} else {
 			throw new HarnessException("no logic defined for checkbox " + checkbox);
 		}
-
-		if (locator == null) {
-			throw new HarnessException("locator was null for checkbox " + checkbox);
-		}
-
-		if (!this.sIsElementPresent(locator))
-			throw new HarnessException("Button is not present checkbox=" + locator + " button=" + checkbox);
 
 		if (status == true) {
 			this.sCheck(locator);

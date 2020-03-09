@@ -98,14 +98,6 @@ public class DialogCreateTaskFolder extends AbsDialog {
 			throw new HarnessException("Button " + button + " not implemented");
 		}
 
-		if (locator == null) {
-			throw new HarnessException("Button " + button + " not implemented");
-		}
-
-		if (!this.sIsElementPresent(locator)) {
-			throw new HarnessException("Button " + button + " locator " + locator + " not present!");
-		}
-
 		this.sClickAt(locator, "0,0");
 		this.zWaitForBusyOverlay();
 		SleepUtil.sleepSmall();

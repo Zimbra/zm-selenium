@@ -148,10 +148,7 @@ public class DelegatedAdminPageManageAccounts extends AbsTab {
 
 	@Override
 	public AbsPage zToolbarPressButton(Button button) throws HarnessException {
-
 		logger.info(myPageName() + " zToolbarPressButton(" + button + ")");
-
-		tracer.trace("Press the " + button + " button");
 
 		if (button == null)
 			throw new HarnessException("Button cannot be null!");
@@ -185,12 +182,7 @@ public class DelegatedAdminPageManageAccounts extends AbsTab {
 			throw new HarnessException("no logic defined for button " + button);
 		}
 
-		if (locator == null) {
-			throw new HarnessException("locator was null for button " + button);
-		}
-
 		this.sClickAt(locator, "");
-
 		if (page != null) {
 			SleepUtil.sleepMedium();
 		}

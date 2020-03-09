@@ -150,10 +150,6 @@ public class FormEditCos extends AbsForm {
 			throw new HarnessException("Button " + button + " not implemented");
 		}
 
-		if (locator == null) {
-			throw new HarnessException("Button " + button + " not implemented");
-		}
-
 		if (!this.sIsElementPresent(locator)) {
 			throw new HarnessException("Button " + button + " locator " + locator + " not present!");
 		}
@@ -190,10 +186,6 @@ public class FormEditCos extends AbsForm {
 			locator = Locators.SHOW_IMAP_SEARCH_FOLDERS;
 
 		} else {
-			throw new HarnessException("Button " + button + " not implemented");
-		}
-
-		if (locator == null) {
 			throw new HarnessException("Button " + button + " not implemented");
 		}
 
@@ -251,10 +243,6 @@ public class FormEditCos extends AbsForm {
 			locator = Locators.ENABLE_MOBILE_POLICY;
 
 		} else {
-			throw new HarnessException("Button " + button + " not implemented");
-		}
-
-		if (locator == null) {
 			throw new HarnessException("Button " + button + " not implemented");
 		}
 

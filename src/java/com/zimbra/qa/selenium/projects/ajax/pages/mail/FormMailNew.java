@@ -290,9 +290,6 @@ public class FormMailNew extends AbsForm {
 			throw new HarnessException("no logic defined for button " + button);
 		}
 
-		if (locator == null)
-			throw new HarnessException("locator was null for button " + button);
-
 		this.sClick(locator);
 		this.zWaitForBusyOverlay();
 		SleepUtil.sleepMedium();
@@ -835,13 +832,6 @@ public class FormMailNew extends AbsForm {
 			throw new HarnessException("not implemented for field " + field);
 		}
 
-		if (locator == null) {
-			throw new HarnessException("locator was null for field " + field);
-		}
-
-		if (!this.sIsElementPresent(locator))
-			throw new HarnessException("Field is not present field=" + field + " locator=" + locator);
-
 		this.sFocus(locator);
 		this.sClickAt(locator, "0,0");
 		this.zWaitForBusyOverlay();
@@ -1073,13 +1063,6 @@ public class FormMailNew extends AbsForm {
 			throw new HarnessException("Unsupported field: " + field);
 		}
 
-		if (locator == null) {
-			throw new HarnessException("locator was null for field " + field);
-		}
-
-		if (!this.sIsElementPresent(locator))
-			throw new HarnessException("Field is not present field=" + field + " locator=" + locator);
-
 		this.sFocus(locator);
 		this.sClickAt(locator, "");
 		this.zWaitForBusyOverlay();
@@ -1197,14 +1180,6 @@ public class FormMailNew extends AbsForm {
 		} else {
 			throw new HarnessException("no logic defined for field " + field);
 		}
-
-		// Make sure something was set
-		if (locator == null)
-			throw new HarnessException("locator was null for field = " + field);
-
-		// Make sure the field is present
-		if (!this.sIsElementPresent(locator))
-			throw new HarnessException("Unable to find the field = " + field + " using locator = " + locator);
 
 		// Get the field value
 		fieldValue = this.sGetText(locator);

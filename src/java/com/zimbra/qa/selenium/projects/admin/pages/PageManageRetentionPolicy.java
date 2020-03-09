@@ -178,10 +178,6 @@ public class PageManageRetentionPolicy extends AbsTab {
 			throw new HarnessException("no logic defined for button " + button);
 		}
 
-		if (locator == null) {
-			throw new HarnessException("locator was null for button " + button);
-		}
-
 		this.sClickAt(locator, "");
 
 		if (page != null) {
@@ -265,10 +261,6 @@ public class PageManageRetentionPolicy extends AbsTab {
 			throw new HarnessException("no logic defined for button " + button);
 		}
 
-		if (locator == null) {
-			throw new HarnessException("locator was null for button " + button);
-		}
-
 		this.sClickAt(locator, "");
 
 		if (page != null) {
@@ -338,10 +330,6 @@ public class PageManageRetentionPolicy extends AbsTab {
 			locator = Locators.NO_BUTTON;
 
 		} else {
-			throw new HarnessException("Button " + button + " not implemented");
-		}
-
-		if (locator == null) {
 			throw new HarnessException("Button " + button + " not implemented");
 		}
 

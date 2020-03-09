@@ -544,13 +544,6 @@ public class FormApptNew extends AbsForm {
 			throw new HarnessException("no logic defined for button " + button);
 		}
 
-		// Make sure a locator was set
-		if (locator == null)
-			throw new HarnessException("locator was null for button " + button);
-
-		// Default behavior, process the locator by clicking on it
-		//
-
 		// Click it
 		this.sClickAt(locator, "");
 
@@ -919,10 +912,6 @@ public class FormApptNew extends AbsForm {
 			return;
 		} else {
 			throw new HarnessException("not implemented for field " + field);
-		}
-
-		if (locator == null) {
-			throw new HarnessException("locator was null for field " + field);
 		}
 
 		// Make sure the button exists
