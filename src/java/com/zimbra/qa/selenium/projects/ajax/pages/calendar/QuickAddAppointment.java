@@ -158,10 +158,6 @@ public class QuickAddAppointment extends AbsTab {
 			throw new HarnessException("not implemented for field " + field);
 		}
 
-		if (locator == null) {
-			throw new HarnessException("locator was null for field " + field);
-		}
-
 		if (!this.sIsElementPresent(locator))
 			throw new HarnessException("Field is not present field=" + field + " locator=" + locator);
 

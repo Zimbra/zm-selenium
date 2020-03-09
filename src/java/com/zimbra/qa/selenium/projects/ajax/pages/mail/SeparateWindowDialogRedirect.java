@@ -60,10 +60,6 @@ public class SeparateWindowDialogRedirect extends AbsDialogSeparateWindow {
 			throw new HarnessException("Unsupported field: " + field);
 		}
 
-		if (locator == null) {
-			throw new HarnessException("locator was null for field " + field);
-		}
-
 		if (!MyWindow.sIsElementPresent(locator))
 			throw new HarnessException("Field is not present field=" + field + " locator=" + locator);
 
@@ -101,10 +97,6 @@ public class SeparateWindowDialogRedirect extends AbsDialogSeparateWindow {
 			locator = Locators.ButtonToButtonLocator;
 
 		} else {
-			throw new HarnessException("Button " + button + " not implemented");
-		}
-
-		if (locator == null) {
 			throw new HarnessException("Button " + button + " not implemented");
 		}
 

@@ -92,10 +92,6 @@ public class TreeTasks extends AbsTree {
 			throw new HarnessException("no logic defined for button " + button);
 		}
 
-		if (locator == null) {
-			throw new HarnessException("locator was null for button " + button);
-		}
-
 		this.sClickAt(locator, "");
 		this.zWaitForBusyOverlay();
 		SleepUtil.sleepSmall();
@@ -274,9 +270,6 @@ public class TreeTasks extends AbsTree {
 		} else {
 			throw new HarnessException("button " + option + " not yet implemented");
 		}
-
-		if (optionLocator == null)
-			throw new HarnessException("locator is null for option " + option);
 
 		sClickAt(optionLocator, "");
 		this.zWaitForBusyOverlay();

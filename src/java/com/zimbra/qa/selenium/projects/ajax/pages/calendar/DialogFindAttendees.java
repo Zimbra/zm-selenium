@@ -108,10 +108,6 @@ public class DialogFindAttendees extends DialogWarning {
 			return (super.zPressButton(button));
 		}
 
-		if (locator == null) {
-			throw new HarnessException("Button " + button + " not implemented");
-		}
-
 		if (!this.sIsElementPresent(locator)) {
 			throw new HarnessException("Button " + button + " locator " + locator + " not present!");
 		}
@@ -147,7 +143,6 @@ public class DialogFindAttendees extends DialogWarning {
 	}
 
 	public void zFillField(Field field, String value) throws HarnessException {
-
 		tracer.trace("Set " + field + " to " + value);
 
 		String locator = null;
@@ -160,10 +155,6 @@ public class DialogFindAttendees extends DialogWarning {
 
 		} else {
 			throw new HarnessException("not implemented for field " + field);
-		}
-
-		if (locator == null) {
-			throw new HarnessException("locator was null for field " + field);
 		}
 
 		if (!this.sIsElementPresent(locator))

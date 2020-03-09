@@ -92,10 +92,6 @@ public class DialogNewContactGroup extends AbsDialog {
 			throw new HarnessException("Button " + button + " not implemented");
 		}
 
-		if (locator == null) {
-			throw new HarnessException("Button " + button + " not implemented");
-		}
-
 		this.sClick(locator);
 		zWaitForBusyOverlay();
 		SleepUtil.sleepSmall();

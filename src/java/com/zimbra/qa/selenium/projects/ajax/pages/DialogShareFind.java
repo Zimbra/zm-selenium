@@ -200,10 +200,6 @@ public class DialogShareFind extends AbsDialog {
 			throw new HarnessException("Button " + button + " not implemented");
 		}
 
-		if (locator == null) {
-			throw new HarnessException("Button " + button + " not implemented");
-		}
-
 		if (!this.sIsElementPresent(locator)) {
 			throw new HarnessException("Locator " + locator + " not present");
 		}

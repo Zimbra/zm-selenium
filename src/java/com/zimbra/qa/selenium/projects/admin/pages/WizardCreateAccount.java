@@ -50,12 +50,10 @@ public class WizardCreateAccount extends AbsWizard {
 
 	@Override
 	public IItem zCompleteWizard(IItem item) throws HarnessException {
-
 		if (!(item instanceof AccountItem))
 			throw new HarnessException("item must be an AccountItem, was " + item.getClass().getCanonicalName());
 
 		AccountItem account = (AccountItem) item;
-
 		String CN = account.getLocalName();
 		String domain = account.getDomainName();
 

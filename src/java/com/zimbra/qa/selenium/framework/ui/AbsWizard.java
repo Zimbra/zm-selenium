@@ -112,7 +112,6 @@ public abstract class AbsWizard extends AbsPage {
 	}
 
 	protected void clickWizardButton(WizardButton button, String dialogName) throws HarnessException {
-
 		String buttonPath = null;
 
 		switch (button) {

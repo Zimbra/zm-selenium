@@ -67,10 +67,6 @@ public class DialogForActivateLicense extends AbsDialog {
 			throw new HarnessException("Button " + button + " not implemented");
 		}
 
-		if (locator == null) {
-			throw new HarnessException("Button " + button + " not implemented");
-		}
-
 		if (!this.sIsElementPresent(locator)) {
 			throw new HarnessException("Button " + button + " locator " + locator + " not present!");
 		}

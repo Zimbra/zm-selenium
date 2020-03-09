@@ -551,9 +551,6 @@ public class FormApptNew extends AbsForm {
 			throw new HarnessException("no logic defined for button " + button);
 		}
 
-		if (locator == null)
-			throw new HarnessException("locator was null for button " + button);
-
 		this.sClickAt(locator, "");
 		this.zWaitForBusyOverlay();
 
@@ -1336,10 +1333,6 @@ public class FormApptNew extends AbsForm {
 
 		} else {
 			throw new HarnessException("Unsupported field: " + field);
-		}
-
-		if (locator == null) {
-			throw new HarnessException("locator was null for field " + field);
 		}
 
 		if (!this.sIsElementPresent(locator))

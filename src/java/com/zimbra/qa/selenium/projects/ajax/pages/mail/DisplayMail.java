@@ -286,12 +286,6 @@ public class DisplayMail extends AbsDisplay {
 			throw new HarnessException("no implementation for button: " + button);
 		}
 
-		if (locator == null)
-			throw new HarnessException("no locator defined for button " + button);
-
-		if (!this.sIsElementPresent(locator))
-			throw new HarnessException("locator is not present for button " + button + " : " + locator);
-
 		this.sClick(locator);
 		SleepUtil.sleepLong();
 

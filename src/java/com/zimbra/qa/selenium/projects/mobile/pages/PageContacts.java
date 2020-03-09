@@ -130,14 +130,7 @@ public class PageContacts extends AbsTab {
 			throw new HarnessException("zToolbarPressButton() not defined for button "+ button);
 			
 		}
-		
-		if ( locator == null ) {
-			throw new HarnessException("zToolbarPressButton() no locator defined for button "+ button);
-		}
-		
-		// Default behavior
-		
-		// Click on "locator"
+
 		if ( !this.sIsElementPresent(locator) ) {
 			throw new HarnessException("locator is not present " + locator);
 		}

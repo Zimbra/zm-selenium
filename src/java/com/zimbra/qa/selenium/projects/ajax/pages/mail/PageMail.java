@@ -817,10 +817,6 @@ public class PageMail extends AbsTab {
 			throw new HarnessException("no logic defined for button " + button);
 		}
 
-		if (locator == null) {
-			throw new HarnessException("locator was null for button " + button);
-		}
-
 		this.sClick(locator);
 		zWaitForBusyOverlay();
 
@@ -2187,10 +2183,6 @@ public class PageMail extends AbsTab {
 			locator = Locators.zDeleteButtonFullViewPane;
 
 		} else {
-			throw new HarnessException("Button " + button + " not implemented");
-		}
-
-		if (locator == null) {
 			throw new HarnessException("Button " + button + " not implemented");
 		}
 

@@ -64,14 +64,9 @@ public class SeparateWindowChangePassword extends SeparateWindow {
 		String locator = null;
 
 		if (button == Button.B_SAVE) {
-
 			locator = Locators.LocatorChangePasswordCSS;
 
 		} else {
-			throw new HarnessException("Button " + button + " not implemented");
-		}
-
-		if (locator == null) {
 			throw new HarnessException("Button " + button + " not implemented");
 		}
 

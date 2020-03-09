@@ -108,21 +108,10 @@ public class PageCreateFolder extends AbsPage {
 			throw new HarnessException("Button "+ button +" not implemented");
 		}
 
-		// Make sure the locator was set
-		if ( locator == null ) {
-			throw new HarnessException("Button "+ button +" not implemented");
-		}
-
-		// Make sure the locator exists
 		if ( !this.sIsElementPresent(locator) ) {
 			throw new HarnessException("Button "+ button +" locator "+ locator +" not present!");
 		}
 
-		/*if ( button == Button.B_EDIT ) {
-			SleepUtil.sleepMedium();
-			locator = Locators.zEditButton;
-			this.sClickAt("css=span[class='x-button-icon x-shown organizer']", "0,0");
-		}*/
 		this.sClickAt(locator, "");
 		SleepUtil.sleepLong();
 

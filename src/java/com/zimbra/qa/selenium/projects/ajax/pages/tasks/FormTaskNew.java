@@ -134,9 +134,6 @@ public class FormTaskNew extends AbsForm {
 			throw new HarnessException("no logic defined for button " + button);
 		}
 
-		if (locator == null)
-			throw new HarnessException("locator was null for button " + button);
-
 		this.sClickAt(locator, "0,0");
 		this.zWaitForBusyOverlay();
 		SleepUtil.sleepMedium();

@@ -209,14 +209,9 @@ public class DisplayMail extends AbsDisplay {
 			page = null;
 			doPostfixCheck = true;
 		} else  {
-			
 			throw new HarnessException("no implementation for button: "+ button);
-
 		}
-		
-		if ( locator == null )
-			throw new HarnessException("no locator defined for button "+ button);
-		
+
 		if ( !this.sIsElementPresent(locator) )
 			throw new HarnessException("locator is not present for button "+ button +" : "+ locator);
 		
@@ -229,7 +224,6 @@ public class DisplayMail extends AbsDisplay {
 		}
 		logger.info("postfix"+ doPostfixCheck);
 		if ( doPostfixCheck ) {
-			// Make sure the response is delivered before proceeding
 			Stafpostqueue sp = new Stafpostqueue();
 			sp.waitForPostqueue();
 		}

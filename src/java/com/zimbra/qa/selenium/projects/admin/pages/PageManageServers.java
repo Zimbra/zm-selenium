@@ -191,8 +191,6 @@ public class PageManageServers extends AbsTab {
 	public AbsPage zToolbarPressButton(Button button) throws HarnessException {
 		logger.info(myPageName() + " zToolbarPressButton(" + button + ")");
 
-		tracer.trace("Press the " + button + " button");
-
 		if (button == null)
 			throw new HarnessException("Button cannot be null!");
 
@@ -205,10 +203,6 @@ public class PageManageServers extends AbsTab {
 
 		} else {
 			throw new HarnessException("no logic defined for button " + button);
-		}
-
-		if (locator == null) {
-			throw new HarnessException("locator was null for button " + button);
 		}
 
 		this.sClickAt(locator, "");
