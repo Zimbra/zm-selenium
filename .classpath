@@ -5,6 +5,6 @@
 	<classpathentry kind="lib" path="build/dist/lib/resources.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="org.apache.ivyde.eclipse.cpcontainer.IVYDE_CONTAINER/?project=zm-selenium&amp;ivyXmlPath=ivy.xml&amp;confs=*"/>
-	<classpathentry kind="lib" path="build/dist/lib/ZimbraSelenium.jar"/>
+	<classpathentry kind="lib" path="build/dist/lib/ZimbraSelenium.jar" sourcepath=""/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

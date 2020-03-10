@@ -48,8 +48,9 @@ public class AddAlias extends AdminCore {
 
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<CreateDistributionListRequest xmlns='urn:zimbraAdmin'>"
-						+			"<name>" + dlEmailAddress + "</name>"
-						+		"</CreateDistributionListRequest>");
+						+	"<name>" + dlEmailAddress + "</name>"
+						+ "<a n='description'>Created by Selenium automation</a>"
+						+	"</CreateDistributionListRequest>");
 
 		String domain = ConfigProperties.getStringProperty("testdomain");
 		String aliasLocalName = "alias" + ConfigProperties.getUniqueString();

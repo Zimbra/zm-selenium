@@ -89,7 +89,6 @@ public class GetAccount extends AdminCore {
 			groups = { "functional" })
 
 	public void GetAccount_02() throws HarnessException {
-
 		// Create a new account in the Admin Console using SOAP
 		AccountItem account = new AccountItem("tc" + ConfigProperties.getUniqueString(), ConfigProperties.getStringProperty("testdomain"));
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
@@ -135,7 +134,6 @@ public class GetAccount extends AdminCore {
 			groups = { "functional" })
 
 	public void GetAccount_03() throws HarnessException {
-
 		// Create a new account in the Admin Console using SOAP
 		AccountItem account = new AccountItem("tc" + ConfigProperties.getUniqueString(), ConfigProperties.getStringProperty("testdomain"));
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(

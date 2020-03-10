@@ -47,8 +47,9 @@ public class ZimbraAdminAccount extends ZimbraAccount {
 					.soapSend("<CreateAccountRequest xmlns='urn:zimbraAdmin'>" + "<name>" + account.getEmailAddress()
 							+ "</name>" + "<password>" + ConfigProperties.getStringProperty("adminPassword")
 							+ "</password>" + "<a n='zimbraIsDelegatedAdminAccount'>TRUE</a>"
+							+ "<a n='zimbraPrefAdminConsoleWarnOnExit'>FALSE</a>"
 							+ "<a n='description'>Created by Selenium automation</a>"
-							+ "<a n='zimbraPrefAdminConsoleWarnOnExit'>FALSE</a>" + "</CreateAccountRequest>");
+							+ "</CreateAccountRequest>");
 
 			Element[] createAccountResponse = ZimbraAdminAccount.AdminConsoleAdmin()
 					.soapSelectNodes("//admin:CreateAccountResponse");
