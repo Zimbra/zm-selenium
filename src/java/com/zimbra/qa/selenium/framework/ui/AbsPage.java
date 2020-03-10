@@ -41,7 +41,7 @@ import com.zimbra.qa.selenium.framework.util.*;
 public abstract class AbsPage extends AbsSeleniumObject {
 	protected static Logger logger = LogManager.getLogger(AbsPage.class);
 
-	protected static final int PageLoadDelay = 60000;
+	protected static final int PageLoadDelay = 20000;
 	protected AbsApplication MyApplication = null;
 	public Keyboard zKeyboard = new Keyboard();
 

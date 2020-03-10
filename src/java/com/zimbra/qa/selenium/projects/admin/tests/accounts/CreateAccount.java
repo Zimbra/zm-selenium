@@ -49,7 +49,8 @@ public class CreateAccount extends AdminCore {
 		AccountItem account = new AccountItem("tc" + ConfigProperties.getUniqueString(), accountLastname);
 
 		// Click "New" -> "Account"
-		WizardCreateAccount wizard = (WizardCreateAccount) app.zPageManageAccounts.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_NEW);
+		WizardCreateAccount wizard = (WizardCreateAccount) app.zPageManageAccounts
+				.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_NEW);
 
 		// Fill out the wizard and click Finish
 		wizard.zCompleteWizard(account);

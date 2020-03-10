@@ -54,7 +54,6 @@ import com.zimbra.qa.selenium.projects.ajax.pages.mail.FormMailNew;
 import com.zimbra.qa.selenium.projects.ajax.pages.mail.SeparateWindowDisplayMail;
 import com.zimbra.qa.selenium.projects.ajax.pages.mail.SeparateWindowFormMailNew;
 import com.zimbra.qa.selenium.projects.ajax.pages.tasks.FormTaskNew;
-import com.zimbra.qa.selenium.staf.StafIntegration;
 import com.zimbra.qa.selenium.projects.ajax.pages.calendar.FormApptNew;
 import com.zimbra.qa.selenium.projects.ajax.pages.contacts.FormContactDistributionListNew;
 import com.zimbra.qa.selenium.projects.ajax.pages.contacts.FormContactGroupNew;
@@ -141,29 +140,6 @@ public class AjaxCore {
 		logger.info("Class name: " + this.getClass());
 
 		ArrayList<String> availableZimlets= null;
-
-		// Grant createDistList right to domain
-		if (!ExecuteHarnessMain.isDLRightGranted
-				&& this.getClass().getName().contains(ExecuteHarnessMain.SeleniumBasePackage + ".projects.ajax.tests.contacts.dl")) {
-			StafIntegration.logInfo = "Grant createDistList right to domain using CLI utility";
-			logger.info(StafIntegration.logInfo);
-			CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"),
-					"zmprov grr domain " + ConfigProperties.getStringProperty("testdomain") + " dom "
-							+ ConfigProperties.getStringProperty("testdomain") + " createDistList");
-			ExecuteHarnessMain.isDLRightGranted = true;
-		}
-
-		// Disable zimbraSmimeOCSPEnabled attribute for S/MIME	
-		if (!ExecuteHarnessMain.isSmimeOcspDisabled
-				&& this.getClass().getName().contains(ExecuteHarnessMain.SeleniumBasePackage + ".projects.ajax.tests.network.zimlets.smime")) {
-			StafIntegration.logInfo = "Disable zimbraSmimeOCSPEnabled attribute for S/MIME using CLI utility";
-			logger.info(StafIntegration.logInfo);
-			CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"), "zmprov mcf zimbraSmimeOCSPEnabled FALSE");
-			for (int i=0; i<ExecuteHarnessMain.storeServers.size(); i++) {
-				CommandLineUtility.runCommandOnZimbraServer(ExecuteHarnessMain.storeServers.get(i), "zmprov ms '" + ExecuteHarnessMain.storeServers.get(i) + "' zimbraSmimeOCSPEnabled FALSE" );
-			}
-			ExecuteHarnessMain.isSmimeOcspDisabled = true;
-		}
 
 		// Configure Chat
 		if (!ExecuteHarnessMain.isChatConfigured

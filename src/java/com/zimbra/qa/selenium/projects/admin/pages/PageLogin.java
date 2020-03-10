@@ -99,7 +99,6 @@ public class PageLogin extends AbsTab {
 
 	public void zLogin(ZimbraAccount account) throws HarnessException {
 		logger.debug("zLogin(ZimbraAccount account)" + account.EmailAddress);
-
 		zNavigateTo();
 
 		// Fill out the form
@@ -114,7 +113,6 @@ public class PageLogin extends AbsTab {
 		((AdminPages) MyApplication).zSetActiveAccount(account);
 
 		SleepUtil.sleep(5000);
-
 		AdminCore.zHandleNetworkModulesNGDialog();
 	}
 

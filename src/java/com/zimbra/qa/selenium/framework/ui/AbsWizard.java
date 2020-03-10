@@ -115,27 +115,27 @@ public abstract class AbsWizard extends AbsPage {
 		String buttonPath = null;
 
 		switch (button) {
-		case Finish:
-			buttonPath = "css=td[id$='_" + dialogName + Locators.FINISH_BUTTON + "']";
-			break;
-		case Next:
-			buttonPath = "css=td[id$='_" + dialogName + Locators.NEXT_BUTTON + "']";
-			break;
-		case Previous:
-			buttonPath = "css=td[id$='_" + dialogName + Locators.PREVIOUS_BUTTON + "']";
-			break;
-		case Cancel:
-			buttonPath = "css=td[id$='_" + dialogName + Locators.CANCEL_BUTTON + "']";
-			break;
-		case Help:
-			buttonPath = "css=td[id$='_" + dialogName + Locators.HELP_BUTTON + "']";
-		}
-
-		if (buttonPath == null) {
-			throw new HarnessException("buttonPath was null for " + button);
+			case Finish:
+				buttonPath = "css=td[id$='_" + dialogName + Locators.FINISH_BUTTON + "']";
+				break;
+			case Next:
+				buttonPath = "css=td[id$='_" + dialogName + Locators.NEXT_BUTTON + "']";
+				break;
+			case Previous:
+				buttonPath = "css=td[id$='_" + dialogName + Locators.PREVIOUS_BUTTON + "']";
+				break;
+			case Cancel:
+				buttonPath = "css=td[id$='_" + dialogName + Locators.CANCEL_BUTTON + "']";
+				break;
+			case Help:
+				buttonPath = "css=td[id$='_" + dialogName + Locators.HELP_BUTTON + "']";
 		}
 
 		sClickAt(buttonPath, "");
-		SleepUtil.sleepMedium();
+		if (button == WizardButton.Finish) {
+			SleepUtil.sleepLong();
+		} else {
+			SleepUtil.sleepMedium();
+		}
 	}
 }

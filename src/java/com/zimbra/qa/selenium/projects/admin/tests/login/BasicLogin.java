@@ -26,7 +26,7 @@ import com.zimbra.qa.selenium.projects.admin.core.AdminCore;
 public class BasicLogin extends AdminCore {
 
 	public BasicLogin() {
-		logger.info("New "+ BasicLogin.class.getCanonicalName());
+		logger.info("New " + BasicLogin.class.getCanonicalName());
 
 		// All tests start at the login page
 		super.startingPage = app.zPageLogin;
@@ -38,7 +38,6 @@ public class BasicLogin extends AdminCore {
 			groups = { "smoke" })
 
 	public void BasicLogin_01() throws HarnessException {
-
 		// Login
 		app.zPageLogin.zLogin(gAdmin);
 
@@ -51,9 +50,9 @@ public class BasicLogin extends AdminCore {
 			groups = { "bhr" })
 
 	public void BasicLogin_02() throws HarnessException {
-
 		// Create a new AdminAccount
-		ZimbraAdminAccount account = new ZimbraAdminAccount("tc"+ ConfigProperties.getUniqueString() + "@" + ConfigProperties.getStringProperty("testdomain"));
+		ZimbraAdminAccount account = new ZimbraAdminAccount(
+				"tc" + ConfigProperties.getUniqueString() + "@" + ConfigProperties.getStringProperty("testdomain"));
 		account.provision();
 		account.authenticate();
 

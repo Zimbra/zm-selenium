@@ -34,22 +34,10 @@ public class NavigateDownloads extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Navigate to Downloads page
-	 * Steps :
-	 * 1. Go to Downloads
-	 * 2. Verify navigation path -- "Home --> Tools and Migration --> Downloads"
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "Navigate to Downloads",
 			groups = { "smoke" })
 
 	public void NavigateDownloads_01() throws HarnessException {
-
-		/*
-		 * Verify navigation path -- "Home --> Tools and Migration --> Downloads"
-		 */
 		ZAssert.assertTrue(app.zPageDownloads.zVerifyHeader(PageDownloads.Locators.HOME),
 				"Verfiy the 'Home' text exists in navigation path");
 		ZAssert.assertTrue(app.zPageDownloads.zVerifyHeader(PageDownloads.Locators.TOOLS_AND_MIGRATION),

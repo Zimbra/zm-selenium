@@ -40,7 +40,6 @@ public class PageMain extends AbsTab {
 		public static final String zSkinContainerLogoff = "css=table[class='skin_table'] span[onclick='ZaZimbraAdmin.logOff();']";
 		public static final String zLogoffDropDownArrow = "css=td[id$='_dropdown'] div[class='ImgNodeExpandedWhite']";
 		public static final String zLogOff = "zmi__ZA_LOGOFF__LOGOFF_title";
-
 		public static final String zSkinContainerDW = "xpath=//*[@id='skin_container_dw']";
 
 		// Help Drop down
@@ -71,12 +70,7 @@ public class PageMain extends AbsTab {
 		return (this.getClass().getName());
 	}
 
-	/**
-	 * If the "Logout" button is visible, assume the MainPage is active
-	 */
 	public boolean zIsActive() throws HarnessException {
-
-		// Make sure the Admin Console is loaded in the browser
 		if (!MyApplication.zIsLoaded())
 			throw new HarnessException("Admin Console application is not active!");
 
@@ -98,13 +92,10 @@ public class PageMain extends AbsTab {
 
 	@Override
 	public void zNavigateTo() throws HarnessException {
-
 		if (zIsActive()) {
 			return;
 		}
 
-		// 1. Logout
-		// 2. Login as the default account
 		if (!((AdminPages) MyApplication).zPageLogin.zIsActive()) {
 			((AdminPages) MyApplication).zPageLogin.zNavigateTo();
 		}
@@ -112,14 +103,7 @@ public class PageMain extends AbsTab {
 		SleepUtil.sleepLong();
 	}
 
-	/**
-	 * Click the logout button
-	 *
-	 * @throws HarnessException
-	 */
 	public void zLogout() throws HarnessException {
-		logger.debug("zLogout()");
-
 		zNavigateTo();
 		if (!sIsElementPresent(Locators.zLogoffDropDownArrow)) {
 			throw new HarnessException("The refresh button is not present " + Locators.zLogoffDropDownArrow);
@@ -131,21 +115,20 @@ public class PageMain extends AbsTab {
 		sClick(Locators.zLogOff);
 		SleepUtil.sleepLong();
 
+		if (ConfigProperties.getStringProperty("server.zimbrax").equals("true")) {
+			sOpen(ConfigProperties.getBaseURL());
+		}
 		((AdminPages) MyApplication).zPageLogin.zWaitForActive();
-
 		((AdminPages) MyApplication).zSetActiveAccount(null);
-
 	}
 
 	public String zGetContainerUsername() throws HarnessException {
-		logger.debug("getLoggedInAccount()");
-
-		if (!zIsActive())
+		if (!zIsActive()) {
 			throw new HarnessException("MainPage is not active");
+		}
 
 		String username = sGetText(Locators.zSkinContainerUsername);
 		return (username);
-
 	}
 
 	public void zHandleDialogs() throws HarnessException {
@@ -168,13 +151,11 @@ public class PageMain extends AbsTab {
 	}
 
 	public AbsPage zToolbarPressButton(Button button) throws HarnessException {
-
 		logger.info(myPageName() + " zToolbarPressButton(" + button + ")");
 
-		tracer.trace("Press the " + button + " button");
-
-		if (button == null)
+		if (button == null) {
 			throw new HarnessException("Button cannot be null!");
+		}
 
 		String locator = null;
 		AbsPage page = null;
@@ -199,8 +180,9 @@ public class PageMain extends AbsTab {
 	}
 
 	public boolean zVerifyHeader(String header) throws HarnessException {
-		if (this.sIsElementPresent("css=span:contains('" + header + "')"))
+		if (this.sIsElementPresent("css=span:contains('" + header + "')")) {
 			return true;
+		}
 		return false;
 	}
 
