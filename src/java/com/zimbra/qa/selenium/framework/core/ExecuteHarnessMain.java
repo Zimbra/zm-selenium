@@ -87,8 +87,6 @@ public class ExecuteHarnessMain {
 	public static String zimbraVersion = null;
 	public static String cmdVersion = null;
 	public static Boolean isNGEnabled = false;
-	public static Boolean isDLRightGranted = false;
-	public static Boolean isSmimeOcspDisabled = false;
 	public static Boolean isChatConfigured = false;
 	public static Boolean isDriveConfigured = false;
 
@@ -287,12 +285,16 @@ public class ExecuteHarnessMain {
 	}
 
 	protected List<XmlSuite> getXmlSuiteList() throws HarnessException {
-
 		// Add network or foss based on the server version
 		if (ConfigProperties.zimbraGetVersionString().toLowerCase().contains("network")) {
 			excludeGroups.add("foss");
 		} else {
 			excludeGroups.add("network");
+		}
+
+		// Zimbra X
+		if (ConfigProperties.getStringProperty("server.zimbrax").equals("true")) {
+			excludeGroups.add("non-zimbrax");
 		}
 
 		// Upload file through file explorer
@@ -307,18 +309,23 @@ public class ExecuteHarnessMain {
 		}
 
 		// NG modules
-		if (CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"), "zmprov gs "
-				+ storeServers.get(0)
-				+ " zimbraNetworkModulesNGEnabled | grep -i 'zimbraNetworkModulesNGEnabled' | cut -d : -f 2 | tr -d '[:blank:]'")
-				.toString().contains("TRUE")) {
-			excludeGroups.add("non-ngmodule");
-			isNGEnabled = true;
+		if (ConfigProperties.getStringProperty("server.zimbrax").equals("false")) {
+			if (CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"), "zmprov gs "
+					+ storeServers.get(0)
+					+ " zimbraNetworkModulesNGEnabled | grep -i 'zimbraNetworkModulesNGEnabled' | cut -d : -f 2 | tr -d '[:blank:]'")
+					.toString().contains("TRUE")) {
+				excludeGroups.add("non-ngmodule");
+				isNGEnabled = true;
+			} else {
+				excludeGroups.add("ng-module");
+				isNGEnabled = false;
+			}
 		} else {
 			excludeGroups.add("ng-module");
 			isNGEnabled = false;
 		}
 
-		// By default exclude chat, drive testcases
+		// By default exclude chat and drive test cases
 		excludeGroups.add("chat");
 		excludeGroups.add("drive");
 
@@ -1281,11 +1288,12 @@ public class ExecuteHarnessMain {
 				}
 			}
 
-			if (cmd.hasOption('v')) {
+			if (ConfigProperties.getStringProperty("server.zimbrax").equals("true")) {
+				ExecuteHarnessMain.cmdVersion = "9.0.0.NETWORK_ZIMBRAX";
+			} else if (cmd.hasOption('v')) {
 				ExecuteHarnessMain.cmdVersion = cmd.getOptionValue('v');
 			}
 
-			// 'o' check should be after 'p' check to avoid code redundancy
 			if (cmd.hasOption('o')) {
 				setTestOutputFolderName(cmd.getOptionValue('o'));
 			} else {
@@ -1452,27 +1460,31 @@ public class ExecuteHarnessMain {
 		Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo),
 				Charset.forName("UTF-8"), StandardOpenOption.APPEND);
 
-		// Test data
-		accounts.put("account1",
-				new String[] { "Josh Johnson", "seleniumaccount1@" + ConfigProperties.getStringProperty("testdomain") });
-		accounts.put("account2",
-				new String[] { "Maria Anderson", "seleniumaccount2@" + ConfigProperties.getStringProperty("testdomain") });
-		accounts.put("account3",
-				new String[] { "Jerry Wilson", "seleniumaccount3@" + ConfigProperties.getStringProperty("testdomain") });
+		// Accounts
+		accounts.put("account1", new String[] { "Josh Johnson",
+				"seleniumaccount1@" + ConfigProperties.getStringProperty("testdomain") });
+		accounts.put("account2", new String[] { "Maria Anderson",
+				"seleniumaccount2@" + ConfigProperties.getStringProperty("testdomain") });
+		accounts.put("account3", new String[] { "Jerry Wilson",
+				"seleniumaccount3@" + ConfigProperties.getStringProperty("testdomain") });
 
+		// Distribution list
 		distributionlists.put("distributionlist",
 				new String[] { "Selenium DL", "seleniumdl@" + ConfigProperties.getStringProperty("testdomain") });
 
-		locations.put("location1",
-				new String[] { "Jupiter ConfRoom", "seleniumlocation1@" + ConfigProperties.getStringProperty("testdomain") });
-		locations.put("location2",
-				new String[] { "Mars ConfRoom", "seleniumlocation2@" + ConfigProperties.getStringProperty("testdomain") });
+		// Locations
+		locations.put("location1", new String[] { "Jupiter ConfRoom",
+				"seleniumlocation1@" + ConfigProperties.getStringProperty("testdomain") });
+		locations.put("location2", new String[] { "Mars ConfRoom",
+				"seleniumlocation2@" + ConfigProperties.getStringProperty("testdomain") });
 
+		// Equipments
 		equipments.put("equipment1",
 				new String[] { "Projector", "seleniumequipment1@" + ConfigProperties.getStringProperty("testdomain") });
 		equipments.put("equipment2",
 				new String[] { "LifeSize", "seleniumequipment2@" + ConfigProperties.getStringProperty("testdomain") });
 
+		// Configure server
 		if (groups.contains("configure")) {
 			// Create test domain and admin accounts
 			StafIntegration.logInfo = "Create test domain and admin accounts...\n";
@@ -1498,16 +1510,13 @@ public class ExecuteHarnessMain {
 			Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo),
 					Charset.forName("UTF-8"), StandardOpenOption.APPEND);
 			CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"),
-					"zmprov ca " + ExecuteHarnessMain.accounts.get("account1")[1] + " test123 displayName \""
-							+ ExecuteHarnessMain.accounts.get("account1")[0]
+					"zmprov ca " + accounts.get("account1")[1] + " test123 displayName \"" + accounts.get("account1")[0]
 							+ "\" Description \"Created by Selenium Automation\"");
 			CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"),
-					"zmprov ca " + ExecuteHarnessMain.accounts.get("account2")[1] + " test123 displayName \""
-							+ ExecuteHarnessMain.accounts.get("account2")[0]
+					"zmprov ca " + accounts.get("account2")[1] + " test123 displayName \"" + accounts.get("account2")[0]
 							+ "\" Description \"Created by Selenium Automation\"");
 			CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"),
-					"zmprov ca " + ExecuteHarnessMain.accounts.get("account3")[1] + " test123 displayName \""
-							+ ExecuteHarnessMain.accounts.get("account3")[0]
+					"zmprov ca " + accounts.get("account3")[1] + " test123 displayName \"" + accounts.get("account3")[0]
 							+ "\" Description \"Created by Selenium Automation\"");
 
 			// Create test dls
@@ -1516,36 +1525,49 @@ public class ExecuteHarnessMain {
 			Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo),
 					Charset.forName("UTF-8"), StandardOpenOption.APPEND);
 			CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"),
-					"zmprov cdl " + ExecuteHarnessMain.distributionlists.get("distributionlist")[1] + " displayName \""
-							+ ExecuteHarnessMain.distributionlists.get("distributionlist")[0]
+					"zmprov cdl " + distributionlists.get("distributionlist")[1] + " displayName \""
+							+ distributionlists.get("distributionlist")[0]
 							+ "\" Description \"Created by Selenium Automation\"");
 			CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"),
-					"zmprov adlm " + ExecuteHarnessMain.distributionlists.get("distributionlist")[1] + " "
-							+ ExecuteHarnessMain.accounts.get("account1")[1] + " "
-							+ ExecuteHarnessMain.accounts.get("account2")[1] + " "
-							+ ExecuteHarnessMain.accounts.get("account3")[1]);
+					"zmprov adlm " + distributionlists.get("distributionlist")[1] + " "
+							+ accounts.get("account1")[1] + " "
+							+ accounts.get("account2")[1] + " "
+							+ accounts.get("account3")[1]);
 
 			// Create resource accounts
 			StafIntegration.logInfo = "Create resource accounts...\n";
 			CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"), "zmprov ccr "
-					+ ExecuteHarnessMain.locations.get("location1")[1] + " test123 displayName \""
-					+ ExecuteHarnessMain.locations.get("location1")[0]
+					+ locations.get("location1")[1] + " test123 displayName \"" + locations.get("location1")[0]
 					+ "\" zimbraAccountCalendarUserType RESOURCE zimbraCalResType Location Description \"Created by Selenium Automation\"");
 			CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"), "zmprov ccr "
-					+ ExecuteHarnessMain.locations.get("location2")[1] + " test123 displayName \""
-					+ ExecuteHarnessMain.locations.get("location2")[0]
+					+ locations.get("location2")[1] + " test123 displayName \"" + locations.get("location2")[0]
 					+ "\" zimbraAccountCalendarUserType RESOURCE zimbraCalResType Location Description \"Created by Selenium Automation\"");
 			CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"), "zmprov ccr "
-					+ ExecuteHarnessMain.equipments.get("equipment1")[1] + " test123 displayName \""
-					+ ExecuteHarnessMain.equipments.get("equipment1")[0]
+					+ equipments.get("equipment1")[1] + " test123 displayName \"" + equipments.get("equipment1")[0]
 					+ "\" zimbraAccountCalendarUserType RESOURCE zimbraCalResType Equipment Description \"Created by Selenium Automation\"");
 			CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"), "zmprov ccr "
-					+ ExecuteHarnessMain.equipments.get("equipment2")[1] + " test123 displayName \""
-					+ ExecuteHarnessMain.equipments.get("equipment2")[0]
+					+ equipments.get("equipment2")[1] + " test123 displayName \"" + equipments.get("equipment2")[0]
 					+ "\" zimbraAccountCalendarUserType RESOURCE zimbraCalResType Equipment Description \"Created by Selenium Automation\"");
 
-			// Initially disable chat and drive zimlets on COS if they are enabled
 			if (project.contains("ajax")) {
+				// Grant createDistList right to domain
+				StafIntegration.logInfo = "Grant createDistList right to domain using CLI utility";
+				logger.info(StafIntegration.logInfo);
+				CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"),
+						"zmprov grr domain " + ConfigProperties.getStringProperty("testdomain") + " dom "
+								+ ConfigProperties.getStringProperty("testdomain") + " createDistList");
+
+				// Disable zimbraSmimeOCSPEnabled attribute for S/MIME
+				StafIntegration.logInfo = "Disable zimbraSmimeOCSPEnabled attribute for S/MIME using CLI utility";
+				logger.info(StafIntegration.logInfo);
+				CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"),
+						"zmprov mcf zimbraSmimeOCSPEnabled FALSE");
+				for (int i = 0; i < storeServers.size(); i++) {
+					CommandLineUtility.runCommandOnZimbraServer(storeServers.get(i),
+							"zmprov ms '" + storeServers.get(i) + "' zimbraSmimeOCSPEnabled FALSE");
+				}
+
+				// Initially disable chat and drive zimlets on COS if they are enabled
 				ArrayList<String> availableZimlets = CommandLineUtility.runCommandOnZimbraServer(
 						ConfigProperties.getStringProperty("server.host"),
 						"zmprov -l gc default zimbraZimletAvailableZimlets | grep zimbraZimletAvailableZimlets | cut -c 32-");
@@ -1576,7 +1598,6 @@ public class ExecuteHarnessMain {
 	}
 
 	public static void main(String[] args) throws HarnessException, IOException {
-
 		String countTestsResult = "No results";
 		String executeTestsResult = "No results";
 

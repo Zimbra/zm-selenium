@@ -16,10 +16,7 @@
  */
 package com.zimbra.qa.selenium.projects.admin.pages;
 
-import java.awt.AWTException;
-import java.awt.Robot;
 import java.awt.event.KeyEvent;
-
 import org.openqa.selenium.JavascriptExecutor;
 import com.zimbra.qa.selenium.framework.core.ExecuteHarnessMain;
 import com.zimbra.qa.selenium.framework.items.IItem;
@@ -54,23 +51,15 @@ public class WizardCreateAccount extends AbsWizard {
 			throw new HarnessException("item must be an AccountItem, was " + item.getClass().getCanonicalName());
 
 		AccountItem account = (AccountItem) item;
-		String CN = account.getLocalName();
+		String accountName = account.getLocalName();
 		String domain = account.getDomainName();
 
-		zType(Locators.zdlg_ACCT_NAME, CN);
+		zType(Locators.zdlg_ACCT_NAME, accountName);
 		this.clearField(Locators.zdlg_DOMAIN_NAME);
 		zType(Locators.zdlg_DOMAIN_NAME, "");
 		zType(Locators.zdlg_DOMAIN_NAME, domain);
-		SleepUtil.sleepLong();
-
-		Robot robot = null;
-		try {
-			robot = new Robot();
-		} catch (AWTException e) {
-			e.printStackTrace();
-		}
-		robot.keyPress(KeyEvent.VK_ENTER);
-		robot.keyRelease(KeyEvent.VK_ENTER);
+		SleepUtil.sleepMedium();
+		this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
 
 		for (String key : account.getAccountAttrs().keySet()) {
 			if (key.equals("sn")) {
@@ -79,7 +68,7 @@ public class WizardCreateAccount extends AbsWizard {
 			} else if (key.equals("description")) {
 				zType(Locators.zdlg_DESCRIPTION, account.getAccountAttrs().get(key));
 				continue;
-			} 
+			}
 			throw new HarnessException("Unknown account attribute key " + key);
 		}
 

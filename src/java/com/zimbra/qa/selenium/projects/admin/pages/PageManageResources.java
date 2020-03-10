@@ -224,8 +224,6 @@ public class PageManageResources extends AbsTab {
 	public AbsPage zToolbarPressPulldown(Button pulldown, Button option) throws HarnessException {
 		logger.info(myPageName() + " zToolbarPressButtonWithPulldown(" + pulldown + ", " + option + ")");
 
-		tracer.trace("Click pulldown " + pulldown + " then " + option);
-
 		if (pulldown == null)
 			throw new HarnessException("Pulldown cannot be null!");
 
@@ -260,7 +258,6 @@ public class PageManageResources extends AbsTab {
 		}
 
 		if (pulldownLocator != null) {
-
 			if (!this.sIsElementPresent(pulldownLocator)) {
 				throw new HarnessException("Button " + pulldown + " option " + option + " pulldownLocator "
 						+ pulldownLocator + " not present!");
@@ -270,15 +267,15 @@ public class PageManageResources extends AbsTab {
 			SleepUtil.sleepSmall();
 
 			if (optionLocator != null) {
-
 				if (!this.sIsElementPresent(optionLocator)) {
 					throw new HarnessException("Button " + pulldown + " option " + option + " optionLocator "
 							+ optionLocator + " not present!");
 				}
-
 				this.sClickAt(optionLocator, "");
 			}
 		}
+
+		SleepUtil.sleepMedium();
 		return (page);
 	}
 
@@ -342,8 +339,9 @@ public class PageManageResources extends AbsTab {
 	}
 
 	public boolean zVerifyHeader(String header) throws HarnessException {
-		if (this.sIsElementPresent("css=span:contains('" + header + "')"))
+		if (this.sIsElementPresent("css=span:contains('" + header + "')")) {
 			return true;
+		}
 		return false;
 	}
 }

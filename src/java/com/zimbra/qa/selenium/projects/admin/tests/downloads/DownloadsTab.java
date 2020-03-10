@@ -19,7 +19,6 @@ package com.zimbra.qa.selenium.projects.admin.tests.downloads;
 import java.io.IOException;
 import java.net.*;
 import java.util.*;
-
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.core.Bugs;
@@ -30,31 +29,29 @@ import com.zimbra.qa.selenium.projects.admin.pages.PageMain;
 public class DownloadsTab extends AdminCore {
 
 	public DownloadsTab() {
-		logger.info("New "+ DownloadsTab.class.getCanonicalName());
+		logger.info("New " + DownloadsTab.class.getCanonicalName());
 		super.startingPage = app.zPageDownloads;
 	}
 
 	public static String[] downloadLinkLocators = {
-		"//a[contains(text(),'ZCS Migration Wizard for Exchange/PST (32bit)')]",
-		"//a[contains(text(),'ZCS Migration Wizard for Exchange/PST (64bit)')]",
-		"//a[contains(text(),'ZCS Migration Wizard for Domino')]",
-		"//a[contains(text(),'Legacy PST Import Wizard')]",
+		"//a[contains(text(), 'ZCS Migration Wizard for Exchange/PST (32bit)')]",
+		"//a[contains(text(), 'ZCS Migration Wizard for Exchange/PST (64bit)')]",
+		"//a[contains(text(), 'ZCS Migration Wizard for Domino')]",
+		"//a[contains(text(), 'Legacy PST Import Wizard')]",
 	};
 
 	public static String[] networkDownloadLinkLocators = {
-		"//a[contains(text(),'Zimbra Connector for Outlook MSI Customizer')]",
-		"//a[contains(text(),'Zimbra Connector for Outlook Branding MSI')]",
-		"//a[contains(text(),'Zimbra Connector for Outlook (32bit)')]",
-		"//a[contains(text(),'Zimbra Connector for Outlook (64bit)')]",
-		"//a[contains(text(),'Legacy ZCS Migration Wizard for Exchange')]",
+		"//a[contains(text(), 'Zimbra Connector for Outlook MSI Customizer')]",
+		"//a[contains(text(), 'Zimbra Connector for Outlook Branding MSI')]",
+		"//a[contains(text(), 'Zimbra Connector for Outlook (32bit)')]",
+		"//a[contains(text(), 'Zimbra Connector for Outlook (64bit)')]",
+		"//a[contains(text(), 'Legacy ZCS Migration Wizard for Exchange')]",
 	};
 
 	@Test (description = "Verify the Downloads Tab contains the correct download links",
-			groups = { "smoke" })
+			groups = { "smoke", "non-zimbrax" })
 
 	public void DownloadsTab_01() throws HarnessException {
-
-		// Make sure common links are present
 		for ( String locator : downloadLinkLocators ) {
 			ZAssert.assertTrue(app.zPageDownloads.sIsElementPresent(locator), "Verify the common locator exists: " + locator);
 		}
@@ -77,27 +74,22 @@ public class DownloadsTab extends AdminCore {
 
 	@Bugs (ids = "100755")
 	@Test (description = "Verify the downloads links are accessible",
-			groups = { "smoke" })
+			groups = { "smoke", "non-zimbrax" })
 
 	public void DownloadsTab_02() throws HarnessException {
-
-		// Determine which links should be present
 		List<String> locators = new ArrayList<String>();
 		locators.addAll(Arrays.asList(downloadLinkLocators));
 
 		for (String locator : locators ) {
 			String href = app.zPageDownloads.sGetAttribute("xpath=" + locator + "@href");
-
 			HttpURLConnection  connection = null;
-			try {
 
+			try {
 				URL url = new URL(href);
 				int authResponse = app.zPageDownloads.zGetAuthResponse(url);
-
-		        // 200 and 400 are acceptable
 		        ZAssert.assertStringContains("200 400", ""+authResponse, "Verify the download URL is valid: " + url.toString());
 
-		  } catch (MalformedURLException e) {
+			} catch (MalformedURLException e) {
 				throw new HarnessException(e);
 			} catch (IOException e) {
 				throw new HarnessException(e);

@@ -47,35 +47,33 @@ public class WizardCreateResource extends AbsWizard {
 
 	@Override
 	public IItem zCompleteWizard(IItem item) throws HarnessException {
-
 		if (!(item instanceof ResourceItem))
 			throw new HarnessException("item must be an ResourceItem, was " + item.getClass().getCanonicalName());
 
 		ResourceItem resource = (ResourceItem) item;
-
-		String CN = resource.getLocalName();
+		String resourceName = resource.getLocalName();
+		String resourceEmailAddress = resourceName;
 		String domain = resource.getDomainName();
 
-		sType(Locators.zdlg_RESOURCE_NAME, CN);
-		sType(Locators.zdlg_RESOURCE_LOCAL_NAME, CN);
 		SleepUtil.sleepSmall();
+		sType(Locators.zdlg_RESOURCE_NAME, resourceName);
+		SleepUtil.sleepSmall();
+
+		this.clearField(Locators.zdlg_RESOURCE_LOCAL_NAME);
+		sType(Locators.zdlg_RESOURCE_LOCAL_NAME, resourceEmailAddress);
+		SleepUtil.sleepSmall();
+
 		this.clearField(Locators.zdlg_RESOURCE_DOMAIN_NAME);
 		zType(Locators.zdlg_RESOURCE_DOMAIN_NAME, "");
 		zType(Locators.zdlg_RESOURCE_DOMAIN_NAME, domain);
+		SleepUtil.sleepMedium();
 
+		this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_ENTER);
 		this.zKeyboard.zTypeKeyEvent(KeyEvent.VK_TAB);
-		sType(Locators.zdlg_RESOURCE_LOCAL_NAME, CN);
 
-		if (resourceType != "") {
+		if (resourceType.equals(Locators.EQUIPMENT)) {
 			sClickAt(Locators.zdlg_RESOURCE_TYPE, "");
-			if (resourceType.equals(Locators.LOCATION)) {
-				sClick(Locators.zdlg_RESOURCE_TYPE_LOCATION);
-			} else if (resourceType.equals(Locators.EQUIPMENT)) {
-				sClick(Locators.zdlg_RESOURCE_TYPE_EQUIPMENT);
-			}
-
-		} else {
-			sClickAt(Locators.zdlg_RESOURCE_TYPE, "");
+			sClick(Locators.zdlg_RESOURCE_TYPE_EQUIPMENT);
 		}
 		clickFinish(AbsWizard.Locators.RESOURCE_DIALOG);
 
