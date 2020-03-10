@@ -76,9 +76,7 @@ public class DistributionListItem extends ContactItem implements IItem {
 		emailList = new ArrayList<String>();
 	}
 
-	/**
-	 * Create a new dlist item+
-	 */
+	// Create a new dlist item
 	public DistributionListItem(String email, String displayName) {
 		this.email = email;
 		fileAs = displayName;
@@ -87,7 +85,6 @@ public class DistributionListItem extends ContactItem implements IItem {
 	}
 
 	public static DistributionListItem createDistributionListItem(ZimbraAccount owner) throws HarnessException {
-
 		// Set the name
 		String unique = ConfigProperties.getUniqueString(); // group name is max 20 chars
 		String listname = "tcdl" + unique.substring(unique.length() - 10) + "@"

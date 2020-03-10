@@ -41,7 +41,6 @@ public class AddOwners extends AdminCore {
 			groups = { "bhr" })
 
 	public void AddOwner_01() throws HarnessException {
-
 		// Create a new dl in the Admin Console using SOAP
 		DistributionListItem dl = new DistributionListItem();
 		String dlEmailAddress=dl.getEmailAddress();

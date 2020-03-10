@@ -50,7 +50,6 @@ public class InvalidateSession extends AdminCore {
 			groups = { "functional" })
 
 	public void InvalidateSession_01() throws HarnessException {
-
 		// Create a new account in the admin Console using SOAP
 		AccountItem account = new AccountItem("tc" + ConfigProperties.getUniqueString(), ConfigProperties.getStringProperty("testdomain"));
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
@@ -92,7 +91,6 @@ public class InvalidateSession extends AdminCore {
 			groups = { "functional" })
 
 	public void InvalidateSession_02() throws HarnessException {
-
 		// Create a new account in the admin Console using SOAP
 		AccountItem account = new AccountItem("tc" + ConfigProperties.getUniqueString(), ConfigProperties.getStringProperty("testdomain"));
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(

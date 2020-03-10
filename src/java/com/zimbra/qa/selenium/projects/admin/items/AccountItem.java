@@ -50,7 +50,7 @@ public class AccountItem implements IItem {
 		accountAttrs.put("sn", lastName);
 		accountAttrs.put("description", "Created by Selenium automation");
 	}
-	
+
 	public AccountItem(String emailAddress, String lastName, String domainName) {
 		accountAttrs = new HashMap<String, String>();
 		if (emailAddress.contains("@")) {
@@ -183,6 +183,7 @@ public class AccountItem implements IItem {
 		ZimbraAdminAccount.AdminConsoleAdmin()
 				.soapSend("<CreateAccountRequest xmlns='urn:zimbraAdmin'>" + "<name>" + account.getEmailAddress()
 						+ "</name>" + elementPassword.toString() + elementAttrs.toString()
+						+ "<a n='description'>Created by Selenium automation</a>"
 						+ "</CreateAccountRequest>");
 
 		Id = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectValue("//admin:CreateAccountResponse/admin:account", "id")
