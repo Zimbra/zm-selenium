@@ -466,7 +466,6 @@ public class ExecuteHarnessMain {
 	}
 
 	protected String executeTests() throws FileNotFoundException, IOException, HarnessException {
-
 		logger.info("Execute tests ...");
 
 		try {
@@ -506,38 +505,11 @@ public class ExecuteHarnessMain {
 			// Run!
 			testNG.run();
 
-			// finish inProgress - overwrite inProgress/index.html
+			// Finish inProgress - overwrite inProgress/index.html
 			TestStatusReporter.copyFile(testoutputfoldername + "/TestNG/emailable-report.html",
 					testoutputfoldername + "/TestNG/index.html");
-
 			logger.info("Execute tests ... completed");
-
 			SleepMetrics.report();
-
-			if (!ConfigProperties.getStringProperty("emailTo").contains("pnq-automation@synacor.com")) {
-
-				String project = classfilter.toString().replace("com.zimbra.qa.selenium.", "").replace("projects.", "");
-				project = project.substring(0, 1).toUpperCase() + project.substring(1);
-				String[] projectSplit = project.split(".tests.");
-
-				String suite = groups.toString().replace("always, ", "").replace("[", "").replace("]", "").replace(" ", "").trim();
-				if (suite.equals("sanity,smoke,functional") || suite.equals("L0,L1,L2,L3")) {
-					suite = "Full";
-				}
-				suite = suite.substring(0, 1).toUpperCase() + suite.substring(1).replace(".tests", "");
-
-				SendEmail.main(new String[] {
-						"Selenium: " + projectSplit[0].replace(".tests", "") + " " + suite + " | "
-								+ ConfigProperties.getLocalHost() + " | " + ConfigProperties.zimbraGetVersionString()
-								+ " (" + ConfigProperties.getStringProperty("server.host") + ")" + " | "
-								+ "Total Tests: " + String.valueOf(testsTotal) + " (Passed: "
-								+ String.valueOf(testsPassed) + ", Failed: " + String.valueOf(testsFailed)
-								+ ", Skipped: " + String.valueOf(testsSkipped) + ", Retried: " + String.valueOf(testsRetried -testsFailed) + ")",
-						currentResultListener.getCustomResult(),
-						testoutputfoldername + "/TestNG/emailable-report.html",
-						testoutputfoldername + "/TestNG/index.html" });
-			}
-
 			return (currentResultListener == null ? "Done" : currentResultListener.getResults());
 
 		} finally {
@@ -1289,9 +1261,9 @@ public class ExecuteHarnessMain {
 			}
 
 			if (ConfigProperties.getStringProperty("server.zimbrax").equals("true")) {
-				ExecuteHarnessMain.cmdVersion = "9.0.0.NETWORK_ZIMBRAX";
+				cmdVersion = "9.0.0.ZIMBRAX_NETWORK";
 			} else if (cmd.hasOption('v')) {
-				ExecuteHarnessMain.cmdVersion = cmd.getOptionValue('v');
+				cmdVersion = cmd.getOptionValue('v');
 			}
 
 			if (cmd.hasOption('o')) {
@@ -1616,19 +1588,19 @@ public class ExecuteHarnessMain {
 	        	}
 	        }
 
-			// Create the harness object and execute it
+			// Create the harness object and execute tests
 			ExecuteHarnessMain harness = new ExecuteHarnessMain();
 
 			if (harness.parseArgs(args)) {
 				if (COUNT_TESTS) {
-					executeTestsResult = harness.countTests(); 	// Count
+					executeTestsResult = harness.countTests();
 
 				} else {
-					countTestsResult = harness.countTests();	// Count
+					countTestsResult = harness.countTests();
 					String[] splitSumTestsResult = countTestsResult.split("Number of matching test cases: ");
 					testsCount = Integer.parseInt(splitSumTestsResult[1]);
 
-					executeTestsResult = harness.execute();		// Execute
+					executeTestsResult = harness.execute();
 				}
 			}
 

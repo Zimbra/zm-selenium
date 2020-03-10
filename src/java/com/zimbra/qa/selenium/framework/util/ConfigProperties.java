@@ -264,7 +264,10 @@ public class ConfigProperties {
 	public static String zimbraGetVersionString() throws HarnessException {
 		String buildType = "NETWORK";
 
-		if (ExecuteHarnessMain.cmdVersion == null || ExecuteHarnessMain.cmdVersion == "") {
+		if (ConfigProperties.getStringProperty("server.zimbrax").equals("true")) {
+			ExecuteHarnessMain.cmdVersion = "9.0.0.ZIMBRAX_NETWORK";
+
+		} else if (ExecuteHarnessMain.cmdVersion == null || ExecuteHarnessMain.cmdVersion == "") {
 			logger.info("Get zimbra server version...");
 			for (String zimbraVersion : CommandLineUtility
 					.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"), "zmcontrol -v")) {
@@ -280,7 +283,7 @@ public class ConfigProperties {
 			Date date = new Date();
 			SimpleDateFormat dateTimeFormat = new SimpleDateFormat("hh.mm");
 
-			// Get hostname
+			// Get host name
 			try {
 				ExecuteHarnessMain.hostname = InetAddress.getLocalHost().getHostName();
 			} catch (UnknownHostException e) {
