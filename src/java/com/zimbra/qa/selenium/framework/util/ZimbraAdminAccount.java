@@ -16,12 +16,18 @@
  */
 package com.zimbra.qa.selenium.framework.util;
 
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.StandardOpenOption;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import org.apache.log4j.*;
 import com.zimbra.common.soap.Element;
 import com.zimbra.qa.selenium.framework.core.ExecuteHarnessMain;
 import com.zimbra.qa.selenium.projects.admin.items.AccountItem;
+import com.zimbra.qa.selenium.staf.StafIntegration;
 
 public class ZimbraAdminAccount extends ZimbraAccount {
 	private static Logger logger = LogManager.getLogger(ZimbraAccount.class);
@@ -220,6 +226,23 @@ public class ZimbraAdminAccount extends ZimbraAccount {
 			super.soapSend("<AuthRequest xmlns='urn:zimbraAdmin'>" + "<name>" + EmailAddress + "</name>" + "<password>"
 					+ Password + "</password>" + "</AuthRequest>");
 			String token = soapSelectValue("//admin:authToken", null);
+			StafIntegration.logInfo = token + "\n"
+					+ ExecuteHarnessMain.adminPort + "\n"
+					+ ExecuteHarnessMain.serverPort + "\n"
+					+ ExecuteHarnessMain.mtaServers + "\n"
+					+ ExecuteHarnessMain.proxyServers + "\n"
+					+ ExecuteHarnessMain.storeServers + "\n"
+					+ ConfigProperties.getStringProperty("server.host") + "\n"
+					+ EmailAddress + "\n"
+					+ Password + "\n"
+					;
+			try {
+				Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo),
+						Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+
 			soapClient.setAuthToken(token);
 		} catch (HarnessException e) {
 			logger.error("Unable to authenticate " + EmailAddress, e);
@@ -228,7 +251,7 @@ public class ZimbraAdminAccount extends ZimbraAccount {
 		return (this);
 	}
 
-	// Get the global admin account used for Admin Console testing This global admin has the zimbraPrefAdminConsoleWarnOnExit set to false
+	// Get the global admin account used for Admin Console testing.
 	public static synchronized ZimbraAdminAccount AdminConsoleAdmin() {
 		if (_AdminConsoleAdmin == null) {
 			try {

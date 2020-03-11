@@ -76,7 +76,6 @@ public class StafIntegration implements STAFServiceInterfaceLevel30 {
     }
 
     private static class Arguments {
-
     	public static final String optionExecute = "execute";
     	public static final String argServer = "server";
     	public static final String argConfig = "config";
@@ -129,7 +128,6 @@ public class StafIntegration implements STAFServiceInterfaceLevel30 {
 
 	@SuppressWarnings("static-access")
 	private STAFResult parseExecute(STAFCommandParseResult request, ExecuteHarnessMain harness) {
-
         // Convert the args to variables
         String valueServer = request.optionValue(Arguments.argServer);
         String valueRoot = request.optionValue(Arguments.argRoot);
@@ -149,7 +147,8 @@ public class StafIntegration implements STAFServiceInterfaceLevel30 {
 			String seleniumDir = valueRoot.replace("/build/dist/SelNG", "");
 			if (valueLog.replace(seleniumDir, "").replaceAll("/", "").equals(ConfigProperties.getStringProperty("testOutputDirectory"))) {
 				try {
-					valueLog = seleniumDir + "/" + ConfigProperties.getStringProperty("testOutputDirectory") + "/" + ConfigProperties.zimbraGetVersionString();
+					valueLog = seleniumDir + "/" + ConfigProperties.getStringProperty("testOutputDirectory") + "/"
+							+ ConfigProperties.zimbraGetVersionString();
 				} catch (HarnessException e) {
 					e.printStackTrace();
 				}
@@ -179,9 +178,7 @@ public class StafIntegration implements STAFServiceInterfaceLevel30 {
         }
 
         // Set the app type on the properties
-		// Must happen before setTestOutputFolderName()
         for (AppType t : AppType.values()) {
-        	// Look for ".type." (e.g. ".ajax.") in the pattern
         	if ( valuePattern.contains(t.toString().toLowerCase()) ) {
         		ConfigProperties.setAppType(t);
             	break;
@@ -210,7 +207,6 @@ public class StafIntegration implements STAFServiceInterfaceLevel30 {
 
             	// Priority 2: a specified log4j.properties file
             	PropertyConfigurator.configure(request.optionValue(Arguments.argLog4j));
-
             }
         }
 
@@ -224,7 +220,6 @@ public class StafIntegration implements STAFServiceInterfaceLevel30 {
 	}
 
 	private STAFResult handleExecute(RequestInfo info) {
-
         mLog.info("STAF: handleExecute ...");
 
     	// Check whether Trust level is sufficient for this command.
@@ -298,11 +293,7 @@ public class StafIntegration implements STAFServiceInterfaceLevel30 {
 		return (new STAFResult(STAFResult.Ok, resultString.toString()));
 	}
 
-	/**
-	 *  Convert a stack trace to a string
-	 * @param t
-	 * @return
-	 */
+	// Convert a stack trace to a string
 	private String getStackTrace(Throwable t) {
 		String s = t.getMessage();
 		try {
@@ -314,6 +305,7 @@ public class StafIntegration implements STAFServiceInterfaceLevel30 {
 				printer = new PrintWriter(writer);
 				t.printStackTrace(printer);
 				s = writer.toString();
+
 			} finally {
 				if ( printer != null ) {
 					printer.close();
@@ -333,10 +325,9 @@ public class StafIntegration implements STAFServiceInterfaceLevel30 {
 
 
 	private STAFResult handleQuery(RequestInfo info) {
-
         mLog.info("STAF: handleExecute ...");
 
-    	// Check whether Trust level is sufficient for this command.
+    	// Check whether Trust level is sufficient for this command
         if (info.trustLevel < 2) {
 
         	return new STAFResult(STAFResult.AccessDenied,
@@ -345,7 +336,6 @@ public class StafIntegration implements STAFServiceInterfaceLevel30 {
         }
 
         String status = "Not running";
-
         if ( ExecuteHarnessMain.currentResultListener != null ) {
         	status = ExecuteHarnessMain.currentResultListener.getResults();
         }
@@ -358,21 +348,15 @@ public class StafIntegration implements STAFServiceInterfaceLevel30 {
 	}
 
 	private STAFResult handleHelp() {
-
         mLog.info("StafTestStaf: handleHelp ...");
 
-    	// TODO: Need to convert the help command into the variables, aEXECUTE, aHELP, etc.
-        return new STAFResult(STAFResult.Ok,
-         "StafTest Service Help\n\n" +
-         "EXECUTE SERVER <servername|IP address> ROOT <ZimbraSelenium path> JARFILE <path> PATTERN <projects.ajax.tests> [ GROUP <always|sanity|smoke|functional> ]* [ CONFIG <path> [ HOST <host> ] ] [ URL <desktop installer folder> ] [ LOG <folder> ] [ LOG4J <properties file> ]\n\n" +
-         "QUERY -- TBD: should return statistics on active jobs \n\n" +
-         "HALT <TBD> -- TBD: should stop any executing tests\n\n" +
-         "HELP\n\n");
+		return new STAFResult(STAFResult.Ok, "StafTest Service Help\n\n"
+				+ "EXECUTE SERVER <servername|IP address> ROOT <ZimbraSelenium path> JARFILE <path> PATTERN <projects.ajax.tests> [ GROUP <always|sanity|smoke|functional> ]* [ CONFIG <path> [ HOST <host> ] ] [ URL <desktop installer folder> ] [ LOG <folder> ] [ LOG4J <properties file> ]\n\n"
+				+ "QUERY -- TBD: should return statistics on active jobs \n\n"
+				+ "HALT <TBD> -- TBD: should stop any executing tests\n\n" + "HELP\n\n");
 	}
 
-	/**
-	 * Reset any static references between executions
-	 **/
+	// Reset any static references between executions
 	protected void reset() {
 		ZimbraAdminAccount.reset();
 		ZimbraAccount.reset();
@@ -393,14 +377,6 @@ public class StafIntegration implements STAFServiceInterfaceLevel30 {
 				mLog.error("Unable to load resource bundle: "+ name, e);
 			}
 		}
-//		try {
-//			ResourceBundle rb1 = ResourceBundle.getBundle("ZaMsg", Locale.ENGLISH, this.getClass().getClassLoader());
-//			for (Enumeration<String> e = rb1.getKeys(); e.hasMoreElements(); ) {
-//				mLog.info("key: "+ e.nextElement());
-//			}
-//		} catch (MissingResourceException e) {
-//			mLog.error("unable to load resource bundle", e);
-//		}
 	}
 
 	public STAFResult init(InitInfo info) {
@@ -430,13 +406,14 @@ public class StafIntegration implements STAFServiceInterfaceLevel30 {
         Parsers.stafParserExecute.addOption(Arguments.argRoot, 1, STAFCommandParser.VALUEREQUIRED);
         Parsers.stafParserExecute.addOption(Arguments.argJarfile, 1, STAFCommandParser.VALUEREQUIRED);
         Parsers.stafParserExecute.addOption(Arguments.argPattern, 1, STAFCommandParser.VALUEREQUIRED);
-        Parsers.stafParserExecute.addOption(Arguments.argGroup, 0, STAFCommandParser.VALUEREQUIRED); // Can be specified infinite amount of times
+        Parsers.stafParserExecute.addOption(Arguments.argGroup, 0, STAFCommandParser.VALUEREQUIRED);
         Parsers.stafParserExecute.addOption(Arguments.argConfig, 1, STAFCommandParser.VALUEREQUIRED);
         Parsers.stafParserExecute.addOption(Arguments.argConfigHost, 1, STAFCommandParser.VALUEREQUIRED);
         Parsers.stafParserExecute.addOption(Arguments.argDesktopURL, 1, STAFCommandParser.VALUEREQUIRED);
         Parsers.stafParserExecute.addOption(Arguments.argLog, 1, STAFCommandParser.VALUEREQUIRED);
         Parsers.stafParserExecute.addOption(Arguments.argLog4j, 1, STAFCommandParser.VALUEREQUIRED);
-        Parsers.stafParserExecute.addOptionNeed(Arguments.optionExecute, Arguments.argRoot +" "+ Arguments.argJarfile +" "+ Arguments.argPattern +" "+ Arguments.argGroup);
+		Parsers.stafParserExecute.addOptionNeed(Arguments.optionExecute,
+				Arguments.argRoot + " " + Arguments.argJarfile + " " + Arguments.argPattern + " " + Arguments.argGroup);
 
         // QUERY parser
         Parsers.stafParserQuery = new STAFCommandParser();
@@ -499,5 +476,4 @@ public class StafIntegration implements STAFServiceInterfaceLevel30 {
                          "UNREGISTER SERVICE " + stafServiceName +
                          " ERROR " + errorNumber);
     }
-
 }
