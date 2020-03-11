@@ -31,9 +31,7 @@ public class ZimbraAdminAccount extends ZimbraAccount {
 		Password = ConfigProperties.getStringProperty("adminPassword");
 	}
 
-	/**
-	 * Creates the Delegated Administrator account on the ZCS
-	 */
+	// Creates the Delegated Administrator account on the ZCS
 	public ZimbraAdminAccount provisionDA(String email) {
 		ZimbraDomain domain = new ZimbraDomain(EmailAddress.split("@")[1]);
 
@@ -110,9 +108,7 @@ public class ZimbraAdminAccount extends ZimbraAccount {
 		return (this);
 	}
 
-	/**
-	 * Creates the account on the ZCS using CreateAccountRequest
-	 */
+	// Creates the account on the ZCS using CreateAccountRequest
 	public ZimbraAccount provision() {
 		ZimbraDomain domain = new ZimbraDomain(EmailAddress.split("@")[1]);
 
@@ -213,16 +209,12 @@ public class ZimbraAdminAccount extends ZimbraAccount {
 
 			// Re-send SOAP request (this time, ignore errors and bubble back up)
 			response = super.soapSend(request);
-
 		}
 
 		return (response);
 	}
 
-	/**
-	 * Authenticates the admin account (using SOAP admin AuthRequest) Sets the
-	 * authToken
-	 */
+	// Authenticates the admin account (using SOAP admin AuthRequest) Sets the authToken
 	public ZimbraAccount authenticate() {
 		try {
 			super.soapSend("<AuthRequest xmlns='urn:zimbraAdmin'>" + "<name>" + EmailAddress + "</name>" + "<password>"
@@ -236,10 +228,7 @@ public class ZimbraAdminAccount extends ZimbraAccount {
 		return (this);
 	}
 
-	/**
-	 * Get the global admin account used for Admin Console testing This global admin
-	 * has the zimbraPrefAdminConsoleWarnOnExit set to false
-	 */
+	// Get the global admin account used for Admin Console testing This global admin has the zimbraPrefAdminConsoleWarnOnExit set to false
 	public static synchronized ZimbraAdminAccount AdminConsoleAdmin() {
 		if (_AdminConsoleAdmin == null) {
 			try {
@@ -274,12 +263,7 @@ public class ZimbraAdminAccount extends ZimbraAccount {
 		AdminConsoleAdmin();
 	}
 
-	/**
-	 * Get the global admin account This account is defined in config.properties as
-	 * <adminUser>@<server>
-	 *
-	 * @return The global admin account
-	 */
+	// Get the global admin account This account is defined in config.properties as
 	public static synchronized ZimbraAdminAccount GlobalAdmin() {
 		if (_GlobalAdmin == null) {
 			String domain = ConfigProperties.getStringProperty("server.host");
@@ -297,7 +281,6 @@ public class ZimbraAdminAccount extends ZimbraAccount {
 	private static ZimbraAdminAccount _GlobalAdmin = null;
 
 	public static void main(String[] args) throws HarnessException {
-
 		// Configure log4j using the basic configuration
 		BasicConfigurator.configure();
 
@@ -321,7 +304,6 @@ public class ZimbraAdminAccount extends ZimbraAccount {
 	}
 
 	public void grantRightRequest(AccountItem account, String right) throws HarnessException {
-
 		ZimbraAdminAccount.GlobalAdmin()
 				.soapSend("<GrantRightRequest xmlns='urn:zimbraAdmin'>" + "<target  by='name' type='domain'>"
 						+ account.getDomainName() + "</target>" + "<grantee  by='name' type='usr'>"

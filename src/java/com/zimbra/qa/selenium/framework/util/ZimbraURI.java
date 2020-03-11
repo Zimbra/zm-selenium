@@ -43,13 +43,8 @@ public class ZimbraURI {
 		setURI(uri);
 	}
 
-	/**
-	 * Check if the current URL does not match the 'default' URL. For instance, if
-	 * the test case adds query parameters, then the URL needs to be reloaded.
-	 * 
-	 * @return true if a reload is required
-	 * @throws UnsupportedEncodingException
-	 */
+	// Check if the current URL does not match the 'default' URL. For instance, if
+	// the test case adds query parameters, then the URL needs to be reloaded.
 	public static boolean needsReload() {
 
 		ZimbraURI base = new ZimbraURI(ZimbraURI.getBaseURI());
@@ -60,7 +55,6 @@ public class ZimbraURI {
 
 		// If the scheme, host, and query parameters are equal, then
 		// no reload required
-		//
 
 		// Check the scheme
 		if (!base.getURL().getScheme().equals(current.getURL().getScheme())) {
@@ -82,8 +76,8 @@ public class ZimbraURI {
 			logger.info("Query: inequal query count");
 			return (true);
 		}
-		for (Map.Entry<String, String> entry : baseMap.entrySet()) {
 
+		for (Map.Entry<String, String> entry : baseMap.entrySet()) {
 			if (!currMap.containsKey(entry.getKey())) {
 				logger.info("Query: current does not contain query key: " + entry.getKey());
 				return (true); // Missing this key
@@ -94,7 +88,6 @@ public class ZimbraURI {
 						+ baseMap.get(entry.getKey()));
 				return (true); // Values don't match
 			}
-
 		}
 
 		logger.debug("equal!  no reload is required");
@@ -102,22 +95,12 @@ public class ZimbraURI {
 
 	}
 
-	/**
-	 * Set the URL value for this ZimbraURL (for instance, to edit later)
-	 * 
-	 * @param url
-	 * @throws URLSyntaxException
-	 */
+	// Set the URL value for this ZimbraURL (for instance, to edit later)
 	public void setURI(URI uri) {
 		myURI = uri;
 	}
 
-	/**
-	 * Set the URL value for this ZimbraURL (for instance, to edit later)
-	 * 
-	 * @param URL
-	 * @throws URLSyntaxException
-	 */
+	// Set the URL value for this ZimbraURL (for instance, to edit later)
 	public void setURI(String uri) {
 		try {
 			myURI = new URI(uri);
@@ -127,12 +110,7 @@ public class ZimbraURI {
 		}
 	}
 
-	/**
-	 * Set the URL value for this ZimbraURL (for instance, to edit later)
-	 * 
-	 * @param URL
-	 * @throws URLSyntaxException
-	 */
+	// Set the URL value for this ZimbraURL (for instance, to edit later)
 	public void setURL(String scheme, String userInfo, String host, int port, String path, String query,
 			String fragment) {
 		try {
@@ -143,29 +121,17 @@ public class ZimbraURI {
 		}
 	}
 
-	/**
-	 * Get the current URL value
-	 * 
-	 * @param URL
-	 * @throws URLSyntaxException
-	 */
+	// Get the current URL value
 	public URI getURL() {
 		return (myURI);
 	}
 
-	/**
-	 * Get the current URL value as a string
-	 * 
-	 * @param key
-	 * @param value
-	 * @return
-	 */
+	// Get the current URL value as a string
 	public String toString() {
 		return (myURI.toString());
 	}
 
 	public URI addQuery(String key, String value) {
-
 		// Get the current query
 		Map<String, String> query = ZimbraURI.getQueryFromString(myURI.getQuery());
 
@@ -177,11 +143,9 @@ public class ZimbraURI {
 				ZimbraURI.buildQueryFromMap(query), myURI.getFragment());
 
 		return (myURI);
-
 	}
 
 	public URI addQuery(Map<String, String> map) {
-
 		// Get the current query
 		Map<String, String> query = ZimbraURI.getQueryFromString(myURI.getQuery());
 
@@ -193,14 +157,9 @@ public class ZimbraURI {
 				ZimbraURI.buildQueryFromMap(query), myURI.getFragment());
 
 		return (myURI);
-
 	}
 
-	/**
-	 * Get the URI query parameters as a Map
-	 * 
-	 * @return
-	 */
+	// Get the URI query parameters as a Map
 	public Map<String, String> getQuery() {
 		return (getQueryFromString(myURI.getQuery()));
 	}
@@ -247,9 +206,10 @@ public class ZimbraURI {
 		}
 
 		if (ConfigProperties.getAppType() == AppType.ADMIN) {
-			path = "";
 			if (ConfigProperties.getStringProperty("server.zimbrax").equals("true")) {
 				path = "/zimbraAdmin/";
+			} else {
+				path = "";
 			}
 		}
 
@@ -273,12 +233,7 @@ public class ZimbraURI {
 
 	}
 
-	/**
-	 * Build Query from the map
-	 * 
-	 * @return String
-	 * 
-	 */
+	// Build Query from the map
 	private static String buildQueryFromMap(Map<String, String> queryMap) {
 		// Build the query from the map
 		StringBuilder sb = null;
@@ -300,12 +255,7 @@ public class ZimbraURI {
 		return query;
 	}
 
-	/**
-	 * Convert a query string (i.e. ?key1=value1&key2=value2...) to a map of
-	 * key/values@param query
-	 * 
-	 * @return
-	 */
+	// Convert a query string (i.e. ?key1=value1&key2=value2...) to a map of key/values@param query
 	private static Map<String, String> getQueryFromString(String query) {
 
 		Map<String, String> map = new HashMap<String, String>();

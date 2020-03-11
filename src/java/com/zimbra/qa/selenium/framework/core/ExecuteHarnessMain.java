@@ -1413,10 +1413,12 @@ public class ExecuteHarnessMain {
 
 		// Single-node settings
 		} else {
-			serverPort = 443;
-			adminPort = 7071;
 			if (ConfigProperties.getStringProperty("server.zimbrax").equals("true")) {
 				adminPort = 31071;
+				serverPort = 31443;
+			} else {
+				adminPort = 7071;
+				serverPort = 443;
 			}
 			proxyServers.add(zimbraServer);
 			storeServers.add(zimbraServer);
@@ -1491,22 +1493,7 @@ public class ExecuteHarnessMain {
 					"zmprov ca " + accounts.get("account3")[1] + " test123 displayName \"" + accounts.get("account3")[0]
 							+ "\" Description \"Created by Selenium Automation\"");
 
-			// Create test dls
-			StafIntegration.logInfo = "Create test distribution list...\n";
-			logger.info(StafIntegration.logInfo);
-			Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo),
-					Charset.forName("UTF-8"), StandardOpenOption.APPEND);
-			CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"),
-					"zmprov cdl " + distributionlists.get("distributionlist")[1] + " displayName \""
-							+ distributionlists.get("distributionlist")[0]
-							+ "\" Description \"Created by Selenium Automation\"");
-			CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"),
-					"zmprov adlm " + distributionlists.get("distributionlist")[1] + " "
-							+ accounts.get("account1")[1] + " "
-							+ accounts.get("account2")[1] + " "
-							+ accounts.get("account3")[1]);
-
-			// Create resource accounts
+			// Create calendar resource accounts
 			StafIntegration.logInfo = "Create resource accounts...\n";
 			CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"), "zmprov ccr "
 					+ locations.get("location1")[1] + " test123 displayName \"" + locations.get("location1")[0]
@@ -1520,6 +1507,21 @@ public class ExecuteHarnessMain {
 			CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"), "zmprov ccr "
 					+ equipments.get("equipment2")[1] + " test123 displayName \"" + equipments.get("equipment2")[0]
 					+ "\" zimbraAccountCalendarUserType RESOURCE zimbraCalResType Equipment Description \"Created by Selenium Automation\"");
+
+			// Create test distribution lists
+			StafIntegration.logInfo = "Create test distribution list...\n";
+			logger.info(StafIntegration.logInfo);
+			Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo),
+					Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+			CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"),
+					"zmprov cdl " + distributionlists.get("distributionlist")[1] + " displayName \""
+							+ distributionlists.get("distributionlist")[0]
+							+ "\" Description \"Created by Selenium Automation\"");
+			CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"),
+					"zmprov adlm " + distributionlists.get("distributionlist")[1] + " "
+							+ accounts.get("account1")[1] + " "
+							+ accounts.get("account2")[1] + " "
+							+ accounts.get("account3")[1]);
 
 			if (project.contains("ajax")) {
 				// Grant createDistList right to domain
