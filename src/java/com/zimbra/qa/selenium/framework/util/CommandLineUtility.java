@@ -60,52 +60,17 @@ class StreamGobbler extends Thread {
 }
 
 
-// Command line utility class
-
 public class CommandLineUtility {
 	private static Logger logger = LogManager.getLogger(CommandLineUtility.class);
 
-	/**
-	 * Execute Command line with no STDIN parameter and return the execution status
-	 *
-	 * @param command
-	 *            Command line to be executed
-	 * @return (Integer) Execution status code
-	 * @throws IOException
-	 * @throws InterruptedException
-	 */
 	public static int CmdExec(String command) throws IOException, InterruptedException {
 		return CmdExec(command, null);
 	}
 
-	/**
-	 * Execute Command line and return the execution status
-	 *
-	 * @param command
-	 *            Command line to be executed
-	 * @param params
-	 *            Parameter to be passed to STDIN
-	 * @return (Integer) Execution status code
-	 * @throws IOException
-	 * @throws InterruptedException
-	 */
 	public static int CmdExec(String command, String[] params) throws IOException, InterruptedException {
 		return CmdExec(command, params, false);
 	}
 
-	/**
-	 * Execute Command line and return the execution status
-	 *
-	 * @param command
-	 *            Command line to be executed
-	 * @param params
-	 *            Parameter to be passed to STDIN
-	 * @param background
-	 *            Running in the background process
-	 * @return (Integer) Execution status code
-	 * @throws IOException
-	 * @throws InterruptedException
-	 */
 	public static int CmdExec(String command, String[] params, boolean background)
 			throws IOException, InterruptedException {
 		Process p = Runtime.getRuntime().exec(command);
@@ -133,53 +98,17 @@ public class CommandLineUtility {
 		return (exitValue);
 	}
 
-	/**
-	 * Execute command line with no params and return the output as a String
-	 *
-	 * @param command
-	 *            Command line to be executed
-	 * @return (String) output from the console
-	 * @throws IOException
-	 * @throws InterruptedException
-	 * @throws HarnessException
-	 */
 	public static String cmdExecWithOutput(String command) throws IOException, InterruptedException, HarnessException {
 		return cmdExecWithOutput(command, null);
 	}
 
-	/**
-	 * Execute command line with parameters and return the output as a String
-	 *
-	 * @param command
-	 *            Command line to be executed
-	 * @param params
-	 *            Parameter to be passed to STDIN
-	 * @return (String) output from the console
-	 * @throws IOException
-	 * @throws InterruptedException
-	 * @throws HarnessException
-	 */
 	public static String cmdExecWithOutput(String command, String[] params)
 			throws IOException, InterruptedException, HarnessException {
 		logger.debug("Executing command: " + command);
 		Process process = Runtime.getRuntime().exec(command);
-
 		return _startStreaming(process, params);
 	}
 
-	/**
-	 * Execute (tokenized) command line with parameters and return the output as a
-	 * String
-	 *
-	 * @param command
-	 *            Command line to be executed
-	 * @param params
-	 *            Parameter to be passed to STDIN
-	 * @return (String) output from the console
-	 * @throws IOException
-	 * @throws InterruptedException
-	 * @throws HarnessException
-	 */
 	public static String cmdExecWithOutput(String[] command, String[] params)
 			throws IOException, InterruptedException, HarnessException {
 		logger.debug("Executing command: " + Arrays.toString(command));
@@ -188,15 +117,6 @@ public class CommandLineUtility {
 		return _startStreaming(process, params);
 	}
 
-	/**
-	 * Streaming the input and output from the command line execution
-	 *
-	 * @param process
-	 * @param params
-	 * @return Aggregated output from the command line execution
-	 * @throws IOException
-	 * @throws InterruptedException
-	 */
 	private static String _startStreaming(Process process, String[] params) throws IOException, InterruptedException {
 		InputStream inputStream = process.getInputStream();
 		StreamGobbler errorGobbler = new StreamGobbler(process.getErrorStream());
@@ -228,10 +148,16 @@ public class CommandLineUtility {
 	}
 
 	public static String runCommandOnStoreServerToGetTOTP(String email, String secret) {
-		String privateKey = null, host = null, totp = "0";
-
+		String privateKey = null, host = null, totp = "0", command;
+		String zimbraCommand = "zmtotp -a " + email + " -s " + secret;
 		host = ConfigProperties.getStringProperty("server.host");
-		String command = "su - zimbra -c 'zmtotp -a " + email + " -s " + secret + "'";
+
+		if (ConfigProperties.getStringProperty("server.zimbrax").equals("true")) {
+			command = "kubectl exec -i zmc-mailbox-0 -- /bin/bash -c '/opt/zimbra/bin/" + zimbraCommand + "'";
+		} else {
+			command = "su - zimbra -c '" + zimbraCommand + "'";
+		}
+
 		if (!ConfigProperties.getStringProperty("server.host").endsWith(".zimbra.com")) {
 			command = "sudo " + command;
 		}
@@ -290,11 +216,14 @@ public class CommandLineUtility {
 		String privateKey = null;
 		String command = null;
 
-		if (zimbraCommand.contains("sh -c")) {
+		if (ConfigProperties.getStringProperty("server.zimbrax").equals("true")) {
+			command = "kubectl exec -i zmc-mailbox-0 -- /bin/bash -c '/opt/zimbra/bin/" + zimbraCommand + "'";
+		} else if (zimbraCommand.contains("sh -c")) {
 			command = zimbraCommand;
 		} else {
 			command = "su - zimbra -c '" + zimbraCommand + "'";
 		}
+
 		if (!ConfigProperties.getStringProperty("server.host").endsWith(".zimbra.com")) {
 			command = "sudo " + command;
 		}

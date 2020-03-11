@@ -1,0 +1,477 @@
+<testng-results>
+  <reporter-output>
+  </reporter-output>
+  <suite name="ADMIN" duration-ms="1470744" started-at="2020-03-11T07:57:26Z" finished-at="2020-03-11T08:21:57Z">
+    <groups>
+      <group name="smoke">
+        <method signature="com.zimbra.qa.selenium.projects.admin.tests.accounts.CreateAccount.CreateAccount_01()" name="CreateAccount_01" class="com.zimbra.qa.selenium.projects.admin.tests.accounts.CreateAccount"/>
+        <method signature="com.zimbra.qa.selenium.projects.admin.tests.accounts.EditAccount.EditAccount_01()" name="EditAccount_01" class="com.zimbra.qa.selenium.projects.admin.tests.accounts.EditAccount"/>
+        <method signature="com.zimbra.qa.selenium.projects.admin.tests.accounts.EditAccount.EditAccount_02()" name="EditAccount_02" class="com.zimbra.qa.selenium.projects.admin.tests.accounts.EditAccount"/>
+        <method signature="com.zimbra.qa.selenium.projects.admin.tests.accounts.GetAccount.GetAccount_01()" name="GetAccount_01" class="com.zimbra.qa.selenium.projects.admin.tests.accounts.GetAccount"/>
+        <method signature="com.zimbra.qa.selenium.projects.admin.tests.accounts.NavigateAccount.NavigateAccount_01()" name="NavigateAccount_01" class="com.zimbra.qa.selenium.projects.admin.tests.accounts.NavigateAccount"/>
+        <method signature="com.zimbra.qa.selenium.projects.admin.tests.accounts.ViewMail.ViewMail_01()" name="ViewMail_01" class="com.zimbra.qa.selenium.projects.admin.tests.accounts.ViewMail"/>
+      </group>
+    </groups>
+    <test name="accounts" duration-ms="1470744" started-at="2020-03-11T07:57:26Z" finished-at="2020-03-11T08:21:57Z">
+      <class name="com.zimbra.qa.selenium.projects.admin.tests.accounts.EditAccount">
+        <test-method status="PASS" signature="coreBeforeClass()" name="coreBeforeClass" is-config="true" duration-ms="0" started-at="2020-03-11T07:58:39Z" finished-at="2020-03-11T07:58:39Z">
+        </test-method>
+        <test-method status="PASS" signature="coreBeforeMethod(java.lang.reflect.Method, org.testng.ITestContext)" name="coreBeforeMethod" is-config="true" duration-ms="25121" started-at="2020-03-11T07:58:39Z" finished-at="2020-03-11T07:59:04Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.zimbra.qa.selenium.projects.admin.tests.accounts.EditAccount.EditAccount_01() throws com.zimbra.qa.selenium.framework.util.HarnessException]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[org.testng.TestRunner@35bc6258]]>
+              </value>
+            </param>
+          </params>
+        </test-method>
+        <test-method status="PASS" signature="coreAfterMethod(java.lang.reflect.Method, org.testng.ITestResult)" name="coreAfterMethod" is-config="true" duration-ms="0" started-at="2020-03-11T08:02:14Z" finished-at="2020-03-11T08:02:14Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.zimbra.qa.selenium.projects.admin.tests.accounts.EditAccount.EditAccount_01() throws com.zimbra.qa.selenium.framework.util.HarnessException]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[[TestResult: EditAccount_01 STATUS:FAILURE METHOD:com.zimbra.qa.selenium.projects.admin.tests.accounts.EditAccount.EditAccount_01()]
+]]>
+              </value>
+            </param>
+          </params>
+        </test-method>
+        <test-method status="PASS" signature="coreBeforeMethod(java.lang.reflect.Method, org.testng.ITestContext)" name="coreBeforeMethod" is-config="true" duration-ms="25544" started-at="2020-03-11T08:02:14Z" finished-at="2020-03-11T08:02:40Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.zimbra.qa.selenium.projects.admin.tests.accounts.EditAccount.EditAccount_01() throws com.zimbra.qa.selenium.framework.util.HarnessException]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[org.testng.TestRunner@35bc6258]]>
+              </value>
+            </param>
+          </params>
+        </test-method>
+        <test-method status="FAIL" signature="EditAccount_01()" name="EditAccount_01" duration-ms="195892" started-at="2020-03-11T08:02:40Z" description="Edit Account name  - Manage Account View" finished-at="2020-03-11T08:05:56Z">
+          <exception class="com.zimbra.qa.selenium.framework.util.HarnessException">
+            <message>
+              <![CDATA[Unable to click on locator //div[@id='zl__ACCT_MANAGE']//div[starts-with(@id,'zli__DWT')]//td[starts-with(@id,'account_data_emailaddress_')]/nobr[.='tc15838939601229@testdomain.com']]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[com.zimbra.qa.selenium.framework.util.HarnessException: Unable to click on locator //div[@id='zl__ACCT_MANAGE']//div[starts-with(@id,'zli__DWT')]//td[starts-with(@id,'account_data_emailaddress_')]/nobr[.='tc15838939601229@testdomain.com']
+	at com.zimbra.qa.selenium.framework.ui.AbsSeleniumObject.sClick(AbsSeleniumObject.java:168)
+	at com.zimbra.qa.selenium.projects.admin.pages.PageManageAccounts.zListItem(PageManageAccounts.java:171)
+	at com.zimbra.qa.selenium.projects.admin.tests.accounts.EditAccount.EditAccount_01(EditAccount.java:69)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.testng.internal.MethodHelper.invokeMethod(MethodHelper.java:643)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:559)
+	at org.testng.internal.Invoker.retryFailed(Invoker.java:867)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1049)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:137)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:121)
+	at org.testng.TestRunner.runWorkers(TestRunner.java:1030)
+	at org.testng.TestRunner.privateRun(TestRunner.java:709)
+	at org.testng.TestRunner.run(TestRunner.java:579)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:331)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:326)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:288)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:193)
+	at org.testng.TestNG.createAndRunSuiteRunners(TestNG.java:910)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:879)
+	at org.testng.TestNG.run(TestNG.java:787)
+	at com.zimbra.qa.selenium.framework.core.ExecuteHarnessMain.executeTests(ExecuteHarnessMain.java:506)
+	at com.zimbra.qa.selenium.framework.core.ExecuteHarnessMain.executeSelenium(ExecuteHarnessMain.java:440)
+	at com.zimbra.qa.selenium.framework.core.ExecuteHarnessMain.execute(ExecuteHarnessMain.java:389)
+	at com.zimbra.qa.selenium.staf.StafIntegration.handleExecute(StafIntegration.java:276)
+	at com.zimbra.qa.selenium.staf.StafIntegration.acceptRequest(StafIntegration.java:118)
+	at com.ibm.staf.service.STAFServiceHelper.callService(STAFServiceHelper.java:349)
+Caused by: com.zimbra.qa.selenium.framework.util.HarnessException: WebElement is null: //div[@id='zl__ACCT_MANAGE']//div[starts-with(@id,'zli__DWT')]//td[starts-with(@id,'account_data_emailaddress_')]/nobr[.='tc15838939601229@testdomain.com']
+	at com.zimbra.qa.selenium.framework.ui.AbsSeleniumObject.getElement(AbsSeleniumObject.java:1696)
+	at com.zimbra.qa.selenium.framework.ui.AbsSeleniumObject.sClick(AbsSeleniumObject.java:163)
+	... 28 more
+]]>
+            </full-stacktrace>
+          </exception>
+        </test-method>
+        <test-method status="PASS" signature="coreAfterMethod(java.lang.reflect.Method, org.testng.ITestResult)" name="coreAfterMethod" is-config="true" duration-ms="0" started-at="2020-03-11T08:05:56Z" finished-at="2020-03-11T08:05:56Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.zimbra.qa.selenium.projects.admin.tests.accounts.EditAccount.EditAccount_01() throws com.zimbra.qa.selenium.framework.util.HarnessException]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[[TestResult: EditAccount_01 STATUS:FAILURE METHOD:com.zimbra.qa.selenium.projects.admin.tests.accounts.EditAccount.EditAccount_01()]
+]]>
+              </value>
+            </param>
+          </params>
+        </test-method>
+        <test-method status="PASS" signature="coreBeforeMethod(java.lang.reflect.Method, org.testng.ITestContext)" name="coreBeforeMethod" is-config="true" duration-ms="25158" started-at="2020-03-11T08:05:56Z" finished-at="2020-03-11T08:06:21Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.zimbra.qa.selenium.projects.admin.tests.accounts.EditAccount.EditAccount_02() throws com.zimbra.qa.selenium.framework.util.HarnessException]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[org.testng.TestRunner@35bc6258]]>
+              </value>
+            </param>
+          </params>
+        </test-method>
+        <test-method status="FAIL" signature="EditAccount_02()" name="EditAccount_02" duration-ms="195449" started-at="2020-03-11T08:06:21Z" description="Edit account name -- right click" finished-at="2020-03-11T08:09:37Z">
+          <exception class="com.zimbra.qa.selenium.framework.util.HarnessException">
+            <message>
+              <![CDATA[WebElement is null: //div[@id='zl__ACCT_MANAGE']//div[starts-with(@id,'zli__DWT')]//td[starts-with(@id,'account_data_emailaddress_')]/nobr[.='tc158389418192210@testdomain.com']]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[com.zimbra.qa.selenium.framework.util.HarnessException: WebElement is null: //div[@id='zl__ACCT_MANAGE']//div[starts-with(@id,'zli__DWT')]//td[starts-with(@id,'account_data_emailaddress_')]/nobr[.='tc158389418192210@testdomain.com']
+	at com.zimbra.qa.selenium.framework.ui.AbsSeleniumObject.getElement(AbsSeleniumObject.java:1696)
+	at com.zimbra.qa.selenium.framework.ui.AbsSeleniumObject.sRightClickAt(AbsSeleniumObject.java:261)
+	at com.zimbra.qa.selenium.projects.admin.pages.PageManageAccounts.zListItem(PageManageAccounts.java:173)
+	at com.zimbra.qa.selenium.projects.admin.tests.accounts.EditAccount.EditAccount_02(EditAccount.java:117)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.testng.internal.MethodHelper.invokeMethod(MethodHelper.java:643)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:559)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:723)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1027)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:137)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:121)
+	at org.testng.TestRunner.runWorkers(TestRunner.java:1030)
+	at org.testng.TestRunner.privateRun(TestRunner.java:709)
+	at org.testng.TestRunner.run(TestRunner.java:579)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:331)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:326)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:288)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:193)
+	at org.testng.TestNG.createAndRunSuiteRunners(TestNG.java:910)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:879)
+	at org.testng.TestNG.run(TestNG.java:787)
+	at com.zimbra.qa.selenium.framework.core.ExecuteHarnessMain.executeTests(ExecuteHarnessMain.java:506)
+	at com.zimbra.qa.selenium.framework.core.ExecuteHarnessMain.executeSelenium(ExecuteHarnessMain.java:440)
+	at com.zimbra.qa.selenium.framework.core.ExecuteHarnessMain.execute(ExecuteHarnessMain.java:389)
+	at com.zimbra.qa.selenium.staf.StafIntegration.handleExecute(StafIntegration.java:276)
+	at com.zimbra.qa.selenium.staf.StafIntegration.acceptRequest(StafIntegration.java:118)
+	at com.ibm.staf.service.STAFServiceHelper.callService(STAFServiceHelper.java:349)
+]]>
+            </full-stacktrace>
+          </exception>
+        </test-method>
+        <test-method status="PASS" signature="coreAfterMethod(java.lang.reflect.Method, org.testng.ITestResult)" name="coreAfterMethod" is-config="true" duration-ms="0" started-at="2020-03-11T08:09:37Z" finished-at="2020-03-11T08:09:37Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.zimbra.qa.selenium.projects.admin.tests.accounts.EditAccount.EditAccount_02() throws com.zimbra.qa.selenium.framework.util.HarnessException]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[[TestResult: EditAccount_02 STATUS:FAILURE METHOD:com.zimbra.qa.selenium.projects.admin.tests.accounts.EditAccount.EditAccount_02()]
+]]>
+              </value>
+            </param>
+          </params>
+        </test-method>
+        <test-method status="PASS" signature="coreBeforeMethod(java.lang.reflect.Method, org.testng.ITestContext)" name="coreBeforeMethod" is-config="true" duration-ms="25072" started-at="2020-03-11T08:09:37Z" finished-at="2020-03-11T08:10:02Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.zimbra.qa.selenium.projects.admin.tests.accounts.EditAccount.EditAccount_02() throws com.zimbra.qa.selenium.framework.util.HarnessException]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[org.testng.TestRunner@35bc6258]]>
+              </value>
+            </param>
+          </params>
+        </test-method>
+        <test-method status="PASS" signature="coreAfterMethod(java.lang.reflect.Method, org.testng.ITestResult)" name="coreAfterMethod" is-config="true" duration-ms="0" started-at="2020-03-11T08:13:18Z" finished-at="2020-03-11T08:13:18Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.zimbra.qa.selenium.projects.admin.tests.accounts.EditAccount.EditAccount_02() throws com.zimbra.qa.selenium.framework.util.HarnessException]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[[TestResult: EditAccount_02 STATUS:FAILURE METHOD:com.zimbra.qa.selenium.projects.admin.tests.accounts.EditAccount.EditAccount_02()]
+]]>
+              </value>
+            </param>
+          </params>
+        </test-method>
+        <test-method status="PASS" signature="coreAfterClass()" name="coreAfterClass" is-config="true" duration-ms="1" started-at="2020-03-11T08:13:18Z" finished-at="2020-03-11T08:13:18Z">
+        </test-method>
+      </class>
+      <class name="com.zimbra.qa.selenium.projects.admin.tests.accounts.ViewMail">
+        <test-method status="PASS" signature="coreBeforeMethod(java.lang.reflect.Method, org.testng.ITestContext)" name="coreBeforeMethod" is-config="true" duration-ms="25056" started-at="2020-03-11T08:20:13Z" finished-at="2020-03-11T08:20:38Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.zimbra.qa.selenium.projects.admin.tests.accounts.ViewMail.ViewMail_01() throws com.zimbra.qa.selenium.framework.util.HarnessException]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[org.testng.TestRunner@35bc6258]]>
+              </value>
+            </param>
+          </params>
+        </test-method>
+        <test-method status="PASS" signature="coreBeforeClass()" name="coreBeforeClass" is-config="true" duration-ms="0" started-at="2020-03-11T08:20:13Z" finished-at="2020-03-11T08:20:13Z">
+        </test-method>
+        <test-method status="PASS" signature="afterMethod()" name="afterMethod" is-config="true" duration-ms="311" started-at="2020-03-11T08:21:04Z" finished-at="2020-03-11T08:21:05Z">
+        </test-method>
+        <test-method status="PASS" signature="coreAfterMethod(java.lang.reflect.Method, org.testng.ITestResult)" name="coreAfterMethod" is-config="true" duration-ms="0" started-at="2020-03-11T08:21:05Z" finished-at="2020-03-11T08:21:05Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.zimbra.qa.selenium.projects.admin.tests.accounts.ViewMail.ViewMail_01() throws com.zimbra.qa.selenium.framework.util.HarnessException]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[[TestResult: ViewMail_01 STATUS:FAILURE METHOD:com.zimbra.qa.selenium.projects.admin.tests.accounts.ViewMail.ViewMail_01()]
+]]>
+              </value>
+            </param>
+          </params>
+        </test-method>
+        <test-method status="PASS" signature="coreBeforeMethod(java.lang.reflect.Method, org.testng.ITestContext)" name="coreBeforeMethod" is-config="true" duration-ms="25325" started-at="2020-03-11T08:21:05Z" finished-at="2020-03-11T08:21:30Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.zimbra.qa.selenium.projects.admin.tests.accounts.ViewMail.ViewMail_01() throws com.zimbra.qa.selenium.framework.util.HarnessException]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[org.testng.TestRunner@35bc6258]]>
+              </value>
+            </param>
+          </params>
+        </test-method>
+        <test-method status="FAIL" signature="ViewMail_01()" name="ViewMail_01" duration-ms="26656" started-at="2020-03-11T08:21:30Z" description="View mail - manage account &gt;&gt; Gearbox &gt;&gt; edit account &gt;&gt;  View mail" finished-at="2020-03-11T08:21:57Z">
+          <exception class="com.zimbra.qa.selenium.framework.util.HarnessException">
+            <message>
+              <![CDATA[Unable to send SOAP to https://129.213.22.58:443/service/soap/]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[com.zimbra.qa.selenium.framework.util.HarnessException: Unable to send SOAP to https://129.213.22.58:443/service/soap/
+	at com.zimbra.qa.selenium.framework.util.ZimbraAccount$SoapClient.sendSOAP(ZimbraAccount.java:980)
+	at com.zimbra.qa.selenium.framework.util.ZimbraAccount$SoapClient.sendSOAP(ZimbraAccount.java:957)
+	at com.zimbra.qa.selenium.framework.util.ZimbraAccount.soapSend(ZimbraAccount.java:797)
+	at com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount.soapSend(ZimbraAdminAccount.java:200)
+	at com.zimbra.qa.selenium.projects.admin.tests.accounts.ViewMail.ViewMail_01(ViewMail.java:66)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.testng.internal.MethodHelper.invokeMethod(MethodHelper.java:643)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:559)
+	at org.testng.internal.Invoker.retryFailed(Invoker.java:867)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1049)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:137)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:121)
+	at org.testng.TestRunner.runWorkers(TestRunner.java:1030)
+	at org.testng.TestRunner.privateRun(TestRunner.java:709)
+	at org.testng.TestRunner.run(TestRunner.java:579)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:331)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:326)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:288)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:193)
+	at org.testng.TestNG.createAndRunSuiteRunners(TestNG.java:910)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:879)
+	at org.testng.TestNG.run(TestNG.java:787)
+	at com.zimbra.qa.selenium.framework.core.ExecuteHarnessMain.executeTests(ExecuteHarnessMain.java:506)
+	at com.zimbra.qa.selenium.framework.core.ExecuteHarnessMain.executeSelenium(ExecuteHarnessMain.java:440)
+	at com.zimbra.qa.selenium.framework.core.ExecuteHarnessMain.execute(ExecuteHarnessMain.java:389)
+	at com.zimbra.qa.selenium.staf.StafIntegration.handleExecute(StafIntegration.java:276)
+	at com.zimbra.qa.selenium.staf.StafIntegration.acceptRequest(StafIntegration.java:118)
+	at com.ibm.staf.service.STAFServiceHelper.callService(STAFServiceHelper.java:349)
+Caused by: java.net.ConnectException: Connection timed out: connect
+	at java.net.DualStackPlainSocketImpl.waitForConnect(Native Method)
+	at java.net.DualStackPlainSocketImpl.socketConnect(Unknown Source)
+	at java.net.AbstractPlainSocketImpl.doConnect(Unknown Source)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(Unknown Source)
+	at java.net.AbstractPlainSocketImpl.connect(Unknown Source)
+	at java.net.PlainSocketImpl.connect(Unknown Source)
+	at java.net.SocksSocketImpl.connect(Unknown Source)
+	at java.net.Socket.connect(Unknown Source)
+	at sun.security.ssl.SSLSocketImpl.connect(Unknown Source)
+	at com.zimbra.common.net.CustomSSLSocket.connect(CustomSSLSocket.java:311)
+	at com.zimbra.common.net.CustomSSLSocket.connect(CustomSSLSocket.java:305)
+	at com.zimbra.common.net.CustomSSLSocketFactory.createSocket(CustomSSLSocketFactory.java:116)
+	at com.zimbra.common.net.CustomSSLSocketFactory.createSocket(CustomSSLSocketFactory.java:102)
+	at com.zimbra.common.net.ProtocolSocketFactoryWrapper.createSocket(ProtocolSocketFactoryWrapper.java:51)
+	at org.apache.commons.httpclient.HttpConnection.open(HttpConnection.java:707)
+	at org.apache.commons.httpclient.HttpMethodDirector.executeWithRetry(HttpMethodDirector.java:387)
+	at org.apache.commons.httpclient.HttpMethodDirector.executeMethod(HttpMethodDirector.java:171)
+	at org.apache.commons.httpclient.HttpClient.executeMethod(HttpClient.java:397)
+	at org.apache.commons.httpclient.HttpClient.executeMethod(HttpClient.java:323)
+	at com.zimbra.qa.selenium.framework.util.ZimbraAccount$ProxySoapHttpTransport.invoke(ZimbraAccount.java:1413)
+	at com.zimbra.common.soap.SoapTransport.invoke(SoapTransport.java:446)
+	at com.zimbra.common.soap.SoapTransport.invokeRaw(SoapTransport.java:420)
+	at com.zimbra.qa.selenium.framework.util.ZimbraAccount$SoapClient.sendSOAP(ZimbraAccount.java:978)
+	... 30 more
+]]>
+            </full-stacktrace>
+          </exception>
+        </test-method>
+        <test-method status="PASS" signature="afterMethod()" name="afterMethod" is-config="true" duration-ms="3" started-at="2020-03-11T08:21:57Z" finished-at="2020-03-11T08:21:57Z">
+        </test-method>
+        <test-method status="PASS" signature="coreAfterMethod(java.lang.reflect.Method, org.testng.ITestResult)" name="coreAfterMethod" is-config="true" duration-ms="0" started-at="2020-03-11T08:21:57Z" finished-at="2020-03-11T08:21:57Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.zimbra.qa.selenium.projects.admin.tests.accounts.ViewMail.ViewMail_01() throws com.zimbra.qa.selenium.framework.util.HarnessException]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[[TestResult: ViewMail_01 STATUS:FAILURE METHOD:com.zimbra.qa.selenium.projects.admin.tests.accounts.ViewMail.ViewMail_01()]
+]]>
+              </value>
+            </param>
+          </params>
+        </test-method>
+        <test-method status="PASS" signature="coreAfterClass()" name="coreAfterClass" is-config="true" duration-ms="0" started-at="2020-03-11T08:21:57Z" finished-at="2020-03-11T08:21:57Z">
+        </test-method>
+      </class>
+      <class name="com.zimbra.qa.selenium.projects.admin.tests.accounts.NavigateAccount">
+        <test-method status="PASS" signature="coreBeforeClass()" name="coreBeforeClass" is-config="true" duration-ms="0" started-at="2020-03-11T08:19:47Z" finished-at="2020-03-11T08:19:47Z">
+        </test-method>
+        <test-method status="PASS" signature="coreBeforeMethod(java.lang.reflect.Method, org.testng.ITestContext)" name="coreBeforeMethod" is-config="true" duration-ms="25359" started-at="2020-03-11T08:19:47Z" finished-at="2020-03-11T08:20:12Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.zimbra.qa.selenium.projects.admin.tests.accounts.NavigateAccount.NavigateAccount_01() throws com.zimbra.qa.selenium.framework.util.HarnessException]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[org.testng.TestRunner@35bc6258]]>
+              </value>
+            </param>
+          </params>
+        </test-method>
+        <test-method status="PASS" signature="NavigateAccount_01()" name="NavigateAccount_01" duration-ms="501" started-at="2020-03-11T08:20:12Z" description="Navigate to Accounts" finished-at="2020-03-11T08:20:13Z">
+        </test-method>
+        <test-method status="PASS" signature="coreAfterMethod(java.lang.reflect.Method, org.testng.ITestResult)" name="coreAfterMethod" is-config="true" duration-ms="0" started-at="2020-03-11T08:20:13Z" finished-at="2020-03-11T08:20:13Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.zimbra.qa.selenium.projects.admin.tests.accounts.NavigateAccount.NavigateAccount_01() throws com.zimbra.qa.selenium.framework.util.HarnessException]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[[TestResult: NavigateAccount_01 STATUS:SUCCESS METHOD:com.zimbra.qa.selenium.projects.admin.tests.accounts.NavigateAccount.NavigateAccount_01()]
+]]>
+              </value>
+            </param>
+          </params>
+        </test-method>
+        <test-method status="PASS" signature="coreAfterClass()" name="coreAfterClass" is-config="true" duration-ms="1" started-at="2020-03-11T08:20:13Z" finished-at="2020-03-11T08:20:13Z">
+        </test-method>
+      </class>
+      <class name="com.zimbra.qa.selenium.projects.admin.tests.accounts.CreateAccount">
+        <test-method status="PASS" signature="coreBeforeClass()" name="coreBeforeClass" is-config="true" duration-ms="0" started-at="2020-03-11T07:57:26Z" finished-at="2020-03-11T07:57:26Z">
+        </test-method>
+        <test-method status="PASS" signature="coreBeforeMethod(java.lang.reflect.Method, org.testng.ITestContext)" name="coreBeforeMethod" is-config="true" duration-ms="40063" started-at="2020-03-11T07:57:26Z" finished-at="2020-03-11T07:58:06Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.zimbra.qa.selenium.projects.admin.tests.accounts.CreateAccount.CreateAccount_01() throws com.zimbra.qa.selenium.framework.util.HarnessException]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[org.testng.TestRunner@35bc6258]]>
+              </value>
+            </param>
+          </params>
+        </test-method>
+        <test-method status="PASS" signature="CreateAccount_01()" name="CreateAccount_01" duration-ms="32225" started-at="2020-03-11T07:58:06Z" description="Create a basic account using New-&gt;Account" finished-at="2020-03-11T07:58:39Z">
+        </test-method>
+        <test-method status="PASS" signature="coreAfterMethod(java.lang.reflect.Method, org.testng.ITestResult)" name="coreAfterMethod" is-config="true" duration-ms="0" started-at="2020-03-11T07:58:39Z" finished-at="2020-03-11T07:58:39Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.zimbra.qa.selenium.projects.admin.tests.accounts.CreateAccount.CreateAccount_01() throws com.zimbra.qa.selenium.framework.util.HarnessException]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[[TestResult: CreateAccount_01 STATUS:SUCCESS METHOD:com.zimbra.qa.selenium.projects.admin.tests.accounts.CreateAccount.CreateAccount_01()]
+]]>
+              </value>
+            </param>
+          </params>
+        </test-method>
+        <test-method status="PASS" signature="coreAfterClass()" name="coreAfterClass" is-config="true" duration-ms="0" started-at="2020-03-11T07:58:39Z" finished-at="2020-03-11T07:58:39Z">
+        </test-method>
+      </class>
+      <class name="com.zimbra.qa.selenium.projects.admin.tests.accounts.LimitThemes">
+        <test-method status="PASS" signature="coreBeforeSuite()" name="coreBeforeSuite" is-config="true" duration-ms="4782" started-at="2020-03-11T07:57:22Z" finished-at="2020-03-11T07:57:26Z">
+        </test-method>
+        <test-method status="PASS" signature="coreAfterSuite()" name="coreAfterSuite" is-config="true" duration-ms="680" started-at="2020-03-11T08:21:57Z" finished-at="2020-03-11T08:21:58Z">
+        </test-method>
+      </class>
+      <class name="com.zimbra.qa.selenium.projects.admin.tests.accounts.GetAccount">
+        <test-method status="PASS" signature="coreBeforeMethod(java.lang.reflect.Method, org.testng.ITestContext)" name="coreBeforeMethod" is-config="true" duration-ms="25193" started-at="2020-03-11T08:13:18Z" finished-at="2020-03-11T08:13:43Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.zimbra.qa.selenium.projects.admin.tests.accounts.GetAccount.GetAccount_01() throws com.zimbra.qa.selenium.framework.util.HarnessException]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[org.testng.TestRunner@35bc6258]]>
+              </value>
+            </param>
+          </params>
+        </test-method>
+        <test-method status="PASS" signature="coreBeforeClass()" name="coreBeforeClass" is-config="true" duration-ms="0" started-at="2020-03-11T08:13:18Z" finished-at="2020-03-11T08:13:18Z">
+        </test-method>
+        <test-method status="PASS" signature="GetAccount_01()" name="GetAccount_01" duration-ms="363376" started-at="2020-03-11T08:13:43Z" description="Verify created account is displayed in UI -- Manage Account View." finished-at="2020-03-11T08:19:47Z">
+        </test-method>
+        <test-method status="PASS" signature="coreAfterMethod(java.lang.reflect.Method, org.testng.ITestResult)" name="coreAfterMethod" is-config="true" duration-ms="1" started-at="2020-03-11T08:19:47Z" finished-at="2020-03-11T08:19:47Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.zimbra.qa.selenium.projects.admin.tests.accounts.GetAccount.GetAccount_01() throws com.zimbra.qa.selenium.framework.util.HarnessException]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[[TestResult: GetAccount_01 STATUS:SUCCESS METHOD:com.zimbra.qa.selenium.projects.admin.tests.accounts.GetAccount.GetAccount_01()]
+]]>
+              </value>
+            </param>
+          </params>
+        </test-method>
+        <test-method status="PASS" signature="coreAfterClass()" name="coreAfterClass" is-config="true" duration-ms="0" started-at="2020-03-11T08:19:47Z" finished-at="2020-03-11T08:19:47Z">
+        </test-method>
+      </class>
+    </test>
+  </suite>
+</testng-results>

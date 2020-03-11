@@ -1,0 +1,23 @@
+Server details: [zmc.com]
+Server admin port: 31071, server port: 443
+Create test accounts...
+
+Create test distribution list...
+
+Groups [always, configure, smoke], Excluded groups [skip, performance, foss, non-zimbrax, non-cloud, ng-module, chat, drive]
+
+# | Test | Start Time | End Time | Duration
+1/6 | (PASSED) com.zimbra.qa.selenium.projects.admin.tests.accounts.CreateAccount.CreateAccount_01() | 07:58:06 | 07:58:39 | 0.53
+2/6 | (FAILED) com.zimbra.qa.selenium.projects.admin.tests.accounts.EditAccount.EditAccount_01() | 08:02:40 | 08:05:55 | 3.25
+3/6 | (FAILED) com.zimbra.qa.selenium.projects.admin.tests.accounts.EditAccount.EditAccount_02() | 08:10:02 | 08:13:17 | 3.25
+4/6 | (PASSED) com.zimbra.qa.selenium.projects.admin.tests.accounts.GetAccount.GetAccount_01() | 08:13:43 | 08:19:47 | 6.05
+5/6 | (PASSED) com.zimbra.qa.selenium.projects.admin.tests.accounts.NavigateAccount.NavigateAccount_01() | 08:20:12 | 08:20:13 | 0
+6/6 | (FAILED) com.zimbra.qa.selenium.projects.admin.tests.accounts.ViewMail.ViewMail_01() | 08:21:30 | 08:21:57 | 0.43
+
+
+Total Tests:   6
+Total Passed:  3
+Total Failed:  3
+Total Skipped: 0
+Total Retried: 0
+

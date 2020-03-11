@@ -61,10 +61,10 @@ public class DeleteResource extends AdminCore {
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 						"<CreateCalendarResourceRequest xmlns='urn:zimbraAdmin'>"
 						+ "<name>" + resource.getEmailAddress() + "</name>"
+						+ "<password>" + ConfigProperties.getStringProperty("accountPassword") + "</password>"
 						+ "<a n='displayName'>" + resource.getName() + "</a>"
 						+ "<a n='zimbraCalResType'>" + "Location" + "</a>"
 						+ "<a n='description'>Created by Selenium automation</a>"
-						+ "<password>" + ConfigProperties.getStringProperty("accountPassword") + "</password>"
 						+ "</CreateCalendarResourceRequest>");
 
 		// Enter the search string to find the account
@@ -123,10 +123,10 @@ public class DeleteResource extends AdminCore {
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 						"<CreateCalendarResourceRequest xmlns='urn:zimbraAdmin'>"
 						+ "<name>" + resource.getEmailAddress() + "</name>"
+						+ "<password>" + ConfigProperties.getStringProperty("accountPassword") + "</password>"
 						+ "<a n='displayName'>" + resource.getName() + "</a>"
 						+ "<a n='zimbraCalResType'>" + "Equipment" + "</a>"
 						+ "<a n='description'>Created by Selenium automation</a>"
-						+ "<password>" + ConfigProperties.getStringProperty("accountPassword") + "</password>"
 						+ "</CreateCalendarResourceRequest>");
 
 		// Enter the search string to find the account
@@ -187,10 +187,10 @@ public class DeleteResource extends AdminCore {
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 						"<CreateCalendarResourceRequest xmlns='urn:zimbraAdmin'>"
 						+ "<name>" + resource.getEmailAddress() + "</name>"
+						+ "<password>" + ConfigProperties.getStringProperty("accountPassword") + "</password>"
 						+ "<a n='displayName'>" + resource.getName() + "</a>"
 						+ "<a n='zimbraCalResType'>" + "Location" + "</a>"
 						+ "<a n='description'>Created by Selenium automation</a>"
-						+ "<password>" + ConfigProperties.getStringProperty("accountPassword") + "</password>"
 						+ "</CreateCalendarResourceRequest>");
 
 		// Enter the search string to find the account
@@ -251,10 +251,10 @@ public class DeleteResource extends AdminCore {
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 						"<CreateCalendarResourceRequest xmlns='urn:zimbraAdmin'>"
 						+ "<name>" + resource.getEmailAddress() + "</name>"
+						+ "<password>" + ConfigProperties.getStringProperty("accountPassword") + "</password>"
 						+ "<a n='displayName'>" + resource.getName() + "</a>"
 						+ "<a n='zimbraCalResType'>" + "Equipment" + "</a>"
 						+ "<a n='description'>Created by Selenium automation</a>"
-						+ "<password>" + ConfigProperties.getStringProperty("accountPassword") + "</password>"
 						+ "</CreateCalendarResourceRequest>");
 
 		// Enter the search string to find the account
