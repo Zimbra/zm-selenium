@@ -20,6 +20,9 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.StandardOpenOption;
 import java.util.*;
 import java.util.concurrent.Future;
 import java.util.regex.Matcher;
@@ -60,6 +63,7 @@ import com.zimbra.common.util.ByteUtil;
 import com.zimbra.qa.selenium.framework.core.*;
 import com.zimbra.qa.selenium.framework.ui.I18N;
 import com.zimbra.qa.selenium.framework.util.staf.Stafpostqueue;
+import com.zimbra.qa.selenium.staf.StafIntegration;
 
 @SuppressWarnings("deprecation")
 public class ZimbraAccount {
@@ -99,6 +103,23 @@ public class ZimbraAccount {
 			password = ConfigProperties.getStringProperty("accountPassword");
 		}
 		Password = password;
+
+		StafIntegration.logInfo = ExecuteHarnessMain.adminPort + "\n"
+				+ ExecuteHarnessMain.serverPort + "\n"
+				+ ExecuteHarnessMain.mtaServers + "\n"
+				+ ExecuteHarnessMain.proxyServers + "\n"
+				+ ExecuteHarnessMain.storeServers + "\n"
+				+ ConfigProperties.getStringProperty("server.host") + "\n"
+				+ EmailAddress + "\n"
+				+ Password + "\n"
+				;
+		try {
+			StafIntegration.mLog.info(StafIntegration.logInfo);
+			Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo),
+					Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public String zGetAccountStoreHost() {
