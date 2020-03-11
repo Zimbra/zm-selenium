@@ -237,6 +237,7 @@ public class ZimbraAdminAccount extends ZimbraAccount {
 					+ Password + "\n"
 					;
 			try {
+				StafIntegration.mLog.info(StafIntegration.logInfo);
 				Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo),
 						Charset.forName("UTF-8"), StandardOpenOption.APPEND);
 			} catch (IOException e) {
