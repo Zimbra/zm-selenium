@@ -425,14 +425,13 @@ public class ZimbraAccount {
 	 * are reset based on the GetAccountResponse
 	 */
 	public boolean exists() throws HarnessException {
-
 		// Check if the account exists
 		ZimbraAdminAccount.GlobalAdmin().soapSend("<GetAccountRequest xmlns='urn:zimbraAdmin'>" + "<account by='name'>"
 				+ EmailAddress + "</account>" + "</GetAccountRequest>");
 
 		Element[] getAccountResponse = ZimbraAdminAccount.GlobalAdmin().soapSelectNodes("//admin:GetAccountResponse");
 
-		if ((getAccountResponse == null) || (getAccountResponse.length == 0)) {
+		if (getAccountResponse == null || getAccountResponse.length == 0) {
 			logger.debug("Account does not exist");
 			return (false);
 		}
