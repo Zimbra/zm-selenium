@@ -95,10 +95,10 @@ public class EditAlias extends AdminCore {
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 						"<CreateCalendarResourceRequest xmlns='urn:zimbraAdmin'>"
 						+ "<name>" + resource.getEmailAddress() + "</name>"
+						+ "<password>" + ConfigProperties.getStringProperty("accountPassword") + "</password>"
 						+ "<a n='displayName'>" + resource.getName() + "</a>"
 						+ "<a n='zimbraCalResType'>" + "Location" + "</a>"
 						+ "<a n='description'>Created by Selenium automation</a>"
-						+ "<password>" + ConfigProperties.getStringProperty("accountPassword") + "</password>"
 						+ "</CreateCalendarResourceRequest>");
 		String resourceId = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectValue("//admin:CreateCalendarResourceResponse/admin:calresource", "id").toString();
 

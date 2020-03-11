@@ -1,0 +1,304 @@
+<html>
+<head>
+<title>TestNG:  accounts</title>
+<link href="../testng.css" rel="stylesheet" type="text/css" />
+<link href="../my-testng.css" rel="stylesheet" type="text/css" />
+
+<style type="text/css">
+.log { display: none;} 
+.stack-trace { display: none;} 
+</style>
+<script type="text/javascript">
+<!--
+function flip(e) {
+  current = e.style.display;
+  if (current == 'block') {
+    e.style.display = 'none';
+    return 0;
+  }
+  else {
+    e.style.display = 'block';
+    return 1;
+  }
+}
+
+function toggleBox(szDivId, elem, msg1, msg2)
+{
+  var res = -1;  if (document.getElementById) {
+    res = flip(document.getElementById(szDivId));
+  }
+  else if (document.all) {
+    // this is the way old msie versions work
+    res = flip(document.all[szDivId]);
+  }
+  if(elem) {
+    if(res == 0) elem.innerHTML = msg1; else elem.innerHTML = msg2;
+  }
+
+}
+
+function toggleAllBoxes() {
+  if (document.getElementsByTagName) {
+    d = document.getElementsByTagName('div');
+    for (i = 0; i < d.length; i++) {
+      if (d[i].className == 'log') {
+        flip(d[i]);
+      }
+    }
+  }
+}
+
+// -->
+</script>
+
+</head>
+<body>
+<h2 align='center'>accounts</h2><table border='1' align="center">
+<tr>
+<td>Tests passed/Failed/Skipped:</td><td>3/6/0</td>
+</tr><tr>
+<td>Started on:</td><td>Wed Mar 11 07:57:26 IST 2020</td>
+</tr>
+<tr><td>Total time:</td><td>1470 seconds (1470744 ms)</td>
+</tr><tr>
+<td>Included groups:</td><td>always smoke configure </td>
+</tr><tr>
+<td>Excluded groups:</td><td>non-cloud performance ng-module chat foss non-zimbrax skip drive </td>
+</tr>
+</table><p/>
+<small><i>(Hover the method name to see the test class name)</i></small><p/>
+<table width='100%' border='1' class='invocation-failed'>
+<tr><td colspan='4' align='center'><b>FAILED TESTS</b></td></tr>
+<tr><td><b>Test method</b></td>
+<td><b>Instance</b></td>
+<td width="10%"><b>Time (seconds)</b></td>
+<td width="30%"><b>Exception</b></td>
+</tr>
+<tr>
+<td title='com.zimbra.qa.selenium.projects.admin.tests.accounts.EditAccount.EditAccount_01()'><b>EditAccount_01</b><br>Test class:accounts<br>Test method:Edit Account name  - Manage Account View</td>
+<td>com.zimbra.qa.selenium.projects.admin.tests.accounts.EditAccount@6fb07ca7</td><td>195</td>
+<td><div><pre>com.zimbra.qa.selenium.framework.util.HarnessException: Unable to click on locator //div[@id='zl__ACCT_MANAGE']//div[starts-with(@id,'zli__DWT')]//td[starts-with(@id,'account_data_emailaddress_')]/nobr[.='tc15838939601229@testdomain.com']
+	at com.zimbra.qa.selenium.framework.ui.AbsSeleniumObject.sClick(AbsSeleniumObject.java:168)
+	at com.zimbra.qa.selenium.projects.admin.pages.PageManageAccounts.zListItem(PageManageAccounts.java:171)
+	at com.zimbra.qa.selenium.projects.admin.tests.accounts.EditAccount.EditAccount_01(EditAccount.java:69)
+	at com.zimbra.qa.selenium.framework.core.ExecuteHarnessMain.executeTests(ExecuteHarnessMain.java:506)
+	at com.zimbra.qa.selenium.framework.core.ExecuteHarnessMain.executeSelenium(ExecuteHarnessMain.java:440)
+	at com.zimbra.qa.selenium.framework.core.ExecuteHarnessMain.execute(ExecuteHarnessMain.java:389)
+	at com.zimbra.qa.selenium.staf.StafIntegration.handleExecute(StafIntegration.java:276)
+	at com.zimbra.qa.selenium.staf.StafIntegration.acceptRequest(StafIntegration.java:118)
+	at com.ibm.staf.service.STAFServiceHelper.callService(STAFServiceHelper.java:349)
+Caused by: com.zimbra.qa.selenium.framework.util.HarnessException: WebElement is null: //div[@id='zl__ACCT_MANAGE']//div[starts-with(@id,'zli__DWT')]//td[starts-with(@id,'account_data_emailaddress_')]/nobr[.='tc15838939601229@testdomain.com']
+	at com.zimbra.qa.selenium.framework.ui.AbsSeleniumObject.getElement(AbsSeleniumObject.java:1696)
+	at com.zimbra.qa.selenium.framework.ui.AbsSeleniumObject.sClick(AbsSeleniumObject.java:163)
+	... 28 more
+... Removed 20 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace1330696974", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1330696974'><pre>com.zimbra.qa.selenium.framework.util.HarnessException: Unable to click on locator //div[@id='zl__ACCT_MANAGE']//div[starts-with(@id,'zli__DWT')]//td[starts-with(@id,'account_data_emailaddress_')]/nobr[.='tc15838939601229@testdomain.com']
+	at com.zimbra.qa.selenium.framework.ui.AbsSeleniumObject.sClick(AbsSeleniumObject.java:168)
+	at com.zimbra.qa.selenium.projects.admin.pages.PageManageAccounts.zListItem(PageManageAccounts.java:171)
+	at com.zimbra.qa.selenium.projects.admin.tests.accounts.EditAccount.EditAccount_01(EditAccount.java:69)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.testng.internal.MethodHelper.invokeMethod(MethodHelper.java:643)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:559)
+	at org.testng.internal.Invoker.retryFailed(Invoker.java:867)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1049)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:137)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:121)
+	at org.testng.TestRunner.runWorkers(TestRunner.java:1030)
+	at org.testng.TestRunner.privateRun(TestRunner.java:709)
+	at org.testng.TestRunner.run(TestRunner.java:579)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:331)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:326)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:288)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:193)
+	at org.testng.TestNG.createAndRunSuiteRunners(TestNG.java:910)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:879)
+	at org.testng.TestNG.run(TestNG.java:787)
+	at com.zimbra.qa.selenium.framework.core.ExecuteHarnessMain.executeTests(ExecuteHarnessMain.java:506)
+	at com.zimbra.qa.selenium.framework.core.ExecuteHarnessMain.executeSelenium(ExecuteHarnessMain.java:440)
+	at com.zimbra.qa.selenium.framework.core.ExecuteHarnessMain.execute(ExecuteHarnessMain.java:389)
+	at com.zimbra.qa.selenium.staf.StafIntegration.handleExecute(StafIntegration.java:276)
+	at com.zimbra.qa.selenium.staf.StafIntegration.acceptRequest(StafIntegration.java:118)
+	at com.ibm.staf.service.STAFServiceHelper.callService(STAFServiceHelper.java:349)
+Caused by: com.zimbra.qa.selenium.framework.util.HarnessException: WebElement is null: //div[@id='zl__ACCT_MANAGE']//div[starts-with(@id,'zli__DWT')]//td[starts-with(@id,'account_data_emailaddress_')]/nobr[.='tc15838939601229@testdomain.com']
+	at com.zimbra.qa.selenium.framework.ui.AbsSeleniumObject.getElement(AbsSeleniumObject.java:1696)
+	at com.zimbra.qa.selenium.framework.ui.AbsSeleniumObject.sClick(AbsSeleniumObject.java:163)
+	... 28 more
+</pre></div></td>
+</tr>
+<tr>
+<td title='com.zimbra.qa.selenium.projects.admin.tests.accounts.EditAccount.EditAccount_02()'><b>EditAccount_02</b><br>Test class:accounts<br>Test method:Edit account name -- right click</td>
+<td>com.zimbra.qa.selenium.projects.admin.tests.accounts.EditAccount@6fb07ca7</td><td>195</td>
+<td><div><pre>com.zimbra.qa.selenium.framework.util.HarnessException: WebElement is null: //div[@id='zl__ACCT_MANAGE']//div[starts-with(@id,'zli__DWT')]//td[starts-with(@id,'account_data_emailaddress_')]/nobr[.='tc158389440244311@testdomain.com']
+	at com.zimbra.qa.selenium.framework.ui.AbsSeleniumObject.getElement(AbsSeleniumObject.java:1696)
+	at com.zimbra.qa.selenium.framework.ui.AbsSeleniumObject.sRightClickAt(AbsSeleniumObject.java:261)
+	at com.zimbra.qa.selenium.projects.admin.pages.PageManageAccounts.zListItem(PageManageAccounts.java:173)
+	at com.zimbra.qa.selenium.projects.admin.tests.accounts.EditAccount.EditAccount_02(EditAccount.java:117)
+	at com.zimbra.qa.selenium.framework.core.ExecuteHarnessMain.executeTests(ExecuteHarnessMain.java:506)
+	at com.zimbra.qa.selenium.framework.core.ExecuteHarnessMain.executeSelenium(ExecuteHarnessMain.java:440)
+	at com.zimbra.qa.selenium.framework.core.ExecuteHarnessMain.execute(ExecuteHarnessMain.java:389)
+	at com.zimbra.qa.selenium.staf.StafIntegration.handleExecute(StafIntegration.java:276)
+	at com.zimbra.qa.selenium.staf.StafIntegration.acceptRequest(StafIntegration.java:118)
+	at com.ibm.staf.service.STAFServiceHelper.callService(STAFServiceHelper.java:349)
+... Removed 20 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace1898736820", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1898736820'><pre>com.zimbra.qa.selenium.framework.util.HarnessException: WebElement is null: //div[@id='zl__ACCT_MANAGE']//div[starts-with(@id,'zli__DWT')]//td[starts-with(@id,'account_data_emailaddress_')]/nobr[.='tc158389440244311@testdomain.com']
+	at com.zimbra.qa.selenium.framework.ui.AbsSeleniumObject.getElement(AbsSeleniumObject.java:1696)
+	at com.zimbra.qa.selenium.framework.ui.AbsSeleniumObject.sRightClickAt(AbsSeleniumObject.java:261)
+	at com.zimbra.qa.selenium.projects.admin.pages.PageManageAccounts.zListItem(PageManageAccounts.java:173)
+	at com.zimbra.qa.selenium.projects.admin.tests.accounts.EditAccount.EditAccount_02(EditAccount.java:117)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.testng.internal.MethodHelper.invokeMethod(MethodHelper.java:643)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:559)
+	at org.testng.internal.Invoker.retryFailed(Invoker.java:867)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1049)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:137)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:121)
+	at org.testng.TestRunner.runWorkers(TestRunner.java:1030)
+	at org.testng.TestRunner.privateRun(TestRunner.java:709)
+	at org.testng.TestRunner.run(TestRunner.java:579)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:331)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:326)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:288)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:193)
+	at org.testng.TestNG.createAndRunSuiteRunners(TestNG.java:910)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:879)
+	at org.testng.TestNG.run(TestNG.java:787)
+	at com.zimbra.qa.selenium.framework.core.ExecuteHarnessMain.executeTests(ExecuteHarnessMain.java:506)
+	at com.zimbra.qa.selenium.framework.core.ExecuteHarnessMain.executeSelenium(ExecuteHarnessMain.java:440)
+	at com.zimbra.qa.selenium.framework.core.ExecuteHarnessMain.execute(ExecuteHarnessMain.java:389)
+	at com.zimbra.qa.selenium.staf.StafIntegration.handleExecute(StafIntegration.java:276)
+	at com.zimbra.qa.selenium.staf.StafIntegration.acceptRequest(StafIntegration.java:118)
+	at com.ibm.staf.service.STAFServiceHelper.callService(STAFServiceHelper.java:349)
+</pre></div></td>
+</tr>
+<tr>
+<td title='com.zimbra.qa.selenium.projects.admin.tests.accounts.ViewMail.ViewMail_01()'><b>ViewMail_01</b><br>Test class:accounts<br>Test method:View mail - manage account >> Gearbox >> edit account >>  View mail</td>
+<td>com.zimbra.qa.selenium.projects.admin.tests.accounts.ViewMail@41793d49</td><td>26</td>
+<td><div><pre>com.zimbra.qa.selenium.framework.util.HarnessException: Unable to send SOAP to https://129.213.22.58:443/service/soap/
+	at com.zimbra.qa.selenium.framework.util.ZimbraAccount$SoapClient.sendSOAP(ZimbraAccount.java:980)
+	at com.zimbra.qa.selenium.framework.util.ZimbraAccount$SoapClient.sendSOAP(ZimbraAccount.java:957)
+	at com.zimbra.qa.selenium.framework.util.ZimbraAccount.soapSend(ZimbraAccount.java:797)
+	at com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount.soapSend(ZimbraAdminAccount.java:200)
+	at com.zimbra.qa.selenium.projects.admin.tests.accounts.ViewMail.ViewMail_01(ViewMail.java:66)
+	at com.zimbra.qa.selenium.framework.core.ExecuteHarnessMain.executeTests(ExecuteHarnessMain.java:506)
+	at com.zimbra.qa.selenium.framework.core.ExecuteHarnessMain.executeSelenium(ExecuteHarnessMain.java:440)
+	at com.zimbra.qa.selenium.framework.core.ExecuteHarnessMain.execute(ExecuteHarnessMain.java:389)
+	at com.zimbra.qa.selenium.staf.StafIntegration.handleExecute(StafIntegration.java:276)
+	at com.zimbra.qa.selenium.staf.StafIntegration.acceptRequest(StafIntegration.java:118)
+	at com.ibm.staf.service.STAFServiceHelper.callService(STAFServiceHelper.java:349)
+Caused by: java.net.ConnectException: Connection timed out: connect
+	at java.net.DualStackPlainSocketImpl.waitForConnect(Native Method)
+	at java.net.DualStackPlainSocketImpl.socketConnect(Unknown Source)
+	at java.net.AbstractPlainSocketImpl.doConnect(Unknown Source)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(Unknown Source)
+	at java.net.AbstractPlainSocketImpl.connect(Unknown Source)
+	at java.net.PlainSocketImpl.connect(Unknown Source)
+	at java.net.SocksSocketImpl.connect(Unknown Source)
+	at java.net.Socket.connect(Unknown Source)
+	at sun.security.ssl.SSLSocketImpl.connect(Unknown Source)
+	at com.zimbra.common.net.CustomSSLSocket.connect(CustomSSLSocket.java:311)
+	at com.zimbra.common.net.CustomSSLSocket.connect(CustomSSLSocket.java:305)
+	at com.zimbra.common.net.CustomSSLSocketFactory.createSocket(CustomSSLSocketFactory.java:116)
+	at com.zimbra.common.net.CustomSSLSocketFactory.createSocket(CustomSSLSocketFactory.java:102)
+	at com.zimbra.common.net.ProtocolSocketFactoryWrapper.createSocket(ProtocolSocketFactoryWrapper.java:51)
+	at org.apache.commons.httpclient.HttpConnection.open(HttpConnection.java:707)
+	at org.apache.commons.httpclient.HttpMethodDirector.executeWithRetry(HttpMethodDirector.java:387)
+	at org.apache.commons.httpclient.HttpMethodDirector.executeMethod(HttpMethodDirector.java:171)
+	at org.apache.commons.httpclient.HttpClient.executeMethod(HttpClient.java:397)
+	at org.apache.commons.httpclient.HttpClient.executeMethod(HttpClient.java:323)
+	at com.zimbra.qa.selenium.framework.util.ZimbraAccount$ProxySoapHttpTransport.invoke(ZimbraAccount.java:1413)
+	at com.zimbra.common.soap.SoapTransport.invoke(SoapTransport.java:446)
+	at com.zimbra.common.soap.SoapTransport.invokeRaw(SoapTransport.java:420)
+	at com.zimbra.qa.selenium.framework.util.ZimbraAccount$SoapClient.sendSOAP(ZimbraAccount.java:978)
+	... 30 more
+... Removed 20 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace1259080247", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1259080247'><pre>com.zimbra.qa.selenium.framework.util.HarnessException: Unable to send SOAP to https://129.213.22.58:443/service/soap/
+	at com.zimbra.qa.selenium.framework.util.ZimbraAccount$SoapClient.sendSOAP(ZimbraAccount.java:980)
+	at com.zimbra.qa.selenium.framework.util.ZimbraAccount$SoapClient.sendSOAP(ZimbraAccount.java:957)
+	at com.zimbra.qa.selenium.framework.util.ZimbraAccount.soapSend(ZimbraAccount.java:797)
+	at com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount.soapSend(ZimbraAdminAccount.java:200)
+	at com.zimbra.qa.selenium.projects.admin.tests.accounts.ViewMail.ViewMail_01(ViewMail.java:66)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.testng.internal.MethodHelper.invokeMethod(MethodHelper.java:643)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:559)
+	at org.testng.internal.Invoker.retryFailed(Invoker.java:867)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1049)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:137)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:121)
+	at org.testng.TestRunner.runWorkers(TestRunner.java:1030)
+	at org.testng.TestRunner.privateRun(TestRunner.java:709)
+	at org.testng.TestRunner.run(TestRunner.java:579)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:331)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:326)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:288)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:193)
+	at org.testng.TestNG.createAndRunSuiteRunners(TestNG.java:910)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:879)
+	at org.testng.TestNG.run(TestNG.java:787)
+	at com.zimbra.qa.selenium.framework.core.ExecuteHarnessMain.executeTests(ExecuteHarnessMain.java:506)
+	at com.zimbra.qa.selenium.framework.core.ExecuteHarnessMain.executeSelenium(ExecuteHarnessMain.java:440)
+	at com.zimbra.qa.selenium.framework.core.ExecuteHarnessMain.execute(ExecuteHarnessMain.java:389)
+	at com.zimbra.qa.selenium.staf.StafIntegration.handleExecute(StafIntegration.java:276)
+	at com.zimbra.qa.selenium.staf.StafIntegration.acceptRequest(StafIntegration.java:118)
+	at com.ibm.staf.service.STAFServiceHelper.callService(STAFServiceHelper.java:349)
+Caused by: java.net.ConnectException: Connection timed out: connect
+	at java.net.DualStackPlainSocketImpl.waitForConnect(Native Method)
+	at java.net.DualStackPlainSocketImpl.socketConnect(Unknown Source)
+	at java.net.AbstractPlainSocketImpl.doConnect(Unknown Source)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(Unknown Source)
+	at java.net.AbstractPlainSocketImpl.connect(Unknown Source)
+	at java.net.PlainSocketImpl.connect(Unknown Source)
+	at java.net.SocksSocketImpl.connect(Unknown Source)
+	at java.net.Socket.connect(Unknown Source)
+	at sun.security.ssl.SSLSocketImpl.connect(Unknown Source)
+	at com.zimbra.common.net.CustomSSLSocket.connect(CustomSSLSocket.java:311)
+	at com.zimbra.common.net.CustomSSLSocket.connect(CustomSSLSocket.java:305)
+	at com.zimbra.common.net.CustomSSLSocketFactory.createSocket(CustomSSLSocketFactory.java:116)
+	at com.zimbra.common.net.CustomSSLSocketFactory.createSocket(CustomSSLSocketFactory.java:102)
+	at com.zimbra.common.net.ProtocolSocketFactoryWrapper.createSocket(ProtocolSocketFactoryWrapper.java:51)
+	at org.apache.commons.httpclient.HttpConnection.open(HttpConnection.java:707)
+	at org.apache.commons.httpclient.HttpMethodDirector.executeWithRetry(HttpMethodDirector.java:387)
+	at org.apache.commons.httpclient.HttpMethodDirector.executeMethod(HttpMethodDirector.java:171)
+	at org.apache.commons.httpclient.HttpClient.executeMethod(HttpClient.java:397)
+	at org.apache.commons.httpclient.HttpClient.executeMethod(HttpClient.java:323)
+	at com.zimbra.qa.selenium.framework.util.ZimbraAccount$ProxySoapHttpTransport.invoke(ZimbraAccount.java:1413)
+	at com.zimbra.common.soap.SoapTransport.invoke(SoapTransport.java:446)
+	at com.zimbra.common.soap.SoapTransport.invokeRaw(SoapTransport.java:420)
+	at com.zimbra.qa.selenium.framework.util.ZimbraAccount$SoapClient.sendSOAP(ZimbraAccount.java:978)
+	... 30 more
+</pre></div></td>
+</tr>
+</table><p>
+<table width='100%' border='1' class='invocation-passed'>
+<tr><td colspan='4' align='center'><b>PASSED TESTS</b></td></tr>
+<tr><td><b>Test method</b></td>
+<td><b>Instance</b></td>
+<td width="10%"><b>Time (seconds)</b></td>
+<td width="30%"><b>Exception</b></td>
+</tr>
+<tr>
+<td title='com.zimbra.qa.selenium.projects.admin.tests.accounts.CreateAccount.CreateAccount_01()'><b>CreateAccount_01</b><br>Test class:accounts<br>Test method:Create a basic account using New->Account</td>
+<td>com.zimbra.qa.selenium.projects.admin.tests.accounts.CreateAccount@2d06ba3b</td><td>32</td>
+<td></td>
+</tr>
+<tr>
+<td title='com.zimbra.qa.selenium.projects.admin.tests.accounts.GetAccount.GetAccount_01()'><b>GetAccount_01</b><br>Test class:accounts<br>Test method:Verify created account is displayed in UI -- Manage Account View.</td>
+<td>com.zimbra.qa.selenium.projects.admin.tests.accounts.GetAccount@47adf414</td><td>363</td>
+<td></td>
+</tr>
+<tr>
+<td title='com.zimbra.qa.selenium.projects.admin.tests.accounts.NavigateAccount.NavigateAccount_01()'><b>NavigateAccount_01</b><br>Test class:accounts<br>Test method:Navigate to Accounts</td>
+<td>com.zimbra.qa.selenium.projects.admin.tests.accounts.NavigateAccount@59369336</td><td>0</td>
+<td></td>
+</tr>
+</table><p>
+</body>
+</html>

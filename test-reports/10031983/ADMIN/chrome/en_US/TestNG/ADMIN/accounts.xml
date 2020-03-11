@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="accounts" failures="3" tests="6" time="1470.744" errors="0">
+  <properties/>
+  <testcase name="CreateAccount_01" time="32.225" classname="com.zimbra.qa.selenium.projects.admin.tests.accounts.CreateAccount"/>
+  <testcase name="EditAccount_01" time="195.892" classname="com.zimbra.qa.selenium.projects.admin.tests.accounts.EditAccount">
+    <failure type="com.zimbra.qa.selenium.framework.util.HarnessException" message="Unable to click on locator //div[@id=&amp;apos;zl__ACCT_MANAGE&amp;apos;]//div[starts-with(@id,&amp;apos;zli__DWT&amp;apos;)]//td[starts-with(@id,&amp;apos;account_data_emailaddress_&amp;apos;)]/nobr[.=&amp;apos;tc15838939601229@testdomain.com&amp;apos;]">
+      <![CDATA[com.zimbra.qa.selenium.framework.util.HarnessException: Unable to click on locator //div[@id='zl__ACCT_MANAGE']//div[starts-with(@id,'zli__DWT')]//td[starts-with(@id,'account_data_emailaddress_')]/nobr[.='tc15838939601229@testdomain.com']
+	at com.zimbra.qa.selenium.framework.ui.AbsSeleniumObject.sClick(AbsSeleniumObject.java:168)
+	at com.zimbra.qa.selenium.projects.admin.pages.PageManageAccounts.zListItem(PageManageAccounts.java:171)
+	at com.zimbra.qa.selenium.projects.admin.tests.accounts.EditAccount.EditAccount_01(EditAccount.java:69)
+	at com.zimbra.qa.selenium.framework.core.ExecuteHarnessMain.executeTests(ExecuteHarnessMain.java:506)
+	at com.zimbra.qa.selenium.framework.core.ExecuteHarnessMain.executeSelenium(ExecuteHarnessMain.java:440)
+	at com.zimbra.qa.selenium.framework.core.ExecuteHarnessMain.execute(ExecuteHarnessMain.java:389)
+	at com.zimbra.qa.selenium.staf.StafIntegration.handleExecute(StafIntegration.java:276)
+	at com.zimbra.qa.selenium.staf.StafIntegration.acceptRequest(StafIntegration.java:118)
+	at com.ibm.staf.service.STAFServiceHelper.callService(STAFServiceHelper.java:349)
+Caused by: com.zimbra.qa.selenium.framework.util.HarnessException: WebElement is null: //div[@id='zl__ACCT_MANAGE']//div[starts-with(@id,'zli__DWT')]//td[starts-with(@id,'account_data_emailaddress_')]/nobr[.='tc15838939601229@testdomain.com']
+	at com.zimbra.qa.selenium.framework.ui.AbsSeleniumObject.getElement(AbsSeleniumObject.java:1696)
+	at com.zimbra.qa.selenium.framework.ui.AbsSeleniumObject.sClick(AbsSeleniumObject.java:163)
+	... 28 more
+... Removed 20 stack frames]]>
+    </failure>
+  </testcase>
+  <testcase name="EditAccount_02" time="195.576" classname="com.zimbra.qa.selenium.projects.admin.tests.accounts.EditAccount">
+    <failure type="com.zimbra.qa.selenium.framework.util.HarnessException" message="WebElement is null: //div[@id=&amp;apos;zl__ACCT_MANAGE&amp;apos;]//div[starts-with(@id,&amp;apos;zli__DWT&amp;apos;)]//td[starts-with(@id,&amp;apos;account_data_emailaddress_&amp;apos;)]/nobr[.=&amp;apos;tc158389440244311@testdomain.com&amp;apos;]">
+      <![CDATA[com.zimbra.qa.selenium.framework.util.HarnessException: WebElement is null: //div[@id='zl__ACCT_MANAGE']//div[starts-with(@id,'zli__DWT')]//td[starts-with(@id,'account_data_emailaddress_')]/nobr[.='tc158389440244311@testdomain.com']
+	at com.zimbra.qa.selenium.framework.ui.AbsSeleniumObject.getElement(AbsSeleniumObject.java:1696)
+	at com.zimbra.qa.selenium.framework.ui.AbsSeleniumObject.sRightClickAt(AbsSeleniumObject.java:261)
+	at com.zimbra.qa.selenium.projects.admin.pages.PageManageAccounts.zListItem(PageManageAccounts.java:173)
+	at com.zimbra.qa.selenium.projects.admin.tests.accounts.EditAccount.EditAccount_02(EditAccount.java:117)
+	at com.zimbra.qa.selenium.framework.core.ExecuteHarnessMain.executeTests(ExecuteHarnessMain.java:506)
+	at com.zimbra.qa.selenium.framework.core.ExecuteHarnessMain.executeSelenium(ExecuteHarnessMain.java:440)
+	at com.zimbra.qa.selenium.framework.core.ExecuteHarnessMain.execute(ExecuteHarnessMain.java:389)
+	at com.zimbra.qa.selenium.staf.StafIntegration.handleExecute(StafIntegration.java:276)
+	at com.zimbra.qa.selenium.staf.StafIntegration.acceptRequest(StafIntegration.java:118)
+	at com.ibm.staf.service.STAFServiceHelper.callService(STAFServiceHelper.java:349)
+... Removed 20 stack frames]]>
+    </failure>
+  </testcase>
+  <testcase name="GetAccount_01" time="363.376" classname="com.zimbra.qa.selenium.projects.admin.tests.accounts.GetAccount"/>
+  <testcase name="NavigateAccount_01" time="0.501" classname="com.zimbra.qa.selenium.projects.admin.tests.accounts.NavigateAccount"/>
+  <testcase name="ViewMail_01" time="26.656" classname="com.zimbra.qa.selenium.projects.admin.tests.accounts.ViewMail">
+    <failure type="com.zimbra.qa.selenium.framework.util.HarnessException" message="Unable to send SOAP to https://129.213.22.58:443/service/soap/">
+      <![CDATA[com.zimbra.qa.selenium.framework.util.HarnessException: Unable to send SOAP to https://129.213.22.58:443/service/soap/
+	at com.zimbra.qa.selenium.framework.util.ZimbraAccount$SoapClient.sendSOAP(ZimbraAccount.java:980)
+	at com.zimbra.qa.selenium.framework.util.ZimbraAccount$SoapClient.sendSOAP(ZimbraAccount.java:957)
+	at com.zimbra.qa.selenium.framework.util.ZimbraAccount.soapSend(ZimbraAccount.java:797)
+	at com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount.soapSend(ZimbraAdminAccount.java:200)
+	at com.zimbra.qa.selenium.projects.admin.tests.accounts.ViewMail.ViewMail_01(ViewMail.java:66)
+	at com.zimbra.qa.selenium.framework.core.ExecuteHarnessMain.executeTests(ExecuteHarnessMain.java:506)
+	at com.zimbra.qa.selenium.framework.core.ExecuteHarnessMain.executeSelenium(ExecuteHarnessMain.java:440)
+	at com.zimbra.qa.selenium.framework.core.ExecuteHarnessMain.execute(ExecuteHarnessMain.java:389)
+	at com.zimbra.qa.selenium.staf.StafIntegration.handleExecute(StafIntegration.java:276)
+	at com.zimbra.qa.selenium.staf.StafIntegration.acceptRequest(StafIntegration.java:118)
+	at com.ibm.staf.service.STAFServiceHelper.callService(STAFServiceHelper.java:349)
+Caused by: java.net.ConnectException: Connection timed out: connect
+	at java.net.DualStackPlainSocketImpl.waitForConnect(Native Method)
+	at java.net.DualStackPlainSocketImpl.socketConnect(Unknown Source)
+	at java.net.AbstractPlainSocketImpl.doConnect(Unknown Source)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(Unknown Source)
+	at java.net.AbstractPlainSocketImpl.connect(Unknown Source)
+	at java.net.PlainSocketImpl.connect(Unknown Source)
+	at java.net.SocksSocketImpl.connect(Unknown Source)
+	at java.net.Socket.connect(Unknown Source)
+	at sun.security.ssl.SSLSocketImpl.connect(Unknown Source)
+	at com.zimbra.common.net.CustomSSLSocket.connect(CustomSSLSocket.java:311)
+	at com.zimbra.common.net.CustomSSLSocket.connect(CustomSSLSocket.java:305)
+	at com.zimbra.common.net.CustomSSLSocketFactory.createSocket(CustomSSLSocketFactory.java:116)
+	at com.zimbra.common.net.CustomSSLSocketFactory.createSocket(CustomSSLSocketFactory.java:102)
+	at com.zimbra.common.net.ProtocolSocketFactoryWrapper.createSocket(ProtocolSocketFactoryWrapper.java:51)
+	at org.apache.commons.httpclient.HttpConnection.open(HttpConnection.java:707)
+	at org.apache.commons.httpclient.HttpMethodDirector.executeWithRetry(HttpMethodDirector.java:387)
+	at org.apache.commons.httpclient.HttpMethodDirector.executeMethod(HttpMethodDirector.java:171)
+	at org.apache.commons.httpclient.HttpClient.executeMethod(HttpClient.java:397)
+	at org.apache.commons.httpclient.HttpClient.executeMethod(HttpClient.java:323)
+	at com.zimbra.qa.selenium.framework.util.ZimbraAccount$ProxySoapHttpTransport.invoke(ZimbraAccount.java:1413)
+	at com.zimbra.common.soap.SoapTransport.invoke(SoapTransport.java:446)
+	at com.zimbra.common.soap.SoapTransport.invokeRaw(SoapTransport.java:420)
+	at com.zimbra.qa.selenium.framework.util.ZimbraAccount$SoapClient.sendSOAP(ZimbraAccount.java:978)
+	... 30 more
+... Removed 20 stack frames]]>
+    </failure>
+  </testcase>
+</testsuite>
