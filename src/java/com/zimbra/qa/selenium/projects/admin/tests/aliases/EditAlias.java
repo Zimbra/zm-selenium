@@ -47,7 +47,6 @@ public class EditAlias extends AdminCore {
 			groups = { "bhr" })
 
 	public void EditAlias_01() throws HarnessException {
-
 		AccountItem target = new AccountItem("tc" + ConfigProperties.getUniqueString(), ConfigProperties.getStringProperty("testdomain"));
 		AccountItem.createUsingSOAP(target);
 
@@ -89,8 +88,7 @@ public class EditAlias extends AdminCore {
 			groups = { "sanity" })
 
 	public void EditAlias_02() throws HarnessException {
-
-		//Create calendar resource
+		// Create calendar resource
 		ResourceItem resource = new ResourceItem();
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 						"<CreateCalendarResourceRequest xmlns='urn:zimbraAdmin'>"

@@ -51,7 +51,6 @@ public class GetAlias extends AdminCore {
 			groups = { "bhr" })
 
 	public void GetAlias_01() throws HarnessException {
-
 		AccountItem target = new AccountItem("tc" + ConfigProperties.getUniqueString(), ConfigProperties.getStringProperty("testdomain"));
 		AccountItem.createUsingSOAP(target);
 
@@ -96,7 +95,6 @@ public class GetAlias extends AdminCore {
 			groups = { "sanity" })
 
 	public void GetAlias_02() throws HarnessException {
-
 		AccountItem target = new AccountItem("tc" + ConfigProperties.getUniqueString(), ConfigProperties.getStringProperty("testdomain"));
 		AccountItem.createUsingSOAP(target);
 

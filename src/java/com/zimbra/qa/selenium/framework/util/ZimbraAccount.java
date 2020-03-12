@@ -663,7 +663,6 @@ public class ZimbraAccount {
 		this.accountIsDirty = true;
 
 		return (this);
-
 	}
 
 	// Modify user preferences using ModifyPrefsRequest with the default SERVER host destination type
@@ -678,8 +677,7 @@ public class ZimbraAccount {
 		for (Map.Entry<String, String> entry : preferences.entrySet()) {
 			sb.append(String.format("<pref name='%s'>%s</pref>", entry.getKey(), entry.getValue()));
 
-			// If the locale preference is being changed, then remember the
-			// value
+			// If the locale preference is being changed, then remember the value
 			if (entry.getKey().equals("zimbraPrefLocale")) {
 				setLocalePreference(entry.getValue());
 			}
@@ -709,7 +707,6 @@ public class ZimbraAccount {
 
 	// Get all the available zimlets through SOAP from either client or server
 	public String[] getAvailableZimlets() throws HarnessException {
-
 		String[] output = null;
 
 		try {
@@ -733,7 +730,6 @@ public class ZimbraAccount {
 		accountIsDirty = true;
 
 		return output;
-
 	}
 
 	// Get a user preference value
@@ -891,12 +887,10 @@ public class ZimbraAccount {
 		protected Element requestBody;
 
 		private static final Element[] EMPTY_ELEMENT_ARRAY = new Element[0];
-
 		protected URI mURI = null;
 
 		protected SoapProtocol mSoapProto = null;
 		protected ProxySoapHttpTransport mTransport = null;
-
 		private static boolean isEasySslInitiated = false;
 
 		// Create a SOAP 1.2 client
@@ -914,14 +908,6 @@ public class ZimbraAccount {
 		// Set the Zimbra AuthToken
 		public String setAuthToken(String token) {
 			if (token == null) {
-
-				// If the authToken is null, then we need to
-				// also clear the mTransport, which has a cookie
-				// associated with the authToken.
-				//
-				// Clearing the current URI will have the same
-				// effect.
-				//
 				mURI = null;
 			}
 
@@ -962,15 +948,11 @@ public class ZimbraAccount {
 						e.addAttribute("seq", String.valueOf(sequenceId));
 					}
 				}
-
 			}
 			return (requestContext);
 		}
 
-		/**
-		 * Send the specified Zimbra SOAP request to the specified host with the default
-		 * SOAP context
-		 */
+		// Send the specified Zimbra SOAP request to the specified host with the default SOAP context
 		public Element sendSOAP(String request) throws HarnessException {
 			try {
 				setContext(AuthToken, SessionId, SequenceNum);
@@ -982,12 +964,8 @@ public class ZimbraAccount {
 			}
 		}
 
-		/**
-		 * Send a Zimbra SOAP context/request to the host with the default SERVER type
-		 * destination host
-		 */
+		// Send a Zimbra SOAP context/request to the host with the default SERVER type destination host
 		public Element sendSOAP(Element context, Element request) throws HarnessException {
-
 			setTransport(request);
 
 			// Remember the context, request, envelope and response for logging purposes
@@ -1017,7 +995,6 @@ public class ZimbraAccount {
 		 * the postfix queue. Check that the queue is empty before proceeding
 		 */
 		public void doPostfixDelay() throws HarnessException {
-
 			// If disabled, don't do anything
 			boolean enabled = ConfigProperties.getStringProperty("postfix.check", "true").equals("true");
 			if (!enabled) {
@@ -1051,7 +1028,6 @@ public class ZimbraAccount {
 					break;
 				}
 			}
-
 		}
 
 		// Return an array of elements from the last received SOAP response that match the xpath
@@ -1084,7 +1060,6 @@ public class ZimbraAccount {
 						zimbraElements.add(Element.convertDOM((org.dom4j.Element) o));
 					}
 				}
-
 				return (zimbraElements.toArray(new Element[zimbraElements.size()]));
 
 			} catch (InvalidXPathException e) {
@@ -1143,7 +1118,6 @@ public class ZimbraAccount {
 			if (setURI(request)) {
 
 				synchronized (mSoapProto) {
-
 					if (mTransport != null) {
 						logger.debug("mTransport shutting down");
 						mTransport.shutdown();
@@ -1280,36 +1254,12 @@ public class ZimbraAccount {
 			this(uri, null, 0);
 		}
 
-		/**
-		 * Create a new SoapHttpTransport object for the specified URI, with specific
-		 * proxy information.
-		 *
-		 * @param uri
-		 *            the origin server URL
-		 * @param proxyHost
-		 *            hostname of proxy
-		 * @param proxyPort
-		 *            port of proxy
-		 */
+		// Create a new SoapHttpTransport object for the specified URI, with specific proxy information
 		public ProxySoapHttpTransport(String uri, String proxyHost, int proxyPort) {
 			this(uri, proxyHost, proxyPort, null, null);
 		}
 
-		/**
-		 * Create a new SoapHttpTransport object for the specified URI, with specific
-		 * proxy information including proxy auth credentials.
-		 *
-		 * @param uri
-		 *            the origin server URL
-		 * @param proxyHost
-		 *            hostname of proxy
-		 * @param proxyPort
-		 *            port of proxy
-		 * @param proxyUser
-		 *            username for proxy auth
-		 * @param proxyPass
-		 *            password for proxy auth
-		 */
+		// Create a new SoapHttpTransport object for the specified URI, with specific proxy information including proxy auth credentials.
 		public ProxySoapHttpTransport(String uri, String proxyHost, int proxyPort, String proxyUser, String proxyPass) {
 			super();
 			mClient = new HttpClient(sDefaultParams);
@@ -1328,10 +1278,6 @@ public class ZimbraAccount {
 		 * Creates a new SoapHttpTransport that supports multiple connections to the
 		 * specified URI. Multiple threads can call the invoke() method safely without
 		 * synchronization.
-		 *
-		 * @param uri
-		 * @param maxConnections
-		 *            Note RFC2616 recommends the default of 2.
 		 */
 		public ProxySoapHttpTransport(String uri, int maxConnections, boolean connectionStaleCheckEnabled) {
 			super();
@@ -1363,13 +1309,7 @@ public class ZimbraAccount {
 			return mUri;
 		}
 
-		/**
-		 * The number of times the invoke method retries when it catches a
-		 * RetryableIOException.
-		 *
-		 * <p>
-		 * Default value is <code>3</code>.
-		 */
+		// The number of times the invoke method retries when it catches a RetryableIOException
 		public void setRetryCount(int retryCount) {
 			this.mRetryCount = retryCount;
 		}
@@ -1438,28 +1378,20 @@ public class ZimbraAccount {
 					}
 				}
 
-				// Read the response body. Use the stream API instead of the
-				// byte[] one
-				// to avoid HTTPClient whining about a large response.
 				byte[] responseBody = ByteUtil.getContent(method.getResponseBodyAsStream(),
 						(int) method.getResponseContentLength());
 
-				// Deal with the response.
-				// Use caution: ensure correct character encoding and is not
-				// binary data
 				String responseStr = SoapProtocol.toString(responseBody);
 
 				try {
 					return parseSoapResponse(responseStr, raw);
 				} catch (SoapFaultException x) {
-					// attach request/response to the exception and rethrow for
-					// downstream consumption
 					x.setFaultRequest(soapMessage);
 					x.setFaultResponse(responseStr);
 					throw x;
 				}
+
 			} finally {
-				// Release the connection.
 				if (method != null)
 					method.releaseConnection();
 			}
@@ -1479,10 +1411,6 @@ public class ZimbraAccount {
 			} catch (XmlParseException e) {
 				throw new SoapParseException("unable to parse response", envelopeStr);
 			}
-
-			// if (mDebugListener != null)
-			// mDebugListener.receiveSoapMessage(env);
-
 			return raw ? env : extractBodyElement(env);
 		}
 

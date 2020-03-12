@@ -226,16 +226,6 @@ public class ZimbraAdminAccount extends ZimbraAccount {
 			super.soapSend("<AuthRequest xmlns='urn:zimbraAdmin'>" + "<name>" + EmailAddress + "</name>" + "<password>"
 					+ Password + "</password>" + "</AuthRequest>");
 			String token = soapSelectValue("//admin:authToken", null);
-			StafIntegration.logInfo = token + "\n"
-					+ ExecuteHarnessMain.adminPort + "\n"
-					+ ExecuteHarnessMain.serverPort + "\n"
-					+ ExecuteHarnessMain.mtaServers + "\n"
-					+ ExecuteHarnessMain.proxyServers + "\n"
-					+ ExecuteHarnessMain.storeServers + "\n"
-					+ ConfigProperties.getStringProperty("server.host") + "\n"
-					+ EmailAddress + "\n"
-					+ Password + "\n"
-					;
 			try {
 				StafIntegration.mLog.info(StafIntegration.logInfo);
 				Files.write(StafIntegration.pHarnessLogFilePath, Arrays.asList(StafIntegration.logInfo),
