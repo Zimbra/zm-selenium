@@ -45,7 +45,6 @@ public class CreateAlias extends AdminCore {
 			groups = { "smoke" })
 
 	public void CreateAlias_01() throws HarnessException {
-
 		AccountItem target = new AccountItem("tc" + ConfigProperties.getUniqueString(), ConfigProperties.getStringProperty("testdomain"));
 		AccountItem.createUsingSOAP(target);
 

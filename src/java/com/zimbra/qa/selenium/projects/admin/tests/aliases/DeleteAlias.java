@@ -53,7 +53,6 @@ public class DeleteAlias extends AdminCore {
 			groups = { "bhr" })
 
 	public void DeleteAlias_01() throws HarnessException {
-
 		AccountItem target = new AccountItem("tc" + ConfigProperties.getUniqueString(), ConfigProperties.getStringProperty("testdomain"));
 		AccountItem.createUsingSOAP(target);
 
@@ -113,7 +112,6 @@ public class DeleteAlias extends AdminCore {
 			groups = { "sanity" })
 
 	public void DeleteAlias_02() throws HarnessException {
-
 		AccountItem target = new AccountItem("tc" + ConfigProperties.getUniqueString(), ConfigProperties.getStringProperty("testdomain"));
 		AccountItem.createUsingSOAP(target);
 
@@ -171,7 +169,6 @@ public class DeleteAlias extends AdminCore {
 			groups = { "sanity" })
 
 	public void DeleteAlias_03() throws HarnessException {
-
 		AccountItem target = new AccountItem("tc" + ConfigProperties.getUniqueString(), ConfigProperties.getStringProperty("testdomain"));
 		AccountItem.createUsingSOAP(target);
 
@@ -233,10 +230,8 @@ public class DeleteAlias extends AdminCore {
 			groups = { "functional" })
 
 	public void DeleteAlias_04() throws HarnessException {
-
 		AccountItem target = new AccountItem("tc" + ConfigProperties.getUniqueString(), ConfigProperties.getStringProperty("testdomain"));
 		AccountItem.createUsingSOAP(target);
-
 
 		// Create a new account in the Admin Console using SOAP
 		AliasItem alias = new AliasItem();

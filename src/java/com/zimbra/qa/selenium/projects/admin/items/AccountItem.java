@@ -48,7 +48,6 @@ public class AccountItem implements IItem {
 		}
 
 		accountAttrs.put("sn", lastName);
-		accountAttrs.put("description", "Created by Selenium automation");
 	}
 
 	public AccountItem(String emailAddress, String lastName, String domainName) {

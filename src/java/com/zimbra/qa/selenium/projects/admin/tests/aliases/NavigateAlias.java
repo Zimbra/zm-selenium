@@ -30,22 +30,10 @@ public class NavigateAlias extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Navigate to Aliases page
-	 * Steps :
-	 * 1. Go to Accounts
-	 * 2. Verify navigation path -- "Home --> Manage --> Aliases"
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "Navigate to Aliases",
 			groups = { "smoke" })
 
 	public void NavigateAlias_01() throws HarnessException {
-
-		/*
-		 * Verify navigation path -- "Home --> Manage Accounts --> Aliases"
-		 */
 		ZAssert.assertTrue(app.zPageManageAliases.zVerifyHeader(PageManageAliases.Locators.HOME),
 				"Verfiy the 'Home' text exists in navigation path");
 		ZAssert.assertTrue(app.zPageManageAliases.zVerifyHeader(PageManageAliases.Locators.MANAGE),
