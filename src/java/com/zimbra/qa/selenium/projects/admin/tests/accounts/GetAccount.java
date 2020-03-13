@@ -35,14 +35,6 @@ public class GetAccount extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Verify created account is displayed in UI -- Manage Account View.
-	 * Steps :
-	 * 1. Create an account using SOAP.
-	 * 2. Verify account is present in the list.
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "Verify created account is displayed in UI -- Manage Account View.",
 			groups = { "smoke" })
 
@@ -75,15 +67,6 @@ public class GetAccount extends AdminCore {
 		ZAssert.assertNotNull(found, "Verify the account is found");
 	}
 
-
-	/**
-	 * Testcase : Verify created account is displayed in UI -- Search list view.
-	 * Steps :
-	 * 1. Create an account using SOAP.
-	 * 2. Search account
-	 * 3. Verify account is present in the list.
-	 * @throws HarnessException
-	 */
 
 	@Test (description = "Verify created account is displayed in UI -- Search list view",
 			groups = { "functional" })
@@ -119,16 +102,6 @@ public class GetAccount extends AdminCore {
 		ZAssert.assertNotNull(found, "Verify the account is found");
 	}
 
-
-	/**
-	 * Testcase : Bug 40300 : Verify system accounts i.e. spam/ham, wiki, galsync accounts are not displayed in Account List.
-	 * Steps :
-	 * 1. Login to Admin Console.
-	 * 2. Click on Accounts option in the Left Navigation pane.
-	 * 3. List of all the accounts is displayed.
-	 * 4. Verify spam/ham, wiki, galsync accounts are not displayed in Account List.
-	 * @throws HarnessException
-	 */
 
 	@Test (description = "Verify that system accounts such as spam/ham, wiki and galsync accounts are not displayed in the list.",
 			groups = { "functional" })
@@ -184,14 +157,6 @@ public class GetAccount extends AdminCore {
 
 	}
 
-	/**
-	 * Testcase : Verify system accounts i.e. spam/ham, wiki, galsync account is displayed in Search list view
-	 * Steps :
-	 * 1. Create an account using SOAP.
-	 * 2. Search account
-	 * 3. Verify account is present in the list.
-	 * @throws HarnessException
-	 */
 
 	@Test (description = "Verify system accounts i.e. spam/ham, wiki, galsync account is displayed in Search list view",
 			groups = { "sanity" })

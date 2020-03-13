@@ -38,17 +38,8 @@ public class ViewMail extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : View mail  -- manage account >> Gearbox >> View mail
-	 * Steps :
-	 * 1. Create an account using SOAP.
-	 * 2. Manage account >> Gearbox >> edit account >>  View mail
-	 * 3. Verify account mailbox is opened up
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "View mail - manage account >> Gearbox >> edit account >>  View mail",
-			groups = { "smoke" })
+			groups = { "smoke", "non-zimbrax" })
 
 	public void ViewMail_01() throws HarnessException {
 
@@ -113,18 +104,9 @@ public class ViewMail extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : View mail  -- manage account >> right click >> View mail
-	 * Steps :
-	 * 1. Create an account using SOAP.
-	 * 2. Edit the account name using UI Right Click.
-	 * 3. Verify view mail functionality
-	 * @throws HarnessException
-	 */
-
 	@Bugs (ids = "69155")
 	@Test (description = "View mail - manage account > right click > view mail",
-			groups = { "functional" })
+			groups = { "functional", "non-zimbrax" })
 
 	public void ViewMail_02() throws HarnessException {
 
@@ -189,19 +171,8 @@ public class ViewMail extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Edit a basic account -- Search List View
-	 * Steps :
-	 * 1. Create an account using SOAP.
-	 * 2. Search account.
-	 * 3. Select an Account.
-	 * 4. View mail
-	 * 5. Verify account mailbox is opened up
-	 *
-	 * @throws HarnessException
-	 */
 	@Test (description = "View mail - Edit a basic account - Search List View",
-			groups = { "functional" })
+			groups = { "functional", "non-zimbrax" })
 
 	public void ViewMail_03() throws HarnessException {
 		// Create a new account in the Admin Console using SOAP

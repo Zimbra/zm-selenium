@@ -95,7 +95,6 @@ public class AdminCore {
 
 	@BeforeSuite(groups = { "always" })
 	public void coreBeforeSuite() throws HarnessException {
-
 		logger.info("BeforeSuite: start");
 
 		// For coverage ?mode=mjsf&gzip=false
@@ -461,7 +460,6 @@ public class AdminCore {
 	}
 
 	public void zUpload(String filePath) throws HarnessException {
-
 		SleepUtil.sleepLong();
 
 		StringSelection ss = new StringSelection(filePath);
@@ -488,7 +486,6 @@ public class AdminCore {
 	}
 
 	public void zDownload() throws HarnessException {
-
 		SleepUtil.sleepLong();
 
 		Robot robot;

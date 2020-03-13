@@ -30,21 +30,10 @@ public class NavigateAntiSpamAntiVirus extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Navigate to Client Upload page
-	 * Steps :
-	 * 1. Verify navigation path -- "Home --> Monitor --> Anti-Spam/Anti-Virus Activity"
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "Navigate to Anti-Spam/Anti-Virus Activity",
 			groups = { "smoke" })
 
 	public void NavigateAnitSpamAntiVirus_01() throws HarnessException {
-
-		/*
-		 * Verify navigation path -- "Home --> Tools and Migraton --> Client Upload"
-		 */
 		ZAssert.assertTrue(
 				app.zPageManageAntispamAntiVirusActivity
 						.zVerifyHeader(PageManageAntiSpamAnitVirusActivity.Locators.HOME),
