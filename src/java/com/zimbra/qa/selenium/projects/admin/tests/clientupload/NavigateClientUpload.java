@@ -30,21 +30,10 @@ public class NavigateClientUpload extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Navigate to Client Upload page
-	 * Steps :
-	 * 1. Verify navigation path -- "Home --> Tools and Migraton --> Client Upload"
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "Navigate to Client Upload",
 			groups = { "smoke" })
 
 	public void NavigateClientUpload_01() throws HarnessException {
-
-		/*
-		 * Verify navigation path -- "Home --> Tools and Migraton --> Client Upload"
-		 */
 		ZAssert.assertTrue(app.zPageManageClientUpload.zVerifyHeader(PageManageClientUpload.Locators.HOME),
 				"Verfiy the 'Home' text exists in navigation path");
 		ZAssert.assertTrue(

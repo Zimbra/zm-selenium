@@ -37,17 +37,6 @@ public class EditAccount extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Edit account name  - Manage Account View
-	 * Steps :
-	 * 1. Create an account using SOAP.
-	 * 2. Go to Manage Account View
-	 * 3. Select an Account.
-	 * 4. Edit an account using edit button in Gear box menu.
-	 * 5. Verify account is edited using SOAP.
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "Edit Account name  - Manage Account View",
 			groups = { "smoke" })
 
@@ -87,14 +76,6 @@ public class EditAccount extends AdminCore {
 		ZAssert.assertNotNull(response, "Verify the account is edited successfully");
 	}
 
-	/**
-	 * Testcase : Edit account name -- right click
-	 * Steps :
-	 * 1. Create an account using SOAP.
-	 * 2. Edit the account name using UI Right Click.
-	 * 3. Verify account name is changed using SOAP.
-	 * @throws HarnessException
-	 */
 
 	@Test (description = "Edit account name -- right click",
 			groups = { "smoke" })
@@ -136,18 +117,6 @@ public class EditAccount extends AdminCore {
 		ZAssert.assertNotNull(response, "https://bugzilla.zimbra.com/show_bug.cgi?id=74487");
 	}
 
-
-	/**
-	 * Testcase : Edit a basic account -- Search List View
-	 * Steps :
-	 * 1. Create an account using SOAP.
-	 * 2. Search account.
-	 * 3. Select an Account.
-	 * 4. Edit an account using edit button in Gear box menu.
-	 * 5. Verify account is edited using SOAP.
-	 *
-	 * @throws HarnessException
-	 */
 
 	@Test (description = "Edit a basic account - Search List View",
 			groups = { "bhr" })
@@ -196,18 +165,6 @@ public class EditAccount extends AdminCore {
 		ZAssert.assertNotNull(response, "https://bugzilla.zimbra.com/show_bug.cgi?id=74487");
 	}
 
-
-	/**
-	 * Testcase : Edit a basic account -- Search List View
-	 * Steps :
-	 * 1. Create an account using SOAP.
-	 * 2. Search account.
-	 * 3. Select an Account.
-	 * 4. Edit an account using edit button in Gear box menu.
-	 * 5. Verify account is edited using SOAP.
-	 *
-	 * @throws HarnessException
-	 */
 
 	@Test (description = "Edit a basic account - Search List View",
 			groups = { "sanity" })
