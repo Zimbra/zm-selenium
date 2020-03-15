@@ -37,44 +37,25 @@ public class HomePageLinks extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Navigate to Search page Steps : 1. Verify navigation path -- "Home
-	 * --> Install License --> Install certificate Wizard"
-	 *
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "Navigate to Install certificate wizard",
-			groups = { "smoke" })
+			groups = { "smoke", "non-zimbrax" })
 
 	public void NavigateHomePageLinks_01() throws HarnessException {
-
 		WizardInstallCertificate wizard = (WizardInstallCertificate) app.zPageManageCertificates
 				.zToolbarPressButton(Button.B_INSTALL_CERTIFICATE);
 		ZAssert.assertNotNull(wizard.sGetTitle(), "Verify the install certificate wizard is opened");
 
-		// close the wizard to proceed to next test
+		// Close the wizard to proceed to next test
 		boolean isClosed = wizard.zCloseWizard();
 		ZAssert.assertTrue(isClosed, "Verify the install certificate wizard is closed");
 		app.zPageMain.zLogout();
 	}
 
 
-	/**
-	 * Testcase : Navigate to Configure default COS from home page link Steps : 1.
-	 * Verify navigation path -- "Home --> Configure Default COS"
-	 *
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "Navigate to Configure default COS",
 			groups = { "smoke" })
 
 	public void NavigateHomePageLinks_02() throws HarnessException {
-
-		/*
-		 * Verify navigation path -- "Home --> Configure Default COS""
-		 */
 		app.zPageMain.sClickAt(Locators.HomeConfigureDefaultCos, "");
 		boolean isNavigationSuccess = app.zPageMain.zVerifyHeader("default");
 		ZAssert.assertTrue(isNavigationSuccess, "Verify the configure default COS page is opened");
@@ -82,18 +63,10 @@ public class HomePageLinks extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Navigate to create Domain wizard from home page Link Steps : 1.
-	 * Verify navigation path -- "Home --> create Domain wizard
-	 *
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "Navigate to create Domain wizard",
 			groups = { "smoke" })
 
 	public void NavigateHomePageLinks_03() throws HarnessException {
-
 		// Navigate back to home page
 		WizardCreateDomain wizard = (WizardCreateDomain) app.zPageManageDomains
 				.zToolbarPressButton(Button.B_HOME_DOMAIN);
@@ -106,18 +79,10 @@ public class HomePageLinks extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase :Navigate to Configure GAL wizard from Home page link Steps : 1.
-	 * Verify navigation path -- "Home --> Configure GAL wizard
-	 *
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "Navigate to Configure GAL wizard",
 			groups = { "smoke" })
 
 	public void NavigateHomePageLinks_04() throws HarnessException {
-
 		// Navigate back to Home page
 		WizardConfigureGAL wizard = (WizardConfigureGAL) app.zPageManageCofigureGAL
 				.zToolbarPressButton(Button.B_CONFIGURE_GAL);
@@ -131,19 +96,10 @@ public class HomePageLinks extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase :Navigate to Configure Authentication wizard from Home page link
-	 * Steps : 1. Verify navigation path -- "Home --> Configure Authentication
-	 * wizard
-	 *
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "Navigate to Configure Authentication wizard",
 			groups = { "smoke" })
 
 	public void NavigateHomePageLinks_05() throws HarnessException {
-
 		// Navigate back to Home page
 		WizardConfigureAuthentication wizard = (WizardConfigureAuthentication) app.zPageManageCofigureAuthentication
 				.zToolbarPressButton(Button.B_CONFIGURE_AUTHENTICATION);
@@ -156,18 +112,10 @@ public class HomePageLinks extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Navigate to create account wizard from Home page Link * Steps : 1.
-	 * Verify navigation path -- "Home --> create account wizard from Home page Link
-	 *
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "Navigate to create account wizard",
 			groups = { "smoke" })
 
 	public void NavigateHomePageLinks_06() throws HarnessException {
-
 		// Navigate back to Home page
 		WizardCreateAccount wizard = (WizardCreateAccount) app.zPageManageAccounts
 				.zToolbarPressButton(Button.B_HOME_ACCOUNT);
@@ -180,19 +128,10 @@ public class HomePageLinks extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Navigate to Configure manage accounts from Home page links Steps :
-	 * 1. Verify navigation path -- "Home --> Configure manage accounts from Home
-	 * page links
-	 *
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "Navigate to Configure manage accounts",
 			groups = { "smoke" })
 
 	public void NavigateHomePageLinks_07() throws HarnessException {
-
 		// Navigate back to Home page
 		app.zPageMain.sClickAt(Locators.HomeManageAccount, "");
 		boolean isNavigationSuccess = app.zPageMain.zVerifyHeader("Manage");
@@ -201,19 +140,10 @@ public class HomePageLinks extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Navigate to migration and co Existance wizard from Home page Links
-	 * Steps : 1. Verify navigation path -- "Home --> to migration and co Existance
-	 * wizard from Home page Links
-	 *
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "Navigate to migration and co Existance wizard",
-			groups = { "smoke" })
+			groups = { "smoke", "non-zimbrax" })
 
 	public void NavigateHomePageLinks_08() throws HarnessException {
-
 		// Navigate Back to Home page
 		WizardMigrationCoexistance wizard = (WizardMigrationCoexistance) app.zPageManageMigrationCoexistance
 				.zToolbarPressButton(Button.B_HOME_MIGRATION);

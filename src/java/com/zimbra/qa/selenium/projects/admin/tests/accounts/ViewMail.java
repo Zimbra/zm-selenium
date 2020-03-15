@@ -42,7 +42,6 @@ public class ViewMail extends AdminCore {
 			groups = { "smoke", "non-zimbrax" })
 
 	public void ViewMail_01() throws HarnessException {
-
 		// Create a new account in the admin Console using SOAP
 		AccountItem account = new AccountItem("tc" + ConfigProperties.getUniqueString(), ConfigProperties.getStringProperty("testdomain"));
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
@@ -109,7 +108,6 @@ public class ViewMail extends AdminCore {
 			groups = { "functional", "non-zimbrax" })
 
 	public void ViewMail_02() throws HarnessException {
-
 		// Create a new account in the admin Console using SOAP
 		AccountItem account = new AccountItem("tc" + ConfigProperties.getUniqueString(), ConfigProperties.getStringProperty("testdomain"));
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
@@ -197,7 +195,7 @@ public class ViewMail extends AdminCore {
 						"</m>" +
 				"</SendMsgRequest>");
 
-		// Refresh the account list
+		// Refresh the list
 		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
 
 		// Click on view mail

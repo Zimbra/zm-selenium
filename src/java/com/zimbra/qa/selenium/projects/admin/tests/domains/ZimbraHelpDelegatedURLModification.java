@@ -40,7 +40,6 @@ public class ZimbraHelpDelegatedURLModification extends AdminCore {
 			groups = { "functional-known-failure" })
 
 	public void ZimbraHelpDelegatedURLModification_01() throws HarnessException {
-
 		String domainID = null;
 
 		try {

@@ -63,7 +63,7 @@ public class AddOwners extends AdminCore {
 						+		"</CreateAccountRequest>");
 
 		// Refresh the list
-		app.zPageManageDistributionList.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
+		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
 
 		// Click on distribution list to be edited.
 		app.zPageManageDistributionList.zListItem(Action.A_LEFTCLICK, dl.getEmailAddress());

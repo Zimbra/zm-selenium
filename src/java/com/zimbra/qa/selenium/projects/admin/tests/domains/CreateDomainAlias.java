@@ -34,19 +34,10 @@ public class CreateDomainAlias extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Create a basic domain alias
-	 * Steps :
-	 * 1. Create a domain alias from GUI i.e. New -> Alias.
-	 * 2. Verify domain alias is created using SOAP.
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "Create a domain alias",
 			groups = { "smoke" })
 
 	public void CreateAlias_01() throws HarnessException {
-
 		// Create a new account in the Admin Console
 		DomainItem domainalias = new DomainItem();
 

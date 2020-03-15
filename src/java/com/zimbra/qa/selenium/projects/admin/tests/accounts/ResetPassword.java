@@ -36,28 +36,18 @@ public class ResetPassword extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Bug 72655 Cannot change admin password from Admin Console login
-	 * Steps :
-	 *1. Create admin account, set a password.
-	 *2. zmprov ma testadmin@foo.com zimbraPasswordMustChange TRUE
-	 *3. Log in to Admin Console with testadmin account, enter password.
-	 * @throws HarnessException
-	 */
-
 	@Bugs (ids = "72655")
 	@Test (description = "Edit password  -- manage account > Select account > Options > Edit > change password",
 			groups = { "sanity" })
 
 	public void ResetPassword_01() throws HarnessException {
-
 		// Create admin account
 		String adminaccount = "tc" + ConfigProperties.getUniqueString() + "@"
 				+ ConfigProperties.getStringProperty("testdomain");
 		ZimbraAdminAccount account = new ZimbraAdminAccount(adminaccount);
 		account.provision();
 
-		// Refresh the account list
+		// Refresh the list
 		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
 
 		// Click on account to be edited

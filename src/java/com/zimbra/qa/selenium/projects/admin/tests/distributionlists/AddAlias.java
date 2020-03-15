@@ -41,7 +41,6 @@ public class AddAlias extends AdminCore {
 			groups = { "bhr" })
 
 	public void AddAlias_01() throws HarnessException {
-
 		// Create a new dl in the Admin Console using SOAP
 		DistributionListItem dl = new DistributionListItem();
 		String dlEmailAddress=dl.getEmailAddress();
@@ -57,7 +56,7 @@ public class AddAlias extends AdminCore {
 		String aliasEmail = aliasLocalName + "@" + domain;
 
 		// Refresh the list
-		app.zPageManageDistributionList.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
+		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
 
 		// Click on distribution list to be edited.
 		app.zPageManageDistributionList.zListItem(Action.A_LEFTCLICK, dl.getEmailAddress());

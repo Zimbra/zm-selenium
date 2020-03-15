@@ -39,7 +39,6 @@ public class GetAccount extends AdminCore {
 			groups = { "smoke" })
 
 	public void GetAccount_01() throws HarnessException {
-
 		// Create a new account in the Admin Console using SOAP
 		AccountItem account = new AccountItem("tc" + ConfigProperties.getUniqueString(), ConfigProperties.getStringProperty("testdomain"));
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
@@ -49,7 +48,7 @@ public class GetAccount extends AdminCore {
 				+			"<a n='description'>Created by Selenium automation</a>"
 				+		"</CreateAccountRequest>");
 
-		// Refresh the account list
+		// Refresh the list
 		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
 
 		// Get the list of displayed accounts
@@ -117,7 +116,7 @@ public class GetAccount extends AdminCore {
 				+		"</CreateAccountRequest>");
 
 
-		// Refresh the account list
+		// Refresh the list
 		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
 		SleepUtil.sleepMedium();
 
@@ -154,7 +153,6 @@ public class GetAccount extends AdminCore {
 			}
 		}
 		ZAssert.assertNull(found_galsync, "Verify alias is deleted successfully");
-
 	}
 
 
@@ -162,9 +160,8 @@ public class GetAccount extends AdminCore {
 			groups = { "sanity" })
 
 	public void GetAccount_04() throws HarnessException {
-
 		// Enter the search string to find the account
-		app.zPageSearchResults.zAddSearchQuery("ham.");
+		app.zPageSearchResults.zAddSearchQuery("ham");
 
 		// Click search
 		app.zPageSearchResults.zToolbarPressButton(Button.B_SEARCH);
@@ -175,8 +172,8 @@ public class GetAccount extends AdminCore {
 
 		AccountItem found = null;
 		for (AccountItem a : accounts) {
-			logger.info("Looking for account " + "ham." + " found: " + a.getGEmailAddress());
-			if ((a.getGEmailAddress().contains("ham."))) {
+			logger.info("Looking for account ham found: " + a.getGEmailAddress());
+			if ((a.getGEmailAddress().contains("ham"))) {
 				found = a;
 				break;
 			}
@@ -184,7 +181,7 @@ public class GetAccount extends AdminCore {
 		ZAssert.assertNotNull(found, "Verify the account is found");
 
 		// Enter the search string to find the account
-		app.zPageSearchResults.zAddSearchQuery("spam.");
+		app.zPageSearchResults.zAddSearchQuery("spam");
 
 		// Click search
 		app.zPageSearchResults.zToolbarPressButton(Button.B_SEARCH);
@@ -195,8 +192,8 @@ public class GetAccount extends AdminCore {
 
 		AccountItem found1 = null;
 		for (AccountItem a : accounts1) {
-			logger.info("Looking for account " + "spam." + " found: " + a.getGEmailAddress());
-			if ((a.getGEmailAddress().contains("spam."))) {
+			logger.info("Looking for account spam found: " + a.getGEmailAddress());
+			if ((a.getGEmailAddress().contains("spam"))) {
 				found1 = a;
 				break;
 			}
@@ -204,7 +201,7 @@ public class GetAccount extends AdminCore {
 		ZAssert.assertNotNull(found1, "Verify the account is found");
 
 		// Enter the search string to find the account
-		app.zPageSearchResults.zAddSearchQuery("galsync.");
+		app.zPageSearchResults.zAddSearchQuery("galsync");
 
 		// Click search
 		app.zPageSearchResults.zToolbarPressButton(Button.B_SEARCH);
@@ -215,8 +212,8 @@ public class GetAccount extends AdminCore {
 
 		AccountItem found2 = null;
 		for (AccountItem a : accounts2) {
-			logger.info("Looking for account " + "galsync." + " found: " + a.getGEmailAddress());
-			if ((a.getGEmailAddress().contains("galsync."))) {
+			logger.info("Looking for account galsync found: " + a.getGEmailAddress());
+			if ((a.getGEmailAddress().contains("galsync"))) {
 				found2 = a;
 				break;
 

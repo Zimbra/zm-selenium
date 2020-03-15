@@ -38,22 +38,10 @@ public class EditResource extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Edit Resource name  -- Manage resource View -- Location
-	 * Steps :
-	 * 1. Create a resource using SOAP.
-	 * 2. Go to Manage resource View.
-	 * 3. Select a resource.
-	 * 4. Edit a resource using edit button in Gear box menu.
-	 * 5. Verify resource is deleted using SOAP.
-	 * @throws HarnessException
-	 */
-
 	@Test (description = " Edit Resource name  -- Manage resource View -- Location",
 			groups = { "bhr" })
 
 	public void EditResource_01() throws HarnessException {
-
 		// Create a new Resource in the Admin Console using SOAP
 		ResourceItem resource = new ResourceItem();
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
@@ -65,8 +53,8 @@ public class EditResource extends AdminCore {
 				+ "<a n='description'>Created by Selenium automation</a>"
 				+ "</CreateCalendarResourceRequest>");
 
-		// Refresh the Resource list
-		app.zPageManageResources.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
+		// Refresh the list
+		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
 
 		// Click on Resource to be edited
 		app.zPageManageResources.zListItem(Action.A_LEFTCLICK, resource.getEmailAddress());
@@ -95,22 +83,10 @@ public class EditResource extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Edit Resource name  -- Manage resource View -- Equipment
-	 * Steps :
-	 * 1. Create a resource using SOAP.
-	 * 2. Go to Manage resource View.
-	 * 3. Select a resource.
-	 * 4. Edit a resource using edit button in Gear box menu.
-	 * 5. Verify resource is deleted using SOAP.
-	 * @throws HarnessException
-	 */
-
 	@Test (description = " Edit Resource name  -- Manage resource View -- Location",
 			groups = { "sanity" })
 
 	public void EditResource_02() throws HarnessException {
-
 		// Create a new resource in the Admin Console using SOAP
 		ResourceItem resource = new ResourceItem();
 
@@ -131,8 +107,8 @@ public class EditResource extends AdminCore {
 
 		Element response = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode("//admin:GetCalendarResourceResponse/admin:calresource", 1);
 
-		// Refresh the Resource list
-		app.zPageManageResources.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
+		// Refresh the list
+		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
 
 		// Click on Resource to be edited
 		 app.zPageManageResources.zListItem(Action.A_LEFTCLICK, resource.getEmailAddress());
@@ -161,22 +137,10 @@ public class EditResource extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Edit Resource name -- Manage resource View/Right Click Menu -- Location
-	 * Steps :
-	 * 1. Create a resource using SOAP.
-	 * 2. Go to Manage resource View.
-	 * 3. Right Click on a resource.
-	 * 4. Edit a resource using edit button in right click menu.
-	 * 5. Verify resource is deleted using SOAP.
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "Edit Resource name -- Manage resource View/Right Click Menu -- Location",
 			groups = { "functional" })
 
 	public void EditResource_03() throws HarnessException {
-
 		// Create a new Resource in the Admin Console using SOAP
 		ResourceItem resource = new ResourceItem();
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
@@ -188,8 +152,8 @@ public class EditResource extends AdminCore {
 				+ "<a n='description'>Created by Selenium automation</a>"
 				+ "</CreateCalendarResourceRequest>");
 
-		// Refresh the Resource list
-		app.zPageManageResources.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
+		// Refresh the list
+		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
 
 		// Right Click on Resource to be edited
 		app.zPageManageResources.zListItem(Action.A_RIGHTCLICK, resource.getEmailAddress());
@@ -217,23 +181,11 @@ public class EditResource extends AdminCore {
 		ZAssert.assertNotNull(response, "https://bugzilla.zimbra.com/show_bug.cgi?id=74487");
 	}
 
-
-	/**
-	 * Testcase : Edit Resource name -- Manage resource View/Right Click Menu -- Equipment
-	 * Steps :
-	 * 1. Create a resource using SOAP.
-	 * 2. Go to Manage resource View.
-	 * 3. Right Click on a resource.
-	 * 4. Edit a resource using edit button in right click menu.
-	 * 5. Verify resource is deleted using SOAP.
-	 * @throws HarnessException
-	 */
 
 	@Test (description = "Edit Resource name -- Manage resource View/Right Click Menu -- Equipment",
 			groups = { "functional" })
 
 	public void EditResource_04() throws HarnessException {
-
 		// Create a new Resource in the Admin Console using SOAP
 		ResourceItem resource = new ResourceItem();
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
@@ -245,8 +197,8 @@ public class EditResource extends AdminCore {
 				+ "<a n='description'>Created by Selenium automation</a>"
 				+ "</CreateCalendarResourceRequest>");
 
-		// Refresh the Resource list
-		app.zPageManageResources.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
+		// Refresh the list
+		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
 
 		// Right Click on Resource to be edited
 		app.zPageManageResources.zListItem(Action.A_RIGHTCLICK, resource.getEmailAddress());
@@ -275,22 +227,10 @@ public class EditResource extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Edit Resource name  -- Search list resource View -- Location
-	 * Steps :
-	 * 1. Create a resource using SOAP.
-	 * 2. Go to Search list View.
-	 * 3. Select a resource.
-	 * 4. Edit a resource using edit button in Gear box menu.
-	 * 5. Verify resource is deleted using SOAP.
-	 * @throws HarnessException
-	 */
-
 	@Test (description = " Edit Resource name  -- Manage resource View -- Location",
 			groups = { "sanity" })
 
 	public void EditResource_05() throws HarnessException {
-
 		// Create a new Resource in the Admin Console using SOAP
 		ResourceItem resource = new ResourceItem();
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
@@ -336,22 +276,10 @@ public class EditResource extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Edit Resource name  -- Search list resource View -- Equipment
-	 * Steps :
-	 * 1. Create a resource using SOAP.
-	 * 2. Go to Search list View.
-	 * 3. Select a resource.
-	 * 4. Edit a resource using edit button in Gear box menu.
-	 * 5. Verify resource is deleted using SOAP.
-	 * @throws HarnessException
-	 */
-
 	@Test (description = " Edit Resource name  -- Manage resource View -- Equipment",
 			groups = { "functional" })
 
 	public void EditResource_06() throws HarnessException {
-
 		// Create a new Resource in the Admin Console using SOAP
 		ResourceItem resource = new ResourceItem();
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
@@ -397,22 +325,10 @@ public class EditResource extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Edit Resource name -- Search list View/Right Click Menu -- Location
-	 * Steps :
-	 * 1. Create a resource using SOAP.
-	 * 2. Go to Search list View.
-	 * 3. Right Click on a resource.
-	 * 4. Edit a resource using edit button in right click menu.
-	 * 5. Verify resource is deleted using SOAP.
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "Edit Resource name -- Manage resource View/Right Click Menu -- Location",
 			groups = { "functional" })
 
 	public void EditResource_07() throws HarnessException {
-
 		// Create a new Resource in the Admin Console using SOAP
 		ResourceItem resource = new ResourceItem();
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
@@ -458,22 +374,10 @@ public class EditResource extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Edit Resource name -- Search list View/Right Click Menu -- Equipment
-	 * Steps :
-	 * 1. Create a resource using SOAP.
-	 * 2. Go to Search list View.
-	 * 3. Right Click on a resource.
-	 * 4. Edit a resource using edit button in right click menu.
-	 * 5. Verify resource is deleted using SOAP.
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "Edit Resource name -- Manage resource View/Right Click Menu -- Equipment",
 			groups = { "functional" })
 
 	public void EditResource_08() throws HarnessException {
-
 		// Create a new Resource in the Admin Console using SOAP
 		ResourceItem resource = new ResourceItem();
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(

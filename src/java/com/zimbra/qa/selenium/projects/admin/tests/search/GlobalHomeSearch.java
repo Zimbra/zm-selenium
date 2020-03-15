@@ -40,19 +40,10 @@ public class GlobalHomeSearch extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Verify search functionality of all objects.
-	 * Steps :
-	 * 1. Create a COS using SOAP.
-	 * 2. Verify the global search return the cos.
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "Verify search functionality of COS",
 			groups = { "smoke" })
 
 	public void HomeSearchFunctionalityCOS_01() throws HarnessException {
-
 		// Create a new cos in the Admin Console using SOAP
 		CosItem cos = new CosItem();
 		String cosName=cos.getName();
@@ -85,20 +76,11 @@ public class GlobalHomeSearch extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Verify search functionality of all objects.
-	 * Steps :
-	 * 1. Create an Account using SOAP.
-	 * 2. Verify the global search return the Account.
-	 * @throws HarnessException
-	 */
-
 	@Bugs (ids = "96768")
 	@Test (description = "Verify search functionality of Account",
 			groups = { "smoke" })
 
 	public void HomeSearchFunctionalityAccount_02() throws HarnessException {
-
 		// Create a new account in the Admin Console using SOAP
 		AccountItem account = new AccountItem("tc" + ConfigProperties.getUniqueString(), ConfigProperties.getStringProperty("testdomain"));
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
@@ -131,19 +113,10 @@ public class GlobalHomeSearch extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Verify search functionality of all objects.
-	 * Steps :
-	 * 1. Create an Account using SOAP.
-	 * 2. Verify the global search return the resource.
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "Verify search functionality of Resource",
 			groups = { "smoke" })
 
 	public void HomeSearchFunctionalityResource_03() throws HarnessException {
-
 		// Create a new resource in the Admin Console using SOAP
 		ResourceItem resource = new ResourceItem();
 
@@ -156,7 +129,7 @@ public class GlobalHomeSearch extends AdminCore {
 				+ "<a n='description'>Created by Selenium automation</a>"
 				+ "</CreateCalendarResourceRequest>");
 
-		// Refresh the  list
+		// Refresh the list
 		app.zPageSearchResults.zSelectSearchObject(app.zPageSearchResults.S_RESOURCE);
 
 		// Enter the search string to find the account
@@ -180,19 +153,10 @@ public class GlobalHomeSearch extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Verify search functionality of all objects.
-	 * Steps :
-	 * 1. Create DL using SOAP.
-	 * 2. Verify the global search return the DL.
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "Verify search functionality of DL",
 			groups = { "smoke" })
 
 	public void HomeSearchFunctionalityDL_04() throws HarnessException {
-
 		// Create a new dl in the Admin Console using SOAP
 		DistributionListItem dl = new DistributionListItem();
 		String dlEmailAddress=dl.getEmailAddress();
@@ -226,19 +190,10 @@ public class GlobalHomeSearch extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Verify search functionality of all objects.
-	 * Steps :
-	 * 1. Create an alias using SOAP.
-	 * 2. Verify the global search return the alias.
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "Verify search functionality of Alias",
 			groups = { "smoke" })
 
 	public void HomeSearchFunctionalityAlias_05() throws HarnessException {
-
 		AccountItem target = new AccountItem("tc" + ConfigProperties.getUniqueString(), ConfigProperties.getStringProperty("testdomain"));
 		AccountItem.createUsingSOAP(target);
 
@@ -274,19 +229,10 @@ public class GlobalHomeSearch extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Verify search functionality of all objects.
-	 * Steps :
-	 * 1. Create domain using SOAP.
-	 * 2. Verify the global search return the Account.
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "Verify search functionality of domain",
 			groups = { "smoke" })
 
 	public void HomeSearchFunctionalityDomain_06() throws HarnessException {
-
 		// Create a new domain in the Admin Console using SOAP
 		DomainItem domain = new DomainItem();
 

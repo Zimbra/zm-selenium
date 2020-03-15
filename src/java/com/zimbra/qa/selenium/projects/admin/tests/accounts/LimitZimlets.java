@@ -36,10 +36,9 @@ public class LimitZimlets extends AdminCore {
 	}
 
 	@Test (description = "Modify account to verify limited Zimlets available",
-			groups = { "functional" })
+			groups = { "functional", "non-zimbrax" })
 
 	public void LimitZimlets_01() throws HarnessException {
-
 		// Create a new account in the Admin Console using SOAP
 		AccountItem account = new AccountItem("tc" + ConfigProperties.getUniqueString(), ConfigProperties.getStringProperty("testdomain"));
 
@@ -52,7 +51,7 @@ public class LimitZimlets extends AdminCore {
 
 		String unavailableZimlet = "com_zimbra_date";
 
-		// Refresh the account list
+		// Refresh the list
 		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
 
 		// Click on Edit button

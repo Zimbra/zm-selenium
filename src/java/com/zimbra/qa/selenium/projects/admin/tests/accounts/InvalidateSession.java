@@ -37,15 +37,6 @@ public class InvalidateSession extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Invalidate Session  -- manage account >> Gearbox >> Invalidate Session
-	 * Steps :
-	 * 1. Create an account using SOAP.
-	 * 2. Manage account >> Gearbox >> edit account >>  Invalidate Session
-	 * 3. Verify toast message is displayed
-	 * @throws HarnessException
-	 */
-
 	@Test (description = " Invalidate Session  -- manage account >> Gearbox >> edit account >>  Invalidate Session",
 			groups = { "functional" })
 
@@ -59,7 +50,7 @@ public class InvalidateSession extends AdminCore {
 				+			"<a n='description'>Created by Selenium automation</a>"
 				+		"</CreateAccountRequest>");
 
-		// Refresh the account list
+		// Refresh the list
 		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
 
 		// Click on account
@@ -77,15 +68,6 @@ public class InvalidateSession extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Invalidate Session  -- manage account >> right click >> Invalidate Session
-	 * Steps :
-	 * 1. Create an account using SOAP.
-	 * 2. Edit the account name using UI Right Click.
-	 * 3. Verify invalidate session functionality
-	 * @throws HarnessException
-	 */
-
 	@Bugs (ids = "74482")
 	@Test (description = "Invalidate Session -- manage account > right click > Invalidate Session",
 			groups = { "functional" })
@@ -100,7 +82,7 @@ public class InvalidateSession extends AdminCore {
 				+			"<a n='description'>Created by Selenium automation</a>"
 				+		"</CreateAccountRequest>");
 
-		 // Refresh the account list
+		 // Refresh the list
 		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
 
 		// Right click on account

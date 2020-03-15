@@ -37,22 +37,10 @@ public class EditPreferences extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Edit COS - Edit preferences at COS level
-	 * Steps :
-	 * 1. Login to Admin Console and go to Configure > COS
-	 * 2. Select created COS from the list
-	 * 3. Select Edit, go to Preferences tab
-	 * 4. Check/Uncheck some Preferences > Save
-	 * 5. Edited details should be saved without any errors
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "Edit COS - Edit preferences at COS level",
 			groups = { "bhr" })
 
 	public void EditPreferences_01() throws HarnessException {
-
 		// Create a new cos in the Admin Console using SOAP
 		CosItem cos = new CosItem();
 		String cosName=cos.getName();
@@ -63,7 +51,7 @@ public class EditPreferences extends AdminCore {
 						+		"</CreateCosRequest>");
 
 		// Refresh the list
-		app.zPageManageCOS.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
+		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
 
 		// Click on COS to be edited.
 		app.zPageManageCOS.zListItem(Action.A_LEFTCLICK, cosName);

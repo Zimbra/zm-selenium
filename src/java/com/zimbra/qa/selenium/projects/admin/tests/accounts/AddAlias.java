@@ -36,21 +36,10 @@ public class AddAlias extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Add Alias at account level
-	 * Steps :
-	 * 1. Login to Admin Console and go to Manage > Accounts.
-	 * 2. Select any account from the list
-	 * 3. Click on Add, create alias with details > Save
-	 * 4. Verify alias should be created without any error
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "Edit account - Add Alias at account level ",
 			groups = { "bhr" })
 
 	public void AddAlias_01() throws HarnessException {
-
 		// Create a new account in the Admin Console using SOAP
 		AccountItem account = new AccountItem("tc" + ConfigProperties.getUniqueString(), ConfigProperties.getStringProperty("testdomain"));
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
@@ -67,7 +56,7 @@ public class AddAlias extends AdminCore {
 		String aliasDomainName = ConfigProperties.getStringProperty("testdomain");
 		String aliasEmail = aliasLocalName + "@" + aliasDomainName;
 
-		// Refresh the account list
+		// Refresh the list
 		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
 
 		// Click on account to be edited

@@ -36,20 +36,11 @@ public class DeployAdminExtensions extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Deploy admin extension
-	 * 1. Go to configure > admin extensions
-	 * 2. Select deploy option from gear menu > deploy extension
-	 * 3. Verify extension is listed under admin extensions
-	 * @throws HarnessException
-	 */
-
 	@Bugs (ids = "ZCS-1059")
 	@Test (description = "Deploy admin extension",
-			groups = { "bhr" })
+			groups = { "bhr", "non-zimbrax" })
 
 	public void DeployAdminExtension_01() throws HarnessException {
-
 		// Create file item
 		final String fileName = "de_dieploegers_admin_vacation.zip";
 		String zimletName ="de_dieploegers_admin_vacation";

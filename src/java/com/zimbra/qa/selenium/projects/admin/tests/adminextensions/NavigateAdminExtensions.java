@@ -30,22 +30,10 @@ public class NavigateAdminExtensions extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Navigate to Admin Extensions page
-	 * Steps :
-	 * 1. Go to Accounts
-	 * 2. Verify navigation path -- "Home --> Configure --> Admin Extensions"
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "Navigate to Admin Extensions",
 			groups = { "smoke" })
 
 	public void NavigateAdminExtensions_01() throws HarnessException {
-
-		/*
-		 * Verify navigation path -- "Home --> Configure --> Admin Extensions"
-		 */
 		ZAssert.assertTrue(app.zPageManageAdminExtensions.zVerifyHeader(PageManageAdminExtensions.Locators.HOME),
 				"Verfiy the 'Home' text exists in navigation path");
 		ZAssert.assertTrue(app.zPageManageAdminExtensions.zVerifyHeader(PageManageAdminExtensions.Locators.CONFIGURE),

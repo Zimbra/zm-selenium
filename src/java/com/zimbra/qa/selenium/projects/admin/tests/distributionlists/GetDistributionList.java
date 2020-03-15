@@ -35,20 +35,10 @@ public class GetDistributionList extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Verify created dl is displayed in UI  -- Manage dl View
-	 * Steps :
-	 * 1. Create a dl using SOAP.
-	 * 2. Go to Manage dl View.
-	 * 3. Verify dl is present in the list
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "Verify created dl is present in the list view",
 			groups = { "bhr" })
 
 	public void GetDistributionList_01() throws HarnessException {
-
 		// Create a new dl in the Admin Console using SOAP
 		DistributionListItem dl = new DistributionListItem();
 		String dlEmailAddress=dl.getEmailAddress();
@@ -60,7 +50,7 @@ public class GetDistributionList extends AdminCore {
 				+		"</CreateDistributionListRequest>");
 
 		// Refresh the list
-		app.zPageManageDistributionList.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
+		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
 
 		// Get the list of displayed accounts
 		List<AccountItem> accounts = app.zPageManageDistributionList.zListGetAccounts();
@@ -78,20 +68,10 @@ public class GetDistributionList extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Verify created admin dl is displayed in UI  -- Manage dl View
-	 * Steps :
-	 * 1. Create a admin dl using SOAP.
-	 * 2. Go to Manage dl View.
-	 * 3. Verify dl is present in the list
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "Verify created admin dl is present in the list view",
 			groups = { "sanity" })
 
 	public void GetDistributionList_02() throws HarnessException {
-
 		// Create a new dl in the Admin Console using SOAP
 		DistributionListItem dl = new DistributionListItem();
 		String dlEmailAddress=dl.getEmailAddress();
@@ -104,7 +84,7 @@ public class GetDistributionList extends AdminCore {
 				+		"</CreateDistributionListRequest>");
 
 		// Refresh the list
-		app.zPageManageDistributionList.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
+		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
 
 		// Get the list of displayed accounts
 		List<AccountItem> accounts = app.zPageManageDistributionList.zListGetAccounts();
@@ -122,20 +102,10 @@ public class GetDistributionList extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Verify created dynamic admin dl is displayed in UI  -- Manage dl View
-	 * Steps :
-	 * 1. Create a dynamic admin dl using SOAP.
-	 * 2. Go to Manage dl View.
-	 * 3. Verify dl is present in the list
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "Verify created dynamic admin dl is present in the list view",
 			groups = { "sanity" })
 
 	public void GetDistributionList_03() throws HarnessException {
-
 		// Create a new dl in the Admin Console using SOAP
 		DistributionListItem dl = new DistributionListItem();
 		String dlEmailAddress=dl.getEmailAddress();
@@ -149,7 +119,7 @@ public class GetDistributionList extends AdminCore {
 				+		"</CreateDistributionListRequest>");
 
 		// Refresh the list
-		app.zPageManageDistributionList.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
+		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
 
 		// Get the list of displayed accounts
 		List<AccountItem> accounts = app.zPageManageDistributionList.zListGetAccounts();
@@ -167,20 +137,10 @@ public class GetDistributionList extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Verify created dl is displayed in UI - Search view.
-	 * Steps :
-	 * 1. Create an dl using SOAP.
-	 * 2. Search list
-	 * 2. Verify dl is present in the search list.
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "Verify created dl is present in the list view  - Search view",
 			groups = { "functional" })
 
 	public void GetDistributionList_04() throws HarnessException {
-
 		// Create a new dl in the Admin Console using SOAP
 		DistributionListItem dl = new DistributionListItem();
 		String dlEmailAddress=dl.getEmailAddress();

@@ -39,7 +39,6 @@ public class ViewAccounts extends AdminCore {
 			groups = { "bhr" })
 
 	public void ViewAccounts_01() throws HarnessException {
-
 		// Create a new domain in the Admin Console using SOAP
 		DomainItem domain = new DomainItem();
 		String domainName=domain.getName();
@@ -55,8 +54,8 @@ public class ViewAccounts extends AdminCore {
 		ZimbraAdminAccount account = new ZimbraAdminAccount(adminaccount);
 		account.provision();
 
-		// Refresh the domain list
-		app.zPageManageDomains.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
+		// Refresh the list
+		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
 
 		// Click on Domain
 		app.zPageManageDomains.zListItem(Action.A_LEFTCLICK, domain.getName());

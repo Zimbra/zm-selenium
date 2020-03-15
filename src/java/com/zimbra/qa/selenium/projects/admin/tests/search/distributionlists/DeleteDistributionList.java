@@ -79,17 +79,6 @@ public class DeleteDistributionList extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Verify delete operation for DL - Search distribution list view/Right Click Menu.
-	 * Steps :
-	 * 1. Create a dl using SOAP.
-	 * 2. Search dl.
-	 * 3. Right click on dl.
-	 * 4. Delete a dl using delete button in right click menu.
-	 * 5. Verify dl is deleted using SOAP.
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "Verify delete operation for distribution list - Search distribution list view/Right Click Menu.",
 			groups = { "sanity" })
 

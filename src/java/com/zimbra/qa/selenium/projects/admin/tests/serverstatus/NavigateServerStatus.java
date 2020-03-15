@@ -30,21 +30,10 @@ public class NavigateServerStatus extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Navigate to Client Upload page
-	 * Steps :
-	 * 1. Verify navigation path -- "Home --> Monitor --> Server Status"
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "Navigate to Server Status",
 			groups = { "smoke" })
 
 	public void NavigateServerStatus_01() throws HarnessException {
-
-		/*
-		 * Verify navigation path -- "Home --> Monitor --> Server Status"
-		 */
 		ZAssert.assertTrue(app.zPageManageServerStatus.zVerifyHeader(PageManageServerStatus.Locators.HOME),
 				"Verfiy the 'Home' text exists in navigation path");
 		ZAssert.assertTrue(app.zPageManageServerStatus.zVerifyHeader(PageManageServerStatus.Locators.MONITOR),

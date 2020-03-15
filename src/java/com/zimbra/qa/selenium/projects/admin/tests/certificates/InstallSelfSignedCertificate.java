@@ -40,17 +40,10 @@ public class InstallSelfSignedCertificate extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Install self-signed certificate
-	 * 1. Install self-signed certificate from GUI
-	 * 2. Verify certificate using SOAP.
-	 */
-
 	@Test (description = "Install self-signed certificate", priority=5,
 			groups = { "known-failure", "non-cloud" })
 
 	public void InstallSelfSignedCertificate_01() throws HarnessException {
-
 		try {
 			String CountryName = "US";
 			String state = "Texas";

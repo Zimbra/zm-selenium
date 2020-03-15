@@ -31,19 +31,10 @@ public class HelpLinks extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Navigate to Help > Help links
-	 * Steps :
-	 * 1. Verify navigation path - Navigate to Help > Help links
-	 * 2. Verify links Zimbra Online Help, Administrators Guide, End Users Guide displayed by clicking on Help Center
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "Verify Help Center links",
 			groups = { "smoke" })
 
 	public void HelpLinks_01() throws HarnessException {
-
 		// Navigate to Help > Help links
 		app.zPageManageHelp.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.O_HELP_CENTRAL_ONLINE);
 		SleepUtil.sleepMedium();

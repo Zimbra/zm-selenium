@@ -38,22 +38,10 @@ public class EditDistributionList extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Verify edit operation for DL - Search distribution list view.
-	 * Steps :
-	 * 1. Create a dl using SOAP.
-	 * 2. Search dl.
-	 * 3. Select a dl.
-	 * 4. Edit a dl using delete button in Gear box menu.
-	 * 5. Verify dl is edited using SOAP.
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "Verify edit operation for distribution list - Search distribution list view",
 			groups = { "sanity" })
 
 	public void EditDistributionList_01() throws HarnessException {
-
 		// Create a new dl in the Admin Console using SOAP
 		DistributionListItem dl = new DistributionListItem();
 		String dlEmailAddress=dl.getEmailAddress();
@@ -97,22 +85,10 @@ public class EditDistributionList extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Verify edit operation for DL - Search distribution list view + Right click.
-	 * Steps :
-	 * 1. Create a dl using SOAP.
-	 * 2. Search dl.
-	 * 3. Right click on dl.
-	 * 4. Edit a dl using edit button in Gear box menu.
-	 * 5. Verify dl is edited using SOAP.
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "Verify edit operation for distribution list - Search distribution list view + right click",
 			groups = { "functional" })
 
 	public void EditDistributionList_02() throws HarnessException {
-
 		super.startingPage.zNavigateTo();
 		// Create a new dl in the Admin Console using SOAP
 		DistributionListItem dl = new DistributionListItem();
@@ -156,23 +132,11 @@ public class EditDistributionList extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Verify edit operation for dynamic DL - Search distribution list view.
-	 * Steps :
-	 * 1. Create a dl using SOAP.
-	 * 2. Search dl.
-	 * 3. Select a dl.
-	 * 4. Edit a dl using edit button in Gear box menu.
-	 * 5. Verify dl is edited using SOAP.
-	 * @throws HarnessException
-	 */
-
 	@Bugs (ids = "97150")
 	@Test (description = "Verify edit operation for dynamic distribution list - Search distribution list view",
 			groups = { "sanity" })
 
 	public void EditDistributionList_03() throws HarnessException {
-
 		// Create a new dynamic dl in the Admin Console using SOAP
 		DistributionListItem dl = new DistributionListItem();
 		String dlEmailAddress=dl.getEmailAddress();

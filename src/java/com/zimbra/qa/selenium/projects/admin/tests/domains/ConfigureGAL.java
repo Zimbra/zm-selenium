@@ -28,7 +28,6 @@ import com.zimbra.qa.selenium.projects.admin.core.AdminCore;
 import com.zimbra.qa.selenium.projects.admin.items.DomainItem;
 import com.zimbra.qa.selenium.projects.admin.items.GALItem;
 import com.zimbra.qa.selenium.projects.admin.items.GALItem.GALMode;
-import com.zimbra.qa.selenium.projects.admin.pages.PageMain;
 import com.zimbra.qa.selenium.projects.admin.pages.PageMain.Locators;
 import com.zimbra.qa.selenium.projects.admin.pages.WizardConfigureGAL;
 
@@ -42,7 +41,7 @@ public class ConfigureGAL extends AdminCore {
 
 	@Bugs (ids = "96777")
 	@Test (description = "Configure internal GAL",
-			groups = { "smoke" })
+			groups = { "smoke", "non-zimbrax" })
 
 	public void ConfigureGAL_01() throws HarnessException {
 		// Create a new domain using SOAP
@@ -54,8 +53,8 @@ public class ConfigureGAL extends AdminCore {
 						+			"<a n='description'>Created by Selenium automation</a>"
 						+		"</CreateDomainRequest>");
 
-		// Refresh the domain list
-		app.zPageManageDomains.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
+		// Refresh the list
+		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
 
 		// Select the domain for which GAL mode needs to changed.
 		app.zPageManageDomains.zListItem(Action.A_LEFTCLICK, domain.getName());
@@ -78,7 +77,7 @@ public class ConfigureGAL extends AdminCore {
 
 	@Bugs (ids = "96777")
 	@Test (description = "Verify GAL Configuration after chnaging GAL mode of a domain from internal to both",
-			groups = { "sanity" })
+			groups = { "sanity", "non-zimbrax" })
 
 	public void ConfigureGAL_02() throws HarnessException {
 		// External data source name
@@ -93,8 +92,8 @@ public class ConfigureGAL extends AdminCore {
 						+			"<a n='description'>Created by Selenium automation</a>"
 						+		"</CreateDomainRequest>");
 
-		// Refresh the domain list
-		app.zPageManageDomains.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
+		// Refresh the list
+		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
 
 		// Select the domain for which GAL mode needs to changed.
 		app.zPageManageDomains.zListItem(Action.A_LEFTCLICK, domain.getName());
@@ -161,11 +160,10 @@ public class ConfigureGAL extends AdminCore {
 
 	@Bugs (ids = "96777")
 	@Test (description = "Verify GAL Configuration after chnaging GAL mode of a domain from external to both",
-			groups = { "functional" })
+			groups = { "functional", "non-zimbrax" })
 
 	public void ConfigureGAL_03() throws HarnessException {
-
-		//data source name
+		// Data source name
 		String extDataSrc = "extDataSource";
 		String intDataSrc = "intDataSource";
 
@@ -194,8 +192,8 @@ public class ConfigureGAL extends AdminCore {
 						+ "'>" + "<account by='name'>galsync@" + domain.getName() + "</account>"
 						+ "<a n='zimbraDataSourcePollingInterval'>1m</a>" + "</CreateGalSyncAccountRequest>");
 
-		// Refresh the domain list
-		app.zPageManageDomains.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
+		// Refresh the list
+		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
 
 		// Select the domain for which GAL mode needs to changed.
 		app.zPageManageDomains.zListItem(Action.A_LEFTCLICK, domain.getName());

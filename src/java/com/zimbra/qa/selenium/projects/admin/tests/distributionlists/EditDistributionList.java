@@ -38,22 +38,10 @@ public class EditDistributionList extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Edit Distribution List name - Manage Distribution List view
-	 * Steps :
-	 * 1. Create a dl using SOAP.
-	 * 2. Go to Manage dl View.
-	 * 3. Select a dl.
-	 * 4. Edit a dl using delete button in Gear box menu.
-	 * 5. Verify dl is edit using SOAP.
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "Edit Distribution List name - Manage Distribution List view",
 			groups = { "bhr" })
 
 	public void EditDistributionList_01() throws HarnessException {
-
 		// Create a new dl in the Admin Console using SOAP
 		DistributionListItem dl = new DistributionListItem();
 		String dlEmailAddress=dl.getEmailAddress();
@@ -65,7 +53,7 @@ public class EditDistributionList extends AdminCore {
 						+		"</CreateDistributionListRequest>");
 
 		// Refresh the list
-		app.zPageManageDistributionList.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
+		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
 
 		// Click on distribution list to be deleted.
 		app.zPageManageDistributionList.zListItem(Action.A_LEFTCLICK, dl.getEmailAddress());
@@ -95,22 +83,10 @@ public class EditDistributionList extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Edit Distribution List name - Manage Distribution List view + Right Click Menu
-	 * Steps :
-	 * 1. Create a dl using SOAP.
-	 * 2. Go to Manage dl View.
-	 * 3. Right Click on a dl.
-	 * 4. Edit a dl using delete button in right click menu.
-	 * 5. Verify dl is edited using SOAP.
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "Edit Distribution List name - Manage Distribution List view + Right Click Menu",
 			groups = { "sanity" })
 
 	public void EditDistributionList_02() throws HarnessException {
-
 		// Create a new dl in the Admin Console using SOAP
 		DistributionListItem dl = new DistributionListItem();
 		String dlEmailAddress=dl.getEmailAddress();
@@ -122,7 +98,7 @@ public class EditDistributionList extends AdminCore {
 						+		"</CreateDistributionListRequest>");
 
 		// Refresh the list
-		app.zPageManageDistributionList.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
+		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
 
 		// Right Click on distribution list to be deleted.
 		app.zPageManageDistributionList.zListItem(Action.A_RIGHTCLICK, dl.getEmailAddress());
@@ -151,22 +127,10 @@ public class EditDistributionList extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Edit Admin Distribution List name - Manage Distribution List view
-	 * Steps :
-	 * 1. Create a admin dl using SOAP.
-	 * 2. Go to Manage dl View.
-	 * 3. Select a dl.
-	 * 4. Edit a dl using delete button in Gear box menu.
-	 * 5. Verify dl is edit using SOAP.
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "Edit Admin Distribution List name - Manage Distribution List view",
 			groups = { "sanity" })
 
 	public void EditDistributionList_03() throws HarnessException {
-
 		// Create a new dl in the Admin Console using SOAP
 		DistributionListItem dl = new DistributionListItem();
 		String dlEmailAddress=dl.getEmailAddress();
@@ -179,7 +143,7 @@ public class EditDistributionList extends AdminCore {
 						+		"</CreateDistributionListRequest>");
 
 		// Refresh the list
-		app.zPageManageDistributionList.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
+		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
 
 		// Click on distribution list to be deleted.
 		app.zPageManageDistributionList.zListItem(Action.A_LEFTCLICK, dl.getEmailAddress());
@@ -209,22 +173,10 @@ public class EditDistributionList extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Edit Dynamic Admin Distribution List name - Manage Distribution List view
-	 * Steps :
-	 * 1. Create a Dynamic admin dl using SOAP.
-	 * 2. Go to Manage dl View.
-	 * 3. Select a dl.
-	 * 4. Edit a dl using delete button in Gear box menu.
-	 * 5. Verify dl is edit using SOAP.
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "Edit Dynamic Admin Distribution List name - Manage Distribution List view",
 			groups = { "sanity" })
 
 	public void EditDistributionList_04() throws HarnessException {
-
 		// Create a new dl in the Admin Console using SOAP
 		DistributionListItem dl = new DistributionListItem();
 		String dlEmailAddress=dl.getEmailAddress();
@@ -240,7 +192,7 @@ public class EditDistributionList extends AdminCore {
 						+ "</CreateDistributionListRequest>");
 
 		// Refresh the list
-		app.zPageManageDistributionList.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
+		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
 
 		// Click on distribution list to be deleted.
 		app.zPageManageDistributionList.zListItem(Action.A_LEFTCLICK, dl.getEmailAddress());
@@ -270,23 +222,11 @@ public class EditDistributionList extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Edit dynamic Distribution List name - Manage Distribution List view
-	 * Steps :
-	 * 1. Create a dynamic dl using SOAP.
-	 * 2. Go to Manage dl View.
-	 * 3. Select a dl.
-	 * 4. Edit a dl using edit button in Gear box menu.
-	 * 5. Verify dl is edit using SOAP.
-	 * @throws HarnessException
-	 */
-
 	@Bugs (ids = "97150")
 	@Test (description = "Edit dynamic Distribution List name - Manage Distribution List view",
 			groups = { "functional" })
 
 	public void EditDistributionList_05() throws HarnessException {
-
 		// Create a new dynamic dl in the Admin Console using SOAP
 		DistributionListItem dl = new DistributionListItem();
 		String dlEmailAddress=dl.getEmailAddress();
@@ -302,7 +242,7 @@ public class EditDistributionList extends AdminCore {
 						+ "</CreateDistributionListRequest>");
 
 		// Refresh the list
-		app.zPageManageDistributionList.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
+		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
 
 		// Click on distribution list to be deleted.
 		app.zPageManageDistributionList.zListItem(Action.A_LEFTCLICK, dl.getEmailAddress());
@@ -331,23 +271,11 @@ public class EditDistributionList extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Edit dynamic Distribution List name - Manage Distribution List view + Right Click Menu
-	 * Steps :
-	 * 1. Create a dynamic dl using SOAP.
-	 * 2. Go to Manage dl View.
-	 * 3. Right Click on a dl.
-	 * 4. Edit a dl using edit button in right click menu.
-	 * 5. Verify dl is edited using SOAP.
-	 * @throws HarnessException
-	 */
-
 	@Bugs (ids = "97150")
 	@Test (description = "Edit Dynamic Distribution List name - Manage Distribution List view + Right Click Menu",
 			groups = { "functional" })
 
 	public void EditDistributionList_06() throws HarnessException {
-
 		// Create a new dl in the Admin Console using SOAP
 		DistributionListItem dl = new DistributionListItem();
 		String dlEmailAddress=dl.getEmailAddress();
@@ -363,7 +291,7 @@ public class EditDistributionList extends AdminCore {
 						+ "</CreateDistributionListRequest>");
 
 		// Refresh the list
-		app.zPageManageDistributionList.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
+		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
 
 		// Right Click on distribution list to be deleted.
 		app.zPageManageDistributionList.zListItem(Action.A_RIGHTCLICK, dl.getEmailAddress());

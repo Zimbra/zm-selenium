@@ -33,12 +33,9 @@ import org.apache.log4j.Logger;
  */
 public class SleepUtil {
 	private static Logger logger = LogManager.getLogger(SleepUtil.class);
-
-	/// Public methods
 	public static int SleepGranularity = 1000;
 
 	public static void sleep(long millis) {
-
 		Date start = new Date();
 
 		try {
@@ -47,9 +44,7 @@ public class SleepUtil {
 			long total = 0; // The total milliseconds slept in this method
 
 			try {
-
 				while (millis > 0) {
-
 					if (millis >= SleepGranularity) {
 						logger.info("Sleep: " + SleepGranularity + " milliseconds ... (" + total + "/" + target + ")");
 						Thread.sleep(SleepGranularity);
@@ -72,11 +67,7 @@ public class SleepUtil {
 		}
 	}
 
-	/**
-	 * Sleep a 500 msec
-	 */
 	public static void sleepVerySmall() {
-
 		if (ConfigProperties.getStringProperty(ConfigProperties.getLocalHost() + ".coverage.enabled",
 				ConfigProperties.getStringProperty("coverage.enabled")).contains("true") == true) {
 			sleep(ConfigProperties.getIntProperty("very_small_wait", 800));
@@ -85,11 +76,7 @@ public class SleepUtil {
 		}
 	}
 
-	/**
-	 * Sleep a 1000 msec
-	 */
 	public static void sleepSmall() {
-
 		if (ConfigProperties.getStringProperty(ConfigProperties.getLocalHost() + ".coverage.enabled",
 				ConfigProperties.getStringProperty("coverage.enabled")).contains("true") == true) {
 			sleep(ConfigProperties.getIntProperty("small_wait", 1200));
@@ -98,11 +85,7 @@ public class SleepUtil {
 		}
 	}
 
-	/**
-	 * Sleep a 2000 msec
-	 */
 	public static void sleepMedium() {
-
 		if (ConfigProperties.getStringProperty(ConfigProperties.getLocalHost() + ".coverage.enabled",
 				ConfigProperties.getStringProperty("coverage.enabled")).contains("true") == true) {
 			sleep(ConfigProperties.getIntProperty("medium_wait", 2500));
@@ -110,12 +93,14 @@ public class SleepUtil {
 			sleep(ConfigProperties.getIntProperty("medium_wait", 2000));
 		}
 	}
+	
+	public static void zimbraXSleepMedium() {
+		if (ConfigProperties.getStringProperty("server.zimbrax").equals("true")) {
+			sleep(ConfigProperties.getIntProperty("medium_wait", 2000));
+		}
+	}
 
-	/**
-	 * Sleep a 4000 msec
-	 */
 	public static void sleepLong() {
-
 		if (ConfigProperties.getStringProperty(ConfigProperties.getLocalHost() + ".coverage.enabled",
 				ConfigProperties.getStringProperty("coverage.enabled")).contains("true") == true) {
 			sleep(ConfigProperties.getIntProperty("long_wait", 5000));
@@ -124,11 +109,7 @@ public class SleepUtil {
 		}
 	}
 
-	/**
-	 * Sleep a 6000 msec
-	 */
 	public static void sleepLongMedium() {
-
 		if (ConfigProperties.getStringProperty(ConfigProperties.getLocalHost() + ".coverage.enabled",
 				ConfigProperties.getStringProperty("coverage.enabled")).contains("true") == true) {
 			sleep(ConfigProperties.getIntProperty("long_medium_wait", 7000));
@@ -137,11 +118,7 @@ public class SleepUtil {
 		}
 	}
 
-	/**
-	 * Sleep a 10,000 msec
-	 */
 	public static void sleepVeryLong() {
-
 		if (ConfigProperties.getStringProperty(ConfigProperties.getLocalHost() + ".coverage.enabled",
 				ConfigProperties.getStringProperty("coverage.enabled")).contains("true") == true) {
 			sleep(ConfigProperties.getIntProperty("very_long_wait", 13000));
@@ -150,11 +127,7 @@ public class SleepUtil {
 		}
 	}
 
-	/**
-	 * Sleep a 15,000 msec
-	 */
 	public static void sleepVeryVeryLong() {
-
 		if (ConfigProperties.getStringProperty(ConfigProperties.getLocalHost() + ".coverage.enabled",
 				ConfigProperties.getStringProperty("coverage.enabled")).contains("true") == true) {
 			sleep(ConfigProperties.getIntProperty("very_long_wait", 18000));

@@ -35,20 +35,11 @@ public class CreateCos extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Create a basic COS
-	 * Steps :
-	 * 1. Create a COS from GUI.
-	 * 2. Verify cos is created using SOAP.
-	 * @throws HarnessException
-	 */
-
 	@Bugs (ids = "100779")
 	@Test (description = "Create a basic COS",
 			groups = { "smoke" })
 
 	public void CreateCos_01() throws HarnessException {
-
 		// Create a new cos in the Admin Console
 		CosItem cos = new CosItem();
 

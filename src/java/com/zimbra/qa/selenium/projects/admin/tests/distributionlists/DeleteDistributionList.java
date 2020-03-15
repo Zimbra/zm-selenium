@@ -36,22 +36,10 @@ public class DeleteDistributionList extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Verify delete operation for DL - Manage distribution list view.
-	 * Steps :
-	 * 1. Create a DL using SOAP.
-	 * 2. Go to Manage dl View.
-	 * 3. Select an dl.
-	 * 4. Delete an dl using delete button in Gear box menu.
-	 * 5. Verify dl is deleted using SOAP.
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "Verify delete operation for distribution list - Manage distribution list view",
 			groups = { "bhr" })
 
 	public void DeleteDistributionList_01() throws HarnessException {
-
 		// Create a new dl in the Admin Console using SOAP
 		DistributionListItem dl = new DistributionListItem();
 		String dlEmailAddress=dl.getEmailAddress();
@@ -62,8 +50,8 @@ public class DeleteDistributionList extends AdminCore {
 				+			"<a n='description'>Created by Selenium automation</a>"
 				+		"</CreateDistributionListRequest>");
 
-		// Refresh list to populate account.
-		app.zPageManageDistributionList.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
+		// Refresh the list
+		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
 
 		// Click on account to be deleted.
 		app.zPageManageDistributionList.zListItem(Action.A_LEFTCLICK, dl.getEmailAddress());
@@ -89,22 +77,10 @@ public class DeleteDistributionList extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Verify delete operation for DL - Manage distribution list view/Right Click Menu.
-	 * Steps :
-	 * 1. Create a dl using SOAP.
-	 * 2. Go to Manage dl View.
-	 * 3. Right Click on a dl.
-	 * 4. Delete a dl using delete button in right click menu.
-	 * 5. Verify dl is deleted using SOAP.
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "Verify delete operation for distribution list -- Manage distribution list/Right Click Menu",
 			groups = { "functional" })
 
 	public void DeleteDistributionList_02() throws HarnessException {
-
 		// Create a new dl in the Admin Console using SOAP
 		DistributionListItem dl = new DistributionListItem();
 		String dlEmailAddress=dl.getEmailAddress();
@@ -115,8 +91,8 @@ public class DeleteDistributionList extends AdminCore {
 				+			"<a n='description'>Created by Selenium automation</a>"
 				+		"</CreateDistributionListRequest>");
 
-		// Refresh list to populate account.
-		app.zPageManageDistributionList.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
+		// Refresh the list
+		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
 
 		// Click on account to be deleted.
 		app.zPageManageDistributionList.zListItem(Action.A_RIGHTCLICK, dl.getEmailAddress());

@@ -84,6 +84,7 @@ public class ExecuteHarnessMain {
 	protected AbsTab startingPage = null;
 
 	public static String hostname;
+	public static String zimbraServer;
 	public static String zimbraVersion = null;
 	public static String cmdVersion = null;
 	public static Boolean isNGEnabled = false;
@@ -1328,7 +1329,6 @@ public class ExecuteHarnessMain {
 		}
 
 		// Zimbra pre-configuration
-		String zimbraServer;
 		if (ConfigProperties.getStringProperty("server.zimbrax").equals("true")) {
 			zimbraServer = "zmc.com";
 		} else if (ConfigProperties.getStringProperty("server.host").endsWith(".zimbra.com")) {

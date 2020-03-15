@@ -36,28 +36,16 @@ public class EditPreferences extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Edit account - Edit preferences at account level
-	 * Steps :
-	 * 1. Login to Admin Console and go to Manage > Accounts.
-	 * 2. Select created account from the list
-	 * 3. Select Edit, go to Preferences tab
-	 * 4. Check/Uncheck some Preferences > Save
-	 * 5. Edited details should be saved without any errors
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "Edit account - Edit preferences at account level",
 			groups = { "bhr" })
 
 	public void EditPreferences_01() throws HarnessException {
-
 		// Create a new account in the Admin Console using SOAP
 		AccountItem account = new AccountItem("tc" + ConfigProperties.getUniqueString(),
 				ConfigProperties.getStringProperty("testdomain"));
 		AccountItem.createUsingSOAP(account);
 
-		// Refresh the account list
+		// Refresh the list
 		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
 
 		// Click on account to be edited

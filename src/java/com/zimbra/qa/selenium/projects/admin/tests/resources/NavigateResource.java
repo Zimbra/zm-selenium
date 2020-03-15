@@ -30,22 +30,10 @@ public class NavigateResource extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Navigate to Resource page
-	 * Steps :
-	 * 1. Go to Resource
-	 * 2. Verify navigation path -- "Home --> Manage --> Resources"
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "Navigate to Resource",
 			groups = { "smoke" })
 
 	public void NavigateResource_01() throws HarnessException {
-
-		/*
-		 * Verify navigation path -- "Home --> Manage Accounts --> Resources"
-		 */
 		ZAssert.assertTrue(app.zPageManageResources.zVerifyHeader(PageManageResources.Locators.HOME),
 				"Verfiy the 'Home' text exists in navigation path");
 		ZAssert.assertTrue(app.zPageManageResources.zVerifyHeader(PageManageResources.Locators.MANAGE),

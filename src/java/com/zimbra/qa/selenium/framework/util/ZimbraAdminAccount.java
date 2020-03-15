@@ -183,7 +183,6 @@ public class ZimbraAdminAccount extends ZimbraAccount {
 	}
 
 	public Element soapSend(String request) throws HarnessException {
-
 		// Tests seem to be running a lot longer, or there are now
 		// so many tests that the authToken timeout for the global
 		// admin expires.
@@ -209,6 +208,7 @@ public class ZimbraAdminAccount extends ZimbraAccount {
 
 			// Re-send SOAP request (this time, ignore errors and bubble back up)
 			response = super.soapSend(request);
+			SleepUtil.zimbraXSleepMedium();
 		}
 
 		return (response);

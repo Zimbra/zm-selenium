@@ -36,20 +36,10 @@ public class EditFeatures extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Edit COS - Edit features
-	 * Steps :
-	 * 1. Create an COS using SOAP.
-	 * 2. Edit COS - uncheck mail and calendar features
-	 * 3. Verify mail and calendar features attributes are changed using SOAP.
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "Edit COS - Edit features",
 			groups = { "bhr" })
 
 	public void EditFeatures_01() throws HarnessException {
-
 		// Create a new cos in the Admin Console using SOAP
 		CosItem cos = new CosItem();
 		String cosName=cos.getName();
@@ -59,8 +49,8 @@ public class EditFeatures extends AdminCore {
 						+			"<name>" + cosName + "</name>"
 						+		"</CreateCosRequest>");
 
-		// Refresh the account list
-		app.zPageManageCOS.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
+		// Refresh the list
+		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
 
 		// Click on account to be edited
 		app.zPageManageCOS.zListItem(Action.A_LEFTCLICK, cosName);

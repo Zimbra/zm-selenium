@@ -30,22 +30,10 @@ public class NavigateCertificates extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Navigate to Certificates page
-	 * Steps :
-	 * 1. Go to Accounts
-	 * 2. Verify navigation path -- "Home --> Configure --> Certificates"
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "Navigate to Certificates",
-			groups = { "smoke" })
+			groups = { "smoke", "non-zimbrax" })
 
 	public void NavigateCertificates_01() throws HarnessException {
-
-		/*
-		 * Verify navigation path -- "Home --> Configure --> Certificates"
-		 */
 		ZAssert.assertTrue(app.zPageManageCertificates.zVerifyHeader(PageManageCertificates.Locators.HOME),
 				"Verfiy the 'Home' text exists in navigation path");
 		ZAssert.assertTrue(app.zPageManageCertificates.zVerifyHeader(PageManageCertificates.Locators.CONFIGURE),

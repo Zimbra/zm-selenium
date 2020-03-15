@@ -30,22 +30,10 @@ public class NavigateAccount extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Navigate to Accounts page
-	 * Steps :
-	 * 1. Go to Accounts
-	 * 2. Verify navigation path -- "Home --> Manage --> Accounts"
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "Navigate to Accounts",
 			groups = { "smoke" })
 
 	public void NavigateAccount_01() throws HarnessException {
-
-		/*
-		 * Verify navigation path -- "Home --> Manage Accounts --> Accounts"
-		 */
 		ZAssert.assertTrue(app.zPageManageAccounts.zVerifyHeader(PageManageAccounts.Locators.HOME),
 				"Verfiy the 'Home' text exists in navigation path");
 		ZAssert.assertTrue(app.zPageManageAccounts.zVerifyHeader(PageManageAccounts.Locators.MANAGE),

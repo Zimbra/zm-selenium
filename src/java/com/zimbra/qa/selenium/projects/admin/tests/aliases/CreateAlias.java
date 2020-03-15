@@ -34,13 +34,6 @@ public class CreateAlias extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Create a basic alias.
-	 * 1. Create a alias with GUI.
-	 * 2. Verify alias is created using SOAP.
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "Create a basic alias",
 			groups = { "smoke" })
 

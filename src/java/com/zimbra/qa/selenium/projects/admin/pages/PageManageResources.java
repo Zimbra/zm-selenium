@@ -168,10 +168,7 @@ public class PageManageResources extends AbsTab {
 	}
 
 	public AbsPage zToolbarPressButton(Button button) throws HarnessException {
-
 		logger.info(myPageName() + " zToolbarPressButton(" + button + ")");
-
-		tracer.trace("Press the " + button + " button");
 
 		if (button == null)
 			throw new HarnessException("Button cannot be null!");

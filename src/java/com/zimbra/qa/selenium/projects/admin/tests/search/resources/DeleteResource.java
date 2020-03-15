@@ -37,22 +37,10 @@ public class DeleteResource extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Verify delete resource operation -- Search List View -- Location
-	 * Steps :
-	 * 1. Create a resource using SOAP.
-	 * 2. Search resource.
-	 * 3. Select a resource.
-	 * 4. Delete a resource using delete button in Gear box menu.
-	 * 5. Verify resource is deleted using SOAP.
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "Verify delete resource operation -- Search List View -- Location",
 			groups = { "sanity" })
 
 	public void DeleteResource_01() throws HarnessException {
-
 		this.startingPage.zNavigateTo();
 
 		// Create a new resource in the Admin Console using SOAP
@@ -101,22 +89,10 @@ public class DeleteResource extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Verify delete resource operation -- Search List View -- Equipment
-	 * Steps :
-	 * 1. Create a resource using SOAP.
-	 * 2. Search resource.
-	 * 3. Select a resource.
-	 * 4. Delete a resource using delete button in Gear box menu.
-	 * 5. Verify resource is deleted using SOAP.
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "Verify delete resource operation -- Search List View -- Equipment",
 			groups = { "functional" })
 
 	public void DeleteResource_02() throws HarnessException {
-
 		// Create a new resource in the Admin Console using SOAP
 		ResourceItem resource = new ResourceItem();
 
@@ -163,22 +139,10 @@ public class DeleteResource extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Verify delete resource operation -- Search List View/Right Click Menu -- Location
-	 * Steps :
-	 * 1. Create a resource using SOAP.
-	 * 2. Search resource.
-	 * 3. Right click on resource.
-	 * 4. Delete a resource using delete button in right click menu.
-	 * 5. Verify resource is deleted using SOAP.
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "Verify delete resource operation -- Search List View/Right Click Menu -- Location",
 			groups = { "functional" })
 
 	public void DeleteResource_03() throws HarnessException {
-
 		this.startingPage.zNavigateTo();
 
 		// Create a new resource in the Admin Console using SOAP
@@ -227,22 +191,10 @@ public class DeleteResource extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Verify delete resource operation -- Search List View/Right Click Menu -- Equipment
-	 * Steps :
-	 * 1. Create a resource using SOAP.
-	 * 2. Search resource.
-	 * 3. Right click on resource.
-	 * 4. Delete a resource using delete button in right click menu.
-	 * 5. Verify resource is deleted using SOAP.
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "Verify delete resource operation -- Search List View/Right Click Menu -- Equipment",
 			groups = { "functional" })
 
 	public void DeleteResource_04() throws HarnessException {
-
 		this.startingPage.zNavigateTo();
 
 		// Create a new resource in the Admin Console using SOAP

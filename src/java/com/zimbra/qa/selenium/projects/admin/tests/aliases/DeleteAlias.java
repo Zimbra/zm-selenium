@@ -38,17 +38,6 @@ public class DeleteAlias extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Verify delete alias operation  -- Manage alias View
-	 * Steps :
-	 * 1. Create an alias using SOAP.
-	 * 2. Go to Manage alias View.
-	 * 3. Select an alias.
-	 * 4. Delete an alias using delete button in Gear box menu.
-	 * 5. Verify alias is deleted using SOAP.
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "Verify delete alias operation  -- Manage alias View",
 			groups = { "bhr" })
 
@@ -65,8 +54,8 @@ public class DeleteAlias extends AdminCore {
 				+			"<alias>" + aliasEmailAddress + "</alias>"
 				+		"</AddAccountAliasRequest>");
 
-		// Refresh the account list
-		app.zPageManageAliases.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
+		// Refresh the list
+		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
 
 		// Click on alias to be deleted.
 		app.zPageManageAliases.zListItem(Action.A_LEFTCLICK, alias.getEmailAddress());
@@ -96,18 +85,6 @@ public class DeleteAlias extends AdminCore {
 	}
 
 
-	/**
-	 *
-	 * Testcase : Verify delete alias operation-- Manage alias View/Right Click Menu
-	 * Steps :
-	 * 1. Create an alias using SOAP.
-	 * 2. Go to Manage alias View.
-	 * 3. Right Click on an alias.
-	 * 4. Delete an alias using delete button in right click menu.
-	 * 5. Verify alias is deleted using SOAP.
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "Verify delete alias operation-- Manage alias View/Right Click Menu",
 			groups = { "sanity" })
 
@@ -124,8 +101,8 @@ public class DeleteAlias extends AdminCore {
 				+			"<alias>" + aliasEmailAddress + "</alias>"
 				+		"</AddAccountAliasRequest>");
 
-		// Refresh the account list
-		app.zPageManageAliases.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
+		// Refresh the list
+		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
 
 		// Click on alias to be deleted.
 		app.zPageManageAliases.zListItem(Action.A_RIGHTCLICK, alias.getEmailAddress());
@@ -154,16 +131,6 @@ public class DeleteAlias extends AdminCore {
 		ZAssert.assertNull(found, "Verify alias is deleted successfully");
 	}
 
-
-	/**
-	 * Testcase : Verify delete alias operation - Search list view.
-	 * Steps :
-	 * 1. Create an alias using SOAP.
-	 * 2. Search created alias.
-	 * 3. Select the alias from gear box menu and select delete.
-	 * 4. Verify account is deleted using SOAP.
-	 * @throws HarnessException
-	 */
 
 	@Test (description = "Verify delete alias operation - Search list view",
 			groups = { "sanity" })
@@ -214,17 +181,6 @@ public class DeleteAlias extends AdminCore {
 		ZAssert.assertNull(found, "Verify alias is deleted successfully");
 	}
 
-
-	/**
-	 *
-	 * Testcase : Verify delete alias operation - Search list view/Right Click menu.
-	 * Steps :
-	 * 1. Create an alias using SOAP.
-	 * 2. Search created alias.
-	 * 3. Select the alias from gear box menu and select delete.
-	 * 4. Verify account is deleted using SOAP.
-	 * @throws HarnessException
-	 */
 
 	@Test (description = "Verify delete alias operation - Search list view/Right Click menu.",
 			groups = { "functional" })

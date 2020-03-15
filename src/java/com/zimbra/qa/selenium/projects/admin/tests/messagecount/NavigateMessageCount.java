@@ -30,21 +30,10 @@ public class NavigateMessageCount extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Navigate to Client Upload page
-	 * Steps :
-	 * 1. Verify navigation path -- "Home --> Monitor --> Message Count"
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "Navigate to Message Count",
 			groups = { "smoke" })
 
 	public void NavigateMessageCount_01() throws HarnessException {
-
-		/*
-		 * Verify navigation path -- "Home --> Tools and Migraton --> Client Upload"
-		 */
 		ZAssert.assertTrue(app.zPageManageMessageCount.zVerifyHeader(PageManageMessageCount.Locators.HOME),
 				"Verfiy the 'Home' text exists in navigation path");
 		ZAssert.assertTrue(app.zPageManageMessageCount.zVerifyHeader(PageManageMessageCount.Locators.MONITOR),

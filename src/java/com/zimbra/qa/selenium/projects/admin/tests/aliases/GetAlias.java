@@ -26,7 +26,6 @@ import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.admin.core.AdminCore;
 import com.zimbra.qa.selenium.projects.admin.items.AccountItem;
 import com.zimbra.qa.selenium.projects.admin.items.AliasItem;
-import com.zimbra.qa.selenium.projects.admin.pages.PageMain;
 
 public class GetAlias extends AdminCore {
 
@@ -36,22 +35,12 @@ public class GetAlias extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Verify delete alias operation  -- Manage alias View
-	 * Steps :
-	 * 1. Create an alias using SOAP.
-	 * 2. Go to Manage alias View.
-	 * 3. Select an alias.
-	 * 4. Delete an alias using delete button in Gear box menu.
-	 * 5. Verify alias is deleted using SOAP.
-	 * @throws HarnessException
-	 */
-
-	@Test (description = "Verify alias creation operation   -- Manage alias View",
+	@Test (description = "Verify alias creation operation -- Manage alias View",
 			groups = { "bhr" })
 
 	public void GetAlias_01() throws HarnessException {
-		AccountItem target = new AccountItem("tc" + ConfigProperties.getUniqueString(), ConfigProperties.getStringProperty("testdomain"));
+		AccountItem target = new AccountItem("tc" + ConfigProperties.getUniqueString(),
+				ConfigProperties.getStringProperty("testdomain"));
 		AccountItem.createUsingSOAP(target);
 
 		// Create a new account in the Admin Console using SOAP
@@ -63,9 +52,8 @@ public class GetAlias extends AdminCore {
 				+			"<alias>" + aliasEmailAddress + "</alias>"
 				+		"</AddAccountAliasRequest>");
 
-		// Refresh the account list
-		app.zPageManageAliases.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
-
+		// Refresh the list
+		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
 
 		// Get the list of displayed accounts
 		List<AccountItem> accounts = app.zPageManageAliases.zListGetAccounts();
@@ -83,19 +71,12 @@ public class GetAlias extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Verify created alias is displayed in UI.
-	 * Steps :
-	 * 1. Create an alias using SOAP.
-	 * 2. Verify alias is present in the list.
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "Verify created alias is present in the list view",
 			groups = { "sanity" })
 
 	public void GetAlias_02() throws HarnessException {
-		AccountItem target = new AccountItem("tc" + ConfigProperties.getUniqueString(), ConfigProperties.getStringProperty("testdomain"));
+		AccountItem target = new AccountItem("tc" + ConfigProperties.getUniqueString(),
+				ConfigProperties.getStringProperty("testdomain"));
 		AccountItem.createUsingSOAP(target);
 
 		// Create a new account in the Admin Console using SOAP

@@ -36,14 +36,6 @@ public class SearchFunctionality extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Verify search functionality of all results.
-	 * Steps :
-	 * 1. Create an account using SOAP.
-	 * 2. Verify the account is present in the all results search.
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "Verify search functionality of all results",
 			groups = { "bhr" })
 
@@ -75,14 +67,6 @@ public class SearchFunctionality extends AdminCore {
 		ZAssert.assertNotNull(found, "Verify the account is found");
 	}
 
-
-	/**
-	 * Testcase : Verify search functionality of Accounts.
-	 * Steps :
-	 * 1. Create an account using SOAP.
-	 * 2. Verify the account is present in the "Accounts" search.
-	 * @throws HarnessException
-	 */
 
 	@Test (description = "Verify search functionality of accounts",
 			groups = { "bhr" })
@@ -117,14 +101,6 @@ public class SearchFunctionality extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Verify search functionality of DL.
-	 * Steps :
-	 * 1. Create a DL using SOAP.
-	 * 2. Verify the DL is present in the "DL" search.
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "Verify search functionality of DL",
 			groups = { "bhr" })
 
@@ -158,14 +134,6 @@ public class SearchFunctionality extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Verify search functionality of Domains.
-	 * Steps :
-	 * 1. Create a Domain using SOAP.
-	 * 2. Verify the Domain is present in the "DL" search.
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "Verify search functionality of Domain",
 			groups = { "bhr" })
 
@@ -197,14 +165,6 @@ public class SearchFunctionality extends AdminCore {
 		ZAssert.assertNotNull(found, "Verify the account is found");
 	}
 
-
-	/**
-	 * Testcase : Verify search functionality of locked out accounts.
-	 * Steps :
-	 * 1. Create a locked out account using SOAP.
-	 * 2. Verify the account is present in the "locked out account" search.
-	 * @throws HarnessException
-	 */
 
 	@Test (description = "Verify search functionality of locked out accounts",
 			groups = { "functional" })
@@ -239,14 +199,6 @@ public class SearchFunctionality extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Verify search functionality of non-active accounts.
-	 * Steps :
-	 * 1. Create a pending account using SOAP.
-	 * 2. Verify the account is present in the "non-active account" search.
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "Verify search functionality of non-active accounts",
 			groups = { "functional" })
 
@@ -279,14 +231,6 @@ public class SearchFunctionality extends AdminCore {
 		ZAssert.assertNotNull(found, "Verify the account is found");
 	}
 
-
-	/**
-	 * Testcase : Verify search functionality of admin accounts.
-	 * Steps :
-	 * 1. Create a admin account using SOAP.
-	 * 2. Verify the account is present in the "admin account" search.
-	 * @throws HarnessException
-	 */
 
 	@Test (description = "Verify search functionality of admin accounts",
 			groups = { "functional" })
@@ -341,14 +285,6 @@ public class SearchFunctionality extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Verify search functionality of closed accounts.
-	 * Steps :
-	 * 1. Create a closed account using SOAP.
-	 * 2. Verify the account is present in the "closed account" search.
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "Verify search functionality of closed accounts",
 			groups = { "functional" })
 
@@ -381,14 +317,6 @@ public class SearchFunctionality extends AdminCore {
 		ZAssert.assertNotNull(found, "Verify the account is found");
 	}
 
-
-	/**
-	 * Testcase : Verify search functionality of maintenance accounts.
-	 * Steps :
-	 * 1. Create a maintenance account using SOAP.
-	 * 2. Verify the account is present in the "maintenance account" search.
-	 * @throws HarnessException
-	 */
 
 	@Test (description = "Verify search functionality of maintenance accounts",
 			groups = { "functional" })

@@ -35,22 +35,10 @@ public class DeleteDomain extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Verify delete domain operation --  Search List View
-	 * Steps :
-	 * 1. Create a domain using SOAP.
-	 * 2. Search domain.
-	 * 3. Select a domain.
-	 * 4. check delete button in Gear box menu.
-	 * 5. Verify delete domain option is disabled at search results.
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "Verify delete domain operation is absent from leftclick > gear icon --  Search List View",
 			groups = { "sanity" })
 
 	public void DeleteDomain_01() throws HarnessException {
-
 		// Create a new domain in the Admin Console using SOAP
 		DomainItem domain = new DomainItem();
 
@@ -76,22 +64,10 @@ public class DeleteDomain extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Verify delete domain operation is disabled -- Search List View/Right Click Menu
-	 * Steps :
-	 * 1. Create a domain using SOAP.
-	 * 2. Search domain.
-	 * 3. Right click on domain.
-	 * 4. check option Delete using delete button in right click menu.
-	 * 5. Verify option is disabled
-	 * @throws HarnessException
-	 */
-
 	@Test (description = " Verify delete domain operation is disabled -- Search List View/Right Click Menu",
 			groups = { "functional" })
 
 	public void DeleteDomain_02() throws HarnessException {
-
 		// Create a new domain in the Admin Console using SOAP
 		DomainItem domain = new DomainItem();
 
@@ -115,21 +91,10 @@ public class DeleteDomain extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Verify delete domain alias operation is disabled- Search list view.
-	 * Steps :
-	 * 1. Create domain alias using SOAP.
-	 * 2. Search created domain alias.
-	 * 3. Select the domain alias from gear box menu and select delete.
-	 * 4. Verify domain alias option is disabled
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "Verify delete domain alias operation is disabled- Search list view.",
 			groups = { "sanity" })
 
 	public void DeleteDomain_03() throws HarnessException {
-
 		String targetDomain = ConfigProperties.getStringProperty("testdomain");
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<GetDomainRequest xmlns='urn:zimbraAdmin'>"
@@ -167,21 +132,10 @@ public class DeleteDomain extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Verify delete domain alias operation is disabled- Search list view.
-	 * Steps :
-	 * 1. Create domain alias using SOAP.
-	 * 2. Search created domain alias.
-	 * 3. Select the domain alias from gear box menu and select delete.
-	 * 4. Verify domain alias option is disabled
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "Verify delete domain alias operation is disabled- Search list view.",
 			groups = { "functional" })
 
 	public void DeleteDomain_04() throws HarnessException {
-
 		String targetDomain = ConfigProperties.getStringProperty("testdomain");
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<GetDomainRequest xmlns='urn:zimbraAdmin'>"

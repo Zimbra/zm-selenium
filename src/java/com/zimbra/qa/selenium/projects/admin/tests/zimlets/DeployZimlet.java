@@ -37,19 +37,10 @@ public class DeployZimlet extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Deploy Zimlet
-	 * 1. Go to Configure > Zimlet
-	 * 2. Select deploy zimlet from gear menu
-	 * 3. Verify zimlet is deployed and listed correctly
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "Deploy Zimlet",
-			groups = { "bhr" })
+			groups = { "bhr", "non-zimbrax" })
 
 	public void DeployZimlet_01() throws HarnessException {
-
 		// Create file item
 		final String fileName = "com_zimbra_dnd.zip";
 		String zimletName ="com_zimbra_dnd";
