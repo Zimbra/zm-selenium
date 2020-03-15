@@ -27,7 +27,6 @@ import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.admin.core.AdminCore;
 import com.zimbra.qa.selenium.projects.admin.items.ResourceItem;
 import com.zimbra.qa.selenium.projects.admin.pages.FormEditResource;
-import com.zimbra.qa.selenium.projects.admin.pages.PageMain;
 import com.zimbra.qa.selenium.projects.admin.pages.PageSearchResults;
 
 public class EditResource extends AdminCore {

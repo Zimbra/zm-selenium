@@ -26,7 +26,6 @@ import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
 import com.zimbra.qa.selenium.projects.admin.core.AdminCore;
 import com.zimbra.qa.selenium.projects.admin.pages.FormManageRetentionPolicy;
-import com.zimbra.qa.selenium.projects.admin.pages.PageMain;
 
 public class EditRetentionPolicy extends AdminCore {
 

@@ -29,7 +29,6 @@ import com.zimbra.qa.selenium.projects.admin.items.DistributionListItem;
 import com.zimbra.qa.selenium.projects.admin.pages.FormEditDistributionList;
 import com.zimbra.qa.selenium.projects.admin.pages.FormEditDistributionList.Locators;
 import com.zimbra.qa.selenium.projects.admin.pages.FormEditDistributionList.TreeItem;
-import com.zimbra.qa.selenium.projects.admin.pages.PageMain;
 
 public class AddDirectMemberOfDistributionList extends AdminCore {
 

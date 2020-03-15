@@ -27,7 +27,6 @@ import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
 import com.zimbra.qa.selenium.projects.admin.core.AdminCore;
 import com.zimbra.qa.selenium.projects.admin.items.CosItem;
 import com.zimbra.qa.selenium.projects.admin.pages.FormEditCos;
-import com.zimbra.qa.selenium.projects.admin.pages.PageMain;
 
 public class EditPreferences extends AdminCore {
 
