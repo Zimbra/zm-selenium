@@ -335,9 +335,9 @@ public class AdminPages extends AbsApplication {
 	}
 
 	public void provisionAuthenticateDA() throws HarnessException {
-		// Create a new AdminAccount
+		// Create a new Admin account
 		ZimbraAdminAccount delegatedAdmin = new ZimbraAdminAccount(
-				"tc" + ConfigProperties.getUniqueString() + "@" + ConfigProperties.getStringProperty("testdomain"));
+				"tcda" + ConfigProperties.getUniqueString() + "@" + ConfigProperties.getStringProperty("testdomain"));
 
 		delegatedAdmin.provisionDA(delegatedAdmin.EmailAddress);
 

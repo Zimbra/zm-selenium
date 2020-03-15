@@ -85,7 +85,6 @@ public class PageManageAccounts extends AbsTab {
 
 	@Override
 	public boolean zIsActive() throws HarnessException {
-
 		// Make sure the Admin Console is loaded in the browser
 		if (!MyApplication.zIsLoaded())
 			throw new HarnessException("Admin Console application is not active!");
@@ -107,7 +106,6 @@ public class PageManageAccounts extends AbsTab {
 
 	@Override
 	public void zNavigateTo() throws HarnessException {
-
 		if (zIsActive()) {
 			return;
 		}
@@ -133,7 +131,6 @@ public class PageManageAccounts extends AbsTab {
 
 	@Override
 	public AbsPage zListItem(Action action, String accountEmailAddress) throws HarnessException {
-
 		logger.info(myPageName() + " zListItem(" + action + ", " + accountEmailAddress + ")");
 
 		AbsPage page = null;
@@ -179,7 +176,6 @@ public class PageManageAccounts extends AbsTab {
 
 	@Override
 	public AbsPage zListItem(Action action, Button option, String accountEmailAddress) throws HarnessException {
-
 		logger.info(myPageName() + " zListItem(" + action + ", " + option + ", " + accountEmailAddress + ")");
 
 		AbsPage page = null;
@@ -285,10 +281,7 @@ public class PageManageAccounts extends AbsTab {
 
 	@Override
 	public AbsPage zToolbarPressButton(Button button) throws HarnessException {
-
 		logger.info(myPageName() + " zToolbarPressButton(" + button + ")");
-
-		tracer.trace("Press the " + button + " button");
 
 		if (button == null)
 			throw new HarnessException("Button cannot be null!");
@@ -352,8 +345,6 @@ public class PageManageAccounts extends AbsTab {
 	@Override
 	public AbsPage zToolbarPressPulldown(Button pulldown, Button option) throws HarnessException {
 		logger.info(myPageName() + " zToolbarPressButtonWithPulldown(" + pulldown + ", " + option + ")");
-
-		tracer.trace("Click pulldown " + pulldown + " then " + option);
 
 		if (pulldown == null)
 			throw new HarnessException("Pulldown cannot be null!");
@@ -440,9 +431,7 @@ public class PageManageAccounts extends AbsTab {
 		return (page);
 	}
 
-	/**
-	 * Return a list of all accounts in the current view
-	 */
+	// Return a list of all accounts in the current view
 	public List<AccountItem> zListGetAccounts() throws HarnessException {
 		List<AccountItem> items = new ArrayList<AccountItem>();
 		SleepUtil.sleepMedium();
