@@ -40,21 +40,10 @@ public class DeleteCos extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Verify delete cos operation -- Manage Cos view.
-	 * Steps :
-	 * 1. Create a cos using SOAP.
-	 * 2. Search cos created in Step-1.
-	 * 3. Select delete from gear box menu
-	 * 4. Verify cos is deleted using SOAP
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "Verify delete cos operation -- Manage cos view",
 			groups = { "sanity" })
 
 	public void DeleteCos_01() throws HarnessException {
-
 		// Create a new cos in the Admin Console using SOAP
 		CosItem cos = new CosItem();
 		String cosName=cos.getName();
@@ -64,8 +53,8 @@ public class DeleteCos extends AdminCore {
 				+			"<name>" + cosName + "</name>"
 				+		"</CreateCosRequest>");
 
-		// Refresh the account list
-		app.zPageManageCOS.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
+		// Refresh the list
+		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
 
 		// Click on account to be deleted.
 		app.zPageManageCOS.zListItem(Action.A_LEFTCLICK, cosName);
@@ -87,21 +76,10 @@ public class DeleteCos extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Verify delete cos operation -- Manage COS list view/Right click menu.
-	 * Steps :
-	 * 1. Create a cos using SOAP.
-	 * 2. Search cos created in Step-1.
-	 * 3. Select delete from right click menu
-	 * 4. Verify cos is deleted using SOAP
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "Verify delete cos operation -- Manage COS list view/Right click menu",
 			groups = { "sanity" })
 
 	public void DeleteCos_02() throws HarnessException {
-
 		// Create a new cos in the Admin Console using SOAP
 		CosItem cos = new CosItem();
 		String cosName=cos.getName();
@@ -111,8 +89,8 @@ public class DeleteCos extends AdminCore {
 				+			"<name>" + cosName + "</name>"
 				+		"</CreateCosRequest>");
 
-		// Refresh the account list
-		app.zPageManageCOS.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
+		// Refresh the list
+		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
 
 		// Click on account to be deleted.
 		app.zPageManageCOS.zListItem(Action.A_RIGHTCLICK, cosName);
@@ -134,21 +112,10 @@ public class DeleteCos extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Verify delete cos operation -- Search list view.
-	 * Steps :
-	 * 1. Create a cos using SOAP.
-	 * 2. Search cos created in Step-1.
-	 * 3. Select delete from gear box menu
-	 * 4. Verify cos is deleted using SOAP
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "Verify delete cos operation -- Search list view",
 			groups = { "functional-known-failure" })
 
 	public void DeleteCos_03() throws HarnessException {
-
 		// Create a new cos in the Admin Console using SOAP
 		CosItem cos = new CosItem();
 		String cosName=cos.getName();
@@ -192,21 +159,10 @@ public class DeleteCos extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Verify delete cos operation -- Search list view/Right click menu.
-	 * Steps :
-	 * 1. Create a cos using SOAP.
-	 * 2. Search cos created in Step-1.
-	 * 3. Select delete from right click menu
-	 * 4. Verify cos is deleted using SOAP
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "Verify delete cos in -- Search list view/Right click menu",
 			groups = { "functional-known-failure" })
 
 	public void DeleteCos_04() throws HarnessException {
-
 		// Create a new cos in the Admin Console using SOAP
 		CosItem cos = new CosItem();
 		String cosName=cos.getName();
@@ -254,7 +210,6 @@ public class DeleteCos extends AdminCore {
 			groups = { "functional" })
 
 	public void DeleteCos_05() throws HarnessException {
-
 		// Create a new cos in the Admin Console using SOAP
 		CosItem cos = new CosItem();
 		String cosName=cos.getName();
@@ -281,7 +236,6 @@ public class DeleteCos extends AdminCore {
 			groups = { "functional" })
 
 	public void DeleteCos_06() throws HarnessException {
-
 		// Create a new cos in the Admin Console using SOAP
 		CosItem cos = new CosItem();
 		String cosName=cos.getName();

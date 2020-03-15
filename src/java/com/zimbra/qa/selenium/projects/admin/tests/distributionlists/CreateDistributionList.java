@@ -36,17 +36,10 @@ public class CreateDistributionList extends AdminCore {
 	}
 
 
-	/**
-	 * 1. Create DL from UI.
-	 * 2. Verify DL is created using soap.
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "Create a basic DL",
 			groups = { "smoke" })
 
 	public void CreateDistributionList_01() throws HarnessException {
-
 		this.startingPage.zNavigateTo();
 
 		// Create a new dl in the Admin Console
@@ -67,18 +60,10 @@ public class CreateDistributionList extends AdminCore {
 	}
 
 
-	/**
-	 * 1. Create Dynamic DL from UI.
-	 * 2. Verify DL is created using soap.
-	 * @throws HarnessException
-	 * @throws ServiceException
-	 */
-
 	@Test (description = "Create a basic dynamic DL",
 			groups = { "bhr" })
 
 	public void CreateDistributionList_02() throws HarnessException, ServiceException {
-
 		this.startingPage.zNavigateTo();
 
 		// Create a new dynamic dl in the Admin Console

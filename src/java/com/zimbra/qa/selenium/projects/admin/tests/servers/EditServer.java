@@ -36,22 +36,12 @@ public class EditServer extends AdminCore {
 		super.startingPage = app.zPageManageServers;
 	}
 
-	/**
-	 * Testcase : Edit Server
-	 * Steps :
-	 * 1. Go to "Home > Configure > Servers"
-	 * 2. Click on Server > select Edit from gear icon
-	 * 3. Edit description and notes > Save
-	 * 4. Verify details are edited successfully
-	 * @throws HarnessException
-	 */
 
 	@Bugs (ids = "ZCS-8706")
 	@Test (description = "Edit Server from gear menu option",
 			groups = { "bhr-application-bug" })
 
 	public void EditServer_01() throws HarnessException {
-
 		String storeServer = ExecuteHarnessMain.storeServers.get(0);
 
 		// Select server
@@ -60,7 +50,7 @@ public class EditServer extends AdminCore {
 		// Click on Edit server option
 		FormEditServer form = (FormEditServer) app.zPageManageServers.zToolbarPressPulldown(Button.B_GEAR_BOX,Button.B_EDIT);
 
-		String description = "description_" + ConfigProperties.getUniqueString();
+		String description = "Created by Selenium automation " + ConfigProperties.getUniqueString();
 		String notes = "notes" + ConfigProperties.getUniqueString();
 
 		// Edit description

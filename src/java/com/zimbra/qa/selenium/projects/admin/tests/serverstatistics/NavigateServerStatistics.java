@@ -30,21 +30,10 @@ public class NavigateServerStatistics extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Navigate to Client Upload page
-	 * Steps :
-	 * 1. Verify navigation path -- "Home --> Monitor --> Server Statistics"
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "Navigate to Server Statistics",
 			groups = { "smoke" })
 
 	public void NavigateServerStatistics_01() throws HarnessException {
-
-		/*
-		 * Verify navigation path -- "Home --> Monitor --> Server Statistics"
-		 */
 		ZAssert.assertTrue(app.zPageManageServerStatistics.zVerifyHeader(PageManageServerStatistics.Locators.HOME),
 				"Verfiy the 'Home' text exists in navigation path");
 		ZAssert.assertTrue(app.zPageManageServerStatistics.zVerifyHeader(PageManageServerStatistics.Locators.MONITOR),

@@ -75,7 +75,6 @@ public class AdminCore {
 
 	protected AdminPages app = null;
 	protected AbsTab startingPage = null;
-
 	protected final ZimbraAdminAccount gAdmin = ZimbraAdminAccount.AdminConsoleAdmin();
 	protected ZimbraAdminAccount startingAccount = null;
 
@@ -185,7 +184,6 @@ public class AdminCore {
 			if (!startingAccount.equals(app.zGetActiveAccount())) {
 				zWaitforDialog();
 				zHandleNetworkModulesNGDialog();
-
 				app.zPageLogin.zLogin(startingAccount);
 			}
 

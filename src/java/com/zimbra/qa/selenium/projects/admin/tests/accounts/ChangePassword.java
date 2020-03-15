@@ -36,20 +36,10 @@ public class ChangePassword extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Edit password  -- manage account >> right click
-	 * Steps :
-	 * 1. Create an account using SOAP.
-	 * 2. Edit the account name using UI Right Click.
-	 * 3. Verify password is changed using SOAP.
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "Edit password  -- manage account > Gearbox > edit account > change password",
 			groups = { "bhr" })
 
 	public void ChangePassword_01() throws HarnessException {
-
 		// Create a new account in the Admin Console using SOAP
 		AccountItem account = new AccountItem("tc" + ConfigProperties.getUniqueString(), ConfigProperties.getStringProperty("testdomain"));
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
@@ -59,7 +49,7 @@ public class ChangePassword extends AdminCore {
 				+			"<a n='description'>Created by Selenium automation</a>"
 				+		"</CreateAccountRequest>");
 
-		// Refresh the account list
+		// Refresh the list
 		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
 
 		// Click on account to be edited
@@ -87,20 +77,10 @@ public class ChangePassword extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Edit password  -- manage account >> right click
-	 * Steps :
-	 * 1. Create an account using SOAP.
-	 * 2. Edit the account name using UI Right Click.
-	 * 3. Verify password is changed using SOAP.
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "Edit password  -- manage account > right click > change password",
 			groups = { "sanity" })
 
 	public void ChangePassword_02() throws HarnessException {
-
 		// Create a new account in the Admin Console using SOAP
 		AccountItem account = new AccountItem("tc" + ConfigProperties.getUniqueString(), ConfigProperties.getStringProperty("testdomain"));
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
@@ -110,7 +90,7 @@ public class ChangePassword extends AdminCore {
 				+			"<a n='description'>Created by Selenium automation</a>"
 				+		"</CreateAccountRequest>");
 
-		 // Refresh the account list
+		 // Refresh the list
 		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
 
 		// Right Click on account to be edited
@@ -122,7 +102,7 @@ public class ChangePassword extends AdminCore {
 		// Fill out the wizard
 		wizard.zCompleteWizard(account);
 
-		// Refresh the account list
+		// Refresh the list
 		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
 
 		// Confirm that the new password is in use by getting a new token

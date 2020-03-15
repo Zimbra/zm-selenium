@@ -30,20 +30,11 @@ public class ToggleStatus extends AdminCore {
 		super.startingPage = app.zPageManageZimlets;
 	}
 
-	/**
-	 * Testcase : Verify administrator should be able to toggle zimlet status
-	 * Steps :
-	 * 1. Go to "Home > Configure > Zimlets"
-	 * 2. Click on Zimlet > select toggle status from gear icon for zimlet - com_zimbra_webex
-	 * 3. Verify status
-	 * @throws HarnessException
-	 */
 
 	@Test (description = "Verify administrator should be able to toggle zimlet status",
-			groups = { "functional" })
+			groups = { "functional", "non-zimbrax" })
 
 	public void ToggleStatus_01() throws HarnessException {
-
 		String zimletList ="css=div#zl__ZIMLET_MANAGE div[id$='__rows'] div[id^='zli__']";
 		String zimletName ="com_zimbra_webex";
 

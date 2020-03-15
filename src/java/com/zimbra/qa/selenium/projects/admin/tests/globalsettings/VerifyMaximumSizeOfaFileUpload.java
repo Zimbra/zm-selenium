@@ -31,20 +31,11 @@ public class VerifyMaximumSizeOfaFileUpload extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase :  zimbraFileUploadMaxSize does not restrict to upload attachment exceeding the value
-	 * Steps :
-	 * 1. Go to Accounts
-	 * 2. Verify navigation path -- "Home --> Configure --> Global Settings" --> Verify fileUploadMaxSize field
-	 * @throws HarnessException
-	 */
-
 	@Bugs (ids = "81323")
 	@Test (description = "Verify field text in Global Settings > General Information = Maximum size of a file uploaded from the desktop (KB):",
 			groups = { "sanity" })
 
 	public void VerifyMaximumSizeOfaFileUpload_01() throws HarnessException {
-
 		String fileUploadMaxSizeLabel = "Maximum size of a file uploaded from the desktop (KB):";
 		String default_value = "10240";
 

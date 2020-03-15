@@ -44,7 +44,6 @@ public class AddDirectMemberOfDistributionList extends AdminCore {
 		   	groups = { "bhr" })
 
 	public void AddDirectMemberOfDistributionList_01() throws HarnessException {
-
 		// Create two distribution lists in the Admin Console using SOAP
 		DistributionListItem dl1 = new DistributionListItem();
 		DistributionListItem dl2 = new DistributionListItem();
@@ -62,7 +61,7 @@ public class AddDirectMemberOfDistributionList extends AdminCore {
 						+		"</CreateDistributionListRequest>");
 
 		// Refresh the list
-		app.zPageManageDistributionList.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
+		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
 
 		// Click on distribution list to be edited.
 		app.zPageManageDistributionList.zListItem(Action.A_LEFTCLICK, dl1.getEmailAddress());

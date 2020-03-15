@@ -41,7 +41,6 @@ public class ZimbraHelpAdminURLModification extends AdminCore {
 			groups = { "sanity-known-failure" })
 
 	public void ZimbraHelpAdminURLModification_01() throws HarnessException {
-
 		CommandLineUtility.runCommandOnZimbraServer(ConfigProperties.getStringProperty("server.host"),
 				"mkdir -p /opt/zimbra/jetty/webapps/zimbraAdmin/helpUrl/help/admin && echo '<html><head><title>Zimbra Temp Admin Help</title></head><body><h1>Temp Admin Help</h1><p> This is the new admin help of zimbra!</p></body></html>' > /opt/zimbra/jetty/webapps/zimbraAdmin/helpUrl/help/admin/adminhelp.html");
 
@@ -116,7 +115,6 @@ public class ZimbraHelpAdminURLModification extends AdminCore {
 			groups = { "functional" })
 
 	public void ZimbraHelpAdminURLModification_02() throws HarnessException {
-
 		try {
 			// Modify the config and change the help URL
 			ZimbraAdminAccount.AdminConsoleAdmin()

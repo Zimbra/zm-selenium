@@ -32,14 +32,6 @@ public class CreateAccount extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Create a basic account
-	 * Steps :
-	 * 1. Create an account from GUI i.e. Gear Box -> New.
-	 * 2. Verify account is created using SOAP.
-	 * @throws HarnessException
-	 */
-
 	@Bugs (ids = "100779")
 	@Test (description = "Create a basic account using New->Account",
 			groups = { "smoke" })

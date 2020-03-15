@@ -30,21 +30,10 @@ public class NavigateSoftwareUpdates extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Navigate to Software Updates page
-	 * Steps :
-	 * 1. Verify navigation path -- "Home --> Tools and Migraton --> Software Updates"
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "Navigate to Software Updates",
-			groups = { "smoke" })
+			groups = { "smoke", "non-zimbrax" })
 
 	public void NavigateAccountMigration_01() throws HarnessException {
-
-		/*
-		 * Verify navigation path -- "Home --> Tools and Migraton --> Software Updates"
-		 */
 		ZAssert.assertTrue(app.zPageManageSoftwareUpdates.zVerifyHeader(PageManageSoftwareUpdates.Locators.HOME),
 				"Verfiy the 'Home' text exists in navigation path");
 		ZAssert.assertTrue(

@@ -30,22 +30,10 @@ public class NavigateDomain extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Navigate to Domain page
-	 * Steps :
-	 * 1. Go to Domains
-	 * 2. Verify navigation path -- "Home --> Configure --> Domains"
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "Navigate to Domain",
 			groups = { "smoke" })
 
 	public void NavigateDomain_01() throws HarnessException {
-
-		/*
-		 * Verify navigation path -- "Home --> Configure --> Domains"
-		 */
 		ZAssert.assertTrue(app.zPageManageDomains.zVerifyHeader(PageManageDomains.Locators.HOME),
 				"Verfiy the 'Home' text exists in navigation path");
 		ZAssert.assertTrue(app.zPageManageDomains.zVerifyHeader(PageManageDomains.Locators.CONFIGURE),

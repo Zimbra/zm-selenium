@@ -30,22 +30,10 @@ public class NavigateCos extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Navigate to Cos page
-	 * Steps :
-	 * 1. Go to Accounts
-	 * 2. Verify navigation path -- "Home --> Configure --> Class Of Service"
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "Navigate to Cos",
 			groups = { "smoke" })
 
 	public void NavigateCos_01() throws HarnessException {
-
-		/*
-		 * Verify navigation path -- "Home --> Configure --> Class Of Service"
-		 */
 		ZAssert.assertTrue(app.zPageManageCOS.zVerifyHeader(PageManageCOS.Locators.HOME),
 				"Verfiy the 'Home' text exists in navigation path");
 		ZAssert.assertTrue(app.zPageManageCOS.zVerifyHeader(PageManageCOS.Locators.CONFIGURE),

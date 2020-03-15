@@ -29,22 +29,11 @@ public class NavigateZimlets extends AdminCore {
 		super.startingPage = app.zPageManageZimlets;
 	}
 
-	/**
-	 * Testcase : Navigate to Zimlets page
-	 * Steps :
-	 * 1. Go to Accounts
-	 * 2. Verify navigation path -- "Home --> Configure --> Zimlets"
-	 * @throws HarnessException
-	 */
 
 	@Test (description = "Navigate to Zimlets",
 			groups = { "smoke" })
 
 	public void NavigateZimlets_01() throws HarnessException {
-
-		/*
-		 * Verify navigation path -- "Home --> Configure --> Zimlets"
-		 */
 		ZAssert.assertTrue(app.zPageManageZimlets.zVerifyHeader(PageManageZimlets.Locators.HOME),
 				"Verfiy the 'Home' text exists in navigation path");
 		ZAssert.assertTrue(app.zPageManageZimlets.zVerifyHeader(PageManageZimlets.Locators.CONFIGURE),

@@ -30,22 +30,10 @@ public class NavigateGlobalSettings extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Navigate to Global Settings page
-	 * Steps :
-	 * 1. Go to Accounts
-	 * 2. Verify navigation path -- "Home --> Configure --> Global Settings"
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "Navigate to Global Settings",
 			groups = { "smoke" })
 
 	public void NavigateGlobalSettings_01() throws HarnessException {
-
-		/*
-		 * Verify navigation path -- "Home --> Configure --> Global Settings"
-		 */
 		ZAssert.assertTrue(app.zPageManageGlobalSettings.zVerifyHeader(PageManageGlobalSettings.Locators.HOME),
 				"Verfiy the 'Home' text exists in navigation path");
 		ZAssert.assertTrue(app.zPageManageGlobalSettings.zVerifyHeader(PageManageGlobalSettings.Locators.CONFIGURE),

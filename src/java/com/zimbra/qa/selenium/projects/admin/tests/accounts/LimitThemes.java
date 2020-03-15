@@ -37,10 +37,9 @@ public class LimitThemes extends AdminCore {
 
 
 	@Test (description = "Modify account to verify limited themes available",
-			groups = { "functional" })
+			groups = { "functional", "non-zimbrax" })
 
 	public void LimitThemes_01() throws HarnessException {
-
 		// Create a new account in the Admin Console using SOAP
 		AccountItem account = new AccountItem("tc" + ConfigProperties.getUniqueString(), ConfigProperties.getStringProperty("testdomain"));
 
@@ -51,9 +50,9 @@ public class LimitThemes extends AdminCore {
 						+			"<a n='description'>Created by Selenium automation</a>"
 						+		"</CreateAccountRequest>");
 
-		String theme="Harmony";
+		String theme = "Harmony";
 
-		// Refresh the account list
+		// Refresh the list
 		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
 
 		// Click on Edit button

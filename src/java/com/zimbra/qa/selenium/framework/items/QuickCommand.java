@@ -21,15 +21,8 @@ import net.sf.json.*;
 import org.apache.log4j.*;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 
-/**
- * Helper class to convert QuickCommands to JSON for ModifyPrefsRequest usage
- */
 public class QuickCommand {
 	protected static Logger logger = LogManager.getLogger(QuickCommand.class);
-
-	/**
-	 * The type of item this Quick Command applies to
-	 */
 	public enum ItemTypeId {
 		MSG, APPT, CONTACT, Null
 	}
@@ -51,9 +44,6 @@ public class QuickCommand {
 		IsActive = isActive;
 	}
 
-	/**
-	 * Marshall this object into JSON
-	 */
 	public JSONObject toJSON() {
 		JSONObject json = new JSONObject();
 		json.put("id", getId());

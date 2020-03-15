@@ -36,19 +36,10 @@ public class GetDomain extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Verify created domain is displayed in UI.
-	 * Steps :
-	 * 1. Create an domain using SOAP.
-	 * 2. Verify domain is present in the list.
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "Verify created domain is present in the domain list view",
 			groups = { "bhr" })
 
 	public void GetDomain_01() throws HarnessException {
-
 		// Create a new domain in the Admin Console using SOAP
 		DomainItem domain = new DomainItem();
 
@@ -58,8 +49,8 @@ public class GetDomain extends AdminCore {
 				+			"<a n='description'>Created by Selenium automation</a>"
 				+		"</CreateDomainRequest>");
 
-		// Refresh the domain list
-		app.zPageManageDomains.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
+		// Refresh the list
+		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
 
 		// Get the list of displayed domains
 		List<DomainItem> domains = app.zPageManageDomains.zListGetDomainList();
@@ -77,21 +68,10 @@ public class GetDomain extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Verify get domain alias operation - Search list view.
-	 * Steps :
-	 * 1. Create domain alias using SOAP.
-	 * 2. Search created domain alias.
-	 * 3. Select the domain alias from gear box menu and select delete.
-	 * 4. Verify domain alias is deleted using SOAP.
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "Verify get domain alias operation",
 			groups = { "sanity" })
 
 	public void GetDomain_02() throws HarnessException {
-
 		String targetDomain = ConfigProperties.getStringProperty("testdomain");
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<GetDomainRequest xmlns='urn:zimbraAdmin'>"
@@ -114,8 +94,8 @@ public class GetDomain extends AdminCore {
 				+ "<a n='description'>Created by Selenium automation</a>"
 				+ "</CreateDomainRequest>");
 
-		// Refresh the domain list
-		app.zPageManageDomains.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
+		// Refresh the list
+		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
 
 		// Get the list of displayed domains
 		List<DomainItem> domains = app.zPageManageDomains.zListGetDomainList();
@@ -133,19 +113,10 @@ public class GetDomain extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Verify created domain is displayed in UI.
-	 * Steps :
-	 * 1. Create an domain using SOAP.
-	 * 2. Verify domain is present in the list.
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "Search created domain",
 			groups = { "sanity" })
 
 	public void GetDomain_03() throws HarnessException {
-
 		// Create a new domain in the Admin Console using SOAP
 		DomainItem domain = new DomainItem();
 
@@ -177,21 +148,10 @@ public class GetDomain extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Verify get domain alias operation - Search list view.
-	 * Steps :
-	 * 1. Create domain alias using SOAP.
-	 * 2. Search created domain alias.
-	 * 3. Select the domain alias from gear box menu and select delete.
-	 * 4. Verify domain alias is deleted using SOAP.
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "Verify get domain alias operation - Search list view",
 			groups = { "functional" })
 
 	public void GetDomain_04() throws HarnessException {
-
 		String targetDomain = ConfigProperties.getStringProperty("testdomain");
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
 				"<GetDomainRequest xmlns='urn:zimbraAdmin'>"

@@ -16,6 +16,7 @@
  */
 package com.zimbra.qa.selenium.projects.admin.pages;
 
+import com.zimbra.qa.selenium.framework.core.ExecuteHarnessMain;
 import com.zimbra.qa.selenium.framework.items.IItem;
 import com.zimbra.qa.selenium.framework.ui.AbsTab;
 import com.zimbra.qa.selenium.framework.ui.AbsWizard;
@@ -64,13 +65,11 @@ public class WizardCreateDomainAlias extends AbsWizard {
 	}
 
 	public IItem zSetTargetDomain(IItem item) throws HarnessException {
-
 		if (!(item instanceof DomainItem))
 			throw new HarnessException("item must be an AliasItem, was " + item.getClass().getCanonicalName());
 
 		DomainItem alias = (DomainItem) item;
-
-		String targetDomain = ConfigProperties.getStringProperty("server.host");
+		String targetDomain = ExecuteHarnessMain.zimbraServer;
 
 		for (int i = 10; i >= 1; i--) {
 			if (sIsElementPresent("zdlgv__UNDEFINE" + i + Locators.TARGET_DOMAIN_NAME)) {

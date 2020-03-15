@@ -34,34 +34,10 @@ public class CreateResource extends AdminCore {
 	}
 
 
-	@Test (description = "Create a basic resource",
+	@Test (description = "Create a basic Location resource",
 			groups = { "smoke" })
 
 	public void CreateResource_01() throws HarnessException {
-		ResourceItem resource = new ResourceItem();
-
-		// Click "New"
-		WizardCreateResource wizard = (WizardCreateResource) app.zPageManageResources.zToolbarPressButton(Button.B_NEW);
-
-		// Fill out the wizard and click Finish
-		wizard.zCompleteWizard(resource);
-
-		// Verify the resource exists in the ZCS
-		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
-				"<GetCalendarResourceRequest xmlns='urn:zimbraAdmin'>"
-				+ 		"<calresource by='name'>" +  resource.getEmailAddress() + "</calresource>"
-				+		"</GetCalendarResourceRequest>");
-
-		Element response = ZimbraAdminAccount.AdminConsoleAdmin()
-				.soapSelectNode("//admin:GetCalendarResourceResponse/admin:calresource", 1);
-		ZAssert.assertNotNull(response, "Verify the RESOURCE is created successfully");
-	}
-
-
-	@Test (description = "Create a basic Location resource",
-			groups = { "bhr" })
-
-	public void CreateResource_02() throws HarnessException {
 		ResourceItem resource = new ResourceItem();
 
 		// Click "New"
@@ -87,7 +63,7 @@ public class CreateResource extends AdminCore {
 	@Test (description = "Create a basic Equipment resource",
 			groups = { "bhr" })
 
-	public void CreateResource_03() throws HarnessException {
+	public void CreateResource_02() throws HarnessException {
 		ResourceItem resource = new ResourceItem();
 
 		// Click "New"

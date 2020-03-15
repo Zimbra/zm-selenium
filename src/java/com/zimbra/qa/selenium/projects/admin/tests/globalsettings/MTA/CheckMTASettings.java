@@ -35,23 +35,11 @@ public class CheckMTASettings extends AdminCore {
 	}
 
 
-	/**
-	 * Test case : Verify that MTA configuration changes are reflected on Admin UI as well as on CLI
-	 * Steps :
-	 * 1. Go to configure >> global settings >> MTA
-	 * 2. Get the existing configuration of MTA
-	 * 3. Make some changes in the MTA configuration through Admin UI and SOAP request
-	 * 4. Get the MTA configuration using soap and check that all the changes are reflected.
-	 * 5. Check that the changes are also present in ADMIn UI
-	 * @throws HarnessException
-	 */
-
 	@Bugs (ids = "104512,106769")
 	@Test (description = "Verify MTA restriction values after changing some MTA configuration through Command line and Admin console",
 			groups = { "sanity" })
 
 	public void CheckMTASettings_01() throws HarnessException {
-
 		// MTA restriction value to be changed though SOAP
 		String MTARestriction1 = "check_client_access lmdb:/opt/zimbra/conf/postfix_rbl_override";
 		String MTARestriction2 = "reject_unknown_client_hostname";

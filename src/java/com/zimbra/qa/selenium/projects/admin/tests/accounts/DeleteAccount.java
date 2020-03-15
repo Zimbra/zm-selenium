@@ -37,23 +37,10 @@ public class DeleteAccount extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Delete a basic account -- Manage Account View
-	 * Steps :
-	 * 1. Create an account using SOAP.
-	 * 2. Go to Manage Account View.
-	 * 3. Select an Account.
-	 * 4. Delete an account using delete button in Gear box menu.
-	 * 5. Verify account is deleted using SOAP.
-	 *
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "Delete a basic account -- Manage Account View",
 			groups = { "bhr" })
 
 	public void DeleteAccount_01() throws HarnessException {
-
 		// Create a new account in the Admin Console using SOAP
 		AccountItem account = new AccountItem("tc" + ConfigProperties.getUniqueString(), ConfigProperties.getStringProperty("testdomain"));
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
@@ -63,7 +50,7 @@ public class DeleteAccount extends AdminCore {
 				+			"<a n='description'>Created by Selenium automation</a>"
 				+		"</CreateAccountRequest>");
 
-		// Refresh the account list
+		// Refresh the list
 		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
 
 		// Click on account to be deleted.
@@ -88,23 +75,10 @@ public class DeleteAccount extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Delete a basic account -- Manage Account View/Right Click Menu
-	 * Steps :
-	 * 1. Create an account using SOAP.
-	 * 2. Go to Manage Account View.
-	 * 3. Right Click on an Account.
-	 * 4. Delete an account using delete button in right click menu.
-	 * 5. Verify account is deleted using SOAP.
-	 *
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "Delete a basic account - Manage Account View/Right Click Menu",
 			groups = { "sanity" })
 
 	public void DeleteAccount_02() throws HarnessException {
-
 		// Create a new account in the Admin Console using SOAP
 		AccountItem account = new AccountItem("tc" + ConfigProperties.getUniqueString(), ConfigProperties.getStringProperty("testdomain"));
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
@@ -114,7 +88,7 @@ public class DeleteAccount extends AdminCore {
 				+			"<a n='description'>Created by Selenium automation</a>"
 				+ "</CreateAccountRequest>");
 
-		// Refresh the account list
+		// Refresh the list
 		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
 
 		// Right Click on account to be deleted.
@@ -139,23 +113,10 @@ public class DeleteAccount extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Delete a basic account -- Search List View
-	 * Steps :
-	 * 1. Create an account using SOAP.
-	 * 2. Search account.
-	 * 3. Select an Account.
-	 * 4. Delete an account using delete button in Gear box menu.
-	 * 5. Verify account is deleted using SOAP.
-	 *
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "Delete a basic account - Search List View",
 			groups = { "bhr" })
 
 	public void DeleteAccount_03() throws HarnessException {
-
 		// Create a new account in the Admin Console using SOAP
 		AccountItem account = new AccountItem("tc" + ConfigProperties.getUniqueString(), ConfigProperties.getStringProperty("testdomain"));
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
@@ -193,22 +154,10 @@ public class DeleteAccount extends AdminCore {
 		ZAssert.assertNull(response, "Verify the account is deleted successfully");
 	}
 
-	/**
-	 * Testcase : Delete a basic account -- Search List View/Right Click Menu
-	 * Steps :
-	 * 1. Create an account using SOAP.
-	 * 2. Search account.
-	 * 3. Right click on Account.
-	 * 4. Delete an account using delete button in right click menu.
-	 * 5. Verify account is deleted using SOAP.
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "Delete a basic account - Search List View/Right Click Menu",
 			groups = { "sanity" })
 
 	public void DeleteAccount_04() throws HarnessException {
-
 		// Create a new account in the Admin Console using SOAP
 		AccountItem account = new AccountItem("tc" + ConfigProperties.getUniqueString(), ConfigProperties.getStringProperty("testdomain"));
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(

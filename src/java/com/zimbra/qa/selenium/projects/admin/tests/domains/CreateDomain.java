@@ -35,20 +35,11 @@ public class CreateDomain extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Create a simple domain
-	 * Steps :
-	 * 1. Create a domain from GUI
-	 * 2. Verify domain is created using SOAP.
-	 * @throws HarnessException
-	 */
-
 	@Bugs (ids = "58795")
 	@Test (description = "Create basic domain",
 			groups = { "smoke" })
 
 	public void CreateDomain_01() throws HarnessException {
-
 		// Create a new domain in the Admin Console
 		DomainItem domain = new DomainItem();
 

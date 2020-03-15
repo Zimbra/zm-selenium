@@ -36,20 +36,10 @@ public class EditFeatures extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Edit account - Edit features
-	 * Steps :
-	 * 1. Create an account using SOAP.
-	 * 2. Edit account - uncheck mail and calendar features
-	 * 3. Verify mail and calendar features attributes are changed using SOAP.
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "Edit account - Edit features",
 			groups = { "bhr" })
 
 	public void EditFeatures_01() throws HarnessException {
-
 		// Create a new account in the Admin Console using SOAP
 		AccountItem account = new AccountItem("tc" + ConfigProperties.getUniqueString(),
 				ConfigProperties.getStringProperty("testdomain"));
@@ -61,7 +51,7 @@ public class EditFeatures extends AdminCore {
 						+			"<a n='description'>Created by Selenium automation</a>"
 						+		"</CreateAccountRequest>");
 
-		// Refresh the account list
+		// Refresh the list
 		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
 
 		// Click on Edit button

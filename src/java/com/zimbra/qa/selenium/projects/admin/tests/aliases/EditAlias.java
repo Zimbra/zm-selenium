@@ -36,13 +36,6 @@ public class EditAlias extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Create a basic alias.
-	 * 1. Create a alias with GUI.
-	 * 2. Verify alias is created using SOAP.
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "Edit a basic alias",
 			groups = { "bhr" })
 
@@ -59,8 +52,8 @@ public class EditAlias extends AdminCore {
 				+			"<alias>" + aliasEmailAddress + "</alias>"
 				+		"</AddAccountAliasRequest>");
 
-		// Refresh the account list
-		app.zPageManageAliases.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
+		// Refresh the list
+		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
 
 		// Click on alias to be edited.
 		app.zPageManageAliases.zListItem(Action.A_LEFTCLICK, alias.getEmailAddress());
@@ -74,14 +67,6 @@ public class EditAlias extends AdminCore {
 		ZAssert.assertEquals(email, target.getEmailAddress(), "Verify the alias is associated with the correct account");
 	}
 
-
-	/**
-	 * Testcase : Bug 58191 - JavaScript error while clicking on alias of resource
-	 * 1. Create a resource
-	 * 2. Create an alias to resource
-	 * 3. Click on newly created alias
-	 * @throws HarnessException
-	 */
 
 	@Bugs (ids = "58191")
 	@Test (description = "Bug 58191 - JavaScript error while clicking on alias of resource",
@@ -109,8 +94,8 @@ public class EditAlias extends AdminCore {
 				+			"<alias>" + aliasEmailAddress + "</alias>"
 				+		"</AddAccountAliasRequest>");
 
-		// Refresh the account list
-		app.zPageManageAliases.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
+		// Refresh the list
+		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
 
 		// Click on alias
 		app.zPageManageAliases.zListItem(Action.A_LEFTCLICK, alias.getEmailAddress());

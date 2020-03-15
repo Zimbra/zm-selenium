@@ -26,7 +26,6 @@ import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
 import com.zimbra.qa.selenium.projects.admin.core.AdminCore;
 import com.zimbra.qa.selenium.projects.admin.items.AccountItem;
 import com.zimbra.qa.selenium.projects.admin.items.ResourceItem;
-import com.zimbra.qa.selenium.projects.admin.pages.PageMain;
 
 public class GetResource extends AdminCore {
 
@@ -36,22 +35,10 @@ public class GetResource extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Verify delete resource operation -- Manage resource View -- Location
-	 * Steps :
-	 * 1. Create a resource using SOAP.
-	 * 2. Go to Manage resource View.
-	 * 3. Select a resource.
-	 * 4. Delete a resource using delete button in Gear box menu.
-	 * 5. Verify resource is deleted using SOAP.
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "Verify get resource operation -- Manage resource View -- Location",
-			groups = { "bhr" })
+			groups = { "smoke" })
 
 	public void GetResource_01() throws HarnessException {
-
 		// Create a new resource in the Admin Console using SOAP
 		ResourceItem resource = new ResourceItem();
 
@@ -64,8 +51,8 @@ public class GetResource extends AdminCore {
 						+ "<a n='description'>Created by Selenium automation</a>"
 						+ "</CreateCalendarResourceRequest>");
 
-		// Refresh list to populate account.
-		app.zPageManageResources.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
+		// Refresh the list
+		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
 
 		// Get the list of displayed accounts
 		List<AccountItem> accounts = app.zPageManageResources.zListGetAccounts();
@@ -83,66 +70,10 @@ public class GetResource extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Verify delete resource operation -- Manage resource View -- Equipment
-	 * Steps :
-	 * 1. Create a resource using SOAP.
-	 * 2. Go to Manage resource View.
-	 * 3. Select a resource.
-	 * 4. Delete a resource using delete button in Gear box menu.
-	 * 5. Verify resource is deleted using SOAP.
-	 * @throws HarnessException
-	 */
-
-	@Test (description = "Verify get resource operation -- Manage resource View -- Equipment",
+	@Test (description = "Search resource",
 			groups = { "bhr" })
 
 	public void GetResource_02() throws HarnessException {
-
-		// Create a new resource in the Admin Console using SOAP
-		ResourceItem resource = new ResourceItem();
-
-		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
-						"<CreateCalendarResourceRequest xmlns='urn:zimbraAdmin'>"
-						+ "<name>" + resource.getEmailAddress() + "</name>"
-						+ "<password>" + ConfigProperties.getStringProperty("accountPassword") + "</password>"
-						+ "<a n='displayName'>" + resource.getName() + "</a>"
-						+ "<a n='zimbraCalResType'>" + "Equipment" + "</a>"
-						+ "<a n='description'>Created by Selenium automation</a>"
-						+ "</CreateCalendarResourceRequest>");
-
-		// Refresh list to populate account.
-		app.zPageManageResources.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
-
-		// Get the list of displayed accounts
-		List<AccountItem> accounts = app.zPageManageResources.zListGetAccounts();
-		ZAssert.assertNotNull(accounts, "Verify the resource list is returned");
-
-		AccountItem found = null;
-		for (AccountItem a : accounts) {
-			logger.info("Looking for resource "+ resource.getEmailAddress() + " found: "+ a.getGEmailAddress());
-			if ( resource.getEmailAddress().equals(a.getGEmailAddress()) ) {
-				found = a;
-				break;
-			}
-		}
-		ZAssert.assertNotNull(found, "Verify the account is found");
-	}
-
-
-	/**
-	 * Testcase : Verify created resource is displayed in UI.
-	 * Steps :
-	 * 1. Create a resource of type Location using SOAP.
-	 * 2. Verify resource is present in the list.
-	 * @throws HarnessException
-	 */
-
-	@Test (description = "Verify created resource is present in the resource list view",
-			groups = { "sanity" })
-
-	public void GetResource_03() throws HarnessException {
-
 		// Create a new resource in the Admin Console using SOAP
 		ResourceItem resource = new ResourceItem();
 
@@ -152,53 +83,6 @@ public class GetResource extends AdminCore {
 						+ "<password>" + ConfigProperties.getStringProperty("accountPassword") + "</password>"
 						+ "<a n='displayName'>" + resource.getName() + "</a>"
 						+ "<a n='zimbraCalResType'>" + "Location" + "</a>"
-						+ "<a n='description'>Created by Selenium automation</a>"
-						+ "</CreateCalendarResourceRequest>");
-
-		// Enter the search string to find the account
-		app.zPageSearchResults.zAddSearchQuery(resource.getEmailAddress());
-
-		// Click search
-		app.zPageSearchResults.zToolbarPressButton(Button.B_SEARCH);
-
-		// Get the list of displayed accounts
-		List<AccountItem> accounts = app.zPageSearchResults.zListGetAccounts();
-		ZAssert.assertNotNull(accounts, "Verify the resource list is returned");
-
-		AccountItem found = null;
-		for (AccountItem a : accounts) {
-			logger.info("Looking for account "+ resource.getEmailAddress() + " found: "+ a.getGEmailAddress());
-			if ( resource.getEmailAddress().equals(a.getGEmailAddress()) ) {
-				found = a;
-				break;
-			}
-		}
-		ZAssert.assertNotNull(found, "Verify the account is found");
-	}
-
-
-	/**
-	 * Testcase : Verify created resource is displayed in UI.
-	 * Steps :
-	 * 1. Create a resource of type Equipment using SOAP.
-	 * 2. Verify resource is present in the list.
-	 * @throws HarnessException
-	 */
-
-	@Test (description = "Verify created resource is present in the resource list view",
-			groups = { "functional" })
-
-	public void GetResource_04() throws HarnessException {
-
-		// Create a new resource in the Admin Console using SOAP
-		ResourceItem resource = new ResourceItem();
-
-		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
-						"<CreateCalendarResourceRequest xmlns='urn:zimbraAdmin'>"
-						+ "<name>" + resource.getEmailAddress() + "</name>"
-						+ "<password>" + ConfigProperties.getStringProperty("accountPassword") + "</password>"
-						+ "<a n='displayName'>" + resource.getName() + "</a>"
-						+ "<a n='zimbraCalResType'>" + "Equipment" + "</a>"
 						+ "<a n='description'>Created by Selenium automation</a>"
 						+ "</CreateCalendarResourceRequest>");
 

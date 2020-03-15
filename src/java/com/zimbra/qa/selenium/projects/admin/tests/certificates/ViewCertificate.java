@@ -32,20 +32,10 @@ public class ViewCertificate extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : View Installed certificate
-	 * Steps :
-	 * 1. Go to "Home --> Configure --> Certificates"
-	 * 2. Click on view certificate
-	 * 3. Verify certificate details displayed correctly
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "Navigate to Certificates",
-			groups = { "bhr" })
+			groups = { "bhr", "non-zimbrax" })
 
 	public void ViewCertificate_01() throws HarnessException {
-
 		// Go to "Home --> Configure --> Certificates"
 		app.zPageManageCertificates.sClick(PageManageCertificates.Locators.SERVER_HOST_NAME);
 		app.zPageManageCertificates.zToolbarPressPulldown(Button.B_GEAR_BOX, Button.B_VIEW_CERTIFICATE);

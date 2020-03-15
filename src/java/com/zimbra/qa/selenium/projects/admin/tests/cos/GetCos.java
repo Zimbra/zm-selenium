@@ -34,20 +34,10 @@ public class GetCos extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Verify created cos is displayed in UI - Search list view.
-	 * Steps :
-	 * 1. Create a cos using SOAP.
-	 * 2. Search cos created in Step-1
-	 * 3. Verify cos is present in the list.
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "Verify created cos is displayed in UI - Manage COS list view",
 			groups = { "bhr" })
 
 	public void GetCos_01() throws HarnessException {
-
 		// Create a new cos in the Admin Console using SOAP
 		CosItem cos = new CosItem();
 		String cosName=cos.getName();
@@ -57,29 +47,18 @@ public class GetCos extends AdminCore {
 				+			"<name>" + cosName + "</name>"
 				+		"</CreateCosRequest>");
 
-		// Refresh the account list
-		app.zPageManageCOS.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
-		SleepUtil.sleepSmall();
+		// Refresh the list
+		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
 
 		// Verify the presence of the created COS in UI
 		ZAssert.assertTrue(app.zPageManageCOS.zIsCOSPresent(cosName), "Verify the cos is returned correctly");
 	}
 
 
-	/**
-	 * Testcase : Verify created cos is displayed in UI - Search list view.
-	 * Steps :
-	 * 1. Create a cos using SOAP.
-	 * 2. Search cos created in Step-1
-	 * 3. Verify cos is present in the list.
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "Verify created cos is displayed in UI - Search list view",
 			groups = { "sanity" })
 
 	public void GetCos_02() throws HarnessException {
-
 		// Create a new cos in the Admin Console using SOAP
 		CosItem cos = new CosItem();
 		String cosName=cos.getName();

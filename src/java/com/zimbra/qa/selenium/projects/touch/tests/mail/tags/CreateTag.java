@@ -34,14 +34,6 @@ public class CreateTag extends SetGroupMailByMessagePreference {
 		logger.info("New " + CreateTag.class.getCanonicalName());
 	}
 	
-	/**
-	 * Test case : Create a tag item
-	 * Steps :
-	 * 1. Create a tag from GUI. 
-	 * 2. Verify tag is created from SOAP & UI
-	 * @throws HarnessException
-	 */
-	
 	@Test (description = "Create a new tag by clicking to Edit -> 'New tag'", 
 			groups = { "bhr" })
 	
@@ -62,17 +54,8 @@ public class CreateTag extends SetGroupMailByMessagePreference {
 		// UI verification
 		ZAssert.assertTrue(createtagPage.zVerifyTagExists(tagName), "Verify created tag visible in tag pane");
 	}
-	
-	/**
-	 * Test case : Verify error is displayed on creation of duplicate tag 
-	 * Steps :
-	 * 1. Create a tag from GUI.
-	 * 2. Try to create duplicate tag 
-	 * 3. Verify error message
-	 * 4. Verify existing tag
-	 * @throws HarnessException
-	 */
-	
+
+
 	@Test (description = "Try to create duplicate tag & verify error.", 
 			groups = { "functional" })
 	

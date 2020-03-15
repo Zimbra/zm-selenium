@@ -34,7 +34,6 @@ public class LoggedInUsername extends AdminCore {
 			groups = { "bhr" })
 
 	public void LoggedInUsername_01() throws HarnessException {
-
 		// Check that the displayed name is contained in the email
 		String displayed = app.zPageMain.sGetText(PageMain.Locators.zSkinContainerUsername);
 		ZimbraAccount actual = app.zGetActiveAccount();

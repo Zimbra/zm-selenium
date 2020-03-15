@@ -41,7 +41,6 @@ public class EditAccount extends AdminCore {
 			groups = { "smoke" })
 
 	public void EditAccount_01() throws HarnessException {
-
 		// Create a new account in the Admin Console using SOAP
 		AccountItem account = new AccountItem("tc" + ConfigProperties.getUniqueString(), ConfigProperties.getStringProperty("testdomain"));
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
@@ -51,7 +50,7 @@ public class EditAccount extends AdminCore {
 						+			"<a n='description'>Created by Selenium automation</a>"
 						+		"</CreateAccountRequest>");
 
-		// Refresh the account list
+		// Refresh the list
 		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
 
 		// Click on account to be edited
@@ -81,7 +80,6 @@ public class EditAccount extends AdminCore {
 			groups = { "smoke" })
 
 	public void EditAccount_02() throws HarnessException {
-
 		// Create a new account in the Admin Console using SOAP
 		AccountItem account = new AccountItem("tc" + ConfigProperties.getUniqueString(), ConfigProperties.getStringProperty("testdomain"));
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
@@ -91,7 +89,7 @@ public class EditAccount extends AdminCore {
 						+			"<a n='description'>Created by Selenium automation</a>"
 						+		"</CreateAccountRequest>");
 
-		// Refresh the account list
+		// Refresh the list
 		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
 
 		// Right Click on account to be deleted.
@@ -122,7 +120,6 @@ public class EditAccount extends AdminCore {
 			groups = { "bhr" })
 
 	public void EditAccount_03() throws HarnessException {
-
 		// Create a new account in the Admin Console using SOAP
 		AccountItem account = new AccountItem("tc" + ConfigProperties.getUniqueString(), ConfigProperties.getStringProperty("testdomain"));
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
@@ -132,7 +129,7 @@ public class EditAccount extends AdminCore {
 						+			"<a n='description'>Created by Selenium automation</a>"
 						+		"</CreateAccountRequest>");
 
-		// Refresh the account list
+		// Refresh the list
 		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
 
 		// Enter the search string to find the account
@@ -170,7 +167,6 @@ public class EditAccount extends AdminCore {
 			groups = { "sanity" })
 
 	public void EditAccount_04() throws HarnessException {
-
 		// Create a new account in the Admin Console using SOAP
 		AccountItem account = new AccountItem("tc" + ConfigProperties.getUniqueString(), ConfigProperties.getStringProperty("testdomain"));
 		ZimbraAdminAccount.AdminConsoleAdmin().soapSend(
@@ -180,7 +176,7 @@ public class EditAccount extends AdminCore {
 						+			"<a n='description'>Created by Selenium automation</a>"
 						+		"</CreateAccountRequest>");
 
-		// Refresh the account list
+		// Refresh the list
 		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
 
 		// Click on Edit button

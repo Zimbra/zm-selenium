@@ -29,22 +29,10 @@ public class NavigateServers extends AdminCore {
 		super.startingPage = app.zPageManageServers;
 	}
 
-	/**
-	 * Testcase : Navigate to Servers page
-	 * Steps :
-	 * 1. Go to Accounts
-	 * 2. Verify navigation path -- "Home --> Configure --> Servers"
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "Navigate to Servers",
 			groups = { "smoke" })
 
 	public void NavigateServers_01() throws HarnessException {
-
-		/*
-		 * Verify navigation path -- "Home --> Configure --> Servers"
-		 */
 		ZAssert.assertTrue(app.zPageManageServers.zVerifyHeader(PageManageServers.Locators.HOME),
 				"Verfiy the 'Home' text exists in navigation path");
 		ZAssert.assertTrue(app.zPageManageServers.zVerifyHeader(PageManageServers.Locators.CONFIGURE),

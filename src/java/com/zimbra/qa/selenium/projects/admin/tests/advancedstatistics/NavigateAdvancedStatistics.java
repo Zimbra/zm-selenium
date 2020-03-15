@@ -30,21 +30,10 @@ public class NavigateAdvancedStatistics extends AdminCore {
 	}
 
 	
-	/**
-	 * Testcase : Navigate to Advanced Statistics page
-	 * Steps :
-	 * 1. Verify navigation path -- "Home --> Monitor --> Advanced Statistics"
-	 * @throws HarnessException
-	 */
-	
 	@Test (description = "Navigate to Advanced Statistics",
 			groups = { "smoke" })
 	
 	public void NavigateAdvancedStatistics_01() throws HarnessException {
-
-		/*
-		 * Verify navigation path -- "Home --> Monitor --> Advanced Statistics"
-		 */
 		ZAssert.assertTrue(app.zPageManageAdvancedStatistics.zVerifyHeader(PageManageAdvancedStatistics.Locators.HOME),
 				"Verfiy the 'Home' text exists in navigation path");
 		ZAssert.assertTrue(

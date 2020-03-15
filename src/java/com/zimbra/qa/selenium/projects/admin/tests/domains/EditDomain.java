@@ -27,7 +27,6 @@ import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.admin.core.AdminCore;
 import com.zimbra.qa.selenium.projects.admin.items.DomainItem;
 import com.zimbra.qa.selenium.projects.admin.pages.FormEditDomain;
-import com.zimbra.qa.selenium.projects.admin.pages.PageMain;
 import com.zimbra.qa.selenium.projects.admin.pages.PageSearchResults;
 
 public class EditDomain extends AdminCore {
@@ -38,21 +37,10 @@ public class EditDomain extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Verify delete domain operation --  Manage Domain List View
-	 * Steps :
-	 * 1. Create a domain using SOAP.
-	 * 2. Select a domain.
-	 * 4. Edit an domain using edit button in Gear box menu.
-	 * 5. Verify domain is edited using SOAP.
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "Verify edit domain operation --  Manage Domain List View",
 			groups = { "bhr" })
 
 	public void EditDomain_01() throws HarnessException {
-
 		// Create a new domain in the Admin Console using SOAP
 		DomainItem domain = new DomainItem();
 		String domainName = domain.getName();
@@ -61,8 +49,8 @@ public class EditDomain extends AdminCore {
 				.soapSend("<CreateDomainRequest xmlns='urn:zimbraAdmin'>" + "<name>" + domainName + "</name>"
 						+ "<a n='description'>Created by Selenium automation</a>" + "</CreateDomainRequest>");
 
-		// Refresh the domain list
-		app.zPageManageDomains.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
+		// Refresh the list
+		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
 
 		// Click on account to be deleted.
 		app.zPageManageDomains.zListItem(Action.A_LEFTCLICK, domain.getName());
@@ -71,7 +59,7 @@ public class EditDomain extends AdminCore {
 				Button.O_EDIT);
 
 		// Edit the description.
-		String description = "tcediteddomain" + ConfigProperties.getUniqueString();
+		String description = "Created by Selenium automation " + ConfigProperties.getUniqueString();
 		form.zSetName(description);
 
 		// Submit
@@ -87,21 +75,10 @@ public class EditDomain extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Verify delete domain operation  -- Manage Domain List View/Right Click Menu
-	 * Steps :
-	 * 1. Create a domain using SOAP.
-	 * 2. Right click on domain.
-	 * 3. Delete a domain using delete button in right click menu.
-	 * 4. Verify domain is deleted using SOAP..
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "Verify edit domain operation",
 			groups = { "functional" })
 
 	public void EditDomain_02() throws HarnessException {
-
 		// Create a new domain in the Admin Console using SOAP
 		DomainItem domain = new DomainItem();
 		String domainName = domain.getName();
@@ -110,8 +87,8 @@ public class EditDomain extends AdminCore {
 				.soapSend("<CreateDomainRequest xmlns='urn:zimbraAdmin'>" + "<name>" + domainName + "</name>"
 						+ "<a n='description'>Created by Selenium automation</a>" + "</CreateDomainRequest>");
 
-		// Refresh the domain list
-		app.zPageManageDomains.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
+		// Refresh the list
+		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
 
 		// Click on account to be deleted.
 		app.zPageManageDomains.zListItem(Action.A_RIGHTCLICK, domain.getName());
@@ -119,7 +96,7 @@ public class EditDomain extends AdminCore {
 		FormEditDomain form = (FormEditDomain) app.zPageManageDomains.zToolbarPressButton(Button.B_TREE_EDIT);
 
 		// Edit the description.
-		String description = "tcediteddomain" + ConfigProperties.getUniqueString();
+		String description = "Created by Selenium automation " + ConfigProperties.getUniqueString();
 		form.zSetName(description);
 
 		// Submit
@@ -134,22 +111,11 @@ public class EditDomain extends AdminCore {
 		ZAssert.assertStringContains(response.toString(), description, "Verify description is edited correctly");
 	}
 
-	/**
-	 * Testcase : Edit domain name  - Search list view
-	 * Steps :
-	 * 1. Create an domain using SOAP.
-	 * 2. Go to search domain View
-	 * 3. Select a domain.
-	 * 4. Edit an domain using edit button in Gear box menu.
-	 * 5. Verify domain is edited using SOAP.
-	 * @throws HarnessException
-	 */
 
 	@Test (description = "Edit domain name  - Search list View",
 			groups = { "sanity" })
 
 	public void Editdomain_03() throws HarnessException {
-
 		// Create a new domain in the Admin Console using SOAP
 		DomainItem domain = new DomainItem();
 		String domainName = domain.getName();
@@ -173,7 +139,7 @@ public class EditDomain extends AdminCore {
 				Button.O_EDIT);
 
 		// Edit the description.
-		String description = "tcediteddomain" + ConfigProperties.getUniqueString();
+		String description = "Created by Selenium automation " + ConfigProperties.getUniqueString();
 		form.zSetName(description);
 
 		// Submit
@@ -190,20 +156,10 @@ public class EditDomain extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Edit domain name -- right click
-	 * Steps :
-	 * 1. Create an domain using SOAP.
-	 * 2. Edit the domain name using UI Right Click.
-	 * 3. Verify domain name is changed using SOAP.
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "Edit domain name -- right click",
 			groups = { "functional" })
 
 	public void Editdomain_04() throws HarnessException {
-
 		// Create a new domain in the Admin Console using SOAP
 		DomainItem domain = new DomainItem();
 		String domainName = domain.getName();
@@ -214,7 +170,7 @@ public class EditDomain extends AdminCore {
 				.soapSend("<CreateDomainRequest xmlns='urn:zimbraAdmin'>" + "<name>" + domainName + "</name>"
 						+ "<a n='description'>Created by Selenium automation</a>" + "</CreateDomainRequest>");
 
-		// Refresh the account list
+		// Refresh the list
 		app.zPageSearchResults.zSelectSearchObject(app.zPageSearchResults.S_DOMAIN);
 
 		// Enter the search string to find the account
@@ -232,7 +188,7 @@ public class EditDomain extends AdminCore {
 		FormEditDomain form = (FormEditDomain) app.zPageSearchResults.zToolbarPressButton(Button.B_TREE_EDIT);
 
 		// Edit the description.
-		String description = "tcediteddomain" + ConfigProperties.getUniqueString();
+		String description = "Created by Selenium automation " + ConfigProperties.getUniqueString();
 		form.zSetName(description);
 
 		// Submit

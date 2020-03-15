@@ -30,21 +30,10 @@ public class NavigateAccountMigration extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Navigate to Accounts Migration page
-	 * Steps :
-	 * 1. Verify navigation path -- "Home --> Tools and Migraton --> Account Migration"
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "Navigate to Account Migration",
-			groups = { "smoke" })
+			groups = { "smoke", "non-zimbrax" })
 
 	public void NavigateAccountMigration_01() throws HarnessException {
-
-		/*
-		 * Verify navigation path -- "Home --> Tools and Migraton --> Account Migration"
-		 */
 		ZAssert.assertTrue(app.zPageManageAccountMigration.zVerifyHeader(PageManageAccountMigration.Locators.HOME),
 				"Verfiy the 'Home' text exists in navigation path");
 		ZAssert.assertTrue(

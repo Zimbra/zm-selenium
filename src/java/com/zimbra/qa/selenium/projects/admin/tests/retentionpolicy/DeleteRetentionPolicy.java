@@ -34,19 +34,10 @@ public class DeleteRetentionPolicy extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Create retention policy
-	 * Steps :
-	 * 1. Go to configure >> global settings >> retention policy >> Add new retention policy
-	 * 2. Verify that new policy gets created successfully
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "Delete retention policy",
 			groups = { "sanity" })
 
 	public void DeleteRetentionPolicy_01() throws HarnessException {
-
 		final String policyName = "test_policy" + ConfigProperties.getUniqueString();
 		final String retentionRange = "3d";
 
@@ -58,8 +49,8 @@ public class DeleteRetentionPolicy extends AdminCore {
 						+ "</keep>"
 						+ "</CreateSystemRetentionPolicyRequest>");
 
-		// Refresh the retention list
-		app.zPageManageRetentionPolicy.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
+		// Refresh the list
+		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
 
 		// Verify navigation path - configure >> global settings >> retention policy
 		app.zPageManageRetentionPolicy.zNavigateTo();

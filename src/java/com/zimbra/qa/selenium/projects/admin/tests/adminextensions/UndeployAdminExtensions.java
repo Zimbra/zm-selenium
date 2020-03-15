@@ -32,19 +32,10 @@ public class UndeployAdminExtensions extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Undeploy admin extensions
-	 * 1. Go to Configure > admin extensions
-	 * 2. Select undeploy admin extensions from gear menu
-	 * 3. Verify admin extension is undeployed and removed from Zimlet list
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "Deploy admin extension",
-			groups = { "bhr" })
+			groups = { "bhr", "non-zimbrax" })
 
 	public void UndeployAdminExtensions_01() throws HarnessException {
-
 		String adminExtensionName = "de_dieploegers_admin_vacation";
 
 		// Verify Admin extension is present in admin console

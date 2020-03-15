@@ -37,22 +37,10 @@ public class EditCos extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Edit account name  - Manage Account View
-	 * Steps :
-	 * 1. Create an cos using SOAP.
-	 * 2. Go to Manage Cos View
-	 * 3. Select an Cos.
-	 * 4. Edit an cos using edit button in Gear box menu.
-	 * 5. Verify cos is edited using SOAP.
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "Edit Cos name  - Manage Cos View",
 			groups = { "sanity" })
 
 	public void EditCos_01() throws HarnessException {
-
 		// Create a new cos in the Admin Console using SOAP
 		CosItem cos = new CosItem();
 		String cosName=cos.getName();
@@ -62,7 +50,7 @@ public class EditCos extends AdminCore {
 						+			"<name>" + cosName + "</name>"
 						+		"</CreateCosRequest>");
 
-		// Refresh the account list
+		// Refresh the list
 		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
 
 		// Click on account to be deleted.
@@ -88,20 +76,10 @@ public class EditCos extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Edit cos name -- right click
-	 * Steps :
-	 * 1. Create an cos using SOAP.
-	 * 2. Edit the cos name using UI Right Click.
-	 * 3. Verify cos name is changed using SOAP.
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "Edit cos name -- right click",
 			groups = { "sanity" })
 
 	public void EditCos_02() throws HarnessException {
-
 		// Create a new cos in the Admin Console using SOAP
 		CosItem cos = new CosItem();
 		String cosName=cos.getName();
@@ -111,7 +89,7 @@ public class EditCos extends AdminCore {
 						+			"<name>" + cosName + "</name>"
 						+		"</CreateCosRequest>");
 
-		// Refresh the account list
+		// Refresh the list
 		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
 
 		// Click on account to be deleted.
@@ -140,22 +118,10 @@ public class EditCos extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Edit account name  - Manage Account View
-	 * Steps :k
-	 * 1. Create an cos using SOAP.
-	 * 2. Go to Manage Cos View
-	 * 3. Select an Cos.
-	 * 4. Edit an cos using edit button in Gear box menu.
-	 * 5. Verify cos is edited using SOAP.
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "Edit Cos name  - Search Cos View",
 			groups = { "functional" })
 
 	public void EditCos_03() throws HarnessException {
-
 		// Create a new cos in the Admin Console using SOAP
 		CosItem cos = new CosItem();
 		String cosName=cos.getName();
@@ -200,20 +166,10 @@ public class EditCos extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Edit cos name -- right click
-	 * Steps :
-	 * 1. Create an cos using SOAP.
-	 * 2. Edit the cos name using UI Right Click.
-	 * 3. Verify cos name is changed using SOAP.
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "Edit cos name -- right click",
 			groups = { "functional" })
 
 	public void EditCos_04() throws HarnessException {
-
 		// Create a new cos in the Admin Console using SOAP
 		CosItem cos = new CosItem();
 		String cosName=cos.getName();

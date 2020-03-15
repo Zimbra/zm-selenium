@@ -30,21 +30,10 @@ public class NavigateMailQueues extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Navigate to Client Upload page
-	 * Steps :
-	 * 1. Verify navigation path -- "Home --> Monitor --> Mail Queues"
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "Navigate to Mail Queues",
 			groups = { "smoke" })
 
 	public void NavigateMailQueues_01() throws HarnessException {
-
-		/*
-		 * Verify navigation path -- "Home --> Tools and Migraton --> Client Upload"
-		 */
 		ZAssert.assertTrue(app.zPageManageMailQueues.zVerifyHeader(PageManageMailQueues.Locators.HOME),
 				"Verfiy the 'Home' text exists in navigation path");
 		ZAssert.assertTrue(app.zPageManageMailQueues.zVerifyHeader(PageManageMailQueues.Locators.MONITOR),

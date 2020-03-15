@@ -38,22 +38,10 @@ public class DeleteResource extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Verify delete resource operation -- Manage resource View -- Location
-	 * Steps :
-	 * 1. Create a resource using SOAP.
-	 * 2. Go to Manage resource View.
-	 * 3. Select a resource.
-	 * 4. Delete a resource using delete button in Gear box menu.
-	 * 5. Verify resource is deleted using SOAP.
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "Verify delete resource operation -- Manage resource View -- Location",
 			groups = { "bhr" })
 
 	public void DeleteResource_01() throws HarnessException {
-
 		this.startingPage.zNavigateTo();
 
 		// Create a new resource in the Admin Console using SOAP
@@ -68,8 +56,8 @@ public class DeleteResource extends AdminCore {
 						+ "<a n='description'>Created by Selenium automation</a>"
 						+ "</CreateCalendarResourceRequest>");
 
-		// Refresh list to populate account.
-		app.zPageManageResources.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
+		// Refresh the list
+		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
 		this.startingPage.zNavigateTo();
 
 		// Click on account to be deleted.
@@ -100,22 +88,10 @@ public class DeleteResource extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Verify delete resource operation -- Manage resource View -- Equipment
-	 * Steps :
-	 * 1. Create a resource using SOAP.
-	 * 2. Go to Manage resource View.
-	 * 3. Select a resource.
-	 * 4. Delete a resource using delete button in Gear box menu.
-	 * 5. Verify resource is deleted using SOAP.
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "Verify delete resource operation -- Manage resource View -- Equipment",
 			groups = { "sanity" })
 
 	public void DeleteResource_02() throws HarnessException {
-
 		this.startingPage.zNavigateTo();
 
 		// Create a new resource in the Admin Console using SOAP
@@ -130,8 +106,8 @@ public class DeleteResource extends AdminCore {
 						+ "<a n='description'>Created by Selenium automation</a>"
 						+ "</CreateCalendarResourceRequest>");
 
-		// Refresh list to populate account.
-		app.zPageManageResources.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
+		// Refresh the list
+		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
 		this.startingPage.zNavigateTo();
 
 		// Click on account to be deleted.
@@ -162,22 +138,10 @@ public class DeleteResource extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Verify delete resource operation -- Manage resource View/Right Click Menu -- Location
-	 * Steps :
-	 * 1. Create a resource using SOAP.
-	 * 2. Go to Manage resource View.
-	 * 3. Right Click on a resource.
-	 * 4. Delete a resource using delete button in right click menu.
-	 * 5. Verify resource is deleted using SOAP.
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "Verify delete resource operation -- Manage resource View/Right Click Menu -- Location",
 			groups = { "sanity" })
 
 	public void DeleteResource_03() throws HarnessException {
-
 		this.startingPage.zNavigateTo();
 
 		// Create a new resource in the Admin Console using SOAP
@@ -192,8 +156,8 @@ public class DeleteResource extends AdminCore {
 						+ "<a n='description'>Created by Selenium automation</a>"
 						+ "</CreateCalendarResourceRequest>");
 
-		// Refresh list to populate account.
-		app.zPageManageResources.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
+		// Refresh the list
+		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
 		this.startingPage.zNavigateTo();
 
 		// Right Click on resource to be deleted.
@@ -224,22 +188,10 @@ public class DeleteResource extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Verify delete resource operation -- Manage resource View/Right Click Menu -- Equipment
-	 * Steps :
-	 * 1. Create a resource using SOAP.
-	 * 2. Go to Manage resource View.
-	 * 3. Right Click on a resource.
-	 * 4. Delete a resource using delete button in right click menu.
-	 * 5. Verify resource is deleted using SOAP.
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "Verify delete resource operation -- Manage resource View/Right Click Menu -- Equipment",
 			groups = { "functional" })
 
 	public void DeleteResource_04() throws HarnessException {
-
 		// Create a new resource in the Admin Console using SOAP
 		ResourceItem resource = new ResourceItem();
 
@@ -252,8 +204,8 @@ public class DeleteResource extends AdminCore {
 						+ "<a n='description'>Created by Selenium automation</a>"
 						+ "</CreateCalendarResourceRequest>");
 
-		// Refresh list to populate account.
-		app.zPageManageResources.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
+		// Refresh the list
+		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
 		this.startingPage.zNavigateTo();
 
 		// Right Click on resource to be deleted.

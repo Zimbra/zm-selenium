@@ -48,7 +48,7 @@ public class WizardCreateResource extends AbsWizard {
 	@Override
 	public IItem zCompleteWizard(IItem item) throws HarnessException {
 		if (!(item instanceof ResourceItem))
-			throw new HarnessException("item must be an ResourceItem, was " + item.getClass().getCanonicalName());
+			throw new HarnessException("Item must be an ResourceItem, was " + item.getClass().getCanonicalName());
 
 		ResourceItem resource = (ResourceItem) item;
 		String resourceName = resource.getLocalName();

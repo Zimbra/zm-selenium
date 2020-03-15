@@ -35,19 +35,10 @@ public class EditRetentionPolicy extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Create retention policy
-	 * Steps :
-	 * 1. Go to configure >> global settings >> retention policy >> Add new retention policy
-	 * 2. Verify that new policy gets created successfully
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "Edit retention policy",
 			groups = { "functional" })
 
 	public void EditRetentionPolicy_01() throws HarnessException {
-
 		final String policyName = "test_policy" + ConfigProperties.getUniqueString();
 		final String editedPolicyName = "edited_policy" + ConfigProperties.getUniqueString();
 		final String retentionRange = "3d";
@@ -62,7 +53,7 @@ public class EditRetentionPolicy extends AdminCore {
 						+ "</CreateSystemRetentionPolicyRequest>");
 
 		// Refresh the list
-		app.zPageManageRetentionPolicy.sClickAt(PageMain.Locators.REFRESH_BUTTON, "");
+		app.zPageMain.zToolbarPressButton(Button.B_REFRESH);
 
 		// Verify navigation path - configure >> global settings >> retention policy
 		app.zPageManageRetentionPolicy.zNavigateTo();

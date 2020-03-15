@@ -33,19 +33,10 @@ public class CreateRetentionPolicy extends AdminCore {
 	}
 
 
-	/**
-	 * Testcase : Create retention policy
-	 * Steps :
-	 * 1. Go to configure >> global settings >> retention policy >> Add new retention policy
-	 * 2. Verify that new policy gets created successfully
-	 * @throws HarnessException
-	 */
-
 	@Test (description = "Create retention policy",
 			groups = { "bhr" })
 
 	public void CreateRetentionPolicy_01() throws HarnessException {
-
 		final String policyName = "test_policy" + ConfigProperties.getUniqueString();
 		final String retentionRange = "3";
 
