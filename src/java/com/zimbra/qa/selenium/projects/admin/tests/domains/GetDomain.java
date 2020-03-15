@@ -26,7 +26,6 @@ import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.admin.core.AdminCore;
 import com.zimbra.qa.selenium.projects.admin.items.AccountItem;
 import com.zimbra.qa.selenium.projects.admin.items.DomainItem;
-import com.zimbra.qa.selenium.projects.admin.pages.PageMain;
 
 public class GetDomain extends AdminCore {
 

@@ -29,7 +29,6 @@ import com.zimbra.qa.selenium.projects.admin.items.AccountItem;
 import com.zimbra.qa.selenium.projects.admin.items.CosItem;
 import com.zimbra.qa.selenium.projects.admin.pages.DialogForDeleteOperation;
 import com.zimbra.qa.selenium.projects.admin.pages.DialogForDeleteOperationCos;
-import com.zimbra.qa.selenium.projects.admin.pages.PageMain;
 import com.zimbra.qa.selenium.projects.admin.pages.PageSearchResults.Locators;
 
 public class DeleteCos extends AdminCore {

@@ -28,7 +28,6 @@ import com.zimbra.qa.selenium.projects.admin.core.AdminCore;
 import com.zimbra.qa.selenium.projects.admin.items.AccountItem;
 import com.zimbra.qa.selenium.projects.admin.items.AliasItem;
 import com.zimbra.qa.selenium.projects.admin.pages.DialogForDeleteOperation;
-import com.zimbra.qa.selenium.projects.admin.pages.PageMain;
 
 public class DeleteAlias extends AdminCore {
 

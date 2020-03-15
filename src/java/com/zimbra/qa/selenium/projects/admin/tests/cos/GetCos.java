@@ -24,7 +24,6 @@ import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.framework.util.ZimbraAdminAccount;
 import com.zimbra.qa.selenium.projects.admin.core.AdminCore;
 import com.zimbra.qa.selenium.projects.admin.items.CosItem;
-import com.zimbra.qa.selenium.projects.admin.pages.PageMain;
 
 public class GetCos extends AdminCore {
 

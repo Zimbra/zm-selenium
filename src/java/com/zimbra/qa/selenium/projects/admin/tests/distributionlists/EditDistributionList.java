@@ -28,7 +28,6 @@ import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.projects.admin.core.AdminCore;
 import com.zimbra.qa.selenium.projects.admin.items.DistributionListItem;
 import com.zimbra.qa.selenium.projects.admin.pages.FormEditDistributionList;
-import com.zimbra.qa.selenium.projects.admin.pages.PageMain;
 
 public class EditDistributionList extends AdminCore {
 
