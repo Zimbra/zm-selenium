@@ -169,7 +169,7 @@ public class PageMain extends AbsTab {
 		}
 
 		this.sClickAt(locator, "");
-		SleepUtil.sleepMedium();
+		SleepUtil.sleepLong();
 
 		return (page);
 	}
