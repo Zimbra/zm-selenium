@@ -39,7 +39,6 @@ public class ResetStatusAfterAddingAttendee extends AjaxCore {
 			groups = { "sanity" })
 
 	public void ResetStatusAfterAddingAttendee_01() throws HarnessException {
-
 		// Create a meeting
 		String tz = ZTimeZone.getLocalTimeZone().getID();
 		String apptSubject = ConfigProperties.getUniqueString();

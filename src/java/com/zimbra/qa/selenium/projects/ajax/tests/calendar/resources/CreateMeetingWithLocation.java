@@ -108,8 +108,10 @@ public class CreateMeetingWithLocation extends AjaxCore {
 		ZAssert.assertStringContains(appt.getLocation(), actual.getLocation().split(";")[0], "Location: Verify the appointment data");
 
 		// Verify both location free/busy status
-		String locationStatus1 = app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ ExecuteHarnessMain.locations.get("location1")[1] +"']", "ptst");
-		String locationStatus2 = app.zGetActiveAccount().soapSelectValue("//mail:at[@a='"+ ExecuteHarnessMain.locations.get("location2")[1] +"']", "ptst");
+		String locationStatus1 = app.zGetActiveAccount()
+				.soapSelectValue("//mail:at[@a='" + ExecuteHarnessMain.locations.get("location1")[1] + "']", "ptst");
+		String locationStatus2 = app.zGetActiveAccount()
+				.soapSelectValue("//mail:at[@a='" + ExecuteHarnessMain.locations.get("location2")[1] + "']", "ptst");
 		ZAssert.assertEquals(locationStatus1, "AC", "Verify that the location1 status shows as 'ACCEPTED'");
 		ZAssert.assertEquals(locationStatus2, "AC", "Verify that the location2 status shows as 'ACCEPTED'");
 	}
