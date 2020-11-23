@@ -34,6 +34,7 @@ public class GALItem implements IItem {
 	protected String ldapUrl = "10.15.6.1";
 	protected String ldapFilter = "dc=exchange2010,dc=lab";
 	protected String ldapSearchBase = "dc=exchange2010,dc=lab";
+	protected String bindPassword = null;
 
 	public enum GALMode {
 		Internal, External, Both,
@@ -70,6 +71,14 @@ public class GALItem implements IItem {
 
 	public void setDataSourceName(String dataSrcName) {
 		dataSourceName = dataSrcName;
+	}
+
+	public String getBindPassword() {
+		return (bindPassword);
+	}
+
+	public void setBindPassword(String password) {
+		bindPassword = password;
 	}
 
 	public String getPollingIntervalDays() {

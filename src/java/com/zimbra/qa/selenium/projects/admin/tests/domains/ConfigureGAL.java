@@ -210,6 +210,7 @@ public class ConfigureGAL extends AdminCore {
 		gItem.setNewGALMode(GALMode.Both);
 		gItem.setDataSourceName(intDataSrc);
 		gItem.setPollingIntervalDays("1");
+		gItem.setBindPassword("z1mbr4@123");
 
 		// Fill the required fields
 		wizard.zCompleteWizard(gItem);
