@@ -104,7 +104,7 @@ public class WizardConfigureGAL extends AbsWizard {
 			sClick(Locators.NEXT_BUTTON);
 
 			// Enter bind password
-			sType(Locators.CONFIRM_BIND_PASSWORD, "password");
+			sType(Locators.CONFIRM_BIND_PASSWORD, gal.getBindPassword());
 
 			// Click next 5 times
 			for (int i = 0; i < 5; i++) {
