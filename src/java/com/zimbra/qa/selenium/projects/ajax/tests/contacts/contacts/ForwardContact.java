@@ -75,7 +75,7 @@ public class ForwardContact extends AjaxCore  {
 
         // Make sure ct = text/directory
         String ct = ZimbraAccount.AccountA().soapSelectValue("//mail:mp[@cd='attachment']", "ct");
-        ZAssert.assertEquals(ct, "text/directory", "Make sure ct = text/directory");
+        ZAssert.assertEquals(ct, "text/vcard", "Make sure ct = text/vcard");
 
         // Make sure filename contains .vcf
         String filename = ZimbraAccount.AccountA().soapSelectValue("//mail:mp[@cd='attachment']", "filename");
