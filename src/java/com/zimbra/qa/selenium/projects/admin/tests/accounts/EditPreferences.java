@@ -58,11 +58,14 @@ public class EditPreferences extends AdminCore {
 		// Click on preferences
 		app.zPageEditAccount.zToolbarPressButton(Button.B_PREFERENCES);
 
-		// Check show seach strings preference
+		// Check show search strings preference
 		form.zPreferencesCheckboxSet(Button.B_SHOW_SEARCH_STRINGS, true);
 
 		// Uncheck show imap search folders preference
 		form.zPreferencesCheckboxSet(Button.B_SHOW_IMAP_SEARCH_FOLDERS, false);
+
+		// Change client preference to modern
+		form.zSetPrefClientType("Modern");
 
 		// Save the changes
 		form.zSave();
@@ -80,5 +83,10 @@ public class EditPreferences extends AdminCore {
 				"//admin:GetAccountResponse/admin:account/admin:a[@n='zimbraPrefImapSearchFoldersEnabled']", 1);
 		ZAssert.assertNotNull(response2, "Verify the account is edited successfully");
 		ZAssert.assertStringContains(response2.toString(),"FALSE", "Verify mail feature is disabled");
+
+		Element response3 = ZimbraAdminAccount.AdminConsoleAdmin().soapSelectNode(
+				"//admin:GetAccountResponse/admin:account/admin:a[@n='zimbraPrefClientType']", 1);
+		ZAssert.assertNotNull(response3, "Verify the account is edited successfully");
+		ZAssert.assertStringContains(response3.toString(),"modern", "Verify mail feature is disabled");
 	}
 }
