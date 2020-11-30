@@ -61,6 +61,8 @@ public class FormEditAccount extends AbsForm {
 		public static final String B_ENABLE_MOBILE_DEVICE_MANAGEMENT = "css=input[id$='zimbraFeatureMobilePolicyEnabled_2']";
 		public static final String B_ALLOW_NON_PROVISIONABLE_DEVICES = "css=input[id$='zimbraMobilePolicyAllowNonProvisionableDevices_2']";
 		public static final String B_ALLOW_PARTIAL_POLICY_ENFORCEMENT = "css=input[id$='zimbraMobilePolicyAllowPartialProvisioning_2']";
+		public static final String PREF_CLIENT_DROPDOWN = "css=div[id*=_zimbraPrefClientType_2_arrow_button]";
+		public static final String PREF_CLIENT_TYPE = "css=div[id*=zimbraPrefClientType_2_choice_]";
 
 	}
 
@@ -158,6 +160,11 @@ public class FormEditAccount extends AbsForm {
 
 	public void zDisableArchieving() throws HarnessException {
 		sClick(Locators.ENABLE_ARCHIVING);
+	}
+
+	public void zSetPrefClientType(String clientType) throws HarnessException {
+		sClick(Locators.PREF_CLIENT_DROPDOWN);
+		sClick(Locators.PREF_CLIENT_TYPE + ":contains(" + clientType + ")");
 	}
 
 	public AbsPage zFeatureCheckboxSet(Button button, boolean status) throws HarnessException {
