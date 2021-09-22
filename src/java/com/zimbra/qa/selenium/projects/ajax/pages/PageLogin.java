@@ -24,9 +24,22 @@ import com.zimbra.qa.selenium.framework.util.ConfigProperties.*;
 public class PageLogin extends AbsTab {
 
 	public static class Locators {
+		private static final String getLoginBtnLocator() {
+			String btnLocator = "";
+			try {
+				if (ConfigProperties.zimbraGetVersionString().contains("8.8.")) {	
+					btnLocator = "css=input.ZLoginButton";	
+				} else {
+					btnLocator = "css=button[class='loginButton']";
+				}
+			} catch (HarnessException e) {
+				logger.error("Unable to get login button locator!", e);
+			}
+			return btnLocator;
+		}
 
 		// Buttons
-		public static final String zBtnLogin = "css=button[class='loginButton']";
+		public static final String zBtnLogin = getLoginBtnLocator();
 		public static final String zBtnVerify = "css=input[value='Verify']";
 
 		// Text Input
@@ -44,7 +57,6 @@ public class PageLogin extends AbsTab {
 
 		// Toolbar links
 		public static final String zLogoutLink = "css=[id='skin_container_logoff']>a";
-
 	}
 
 	public PageLogin(AbsApplication application) {
