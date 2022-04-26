@@ -41,12 +41,14 @@ import org.apache.commons.lang.WordUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.core.Layout;
+import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.core.layout.PatternLayout;
 import org.apache.logging.log4j.core.Appender;
 import org.apache.logging.log4j.core.appender.FileAppender;
 import org.apache.logging.log4j.core.LoggerContext;
 import org.apache.logging.log4j.core.config.LoggerConfig;
 import org.apache.logging.log4j.core.config.Configurator;
+import org.apache.logging.log4j.core.appender.WriterAppender;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriverException;
@@ -678,7 +680,7 @@ public class ExecuteHarnessMain {
 		private static final Logger OpenQALogger = LogManager.getLogger(OpenQABasePackage);
 		private static final Logger Logger = LogManager.getLogger(SeleniumBasePackage);
 
-		private final Map<String, org.apache.logging.log4j.core.appender.WriterAppender> appenders = new HashMap<String, org.apache.logging.log4j.core.appender.WriterAppender>();
+		private final Map<String, WriterAppender> appenders = new HashMap<String, WriterAppender>();
 		private String logLayoutPattern = "%-4r [%t] %-5p %c %x - %m%n";
 		private final Layout layout = PatternLayout.newBuilder().withPattern(logLayoutPattern).build();
 
@@ -718,22 +720,23 @@ public class ExecuteHarnessMain {
 						FileAppender appender = FileAppender.newBuilder()
 				                .setName("file")
 				                .setLayout(PatternLayout.newBuilder()
-				                        .withPattern("%m%n")
-				                        .build())
+				                .withPattern("%m%n")
+				                .build())
 				                .withFileName(filename)
 				                .build();
 						//Appender a = new FileAppender(layout, filename, false);
 						Logger openQABasePackage = LogManager.getLogger(OpenQABasePackage);
 				        LoggerContext context = (LoggerContext) LogManager.getContext(false);
 				        LoggerConfig loggerConfig = context.getConfiguration().getLoggerConfig(openQABasePackage.getName());
-				        loggerConfig.addAppender(appender, org.apache.logging.log4j.Level.INFO, null);
+				        loggerConfig.addAppender(appender, Level.INFO, null);
 				        context.updateLoggers();
 				        
 				        Logger seleniumBasePackage = LogManager.getLogger(SeleniumBasePackage);
                         context = (LoggerContext) LogManager.getContext(false);
                         loggerConfig = context.getConfiguration().getLoggerConfig(seleniumBasePackage.getName());
-                        loggerConfig.addAppender(appender, org.apache.logging.log4j.Level.INFO, null);
+                        loggerConfig.addAppender(appender, Level.INFO, null);
                         context.updateLoggers();
+                        appender.start();
 						
 
 					}
@@ -1311,8 +1314,8 @@ public class ExecuteHarnessMain {
 			if (cmd.hasOption('l')) {
 				Configurator.initialize(null, cmd.getOptionValue('l'));
 			} else {
-			    Configurator.setLevel(LogManager.getRootLogger().getName(), org.apache.logging.log4j.Level.INFO);
-		        Configurator.setLevel(LogManager.getLogger(ErrorDialogListener.class).getName(), org.apache.logging.log4j.Level.INFO);
+			    Configurator.setLevel(LogManager.getRootLogger().getName(), Level.INFO);
+		        Configurator.setLevel(LogManager.getLogger(ErrorDialogListener.class).getName(), Level.INFO);
 			}
 
 			if (cmd.hasOption('j')) {
@@ -1609,8 +1612,8 @@ public class ExecuteHarnessMain {
 		String countTestsResult = "No results";
 		String executeTestsResult = "No results";
 
-		Configurator.setLevel(LogManager.getRootLogger().getName(), org.apache.logging.log4j.Level.INFO);
-        Configurator.setLevel(LogManager.getLogger(ExecuteHarnessMain.class).getName(), org.apache.logging.log4j.Level.INFO);
+		Configurator.setLevel(LogManager.getRootLogger().getName(), Level.INFO);
+        Configurator.setLevel(LogManager.getLogger(ExecuteHarnessMain.class).getName(), Level.INFO);
 
 		try {
 

@@ -18,7 +18,6 @@ package com.zimbra.qa.selenium.staf;
 
 import java.io.*;
 import java.util.Properties;
-import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
