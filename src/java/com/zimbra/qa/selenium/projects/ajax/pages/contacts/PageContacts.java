@@ -17,7 +17,8 @@
 package com.zimbra.qa.selenium.projects.ajax.pages.contacts;
 
 import java.util.*;
-import org.apache.log4j.LogManager;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.*;

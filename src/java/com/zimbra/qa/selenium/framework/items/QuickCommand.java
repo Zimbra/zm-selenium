@@ -18,7 +18,8 @@ package com.zimbra.qa.selenium.framework.items;
 
 import java.util.*;
 import net.sf.json.*;
-import org.apache.log4j.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 
 public class QuickCommand {

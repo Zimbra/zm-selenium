@@ -17,7 +17,8 @@
 package com.zimbra.qa.selenium.framework.util.performance;
 
 import java.util.*;
-import org.apache.log4j.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.JavascriptExecutor;
 import com.zimbra.qa.selenium.framework.core.ClientSessionFactory;
 import com.zimbra.qa.selenium.framework.util.*;

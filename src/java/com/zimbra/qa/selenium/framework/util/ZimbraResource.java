@@ -18,8 +18,8 @@ package com.zimbra.qa.selenium.framework.util;
 
 import java.util.HashMap;
 import java.util.Map;
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import com.zimbra.common.soap.Element;
 
 public class ZimbraResource extends ZimbraAccount {

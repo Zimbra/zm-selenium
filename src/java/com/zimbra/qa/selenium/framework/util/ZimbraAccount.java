@@ -42,9 +42,9 @@ import org.apache.commons.httpclient.params.HttpClientParams;
 import org.apache.commons.httpclient.params.HttpMethodParams;
 import org.apache.http.HttpResponse;
 import org.apache.http.concurrent.FutureCallback;
-import org.apache.log4j.BasicConfigurator;
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.core.config.Configurator;
 import org.dom4j.InvalidXPathException;
 import com.zimbra.common.auth.ZAuthToken;
 import com.zimbra.common.net.SocketFactories;
@@ -1412,7 +1412,8 @@ public class ZimbraAccount {
 		String domain = ConfigProperties.getStringProperty("server.host");
 
 		// Configure log4j using the basic configuration
-		BasicConfigurator.configure();
+		 Configurator.setLevel(LogManager.getRootLogger().getName(), org.apache.logging.log4j.Level.INFO);
+	     Configurator.setLevel(LogManager.getLogger(ProxySoapHttpTransport.class).getName(), org.apache.logging.log4j.Level.INFO);
 
 		// Create a new account object
 		ZimbraAccount account = new ZimbraAccount("foo" + System.currentTimeMillis(), domain);

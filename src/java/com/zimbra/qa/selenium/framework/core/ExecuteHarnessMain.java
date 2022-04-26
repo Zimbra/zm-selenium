@@ -38,7 +38,15 @@ import org.apache.commons.cli.CommandLine;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.WordUtils;
-import org.apache.log4j.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.core.Layout;
+import org.apache.logging.log4j.core.layout.PatternLayout;
+import org.apache.logging.log4j.core.Appender;
+import org.apache.logging.log4j.core.appender.FileAppender;
+import org.apache.logging.log4j.core.LoggerContext;
+import org.apache.logging.log4j.core.config.LoggerConfig;
+import org.apache.logging.log4j.core.config.Configurator;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriverException;
@@ -670,8 +678,9 @@ public class ExecuteHarnessMain {
 		private static final Logger OpenQALogger = LogManager.getLogger(OpenQABasePackage);
 		private static final Logger Logger = LogManager.getLogger(SeleniumBasePackage);
 
-		private final Map<String, Appender> appenders = new HashMap<String, Appender>();
-		private static final Layout layout = new PatternLayout("%-4r [%t] %-5p %c %x - %m%n");
+		private final Map<String, org.apache.logging.log4j.core.appender.WriterAppender> appenders = new HashMap<String, org.apache.logging.log4j.core.appender.WriterAppender>();
+		private String logLayoutPattern = "%-4r [%t] %-5p %c %x - %m%n";
+		private final Layout layout = PatternLayout.newBuilder().withPattern(logLayoutPattern).build();
 
 		public String outputFolder = null;
 
@@ -706,10 +715,27 @@ public class ExecuteHarnessMain {
 					String key = getKey(method.getTestMethod().getMethod());
 					if (!appenders.containsKey(key)) {
 						String filename = getFilename(method.getTestMethod().getMethod());
-						Appender a = new FileAppender(layout, filename, false);
-						appenders.put(key, a);
-						OpenQALogger.addAppender(a);
-						Logger.addAppender(a);
+						FileAppender appender = FileAppender.newBuilder()
+				                .setName("file")
+				                .setLayout(PatternLayout.newBuilder()
+				                        .withPattern("%m%n")
+				                        .build())
+				                .withFileName(filename)
+				                .build();
+						//Appender a = new FileAppender(layout, filename, false);
+						Logger openQABasePackage = LogManager.getLogger(OpenQABasePackage);
+				        LoggerContext context = (LoggerContext) LogManager.getContext(false);
+				        LoggerConfig loggerConfig = context.getConfiguration().getLoggerConfig(openQABasePackage.getName());
+				        loggerConfig.addAppender(appender, org.apache.logging.log4j.Level.INFO, null);
+				        context.updateLoggers();
+				        
+				        Logger seleniumBasePackage = LogManager.getLogger(SeleniumBasePackage);
+                        context = (LoggerContext) LogManager.getContext(false);
+                        loggerConfig = context.getConfiguration().getLoggerConfig(seleniumBasePackage.getName());
+                        loggerConfig.addAppender(appender, org.apache.logging.log4j.Level.INFO, null);
+                        context.updateLoggers();
+						
+
 					}
 
 					// Log start time
@@ -730,7 +756,7 @@ public class ExecuteHarnessMain {
 					tracer.trace("# Group(s): " + Arrays.toString(method.getTestMethod().getGroups()));
 					tracer.trace("");
 
-				} catch (IOException e) {
+				} catch (Exception e) {
 					logger.warn("Unable to add test class appender", e);
 				}
 			}
@@ -775,10 +801,17 @@ public class ExecuteHarnessMain {
 					appenders.remove(key);
 				}
 				if (a != null) {
-					OpenQALogger.removeAppender(a);
-					Logger.removeAppender(a);
-					a.close();
-					a = null;
+                    Logger openQABasePackage = LogManager.getLogger(OpenQABasePackage);
+                    LoggerContext context = (LoggerContext) LogManager.getContext(false);
+                    LoggerConfig loggerConfig = context.getConfiguration().getLoggerConfig(openQABasePackage.getName());
+                    loggerConfig.removeAppender(a.getName());
+                    context.updateLoggers();
+                    
+                    Logger seleniumBasePackage = LogManager.getLogger(SeleniumBasePackage);
+                    context = (LoggerContext) LogManager.getContext(false);
+                    loggerConfig = context.getConfiguration().getLoggerConfig(seleniumBasePackage.getName());
+                    loggerConfig.removeAppender(a.getName());
+                    context.updateLoggers();
 				}
 
 				// Log end time
@@ -1276,9 +1309,10 @@ public class ExecuteHarnessMain {
 
 			// Processing log4j must come first so debugging can happen
 			if (cmd.hasOption('l')) {
-				PropertyConfigurator.configure(cmd.getOptionValue('l'));
+				Configurator.initialize(null, cmd.getOptionValue('l'));
 			} else {
-				BasicConfigurator.configure();
+			    Configurator.setLevel(LogManager.getRootLogger().getName(), org.apache.logging.log4j.Level.INFO);
+		        Configurator.setLevel(LogManager.getLogger(ErrorDialogListener.class).getName(), org.apache.logging.log4j.Level.INFO);
 			}
 
 			if (cmd.hasOption('j')) {
@@ -1575,7 +1609,8 @@ public class ExecuteHarnessMain {
 		String countTestsResult = "No results";
 		String executeTestsResult = "No results";
 
-		BasicConfigurator.configure();
+		Configurator.setLevel(LogManager.getRootLogger().getName(), org.apache.logging.log4j.Level.INFO);
+        Configurator.setLevel(LogManager.getLogger(ExecuteHarnessMain.class).getName(), org.apache.logging.log4j.Level.INFO);
 
 		try {
 

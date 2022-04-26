@@ -28,9 +28,11 @@ import java.util.Locale;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 import java.util.StringTokenizer;
-import org.apache.log4j.BasicConfigurator;
-import org.apache.log4j.Logger;
-import org.apache.log4j.PropertyConfigurator;
+import com.zimbra.common.localconfig.LC;
+import org.apache.logging.log4j.core.config.Configurator;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import com.ibm.staf.STAFException;
 import com.ibm.staf.STAFHandle;
 import com.ibm.staf.STAFResult;
@@ -43,7 +45,7 @@ import com.zimbra.qa.selenium.framework.util.*;
 import com.zimbra.qa.selenium.framework.util.ConfigProperties.AppType;
 
 public class StafIntegration implements STAFServiceInterfaceLevel30 {
-    public static Logger mLog = Logger.getLogger(StafIntegration.class);
+    public static Logger mLog = LogManager.getLogger(StafIntegration.class);
 
     // Harness log
 	public static String sHarnessLogFileName = "harness.log";
@@ -101,9 +103,9 @@ public class StafIntegration implements STAFServiceInterfaceLevel30 {
 
         File f = new File(defaultLog4jProperties);
         if ( f.exists() ) {
-            PropertyConfigurator.configure(defaultLog4jProperties);
+            Configurator.initialize(null, LC.zimbra_log4j_properties.value());
         } else {
-        	BasicConfigurator.configure();
+            Configurator.setLevel(LogManager.getRootLogger().getName(), Level.INFO);
         }
 
         // Convert the request to all lower case
@@ -200,13 +202,13 @@ public class StafIntegration implements STAFServiceInterfaceLevel30 {
             if ( f.exists() ) {
 
             	// Priority 1: a local log4j.properties file
-                PropertyConfigurator.configure(defaultLog4jProperties);
+                Configurator.initialize(null, defaultLog4jProperties);
                 mLog.warn("Using "+ defaultLog4jProperties +".  Delete the file to use "+ Arguments.argLog4j);
 
             } else {
 
             	// Priority 2: a specified log4j.properties file
-            	PropertyConfigurator.configure(request.optionValue(Arguments.argLog4j));
+                Configurator.initialize(null, request.optionValue(Arguments.argLog4j));
             }
         }
 
@@ -384,9 +386,10 @@ public class StafIntegration implements STAFServiceInterfaceLevel30 {
 
         File f = new File(defaultLog4jProperties);
         if ( f.exists() ) {
-            PropertyConfigurator.configure(defaultLog4jProperties);
+            Configurator.initialize(null, defaultLog4jProperties);
         } else {
-        	BasicConfigurator.configure();
+            Configurator.setLevel(LogManager.getRootLogger().getName(), Level.INFO);
+            Configurator.setLevel(LogManager.getLogger(STAFServiceInterfaceLevel30.class).getName(), Level.INFO);
         }
 
         mLog.info("serviceJar.getName(): " + info.serviceJar.getName());
@@ -436,7 +439,8 @@ public class StafIntegration implements STAFServiceInterfaceLevel30 {
             "A non-numeric value was specified for serial number");
 
 		// Now, do the Selenium specific setup ...
-        BasicConfigurator.configure();
+        Configurator.setLevel(LogManager.getRootLogger().getName(), Level.INFO);
+        Configurator.setLevel(LogManager.getLogger(STAFServiceInterfaceLevel30.class).getName(), Level.INFO);
 
 		// Now, the service is ready ...
 		mLog.info("STAF Selenium: Ready ...");

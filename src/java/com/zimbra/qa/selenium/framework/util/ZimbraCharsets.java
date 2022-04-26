@@ -17,7 +17,8 @@
 package com.zimbra.qa.selenium.framework.util;
 
 import java.util.*;
-import org.apache.log4j.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class ZimbraCharsets {
 	protected static Logger logger = LogManager.getLogger(ZimbraCharsets.class);

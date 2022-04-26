@@ -18,7 +18,8 @@ package com.zimbra.qa.selenium.framework.util;
 
 import java.text.*;
 import java.util.*;
-import org.apache.log4j.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import com.zimbra.common.soap.Element;
 
 public class ZDate {
