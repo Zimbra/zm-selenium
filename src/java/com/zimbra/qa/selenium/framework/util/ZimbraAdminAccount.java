@@ -284,8 +284,8 @@ public class ZimbraAdminAccount extends ZimbraAccount {
 
 	public static void main(String[] args) throws HarnessException {
 		// Configure log4j using the basic configuration
-	    Configurator.setLevel(LogManager.getRootLogger().getName(), org.apache.logging.log4j.Level.INFO);
-        Configurator.setLevel(LogManager.getLogger(ZimbraAdminAccount.class).getName(), org.apache.logging.log4j.Level.INFO);
+	        Configurator.setLevel(LogManager.getRootLogger().getName(), org.apache.logging.log4j.Level.INFO);
+	        Configurator.setLevel(LogManager.getLogger(ZimbraAdminAccount.class).getName(), org.apache.logging.log4j.Level.INFO);
 
 		// Use the pre-provisioned global admin account to send a basic request
 		ZimbraAdminAccount.GlobalAdmin().soapSend("<GetVersionInfoRequest xmlns='urn:zimbraAdmin'/>");

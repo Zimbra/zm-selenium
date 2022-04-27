@@ -726,19 +726,17 @@ public class ExecuteHarnessMain {
 				                .build();
 						//Appender a = new FileAppender(layout, filename, false);
 						Logger openQABasePackage = LogManager.getLogger(OpenQABasePackage);
-				        LoggerContext context = (LoggerContext) LogManager.getContext(false);
-				        LoggerConfig loggerConfig = context.getConfiguration().getLoggerConfig(openQABasePackage.getName());
-				        loggerConfig.addAppender(appender, Level.INFO, null);
-				        context.updateLoggers();
-				        
-				        Logger seleniumBasePackage = LogManager.getLogger(SeleniumBasePackage);
-                        context = (LoggerContext) LogManager.getContext(false);
-                        loggerConfig = context.getConfiguration().getLoggerConfig(seleniumBasePackage.getName());
-                        loggerConfig.addAppender(appender, Level.INFO, null);
-                        context.updateLoggers();
-                        appender.start();
-						
-
+						LoggerContext context = (LoggerContext) LogManager.getContext(false);
+        				        LoggerConfig loggerConfig = context.getConfiguration().getLoggerConfig(openQABasePackage.getName());
+        				        loggerConfig.addAppender(appender, Level.INFO, null);
+        				        context.updateLoggers();
+        				        
+        				        Logger seleniumBasePackage = LogManager.getLogger(SeleniumBasePackage);
+                                               context = (LoggerContext) LogManager.getContext(false);
+                                               loggerConfig = context.getConfiguration().getLoggerConfig(seleniumBasePackage.getName());
+                                               loggerConfig.addAppender(appender, Level.INFO, null);
+                                               context.updateLoggers();
+                                               appender.start();
 					}
 
 					// Log start time
@@ -804,17 +802,17 @@ public class ExecuteHarnessMain {
 					appenders.remove(key);
 				}
 				if (a != null) {
-                    Logger openQABasePackage = LogManager.getLogger(OpenQABasePackage);
-                    LoggerContext context = (LoggerContext) LogManager.getContext(false);
-                    LoggerConfig loggerConfig = context.getConfiguration().getLoggerConfig(openQABasePackage.getName());
-                    loggerConfig.removeAppender(a.getName());
-                    context.updateLoggers();
+                                       Logger openQABasePackage = LogManager.getLogger(OpenQABasePackage);
+                                       LoggerContext context = (LoggerContext) LogManager.getContext(false);
+                                       LoggerConfig loggerConfig = context.getConfiguration().getLoggerConfig(openQABasePackage.getName());
+                                       loggerConfig.removeAppender(a.getName());
+                                       context.updateLoggers();
                     
-                    Logger seleniumBasePackage = LogManager.getLogger(SeleniumBasePackage);
-                    context = (LoggerContext) LogManager.getContext(false);
-                    loggerConfig = context.getConfiguration().getLoggerConfig(seleniumBasePackage.getName());
-                    loggerConfig.removeAppender(a.getName());
-                    context.updateLoggers();
+                                       Logger seleniumBasePackage = LogManager.getLogger(SeleniumBasePackage);
+                                       context = (LoggerContext) LogManager.getContext(false);
+                                       loggerConfig = context.getConfiguration().getLoggerConfig(seleniumBasePackage.getName());
+                                       loggerConfig.removeAppender(a.getName());
+                                       context.updateLoggers();
 				}
 
 				// Log end time
@@ -1314,8 +1312,8 @@ public class ExecuteHarnessMain {
 			if (cmd.hasOption('l')) {
 				Configurator.initialize(null, cmd.getOptionValue('l'));
 			} else {
-			    Configurator.setLevel(LogManager.getRootLogger().getName(), Level.INFO);
-		        Configurator.setLevel(LogManager.getLogger(ErrorDialogListener.class).getName(), Level.INFO);
+			        Configurator.setLevel(LogManager.getRootLogger().getName(), Level.INFO);
+			        Configurator.setLevel(LogManager.getLogger(ErrorDialogListener.class).getName(), Level.INFO);
 			}
 
 			if (cmd.hasOption('j')) {
