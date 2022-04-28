@@ -1611,7 +1611,7 @@ public class ExecuteHarnessMain {
 		String executeTestsResult = "No results";
 
 		Configurator.setLevel(LogManager.getRootLogger().getName(), Level.INFO);
-               Configurator.setLevel(LogManager.getLogger(ExecuteHarnessMain.class).getName(), Level.INFO);
+                Configurator.setLevel(LogManager.getLogger(ExecuteHarnessMain.class).getName(), Level.INFO);
 
 		try {
 
