@@ -715,29 +715,31 @@ public class ExecuteHarnessMain {
 
 				try {
 					String key = getKey(method.getTestMethod().getMethod());
-					if (!appenders.containsKey(key)) {
-						String filename = getFilename(method.getTestMethod().getMethod());
-						FileAppender appender = FileAppender.newBuilder()
-				                .setName("file")
-				                .setLayout(PatternLayout.newBuilder()
-				                .withPattern("%m%n")
-				                .build())
-				                .withFileName(filename)
-				                .build();
-						//Appender a = new FileAppender(layout, filename, false);
-						Logger openQABasePackage = LogManager.getLogger(OpenQABasePackage);
-						LoggerContext context = (LoggerContext) LogManager.getContext(false);
-        				        LoggerConfig loggerConfig = context.getConfiguration().getLoggerConfig(openQABasePackage.getName());
-        				        loggerConfig.addAppender(appender, Level.INFO, null);
-        				        context.updateLoggers();
-        				        
-        				        Logger seleniumBasePackage = LogManager.getLogger(SeleniumBasePackage);
-                                               context = (LoggerContext) LogManager.getContext(false);
-                                               loggerConfig = context.getConfiguration().getLoggerConfig(seleniumBasePackage.getName());
-                                               loggerConfig.addAppender(appender, Level.INFO, null);
-                                               context.updateLoggers();
-                                               appender.start();
-					}
+                    if (!appenders.containsKey(key)) {
+                        String filename = getFilename(method.getTestMethod().getMethod());
+                        FileAppender openQABasePackageAppender = FileAppender.newBuilder().setName("file")
+                                .setLayout(PatternLayout.newBuilder().withPattern("%m%n").build())
+                                .withFileName(filename).build();
+                        // Appender a = new FileAppender(layout, filename, false);
+                        Logger openQABasePackage = LogManager.getLogger(OpenQABasePackage);
+                        LoggerContext context = (LoggerContext) LogManager.getContext(false);
+                        LoggerConfig loggerConfig = context.getConfiguration()
+                                .getLoggerConfig(openQABasePackage.getName());
+                        loggerConfig.addAppender(openQABasePackageAppender, Level.INFO, null);
+                        context.updateLoggers();
+                        openQABasePackageAppender.start();
+                        
+                        
+                        FileAppender seleniumBasePackageAppender = FileAppender.newBuilder().setName("file")
+                                .setLayout(PatternLayout.newBuilder().withPattern("%m%n").build())
+                                .withFileName(filename).build();
+                        Logger seleniumBasePackage = LogManager.getLogger(SeleniumBasePackage);
+                        context = (LoggerContext) LogManager.getContext(false);
+                        loggerConfig = context.getConfiguration().getLoggerConfig(seleniumBasePackage.getName());
+                        loggerConfig.addAppender(seleniumBasePackageAppender, Level.INFO, null);
+                        context.updateLoggers();
+                        seleniumBasePackageAppender.start();
+                    }
 
 					// Log start time
 					testStartTime = new Date();
