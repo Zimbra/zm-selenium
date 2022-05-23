@@ -1314,6 +1314,7 @@ public class ExecuteHarnessMain {
 			if (cmd.hasOption('l')) {
 				Configurator.initialize(null, cmd.getOptionValue('l'));
 			} else {
+			        Configurator.initialize(null);
 			        Configurator.setLevel(LogManager.getRootLogger().getName(), Level.INFO);
 			        Configurator.setLevel(LogManager.getLogger(ErrorDialogListener.class).getName(), Level.INFO);
 			}
@@ -1612,8 +1613,9 @@ public class ExecuteHarnessMain {
 		String countTestsResult = "No results";
 		String executeTestsResult = "No results";
 
-		Configurator.setLevel(LogManager.getRootLogger().getName(), Level.INFO);
-                Configurator.setLevel(LogManager.getLogger(ExecuteHarnessMain.class).getName(), Level.INFO);
+        Configurator.initialize(null);
+        Configurator.setLevel(LogManager.getRootLogger().getName(), Level.INFO);
+        Configurator.setLevel(LogManager.getLogger(ExecuteHarnessMain.class).getName(), Level.INFO);
 
 		try {
 

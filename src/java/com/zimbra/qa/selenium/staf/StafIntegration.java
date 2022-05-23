@@ -103,8 +103,9 @@ public class StafIntegration implements STAFServiceInterfaceLevel30 {
 
         File f = new File(defaultLog4jProperties);
         if ( f.exists() ) {
-            Configurator.initialize(null, LC.zimbra_log4j_properties.value());
+            Configurator.initialize(null, defaultLog4jProperties);
         } else {
+            Configurator.initialize(null);
             Configurator.setLevel(LogManager.getRootLogger().getName(), Level.INFO);
         }
 
@@ -388,6 +389,7 @@ public class StafIntegration implements STAFServiceInterfaceLevel30 {
         if ( f.exists() ) {
             Configurator.initialize(null, defaultLog4jProperties);
         } else {
+            Configurator.initialize(null);
             Configurator.setLevel(LogManager.getRootLogger().getName(), Level.INFO);
             Configurator.setLevel(LogManager.getLogger(STAFServiceInterfaceLevel30.class).getName(), Level.INFO);
         }
@@ -439,6 +441,7 @@ public class StafIntegration implements STAFServiceInterfaceLevel30 {
             "A non-numeric value was specified for serial number");
 
 		// Now, do the Selenium specific setup ...
+        Configurator.initialize(null);
         Configurator.setLevel(LogManager.getRootLogger().getName(), Level.INFO);
         Configurator.setLevel(LogManager.getLogger(STAFServiceInterfaceLevel30.class).getName(), Level.INFO);
 

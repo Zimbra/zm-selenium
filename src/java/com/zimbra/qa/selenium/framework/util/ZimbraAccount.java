@@ -1412,7 +1412,8 @@ public class ZimbraAccount {
 		String domain = ConfigProperties.getStringProperty("server.host");
 
 		// Configure log4j using the basic configuration
-		 Configurator.setLevel(LogManager.getRootLogger().getName(), org.apache.logging.log4j.Level.INFO);
+         Configurator.initialize(null);
+         Configurator.setLevel(LogManager.getRootLogger().getName(), org.apache.logging.log4j.Level.INFO);
 	     Configurator.setLevel(LogManager.getLogger(ProxySoapHttpTransport.class).getName(), org.apache.logging.log4j.Level.INFO);
 
 		// Create a new account object
