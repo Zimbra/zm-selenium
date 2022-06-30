@@ -97,13 +97,12 @@ public class ClientSession {
 	        	driverDirectory = ConfigProperties.getBaseDirectory() + "/conf/" + OperatingSystem.getOSType().toString().toLowerCase() + "/" + ConfigProperties.getStringProperty("browser") + "/" + driverVersion;
 
 	        	switch (OperatingSystem.getOSType()) {
-
-	        		case WINDOWS10: default:
-	        			driverFile = "MicrosoftWebDriver.exe";
-	        			driverFilePath = driverDirectory + "/" + driverFile;
+					case WINDOWS10: default:
+						driverZipFile = "edgedriver_win64.zip";
+						driverFilePath = driverDirectory + "/msedgedriver.exe";
+						driverBinary = new File(driverFilePath);
 						try {
-							driverURL = new URL(ConfigProperties.getStringProperty("edgeDriverURL").split("#")[0]);
-							driverBinary = new File(driverFilePath);
+							driverZipURL = new URL(ConfigProperties.getStringProperty("edgeDriverURL") + "/" + driverZipFile);
 						} catch (MalformedURLException e1) {
 							e1.printStackTrace();
 						}
@@ -131,7 +130,6 @@ public class ClientSession {
 	        	driverDirectory = ConfigProperties.getBaseDirectory() + "/conf/" + OperatingSystem.getOSType().toString().toLowerCase() + "/" + ConfigProperties.getStringProperty("browser") + "/" + driverVersion;
 
 				switch (OperatingSystem.getOSType()) {
-
 					case WINDOWS: default:
 						driverZipFile = "geckodriver-" + driverVersion + "-win64.zip";
 						driverFilePath = driverDirectory + "/geckodriver.exe";
@@ -194,7 +192,6 @@ public class ClientSession {
 				webDriver.manage().window().maximize();
 
 			} else {
-
 				driverVersion = ConfigProperties.getStringProperty("chromeDriverURL").split("/")[3];
 				driverDirectory = ConfigProperties.getBaseDirectory() + "/conf/" + OperatingSystem.getOSType().toString().toLowerCase() + "/" + ConfigProperties.getStringProperty("browser") + "/" + driverVersion;
 
