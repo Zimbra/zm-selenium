@@ -30,7 +30,6 @@ import com.zimbra.qa.selenium.framework.util.RestUtil;
 import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.framework.util.ZimbraAccount;
 import com.zimbra.qa.selenium.projects.ajax.pages.AjaxPages;
-import com.zimbra.qa.selenium.projects.ajax.pages.drive.DialogUploadFile;
 
 public class PageDrive extends AbsTab {
 
