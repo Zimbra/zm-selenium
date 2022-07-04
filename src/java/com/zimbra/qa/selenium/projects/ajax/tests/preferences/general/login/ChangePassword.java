@@ -19,7 +19,6 @@ package com.zimbra.qa.selenium.projects.ajax.tests.preferences.general.login;
 import org.testng.annotations.Test;
 import com.zimbra.qa.selenium.framework.ui.Action;
 import com.zimbra.qa.selenium.framework.ui.Button;
-import com.zimbra.qa.selenium.framework.util.ConfigProperties;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.framework.util.ZAssert;
 import com.zimbra.qa.selenium.projects.ajax.core.AjaxCore;
@@ -39,7 +38,7 @@ public class ChangePassword extends AjaxCore {
 
 	public void ChangePassword_01() throws HarnessException {
 
-		String password = "password" + ConfigProperties.getUniqueString();
+		String password = "test1234";
 		String windowTitle = "Change password";
 		SeparateWindowChangePassword window = null;
 

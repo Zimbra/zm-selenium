@@ -20,6 +20,7 @@ import com.zimbra.qa.selenium.framework.ui.AbsApplication;
 import com.zimbra.qa.selenium.framework.ui.AbsPage;
 import com.zimbra.qa.selenium.framework.ui.Button;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
+import com.zimbra.qa.selenium.framework.util.SleepUtil;
 import com.zimbra.qa.selenium.projects.ajax.pages.SeparateWindow;
 
 /**
@@ -35,9 +36,7 @@ public class SeparateWindowChangePassword extends SeparateWindow {
 		public static final String LocatorOldPasswordCSS = "css=input[id='oldPassword']";
 		public static final String LocatorNewPasswordCSS = "css=input[id='newPassword']";
 		public static final String LocatorConfirmPasswordCSS = "css=input[id='confirm']";
-
-		public static final String LocatorChangePasswordCSS = "css=div[id='ZLoginFormPanel'] input[class='zLoginButton']";
-
+		public static final String LocatorChangePasswordCSS = "css=button[id='saveButton']";
 	}
 
 	public SeparateWindowChangePassword(AbsApplication application) {
@@ -55,7 +54,7 @@ public class SeparateWindowChangePassword extends SeparateWindow {
 	}
 
 	public void zSetConfirmPassword(String password) throws HarnessException {
-		this.sType(Locators.LocatorConfirmPasswordCSS, password);
+		this.sKeyPress(Locators.LocatorConfirmPasswordCSS, password);
 	}
 
 	public AbsPage zPressButton(Button button) throws HarnessException {
@@ -71,6 +70,7 @@ public class SeparateWindowChangePassword extends SeparateWindow {
 		}
 
 		sClick(locator);
+		SleepUtil.sleepSmall();
 		return (null);
 	}
 
