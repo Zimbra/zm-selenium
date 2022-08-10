@@ -41,7 +41,7 @@ public class Login extends AjaxCore {
 
 
 	@Test (description = "Login to the Ajax Client",
-			groups = { "smoke" })
+			groups = { "smoke", "testcafe" })
 
 	public void Login_01() throws HarnessException {
 

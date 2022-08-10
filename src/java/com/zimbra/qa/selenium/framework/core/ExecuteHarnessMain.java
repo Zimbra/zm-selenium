@@ -86,6 +86,7 @@ public class ExecuteHarnessMain {
 	public static String hostname;
 	public static String zimbraServer;
 	public static String zimbraVersion = null;
+	public static int zimbraMajorVersion = 0;
 	public static String cmdVersion = null;
 	public static Boolean isNGEnabled = false;
 	public static Boolean isChatConfigured = false;
@@ -286,8 +287,15 @@ public class ExecuteHarnessMain {
 	}
 
 	protected List<XmlSuite> getXmlSuiteList() throws HarnessException {
+		// Exclude/deprecate tests which are migrated from Selenium to TestCafe
+		List<String> zimbraMajorVersionList = Arrays.asList(zimbraVersion.split("\\.")[0]);
+		zimbraMajorVersion = Integer.parseInt(zimbraMajorVersionList.get(0));
+		if (zimbraMajorVersion >= 9) {
+			excludeGroups.add("testcafe");
+		}
+
 		// Add network or foss based on the server version
-		if (ConfigProperties.zimbraGetVersionString().toLowerCase().contains("network")) {
+		if (zimbraVersion.contains("network")) {
 			excludeGroups.add("foss");
 		} else {
 			excludeGroups.add("network");

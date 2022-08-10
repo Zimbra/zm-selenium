@@ -38,7 +38,7 @@ public class EditAccount extends AdminCore {
 
 
 	@Test (description = "Edit Account name  - Manage Account View",
-			groups = { "smoke" })
+			groups = { "smoke", "testcafe" })
 
 	public void EditAccount_01() throws HarnessException {
 		// Create a new account in the Admin Console using SOAP

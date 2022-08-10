@@ -34,7 +34,7 @@ public class CreateAccount extends AdminCore {
 
 	@Bugs (ids = "100779")
 	@Test (description = "Create a basic account using New->Account",
-			groups = { "smoke" })
+			groups = { "smoke", "testcafe" })
 
 	public void CreateAccount_01() throws HarnessException {
 		String accountLastname = "lastname" + ConfigProperties.getUniqueString();
