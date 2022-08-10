@@ -37,7 +37,7 @@ public class CreateCos extends AdminCore {
 
 	@Bugs (ids = "100779")
 	@Test (description = "Create a basic COS",
-			groups = { "smoke" })
+			groups = { "smoke", "testcafe" })
 
 	public void CreateCos_01() throws HarnessException {
 		// Create a new cos in the Admin Console

@@ -17,6 +17,7 @@
 package com.zimbra.qa.selenium.projects.ajax.tests.mail.folders;
 
 import org.testng.annotations.*;
+
 import com.zimbra.qa.selenium.framework.items.*;
 import com.zimbra.qa.selenium.framework.items.FolderItem.*;
 import com.zimbra.qa.selenium.framework.ui.*;
@@ -35,7 +36,7 @@ public class CreateFolder extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Create a new folder by clicking 'new folder' on folder tree",
-			groups = { "smoke" })
+			groups = { "smoke", "testcafe" })
 
 	public void CreateFolder_01() throws HarnessException {
 

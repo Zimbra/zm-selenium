@@ -35,7 +35,7 @@ public class BasicLogin extends AdminCore {
 
 
 	@Test (description = "Login to the Admin Console",
-			groups = { "smoke" })
+			groups = { "smoke", "testcafe" })
 
 	public void BasicLogin_01() throws HarnessException {
 		// Login

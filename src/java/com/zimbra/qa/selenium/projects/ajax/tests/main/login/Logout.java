@@ -29,7 +29,7 @@ public class Logout extends AjaxCore {
 
 
 	@Test (description = "Logout of the Ajax Client",
-			groups = { "smoke" })
+			groups = { "smoke", "testcafe" })
 
 	public void Logout_01() throws HarnessException {
 

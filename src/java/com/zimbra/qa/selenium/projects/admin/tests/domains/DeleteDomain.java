@@ -37,7 +37,7 @@ public class DeleteDomain extends AdminCore {
 
 
 	@Test (description = "Verify delete domain operation --  Manage Domain List View",
-			groups = { "bhr" })
+			groups = { "bhr", "testcafe" })
 
 	public void DeleteDomain_01() throws HarnessException {
 		// Create a new domain in the Admin Console using SOAP

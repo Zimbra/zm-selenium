@@ -31,7 +31,7 @@ public class CreateTag extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Create a new tag by clicking 'new tag' on folder tree",
-			groups = { "smoke" })
+			groups = { "smoke", "testcafe" })
 
 	public void CreateTag_01() throws HarnessException {
 
