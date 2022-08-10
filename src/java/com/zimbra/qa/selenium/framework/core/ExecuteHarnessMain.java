@@ -288,7 +288,8 @@ public class ExecuteHarnessMain {
 
 	protected List<XmlSuite> getXmlSuiteList() throws HarnessException {
 		// Exclude/deprecate tests which are migrated from Selenium to TestCafe
-		List<String> zimbraMajorVersionList = Arrays.asList(ConfigProperties.zimbraGetVersionString().toLowerCase().split("\\.")[0]);
+		zimbraVersion = ConfigProperties.zimbraGetVersionString();
+		List<String> zimbraMajorVersionList = Arrays.asList(zimbraVersion.split("\\.")[0]);
 		zimbraMajorVersion = Integer.parseInt(zimbraMajorVersionList.get(0));
 		if (zimbraMajorVersion >= 9) {
 			excludeGroups.add("testcafe");
