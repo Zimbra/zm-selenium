@@ -43,7 +43,7 @@ public class DeleteDocument extends EnableBriefcaseFeature {
 
 
 	@Test (description = "Create document through SOAP - delete & check trash",
-			groups = { "bhr" })
+			groups = { "bhr", "testcafe" })
 
 	public void DeleteDocument_01() throws HarnessException {
 

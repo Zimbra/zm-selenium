@@ -41,7 +41,7 @@ public class DisplayDocument extends EnableBriefcaseFeature {
 
 
 	@Test (description = "Create document through SOAP - verify through GUI",
-			groups = { "bhr" })
+			groups = { "bhr", "testcafe" })
 
 	public void DisplayDocument_01() throws HarnessException {
 
@@ -81,7 +81,7 @@ public class DisplayDocument extends EnableBriefcaseFeature {
 
 	@Bugs (ids = "79994")
 	@Test (description = "german umlauts breaks briefcase ",
-			groups = { "functional" })
+			groups = { "functional", "testcafe" })
 
 	public void DisplayDocument_02() throws HarnessException {
 
@@ -91,7 +91,7 @@ public class DisplayDocument extends EnableBriefcaseFeature {
 
 		// Create document item
 		DocumentItem document = new DocumentItem();
-		String docName = "testäöütest";
+		String docName = "testÃ¤Ã¶Ã¼test";
 		document.setDocName(docName);
 		String docText = document.getDocText();
 

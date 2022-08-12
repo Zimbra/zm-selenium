@@ -47,7 +47,7 @@ public class CreateDocument extends EnableBriefcaseFeature {
 
 	@Bugs (ids = "97124")
 	@Test (description = "Create document through GUI - verify through GUI",
-		groups = { "smoke" })
+		groups = { "smoke", "testcafe" })
 
 	public void CreateDocument_01() throws HarnessException {
 
