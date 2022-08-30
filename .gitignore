@@ -12,3 +12,4 @@ conf/windows/edge
 conf/mac
 conf/linux
 BugReports
+/bin/

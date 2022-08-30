@@ -39,7 +39,7 @@ public class ViewMail extends AdminCore {
 
 
 	@Test (description = "View mail - manage account >> Gearbox >> edit account >>  View mail",
-			groups = { "smoke", "non-zimbrax" })
+			groups = { "smoke", "non-zimbrax", "testcafe" })
 
 	public void ViewMail_01() throws HarnessException {
 		// Create a new account in the admin Console using SOAP
@@ -105,7 +105,7 @@ public class ViewMail extends AdminCore {
 
 	@Bugs (ids = "69155")
 	@Test (description = "View mail - manage account > right click > view mail",
-			groups = { "functional", "non-zimbrax" })
+			groups = { "functional", "non-zimbrax", "testcafe" })
 
 	public void ViewMail_02() throws HarnessException {
 		// Create a new account in the admin Console using SOAP
@@ -170,7 +170,7 @@ public class ViewMail extends AdminCore {
 
 
 	@Test (description = "View mail - Edit a basic account - Search List View",
-			groups = { "functional", "non-zimbrax" })
+			groups = { "functional", "non-zimbrax", "testcafe" })
 
 	public void ViewMail_03() throws HarnessException {
 		// Create a new account in the Admin Console using SOAP
