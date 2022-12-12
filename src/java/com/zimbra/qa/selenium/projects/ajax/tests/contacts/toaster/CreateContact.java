@@ -35,7 +35,7 @@ public class CreateContact extends AjaxCore {
 
 
 	@Test (description = "Create a basic contact item by click New in page Addressbook and verify toast message",
-			groups = { "sanity" })
+			groups = { "sanity-skip" })
 
 	public void CreateContact_01() throws HarnessException {
 

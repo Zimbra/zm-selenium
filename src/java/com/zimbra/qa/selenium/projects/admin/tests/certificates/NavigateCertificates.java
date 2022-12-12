@@ -31,7 +31,7 @@ public class NavigateCertificates extends AdminCore {
 
 
 	@Test (description = "Navigate to Certificates",
-			groups = { "smoke", "non-zimbrax" })
+			groups = { "smoke", "non-zimbrax", "testcafe" })
 
 	public void NavigateCertificates_01() throws HarnessException {
 		ZAssert.assertTrue(app.zPageManageCertificates.zVerifyHeader(PageManageCertificates.Locators.HOME),

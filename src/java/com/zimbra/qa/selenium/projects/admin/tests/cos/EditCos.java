@@ -38,7 +38,7 @@ public class EditCos extends AdminCore {
 
 
 	@Test (description = "Edit Cos name  - Manage Cos View",
-			groups = { "sanity" })
+			groups = { "sanity", "testcafe" })
 
 	public void EditCos_01() throws HarnessException {
 		// Create a new cos in the Admin Console using SOAP
@@ -77,7 +77,7 @@ public class EditCos extends AdminCore {
 
 
 	@Test (description = "Edit cos name -- right click",
-			groups = { "sanity" })
+			groups = { "sanity", "testcafe" })
 
 	public void EditCos_02() throws HarnessException {
 		// Create a new cos in the Admin Console using SOAP
@@ -119,7 +119,7 @@ public class EditCos extends AdminCore {
 
 
 	@Test (description = "Edit Cos name  - Search Cos View",
-			groups = { "functional" })
+			groups = { "functional", "testcafe" })
 
 	public void EditCos_03() throws HarnessException {
 		// Create a new cos in the Admin Console using SOAP
@@ -167,7 +167,7 @@ public class EditCos extends AdminCore {
 
 
 	@Test (description = "Edit cos name -- right click",
-			groups = { "functional" })
+			groups = { "functional", "testcafe" })
 
 	public void EditCos_04() throws HarnessException {
 		// Create a new cos in the Admin Console using SOAP

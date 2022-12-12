@@ -118,7 +118,7 @@ public class CreateDocument extends EnableBriefcaseFeature {
 
 	@Bugs (ids = "81299")
 	@Test (description = "Create document using New menu pulldown menu - verify through SOAP & RestUtil",
-			groups = { "bhr", "non-msedge" })
+			groups = { "bhr", "non-msedge", "testcafe" })
 
 	public void CreateDocument_02() throws HarnessException {
 

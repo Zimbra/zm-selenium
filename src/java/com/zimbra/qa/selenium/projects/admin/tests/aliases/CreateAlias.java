@@ -35,7 +35,7 @@ public class CreateAlias extends AdminCore {
 
 
 	@Test (description = "Create a basic alias",
-			groups = { "smoke" })
+			groups = { "smoke", "testcafe" })
 
 	public void CreateAlias_01() throws HarnessException {
 		AccountItem target = new AccountItem("tc" + ConfigProperties.getUniqueString(),

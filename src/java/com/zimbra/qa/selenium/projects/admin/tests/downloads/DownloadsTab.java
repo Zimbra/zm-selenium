@@ -49,7 +49,7 @@ public class DownloadsTab extends AdminCore {
 	};
 
 	@Test (description = "Verify the Downloads Tab contains the correct download links",
-			groups = { "smoke", "non-zimbrax" })
+			groups = { "smoke", "non-zimbrax", "testcafe" })
 
 	public void DownloadsTab_01() throws HarnessException {
 		for ( String locator : downloadLinkLocators ) {
@@ -74,7 +74,7 @@ public class DownloadsTab extends AdminCore {
 
 	@Bugs (ids = "100755")
 	@Test (description = "Verify the downloads links are accessible",
-			groups = { "smoke", "non-zimbrax" })
+			groups = { "smoke", "non-zimbrax", "testcafe" })
 
 	public void DownloadsTab_02() throws HarnessException {
 		List<String> locators = new ArrayList<String>();

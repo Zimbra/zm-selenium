@@ -39,7 +39,7 @@ public class GetAttachment extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Receive a message with one attachment",
-			groups = { "bhr" })
+			groups = { "bhr", "testcafe" })
 
 	public void GetAttachment_01() throws HarnessException {
 
@@ -119,7 +119,7 @@ public class GetAttachment extends SetGroupMailByMessagePreference {
 
 	@Bugs (ids = "60769")
 	@Test (description = "Receive a message with an inline attachment",
-			groups = { "bhr" })
+			groups = { "bhr", "testcafe" })
 
 	public void GetAttachment_03() throws HarnessException {
 

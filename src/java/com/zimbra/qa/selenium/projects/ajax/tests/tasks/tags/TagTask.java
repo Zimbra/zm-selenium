@@ -39,7 +39,7 @@ public class TagTask extends AjaxCore{
 
 
 	@Test (description = "Tag a Task using Toolbar -> Tag -> New Tag",
-			groups = { "bhr" })
+			groups = { "bhr", "testcafe" })
 
 	public void TagTask_01() throws HarnessException {
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);

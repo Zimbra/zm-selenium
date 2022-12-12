@@ -42,7 +42,7 @@ public class DeleteFile extends EnableBriefcaseFeature {
 
 
 	@Test (description = "Upload file through RestUtil - delete & verify through GUI",
-			groups = { "bhr" })
+			groups = { "bhr", "testcafe" })
 
 	public void DeleteFile_01() throws HarnessException {
 
@@ -86,7 +86,7 @@ public class DeleteFile extends EnableBriefcaseFeature {
 
 
 	@Test (description = "Upload file through RestUtil - delete using Delete Key & check trash",
-			groups = { "functional" })
+			groups = { "functional", "testcafe" })
 
 	public void DeleteFile_02() throws HarnessException {
 
@@ -143,7 +143,7 @@ public class DeleteFile extends EnableBriefcaseFeature {
 
 
 	@Test (description = "Upload file through RestUtil - delete using Right Click context menu",
-			groups = { "sanity" })
+			groups = { "sanity", "testcafe" })
 
 	public void DeleteFile_03() throws HarnessException {
 

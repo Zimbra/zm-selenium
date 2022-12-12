@@ -39,7 +39,7 @@ public class DeleteContact extends AjaxCore  {
 
 
 	@Test (description = "Delete a contact item",
-			groups = { "smoke" })
+			groups = { "smoke", "testcafe" })
 
 	public void ClickDeleteOnToolbar_01() throws HarnessException {
 
@@ -78,7 +78,7 @@ public class DeleteContact extends AjaxCore  {
 
 
 	@Test (description = "Delete a contact item selected with checkbox",
-			groups = { "sanity" })
+			groups = { "sanity", "testcafe" })
 
 	public void DeleteContactSelectedWithCheckbox_02() throws HarnessException {
 

@@ -32,7 +32,7 @@ public class CreateTag extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Create a new tag by clicking 'new tag' on folder tree",
-			groups = { "smoke" })
+			groups = { "smoke", "testcafe" })
 
 	public void CreateTag_01() throws HarnessException {
 
@@ -56,7 +56,7 @@ public class CreateTag extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Create a new tag using keyboard shortcuts",
-			groups = { "sanity" })
+			groups = { "sanity", "testcafe" })
 
 	public void CreateTag_02() throws HarnessException {
 
@@ -82,7 +82,7 @@ public class CreateTag extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Create a new tag using context menu from a tag",
-			groups = { "sanity" })
+			groups = { "sanity", "testcafe" })
 
 	public void CreateTag_03() throws HarnessException {
 
@@ -122,7 +122,7 @@ public class CreateTag extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Create a new tag using mail app New -> New Tag",
-			groups = { "bhr" })
+			groups = { "bhr", "testcafe" })
 
 	public void CreateTag_04() throws HarnessException {
 

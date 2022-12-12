@@ -34,7 +34,7 @@ public class DeleteRetentionPolicy extends AdminCore {
 
 
 	@Test (description = "Delete retention policy",
-			groups = { "sanity" })
+			groups = { "sanity", "testcafe" })
 
 	public void DeleteRetentionPolicy_01() throws HarnessException {
 		final String policyName = "test_policy" + ConfigProperties.getUniqueString();

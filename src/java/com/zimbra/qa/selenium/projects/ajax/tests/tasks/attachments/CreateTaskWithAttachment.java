@@ -44,7 +44,7 @@ public class CreateTaskWithAttachment extends SetGroupMailByMessagePreference {
 
 	@Bugs (ids = "104231")
 	@Test (description = "Create task with attachment",
-			groups = { "smoke", "upload" })
+			groups = { "smoke", "upload", "testcafe" })
 
 	public void CreateTaskWithAttachment_01() throws HarnessException {
 

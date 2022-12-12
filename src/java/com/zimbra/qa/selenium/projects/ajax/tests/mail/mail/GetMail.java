@@ -36,7 +36,7 @@ public class GetMail extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Receive a mail",
-			groups = { "bhr" })
+			groups = { "bhr", "testcafe" })
 
 	public void GetMail_01() throws HarnessException {
 
@@ -118,7 +118,7 @@ public class GetMail extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Receive an html mail - verify mail contents",
-			groups = { "bhr" })
+			groups = { "bhr", "testcafe" })
 
 	public void GetMail_03() throws HarnessException {
 

@@ -31,7 +31,7 @@ public class NavigateDomain extends AdminCore {
 
 
 	@Test (description = "Navigate to Domain",
-			groups = { "smoke" })
+			groups = { "smoke", "testcafe" })
 
 	public void NavigateDomain_01() throws HarnessException {
 		ZAssert.assertTrue(app.zPageManageDomains.zVerifyHeader(PageManageDomains.Locators.HOME),

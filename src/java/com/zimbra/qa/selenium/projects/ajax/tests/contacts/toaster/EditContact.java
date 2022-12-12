@@ -33,7 +33,7 @@ public class EditContact extends AjaxCore {
 
 
 	@Test (description = "Edit a contact item, click Edit on toolbar and verify toast message",
-			groups = { "sanity" })
+			groups = { "sanity-skip" })
 
 	public void EditContact_01() throws HarnessException {
 
@@ -71,7 +71,7 @@ public class EditContact extends AjaxCore {
 
 
 	@Test (description = "Edit a contact item, Right click then click Edit and verify toast message",
-			groups = { "functional" })
+			groups = { "functional-skip" })
 
 	public void EditContact_02() throws HarnessException {
 
@@ -107,7 +107,7 @@ public class EditContact extends AjaxCore {
 
 
 	@Test (description = "Edit a contact item, double click the contact and verify toast message",
-			groups = { "functional" })
+			groups = { "functional-skip" })
 
 	public void EditContact_03() throws HarnessException {
 

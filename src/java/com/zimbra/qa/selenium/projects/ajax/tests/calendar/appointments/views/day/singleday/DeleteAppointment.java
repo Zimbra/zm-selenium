@@ -43,7 +43,7 @@ public class DeleteAppointment extends AjaxCore {
 
 	@Bugs (ids = "69132")
 	@Test (description = "Delete an appointment using Delete toolbar button in day view",
-			groups = { "bhr" })
+			groups = { "bhr", "testcafe" })
 
 	public void DeleteAppointment_01() throws HarnessException {
 

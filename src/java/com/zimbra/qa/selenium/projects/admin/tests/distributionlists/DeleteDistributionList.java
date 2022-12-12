@@ -36,7 +36,7 @@ public class DeleteDistributionList extends AdminCore {
 
 
 	@Test (description = "Verify delete operation for distribution list - Manage distribution list view",
-			groups = { "bhr" })
+			groups = { "bhr", "testcafe" })
 
 	public void DeleteDistributionList_01() throws HarnessException {
 		// Create a new dl in the Admin Console using SOAP
@@ -77,7 +77,7 @@ public class DeleteDistributionList extends AdminCore {
 
 
 	@Test (description = "Verify delete operation for distribution list -- Manage distribution list/Right Click Menu",
-			groups = { "functional" })
+			groups = { "functional", "testcafe" })
 
 	public void DeleteDistributionList_02() throws HarnessException {
 		// Create a new dl in the Admin Console using SOAP

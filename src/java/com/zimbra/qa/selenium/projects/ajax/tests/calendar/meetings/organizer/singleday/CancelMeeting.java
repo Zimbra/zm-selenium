@@ -39,7 +39,7 @@ public class CancelMeeting extends AjaxCore {
 
 	@Bugs (ids = "69132")
 	@Test (description = "Cancel meeting using Delete toolbar button",
-			groups = { "bhr" })
+			groups = { "bhr", "testcafe" })
 
 	public void CancelMeeting_01() throws HarnessException {
 
@@ -111,7 +111,7 @@ public class CancelMeeting extends AjaxCore {
 
 	@Bugs (ids = "69132")
 	@Test (description = "Cancel meeting using delete keyboard shortcut key",
-			groups = { "sanity"},
+			groups = { "sanity", "testcafe" },
 			dataProvider = "DataProviderShortcutKeys")
 
 	public void CancelMeeting_02(String name, int keyEvent) throws HarnessException {
@@ -234,7 +234,7 @@ public class CancelMeeting extends AjaxCore {
 
 	@Bugs (ids = "69132")
 	@Test (description = "Cancel appointment without modifying cancellation message content",
-			groups = { "sanity" })
+			groups = { "sanity", "testcafe" })
 
 	public void CancelMeeting_04() throws HarnessException {
 

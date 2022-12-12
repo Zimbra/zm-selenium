@@ -34,7 +34,7 @@ public class CreateRetentionPolicy extends AdminCore {
 
 
 	@Test (description = "Create retention policy",
-			groups = { "bhr" })
+			groups = { "bhr", "testcafe" })
 
 	public void CreateRetentionPolicy_01() throws HarnessException {
 		final String policyName = "test_policy" + ConfigProperties.getUniqueString();

@@ -35,7 +35,7 @@ public class EditRetentionPolicy extends AdminCore {
 
 
 	@Test (description = "Edit retention policy",
-			groups = { "functional" })
+			groups = { "functional", "testcafe" })
 
 	public void EditRetentionPolicy_01() throws HarnessException {
 		final String policyName = "test_policy" + ConfigProperties.getUniqueString();

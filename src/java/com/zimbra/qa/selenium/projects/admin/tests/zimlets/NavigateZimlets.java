@@ -31,7 +31,7 @@ public class NavigateZimlets extends AdminCore {
 
 
 	@Test (description = "Navigate to Zimlets",
-			groups = { "smoke" })
+			groups = { "smoke", "testcafe" })
 
 	public void NavigateZimlets_01() throws HarnessException {
 		ZAssert.assertTrue(app.zPageManageZimlets.zVerifyHeader(PageManageZimlets.Locators.HOME),

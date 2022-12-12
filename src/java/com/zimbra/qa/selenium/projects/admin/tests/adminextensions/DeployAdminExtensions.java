@@ -38,7 +38,7 @@ public class DeployAdminExtensions extends AdminCore {
 
 	@Bugs (ids = "ZCS-1059")
 	@Test (description = "Deploy admin extension",
-			groups = { "bhr", "non-zimbrax" })
+			groups = { "bhr", "non-zimbrax", "testcafe" })
 
 	public void DeployAdminExtension_01() throws HarnessException {
 		// Create file item

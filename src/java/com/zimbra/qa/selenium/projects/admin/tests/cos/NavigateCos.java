@@ -31,7 +31,7 @@ public class NavigateCos extends AdminCore {
 
 
 	@Test (description = "Navigate to Cos",
-			groups = { "smoke" })
+			groups = { "smoke", "testcafe" })
 
 	public void NavigateCos_01() throws HarnessException {
 		ZAssert.assertTrue(app.zPageManageCOS.zVerifyHeader(PageManageCOS.Locators.HOME),

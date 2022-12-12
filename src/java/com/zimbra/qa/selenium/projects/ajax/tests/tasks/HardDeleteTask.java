@@ -44,7 +44,7 @@ public class HardDeleteTask extends AjaxCore {
 
 	@Bugs (ids = "61625")
 	@Test (description = "Hard-delete a task by selecting and typing 'shift-del' shortcut",
-			groups = { "functional" })
+			groups = { "functional", "testcafe" })
 
 	public void HardDeleteTask_01() throws HarnessException {
 

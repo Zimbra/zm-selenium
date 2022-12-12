@@ -47,7 +47,7 @@ public class BasicLogin extends AdminCore {
 
 
 	@Test (description = "Login to the Admin Console as a different Admin Account",
-			groups = { "bhr" })
+			groups = { "bhr", "testcafe" })
 
 	public void BasicLogin_02() throws HarnessException {
 		// Create a new AdminAccount

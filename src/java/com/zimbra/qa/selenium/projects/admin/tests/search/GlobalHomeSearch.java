@@ -41,7 +41,7 @@ public class GlobalHomeSearch extends AdminCore {
 
 
 	@Test (description = "Verify search functionality of COS",
-			groups = { "smoke" })
+			groups = { "smoke", "testcafe" })
 
 	public void HomeSearchFunctionalityCOS_01() throws HarnessException {
 		// Create a new cos in the Admin Console using SOAP
@@ -78,7 +78,7 @@ public class GlobalHomeSearch extends AdminCore {
 
 	@Bugs (ids = "96768")
 	@Test (description = "Verify search functionality of Account",
-			groups = { "smoke" })
+			groups = { "smoke", "testcafe" })
 
 	public void HomeSearchFunctionalityAccount_02() throws HarnessException {
 		// Create a new account in the Admin Console using SOAP
@@ -114,7 +114,7 @@ public class GlobalHomeSearch extends AdminCore {
 
 
 	@Test (description = "Verify search functionality of Resource",
-			groups = { "smoke" })
+			groups = { "smoke", "testcafe" })
 
 	public void HomeSearchFunctionalityResource_03() throws HarnessException {
 		// Create a new resource in the Admin Console using SOAP
@@ -154,7 +154,7 @@ public class GlobalHomeSearch extends AdminCore {
 
 
 	@Test (description = "Verify search functionality of DL",
-			groups = { "smoke" })
+			groups = { "smoke", "testcafe" })
 
 	public void HomeSearchFunctionalityDL_04() throws HarnessException {
 		// Create a new dl in the Admin Console using SOAP
@@ -191,7 +191,7 @@ public class GlobalHomeSearch extends AdminCore {
 
 
 	@Test (description = "Verify search functionality of Alias",
-			groups = { "smoke" })
+			groups = { "smoke", "testcafe" })
 
 	public void HomeSearchFunctionalityAlias_05() throws HarnessException {
 		AccountItem target = new AccountItem("tc" + ConfigProperties.getUniqueString(), ConfigProperties.getStringProperty("testdomain"));
@@ -230,7 +230,7 @@ public class GlobalHomeSearch extends AdminCore {
 
 
 	@Test (description = "Verify search functionality of domain",
-			groups = { "smoke" })
+			groups = { "smoke", "testcafe" })
 
 	public void HomeSearchFunctionalityDomain_06() throws HarnessException {
 		// Create a new domain in the Admin Console using SOAP

@@ -31,7 +31,7 @@ public class NavigateServerStatistics extends AdminCore {
 
 
 	@Test (description = "Navigate to Server Statistics",
-			groups = { "smoke" })
+			groups = { "smoke", "testcafe" })
 
 	public void NavigateServerStatistics_01() throws HarnessException {
 		ZAssert.assertTrue(app.zPageManageServerStatistics.zVerifyHeader(PageManageServerStatistics.Locators.HOME),

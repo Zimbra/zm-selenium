@@ -31,7 +31,7 @@ public class NavigateAccountMigration extends AdminCore {
 
 
 	@Test (description = "Navigate to Account Migration",
-			groups = { "smoke", "non-zimbrax" })
+			groups = { "smoke", "non-zimbrax", "testcafe" })
 
 	public void NavigateAccountMigration_01() throws HarnessException {
 		ZAssert.assertTrue(app.zPageManageAccountMigration.zVerifyHeader(PageManageAccountMigration.Locators.HOME),

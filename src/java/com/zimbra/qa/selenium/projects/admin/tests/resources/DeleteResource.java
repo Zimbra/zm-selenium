@@ -38,7 +38,7 @@ public class DeleteResource extends AdminCore {
 
 
 	@Test (description = "Verify delete resource operation -- Manage resource View -- Location",
-			groups = { "bhr" })
+			groups = { "bhr", "testcafe" })
 
 	public void DeleteResource_01() throws HarnessException {
 		this.startingPage.zNavigateTo();
@@ -88,7 +88,7 @@ public class DeleteResource extends AdminCore {
 
 
 	@Test (description = "Verify delete resource operation -- Manage resource View -- Equipment",
-			groups = { "sanity" })
+			groups = { "sanity", "testcafe" })
 
 	public void DeleteResource_02() throws HarnessException {
 		this.startingPage.zNavigateTo();
@@ -138,7 +138,7 @@ public class DeleteResource extends AdminCore {
 
 
 	@Test (description = "Verify delete resource operation -- Manage resource View/Right Click Menu -- Location",
-			groups = { "sanity" })
+			groups = { "sanity", "testcafe" })
 
 	public void DeleteResource_03() throws HarnessException {
 		this.startingPage.zNavigateTo();
@@ -188,7 +188,7 @@ public class DeleteResource extends AdminCore {
 
 
 	@Test (description = "Verify delete resource operation -- Manage resource View/Right Click Menu -- Equipment",
-			groups = { "functional" })
+			groups = { "functional", "testcafe" })
 
 	public void DeleteResource_04() throws HarnessException {
 		// Create a new resource in the Admin Console using SOAP

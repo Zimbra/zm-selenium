@@ -33,7 +33,7 @@ public class CreateTag extends EnableBriefcaseFeature {
 
 
 	@Test (description = "Create a new tag by clicking 'new tag' on folder tree",
-			groups = { "bhr" })
+			groups = { "bhr", "testcafe" })
 
 	public void CreateTag_01() throws HarnessException {
 
@@ -59,7 +59,7 @@ public class CreateTag extends EnableBriefcaseFeature {
 
 
 	@Test (description = "Create a new tag using keyboard shortcuts",
-			groups = { "functional" })
+			groups = { "functional", "testcafe" })
 
 	public void CreateTag_02() throws HarnessException {
 
@@ -98,7 +98,7 @@ public class CreateTag extends EnableBriefcaseFeature {
 
 
 	@Test (description = "Create a new tag using context menu on a tag",
-			groups = { "functional" })
+			groups = { "functional", "testcafe" })
 
 	public void CreateTag_03() throws HarnessException {
 
@@ -141,7 +141,7 @@ public class CreateTag extends EnableBriefcaseFeature {
 
 
 	@Test (description = "Create a new tag using briefcase app New -> New Tag",
-			groups = { "functional" })
+			groups = { "functional", "testcafe" })
 
 	public void CreateTag_04() throws HarnessException {
 

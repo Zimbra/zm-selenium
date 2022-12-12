@@ -38,7 +38,7 @@ public class DeployZimlet extends AdminCore {
 
 
 	@Test (description = "Deploy Zimlet",
-			groups = { "bhr", "non-zimbrax" })
+			groups = { "bhr", "non-zimbrax", "testcafe" })
 
 	public void DeployZimlet_01() throws HarnessException {
 		// Create file item

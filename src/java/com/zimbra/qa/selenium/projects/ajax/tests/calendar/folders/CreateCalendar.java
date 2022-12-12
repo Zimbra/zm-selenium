@@ -36,7 +36,7 @@ public class CreateCalendar extends AjaxCore {
 
 
 	@Test (description = "Create a new calendar by clicking 'new folder' on folder tree",
-			groups = { "smoke" })
+			groups = { "smoke", "testcafe" })
 
 	public void CreateCalendar_01() throws HarnessException {
 
@@ -58,7 +58,7 @@ public class CreateCalendar extends AjaxCore {
 
 
 	@Test (description = "Create a new calendar using keyboard shortcuts",
-			groups = { "sanity" })
+			groups = { "sanity", "testcafe" })
 
 	public void CreateCalendar_02() throws HarnessException {
 
@@ -81,7 +81,7 @@ public class CreateCalendar extends AjaxCore {
 
 
 	@Test (description = "Create a new folder using context menu from root folder",
-			groups = { "sanity" })
+			groups = { "sanity", "testcafe" })
 
 	public void CreateCalendar_03() throws HarnessException {
 

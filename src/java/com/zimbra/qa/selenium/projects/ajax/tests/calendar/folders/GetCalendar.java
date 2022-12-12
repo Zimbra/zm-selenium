@@ -34,7 +34,7 @@ public class GetCalendar extends AjaxCore {
 
 
 	@Test (description = "Get a calendar (under USER_ROOT)",
-			groups = { "bhr" })
+			groups = { "bhr", "testcafe" })
 
 	public void GetCalendar_01() throws HarnessException {
 

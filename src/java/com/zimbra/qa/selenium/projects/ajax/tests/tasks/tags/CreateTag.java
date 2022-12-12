@@ -33,7 +33,7 @@ public class CreateTag extends AjaxCore {
 
 
 	@Test (description = "Create a new tag by clicking 'new tag' on Task page",
-			groups = { "smoke" })
+			groups = { "smoke", "testcafe" })
 
 	public void CreateTag_01() throws HarnessException {
 
@@ -56,7 +56,7 @@ public class CreateTag extends AjaxCore {
 
 
 	@Test (description = "Create a new tag using keyboard shortcuts on Task page",
-			groups = { "bhr" })
+			groups = { "bhr", "testcafe" })
 
 	public void CreateTag_02() throws HarnessException {
 
@@ -87,7 +87,7 @@ public class CreateTag extends AjaxCore {
 
 
 	@Test (description = "Create a new tag using context menu from a tag",
-			groups = { "bhr" })
+			groups = { "bhr", "testcafe" })
 
 	public void CreateTag_03() throws HarnessException {
 
@@ -127,7 +127,7 @@ public class CreateTag extends AjaxCore {
 
 
 	@Test (description = "Create a new tag using task app New -> Tag",
-			groups = { "bhr" })
+			groups = { "bhr", "testcafe" })
 
 	public void CreateTag_04() throws HarnessException {
 

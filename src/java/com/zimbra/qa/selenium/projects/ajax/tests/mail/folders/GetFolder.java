@@ -33,7 +33,7 @@ public class GetFolder extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Get a folder",
-			groups = { "bhr" })
+			groups = { "bhr", "testcafe" })
 
 	public void GetFolder_01() throws HarnessException {
 

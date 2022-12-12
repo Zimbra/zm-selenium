@@ -36,7 +36,7 @@ public class DeleteDomain extends AdminCore {
 
 
 	@Test (description = "Verify delete domain operation is absent from leftclick > gear icon --  Search List View",
-			groups = { "sanity" })
+			groups = { "sanity", "testcafe" })
 
 	public void DeleteDomain_01() throws HarnessException {
 		// Create a new domain in the Admin Console using SOAP
@@ -65,7 +65,7 @@ public class DeleteDomain extends AdminCore {
 
 
 	@Test (description = " Verify delete domain operation is disabled -- Search List View/Right Click Menu",
-			groups = { "functional" })
+			groups = { "functional", "testcafe" })
 
 	public void DeleteDomain_02() throws HarnessException {
 		// Create a new domain in the Admin Console using SOAP
@@ -92,7 +92,7 @@ public class DeleteDomain extends AdminCore {
 
 
 	@Test (description = "Verify delete domain alias operation is disabled- Search list view.",
-			groups = { "sanity" })
+			groups = { "sanity", "testcafe" })
 
 	public void DeleteDomain_03() throws HarnessException {
 		String targetDomain = ConfigProperties.getStringProperty("testdomain");
@@ -133,7 +133,7 @@ public class DeleteDomain extends AdminCore {
 
 
 	@Test (description = "Verify delete domain alias operation is disabled- Search list view.",
-			groups = { "functional" })
+			groups = { "functional", "testcafe" })
 
 	public void DeleteDomain_04() throws HarnessException {
 		String targetDomain = ConfigProperties.getStringProperty("testdomain");

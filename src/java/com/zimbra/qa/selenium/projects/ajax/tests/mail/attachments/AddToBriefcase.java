@@ -42,7 +42,7 @@ public class AddToBriefcase extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Add JPG attachment to Briefcase when viewing email in the current window",
-			groups = { "sanity" })
+			groups = { "sanity", "testcafe" })
 
 	public void AddToBriefcase_01() throws HarnessException {
 

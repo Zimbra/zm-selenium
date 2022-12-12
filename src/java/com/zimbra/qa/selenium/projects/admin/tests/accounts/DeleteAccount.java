@@ -76,7 +76,7 @@ public class DeleteAccount extends AdminCore {
 
 
 	@Test (description = "Delete a basic account - Manage Account View/Right Click Menu",
-			groups = { "sanity" })
+			groups = { "sanity", "testcafe" })
 
 	public void DeleteAccount_02() throws HarnessException {
 		// Create a new account in the Admin Console using SOAP
@@ -155,7 +155,7 @@ public class DeleteAccount extends AdminCore {
 	}
 
 	@Test (description = "Delete a basic account - Search List View/Right Click Menu",
-			groups = { "sanity" })
+			groups = { "sanity", "testcafe" })
 
 	public void DeleteAccount_04() throws HarnessException {
 		// Create a new account in the Admin Console using SOAP

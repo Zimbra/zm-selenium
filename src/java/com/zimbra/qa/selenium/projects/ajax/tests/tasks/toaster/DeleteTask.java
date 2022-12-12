@@ -43,7 +43,7 @@ public class DeleteTask extends AjaxCore {
 
 
 	@Test (description = "Delete a task using toolbar delete button and Verify Toast message through GUI",
-			groups = { "bhr" })
+			groups = { "bhr-skip" })
 
 	public void DeleteTaskToast_01() throws HarnessException {
 
@@ -88,7 +88,7 @@ public class DeleteTask extends AjaxCore {
 
 
 	@Test (description = "Delete a task using checkbox and toolbar delete button-Verify Toast message through GUI",
-			groups = { "bhr" })
+			groups = { "bhr-skip" })
 
 	public void DeleteTaskToast_02() throws HarnessException {
 
@@ -141,7 +141,7 @@ public class DeleteTask extends AjaxCore {
 	}
 
 	@Test (description = "Delete a task by selecting and typing 'delete' keyboard-Verify Toast message through GUI",
-			groups = { "functional"},
+			groups = { "functional-skip" },
 			dataProvider = "DataProviderDeleteKeys")
 
 	public void DeleteTaskToast_03(String name, Keys keyEvent) throws HarnessException {
@@ -190,7 +190,7 @@ public class DeleteTask extends AjaxCore {
 
 	@Bugs (ids = "56467")
 	@Test (description = "Delete a task by selecting and typing '.t' shortcut : Verify Toast message through GUI",
-			groups = { "functional" })
+			groups = { "functional-skip" })
 
 	public void DeleteTaskToast_04() throws HarnessException {
 
@@ -236,7 +236,7 @@ public class DeleteTask extends AjaxCore {
 
 
 	@Test (description = "Delete multiple tasks (3) by select and toolbar delete : Verify Toast message through GUI",
-			groups = { "functional" })
+			groups = { "functional-skip" })
 
 	public void DeleteTaskToast_05() throws HarnessException {
 
@@ -322,7 +322,7 @@ public class DeleteTask extends AjaxCore {
 
 
 	@Test (description = "Delete a task using context menu delete button:Verify Toast message through GUI",
-			groups = { "functional" })
+			groups = { "functional-skip" })
 
 	public void DeleteTaskToast_06() throws HarnessException {
 

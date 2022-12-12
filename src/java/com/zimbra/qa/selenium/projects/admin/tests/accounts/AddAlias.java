@@ -37,7 +37,7 @@ public class AddAlias extends AdminCore {
 
 
 	@Test (description = "Edit account - Add Alias at account level ",
-			groups = { "bhr" })
+			groups = { "bhr", "testcafe" })
 
 	public void AddAlias_01() throws HarnessException {
 		// Create a new account in the Admin Console using SOAP

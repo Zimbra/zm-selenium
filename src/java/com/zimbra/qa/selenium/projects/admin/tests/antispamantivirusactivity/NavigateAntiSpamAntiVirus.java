@@ -31,7 +31,7 @@ public class NavigateAntiSpamAntiVirus extends AdminCore {
 
 
 	@Test (description = "Navigate to Anti-Spam/Anti-Virus Activity",
-			groups = { "smoke" })
+			groups = { "smoke", "testcafe" })
 
 	public void NavigateAnitSpamAntiVirus_01() throws HarnessException {
 		ZAssert.assertTrue(

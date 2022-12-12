@@ -46,7 +46,7 @@ public class CreateTask extends AjaxCore {
 
 
 	@Test (description = "Create Simple task through GUI - verify through soap",
-			groups = { "smoke" })
+			groups = { "smoke", "testcafe" })
 
 	public void CreateTask_01() throws HarnessException {
 
@@ -106,7 +106,7 @@ public class CreateTask extends AjaxCore {
 
 
 	@Test (description = "Create task using New menu pulldown  - verify through SOAP",
-			groups = { "bhr" })
+			groups = { "bhr", "testcafe" })
 
 	public void CreateTask_03() throws HarnessException {
 
@@ -166,7 +166,7 @@ public class CreateTask extends AjaxCore {
 
 
 	@Test (description = "Create Tasks, using 'Right Click' Mail subject -> 'Create Task'-Verify through Soap",
-			groups = { "bhr" })
+			groups = { "bhr", "testcafe" })
 
 	public void CreateTask_05() throws HarnessException {
 
@@ -209,7 +209,7 @@ public class CreateTask extends AjaxCore {
 
 
 	@Test (description = "Create Simple task with attachment through RestUtil - verify through GUI",
-			groups = { "bhr" })
+			groups = { "bhr", "testcafe" })
 
 	public void CreateTask_06() throws HarnessException {
 
@@ -315,7 +315,7 @@ public class CreateTask extends AjaxCore {
 	}
 
 	@Test (description = "Create a task with different priorities high/normal/low",
-			groups = { "bhr"},	dataProvider = "DataProvidePriorities")
+			groups = { "bhr", "testcafe" },	dataProvider = "DataProvidePriorities")
 
 	public void CreateTask_08(Button option, String verify) throws HarnessException {
 

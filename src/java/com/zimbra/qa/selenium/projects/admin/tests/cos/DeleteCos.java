@@ -40,7 +40,7 @@ public class DeleteCos extends AdminCore {
 
 
 	@Test (description = "Verify delete cos operation -- Manage cos view",
-			groups = { "sanity" })
+			groups = { "sanity", "testcafe" })
 
 	public void DeleteCos_01() throws HarnessException {
 		// Create a new cos in the Admin Console using SOAP
@@ -76,7 +76,7 @@ public class DeleteCos extends AdminCore {
 
 
 	@Test (description = "Verify delete cos operation -- Manage COS list view/Right click menu",
-			groups = { "sanity" })
+			groups = { "sanity", "testcafe" })
 
 	public void DeleteCos_02() throws HarnessException {
 		// Create a new cos in the Admin Console using SOAP
@@ -206,7 +206,7 @@ public class DeleteCos extends AdminCore {
 
 
 	@Test (description = "Verify Delete COS operation via tree menu is disabled in search results",
-			groups = { "functional" })
+			groups = { "functional", "testcafe" })
 
 	public void DeleteCos_05() throws HarnessException {
 		// Create a new cos in the Admin Console using SOAP
@@ -232,7 +232,7 @@ public class DeleteCos extends AdminCore {
 
 
 	@Test (description = "Verify Delete COS operation via context option is disabled inn search results",
-			groups = { "functional" })
+			groups = { "functional", "testcafe" })
 
 	public void DeleteCos_06() throws HarnessException {
 		// Create a new cos in the Admin Console using SOAP

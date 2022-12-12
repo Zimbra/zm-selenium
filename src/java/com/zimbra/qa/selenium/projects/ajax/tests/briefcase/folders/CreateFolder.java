@@ -37,7 +37,7 @@ public class CreateFolder extends EnableBriefcaseFeature {
 
 
 	@Test (description = "Create a new folder by clicking 'Create a new briefcase' on folders tree",
-			groups = { "smoke" })
+			groups = { "smoke", "testcafe" })
 
 	public void CreateFolder_01() throws HarnessException {
 
