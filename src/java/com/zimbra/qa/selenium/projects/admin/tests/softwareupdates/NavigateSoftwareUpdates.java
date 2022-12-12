@@ -31,7 +31,7 @@ public class NavigateSoftwareUpdates extends AdminCore {
 
 
 	@Test (description = "Navigate to Software Updates",
-			groups = { "smoke", "non-zimbrax" })
+			groups = { "smoke", "non-zimbrax", "testcafe" })
 
 	public void NavigateAccountMigration_01() throws HarnessException {
 		ZAssert.assertTrue(app.zPageManageSoftwareUpdates.zVerifyHeader(PageManageSoftwareUpdates.Locators.HOME),

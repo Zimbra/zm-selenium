@@ -35,7 +35,7 @@ public class DeleteConversation extends SetGroupMailByConversationPreference {
 
 
 	@Test (description = "Delete a conversation",
-			groups = { "bhr" })
+			groups = { "bhr", "testcafe" })
 
 	public void DeleteConversation_01() throws HarnessException {
 
@@ -101,7 +101,7 @@ public class DeleteConversation extends SetGroupMailByConversationPreference {
 	}
 
 	@Test (description = "Delete a conversation by selecting and typing 'delete' keyboard",
-			groups = { "sanity" },
+			groups = { "sanity", "testcafe" },
 			dataProvider = "DataProviderDeleteKeys")
 
 	public void DeleteConversation_03(String name, Keys keyEvent) throws HarnessException {
@@ -130,7 +130,7 @@ public class DeleteConversation extends SetGroupMailByConversationPreference {
 
 
 	@Test (description = "Delete a conversation by selecting and typing '.t' shortcut",
-			groups = { "functional" } )
+			groups = { "functional-skip" } )
 
 	public void DeleteConversation_04() throws HarnessException {
 
@@ -198,7 +198,7 @@ public class DeleteConversation extends SetGroupMailByConversationPreference {
 
 
 	@Test (description = "Delete a mail using context menu delete button",
-			groups = { "sanity" })
+			groups = { "sanity", "testcafe" })
 
 	public void DeleteConversation_06() throws HarnessException {
 
@@ -425,7 +425,7 @@ public class DeleteConversation extends SetGroupMailByConversationPreference {
 
 	@Bugs (ids = "82704")
 	@Test (description = "Delete a conversation (1 message) that receives a new message : Right click -> Delete",
-			groups = { "sanity" })
+			groups = { "sanity", "testcafe" })
 
 	public void DeleteConversation_10() throws HarnessException {
 

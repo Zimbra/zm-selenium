@@ -35,7 +35,7 @@ public class MoveMeeting extends AjaxCore {
 
 
 	@Test (description = "Move meeting invite using toolbar menu as organizer",
-			groups = { "sanity" })
+			groups = { "sanity", "testcafe" })
 
 	public void MoveMeeting_01() throws HarnessException {
 

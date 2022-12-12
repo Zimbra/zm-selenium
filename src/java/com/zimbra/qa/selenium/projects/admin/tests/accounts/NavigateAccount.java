@@ -31,7 +31,7 @@ public class NavigateAccount extends AdminCore {
 
 
 	@Test (description = "Navigate to Accounts",
-			groups = { "smoke" })
+			groups = { "smoke", "testcafe" })
 
 	public void NavigateAccount_01() throws HarnessException {
 		ZAssert.assertTrue(app.zPageManageAccounts.zVerifyHeader(PageManageAccounts.Locators.HOME),

@@ -74,7 +74,7 @@ public class DeleteDomain extends AdminCore {
 
 
 	@Test (description = "Verify delete domain operation",
-			groups = { "sanity" })
+			groups = { "sanity", "testcafe" })
 
 	public void DeleteDomain_02() throws HarnessException {
 		// Create a new domain in the Admin Console using SOAP
@@ -110,7 +110,7 @@ public class DeleteDomain extends AdminCore {
 
 
 	@Test (description = "Verify delete domain alias operation - Manage Domain list view",
-			groups = { "sanity" })
+			groups = { "sanity", "testcafe" })
 
 	public void DeleteDomain_03() throws HarnessException {
 		String targetDomain = ConfigProperties.getStringProperty("testdomain");
@@ -164,7 +164,7 @@ public class DeleteDomain extends AdminCore {
 
 
 	@Test (description = "Verify delete domain alias operation - Manage Domain list view",
-			groups = { "sanity" })
+			groups = { "sanity", "testcafe" })
 
 	public void DeleteDomain_04() throws HarnessException {
 		String targetDomain = ConfigProperties.getStringProperty("testdomain");

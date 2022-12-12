@@ -31,7 +31,7 @@ public class NavigateDistributionList extends AdminCore {
 
 
 	@Test (description = "Navigate to DL",
-			groups = { "smoke" })
+			groups = { "smoke", "testcafe" })
 
 	public void NavigateDistributionList_01() throws HarnessException {
 		ZAssert.assertTrue(app.zPageManageDistributionList.zVerifyHeader(PageManageDistributionLists.Locators.HOME),

@@ -33,7 +33,7 @@ public class UnTagTask extends AjaxCore {
 
 
 	@Test (description = "Remove a tag from a Document using Toolbar -> Tag -> Remove Tag",
-			groups = { "bhr" })
+			groups = { "bhr", "testcafe" })
 
 	public void UnTagTask_01() throws HarnessException {
 		FolderItem taskFolder = FolderItem.importFromSOAP(app.zGetActiveAccount(), SystemFolder.Tasks);

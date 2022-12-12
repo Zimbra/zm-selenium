@@ -31,7 +31,7 @@ public class NavigateClientUpload extends AdminCore {
 
 
 	@Test (description = "Navigate to Client Upload",
-			groups = { "smoke", "non-zimbrax" })
+			groups = { "smoke", "non-zimbrax", "testcafe" })
 
 	public void NavigateClientUpload_01() throws HarnessException {
 		ZAssert.assertTrue(app.zPageManageClientUpload.zVerifyHeader(PageManageClientUpload.Locators.HOME),

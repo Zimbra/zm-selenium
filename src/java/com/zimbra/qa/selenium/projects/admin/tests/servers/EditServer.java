@@ -39,7 +39,7 @@ public class EditServer extends AdminCore {
 
 	@Bugs (ids = "ZCS-8706")
 	@Test (description = "Edit Server from gear menu option",
-			groups = { "bhr-application-bug" })
+			groups = { "bhr-application-bug", "testcafe" })
 
 	public void EditServer_01() throws HarnessException {
 		String storeServer = ExecuteHarnessMain.storeServers.get(0);

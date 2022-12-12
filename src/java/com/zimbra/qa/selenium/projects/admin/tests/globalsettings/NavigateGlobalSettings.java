@@ -31,7 +31,7 @@ public class NavigateGlobalSettings extends AdminCore {
 
 
 	@Test (description = "Navigate to Global Settings",
-			groups = { "smoke" })
+			groups = { "smoke", "testcafe" })
 
 	public void NavigateGlobalSettings_01() throws HarnessException {
 		ZAssert.assertTrue(app.zPageManageGlobalSettings.zVerifyHeader(PageManageGlobalSettings.Locators.HOME),

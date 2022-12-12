@@ -41,7 +41,7 @@ public class CreateContact extends AjaxCore {
 
 
 	@Test (description = "Create a basic contact item by click New in page Addressbook ",
-			groups = { "smoke" })
+			groups = { "smoke", "testcafe" })
 
 	public void ClickContact_01() throws HarnessException {
 
@@ -74,7 +74,7 @@ public class CreateContact extends AjaxCore {
 	}
 
 	@Test (description = "Create a basic contact item by use PullDown Menu->Contacts",
-			groups = { "sanity" })
+			groups = { "sanity", "testcafe" })
 
 	public void CreateContactFromPulldownMenu_02() throws HarnessException {
 
@@ -194,7 +194,7 @@ public class CreateContact extends AjaxCore {
 
 
 	@Test (description = "Create a contact item with all attributes",
-			groups = { "sanity" })
+			groups = { "sanity", "testcafe" })
 
 	public void CreateContactWithAllAttributes_06() throws HarnessException {
 

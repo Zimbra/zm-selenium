@@ -50,7 +50,7 @@ public class CreateTaskFolder extends AjaxCore {
 
 
 	@Test (description = "Create a new tasklist by clicking 'Create a new task' on task folders tree",
-			groups = { "smoke" })
+			groups = { "smoke", "testcafe" })
 
 	public void CreateTaskFolder_01() throws HarnessException {
 

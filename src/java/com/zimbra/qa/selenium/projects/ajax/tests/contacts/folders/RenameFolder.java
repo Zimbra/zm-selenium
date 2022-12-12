@@ -33,7 +33,7 @@ public class RenameFolder extends AjaxCore {
 
 
 	@Test (description = "Rename a folder - Context menu -> Rename",
-			groups = { "bhr" })
+			groups = { "bhr", "testcafe" })
 
 	public void SelectFolderRenameOnContextMenu_01() throws HarnessException {
 
@@ -67,7 +67,7 @@ public class RenameFolder extends AjaxCore {
 
 
 	@Test (description = "Rename a sub folder - Context menu -> Rename",
-			groups = { "functional" })
+			groups = { "functional", "testcafe" })
 
 	public void SelectSubFolderRenameOnContextMenu_02() throws HarnessException {
 

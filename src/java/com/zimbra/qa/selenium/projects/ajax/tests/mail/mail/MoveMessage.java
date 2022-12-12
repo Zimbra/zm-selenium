@@ -45,7 +45,7 @@ public class MoveMessage extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Move a mail by selecting message, then clicking toolbar 'Move' button",
-			groups = { "bhr" })
+			groups = { "bhr", "testcafe" })
 
 	public void MoveMail_01() throws HarnessException {
 
@@ -96,7 +96,7 @@ public class MoveMessage extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Move a mail by selecting message, then click 'm' shortcut",
-			groups = { "sanity" })
+			groups = { "sanity", "testcafe" })
 
 	public void MoveMail_02() throws HarnessException {
 
@@ -154,7 +154,7 @@ public class MoveMessage extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Move a mail by using 'move to trash' shortcut '.t'",
-			groups = { "functional" })
+			groups = { "functional-skip" })
 
 	public void MoveMail_03() throws HarnessException {
 
@@ -197,7 +197,7 @@ public class MoveMessage extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Move a mail by using 'move to inbox' shortcut '.i'",
-			groups = { "sanity" })
+			groups = { "sanity-skip" })
 
 	public void MoveMail_04() throws HarnessException {
 
@@ -256,7 +256,7 @@ public class MoveMessage extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Move a mail by using Move -> New folder",
-			groups = { "sanity" })
+			groups = { "sanity", "testcafe" })
 
 	public void MoveMail_05() throws HarnessException {
 

@@ -45,7 +45,7 @@ public class CreateAppointment extends AjaxCore {
 
 
 	@Test (description = "Create a basic appointment without an attendee in day view",
-			groups = { "smoke" } )
+			groups = { "smoke", "testcafe" } )
 
 	public void CreateAppointment_01() throws HarnessException {
 
@@ -75,7 +75,7 @@ public class CreateAppointment extends AjaxCore {
 
 
 	@Test (description = "Create appointment with all the fields and verify it in day view",
-			groups = { "sanity" } )
+			groups = { "sanity", "testcafe" } )
 
 	public void CreateAppointment_02() throws HarnessException {
 

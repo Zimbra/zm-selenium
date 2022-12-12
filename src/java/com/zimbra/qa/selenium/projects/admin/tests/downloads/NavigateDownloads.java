@@ -35,7 +35,7 @@ public class NavigateDownloads extends AdminCore {
 
 
 	@Test (description = "Navigate to Downloads",
-			groups = { "smoke" })
+			groups = { "smoke", "testcafe" })
 
 	public void NavigateDownloads_01() throws HarnessException {
 		ZAssert.assertTrue(app.zPageDownloads.zVerifyHeader(PageDownloads.Locators.HOME),

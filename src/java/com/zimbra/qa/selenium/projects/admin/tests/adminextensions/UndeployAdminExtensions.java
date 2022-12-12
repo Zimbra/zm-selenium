@@ -33,7 +33,7 @@ public class UndeployAdminExtensions extends AdminCore {
 
 
 	@Test (description = "Deploy admin extension",
-			groups = { "bhr", "non-zimbrax" })
+			groups = { "bhr", "non-zimbrax", "testcafe" })
 
 	public void UndeployAdminExtensions_01() throws HarnessException {
 		String adminExtensionName = "de_dieploegers_admin_vacation";

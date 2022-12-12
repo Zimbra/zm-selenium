@@ -34,7 +34,7 @@ public class EditProperties extends EnableBriefcaseFeature {
 
 
 	@Test (description = "Edit Properties - Rename folder using context menu",
-			groups = { "sanity" })
+			groups = { "sanity", "testcafe" })
 
 	public void EditProperties_01() throws HarnessException {
 

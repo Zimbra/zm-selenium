@@ -35,7 +35,7 @@ public class ModifyByChangingTime extends AjaxCore {
 
 	@Bugs (ids = "102759")
 	@Test (description = "Rescheduled appointments do not show the correct time in the summary",
-			groups = { "sanity" })
+			groups = { "sanity", "testcafe" })
 
 	public void ModifyByChangingTime_01() throws HarnessException {
 

@@ -56,7 +56,7 @@ public class CreateHtmlTask extends AjaxCore {
 
 
 	@Test (description = "Create Simple Html task through GUI - verify through soap",
-			groups = { "smoke" })
+			groups = { "smoke", "testcafe" })
 
 	public void CreateHtmlTask_01() throws HarnessException {
 

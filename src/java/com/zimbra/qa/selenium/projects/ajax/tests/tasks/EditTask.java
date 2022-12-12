@@ -52,7 +52,7 @@ public class EditTask extends AjaxCore{
 
 
 	@Test (description = "Create task through SOAP - edit subject and verify through GUI",
-			groups = { "bhr" })
+			groups = { "bhr", "testcafe" })
 
 	public void EditTask_01() throws HarnessException {
 
@@ -134,7 +134,7 @@ public class EditTask extends AjaxCore{
 
 	@Bugs (ids = "64647")
 	@Test (description = "Create task through SOAP - edit due date >> Refresh task >>verify Due Date in list view through GUI",
-			groups = { "bhr" })
+			groups = { "bhr", "testcafe" })
 
 	public void EditTask_02() throws HarnessException {
 
@@ -191,7 +191,7 @@ public class EditTask extends AjaxCore{
 
 
 	@Test (description = "Create task through SOAP - Edit task using Right Click Context Menu & verify through GUI",
-			groups = { "bhr" })
+			groups = { "bhr", "testcafe" })
 
 	public void EditTask_03() throws HarnessException {
 

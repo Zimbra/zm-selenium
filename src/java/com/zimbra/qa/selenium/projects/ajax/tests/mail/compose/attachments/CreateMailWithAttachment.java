@@ -38,7 +38,7 @@ public class CreateMailWithAttachment extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Send a mail by adding attachment",
-			groups = { "smoke", "upload" })
+			groups = { "smoke", "upload", "testcafe" })
 
 	public void CreateMailWithAttachment_01() throws HarnessException {
 

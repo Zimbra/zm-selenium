@@ -39,7 +39,7 @@ public class DeleteMail extends SetGroupMailByMessagePreference {
 
 	@Bugs (ids = "98054")
 	@Test (description = "Delete a mail using toolbar delete button",
-			groups = { "bhr" })
+			groups = { "bhr", "testcafe" })
 
 	public void DeleteMail_01() throws HarnessException {
 
@@ -137,7 +137,7 @@ public class DeleteMail extends SetGroupMailByMessagePreference {
 	}
 
 	@Test (description = "Delete a mail by selecting and typing 'delete' keyboard",
-			groups = { "sanity" },
+			groups = { "sanity", "testcafe" },
 			dataProvider = "DataProviderDeleteKeys")
 
 	public void DeleteMail_03(String name, Keys keyEvent) throws HarnessException {
@@ -184,7 +184,7 @@ public class DeleteMail extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Delete a mail by selecting and typing '.t' shortcut",
-			groups = { "functional" } )
+			groups = { "functional-skip" } )
 
 	public void DeleteMail_04() throws HarnessException {
 
@@ -312,7 +312,7 @@ public class DeleteMail extends SetGroupMailByMessagePreference {
 
 
 	@Test (description = "Delete a mail using context menu delete button",
-			groups = { "sanity" })
+			groups = { "sanity", "testcafe" })
 
 	public void DeleteMail_06() throws HarnessException {
 

@@ -31,7 +31,7 @@ public class NavigateMessageCount extends AdminCore {
 
 
 	@Test (description = "Navigate to Message Count",
-			groups = { "smoke" })
+			groups = { "smoke", "testcafe" })
 
 	public void NavigateMessageCount_01() throws HarnessException {
 		ZAssert.assertTrue(app.zPageManageMessageCount.zVerifyHeader(PageManageMessageCount.Locators.HOME),

@@ -36,7 +36,7 @@ public class DeleteAppointment extends AjaxCore {
 
 	@Bugs (ids = "69132")
 	@Test (description = "Delete an appointment using Delete toolbar button",
-			groups = { "bhr" })
+			groups = { "bhr", "testcafe" })
 
 	public void DeleteAppointment_01() throws HarnessException {
 
@@ -81,7 +81,7 @@ public class DeleteAppointment extends AjaxCore {
 
 	@Bugs (ids = "69132")
 	@Test (description = "Delete an appointment using context menu",
-			groups = { "sanity" })
+			groups = { "sanity", "testcafe" })
 
 	public void DeleteAppointment_02() throws HarnessException {
 
@@ -132,7 +132,7 @@ public class DeleteAppointment extends AjaxCore {
 
 	@Bugs (ids = "69132")
 	@Test (description = "Delete an appointment using delete keyboard shortcut key",
-			groups = { "sanity" },
+			groups = { "sanity", "testcafe" },
 			dataProvider = "DataProviderShortcutKeys")
 
 	public void DeleteAppointment_03(String name, int keyEvent) throws HarnessException {

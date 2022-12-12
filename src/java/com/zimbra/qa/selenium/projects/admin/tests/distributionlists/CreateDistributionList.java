@@ -37,7 +37,7 @@ public class CreateDistributionList extends AdminCore {
 
 
 	@Test (description = "Create a basic DL",
-			groups = { "smoke" })
+			groups = { "smoke", "testcafe" })
 
 	public void CreateDistributionList_01() throws HarnessException {
 		this.startingPage.zNavigateTo();

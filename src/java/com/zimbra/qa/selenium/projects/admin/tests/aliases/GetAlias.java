@@ -36,7 +36,7 @@ public class GetAlias extends AdminCore {
 
 
 	@Test (description = "Verify alias creation operation -- Manage alias View",
-			groups = { "bhr" })
+			groups = { "bhr", "testcafe" })
 
 	public void GetAlias_01() throws HarnessException {
 		AccountItem target = new AccountItem("tc" + ConfigProperties.getUniqueString(),
@@ -72,7 +72,7 @@ public class GetAlias extends AdminCore {
 
 
 	@Test (description = "Verify created alias is present in the list view",
-			groups = { "sanity" })
+			groups = { "sanity", "testcafe" })
 
 	public void GetAlias_02() throws HarnessException {
 		AccountItem target = new AccountItem("tc" + ConfigProperties.getUniqueString(),

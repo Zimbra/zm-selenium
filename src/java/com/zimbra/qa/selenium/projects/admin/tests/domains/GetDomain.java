@@ -36,7 +36,7 @@ public class GetDomain extends AdminCore {
 
 
 	@Test (description = "Verify created domain is present in the domain list view",
-			groups = { "bhr" })
+			groups = { "bhr", "testcafe" })
 
 	public void GetDomain_01() throws HarnessException {
 		// Create a new domain in the Admin Console using SOAP
@@ -68,7 +68,7 @@ public class GetDomain extends AdminCore {
 
 
 	@Test (description = "Verify get domain alias operation",
-			groups = { "sanity" })
+			groups = { "sanity", "testcafe" })
 
 	public void GetDomain_02() throws HarnessException {
 		String targetDomain = ConfigProperties.getStringProperty("testdomain");
@@ -113,7 +113,7 @@ public class GetDomain extends AdminCore {
 
 
 	@Test (description = "Search created domain",
-			groups = { "sanity" })
+			groups = { "sanity", "testcafe" })
 
 	public void GetDomain_03() throws HarnessException {
 		// Create a new domain in the Admin Console using SOAP
@@ -148,7 +148,7 @@ public class GetDomain extends AdminCore {
 
 
 	@Test (description = "Verify get domain alias operation - Search list view",
-			groups = { "functional" })
+			groups = { "functional", "testcafe" })
 
 	public void GetDomain_04() throws HarnessException {
 		String targetDomain = ConfigProperties.getStringProperty("testdomain");

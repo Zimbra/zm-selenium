@@ -34,7 +34,7 @@ public class DeleteTag extends EnableBriefcaseFeature {
 
 
 	@Test (description = "Delete a tag - Right click, Delete",
-			groups = { "functional" })
+			groups = { "functional", "testcafe" })
 
 	public void DeleteTag_01() throws HarnessException {
 

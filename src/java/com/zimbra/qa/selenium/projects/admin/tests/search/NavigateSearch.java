@@ -31,7 +31,7 @@ public class NavigateSearch extends AdminCore {
 
 
 	@Test (description = "Navigate to Search",
-			groups = { "smoke" })
+			groups = { "smoke", "testcafe" })
 
 	public void NavigateSearch_01() throws HarnessException {
 		// Verify navigation path -- "Home --> Search --> Search --> All Results"
@@ -65,7 +65,7 @@ public class NavigateSearch extends AdminCore {
 
 
 	@Test (description = "Navigate to Search",
-			groups = { "smoke" })
+			groups = { "smoke", "testcafe" })
 
 	public void NavigateSearch_02() throws HarnessException {
 		// Verify navigation path -- "Home --> Search --> Search Options --> Basci Attributes"
@@ -127,7 +127,7 @@ public class NavigateSearch extends AdminCore {
 
 
 	@Test (description = "Navigate to Search",
-			groups = { "smoke" })
+			groups = { "smoke", "testcafe" })
 
 	public void NavigateSearch_03() throws HarnessException {
 		// Verify navigation path -- "Home --> Search --> Saved Searches --> Inactive Accounts (90 days)"

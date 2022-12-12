@@ -37,7 +37,7 @@ public class SearchFunctionality extends AdminCore {
 
 
 	@Test (description = "Verify search functionality of all results",
-			groups = { "bhr" })
+			groups = { "bhr", "testcafe" })
 
 	public void SearchFunctionality_01() throws HarnessException {
 		// Create a new account in the Admin Console using SOAP
@@ -69,7 +69,7 @@ public class SearchFunctionality extends AdminCore {
 
 
 	@Test (description = "Verify search functionality of accounts",
-			groups = { "bhr" })
+			groups = { "bhr", "testcafe" })
 
 	public void SearchFunctionality_02() throws HarnessException {
 		// Create a new account in the Admin Console using SOAP
@@ -102,7 +102,7 @@ public class SearchFunctionality extends AdminCore {
 
 
 	@Test (description = "Verify search functionality of DL",
-			groups = { "bhr" })
+			groups = { "bhr", "testcafe" })
 
 	public void SearchFunctionality_03() throws HarnessException {
 		// Create a new dl in the Admin Console using SOAP
@@ -135,7 +135,7 @@ public class SearchFunctionality extends AdminCore {
 
 
 	@Test (description = "Verify search functionality of Domain",
-			groups = { "bhr" })
+			groups = { "bhr", "testcafe" })
 
 	public void SearchFunctionality_04() throws HarnessException {
 		// Create a new domain in the Admin Console using SOAP
@@ -167,7 +167,7 @@ public class SearchFunctionality extends AdminCore {
 
 
 	@Test (description = "Verify search functionality of locked out accounts",
-			groups = { "functional" })
+			groups = { "functional", "testcafe" })
 
 	public void SearchFunctionality_05() throws HarnessException {
 		// Create a new account in the Admin Console using SOAP
@@ -200,7 +200,7 @@ public class SearchFunctionality extends AdminCore {
 
 
 	@Test (description = "Verify search functionality of non-active accounts",
-			groups = { "functional" })
+			groups = { "functional", "testcafe" })
 
 	public void SearchFunctionality_06() throws HarnessException {
 		// Create a new account in the Admin Console using SOAP
@@ -233,7 +233,7 @@ public class SearchFunctionality extends AdminCore {
 
 
 	@Test (description = "Verify search functionality of admin accounts",
-			groups = { "functional" })
+			groups = { "functional", "testcafe" })
 
 	public void SearchFunctionality_07() throws HarnessException {
 		// Create a new account in the Admin Console using SOAP
@@ -286,7 +286,7 @@ public class SearchFunctionality extends AdminCore {
 
 
 	@Test (description = "Verify search functionality of closed accounts",
-			groups = { "functional" })
+			groups = { "functional", "testcafe" })
 
 	public void SearchFunctionality_08() throws HarnessException {
 		// Create a new closed account in the Admin Console using SOAP
@@ -319,7 +319,7 @@ public class SearchFunctionality extends AdminCore {
 
 
 	@Test (description = "Verify search functionality of maintenance accounts",
-			groups = { "functional" })
+			groups = { "functional", "testcafe" })
 
 	public void SearchFunctionality_09() throws HarnessException {
 		// Create a new maintenance account in the Admin Console using SOAP

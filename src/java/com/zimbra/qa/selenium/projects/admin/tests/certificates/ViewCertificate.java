@@ -33,7 +33,7 @@ public class ViewCertificate extends AdminCore {
 
 
 	@Test (description = "Navigate to Certificates",
-			groups = { "bhr", "non-zimbrax" })
+			groups = { "bhr", "non-zimbrax", "testcafe" })
 
 	public void ViewCertificate_01() throws HarnessException {
 		// Go to "Home --> Configure --> Certificates"

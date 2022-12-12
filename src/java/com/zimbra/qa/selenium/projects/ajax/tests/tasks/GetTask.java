@@ -44,7 +44,7 @@ public class GetTask extends AjaxCore {
 
 
 	@Test (description = "View a simple task",
-			groups = { "bhr" })
+			groups = { "bhr", "testcafe" })
 
 	public void GetTask_01() throws HarnessException {
 

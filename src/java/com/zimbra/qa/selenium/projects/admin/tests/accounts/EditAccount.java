@@ -77,7 +77,7 @@ public class EditAccount extends AdminCore {
 
 
 	@Test (description = "Edit account name -- right click",
-			groups = { "smoke" })
+			groups = { "smoke", "testcafe" })
 
 	public void EditAccount_02() throws HarnessException {
 		// Create a new account in the Admin Console using SOAP
@@ -117,7 +117,7 @@ public class EditAccount extends AdminCore {
 
 
 	@Test (description = "Edit a basic account - Search List View",
-			groups = { "bhr" })
+			groups = { "bhr", "testcafe" })
 
 	public void EditAccount_03() throws HarnessException {
 		// Create a new account in the Admin Console using SOAP
@@ -164,7 +164,7 @@ public class EditAccount extends AdminCore {
 
 
 	@Test (description = "Edit a basic account - Search List View",
-			groups = { "sanity" })
+			groups = { "sanity", "testcafe" })
 
 	public void EditAccount_04() throws HarnessException {
 		// Create a new account in the Admin Console using SOAP

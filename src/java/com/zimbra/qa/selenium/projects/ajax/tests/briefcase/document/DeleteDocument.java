@@ -112,7 +112,7 @@ public class DeleteDocument extends EnableBriefcaseFeature {
 
 
 	@Test (description = "Create document through SOAP - delete using Delete Key & verify through GUI",
-			groups = { "functional" })
+			groups = { "functional", "testcafe" })
 
 	public void DeleteDocument_02() throws HarnessException {
 
@@ -164,7 +164,7 @@ public class DeleteDocument extends EnableBriefcaseFeature {
 
 
 	@Test (description = "Create document through SOAP - delete using Right Click context menu & verify through GUI",
-			groups = { "bhr" })
+			groups = { "bhr", "testcafe" })
 
 	public void DeleteDocument_03() throws HarnessException {
 

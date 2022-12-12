@@ -31,7 +31,7 @@ public class NavigateAlias extends AdminCore {
 
 
 	@Test (description = "Navigate to Aliases",
-			groups = { "smoke" })
+			groups = { "smoke", "testcafe" })
 
 	public void NavigateAlias_01() throws HarnessException {
 		ZAssert.assertTrue(app.zPageManageAliases.zVerifyHeader(PageManageAliases.Locators.HOME),

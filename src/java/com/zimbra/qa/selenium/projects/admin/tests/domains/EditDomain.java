@@ -38,7 +38,7 @@ public class EditDomain extends AdminCore {
 
 
 	@Test (description = "Verify edit domain operation --  Manage Domain List View",
-			groups = { "bhr" })
+			groups = { "bhr", "testcafe" })
 
 	public void EditDomain_01() throws HarnessException {
 		// Create a new domain in the Admin Console using SOAP
@@ -76,7 +76,7 @@ public class EditDomain extends AdminCore {
 
 
 	@Test (description = "Verify edit domain operation",
-			groups = { "functional" })
+			groups = { "functional", "testcafe" })
 
 	public void EditDomain_02() throws HarnessException {
 		// Create a new domain in the Admin Console using SOAP
@@ -113,7 +113,7 @@ public class EditDomain extends AdminCore {
 
 
 	@Test (description = "Edit domain name  - Search list View",
-			groups = { "sanity" })
+			groups = { "sanity", "testcafe" })
 
 	public void Editdomain_03() throws HarnessException {
 		// Create a new domain in the Admin Console using SOAP
@@ -157,7 +157,7 @@ public class EditDomain extends AdminCore {
 
 
 	@Test (description = "Edit domain name -- right click",
-			groups = { "functional" })
+			groups = { "functional", "testcafe" })
 
 	public void Editdomain_04() throws HarnessException {
 		// Create a new domain in the Admin Console using SOAP

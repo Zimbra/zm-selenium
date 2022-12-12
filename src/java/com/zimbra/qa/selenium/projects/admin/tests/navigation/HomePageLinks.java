@@ -38,7 +38,7 @@ public class HomePageLinks extends AdminCore {
 
 
 	@Test (description = "Navigate to Install certificate wizard",
-			groups = { "smoke", "non-zimbrax" })
+			groups = { "smoke", "non-zimbrax", "testcafe" })
 
 	public void NavigateHomePageLinks_01() throws HarnessException {
 		WizardInstallCertificate wizard = (WizardInstallCertificate) app.zPageManageCertificates
@@ -53,7 +53,7 @@ public class HomePageLinks extends AdminCore {
 
 
 	@Test (description = "Navigate to Configure default COS",
-			groups = { "smoke" })
+			groups = { "smoke", "testcafe" })
 
 	public void NavigateHomePageLinks_02() throws HarnessException {
 		app.zPageMain.sClickAt(Locators.HomeConfigureDefaultCos, "");
@@ -64,7 +64,7 @@ public class HomePageLinks extends AdminCore {
 
 
 	@Test (description = "Navigate to create Domain wizard",
-			groups = { "smoke" })
+			groups = { "smoke", "testcafe" })
 
 	public void NavigateHomePageLinks_03() throws HarnessException {
 		// Navigate back to home page
@@ -80,7 +80,7 @@ public class HomePageLinks extends AdminCore {
 
 
 	@Test (description = "Navigate to Configure GAL wizard",
-			groups = { "smoke" })
+			groups = { "smoke", "testcafe" })
 
 	public void NavigateHomePageLinks_04() throws HarnessException {
 		// Navigate back to Home page
@@ -97,7 +97,7 @@ public class HomePageLinks extends AdminCore {
 
 
 	@Test (description = "Navigate to Configure Authentication wizard",
-			groups = { "smoke" })
+			groups = { "smoke", "testcafe" })
 
 	public void NavigateHomePageLinks_05() throws HarnessException {
 		// Navigate back to Home page
@@ -113,7 +113,7 @@ public class HomePageLinks extends AdminCore {
 
 
 	@Test (description = "Navigate to create account wizard",
-			groups = { "smoke" })
+			groups = { "smoke", "testcafe" })
 
 	public void NavigateHomePageLinks_06() throws HarnessException {
 		// Navigate back to Home page
@@ -129,7 +129,7 @@ public class HomePageLinks extends AdminCore {
 
 
 	@Test (description = "Navigate to Configure manage accounts",
-			groups = { "smoke" })
+			groups = { "smoke", "testcafe" })
 
 	public void NavigateHomePageLinks_07() throws HarnessException {
 		// Navigate back to Home page
@@ -141,7 +141,7 @@ public class HomePageLinks extends AdminCore {
 
 
 	@Test (description = "Navigate to migration and co Existance wizard",
-			groups = { "smoke", "non-zimbrax" })
+			groups = { "smoke", "non-zimbrax", "testcafe" })
 
 	public void NavigateHomePageLinks_08() throws HarnessException {
 		// Navigate Back to Home page

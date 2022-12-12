@@ -31,7 +31,7 @@ public class NavigateMessageVolume extends AdminCore {
 
 
 	@Test (description = "Navigate to Message Volume",
-			groups = { "smoke" })
+			groups = { "smoke", "testcafe" })
 
 	public void NavigateMessageVolume_01() throws HarnessException {
 		ZAssert.assertTrue(app.zPageManageMessageVolume.zVerifyHeader(PageManageMessageVolume.Locators.HOME),

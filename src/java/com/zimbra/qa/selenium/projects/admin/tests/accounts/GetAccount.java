@@ -36,7 +36,7 @@ public class GetAccount extends AdminCore {
 
 
 	@Test (description = "Verify created account is displayed in UI -- Manage Account View.",
-			groups = { "smoke" })
+			groups = { "smoke", "testcafe" })
 
 	public void GetAccount_01() throws HarnessException {
 		// Create a new account in the Admin Console using SOAP
@@ -68,7 +68,7 @@ public class GetAccount extends AdminCore {
 
 
 	@Test (description = "Verify created account is displayed in UI -- Search list view",
-			groups = { "functional" })
+			groups = { "functional", "testcafe" })
 
 	public void GetAccount_02() throws HarnessException {
 		// Create a new account in the Admin Console using SOAP

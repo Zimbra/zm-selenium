@@ -74,7 +74,7 @@ public class UploadFile extends EnableBriefcaseFeature {
 
 
 	@Test (description = "Upload file through GUI - verify through GUI",
-			groups = { "smoke", "upload" })
+			groups = { "smoke", "upload", "testcafe" })
 
 	public void UploadFile_02() throws HarnessException {
 
@@ -113,7 +113,7 @@ public class UploadFile extends EnableBriefcaseFeature {
 
 
 	@Test (description = "Upload file through RestUtil - verify through SOAP",
-			groups = { "bhr" })
+			groups = { "bhr", "testcafe" })
 
 	public void UploadFile_03() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();

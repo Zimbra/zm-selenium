@@ -42,7 +42,7 @@ public class DeleteTaskFolder extends AjaxCore {
 
 
 	@Test (description = "Delete Task list - right click delete",
-			groups = { "bhr" })
+			groups = { "bhr", "testcafe" })
 
 	public void DeleteTaskFolder_01() throws HarnessException {
 

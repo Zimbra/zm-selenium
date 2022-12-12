@@ -31,7 +31,7 @@ public class NavigateMailQueues extends AdminCore {
 
 
 	@Test (description = "Navigate to Mail Queues",
-			groups = { "smoke" })
+			groups = { "smoke", "testcafe" })
 
 	public void NavigateMailQueues_01() throws HarnessException {
 		ZAssert.assertTrue(app.zPageManageMailQueues.zVerifyHeader(PageManageMailQueues.Locators.HOME),

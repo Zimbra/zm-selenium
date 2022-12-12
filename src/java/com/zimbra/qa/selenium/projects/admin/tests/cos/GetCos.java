@@ -34,7 +34,7 @@ public class GetCos extends AdminCore {
 
 
 	@Test (description = "Verify created cos is displayed in UI - Manage COS list view",
-			groups = { "bhr" })
+			groups = { "bhr", "testcafe" })
 
 	public void GetCos_01() throws HarnessException {
 		// Create a new cos in the Admin Console using SOAP
@@ -55,7 +55,7 @@ public class GetCos extends AdminCore {
 
 
 	@Test (description = "Verify created cos is displayed in UI - Search list view",
-			groups = { "sanity" })
+			groups = { "sanity", "testcafe" })
 
 	public void GetCos_02() throws HarnessException {
 		// Create a new cos in the Admin Console using SOAP

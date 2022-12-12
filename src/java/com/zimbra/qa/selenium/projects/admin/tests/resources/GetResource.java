@@ -36,7 +36,7 @@ public class GetResource extends AdminCore {
 
 
 	@Test (description = "Verify get resource operation -- Manage resource View -- Location",
-			groups = { "smoke" })
+			groups = { "smoke", "testcafe" })
 
 	public void GetResource_01() throws HarnessException {
 		// Create a new resource in the Admin Console using SOAP
@@ -71,7 +71,7 @@ public class GetResource extends AdminCore {
 
 
 	@Test (description = "Search resource",
-			groups = { "bhr" })
+			groups = { "bhr", "testcafe" })
 
 	public void GetResource_02() throws HarnessException {
 		// Create a new resource in the Admin Console using SOAP

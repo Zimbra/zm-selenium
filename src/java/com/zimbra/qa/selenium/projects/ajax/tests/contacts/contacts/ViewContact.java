@@ -86,7 +86,7 @@ public class ViewContact extends AjaxCore  {
 
 	// Last, First
 	@Test (description = "View a contact, file as Last, First",
-			groups = { "sanity" })
+			groups = { "sanity", "testcafe" })
 
 	public void FileAsLastFirst_02() throws HarnessException {
 

@@ -35,7 +35,7 @@ public class CreateResource extends AdminCore {
 
 
 	@Test (description = "Create a basic Location resource",
-			groups = { "smoke" })
+			groups = { "smoke", "testcafe" })
 
 	public void CreateResource_01() throws HarnessException {
 		ResourceItem resource = new ResourceItem();

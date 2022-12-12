@@ -31,7 +31,7 @@ public class NavigateResource extends AdminCore {
 
 
 	@Test (description = "Navigate to Resource",
-			groups = { "smoke" })
+			groups = { "smoke", "testcafe" })
 
 	public void NavigateResource_01() throws HarnessException {
 		ZAssert.assertTrue(app.zPageManageResources.zVerifyHeader(PageManageResources.Locators.HOME),

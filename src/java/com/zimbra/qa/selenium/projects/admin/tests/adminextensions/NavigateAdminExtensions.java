@@ -31,7 +31,7 @@ public class NavigateAdminExtensions extends AdminCore {
 
 
 	@Test (description = "Navigate to Admin Extensions",
-			groups = { "smoke" })
+			groups = { "smoke", "testcafe" })
 
 	public void NavigateAdminExtensions_01() throws HarnessException {
 		ZAssert.assertTrue(app.zPageManageAdminExtensions.zVerifyHeader(PageManageAdminExtensions.Locators.HOME),

@@ -40,7 +40,7 @@ public class CreateMeeting extends AjaxCore {
 
 	@Bugs (ids = "95899,95900,46442")
 	@Test (description = "Create basic meeting invite with one attendee",
-			groups = { "bhr" })
+			groups = { "bhr", "testcafe" })
 
 	public void CreateMeeting_01() throws HarnessException {
 
@@ -99,7 +99,7 @@ public class CreateMeeting extends AjaxCore {
 
 
 	@Test (description = "Verify new appointment creation is based on mail compose preference set to TEXT",
-			groups = { "bhr" })
+			groups = { "bhr", "testcafe" })
 
 	public void CreateMeeting_02() throws HarnessException {
 

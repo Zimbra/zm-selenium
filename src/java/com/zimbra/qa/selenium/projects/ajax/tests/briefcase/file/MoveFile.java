@@ -42,7 +42,7 @@ public class MoveFile extends EnableBriefcaseFeature {
 
 
 	@Test (description = "Upload file through RestUtil - move & verify through GUI",
-			groups = { "bhr" })
+			groups = { "bhr", "testcafe" })
 
 	public void MoveFile_01() throws HarnessException {
 
@@ -104,7 +104,7 @@ public class MoveFile extends EnableBriefcaseFeature {
 
 
 	@Test (description = "Move File using 'm' keyboard shortcut",
-			groups = { "functional" })
+			groups = { "functional", "testcafe" })
 
 	public void MoveFile_02() throws HarnessException {
 		ZimbraAccount account = app.zGetActiveAccount();
@@ -176,7 +176,7 @@ public class MoveFile extends EnableBriefcaseFeature {
 
 
 	@Test (description = "Upload file through RestUtil - move using Right Click Context Menu & verify through GUI",
-			groups = { "sanity" })
+			groups = { "sanity", "testcafe" })
 
 	public void MoveFile_03() throws HarnessException {
 
