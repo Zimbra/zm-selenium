@@ -39,7 +39,7 @@ public class AddIndirectMemberOfDistributionList extends AdminCore {
 
 	@Bugs (ids = "99081")
 	@Test (description = "Edit DL - Add 'Indirect Member of' to DL",
-			groups = { "functional" })
+			groups = { "functional-skip" })
 
 	public void AddIndirectMemberOfDistributionList_01() throws HarnessException {
 		// Create three distribution lists in the Admin Console using SOAP

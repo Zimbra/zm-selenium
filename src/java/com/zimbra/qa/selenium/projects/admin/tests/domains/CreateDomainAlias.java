@@ -35,7 +35,7 @@ public class CreateDomainAlias extends AdminCore {
 
 
 	@Test (description = "Create a domain alias",
-			groups = { "smoke" })
+			groups = { "smoke", "testcafe" })
 
 	public void CreateAlias_01() throws HarnessException {
 		// Create a new account in the Admin Console

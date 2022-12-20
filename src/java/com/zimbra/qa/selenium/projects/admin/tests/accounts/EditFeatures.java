@@ -37,7 +37,7 @@ public class EditFeatures extends AdminCore {
 
 
 	@Test (description = "Edit account - Edit features",
-			groups = { "bhr" })
+			groups = { "bhr", "testcafe" })
 
 	public void EditFeatures_01() throws HarnessException {
 		// Create a new account in the Admin Console using SOAP

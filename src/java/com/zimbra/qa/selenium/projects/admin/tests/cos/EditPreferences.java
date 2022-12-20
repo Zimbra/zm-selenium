@@ -37,7 +37,7 @@ public class EditPreferences extends AdminCore {
 
 
 	@Test (description = "Edit COS - Edit preferences at COS level",
-			groups = { "bhr" })
+			groups = { "bhr", "testcafe" })
 
 	public void EditPreferences_01() throws HarnessException {
 		// Create a new cos in the Admin Console using SOAP

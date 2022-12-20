@@ -103,7 +103,7 @@ public class GetAccount extends AdminCore {
 
 
 	@Test (description = "Verify that system accounts such as spam/ham, wiki and galsync accounts are not displayed in the list.",
-			groups = { "functional" })
+			groups = { "functional-skip" })
 
 	public void GetAccount_03() throws HarnessException {
 		// Create a new account in the Admin Console using SOAP
@@ -157,7 +157,7 @@ public class GetAccount extends AdminCore {
 
 
 	@Test (description = "Verify system accounts i.e. spam/ham, wiki, galsync account is displayed in Search list view",
-			groups = { "sanity" })
+			groups = { "sanity", "testcafe" })
 
 	public void GetAccount_04() throws HarnessException {
 		// Enter the search string to find the account

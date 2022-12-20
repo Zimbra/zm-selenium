@@ -37,7 +37,7 @@ public class AddAlias extends AdminCore {
 
 
 	@Test (description = "Edit DL - Add Alias",
-			groups = { "bhr" })
+			groups = { "bhr", "testcafe" })
 
 	public void AddAlias_01() throws HarnessException {
 		// Create a new dl in the Admin Console using SOAP

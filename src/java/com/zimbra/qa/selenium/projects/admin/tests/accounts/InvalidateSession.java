@@ -38,7 +38,7 @@ public class InvalidateSession extends AdminCore {
 
 
 	@Test (description = " Invalidate Session  -- manage account >> Gearbox >> edit account >>  Invalidate Session",
-			groups = { "functional" })
+			groups = { "functional", "testcafe" })
 
 	public void InvalidateSession_01() throws HarnessException {
 		// Create a new account in the admin Console using SOAP
@@ -70,7 +70,7 @@ public class InvalidateSession extends AdminCore {
 
 	@Bugs (ids = "74482")
 	@Test (description = "Invalidate Session -- manage account > right click > Invalidate Session",
-			groups = { "functional" })
+			groups = { "functional", "testcafe" })
 
 	public void InvalidateSession_02() throws HarnessException {
 		// Create a new account in the admin Console using SOAP

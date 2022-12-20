@@ -37,7 +37,7 @@ public class EditAlias extends AdminCore {
 
 
 	@Test (description = "Edit a basic alias",
-			groups = { "bhr" })
+			groups = { "bhr", "testcafe" })
 
 	public void EditAlias_01() throws HarnessException {
 		AccountItem target = new AccountItem("tc" + ConfigProperties.getUniqueString(), ConfigProperties.getStringProperty("testdomain"));
@@ -70,7 +70,7 @@ public class EditAlias extends AdminCore {
 
 	@Bugs (ids = "58191")
 	@Test (description = "Bug 58191 - JavaScript error while clicking on alias of resource",
-			groups = { "sanity" })
+			groups = { "sanity", "testcafe" })
 
 	public void EditAlias_02() throws HarnessException {
 		// Create calendar resource
