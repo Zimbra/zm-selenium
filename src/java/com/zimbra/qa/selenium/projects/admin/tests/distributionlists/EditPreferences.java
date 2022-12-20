@@ -38,7 +38,7 @@ public class EditPreferences extends AdminCore {
 
 	@Bugs (ids = "104654")
 	@Test (description = "Edit DL - Edit Preferences",
-			groups = { "bhr" })
+			groups = { "bhr", "testcafe" })
 
 	public void EditPreferences_01() throws HarnessException {
 

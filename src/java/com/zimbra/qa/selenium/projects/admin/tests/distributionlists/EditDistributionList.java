@@ -38,7 +38,7 @@ public class EditDistributionList extends AdminCore {
 
 
 	@Test (description = "Edit Distribution List name - Manage Distribution List view",
-			groups = { "bhr" })
+			groups = { "bhr", "testcafe" })
 
 	public void EditDistributionList_01() throws HarnessException {
 		// Create a new dl in the Admin Console using SOAP
@@ -83,7 +83,7 @@ public class EditDistributionList extends AdminCore {
 
 
 	@Test (description = "Edit Distribution List name - Manage Distribution List view + Right Click Menu",
-			groups = { "sanity" })
+			groups = { "sanity", "testcafe" })
 
 	public void EditDistributionList_02() throws HarnessException {
 		// Create a new dl in the Admin Console using SOAP
@@ -127,7 +127,7 @@ public class EditDistributionList extends AdminCore {
 
 
 	@Test (description = "Edit Admin Distribution List name - Manage Distribution List view",
-			groups = { "sanity" })
+			groups = { "sanity", "testcafe" })
 
 	public void EditDistributionList_03() throws HarnessException {
 		// Create a new dl in the Admin Console using SOAP
@@ -173,7 +173,7 @@ public class EditDistributionList extends AdminCore {
 
 
 	@Test (description = "Edit Dynamic Admin Distribution List name - Manage Distribution List view",
-			groups = { "sanity" })
+			groups = { "sanity", "testcafe" })
 
 	public void EditDistributionList_04() throws HarnessException {
 		// Create a new dl in the Admin Console using SOAP
@@ -223,7 +223,7 @@ public class EditDistributionList extends AdminCore {
 
 	@Bugs (ids = "97150")
 	@Test (description = "Edit dynamic Distribution List name - Manage Distribution List view",
-			groups = { "functional" })
+			groups = { "functional", "testcafe" })
 
 	public void EditDistributionList_05() throws HarnessException {
 		// Create a new dynamic dl in the Admin Console using SOAP
@@ -272,7 +272,7 @@ public class EditDistributionList extends AdminCore {
 
 	@Bugs (ids = "97150")
 	@Test (description = "Edit Dynamic Distribution List name - Manage Distribution List view + Right Click Menu",
-			groups = { "functional" })
+			groups = { "functional", "testcafe" })
 
 	public void EditDistributionList_06() throws HarnessException {
 		// Create a new dl in the Admin Console using SOAP

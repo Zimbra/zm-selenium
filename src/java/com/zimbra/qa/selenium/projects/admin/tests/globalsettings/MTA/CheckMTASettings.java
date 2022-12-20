@@ -37,7 +37,7 @@ public class CheckMTASettings extends AdminCore {
 
 	@Bugs (ids = "104512,106769")
 	@Test (description = "Verify MTA restriction values after changing some MTA configuration through Command line and Admin console",
-			groups = { "sanity" })
+			groups = { "sanity-skip" })
 
 	public void CheckMTASettings_01() throws HarnessException {
 		// MTA restriction value to be changed though SOAP

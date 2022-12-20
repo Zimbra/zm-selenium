@@ -61,7 +61,7 @@ public class CreateResource extends AdminCore {
 
 
 	@Test (description = "Create a basic Equipment resource",
-			groups = { "bhr" })
+			groups = { "bhr", "testcafe" })
 
 	public void CreateResource_02() throws HarnessException {
 		ResourceItem resource = new ResourceItem();

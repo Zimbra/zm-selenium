@@ -37,7 +37,7 @@ public class EditPreferences extends AdminCore {
 
 
 	@Test (description = "Edit account - Edit preferences at account level",
-			groups = { "bhr" })
+			groups = { "bhr", "testcafe" })
 
 	public void EditPreferences_01() throws HarnessException {
 		// Create a new account in the Admin Console using SOAP

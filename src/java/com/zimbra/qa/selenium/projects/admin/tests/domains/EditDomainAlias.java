@@ -40,7 +40,7 @@ public class EditDomainAlias extends AdminCore {
 
 
 	@Test (description = "Verify edit domain operation --  Manage Domain List View",
-			groups = { "sanity" })
+			groups = { "sanity-skip" })
 
 	public void EditDomainAlias_01() throws HarnessException {
 		String targetDomain = ConfigProperties.getStringProperty("testdomain");
@@ -92,7 +92,7 @@ public class EditDomainAlias extends AdminCore {
 
 
 	@Test (description = "Verify delete domain operation",
-			groups = { "functional" })
+			groups = { "functional", "testcafe" })
 
 	public void EditDomainAlias_02() throws HarnessException {
 		String targetDomain = ConfigProperties.getStringProperty("testdomain");
@@ -144,7 +144,7 @@ public class EditDomainAlias extends AdminCore {
 
 
 	@Test (description = "Edit domain name  - Search list View",
-			groups = { "sanity" })
+			groups = { "sanity", "testcafe" })
 
 	public void EditdomainAlias_03() throws HarnessException {
 		String targetDomain = ConfigProperties.getStringProperty("testdomain");
@@ -199,7 +199,7 @@ public class EditDomainAlias extends AdminCore {
 
 
 	@Test (description = "Edit domain name -- right click",
-			groups = { "functional" })
+			groups = { "functional", "testcafe" })
 
 	public void EditdomainAlias_04() throws HarnessException {
 		String targetDomain = ConfigProperties.getStringProperty("testdomain");

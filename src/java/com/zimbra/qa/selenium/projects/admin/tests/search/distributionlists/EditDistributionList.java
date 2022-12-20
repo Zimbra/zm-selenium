@@ -39,7 +39,7 @@ public class EditDistributionList extends AdminCore {
 
 
 	@Test (description = "Verify edit operation for distribution list - Search distribution list view",
-			groups = { "sanity" })
+			groups = { "sanity", "testcafe" })
 
 	public void EditDistributionList_01() throws HarnessException {
 		// Create a new dl in the Admin Console using SOAP
@@ -86,7 +86,7 @@ public class EditDistributionList extends AdminCore {
 
 
 	@Test (description = "Verify edit operation for distribution list - Search distribution list view + right click",
-			groups = { "functional" })
+			groups = { "functional", "testcafe" })
 
 	public void EditDistributionList_02() throws HarnessException {
 		super.startingPage.zNavigateTo();
@@ -134,7 +134,7 @@ public class EditDistributionList extends AdminCore {
 
 	@Bugs (ids = "97150")
 	@Test (description = "Verify edit operation for dynamic distribution list - Search distribution list view",
-			groups = { "sanity" })
+			groups = { "sanity", "testcafe" })
 
 	public void EditDistributionList_03() throws HarnessException {
 		// Create a new dynamic dl in the Admin Console using SOAP

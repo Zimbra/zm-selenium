@@ -31,7 +31,7 @@ public class LoggedInUsername extends AdminCore {
 
 
 	@Test (description = "Verify the Top Menu displays the correct Admin username",
-			groups = { "bhr" })
+			groups = { "bhr", "testcafe" })
 
 	public void LoggedInUsername_01() throws HarnessException {
 		// Check that the displayed name is contained in the email

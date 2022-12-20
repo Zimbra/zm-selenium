@@ -36,7 +36,7 @@ public class EditFeatures extends AdminCore {
 
 
 	@Test (description = "Edit COS - Edit features",
-			groups = { "bhr" })
+			groups = { "bhr", "testcafe" })
 
 	public void EditFeatures_01() throws HarnessException {
 		// Create a new cos in the Admin Console using SOAP

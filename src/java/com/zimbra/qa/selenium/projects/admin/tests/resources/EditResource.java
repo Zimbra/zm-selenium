@@ -38,7 +38,7 @@ public class EditResource extends AdminCore {
 
 
 	@Test (description = " Edit Resource name  -- Manage resource View -- Location",
-			groups = { "bhr" })
+			groups = { "bhr", "testcafe" })
 
 	public void EditResource_01() throws HarnessException {
 		// Create a new Resource in the Admin Console using SOAP
@@ -83,7 +83,7 @@ public class EditResource extends AdminCore {
 
 
 	@Test (description = " Edit Resource name  -- Manage resource View -- Location",
-			groups = { "sanity" })
+			groups = { "sanity", "testcafe" })
 
 	public void EditResource_02() throws HarnessException {
 		// Create a new resource in the Admin Console using SOAP
@@ -137,7 +137,7 @@ public class EditResource extends AdminCore {
 
 
 	@Test (description = "Edit Resource name -- Manage resource View/Right Click Menu -- Location",
-			groups = { "functional" })
+			groups = { "functional", "testcafe" })
 
 	public void EditResource_03() throws HarnessException {
 		// Create a new Resource in the Admin Console using SOAP
@@ -182,7 +182,7 @@ public class EditResource extends AdminCore {
 
 
 	@Test (description = "Edit Resource name -- Manage resource View/Right Click Menu -- Equipment",
-			groups = { "functional" })
+			groups = { "functional", "testcafe" })
 
 	public void EditResource_04() throws HarnessException {
 		// Create a new Resource in the Admin Console using SOAP
@@ -227,7 +227,7 @@ public class EditResource extends AdminCore {
 
 
 	@Test (description = " Edit Resource name  -- Manage resource View -- Location",
-			groups = { "sanity" })
+			groups = { "sanity", "testcafe" })
 
 	public void EditResource_05() throws HarnessException {
 		// Create a new Resource in the Admin Console using SOAP
@@ -276,7 +276,7 @@ public class EditResource extends AdminCore {
 
 
 	@Test (description = " Edit Resource name  -- Manage resource View -- Equipment",
-			groups = { "functional" })
+			groups = { "functional", "testcafe" })
 
 	public void EditResource_06() throws HarnessException {
 		// Create a new Resource in the Admin Console using SOAP
@@ -325,7 +325,7 @@ public class EditResource extends AdminCore {
 
 
 	@Test (description = "Edit Resource name -- Manage resource View/Right Click Menu -- Location",
-			groups = { "functional" })
+			groups = { "functional", "testcafe" })
 
 	public void EditResource_07() throws HarnessException {
 		// Create a new Resource in the Admin Console using SOAP
@@ -374,7 +374,7 @@ public class EditResource extends AdminCore {
 
 
 	@Test (description = "Edit Resource name -- Manage resource View/Right Click Menu -- Equipment",
-			groups = { "functional" })
+			groups = { "functional", "testcafe" })
 
 	public void EditResource_08() throws HarnessException {
 		// Create a new Resource in the Admin Console using SOAP

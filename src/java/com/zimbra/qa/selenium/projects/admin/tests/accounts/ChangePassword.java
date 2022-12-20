@@ -37,7 +37,7 @@ public class ChangePassword extends AdminCore {
 
 
 	@Test (description = "Edit password  -- manage account > Gearbox > edit account > change password",
-			groups = { "bhr" })
+			groups = { "bhr", "testcafe" })
 
 	public void ChangePassword_01() throws HarnessException {
 		// Create a new account in the Admin Console using SOAP
@@ -78,7 +78,7 @@ public class ChangePassword extends AdminCore {
 
 
 	@Test (description = "Edit password  -- manage account > right click > change password",
-			groups = { "sanity" })
+			groups = { "sanity", "testcafe" })
 
 	public void ChangePassword_02() throws HarnessException {
 		// Create a new account in the Admin Console using SOAP

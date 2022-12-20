@@ -35,7 +35,7 @@ public class ViewAccounts extends AdminCore {
 
 
 	@Test (description = "Verify edit domain operation --  View Accounts",
-			groups = { "bhr" })
+			groups = { "bhr", "testcafe" })
 
 	public void ViewAccounts_01() throws HarnessException {
 		// Create a new domain in the Admin Console using SOAP

@@ -36,7 +36,7 @@ public class DuplicateCos extends AdminCore {
 
 
 	@Test (description = "Verify Duplicate cos operation -- Manage cos view",
-			groups = { "sanity" })
+			groups = { "sanity", "testcafe" })
 
 	public void DuplicateCos_01() throws HarnessException {
 		// Create a new cos in the Admin Console using SOAP
@@ -74,7 +74,7 @@ public class DuplicateCos extends AdminCore {
 
 
 	@Test (description = "Verify Duplicate cos operation -- Search COS list view/Right click menu",
-			groups = { "functional" })
+			groups = { "functional", "testcafe" })
 
 	public void DuplicateCos_02() throws HarnessException {
 		// Create a new cos in the Admin Console using SOAP

@@ -37,7 +37,7 @@ public class AddOwners extends AdminCore {
 
 
 	@Test (description = "Edit DL - Add Owner to DL",
-			groups = { "bhr" })
+			groups = { "bhr", "testcafe" })
 
 	public void AddOwner_01() throws HarnessException {
 		// Create a new dl in the Admin Console using SOAP

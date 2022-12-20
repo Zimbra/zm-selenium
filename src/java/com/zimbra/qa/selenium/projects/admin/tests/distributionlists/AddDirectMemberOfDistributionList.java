@@ -40,7 +40,7 @@ public class AddDirectMemberOfDistributionList extends AdminCore {
 
 	@Bugs (ids = "99081, ZCS-1638")
 	@Test (description = "Edit DL - Add 'Direct Member of' to DL",
-		   	groups = { "bhr" })
+		   	groups = { "bhr", "testcafe" })
 
 	public void AddDirectMemberOfDistributionList_01() throws HarnessException {
 		// Create two distribution lists in the Admin Console using SOAP

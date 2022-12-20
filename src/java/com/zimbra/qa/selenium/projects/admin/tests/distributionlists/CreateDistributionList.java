@@ -61,7 +61,7 @@ public class CreateDistributionList extends AdminCore {
 
 
 	@Test (description = "Create a basic dynamic DL",
-			groups = { "bhr" })
+			groups = { "bhr", "testcafe" })
 
 	public void CreateDistributionList_02() throws HarnessException, ServiceException {
 		this.startingPage.zNavigateTo();
@@ -97,7 +97,7 @@ public class CreateDistributionList extends AdminCore {
 	
 	@Bugs(ids = "51011")
 	@Test (description = "Create a DL and add it as a member of another DL",
-			groups = { "sanity" })
+			groups = { "sanity", "testcafe" })
 
 	public void CreateDistributionList_03() throws HarnessException {
 		this.startingPage.zNavigateTo();
