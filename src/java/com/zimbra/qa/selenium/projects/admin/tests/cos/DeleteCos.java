@@ -112,7 +112,7 @@ public class DeleteCos extends AdminCore {
 
 
 	@Test (description = "Verify delete cos operation -- Search list view",
-			groups = { "functional-known-failure" })
+			groups = { "functional-known-failure", "testcafe" })
 
 	public void DeleteCos_03() throws HarnessException {
 		// Create a new cos in the Admin Console using SOAP
@@ -159,7 +159,7 @@ public class DeleteCos extends AdminCore {
 
 
 	@Test (description = "Verify delete cos in -- Search list view/Right click menu",
-			groups = { "functional-known-failure" })
+			groups = { "functional-known-failure", "testcafe" })
 
 	public void DeleteCos_04() throws HarnessException {
 		// Create a new cos in the Admin Console using SOAP
