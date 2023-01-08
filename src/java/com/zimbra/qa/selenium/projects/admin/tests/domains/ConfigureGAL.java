@@ -41,7 +41,7 @@ public class ConfigureGAL extends AdminCore {
 
 	@Bugs (ids = "96777")
 	@Test (description = "Configure internal GAL",
-			groups = { "smoke", "non-zimbrax" })
+			groups = { "smoke", "non-zimbrax", "testcafe" })
 
 	public void ConfigureGAL_01() throws HarnessException {
 		// Create a new domain using SOAP
@@ -77,7 +77,7 @@ public class ConfigureGAL extends AdminCore {
 
 	@Bugs (ids = "96777")
 	@Test (description = "Verify GAL Configuration after chnaging GAL mode of a domain from internal to both",
-			groups = { "sanity", "non-zimbrax" })
+			groups = { "sanity", "non-zimbrax", "testcafe" })
 
 	public void ConfigureGAL_02() throws HarnessException {
 		// External data source name
@@ -160,7 +160,7 @@ public class ConfigureGAL extends AdminCore {
 
 	@Bugs (ids = "96777")
 	@Test (description = "Verify GAL Configuration after chnaging GAL mode of a domain from external to both",
-			groups = { "functional", "non-zimbrax" })
+			groups = { "functional", "non-zimbrax", "testcafe" })
 
 	public void ConfigureGAL_03() throws HarnessException {
 		// Data source name

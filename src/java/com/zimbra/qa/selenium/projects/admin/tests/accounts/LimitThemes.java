@@ -37,7 +37,7 @@ public class LimitThemes extends AdminCore {
 
 
 	@Test (description = "Modify account to verify limited themes available",
-			groups = { "functional", "non-zimbrax" })
+			groups = { "functional", "non-zimbrax", "testcafe" })
 
 	public void LimitThemes_01() throws HarnessException {
 		// Create a new account in the Admin Console using SOAP

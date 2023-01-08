@@ -32,7 +32,7 @@ public class ToggleStatus extends AdminCore {
 
 
 	@Test (description = "Verify administrator should be able to toggle zimlet status",
-			groups = { "functional", "non-zimbrax" })
+			groups = { "functional", "non-zimbrax", "testcafe" })
 
 	public void ToggleStatus_01() throws HarnessException {
 		String zimletList ="css=div#zl__ZIMLET_MANAGE div[id$='__rows'] div[id^='zli__']";
