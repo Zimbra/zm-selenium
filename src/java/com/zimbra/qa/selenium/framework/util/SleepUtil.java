@@ -17,8 +17,8 @@
 package com.zimbra.qa.selenium.framework.util;
 
 import java.util.Date;
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * A utility that delays execution

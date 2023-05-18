@@ -16,7 +16,8 @@
  */
 package com.zimbra.qa.selenium.framework.util;
 
-import org.apache.log4j.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class ZimbraDistributionList {
 	private static Logger logger = LogManager.getLogger(ZimbraDistributionList.class);

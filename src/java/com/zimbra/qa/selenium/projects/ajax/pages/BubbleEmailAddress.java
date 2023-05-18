@@ -17,7 +17,8 @@
 package com.zimbra.qa.selenium.projects.ajax.pages;
 
 import java.util.*;
-import org.apache.log4j.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import com.zimbra.qa.selenium.framework.ui.*;
 import com.zimbra.qa.selenium.framework.util.HarnessException;
 import com.zimbra.qa.selenium.projects.ajax.pages.AutocompleteEntry.Icon;

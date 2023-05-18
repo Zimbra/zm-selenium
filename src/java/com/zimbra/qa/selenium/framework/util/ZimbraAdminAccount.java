@@ -18,7 +18,9 @@ package com.zimbra.qa.selenium.framework.util;
 
 import java.util.HashMap;
 import java.util.Map;
-import org.apache.log4j.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.core.config.Configurator;
 import com.zimbra.common.soap.Element;
 import com.zimbra.qa.selenium.framework.core.ExecuteHarnessMain;
 import com.zimbra.qa.selenium.projects.admin.items.AccountItem;
@@ -282,7 +284,9 @@ public class ZimbraAdminAccount extends ZimbraAccount {
 
 	public static void main(String[] args) throws HarnessException {
 		// Configure log4j using the basic configuration
-		BasicConfigurator.configure();
+	        Configurator.initialize(null);
+	        Configurator.setLevel(LogManager.getRootLogger().getName(), org.apache.logging.log4j.Level.INFO);
+	        Configurator.setLevel(LogManager.getLogger(ZimbraAdminAccount.class).getName(), org.apache.logging.log4j.Level.INFO);
 
 		// Use the pre-provisioned global admin account to send a basic request
 		ZimbraAdminAccount.GlobalAdmin().soapSend("<GetVersionInfoRequest xmlns='urn:zimbraAdmin'/>");

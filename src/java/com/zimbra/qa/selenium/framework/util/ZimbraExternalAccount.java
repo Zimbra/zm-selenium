@@ -19,7 +19,8 @@ package com.zimbra.qa.selenium.framework.util;
 import java.net.*;
 import java.util.regex.*;
 import org.apache.commons.lang.StringEscapeUtils;
-import org.apache.log4j.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import com.zimbra.common.soap.Element;
 
 /**

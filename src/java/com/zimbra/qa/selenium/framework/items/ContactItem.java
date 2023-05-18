@@ -17,7 +17,8 @@
 package com.zimbra.qa.selenium.framework.items;
 
 import java.util.HashMap;
-import org.apache.log4j.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import com.zimbra.common.soap.Element;
 import com.zimbra.qa.selenium.framework.util.*;
 

@@ -16,8 +16,8 @@
  */
 package com.zimbra.qa.selenium.projects.ajax.pages;
 
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import com.zimbra.qa.selenium.framework.ui.*;
 
 public class TooltipContact extends Tooltip {

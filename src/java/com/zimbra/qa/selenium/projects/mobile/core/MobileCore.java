@@ -18,8 +18,8 @@ package com.zimbra.qa.selenium.projects.mobile.core;
 
 import java.awt.Toolkit;
 import java.lang.reflect.Method;
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.*;
 import org.openqa.selenium.remote.*;
 import org.testng.ITestContext;

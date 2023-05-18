@@ -232,7 +232,8 @@
 		<ivy:install organisation="jaxen" module="jaxen" revision="1.1-beta-6" settingsRef="ivy.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
 		<ivy:install organisation="libidn" module="libidn" revision="1.24" settingsRef="ivy.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
 		<ivy:install organisation="log4j" module="apache-log4j-extras" revision="1.0" settingsRef="ivy.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
-		<ivy:install organisation="log4j" module="log4j" revision="1.2.16" settingsRef="ivy.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
+		<ivy:install organisation="org.apache.logging.log4j" module="log4j-core" revision="2.17.1" settingsRef="ivy.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
+		<ivy:install organisation="org.apache.logging.log4j" module="log4j-api" revision="2.17.1" settingsRef="ivy.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
 		<ivy:install organisation="net.sf.ezmorph" module="ezmorph" revision="1.0.6" settingsRef="ivy.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
 		<ivy:install organisation="net.sf.json-lib" module="json-lib" revision="2.4" settingsRef="ivy.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
 		<ivy:install organisation="net.sf.staf" module="jstaf" revision="3.4.4" settingsRef="ivy.settings" from="chain-resolver" to="build-tmp" overwrite="true" transitive="true" type="jar"/>
